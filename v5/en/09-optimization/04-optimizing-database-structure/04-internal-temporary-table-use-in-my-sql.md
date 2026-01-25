@@ -1,66 +1,54 @@
-### 8.4.4 Internal Temporary Table Use in MySQL
+### 8.4.4 Uso de Tabelas Temporárias Internas no MySQL
 
-In some cases, the server creates internal temporary tables while processing statements. Users have no direct control over when this occurs.
+Em alguns casos, o servidor cria tabelas temporárias internas durante o processamento de *statements*. Os usuários não têm controle direto sobre quando isso ocorre.
 
-The server creates temporary tables under conditions such as these:
+O servidor cria tabelas temporárias em condições como estas:
 
-* Evaluation of `UNION` statements, with some exceptions described later.
+*   Avaliação de *statements* `UNION`, com algumas exceções descritas posteriormente.
+*   Avaliação de algumas *views*, como aquelas que usam o *algorithm* `TEMPTABLE`, `UNION`, ou agregação.
+*   Avaliação de *derived tables* (consulte a Seção 13.2.10.8, “Derived Tables”).
+*   Tabelas criadas para *subquery* ou *semijoin materialization* (consulte a Seção 8.2.2, “Otimizando Subqueries, Derived Tables e Referências de View”).
+*   Avaliação de *statements* que contêm uma cláusula `ORDER BY` e uma cláusula `GROUP BY` diferente, ou para as quais o `ORDER BY` ou `GROUP BY` contém colunas de tabelas diferentes da primeira tabela na fila do *join*.
+*   Avaliação de `DISTINCT` combinada com `ORDER BY` pode exigir uma tabela temporária.
+*   Para *queries* que usam o modificador `SQL_SMALL_RESULT`, o MySQL utiliza uma tabela temporária em memória, a menos que a *query* também contenha elementos (descritos posteriormente) que exijam armazenamento em disco.
+*   Para avaliar *statements* `INSERT ... SELECT` que selecionam e inserem na mesma tabela, o MySQL cria uma tabela temporária interna para armazenar as linhas do `SELECT`, e então insere essas linhas na tabela de destino. Consulte a Seção 13.2.5.1, “INSERT ... SELECT Statement”.
+*   Avaliação de *statements* `UPDATE` de múltiplas tabelas.
+*   Avaliação de expressões `GROUP_CONCAT()` ou `COUNT(DISTINCT)`.
 
-* Evaluation of some views, such those that use the `TEMPTABLE` algorithm, `UNION`, or aggregation.
+Para determinar se um *statement* requer uma tabela temporária, use `EXPLAIN` e verifique a coluna `Extra` para ver se ela indica `Using temporary` (consulte a Seção 8.8.1, “Otimizando Queries com EXPLAIN”). `EXPLAIN` não indica necessariamente `Using temporary` para *derived tables* ou tabelas temporárias *materialized*.
 
-* Evaluation of derived tables (see Section 13.2.10.8, “Derived Tables”).
+Algumas condições de *query* impedem o uso de uma tabela temporária em memória, caso em que o servidor usa uma tabela em disco:
 
-* Tables created for subquery or semijoin materialization (see Section 8.2.2, “Optimizing Subqueries, Derived Tables, and View References”).
+*   Presença de uma coluna `BLOB` ou `TEXT` na tabela. Isso inclui variáveis definidas pelo usuário com um valor de *string*, pois são tratadas como colunas `BLOB` ou `TEXT`, dependendo se seu valor é uma *string* binária ou não binária, respectivamente.
+*   Presença de qualquer coluna de *string* com um comprimento máximo superior a 512 (*bytes* para *strings* binárias, caracteres para *strings* não binárias) na lista `SELECT`, se `UNION` ou `UNION ALL` for usado.
+*   Os *statements* `SHOW COLUMNS` e `DESCRIBE` usam `BLOB` como tipo para algumas colunas, portanto, a tabela temporária usada para os resultados é uma tabela em disco.
 
-* Evaluation of statements that contain an `ORDER BY` clause and a different `GROUP BY` clause, or for which the `ORDER BY` or `GROUP BY` contains columns from tables other than the first table in the join queue.
+O servidor não usa uma tabela temporária para *statements* `UNION` que atendem a certas qualificações. Em vez disso, ele retém da criação da tabela temporária apenas as estruturas de dados necessárias para realizar a conversão de tipo das colunas de resultado (*typecasting*). A tabela não é totalmente instanciada e nenhuma linha é escrita ou lida dela; as linhas são enviadas diretamente ao cliente. O resultado é a redução dos requisitos de memória e disco, e uma demora menor antes que a primeira linha seja enviada ao cliente, pois o servidor não precisa esperar até que o último bloco de *query* seja executado. A saída de `EXPLAIN` e do *optimizer trace* reflete esta estratégia de execução: o bloco de *query* `UNION RESULT` não está presente porque esse bloco corresponde à parte que lê da tabela temporária.
 
-* Evaluation of `DISTINCT` combined with `ORDER BY` may require a temporary table.
+Estas condições qualificam um `UNION` para avaliação sem uma tabela temporária:
 
-* For queries that use the `SQL_SMALL_RESULT` modifier, MySQL uses an in-memory temporary table, unless the query also contains elements (described later) that require on-disk storage.
+*   O *union* é `UNION ALL`, e não `UNION` ou `UNION DISTINCT`.
+*   Não há cláusula `ORDER BY` global.
+*   O *union* não é o bloco de *query* de nível superior de um *statement* `{INSERT | REPLACE} ... SELECT ...`.
 
-* To evaluate `INSERT ... SELECT` statements that select from and insert into the same table, MySQL creates an internal temporary table to hold the rows from the `SELECT`, then inserts those rows into the target table. See Section 13.2.5.1, “INSERT ... SELECT Statement”.
+#### Storage Engine de Tabela Temporária Interna
 
-* Evaluation of multiple-table `UPDATE` statements.
+Uma tabela temporária interna pode ser mantida em memória e processada pelo *storage engine* `MEMORY`, ou armazenada em disco pelo *storage engine* `InnoDB` ou `MyISAM`.
 
-* Evaluation of `GROUP_CONCAT()` or `COUNT(DISTINCT)` expressions.
+Se uma tabela temporária interna for criada como uma tabela em memória, mas se tornar muito grande, o MySQL a converte automaticamente para uma tabela em disco. O tamanho máximo para tabelas temporárias em memória é definido pelo valor de `tmp_table_size` ou `max_heap_table_size`, o que for menor. Isso difere das tabelas `MEMORY` criadas explicitamente com `CREATE TABLE`. Para tais tabelas, apenas a variável `max_heap_table_size` determina o quão grande uma tabela pode crescer, e não há conversão para o formato em disco.
 
-To determine whether a statement requires a temporary table, use `EXPLAIN` and check the `Extra` column to see whether it says `Using temporary` (see Section 8.8.1, “Optimizing Queries with EXPLAIN”). `EXPLAIN` does not necessarily say `Using temporary` for derived or materialized temporary tables.
+A variável `internal_tmp_disk_storage_engine` define o *storage engine* que o servidor usa para gerenciar tabelas temporárias internas em disco. Os valores permitidos são `INNODB` (o padrão) e `MYISAM`.
 
-Some query conditions prevent the use of an in-memory temporary table, in which case the server uses an on-disk table instead:
+Nota
 
-* Presence of a `BLOB` or `TEXT` column in the table. This includes user-defined variables having a string value because they are treated as `BLOB` or `TEXT` columns, depending on whether their value is a binary or nonbinary string, respectively.
+Ao usar `internal_tmp_disk_storage_engine=INNODB`, *queries* que geram tabelas temporárias internas em disco que excedem os limites de linha ou coluna do `InnoDB` retornam erros como *Row size too large* ou *Too many columns*. A solução alternativa é definir `internal_tmp_disk_storage_engine` como `MYISAM`.
 
-* Presence of any string column with a maximum length larger than 512 (bytes for binary strings, characters for nonbinary strings) in the `SELECT` list, if `UNION` or `UNION ALL` is used.
+Quando uma tabela temporária interna é criada em memória ou em disco, o servidor incrementa o valor `Created_tmp_tables`. Quando uma tabela temporária interna é criada em disco, o servidor incrementa o valor `Created_tmp_disk_tables`. Se muitas tabelas temporárias internas forem criadas em disco, considere aumentar as configurações `tmp_table_size` e `max_heap_table_size`.
 
-* The `SHOW COLUMNS` and `DESCRIBE` statements use `BLOB` as the type for some columns, thus the temporary table used for the results is an on-disk table.
+#### Formato de Armazenamento de Tabela Temporária Interna
 
-The server does not use a temporary table for `UNION` statements that meet certain qualifications. Instead, it retains from temporary table creation only the data structures necessary to perform result column typecasting. The table is not fully instantiated and no rows are written to or read from it; rows are sent directly to the client. The result is reduced memory and disk requirements, and smaller delay before the first row is sent to the client because the server need not wait until the last query block is executed. `EXPLAIN` and optimizer trace output reflects this execution strategy: The `UNION RESULT` query block is not present because that block corresponds to the part that reads from the temporary table.
+Tabelas temporárias em memória são gerenciadas pelo *storage engine* `MEMORY`, que usa o formato de linha de comprimento fixo (*fixed-length row format*). Os valores das colunas `VARCHAR` e `VARBINARY` são preenchidos até o comprimento máximo da coluna, armazenando-os, na prática, como colunas `CHAR` e `BINARY`.
 
-These conditions qualify a `UNION` for evaluation without a temporary table:
+Tabelas temporárias em disco são gerenciadas pelos *storage engines* `InnoDB` ou `MyISAM` (dependendo da configuração de `internal_tmp_disk_storage_engine`). Ambos os *engines* armazenam tabelas temporárias usando o formato de linha de largura dinâmica (*dynamic-width row format*). As colunas ocupam apenas o armazenamento necessário, o que reduz o *disk I/O*, os requisitos de espaço e o tempo de processamento em comparação com tabelas em disco que usam linhas de comprimento fixo.
 
-* The union is `UNION ALL`, not `UNION` or `UNION DISTINCT`.
-
-* There is no global `ORDER BY` clause.
-* The union is not the top-level query block of an `{INSERT | REPLACE} ... SELECT ...` statement.
-
-#### Internal Temporary Table Storage Engine
-
-An internal temporary table can be held in memory and processed by the `MEMORY` storage engine, or stored on disk by the `InnoDB` or `MyISAM` storage engine.
-
-If an internal temporary table is created as an in-memory table but becomes too large, MySQL automatically converts it to an on-disk table. The maximum size for in-memory temporary tables is defined by the `tmp_table_size` or `max_heap_table_size` value, whichever is smaller. This differs from `MEMORY` tables explicitly created with `CREATE TABLE`. For such tables, only the `max_heap_table_size` variable determines how large a table can grow, and there is no conversion to on-disk format.
-
-The `internal_tmp_disk_storage_engine` variable defines the storage engine the server uses to manage on-disk internal temporary tables. Permitted values are `INNODB` (the default) and `MYISAM`.
-
-Note
-
-When using `internal_tmp_disk_storage_engine=INNODB`, queries that generate on-disk internal temporary tables that exceed `InnoDB` row or column limits return Row size too large or Too many columns errors. The workaround is to set `internal_tmp_disk_storage_engine` to `MYISAM`.
-
-When an internal temporary table is created in memory or on disk, the server increments the `Created_tmp_tables` value. When an internal temporary table is created on disk, the server increments the `Created_tmp_disk_tables` value. If too many internal temporary tables are created on disk, consider increasing the `tmp_table_size` and `max_heap_table_size` settings.
-
-#### Internal Temporary Table Storage Format
-
-In-memory temporary tables are managed by the `MEMORY` storage engine, which uses fixed-length row format. `VARCHAR` and `VARBINARY` column values are padded to the maximum column length, in effect storing them as `CHAR` and `BINARY` columns.
-
-On-disk temporary tables are managed by the `InnoDB` or `MyISAM` storage engine (depending on the `internal_tmp_disk_storage_engine` setting). Both engines store temporary tables using dynamic-width row format. Columns take only as much storage as needed, which reduces disk I/O, space requirements, and processing time compared to on-disk tables that use fixed-length rows.
-
-For statements that initially create an internal temporary table in memory, then convert it to an on-disk table, better performance might be achieved by skipping the conversion step and creating the table on disk to begin with. The `big_tables` variable can be used to force disk storage of internal temporary tables.
+Para *statements* que inicialmente criam uma tabela temporária interna em memória e depois a convertem para uma tabela em disco, um desempenho melhor pode ser alcançado ignorando a etapa de conversão e criando a tabela em disco desde o início. A variável `big_tables` pode ser usada para forçar o armazenamento em disco de tabelas temporárias internas.

@@ -1,30 +1,30 @@
-#### 6.4.5.4 Audit Log File Formats
+#### 6.4.5.4 Formatos de Arquivos de Log de Auditoria
 
-The MySQL server calls the audit log plugin to write an audit record to its log file whenever an auditable event occurs. Typically the first audit record written after plugin startup contains the server description and startup options. Elements following that one represent events such as client connect and disconnect events, executed SQL statements, and so forth. Only top-level statements are logged, not statements within stored programs such as triggers or stored procedures. Contents of files referenced by statements such as [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") are not logged.
+O servidor MySQL chama o audit log plugin para gravar um registro de auditoria em seu arquivo de log sempre que um evento auditável ocorre. Tipicamente, o primeiro registro de auditoria gravado após a inicialização do plugin contém a descrição do servidor e as opções de startup. Os elementos seguintes representam eventos como eventos de conexão e desconexão de clientes, instruções SQL executadas e assim por diante. Apenas as instruções de nível superior são registradas, não as instruções dentro de stored programs como triggers ou stored procedures. O conteúdo de arquivos referenciados por instruções como [`LOAD DATA`](load-data.html "13.2.6 Instrução LOAD DATA") não é registrado.
 
-To select the log format that the audit log plugin uses to write its log file, set the [`audit_log_format`](audit-log-reference.html#sysvar_audit_log_format) system variable at server startup. These formats are available:
+Para selecionar o formato de log que o audit log plugin usa para gravar seu arquivo de log, defina a variável de sistema [`audit_log_format`](audit-log-reference.html#sysvar_audit_log_format) na inicialização do servidor (server startup). Estes formatos estão disponíveis:
 
-* New-style XML format ([`audit_log_format=NEW`](audit-log-reference.html#sysvar_audit_log_format)): An XML format that has better compatibility with Oracle Audit Vault than old-style XML format. MySQL 5.7 uses new-style XML format by default.
+* Formato XML de novo estilo ([`audit_log_format=NEW`](audit-log-reference.html#sysvar_audit_log_format)): Um formato XML que possui melhor compatibilidade com o Oracle Audit Vault do que o formato XML de estilo antigo. O MySQL 5.7 usa o formato XML de novo estilo por padrão.
 
-* Old-style XML format ([`audit_log_format=OLD`](audit-log-reference.html#sysvar_audit_log_format)): The original audit log format used by default in older MySQL series.
+* Formato XML de estilo antigo ([`audit_log_format=OLD`](audit-log-reference.html#sysvar_audit_log_format)): O formato de audit log original usado por padrão em séries mais antigas do MySQL.
 
-* JSON format ([`audit_log_format=JSON`](audit-log-reference.html#sysvar_audit_log_format))
+* Formato JSON ([`audit_log_format=JSON`](audit-log-reference.html#sysvar_audit_log_format))
 
-By default, audit log file contents are written in new-style XML format, without compression or encryption.
+Por padrão, o conteúdo do arquivo de audit log é gravado no formato XML de novo estilo, sem compressão ou encryption.
 
-Note
+Nota
 
-For information about issues to consider when changing the log format, see [Selecting Audit Log File Format](audit-log-logging-configuration.html#audit-log-file-format "Selecting Audit Log File Format").
+Para obter informações sobre questões a considerar ao alterar o formato de log, consulte [Selecionando o Formato do Arquivo de Log de Auditoria](audit-log-logging-configuration.html#audit-log-file-format "Selecionando o Formato do Arquivo de Log de Auditoria").
 
-The following sections describe the available audit logging formats:
+As seções a seguir descrevem os formatos de log de auditoria disponíveis:
 
-* [New-Style XML Audit Log File Format](audit-log-file-formats.html#audit-log-file-new-style-xml-format "New-Style XML Audit Log File Format")
-* [Old-Style XML Audit Log File Format](audit-log-file-formats.html#audit-log-file-old-style-xml-format "Old-Style XML Audit Log File Format")
-* [JSON Audit Log File Format](audit-log-file-formats.html#audit-log-file-json-format "JSON Audit Log File Format")
+* [Formato de Arquivo de Log de Auditoria XML de Novo Estilo](audit-log-file-formats.html#audit-log-file-new-style-xml-format "Formato de Arquivo de Log de Auditoria XML de Novo Estilo")
+* [Formato de Arquivo de Log de Auditoria XML de Estilo Antigo](audit-log-file-formats.html#audit-log-file-old-style-xml-format "Formato de Arquivo de Log de Auditoria XML de Estilo Antigo")
+* [Formato de Arquivo de Log de Auditoria JSON](audit-log-file-formats.html#audit-log-file-json-format "Formato de Arquivo de Log de Auditoria JSON")
 
-##### New-Style XML Audit Log File Format
+##### Formato de Arquivo de Log de Auditoria XML de Novo Estilo
 
-Here is a sample log file in new-style XML format ([`audit_log_format=NEW`](audit-log-reference.html#sysvar_audit_log_format)), reformatted slightly for readability:
+Aqui está um exemplo de arquivo de log no formato XML de novo estilo ([`audit_log_format=NEW`](audit-log-reference.html#sysvar_audit_log_format)), ligeiramente reformatado para melhor legibilidade:
 
 ```sql
 <?xml version="1.0" encoding="utf-8"?>
@@ -118,37 +118,37 @@ Here is a sample log file in new-style XML format ([`audit_log_format=NEW`](audi
 </AUDIT>
 ```
 
-The audit log file is written as XML, using UTF-8 (up to 4 bytes per character). The root element is `<AUDIT>`. The root element contains `<AUDIT_RECORD>` elements, each of which provides information about an audited event. When the audit log plugin begins writing a new log file, it writes the XML declaration and opening `<AUDIT>` root element tag. When the plugin closes a log file, it writes the closing `</AUDIT>` root element tag. The closing tag is not present while the file is open.
+O arquivo de audit log é gravado como XML, usando UTF-8 (até 4 bytes por caractere). O elemento raiz é `<AUDIT>`. O elemento raiz contém elementos `<AUDIT_RECORD>`, cada um dos quais fornece informações sobre um evento auditado. Quando o audit log plugin começa a gravar um novo arquivo de log, ele grava a declaração XML e a tag de abertura do elemento raiz `<AUDIT>`. Quando o plugin fecha um arquivo de log, ele grava a tag de fechamento do elemento raiz `</AUDIT>`. A tag de fechamento não está presente enquanto o arquivo está aberto.
 
-Elements within `<AUDIT_RECORD>` elements have these characteristics:
+Os elementos dentro dos elementos `<AUDIT_RECORD>` possuem estas características:
 
-* Some elements appear in every `<AUDIT_RECORD>` element. Others are optional and may appear depending on the audit record type.
+* Alguns elementos aparecem em cada elemento `<AUDIT_RECORD>`. Outros são opcionais e podem aparecer dependendo do tipo de registro de auditoria.
 
-* Order of elements within an `<AUDIT_RECORD>` element is not guaranteed.
+* A ordem dos elementos dentro de um elemento `<AUDIT_RECORD>` não é garantida.
 
-* Element values are not fixed length. Long values may be truncated as indicated in the element descriptions given later.
+* Os valores dos elementos não possuem comprimento fixo. Valores longos podem ser truncados conforme indicado nas descrições dos elementos fornecidas posteriormente.
 
-* The `<`, `>`, `"`, and `&` characters are encoded as `&lt;`, `&gt;`, `&quot;`, and `&amp;`, respectively. NUL bytes (U+00) are encoded as the `?` character.
+* Os caracteres `<`, `>`, `"`, e `&` são codificados como `&lt;`, `&gt;`, `&quot;`, e `&amp;`, respectivamente. Bytes NUL (U+00) são codificados como o caractere `?`.
 
-* Characters not valid as XML characters are encoded using numeric character references. Valid XML characters are:
+* Caracteres que não são válidos como caracteres XML são codificados usando referências numéricas de caracteres. Caracteres XML válidos são:
 
-  ```sql
+```sql
   #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
   ```
 
-The following elements are mandatory in every `<AUDIT_RECORD>` element:
+Os seguintes elementos são obrigatórios em todo elemento `<AUDIT_RECORD>`:
 
 * `<NAME>`
 
-  A string representing the type of instruction that generated the audit event, such as a command that the server received from a client.
+  Uma string que representa o tipo de instrução que gerou o evento de auditoria, como um comando que o servidor recebeu de um cliente.
 
-  Example:
+  Exemplo:
 
   ```sql
   <NAME>Query</NAME>
   ```
 
-  Some common `<NAME>` values:
+  Alguns valores comuns de `<NAME>`:
 
   ```sql
   Audit    When auditing starts, which may be server startup time
@@ -161,23 +161,23 @@ The following elements are mandatory in every `<AUDIT_RECORD>` element:
   NoAudit  Auditing has been turned off
   ```
 
-  The possible values are `Audit`, `Binlog Dump`, `Change user`, `Close stmt`, `Connect Out`, `Connect`, `Create DB`, `Daemon`, `Debug`, `Delayed insert`, `Drop DB`, `Execute`, `Fetch`, `Field List`, `Init DB`, `Kill`, `Long Data`, `NoAudit`, `Ping`, `Prepare`, `Processlist`, `Query`, `Quit`, `Refresh`, `Register Slave`, `Reset stmt`, `Set option`, `Shutdown`, `Sleep`, `Statistics`, `Table Dump`, `TableDelete`, `TableInsert`, `TableRead`, `TableUpdate`, `Time`.
+  Os valores possíveis são `Audit`, `Binlog Dump`, `Change user`, `Close stmt`, `Connect Out`, `Connect`, `Create DB`, `Daemon`, `Debug`, `Delayed insert`, `Drop DB`, `Execute`, `Fetch`, `Field List`, `Init DB`, `Kill`, `Long Data`, `NoAudit`, `Ping`, `Prepare`, `Processlist`, `Query`, `Quit`, `Refresh`, `Register Slave`, `Reset stmt`, `Set option`, `Shutdown`, `Sleep`, `Statistics`, `Table Dump`, `TableDelete`, `TableInsert`, `TableRead`, `TableUpdate`, `Time`.
 
-  Many of these values correspond to the `COM_xxx` command values listed in the `my_command.h` header file. For example, `Create DB` and `Change user` correspond to `COM_CREATE_DB` and `COM_CHANGE_USER`, respectively.
+  Muitos desses valores correspondem aos valores de comando `COM_xxx` listados no arquivo header `my_command.h`. Por exemplo, `Create DB` e `Change user` correspondem a `COM_CREATE_DB` e `COM_CHANGE_USER`, respectivamente.
 
-  Events having `<NAME>` values of `TableXXX` accompany `Query` events. For example, the following statement generates one `Query` event, two `TableRead` events, and a `TableInsert` events:
+  Eventos com valores `<NAME>` de `TableXXX` acompanham eventos `Query`. Por exemplo, a seguinte instrução gera um evento `Query`, dois eventos `TableRead` e um evento `TableInsert`:
 
   ```sql
   INSERT INTO t3 SELECT t1.* FROM t1 JOIN t2;
   ```
 
-  Each `TableXXX` event contains `<TABLE>` and `<DB>` elements to identify the table to which the event refers and the database that contains the table.
+  Cada evento `TableXXX` contém elementos `<TABLE>` e `<DB>` para identificar a table à qual o evento se refere e o Database que contém a table.
 
 * `<RECORD_ID>`
 
-  A unique identifier for the audit record. The value is composed from a sequence number and timestamp, in the format `SEQ_TIMESTAMP`. When the audit log plugin opens the audit log file, it initializes the sequence number to the size of the audit log file, then increments the sequence by 1 for each record logged. The timestamp is a UTC value in `YYYY-MM-DDThh:mm:ss` format indicating the date and time when the audit log plugin opened the file.
+  Um identificador exclusivo para o registro de auditoria. O valor é composto por um número de sequência e um timestamp, no formato `SEQ_TIMESTAMP`. Quando o audit log plugin abre o arquivo de log de auditoria, ele inicializa o número de sequência para o tamanho do arquivo de log de auditoria e, em seguida, incrementa a sequência em 1 para cada registro logado. O timestamp é um valor UTC no formato `YYYY-MM-DDThh:mm:ss` indicando a data e hora em que o audit log plugin abriu o arquivo.
 
-  Example:
+  Exemplo:
 
   ```sql
   <RECORD_ID>12_2019-10-03T14:06:33</RECORD_ID>
@@ -185,27 +185,27 @@ The following elements are mandatory in every `<AUDIT_RECORD>` element:
 
 * `<TIMESTAMP>`
 
-  A string representing a UTC value in `YYYY-MM-DDThh:mm:ss UTC` format indicating the date and time when the audit event was generated. For example, the event corresponding to execution of an SQL statement received from a client has a `<TIMESTAMP>` value occurring after the statement finishes, not when it was received.
+  Uma string que representa um valor UTC no formato `YYYY-MM-DDThh:mm:ss UTC` indicando a data e hora em que o evento de auditoria foi gerado. Por exemplo, o evento correspondente à execução de uma instrução SQL recebida de um cliente tem um valor `<TIMESTAMP>` que ocorre após a instrução ser concluída, e não quando foi recebida.
 
-  Example:
+  Exemplo:
 
   ```sql
   <TIMESTAMP>2019-10-03T14:09:45 UTC</TIMESTAMP>
   ```
 
-The following elements are optional in `<AUDIT_RECORD>` elements. Many of them occur only with specific `<NAME>` element values.
+Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>`. Muitos deles ocorrem apenas com valores de elemento `<NAME>` específicos.
 
 * `<COMMAND_CLASS>`
 
-  A string that indicates the type of action performed.
+  Uma string que indica o tipo de ação realizada.
 
-  Example:
+  Exemplo:
 
   ```sql
   <COMMAND_CLASS>drop_table</COMMAND_CLASS>
   ```
 
-  The values correspond to the `statement/sql/xxx` command counters. For example, *`xxx`* is `drop_table` and `select` for [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") and [`SELECT`](select.html "13.2.9 SELECT Statement") statements, respectively. The following statement displays the possible names:
+  Os valores correspondem aos contadores de comando `statement/sql/xxx`. Por exemplo, *`xxx`* é `drop_table` e `select` para instruções [`DROP TABLE`](drop-table.html "13.1.29 Instrução DROP TABLE") e [`SELECT`](select.html "13.2.9 Instrução SELECT"), respectivamente. A instrução a seguir exibe os nomes possíveis:
 
   ```sql
   SELECT REPLACE(EVENT_NAME, 'statement/sql/', '') AS name
@@ -216,9 +216,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<CONNECTION_ID>`
 
-  An unsigned integer representing the client connection identifier. This is the same as the value returned by the [`CONNECTION_ID()`](information-functions.html#function_connection-id) function within the session.
+  Um inteiro não assinado que representa o identificador de conexão do cliente. Este é o mesmo valor retornado pela função [`CONNECTION_ID()`](information-functions.html#function_connection-id) dentro da session.
 
-  Example:
+  Exemplo:
 
   ```sql
   <CONNECTION_ID>127</CONNECTION_ID>
@@ -226,9 +226,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<CONNECTION_TYPE>`
 
-  The security state of the connection to the server. Permitted values are `TCP/IP` (TCP/IP connection established without encryption), `SSL/TLS` (TCP/IP connection established with encryption), `Socket` (Unix socket file connection), `Named Pipe` (Windows named pipe connection), and `Shared Memory` (Windows shared memory connection).
+  O estado de segurança da conexão com o servidor. Os valores permitidos são `TCP/IP` (conexão TCP/IP estabelecida sem encryption), `SSL/TLS` (conexão TCP/IP estabelecida com encryption), `Socket` (conexão de arquivo socket Unix), `Named Pipe` (conexão de pipe nomeado do Windows) e `Shared Memory` (conexão de memória compartilhada do Windows).
 
-  Example:
+  Exemplo:
 
   ```sql
   <CONNECTION_TYPE>SSL/TLS</CONNECTION_TYPE>
@@ -236,21 +236,21 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<DB>`
 
-  A string representing a database name.
+  Uma string que representa um nome de Database.
 
-  Example:
+  Exemplo:
 
   ```sql
   <DB>test</DB>
   ```
 
-  For connect events, this element indicates the default database; the element is empty if there is no default database. For table-access events, the element indicates the database to which the accessed table belongs.
+  Para eventos de conexão, este elemento indica o default database; o elemento é vazio se não houver um default database. Para eventos de acesso a table, o elemento indica o Database ao qual a table acessada pertence.
 
 * `<HOST>`
 
-  A string representing the client host name.
+  Uma string que representa o host name do cliente.
 
-  Example:
+  Exemplo:
 
   ```sql
   <HOST>localhost</HOST>
@@ -258,9 +258,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<IP>`
 
-  A string representing the client IP address.
+  Uma string que representa o endereço IP do cliente.
 
-  Example:
+  Exemplo:
 
   ```sql
   <IP>127.0.0.1</IP>
@@ -268,9 +268,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<MYSQL_VERSION>`
 
-  A string representing the MySQL server version. This is the same as the value of the [`VERSION()`](information-functions.html#function_version) function or [`version`](server-system-variables.html#sysvar_version) system variable.
+  Uma string que representa a versão do MySQL server. Este é o mesmo que o valor da função [`VERSION()`](information-functions.html#function_version) ou da variável de sistema [`version`](server-system-variables.html#sysvar_version).
 
-  Example:
+  Exemplo:
 
   ```sql
   <MYSQL_VERSION>5.7.21-log</MYSQL_VERSION>
@@ -278,9 +278,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<OS_LOGIN>`
 
-  A string representing the external user name used during the authentication process, as set by the plugin used to authenticate the client. With native (built-in) MySQL authentication, or if the plugin does not set the value, this element is empty. The value is the same as that of the [`external_user`](server-system-variables.html#sysvar_external_user) system variable (see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")).
+  Uma string que representa o user name externo usado durante o processo de autenticação, conforme definido pelo plugin usado para autenticar o cliente. Com a autenticação MySQL nativa (embutida), ou se o plugin não definir o valor, este elemento estará vazio. O valor é o mesmo que o da variável de sistema [`external_user`](server-system-variables.html#sysvar_external_user) (consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")).
 
-  Example:
+  Exemplo:
 
   ```sql
   <OS_LOGIN>jeffrey</OS_LOGIN>
@@ -288,9 +288,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<OS_VERSION>`
 
-  A string representing the operating system on which the server was built or is running.
+  Uma string que representa o operating system no qual o servidor foi construído ou está sendo executado.
 
-  Example:
+  Exemplo:
 
   ```sql
   <OS_VERSION>x86_64-Linux</OS_VERSION>
@@ -298,9 +298,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<PRIV_USER>`
 
-  A string representing the user that the server authenticated the client as. This is the user name that the server uses for privilege checking, and may differ from the `<USER>` value.
+  Uma string que representa o user que o servidor autenticou como cliente. Este é o user name que o servidor usa para privilege checking, e pode ser diferente do valor de `<USER>`.
 
-  Example:
+  Exemplo:
 
   ```sql
   <PRIV_USER>jeffrey</PRIV_USER>
@@ -308,9 +308,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<PROXY_USER>`
 
-  A string representing the proxy user (see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). The value is empty if user proxying is not in effect.
+  Uma string que representa o proxy user (consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). O valor é vazio se o user proxying não estiver em vigor.
 
-  Example:
+  Exemplo:
 
   ```sql
   <PROXY_USER>developer</PROXY_USER>
@@ -318,9 +318,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<SERVER_ID>`
 
-  An unsigned integer representing the server ID. This is the same as the value of the [`server_id`](replication-options.html#sysvar_server_id) system variable.
+  Um inteiro não assinado que representa o Server ID. Este é o mesmo que o valor da variável de sistema [`server_id`](replication-options.html#sysvar_server_id).
 
-  Example:
+  Exemplo:
 
   ```sql
   <SERVER_ID>1</SERVER_ID>
@@ -328,9 +328,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<SQLTEXT>`
 
-  A string representing the text of an SQL statement. The value can be empty. Long values may be truncated. The string, like the audit log file itself, is written using UTF-8 (up to 4 bytes per character), so the value may be the result of conversion. For example, the original statement might have been received from the client as an SJIS string.
+  Uma string que representa o texto de uma instrução SQL. O valor pode ser vazio. Valores longos podem ser truncados. A string, assim como o próprio arquivo de audit log, é gravada usando UTF-8 (até 4 bytes por caractere), portanto, o valor pode ser resultado de conversão. Por exemplo, a instrução original pode ter sido recebida do cliente como uma string SJIS.
 
-  Example:
+  Exemplo:
 
   ```sql
   <SQLTEXT>DELETE FROM t1</SQLTEXT>
@@ -338,9 +338,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<STARTUP_OPTIONS>`
 
-  A string representing the options that were given on the command line or in option files when the MySQL server was started. The first option is the path to the server executable.
+  Uma string que representa as opções fornecidas na linha de comando ou em option files quando o MySQL server foi iniciado. A primeira opção é o path para o executável do servidor.
 
-  Example:
+  Exemplo:
 
   ```sql
   <STARTUP_OPTIONS>/usr/local/mysql/bin/mysqld
@@ -349,13 +349,13 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<STATUS>`
 
-  An unsigned integer representing the command status: 0 for success, nonzero if an error occurred. This is the same as the value of the [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html) C API function. See the description for `<STATUS_CODE>` for information about how it differs from `<STATUS>`.
+  Um inteiro não assinado que representa o status do comando: 0 para sucesso, diferente de zero se ocorreu um error. Este é o mesmo valor da função C API [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html). Consulte a descrição de `<STATUS_CODE>` para obter informações sobre como ele difere de `<STATUS>`.
 
-  The audit log does not contain the SQLSTATE value or error message. To see the associations between error codes, SQLSTATE values, and messages, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
+  O audit log não contém o valor SQLSTATE ou a mensagem de error. Para ver as associações entre error codes, valores SQLSTATE e mensagens, consulte [Referência de Mensagens de Erro do Servidor](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-  Warnings are not logged.
+  Warnings não são registrados.
 
-  Example:
+  Exemplo:
 
   ```sql
   <STATUS>1051</STATUS>
@@ -363,11 +363,11 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<STATUS_CODE>`
 
-  An unsigned integer representing the command status: 0 for success, 1 if an error occurred.
+  Um inteiro não assinado que representa o status do comando: 0 para sucesso, 1 se ocorreu um error.
 
-  The `STATUS_CODE` value differs from the `STATUS` value: `STATUS_CODE` is 0 for success and 1 for error, which is compatible with the EZ_collector consumer for Audit Vault. `STATUS` is the value of the [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html) C API function. This is 0 for success and nonzero for error, and thus is not necessarily 1 for error.
+  O valor `STATUS_CODE` difere do valor `STATUS`: `STATUS_CODE` é 0 para sucesso e 1 para error, o que é compatível com o consumidor EZ_collector para Audit Vault. `STATUS` é o valor da função C API [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html). Este é 0 para sucesso e diferente de zero para error, portanto, não é necessariamente 1 para error.
 
-  Example:
+  Exemplo:
 
   ```sql
   <STATUS_CODE>0</STATUS_CODE>
@@ -375,9 +375,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<TABLE>`
 
-  A string representing a table name.
+  Uma string que representa um nome de table.
 
-  Example:
+  Exemplo:
 
   ```sql
   <TABLE>t3</TABLE>
@@ -385,9 +385,9 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<USER>`
 
-  A string representing the user name sent by the client. This may differ from the `<PRIV_USER>` value.
+  Uma string que representa o user name enviado pelo cliente. Este pode ser diferente do valor de `<PRIV_USER>`.
 
-  Example:
+  Exemplo:
 
   ```sql
   <USER>root[root] @ localhost [127.0.0.1]</USER>
@@ -395,17 +395,17 @@ The following elements are optional in `<AUDIT_RECORD>` elements. Many of them o
 
 * `<VERSION>`
 
-  An unsigned integer representing the version of the audit log file format.
+  Um inteiro não assinado que representa a versão do formato do arquivo de audit log.
 
-  Example:
+  Exemplo:
 
   ```sql
   <VERSION>1</VERSION>
   ```
 
-##### Old-Style XML Audit Log File Format
+##### Formato de Arquivo de Log de Auditoria XML de Estilo Antigo
 
-Here is a sample log file in old-style XML format ([`audit_log_format=OLD`](audit-log-reference.html#sysvar_audit_log_format)), reformatted slightly for readability:
+Aqui está um exemplo de arquivo de log no formato XML de estilo antigo ([`audit_log_format=OLD`](audit-log-reference.html#sysvar_audit_log_format)), ligeiramente reformatado para melhor legibilidade:
 
 ```sql
 <?xml version="1.0" encoding="utf-8"?>
@@ -475,33 +475,33 @@ Here is a sample log file in old-style XML format ([`audit_log_format=OLD`](audi
 </AUDIT>
 ```
 
-The audit log file is written as XML, using UTF-8 (up to 4 bytes per character). The root element is `<AUDIT>`. The root element contains `<AUDIT_RECORD>` elements, each of which provides information about an audited event. When the audit log plugin begins writing a new log file, it writes the XML declaration and opening `<AUDIT>` root element tag. When the plugin closes a log file, it writes the closing `</AUDIT>` root element tag. The closing tag is not present while the file is open.
+O arquivo de audit log é gravado como XML, usando UTF-8 (até 4 bytes por caractere). O elemento raiz é `<AUDIT>`. O elemento raiz contém elementos `<AUDIT_RECORD>`, cada um dos quais fornece informações sobre um evento auditado. Quando o audit log plugin começa a gravar um novo arquivo de log, ele grava a declaração XML e a tag de abertura do elemento raiz `<AUDIT>`. Quando o plugin fecha um arquivo de log, ele grava a tag de fechamento do elemento raiz `</AUDIT>`. A tag de fechamento não está presente enquanto o arquivo está aberto.
 
-Attributes of `<AUDIT_RECORD>` elements have these characteristics:
+Os atributos dos elementos `<AUDIT_RECORD>` possuem estas características:
 
-* Some attributes appear in every `<AUDIT_RECORD>` element. Others are optional and may appear depending on the audit record type.
+* Alguns atributos aparecem em cada elemento `<AUDIT_RECORD>`. Outros são opcionais e podem aparecer dependendo do tipo de registro de auditoria.
 
-* Order of attributes within an `<AUDIT_RECORD>` element is not guaranteed.
+* A ordem dos atributos dentro de um elemento `<AUDIT_RECORD>` não é garantida.
 
-* Attribute values are not fixed length. Long values may be truncated as indicated in the attribute descriptions given later.
+* Os valores dos atributos não possuem comprimento fixo. Valores longos podem ser truncados conforme indicado nas descrições dos atributos fornecidas posteriormente.
 
-* The `<`, `>`, `"`, and `&` characters are encoded as `&lt;`, `&gt;`, `&quot;`, and `&amp;`, respectively. NUL bytes (U+00) are encoded as the `?` character.
+* Os caracteres `<`, `>`, `"`, e `&` são codificados como `&lt;`, `&gt;`, `&quot;`, e `&amp;`, respectivamente. Bytes NUL (U+00) são codificados como o caractere `?`.
 
-* Characters not valid as XML characters are encoded using numeric character references. Valid XML characters are:
+* Caracteres que não são válidos como caracteres XML são codificados usando referências numéricas de caracteres. Caracteres XML válidos são:
 
-  ```sql
+```sql
   #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
   ```
 
-The following attributes are mandatory in every `<AUDIT_RECORD>` element:
+Os seguintes atributos são obrigatórios em todo elemento `<AUDIT_RECORD>`:
 
 * `NAME`
 
-  A string representing the type of instruction that generated the audit event, such as a command that the server received from a client.
+  Uma string que representa o tipo de instrução que gerou o evento de auditoria, como um comando que o servidor recebeu de um cliente.
 
-  Example: `NAME="Query"`
+  Exemplo: `NAME="Query"`
 
-  Some common `NAME` values:
+  Alguns valores comuns de `NAME`:
 
   ```sql
   Audit    When auditing starts, which may be server startup time
@@ -514,39 +514,39 @@ The following attributes are mandatory in every `<AUDIT_RECORD>` element:
   NoAudit  Auditing has been turned off
   ```
 
-  The possible values are `Audit`, `Binlog Dump`, `Change user`, `Close stmt`, `Connect Out`, `Connect`, `Create DB`, `Daemon`, `Debug`, `Delayed insert`, `Drop DB`, `Execute`, `Fetch`, `Field List`, `Init DB`, `Kill`, `Long Data`, `NoAudit`, `Ping`, `Prepare`, `Processlist`, `Query`, `Quit`, `Refresh`, `Register Slave`, `Reset stmt`, `Set option`, `Shutdown`, `Sleep`, `Statistics`, `Table Dump`, `TableDelete`, `TableInsert`, `TableRead`, `TableUpdate`, `Time`.
+  Os valores possíveis são `Audit`, `Binlog Dump`, `Change user`, `Close stmt`, `Connect Out`, `Connect`, `Create DB`, `Daemon`, `Debug`, `Delayed insert`, `Drop DB`, `Execute`, `Fetch`, `Field List`, `Init DB`, `Kill`, `Long Data`, `NoAudit`, `Ping`, `Prepare`, `Processlist`, `Query`, `Quit`, `Refresh`, `Register Slave`, `Reset stmt`, `Set option`, `Shutdown`, `Sleep`, `Statistics`, `Table Dump`, `TableDelete`, `TableInsert`, `TableRead`, `TableUpdate`, `Time`.
 
-  Many of these values correspond to the `COM_xxx` command values listed in the `my_command.h` header file. For example, `"Create DB"` and `"Change user"` correspond to `COM_CREATE_DB` and `COM_CHANGE_USER`, respectively.
+  Muitos desses valores correspondem aos valores de comando `COM_xxx` listados no arquivo header `my_command.h`. Por exemplo, `"Create DB"` e `"Change user"` correspondem a `COM_CREATE_DB` e `COM_CHANGE_USER`, respectivamente.
 
-  Events having `NAME` values of `TableXXX` accompany `Query` events. For example, the following statement generates one `Query` event, two `TableRead` events, and a `TableInsert` events:
+  Eventos com valores `NAME` de `TableXXX` acompanham eventos `Query`. Por exemplo, a seguinte instrução gera um evento `Query`, dois eventos `TableRead` e um evento `TableInsert`:
 
   ```sql
   INSERT INTO t3 SELECT t1.* FROM t1 JOIN t2;
   ```
 
-  Each `TableXXX` event has `TABLE` and `DB` attributes to identify the table to which the event refers and the database that contains the table.
+  Cada evento `TableXXX` tem atributos `TABLE` e `DB` para identificar a table à qual o evento se refere e o Database que contém a table.
 
 * `RECORD_ID`
 
-  A unique identifier for the audit record. The value is composed from a sequence number and timestamp, in the format `SEQ_TIMESTAMP`. When the audit log plugin opens the audit log file, it initializes the sequence number to the size of the audit log file, then increments the sequence by 1 for each record logged. The timestamp is a UTC value in `YYYY-MM-DDThh:mm:ss` format indicating the date and time when the audit log plugin opened the file.
+  Um identificador exclusivo para o registro de auditoria. O valor é composto por um número de sequência e um timestamp, no formato `SEQ_TIMESTAMP`. Quando o audit log plugin abre o arquivo de log de auditoria, ele inicializa o número de sequência para o tamanho do arquivo de log de auditoria e, em seguida, incrementa a sequência em 1 para cada registro logado. O timestamp é um valor UTC no formato `YYYY-MM-DDThh:mm:ss` indicando a data e hora em que o audit log plugin abriu o arquivo.
 
-  Example: `RECORD_ID="12_2019-10-03T14:25:00"`
+  Exemplo: `RECORD_ID="12_2019-10-03T14:25:00"`
 
 * `TIMESTAMP`
 
-  A string representing a UTC value in `YYYY-MM-DDThh:mm:ss UTC` format indicating the date and time when the audit event was generated. For example, the event corresponding to execution of an SQL statement received from a client has a `TIMESTAMP` value occurring after the statement finishes, not when it was received.
+  Uma string que representa um valor UTC no formato `YYYY-MM-DDThh:mm:ss UTC` indicando a data e hora em que o evento de auditoria foi gerado. Por exemplo, o evento correspondente à execução de uma instrução SQL recebida de um cliente tem um valor `TIMESTAMP` que ocorre após a instrução ser concluída, e não quando foi recebida.
 
-  Example: `TIMESTAMP="2019-10-03T14:25:32 UTC"`
+  Exemplo: `TIMESTAMP="2019-10-03T14:25:32 UTC"`
 
-The following attributes are optional in `<AUDIT_RECORD>` elements. Many of them occur only for elements with specific values of the `NAME` attribute.
+Os seguintes atributos são opcionais nos elementos `<AUDIT_RECORD>`. Muitos deles ocorrem apenas para elementos com valores específicos do atributo `NAME`.
 
 * `COMMAND_CLASS`
 
-  A string that indicates the type of action performed.
+  Uma string que indica o tipo de ação realizada.
 
-  Example: `COMMAND_CLASS="drop_table"`
+  Exemplo: `COMMAND_CLASS="drop_table"`
 
-  The values correspond to the `statement/sql/xxx` command counters. For example, *`xxx`* is `drop_table` and `select` for [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") and [`SELECT`](select.html "13.2.9 SELECT Statement") statements, respectively. The following statement displays the possible names:
+  Os valores correspondem aos contadores de comando `statement/sql/xxx`. Por exemplo, *`xxx`* é `drop_table` e `select` para instruções [`DROP TABLE`](drop-table.html "13.1.29 Instrução DROP TABLE") e [`SELECT`](select.html "13.2.9 Instrução SELECT"), respectivamente. A instrução a seguir exibe os nomes possíveis:
 
   ```sql
   SELECT REPLACE(EVENT_NAME, 'statement/sql/', '') AS name
@@ -557,121 +557,121 @@ The following attributes are optional in `<AUDIT_RECORD>` elements. Many of them
 
 * `CONNECTION_ID`
 
-  An unsigned integer representing the client connection identifier. This is the same as the value returned by the [`CONNECTION_ID()`](information-functions.html#function_connection-id) function within the session.
+  Um inteiro não assinado que representa o identificador de conexão do cliente. Este é o mesmo valor retornado pela função [`CONNECTION_ID()`](information-functions.html#function_connection-id) dentro da session.
 
-  Example: `CONNECTION_ID="127"`
+  Exemplo: `CONNECTION_ID="127"`
 
 * `CONNECTION_TYPE`
 
-  The security state of the connection to the server. Permitted values are `TCP/IP` (TCP/IP connection established without encryption), `SSL/TLS` (TCP/IP connection established with encryption), `Socket` (Unix socket file connection), `Named Pipe` (Windows named pipe connection), and `Shared Memory` (Windows shared memory connection).
+  O estado de segurança da conexão com o servidor. Os valores permitidos são `TCP/IP` (conexão TCP/IP estabelecida sem encryption), `SSL/TLS` (conexão TCP/IP estabelecida com encryption), `Socket` (conexão de arquivo socket Unix), `Named Pipe` (conexão de pipe nomeado do Windows) e `Shared Memory` (conexão de memória compartilhada do Windows).
 
-  Example: `CONNECTION_TYPE="SSL/TLS"`
+  Exemplo: `CONNECTION_TYPE="SSL/TLS"`
 
 * `DB`
 
-  A string representing a database name.
+  Uma string que representa um nome de Database.
 
-  Example: `DB="test"`
+  Exemplo: `DB="test"`
 
-  For connect events, this attribute indicates the default database; the attribute is empty if there is no default database. For table-access events, the attribute indicates the database to which the accessed table belongs.
+  Para eventos de conexão, este atributo indica o default database; o atributo é vazio se não houver um default database. Para eventos de acesso a table, o atributo indica o Database ao qual a table acessada pertence.
 
 * `HOST`
 
-  A string representing the client host name.
+  Uma string que representa o host name do cliente.
 
-  Example: `HOST="localhost"`
+  Exemplo: `HOST="localhost"`
 
 * `IP`
 
-  A string representing the client IP address.
+  Uma string que representa o endereço IP do cliente.
 
-  Example: `IP="127.0.0.1"`
+  Exemplo: `IP="127.0.0.1"`
 
 * `MYSQL_VERSION`
 
-  A string representing the MySQL server version. This is the same as the value of the [`VERSION()`](information-functions.html#function_version) function or [`version`](server-system-variables.html#sysvar_version) system variable.
+  Uma string que representa a versão do MySQL server. Este é o mesmo que o valor da função [`VERSION()`](information-functions.html#function_version) ou da variável de sistema [`version`](server-system-variables.html#sysvar_version).
 
-  Example: `MYSQL_VERSION="5.7.21-log"`
+  Exemplo: `MYSQL_VERSION="5.7.21-log"`
 
 * `OS_LOGIN`
 
-  A string representing the external user name used during the authentication process, as set by the plugin used to authenticate the client. With native (built-in) MySQL authentication, or if the plugin does not set the value, this attribute is empty. The value is the same as that of the [`external_user`](server-system-variables.html#sysvar_external_user) system variable (see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")).
+  Uma string que representa o user name externo usado durante o processo de autenticação, conforme definido pelo plugin usado para autenticar o cliente. Com a autenticação MySQL nativa (embutida), ou se o plugin não definir o valor, este atributo estará vazio. O valor é o mesmo que o da variável de sistema [`external_user`](server-system-variables.html#sysvar_external_user) (consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")).
 
-  Example: `OS_LOGIN="jeffrey"`
+  Exemplo: `OS_LOGIN="jeffrey"`
 
 * `OS_VERSION`
 
-  A string representing the operating system on which the server was built or is running.
+  Uma string que representa o operating system no qual o servidor foi construído ou está sendo executado.
 
-  Example: `OS_VERSION="x86_64-Linux"`
+  Exemplo: `OS_VERSION="x86_64-Linux"`
 
 * `PRIV_USER`
 
-  A string representing the user that the server authenticated the client as. This is the user name that the server uses for privilege checking, and it may differ from the `USER` value.
+  Uma string que representa o user que o servidor autenticou como cliente. Este é o user name que o servidor usa para privilege checking, e pode ser diferente do valor `USER`.
 
-  Example: `PRIV_USER="jeffrey"`
+  Exemplo: `PRIV_USER="jeffrey"`
 
 * `PROXY_USER`
 
-  A string representing the proxy user (see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). The value is empty if user proxying is not in effect.
+  Uma string que representa o proxy user (consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). O valor é vazio se o user proxying não estiver em vigor.
 
-  Example: `PROXY_USER="developer"`
+  Exemplo: `PROXY_USER="developer"`
 
 * `SERVER_ID`
 
-  An unsigned integer representing the server ID. This is the same as the value of the [`server_id`](replication-options.html#sysvar_server_id) system variable.
+  Um inteiro não assinado que representa o Server ID. Este é o mesmo que o valor da variável de sistema [`server_id`](replication-options.html#sysvar_server_id).
 
-  Example: `SERVER_ID="1"`
+  Exemplo: `SERVER_ID="1"`
 
 * `SQLTEXT`
 
-  A string representing the text of an SQL statement. The value can be empty. Long values may be truncated. The string, like the audit log file itself, is written using UTF-8 (up to 4 bytes per character), so the value may be the result of conversion. For example, the original statement might have been received from the client as an SJIS string.
+  Uma string que representa o texto de uma instrução SQL. O valor pode ser vazio. Valores longos podem ser truncados. A string, assim como o próprio arquivo de audit log, é gravada usando UTF-8 (até 4 bytes por caractere), portanto, o valor pode ser resultado de conversão. Por exemplo, a instrução original pode ter sido recebida do cliente como uma string SJIS.
 
-  Example: `SQLTEXT="DELETE FROM t1"`
+  Exemplo: `SQLTEXT="DELETE FROM t1"`
 
 * `STARTUP_OPTIONS`
 
-  A string representing the options that were given on the command line or in option files when the MySQL server was started.
+  Uma string que representa as opções fornecidas na linha de comando ou em option files quando o MySQL server foi iniciado.
 
-  Example: `STARTUP_OPTIONS="--port=3306 --log_output=FILE"`
+  Exemplo: `STARTUP_OPTIONS="--port=3306 --log_output=FILE"`
 
 * `STATUS`
 
-  An unsigned integer representing the command status: 0 for success, nonzero if an error occurred. This is the same as the value of the [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html) C API function. See the description for `STATUS_CODE` for information about how it differs from `STATUS`.
+  Um inteiro não assinado que representa o status do comando: 0 para sucesso, diferente de zero se ocorreu um error. Este é o mesmo valor da função C API [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html). Consulte a descrição de `STATUS_CODE` para obter informações sobre como ele difere de `STATUS`.
 
-  The audit log does not contain the SQLSTATE value or error message. To see the associations between error codes, SQLSTATE values, and messages, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
+  O audit log não contém o valor SQLSTATE ou a mensagem de error. Para ver as associações entre error codes, valores SQLSTATE e mensagens, consulte [Referência de Mensagens de Erro do Servidor](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-  Warnings are not logged.
+  Warnings não são registrados.
 
-  Example: `STATUS="1051"`
+  Exemplo: `STATUS="1051"`
 
 * `STATUS_CODE`
 
-  An unsigned integer representing the command status: 0 for success, 1 if an error occurred.
+  Um inteiro não assinado que representa o status do comando: 0 para sucesso, 1 se ocorreu um error.
 
-  The `STATUS_CODE` value differs from the `STATUS` value: `STATUS_CODE` is 0 for success and 1 for error, which is compatible with the EZ_collector consumer for Audit Vault. `STATUS` is the value of the [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html) C API function. This is 0 for success and nonzero for error, and thus is not necessarily 1 for error.
+  O valor `STATUS_CODE` difere do valor `STATUS`: `STATUS_CODE` é 0 para sucesso e 1 para error, o que é compatível com o consumidor EZ_collector para Audit Vault. `STATUS` é o valor da função C API [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html). Este é 0 para sucesso e diferente de zero para error, e, portanto, não é necessariamente 1 para error.
 
-  Example: `STATUS_CODE="0"`
+  Exemplo: `STATUS_CODE="0"`
 
 * `TABLE`
 
-  A string representing a table name.
+  Uma string que representa um nome de table.
 
-  Example: `TABLE="t3"`
+  Exemplo: `TABLE="t3"`
 
 * `USER`
 
-  A string representing the user name sent by the client. This may differ from the `PRIV_USER` value.
+  Uma string que representa o user name enviado pelo cliente. Este pode ser diferente do valor `PRIV_USER`.
 
 * `VERSION`
 
-  An unsigned integer representing the version of the audit log file format.
+  Um inteiro não assinado que representa a versão do formato do arquivo de audit log.
 
-  Example: `VERSION="1"`
+  Exemplo: `VERSION="1"`
 
-##### JSON Audit Log File Format
+##### Formato de Arquivo de Log de Auditoria JSON
 
-For JSON-format audit logging ([`audit_log_format=JSON`](audit-log-reference.html#sysvar_audit_log_format)), the log file contents form a [`JSON`](json.html "11.5 The JSON Data Type") array with each array element representing an audited event as a [`JSON`](json.html "11.5 The JSON Data Type") hash of key-value pairs. Examples of complete event records appear later in this section. The following is an excerpt of partial events:
+Para o registro de auditoria no formato JSON ([`audit_log_format=JSON`](audit-log-reference.html#sysvar_audit_log_format)), o conteúdo do arquivo de log forma um array [`JSON`](json.html "11.5 O Tipo de Dado JSON") onde cada elemento do array representa um evento auditado como um hash [`JSON`](json.html "11.5 O Tipo de Dado JSON") de pares chave-valor. Exemplos de registros de eventos completos aparecem mais adiante nesta seção. O seguinte é um excerto de eventos parciais:
 
 ```sql
 [
@@ -701,20 +701,18 @@ For JSON-format audit logging ([`audit_log_format=JSON`](audit-log-reference.htm
 ]
 ```
 
-The audit log file is written using UTF-8 (up to 4 bytes per character). When the audit log plugin begins writing a new log file, it writes the opening `[` array marker. When the plugin closes a log file, it writes the closing `]` array marker. The closing marker is not present while the file is open.
+O arquivo de audit log é gravado usando UTF-8 (até 4 bytes por caractere). Quando o audit log plugin começa a gravar um novo arquivo de log, ele grava o marcador de abertura do array `[`. Quando o plugin fecha um arquivo de log, ele grava o marcador de fechamento do array `]`. O marcador de fechamento não está presente enquanto o arquivo está aberto.
 
-Items within audit records have these characteristics:
+Os itens dentro dos registros de auditoria possuem estas características:
 
-* Some items appear in every audit record. Others are optional and may appear depending on the audit record type.
+* Alguns itens aparecem em todos os registros de auditoria. Outros são opcionais e podem aparecer dependendo do tipo de registro de auditoria.
+* A ordem dos itens dentro de um registro de auditoria não é garantida.
+* Os valores dos itens não possuem comprimento fixo. Valores longos podem ser truncados conforme indicado nas descrições dos itens fornecidas posteriormente.
+* Os caracteres `"` e `\` são codificados como `\"` e `\\`, respectivamente.
 
-* Order of items within an audit record is not guaranteed.
-* Item values are not fixed length. Long values may be truncated as indicated in the item descriptions given later.
+Os exemplos a seguir mostram os formatos de objeto JSON para diferentes tipos de eventos (conforme indicados pelos itens `class` e `event`), ligeiramente reformatados para melhor legibilidade:
 
-* The `"` and `\` characters are encoded as `\"` and `\\`, respectively.
-
-The following examples show the JSON object formats for different event types (as indicated by the `class` and `event` items), reformatted slightly for readability:
-
-Auditing startup event:
+Evento de startup de auditoria:
 
 ```sql
 { "timestamp": "2019-10-03 14:21:56",
@@ -732,9 +730,9 @@ Auditing startup event:
                              "--port=3306" ] } }
 ```
 
-When the audit log plugin starts as a result of server startup (as opposed to being enabled at runtime), `connection_id` is set to 0, and `account` and `login` are not present.
+Quando o audit log plugin é iniciado como resultado do startup do servidor (em oposição a ser habilitado em tempo de execução), `connection_id` é definido como 0, e `account` e `login` não estão presentes.
 
-Auditing shutdown event:
+Evento de shutdown de auditoria:
 
 ```sql
 { "timestamp": "2019-10-03 14:28:20",
@@ -745,9 +743,9 @@ Auditing shutdown event:
   "shutdown_data": { "server_id": 1 } }
 ```
 
-When the audit log plugin is uninstalled as a result of server shutdown (as opposed to being disabled at runtime), `connection_id` is set to 0, and `account` and `login` are not present.
+Quando o audit log plugin é desinstalado como resultado do shutdown do servidor (em oposição a ser desabilitado em tempo de execução), `connection_id` é definido como 0, e `account` e `login` não estão presentes.
 
-Connect or change-user event:
+Evento de conexão ou mudança de user (change-user):
 
 ```sql
 { "timestamp": "2019-10-03 14:23:18",
@@ -762,7 +760,7 @@ Connect or change-user event:
                        "db": "test" } }
 ```
 
-Disconnect event:
+Evento de desconexão:
 
 ```sql
 { "timestamp": "2019-10-03 14:24:45",
@@ -775,7 +773,7 @@ Disconnect event:
   "connection_data": { "connection_type": "ssl" } }
 ```
 
-Query event:
+Evento de Query:
 
 ```sql
 { "timestamp": "2019-10-03 14:23:35",
@@ -791,7 +789,7 @@ Query event:
                     "status": 0 } }
 ```
 
-Table access event (read, delete, insert, update):
+Evento de acesso a table (read, delete, insert, update):
 
 ```sql
 { "timestamp": "2019-10-03 14:23:41",
@@ -807,13 +805,13 @@ Table access event (read, delete, insert, update):
                          "sql_command": "insert" } }
 ```
 
-The items in the following list appear at the top level of JSON-format audit records: Each item value is either a scalar or a [`JSON`](json.html "11.5 The JSON Data Type") hash. For items that have a hash value, the description lists only the item names within that hash. For more complete descriptions of second-level hash items, see later in this section.
+Os itens na lista a seguir aparecem no nível superior dos registros de auditoria no formato JSON: Cada valor de item é um escalar ou um hash [`JSON`](json.html "11.5 O Tipo de Dado JSON"). Para itens que possuem um valor hash, a descrição lista apenas os nomes dos itens dentro desse hash. Para descrições mais completas dos itens hash de segundo nível, consulte mais adiante nesta seção.
 
 * `account`
 
-  The MySQL account associated with the event. The value is a hash containing these items equivalent to the value of the [`CURRENT_USER()`](information-functions.html#function_current-user) function within the section: `user`, `host`.
+  A conta MySQL associada ao evento. O valor é um hash contendo estes itens equivalentes ao valor da função [`CURRENT_USER()`](information-functions.html#function_current-user) dentro da seção: `user`, `host`.
 
-  Example:
+  Exemplo:
 
   ```sql
   "account": { "user": "root", "host": "localhost" }
@@ -821,25 +819,30 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `class`
 
-  A string representing the event class. The class defines the type of event, when taken together with the `event` item that specifies the event subclass.
+  Uma string que representa a classe do evento. A classe define o tipo de evento, quando considerada em conjunto com o item `event` que especifica a subclasse do evento.
 
-  Example:
+  Exemplo:
 
   ```sql
   "class": "connection"
   ```
 
-  The following table shows the permitted combinations of `class` and `event` values.
+  A tabela a seguir mostra as combinações permitidas de valores `class` e `event`.
 
-  **Table 6.25 Audit Log Class and Event Combinations**
+  **Tabela 6.25 Combinações de Classe e Evento do Log de Auditoria**
 
-  <table summary="Permitted combinations of audit log class and event values."><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Class Value</th> <th>Permitted Event Values</th> </tr></thead><tbody><tr> <td><code>audit</code></td> <td><code>startup</code>, <code>shutdown</code></td> </tr><tr> <td><code>connection</code></td> <td><code>connect</code>, <code>change_user</code>, <code>disconnect</code></td> </tr><tr> <td><code>general</code></td> <td><code>status</code></td> </tr><tr> <td><code>table_access_data</code></td> <td><code>read</code>, <code>delete</code>, <code>insert</code>, <code>update</code></td> </tr></tbody></table>
+  | Valor da Classe | Valores de Evento Permitidos |
+  |---|---|
+  | `audit` | `startup`, `shutdown` |
+  | `connection` | `connect`, `change_user`, `disconnect` |
+  | `general` | `status` |
+  | `table_access_data` | `read`, `delete`, `insert`, `update` |
 
 * `connection_data`
 
-  Information about a client connection. The value is a hash containing these items: `connection_type`, `status`, `db`. This item occurs only for audit records with a `class` value of `connection`.
+  Informações sobre uma conexão de cliente. O valor é um hash contendo estes itens: `connection_type`, `status`, `db`. Este item ocorre apenas para registros de auditoria com valor `class` de `connection`.
 
-  Example:
+  Exemplo:
 
   ```sql
   "connection_data": { "connection_type": "ssl",
@@ -849,9 +852,9 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `connection_id`
 
-  An unsigned integer representing the client connection identifier. This is the same as the value returned by the [`CONNECTION_ID()`](information-functions.html#function_connection-id) function within the session.
+  Um inteiro não assinado que representa o identificador de conexão do cliente. Este é o mesmo valor retornado pela função [`CONNECTION_ID()`](information-functions.html#function_connection-id) dentro da session.
 
-  Example:
+  Exemplo:
 
   ```sql
   "connection_id": 5
@@ -859,9 +862,9 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `event`
 
-  A string representing the subclass of the event class. The subclass defines the type of event, when taken together with the `class` item that specifies the event class. For more information, see the `class` item description.
+  Uma string que representa a subclasse da classe do evento. A subclasse define o tipo de evento, quando considerada em conjunto com o item `class` que especifica a classe do evento. Para mais informações, consulte a descrição do item `class`.
 
-  Example:
+  Exemplo:
 
   ```sql
   "event": "connect"
@@ -869,9 +872,9 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `general_data`
 
-  Information about an executed statement or command. The value is a hash containing these items: `command`, `sql_command`, `query`, `status`. This item occurs only for audit records with a `class` value of `general`.
+  Informações sobre uma instrução ou comando executado. O valor é um hash contendo estes itens: `command`, `sql_command`, `query`, `status`. Este item ocorre apenas para registros de auditoria com valor `class` de `general`.
 
-  Example:
+  Exemplo:
 
   ```sql
   "general_data": { "command": "Query",
@@ -882,21 +885,21 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `id`
 
-  An unsigned integer representing an event ID.
+  Um inteiro não assinado que representa um ID de evento.
 
-  Example:
+  Exemplo:
 
   ```sql
   "id": 2
   ```
 
-  For audit records that have the same `timestamp` value, their `id` values distinguish them and form a sequence. Within the audit log, `timestamp`/`id` pairs are unique. These pairs are bookmarks that identify event locations within the log.
+  Para registros de auditoria que têm o mesmo valor `timestamp`, seus valores `id` os distinguem e formam uma sequência. Dentro do audit log, os pares `timestamp`/`id` são exclusivos. Estes pares são bookmarks que identificam localizações de eventos dentro do log.
 
 * `login`
 
-  Information indicating how a client connected to the server. The value is a hash containing these items: `user`, `os`, `ip`, `proxy`.
+  Informações indicando como um cliente se conectou ao servidor. O valor é um hash contendo estes itens: `user`, `os`, `ip`, `proxy`.
 
-  Example:
+  Exemplo:
 
   ```sql
   "login": { "user": "root", "os": "", "ip": "::1", "proxy": "" }
@@ -904,9 +907,9 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `shutdown_data`
 
-  Information pertaining to audit log plugin termination. The value is a hash containing these items: `server_id` This item occurs only for audit records with `class` and `event` values of `audit` and `shutdown`, respectively.
+  Informações relativas à terminação do audit log plugin. O valor é um hash contendo estes itens: `server_id`. Este item ocorre apenas para registros de auditoria com valores `class` e `event` de `audit` e `shutdown`, respectivamente.
 
-  Example:
+  Exemplo:
 
   ```sql
   "shutdown_data": { "server_id": 1 }
@@ -914,9 +917,9 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `startup_data`
 
-  Information pertaining to audit log plugin initialization. The value is a hash containing these items: `server_id`, `os_version`, `mysql_version`, `args`. This item occurs only for audit records with `class` and `event` values of `audit` and `startup`, respectively.
+  Informações relativas à inicialização do audit log plugin. O valor é um hash contendo estes itens: `server_id`, `os_version`, `mysql_version`, `args`. Este item ocorre apenas para registros de auditoria com valores `class` e `event` de `audit` e `startup`, respectivamente.
 
-  Example:
+  Exemplo:
 
   ```sql
   "startup_data": { "server_id": 1,
@@ -931,9 +934,9 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `table_access_data`
 
-  Information about an access to a table. The value is a hash containing these items: `db`, `table`, `query`, `sql_command`, This item occurs only for audit records with a `class` value of `table_access`.
+  Informações sobre um acesso a uma table. O valor é um hash contendo estes itens: `db`, `table`, `query`, `sql_command`. Este item ocorre apenas para registros de auditoria com valor `class` de `table_access`.
 
-  Example:
+  Exemplo:
 
   ```sql
   "table_access_data": { "db": "test",
@@ -944,35 +947,35 @@ The items in the following list appear at the top level of JSON-format audit rec
 
 * `time`
 
-  This field is similar to that in the `timestamp` field, but the value is an integer and represents the UNIX timestamp value indicating the date and time when the audit event was generated.
+  Este campo é semelhante ao campo `timestamp`, mas o valor é um inteiro e representa o valor UNIX timestamp indicando a data e hora em que o evento de auditoria foi gerado.
 
-  Example:
+  Exemplo:
 
   ```sql
   "time" : 1618498687
   ```
 
-  The `time` field occurs in JSON-format log files only if the [`audit_log_format_unix_timestamp`](audit-log-reference.html#sysvar_audit_log_format_unix_timestamp) system variable is enabled.
+  O campo `time` ocorre em arquivos de log no formato JSON apenas se a variável de sistema [`audit_log_format_unix_timestamp`](audit-log-reference.html#sysvar_audit_log_format_unix_timestamp) estiver habilitada.
 
 * `timestamp`
 
-  A string representing a UTC value in *`YYYY-MM-DD hh:mm:ss`* format indicating the date and time when the audit event was generated. For example, the event corresponding to execution of an SQL statement received from a client has a `timestamp` value occurring after the statement finishes, not when it was received.
+  Uma string que representa um valor UTC no formato *`YYYY-MM-DD hh:mm:ss`* indicando a data e hora em que o evento de auditoria foi gerado. Por exemplo, o evento correspondente à execução de uma instrução SQL recebida de um cliente tem um valor `timestamp` que ocorre após a instrução ser concluída, e não quando foi recebida.
 
-  Example:
+  Exemplo:
 
   ```sql
   "timestamp": "2019-10-03 13:50:01"
   ```
 
-  For audit records that have the same `timestamp` value, their `id` values distinguish them and form a sequence. Within the audit log, `timestamp`/`id` pairs are unique. These pairs are bookmarks that identify event locations within the log.
+  Para registros de auditoria que têm o mesmo valor `timestamp`, seus valores `id` os distinguem e formam uma sequência. Dentro do audit log, os pares `timestamp`/`id` são exclusivos. Estes pares são bookmarks que identificam localizações de eventos dentro do log.
 
-These items appear within hash values associated with top-level items of JSON-format audit records:
+Estes itens aparecem dentro dos valores hash associados aos itens de nível superior dos registros de auditoria no formato JSON:
 
 * `args`
 
-  An array of options that were given on the command line or in option files when the MySQL server was started. The first option is the path to the server executable.
+  Um array de opções que foram fornecidas na linha de comando ou em option files quando o MySQL server foi iniciado. A primeira opção é o path para o executável do servidor.
 
-  Example:
+  Exemplo:
 
   ```sql
   "args": ["/usr/local/mysql/bin/mysqld",
@@ -984,9 +987,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `command`
 
-  A string representing the type of instruction that generated the audit event, such as a command that the server received from a client.
+  Uma string que representa o tipo de instrução que gerou o evento de auditoria, como um comando que o servidor recebeu de um cliente.
 
-  Example:
+  Exemplo:
 
   ```sql
   "command": "Query"
@@ -994,9 +997,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `connection_type`
 
-  The security state of the connection to the server. Permitted values are `tcp/ip` (TCP/IP connection established without encryption), `ssl` (TCP/IP connection established with encryption), `socket` (Unix socket file connection), `named_pipe` (Windows named pipe connection), and `shared_memory` (Windows shared memory connection).
+  O estado de segurança da conexão com o servidor. Os valores permitidos são `tcp/ip` (conexão TCP/IP estabelecida sem encryption), `ssl` (conexão TCP/IP estabelecida com encryption), `socket` (conexão de arquivo socket Unix), `named_pipe` (conexão de pipe nomeado do Windows) e `shared_memory` (conexão de memória compartilhada do Windows).
 
-  Example:
+  Exemplo:
 
   ```sql
   "connection_type": "tcp/tcp"
@@ -1004,9 +1007,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `db`
 
-  A string representing a database name. For `connection_data`, it is the default database. For `table_access_data`, it is the table database.
+  Uma string que representa um nome de Database. Para `connection_data`, é o default database. Para `table_access_data`, é o Database da table.
 
-  Example:
+  Exemplo:
 
   ```sql
   "db": "test"
@@ -1014,9 +1017,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `host`
 
-  A string representing the client host name.
+  Uma string que representa o host name do cliente.
 
-  Example:
+  Exemplo:
 
   ```sql
   "host": "localhost"
@@ -1024,9 +1027,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `ip`
 
-  A string representing the client IP address.
+  Uma string que representa o endereço IP do cliente.
 
-  Example:
+  Exemplo:
 
   ```sql
   "ip": "::1"
@@ -1034,9 +1037,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `mysql_version`
 
-  A string representing the MySQL server version. This is the same as the value of the [`VERSION()`](information-functions.html#function_version) function or [`version`](server-system-variables.html#sysvar_version) system variable.
+  Uma string que representa a versão do MySQL server. Este é o mesmo que o valor da função [`VERSION()`](information-functions.html#function_version) ou da variável de sistema [`version`](server-system-variables.html#sysvar_version).
 
-  Example:
+  Exemplo:
 
   ```sql
   "mysql_version": "5.7.21-log"
@@ -1044,9 +1047,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `os`
 
-  A string representing the external user name used during the authentication process, as set by the plugin used to authenticate the client. With native (built-in) MySQL authentication, or if the plugin does not set the value, this attribute is empty. The value is the same as that of the [`external_user`](server-system-variables.html#sysvar_external_user) system variable. See [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+  Uma string que representa o user name externo usado durante o processo de autenticação, conforme definido pelo plugin usado para autenticar o cliente. Com a autenticação MySQL nativa (embutida), ou se o plugin não definir o valor, este atributo estará vazio. O valor é o mesmo que o da variável de sistema [`external_user`](server-system-variables.html#sysvar_external_user). Consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
-  Example:
+  Exemplo:
 
   ```sql
   "os": "jeffrey"
@@ -1054,9 +1057,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `os_version`
 
-  A string representing the operating system on which the server was built or is running.
+  Uma string que representa o operating system no qual o servidor foi construído ou está sendo executado.
 
-  Example:
+  Exemplo:
 
   ```sql
   "os_version": "i686-Linux"
@@ -1064,9 +1067,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `proxy`
 
-  A string representing the proxy user (see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). The value is empty if user proxying is not in effect.
+  Uma string que representa o proxy user (consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). O valor é vazio se o user proxying não estiver em vigor.
 
-  Example:
+  Exemplo:
 
   ```sql
   "proxy": "developer"
@@ -1074,9 +1077,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `query`
 
-  A string representing the text of an SQL statement. The value can be empty. Long values may be truncated. The string, like the audit log file itself, is written using UTF-8 (up to 4 bytes per character), so the value may be the result of conversion. For example, the original statement might have been received from the client as an SJIS string.
+  Uma string que representa o texto de uma instrução SQL. O valor pode ser vazio. Valores longos podem ser truncados. A string, assim como o próprio arquivo de audit log, é gravada usando UTF-8 (até 4 bytes por caractere), portanto, o valor pode ser resultado de conversão. Por exemplo, a instrução original pode ter sido recebida do cliente como uma string SJIS.
 
-  Example:
+  Exemplo:
 
   ```sql
   "query": "DELETE FROM t1"
@@ -1084,9 +1087,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `server_id`
 
-  An unsigned integer representing the server ID. This is the same as the value of the [`server_id`](replication-options.html#sysvar_server_id) system variable.
+  Um inteiro não assinado que representa o Server ID. Este é o mesmo que o valor da variável de sistema [`server_id`](replication-options.html#sysvar_server_id).
 
-  Example:
+  Exemplo:
 
   ```sql
   "server_id": 1
@@ -1094,15 +1097,15 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `sql_command`
 
-  A string that indicates the SQL statement type.
+  Uma string que indica o tipo de instrução SQL.
 
-  Example:
+  Exemplo:
 
   ```sql
   "sql_command": "insert"
   ```
 
-  The values correspond to the `statement/sql/xxx` command counters. For example, *`xxx`* is `drop_table` and `select` for [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") and [`SELECT`](select.html "13.2.9 SELECT Statement") statements, respectively. The following statement displays the possible names:
+  Os valores correspondem aos contadores de comando `statement/sql/xxx`. Por exemplo, *`xxx`* é `drop_table` e `select` para instruções [`DROP TABLE`](drop-table.html "13.1.29 Instrução DROP TABLE") e [`SELECT`](select.html "13.2.9 Instrução SELECT"), respectivamente. A instrução a seguir exibe os nomes possíveis:
 
   ```sql
   SELECT REPLACE(EVENT_NAME, 'statement/sql/', '') AS name
@@ -1113,13 +1116,13 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `status`
 
-  An unsigned integer representing the command status: 0 for success, nonzero if an error occurred. This is the same as the value of the [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html) C API function.
+  Um inteiro não assinado que representa o status do comando: 0 para sucesso, diferente de zero se ocorreu um error. Este é o mesmo valor da função C API [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html).
 
-  The audit log does not contain the SQLSTATE value or error message. To see the associations between error codes, SQLSTATE values, and messages, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
+  O audit log não contém o valor SQLSTATE ou a mensagem de error. Para ver as associações entre error codes, valores SQLSTATE e mensagens, consulte [Referência de Mensagens de Erro do Servidor](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-  Warnings are not logged.
+  Warnings não são registrados.
 
-  Example:
+  Exemplo:
 
   ```sql
   "status": 1051
@@ -1127,9 +1130,9 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `table`
 
-  A string representing a table name.
+  Uma string que representa um nome de table.
 
-  Example:
+  Exemplo:
 
   ```sql
   "table": "t1"
@@ -1137,13 +1140,13 @@ These items appear within hash values associated with top-level items of JSON-fo
 
 * `user`
 
-  A string representing a user name. The meaning differs depending on the item within which `user` occurs:
+  Uma string que representa um user name. O significado difere dependendo do item dentro do qual `user` ocorre:
 
-  + Within `account` items, `user` is a string representing the user that the server authenticated the client as. This is the user name that the server uses for privilege checking.
+  + Dentro dos itens `account`, `user` é uma string que representa o user que o servidor autenticou como cliente. Este é o user name que o servidor usa para privilege checking.
 
-  + Within `login` items, `user` is a string representing the user name sent by the client.
+  + Dentro dos itens `login`, `user` é uma string que representa o user name enviado pelo cliente.
 
-  Example:
+  Exemplo:
 
   ```sql
   "user": "root"

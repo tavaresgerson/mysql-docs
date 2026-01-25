@@ -1,27 +1,27 @@
-## 7.4 Using mysqldump for Backups
+## 7.4 Usando mysqldump para Backups
 
-7.4.1 Dumping Data in SQL Format with mysqldump
+7.4.1 Dump de Dados em Formato SQL com mysqldump
 
-7.4.2 Reloading SQL-Format Backups
+7.4.2 Recarregando Backups em Formato SQL
 
-7.4.3 Dumping Data in Delimited-Text Format with mysqldump
+7.4.3 Dump de Dados em Formato de Texto Delimitado com mysqldump
 
-7.4.4 Reloading Delimited-Text Format Backups
+7.4.4 Recarregando Backups em Formato de Texto Delimitado
 
-7.4.5 mysqldump Tips
+7.4.5 Dicas sobre mysqldump
 
-This section describes how to use **mysqldump** to produce dump files, and how to reload dump files. A dump file can be used in several ways:
+Esta seção descreve como usar o **mysqldump** para produzir arquivos dump, e como recarregar esses arquivos dump. Um arquivo dump pode ser usado de várias maneiras:
 
-* As a backup to enable data recovery in case of data loss.
-* As a source of data for setting up replicas.
-* As a source of data for experimentation:
+* Como um backup para permitir a recuperação de dados em caso de perda de dados.
+* Como fonte de dados para configurar réplicas.
+* Como fonte de dados para experimentação:
 
-  + To make a copy of a database that you can use without changing the original data.
+  + Para fazer uma cópia de um Database que pode ser usada sem alterar os dados originais.
 
-  + To test potential upgrade incompatibilities.
+  + Para testar possíveis incompatibilidades de upgrade.
 
-**mysqldump** produces two types of output, depending on whether the `--tab` option is given:
+O **mysqldump** produz dois tipos de saída, dependendo se a opção `--tab` é fornecida:
 
-* Without `--tab`, **mysqldump** writes SQL statements to the standard output. This output consists of `CREATE` statements to create dumped objects (databases, tables, stored routines, and so forth), and `INSERT` statements to load data into tables. The output can be saved in a file and reloaded later using **mysql** to recreate the dumped objects. Options are available to modify the format of the SQL statements, and to control which objects are dumped.
+* Sem o `--tab`, o **mysqldump** grava instruções SQL na saída padrão (standard output). Essa saída consiste em instruções `CREATE` para criar objetos dumpados (Databases, tables, stored routines, e assim por diante), e instruções `INSERT` para carregar dados nas tables. A saída pode ser salva em um arquivo e recarregada posteriormente usando o **mysql** para recriar os objetos dumpados. Opções estão disponíveis para modificar o formato das instruções SQL e para controlar quais objetos são dumpados.
 
-* With `--tab`, **mysqldump** produces two output files for each dumped table. The server writes one file as tab-delimited text, one line per table row. This file is named `tbl_name.txt` in the output directory. The server also sends a `CREATE TABLE` statement for the table to **mysqldump**, which writes it as a file named `tbl_name.sql` in the output directory.
+* Com o `--tab`, o **mysqldump** produz dois arquivos de saída para cada table dumpada. O servidor grava um arquivo como texto delimitado por tabulação, uma linha por row da table. Este arquivo é nomeado `tbl_name.txt` no diretório de saída. O servidor também envia uma instrução `CREATE TABLE` para a table ao **mysqldump**, que a grava como um arquivo nomeado `tbl_name.sql` no diretório de saída.

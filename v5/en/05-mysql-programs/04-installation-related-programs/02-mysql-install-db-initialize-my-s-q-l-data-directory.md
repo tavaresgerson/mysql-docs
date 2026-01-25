@@ -1,55 +1,55 @@
-### 4.4.2 mysql_install_db — Initialize MySQL Data Directory
+### 4.4.2 mysql_install_db — Inicializa o Data Directory do MySQL
 
-Note
+Nota
 
-**mysql_install_db** is deprecated as of MySQL 5.7.6 because its functionality has been integrated into **mysqld**, the MySQL server. To initialize a MySQL installation, invoke **mysqld** with the `--initialize` or `--initialize-insecure` option. For more information, see Section 2.9.1, “Initializing the Data Directory”. You should expect **mysql_install_db** to be removed in a future MySQL release.
+O **mysql_install_db** está descontinuado a partir do MySQL 5.7.6 porque sua funcionalidade foi integrada ao **mysqld**, o MySQL server. Para inicializar uma instalação MySQL, invoque o **mysqld** com a opção `--initialize` ou `--initialize-insecure`. Para mais informações, consulte a Seção 2.9.1, “Inicializando o Data Directory”. Você deve esperar que o **mysql_install_db** seja removido em uma futura release do MySQL.
 
-**mysql_install_db** handles initialization tasks that must be performed before the MySQL server, **mysqld**, is ready to use:
+O **mysql_install_db** lida com tarefas de inicialização que devem ser realizadas antes que o MySQL server, **mysqld**, esteja pronto para uso:
 
-* It initializes the MySQL data directory and creates the system tables that it contains.
+*   Inicializa o Data Directory do MySQL e cria as system tables que ele contém.
 
-* It initializes the system tablespace and related data structures needed to manage `InnoDB` tables.
+*   Inicializa o system tablespace e estruturas de dados relacionadas necessárias para gerenciar tabelas `InnoDB`.
 
-* It loads the server-side help tables.
-* It installs the `sys` schema.
-* It creates an administrative account. Older versions of **mysql_install_db** may create anonymous-user accounts.
+*   Carrega as help tables (tabelas de ajuda) do lado do server.
+*   Instala o schema `sys`.
+*   Cria uma administrative account (conta administrativa). Versões mais antigas do **mysql_install_db** podem criar anonymous-user accounts (contas de usuário anônimo).
 
 #### Secure-by-Default Deployment
 
-Current versions of **mysql_install_db** produce a MySQL deployment that is secure by default, with these characteristics:
+Versões atuais do **mysql_install_db** produzem um deploy do MySQL seguro por padrão, com estas características:
 
-* A single administrative account named `'root'@'localhost'` is created with a randomly generated password, which is marked expired.
+*   Uma única administrative account chamada `'root'@'localhost'` é criada com uma password gerada aleatoriamente, que é marcada como expirada.
 
-* No anonymous-user accounts are created.
-* No `test` database accessible by all users is created.
+*   Nenhuma anonymous-user account é criada.
+*   Nenhum Database `test` acessível por todos os users é criado.
 
-* `--admin-xxx` options are available to control characteristics of the administrative account.
+*   Opções `--admin-xxx` estão disponíveis para controlar as características da administrative account.
 
-* The `--random-password-file` option is available to control where the random password is written.
+*   A opção `--random-password-file` está disponível para controlar onde a password aleatória é escrita.
 
-* The `--insecure` option is available to suppress random password generation.
+*   A opção `--insecure` está disponível para suprimir a geração de password aleatória.
 
-If **mysql_install_db** generates a random administative password, it writes the password to a file and displays the file name. The password entry includes a timestamp to indicate when it was written. By default, the file is `.mysql_secret` in the home directory of the effective user running the script. `.mysql_secret` is created with mode 600 to be accessible only to the operating system user for whom it is created.
+Se o **mysql_install_db** gerar uma password administrativa aleatória, ele a escreve em um arquivo e exibe o nome do arquivo. A entrada da password inclui um timestamp para indicar quando foi escrita. Por padrão, o arquivo é `.mysql_secret` no home directory do user efetivo que está executando o script. O `.mysql_secret` é criado com modo 600 para ser acessível apenas ao user do sistema operacional para o qual foi criado.
 
-Important
+Importante
 
-When **mysql_install_db** generates a random password for the administrative account, it is necessary after **mysql_install_db** has been run to start the server, connect using the administrative account with the password written to the `.mysql_secret` file, and specify a new administrative password. Until this is done, the administrative account cannot be used for anything else. To change the password, you can use the `SET PASSWORD` statement (for example, with the **mysql** or **mysqladmin** client). After resetting the password, remove the `.mysql_secret` file; otherwise, if you run **mysql_secure_installation**, that command may see the file and expire the `root` password again as part of ensuring secure deployment.
+Quando o **mysql_install_db** gera uma password aleatória para a administrative account, é necessário, após a execução do **mysql_install_db**, iniciar o server, conectar usando a administrative account com a password escrita no arquivo `.mysql_secret` e especificar uma nova password administrativa. Até que isso seja feito, a administrative account não pode ser usada para mais nada. Para alterar a password, você pode usar a instrução `SET PASSWORD` (por exemplo, com o client **mysql** ou **mysqladmin**). Após redefinir a password, remova o arquivo `.mysql_secret`; caso contrário, se você executar o **mysql_secure_installation**, esse comando pode ver o arquivo e expirar a password do `root` novamente como parte da garantia de um deploy seguro.
 
-#### Invocation Syntax
+#### Sintaxe de Invocação
 
-Change location to the MySQL installation directory and use this invocation syntax:
+Mude a localização para o diretório de instalação do MySQL e use esta sintaxe de invocação:
 
 ```sql
 bin/mysql_install_db --datadir=path/to/datadir [other_options]
 ```
 
-The `--datadir` option is mandatory. **mysql_install_db** creates the data directory, which must not already exist:
+A opção `--datadir` é obrigatória. O **mysql_install_db** cria o Data Directory, que não deve existir previamente:
 
-* If the data directory does already exist, you are performing an upgrade operation (not an install operation) and should run **mysql_upgrade**, not **mysql_install_db**. See Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
+*   Se o Data Directory já existe, você está realizando uma operação de upgrade (não uma operação de instalação) e deve executar o **mysql_upgrade**, não o **mysql_install_db**. Consulte a Seção 4.4.7, “mysql_upgrade — Checa e Atualiza Tabelas MySQL”.
 
-* If the data directory does not exist but **mysql_install_db** fails, you must remove any partially created data directory before running **mysql_install_db** again.
+*   Se o Data Directory não existir, mas o **mysql_install_db** falhar, você deve remover qualquer Data Directory parcialmente criado antes de executar o **mysql_install_db** novamente.
 
-Because the MySQL server, **mysqld**, must access the data directory when it runs later, you should either run **mysql_install_db** from the same system account used for running **mysqld**, or run it as `root` and specify the `--user` option to indicate the user name that **mysqld** runs under. It might be necessary to specify other options such as `--basedir` if **mysql_install_db** does not use the correct location for the installation directory. For example:
+Como o MySQL server, **mysqld**, deve acessar o Data Directory quando for executado posteriormente, você deve executar o **mysql_install_db** a partir da mesma system account usada para executar o **mysqld**, ou executá-lo como `root` e especificar a opção `--user` para indicar o user name sob o qual o **mysqld** será executado. Pode ser necessário especificar outras opções, como `--basedir`, se o **mysql_install_db** não usar o local correto para o diretório de instalação. Por exemplo:
 
 ```sql
 bin/mysql_install_db --user=mysql \
@@ -57,230 +57,230 @@ bin/mysql_install_db --user=mysql \
     --datadir=/opt/mysql/mysql/data
 ```
 
-Note
+Nota
 
-After **mysql_install_db** sets up the `InnoDB` system tablespace, changes to some tablespace characteristics require setting up a whole new instance. This includes the file name of the first file in the system tablespace and the number of undo logs. If you do not want to use the default values, make sure that the settings for the `innodb_data_file_path` and `innodb_log_file_size` configuration parameters are in place in the MySQL configuration file before running **mysql_install_db**. Also make sure to specify as necessary other parameters that affect the creation and location of `InnoDB` files, such as `innodb_data_home_dir` and `innodb_log_group_home_dir`.
+Após o **mysql_install_db** configurar o system tablespace `InnoDB`, alterações em algumas características do tablespace exigem a configuração de uma nova instância completa. Isso inclui o nome do primeiro arquivo no system tablespace e o número de undo logs. Se você não deseja usar os valores padrão, certifique-se de que as configurações para os parâmetros de configuração `innodb_data_file_path` e `innodb_log_file_size` estejam presentes no arquivo de configuração do MySQL antes de executar o **mysql_install_db**. Além disso, certifique-se de especificar, conforme necessário, outros parâmetros que afetam a criação e localização de arquivos `InnoDB`, como `innodb_data_home_dir` e `innodb_log_group_home_dir`.
 
-If those options are in your configuration file but that file is not in a location that MySQL reads by default, specify the file location using the `--defaults-extra-file` option when you run **mysql_install_db**.
+Se essas opções estiverem no seu arquivo de configuração, mas esse arquivo não estiver em um local que o MySQL lê por padrão, especifique o local do arquivo usando a opção `--defaults-extra-file` ao executar o **mysql_install_db**.
 
-Note
+Nota
 
-If you have set a custom `TMPDIR` environment variable when performing the installation, and the specified directory is not accessible, **mysql_install_db** may fail. If so, unset `TMPDIR` or set `TMPDIR` to point to the system temporary directory (usually `/tmp`).
+Se você definiu uma variável de ambiente `TMPDIR` customizada ao realizar a instalação, e o diretório especificado não estiver acessível, o **mysql_install_db** pode falhar. Se isso ocorrer, desfaça a configuração de `TMPDIR` (unset) ou defina `TMPDIR` para apontar para o diretório temporário do sistema (geralmente `/tmp`).
 
-#### Administrative Account Creation
+#### Criação da Administrative Account
 
-**mysql_install_db** creates an administrative account named `'root'@'localhost'` by default.
+O **mysql_install_db** cria uma administrative account chamada `'root'@'localhost'` por padrão.
 
-**mysql_install_db** provides options that enable you to control several aspects of the administrative account:
+O **mysql_install_db** fornece opções que permitem controlar vários aspectos da administrative account:
 
-* To change the user or host parts of the account name, use `--login-path`, or `--admin-user` and `--admin-host`.
+*   Para alterar as partes de user ou host do nome da account, use `--login-path`, ou `--admin-user` e `--admin-host`.
 
-* `--insecure` suppresses generation of a random password.
+*   `--insecure` suprime a geração de uma password aleatória.
 
-* `--admin-auth-plugin` specifies the authentication plugin.
+*   `--admin-auth-plugin` especifica o authentication plugin.
 
-* `--admin-require-ssl` specifies whether the account must use SSL connections.
+*   `--admin-require-ssl` especifica se a account deve usar conexões SSL.
 
-For more information, see the descriptions of those options.
+Para mais informações, consulte as descrições dessas opções.
 
-**mysql_install_db** assigns `mysql.user` system table rows a nonempty `plugin` column value to set the authentication plugin. The default value is `mysql_native_password`. The value can be changed using the `--admin-auth-plugin` option.
+O **mysql_install_db** atribui às linhas da system table `mysql.user` um valor de coluna `plugin` não vazio para definir o authentication plugin. O valor padrão é `mysql_native_password`. O valor pode ser alterado usando a opção `--admin-auth-plugin`.
 
-#### Default my.cnf File
+#### Arquivo my.cnf Padrão
 
-**mysql_install_db** creates no default `my.cnf` file.
+O **mysql_install_db** não cria um arquivo `my.cnf` padrão.
 
-Note
+Nota
 
-As of MySQL 5.7.18, `my-default.cnf` is no longer included in or installed by distribution packages.
+A partir do MySQL 5.7.18, o `my-default.cnf` não está mais incluído ou instalado por pacotes de distribuição.
 
-With one exception, the settings in the default option file are commented and have no effect. The exception is that the file sets the `sql_mode` system variable to `NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES`. This setting produces a server configuration that results in errors rather than warnings for bad data in operations that modify transactional tables. See Section 5.1.10, “Server SQL Modes”.
+Com uma exceção, as configurações no arquivo de opção padrão são comentadas e não têm efeito. A exceção é que o arquivo define a system variable `sql_mode` para `NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES`. Essa configuração produz uma configuração de server que resulta em errors em vez de warnings para dados inválidos em operações que modificam tabelas transacionais. Consulte a Seção 5.1.10, “Server SQL Modes”.
 
-#### Command Options
+#### Opções de Comando
 
-**mysql_install_db** supports the following options, which can be specified on the command line or in the `[mysql_install_db]` group of an option file. For information about option files used by MySQL programs, see Section 4.2.2.2, “Using Option Files”.
+O **mysql_install_db** suporta as seguintes opções, que podem ser especificadas na linha de comando ou no grupo `[mysql_install_db]` de um arquivo de opção. Para obter informações sobre os arquivos de opção usados pelos programas MySQL, consulte a Seção 4.2.2.2, “Usando Arquivos de Opção”.
 
-**Table 4.8 mysql_install_db Options**
+**Tabela 4.8 Opções do mysql_install_db**
 
-<table frame="box" rules="all" summary="Command-line options available for mysql_install_db."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--admin-auth-plugin</td> <td>Administrative account authentication plugin</td> </tr><tr><td>--admin-host</td> <td>Administrative account name host part</td> </tr><tr><td>--admin-require-ssl</td> <td>Require SSL for administrative account</td> </tr><tr><td>--admin-user</td> <td>Administrative account name user part</td> </tr><tr><td>--basedir</td> <td>Path to base directory</td> </tr><tr><td>--builddir</td> <td>Path to build directory (for out-of-source builds)</td> </tr><tr><td>--datadir</td> <td>Path to data directory</td> </tr><tr><td>--defaults</td> <td>Read default option files</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--extra-sql-file</td> <td>Optional SQL file to execute during bootstrap</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--insecure</td> <td>Do not generate administrative account random password</td> </tr><tr><td>--lc-messages</td> <td>Locale for error messages</td> </tr><tr><td>--lc-messages-dir</td> <td>Directory where error messages are installed</td> </tr><tr><td>--login-file</td> <td>File to read for login path information</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--mysqld-file</td> <td>Path to mysqld binary</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--random-password-file</td> <td>File in which to write administrative account random password</td> </tr><tr><td>--skip-sys-schema</td> <td>Do not install or upgrade the sys schema</td> </tr><tr><td>--srcdir</td> <td>For internal use</td> </tr><tr><td>--user</td> <td>Operating system user under which to execute mysqld</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysql_install_db."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Opção Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>--admin-auth-plugin</td> <td>Authentication plugin da administrative account</td> </tr><tr><td>--admin-host</td> <td>Parte do host do nome da administrative account</td> </tr><tr><td>--admin-require-ssl</td> <td>Exigir SSL para a administrative account</td> </tr><tr><td>--admin-user</td> <td>Parte do user do nome da administrative account</td> </tr><tr><td>--basedir</td> <td>Path para o base directory</td> </tr><tr><td>--builddir</td> <td>Path para o build directory (para builds fora da source)</td> </tr><tr><td>--datadir</td> <td>Path para o Data Directory</td> </tr><tr><td>--defaults</td> <td>Lê arquivos de opção padrão</td> </tr><tr><td>--defaults-extra-file</td> <td>Lê o arquivo de opção nomeado além dos arquivos de opção usuais</td> </tr><tr><td>--defaults-file</td> <td>Lê apenas o arquivo de opção nomeado</td> </tr><tr><td>--extra-sql-file</td> <td>Arquivo SQL opcional para executar durante o bootstrap</td> </tr><tr><td>--help</td> <td>Exibe a mensagem de ajuda e sai</td> </tr><tr><td>--insecure</td> <td>Não gera password aleatória da administrative account</td> </tr><tr><td>--lc-messages</td> <td>Locale para mensagens de erro</td> </tr><tr><td>--lc-messages-dir</td> <td>Diretório onde as mensagens de erro estão instaladas</td> </tr><tr><td>--login-file</td> <td>Arquivo para ler informações do login path</td> </tr><tr><td>--login-path</td> <td>Lê opções do login path a partir de .mylogin.cnf</td> </tr><tr><td>--mysqld-file</td> <td>Path para o binário mysqld</td> </tr><tr><td>--no-defaults</td> <td>Não lê arquivos de opção</td> </tr><tr><td>--random-password-file</td> <td>Arquivo no qual escrever a password aleatória da administrative account</td> </tr><tr><td>--skip-sys-schema</td> <td>Não instala ou faz upgrade do schema sys</td> </tr><tr><td>--srcdir</td> <td>Para uso interno</td> </tr><tr><td>--user</td> <td>User do sistema operacional sob o qual executar o mysqld</td> </tr><tr><td>--verbose</td> <td>Modo Verbose (detalhado)</td> </tr><tr><td>--version</td> <td>Exibe informações de versão e sai</td> </tr></tbody></table>
 
-* `--help`, `-?`
+*   `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
-* `--admin-auth-plugin=plugin_name`
+*   `--admin-auth-plugin=plugin_name`
 
-  <table frame="box" rules="all" summary="Properties for admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The authentication plugin to use for the administrative account. The default is `mysql_native_password`.
+  O authentication plugin a ser usado para a administrative account. O padrão é `mysql_native_password`.
 
-* `--admin-host=host_name`
+*   `--admin-host=host_name`
 
-  <table frame="box" rules="all" summary="Properties for admin-host"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-host"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The host part to use for the adminstrative account name. The default is `localhost`. This option is ignored if `--login-path` is also specified.
+  A parte do host a ser usada para o nome da administrative account. O padrão é `localhost`. Esta opção é ignorada se `--login-path` também for especificada.
 
-* `--admin-require-ssl`
+*   `--admin-require-ssl`
 
-  <table frame="box" rules="all" summary="Properties for admin-require-ssl"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-require-ssl</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-require-ssl"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-require-ssl</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Whether to require SSL for the administrative account. The default is not to require it. With this option enabled, the statement that **mysql_install_db** uses to create the account includes a `REQUIRE SSL` clause. As a result, the administrative account must use secure connections when connecting to the server.
+  Se deve exigir SSL para a administrative account. O padrão é não exigir. Com esta opção habilitada, a instrução que o **mysql_install_db** usa para criar a account inclui uma cláusula `REQUIRE SSL`. Como resultado, a administrative account deve usar secure connections (conexões seguras) ao se conectar ao server.
 
-* `--admin-user=user_name`
+*   `--admin-user=user_name`
 
-  <table frame="box" rules="all" summary="Properties for admin-user"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-user=user_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-user"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-user=user_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The user part to use for the adminstrative account name. The default is `root`. This option is ignored if `--login-path` is also specified.
+  A parte do user a ser usada para o nome da administrative account. O padrão é `root`. Esta opção é ignorada se `--login-path` também for especificada.
 
-* `--basedir=dir_name`
+*   `--basedir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The path to the MySQL installation directory.
+  O path para o diretório de instalação do MySQL.
 
-* `--builddir=dir_name`
+*   `--builddir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for builddir"><tbody><tr><th>Command-Line Format</th> <td><code>--builddir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para builddir"><tbody><tr><th>Command-Line Format</th> <td><code>--builddir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  For use with `--srcdir` and out-of-source builds. Set this to the location of the directory where the built files reside.
+  Para uso com `--srcdir` e builds fora da source (out-of-source builds). Defina este valor para a localização do diretório onde residem os arquivos construídos.
 
-* `--datadir=dir_name`
+*   `--datadir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for datadir"><tbody><tr><th>Command-Line Format</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para datadir"><tbody><tr><th>Command-Line Format</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The path to the MySQL data directory. Only the last component of the path name is created if it does not exist; the parent directory must already exist or an error occurs.
+  O path para o Data Directory do MySQL. Apenas o último componente do path name é criado se não existir; o diretório pai já deve existir ou ocorrerá um error.
 
-  Note
+  Nota
 
-  The `--datadir` option is mandatory and the data directory must not already exist.
+  A opção `--datadir` é obrigatória e o Data Directory não deve existir previamente.
 
-* `--defaults`
+*   `--defaults`
 
-  <table frame="box" rules="all" summary="Properties for defaults"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  This option causes **mysql_install_db** to invoke **mysqld** in such a way that it reads option files from the default locations. If given as `--no-defaults`, and `--defaults-file` or `--defaults-extra-file` is not also specified, **mysql_install_db** passes `--no-defaults` to **mysqld**, to prevent option files from being read. This may help if program startup fails due to reading unknown options from an option file.
+  Esta opção faz com que o **mysql_install_db** invoque o **mysqld** de forma que ele leia os arquivos de opção dos locais padrão. Se fornecido como `--no-defaults`, e `--defaults-file` ou `--defaults-extra-file` também não for especificado, o **mysql_install_db** passará `--no-defaults` para o **mysqld**, para evitar que arquivos de opção sejam lidos. Isso pode ajudar se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opção.
 
-* `--defaults-extra-file=file_name`
+*   `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Lê este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do user. Se o arquivo não existir ou estiver inacessível, ocorrerá um error. Se *`file_name`* não for um path name absoluto, ele será interpretado em relação ao diretório atual.
 
-  This option is passed by **mysql_install_db** to **mysqld**.
+  Esta opção é passada pelo **mysql_install_db** para o **mysqld**.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opção, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opção”.
 
-* `--defaults-file=file_name`
+*   `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um error. Se *`file_name`* não for um path name absoluto, ele será interpretado em relação ao diretório atual.
 
-  This option is passed by **mysql_install_db** to **mysqld**.
+  Esta opção é passada pelo **mysql_install_db** para o **mysqld**.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opção, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opção”.
 
-* `--extra-sql-file=file_name`, `-f file_name`
+*   `--extra-sql-file=file_name`, `-f file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  This option names a file containing additional SQL statements to be executed after the standard bootstrapping statements. Accepted statement syntax in the file is like that of the **mysql** command-line client, including support for multiple-line C-style comments and delimiter handling to enable definition of stored programs.
+  Esta opção nomeia um arquivo contendo instruções SQL adicionais a serem executadas após as instruções de bootstrapping padrão. A sintaxe de instrução aceita no arquivo é semelhante à do client **mysql** de linha de comando, incluindo suporte para comentários C-style de várias linhas e tratamento de delimiter para permitir a definição de stored programs.
 
-* `--insecure`
+*   `--insecure`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Do not generate a random password for the adminstrative account.
+  Não gera uma password aleatória para a administrative account.
 
-  If `--insecure` is *not* given, it is necessary after **mysql_install_db** has been run to start the server, connect using the administrative account with the password written to the `.mysql_secret` file, and specify a new administrative password. Until this is done, the administrative account cannot be used for anything else. To change the password, you can use the `SET PASSWORD` statement (for example, with the **mysql** or **mysqladmin** client). After resetting the password, remove the `.mysql_secret` file; otherwise, if you run **mysql_secure_installation**, that command may see the file and expire the `root` password again as part of ensuring secure deployment.
+  Se `--insecure` *não* for fornecida, é necessário após a execução do **mysql_install_db** iniciar o server, conectar usando a administrative account com a password escrita no arquivo `.mysql_secret` e especificar uma nova password administrativa. Até que isso seja feito, a administrative account não pode ser usada para mais nada. Para alterar a password, você pode usar a instrução `SET PASSWORD` (por exemplo, com o client **mysql** ou **mysqladmin**). Após redefinir a password, remova o arquivo `.mysql_secret`; caso contrário, se você executar o **mysql_secure_installation**, esse comando pode ver o arquivo e expirar a password do `root` novamente como parte da garantia de um deploy seguro.
 
-* `--lc-messages=name`
+*   `--lc-messages=name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The locale to use for error messages. The default is `en_US`. The argument is converted to a language name and combined with the value of `--lc-messages-dir` to produce the location for the error message file. See Section 10.12, “Setting the Error Message Language”.
+  O locale a ser usado para mensagens de erro. O padrão é `en_US`. O argumento é convertido em um nome de idioma e combinado com o valor de `--lc-messages-dir` para produzir a localização do arquivo de mensagens de erro. Consulte a Seção 10.12, “Configurando o Idioma da Mensagem de Erro”.
 
-* `--lc-messages-dir=dir_name`
+*   `--lc-messages-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The directory where error messages are located. The value is used together with the value of `--lc-messages` to produce the location for the error message file. See Section 10.12, “Setting the Error Message Language”.
+  O diretório onde as mensagens de erro estão localizadas. O valor é usado juntamente com o valor de `--lc-messages` para produzir a localização do arquivo de mensagens de erro. Consulte a Seção 10.12, “Configurando o Idioma da Mensagem de Erro”.
 
-* `--login-file=file_name`
+*   `--login-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The file from which to read the login path if the `--login-path=file_name` option is specified. The default file is `.mylogin.cnf`.
+  O arquivo do qual ler o login path se a opção `--login-path=file_name` for especificada. O arquivo padrão é `.mylogin.cnf`.
 
-* `--login-path=name`
+*   `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. The default login path is `client`. (To read a different file, use the `--login-file=name` option.) A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  Lê opções do login path nomeado no arquivo login path `.mylogin.cnf`. O login path padrão é `client`. (Para ler um arquivo diferente, use a opção `--login-file=name`.) Um “login path” é um grupo de opções que especificam a qual MySQL server conectar e com qual account autenticar. Para criar ou modificar um arquivo login path, use o utility **mysql_config_editor**. Consulte a Seção 4.6.6, “mysql_config_editor — Utility de Configuração do MySQL”.
 
-  If the `--login-path` option is specified, the user, host, and password values are taken from the login path and used to create the administrative account. The password must be defined in the login path or an error occurs, unless the `--insecure` option is also specified. In addition, with `--login-path`, any `--admin-host` and `--admin-user` options are ignored.
+  Se a opção `--login-path` for especificada, os valores de user, host e password são retirados do login path e usados para criar a administrative account. A password deve ser definida no login path ou ocorrerá um error, a menos que a opção `--insecure` também seja especificada. Além disso, com `--login-path`, quaisquer opções `--admin-host` e `--admin-user` são ignoradas.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opção, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opção”.
 
-* `--mysqld-file=file_name`
+*   `--mysqld-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The path name of the **mysqld** binary to execute. The option value must be an absolute path name or an error occurs.
+  O path name do binário **mysqld** a ser executado. O valor da opção deve ser um path name absoluto ou ocorrerá um error.
 
-  If this option is not given, **mysql_install_db** searches for **mysqld** in these locations:
+  Se esta opção não for fornecida, o **mysql_install_db** procura o **mysqld** nestes locais:
 
-  + In the `bin` directory under the `--basedir` option value, if that option was given.
+  + No diretório `bin` sob o valor da opção `--basedir`, se essa opção foi fornecida.
 
-  + In the `bin` directory under the `--srcdir` option value, if that option was given.
+  + No diretório `bin` sob o valor da opção `--srcdir`, se essa opção foi fornecida.
 
-  + In the `bin` directory under the `--builddir` option value, if that option was given.
+  + No diretório `bin` sob o valor da opção `--builddir`, se essa opção foi fornecida.
 
-  + In the local directory and in the `bin` and `sbin` directories under the local directory.
+  + No diretório local e nos diretórios `bin` e `sbin` sob o diretório local.
 
-  + In `/usr/bin`, `/usr/sbin`, `/usr/local/bin`, `/usr/local/sbin`, `/opt/local/bin`, `/opt/local/sbin`.
+  + Em `/usr/bin`, `/usr/sbin`, `/usr/local/bin`, `/usr/local/sbin`, `/opt/local/bin`, `/opt/local/sbin`.
 
-* `--no-defaults`
+*   `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  For behavior of this option, see the description of `--defaults`.
+  Para o comportamento desta opção, consulte a descrição de `--defaults`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opção, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opção”.
 
-* `--random-password-file=file_name`
+*   `--random-password-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The path name of the file in which to write the randomly generated password for the administrative account. The option value must be an absolute path name or an error occurs. The default is `$HOME/.mysql_secret`.
+  O path name do arquivo no qual escrever a password gerada aleatoriamente para a administrative account. O valor da opção deve ser um path name absoluto ou ocorrerá um error. O padrão é `$HOME/.mysql_secret`.
 
-* `--skip-sys-schema`
+*   `--skip-sys-schema`
 
-  <table frame="box" rules="all" summary="Properties for admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  **mysql_install_db** installs the `sys` schema. The `--skip-sys-schema` option suppresses this behavior.
+  O **mysql_install_db** instala o schema `sys`. A opção `--skip-sys-schema` suprime este comportamento.
 
-* `--srcdir=dir_name`
+*   `--srcdir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  For internal use. This option specifies the directory under which **mysql_install_db** looks for support files such as the error message file and the file for populating the help tables.
+  Para uso interno. Esta opção especifica o diretório sob o qual o **mysql_install_db** procura arquivos de suporte, como o arquivo de mensagens de erro e o arquivo para popular as help tables.
 
-* `--user=user_name`, `-u user_name`
+*   `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The system (login) user name to use for running **mysqld**. Files and directories created by **mysqld** are owned by this user. You must be the system `root` user to use this option. By default, **mysqld** runs using your current login name; files and directories that it creates are owned by you.
+  O user name (login) do sistema para executar o **mysqld**. Arquivos e diretórios criados pelo **mysqld** pertencem a este user. Você deve ser o user `root` do sistema para usar esta opção. Por padrão, o **mysqld** é executado usando seu user name de login atual; arquivos e diretórios que ele cria pertencem a você.
 
-* `--verbose`, `-v`
+*   `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Verbose mode. Print more information about what the program does. You can use this option to see the **mysqld** command that **mysql_install_db** invokes to start the server in bootstrap mode.
+  Modo Verbose (detalhado). Imprime mais informações sobre o que o programa faz. Você pode usar esta opção para ver o comando **mysqld** que o **mysql_install_db** invoca para iniciar o server em modo bootstrap.
 
-* `--version`, `-V`
+*   `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin-auth-plugin"><tbody><tr><th>Command-Line Format</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações de versão e sai.

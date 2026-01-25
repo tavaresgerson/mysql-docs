@@ -1,50 +1,50 @@
-#### 8.2.1.1 WHERE Clause Optimization
+#### 8.2.1.1 Otimização da Cláusula WHERE
 
-This section discusses optimizations that can be made for processing `WHERE` clauses. The examples use `SELECT` statements, but the same optimizations apply for `WHERE` clauses in `DELETE` and `UPDATE` statements.
+Esta seção discute otimizações que podem ser feitas para processar cláusulas `WHERE`. Os exemplos usam comandos `SELECT`, mas as mesmas otimizações se aplicam às cláusulas `WHERE` em comandos `DELETE` e `UPDATE`.
 
-Note
+Nota
 
-Because work on the MySQL optimizer is ongoing, not all of the optimizations that MySQL performs are documented here.
+Como o trabalho no otimizador do MySQL está em andamento, nem todas as otimizações que o MySQL executa estão documentadas aqui.
 
-You might be tempted to rewrite your queries to make arithmetic operations faster, while sacrificing readability. Because MySQL does similar optimizations automatically, you can often avoid this work, and leave the query in a more understandable and maintainable form. Some of the optimizations performed by MySQL follow:
+Você pode ficar tentado a reescrever suas Queries para acelerar operações aritméticas, sacrificando a legibilidade. Como o MySQL executa otimizações semelhantes automaticamente, você pode frequentemente evitar esse trabalho e deixar a Query em uma forma mais compreensível e de fácil manutenção. Algumas das otimizações realizadas pelo MySQL são as seguintes:
 
-* Removal of unnecessary parentheses:
+* Remoção de parênteses desnecessários:
 
   ```sql
      ((a AND b) AND c OR (((a AND b) AND (c AND d))))
   -> (a AND b AND c) OR (a AND b AND c AND d)
   ```
 
-* Constant folding:
+* Constant folding (Agregação de constantes):
 
   ```sql
      (a<b AND b=c) AND a=5
   -> b>5 AND b=c AND a=5
   ```
 
-* Constant condition removal:
+* Remoção de condição constante:
 
   ```sql
      (b>=5 AND b=5) OR (b=6 AND 5=5) OR (b=7 AND 5=6)
   -> b=5 OR b=6
   ```
 
-* Constant expressions used by indexes are evaluated only once.
+* Expressões constantes usadas por Indexes são avaliadas apenas uma vez.
 
-* `COUNT(*)` on a single table without a `WHERE` is retrieved directly from the table information for `MyISAM` and `MEMORY` tables. This is also done for any `NOT NULL` expression when used with only one table.
+* `COUNT(*)` em uma única tabela sem uma cláusula `WHERE` é recuperado diretamente das informações da tabela para tabelas `MyISAM` e `MEMORY`. Isso também é feito para qualquer expressão `NOT NULL` quando usada com apenas uma tabela.
 
-* Early detection of invalid constant expressions. MySQL quickly detects that some `SELECT` statements are impossible and returns no rows.
+* Detecção precoce de expressões constantes inválidas. O MySQL detecta rapidamente que alguns comandos `SELECT` são impossíveis e não retorna nenhuma linha.
 
-* `HAVING` is merged with `WHERE` if you do not use `GROUP BY` or aggregate functions (`COUNT()`, `MIN()`, and so on).
+* `HAVING` é mesclado com `WHERE` se você não usar `GROUP BY` ou funções agregadas (`COUNT()`, `MIN()`, e assim por diante).
 
-* For each table in a join, a simpler `WHERE` is constructed to get a fast `WHERE` evaluation for the table and also to skip rows as soon as possible.
+* Para cada tabela em um JOIN, uma cláusula `WHERE` mais simples é construída para obter uma avaliação rápida do `WHERE` para a tabela e também para ignorar linhas o mais rápido possível.
 
-* All constant tables are read first before any other tables in the query. A constant table is any of the following:
+* Todas as tabelas constantes são lidas primeiro, antes de qualquer outra tabela na Query. Uma tabela constante é qualquer uma das seguintes:
 
-  + An empty table or a table with one row.
-  + A table that is used with a `WHERE` clause on a `PRIMARY KEY` or a `UNIQUE` index, where all index parts are compared to constant expressions and are defined as `NOT NULL`.
+  + Uma tabela vazia ou uma tabela com uma linha.
+  + Uma tabela usada com uma cláusula `WHERE` em uma `PRIMARY KEY` ou um `UNIQUE` Index, onde todas as partes do Index são comparadas a expressões constantes e são definidas como `NOT NULL`.
 
-  All of the following tables are used as constant tables:
+  Todas as tabelas a seguir são usadas como tabelas constantes:
 
   ```sql
   SELECT * FROM t WHERE primary_key=1;
@@ -52,19 +52,19 @@ You might be tempted to rewrite your queries to make arithmetic operations faste
     WHERE t1.primary_key=1 AND t2.primary_key=t1.id;
   ```
 
-* The best join combination for joining the tables is found by trying all possibilities. If all columns in `ORDER BY` and `GROUP BY` clauses come from the same table, that table is preferred first when joining.
+* A melhor combinação de JOIN para unir as tabelas é encontrada tentando todas as possibilidades. Se todas as colunas nas cláusulas `ORDER BY` e `GROUP BY` vierem da mesma tabela, essa tabela será preferida primeiro ao realizar o JOIN.
 
-* If there is an `ORDER BY` clause and a different `GROUP BY` clause, or if the `ORDER BY` or `GROUP BY` contains columns from tables other than the first table in the join queue, a temporary table is created.
+* Se houver uma cláusula `ORDER BY` e uma cláusula `GROUP BY` diferente, ou se o `ORDER BY` ou `GROUP BY` contiver colunas de tabelas diferentes da primeira tabela na fila de JOIN, uma tabela temporária é criada.
 
-* If you use the `SQL_SMALL_RESULT` modifier, MySQL uses an in-memory temporary table.
+* Se você usar o modificador `SQL_SMALL_RESULT`, o MySQL utiliza uma tabela temporária na memória.
 
-* Each table index is queried, and the best index is used unless the optimizer believes that it is more efficient to use a table scan. At one time, a scan was used based on whether the best index spanned more than 30% of the table, but a fixed percentage no longer determines the choice between using an index or a scan. The optimizer now is more complex and bases its estimate on additional factors such as table size, number of rows, and I/O block size.
+* Cada Index da tabela é consultado e o melhor Index é usado, a menos que o otimizador acredite que seja mais eficiente usar um table scan (leitura completa da tabela). Anteriormente, um scan era usado se o melhor Index abrangesse mais de 30% da tabela, mas uma porcentagem fixa não determina mais a escolha entre usar um Index ou um scan. O otimizador agora é mais complexo e baseia sua estimativa em fatores adicionais, como tamanho da tabela, número de linhas e tamanho do bloco de I/O.
 
-* In some cases, MySQL can read rows from the index without even consulting the data file. If all columns used from the index are numeric, only the index tree is used to resolve the query.
+* Em alguns casos, o MySQL pode ler linhas do Index sem sequer consultar o arquivo de dados. Se todas as colunas usadas do Index forem numéricas, apenas a árvore de Index é usada para resolver a Query.
 
-* Before each row is output, those that do not match the `HAVING` clause are skipped.
+* Antes de cada linha ser exibida, aquelas que não correspondem à cláusula `HAVING` são ignoradas.
 
-Some examples of queries that are very fast:
+Alguns exemplos de Queries que são muito rápidas:
 
 ```sql
 SELECT COUNT(*) FROM tbl_name;
@@ -81,7 +81,7 @@ SELECT ... FROM tbl_name
   ORDER BY key_part1 DESC, key_part2 DESC, ... LIMIT 10;
 ```
 
-MySQL resolves the following queries using only the index tree, assuming that the indexed columns are numeric:
+O MySQL resolve as seguintes Queries usando apenas a árvore de Index, assumindo que as colunas indexadas são numéricas:
 
 ```sql
 SELECT key_part1,key_part2 FROM tbl_name WHERE key_part1=val;
@@ -92,7 +92,7 @@ SELECT COUNT(*) FROM tbl_name
 SELECT MAX(key_part2) FROM tbl_name GROUP BY key_part1;
 ```
 
-The following queries use indexing to retrieve the rows in sorted order without a separate sorting pass:
+As seguintes Queries usam Indexing para recuperar as linhas em ordem classificada sem uma passagem de classificação separada:
 
 ```sql
 SELECT ... FROM tbl_name

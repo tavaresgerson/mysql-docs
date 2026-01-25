@@ -1,22 +1,22 @@
-### 2.5.8 Installing MySQL on Linux from the Native Software Repositories
+### 2.5.8 Instalando MySQL no Linux a partir dos Repositórios Nativos de Software
 
-Many Linux distributions include a version of the MySQL server, client tools, and development components in their native software repositories and can be installed with the platforms' standard package management systems. This section provides basic instructions for installing MySQL using those package management systems.
+Muitas distribuições Linux incluem uma versão do servidor MySQL, ferramentas de cliente e componentes de desenvolvimento em seus repositórios nativos de software e podem ser instaladas com os sistemas padrão de gerenciamento de *package* das plataformas. Esta seção fornece instruções básicas para instalar o MySQL usando esses sistemas de gerenciamento de *package*.
 
-Important
+Importante
 
-Native packages are often several versions behind the currently available release. You also normally cannot install development milestone releases (DMRs), as these are not usually made available in the native repositories. Before proceeding, we recommend that you check out the other installation options described in Section 2.5, “Installing MySQL on Linux”.
+Os *packages* nativos estão frequentemente várias versões atrás da versão atualmente disponível. Normalmente, você também não pode instalar versões de marco de desenvolvimento (DMRs), pois elas geralmente não são disponibilizadas nos repositórios nativos. Antes de prosseguir, recomendamos que você verifique as outras opções de instalação descritas na Seção 2.5, “Instalando MySQL no Linux”.
 
-Distribution specific instructions are shown below:
+Instruções específicas da distribuição são mostradas abaixo:
 
 * **Red Hat Linux, Fedora, CentOS**
 
-  Note
+  Nota
 
-  For a number of Linux distributions, you can install MySQL using the MySQL Yum repository instead of the platform's native software repository. See Section 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository” for details.
+  Para várias distribuições Linux, você pode instalar o MySQL usando o repositório MySQL Yum em vez do repositório nativo de software da plataforma. Consulte a Seção 2.5.1, “Instalando MySQL no Linux Usando o Repositório MySQL Yum” para obter detalhes.
 
-  For Red Hat and similar distributions, the MySQL distribution is divided into a number of separate packages, `mysql` for the client tools, `mysql-server` for the server and associated tools, and `mysql-libs` for the libraries. The libraries are required if you want to provide connectivity from different languages and environments such as Perl, Python and others.
+  Para Red Hat e distribuições semelhantes, a distribuição MySQL é dividida em vários *packages* separados: `mysql` para as ferramentas de cliente, `mysql-server` para o servidor e ferramentas associadas, e `mysql-libs` para as *libraries*. As *libraries* são necessárias se você deseja fornecer conectividade a partir de diferentes linguagens e ambientes, como Perl, Python e outros.
 
-  To install, use the **yum** command to specify the packages that you want to install. For example:
+  Para instalar, use o comando **yum** para especificar os *packages* que você deseja instalar. Por exemplo:
 
   ```sql
   #> yum install mysql mysql-server mysql-libs mysql-server
@@ -81,37 +81,37 @@ Distribution specific instructions are shown below:
   Complete!
   ```
 
-  MySQL and the MySQL server should now be installed. A sample configuration file is installed into `/etc/my.cnf`. An init script, to start and stop the server, is installed into `/etc/init.d/mysqld`. To start the MySQL server use **service**:
+  O MySQL e o servidor MySQL devem estar instalados agora. Um arquivo de configuração de exemplo é instalado em `/etc/my.cnf`. Um *init script*, para iniciar e parar o servidor, é instalado em `/etc/init.d/mysqld`. Para iniciar o servidor MySQL, use **service**:
 
   ```sql
   #> service mysqld start
   ```
 
-  To enable the server to be started and stopped automatically during boot, use **chkconfig**:
+  Para permitir que o servidor seja iniciado e parado automaticamente durante o *boot*, use **chkconfig**:
 
   ```sql
   #> chkconfig --levels 235 mysqld on
   ```
 
-  Which enables the MySQL server to be started (and stopped) automatically at the specified the run levels.
+  O que permite que o servidor MySQL seja iniciado (e parado) automaticamente nos *run levels* especificados.
 
-  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql_secure_installation** to set the root passwords on your server.
+  As *database tables* são criadas automaticamente para você, se ainda não existirem. Você deve, no entanto, executar **mysql\_secure\_installation** para definir as senhas do *root* no seu servidor.
 
 * **Debian, Ubuntu, Kubuntu**
 
-  Note
+  Nota
 
-  On Debian, Ubuntu, and Kubuntu, MySQL can be installed using the [MySQL APT Repository](https://dev.mysql.com/downloads/repo/apt/) instead of the platform's native software repository. See Section 2.5.3, “Installing MySQL on Linux Using the MySQL APT Repository” for details.
+  No Debian, Ubuntu e Kubuntu, o MySQL pode ser instalado usando o [MySQL APT Repository](https://dev.mysql.com/downloads/repo/apt/) em vez do repositório nativo de software da plataforma. Consulte a Seção 2.5.3, “Instalando MySQL no Linux Usando o MySQL APT Repository” para obter detalhes.
 
-  On Debian and related distributions, there are two packages for MySQL in their software repositories, `mysql-client` and `mysql-server`, for the client and server components respectively. You should specify an explicit version, for example `mysql-client-5.1`, to ensure that you install the version of MySQL that you want.
+  No Debian e distribuições relacionadas, existem dois *packages* para MySQL em seus repositórios de software, `mysql-client` e `mysql-server`, para os componentes de cliente e servidor, respectivamente. Você deve especificar uma versão explícita, por exemplo `mysql-client-5.1`, para garantir que instale a versão do MySQL que você deseja.
 
-  To download and install, including any dependencies, use the **apt-get** command, specifying the packages that you want to install.
+  Para fazer o *download* e instalar, incluindo quaisquer dependências, use o comando **apt-get**, especificando os *packages* que você deseja instalar.
 
-  Note
+  Nota
 
-  Before installing, make sure that you update your `apt-get` index files to ensure you are downloading the latest available version.
+  Antes de instalar, certifique-se de atualizar seus arquivos de *index* do `apt-get` para garantir que você esteja baixando a versão mais recente disponível.
 
-  A sample installation of the MySQL packages might look like this (some sections trimmed for clarity):
+  Uma instalação de exemplo dos *packages* MySQL pode se parecer com isto (algumas seções foram omitidas para maior clareza):
 
   ```sql
   #> apt-get install mysql-client-5.1 mysql-server-5.1
@@ -169,16 +169,16 @@ Distribution specific instructions are shown below:
   ldconfig deferred processing now taking place
   ```
 
-  Note
+  Nota
 
-  The **apt-get** command installs a number of packages, including the MySQL server, in order to provide the typical tools and application environment. This can mean that you install a large number of packages in addition to the main MySQL package.
+  O comando **apt-get** instala vários *packages*, incluindo o MySQL server, a fim de fornecer as ferramentas típicas e o ambiente de aplicação. Isso pode significar que você instale um grande número de *packages* além do *package* principal do MySQL.
 
-  During installation, the initial database is created, and you are prompted for the MySQL root password (and confirmation). A configuration file is created in `/etc/mysql/my.cnf`. An init script is created in `/etc/init.d/mysql`.
+  Durante a instalação, a *database* inicial é criada, e você será solicitado pela senha de *root* do MySQL (e confirmação). Um arquivo de configuração é criado em `/etc/mysql/my.cnf`. Um *init script* é criado em `/etc/init.d/mysql`.
 
-  The server is already started. You can manually start and stop the server using:
+  O servidor já está iniciado. Você pode iniciar e parar o servidor manualmente usando:
 
   ```sql
   #> service mysql [start|stop]
   ```
 
-  The service is automatically added to run levels 2, 3, and 4, with stop scripts in the single, shutdown, and restart levels.
+  O *service* é adicionado automaticamente aos *run levels* 2, 3 e 4, com *stop scripts* nos níveis *single*, *shutdown* e *restart*.

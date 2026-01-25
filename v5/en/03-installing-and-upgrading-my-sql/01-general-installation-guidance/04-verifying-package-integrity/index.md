@@ -1,22 +1,22 @@
-### 2.1.4 Verifying Package Integrity Using MD5 Checksums or GnuPG
+### 2.1.4 Verificando a Integridade do Package Usando MD5 Checksums ou GnuPG
 
-2.1.4.1 Verifying the MD5 Checksum
+2.1.4.1 Verificando o MD5 Checksum
 
-2.1.4.2 Signature Checking Using GnuPG
+2.1.4.2 Verificação de Assinatura Usando GnuPG
 
-2.1.4.3 Signature Checking Using Gpg4win for Windows
+2.1.4.3 Verificação de Assinatura Usando Gpg4win para Windows
 
-2.1.4.4 Signature Checking Using RPM
+2.1.4.4 Verificação de Assinatura Usando RPM
 
-2.1.4.5 GPG Public Build Key for Archived Packages
+2.1.4.5 GPG Public Build Key para Packages Arquivados
 
-After downloading the MySQL package that suits your needs and before attempting to install it, make sure that it is intact and has not been tampered with. There are three means of integrity checking:
+Após fazer o download do package MySQL que atenda às suas necessidades e antes de tentar instalá-lo, certifique-se de que ele esteja intacto e não tenha sido adulterado. Existem três meios de verificação de integridade:
 
 * MD5 checksums
-* Cryptographic signatures using `GnuPG`, the GNU Privacy Guard
+* Assinaturas criptográficas usando `GnuPG`, o GNU Privacy Guard
 
-* For RPM packages, the built-in RPM integrity verification mechanism
+* Para packages RPM, o mecanismo de verificação de integridade RPM integrado
 
-The following sections describe how to use these methods.
+As seções a seguir descrevem como usar esses métodos.
 
-If you notice that the MD5 checksum or GPG signatures do not match, first try to download the respective package one more time, perhaps from another mirror site.
+Se você notar que o MD5 checksum ou as assinaturas GPG não correspondem, tente primeiro fazer o download do package respectivo mais uma vez, talvez de outro mirror site.

@@ -1,11 +1,11 @@
-#### 8.10.2.1 Shared Key Cache Access
+#### 8.10.2.1 Acesso Compartilhado ao Key Cache
 
-Threads can access key cache buffers simultaneously, subject to the following conditions:
+Threads podem acessar os buffers do Key Cache simultaneamente, sujeitas às seguintes condições:
 
-* A buffer that is not being updated can be accessed by multiple sessions.
+* Um buffer que não está sendo atualizado pode ser acessado por múltiplas sessions.
 
-* A buffer that is being updated causes sessions that need to use it to wait until the update is complete.
+* Um buffer que está sendo atualizado faz com que as sessions que precisam usá-lo esperem até que o update seja concluído.
 
-* Multiple sessions can initiate requests that result in cache block replacements, as long as they do not interfere with each other (that is, as long as they need different index blocks, and thus cause different cache blocks to be replaced).
+* Múltiplas sessions podem iniciar requests que resultam em substituições de blocos do Cache (*cache block replacements*), desde que não interfiram umas nas outras (ou seja, desde que precisem de diferentes index blocks e, consequentemente, causem a substituição de diferentes cache blocks).
 
-Shared access to the key cache enables the server to improve throughput significantly.
+O acesso compartilhado ao Key Cache permite que o server melhore significativamente o throughput.

@@ -1,68 +1,60 @@
-# Chapter 7 Backup and Recovery
+# Capítulo 7 Backup e Recovery
 
-**Table of Contents**
+**Sumário**
 
-7.1 Backup and Recovery Types
+7.1 Tipos de Backup e Recovery
 
-7.2 Database Backup Methods
+7.2 Métodos de Backup de Database
 
-7.3 Example Backup and Recovery Strategy :   7.3.1 Establishing a Backup Policy
+7.3 Exemplo de Estratégia de Backup e Recovery :
+    7.3.1 Estabelecendo uma Política de Backup
+    7.3.2 Usando Backups para Recovery
+    7.3.3 Resumo da Estratégia de Backup
 
-    7.3.2 Using Backups for Recovery
+7.4 Usando mysqldump para Backups :
+    7.4.1 Fazendo Dump de Dados no Formato SQL com mysqldump
+    7.4.2 Recarregando Backups no Formato SQL
+    7.4.3 Fazendo Dump de Dados no Formato de Texto Delimitado com mysqldump
+    7.4.4 Recarregando Backups no Formato de Texto Delimitado
+    7.4.5 Dicas sobre mysqldump
 
-    7.3.3 Backup Strategy Summary
+7.5 Recovery Point-in-Time (Incremental) :
+    7.5.1 Recovery Point-in-Time Usando Binary Log
+    7.5.2 Recovery Point-in-Time Usando Posições de Eventos
 
-7.4 Using mysqldump for Backups :   7.4.1 Dumping Data in SQL Format with mysqldump
+7.6 Manutenção de Tabela MyISAM e Crash Recovery :
+    7.6.1 Usando myisamchk para Crash Recovery
+    7.6.2 Como Verificar Tabelas MyISAM em Busca de Erros
+    7.6.3 Como Reparar Tabelas MyISAM
+    7.6.4 Otimização de Tabela MyISAM
+    7.6.5 Configurando um Cronograma de Manutenção de Tabela MyISAM
 
-    7.4.2 Reloading SQL-Format Backups
+É importante fazer o Backup das suas Databases para que você possa recuperar seus dados e voltar a operar rapidamente caso ocorram problemas, como *system crashes*, falhas de hardware ou exclusão acidental de dados por usuários. Backups também são essenciais como salvaguarda antes de fazer o *upgrade* de uma instalação MySQL, e podem ser usados para transferir uma instalação MySQL para outro sistema ou para configurar servidores *replica*.
 
-    7.4.3 Dumping Data in Delimited-Text Format with mysqldump
+O MySQL oferece uma variedade de estratégias de Backup, a partir das quais você pode escolher os métodos que melhor se adaptam aos requisitos da sua instalação. Este capítulo aborda vários tópicos de Backup e Recovery com os quais você deve estar familiarizado:
 
-    7.4.4 Reloading Delimited-Text Format Backups
+* Tipos de Backup: Lógico versus físico, *full* versus incremental, e assim por diante.
+* Métodos para criação de Backups.
+* Métodos de Recovery, incluindo *point-in-time recovery*.
+* Agendamento, compressão e criptografia de Backup.
+* Manutenção de Table, para permitir o *recovery* de tabelas corrompidas.
 
-    7.4.5 mysqldump Tips
+## Recursos Adicionais
 
-7.5 Point-in-Time (Incremental) Recovery :   7.5.1 Point-in-Time Recovery Using Binary Log
+Os recursos relacionados a Backup ou à manutenção da disponibilidade de dados incluem o seguinte:
 
-    7.5.2 Point-in-Time Recovery Using Event Positions
+* Clientes do MySQL Enterprise Edition podem usar o produto MySQL Enterprise Backup para Backups. Para uma visão geral do produto MySQL Enterprise Backup, consulte a Seção 28.1, “Visão Geral do MySQL Enterprise Backup”.
 
-7.6 MyISAM Table Maintenance and Crash Recovery :   7.6.1 Using myisamchk for Crash Recovery
+* Um fórum dedicado a questões de Backup está disponível em <https://forums.mysql.com/list.php?28>.
 
-    7.6.2 How to Check MyISAM Tables for Errors
+* Detalhes sobre o **mysqldump** podem ser encontrados no Capítulo 4, *Programas MySQL*.
 
-    7.6.3 How to Repair MyISAM Tables
+* A sintaxe das instruções SQL descritas aqui é fornecida no Capítulo 13, *Instruções SQL*.
 
-    7.6.4 MyISAM Table Optimization
+* Para informações adicionais sobre procedimentos de Backup `InnoDB`, consulte a Seção 14.19.1, “Backup InnoDB”.
 
-    7.6.5 Setting Up a MyISAM Table Maintenance Schedule
+* A Replication permite manter dados idênticos em múltiplos servidores. Isso traz diversos benefícios, como a distribuição da carga de Querys do cliente entre os servidores, a disponibilidade de dados mesmo que um determinado servidor fique *offline* ou falhe, e a capacidade de realizar Backups sem impacto na origem usando um servidor *replica*. Consulte o Capítulo 16, *Replication*.
 
-It is important to back up your databases so that you can recover your data and be up and running again in case problems occur, such as system crashes, hardware failures, or users deleting data by mistake. Backups are also essential as a safeguard before upgrading a MySQL installation, and they can be used to transfer a MySQL installation to another system or to set up replica servers.
+* O MySQL InnoDB Cluster é uma coleção de produtos que trabalham em conjunto para fornecer uma solução de alta disponibilidade. Um grupo de servidores MySQL pode ser configurado para criar um Cluster usando o MySQL Shell. O Cluster de servidores possui uma única fonte, chamada *primary*, que atua como a fonte de leitura e escrita (*read-write*). Múltiplos servidores *secondary* são *replicas* da fonte. Um mínimo de três servidores é necessário para criar um Cluster de alta disponibilidade. Uma aplicação cliente é conectada ao *primary* via MySQL Router. Se o *primary* falhar, um *secondary* é promovido automaticamente à função de *primary*, e o MySQL Router roteia as requisições para o novo *primary*.
 
-MySQL offers a variety of backup strategies from which you can choose the methods that best suit the requirements for your installation. This chapter discusses several backup and recovery topics with which you should be familiar:
-
-* Types of backups: Logical versus physical, full versus incremental, and so forth.
-
-* Methods for creating backups.
-* Recovery methods, including point-in-time recovery.
-* Backup scheduling, compression, and encryption.
-* Table maintenance, to enable recovery of corrupt tables.
-
-## Additional Resources
-
-Resources related to backup or to maintaining data availability include the following:
-
-* Customers of MySQL Enterprise Edition can use the MySQL Enterprise Backup product for backups. For an overview of the MySQL Enterprise Backup product, see Section 28.1, “MySQL Enterprise Backup Overview”.
-
-* A forum dedicated to backup issues is available at <https://forums.mysql.com/list.php?28>.
-
-* Details for **mysqldump** can be found in Chapter 4, *MySQL Programs*.
-
-* The syntax of the SQL statements described here is given in Chapter 13, *SQL Statements*.
-
-* For additional information about `InnoDB` backup procedures, see Section 14.19.1, “InnoDB Backup”.
-
-* Replication enables you to maintain identical data on multiple servers. This has several benefits, such as enabling client query load to be distributed over servers, availability of data even if a given server is taken offline or fails, and the ability to make backups with no impact on the source by using a replica server. See Chapter 16, *Replication*.
-
-* MySQL InnoDB Cluster is a collection of products that work together to provide a high availability solution. A group of MySQL servers can be configured to create a cluster using MySQL Shell. The cluster of servers has a single source, called the primary, which acts as the read-write source. Multiple secondary servers are replicas of the source. A minimum of three servers are required to create a high availability cluster. A client application is connected to the primary via MySQL Router. If the primary fails, a secondary is automatically promoted to the role of primary, and MySQL Router routes requests to the new primary.
-
-* NDB Cluster provides a high-availability, high-redundancy version of MySQL adapted for the distributed computing environment. See Chapter 21, *MySQL NDB Cluster 7.5 and NDB Cluster 7.6*, which provides information about MySQL NDB Cluster 7.5 (based on MySQL 5.7 but containing the latest improvements and fixes for the `NDB` storage engine).
+* O NDB Cluster fornece uma versão do MySQL de alta disponibilidade e alta redundância, adaptada para o ambiente de computação distribuída. Consulte o Capítulo 21, *MySQL NDB Cluster 7.5 e NDB Cluster 7.6*, que fornece informações sobre o MySQL NDB Cluster 7.5 (baseado no MySQL 5.7, mas contendo as melhorias e correções mais recentes para o *storage engine* NDB).

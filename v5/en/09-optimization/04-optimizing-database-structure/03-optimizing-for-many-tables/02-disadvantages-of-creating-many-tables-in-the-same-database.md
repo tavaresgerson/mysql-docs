@@ -1,3 +1,3 @@
-#### 8.4.3.2 Disadvantages of Creating Many Tables in the Same Database
+#### 8.4.3.2 Desvantagens de Criar Muitas Tabelas no Mesmo Database
 
-If you have many `MyISAM` tables in the same database directory, open, close, and create operations are slow. If you execute `SELECT` statements on many different tables, there is a little overhead when the table cache is full, because for every table that has to be opened, another must be closed. You can reduce this overhead by increasing the number of entries permitted in the table cache.
+Se você tem muitas tabelas `MyISAM` no mesmo diretório do database, as operações de open, close e create são lentas. Se você executa comandos `SELECT` em muitas tabelas diferentes, há um pequeno overhead quando o table cache está cheio, porque para cada tabela que precisa ser aberta, outra deve ser fechada. Você pode reduzir este overhead aumentando o número de entradas permitidas no table cache.

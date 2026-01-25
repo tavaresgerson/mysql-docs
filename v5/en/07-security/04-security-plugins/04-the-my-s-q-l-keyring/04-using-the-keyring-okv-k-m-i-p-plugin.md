@@ -1,43 +1,43 @@
-#### 6.4.4.4 Using the keyring_okv KMIP Plugin
+#### 6.4.4.4 Usando o Plugin KMIP keyring_okv
 
-Note
+Nota
 
-The `keyring_okv` plugin is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, see <https://www.mysql.com/products/>.
+O plugin `keyring_okv` é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
-The Key Management Interoperability Protocol (KMIP) enables communication of cryptographic keys between a key management server and its clients. The `keyring_okv` keyring plugin uses the KMIP 1.1 protocol to communicate securely as a client of a KMIP back end. Keyring material is generated exclusively by the back end, not by `keyring_okv`. The plugin works with these KMIP-compatible products:
+O Key Management Interoperability Protocol (KMIP) permite a comunicação de chaves criptográficas entre um servidor de gerenciamento de chaves e seus clientes. O plugin de Keyring `keyring_okv` usa o protocolo KMIP 1.1 para se comunicar de forma segura como um cliente de um *back end* KMIP. O material do Keyring é gerado exclusivamente pelo *back end*, não pelo `keyring_okv`. O plugin funciona com estes produtos compatíveis com KMIP:
 
 * Oracle Key Vault
 * Gemalto SafeNet KeySecure Appliance
 * Townsend Alliance Key Manager
 
-Each MySQL Server instance must be registered separately as a client for KMIP. If two or more MySQL Server instances use the same set of credentials, they can interfere with each other’s functioning.
+Cada instância do MySQL Server deve ser registrada separadamente como um cliente para KMIP. Se duas ou mais instâncias do MySQL Server usarem o mesmo conjunto de credenciais, elas podem interferir no funcionamento umas das outras.
 
-The `keyring_okv` plugin supports the functions that comprise the standard MySQL Keyring service interface. Keyring operations performed by those functions are accessible at two levels:
+O plugin `keyring_okv` suporta as funções que compõem a interface de serviço padrão do MySQL Keyring. As operações de Keyring executadas por essas funções são acessíveis em dois níveis:
 
-* SQL interface: In SQL statements, call the functions described in [Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
+* Interface SQL: Em instruções SQL, chame as funções descritas em [Section 6.4.4.8, “Funções de Gerenciamento de Chaves de Keyring de Propósito Geral”](keyring-functions-general-purpose.html "6.4.4.8 Funções de Gerenciamento de Chaves de Keyring de Propósito Geral").
 
-* C interface: In C-language code, call the keyring service functions described in [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service").
+* Interface C: Em código C-language, chame as funções de serviço de Keyring descritas em [Section 5.5.6.2, “O Serviço de Keyring”](keyring-service.html "5.5.6.2 O Serviço de Keyring").
 
-Example (using the SQL interface):
+Exemplo (usando a interface SQL):
 
 ```sql
 SELECT keyring_key_generate('MyKey', 'AES', 32);
 SELECT keyring_key_remove('MyKey');
 ```
 
-For information about the characteristics of key values permitted by `keyring_okv`, [Section 6.4.4.6, “Supported Keyring Key Types and Lengths”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
+Para informações sobre as características dos valores de chave permitidos por `keyring_okv`, [Section 6.4.4.6, “Tipos e Comprimentos de Chave de Keyring Suportados”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
 
-To install `keyring_okv`, use the general instructions found in [Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation"), together with the configuration information specific to `keyring_okv` found here.
+Para instalar `keyring_okv`, use as instruções gerais encontradas em [Section 6.4.4.1, “Instalação do Plugin de Keyring”](keyring-plugin-installation.html "6.4.4.1 Instalação do Plugin de Keyring"), juntamente com as informações de configuração específicas do `keyring_okv` encontradas aqui.
 
-* [General keyring_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")
-* [Configuring keyring_okv for Oracle Key Vault](keyring-okv-plugin.html#keyring-okv-oracle-key-vault "Configuring keyring_okv for Oracle Key Vault")
-* [Configuring keyring_okv for Gemalto SafeNet KeySecure Appliance](keyring-okv-plugin.html#keyring-okv-keysecure "Configuring keyring_okv for Gemalto SafeNet KeySecure Appliance")
-* [Configuring keyring_okv for Townsend Alliance Key Manager](keyring-okv-plugin.html#keyring-okv-alliance "Configuring keyring_okv for Townsend Alliance Key Manager")
-* [Password-Protecting the keyring_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File")
+* [Configuração Geral do keyring_okv](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")
+* [Configurando o keyring_okv para Oracle Key Vault](keyring-okv-plugin.html#keyring-okv-oracle-key-vault "Configurando o keyring_okv para Oracle Key Vault")
+* [Configurando o keyring_okv para Gemalto SafeNet KeySecure Appliance](keyring-okv-plugin.html#keyring-okv-keysecure "Configurando o keyring_okv para Gemalto SafeNet KeySecure Appliance")
+* [Configurando o keyring_okv para Townsend Alliance Key Manager](keyring-okv-plugin.html#keyring-okv-alliance "Configurando o keyring_okv para Townsend Alliance Key Manager")
+* [Protegendo o Arquivo de Chave do keyring_okv com Senha](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File")
 
-##### General keyring_okv Configuration
+##### Configuração Geral do keyring_okv
 
-Regardless of which KMIP back end the `keyring_okv` plugin uses for keyring storage, the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable configures the location of the directory used by `keyring_okv` for its support files. The default value is empty, so you must set the variable to name a properly configured directory before the plugin can communicate with the KMIP back end. Unless you do so, `keyring_okv` writes a message to the error log during server startup that it cannot communicate:
+Independentemente de qual *back end* KMIP o plugin `keyring_okv` usa para armazenamento de Keyring, a variável de sistema [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) configura a localização do diretório usado por `keyring_okv` para seus arquivos de suporte. O valor padrão é vazio, então você deve configurar a variável para nomear um diretório devidamente configurado antes que o plugin possa se comunicar com o *back end* KMIP. A menos que você faça isso, `keyring_okv` escreve uma mensagem no error log durante a inicialização do servidor de que não consegue se comunicar:
 
 ```sql
 [Warning] Plugin keyring_okv reported: 'For keyring_okv to be
@@ -45,15 +45,15 @@ initialized, please point the keyring_okv_conf_dir variable to a directory
 containing Oracle Key Vault configuration file and ssl materials'
 ```
 
-The [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) variable must name a directory that contains the following items:
+A variável [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) deve nomear um diretório que contenha os seguintes itens:
 
-* `okvclient.ora`: A file that contains details of the KMIP back end with which `keyring_okv` communicates.
+* `okvclient.ora`: Um arquivo que contém detalhes do *back end* KMIP com o qual `keyring_okv` se comunica.
 
-* `ssl`: A directory that contains the certificate and key files required to establish a secure connection with the KMIP back end: `CA.pem`, `cert.pem`, and `key.pem`. As of MySQL 5.7.20, if the key file is password-protected, the `ssl` directory can contain a single-line text file named `password.txt` containing the password needed to decrypt the key file.
+* `ssl`: Um diretório que contém os arquivos de certificado e chave necessários para estabelecer uma conexão segura com o *back end* KMIP: `CA.pem`, `cert.pem` e `key.pem`. A partir do MySQL 5.7.20, se o arquivo de chave for protegido por senha, o diretório `ssl` pode conter um arquivo de texto de linha única chamado `password.txt` contendo a senha necessária para descriptografar o arquivo de chave.
 
-Both the `okvclient.ora` file and `ssl` directory with the certificate and key files are required for `keyring_okv` to work properly. The procedure used to populate the configuration directory with these files depends on the KMIP back end used with `keyring_okv`, as described elsewhere.
+Tanto o arquivo `okvclient.ora` quanto o diretório `ssl` com os arquivos de certificado e chave são necessários para que `keyring_okv` funcione corretamente. O procedimento usado para popular o diretório de configuração com esses arquivos depende do *back end* KMIP usado com `keyring_okv`, conforme descrito em outros locais.
 
-The configuration directory used by `keyring_okv` as the location for its support files should have a restrictive mode and be accessible only to the account used to run the MySQL server. For example, on Unix and Unix-like systems, to use the `/usr/local/mysql/mysql-keyring-okv` directory, the following commands (executed as `root`) create the directory and set its mode and ownership:
+O diretório de configuração usado por `keyring_okv` como local para seus arquivos de suporte deve ter um modo restritivo e ser acessível apenas à conta usada para executar o MySQL Server. Por exemplo, em sistemas Unix e semelhantes ao Unix, para usar o diretório `/usr/local/mysql/mysql-keyring-okv`, os seguintes comandos (executados como `root`) criam o diretório e definem seu modo e propriedade:
 
 ```sql
 cd /usr/local/mysql
@@ -63,7 +63,7 @@ chown mysql mysql-keyring-okv
 chgrp mysql mysql-keyring-okv
 ```
 
-To be usable during the server startup process, `keyring_okv` must be loaded using the [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option. Also, set the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable to tell `keyring_okv` where to find its configuration directory. For example, use these lines in the server `my.cnf` file, adjusting the `.so` suffix and directory location for your platform as necessary:
+Para ser utilizável durante o processo de inicialização do servidor, `keyring_okv` deve ser carregado usando a opção [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load). Além disso, defina a variável de sistema [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) para informar ao `keyring_okv` onde encontrar seu diretório de configuração. Por exemplo, use estas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do diretório para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -71,85 +71,85 @@ early-plugin-load=keyring_okv.so
 keyring_okv_conf_dir=/usr/local/mysql/mysql-keyring-okv
 ```
 
-For additional information about [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir), see [Section 6.4.4.12, “Keyring System Variables”](keyring-system-variables.html "6.4.4.12 Keyring System Variables").
+Para informações adicionais sobre [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir), consulte [Section 6.4.4.12, “Variáveis de Sistema de Keyring”](keyring-system-variables.html "6.4.4.12 Keyring System Variables").
 
-##### Configuring keyring_okv for Oracle Key Vault
+##### Configurando o keyring_okv para Oracle Key Vault
 
-The discussion here assumes that you are familiar with Oracle Key Vault. Some pertinent information sources:
+A discussão aqui pressupõe que você esteja familiarizado com o Oracle Key Vault. Algumas fontes de informação pertinentes:
 
-* [Oracle Key Vault site](http://www.oracle.com/technetwork/database/options/key-management/overview/index.html)
+* [Site do Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/overview/index.html)
 
-* [Oracle Key Vault documentation](http://www.oracle.com/technetwork/database/options/key-management/documentation/index.html)
+* [Documentação do Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/documentation/index.html)
 
-In Oracle Key Vault terminology, clients that use Oracle Key Vault to store and retrieve security objects are called endpoints. To communicate with Oracle Key Vault, it is necessary to register as an endpoint and enroll by downloading and installing endpoint support files. Note that you must register a separate endpoint for each MySQL Server instance. If two or more MySQL Server instances use the same endpoint, they can interfere with each other’s functioning.
+Na terminologia do Oracle Key Vault, os clientes que usam o Oracle Key Vault para armazenar e recuperar objetos de segurança são chamados de *endpoints*. Para se comunicar com o Oracle Key Vault, é necessário se registrar como um *endpoint* e se inscrever baixando e instalando arquivos de suporte de *endpoint*. Observe que você deve registrar um *endpoint* separado para cada instância do MySQL Server. Se duas ou mais instâncias do MySQL Server usarem o mesmo *endpoint*, elas podem interferir no funcionamento umas das outras.
 
-The following procedure briefly summarizes the process of setting up `keyring_okv` for use with Oracle Key Vault:
+O procedimento a seguir resume brevemente o processo de configuração do `keyring_okv` para uso com o Oracle Key Vault:
 
-1. Create the configuration directory for the `keyring_okv` plugin to use.
+1. Crie o diretório de configuração para o plugin `keyring_okv` usar.
 
-2. Register an endpoint with Oracle Key Vault to obtain an enrollment token.
+2. Registre um *endpoint* no Oracle Key Vault para obter um token de inscrição (*enrollment token*).
 
-3. Use the enrollment token to obtain the `okvclient.jar` client software download.
+3. Use o token de inscrição para obter o download do software cliente `okvclient.jar`.
 
-4. Install the client software to populate the `keyring_okv` configuration directory that contains the Oracle Key Vault support files.
+4. Instale o software cliente para popular o diretório de configuração do `keyring_okv` que contém os arquivos de suporte do Oracle Key Vault.
 
-Use the following procedure to configure `keyring_okv` and Oracle Key Vault to work together. This description only summarizes how to interact with Oracle Key Vault. For details, visit the [Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/overview/index.html) site and consult the *Oracle Key Vault Administrator's Guide*.
+Use o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault para trabalharem juntos. Esta descrição apenas resume como interagir com o Oracle Key Vault. Para obter detalhes, visite o [site do Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/overview/index.html) e consulte o *Oracle Key Vault Administrator's Guide*.
 
-1. Create the configuration directory that contains the Oracle Key Vault support files, and make sure that the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable is set to name that directory (for details, see [General keyring_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
+1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault e certifique-se de que a variável de sistema [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) esteja definida para nomear esse diretório (para detalhes, consulte [Configuração Geral do keyring_okv](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
 
-2. Log in to the Oracle Key Vault management console as a user who has the System Administrator role.
+2. Faça login no console de gerenciamento do Oracle Key Vault como um usuário que tenha a função de Administrador do Sistema.
 
-3. Select the Endpoints tab to arrive at the Endpoints page. On the Endpoints page, click Add.
+3. Selecione a aba *Endpoints* para chegar à página *Endpoints*. Na página *Endpoints*, clique em *Add*.
 
-4. Provide the required endpoint information and click Register. The endpoint type should be Other. Successful registration results in an enrollment token.
+4. Forneça as informações de *endpoint* necessárias e clique em *Register*. O tipo de *endpoint* deve ser *Other*. O registro bem-sucedido resulta em um token de inscrição.
 
-5. Log out from the Oracle Key Vault server.
-6. Connect again to the Oracle Key Vault server, this time without logging in. Use the endpoint enrollment token to enroll and request the `okvclient.jar` software download. Save this file to your system.
+5. Saia do servidor Oracle Key Vault.
+6. Conecte-se novamente ao servidor Oracle Key Vault, desta vez sem fazer login. Use o token de inscrição do *endpoint* para se inscrever e solicitar o download do software `okvclient.jar`. Salve este arquivo em seu sistema.
 
-7. Install the `okvclient.jar` file using the following command (you must have JDK 1.4 or higher):
+7. Instale o arquivo `okvclient.jar` usando o seguinte comando (você deve ter JDK 1.4 ou superior):
 
    ```sql
    java -jar okvclient.jar -d dir_name [-v]
    ```
 
-   The directory name following the `-d` option is the location in which to install extracted files. The `-v` option, if given, causes log information to be produced that may be useful if the command fails.
+   O nome do diretório após a opção `-d` é o local onde instalar os arquivos extraídos. A opção `-v`, se fornecida, faz com que as informações de *log* sejam produzidas, o que pode ser útil se o comando falhar.
 
-   When the command asks for an Oracle Key Vault endpoint password, do not provide one. Instead, press **Enter**. (The result is that no password is required when the endpoint connects to Oracle Key Vault.)
+   Quando o comando solicitar uma senha de *endpoint* do Oracle Key Vault, não a forneça. Em vez disso, pressione **Enter**. (O resultado é que nenhuma senha é necessária quando o *endpoint* se conecta ao Oracle Key Vault.)
 
-   The preceding command produces an `okvclient.ora` file, which should be in this location under the directory named by the `-d` option in the preceding **java -jar** command:
+   O comando anterior produz um arquivo `okvclient.ora`, que deve estar neste local sob o diretório nomeado pela opção `-d` no comando **java -jar** anterior:
 
    ```sql
    install_dir/conf/okvclient.ora
    ```
 
-   The expected file contents include lines that look like this:
+   O conteúdo esperado do arquivo inclui linhas que se parecem com isto:
 
    ```sql
    SERVER=host_ip:port_num
    STANDBY_SERVER=host_ip:port_num
    ```
 
-   Note
+   Nota
 
-   If the existing file is not in this format, then create a new file with the lines shown in the previous example. Also, consider backing up the `okvclient.ora` file before you run the **okvutil** command. Restore the file as needed.
+   Se o arquivo existente não estiver neste formato, crie um novo arquivo com as linhas mostradas no exemplo anterior. Além disso, considere fazer backup do arquivo `okvclient.ora` antes de executar o comando **okvutil**. Restaure o arquivo conforme necessário.
 
-   The `keyring_okv` plugin attempts to communicate with the server running on the host named by the `SERVER` variable and falls back to `STANDBY_SERVER` if that fails:
+   O plugin `keyring_okv` tenta se comunicar com o servidor em execução no *host* nomeado pela variável `SERVER` e recorre a `STANDBY_SERVER` se isso falhar:
 
-   * For the `SERVER` variable, a setting in the `okvclient.ora` file is mandatory.
+   * Para a variável `SERVER`, uma configuração no arquivo `okvclient.ora` é obrigatória.
 
-   * For the `STANDBY_SERVER` variable, a setting in the `okvclient.ora` file is optional, as of MySQL 5.7.19. Prior to MySQL 5.7.19, a setting for `STANDBY_SERVER` is mandatory; if `okvclient.ora` is generated with no setting for `STANDBY_SERVER`, `keyring_okv` fails to initialize. The workaround is to check `oraclient.ora` and add a “dummy” setting for `STANDBY_SERVER`, if one is missing. For example:
+   * Para a variável `STANDBY_SERVER`, uma configuração no arquivo `okvclient.ora` é opcional, a partir do MySQL 5.7.19. Antes do MySQL 5.7.19, uma configuração para `STANDBY_SERVER` é obrigatória; se `okvclient.ora` for gerado sem uma configuração para `STANDBY_SERVER`, `keyring_okv` falha ao inicializar. A solução alternativa é verificar `oraclient.ora` e adicionar uma configuração "dummy" para `STANDBY_SERVER`, se estiver faltando. Por exemplo:
 
      ```sql
      STANDBY_SERVER=127.0.0.1:5696
      ```
 
-8. Go to the Oracle Key Vault installer directory and test the setup by running this command:
+8. Vá para o diretório do instalador do Oracle Key Vault e teste a configuração executando este comando:
 
    ```sql
    okvutil/bin/okvutil list
    ```
 
-   The output should look something like this:
+   A saída deve se parecer com algo assim:
 
    ```sql
    Unique ID                               Type            Identifier
@@ -157,93 +157,93 @@ Use the following procedure to configure `keyring_okv` and Oracle Key Vault to w
    264BF6E0-A20E-7C42-E053-0100007FB29C	Symmetric Key	-
    ```
 
-   For a fresh Oracle Key Vault server (a server without any key in it), the output looks like this instead, to indicate that there are no keys in the vault:
+   Para um servidor Oracle Key Vault novo (um servidor sem nenhuma chave), a saída se parece com isto, indicando que não há chaves no *vault*:
 
    ```sql
    no objects found
    ```
 
-9. Use this command to extract the `ssl` directory containing SSL materials from the `okvclient.jar` file:
+9. Use este comando para extrair o diretório `ssl` contendo materiais SSL do arquivo `okvclient.jar`:
 
    ```sql
    jar xf okvclient.jar ssl
    ```
 
-10. Copy the Oracle Key Vault support files (the `okvclient.ora` file and the `ssl` directory) into the configuration directory.
+10. Copie os arquivos de suporte do Oracle Key Vault (o arquivo `okvclient.ora` e o diretório `ssl`) para o diretório de configuração.
 
-11. (Optional) If you wish to password-protect the key file, use the instructions in [Password-Protecting the keyring_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
+11. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções em [Protegendo o Arquivo de Chave do keyring_okv com Senha](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
 
-After completing the preceding procedure, restart the MySQL server. It loads the `keyring_okv` plugin and `keyring_okv` uses the files in its configuration directory to communicate with Oracle Key Vault.
+Após concluir o procedimento anterior, reinicie o MySQL Server. Ele carrega o plugin `keyring_okv` e `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o Oracle Key Vault.
 
-##### Configuring keyring_okv for Gemalto SafeNet KeySecure Appliance
+##### Configurando o keyring_okv para Gemalto SafeNet KeySecure Appliance
 
-Gemalto SafeNet KeySecure Appliance uses the KMIP protocol (version 1.1 or 1.2). As of MySQL 5.7.18, the `keyring_okv` keyring plugin (which supports KMIP 1.1) can use KeySecure as its KMIP back end for keyring storage.
+O Gemalto SafeNet KeySecure Appliance usa o protocolo KMIP (versão 1.1 ou 1.2). A partir do MySQL 5.7.18, o plugin de Keyring `keyring_okv` (que suporta KMIP 1.1) pode usar o KeySecure como seu *back end* KMIP para armazenamento de Keyring.
 
-Use the following procedure to configure `keyring_okv` and KeySecure to work together. The description only summarizes how to interact with KeySecure. For details, consult the section named Add a KMIP Server in the [KeySecure User Guide](https://www2.gemalto.com/aws-marketplace/usage/vks/uploadedFiles/Support_and_Downloads/AWS/007-012362-001-keysecure-appliance-user-guide-v7.1.0.pdf).
+Use o procedimento a seguir para configurar `keyring_okv` e KeySecure para trabalharem juntos. A descrição apenas resume como interagir com o KeySecure. Para obter detalhes, consulte a seção chamada *Add a KMIP Server* no [KeySecure User Guide](https://www2.gemalto.com/aws-marketplace/usage/vks/uploadedFiles/Support_and_Downloads/AWS/007-012362-001-keysecure-appliance-user-guide-v7.1.0.pdf).
 
-1. Create the configuration directory that contains the KeySecure support files, and make sure that the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable is set to name that directory (for details, see [General keyring_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
+1. Crie o diretório de configuração que contém os arquivos de suporte do KeySecure e certifique-se de que a variável de sistema [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) esteja definida para nomear esse diretório (para detalhes, consulte [Configuração Geral do keyring_okv](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
 
-2. In the configuration directory, create a subdirectory named `ssl` to use for storing the required SSL certificate and key files.
+2. No diretório de configuração, crie um subdiretório chamado `ssl` para usar no armazenamento dos arquivos de certificado e chave SSL necessários.
 
-3. In the configuration directory, create a file named `okvclient.ora`. It should have following format:
+3. No diretório de configuração, crie um arquivo chamado `okvclient.ora`. Ele deve ter o seguinte formato:
 
    ```sql
    SERVER=host_ip:port_num
    STANDBY_SERVER=host_ip:port_num
    ```
 
-   For example, if KeySecure is running on host 198.51.100.20 and listening on port 9002, the `okvclient.ora` file looks like this:
+   Por exemplo, se o KeySecure estiver rodando no host 198.51.100.20 e escutando na porta 9002, o arquivo `okvclient.ora` se parecerá com isto:
 
    ```sql
    SERVER=198.51.100.20:9002
    STANDBY_SERVER=198.51.100.20:9002
    ```
 
-4. Connect to the KeySecure Management Console as an administrator with credentials for Certificate Authorities access.
+4. Conecte-se ao KeySecure Management Console como um administrador com credenciais para acesso a Autoridades Certificadoras (*Certificate Authorities*).
 
-5. Navigate to Security >> Local CAs and create a local certificate authority (CA).
+5. Navegue até *Security >> Local CAs* e crie uma autoridade certificadora local (CA).
 
-6. Go to Trusted CA Lists. Select Default and click on Properties. Then select Edit for Trusted Certificate Authority List and add the CA just created.
+6. Vá para *Trusted CA Lists*. Selecione *Default* e clique em *Properties*. Em seguida, selecione *Edit* para *Trusted Certificate Authority List* e adicione a CA que acabou de ser criada.
 
-7. Download the CA and save it in the `ssl` directory as a file named `CA.pem`.
+7. Baixe a CA e salve-a no diretório `ssl` como um arquivo chamado `CA.pem`.
 
-8. Navigate to Security >> Certificate Requests and create a certificate. Then you can download a compressed **tar** file containing certificate PEM files.
+8. Navegue até *Security >> Certificate Requests* e crie um certificado. Em seguida, você pode baixar um arquivo **tar** compactado contendo arquivos PEM de certificado.
 
-9. Extract the PEM files from in the downloaded file. For example, if the file name is `csr_w_pk_pkcs8.gz`, decompress and unpack it using this command:
+9. Extraia os arquivos PEM do arquivo baixado. Por exemplo, se o nome do arquivo for `csr_w_pk_pkcs8.gz`, descompacte-o e desempacote-o usando este comando:
 
    ```sql
    tar zxvf csr_w_pk_pkcs8.gz
    ```
 
-   Two files result from the extraction operation: `certificate_request.pem` and `private_key_pkcs8.pem`.
+   Dois arquivos resultam da operação de extração: `certificate_request.pem` e `private_key_pkcs8.pem`.
 
-10. Use this **openssl** command to decrypt the private key and create a file named `key.pem`:
+10. Use este comando **openssl** para descriptografar a chave privada e criar um arquivo chamado `key.pem`:
 
     ```sql
     openssl pkcs8 -in private_key_pkcs8.pem -out key.pem
     ```
 
-11. Copy the `key.pem` file into the `ssl` directory.
+11. Copie o arquivo `key.pem` para o diretório `ssl`.
 
-12. Copy the certificate request in `certificate_request.pem` into the clipboard.
+12. Copie a solicitação de certificado em `certificate_request.pem` para a área de transferência (*clipboard*).
 
-13. Navigate to Security >> Local CAs. Select the same CA that you created earlier (the one you downloaded to create the `CA.pem` file), and click Sign Request. Paste the Certificate Request from the clipboard, choose a certificate purpose of Client (the keyring is a client of KeySecure), and click Sign Request. The result is a certificate signed with the selected CA in a new page.
+13. Navegue até *Security >> Local CAs*. Selecione a mesma CA que você criou anteriormente (aquela que você baixou para criar o arquivo `CA.pem`) e clique em *Sign Request*. Cole a Solicitação de Certificado da área de transferência, escolha um propósito de certificado de *Client* (o Keyring é um cliente do KeySecure) e clique em *Sign Request*. O resultado é um certificado assinado com a CA selecionada em uma nova página.
 
-14. Copy the signed certificate to the clipboard, then save the clipboard contents as a file named `cert.pem` in the `ssl` directory.
+14. Copie o certificado assinado para a área de transferência e salve o conteúdo da área de transferência como um arquivo chamado `cert.pem` no diretório `ssl`.
 
-15. (Optional) If you wish to password-protect the key file, use the instructions in [Password-Protecting the keyring_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
+15. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções em [Protegendo o Arquivo de Chave do keyring_okv com Senha](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
 
-After completing the preceding procedure, restart the MySQL server. It loads the `keyring_okv` plugin and `keyring_okv` uses the files in its configuration directory to communicate with KeySecure.
+Após concluir o procedimento anterior, reinicie o MySQL Server. Ele carrega o plugin `keyring_okv` e `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o KeySecure.
 
-##### Configuring keyring_okv for Townsend Alliance Key Manager
+##### Configurando o keyring_okv para Townsend Alliance Key Manager
 
-Townsend Alliance Key Manager uses the KMIP protocol. The `keyring_okv` keyring plugin can use Alliance Key Manager as its KMIP back end for keyring storage. For additional information, see [Alliance Key Manager for MySQL](https://www.townsendsecurity.com/product/encryption-key-management-mysql).
+O Townsend Alliance Key Manager usa o protocolo KMIP. O plugin de Keyring `keyring_okv` pode usar o Alliance Key Manager como seu *back end* KMIP para armazenamento de Keyring. Para informações adicionais, consulte [Alliance Key Manager for MySQL](https://www.townsendsecurity.com/product/encryption-key-management-mysql).
 
-##### Password-Protecting the keyring_okv Key File
+##### Protegendo o Arquivo de Chave do keyring_okv com Senha
 
-As of MySQL 5.7.20, you can optionally protect the key file with a password and supply a file containing the password to enable the key file to be decrypted. To so do, change location to the `ssl` directory and perform these steps:
+A partir do MySQL 5.7.20, você pode opcionalmente proteger o arquivo de chave com uma senha e fornecer um arquivo contendo a senha para permitir que o arquivo de chave seja descriptografado. Para fazer isso, mude para o diretório `ssl` e execute estas etapas:
 
-1. Encrypt the `key.pem` key file. For example, use a command like this, and enter the encryption password at the prompts:
+1. Criptografe o arquivo de chave `key.pem`. Por exemplo, use um comando como este e digite a senha de criptografia nos prompts:
 
    ```sql
    $> openssl rsa -des3 -in key.pem -out key.pem.new
@@ -251,14 +251,14 @@ As of MySQL 5.7.20, you can optionally protect the key file with a password and 
    Verifying - Enter PEM pass phrase:
    ```
 
-2. Save the encryption password in a single-line text file named `password.txt` in the `ssl` directory.
+2. Salve a senha de criptografia em um arquivo de texto de linha única chamado `password.txt` no diretório `ssl`.
 
-3. Verify that the encrypted key file can be decrypted using the following command. The decrypted file should display on the console:
+3. Verifique se o arquivo de chave criptografado pode ser descriptografado usando o seguinte comando. O arquivo descriptografado deve ser exibido no console:
 
    ```sql
    $> openssl rsa -in key.pem.new -passin file:password.txt
    ```
 
-4. Remove the original `key.pem` file and rename `key.pem.new` to `key.pem`.
+4. Remova o arquivo `key.pem` original e renomeie `key.pem.new` para `key.pem`.
 
-5. Change the ownership and access mode of new `key.pem` file and `password.txt` file as necessary to ensure that they have the same restrictions as other files in the `ssl` directory.
+5. Altere a propriedade e o modo de acesso do novo arquivo `key.pem` e do arquivo `password.txt` conforme necessário para garantir que eles tenham as mesmas restrições que outros arquivos no diretório `ssl`.

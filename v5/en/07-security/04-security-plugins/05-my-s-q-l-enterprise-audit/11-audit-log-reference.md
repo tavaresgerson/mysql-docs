@@ -1,72 +1,72 @@
-#### 6.4.5.11 Audit Log Reference
+#### 6.4.5.11 Referência do Audit Log
 
-The following sections provide a reference to MySQL Enterprise Audit elements:
+As seções a seguir fornecem uma referência aos elementos do MySQL Enterprise Audit:
 
-* [Audit Log Tables](audit-log-reference.html#audit-log-tables "Audit Log Tables")
-* [Audit Log Functions](audit-log-reference.html#audit-log-routines "Audit Log Functions")
-* [Audit Log Option and Variable Reference](audit-log-reference.html#audit-log-option-variable-reference "Audit Log Option and Variable Reference")
-* [Audit Log Options and Variables](audit-log-reference.html#audit-log-options-variables "Audit Log Options and Variables")
-* [Audit Log Status Variables](audit-log-reference.html#audit-log-status-variables "Audit Log Status Variables")
+* [Tabelas do Audit Log](audit-log-reference.html#audit-log-tables "Tabelas do Audit Log")
+* [Funções do Audit Log](audit-log-reference.html#audit-log-routines "Funções do Audit Log")
+* [Referência de Opções e Variáveis do Audit Log](audit-log-reference.html#audit-log-option-variable-reference "Referência de Opções e Variáveis do Audit Log")
+* [Opções e Variáveis do Audit Log](audit-log-reference.html#audit-log-options-variables "Opções e Variáveis do Audit Log")
+* [Variáveis de Status do Audit Log](audit-log-reference.html#audit-log-status-variables "Variáveis de Status do Audit Log")
 
-To install the audit log tables and functions, use the instructions provided in [Section 6.4.5.2, “Installing or Uninstalling MySQL Enterprise Audit”](audit-log-installation.html "6.4.5.2 Installing or Uninstalling MySQL Enterprise Audit"). Unless those objects are installed, the `audit_log` plugin operates in legacy mode. See [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering").
+Para instalar as tabelas e funções do audit log, use as instruções fornecidas na [Seção 6.4.5.2, “Instalando ou Desinstalando o MySQL Enterprise Audit”](audit-log-installation.html "6.4.5.2 Instalando ou Desinstalando o MySQL Enterprise Audit"). A menos que esses objetos estejam instalados, o `audit_log` plugin opera em modo legado (legacy mode). Consulte a [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering").
 
-##### Audit Log Tables
+##### Tabelas do Audit Log
 
-MySQL Enterprise Audit uses tables in the `mysql` system database for persistent storage of filter and user account data. The tables can be accessed only by users who have privileges for that database. The tables use the `InnoDB` storage engine (`MyISAM` prior to MySQL 5.7.21).
+O MySQL Enterprise Audit utiliza tabelas no Database de sistema `mysql` para armazenamento persistente de dados de filtro e contas de usuário. As tabelas podem ser acessadas apenas por usuários que possuam privilégios para esse Database. As tabelas utilizam o storage engine `InnoDB` (`MyISAM` antes do MySQL 5.7.21).
 
-If these tables are missing, the `audit_log` plugin operates in legacy mode. See [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering").
+Se essas tabelas estiverem ausentes, o `audit_log` plugin opera em modo legado (legacy mode). Consulte a [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering").
 
-The `audit_log_filter` table stores filter definitions. The table has these columns:
+A tabela `audit_log_filter` armazena as definições de filtro. A tabela possui estas colunas:
 
 * `NAME`
 
-  The filter name.
+  O nome do filtro.
 
 * `FILTER`
 
-  The filter definition associated with the filter name. Definitions are stored as [`JSON`](json.html "11.5 The JSON Data Type") values.
+  A definição de filtro associada ao nome do filtro. As definições são armazenadas como valores [`JSON`](json.html "11.5 The JSON Data Type").
 
-The `audit_log_user` table stores user account information. The table has these columns:
+A tabela `audit_log_user` armazena informações da conta de usuário. A tabela possui estas colunas:
 
 * `USER`
 
-  The user name part of an account. For an account `user1@localhost`, the `USER` part is `user1`.
+  A parte do nome de usuário de uma conta. Para uma conta `user1@localhost`, a parte `USER` é `user1`.
 
 * `HOST`
 
-  The host name part of an account. For an account `user1@localhost`, the `HOST` part is `localhost`.
+  A parte do nome do host de uma conta. Para uma conta `user1@localhost`, a parte `HOST` é `localhost`.
 
 * `FILTERNAME`
 
-  The name of the filter assigned to the account. The filter name associates the account with a filter defined in the `audit_log_filter` table.
+  O nome do filtro atribuído à conta. O nome do filtro associa a conta a um filtro definido na tabela `audit_log_filter`.
 
-##### Audit Log Functions
+##### Funções do Audit Log
 
-This section describes, for each audit log function, its purpose, calling sequence, and return value. For information about the conditions under which these functions can be invoked, see [Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering").
+Esta seção descreve, para cada função do audit log, seu propósito, sequência de chamada e valor de retorno. Para obter informações sobre as condições sob as quais essas funções podem ser invocadas, consulte a [Seção 6.4.5.7, “Audit Log Filtering” (Filtragem do Log de Auditoria)](audit-log-filtering.html "6.4.5.7 Audit Log Filtering").
 
-Each audit log function returns a string that indicates whether the operation succeeded. `OK` indicates success. `ERROR: message` indicates failure.
+Cada função do audit log retorna uma string que indica se a operação foi bem-sucedida. `OK` indica sucesso. `ERROR: message` indica falha.
 
-Audit log functions treat string arguments as binary strings (which means they do not distinguish lettercase), and string return values are binary strings.
+As funções do audit log tratam os argumentos de string como binary strings (o que significa que não distinguem maiúsculas de minúsculas), e os valores de retorno de string são binary strings.
 
-If an audit log function is invoked from within the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, binary string results display using hexadecimal notation, depending on the value of the [`--binary-as-hex`](mysql-command-options.html#option_mysql_binary-as-hex). For more information about that option, see [Section 4.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
+Se uma função do audit log for invocada a partir do cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), os resultados de binary string serão exibidos usando notação hexadecimal, dependendo do valor de [`--binary-as-hex`](mysql-command-options.html#option_mysql_binary-as-hex). Para obter mais informações sobre essa opção, consulte a [Seção 4.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
 
-These audit log functions are available:
+Estas funções do audit log estão disponíveis:
 
 * [`audit_log_encryption_password_get()`](audit-log-reference.html#function_audit-log-encryption-password-get)
 
-  Retrieves the current audit log encryption password as a binary string. The password is fetched from the MySQL keyring, which must be enabled or an error occurs. Any keyring plugin can be used; for instructions, see [Section 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
+  Recupera a senha de encryption atual do audit log como uma binary string. A senha é obtida a partir do MySQL keyring, que deve estar habilitado ou um erro ocorrerá. Qualquer Keyring Plugin pode ser usado; para instruções, consulte a [Seção 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
 
-  For additional information about audit log encryption, see [Encrypting Audit Log Files](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
+  Para informações adicionais sobre a encryption do audit log, consulte [Encrypting Audit Log Files (Criptografando Arquivos de Audit Log)](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  The password string for success (up to 766 bytes), or `NULL` and an error for failure.
+  A string da senha em caso de sucesso (up to 766 bytes), ou `NULL` e um erro em caso de falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_encryption_password_get();
@@ -79,19 +79,19 @@ These audit log functions are available:
 
 * [`audit_log_encryption_password_set(password)`](audit-log-reference.html#function_audit-log-encryption-password-set)
 
-  Sets the audit log encryption password to the argument, stores the password in the MySQL keyring. If encryption is enabled, the function performs a log file rotation operation that renames the current log file, and begins a new log file encrypted with the password. The keyring must be enabled or an error occurs. Any keyring plugin can be used; for instructions, see [Section 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
+  Define a senha de encryption do audit log para o argumento fornecido, armazena a senha no MySQL keyring. Se a encryption estiver habilitada, a função realiza uma operação de rotação do arquivo de log que renomeia o arquivo de log atual e inicia um novo arquivo de log criptografado com a senha. O Keyring deve estar habilitado ou um erro ocorrerá. Qualquer Keyring Plugin pode ser usado; para instruções, consulte a [Seção 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
 
-  For additional information about audit log encryption, see [Encrypting Audit Log Files](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
+  Para informações adicionais sobre a encryption do audit log, consulte [Encrypting Audit Log Files (Criptografando Arquivos de Audit Log)](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
 
-  Arguments:
+  Argumentos:
 
-  *`password`*: The password string. The maximum permitted length is 766 bytes.
+  *`password`*: A string da senha. O comprimento máximo permitido é de 766 bytes.
 
-  Return value:
+  Valor de retorno:
 
-  1 for success, 0 for failure.
+  1 para sucesso, 0 para falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_encryption_password_set(password);
@@ -104,25 +104,25 @@ These audit log functions are available:
 
 * [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush)
 
-  Calling any of the other filtering functions affects operational audit log filtering immediately and updates the audit log tables. If instead you modify the contents of those tables directly using statements such as [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), and [`DELETE`](delete.html "13.2.2 DELETE Statement"), the changes do not affect filtering immediately. To flush your changes and make them operational, call [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush).
+  Chamar qualquer uma das outras funções de filtering afeta a filtragem operacional do audit log imediatamente e atualiza as tabelas do audit log. Se, em vez disso, você modificar o conteúdo dessas tabelas diretamente usando comandos como [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement") e [`DELETE`](delete.html "13.2.2 DELETE Statement"), as alterações não afetam o filtering imediatamente. Para descarregar (flush) suas alterações e torná-las operacionais, chame [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush).
 
-  Warning
+  Aviso
 
-  [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush) should be used only after modifying the audit tables directly, to force reloading all filters. Otherwise, this function should be avoided. It is, in effect, a simplified version of unloading and reloading the `audit_log` plugin with [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") plus [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement").
+  [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush) deve ser usado apenas após modificar as tabelas de auditoria diretamente, para forçar o recarregamento de todos os filtros. Caso contrário, esta função deve ser evitada. É, na verdade, uma versão simplificada do descarregamento e recarregamento do `audit_log` plugin com [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") mais [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement").
 
-  [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush) affects all current sessions and detaches them from their previous filters. Current sessions are no longer logged unless they disconnect and reconnect, or execute a change-user operation.
+  [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush) afeta todas as Sessions atuais e as desvincula de seus filtros anteriores. As Sessions atuais não são mais logadas, a menos que se desconectem e reconectem, ou executem uma operação de troca de usuário (change-user).
 
-  If this function fails, an error message is returned and the audit log is disabled until the next successful call to [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush).
+  Se esta função falhar, uma mensagem de erro é retornada e o audit log é desabilitado até a próxima chamada bem-sucedida de [`audit_log_filter_flush()`](audit-log-reference.html#function_audit-log-filter-flush).
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  A string that indicates whether the operation succeeded. `OK` indicates success. `ERROR: message` indicates failure.
+  Uma string que indica se a operação foi bem-sucedida. `OK` indica sucesso. `ERROR: message` indica falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_filter_flush();
@@ -135,19 +135,19 @@ These audit log functions are available:
 
 * [`audit_log_filter_remove_filter(filter_name)`](audit-log-reference.html#function_audit-log-filter-remove-filter)
 
-  Given a filter name, removes the filter from the current set of filters. It is not an error for the filter not to exist.
+  Dado um nome de filtro, remove o filtro do conjunto atual de filtros. Não é um erro se o filtro não existir.
 
-  If a removed filter is assigned to any user accounts, those users stop being filtered (they are removed from the `audit_log_user` table). Termination of filtering includes any current sessions for those users: They are detached from the filter and no longer logged.
+  Se um filtro removido estiver atribuído a quaisquer contas de usuário, esses usuários param de ser filtrados (eles são removidos da tabela `audit_log_user`). O término do filtering inclui quaisquer Sessions atuais para esses usuários: elas são desvinculadas do filtro e não são mais logadas.
 
-  Arguments:
+  Argumentos:
 
-  + *`filter_name`*: A string that specifies the filter name.
+  + *`filter_name`*: Uma string que especifica o nome do filtro.
 
-  Return value:
+  Valor de retorno:
 
-  A string that indicates whether the operation succeeded. `OK` indicates success. `ERROR: message` indicates failure.
+  Uma string que indica se a operação foi bem-sucedida. `OK` indica sucesso. `ERROR: message` indica falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_filter_remove_filter('SomeFilter');
@@ -160,19 +160,19 @@ These audit log functions are available:
 
 * [`audit_log_filter_remove_user(user_name)`](audit-log-reference.html#function_audit-log-filter-remove-user)
 
-  Given a user account name, cause the user to be no longer assigned to a filter. It is not an error if the user has no filter assigned. Filtering of current sessions for the user remains unaffected. New connections for the user are filtered using the default account filter if there is one, and are not logged otherwise.
+  Dado um nome de conta de usuário, faz com que o usuário não seja mais atribuído a um filtro. Não é um erro se o usuário não tiver um filtro atribuído. O filtering das Sessions atuais para o usuário permanece inalterado. Novas Connections para o usuário são filtradas usando o filtro de conta padrão se houver um, e não são logadas caso contrário.
 
-  If the name is `%`, the function removes the default account filter that is used for any user account that has no explicitly assigned filter.
+  Se o nome for `%`, a função remove o filtro de conta padrão que é usado para qualquer conta de usuário que não tenha um filtro explicitamente atribuído.
 
-  Arguments:
+  Argumentos:
 
-  + *`user_name`*: The user account name as a string in `user_name@host_name` format, or `%` to represent the default account.
+  + *`user_name`*: O nome da conta de usuário como uma string no formato `user_name@host_name`, ou `%` para representar a conta padrão.
 
-  Return value:
+  Valor de retorno:
 
-  A string that indicates whether the operation succeeded. `OK` indicates success. `ERROR: message` indicates failure.
+  Uma string que indica se a operação foi bem-sucedida. `OK` indica sucesso. `ERROR: message` indica falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_filter_remove_user('user1@localhost');
@@ -185,19 +185,19 @@ These audit log functions are available:
 
 * [`audit_log_filter_set_filter(filter_name, definition)`](audit-log-reference.html#function_audit-log-filter-set-filter)
 
-  Given a filter name and definition, adds the filter to the current set of filters. If the filter already exists and is used by any current sessions, those sessions are detached from the filter and are no longer logged. This occurs because the new filter definition has a new filter ID that differs from its previous ID.
+  Dado um nome de filtro e uma definição, adiciona o filtro ao conjunto atual de filtros. Se o filtro já existir e for usado por quaisquer Sessions atuais, essas Sessions são desvinculadas do filtro e não são mais logadas. Isso ocorre porque a nova definição de filtro tem um novo Filter ID que difere do seu ID anterior.
 
-  Arguments:
+  Argumentos:
 
-  + *`filter_name`*: A string that specifies the filter name.
+  + *`filter_name`*: Uma string que especifica o nome do filtro.
 
-  + *`definition`*: A [`JSON`](json.html "11.5 The JSON Data Type") value that specifies the filter definition.
+  + *`definition`*: Um valor [`JSON`](json.html "11.5 The JSON Data Type") que especifica a definição do filtro.
 
-  Return value:
+  Valor de retorno:
 
-  A string that indicates whether the operation succeeded. `OK` indicates success. `ERROR: message` indicates failure.
+  Uma string que indica se a operação foi bem-sucedida. `OK` indica sucesso. `ERROR: message` indica falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SET @f = '{ "filter": { "log": false } }';
@@ -211,21 +211,21 @@ These audit log functions are available:
 
 * [`audit_log_filter_set_user(user_name, filter_name)`](audit-log-reference.html#function_audit-log-filter-set-user)
 
-  Given a user account name and a filter name, assigns the filter to the user. A user can be assigned only one filter, so if the user was already assigned a filter, the assignment is replaced. Filtering of current sessions for the user remains unaffected. New connections are filtered using the new filter.
+  Dado um nome de conta de usuário e um nome de filtro, atribui o filtro ao usuário. Um usuário pode ter apenas um filtro atribuído, portanto, se o usuário já tinha um filtro atribuído, a atribuição é substituída. O filtering das Sessions atuais para o usuário permanece inalterado. Novas Connections são filtradas usando o novo filtro.
 
-  As a special case, the name `%` represents the default account. The filter is used for connections from any user account that has no explicitly assigned filter.
+  Como um caso especial, o nome `%` representa a conta padrão. O filtro é usado para Connections de qualquer conta de usuário que não tenha um filtro explicitamente atribuído.
 
-  Arguments:
+  Argumentos:
 
-  + *`user_name`*: The user account name as a string in `user_name@host_name` format, or `%` to represent the default account.
+  + *`user_name`*: O nome da conta de usuário como uma string no formato `user_name@host_name`, ou `%` para representar a conta padrão.
 
-  + *`filter_name`*: A string that specifies the filter name.
+  + *`filter_name`*: Uma string que especifica o nome do filtro.
 
-  Return value:
+  Valor de retorno:
 
-  A string that indicates whether the operation succeeded. `OK` indicates success. `ERROR: message` indicates failure.
+  Uma string que indica se a operação foi bem-sucedida. `OK` indica sucesso. `ERROR: message` indica falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_filter_set_user('user1@localhost', 'SomeFilter');
@@ -238,29 +238,29 @@ These audit log functions are available:
 
 * [`audit_log_read([arg])`](audit-log-reference.html#function_audit-log-read)
 
-  Reads the audit log and returns a binary [`JSON`](json.html "11.5 The JSON Data Type") string result. If the audit log format is not [`JSON`](json.html "11.5 The JSON Data Type"), an error occurs.
+  Lê o audit log e retorna uma binary string [`JSON`](json.html "11.5 The JSON Data Type") como resultado. Se o formato do audit log não for [`JSON`](json.html "11.5 The JSON Data Type"), ocorre um erro.
 
-  With no argument or a [`JSON`](json.html "11.5 The JSON Data Type") hash argument, [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) reads events from the audit log and returns a [`JSON`](json.html "11.5 The JSON Data Type") string containing an array of audit events. Items in the hash argument influence how reading occurs, as described later. Each element in the returned array is an event represented as a [`JSON`](json.html "11.5 The JSON Data Type") hash, with the exception that the last element may be a [`JSON`](json.html "11.5 The JSON Data Type") `null` value to indicate no following events are available to read.
+  Sem argumento ou com um argumento hash [`JSON`](json.html "11.5 The JSON Data Type"), [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) lê eventos do audit log e retorna uma string [`JSON`](json.html "11.5 The JSON Data Type") contendo um array de eventos de auditoria. Os itens no argumento hash influenciam como a leitura ocorre, conforme descrito posteriormente. Cada elemento no array retornado é um evento representado como um hash [`JSON`](json.html "11.5 The JSON Data Type"), com a exceção de que o último elemento pode ser um valor `null` [`JSON`](json.html "11.5 The JSON Data Type") para indicar que não há eventos seguintes disponíveis para leitura.
 
-  With an argument consisting of a [`JSON`](json.html "11.5 The JSON Data Type") `null` value, [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) closes the current read sequence.
+  Com um argumento que consiste em um valor `null` [`JSON`](json.html "11.5 The JSON Data Type"), [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) fecha a sequência de leitura atual.
 
-  For additional details about the audit log-reading process, see [Section 6.4.5.6, “Reading Audit Log Files”](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
+  Para detalhes adicionais sobre o processo de leitura do audit log, consulte a [Seção 6.4.5.6, “Reading Audit Log Files” (Lendo Arquivos de Audit Log)](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
 
-  Arguments:
+  Argumentos:
 
-  *`arg`*: The argument is optional. If omitted, the function reads events from the current position. If present, the argument can be a [`JSON`](json.html "11.5 The JSON Data Type") `null` value to close the read sequence, or a [`JSON`](json.html "11.5 The JSON Data Type") hash. Within a hash argument, items are optional and control aspects of the read operation such as the position at which to begin reading or how many events to read. The following items are significant (other items are ignored):
+  *`arg`*: O argumento é opcional. Se omitido, a função lê eventos a partir da posição atual. Se presente, o argumento pode ser um valor `null` [`JSON`](json.html "11.5 The JSON Data Type") para fechar a sequência de leitura, ou um hash [`JSON`](json.html "11.5 The JSON Data Type"). Dentro de um argumento hash, os itens são opcionais e controlam aspectos da operação de leitura, como a posição em que a leitura deve começar ou quantos eventos devem ser lidos. Os seguintes itens são significativos (outros itens são ignorados):
 
-  + `timestamp`, `id`: The position within the audit log of the first event to read. If the position is omitted from the argument, reading continues from the current position. The `timestamp` and `id` items together comprise a bookmark that uniquely identify a particular event. If an [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) argument includes either item, it must include both to completely specify a position or an error occurs.
+  + `timestamp`, `id`: A posição dentro do audit log do primeiro evento a ser lido. Se a posição for omitida do argumento, a leitura continua a partir da posição atual. Os itens `timestamp` e `id` juntos compreendem um bookmark (marcador) que identifica um evento específico de forma única. Se um argumento [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) incluir qualquer um dos itens, ele deve incluir ambos para especificar completamente uma posição, ou um erro ocorrerá.
 
-    To obtain a bookmark for the most recently written event, call [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark).
+    Para obter um bookmark para o evento escrito mais recentemente, chame [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark).
 
-  + `max_array_length`: The maximum number of events to read from the log. If this item is omitted, the default is to read to the end of the log or until the read buffer is full, whichever comes first.
+  + `max_array_length`: O número máximo de eventos a serem lidos a partir do log. Se este item for omitido, o padrão é ler até o final do log ou até que o Buffer de leitura esteja cheio, o que ocorrer primeiro.
 
-  Return value:
+  Valor de retorno:
 
-  If the call succeeds, the return value is a binary [`JSON`](json.html "11.5 The JSON Data Type") string containing an array of audit events, or a [`JSON`](json.html "11.5 The JSON Data Type") `null` value if that was passed as the argument to close the read sequence. If the call fails, the return value is `NULL` and an error occurs.
+  Se a chamada for bem-sucedida, o valor de retorno é uma binary string [`JSON`](json.html "11.5 The JSON Data Type") contendo um array de eventos de auditoria, ou um valor `null` [`JSON`](json.html "11.5 The JSON Data Type") se este foi passado como argumento para fechar a sequência de leitura. Se a chamada falhar, o valor de retorno é `NULL` e ocorre um erro.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_read(audit_log_read_bookmark());
@@ -279,21 +279,21 @@ These audit log functions are available:
 
 * [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark)
 
-  Returns a binary [`JSON`](json.html "11.5 The JSON Data Type") string representing a bookmark for the most recently written audit log event. If the audit log format is not `JSON`, an error occurs.
+  Retorna uma binary string [`JSON`](json.html "11.5 The JSON Data Type") representando um bookmark para o evento de audit log escrito mais recentemente. Se o formato do audit log não for `JSON`, um erro ocorrerá.
 
-  The bookmark is a [`JSON`](json.html "11.5 The JSON Data Type") hash with `timestamp` and `id` items that uniquely identify the position of an event within the audit log. It is suitable for passing to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) to indicate to that function the position at which to begin reading.
+  O bookmark é um hash [`JSON`](json.html "11.5 The JSON Data Type") com os itens `timestamp` e `id` que identificam de forma única a posição de um evento dentro do audit log. Ele é adequado para ser passado para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) para indicar a essa função a posição em que a leitura deve começar.
 
-  For additional details about the audit log-reading process, see [Section 6.4.5.6, “Reading Audit Log Files”](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
+  Para detalhes adicionais sobre o processo de leitura do audit log, consulte a [Seção 6.4.5.6, “Reading Audit Log Files” (Lendo Arquivos de Audit Log)](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  A binary [`JSON`](json.html "11.5 The JSON Data Type") string containing a bookmark for success, or `NULL` and an error for failure.
+  Uma binary string [`JSON`](json.html "11.5 The JSON Data Type") contendo um bookmark para sucesso, ou `NULL` e um erro para falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT audit_log_read_bookmark();
@@ -304,27 +304,54 @@ These audit log functions are available:
   +-------------------------------------------------+
   ```
 
-##### Audit Log Option and Variable Reference
+##### Referência de Opções e Variáveis do Audit Log
 
-**Table 6.34 Audit Log Option and Variable Reference**
+**Tabela 6.34 Referência de Opções e Variáveis do Audit Log**
 
-<table frame="box" rules="all" summary="Reference for audit log command-line options, system variables, and status variables."><col style="width: 20%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><thead><tr><th>Name</th> <th>Cmd-Line</th> <th>Option File</th> <th>System Var</th> <th>Status Var</th> <th>Var Scope</th> <th>Dynamic</th> </tr></thead><tbody><tr><th>audit-log</th> <td>Yes</td> <td>Yes</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>audit_log_buffer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>audit_log_compression</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>audit_log_connection_policy</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>audit_log_current_session</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Both</td> <td>No</td> </tr><tr><th>Audit_log_current_size</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>audit_log_disable</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>audit_log_encryption</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Audit_log_event_max_drop_size</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Audit_log_events</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Audit_log_events_filtered</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Audit_log_events_lost</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Audit_log_events_written</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>audit_log_exclude_accounts</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>audit_log_file</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>audit_log_filter_id</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Both</td> <td>No</td> </tr><tr><th>audit_log_flush</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>audit_log_format</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>audit_log_include_accounts</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>audit_log_policy</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>audit_log_read_buffer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Varies</td> <td>Varies</td> </tr><tr><th>audit_log_rotate_on_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>audit_log_statement_policy</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>audit_log_strategy</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>Audit_log_total_size</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>Audit_log_write_waits</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr></tbody></table>
+| Nome | Linha de Comando (Cmd-Line) | Arquivo de Opções (Option File) | Variável de Sistema (System Var) | Variável de Status (Status Var) | Escopo da Variável (Var Scope) | Dinâmico (Dynamic) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| audit-log | Sim | Sim | | | | |
+| audit_log_buffer_size | Sim | Sim | Sim | | Global | Não |
+| audit_log_compression | Sim | Sim | Sim | | Global | Não |
+| audit_log_connection_policy | Sim | Sim | Sim | | Global | Sim |
+| audit_log_current_session | | | Sim | | Ambos (Both) | Não |
+| Audit_log_current_size | | | | Sim | Global | Não |
+| audit_log_disable | Sim | Sim | Sim | | Global | Sim |
+| audit_log_encryption | Sim | Sim | Sim | | Global | Não |
+| Audit_log_event_max_drop_size | | | | Sim | Global | Não |
+| Audit_log_events | | | | Sim | Global | Não |
+| Audit_log_events_filtered | | | | Sim | Global | Não |
+| Audit_log_events_lost | | | | Sim | Global | Não |
+| Audit_log_events_written | | | | Sim | Global | Não |
+| audit_log_exclude_accounts | Sim | Sim | Sim | | Global | Sim |
+| audit_log_file | Sim | Sim | Sim | | Global | Não |
+| audit_log_filter_id | | | Sim | | Ambos (Both) | Não |
+| audit_log_flush | | | Sim | | Global | Sim |
+| audit_log_format | Sim | Sim | Sim | | Global | Não |
+| audit_log_include_accounts | Sim | Sim | Sim | | Global | Sim |
+| audit_log_policy | Sim | Sim | Sim | | Global | Não |
+| audit_log_read_buffer_size | Sim | Sim | Sim | | Varia (Varies) | Varia (Varies) |
+| audit_log_rotate_on_size | Sim | Sim | Sim | | Global | Sim |
+| audit_log_statement_policy | Sim | Sim | Sim | | Global | Sim |
+| audit_log_strategy | Sim | Sim | Sim | | Global | Não |
+| Audit_log_total_size | | | | Sim | Global | Não |
+| Audit_log_write_waits | | | | Sim | Global | Não |
 
-##### Audit Log Options and Variables
+##### Opções e Variáveis do Audit Log
 
-This section describes the command options and system variables that configure operation of MySQL Enterprise Audit. If values specified at startup time are incorrect, the `audit_log` plugin may fail to initialize properly and the server does not load it. In this case, the server may also produce error messages for other audit log settings because it does not recognize them.
+Esta seção descreve as opções de comando e as System Variables que configuram a operação do MySQL Enterprise Audit. Se os valores especificados no momento da inicialização estiverem incorretos, o `audit_log` plugin pode falhar ao inicializar corretamente e o servidor não o carrega. Neste caso, o servidor também pode produzir mensagens de erro para outras configurações do audit log porque não as reconhece.
 
-To configure activation of the audit log plugin, use this option:
+Para configurar a ativação do `audit log plugin`, use esta opção:
 
 * [`--audit-log[=value]`](audit-log-reference.html#option_mysqld_audit-log)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  This option controls how the server loads the `audit_log` plugin at startup. It is available only if the plugin has been previously registered with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") or is loaded with [`--plugin-load`](server-options.html#option_mysqld_plugin-load) or [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add). See [Section 6.4.5.2, “Installing or Uninstalling MySQL Enterprise Audit”](audit-log-installation.html "6.4.5.2 Installing or Uninstalling MySQL Enterprise Audit").
+  Esta opção controla como o servidor carrega o `audit_log` plugin na inicialização (startup). Ela está disponível apenas se o Plugin tiver sido registrado anteriormente com [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") ou for carregado com [`--plugin-load`](server-options.html#option_mysqld_plugin-load) ou [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add). Consulte a [Seção 6.4.5.2, “Instalando ou Desinstalando o MySQL Enterprise Audit”](audit-log-installation.html "6.4.5.2 Installing or Uninstalling MySQL Enterprise Audit").
 
-  The option value should be one of those available for plugin-loading options, as described in [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins"). For example, [`--audit-log=FORCE_PLUS_PERMANENT`](audit-log-reference.html#option_mysqld_audit-log) tells the server to load the plugin and prevent it from being removed while the server is running.
+  O valor da opção deve ser um daqueles disponíveis para opções de carregamento de Plugin (plugin-loading options), conforme descrito na [Seção 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins"). Por exemplo, [`--audit-log=FORCE_PLUS_PERMANENT`](audit-log-reference.html#option_mysqld_audit-log) informa ao servidor para carregar o Plugin e impedir que ele seja removido enquanto o servidor estiver em execução.
 
-If the audit log plugin is enabled, it exposes several system variables that permit control over logging:
+Se o `audit log plugin` estiver habilitado, ele expõe várias System Variables que permitem o controle sobre o logging:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'audit_log%';
@@ -352,216 +379,216 @@ mysql> SHOW VARIABLES LIKE 'audit_log%';
 +--------------------------------------+--------------+
 ```
 
-You can set any of these variables at server startup, and some of them at runtime. Those that are available only for legacy mode audit log filtering are so noted.
+Você pode definir qualquer uma dessas variáveis na inicialização do servidor, e algumas delas em runtime. Aquelas que estão disponíveis apenas para legacy mode audit log filtering são assim indicadas.
 
 * [`audit_log_buffer_size`](audit-log-reference.html#sysvar_audit_log_buffer_size)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_buffer_size"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1048576</code></td> </tr><tr><th>Minimum Value</th> <td><code>4096</code></td> </tr><tr><th>Maximum Value (64-bit platforms)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Maximum Value (32-bit platforms)</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr><tr><th>Block Size</th> <td><code>4096</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do Bloco (Block Size)</th> <td><code>4096</code></td> </tr></tbody></table>
 
-  When the audit log plugin writes events to the log asynchronously, it uses a buffer to store event contents prior to writing them. This variable controls the size of that buffer, in bytes. The server adjusts the value to a multiple of 4096. The plugin uses a single buffer, which it allocates when it initializes and removes when it terminates. The plugin allocates this buffer only if logging is asynchronous.
+  Quando o `audit log plugin` escreve eventos no log de forma assíncrona, ele usa um Buffer para armazenar o conteúdo dos eventos antes de escrevê-los. Esta variável controla o tamanho desse Buffer, em bytes. O servidor ajusta o valor para um múltiplo de 4096. O Plugin usa um único Buffer, que ele aloca quando inicializa e remove quando termina. O Plugin aloca este Buffer apenas se o logging for assíncrono.
 
 * [`audit_log_compression`](audit-log-reference.html#sysvar_audit_log_compression)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_compression"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-compression=value</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>System Variable</th> <td><code>audit_log_compression</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NONE</code></td> </tr><tr><th>Valid Values</th> <td><p><code>NONE</code></p><p><code>GZIP</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_compression"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-compression=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_compression</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NONE</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>NONE</code></p><p><code>GZIP</code></p></td> </tr></tbody></table>
 
-  The type of compression for the audit log file. Permitted values are `NONE` (no compression; the default) and `GZIP` (GNU Zip compression). For more information, see [Compressing Audit Log Files](audit-log-logging-configuration.html#audit-log-file-compression "Compressing Audit Log Files").
+  O tipo de compression para o arquivo de audit log. Os valores permitidos são `NONE` (nenhuma compression; o padrão) e `GZIP` (compressão GNU Zip). Para mais informações, consulte [Compressing Audit Log Files (Comprimindo Arquivos de Audit Log)](audit-log-logging-configuration.html#audit-log-file-compression "Compressing Audit Log Files").
 
 * [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_connection_policy"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-connection-policy=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_connection_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ALL</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ALL</code></p><p><code>ERRORS</code></p><p><code>NONE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_connection_policy"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-connection-policy=value</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_connection_policy</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ALL</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ALL</code></p><p><code>ERRORS</code></p><p><code>NONE</code></p></td> </tr></tbody></table>
 
   Note
 
-  This variable applies only to legacy mode audit log filtering (see [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
+  Esta variável se aplica apenas ao legacy mode audit log filtering (consulte a [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
 
-  The policy controlling how the audit log plugin writes connection events to its log file. The following table shows the permitted values.
+  A política que controla como o `audit log plugin` escreve eventos de Connection em seu arquivo de log. A tabela a seguir mostra os valores permitidos.
 
-  <table summary="Permitted values for the audit_log_connection_policy variable."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>ALL</code></td> <td>Log all connection events</td> </tr><tr> <td><code>ERRORS</code></td> <td>Log only failed connection events</td> </tr><tr> <td><code>NONE</code></td> <td>Do not log connection events</td> </tr></tbody></table>
+  <table summary="Valores permitidos para a variável audit_log_connection_policy."><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>ALL</code></td> <td>Loga todos os eventos de Connection</td> </tr><tr> <td><code>ERRORS</code></td> <td>Loga apenas eventos de Connection que falharam</td> </tr><tr> <td><code>NONE</code></td> <td>Não loga eventos de Connection</td> </tr></tbody></table>
 
   Note
 
-  At server startup, any explicit value given for [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) may be overridden if [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) is also specified, as described in [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
+  Na inicialização do servidor (server startup), qualquer valor explícito fornecido para [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) pode ser substituído se [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) também for especificado, conforme descrito na [Seção 6.4.5.5, “Configuring Audit Logging Characteristics” (Configurando Características de Logging de Auditoria)](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
 
 * [`audit_log_current_session`](audit-log-reference.html#sysvar_audit_log_current_session)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_current_session"><tbody><tr><th>System Variable</th> <td><code>audit_log_current_session</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>depends on filtering policy</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_current_session"><tbody><tr><th>Variável de Sistema</th> <td><code>audit_log_current_session</code></td> </tr><tr><th>Escopo</th> <td>Global, Session</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>depende da política de filtering</code></td> </tr></tbody></table>
 
-  Whether audit logging is enabled for the current session. The session value of this variable is read only. It is set when the session begins based on the values of the [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) and [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) system variables. The audit log plugin uses the session value to determine whether to audit events for the session. (There is a global value, but the plugin does not use it.)
+  Se o audit logging está habilitado para a Session atual. O valor de Session desta variável é somente leitura. Ele é definido quando a Session começa, com base nos valores das System Variables [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) e [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts). O `audit log plugin` usa o valor de Session para determinar se deve auditar eventos para a Session. (Existe um valor Global, mas o Plugin não o usa.)
 
 * [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_disable"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-disable[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.37</td> </tr><tr><th>System Variable</th> <td><code>audit_log_disable</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_disable"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-disable[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.37</td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_disable</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Permits disabling audit logging for all connecting and connected sessions. Disabling audit logging requires the [`SUPER`](privileges-provided.html#priv_super) privilege. See [Section 6.4.5.9, “Disabling Audit Logging”](audit-log-disabling.html "6.4.5.9 Disabling Audit Logging").
+  Permite desabilitar o audit logging para todas as Sessions de Connection e conectadas. Desabilitar o audit logging requer o privilégio [`SUPER`](privileges-provided.html#priv_super). Consulte a [Seção 6.4.5.9, “Disabling Audit Logging” (Desabilitando o Audit Logging)](audit-log-disabling.html "6.4.5.9 Disabling Audit Logging").
 
 * [`audit_log_encryption`](audit-log-reference.html#sysvar_audit_log_encryption)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_encryption"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-encryption=value</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>System Variable</th> <td><code>audit_log_encryption</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NONE</code></td> </tr><tr><th>Valid Values</th> <td><p><code>NONE</code></p><p><code>AES</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_encryption"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-encryption=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_encryption</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NONE</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>NONE</code></p><p><code>AES</code></p></td> </tr></tbody></table>
 
-  The type of encryption for the audit log file. Permitted values are `NONE` (no encryption; the default) and `AES` (AES-256-CBC cipher encryption). For more information, see [Encrypting Audit Log Files](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
+  O tipo de encryption para o arquivo de audit log. Os valores permitidos são `NONE` (nenhuma encryption; o padrão) e `AES` (encryption de cifra AES-256-CBC). Para mais informações, consulte [Encrypting Audit Log Files (Criptografando Arquivos de Audit Log)](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
 
 * [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_exclude_accounts"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-exclude-accounts=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_exclude_accounts</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_exclude_accounts"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-exclude-accounts=value</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_exclude_accounts</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Note
 
-  This variable applies only to legacy mode audit log filtering (see [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
+  Esta variável se aplica apenas ao legacy mode audit log filtering (consulte a [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
 
-  The accounts for which events should not be logged. The value should be `NULL` or a string containing a list of one or more comma-separated account names. For more information, see [Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering").
+  As contas para as quais os eventos não devem ser logados. O valor deve ser `NULL` ou uma string contendo uma lista de um ou mais nomes de conta separados por vírgula. Para mais informações, consulte a [Seção 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering").
 
-  Modifications to [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) affect only connections created subsequent to the modification, not existing connections.
+  Modificações em [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) afetam apenas Connections criadas subsequentemente à modificação, e não Connections existentes.
 
 * [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  The base name and suffix of the file to which the audit log plugin writes events. The default value is `audit.log`, regardless of logging format. To have the name suffix correspond to the format, set the name explicitly, choosing a different suffix (for example, `audit.xml` for XML format, `audit.json` for JSON format).
+  O nome base e o sufixo do arquivo para o qual o `audit log plugin` escreve eventos. O valor padrão é `audit.log`, independentemente do formato de logging. Para que o sufixo do nome corresponda ao formato, defina o nome explicitamente, escolhendo um sufixo diferente (por exemplo, `audit.xml` para formato XML, `audit.json` para formato JSON).
 
-  If the value of [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) is a relative path name, the plugin interprets it relative to the data directory. If the value is a full path name, the plugin uses the value as is. A full path name may be useful if it is desirable to locate audit files on a separate file system or directory. For security reasons, write the audit log file to a directory accessible only to the MySQL server and to users with a legitimate reason to view the log.
+  Se o valor de [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) for um nome de caminho relativo, o Plugin o interpreta em relação ao diretório de dados (data directory). Se o valor for um nome de caminho completo, o Plugin usa o valor como está. Um nome de caminho completo pode ser útil se for desejável localizar arquivos de auditoria em um file system ou diretório separado. Por motivos de segurança, escreva o arquivo de audit log em um diretório acessível apenas ao MySQL server e a usuários com um motivo legítimo para visualizar o log.
 
-  For details about how the audit log plugin interprets the [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) value and the rules for file renaming that occurs at plugin initialization and termination, see [Naming Conventions for Audit Log Files](audit-log-logging-configuration.html#audit-log-file-name "Naming Conventions for Audit Log Files").
+  Para detalhes sobre como o `audit log plugin` interpreta o valor de [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) e as regras para a renomeação de arquivos que ocorre na inicialização e encerramento do Plugin, consulte [Naming Conventions for Audit Log Files (Convenções de Nomenclatura para Arquivos de Audit Log)](audit-log-logging-configuration.html#audit-log-file-name "Naming Conventions for Audit Log Files").
 
-  As of MySQL 5.7.21, the audit log plugin uses the directory containing the audit log file (determined from the [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) value) as the location to search for readable audit log files. From these log files and the current file, the plugin constructs a list of the ones that are subject to use with the audit log bookmarking and reading functions. See [Section 6.4.5.6, “Reading Audit Log Files”](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
+  A partir do MySQL 5.7.21, o `audit log plugin` usa o diretório que contém o arquivo de audit log (determinado a partir do valor [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file)) como o local para procurar arquivos de audit log legíveis. A partir desses arquivos de log e do arquivo atual, o Plugin constrói uma lista daqueles que estão sujeitos a serem usados com as funções de bookmarking e leitura do audit log. Consulte a [Seção 6.4.5.6, “Reading Audit Log Files”](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
 
 * [`audit_log_filter_id`](audit-log-reference.html#sysvar_audit_log_filter_id)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  The session value of this variable indicates the internally maintained ID of the audit filter for the current session. A value of 0 means that the session has no filter assigned.
+  O valor de Session desta variável indica o ID, mantido internamente, do filtro de auditoria para a Session atual. Um valor de 0 significa que a Session não tem filtro atribuído.
 
 * [`audit_log_flush`](audit-log-reference.html#sysvar_audit_log_flush)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  If [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) is 0, automatic audit log file rotation is disabled and rotation occurs only when performed manually. In that case, enabling [`audit_log_flush`](audit-log-reference.html#sysvar_audit_log_flush) by setting it to 1 or `ON` causes the audit log plugin to close and reopen its log file to flush it. (The variable value remains `OFF` so that you need not disable it explicitly before enabling it again to perform another flush.) For more information, see [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
+  Se [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) for 0, a rotação automática do arquivo de audit log por tamanho é desabilitada e a rotação ocorre apenas quando realizada manualmente. Nesse caso, habilitar [`audit_log_flush`](audit-log-reference.html#sysvar_audit_log_flush) definindo-o como 1 ou `ON` faz com que o `audit log plugin` feche e reabra seu arquivo de log para descarregá-lo (flush). (O valor da variável permanece `OFF` para que você não precise desabilitá-la explicitamente antes de habilitá-la novamente para realizar outro flush.) Para mais informações, consulte a [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
 
 * [`audit_log_format`](audit-log-reference.html#sysvar_audit_log_format)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  The audit log file format. Permitted values are `OLD` (old-style XML), `NEW` (new-style XML; the default), and (as of MySQL 5.7.21) `JSON`. For details about each format, see [Section 6.4.5.4, “Audit Log File Formats”](audit-log-file-formats.html "6.4.5.4 Audit Log File Formats").
+  O formato do arquivo de audit log. Os valores permitidos são `OLD` (XML estilo antigo), `NEW` (XML estilo novo; o padrão) e (a partir do MySQL 5.7.21) `JSON`. Para detalhes sobre cada formato, consulte a [Seção 6.4.5.4, “Audit Log File Formats” (Formatos de Arquivo de Audit Log)](audit-log-file-formats.html "6.4.5.4 Audit Log File Formats").
 
   Note
 
-  For information about issues to consider when changing the log format, see [Selecting Audit Log File Format](audit-log-logging-configuration.html#audit-log-file-format "Selecting Audit Log File Format").
+  Para informações sobre questões a serem consideradas ao alterar o formato do log, consulte [Selecting Audit Log File Format (Selecionando o Formato do Arquivo de Audit Log)](audit-log-logging-configuration.html#audit-log-file-format "Selecting Audit Log File Format").
 
 * [`audit_log_format_unix_timestamp`](audit-log-reference.html#sysvar_audit_log_format_unix_timestamp)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  This variable applies only for JSON-format audit log output. When that is true, enabling this variable causes each log file record to include a `time` field. The field value is an integer that represents the UNIX timestamp value indicating the date and time when the audit event was generated.
+  Esta variável se aplica apenas à saída do audit log no formato JSON. Quando isso é verdadeiro, habilitar esta variável faz com que cada registro do arquivo de log inclua um campo `time`. O valor do campo é um Integer que representa o UNIX timestamp indicando a data e hora em que o evento de auditoria foi gerado.
 
-  Changing the value of this variable at runtime causes log file rotation so that, for a given JSON-format log file, all records in the file either do or do not include the `time` field.
+  Alterar o valor desta variável em runtime causa a rotação do arquivo de log, de modo que, para um determinado arquivo de log no formato JSON, todos os registros no arquivo incluem ou não o campo `time`.
 
 * [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Note
 
-  This variable applies only to legacy mode audit log filtering (see [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
+  Esta variável se aplica apenas ao legacy mode audit log filtering (consulte a [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
 
-  The accounts for which events should be logged. The value should be `NULL` or a string containing a list of one or more comma-separated account names. For more information, see [Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering").
+  As contas para as quais os eventos devem ser logados. O valor deve ser `NULL` ou uma string contendo uma lista de um ou mais nomes de conta separados por vírgula. Para mais informações, consulte a [Seção 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering").
 
-  Modifications to [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) affect only connections created subsequent to the modification, not existing connections.
+  Modificações em [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) afetam apenas Connections criadas subsequentemente à modificação, e não Connections existentes.
 
 * [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Note
 
-  This variable applies only to legacy mode audit log filtering (see [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
+  Esta variável se aplica apenas ao legacy mode audit log filtering (consulte a [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
 
-  The policy controlling how the audit log plugin writes events to its log file. The following table shows the permitted values.
+  A política que controla como o `audit log plugin` escreve eventos em seu arquivo de log. A tabela a seguir mostra os valores permitidos.
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) can be set only at server startup. At runtime, it is a read-only variable. Two other system variables, [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) and [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy), provide finer control over logging policy and can be set either at startup or at runtime. If you use [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) at startup instead of the other two variables, the server uses its value to set those variables. For more information about the policy variables and their interaction, see [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
+  [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) pode ser definida apenas na inicialização do servidor. Em runtime, é uma variável somente leitura. Duas outras System Variables, [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) e [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy), fornecem um controle mais refinado sobre a política de logging e podem ser definidas tanto na inicialização quanto em runtime. Se você usar [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) na inicialização em vez das outras duas variáveis, o servidor usa seu valor para definir essas variáveis. Para mais informações sobre as variáveis de política e sua interação, consulte a [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
 
 * [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  The buffer size for reading from the audit log file, in bytes. The [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) function reads no more than this many bytes. Log file reading is supported only for JSON log format. For more information, see [Section 6.4.5.6, “Reading Audit Log Files”](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
+  O Buffer size para leitura do arquivo de audit log, em bytes. A função [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) lê no máximo esta quantidade de bytes. A leitura de arquivo de log é suportada apenas para o formato de log JSON. Para mais informações, consulte a [Seção 6.4.5.6, “Reading Audit Log Files”](audit-log-file-reading.html "6.4.5.6 Reading Audit Log Files").
 
-  As of MySQL 5.7.23, this variable has a default of 32KB and can be set at runtime. Each client should set its session value of [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) appropriately for its use of [`audit_log_read()`](audit-log-reference.html#function_audit-log-read). Prior to MySQL 5.7.23, [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) has a default of 1MB, affects all clients, and can be changed only at server startup.
+  A partir do MySQL 5.7.23, esta variável tem um valor padrão de 32KB e pode ser definida em runtime. Cada cliente deve definir seu valor de Session de [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) apropriadamente para seu uso de [`audit_log_read()`](audit-log-reference.html#function_audit-log-read). Antes do MySQL 5.7.23, [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) tinha um padrão de 1MB, afeta todos os clientes e só podia ser alterada na inicialização do servidor.
 
 * [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size)
 
-  <table frame="box" rules="all" summary="Properties for audit-log"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
-  If [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) is 0, the audit log plugin does not perform automatic size-based log file rotation. If rotation is to occur, you must perform it manually; see [Manual Audit Log File Rotation](audit-log-logging-configuration.html#audit-log-manual-rotation "Manual Audit Log File Rotation").
+  Se [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) for 0, o `audit log plugin` não realiza a rotação automática do arquivo de log baseada em tamanho. Se a rotação for necessária, você deve realizá-la manualmente; consulte [Manual Audit Log File Rotation (Rotação Manual de Arquivo de Audit Log)](audit-log-logging-configuration.html#audit-log-manual-rotation "Manual Audit Log File Rotation").
 
-  If [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) is greater than 0, automatic size-based log file rotation occurs. Whenever a write to the log file causes its size to exceed the [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) value, the audit log plugin renames the current log file and opens a new current log file using the original name.
+  Se [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) for maior que 0, ocorre a rotação automática do arquivo de log baseada em tamanho. Sempre que uma escrita no arquivo de log faz com que seu tamanho exceda o valor de [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size), o `audit log plugin` renomeia o arquivo de log atual e abre um novo arquivo de log atual usando o nome original.
 
-  If you set [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) to a value that is not a multiple of 4096, it is truncated to the nearest multiple. In particular, setting it to a value less than 4096 sets it to 0 and no rotation occurs, except manually.
+  Se você definir [`audit_log_rotate_on_size`](audit-log-reference.html#sysvar_audit_log_rotate_on_size) para um valor que não é múltiplo de 4096, ele é truncado para o múltiplo mais próximo. Em particular, defini-lo para um valor inferior a 4096 o define como 0 e nenhuma rotação ocorre, exceto manualmente.
 
-  For more information about audit log file rotation, see [Space Management of Audit Log Files](audit-log-logging-configuration.html#audit-log-space-management "Space Management of Audit Log Files").
+  Para mais informações sobre a rotação do arquivo de audit log, consulte [Space Management of Audit Log Files (Gerenciamento de Espaço de Arquivos de Audit Log)](audit-log-logging-configuration.html#audit-log-space-management "Space Management of Audit Log Files").
 
 * [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_buffer_size"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1048576</code></td> </tr><tr><th>Minimum Value</th> <td><code>4096</code></td> </tr><tr><th>Maximum Value (64-bit platforms)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Maximum Value (32-bit platforms)</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr><tr><th>Block Size</th> <td><code>4096</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do Bloco (Block Size)</th> <td><code>4096</code></td> </tr></tbody></table>
 
   Note
 
-  This variable applies only to legacy mode audit log filtering (see [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
+  Esta variável se aplica apenas ao legacy mode audit log filtering (consulte a [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")).
 
-  The policy controlling how the audit log plugin writes statement events to its log file. The following table shows the permitted values.
+  A política que controla como o `audit log plugin` escreve eventos de statement em seu arquivo de log. A tabela a seguir mostra os valores permitidos.
 
-  <table frame="box" rules="all" summary="Properties for audit_log_buffer_size"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1048576</code></td> </tr><tr><th>Minimum Value</th> <td><code>4096</code></td> </tr><tr><th>Maximum Value (64-bit platforms)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Maximum Value (32-bit platforms)</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr><tr><th>Block Size</th> <td><code>4096</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do Bloco (Block Size)</th> <td><code>4096</code></td> </tr></tbody></table>
 
   Note
 
-  At server startup, any explicit value given for [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy) may be overridden if [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) is also specified, as described in [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
+  Na inicialização do servidor (server startup), qualquer valor explícito fornecido para [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy) pode ser substituído se [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) também for especificado, conforme descrito na [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
 
 * [`audit_log_strategy`](audit-log-reference.html#sysvar_audit_log_strategy)
 
-  <table frame="box" rules="all" summary="Properties for audit_log_buffer_size"><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1048576</code></td> </tr><tr><th>Minimum Value</th> <td><code>4096</code></td> </tr><tr><th>Maximum Value (64-bit platforms)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Maximum Value (32-bit platforms)</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr><tr><th>Block Size</th> <td><code>4096</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Escopo</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Integer</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do Bloco (Block Size)</th> <td><code>4096</code></td> </tr></tbody></table>
 
-  The logging method used by the audit log plugin. These strategy values are permitted:
+  O método de logging usado pelo `audit log plugin`. Estes valores de estratégia são permitidos:
 
-  + `ASYNCHRONOUS`: Log asynchronously. Wait for space in the output buffer.
+  + `ASYNCHRONOUS`: Loga assincronamente. Espera por espaço no Buffer de saída.
 
-  + `PERFORMANCE`: Log asynchronously. Drop requests for which there is insufficient space in the output buffer.
+  + `PERFORMANCE`: Loga assincronamente. Descarta (Drop) as solicitações para as quais não há espaço suficiente no Buffer de saída.
 
-  + `SEMISYNCHRONOUS`: Log synchronously. Permit caching by the operating system.
+  + `SEMISYNCHRONOUS`: Loga sincronamente. Permite caching pelo sistema operacional.
 
-  + `SYNCHRONOUS`: Log synchronously. Call `sync()` after each request.
+  + `SYNCHRONOUS`: Loga sincronamente. Chama `sync()` após cada solicitação.
 
-##### Audit Log Status Variables
+##### Variáveis de Status do Audit Log
 
-If the audit log plugin is enabled, it exposes several status variables that provide operational information. These variables are available for legacy mode audit filtering and JSON mode audit filtering.
+Se o `audit log plugin` estiver habilitado, ele expõe várias Status Variables que fornecem informações operacionais. Estas variáveis estão disponíveis para legacy mode audit filtering e JSON mode audit filtering.
 
 * [`Audit_log_current_size`](audit-log-reference.html#statvar_Audit_log_current_size)
 
-  The size of the current audit log file. The value increases when an event is written to the log and is reset to 0 when the log is rotated.
+  O tamanho do arquivo de audit log atual. O valor aumenta quando um evento é escrito no log e é redefinido para 0 quando o log é rotacionado.
 
 * [`Audit_log_event_max_drop_size`](audit-log-reference.html#statvar_Audit_log_event_max_drop_size)
 
-  The size of the largest dropped event in performance logging mode. For a description of logging modes, see [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
+  O tamanho do maior evento descartado no modo performance logging. Para uma descrição dos modos de logging, consulte a [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
 
 * [`Audit_log_events`](audit-log-reference.html#statvar_Audit_log_events)
 
-  The number of events handled by the audit log plugin, whether or not they were written to the log based on filtering policy (see [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics")).
+  O número de eventos manipulados pelo `audit log plugin`, independentemente de terem sido escritos no log com base na política de filtering (consulte a [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics")).
 
 * [`Audit_log_events_filtered`](audit-log-reference.html#statvar_Audit_log_events_filtered)
 
-  The number of events handled by the audit log plugin that were filtered (not written to the log) based on filtering policy (see [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics")).
+  O número de eventos manipulados pelo `audit log plugin` que foram filtrados (não escritos no log) com base na política de filtering (consulte a [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics")).
 
 * [`Audit_log_events_lost`](audit-log-reference.html#statvar_Audit_log_events_lost)
 
-  The number of events lost in performance logging mode because an event was larger than the available audit log buffer space. This value may be useful for assessing how to set [`audit_log_buffer_size`](audit-log-reference.html#sysvar_audit_log_buffer_size) to size the buffer for performance mode. For a description of logging modes, see [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
+  O número de eventos perdidos no modo performance logging porque um evento era maior do que o espaço disponível no Buffer do audit log. Este valor pode ser útil para avaliar como definir [`audit_log_buffer_size`](audit-log-reference.html#sysvar_audit_log_buffer_size) para dimensionar o Buffer para o modo de performance. Para uma descrição dos modos de logging, consulte a [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
 
 * [`Audit_log_events_written`](audit-log-reference.html#statvar_Audit_log_events_written)
 
-  The number of events written to the audit log.
+  O número de eventos escritos no audit log.
 
 * [`Audit_log_total_size`](audit-log-reference.html#statvar_Audit_log_total_size)
 
-  The total size of events written to all audit log files. Unlike [`Audit_log_current_size`](audit-log-reference.html#statvar_Audit_log_current_size), the value of [`Audit_log_total_size`](audit-log-reference.html#statvar_Audit_log_total_size) increases even when the log is rotated.
+  O tamanho total de eventos escritos em todos os arquivos de audit log. Diferentemente de [`Audit_log_current_size`](audit-log-reference.html#statvar_Audit_log_current_size), o valor de [`Audit_log_total_size`](audit-log-reference.html#statvar_Audit_log_total_size) aumenta mesmo quando o log é rotacionado.
 
 * [`Audit_log_write_waits`](audit-log-reference.html#statvar_Audit_log_write_waits)
 
-  The number of times an event had to wait for space in the audit log buffer in asynchronous logging mode. For a description of logging modes, see [Section 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").
+  O número de vezes que um evento teve que esperar por espaço no Buffer do audit log no modo asynchronous logging. Para uma descrição dos modos de logging, consulte a [Seção 6.4.5.5, “Configuring Audit Logging Characteristics”](audit-log-logging-configuration.html "6.4.5.5 Configuring Audit Logging Characteristics").

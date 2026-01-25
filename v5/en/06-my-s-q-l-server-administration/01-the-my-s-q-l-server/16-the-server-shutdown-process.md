@@ -1,49 +1,49 @@
-### 5.1.16 The Server Shutdown Process
+### 5.1.16 O Processo de Shutdown do Server
 
-The server shutdown process takes place as follows:
+O processo de Shutdown do Server ocorre da seguinte forma:
 
-1. The shutdown process is initiated.
+1. O processo de Shutdown é iniciado.
 
-   This can occur initiated several ways. For example, a user with the [`SHUTDOWN`](privileges-provided.html#priv_shutdown) privilege can execute a [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command. [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") can be used on any platform supported by MySQL. Other operating system-specific shutdown initiation methods are possible as well: The server shuts down on Unix when it receives a `SIGTERM` signal. A server running as a service on Windows shuts down when the services manager tells it to.
+   Isso pode ser iniciado de várias maneiras. Por exemplo, um usuário com o privilégio [`SHUTDOWN`](privileges-provided.html#priv_shutdown) pode executar um comando [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"). O [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") pode ser usado em qualquer plataforma suportada pelo MySQL. Outros métodos de iniciação de Shutdown específicos do sistema operacional também são possíveis: O Server é encerrado no Unix quando recebe um sinal `SIGTERM`. Um Server rodando como um service no Windows é encerrado quando o gerenciador de services o instrui.
 
-2. The server creates a shutdown thread if necessary.
+2. O Server cria uma Shutdown Thread, se necessário.
 
-   Depending on how shutdown was initiated, the server might create a thread to handle the shutdown process. If shutdown was requested by a client, a shutdown thread is created. If shutdown is the result of receiving a `SIGTERM` signal, the signal thread might handle shutdown itself, or it might create a separate thread to do so. If the server tries to create a shutdown thread and cannot (for example, if memory is exhausted), it issues a diagnostic message that appears in the error log:
+   Dependendo de como o Shutdown foi iniciado, o Server pode criar uma Thread para lidar com o processo de Shutdown. Se o Shutdown foi solicitado por um Client, uma Shutdown Thread é criada. Se o Shutdown for resultado do recebimento de um sinal `SIGTERM`, a Thread de sinal pode lidar com o Shutdown por conta própria, ou pode criar uma Thread separada para fazê-lo. Se o Server tentar criar uma Shutdown Thread e não conseguir (por exemplo, se a memória estiver esgotada), ele emitirá uma mensagem de diagnóstico que aparece no error log:
 
    ```sql
    Error: Can't create thread to kill server
    ```
 
-3. The server stops accepting new connections.
+3. O Server para de aceitar novas Connections.
 
-   To prevent new activity from being initiated during shutdown, the server stops accepting new client connections by closing the handlers for the network interfaces to which it normally listens for connections: the TCP/IP port, the Unix socket file, the Windows named pipe, and shared memory on Windows.
+   Para evitar que novas atividades sejam iniciadas durante o Shutdown, o Server para de aceitar novas Client Connections, fechando os handlers para as interfaces de rede nas quais ele normalmente escuta por Connections: a porta TCP/IP, o arquivo de Unix socket, o named pipe do Windows e a shared memory no Windows.
 
-4. The server terminates current activity.
+4. O Server encerra a atividade atual.
 
-   For each thread associated with a client connection, the server breaks the connection to the client and marks the thread as killed. Threads die when they notice that they are so marked. Threads for idle connections die quickly. Threads that currently are processing statements check their state periodically and take longer to die. For additional information about thread termination, see [Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement"), in particular for the instructions about killed [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") or [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") operations on `MyISAM` tables.
+   Para cada Thread associada a uma Client Connection, o Server interrompe a Connection com o Client e marca a Thread como *killed* (encerrada). As Threads morrem quando percebem que estão marcadas dessa forma. Threads para Connections ociosas morrem rapidamente. Threads que estão processando Statements atualmente verificam seu estado periodicamente e demoram mais para morrer. Para obter informações adicionais sobre o encerramento de Threads, consulte [Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement"), em particular para as instruções sobre operações *killed* de [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") ou [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") em tabelas `MyISAM`.
 
-   For threads that have an open transaction, the transaction is rolled back. If a thread is updating a nontransactional table, an operation such as a multiple-row [`UPDATE`](update.html "13.2.11 UPDATE Statement") or [`INSERT`](insert.html "13.2.5 INSERT Statement") may leave the table partially updated because the operation can terminate before completion.
+   Para Threads que têm uma transaction aberta, a transaction é *rolled back* (revertida). Se uma Thread estiver atualizando uma tabela não transacional, uma operação como um [`UPDATE`](update.html "13.2.11 UPDATE Statement") ou [`INSERT`](insert.html "13.2.5 INSERT Statement") de múltiplas linhas pode deixar a tabela parcialmente atualizada porque a operação pode ser encerrada antes da conclusão.
 
-   If the server is a source replication server, it treats threads associated with currently connected replicas like other client threads. That is, each one is marked as killed and exits when it next checks its state.
+   Se o Server for um *source replication server* (servidor de replicação de origem), ele trata as Threads associadas a Replicas atualmente conectadas como outras Client Threads. Ou seja, cada uma é marcada como *killed* e sai quando verifica seu estado na próxima vez.
 
-   If the server is a replica, it stops the I/O and SQL threads, if they are active, before marking client threads as killed. The SQL thread is permitted to finish its current statement (to avoid causing replication problems), and then stops. If the SQL thread is in the middle of a transaction at this point, the server waits until the current replication event group (if any) has finished executing, or until the user issues a [`KILL QUERY`](kill.html "13.7.6.4 KILL Statement") or [`KILL CONNECTION`](kill.html "13.7.6.4 KILL Statement") statement. See also [Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement"). Since nontransactional statements cannot be rolled back, in order to guarantee crash-safe replication, only transactional tables should be used.
+   Se o Server for uma Replica, ele interrompe as Threads de I/O e SQL, se estiverem ativas, antes de marcar as Client Threads como *killed*. A SQL Thread é permitida a finalizar seu Statement atual (para evitar causar problemas de Replication) e, em seguida, para. Se a SQL Thread estiver no meio de uma transaction neste ponto, o Server espera até que o grupo de eventos de Replication atual (se houver) termine a execução, ou até que o usuário emita um Statement [`KILL QUERY`](kill.html "13.7.6.4 KILL Statement") ou [`KILL CONNECTION`](kill.html "13.7.6.4 KILL Statement"). Consulte também [Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement"). Uma vez que Statements não transacionais não podem ser *rolled back*, para garantir Replication *crash-safe* (segura contra falhas), apenas tabelas transacionais devem ser usadas.
 
-   Note
+   Nota
 
-   To guarantee crash safety on the replica, you must run the replica with [`--relay-log-recovery`](replication-options-replica.html#sysvar_relay_log_recovery) enabled.
+   Para garantir a segurança contra falhas (*crash safety*) na Replica, você deve executá-la com [`--relay-log-recovery`](replication-options-replica.html#sysvar_relay_log_recovery) ativado.
 
-   See also [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories")).
+   Consulte também [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories")).
 
-5. The server shuts down or closes storage engines.
+5. O Server encerra ou fecha os Storage Engines.
 
-   At this stage, the server flushes the table cache and closes all open tables.
+   Nesta fase, o Server *flushes* (descarrega) o table cache e fecha todas as tabelas abertas.
 
-   Each storage engine performs any actions necessary for tables that it manages. `InnoDB` flushes its buffer pool to disk (unless [`innodb_fast_shutdown`](innodb-parameters.html#sysvar_innodb_fast_shutdown) is 2), writes the current LSN to the tablespace, and terminates its own internal threads. `MyISAM` flushes any pending index writes for a table.
+   Cada Storage Engine executa as ações necessárias para as tabelas que gerencia. O `InnoDB` *flushes* seu Buffer Pool para o disco (a menos que [`innodb_fast_shutdown`](innodb-parameters.html#sysvar_innodb_fast_shutdown) seja 2), escreve o LSN atual no tablespace e encerra suas próprias Threads internas. O `MyISAM` *flushes* quaisquer *index writes* pendentes para uma tabela.
 
-6. The server exits.
+6. O Server sai.
 
-To provide information to management processes, the server returns one of the exit codes described in the following list. The phrase in parentheses indicates the action taken by systemd in response to the code, for platforms on which systemd is used to manage the server.
+Para fornecer informações aos processos de gerenciamento, o Server retorna um dos *exit codes* descritos na lista a seguir. A frase entre parênteses indica a ação tomada pelo *systemd* em resposta ao código, para plataformas nas quais o *systemd* é usado para gerenciar o Server.
 
-* 0 = successful termination (no restart done)
-* 1 = unsuccessful termination (no restart done)
-* 2 = unsuccessful termination (restart done)
+* 0 = encerramento bem-sucedido (sem reinício executado)
+* 1 = encerramento mal-sucedido (sem reinício executado)
+* 2 = encerramento mal-sucedido (reinício executado)

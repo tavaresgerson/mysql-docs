@@ -1,53 +1,53 @@
-## 3.5 Using mysql in Batch Mode
+## 3.5 Usando o mysql em Modo Batch
 
-In the previous sections, you used [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") interactively to enter statements and view the results. You can also run [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") in batch mode. To do this, put the statements you want to run in a file, then tell [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") to read its input from the file:
+Nas seções anteriores, você usou o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") interativamente para inserir statements e visualizar os resultados. Você também pode executar o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") em modo batch. Para fazer isso, coloque os statements que você deseja executar em um arquivo e, em seguida, instrua o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") a ler sua input a partir desse arquivo:
 
 ```sql
 $> mysql < batch-file
 ```
 
-If you are running [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") under Windows and have some special characters in the file that cause problems, you can do this:
+Se você estiver executando o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") no Windows e tiver caracteres especiais no arquivo que causem problemas, você pode fazer o seguinte:
 
 ```sql
 C:\> mysql -e "source batch-file"
 ```
 
-If you need to specify connection parameters on the command line, the command might look like this:
+Se você precisar especificar parâmetros de conexão na linha de comando, o comando pode se parecer com isto:
 
 ```sql
 $> mysql -h host -u user -p < batch-file
 Enter password: ********
 ```
 
-When you use [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") this way, you are creating a script file, then executing the script.
+Quando você usa o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") dessa maneira, você está criando um arquivo script e, em seguida, executando o script.
 
-If you want the script to continue even if some of the statements in it produce errors, you should use the [`--force`](mysql-command-options.html#option_mysql_force) command-line option.
+Se você quiser que o script continue mesmo que alguns dos statements produzam erros, você deve usar a opção de linha de comando [`--force`](mysql-command-options.html#option_mysql_force).
 
-Why use a script? Here are a few reasons:
+Por que usar um script? Aqui estão algumas razões:
 
-* If you run a query repeatedly (say, every day or every week), making it a script enables you to avoid retyping it each time you execute it.
+* Se você executa uma Query repetidamente (por exemplo, todos os dias ou todas as semanas), transformá-la em um script permite que você evite digitá-la novamente toda vez que for executada.
 
-* You can generate new queries from existing ones that are similar by copying and editing script files.
+* Você pode gerar novas Queries a partir de outras existentes que são semelhantes, copiando e editando arquivos script.
 
-* Batch mode can also be useful while you are developing a query, particularly for multiple-line statements or multiple-statement sequences. If you make a mistake, you do not have to retype everything. Just edit your script to correct the error, then tell [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") to execute it again.
+* O modo batch também pode ser útil enquanto você está desenvolvendo uma Query, particularmente para statements de múltiplas linhas ou sequências de múltiplos statements. Se você cometer um erro, não precisa redigitar tudo. Basta editar seu script para corrigir o erro e, em seguida, instruir o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") a executá-lo novamente.
 
-* If you have a query that produces a lot of output, you can run the output through a pager rather than watching it scroll off the top of your screen:
+* Se você tiver uma Query que produz muita output, você pode canalizar a output através de um pager em vez de vê-la rolar para fora da parte superior da sua tela:
 
   ```sql
   $> mysql < batch-file | more
   ```
 
-* You can catch the output in a file for further processing:
+* Você pode capturar a output em um arquivo para processamento posterior:
 
   ```sql
   $> mysql < batch-file > mysql.out
   ```
 
-* You can distribute your script to other people so that they can also run the statements.
+* Você pode distribuir seu script para outras pessoas para que elas também possam executar os statements.
 
-* Some situations do not allow for interactive use, for example, when you run a query from a **cron** job. In this case, you must use batch mode.
+* Algumas situações não permitem o uso interativo, por exemplo, quando você executa uma Query a partir de um **cron** job. Neste caso, você deve usar o modo batch.
 
-The default output format is different (more concise) when you run [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") in batch mode than when you use it interactively. For example, the output of `SELECT DISTINCT species FROM pet` looks like this when [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") is run interactively:
+O formato de output padrão é diferente (mais conciso) quando você executa o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") em modo batch do que quando você o usa interativamente. Por exemplo, a output de `SELECT DISTINCT species FROM pet` se parece com isto quando o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") é executado interativamente:
 
 ```sql
 +---------+
@@ -61,7 +61,7 @@ The default output format is different (more concise) when you run [**mysql**](m
 +---------+
 ```
 
-In batch mode, the output looks like this instead:
+Em modo batch, a output se parece com isto:
 
 ```sql
 species
@@ -72,13 +72,13 @@ hamster
 snake
 ```
 
-If you want to get the interactive output format in batch mode, use [**mysql -t**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"). To echo to the output the statements that are executed, use [**mysql -v**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
+Se você deseja obter o formato de output interativo em modo batch, use [**mysql -t**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"). Para ecoar na output os statements que estão sendo executados, use [**mysql -v**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
 
-You can also use scripts from the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") prompt by using the `source` command or `\.` command:
+Você também pode usar scripts a partir do prompt do [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") usando o comando `source` ou o comando `\.`:
 
 ```sql
 mysql> source filename;
 mysql> \. filename
 ```
 
-See [Section 4.5.1.5, “Executing SQL Statements from a Text File”](mysql-batch-commands.html "4.5.1.5 Executing SQL Statements from a Text File"), for more information.
+Veja [Seção 4.5.1.5, “Executing SQL Statements from a Text File”](mysql-batch-commands.html "4.5.1.5 Executing SQL Statements from a Text File"), para mais informações.

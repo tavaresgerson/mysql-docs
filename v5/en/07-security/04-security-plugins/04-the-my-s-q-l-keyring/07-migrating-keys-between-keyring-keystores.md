@@ -1,90 +1,90 @@
-#### 6.4.4.7 Migrating Keys Between Keyring Keystores
+#### 6.4.4.7 Migrando Keys Entre Keystores do Keyring
 
-A keyring migration copies keys from one keystore to another, enabling a DBA to switch a MySQL installation to a different keystore. to another. A successful migration operation has this result:
+Uma `migration` de `keyring` copia `keys` de um `keystore` para outro, permitindo que um DBA mude uma instalação MySQL para um `keystore` diferente. Uma operação de `migration` bem-sucedida resulta no seguinte:
 
-* The destination keystore contains the keys it had prior to the migration, plus the keys from the source keystore.
+* O `keystore` de destino contém as `keys` que possuía antes da `migration`, mais as `keys` do `keystore` de origem.
 
-* The source keystore remains the same before and after the migration (because keys are copied, not moved).
+* O `keystore` de origem permanece o mesmo antes e depois da `migration` (porque as `keys` são copiadas, não movidas).
 
-If a key to be copied already exists in the destination keystore, an error occurs and the destination keystore is restored to its premigration state.
+Se uma `key` a ser copiada já existir no `keystore` de destino, ocorrerá um erro e o `keystore` de destino será restaurado ao seu estado pré-`migration`.
 
-The following sections discuss the characteristics of offline and online migrations and describe how to perform migrations.
+As seções a seguir discutem as características das `migrations offline` e `online` e descrevem como realizá-las.
 
-* [Offline and Online Key Migrations](keyring-key-migration.html#keyring-key-migration-offline-online "Offline and Online Key Migrations")
-* [Key Migration Using a Migration Server](keyring-key-migration.html#keyring-key-migration-using-migration-server "Key Migration Using a Migration Server")
-* [Key Migration Involving Multiple Running Servers](keyring-key-migration.html#keyring-key-migration-multiple-running-servers "Key Migration Involving Multiple Running Servers")
+* [Migrations de Key Offline e Online](keyring-key-migration.html#keyring-key-migration-offline-online "Migrations de Key Offline e Online")
+* [Migration de Key Usando um Migration Server](keyring-key-migration.html#keyring-key-migration-using-migration-server "Migration de Key Usando um Migration Server")
+* [Migration de Key Envolvendo Múltiplos Servers em Execução](keyring-key-migration.html#keyring-key-migration-multiple-running-servers "Migration de Key Envolvendo Múltiplos Servers em Execução")
 
-##### Offline and Online Key Migrations
+##### Migrations de Key Offline e Online
 
-A key migration is either offline or online:
+Uma `migration` de `key` pode ser `offline` ou `online`:
 
-* Offline migration: For use when you are sure that no running server on the local host is using the source or destination keystore. In this case, the migration operation can copy keys from the source keystore to the destination without the possibility of a running server modifying keystore content during the operation.
+* Migration Offline: Para uso quando houver certeza de que nenhum `server` em execução no `host` local está usando o `keystore` de origem ou de destino. Neste caso, a operação de `migration` pode copiar `keys` do `keystore` de origem para o destino sem a possibilidade de um `server` em execução modificar o conteúdo do `keystore` durante a operação.
 
-* Online migration: For use when a running server on the local host is using the source or destination keystore. In this case, care must be taken to prevent that server from updating keystores during the migration. This involves connecting to the running server and instructing it to pause keyring operations so that keys can be copied safely from the source keystore to the destination. When key copying is complete, the running server is permitted to resume keyring operations.
+* Migration Online: Para uso quando um `server` em execução no `host` local estiver usando o `keystore` de origem ou de destino. Neste caso, deve-se tomar cuidado para evitar que esse `server` atualize os `keystores` durante a `migration`. Isso envolve conectar-se ao `server` em execução e instruí-lo a pausar as operações do `keyring` para que as `keys` possam ser copiadas com segurança do `keystore` de origem para o destino. Quando a cópia das `keys` estiver completa, o `server` em execução é permitido a retomar as operações do `keyring`.
 
-When you plan a key migration, use these points to decide whether it should be offline or online:
+Ao planejar uma `key migration`, use os seguintes pontos para decidir se ela deve ser `offline` ou `online`:
 
-* Do not perform offline migration involving a keystore that is in use by a running server.
+* Não execute `migration offline` envolvendo um `keystore` que esteja em uso por um `server` em execução.
 
-* Pausing keyring operations during an online migration is accomplished by connecting to the running server and setting its global [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) system variable to `OFF` before key copying and `ON` after key copying. This has several implications:
+* A pausa das operações de `keyring` durante uma `migration online` é realizada conectando-se ao `server` em execução e definindo sua `System Variable` global [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) como `OFF` antes da cópia das `keys` e como `ON` após a cópia. Isso tem várias implicações:
 
-  + [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) was introduced in MySQL 5.7.21, so online migration is possible only if the running server is from MySQL 5.7.21 or higher. If the running server is older, you must stop it, perform an offline migration, and restart it. All migration instructions elsewhere that refer to [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) are subject to this condition.
+  + [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) foi introduzida no MySQL 5.7.21, portanto, a `migration online` só é possível se o `server` em execução for do MySQL 5.7.21 ou superior. Se o `server` em execução for mais antigo, você deve pará-lo, realizar uma `migration offline` e reiniciá-lo. Todas as instruções de `migration` que fazem referência a [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) estão sujeitas a esta condição.
 
-  + The account used to connect to the running server must have the [`SUPER`](privileges-provided.html#priv_super) privilege required to modify [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations).
+  + A conta usada para conectar-se ao `server` em execução deve ter o `privilege` [`SUPER`](privileges-provided.html#priv_super) necessário para modificar [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations).
 
-  + For an online migration, the migration operation takes care of enabling and disabling [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) on the running server. If the migration operation exits abnormally (for example, if it is forcibly terminated), it is possible for [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) to remain disabled on the running server, leaving it unable to perform keyring operations. In this case, it may be necessary to connect to the running server and enable [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) manually using this statement:
+  + Para uma `migration online`, a operação de `migration` se encarrega de habilitar e desabilitar [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) no `server` em execução. Se a operação de `migration` for encerrada de forma anormal (por exemplo, se for terminada à força), é possível que [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) permaneça desabilitada no `server` em execução, deixando-o incapaz de executar operações de `keyring`. Neste caso, pode ser necessário conectar-se ao `server` em execução e habilitar [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) manualmente usando esta instrução:
 
     ```sql
     SET GLOBAL keyring_operations = ON;
     ```
 
-* Online key migration provides for pausing keyring operations on a single running server. To perform a migration if multiple running servers are using the keystores involved, use the procedure described at [Key Migration Involving Multiple Running Servers](keyring-key-migration.html#keyring-key-migration-multiple-running-servers "Key Migration Involving Multiple Running Servers").
+* A `key migration online` prevê a pausa das operações de `keyring` em um único `server` em execução. Para realizar uma `migration` se múltiplos `servers` em execução estiverem usando os `keystores` envolvidos, use o procedimento descrito em [Migration de Key Envolvendo Múltiplos Servers em Execução](keyring-key-migration.html#keyring-key-migration-multiple-running-servers "Migration de Key Envolvendo Múltiplos Servers em Execução").
 
-##### Key Migration Using a Migration Server
+##### Migration de Key Usando um Migration Server
 
-As of MySQL 5.7.21, a MySQL server becomes a migration server if invoked in a special operational mode that supports key migration. A migration server does not accept client connections. Instead, it runs only long enough to migrate keys, then exits. A migration server reports errors to the console (the standard error output).
+A partir do MySQL 5.7.21, um `MySQL Server` se torna um `migration server` se invocado em um modo operacional especial que suporta a `key migration`. Um `migration server` não aceita conexões de `client`. Em vez disso, ele é executado apenas o tempo suficiente para migrar `keys`, e depois é encerrado. Um `migration server` reporta erros para o console (o `standard error output`).
 
-To perform a key migration operation using a migration server, determine the key migration options required to specify which keyring plugins or components are involved, and whether the migration is offline or online:
+Para realizar uma operação de `key migration` usando um `migration server`, determine as opções de `key migration` necessárias para especificar quais `plugins` ou componentes de `keyring` estão envolvidos e se a `migration` é `offline` ou `online`:
 
-* To indicate the source and destination keyring plugins, specify these options:
+* Para indicar os `plugins` de `keyring` de origem e destino, especifique estas opções:
 
-  + [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source): The source keyring plugin that manages the keys to be migrated.
+  + [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source): O `keyring plugin` de origem que gerencia as `keys` a serem migradas.
 
-  + [`--keyring-migration-destination`](keyring-options.html#option_mysqld_keyring-migration-destination): The destination keyring plugin to which the migrated keys are to be copied.
+  + [`--keyring-migration-destination`](keyring-options.html#option_mysqld_keyring-migration-destination): O `keyring plugin` de destino para o qual as `keys` migradas devem ser copiadas.
 
-  These options tell the server to run in key migration mode. For key migration operations, both options are mandatory. The source and destination plugins must differ, and the migration server must support both plugins.
+  Estas opções indicam ao `server` para executar no modo de `key migration`. Para operações de `key migration`, ambas as opções são obrigatórias. Os `plugins` de origem e destino devem ser diferentes, e o `migration server` deve suportar ambos os `plugins`.
 
-* For an offline migration, no additional key migration options are needed.
+* Para uma `migration offline`, nenhuma opção adicional de `key migration` é necessária.
 
-* For an online migration, some running server currently is using the source or destination keystore. To invoke the migration server, specify additional key migration options that indicate how to connect to the running server. This is necessary so that the migration server can connect to the running server and tell it to pause keyring use during the migration operation.
+* Para uma `migration online`, algum `server` em execução está atualmente usando o `keystore` de origem ou de destino. Para invocar o `migration server`, especifique opções adicionais de `key migration` que indiquem como conectar-se ao `server` em execução. Isso é necessário para que o `migration server` possa se conectar ao `server` em execução e instruí-lo a pausar o uso do `keyring` durante a operação de `migration`.
 
-  Use of any of the following options signifies an online migration:
+  O uso de qualquer uma das seguintes opções significa uma `migration online`:
 
-  + [`--keyring-migration-host`](keyring-options.html#option_mysqld_keyring-migration-host): The host where the running server is located. This is always the local host because the migration server can migrate keys only between keystores managed by local plugins.
+  + [`--keyring-migration-host`](keyring-options.html#option_mysqld_keyring-migration-host): O `host` onde o `server` em execução está localizado. Este é sempre o `host` local, porque o `migration server` pode migrar `keys` apenas entre `keystores` gerenciados por `plugins` locais.
 
-  + [`--keyring-migration-user`](keyring-options.html#option_mysqld_keyring-migration-user), [`--keyring-migration-password`](keyring-options.html#option_mysqld_keyring-migration-password): The account credentials to use to connect to the running server.
+  + [`--keyring-migration-user`](keyring-options.html#option_mysqld_keyring-migration-user), [`--keyring-migration-password`](keyring-options.html#option_mysqld_keyring-migration-password): As `credentials` de conta a serem usadas para conectar-se ao `server` em execução.
 
-  + [`--keyring-migration-port`](keyring-options.html#option_mysqld_keyring-migration-port): For TCP/IP connections, the port number to connect to on the running server.
+  + [`--keyring-migration-port`](keyring-options.html#option_mysqld_keyring-migration-port): Para conexões TCP/IP, o número da `port` para conectar-se no `server` em execução.
 
-  + [`--keyring-migration-socket`](keyring-options.html#option_mysqld_keyring-migration-socket): For Unix socket file or Windows named pipe connections, the socket file or named pipe to connect to on the running server.
+  + [`--keyring-migration-socket`](keyring-options.html#option_mysqld_keyring-migration-socket): Para arquivos `socket` Unix ou conexões de `named pipe` Windows, o arquivo `socket` ou `named pipe` para conectar-se no `server` em execução.
 
-For additional details about the key migration options, see [Section 6.4.4.11, “Keyring Command Options”](keyring-options.html "6.4.4.11 Keyring Command Options").
+Para detalhes adicionais sobre as opções de `key migration`, consulte [Section 6.4.4.11, “Keyring Command Options”](keyring-options.html "6.4.4.11 Keyring Command Options").
 
-Start the migration server with key migration options indicating the source and destination keystores and whether the migration is offline or online, possibly with other options. Keep the following considerations in mind:
+Inicie o `migration server` com opções de `key migration` que indiquem os `keystores` de origem e destino e se a `migration` é `offline` ou `online`, possivelmente com outras opções. Mantenha as seguintes considerações em mente:
 
-* Other server options might be required, such as configuration parameters for the two keyring plugins. For example, if `keyring_file` is the source or destination, you must set the [`keyring_file_data`](keyring-system-variables.html#sysvar_keyring_file_data) system variable if the keyring data file location is not the default location. Other non-keyring options may be required as well. One way to specify these options is by using [`--defaults-file`](option-file-options.html#option_general_defaults-file) to name an option file that contains the required options.
+* Outras opções do `server` podem ser necessárias, como parâmetros de configuração para os dois `keyring plugins`. Por exemplo, se `keyring_file` for a origem ou o destino, você deve definir a `System Variable` [`keyring_file_data`](keyring-system-variables.html#sysvar_keyring_file_data) se a localização do arquivo de dados do `keyring` não for o local padrão. Outras opções não relacionadas ao `keyring` também podem ser necessárias. Uma maneira de especificar essas opções é usando [`--defaults-file`](option-file-options.html#option_general_defaults-file) para nomear um arquivo de opções que contenha as opções necessárias.
 
-* The migration server expects path name option values to be full paths. Relative path names may not be resolved as you expect.
+* O `migration server` espera que os valores das opções de nome de caminho sejam caminhos completos (`full paths`). Nomes de caminho relativos podem não ser resolvidos como você espera.
 
-* The user who invokes a server in key-migration mode must not be the `root` operating system user, unless the [`--user`](server-options.html#option_mysqld_user) option is specified with a non-`root` user name to run the server as that user.
+* O usuário que invoca um `server` no modo de `key-migration` não deve ser o usuário `root` do `Operating System`, a menos que a opção [`--user`](server-options.html#option_mysqld_user) seja especificada com um nome de usuário diferente de `root` para executar o `server` como esse usuário.
 
-* The user a server in key-migration mode runs as must have permission to read and write any local keyring files, such as the data file for a file-based plugin.
+* O usuário sob o qual um `server` no modo de `key-migration` é executado deve ter permissão para ler e escrever quaisquer arquivos `keyring` locais, como o arquivo de dados para um `plugin` baseado em arquivo.
 
-  If you invoke the migration server from a system account different from that normally used to run MySQL, it might create keyring directories or files that are inaccessible to the server during normal operation. Suppose that [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") normally runs as the `mysql` operating system user, but you invoke the migration server while logged in as `isabel`. Any new directories or files created by the migration server are owned by `isabel`. Subsequent startup fails when a server run as the `mysql` operating system user attempts to access file system objects owned by `isabel`.
+  Se você invocar o `migration server` a partir de uma conta de `System` diferente daquela normalmente usada para executar o MySQL, ele pode criar diretórios ou arquivos de `keyring` que são inacessíveis ao `server` durante a operação normal. Suponha que [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") normalmente seja executado como o usuário `mysql` do `Operating System`, mas você invoca o `migration server` enquanto está logado como `isabel`. Quaisquer novos diretórios ou arquivos criados pelo `migration server` serão de propriedade de `isabel`. A inicialização subsequente falha quando um `server` executado como o usuário `mysql` do `Operating System` tenta acessar objetos do `file system` de propriedade de `isabel`.
 
-  To avoid this issue, start the migration server as the `root` operating system user and provide a [`--user=user_name`](server-options.html#option_mysqld_user) option, where *`user_name`* is the system account normally used to run MySQL. Alternatively, after the migration, examine the keyring-related file system objects and change their ownership and permissions if necessary using **chown**, **chmod**, or similar commands, so that the objects are accessible to the running server.
+  Para evitar este problema, inicie o `migration server` como o usuário `root` do `Operating System` e forneça uma opção [`--user=user_name`](server-options.html#option_mysqld_user), onde *`user_name`* é a conta de `system` normalmente usada para executar o MySQL. Alternativamente, após a `migration`, examine os objetos do `file system` relacionados ao `keyring` e altere sua propriedade e permissões, se necessário, usando **chown**, **chmod**, ou comandos semelhantes, para que os objetos sejam acessíveis ao `server` em execução.
 
-Example command line for offline migration (enter the command on a single line):
+Exemplo de linha de comando para `migration offline` (digite o comando em uma única linha):
 
 ```sql
 mysqld --defaults-file=/usr/local/mysql/etc/my.cnf
@@ -93,7 +93,7 @@ mysqld --defaults-file=/usr/local/mysql/etc/my.cnf
   --keyring_encrypted_file_password=password
 ```
 
-Example command line for online migration:
+Exemplo de linha de comando para `migration online`:
 
 ```sql
 mysqld --defaults-file=/usr/local/mysql/etc/my.cnf
@@ -105,45 +105,45 @@ mysqld --defaults-file=/usr/local/mysql/etc/my.cnf
   --keyring-migration-password=root_password
 ```
 
-The key migration server performs a migration operation as follows:
+O `key migration server` executa uma operação de `migration` da seguinte forma:
 
-1. (Online migration only) Connect to the running server using the connection options.
+1. (Apenas `migration online`) Conecta-se ao `server` em execução usando as opções de conexão.
 
-2. (Online migration only) Disable [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) on the running server.
+2. (Apenas `migration online`) Desabilita [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) no `server` em execução.
 
-3. Load the source and destination keyring plugins.
-4. Copy keys from the source keystore to the destination.
-5. Unload the keyring plugins.
-6. (Online migration only) Enable [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) on the running server.
+3. Carrega os `keyring plugins` de origem e destino.
+4. Copia `keys` do `keystore` de origem para o destino.
+5. Descarrega os `keyring plugins`.
+6. (Apenas `migration online`) Habilita [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) no `server` em execução.
 
-7. (Online migration only) Disconnect from the running server.
+7. (Apenas `migration online`) Desconecta-se do `server` em execução.
 
-If an error occurs during key migration, the destination keystore is restored to its premigration state.
+Se ocorrer um erro durante a `key migration`, o `keystore` de destino é restaurado ao seu estado pré-`migration`.
 
-Important
+Importante
 
-For an online migration operation, the migration server takes care of enabling and disabling [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) on the running server. If the migration server exits abnormally (for example, if it is forcibly terminated), it is possible for [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) to remain disabled on the running server, leaving it unable to perform keyring operations. In this case, it may be necessary to connect to the running server and enable [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) manually using this statement:
+Para uma operação de `migration online`, o `migration server` se encarrega de habilitar e desabilitar [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) no `server` em execução. Se o `migration server` for encerrado de forma anormal (por exemplo, se for terminado à força), é possível que [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) permaneça desabilitada no `server` em execução, deixando-o incapaz de executar operações de `keyring`. Neste caso, pode ser necessário conectar-se ao `server` em execução e habilitar [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) manualmente usando esta instrução:
 
 ```sql
 SET GLOBAL keyring_operations = ON;
 ```
 
-After a successful online key migration operation, the running server might need to be restarted:
+Após uma operação de `key migration online` bem-sucedida, o `server` em execução pode precisar ser reiniciado:
 
-* If the running server was using the source keystore before the migration and should continue to use it after the migration, it need not be restarted after the migration.
+* Se o `server` em execução estava usando o `keystore` de origem antes da `migration` e deve continuar a usá-lo após a `migration`, ele não precisa ser reiniciado após a `migration`.
 
-* If the running server was using the destination keystore before the migration and should continue to use it after the migration, it should be restarted after the migration to load all keys migrated into the destination keystore.
+* Se o `server` em execução estava usando o `keystore` de destino antes da `migration` e deve continuar a usá-lo após a `migration`, ele deve ser reiniciado após a `migration` para carregar todas as `keys` migradas para o `keystore` de destino.
 
-* If the running server was using the source keystore before the migration but should use the destination keystore after the migration, it must be reconfigured to use the destination keystore and restarted. In this case, be aware that although the running server is paused from modifying the source keystore during the migration itself, it is not paused during the interval between the migration and the subsequent restart. Care should be taken that the server does not modify the source keystore during this interval because any such changes will not be reflected in the destination keystore.
+* Se o `server` em execução estava usando o `keystore` de origem antes da `migration`, mas deve usar o `keystore` de destino após a `migration`, ele deve ser reconfigurado para usar o `keystore` de destino e ser reiniciado. Neste caso, esteja ciente de que, embora o `server` em execução seja pausado de modificar o `keystore` de origem durante a `migration` em si, ele não é pausado durante o intervalo entre a `migration` e o reinício subsequente. Deve-se tomar cuidado para que o `server` não modifique o `keystore` de origem durante este intervalo, pois quaisquer alterações desse tipo não serão refletidas no `keystore` de destino.
 
-##### Key Migration Involving Multiple Running Servers
+##### Migration de Key Envolvendo Múltiplos Servers em Execução
 
-Online key migration provides for pausing keyring operations on a single running server. To perform a migration if multiple running servers are using the keystores involved, use this procedure:
+A `key migration online` prevê a pausa das operações de `keyring` em um único `server` em execução. Para realizar uma `migration` se múltiplos `servers` em execução estiverem usando os `keystores` envolvidos, use este procedimento:
 
-1. Connect to each running server manually and set [`keyring_operations=OFF`](keyring-system-variables.html#sysvar_keyring_operations). This ensures that no running server is using the source or destination keystore and satisfies the required condition for offline migration.
+1. Conecte-se a cada `server` em execução manualmente e defina [`keyring_operations=OFF`](keyring-system-variables.html#sysvar_keyring_operations). Isso garante que nenhum `server` em execução esteja usando o `keystore` de origem ou de destino e satisfaz a condição necessária para `migration offline`.
 
-2. Use a migration server to perform an offline key migration for each paused server.
+2. Use um `migration server` para realizar uma `key migration offline` para cada `server` pausado.
 
-3. Connect to each running server manually and set [`keyring_operations=ON`](keyring-system-variables.html#sysvar_keyring_operations).
+3. Conecte-se a cada `server` em execução manualmente e defina [`keyring_operations=ON`](keyring-system-variables.html#sysvar_keyring_operations).
 
-All running servers must support the [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations) system variable. Any server that does not must be stopped before the migration and restarted after.
+Todos os `servers` em execução devem suportar a `System Variable` [`keyring_operations`](keyring-system-variables.html#sysvar_keyring_operations). Qualquer `server` que não suporte deve ser parado antes da `migration` e reiniciado depois.

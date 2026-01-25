@@ -1,23 +1,22 @@
-#### 3.3.4.9 Using More Than one Table
+#### 3.3.4.9 Usando Mais de uma Tabela
 
-The `pet` table keeps track of which pets you have. If you want to record other information about them, such as events in their lives like visits to the vet or when litters are born, you need another table. What should this table look like? It needs to contain the following information:
+A tabela `pet` rastreia quais pets você possui. Se você quiser registrar outras informações sobre eles, como eventos em suas vidas (visitas ao veterinário ou nascimento de ninhadas), você precisará de outra tabela. Como essa tabela deve ser? Ela precisa conter as seguintes informações:
 
-* The pet name so that you know which animal each event pertains to.
+* O nome do pet para que você saiba a qual animal cada evento se refere.
+* Uma data para que você saiba quando o evento ocorreu.
+* Um campo para descrever o evento.
+* Um campo de tipo de evento, caso você queira categorizar os eventos.
 
-* A date so that you know when the event occurred.
-* A field to describe the event.
-* An event type field, if you want to be able to categorize events.
-
-Given these considerations, the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement for the `event` table might look like this:
+Dadas estas considerações, o comando [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") para a tabela `event` pode ser assim:
 
 ```sql
 mysql> CREATE TABLE event (name VARCHAR(20), date DATE,
        type VARCHAR(15), remark VARCHAR(255));
 ```
 
-As with the `pet` table, it is easiest to load the initial records by creating a tab-delimited text file containing the following information.
+Assim como na tabela `pet`, é mais fácil carregar os registros iniciais criando um arquivo de texto delimitado por tabulações (tab-delimited) contendo as seguintes informações.
 
-<table summary="pet record data that appears in a tab delimited text file, as described in the preceding text.">
+<table summary="Dados de registro de pet que aparecem em um arquivo de texto delimitado por tabulações, conforme descrito no texto anterior.">
    <col style="width: 15%"/>
    <col style="width: 15%"/>
    <col style="width: 15%"/>
@@ -35,31 +34,31 @@ As with the `pet` table, it is easiest to load the initial records by creating a
          <th>Fluffy</th>
          <td>1995-05-15</td>
          <td>litter</td>
-         <td>4 kittens, 3 female, 1 male</td>
+         <td>4 gatinhos, 3 fêmeas, 1 macho</td>
       </tr>
       <tr>
          <th>Buffy</th>
          <td>1993-06-23</td>
          <td>litter</td>
-         <td>5 puppies, 2 female, 3 male</td>
+         <td>5 filhotes, 2 fêmeas, 3 machos</td>
       </tr>
       <tr>
          <th>Buffy</th>
          <td>1994-06-19</td>
          <td>litter</td>
-         <td>3 puppies, 3 female</td>
+         <td>3 filhotes, 3 fêmeas</td>
       </tr>
       <tr>
          <th>Chirpy</th>
          <td>1999-03-21</td>
          <td>vet</td>
-         <td>needed beak straightened</td>
+         <td>precisou de bico endireitado</td>
       </tr>
       <tr>
          <th>Slim</th>
          <td>1997-08-03</td>
          <td>vet</td>
-         <td>broken rib</td>
+         <td>costela quebrada</td>
       </tr>
       <tr>
          <th>Bowser</th>
@@ -77,32 +76,32 @@ As with the `pet` table, it is easiest to load the initial records by creating a
          <th>Fang</th>
          <td>1998-08-28</td>
          <td>birthday</td>
-         <td>Gave him a new chew toy</td>
+         <td>Dei a ele um novo brinquedo de mastigar</td>
       </tr>
       <tr>
          <th>Claws</th>
          <td>1998-03-17</td>
          <td>birthday</td>
-         <td>Gave him a new flea collar</td>
+         <td>Dei a ele uma nova coleira antipulgas</td>
       </tr>
       <tr>
          <th>Whistler</th>
          <td>1998-12-09</td>
          <td>birthday</td>
-         <td>First birthday</td>
+         <td>Primeiro aniversário</td>
       </tr>
    </tbody>
 </table>
 
-Load the records like this:
+Carregue os registros desta forma:
 
 ```sql
 mysql> LOAD DATA LOCAL INFILE 'event.txt' INTO TABLE event;
 ```
 
-Based on what you have learned from the queries that you have run on the `pet` table, you should be able to perform retrievals on the records in the `event` table; the principles are the same. But when is the `event` table by itself insufficient to answer questions you might ask?
+Com base no que você aprendeu com as Querys que executou na tabela `pet`, você deve ser capaz de realizar recuperações (retrievals) nos registros da tabela `event`; os princípios são os mesmos. Mas quando a tabela `event` por si só é insuficiente para responder às perguntas que você possa fazer?
 
-Suppose that you want to find out the ages at which each pet had its litters. We saw earlier how to calculate ages from two dates. The litter date of the mother is in the `event` table, but to calculate her age on that date you need her birth date, which is stored in the `pet` table. This means the query requires both tables:
+Suponha que você queira descobrir as idades em que cada pet teve suas ninhadas. Vimos anteriormente como calcular idades a partir de duas datas. A data da ninhada da mãe está na tabela `event`, mas para calcular a idade dela nessa data, você precisa da data de nascimento dela, que está armazenada na tabela `pet`. Isso significa que a Query requer ambas as tabelas:
 
 ```sql
 mysql> SELECT pet.name,
@@ -120,17 +119,17 @@ mysql> SELECT pet.name,
 +--------+------+-----------------------------+
 ```
 
-There are several things to note about this query:
+Há várias coisas a serem observadas sobre esta Query:
 
-* The `FROM` clause joins two tables because the query needs to pull information from both of them.
+* A cláusula `FROM` faz um JOIN em duas tabelas porque a Query precisa extrair informações de ambas.
 
-* When combining (joining) information from multiple tables, you need to specify how records in one table can be matched to records in the other. This is easy because they both have a `name` column. The query uses an `ON` clause to match up records in the two tables based on the `name` values.
+* Ao combinar (joining) informações de múltiplas tabelas, você precisa especificar como os registros em uma tabela podem ser combinados com os registros na outra. Isso é fácil porque ambas têm uma coluna `name`. A Query usa uma cláusula `ON` para combinar os registros nas duas tabelas com base nos valores de `name`.
 
-  The query uses an `INNER JOIN` to combine the tables. An `INNER JOIN` permits rows from either table to appear in the result if and only if both tables meet the conditions specified in the `ON` clause. In this example, the `ON` clause specifies that the `name` column in the `pet` table must match the `name` column in the `event` table. If a name appears in one table but not the other, the row does not appear in the result because the condition in the `ON` clause fails.
+  A Query usa um `INNER JOIN` para combinar as tabelas. Um `INNER JOIN` permite que linhas de ambas as tabelas apareçam no resultado se, e somente se, ambas as tabelas satisfizerem as condições especificadas na cláusula `ON`. Neste exemplo, a cláusula `ON` especifica que a coluna `name` na tabela `pet` deve corresponder à coluna `name` na tabela `event`. Se um nome aparecer em uma tabela, mas não na outra, a linha não aparecerá no resultado porque a condição na cláusula `ON` falha.
 
-* Because the `name` column occurs in both tables, you must be specific about which table you mean when referring to the column. This is done by prepending the table name to the column name.
+* Como a coluna `name` ocorre em ambas as tabelas, você deve ser específico sobre qual tabela você se refere ao mencionar a coluna. Isso é feito prefixando o nome da tabela ao nome da coluna.
 
-You need not have two different tables to perform a join. Sometimes it is useful to join a table to itself, if you want to compare records in a table to other records in that same table. For example, to find breeding pairs among your pets, you can join the `pet` table with itself to produce candidate pairs of live males and females of like species:
+Você não precisa ter duas tabelas diferentes para realizar um JOIN. Às vezes, é útil unir uma tabela a si mesma, caso você queira comparar registros em uma tabela com outros registros nessa mesma tabela. Por exemplo, para encontrar pares de reprodução (breeding pairs) entre seus pets, você pode fazer um JOIN da tabela `pet` com ela mesma para produzir pares candidatos de machos e fêmeas vivos da mesma espécie:
 
 ```sql
 mysql> SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species
@@ -146,4 +145,4 @@ mysql> SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species
 +--------+------+-------+------+---------+
 ```
 
-In this query, we specify aliases for the table name to refer to the columns and keep straight which instance of the table each column reference is associated with.
+Nesta Query, especificamos aliases para o nome da tabela para nos referirmos às colunas e mantermos claro qual instância da tabela está associada a cada referência de coluna.

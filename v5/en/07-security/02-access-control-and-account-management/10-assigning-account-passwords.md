@@ -1,43 +1,43 @@
-### 6.2.10 Assigning Account Passwords
+### 6.2.10 Atribuindo Senhas de Contas
 
-Required credentials for clients that connect to the MySQL server can include a password. This section describes how to assign passwords for MySQL accounts.
+As credenciais necessárias para os clientes que se conectam ao servidor MySQL podem incluir uma password. Esta seção descreve como atribuir passwords para contas MySQL.
 
-MySQL stores credentials in the `user` table in the `mysql` system database. Operations that assign or modify passwords are permitted only to users with the [`CREATE USER`](privileges-provided.html#priv_create-user) privilege, or, alternatively, privileges for the `mysql` database ([`INSERT`](privileges-provided.html#priv_insert) privilege to create new accounts, [`UPDATE`](privileges-provided.html#priv_update) privilege to modify existing accounts). If the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, use of account-modification statements such as [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") or [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") additionally requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+O MySQL armazena credenciais na tabela `user` no system database `mysql`. Operações que atribuem ou modificam passwords são permitidas apenas a usuários com o privilege [`CREATE USER`](privileges-provided.html#priv_create-user), ou, alternativamente, privileges para o database `mysql` (privilege [`INSERT`](privileges-provided.html#priv_insert) para criar novas contas, privilege [`UPDATE`](privileges-provided.html#priv_update) para modificar contas existentes). Se a system variable [`read_only`](server-system-variables.html#sysvar_read_only) estiver habilitada, o uso de statements de modificação de conta, como [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") ou [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), requer adicionalmente o privilege [`SUPER`](privileges-provided.html#priv_super).
 
-The discussion here summarizes syntax only for the most common password-assignment statements. For complete details on other possibilities, see [Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement"), [Section 13.7.1.1, “ALTER USER Statement”](alter-user.html "13.7.1.1 ALTER USER Statement"), [Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement"), and [Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement").
+A discussão aqui resume a sintaxe apenas para os statements de atribuição de password mais comuns. Para detalhes completos sobre outras possibilidades, consulte [Seção 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement"), [Seção 13.7.1.1, “ALTER USER Statement”](alter-user.html "13.7.1.1 ALTER USER Statement"), [Seção 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement") e [Seção 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement").
 
-MySQL uses plugins to perform client authentication; see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). In password-assigning statements, the authentication plugin associated with an account performs any hashing required of a cleartext password specified. This enables MySQL to obfuscate passwords prior to storing them in the `mysql.user` system table. For the statements described here, MySQL automatically hashes the password specified. There are also syntax for [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") and [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") that permits hashed values to be specified literally. For details, see the descriptions of those statements.
+O MySQL usa plugins para realizar a client authentication; consulte [Seção 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). Em statements de atribuição de password, o authentication plugin associado a uma conta executa qualquer hashing necessário de uma cleartext password especificada. Isso permite que o MySQL ofusque as passwords antes de armazená-las na system table `mysql.user`. Para os statements descritos aqui, o MySQL aplica hashing automaticamente à password especificada. Há também sintaxes para [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") e [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") que permitem que valores com hashing sejam especificados literalmente. Para detalhes, consulte as descrições desses statements.
 
-To assign a password when you create a new account, use [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") and include an `IDENTIFIED BY` clause:
+Para atribuir uma password ao criar uma nova conta, use [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") e inclua uma cláusula `IDENTIFIED BY`:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost' IDENTIFIED BY 'password';
 ```
 
-[`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") also supports syntax for specifying the account authentication plugin. See [Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement").
+[`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") também suporta sintaxe para especificar o account authentication plugin. Consulte [Seção 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement").
 
-To assign or change a password for an existing account, use the [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement with an `IDENTIFIED BY` clause:
+Para atribuir ou alterar uma password para uma conta existente, use o statement [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") com uma cláusula `IDENTIFIED BY`:
 
 ```sql
 ALTER USER 'jeffrey'@'localhost' IDENTIFIED BY 'password';
 ```
 
-If you are not connected as an anonymous user, you can change your own password without naming your own account literally:
+Se você não estiver conectado como um anonymous user, você pode mudar sua própria password sem nomear sua própria conta literalmente:
 
 ```sql
 ALTER USER USER() IDENTIFIED BY 'password';
 ```
 
-To change an account password from the command line, use the [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command:
+Para alterar uma account password a partir da linha de comando, use o comando [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"):
 
 ```sql
 mysqladmin -u user_name -h host_name password "password"
 ```
 
-The account for which this command sets the password is the one with a row in the `mysql.user` system table that matches *`user_name`* in the `User` column and the client host *from which you connect* in the `Host` column.
+A conta para a qual este comando define a password é aquela com uma linha na system table `mysql.user` que corresponde a *`user_name`* na coluna `User` e ao client host *a partir do qual você se conecta* na coluna `Host`.
 
-Warning
+Aviso
 
-Setting a password using [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") should be considered *insecure*. On some systems, your password becomes visible to system status programs such as **ps** that may be invoked by other users to display command lines. MySQL clients typically overwrite the command-line password argument with zeros during their initialization sequence. However, there is still a brief interval during which the value is visible. Also, on some systems this overwriting strategy is ineffective and the password remains visible to **ps**. (SystemV Unix systems and perhaps others are subject to this problem.)
+Definir uma password usando [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") deve ser considerado *inseguro*. Em alguns sistemas, sua password se torna visível para programas de status do sistema, como o **ps**, que podem ser invocados por outros usuários para exibir linhas de comando. Clientes MySQL tipicamente sobrescrevem o argumento da password da linha de comando com zeros durante sua sequência de inicialização. No entanto, ainda existe um breve intervalo durante o qual o valor é visível. Além disso, em alguns sistemas, esta estratégia de sobrescrita é ineficaz e a password permanece visível para o **ps**. (Sistemas SystemV Unix e talvez outros estão sujeitos a este problema.)
 
-If you are using MySQL Replication, be aware that, currently, a password used by a replica as part of a [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement is effectively limited to 32 characters in length; if the password is longer, any excess characters are truncated. This is not due to any limit imposed by the MySQL Server generally, but rather is an issue specific to MySQL Replication. (For more information, see Bug #43439.)
+Se você estiver usando MySQL Replication, esteja ciente de que, atualmente, uma password utilizada por uma replica como parte de um statement [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") é efetivamente limitada a 32 caracteres de comprimento; se a password for mais longa, quaisquer caracteres excedentes são truncados. Isso não se deve a qualquer limite imposto pelo MySQL Server em geral, mas sim a uma questão específica do MySQL Replication. (Para mais informações, consulte Bug #43439.)

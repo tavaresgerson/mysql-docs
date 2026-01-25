@@ -1,32 +1,32 @@
-#### 6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin
+#### 6.4.1.3 Migrando do Hashing de Senha Pré-4.1 e do Plugin mysql_old_password
 
-The MySQL server authenticates connection attempts for each account listed in the `mysql.user` system table using the authentication plugin named in the `plugin` column. If the `plugin` column is empty, the server authenticates the account as follows:
+O servidor MySQL autentica tentativas de conexão para cada conta listada na tabela de sistema `mysql.user` usando o authentication plugin nomeado na coluna `plugin`. Se a coluna `plugin` estiver vazia, o servidor autentica a conta da seguinte forma:
 
-* Before MySQL 5.7, the server uses the `mysql_native_password` or `mysql_old_password` plugin implicitly, depending on the format of the password hash in the `Password` column. If the `Password` value is empty or a 4.1 password hash (41 characters), the server uses `mysql_native_password`. If the password value is a pre-4.1 password hash (16 characters), the server uses `mysql_old_password`. (For additional information about these hash formats, see [Section 6.1.2.4, “Password Hashing in MySQL”](password-hashing.html "6.1.2.4 Password Hashing in MySQL").)
+* Antes do MySQL 5.7, o servidor utiliza o `mysql_native_password` ou `mysql_old_password` plugin implicitamente, dependendo do formato do password hash na coluna `Password`. Se o valor de `Password` estiver vazio ou for um password hash 4.1 (41 caracteres), o servidor utiliza `mysql_native_password`. Se o valor da senha for um password hash pré-4.1 (16 caracteres), o servidor utiliza `mysql_old_password`. (Para informações adicionais sobre esses formatos hash, consulte [Section 6.1.2.4, “Password Hashing in MySQL”](password-hashing.html "6.1.2.4 Password Hashing in MySQL").)
 
-* As of MySQL 5.7, the server requires the `plugin` column to be nonempty and disables accounts that have an empty `plugin` value.
+* A partir do MySQL 5.7, o servidor exige que a coluna `plugin` não esteja vazia e desabilita contas que possuem um valor `plugin` vazio.
 
-Pre-4.1 password hashes and the `mysql_old_password` plugin are deprecated in MySQL 5.6 and support for them is removed in MySQL 5.7. They provide a level of security inferior to that offered by 4.1 password hashing and the `mysql_native_password` plugin.
+Os password hashes pré-4.1 e o `mysql_old_password` plugin são descontinuados (deprecated) no MySQL 5.6 e o suporte a eles foi removido no MySQL 5.7. Eles fornecem um nível de segurança inferior ao oferecido pelo password hashing 4.1 e pelo `mysql_native_password` plugin.
 
-Given the requirement in MySQL 5.7 that the `plugin` column must be nonempty, coupled with removal of `mysql_old_password` support, DBAs are advised to upgrade accounts as follows:
+Dado o requisito no MySQL 5.7 de que a coluna `plugin` deve ser não vazia, juntamente com a remoção do suporte a `mysql_old_password`, os DBAs são aconselhados a atualizar as contas da seguinte forma:
 
-* Upgrade accounts that use `mysql_native_password` implicitly to use it explicitly
+* Atualizar contas que usam `mysql_native_password` implicitamente para usá-lo explicitamente
 
-* Upgrade accounts that use `mysql_old_password` (either implicitly or explicitly) to use `mysql_native_password` explicitly
+* Atualizar contas que usam `mysql_old_password` (seja implícita ou explicitamente) para usar `mysql_native_password` explicitamente
 
-The instructions in this section describe how to perform those upgrades. The result is that no account has an empty `plugin` value and no account uses pre-4.1 password hashing or the `mysql_old_password` plugin.
+As instruções nesta seção descrevem como realizar essas atualizações. O resultado é que nenhuma conta terá um valor `plugin` vazio e nenhuma conta usará password hashing pré-4.1 ou o `mysql_old_password` plugin.
 
-As a variant on these instructions, DBAs might offer users the choice to upgrade to the `sha256_password` plugin, which authenticates using SHA-256 password hashes. For information about this plugin, see [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
+Como uma variação dessas instruções, os DBAs podem oferecer aos usuários a opção de atualizar para o `sha256_password` plugin, que autentica usando SHA-256 password hashes. Para obter informações sobre este plugin, consulte [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
 
-The following table lists the types of `mysql.user` accounts considered in this discussion.
+A tabela a seguir lista os tipos de contas `mysql.user` consideradas nesta discussão.
 
-<table summary="Characteristics of MySQL accounts and what must be done to upgrade them."><col style="width: 30%"/><col style="width: 20%"/><col style="width: 30%"/><col style="width: 20%"/><thead><tr> <th><code>plugin</code> Column</th> <th><code>Password</code> Column</th> <th>Authentication Result</th> <th>Upgrade Action</th> </tr></thead><tbody><tr> <th>Empty</th> <td>Empty</td> <td>Implicitly uses <code>mysql_native_password</code></td> <td>Assign plugin</td> </tr><tr> <th>Empty</th> <td>4.1 hash</td> <td>Implicitly uses <code>mysql_native_password</code></td> <td>Assign plugin</td> </tr><tr> <th>Empty</th> <td>Pre-4.1 hash</td> <td>Implicitly uses <code>mysql_old_password</code></td> <td>Assign plugin, rehash password</td> </tr><tr> <th><code>mysql_native_password</code></th> <td>Empty</td> <td>Explicitly uses <code>mysql_native_password</code></td> <td>None</td> </tr><tr> <th><code>mysql_native_password</code></th> <td>4.1 hash</td> <td>Explicitly uses <code>mysql_native_password</code></td> <td>None</td> </tr><tr> <th><code>mysql_old_password</code></th> <td>Empty</td> <td>Explicitly uses <code>mysql_old_password</code></td> <td>Upgrade plugin</td> </tr><tr> <th><code>mysql_old_password</code></th> <td>Pre-4.1 hash</td> <td>Explicitly uses <code>mysql_old_password</code></td> <td>Upgrade plugin, rehash password</td> </tr></tbody></table>
+<table summary="Características das contas MySQL e o que deve ser feito para atualizá-las."><col style="width: 30%"/><col style="width: 20%"/><col style="width: 30%"/><col style="width: 20%"/><thead><tr> <th>Coluna <code>plugin</code></th> <th>Coluna <code>Password</code></th> <th>Resultado da Autenticação</th> <th>Ação de Upgrade</th> </tr></thead><tbody><tr> <th>Vazio</th> <td>Vazio</td> <td>Usa <code>mysql_native_password</code> implicitamente</td> <td>Atribuir plugin</td> </tr><tr> <th>Vazio</th> <td>Hash 4.1</td> <td>Usa <code>mysql_native_password</code> implicitamente</td> <td>Atribuir plugin</td> </tr><tr> <th>Vazio</th> <td>Hash Pré-4.1</td> <td>Usa <code>mysql_old_password</code> implicitamente</td> <td>Atribuir plugin, rehash password</td> </tr><tr> <th><code>mysql_native_password</code></th> <td>Vazio</td> <td>Usa <code>mysql_native_password</code> explicitamente</td> <td>Nenhuma</td> </tr><tr> <th><code>mysql_native_password</code></th> <td>Hash 4.1</td> <td>Usa <code>mysql_native_password</code> explicitamente</td> <td>Nenhuma</td> </tr><tr> <th><code>mysql_old_password</code></th> <td>Vazio</td> <td>Usa <code>mysql_old_password</code> explicitamente</td> <td>Upgrade do plugin</td> </tr><tr> <th><code>mysql_old_password</code></th> <td>Hash Pré-4.1</td> <td>Usa <code>mysql_old_password</code> explicitamente</td> <td>Upgrade do plugin, rehash password</td> </tr> </tbody></table>
 
-Accounts corresponding to lines for the `mysql_native_password` plugin require no upgrade action (because no change of plugin or hash format is required). For accounts corresponding to lines for which the password is empty, consider asking the account owners to choose a password (or require it by using [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") to expire empty account passwords).
+Contas correspondentes às linhas para o `mysql_native_password` plugin não requerem nenhuma ação de upgrade (porque nenhuma alteração de plugin ou formato hash é necessária). Para contas correspondentes às linhas nas quais a senha está vazia, considere pedir aos proprietários da conta que escolham uma senha (ou exija isso usando [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") para expirar senhas de contas vazias).
 
-##### Upgrading Accounts from Implicit to Explicit mysql_native_password Use
+##### Atualizando Contas do Uso Implícito para Explícito de mysql_native_password
 
-Accounts that have an empty plugin and a 4.1 password hash use `mysql_native_password` implicitly. To upgrade these accounts to use `mysql_native_password` explicitly, execute these statements:
+Contas que possuem um plugin vazio e um password hash 4.1 usam `mysql_native_password` implicitamente. Para atualizar essas contas para usar `mysql_native_password` explicitamente, execute estas instruções:
 
 ```sql
 UPDATE mysql.user SET plugin = 'mysql_native_password'
@@ -34,25 +34,25 @@ WHERE plugin = '' AND (Password = '' OR LENGTH(Password) = 41);
 FLUSH PRIVILEGES;
 ```
 
-Before MySQL 5.7, you can execute those statements to uprade accounts proactively. As of MySQL 5.7, you can run [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables"), which performs the same operation among its upgrade actions.
+Antes do MySQL 5.7, você pode executar essas instruções para atualizar as contas proativamente. A partir do MySQL 5.7, você pode executar [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables"), que realiza a mesma operação entre suas ações de upgrade.
 
-Notes:
+Notas:
 
-* The upgrade operation just described is safe to execute at any time because it makes the `mysql_native_password` plugin explicit only for accounts that already use it implicitly.
+* A operação de upgrade recém-descrita é segura para ser executada a qualquer momento, pois torna o `mysql_native_password` plugin explícito apenas para contas que já o utilizam implicitamente.
 
-* This operation requires no password changes, so it can be performed without affecting users or requiring their involvement in the upgrade process.
+* Esta operação não requer alterações de senha, portanto, pode ser realizada sem afetar os usuários ou exigir o envolvimento deles no processo de upgrade.
 
-##### Upgrading Accounts from mysql_old_password to mysql_native_password
+##### Atualizando Contas de mysql_old_password para mysql_native_password
 
-Accounts that use `mysql_old_password` (either implicitly or explicitly) should be upgraded to use `mysql_native_password` explicitly. This requires changing the plugin *and* changing the password from pre-4.1 to 4.1 hash format.
+Contas que usam `mysql_old_password` (seja implícita ou explicitamente) devem ser atualizadas para usar `mysql_native_password` explicitamente. Isso requer a alteração do plugin *e* a alteração da senha do formato hash pré-4.1 para o 4.1.
 
-For the accounts covered in this step that must be upgraded, one of these conditions is true:
+Para as contas abrangidas nesta etapa que devem ser atualizadas, uma destas condições é verdadeira:
 
-* The account uses `mysql_old_password` implicitly because the `plugin` column is empty and the password has the pre-4.1 hash format (16 characters).
+* A conta usa `mysql_old_password` implicitamente porque a coluna `plugin` está vazia e a senha está no formato hash pré-4.1 (16 caracteres).
 
-* The account uses `mysql_old_password` explicitly.
+* A conta usa `mysql_old_password` explicitamente.
 
-To identify such accounts, use this query:
+Para identificar essas contas, use esta Query:
 
 ```sql
 SELECT User, Host, Password FROM mysql.user
@@ -60,19 +60,19 @@ WHERE (plugin = '' AND LENGTH(Password) = 16)
 OR plugin = 'mysql_old_password';
 ```
 
-The following discussion provides two methods for updating that set of accounts. They have differing characteristics, so read both and decide which is most suitable for a given MySQL installation.
+A discussão a seguir fornece dois métodos para atualizar esse conjunto de contas. Eles têm características diferentes, portanto, leia ambos e decida qual é o mais adequado para uma determinada instalação MySQL.
 
-**Method 1.**
+**Método 1.**
 
-Characteristics of this method:
+Características deste método:
 
-* It requires that server and clients be run with `secure_auth=0` until all users have been upgraded to `mysql_native_password`. (Otherwise, users cannot connect to the server using their old-format password hashes for the purpose of upgrading to a new-format hash.)
+* Requer que o servidor e os clients sejam executados com `secure_auth=0` até que todos os usuários tenham sido atualizados para `mysql_native_password`. (Caso contrário, os usuários não poderão se conectar ao servidor usando seus hashes de senha de formato antigo para fins de upgrade para um hash de novo formato.)
 
-* It works for MySQL 5.5 and 5.6. In 5.7, it does not work because the server requires accounts to have a nonempty plugin and disables them otherwise. Therefore, if you have already upgraded to 5.7, choose Method 2, described later.
+* Funciona para MySQL 5.5 e 5.6. No 5.7, ele não funciona porque o servidor exige que as contas tenham um plugin não vazio e as desabilita caso contrário. Portanto, se você já atualizou para 5.7, escolha o Método 2, descrito mais adiante.
 
-You should ensure that the server is running with [`secure_auth=0`](server-system-variables.html#sysvar_secure_auth).
+Você deve garantir que o servidor esteja sendo executado com [`secure_auth=0`](server-system-variables.html#sysvar_secure_auth).
 
-For all accounts that use `mysql_old_password` explicitly, set them to the empty plugin:
+Para todas as contas que usam `mysql_old_password` explicitamente, defina-as para o plugin vazio:
 
 ```sql
 UPDATE mysql.user SET plugin = ''
@@ -80,7 +80,7 @@ WHERE plugin = 'mysql_old_password';
 FLUSH PRIVILEGES;
 ```
 
-To also expire the password for affected accounts, use these statements instead:
+Para também expirar a senha das contas afetadas, use estas instruções:
 
 ```sql
 UPDATE mysql.user SET plugin = '', password_expired = 'Y'
@@ -88,7 +88,7 @@ WHERE plugin = 'mysql_old_password';
 FLUSH PRIVILEGES;
 ```
 
-Now affected users can reset their password to use 4.1 hashing. Ask each user who now has an empty plugin to connect to the server and execute these statements:
+Agora, os usuários afetados podem redefinir sua senha para usar o hashing 4.1. Peça a cada usuário que agora tem um plugin vazio para se conectar ao servidor e executar estas instruções:
 
 ```sql
 SET old_passwords = 0;
@@ -97,13 +97,13 @@ SET PASSWORD = PASSWORD('user-chosen-password');
 
 Note
 
-The client-side [`--secure-auth`](mysql-command-options.html#option_mysql_secure-auth) option is enabled by default, so remind users to disable it; otherwise, they cannot connect:
+A opção client-side [`--secure-auth`](mysql-command-options.html#option_mysql_secure-auth) é habilitada por padrão, portanto, lembre os usuários de desativá-la; caso contrário, eles não conseguirão se conectar:
 
 ```sql
 $> mysql -u user_name -p --secure-auth=0
 ```
 
-After an affected user has executed those statements, you can set the corresponding account plugin to `mysql_native_password` to make the plugin explicit. Or you can periodically run these statements to find and fix any accounts for which affected users have reset their password:
+Depois que um usuário afetado executar essas instruções, você poderá definir o plugin da conta correspondente como `mysql_native_password` para tornar o plugin explícito. Ou você pode periodicamente executar estas instruções para encontrar e corrigir quaisquer contas para as quais os usuários afetados redefiniram sua senha:
 
 ```sql
 UPDATE mysql.user SET plugin = 'mysql_native_password'
@@ -111,37 +111,37 @@ WHERE plugin = '' AND (Password = '' OR LENGTH(Password) = 41);
 FLUSH PRIVILEGES;
 ```
 
-When there are no more accounts with an empty plugin, this query returns an empty result:
+Quando não houver mais contas com um plugin vazio, esta Query retornará um resultado vazio:
 
 ```sql
 SELECT User, Host, Password FROM mysql.user
 WHERE plugin = '' AND LENGTH(Password) = 16;
 ```
 
-At that point, all accounts have been migrated away from pre-4.1 password hashing and the server no longer need be run with [`secure_auth=0`](server-system-variables.html#sysvar_secure_auth).
+Nesse ponto, todas as contas foram migradas do password hashing pré-4.1 e o servidor não precisa mais ser executado com [`secure_auth=0`](server-system-variables.html#sysvar_secure_auth).
 
-**Method 2.**
+**Método 2.**
 
-Characteristics of this method:
+Características deste método:
 
-* It assigns each affected account a new password, so you must tell each such user the new password and ask the user to choose a new one. Communication of passwords to users is outside the scope of MySQL, but should be done carefully.
+* Ele atribui a cada conta afetada uma nova senha, então você deve informar a cada usuário a nova senha e pedir que ele escolha uma nova. A comunicação de senhas aos usuários está fora do escopo do MySQL, mas deve ser feita com cautela.
 
-* It does not require server or clients to be run with `secure_auth=0`.
+* Não requer que o servidor ou os clients sejam executados com `secure_auth=0`.
 
-* It works for any version of MySQL 5.5 or later (and for 5.7 has an easier variant).
+* Funciona para qualquer versão do MySQL 5.5 ou posterior (e para 5.7 tem uma variante mais fácil).
 
-With this method, you update each account separately due to the need to set passwords individually. *Choose a different password for each account.*
+Com este método, você atualiza cada conta separadamente devido à necessidade de definir senhas individualmente. *Escolha uma senha diferente para cada conta.*
 
-Suppose that `'user1'@'localhost'` is one of the accounts to be upgraded. Modify it as follows:
+Suponha que `'user1'@'localhost'` seja uma das contas a serem atualizadas. Modifique-a da seguinte forma:
 
-* In MySQL 5.7, `ALTER USER` provides the capability of modifying both the account password and its authentication plugin, so you need not modify the `mysql.user` system table directly:
+* No MySQL 5.7, o `ALTER USER` fornece a capacidade de modificar tanto a senha da conta quanto seu authentication plugin, portanto, você não precisa modificar a tabela de sistema `mysql.user` diretamente:
 
   ```sql
   ALTER USER 'user1'@'localhost'
   IDENTIFIED WITH mysql_native_password BY 'DBA-chosen-password';
   ```
 
-  To also expire the account password, use this statement instead:
+  Para também expirar a senha da conta, use esta instrução:
 
   ```sql
   ALTER USER 'user1'@'localhost'
@@ -149,13 +149,13 @@ Suppose that `'user1'@'localhost'` is one of the accounts to be upgraded. Modify
   PASSWORD EXPIRE;
   ```
 
-  Then tell the user the new password and ask the user to connect to the server with that password and execute this statement to choose a new password:
+  Em seguida, informe ao usuário a nova senha e peça-lhe que se conecte ao servidor com essa senha e execute esta instrução para escolher uma nova senha:
 
   ```sql
   ALTER USER USER() IDENTIFIED BY 'user-chosen-password';
   ```
 
-* Before MySQL 5.7, you must modify the `mysql.user` system table directly using these statements:
+* Antes do MySQL 5.7, você deve modificar a tabela de sistema `mysql.user` diretamente usando estas instruções:
 
   ```sql
   SET old_passwords = 0;
@@ -165,7 +165,7 @@ Suppose that `'user1'@'localhost'` is one of the accounts to be upgraded. Modify
   FLUSH PRIVILEGES;
   ```
 
-  To also expire the account password, use these statements instead:
+  Para também expirar a senha da conta, use estas instruções:
 
   ```sql
   SET old_passwords = 0;
@@ -175,11 +175,11 @@ Suppose that `'user1'@'localhost'` is one of the accounts to be upgraded. Modify
   FLUSH PRIVILEGES;
   ```
 
-  Then tell the user the new password and ask the user to connect to the server with that password and execute these statements to choose a new password:
+  Em seguida, informe ao usuário a nova senha e peça-lhe que se conecte ao servidor com essa senha e execute estas instruções para escolher uma nova senha:
 
   ```sql
   SET old_passwords = 0;
   SET PASSWORD = PASSWORD('user-chosen-password');
   ```
 
-Repeat for each account to be upgraded.
+Repita para cada conta a ser atualizada.

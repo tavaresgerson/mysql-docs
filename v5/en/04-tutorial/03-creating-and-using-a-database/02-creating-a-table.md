@@ -1,38 +1,38 @@
-### 3.3.2 Creating a Table
+### 3.3.2 Criando uma Tabela
 
-Creating the database is the easy part, but at this point it is empty, as [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") tells you:
+Criar o Database é a parte fácil, mas neste ponto ele está vazio, como o comando [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") demonstra:
 
 ```sql
 mysql> SHOW TABLES;
 Empty set (0.00 sec)
 ```
 
-The harder part is deciding what the structure of your database should be: what tables you need and what columns should be in each of them.
+A parte mais difícil é decidir qual deve ser a estrutura do seu Database: quais Tabelas você precisa e quais Columns devem estar em cada uma delas.
 
-You want a table that contains a record for each of your pets. This can be called the `pet` table, and it should contain, as a bare minimum, each animal's name. Because the name by itself is not very interesting, the table should contain other information. For example, if more than one person in your family keeps pets, you might want to list each animal's owner. You might also want to record some basic descriptive information such as species and sex.
+Você deseja uma Tabela que contenha um registro para cada um dos seus animais de estimação. Esta pode ser chamada de Tabela `pet`, e deve conter, no mínimo, o nome de cada animal. Como o nome por si só não é muito interessante, a Tabela deve conter outras informações. Por exemplo, se mais de uma pessoa na sua família tem animais de estimação, você pode querer listar o dono de cada animal. Você também pode querer registrar algumas informações descritivas básicas, como espécie e sexo.
 
-How about age? That might be of interest, but it is not a good thing to store in a database. Age changes as time passes, which means you'd have to update your records often. Instead, it is better to store a fixed value such as date of birth. Then, whenever you need age, you can calculate it as the difference between the current date and the birth date. MySQL provides functions for doing date arithmetic, so this is not difficult. Storing birth date rather than age has other advantages, too:
+Que tal a idade? Isso pode ser de interesse, mas não é algo bom de se armazenar em um Database. A idade muda com o passar do tempo, o que significa que você teria que atualizar seus registros frequentemente. Em vez disso, é melhor armazenar um valor fixo, como a data de nascimento. Então, sempre que precisar da idade, você pode calculá-la como a diferença entre a data atual e a data de nascimento. O MySQL oferece Functions para realizar aritmética de datas, então isso não é difícil. Armazenar a data de nascimento em vez da idade também tem outras vantagens:
 
-* You can use the database for tasks such as generating reminders for upcoming pet birthdays. (If you think this type of query is somewhat silly, note that it is the same question you might ask in the context of a business database to identify clients to whom you need to send out birthday greetings in the current week or month, for that computer-assisted personal touch.)
+* Você pode usar o Database para tarefas como gerar lembretes para aniversários de animais de estimação que se aproximam. (Se você achar que este tipo de Query é um tanto bobo, observe que é a mesma pergunta que você faria no contexto de um Database de negócios para identificar clientes para os quais você precisa enviar cumprimentos de aniversário na semana ou mês atual, para aquele toque pessoal assistido por computador.)
 
-* You can calculate age in relation to dates other than the current date. For example, if you store death date in the database, you can easily calculate how old a pet was when it died.
+* Você pode calcular a idade em relação a datas diferentes da data atual. Por exemplo, se você armazena a data de falecimento no Database, você pode calcular facilmente quantos anos um animal de estimação tinha quando morreu.
 
-You can probably think of other types of information that would be useful in the `pet` table, but the ones identified so far are sufficient: name, owner, species, sex, birth, and death.
+Você provavelmente pode pensar em outros tipos de informação que seriam úteis na Tabela `pet`, mas as identificadas até agora são suficientes: nome, dono, espécie, sexo, nascimento e falecimento.
 
-Use a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement to specify the layout of your table:
+Use um comando [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") para especificar o layout da sua Tabela:
 
 ```sql
 mysql> CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
        species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
 ```
 
-[`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") is a good choice for the `name`, `owner`, and `species` columns because the column values vary in length. The lengths in those column definitions need not all be the same, and need not be `20`. You can normally pick any length from `1` to `65535`, whatever seems most reasonable to you. If you make a poor choice and it turns out later that you need a longer field, MySQL provides an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement.
+O [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") é uma boa escolha para as Columns `name`, `owner` e `species` porque os valores das Columns variam em comprimento. Os comprimentos nessas definições de Column não precisam ser todos iguais, nem precisam ser `20`. Você pode normalmente escolher qualquer comprimento de `1` a `65535`, o que parecer mais razoável para você. Se você fizer uma escolha inadequada e descobrir mais tarde que precisa de um campo mais longo, o MySQL fornece um comando [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-Several types of values can be chosen to represent sex in animal records, such as `'m'` and `'f'`, or perhaps `'male'` and `'female'`. It is simplest to use the single characters `'m'` and `'f'`.
+Vários tipos de valores podem ser escolhidos para representar o sexo em registros de animais, como `'m'` e `'f'`, ou talvez `'male'` e `'female'`. É mais simples usar os caracteres únicos `'m'` e `'f'`.
 
-The use of the [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") data type for the `birth` and `death` columns is a fairly obvious choice.
+O uso do tipo de dado [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") para as Columns `birth` e `death` é uma escolha bastante óbvia.
 
-Once you have created a table, [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") should produce some output:
+Assim que você tiver criado uma Tabela, [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") deve produzir alguma saída:
 
 ```sql
 mysql> SHOW TABLES;
@@ -43,7 +43,7 @@ mysql> SHOW TABLES;
 +---------------------+
 ```
 
-To verify that your table was created the way you expected, use a [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") statement:
+Para verificar se sua Tabela foi criada da maneira que você esperava, use um comando [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement"):
 
 ```sql
 mysql> DESCRIBE pet;
@@ -59,6 +59,6 @@ mysql> DESCRIBE pet;
 +---------+-------------+------+-----+---------+-------+
 ```
 
-You can use [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") any time, for example, if you forget the names of the columns in your table or what types they have.
+Você pode usar o [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") a qualquer momento, por exemplo, se você esquecer os nomes das Columns em sua Tabela ou quais tipos elas possuem.
 
-For more information about MySQL data types, see [Chapter 11, *Data Types*](data-types.html "Chapter 11 Data Types").
+Para mais informações sobre tipos de dados MySQL, consulte [Capítulo 11, *Data Types*](data-types.html "Chapter 11 Data Types").

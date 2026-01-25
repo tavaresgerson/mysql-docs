@@ -1,48 +1,56 @@
-## 2.2 Installing MySQL on Unix/Linux Using Generic Binaries
+## 2.2 Instalando MySQL em Unix/Linux Usando Binários Genéricos
 
-Oracle provides a set of binary distributions of MySQL. These include generic binary distributions in the form of compressed **tar** files (files with a `.tar.gz` extension) for a number of platforms, and binaries in platform-specific package formats for selected platforms.
+A Oracle fornece um conjunto de distribuições binárias do MySQL. Estas incluem distribuições binárias genéricas na forma de arquivos **tar** compactados (arquivos com a extensão `.tar.gz`) para diversas plataformas, e binários em formatos de pacote específicos da plataforma para plataformas selecionadas.
 
-This section covers the installation of MySQL from a compressed **tar** file binary distribution on Unix/Linux platforms. For Linux-generic binary distribution installation instructions with a focus on MySQL security features, refer to the Secure Deployment Guide. For other platform-specific binary package formats, see the other platform-specific sections in this manual. For example, for Windows distributions, see Section 2.3, “Installing MySQL on Microsoft Windows”. See Section 2.1.3, “How to Get MySQL” on how to obtain MySQL in different distribution formats.
+Esta seção aborda a instalação do MySQL a partir de uma distribuição binária de arquivo **tar** compactado em plataformas Unix/Linux. Para instruções de instalação de distribuição binária genérica do Linux, com foco em recursos de segurança do MySQL, consulte o Guia de Implantação Segura (Secure Deployment Guide). Para outros formatos de pacote binário específicos da plataforma, consulte as outras seções específicas da plataforma neste manual. Por exemplo, para distribuições Windows, consulte Seção 2.3, “Instalando MySQL no Microsoft Windows”. Consulte Seção 2.1.3, “Como Obter MySQL” sobre como obter MySQL em diferentes formatos de distribuição.
 
-MySQL compressed **tar** file binary distributions have names of the form `mysql-VERSION-OS.tar.gz`, where `VERSION` is a number (for example, `5.7.44`), and *`OS`* indicates the type of operating system for which the distribution is intended (for example, `pc-linux-i686` or `winx64`).
+As distribuições binárias de arquivo **tar** compactado do MySQL têm nomes no formato `mysql-VERSION-OS.tar.gz`, onde `VERSION` é um número (por exemplo, `5.7.44`) e *`OS`* indica o tipo de sistema operacional para o qual a distribuição se destina (por exemplo, `pc-linux-i686` ou `winx64`).
 
-Warnings
+Avisos
 
-* If you have previously installed MySQL using your operating system native package management system, such as Yum or APT, you may experience problems installing using a native binary. Make sure your previous MySQL installation has been removed entirely (using your package management system), and that any additional files, such as old versions of your data files, have also been removed. You should also check for configuration files such as `/etc/my.cnf` or the `/etc/mysql` directory and delete them.
+* Se você instalou o MySQL anteriormente usando o sistema de gerenciamento de pacotes nativo do seu sistema operacional, como Yum ou APT, você pode ter problemas ao instalar usando um binário nativo. Certifique-se de que sua instalação anterior do MySQL tenha sido removida por completo (usando seu sistema de gerenciamento de pacotes) e que quaisquer arquivos adicionais, como versões antigas de seus arquivos de dados, também tenham sido removidos. Você também deve verificar arquivos de configuração como `/etc/my.cnf` ou o diretório `/etc/mysql` e excluí-los.
 
-  For information about replacing third-party packages with official MySQL packages, see the related APT guide or Yum guide.
+  Para obter informações sobre como substituir pacotes de terceiros por pacotes oficiais do MySQL, consulte o guia APT relacionado ou o guia Yum.
 
-* MySQL has a dependency on the `libaio` library. Data directory initialization and subsequent server startup steps fail if this library is not installed locally. If necessary, install it using the appropriate package manager. For example, on Yum-based systems:
+* O MySQL tem uma dependência da biblioteca `libaio`. A inicialização do Data directory e as etapas subsequentes de inicialização do server falharão se esta biblioteca não estiver instalada localmente. Se necessário, instale-a usando o gerenciador de pacotes apropriado. Por exemplo, em sistemas baseados em Yum:
 
   ```sql
   $> yum search libaio  # search for info
   $> yum install libaio # install library
   ```
 
-  Or, on APT-based systems:
+  Ou, em sistemas baseados em APT:
 
   ```sql
   $> apt-cache search libaio # search for info
   $> apt-get install libaio1 # install library
   ```
 
-* *For MySQL 5.7.19 and later:* Support for Non-Uniform Memory Access (NUMA) has been added to the generic Linux build, which has a dependency now on the `libnuma` library; if the library has not been installed on your system, use you system's package manager to search for and install it (see the preceding item for some sample commands).
+* *Para MySQL 5.7.19 e posterior:* Foi adicionado suporte para Non-Uniform Memory Access (NUMA) à build genérica do Linux, que agora tem uma dependência da biblioteca `libnuma`; se a biblioteca não tiver sido instalada no seu sistema, use o gerenciador de pacotes do seu sistema para pesquisá-la e instalá-la (consulte o item anterior para alguns comandos de exemplo).
 
-* **SLES 11**: As of MySQL 5.7.19, the Linux Generic tarball package format is EL6 instead of EL5. As a side effect, the MySQL client **bin/mysql** needs `libtinfo.so.5`.
+* **SLES 11**: A partir do MySQL 5.7.19, o formato do pacote tarball genérico do Linux é EL6 em vez de EL5. Como efeito colateral, o client MySQL **bin/mysql** precisa de `libtinfo.so.5`.
 
-  A workaround is to create a symlink, such as **ln -s libncurses.so.5.6 /lib64/libtinfo.so.5** on 64-bit systems or **ln -s libncurses.so.5.6 /lib/libtinfo.so.5** on 32-bit systems.
+  Uma solução alternativa é criar um symlink, como **ln -s libncurses.so.5.6 /lib64/libtinfo.so.5** em sistemas de 64 bits ou **ln -s libncurses.so.5.6 /lib/libtinfo.so.5** em sistemas de 32 bits.
 
-* If no RPM or `.deb` file specific to your distribution is provided by Oracle (or by your Linux vendor), you can try the generic binaries. In some cases, due to library incompatibilities or other issues, these may not work with your Linux installation. In such cases, you can try to compile and install MySQL from source. See Section 2.8, “Installing MySQL from Source”, for more information and instructions.
+* Se nenhum arquivo RPM ou `.deb` específico para sua distribuição for fornecido pela Oracle (ou pelo seu fornecedor Linux), você pode tentar os binários genéricos. Em alguns casos, devido a incompatibilidades de libraries ou outros problemas, estes podem não funcionar com sua instalação Linux. Nesses casos, você pode tentar compilar e instalar o MySQL a partir do Source. Consulte Seção 2.8, “Instalando MySQL a partir do Source”, para obter mais informações e instruções.
 
-To install a compressed **tar** file binary distribution, unpack it at the installation location you choose (typically `/usr/local/mysql`). This creates the directories shown in the following table.
+Para instalar uma distribuição binária de arquivo **tar** compactado, descompacte-o no local de instalação que você escolher (geralmente `/usr/local/mysql`). Isso cria os diretórios mostrados na tabela a seguir.
 
-**Table 2.3 MySQL Installation Layout for Generic Unix/Linux Binary Package**
+**Tabela 2.3 Layout de Instalação do MySQL para Pacote Binário Genérico Unix/Linux**
 
-<table><col style="width: 45%"/><col style="width: 55%"/><thead><tr> <th>Directory</th> <th>Contents of Directory</th> </tr></thead><tbody><tr> <td><code>bin</code></td> <td><span><strong>mysqld</strong></span> server, client and utility programs</td> </tr><tr> <td><code>docs</code></td> <td>MySQL manual in Info format</td> </tr><tr> <td><code>man</code></td> <td>Unix manual pages</td> </tr><tr> <td><code>include</code></td> <td>Include (header) files</td> </tr><tr> <td><code>lib</code></td> <td>Libraries</td> </tr><tr> <td><code>share</code></td> <td>Error messages, dictionary, and SQL for database installation</td> </tr><tr> <td><code>support-files</code></td> <td>Miscellaneous support files</td> </tr></tbody></table>
+| Diretório | Conteúdo do Diretório |
+|---|---|
+| `bin` | Server **mysqld**, client e programas utilitários |
+| `docs` | Manual do MySQL no formato Info |
+| `man` | Páginas de manual Unix |
+| `include` | Arquivos Include (header) |
+| `lib` | Libraries |
+| `share` | Mensagens de erro, dicionário e SQL para instalação do database |
+| `support-files` | Arquivos de suporte diversos |
 
-Debug versions of the **mysqld** binary are available as **mysqld-debug**. To compile your own debug version of MySQL from a source distribution, use the appropriate configuration options to enable debugging support. See Section 2.8, “Installing MySQL from Source”.
+Versões Debug do binário **mysqld** estão disponíveis como **mysqld-debug**. Para compilar sua própria versão debug do MySQL a partir de uma distribuição Source, use as opções de configuração apropriadas para habilitar o suporte a debugging. Consulte Seção 2.8, “Instalando MySQL a partir do Source”.
 
-To install and use a MySQL binary distribution, the command sequence looks like this:
+Para instalar e usar uma distribuição binária do MySQL, a sequência de comandos se parece com esta:
 
 ```sql
 $> groupadd mysql
@@ -61,67 +69,67 @@ $> bin/mysqld_safe --user=mysql &
 $> cp support-files/mysql.server /etc/init.d/mysql.server
 ```
 
-Note
+**Nota**
 
-This procedure assumes that you have `root` (administrator) access to your system. Alternatively, you can prefix each command using the **sudo** (Linux) or **pfexec** (Solaris) command.
+Este procedimento assume que você tem acesso `root` (administrador) ao seu sistema. Alternativamente, você pode prefixar cada comando usando o comando **sudo** (Linux) ou **pfexec** (Solaris).
 
-The `mysql-files` directory provides a convenient location to use as the value for the `secure_file_priv` system variable, which limits import and export operations to a specific directory. See Section 5.1.7, “Server System Variables”.
+O diretório `mysql-files` fornece um local conveniente para ser usado como valor para a variável de sistema `secure_file_priv`, que limita as operações de importação e exportação a um diretório específico. Consulte Seção 5.1.7, “Variáveis de Sistema do Server”.
 
-A more detailed version of the preceding description for installing a binary distribution follows.
+Segue-se uma versão mais detalhada da descrição anterior para instalar uma distribuição binária.
 
-### Create a mysql User and Group
+### Crie um User e Group mysql
 
-If your system does not already have a user and group to use for running **mysqld**, you may need to create them. The following commands add the `mysql` group and the `mysql` user. You might want to call the user and group something else instead of `mysql`. If so, substitute the appropriate name in the following instructions. The syntax for **useradd** and **groupadd** may differ slightly on different versions of Unix/Linux, or they may have different names such as **adduser** and **addgroup**.
+Se o seu sistema ainda não tiver um user e group para usar para executar o **mysqld**, você pode precisar criá-los. Os comandos a seguir adicionam o group `mysql` e o user `mysql`. Você pode querer chamar o user e o group de outra forma em vez de `mysql`. Se sim, substitua o nome apropriado nas instruções a seguir. A sintaxe para **useradd** e **groupadd** pode ser ligeiramente diferente em diferentes versões do Unix/Linux, ou eles podem ter nomes diferentes, como **adduser** e **addgroup**.
 
 ```sql
 $> groupadd mysql
 $> useradd -r -g mysql -s /bin/false mysql
 ```
 
-Note
+**Nota**
 
-Because the user is required only for ownership purposes, not login purposes, the **useradd** command uses the `-r` and `-s /bin/false` options to create a user that does not have login permissions to your server host. Omit these options if your **useradd** does not support them.
+Como o user é necessário apenas para fins de propriedade, e não para fins de login, o comando **useradd** usa as opções `-r` e `-s /bin/false` para criar um user que não tem permissões de login para o seu host server. Omita essas opções se o seu **useradd** não as suportar.
 
-### Obtain and Unpack the Distribution
+### Obtenha e Descompacte a Distribuição
 
-Pick the directory under which you want to unpack the distribution and change location into it. The example here unpacks the distribution under `/usr/local`. The instructions, therefore, assume that you have permission to create files and directories in `/usr/local`. If that directory is protected, you must perform the installation as `root`.
+Escolha o diretório sob o qual você deseja descompactar a distribuição e mude o local para ele. O exemplo aqui descompacta a distribuição em `/usr/local`. As instruções, portanto, assumem que você tem permissão para criar arquivos e diretórios em `/usr/local`. Se esse diretório estiver protegido, você deve realizar a instalação como `root`.
 
 ```sql
 $> cd /usr/local
 ```
 
-Obtain a distribution file using the instructions in Section 2.1.3, “How to Get MySQL”. For a given release, binary distributions for all platforms are built from the same MySQL source distribution.
+Obtenha um arquivo de distribuição usando as instruções na Seção 2.1.3, “Como Obter MySQL”. Para um determinado release, as distribuições binárias para todas as plataformas são criadas a partir da mesma distribuição source do MySQL.
 
-Unpack the distribution, which creates the installation directory. **tar** can uncompress and unpack the distribution if it has `z` option support:
+Descompacte a distribuição, o que cria o diretório de instalação. O **tar** pode descompactar e empacotar a distribuição se tiver suporte à opção `z`:
 
 ```sql
 $> tar zxvf /path/to/mysql-VERSION-OS.tar.gz
 ```
 
-The **tar** command creates a directory named `mysql-VERSION-OS`.
+O comando **tar** cria um diretório chamado `mysql-VERSION-OS`.
 
-To install MySQL from a compressed **tar** file binary distribution, your system must have GNU `gunzip` to uncompress the distribution and a reasonable **tar** to unpack it. If your **tar** program supports the `z` option, it can both uncompress and unpack the file.
+Para instalar o MySQL a partir de uma distribuição binária de arquivo **tar** compactado, seu sistema deve ter o `gunzip` GNU para descompactar a distribuição e um **tar** razoável para desempacotá-la. Se o seu programa **tar** suportar a opção `z`, ele pode descompactar e desempacotar o arquivo.
 
-GNU **tar** is known to work. The standard **tar** provided with some operating systems is not able to unpack the long file names in the MySQL distribution. You should download and install GNU **tar**, or if available, use a preinstalled version of GNU tar. Usually this is available as **gnutar**, **gtar**, or as **tar** within a GNU or Free Software directory, such as `/usr/sfw/bin` or `/usr/local/bin`. GNU **tar** is available from <http://www.gnu.org/software/tar/>.
+O **tar** GNU é conhecido por funcionar. O **tar** padrão fornecido com alguns sistemas operacionais não é capaz de desempacotar os nomes de arquivo longos na distribuição MySQL. Você deve fazer o download e instalar o **tar** GNU ou, se disponível, usar uma versão pré-instalada do **tar** GNU. Geralmente, ele está disponível como **gnutar**, **gtar**, ou como **tar** dentro de um diretório GNU ou Free Software, como `/usr/sfw/bin` ou `/usr/local/bin`. O **tar** GNU está disponível em <http://www.gnu.org/software/tar/>.
 
-If your **tar** does not have `z` option support, use **gunzip** to unpack the distribution and **tar** to unpack it. Replace the preceding **tar** command with the following alternative command to uncompress and extract the distribution:
+Se o seu **tar** não tiver suporte à opção `z`, use **gunzip** para descompactar a distribuição e **tar** para desempacotá-la. Substitua o comando **tar** anterior pelo seguinte comando alternativo para descompactar e extrair a distribuição:
 
 ```sql
 $> gunzip < /path/to/mysql-VERSION-OS.tar.gz | tar xvf -
 ```
 
-Next, create a symbolic link to the installation directory created by **tar**:
+Em seguida, crie um symbolic link para o diretório de instalação criado pelo **tar**:
 
 ```sql
 $> ln -s full-path-to-mysql-VERSION-OS mysql
 ```
 
-The `ln` command makes a symbolic link to the installation directory. This enables you to refer more easily to it as `/usr/local/mysql`. To avoid having to type the path name of client programs always when you are working with MySQL, you can add the `/usr/local/mysql/bin` directory to your `PATH` variable:
+O comando `ln` cria um symbolic link para o diretório de instalação. Isso permite que você se refira a ele mais facilmente como `/usr/local/mysql`. Para evitar ter que digitar sempre o nome do caminho dos programas client ao trabalhar com MySQL, você pode adicionar o diretório `/usr/local/mysql/bin` à sua variável `PATH`:
 
 ```sql
 $> export PATH=$PATH:/usr/local/mysql/bin
 ```
 
-### Perform Postinstallation Setup
+### Execute a Configuração Pós-Instalação
 
-The remainder of the installation process involves setting distribution ownership and access permissions, initializing the data directory, starting the MySQL server, and setting up the configuration file. For instructions, see Section 2.9, “Postinstallation Setup and Testing”.
+O restante do processo de instalação envolve a definição de propriedade e permissões de acesso da distribuição, a inicialização do data directory, a inicialização do MySQL server e a configuração do arquivo de configuração. Para obter instruções, consulte Seção 2.9, “Configuração Pós-Instalação e Teste”.

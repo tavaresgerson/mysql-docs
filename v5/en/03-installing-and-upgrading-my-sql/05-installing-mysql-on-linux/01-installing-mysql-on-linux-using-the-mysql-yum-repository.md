@@ -1,53 +1,53 @@
-### 2.5.1 Installing MySQL on Linux Using the MySQL Yum Repository
+### 2.5.1 Instalando MySQL no Linux Usando o Repositório Yum do MySQL
 
-The [MySQL Yum repository](https://dev.mysql.com/downloads/repo/yum/) for Oracle Linux, Red Hat Enterprise Linux and CentOS provides RPM packages for installing the MySQL server, client, MySQL Workbench, MySQL Utilities, MySQL Router, MySQL Shell, Connector/ODBC, Connector/Python and so on (not all packages are available for all the distributions; see Installing Additional MySQL Products and Components with Yum for details).
+O [Repositório Yum do MySQL](https://dev.mysql.com/downloads/repo/yum/) para Oracle Linux, Red Hat Enterprise Linux e CentOS fornece pacotes RPM para instalar o MySQL Server, Client, MySQL Workbench, MySQL Utilities, MySQL Router, MySQL Shell, Connector/ODBC, Connector/Python e assim por diante (nem todos os pacotes estão disponíveis para todas as distribuições; veja Instalando Produtos e Componentes Adicionais do MySQL com Yum para detalhes).
 
-#### Before You Start
+#### Antes de Começar
 
-As a popular, open-source software, MySQL, in its original or re-packaged form, is widely installed on many systems from various sources, including different software download sites, software repositories, and so on. The following instructions assume that MySQL is not already installed on your system using a third-party-distributed RPM package; if that is not the case, follow the instructions given in Section 2.10.5, “Upgrading MySQL with the MySQL Yum Repository” or Section 2.5.2, “Replacing a Third-Party Distribution of MySQL Using the MySQL Yum Repository”.
+Como um software popular e de código aberto, o MySQL, em sua forma original ou reempacotada, é amplamente instalado em muitos sistemas a partir de diversas fontes, incluindo diferentes sites de download de software, repositórios de software, e assim por diante. As instruções a seguir pressupõem que o MySQL ainda não esteja instalado no seu sistema usando um pacote RPM distribuído por terceiros; se este não for o caso, siga as instruções fornecidas na Seção 2.10.5, “Atualizando MySQL com o Repositório Yum do MySQL” ou na Seção 2.5.2, “Substituindo uma Distribuição de Terceiros do MySQL Usando o Repositório Yum do MySQL”.
 
-#### Steps for a Fresh Installation of MySQL
+#### Passos para uma Instalação Nova do MySQL
 
-Follow the steps below to install the latest GA version of MySQL with the MySQL Yum repository:
+Siga os passos abaixo para instalar a versão GA mais recente do MySQL com o Repositório Yum do MySQL:
 
-1. #### Adding the MySQL Yum Repository
+1. #### Adicionando o Repositório Yum do MySQL
 
-   First, add the MySQL Yum repository to your system's repository list. This is a one-time operation, which can be performed by installing an RPM provided by MySQL. Follow these steps:
+   Primeiro, adicione o Repositório Yum do MySQL à lista de repositórios do seu sistema. Esta é uma operação única, que pode ser realizada instalando um RPM fornecido pelo MySQL. Siga estes passos:
 
-   1. Go to the Download MySQL Yum Repository page (<https://dev.mysql.com/downloads/repo/yum/>) in the MySQL Developer Zone.
+   1. Acesse a página Download MySQL Yum Repository (<https://dev.mysql.com/downloads/repo/yum/>) na MySQL Developer Zone.
 
-   2. Select and download the release package for your platform.
-   3. Install the downloaded release package with the following command, replacing *`platform-and-version-specific-package-name`* with the name of the downloaded RPM package:
+   2. Selecione e baixe o pacote de release para sua plataforma.
+   3. Instale o pacote de release baixado com o seguinte comando, substituindo *`platform-and-version-specific-package-name`* pelo nome do pacote RPM baixado:
 
       ```sql
       $> sudo yum localinstall platform-and-version-specific-package-name.rpm
       ```
 
-      For an EL6-based system, the command is in the form of:
+      Para um sistema baseado em EL6, o comando tem a forma de:
 
       ```sql
       $> sudo yum localinstall mysql57-community-release-el6-{version-number}.noarch.rpm
       ```
 
-      For an EL7-based system:
+      Para um sistema baseado em EL7:
 
       ```sql
       $> sudo yum localinstall mysql57-community-release-el7-{version-number}.noarch.rpm
       ```
 
-      For an EL8-based system:
+      Para um sistema baseado em EL8:
 
       ```sql
       $> sudo yum localinstall mysql57-community-release-el8-{version-number}.noarch.rpm
       ```
 
-      For Fedora:
+      Para Fedora:
 
-      MySQL 5.7 does not support Fedora; support was removed in MySQL 5.7.30. For details, see the [MySQL Product Support EOL Announcements](https://www.mysql.com/support/eol-notice.html).
+      O MySQL 5.7 não oferece suporte ao Fedora; o suporte foi removido no MySQL 5.7.30. Para detalhes, consulte os [MySQL Product Support EOL Announcements](https://www.mysql.com/support/eol-notice.html).
 
-      The installation command adds the MySQL Yum repository to your system's repository list and downloads the GnuPG key to check the integrity of the software packages. See Section 2.1.4.2, “Signature Checking Using GnuPG” for details on GnuPG key checking.
+      O comando de instalação adiciona o Repositório Yum do MySQL à lista de repositórios do seu sistema e baixa a chave GnuPG para verificar a integridade dos pacotes de software. Consulte a Seção 2.1.4.2, “Verificação de Assinatura Usando GnuPG” para detalhes sobre a verificação da chave GnuPG.
 
-      You can check that the MySQL Yum repository has been successfully added by the following command:
+      Você pode verificar se o Repositório Yum do MySQL foi adicionado com sucesso através do seguinte comando:
 
       ```sql
       $> yum repolist enabled | grep "mysql.*-community.*"
@@ -55,33 +55,33 @@ Follow the steps below to install the latest GA version of MySQL with the MySQL 
 
    Note
 
-   Once the MySQL Yum repository is enabled on your system, any system-wide update by the **yum update** command upgrades MySQL packages on your system and replaces any native third-party packages, if Yum finds replacements for them in the MySQL Yum repository; see Section 2.10.5, “Upgrading MySQL with the MySQL Yum Repository” and, for a discussion on some possible effects of that on your system, see Upgrading the Shared Client Libraries.
+   Uma vez que o Repositório Yum do MySQL esteja habilitado no seu sistema, qualquer atualização em todo o sistema pelo comando **yum update** fará o upgrade dos pacotes MySQL no seu sistema e substituirá quaisquer pacotes nativos de terceiros, se o Yum encontrar substitutos para eles no Repositório Yum do MySQL; consulte a Seção 2.10.5, “Atualizando MySQL com o Repositório Yum do MySQL” e, para uma discussão sobre alguns possíveis efeitos disso no seu sistema, consulte Upgrading the Shared Client Libraries.
 
-2. #### Selecting a Release Series
+2. #### Selecionando uma Série de Lançamento
 
-   When using the MySQL Yum repository, the latest GA series (currently MySQL 5.7) is selected for installation by default. If this is what you want, you can skip to the next step, Installing MySQL.
+   Ao usar o Repositório Yum do MySQL, a série GA mais recente (atualmente MySQL 5.7) é selecionada para instalação por padrão. Se for isso que você deseja, você pode pular para o próximo passo, Instalando MySQL.
 
-   Within the MySQL Yum repository, different release series of the MySQL Community Server are hosted in different subrepositories. The subrepository for the latest GA series (currently MySQL 5.7) is enabled by default, and the subrepositories for all other series (for example, the MySQL 5.6 series) are disabled by default. Use this command to see all the subrepositories in the MySQL Yum repository, and see which of them are enabled or disabled:
+   Dentro do Repositório Yum do MySQL, diferentes séries de lançamento do MySQL Community Server estão hospedadas em subrepositórios distintos. O subrepositório para a série GA mais recente (atualmente MySQL 5.7) está habilitado por padrão, e os subrepositórios para todas as outras séries (por exemplo, a série MySQL 5.6) estão desabilitados por padrão. Use este comando para ver todos os subrepositórios no Repositório Yum do MySQL, e ver quais deles estão habilitados ou desabilitados:
 
    ```sql
    $> yum repolist all | grep mysql
    ```
 
-   To install the latest release from the latest GA series, no configuration is needed. To install the latest release from a specific series other than the latest GA series, disable the subrepository for the latest GA series and enable the subrepository for the specific series before running the installation command. If your platform supports **yum-config-manager**, you can do that by issuing these commands, which disable the subrepository for the 5.7 series and enable the one for the 5.6 series:
+   Para instalar a release mais recente da última série GA, nenhuma configuração é necessária. Para instalar a release mais recente de uma série específica diferente da última série GA, desabilite o subrepositório para a última série GA e habilite o subrepositório para a série específica antes de executar o comando de instalação. Se a sua plataforma suporta o **yum-config-manager**, você pode fazer isso emitindo estes comandos, que desabilitam o subrepositório para a série 5.7 e habilitam o da série 5.6:
 
    ```sql
    $> sudo yum-config-manager --disable mysql57-community
    $> sudo yum-config-manager --enable mysql56-community
    ```
 
-   For Fedora platforms:
+   Para plataformas Fedora:
 
    ```sql
    $> sudo dnf config-manager --disable mysql57-community
    $> sudo dnf config-manager --enable mysql56-community
    ```
 
-   Besides using **yum-config-manager** or the **dnf config-manager** command, you can also select a release series by editing manually the `/etc/yum.repos.d/mysql-community.repo` file. This is a typical entry for a release series' subrepository in the file:
+   Além de usar **yum-config-manager** ou o comando **dnf config-manager**, você também pode selecionar uma série de lançamento editando manualmente o arquivo `/etc/yum.repos.d/mysql-community.repo`. Esta é uma entrada típica para o subrepositório de uma série de lançamento no arquivo:
 
    ```sql
    [mysql57-community]
@@ -92,7 +92,7 @@ Follow the steps below to install the latest GA version of MySQL with the MySQL 
    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
    ```
 
-   Find the entry for the subrepository you want to configure, and edit the `enabled` option. Specify `enabled=0` to disable a subrepository, or `enabled=1` to enable a subrepository. For example, to install MySQL 5.6, make sure you have `enabled=0` for the above subrepository entry for MySQL 5.7, and have `enabled=1` for the entry for the 5.6 series:
+   Encontre a entrada para o subrepositório que você deseja configurar e edite a opção `enabled`. Especifique `enabled=0` para desabilitar um subrepositório, ou `enabled=1` para habilitar um subrepositório. Por exemplo, para instalar o MySQL 5.6, certifique-se de ter `enabled=0` para a entrada do subrepositório do MySQL 5.7 mencionada acima, e `enabled=1` para a entrada da série 5.6:
 
    ```sql
    # Enable to use MySQL 5.6
@@ -104,62 +104,62 @@ Follow the steps below to install the latest GA version of MySQL with the MySQL 
    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
    ```
 
-   You should only enable subrepository for one release series at any time. When subrepositories for more than one release series are enabled, the latest series is used by Yum.
+   Você deve habilitar o subrepositório para apenas uma série de lançamento por vez. Quando subrepositórios para mais de uma série de lançamento estão habilitados, a série mais recente é usada pelo Yum.
 
-   Verify that the correct subrepositories have been enabled and disabled by running the following command and checking its output:
+   Verifique se os subrepositórios corretos foram habilitados e desabilitados executando o seguinte comando e checando sua saída:
 
    ```sql
    $> yum repolist enabled | grep mysql
    ```
 
-3. #### Disabling the Default MySQL Module
+3. #### Desabilitando o Módulo MySQL Padrão
 
-   (EL8 systems only) EL8-based systems such as RHEL8 and Oracle Linux 8 include a MySQL module that is enabled by default. Unless this module is disabled, it masks packages provided by MySQL repositories. To disable the included module and make the MySQL repository packages visible, use the following command (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+   (Apenas sistemas EL8) Sistemas baseados em EL8, como RHEL8 e Oracle Linux 8, incluem um módulo MySQL que é habilitado por padrão. A menos que este módulo seja desabilitado, ele mascara pacotes fornecidos pelos repositórios do MySQL. Para desabilitar o módulo incluído e tornar visíveis os pacotes do repositório MySQL, use o seguinte comando (para sistemas habilitados para dnf, substitua **yum** no comando por **dnf**):
 
    ```sql
    $> sudo yum module disable mysql
    ```
 
-4. #### Installing MySQL
+4. #### Instalando MySQL
 
-   Install MySQL by the following command:
+   Instale o MySQL com o seguinte comando:
 
    ```sql
    $> sudo yum install mysql-community-server
    ```
 
-   This installs the package for MySQL server (`mysql-community-server`) and also packages for the components required to run the server, including packages for the client (`mysql-community-client`), the common error messages and character sets for client and server (`mysql-community-common`), and the shared client libraries (`mysql-community-libs`).
+   Isto instala o pacote para o MySQL Server (`mysql-community-server`) e também pacotes para os componentes necessários para executar o Server, incluindo pacotes para o Client (`mysql-community-client`), as mensagens de erro e conjuntos de caracteres comuns para Client e Server (`mysql-community-common`), e as bibliotecas Client compartilhadas (`mysql-community-libs`).
 
-5. #### Starting the MySQL Server
+5. #### Iniciando o MySQL Server
 
-   Start the MySQL server with the following command:
+   Inicie o MySQL Server com o seguinte comando:
 
    ```sql
    $> sudo service mysqld start
    Starting mysqld:[ OK ]
    ```
 
-   You can check the status of the MySQL server with the following command:
+   Você pode verificar o status do MySQL Server com o seguinte comando:
 
    ```sql
    $> sudo service mysqld status
    mysqld (pid 3066) is running.
    ```
 
-At the initial start up of the server, the following happens, given that the data directory of the server is empty:
+Na inicialização inicial do Server, o seguinte ocorre, dado que o data directory do Server está vazio:
 
-* The server is initialized.
-* SSL certificate and key files are generated in the data directory.
+* O Server é inicializado.
+* O certificado SSL e os arquivos de chave são gerados no data directory.
 
-* `validate_password` is installed and enabled.
+* `validate_password` é instalado e habilitado.
 
-* A superuser account `'root'@'localhost` is created. A password for the superuser is set and stored in the error log file. To reveal it, use the following command:
+* Uma conta de superusuário `'root'@'localhost` é criada. Uma senha para o superusuário é definida e armazenada no arquivo de log de erro. Para revelá-la, use o seguinte comando:
 
   ```sql
   $> sudo grep 'temporary password' /var/log/mysqld.log
   ```
 
-  Change the root password as soon as possible by logging in with the generated, temporary password and set a custom password for the superuser account:
+  Altere a senha do root o mais rápido possível, fazendo login com a senha temporária gerada e definindo uma senha personalizada para a conta de superusuário:
 
   ```sql
   $> mysql -uroot -p
@@ -171,42 +171,42 @@ At the initial start up of the server, the following happens, given that the dat
 
   Note
 
-  `validate_password` is installed by default. The default password policy implemented by `validate_password` requires that passwords contain at least one uppercase letter, one lowercase letter, one digit, and one special character, and that the total password length is at least 8 characters.
+  `validate_password` é instalado por padrão. A política de senha padrão implementada por `validate_password` exige que as senhas contenham pelo menos uma letra maiúscula, uma letra minúscula, um dígito e um caractere especial, e que o comprimento total da senha seja de pelo menos 8 caracteres.
 
-For more information on the postinstallation procedures, see Section 2.9, “Postinstallation Setup and Testing”.
+Para mais informações sobre os procedimentos de pós-instalação, consulte a Seção 2.9, “Configuração e Teste Pós-instalação”.
 
 Note
 
-*Compatibility Information for EL7-based platforms:* The following RPM packages from the native software repositories of the platforms are incompatible with the package from the MySQL Yum repository that installs the MySQL server. Once you have installed MySQL using the MySQL Yum repository, you cannot install these packages (and vice versa).
+*Informações de Compatibilidade para plataformas baseadas em EL7:* Os seguintes pacotes RPM dos repositórios de software nativos das plataformas são incompatíveis com o pacote do Repositório Yum do MySQL que instala o MySQL Server. Depois de instalar o MySQL usando o Repositório Yum do MySQL, você não pode instalar estes pacotes (e vice-versa).
 
 * akonadi-mysql
 
-#### Installing Additional MySQL Products and Components with Yum
+#### Instalando Produtos e Componentes Adicionais do MySQL com Yum
 
-You can use Yum to install and manage individual components of MySQL. Some of these components are hosted in sub-repositories of the MySQL Yum repository: for example, the MySQL Connectors are to be found in the MySQL Connectors Community sub-repository, and the MySQL Workbench in MySQL Tools Community. You can use the following command to list the packages for all the MySQL components available for your platform from the MySQL Yum repository:
+Você pode usar o Yum para instalar e gerenciar componentes individuais do MySQL. Alguns desses componentes estão hospedados em subrepositórios do Repositório Yum do MySQL: por exemplo, os MySQL Connectors podem ser encontrados no subrepositório MySQL Connectors Community, e o MySQL Workbench no MySQL Tools Community. Você pode usar o seguinte comando para listar os pacotes de todos os componentes MySQL disponíveis para sua plataforma a partir do Repositório Yum do MySQL:
 
 ```sql
 $> sudo yum --disablerepo=\* --enablerepo='mysql*-community*' list available
 ```
 
-Install any packages of your choice with the following command, replacing *`package-name`* with name of the package:
+Instale quaisquer pacotes de sua escolha com o seguinte comando, substituindo *`package-name`* pelo nome do pacote:
 
 ```sql
 $> sudo yum install package-name
 ```
 
-For example, to install MySQL Workbench on Fedora:
+Por exemplo, para instalar o MySQL Workbench no Fedora:
 
 ```sql
 $> sudo dnf install mysql-workbench-community
 ```
 
-To install the shared client libraries:
+Para instalar as bibliotecas Client compartilhadas:
 
 ```sql
 $> sudo yum install mysql-community-libs
 ```
 
-#### Updating MySQL with Yum
+#### Atualizando MySQL com Yum
 
-Besides installation, you can also perform updates for MySQL products and components using the MySQL Yum repository. See Section 2.10.5, “Upgrading MySQL with the MySQL Yum Repository” for details.
+Além da instalação, você também pode realizar atualizações para produtos e componentes MySQL usando o Repositório Yum do MySQL. Consulte a Seção 2.10.5, “Atualizando MySQL com o Repositório Yum do MySQL” para detalhes.

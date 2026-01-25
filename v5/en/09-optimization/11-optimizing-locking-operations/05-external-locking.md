@@ -1,31 +1,31 @@
-### 8.11.5 External Locking
+### 8.11.5 External Locking
 
-External locking is the use of file system locking to manage contention for `MyISAM` database tables by multiple processes. External locking is used in situations where a single process such as the MySQL server cannot be assumed to be the only process that requires access to tables. Here are some examples:
+External locking é o uso de bloqueio (locking) do sistema de arquivos para gerenciar a contenção (contention) por Tables de Database `MyISAM` por múltiplos processos. O External locking é usado em situações em que não se pode presumir que um único processo, como o MySQL Server, seja o único processo que requer acesso às Tables. Aqui estão alguns exemplos:
 
-* If you run multiple servers that use the same database directory (not recommended), each server must have external locking enabled.
+* Se você executa múltiplos Servers que usam o mesmo diretório de Database (não recomendado), cada Server deve ter o external locking habilitado.
 
-* If you use **myisamchk** to perform table maintenance operations on `MyISAM` tables, you must either ensure that the server is not running, or that the server has external locking enabled so that it locks table files as necessary to coordinate with **myisamchk** for access to the tables. The same is true for use of **myisampack** to pack `MyISAM` tables.
+* Se você usa o **myisamchk** para executar operações de manutenção de Table em tables `MyISAM`, você deve garantir que o Server não esteja em execução, ou que o Server tenha o external locking habilitado para que ele aplique Locks nos arquivos da Table conforme necessário, coordenando com o **myisamchk** para acesso às Tables. O mesmo é válido para o uso de **myisampack** para compactar Tables `MyISAM`.
 
-  If the server is run with external locking enabled, you can use **myisamchk** at any time for read operations such a checking tables. In this case, if the server tries to update a table that **myisamchk** is using, the server waits for **myisamchk** to finish before it continues.
+  Se o Server for executado com o external locking habilitado, você pode usar o **myisamchk** a qualquer momento para operações de leitura, como a verificação de Tables. Neste caso, se o Server tentar atualizar uma Table que o **myisamchk** está usando, o Server aguardará o **myisamchk** finalizar antes de prosseguir.
 
-  If you use **myisamchk** for write operations such as repairing or optimizing tables, or if you use **myisampack** to pack tables, you *must* always ensure that the **mysqld** server is not using the table. If you do not stop **mysqld**, at least do a **mysqladmin flush-tables** before you run **myisamchk**. Your tables *may become corrupted* if the server and **myisamchk** access the tables simultaneously.
+  Se você usar o **myisamchk** para operações de escrita, como reparar ou otimizar Tables, ou se usar o **myisampack** para compactar Tables, você *deve* sempre garantir que o **mysqld** Server não esteja utilizando a Table. Se você não parar o **mysqld**, execute pelo menos um **mysqladmin flush-tables** antes de rodar o **myisamchk**. Suas Tables *podem ser corrompidas* se o Server e o **myisamchk** acessarem as Tables simultaneamente.
 
-With external locking in effect, each process that requires access to a table acquires a file system lock for the table files before proceeding to access the table. If all necessary locks cannot be acquired, the process is blocked from accessing the table until the locks can be obtained (after the process that currently holds the locks releases them).
+Com o external locking em vigor, cada processo que requer acesso a uma Table adquire um Lock de sistema de arquivos para os arquivos da Table antes de prosseguir com o acesso à Table. Se todos os Locks necessários não puderem ser adquiridos, o processo é impedido de acessar a Table até que os Locks possam ser obtidos (após o processo que atualmente detém os Locks os liberar).
 
-External locking affects server performance because the server must sometimes wait for other processes before it can access tables.
+O External locking afeta a performance do Server porque, às vezes, o Server precisa esperar por outros processos antes de poder acessar as Tables.
 
-External locking is unnecessary if you run a single server to access a given data directory (which is the usual case) and if no other programs such as **myisamchk** need to modify tables while the server is running. If you only *read* tables with other programs, external locking is not required, although **myisamchk** might report warnings if the server changes tables while **myisamchk** is reading them.
+O External locking é desnecessário se você executa um único Server para acessar um determinado diretório de dados (o que é o caso usual) e se nenhum outro programa, como o **myisamchk**, precisar modificar Tables enquanto o Server estiver em execução. Se você apenas *ler* Tables com outros programas, o external locking não é obrigatório, embora o **myisamchk** possa relatar warnings se o Server alterar as Tables enquanto o **myisamchk** estiver lendo-as.
 
-With external locking disabled, to use **myisamchk**, you must either stop the server while **myisamchk** executes or else lock and flush the tables before running **myisamchk**. (See Section 8.12.1, “System Factors”.) To avoid this requirement, use the `CHECK TABLE` and `REPAIR TABLE` statements to check and repair `MyISAM` tables.
+Com o external locking desabilitado, para usar o **myisamchk**, você deve parar o Server enquanto o **myisamchk** é executado ou então aplicar Lock e flush nas Tables antes de rodar o **myisamchk**. (Veja Seção 8.12.1, “System Factors.”) Para evitar essa exigência, use as instruções `CHECK TABLE` e `REPAIR TABLE` para verificar e reparar Tables `MyISAM`.
 
-For **mysqld**, external locking is controlled by the value of the `skip_external_locking` system variable. When this variable is enabled, external locking is disabled, and vice versa. External locking is disabled by default.
+Para o **mysqld**, o external locking é controlado pelo valor da System Variable `skip_external_locking`. Quando essa variável está habilitada, o external locking é desabilitado, e vice-versa. O External locking é desabilitado por padrão.
 
-Use of external locking can be controlled at server startup by using the `--external-locking` or `--skip-external-locking` option.
+O uso de external locking pode ser controlado na inicialização do Server usando a Option `--external-locking` ou `--skip-external-locking`.
 
-If you do use external locking option to enable updates to `MyISAM` tables from many MySQL processes, you must ensure that the following conditions are satisfied:
+Se você usar a Option external locking para habilitar atualizações em Tables `MyISAM` a partir de múltiplos processos MySQL, você deve garantir que as seguintes condições sejam satisfeitas:
 
-* Do not use the query cache for queries that use tables that are updated by another process.
+* Não use o Query Cache para Queries que utilizam Tables que são atualizadas por outro processo.
 
-* Do not start the server with the `delay_key_write` system variable set to `ALL` or use the `DELAY_KEY_WRITE=1` table option for any shared tables. Otherwise, index corruption can occur.
+* Não inicie o Server com a System Variable `delay_key_write` definida como `ALL` ou use a Option de Table `DELAY_KEY_WRITE=1` para quaisquer Tables compartilhadas. Caso contrário, pode ocorrer corrupção de Index.
 
-The easiest way to satisfy these conditions is to always use `--external-locking` together with `--delay-key-write=OFF` and `--query-cache-size=0`. (This is not done by default because in many setups it is useful to have a mixture of the preceding options.)
+A maneira mais fácil de satisfazer essas condições é usar sempre `--external-locking` juntamente com `--delay-key-write=OFF` e `--query-cache-size=0`. (Isso não é feito por padrão porque, em muitas configurações, é útil ter uma mistura das Options precedentes.)

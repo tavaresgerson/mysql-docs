@@ -1,10 +1,10 @@
-#### 8.10.2.4 Index Preloading
+#### 8.10.2.4 Pré-carregamento de Index (Index Preloading)
 
-If there are enough blocks in a key cache to hold blocks of an entire index, or at least the blocks corresponding to its nonleaf nodes, it makes sense to preload the key cache with index blocks before starting to use it. Preloading enables you to put the table index blocks into a key cache buffer in the most efficient way: by reading the index blocks from disk sequentially.
+Se houver blocos suficientes em um key cache para armazenar os blocos de um Index inteiro, ou pelo menos os blocos correspondentes aos seus nós não-folha (nonleaf nodes), faz sentido pré-carregar o key cache com blocos de Index antes de começar a usá-lo. O pré-carregamento permite que você coloque os blocos de Index da tabela em um buffer do key cache da maneira mais eficiente: lendo os blocos de Index do disco sequencialmente.
 
-Without preloading, the blocks are still placed into the key cache as needed by queries. Although the blocks stay in the cache, because there are enough buffers for all of them, they are fetched from disk in random order, and not sequentially.
+Sem o pré-carregamento, os blocos ainda são colocados no key cache conforme necessário pelas Queries. Embora os blocos permaneçam no cache, por haver buffers suficientes para todos eles, eles são buscados do disco em ordem aleatória, e não sequencialmente.
 
-To preload an index into a cache, use the `LOAD INDEX INTO CACHE` statement. For example, the following statement preloads nodes (index blocks) of indexes of the tables `t1` and `t2`:
+Para pré-carregar um Index em um cache, use a instrução `LOAD INDEX INTO CACHE`. Por exemplo, a instrução a seguir pré-carrega nós (blocos de Index) dos Indexes das tabelas `t1` e `t2`:
 
 ```sql
 mysql> LOAD INDEX INTO CACHE t1, t2 IGNORE LEAVES;
@@ -16,6 +16,6 @@ mysql> LOAD INDEX INTO CACHE t1, t2 IGNORE LEAVES;
 +---------+--------------+----------+----------+
 ```
 
-The `IGNORE LEAVES` modifier causes only blocks for the nonleaf nodes of the index to be preloaded. Thus, the statement shown preloads all index blocks from `t1`, but only blocks for the nonleaf nodes from `t2`.
+O modificador `IGNORE LEAVES` faz com que apenas blocos para os nós não-folha (nonleaf nodes) do Index sejam pré-carregados. Assim, a instrução mostrada pré-carrega todos os blocos de Index de `t1`, mas apenas blocos para os nós não-folha de `t2`.
 
-If an index has been assigned to a key cache using a `CACHE INDEX` statement, preloading places index blocks into that cache. Otherwise, the index is loaded into the default key cache.
+Se um Index foi atribuído a um key cache usando uma instrução `CACHE INDEX`, o pré-carregamento coloca os blocos de Index nesse cache. Caso contrário, o Index é carregado no key cache padrão.

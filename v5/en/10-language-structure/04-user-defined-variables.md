@@ -1,26 +1,26 @@
-## 9.4 User-Defined Variables
+## 9.4 Variáveis Definidas pelo Usuário
 
-You can store a value in a user-defined variable in one statement and refer to it later in another statement. This enables you to pass values from one statement to another.
+Você pode armazenar um valor em uma variável definida pelo usuário em uma instrução e referenciá-lo posteriormente em outra instrução. Isso permite que você passe valores de uma instrução para a outra.
 
-User variables are written as `@var_name`, where the variable name *`var_name`* consists of alphanumeric characters, `.`, `_`, and `$`. A user variable name can contain other characters if you quote it as a string or identifier (for example, `@'my-var'`, `@"my-var"`, or `` @`my-var` ``).
+Variáveis de usuário são escritas como `@nome_var`, onde o nome da variável *`nome_var`* consiste em caracteres alfanuméricos, `.`, `_` e `$`. Um nome de variável de usuário pode conter outros caracteres se você o citar como uma string ou identificador (por exemplo, `@'minha-var'`, `@"minha-var"` ou `` @`minha-var` ``).
 
-User-defined variables are session specific. A user variable defined by one client cannot be seen or used by other clients. (Exception: A user with access to the Performance Schema `user_variables_by_thread` table can see all user variables for all sessions.) All variables for a given client session are automatically freed when that client exits.
+Variáveis definidas pelo usuário são específicas da sessão. Uma variável de usuário definida por um cliente não pode ser vista ou usada por outros clientes. (Exceção: Um usuário com acesso à tabela `user_variables_by_thread` do Performance Schema pode ver todas as variáveis de usuário para todas as sessões.) Todas as variáveis de uma determinada sessão cliente são liberadas automaticamente quando o cliente se desconecta.
 
-User variable names are not case-sensitive. Names have a maximum length of 64 characters.
+Nomes de variáveis de usuário não diferenciam maiúsculas de minúsculas (case-sensitive). Os nomes têm um comprimento máximo de 64 caracteres.
 
-One way to set a user-defined variable is by issuing a `SET` statement:
+Uma maneira de definir uma variável definida pelo usuário é emitindo uma instrução `SET`:
 
 ```sql
 SET @var_name = expr [, @var_name = expr] ...
 ```
 
-For `SET`, either `=` or `:=` can be used as the assignment operator.
+Para `SET`, tanto `=` quanto `:=` podem ser usados como operadores de atribuição.
 
-User variables can be assigned a value from a limited set of data types: integer, decimal, floating-point, binary or nonbinary string, or `NULL` value. Assignment of decimal and real values does not preserve the precision or scale of the value. A value of a type other than one of the permissible types is converted to a permissible type. For example, a value having a temporal or spatial data type is converted to a binary string. A value having the `JSON` data type is converted to a string with a character set of `utf8mb4` and a collation of `utf8mb4_bin`.
+Variáveis de usuário podem receber um valor de um conjunto limitado de tipos de dados: integer (inteiro), decimal, floating-point (ponto flutuante), string binária ou não binária, ou valor `NULL`. A atribuição de valores decimais e reais não preserva a precisão ou escala do valor. Um valor de um tipo diferente dos tipos permitidos é convertido para um tipo permitido. Por exemplo, um valor com um tipo de dado temporal ou espacial é convertido para uma string binária. Um valor com o tipo de dado `JSON` é convertido para uma string com um conjunto de caracteres (`character set`) `utf8mb4` e um agrupamento (`collation`) `utf8mb4_bin`.
 
-If a user variable is assigned a nonbinary (character) string value, it has the same character set and collation as the string. The coercibility of user variables is implicit. (This is the same coercibility as for table column values.)
+Se uma variável de usuário recebe um valor de string não binária (caractere), ela tem o mesmo conjunto de caracteres (`character set`) e agrupamento (`collation`) que a string. A coercibilidade de variáveis de usuário é implícita. (Esta é a mesma coercibilidade que para valores de coluna de tabela.)
 
-Hexadecimal or bit values assigned to user variables are treated as binary strings. To assign a hexadecimal or bit value as a number to a user variable, use it in numeric context. For example, add 0 or use `CAST(... AS UNSIGNED)`:
+Valores hexadecimais ou de bit atribuídos a variáveis de usuário são tratados como strings binárias. Para atribuir um valor hexadecimal ou de bit como um número a uma variável de usuário, use-o em contexto numérico. Por exemplo, adicione 0 ou use `CAST(... AS UNSIGNED)`:
 
 ```sql
 mysql> SET @v1 = X'41';
@@ -43,13 +43,13 @@ mysql> SELECT @v1, @v2, @v3;
 +------+------+------+
 ```
 
-If the value of a user variable is selected in a result set, it is returned to the client as a string.
+Se o valor de uma variável de usuário é selecionado em um result set, ele é retornado ao cliente como uma string.
 
-If you refer to a variable that has not been initialized, it has a value of `NULL` and a type of string.
+Se você se referir a uma variável que não foi inicializada, ela terá um valor `NULL` e um tipo string.
 
-User variables may be used in most contexts where expressions are permitted. This does not currently include contexts that explicitly require a literal value, such as in the `LIMIT` clause of a `SELECT` statement, or the `IGNORE N LINES` clause of a `LOAD DATA` statement.
+Variáveis de usuário podem ser usadas na maioria dos contextos onde expressões são permitidas. Isso atualmente não inclui contextos que exigem explicitamente um valor literal, como na cláusula `LIMIT` de uma instrução `SELECT`, ou na cláusula `IGNORE N LINES` de uma instrução `LOAD DATA`.
 
-It is also possible to assign a value to a user variable in statements other than `SET`. (This functionality is deprecated in MySQL 8.0 and subject to removal in a subsequent release.) When making an assignment in this way, the assignment operator must be `:=` and not `=` because the latter is treated as the comparison operator `=` in statements other than `SET`:
+Também é possível atribuir um valor a uma variável de usuário em instruções diferentes de `SET`. (Esta funcionalidade está obsoleta no MySQL 8.0 e sujeita a remoção em um release subsequente.) Ao fazer uma atribuição dessa forma, o operador de atribuição deve ser `:=` e não `=`, pois este último é tratado como o operador de comparação `=` em instruções que não sejam `SET`:
 
 ```sql
 mysql> SET @t1=1, @t2=2, @t3:=4;
@@ -61,40 +61,40 @@ mysql> SELECT @t1, @t2, @t3, @t4 := @t1+@t2+@t3;
 +------+------+------+--------------------+
 ```
 
-As a general rule, other than in `SET` statements, you should never assign a value to a user variable and read the value within the same statement. For example, to increment a variable, this is okay:
+Como regra geral, fora das instruções `SET`, você nunca deve atribuir um valor a uma variável de usuário e ler o valor dentro da mesma instrução. Por exemplo, para incrementar uma variável, isto é aceitável:
 
 ```sql
 SET @a = @a + 1;
 ```
 
-For other statements, such as `SELECT`, you might get the results you expect, but this is not guaranteed. In the following statement, you might think that MySQL evaluates `@a` first and then does an assignment second:
+Para outras instruções, como `SELECT`, você pode obter os resultados que espera, mas isso não é garantido. Na instrução a seguir, você pode pensar que o MySQL avalia `@a` primeiro e depois faz uma atribuição em seguida:
 
 ```sql
 SELECT @a, @a:=@a+1, ...;
 ```
 
-However, the order of evaluation for expressions involving user variables is undefined.
+No entanto, a ordem de avaliação para expressões que envolvem variáveis de usuário é indefinida.
 
-Another issue with assigning a value to a variable and reading the value within the same non-`SET` statement is that the default result type of a variable is based on its type at the start of the statement. The following example illustrates this:
+Outra questão com a atribuição de um valor a uma variável e a leitura do valor dentro da mesma instrução que não seja `SET` é que o tipo de resultado padrão de uma variável é baseado em seu tipo no início da instrução. O exemplo a seguir ilustra isso:
 
 ```sql
 mysql> SET @a='test';
 mysql> SELECT @a,(@a:=20) FROM tbl_name;
 ```
 
-For this `SELECT` statement, MySQL reports to the client that column one is a string and converts all accesses of `@a` to strings, even though @a is set to a number for the second row. After the `SELECT` statement executes, `@a` is regarded as a number for the next statement.
+Para esta instrução `SELECT`, o MySQL informa ao cliente que a coluna um é uma string e converte todos os acessos de `@a` para strings, mesmo que @a seja definido como um número para a segunda linha. Após a execução da instrução `SELECT`, `@a` é considerada um número para a próxima instrução.
 
-To avoid problems with this behavior, either do not assign a value to and read the value of the same variable within a single statement, or else set the variable to `0`, `0.0`, or `''` to define its type before you use it.
+Para evitar problemas com este comportamento, ou não atribua e leia o valor da mesma variável em uma única instrução, ou defina a variável como `0`, `0.0` ou `''` para definir seu tipo antes de usá-la.
 
-In a `SELECT` statement, each select expression is evaluated only when sent to the client. This means that in a `HAVING`, `GROUP BY`, or `ORDER BY` clause, referring to a variable that is assigned a value in the select expression list does *not* work as expected:
+Em uma instrução `SELECT`, cada expressão de seleção é avaliada somente quando enviada ao cliente. Isso significa que, em uma cláusula `HAVING`, `GROUP BY` ou `ORDER BY`, referenciar uma variável que recebe um valor na lista de expressões de seleção *não* funciona como esperado:
 
 ```sql
 mysql> SELECT (@aa:=id) AS a, (@aa+3) AS b FROM tbl_name HAVING b=5;
 ```
 
-The reference to `b` in the `HAVING` clause refers to an alias for an expression in the select list that uses `@aa`. This does not work as expected: `@aa` contains the value of `id` from the previous selected row, not from the current row.
+A referência a `b` na cláusula `HAVING` se refere a um alias para uma expressão na lista de seleção que usa `@aa`. Isso não funciona como esperado: `@aa` contém o valor de `id` da linha selecionada anterior, e não da linha atual.
 
-User variables are intended to provide data values. They cannot be used directly in an SQL statement as an identifier or as part of an identifier, such as in contexts where a table or database name is expected, or as a reserved word such as `SELECT`. This is true even if the variable is quoted, as shown in the following example:
+Variáveis de usuário se destinam a fornecer valores de dados. Elas não podem ser usadas diretamente em uma instrução SQL como um identificador ou como parte de um identificador, como em contextos onde um nome de tabela ou Database é esperado, ou como uma palavra reservada, como `SELECT`. Isso é verdade mesmo que a variável seja citada, conforme mostrado no exemplo a seguir:
 
 ```sql
 mysql> SELECT c1 FROM t;
@@ -133,7 +133,7 @@ mysql> SELECT @col FROM t;
 1 row in set (0.00 sec)
 ```
 
-An exception to this principle that user variables cannot be used to provide identifiers, is when you are constructing a string for use as a prepared statement to execute later. In this case, user variables can be used to provide any part of the statement. The following example illustrates how this can be done:
+Uma exceção a este princípio, de que variáveis de usuário não podem ser usadas para fornecer identificadores, ocorre quando você está construindo uma string para ser usada como uma prepared statement (instrução preparada) a ser executada posteriormente. Neste caso, variáveis de usuário podem ser usadas para fornecer qualquer parte da instrução. O exemplo a seguir ilustra como isso pode ser feito:
 
 ```sql
 mysql> SET @c = "c1";
@@ -160,9 +160,9 @@ mysql> DEALLOCATE PREPARE stmt;
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-See Section 13.5, “Prepared Statements”, for more information.
+Consulte a Seção 13.5, “Prepared Statements”, para obter mais informações.
 
-A similar technique can be used in application programs to construct SQL statements using program variables, as shown here using PHP 5:
+Uma técnica semelhante pode ser usada em programas aplicativos para construir instruções SQL usando variáveis de programa, conforme mostrado aqui usando PHP 5:
 
 ```sql
 <?php
@@ -188,4 +188,4 @@ A similar technique can be used in application programs to construct SQL stateme
 ?>
 ```
 
-Assembling an SQL statement in this fashion is sometimes known as “Dynamic SQL”.
+Montar uma instrução SQL desta forma é por vezes conhecido como “SQL Dinâmico” (Dynamic SQL).

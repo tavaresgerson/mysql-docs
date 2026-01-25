@@ -1,61 +1,61 @@
-### 2.4.4 Installing and Using the MySQL Preference Pane
+### 2.4.4 Instalando e Usando o Painel de Preferências do MySQL
 
-The MySQL Installation Package includes a MySQL preference pane that enables you to start, stop, and control automated startup during boot of your MySQL installation.
+O Pacote de Instalação do MySQL inclui um Painel de Preferências do MySQL (*MySQL preference pane*) que permite iniciar, parar e controlar a inicialização automática (*automated startup*) durante o *boot* da sua instalação do MySQL.
 
-This preference pane is installed by default, and is listed under your system's *System Preferences* window.
+Este Painel de Preferências é instalado por padrão e está listado na janela *Preferências do Sistema* (*System Preferences*) do seu sistema.
 
-**Figure 2.21 MySQL Preference Pane: Location**
+**Figura 2.21 Painel de Preferências do MySQL: Localização**
 
 ![Content is described in the surrounding text.](images/mac-installer-preference-pane-location.png)
 
-To install the MySQL Preference Pane:
+Para instalar o Painel de Preferências do MySQL:
 
-1. Download the disk image (`.dmg`) file (the community version is available [here](https://dev.mysql.com/downloads/mysql/)) that contains the MySQL package installer. Double-click the file to mount the disk image and see its contents.
+1. Faça o download da imagem de disco (arquivo `.dmg`) (a versão Community está disponível [aqui](https://dev.mysql.com/downloads/mysql/)) que contém o instalador do pacote MySQL. Dê um clique duplo no arquivo para montar a imagem de disco e ver seu conteúdo.
 
-   **Figure 2.22 MySQL Package Installer: DMG Contents**
+   **Figura 2.22 Instalador do Pacote MySQL: Conteúdo do DMG**
 
    ![Content is described in the surrounding text.](images/mac-installer-dmg-contents.png)
 
-2. Go through the process of installing the MySQL server, as described in the documentation at Section 2.4.2, “Installing MySQL on macOS Using Native Packages”.
+2. Siga o processo de instalação do MySQL Server, conforme descrito na documentação na Seção 2.4.2, “Instalando o MySQL no macOS Usando Pacotes Nativos”.
 
-3. Click Customize at the Installation Type step. The "Preference Pane" option is listed there and enabled by default; make sure it is not deselected.
+3. Clique em Customize (Personalizar) na etapa Tipo de Instalação. A opção "Preference Pane" (Painel de Preferências) está listada ali e habilitada por padrão; certifique-se de que não esteja desmarcada.
 
-   **Figure 2.23 MySQL Installer on macOS: Customize**
+   **Figura 2.23 Instalador do MySQL no macOS: Personalizar (Customize)**
 
    ![Content is described in the surrounding text.](images/mac-installer-installation-customize.png)
 
-4. Complete the MySQL server installation process.
+4. Conclua o processo de instalação do MySQL Server.
 
-Note
+Nota
 
-The MySQL preference pane only starts and stops MySQL installation installed from the MySQL package installation that have been installed in the default location.
+O Painel de Preferências do MySQL (*MySQL preference pane*) apenas inicia e para instalações do MySQL que foram instaladas a partir do pacote de instalação do MySQL e que estão no local padrão.
 
-Once the MySQL preference pane has been installed, you can control your MySQL server instance using the preference pane. To use the preference pane, open the System Preferences... from the Apple menu. Select the MySQL preference pane by clicking the MySQL icon within the preference panes list.
+Uma vez que o Painel de Preferências do MySQL (*MySQL preference pane*) tenha sido instalado, você pode controlar sua instância do MySQL Server usando o Painel de Preferências. Para usar o Painel de Preferências, abra *System Preferences...* (Preferências do Sistema...) no menu Apple. Selecione o Painel de Preferências do MySQL clicando no ícone do MySQL dentro da lista de painéis de preferência.
 
-**Figure 2.24 MySQL Preference Pane: Location**
+**Figura 2.24 Painel de Preferências do MySQL: Localização**
 
 ![Content is described in the surrounding text.](images/mac-installer-preference-pane-location.png)
 
-**Figure 2.25 MySQL Preference Pane: Usage**
+**Figura 2.25 Painel de Preferências do MySQL: Uso**
 
 ![Content is described in the surrounding text.](images/mac-installer-preference-pane-usage.png)
 
-The MySQL Preference Pane shows the current status of the MySQL server, showing stopped (in red) if the server is not running and running (in green) if the server has already been started. The preference pane also shows the current setting for whether the MySQL server has been set to start automatically.
+O Painel de Preferências do MySQL exibe o status atual do MySQL Server, mostrando *stopped* (parado, em vermelho) se o *Server* não estiver em execução e *running* (em execução, em verde) se o *Server* já tiver sido iniciado. O Painel de Preferências também exibe a configuração atual sobre se o MySQL Server está configurado para iniciar automaticamente.
 
-* **To start the MySQL server using the preference pane:**
+* **Para iniciar o MySQL Server usando o Painel de Preferências:**
 
-  Click Start MySQL Server. You may be prompted for the username and password of a user with administrator privileges to start the MySQL server.
+  Clique em Start MySQL Server (Iniciar MySQL Server). Pode ser solicitado o nome de usuário e a senha de um usuário com privilégios de administrador para iniciar o MySQL Server.
 
-* **To stop the MySQL server using the preference pane:**
+* **Para parar o MySQL Server usando o Painel de Preferências:**
 
-  Click Stop MySQL Server. You may be prompted for the username and password of a user with administrator privileges to stop the MySQL server.
+  Clique em Stop MySQL Server (Parar MySQL Server). Pode ser solicitado o nome de usuário e a senha de um usuário com privilégios de administrador para parar o MySQL Server.
 
-* **To automatically start the MySQL server when the system boots:**
+* **Para iniciar o MySQL Server automaticamente quando o sistema inicializar (*boots*):**
 
-  Check the check box next to Automatically Start MySQL Server on Startup.
+  Marque a caixa de seleção ao lado de Automatically Start MySQL Server on Startup (Iniciar MySQL Server Automaticamente na Inicialização).
 
-* **To disable automatic MySQL server startup when the system boots:**
+* **Para desabilitar a inicialização automática do MySQL Server quando o sistema inicializar (*boots*):**
 
-  Uncheck the check box next to Automatically Start MySQL Server on Startup.
+  Desmarque a caixa de seleção ao lado de Automatically Start MySQL Server on Startup (Iniciar MySQL Server Automaticamente na Inicialização).
 
-You can close the **System Preferences...** window once you have completed your settings.
+Você pode fechar a janela **System Preferences...** (Preferências do Sistema...) assim que tiver concluído suas configurações.

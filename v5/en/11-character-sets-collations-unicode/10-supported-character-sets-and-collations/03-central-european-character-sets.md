@@ -1,30 +1,30 @@
-### 10.10.3 Central European Character Sets
+### 10.10.3 Conjuntos de Character Set da Europa Central
 
-MySQL provides some support for character sets used in the Czech Republic, Slovakia, Hungary, Romania, Slovenia, Croatia, Poland, and Serbia (Latin).
+O MySQL fornece algum suporte para os *Character Sets* utilizados na República Tcheca, Eslováquia, Hungria, Romênia, Eslovênia, Croácia, Polônia e Sérvia (Latim).
 
-* `cp1250` (Windows Central European) collations:
+* `cp1250` (*collations* Windows da Europa Central):
 
   + `cp1250_bin`
   + `cp1250_croatian_ci`
   + `cp1250_czech_cs`
-  + `cp1250_general_ci` (default)
+  + `cp1250_general_ci` (*default*)
   + `cp1250_polish_ci`
-* `cp852` (DOS Central European) collations:
+* `cp852` (*collations* DOS da Europa Central):
 
   + `cp852_bin`
-  + `cp852_general_ci` (default)
-* `keybcs2` (DOS Kamenicky Czech-Slovak) collations:
+  + `cp852_general_ci` (*default*)
+* `keybcs2` (*collations* DOS Kamenicky Tcheco-Eslovaco):
 
   + `keybcs2_bin`
-  + `keybcs2_general_ci` (default)
-* `latin2` (ISO 8859-2 Central European) collations:
+  + `keybcs2_general_ci` (*default*)
+* `latin2` (*collations* ISO 8859-2 da Europa Central):
 
   + `latin2_bin`
   + `latin2_croatian_ci`
   + `latin2_czech_cs`
-  + `latin2_general_ci` (default)
+  + `latin2_general_ci` (*default*)
   + `latin2_hungarian_ci`
-* `macce` (Mac Central European) collations:
+* `macce` (*collations* Mac da Europa Central):
 
   + `macce_bin`
-  + `macce_general_ci` (default)
+  + `macce_general_ci` (*default*)

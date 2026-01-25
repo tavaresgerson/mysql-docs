@@ -1,5 +1,5 @@
-### 2.5.4 Installing MySQL on Linux Using the MySQL SLES Repository
+### 2.5.4 Instalando o MySQL no Linux Usando o Repositório MySQL SLES
 
-The MySQL SLES repository provides RPM packages for installing and managing the MySQL server, client, and other components on SUSE Enterprise Linux Server.
+O repositório MySQL SLES fornece pacotes RPM para instalar e gerenciar o servidor MySQL, o client e outros componentes no SUSE Enterprise Linux Server.
 
-Instructions for using the MySQL SLES repository are available in A Quick Guide to Using the MySQL SLES Repository.
+As instruções para usar o repositório MySQL SLES estão disponíveis em A Quick Guide to Using the MySQL SLES Repository.

@@ -1,33 +1,33 @@
-### 2.3.4 Installing MySQL on Microsoft Windows Using a `noinstall` ZIP Archive
+### 2.3.4 Instalando o MySQL no Microsoft Windows Usando um Arquivo ZIP `noinstall`
 
-2.3.4.1 Extracting the Install Archive
+2.3.4.1 Extraindo o Arquivo de Instalação
 
-2.3.4.2 Creating an Option File
+2.3.4.2 Criando um Arquivo de Opções
 
-2.3.4.3 Selecting a MySQL Server Type
+2.3.4.3 Selecionando um Tipo de Servidor MySQL
 
-2.3.4.4 Initializing the Data Directory
+2.3.4.4 Inicializando o Data Directory
 
-2.3.4.5 Starting the Server for the First Time
+2.3.4.5 Iniciando o Servidor pela Primeira Vez
 
-2.3.4.6 Starting MySQL from the Windows Command Line
+2.3.4.6 Iniciando o MySQL a partir da Linha de Comando do Windows
 
-2.3.4.7 Customizing the PATH for MySQL Tools
+2.3.4.7 Personalizando o PATH para Ferramentas MySQL
 
-2.3.4.8 Starting MySQL as a Windows Service
+2.3.4.8 Iniciando o MySQL como um Serviço do Windows
 
-2.3.4.9 Testing The MySQL Installation
+2.3.4.9 Testando a Instalação do MySQL
 
-Users who are installing from the `noinstall` package can use the instructions in this section to manually install MySQL. The process for installing MySQL from a ZIP Archive package is as follows:
+Usuários que estão instalando a partir do pacote `noinstall` podem usar as instruções nesta seção para instalar o MySQL manualmente. O processo para instalar o MySQL a partir de um pacote ZIP Archive é o seguinte:
 
-1. Extract the main archive to the desired install directory
+1. Extraia o arquivo principal para o diretório de instalação desejado
 
-   *Optional*: also extract the debug-test archive if you plan to execute the MySQL benchmark and test suite
+   *Opcional*: extraia também o arquivo `debug-test` se você planeja executar o `benchmark` e o `test suite` do MySQL
 
-2. Create an option file
-3. Choose a MySQL server type
-4. Initialize MySQL
-5. Start the MySQL server
-6. Secure the default user accounts
+2. Crie um arquivo de opções
+3. Escolha um tipo de servidor MySQL
+4. Inicialize o MySQL
+5. Inicie o servidor MySQL
+6. Proteja as contas de usuário padrão
 
-This process is described in the sections that follow.
+Este processo é descrito nas seções a seguir.

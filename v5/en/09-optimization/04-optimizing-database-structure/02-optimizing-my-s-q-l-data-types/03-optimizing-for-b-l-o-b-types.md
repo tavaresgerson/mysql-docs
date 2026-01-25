@@ -1,11 +1,11 @@
-#### 8.4.2.3 Optimizing for BLOB Types
+#### 8.4.2.3 Otimizando para Tipos BLOB
 
-* When storing a large blob containing textual data, consider compressing it first. Do not use this technique when the entire table is compressed by `InnoDB` or `MyISAM`.
+* Ao armazenar um BLOB grande contendo dados textuais, considere compactá-lo primeiro. Não use esta técnica quando a tabela inteira já estiver compactada por `InnoDB` ou `MyISAM`.
 
-* For a table with several columns, to reduce memory requirements for queries that do not use the BLOB column, consider splitting the BLOB column into a separate table and referencing it with a join query when needed.
+* Para uma tabela com várias colunas, a fim de reduzir os requisitos de memória para Querys que não utilizam a coluna BLOB, considere dividir a coluna BLOB em uma tabela separada e referenciá-la com uma Query de JOIN quando necessário.
 
-* Since the performance requirements to retrieve and display a BLOB value might be very different from other data types, you could put the BLOB-specific table on a different storage device or even a separate database instance. For example, to retrieve a BLOB might require a large sequential disk read that is better suited to a traditional hard drive than to an SSD device.
+* Visto que os requisitos de performance para recuperar e exibir um valor BLOB podem ser muito diferentes dos de outros tipos de dados, você pode colocar a tabela específica de BLOB em um dispositivo de armazenamento diferente ou até mesmo em uma instância de Database separada. Por exemplo, recuperar um BLOB pode exigir uma grande leitura sequencial de disco, o que é mais adequado para um disco rígido tradicional do que para um dispositivo SSD.
 
-* See Section 8.4.2.2, “Optimizing for Character and String Types” for reasons why a binary `VARCHAR` column is sometimes preferable to an equivalent BLOB column.
+* Consulte a Seção 8.4.2.2, “Otimizando para Tipos de Caractere e String”, para saber as razões pelas quais uma coluna binária `VARCHAR` é, às vezes, preferível a uma coluna BLOB equivalente.
 
-* Rather than testing for equality against a very long text string, you can store a hash of the column value in a separate column, index that column, and test the hashed value in queries. (Use the `MD5()` or `CRC32()` function to produce the hash value.) Since hash functions can produce duplicate results for different inputs, you still include a clause `AND blob_column = long_string_value` in the query to guard against false matches; the performance benefit comes from the smaller, easily scanned index for the hashed values.
+* Em vez de testar a igualdade contra uma string de texto muito longa, você pode armazenar um hash do valor da coluna em uma coluna separada, criar um Index nessa coluna e testar o valor hashed em Querys. (Use a função `MD5()` ou `CRC32()` para produzir o valor hash.) Como as funções hash podem produzir resultados duplicados para entradas diferentes, você ainda deve incluir uma cláusula `AND blob_column = long_string_value` na Query para evitar falsas correspondências; o benefício de performance vem do Index menor e facilmente escaneável para os valores hashed.

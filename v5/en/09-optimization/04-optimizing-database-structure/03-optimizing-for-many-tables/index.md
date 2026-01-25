@@ -1,7 +1,7 @@
-### 8.4.3 Optimizing for Many Tables
+### 8.4.3 Otimizando para Muitas Tabelas
 
-8.4.3.1 How MySQL Opens and Closes Tables
+8.4.3.1 Como o MySQL Abre e Fecha Tabelas
 
-8.4.3.2 Disadvantages of Creating Many Tables in the Same Database
+8.4.3.2 Desvantagens de Criar Muitas Tabelas no Mesmo Database
 
-Some techniques for keeping individual queries fast involve splitting data across many tables. When the number of tables runs into the thousands or even millions, the overhead of dealing with all these tables becomes a new performance consideration.
+Algumas técnicas para manter **Queries** individuais rápidas envolvem dividir dados entre muitas tabelas. Quando o número de tabelas atinge milhares ou até milhões, o **overhead** de lidar com todas essas tabelas se torna uma nova consideração de **performance**.

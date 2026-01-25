@@ -1,15 +1,15 @@
-## 2.1 General Installation Guidance
+## 2.1 Orientação Geral de Instalação
 
-2.1.1 Supported Platforms
+2.1.1 Plataformas Suportadas
 
-2.1.2 Which MySQL Version and Distribution to Install
+2.1.2 Qual Versão e Distribuição do MySQL Instalar
 
-2.1.3 How to Get MySQL
+2.1.3 Como Obter o MySQL
 
-2.1.4 Verifying Package Integrity Using MD5 Checksums or GnuPG
+2.1.4 Verificando a Integridade do Pacote Usando Checksums MD5 ou GnuPG
 
-2.1.5 Installation Layouts
+2.1.5 Layouts de Instalação
 
-2.1.6 Compiler-Specific Build Characteristics
+2.1.6 Características de Build Específicas do Compilador
 
-The immediately following sections contain the information necessary to choose, download, and verify your distribution. The instructions in later sections of the chapter describe how to install the distribution that you choose. For binary distributions, see the instructions at Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries” or the corresponding section for your platform if available. To build MySQL from source, use the instructions in Section 2.8, “Installing MySQL from Source”.
+As seções imediatamente seguintes contêm as informações necessárias para escolher, baixar e verificar sua distribuição. As instruções nas seções posteriores deste capítulo descrevem como instalar a distribuição que você escolher. Para distribuições binárias, consulte as instruções na Seção 2.2, “Instalando o MySQL no Unix/Linux Usando Binários Genéricos” ou a seção correspondente para sua plataforma, se disponível. Para compilar o MySQL a partir do código-fonte (source), use as instruções na Seção 2.8, “Instalando o MySQL a partir do Source”.

@@ -1,5 +1,5 @@
-### 8.4.5 Limits on Number of Databases and Tables
+### 8.4.5 Limites no Número de Databases e Tables
 
-MySQL has no limit on the number of databases. The underlying file system may have a limit on the number of directories.
+O MySQL não possui limite para o número de databases. O sistema de arquivos subjacente pode ter um limite no número de diretórios.
 
-MySQL has no limit on the number of tables. The underlying file system may have a limit on the number of files that represent tables. Individual storage engines may impose engine-specific constraints. `InnoDB` permits up to 4 billion tables.
+O MySQL não possui limite para o número de tables. O sistema de arquivos subjacente pode ter um limite no número de arquivos que representam tables. Storage engines individuais podem impor restrições específicas do engine. O `InnoDB` permite até 4 bilhões de tables.

@@ -1,12 +1,12 @@
-### 2.11.5 Downgrade Troubleshooting
+### 2.11.5 Solução de Problemas no Downgrade
 
-If you downgrade from one release series to another, there may be incompatibilities in table storage formats. In this case, use **mysqldump** to dump your tables before downgrading. After downgrading, reload the dump file using **mysql** or **mysqlimport** to re-create your tables. For examples, see Section 2.10.13, “Copying MySQL Databases to Another Machine”.
+Se você fizer o downgrade de uma série de lançamento para outra, pode haver incompatibilidades nos formatos de armazenamento de tabela. Neste caso, use o **mysqldump** para fazer o dump de suas tabelas antes do downgrade. Após o downgrade, recarregue o dump file usando o **mysql** ou **mysqlimport** para re-criar suas tabelas. Para exemplos, consulte a Seção 2.10.13, “Copiando MySQL Databases para Outra Máquina”.
 
-A typical symptom of a downward-incompatible table format change when you downgrade is that you cannot open tables. In that case, use the following procedure:
+Um sintoma típico de uma alteração de formato de tabela incompatível para downgrade é a incapacidade de abrir as tabelas. Nesse caso, utilize o seguinte procedimento:
 
-1. Stop the older MySQL server that you are downgrading to.
-2. Restart the newer MySQL server you are downgrading from.
-3. Dump any tables that were inaccessible to the older server by using **mysqldump** to create a dump file.
+1. Pare o MySQL server mais antigo para o qual você está fazendo o downgrade.
+2. Reinicie o MySQL server mais novo do qual você está fazendo o downgrade.
+3. Faça o dump de quaisquer tabelas que estavam inacessíveis para o server mais antigo usando o **mysqldump** para criar um dump file.
 
-4. Stop the newer MySQL server and restart the older one.
-5. Reload the dump file into the older server. Your tables should be accessible.
+4. Pare o MySQL server mais novo e reinicie o mais antigo.
+5. Recarregue o dump file no server mais antigo. Suas tabelas devem estar acessíveis.

@@ -1,51 +1,51 @@
-#### 6.4.1.10 No-Login Pluggable Authentication
+#### 6.4.1.10 Autenticação Pluggable Sem Login
 
-The `mysql_no_login` server-side authentication plugin prevents all client connections to any account that uses it. Use cases for this plugin include:
+O Plugin de Autenticação server-side `mysql_no_login` impede todas as conexões de clientes a qualquer conta que o utilize. Os casos de uso para este Plugin incluem:
 
-* Accounts that must be able to execute stored programs and views with elevated privileges without exposing those privileges to ordinary users.
+*   Contas que devem ser capazes de executar stored programs e views com privilégios elevados sem expor esses privilégios a usuários comuns.
 
-* Proxied accounts that should never permit direct login but are intended to be accessed only through proxy accounts.
+*   Contas proxied que nunca devem permitir o Login direto, mas que se destinam a ser acessadas apenas através de contas Proxy.
 
-The following table shows the plugin and library file names. The file name suffix might differ on your system. The file must be located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+A tabela a seguir mostra os nomes do Plugin e dos arquivos de Library. O sufixo do nome do arquivo pode ser diferente no seu sistema. O arquivo deve estar localizado no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir).
 
-**Table 6.17 Plugin and Library Names for No-Login Authentication**
+**Tabela 6.17 Nomes de Plugin e Library para Autenticação Sem Login**
 
-<table summary="Names for the plugins and library file used for no-login password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>mysql_no_login</code></td> </tr><tr> <td>Client-side plugin</td> <td>None</td> </tr><tr> <td>Library file</td> <td><code>mysql_no_login.so</code></td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de library usados para autenticação de senha sem login."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin Server-side</td> <td><code>mysql_no_login</code></td> </tr><tr> <td>Plugin Client-side</td> <td>Nenhum</td> </tr><tr> <td>Arquivo de Library</td> <td><code>mysql_no_login.so</code></td> </tr> </tbody></table>
 
-The following sections provide installation and usage information specific to no-login pluggable authentication:
+As seções a seguir fornecem informações de instalação e uso específicas para a autenticação pluggable sem login:
 
-* [Installing No-Login Pluggable Authentication](no-login-pluggable-authentication.html#no-login-pluggable-authentication-installation "Installing No-Login Pluggable Authentication")
-* [Uninstalling No-Login Pluggable Authentication](no-login-pluggable-authentication.html#no-login-pluggable-authentication-uninstallation "Uninstalling No-Login Pluggable Authentication")
-* [Using No-Login Pluggable Authentication](no-login-pluggable-authentication.html#no-login-pluggable-authentication-usage "Using No-Login Pluggable Authentication")
+*   [Instalando a Autenticação Pluggable Sem Login](no-login-pluggable-authentication.html#no-login-pluggable-authentication-installation "Instalando a Autenticação Pluggable Sem Login")
+*   [Desinstalando a Autenticação Pluggable Sem Login](no-login-pluggable-authentication.html#no-login-pluggable-authentication-uninstallation "Desinstalando a Autenticação Pluggable Sem Login")
+*   [Usando a Autenticação Pluggable Sem Login](no-login-pluggable-authentication.html#no-login-pluggable-authentication-usage "Usando a Autenticação Pluggable Sem Login")
 
-For general information about pluggable authentication in MySQL, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). For proxy user information, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+Para informações gerais sobre Autenticação Pluggable no MySQL, consulte [Seção 6.2.13, “Autenticação Pluggable”](pluggable-authentication.html "6.2.13 Autenticação Pluggable"). Para informações sobre usuários Proxy, consulte [Seção 6.2.14, “Usuários Proxy”](proxy-users.html "6.2.14 Usuários Proxy").
 
-##### Installing No-Login Pluggable Authentication
+##### Instalando a Autenticação Pluggable Sem Login
 
-This section describes how to install the no-login authentication plugin. For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Esta seção descreve como instalar o Plugin de autenticação sem login. Para informações gerais sobre a instalação de Plugins, consulte [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Instalando e Desinstalando Plugins").
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo server, o arquivo de Library do Plugin deve estar localizado no diretório de Plugins do MySQL (o diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do diretório de Plugins definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do server.
 
-The plugin library file base name is `mysql_no_login`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
+O nome base do arquivo de Library do Plugin é `mysql_no_login`. O sufixo do nome do arquivo difere por plataforma (por exemplo, `.so` para sistemas Unix e similares a Unix, `.dll` para Windows).
 
-To load the plugin at server startup, use the [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option to name the library file that contains it. With this plugin-loading method, the option must be given each time the server starts. For example, put these lines in the server `my.cnf` file, adjusting the `.so` suffix for your platform as necessary:
+Para carregar o Plugin na inicialização do server, use a opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) para nomear o arquivo de Library que o contém. Com este método de carregamento de Plugin, a opção deve ser fornecida sempre que o server for iniciado. Por exemplo, coloque estas linhas no arquivo `my.cnf` do server, ajustando o sufixo `.so` para sua plataforma, conforme necessário:
 
 ```sql
 [mysqld]
 plugin-load-add=mysql_no_login.so
 ```
 
-After modifying `my.cnf`, restart the server to cause the new settings to take effect.
+Após modificar `my.cnf`, reinicie o server para que as novas configurações entrem em vigor.
 
-Alternatively, to load the plugin at runtime, use this statement, adjusting the `.so` suffix for your platform as necessary:
+Alternativamente, para carregar o Plugin em runtime, use esta instrução, ajustando o sufixo `.so` para sua plataforma, conforme necessário:
 
 ```sql
 INSTALL PLUGIN mysql_no_login SONAME 'mysql_no_login.so';
 ```
 
-[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") loads the plugin immediately, and also registers it in the `mysql.plugins` system table to cause the server to load it for each subsequent normal startup without the need for [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
+[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") carrega o Plugin imediatamente e também o registra na tabela de sistema `mysql.plugins` para fazer com que o server o carregue em cada inicialização normal subsequente, sem a necessidade de [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
 
-To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Para verificar a instalação do Plugin, examine a tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") do Information Schema ou use a instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte [Seção 5.5.2, “Obtendo Informações do Plugin do Servidor”](obtaining-plugin-information.html "5.5.2 Obtendo Informações do Plugin do Servidor")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -58,31 +58,31 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +----------------+---------------+
 ```
 
-If the plugin fails to initialize, check the server error log for diagnostic messages.
+Se o Plugin falhar ao inicializar, verifique o error log do server para mensagens de diagnóstico.
 
-To associate MySQL accounts with the no-login plugin, see [Using No-Login Pluggable Authentication](no-login-pluggable-authentication.html#no-login-pluggable-authentication-usage "Using No-Login Pluggable Authentication").
+Para associar contas MySQL ao Plugin sem login, consulte [Usando a Autenticação Pluggable Sem Login](no-login-pluggable-authentication.html#no-login-pluggable-authentication-usage "Usando a Autenticação Pluggable Sem Login").
 
-##### Uninstalling No-Login Pluggable Authentication
+##### Desinstalando a Autenticação Pluggable Sem Login
 
-The method used to uninstall the no-login authentication plugin depends on how you installed it:
+O método usado para desinstalar o Plugin de autenticação sem login depende de como você o instalou:
 
-* If you installed the plugin at server startup using a [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option, restart the server without the option.
+*   Se você instalou o Plugin na inicialização do server usando uma opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), reinicie o server sem a opção.
 
-* If you installed the plugin at runtime using an [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement, it remains installed across server restarts. To uninstall it, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
+*   Se você instalou o Plugin em runtime usando uma instrução [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), ele permanece instalado após as reinicializações do server. Para desinstalá-lo, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
 
-  ```sql
+    ```sql
   UNINSTALL PLUGIN mysql_no_login;
   ```
 
-##### Using No-Login Pluggable Authentication
+##### Usando a Autenticação Pluggable Sem Login
 
-This section describes how to use the no-login authentication plugin to prevent accounts from being used for connecting from MySQL client programs to the server. It is assumed that the server is running with the no-login plugin enabled, as described in [Installing No-Login Pluggable Authentication](no-login-pluggable-authentication.html#no-login-pluggable-authentication-installation "Installing No-Login Pluggable Authentication").
+Esta seção descreve como usar o Plugin de autenticação sem login para impedir que as contas sejam usadas para conectar programas clientes MySQL ao server. Presume-se que o server esteja rodando com o Plugin sem login habilitado, conforme descrito em [Instalando a Autenticação Pluggable Sem Login](no-login-pluggable-authentication.html#no-login-pluggable-authentication-installation "Instalando a Autenticação Pluggable Sem Login").
 
-To refer to the no-login authentication plugin in the `IDENTIFIED WITH` clause of a [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement, use the name `mysql_no_login`.
+Para referenciar o Plugin de autenticação sem login na cláusula `IDENTIFIED WITH` de uma instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), use o nome `mysql_no_login`.
 
-An account that authenticates using `mysql_no_login` may be used as the `DEFINER` for stored program and view objects. If such an object definition also includes `SQL SECURITY DEFINER`, it executes with that account's privileges. DBAs can use this behavior to provide access to confidential or sensitive data that is exposed only through well-controlled interfaces.
+Uma conta que se autentica usando `mysql_no_login` pode ser usada como o `DEFINER` para stored programs e objetos de view. Se tal definição de objeto também incluir `SQL SECURITY DEFINER`, ele é executado com os privilégios dessa conta. DBAs podem usar esse comportamento para fornecer acesso a dados confidenciais ou sensíveis que são expostos apenas através de interfaces bem controladas.
 
-The following example illustrates these principles. It defines an account that does not permit client connections, and associates with it a view that exposes only certain columns of the `mysql.user` system table:
+O exemplo a seguir ilustra esses princípios. Ele define uma conta que não permite conexões de clientes e associa a ela uma view que expõe apenas certas colunas da tabela de sistema `mysql.user`:
 
 ```sql
 CREATE DATABASE nologindb;
@@ -98,26 +98,26 @@ CREATE DEFINER = 'nologin'@'localhost'
   AS SELECT User, Host FROM mysql.user;
 ```
 
-To provide protected access to the view to an ordinary user, do this:
+Para fornecer acesso protegido à view para um usuário comum, faça o seguinte:
 
 ```sql
 GRANT SELECT ON nologindb.myview
   TO 'ordinaryuser'@'localhost';
 ```
 
-Now the ordinary user can use the view to access the limited information it presents:
+Agora, o usuário comum pode usar a view para acessar as informações limitadas que ela apresenta:
 
 ```sql
 SELECT * FROM nologindb.myview;
 ```
 
-Attempts by the user to access columns other than those exposed by the view result in an error, as do attempts to select from the view by users not granted access to it.
+Tentativas do usuário de acessar colunas além daquelas expostas pela view resultam em um error, assim como tentativas de selecionar a view por usuários que não têm acesso concedido a ela.
 
 Note
 
-Because the `nologin` account cannot be used directly, the operations required to set up objects that it uses must be performed by `root` or similar account that has the privileges required to create the objects and set `DEFINER` values.
+Como a conta `nologin` não pode ser usada diretamente, as operações necessárias para configurar objetos que ela usa devem ser realizadas por `root` ou conta similar que tenha os privilégios necessários para criar os objetos e definir valores `DEFINER`.
 
-The `mysql_no_login` plugin is also useful in proxying scenarios. (For a discussion of concepts involved in proxying, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").) An account that authenticates using `mysql_no_login` may be used as a proxied user for proxy accounts:
+O Plugin `mysql_no_login` também é útil em cenários de Proxying. (Para uma discussão dos conceitos envolvidos no Proxying, consulte [Seção 6.2.14, “Usuários Proxy”](proxy-users.html "6.2.14 Usuários Proxy").) Uma conta que se autentica usando `mysql_no_login` pode ser usada como um usuário proxied para contas Proxy:
 
 ```sql
 -- create proxied account
@@ -133,6 +133,6 @@ GRANT PROXY
   TO 'proxy_user'@'localhost';
 ```
 
-This enables clients to access MySQL through the proxy account (`proxy_user`) but not to bypass the proxy mechanism by connecting directly as the proxied user (`proxied_user`). A client who connects using the `proxy_user` account has the privileges of the `proxied_user` account, but `proxied_user` itself cannot be used to connect.
+Isso permite que os clientes acessem o MySQL através da conta Proxy (`proxy_user`), mas não ignorem o mecanismo de Proxying conectando-se diretamente como o usuário proxied (`proxied_user`). Um cliente que se conecta usando a conta `proxy_user` tem os privilégios da conta `proxied_user`, mas o próprio `proxied_user` não pode ser usado para conexão.
 
-For alternative methods of protecting proxied accounts against direct use, see [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
+Para métodos alternativos de proteção de contas proxied contra uso direto, consulte [Prevenindo Login Direto em Contas Proxied](proxy-users.html#preventing-proxied-account-direct-login "Prevenindo Login Direto em Contas Proxied").

@@ -1,79 +1,79 @@
-## 10.9 Unicode Support
+## 10.9 Suporte a Unicode
 
-10.9.1 The utf8mb4 Character Set (4-Byte UTF-8 Unicode Encoding)
+10.9.1 O Character Set utf8mb4 (Codificação Unicode UTF-8 de 4 Bytes)
 
-10.9.2 The utf8mb3 Character Set (3-Byte UTF-8 Unicode Encoding)
+10.9.2 O Character Set utf8mb3 (Codificação Unicode UTF-8 de 3 Bytes)
 
-10.9.3 The utf8 Character Set (Alias for utf8mb3)
+10.9.3 O Character Set utf8 (Alias para utf8mb3)
 
-10.9.4 The ucs2 Character Set (UCS-2 Unicode Encoding)
+10.9.4 O Character Set ucs2 (Codificação Unicode UCS-2)
 
-10.9.5 The utf16 Character Set (UTF-16 Unicode Encoding)
+10.9.5 O Character Set utf16 (Codificação Unicode UTF-16)
 
-10.9.6 The utf16le Character Set (UTF-16LE Unicode Encoding)
+10.9.6 O Character Set utf16le (Codificação Unicode UTF-16LE)
 
-10.9.7 The utf32 Character Set (UTF-32 Unicode Encoding)
+10.9.7 O Character Set utf32 (Codificação Unicode UTF-32)
 
-10.9.8 Converting Between 3-Byte and 4-Byte Unicode Character Sets
+10.9.8 Convertendo Entre Character Sets Unicode de 3 Bytes e 4 Bytes
 
-The Unicode Standard includes characters from the Basic Multilingual Plane (BMP) and supplementary characters that lie outside the BMP. This section describes support for Unicode in MySQL. For information about the Unicode Standard itself, visit the Unicode Consortium website.
+O Standard Unicode inclui caracteres do Plano Multilíngue Básico (BMP) e caracteres suplementares que se encontram fora do BMP. Esta seção descreve o suporte a Unicode no MySQL. Para obter informações sobre o próprio Standard Unicode, visite o site do Consórcio Unicode.
 
-BMP characters have these characteristics:
+Os caracteres BMP têm as seguintes características:
 
-* Their code point values are between 0 and 65535 (or `U+0000` and `U+FFFF`).
+* Seus valores de code point estão entre 0 e 65535 (ou `U+0000` e `U+FFFF`).
 
-* They can be encoded in a variable-length encoding using 8, 16, or 24 bits (1 to 3 bytes).
+* Eles podem ser codificados em uma codificação de comprimento variável usando 8, 16 ou 24 bits (1 a 3 bytes).
 
-* They can be encoded in a fixed-length encoding using 16 bits (2 bytes).
+* Eles podem ser codificados em uma codificação de comprimento fixo usando 16 bits (2 bytes).
 
-* They are sufficient for almost all characters in major languages.
+* Eles são suficientes para quase todos os caracteres nas principais linguagens.
 
-Supplementary characters lie outside the BMP:
+Caracteres suplementares estão fora do BMP:
 
-* Their code point values are between `U+10000` and `U+10FFFF`).
+* Seus valores de code point estão entre `U+10000` e `U+10FFFF`).
 
-* Unicode support for supplementary characters requires character sets that have a range outside BMP characters and therefore take more space than BMP characters (up to 4 bytes per character).
+* O suporte a Unicode para caracteres suplementares requer character sets que possuam um range fora dos caracteres BMP e, portanto, ocupam mais espaço do que os caracteres BMP (até 4 bytes por caractere).
 
-The UTF-8 (Unicode Transformation Format with 8-bit units) method for encoding Unicode data is implemented according to RFC 3629, which describes encoding sequences that take from one to four bytes. The idea of UTF-8 is that various Unicode characters are encoded using byte sequences of different lengths:
+O método UTF-8 (Unicode Transformation Format with 8-bit units) para codificar dados Unicode é implementado de acordo com a RFC 3629, que descreve sequências de codificação que utilizam de um a quatro bytes. A ideia do UTF-8 é que vários caracteres Unicode são codificados usando sequências de bytes de diferentes comprimentos:
 
-* Basic Latin letters, digits, and punctuation signs use one byte.
+* Letras Latim básicas, dígitos e sinais de pontuação usam um byte.
 
-* Most European and Middle East script letters fit into a 2-byte sequence: extended Latin letters (with tilde, macron, acute, grave and other accents), Cyrillic, Greek, Armenian, Hebrew, Arabic, Syriac, and others.
+* A maioria das letras de scripts europeus e do Oriente Médio cabem em uma sequência de 2 bytes: letras Latim estendidas (com til, mácron, acento agudo, acento grave e outros acentos), Cirílico, Grego, Armênio, Hebraico, Árabe, Siríaco e outros.
 
-* Korean, Chinese, and Japanese ideographs use 3-byte or 4-byte sequences.
+* Ideogramas coreanos, chineses e japoneses usam sequências de 3 ou 4 bytes.
 
-MySQL supports these Unicode character sets:
+O MySQL suporta os seguintes character sets Unicode:
 
-* `utf8mb4`: A UTF-8 encoding of the Unicode character set using one to four bytes per character.
+* `utf8mb4`: Uma codificação UTF-8 do character set Unicode usando de um a quatro bytes por caractere.
 
-* `utf8mb3`: A UTF-8 encoding of the Unicode character set using one to three bytes per character.
+* `utf8mb3`: Uma codificação UTF-8 do character set Unicode usando de um a três bytes por caractere.
 
-* `utf8`: An alias for `utf8mb3`.
+* `utf8`: Um alias para `utf8mb3`.
 
-* `ucs2`: The UCS-2 encoding of the Unicode character set using two bytes per character.
+* `ucs2`: A codificação UCS-2 do character set Unicode usando dois bytes por caractere.
 
-* `utf16`: The UTF-16 encoding for the Unicode character set using two or four bytes per character. Like `ucs2` but with an extension for supplementary characters.
+* `utf16`: A codificação UTF-16 para o character set Unicode usando dois ou quatro bytes por caractere. Semelhante ao `ucs2`, mas com uma extensão para caracteres suplementares.
 
-* `utf16le`: The UTF-16LE encoding for the Unicode character set. Like `utf16` but little-endian rather than big-endian.
+* `utf16le`: A codificação UTF-16LE para o character set Unicode. Semelhante ao `utf16`, mas little-endian em vez de big-endian.
 
-* `utf32`: The UTF-32 encoding for the Unicode character set using four bytes per character.
+* `utf32`: A codificação UTF-32 para o character set Unicode usando quatro bytes por caractere.
 
-Table 10.2, “Unicode Character Set General Characteristics”, summarizes the general characteristics of Unicode character sets supported by MySQL.
+A Tabela 10.2, “Características Gerais do Character Set Unicode”, resume as características gerais dos character sets Unicode suportados pelo MySQL.
 
-**Table 10.2 Unicode Character Set General Characteristics**
+**Tabela 10.2 Características Gerais do Character Set Unicode**
 
-<table summary="General characteristics of Unicode character sets."><col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>Character Set</th> <th>Supported Characters</th> <th>Required Storage Per Character</th> </tr></thead><tbody><tr> <th><code>utf8mb3</code>, <code>utf8</code></th> <td>BMP only</td> <td>1, 2, or 3 bytes</td> </tr><tr> <th><code>ucs2</code></th> <td>BMP only</td> <td>2 bytes</td> </tr><tr> <th><code>utf8mb4</code></th> <td>BMP and supplementary</td> <td>1, 2, 3, or 4 bytes</td> </tr><tr> <th><code>utf16</code></th> <td>BMP and supplementary</td> <td>2 or 4 bytes</td> </tr><tr> <th><code>utf16le</code></th> <td>BMP and supplementary</td> <td>2 or 4 bytes</td> </tr><tr> <th><code>utf32</code></th> <td>BMP and supplementary</td> <td>4 bytes</td> </tr></tbody></table>
+<table summary="Características gerais dos character sets Unicode."><col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>Character Set</th> <th>Caracteres Suportados</th> <th>Armazenamento Necessário Por Caractere</th> </tr></thead><tbody><tr> <th><code>utf8mb3</code>, <code>utf8</code></th> <td>Apenas BMP</td> <td>1, 2, ou 3 bytes</td> </tr><tr> <th><code>ucs2</code></th> <td>Apenas BMP</td> <td>2 bytes</td> </tr><tr> <th><code>utf8mb4</code></th> <td>BMP e suplementares</td> <td>1, 2, 3, ou 4 bytes</td> </tr><tr> <th><code>utf16</code></th> <td>BMP e suplementares</td> <td>2 ou 4 bytes</td> </tr><tr> <th><code>utf16le</code></th> <td>BMP e suplementares</td> <td>2 ou 4 bytes</td> </tr><tr> <th><code>utf32</code></th> <td>BMP e suplementares</td> <td>4 bytes</td> </tr> </tbody></table>
 
-Characters outside the BMP compare as REPLACEMENT CHARACTER and convert to `'?'` when converted to a Unicode character set that supports only BMP characters (`utf8mb3` or `ucs2`).
+Caracteres fora do BMP são comparados como REPLACEMENT CHARACTER e convertidos para `'?'` quando convertidos para um character set Unicode que suporta apenas caracteres BMP (`utf8mb3` ou `ucs2`).
 
-If you use character sets that support supplementary characters and thus are “wider” than the BMP-only `utf8mb3` and `ucs2` character sets, there are potential incompatibility issues for your applications; see Section 10.9.8, “Converting Between 3-Byte and 4-Byte Unicode Character Sets”. That section also describes how to convert tables from the (3-byte) `utf8mb3` to the (4-byte) `utf8mb4`, and what constraints may apply in doing so.
+Se você usar character sets que suportam caracteres suplementares e, portanto, são "mais amplos" do que os character sets `utf8mb3` e `ucs2` (somente BMP), há potenciais problemas de incompatibilidade para suas aplicações; consulte a Seção 10.9.8, “Convertendo Entre Character Sets Unicode de 3 Bytes e 4 Bytes”. Essa seção também descreve como converter tabelas do `utf8mb3` (3 bytes) para o `utf8mb4` (4 bytes) e quais restrições podem ser aplicadas ao fazê-lo.
 
-A similar set of collations is available for most Unicode character sets. For example, each has a Danish collation, the names of which are `utf8mb4_danish_ci`, `utf8mb3_danish_ci`, `utf8_danish_ci`, `ucs2_danish_ci`, `utf16_danish_ci`, and `utf32_danish_ci`. The exception is `utf16le`, which has only two collations. For information about Unicode collations and their differentiating properties, including collation properties for supplementary characters, see Section 10.10.1, “Unicode Character Sets”.
+Um conjunto semelhante de collations está disponível para a maioria dos character sets Unicode. Por exemplo, cada um tem uma collation dinamarquesa, cujos nomes são `utf8mb4_danish_ci`, `utf8mb3_danish_ci`, `utf8_danish_ci`, `ucs2_danish_ci`, `utf16_danish_ci` e `utf32_danish_ci`. A exceção é `utf16le`, que possui apenas duas collations. Para obter informações sobre collations Unicode e suas propriedades diferenciadoras, incluindo propriedades de collation para caracteres suplementares, consulte a Seção 10.10.1, “Character Sets Unicode”.
 
-The MySQL implementation of UCS-2, UTF-16, and UTF-32 stores characters in big-endian byte order and does not use a byte order mark (BOM) at the beginning of values. Other database systems might use little-endian byte order or a BOM. In such cases, conversion of values must be performed when transferring data between those systems and MySQL. The implementation of UTF-16LE is little-endian.
+A implementação do MySQL para UCS-2, UTF-16 e UTF-32 armazena caracteres em ordem de byte big-endian e não usa uma marca de ordem de byte (BOM) no início dos valores. Outros sistemas de Database podem usar ordem de byte little-endian ou um BOM. Nesses casos, a conversão de valores deve ser realizada ao transferir dados entre esses sistemas e o MySQL. A implementação de UTF-16LE é little-endian.
 
-MySQL uses no BOM for UTF-8 values.
+O MySQL não usa BOM para valores UTF-8.
 
-Client applications that communicate with the server using Unicode should set the client character set accordingly (for example, by issuing a `SET NAMES 'utf8mb4'` statement). Some character sets cannot be used as the client character set. Attempting to use them with `SET NAMES` or `SET CHARACTER SET` produces an error. See Impermissible Client Character Sets.
+Aplicações cliente que se comunicam com o server usando Unicode devem definir o character set do cliente adequadamente (por exemplo, emitindo uma instrução `SET NAMES 'utf8mb4'`). Alguns character sets não podem ser usados como o character set do cliente. A tentativa de usá-los com `SET NAMES` ou `SET CHARACTER SET` produz um erro. Consulte Character Sets de Cliente Não Permitidos.
 
-The following sections provide additional detail on the Unicode character sets in MySQL.
+As seções a seguir fornecem detalhes adicionais sobre os character sets Unicode no MySQL.

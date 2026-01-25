@@ -1,8 +1,8 @@
-### 4.6.6 mysql_config_editor — MySQL Configuration Utility
+### 4.6.6 mysql_config_editor — Utilitário de Configuração do MySQL
 
-The **mysql_config_editor** utility enables you to store authentication credentials in an obfuscated login path file named `.mylogin.cnf`. The file location is the `%APPDATA%\MySQL` directory on Windows and the current user's home directory on non-Windows systems. The file can be read later by MySQL client programs to obtain authentication credentials for connecting to MySQL Server.
+O utilitário **mysql_config_editor** permite armazenar credenciais de autenticação em um arquivo obfuscado de login path chamado `.mylogin.cnf`. A localização do arquivo é o diretório `%APPDATA%\MySQL` no Windows e o diretório *home* do usuário atual em sistemas não-Windows. O arquivo pode ser lido posteriormente por programas client do MySQL para obter credenciais de autenticação para conexão com o MySQL Server.
 
-The unobfuscated format of the `.mylogin.cnf` login path file consists of option groups, similar to other option files. Each option group in `.mylogin.cnf` is called a “login path,” which is a group that permits only certain options: `host`, `user`, `password`, `port` and `socket`. Think of a login path option group as a set of options that specify which MySQL server to connect to and which account to authenticate as. Here is an unobfuscated example:
+O formato não-obfuscado do arquivo de login path `.mylogin.cnf` consiste em *option groups* (grupos de opções), similar a outros arquivos de option. Cada *option group* em `.mylogin.cnf` é chamado de “login path,” que é um *group* que permite apenas certas options: `host`, `user`, `password`, `port` e `socket`. Pense em um *option group* de login path como um conjunto de options que especificam a qual MySQL server conectar e com qual conta autenticar. Aqui está um exemplo não-obfuscado:
 
 ```sql
 [client]
@@ -15,70 +15,70 @@ password = myotherpass
 host = localhost
 ```
 
-When you invoke a client program to connect to the server, the client uses `.mylogin.cnf` in conjunction with other option files. Its precedence is higher than other option files, but less than options specified explicitly on the client command line. For information about the order in which option files are used, see Section 4.2.2.2, “Using Option Files”.
+Quando você invoca um programa client para conectar ao server, o client utiliza `.mylogin.cnf` em conjunto com outros arquivos de option. Sua precedência é maior do que a de outros arquivos de option, mas menor do que a das options especificadas explicitamente na command line do client. Para obter informações sobre a ordem na qual os arquivos de option são usados, veja Seção 4.2.2.2, “Using Option Files”.
 
-To specify an alternate login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is recognized by **mysql_config_editor**, by standard MySQL clients (**mysql**, **mysqladmin**, and so forth), and by the **mysql-test-run.pl** testing utility.
+Para especificar um nome de arquivo de login path alternativo, defina a environment variable `MYSQL_TEST_LOGIN_FILE`. Esta variable é reconhecida pelo **mysql_config_editor**, pelos clients padrão do MySQL (**mysql**, **mysqladmin**, e assim por diante), e pelo utilitário de *testing* **mysql-test-run.pl**.
 
-Programs use groups in the login path file as follows:
+Os programas usam os *groups* no arquivo de login path da seguinte forma:
 
-* **mysql_config_editor** operates on the `client` login path by default if you specify no `--login-path=name` option to indicate explicitly which login path to use.
+* Por default, o **mysql_config_editor** opera no login path `client` se você não especificar a option `--login-path=name` para indicar explicitamente qual login path usar.
 
-* Without a `--login-path` option, client programs read the same option groups from the login path file that they read from other option files. Consider this command:
+* Sem a option `--login-path`, os programas client leem os mesmos *option groups* do arquivo de login path que leem de outros arquivos de option. Considere este command:
 
   ```sql
   mysql
   ```
 
-  By default, the **mysql** client reads the `[client]` and `[mysql]` groups from other option files, so it reads them from the login path file as well.
+  Por default, o client **mysql** lê os *groups* `[client]` e `[mysql]` de outros arquivos de option, então ele os lê do arquivo de login path também.
 
-* With a `--login-path` option, client programs additionally read the named login path from the login path file. The option groups read from other option files remain the same. Consider this command:
+* Com uma option `--login-path`, os programas client adicionalmente leem o login path nomeado do arquivo de login path. Os *option groups* lidos de outros arquivos de option permanecem os mesmos. Considere este command:
 
   ```sql
   mysql --login-path=mypath
   ```
 
-  The **mysql** client reads `[client]` and `[mysql]` from other option files, and `[client]`, `[mysql]`, and `[mypath]` from the login path file.
+  O client **mysql** lê `[client]` e `[mysql]` de outros arquivos de option, e `[client]`, `[mysql]` e `[mypath]` do arquivo de login path.
 
-* Client programs read the login path file even when the `--no-defaults` option is used, unless `--no-login-paths` is set. This permits passwords to be specified in a safer way than on the command line even if `--no-defaults` is present.
+* Os programas client leem o arquivo de login path mesmo quando a option `--no-defaults` é usada, a menos que `--no-login-paths` esteja definida. Isso permite que passwords sejam especificadas de maneira mais segura do que na command line, mesmo que `--no-defaults` esteja presente.
 
-**mysql_config_editor** obfuscates the `.mylogin.cnf` file so it cannot be read as cleartext, and its contents when unobfuscated by client programs are used only in memory. In this way, passwords can be stored in a file in non-cleartext format and used later without ever needing to be exposed on the command line or in an environment variable. **mysql_config_editor** provides a `print` command for displaying the login path file contents, but even in this case, password values are masked so as never to appear in a way that other users can see them.
+O **mysql_config_editor** obfusca o arquivo `.mylogin.cnf` para que não possa ser lido como *cleartext* (texto simples), e seu conteúdo, quando desobfuscado por programas client, é usado apenas na memória. Desta forma, as passwords podem ser armazenadas em um arquivo em formato não-cleartext e usadas posteriormente sem nunca precisarem ser expostas na command line ou em uma environment variable. O **mysql_config_editor** fornece um command `print` para exibir o conteúdo do arquivo de login path, mas mesmo neste caso, os valores das passwords são mascarados para nunca aparecerem de forma que outros usuários possam vê-los.
 
-The obfuscation used by **mysql_config_editor** prevents passwords from appearing in `.mylogin.cnf` as cleartext and provides a measure of security by preventing inadvertent password exposure. For example, if you display a regular unobfuscated `my.cnf` option file on the screen, any passwords it contains are visible for anyone to see. With `.mylogin.cnf`, that is not true, but the obfuscation used is not likely to deter a determined attacker and you should not consider it unbreakable. A user who can gain system administration privileges on your machine to access your files could unobfuscate the `.mylogin.cnf` file with some effort.
+A obfuscation usada pelo **mysql_config_editor** impede que as passwords apareçam no `.mylogin.cnf` como cleartext e fornece uma medida de segurança ao prevenir a exposição inadvertida da password. Por exemplo, se você exibir um arquivo de option `my.cnf` regular e não-obfuscado na tela, quaisquer passwords que ele contenha ficam visíveis para qualquer pessoa. Com o `.mylogin.cnf`, isso não acontece, mas a obfuscation utilizada provavelmente não deterá um atacante determinado e você não deve considerá-la inquebrável. Um usuário que consiga obter privilégios de administração de sistema em sua máquina para acessar seus arquivos poderia desobfuscar o arquivo `.mylogin.cnf` com algum esforço.
 
-The login path file must be readable and writable to the current user, and inaccessible to other users. Otherwise, **mysql_config_editor** ignores it, and client programs do not use it, either.
+O arquivo de login path deve ser legível e gravável pelo usuário atual, e inacessível a outros usuários. Caso contrário, o **mysql_config_editor** o ignora, e os programas client também não o utilizam.
 
-Invoke **mysql_config_editor** like this:
+Invoque **mysql_config_editor** desta forma:
 
 ```sql
 mysql_config_editor [program_options] command [command_options]
 ```
 
-If the login path file does not exist, **mysql_config_editor** creates it.
+Se o arquivo de login path não existir, o **mysql_config_editor** o cria.
 
-Command arguments are given as follows:
+Os argumentos do command são fornecidos da seguinte forma:
 
-* *`program_options`* consists of general **mysql_config_editor** options.
+* *`program_options`* consiste nas options gerais do **mysql_config_editor**.
 
-* `command` indicates what action to perform on the `.mylogin.cnf` login path file. For example, `set` writes a login path to the file, `remove` removes a login path, and `print` displays login path contents.
+* `command` indica qual ação deve ser executada no arquivo de login path `.mylogin.cnf`. Por exemplo, `set` escreve um login path no arquivo, `remove` remove um login path, e `print` exibe o conteúdo do login path.
 
-* *`command_options`* indicates any additional options specific to the command, such as the login path name and the values to use in the login path.
+* *`command_options`* indica quaisquer options adicionais específicas ao command, como o nome do login path e os valores a serem usados no login path.
 
-The position of the command name within the set of program arguments is significant. For example, these command lines have the same arguments, but produce different results:
+A posição do nome do command dentro do conjunto de argumentos do programa é significativa. Por exemplo, estas command lines têm os mesmos argumentos, mas produzem resultados diferentes:
 
 ```sql
 mysql_config_editor --help set
 mysql_config_editor set --help
 ```
 
-The first command line displays a general **mysql_config_editor** help message, and ignores the `set` command. The second command line displays a help message specific to the `set` command.
+A primeira command line exibe uma mensagem de help geral do **mysql_config_editor** e ignora o command `set`. A segunda command line exibe uma mensagem de help específica para o command `set`.
 
-Suppose that you want to establish a `client` login path that defines your default connection parameters, and an additional login path named `remote` for connecting to the MySQL server the host `remote.example.com`. You want to log in as follows:
+Suponha que você deseje estabelecer um login path `client` que defina seus parâmetros de conexão default, e um login path adicional chamado `remote` para conectar-se ao MySQL server no host `remote.example.com`. Você deseja fazer login da seguinte forma:
 
-* By default, to the local server with a user name and password of `localuser` and `localpass`
+* Por default, no server local com um user name e password de `localuser` e `localpass`
 
-* To the remote server with a user name and password of `remoteuser` and `remotepass`
+* No server remoto com um user name e password de `remoteuser` e `remotepass`
 
-To set up the login paths in the `.mylogin.cnf` file, use the following `set` commands. Enter each command on a single line, and enter the appropriate passwords when prompted:
+Para configurar os login paths no arquivo `.mylogin.cnf`, use os seguintes commands `set`. Digite cada command em uma única linha e insira as passwords apropriadas quando solicitado:
 
 ```sql
 $> mysql_config_editor set --login-path=client
@@ -89,9 +89,9 @@ $> mysql_config_editor set --login-path=remote
 Enter password: enter password "remotepass" here
 ```
 
-**mysql_config_editor** uses the `client` login path by default, so the `--login-path=client` option can be omitted from the first command without changing its effect.
+O **mysql_config_editor** usa o login path `client` por default, então a option `--login-path=client` pode ser omitida do primeiro command sem alterar seu efeito.
 
-To see what **mysql_config_editor** writes to the `.mylogin.cnf` file, use the `print` command:
+Para ver o que o **mysql_config_editor** escreve no arquivo `.mylogin.cnf`, use o command `print`:
 
 ```sql
 $> mysql_config_editor print --all
@@ -105,55 +105,55 @@ password = *****
 host = remote.example.com
 ```
 
-The `print` command displays each login path as a set of lines beginning with a group header indicating the login path name in square brackets, followed by the option values for the login path. Password values are masked and do not appear as cleartext.
+O command `print` exibe cada login path como um conjunto de linhas começando com um cabeçalho de *group* indicando o nome do login path entre colchetes, seguido pelos valores das options para o login path. Os valores das passwords são mascarados e não aparecem como cleartext.
 
-If you do not specify `--all` to display all login paths or `--login-path=name` to display a named login path, the `print` command displays the `client` login path by default, if there is one.
+Se você não especificar `--all` para exibir todos os login paths ou `--login-path=name` para exibir um login path nomeado, o command `print` exibe o login path `client` por default, se houver um.
 
-As shown by the preceding example, the login path file can contain multiple login paths. In this way, **mysql_config_editor** makes it easy to set up multiple “personalities” for connecting to different MySQL servers, or for connecting to a given server using different accounts. Any of these can be selected by name later using the `--login-path` option when you invoke a client program. For example, to connect to the remote server, use this command:
+Conforme mostrado no exemplo anterior, o arquivo de login path pode conter múltiplos login paths. Desta forma, o **mysql_config_editor** facilita a configuração de múltiplas “personalidades” para conectar a diferentes MySQL servers, ou para conectar a um dado server usando diferentes accounts. Qualquer um desses pode ser selecionado por nome posteriormente usando a option `--login-path` quando você invocar um programa client. Por exemplo, para conectar ao server remoto, use este command:
 
 ```sql
 mysql --login-path=remote
 ```
 
-Here, **mysql** reads the `[client]` and `[mysql]` option groups from other option files, and the `[client]`, `[mysql]`, and `[remote]` groups from the login path file.
+Aqui, o **mysql** lê os *option groups* `[client]` e `[mysql]` de outros arquivos de option, e os *groups* `[client]`, `[mysql]` e `[remote]` do arquivo de login path.
 
-To connect to the local server, use this command:
+Para conectar ao server local, use este command:
 
 ```sql
 mysql --login-path=client
 ```
 
-Because **mysql** reads the `client` and `mysql` login paths by default, the `--login-path` option does not add anything in this case. That command is equivalent to this one:
+Como o **mysql** lê os login paths `client` e `mysql` por default, a option `--login-path` não adiciona nada neste caso. Esse command é equivalente a este:
 
 ```sql
 mysql
 ```
 
-Options read from the login path file take precedence over options read from other option files. Options read from login path groups appearing later in the login path file take precedence over options read from groups appearing earlier in the file.
+Options lidas do arquivo de login path têm precedência sobre options lidas de outros arquivos de option. Options lidas de *groups* de login path que aparecem posteriormente no arquivo de login path têm precedência sobre options lidas de *groups* que aparecem mais cedo no arquivo.
 
-**mysql_config_editor** adds login paths to the login path file in the order you create them, so you should create more general login paths first and more specific paths later. If you need to move a login path within the file, you can remove it, then recreate it to add it to the end. For example, a `client` login path is more general because it is read by all client programs, whereas a `mysqldump` login path is read only by **mysqldump**. Options specified later override options specified earlier, so putting the login paths in the order `client`, `mysqldump` enables **mysqldump**-specific options to override `client` options.
+O **mysql_config_editor** adiciona login paths ao arquivo na ordem em que você os cria, então você deve criar login paths mais gerais primeiro e paths mais específicos depois. Se você precisar mover um login path dentro do arquivo, você pode removê-lo e, em seguida, recriá-lo para adicioná-lo ao final. Por exemplo, um login path `client` é mais geral porque é lido por todos os programas client, enquanto um login path `mysqldump` é lido apenas pelo **mysqldump**. Options especificadas posteriormente substituem options especificadas anteriormente, de modo que colocar os login paths na ordem `client`, `mysqldump` permite que options específicas do **mysqldump** substituam options do `client`.
 
-When you use the `set` command with **mysql_config_editor** to create a login path, you need not specify all possible option values (host name, user name, password, port, socket). Only those values given are written to the path. Any missing values required later can be specified when you invoke a client path to connect to the MySQL server, either in other option files or on the command line. Any options specified on the command line override those specified in the login path file or other option files. For example, if the credentials in the `remote` login path also apply for the host `remote2.example.com`, connect to the server on that host like this:
+Quando você usa o command `set` com o **mysql_config_editor** para criar um login path, você não precisa especificar todos os possíveis valores de option (host name, user name, password, port, socket). Apenas os valores fornecidos são escritos no path. Quaisquer valores ausentes necessários posteriormente podem ser especificados ao invocar um client path para conectar ao MySQL server, seja em outros arquivos de option ou na command line. Quaisquer options especificadas na command line substituem aquelas especificadas no arquivo de login path ou em outros arquivos de option. Por exemplo, se as credenciais no login path `remote` também se aplicarem ao host `remote2.example.com`, conecte-se ao server nesse host desta forma:
 
 ```sql
 mysql --login-path=remote --host=remote2.example.com
 ```
 
-#### mysql_config_editor General Options
+#### mysql_config_editor Options Gerais
 
-**mysql_config_editor** supports the following general options, which may be used preceding any command named on the command line. For descriptions of command-specific options, see mysql_config_editor Commands and Command-Specific Options.
+O **mysql_config_editor** suporta as seguintes options gerais, que podem ser usadas precedendo qualquer command nomeado na command line. Para descrições de options específicas de command, veja mysql_config_editor Commands e Options Específicas do Command.
 
-**Table 4.22 mysql_config_editor General Options**
+**Tabela 4.22 mysql_config_editor Options Gerais**
 
-<table frame="box" rules="all" summary="General Command-line options available for mysql_config_editor."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções gerais de Command-line disponíveis para mysql_config_editor."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Nome da Option</th> <th>Descrição</th> </tr></thead><tbody><tr><td>--debug</td> <td>Escreve log de debugging</td> </tr><tr><td>--help</td> <td>Exibe mensagem de help e sai</td> </tr><tr><td>--verbose</td> <td>Modo verbose</td> </tr><tr><td>--version</td> <td>Exibe informação da version e sai</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Command Line</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display a general help message and exit.
+  Exibe uma mensagem de help geral e sai.
 
-  To see a command-specific help message, invoke **mysql_config_editor** as follows, where *`command`* is a command other than `help`:
+  Para ver uma mensagem de help específica do command, invoque **mysql_config_editor** da seguinte forma, onde *`command`* é um command diferente de `help`:
 
   ```sql
   mysql_config_editor command --help
@@ -161,37 +161,37 @@ mysql --login-path=remote --host=remote2.example.com
 
 * `--debug[=debug_options]`, `-# debug_options`
 
-  <table frame="box" rules="all" summary="Properties for debug"><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug"><tbody><tr><th>Formato da Command Line</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Default</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
-  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysql_config_editor.trace`.
+  Escreve um log de debugging. Uma string *`debug_options`* típica é `d:t:o,file_name`. O default é `d:t:o,/tmp/mysql_config_editor.trace`.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta option está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Binários de release do MySQL fornecidos pela Oracle *não* são construídos usando esta option.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato da Command Line</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
-  Verbose mode. Print more information about what the program does. This option may be helpful in diagnosing problems if an operation does not have the effect you expect.
+  Modo verbose. Imprime mais informações sobre o que o programa faz. Esta option pode ser útil no diagnóstico de problemas se uma operação não tiver o efeito esperado.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for version"><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version"><tbody><tr><th>Formato da Command Line</th> <td><code>--version</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações da version e sai.
 
-#### mysql_config_editor Commands and Command-Specific Options
+#### mysql_config_editor Commands e Options Específicas do Command
 
-This section describes the permitted **mysql_config_editor** commands, and, for each one, the command-specific options permitted following the command name on the command line.
+Esta seção descreve os commands permitidos do **mysql_config_editor** e, para cada um, as options específicas do command permitidas após o nome do command na command line.
 
-In addition, **mysql_config_editor** supports general options that can be used preceding any command. For descriptions of these options, see mysql_config_editor General Options.
+Além disso, o **mysql_config_editor** suporta options gerais que podem ser usadas precedendo qualquer command. Para descrições dessas options, veja mysql_config_editor Options Gerais.
 
-**mysql_config_editor** supports these commands:
+O **mysql_config_editor** suporta estes commands:
 
 * `help`
 
-  Display a general help message and exit. This command takes no following options.
+  Exibe uma mensagem de help geral e sai. Este command não aceita options subsequentes.
 
-  To see a command-specific help message, invoke **mysql_config_editor** as follows, where *`command`* is a command other than `help`:
+  Para ver uma mensagem de help específica do command, invoque **mysql_config_editor** da seguinte forma, onde *`command`* é um command diferente de `help`:
 
   ```sql
   mysql_config_editor command --help
@@ -199,117 +199,117 @@ In addition, **mysql_config_editor** supports general options that can be used p
 
 * `print [options]`
 
-  Print the contents of the login path file in unobfuscated form, with the exception that passwords are displayed as `*****`.
+  Imprime o conteúdo do arquivo de login path em formato não-obfuscado, com a exceção de que as passwords são exibidas como `*****`.
 
-  The default login path name is `client` if no login path is named. If both `--all` and `--login-path` are given, `--all` takes precedence.
+  O nome default do login path é `client` se nenhum login path for nomeado. Se ambos `--all` e `--login-path` forem fornecidos, `--all` tem precedência.
 
-  The `print` command permits these options following the command name:
+  O command `print` permite estas options após o nome do command:
 
   + `--help`, `-?`
 
-    Display a help message for the `print` command and exit.
+    Exibe uma mensagem de help para o command `print` e sai.
 
-    To see a general help message, use **mysql_config_editor --help**.
+    Para ver uma mensagem de help geral, use **mysql_config_editor --help**.
 
   + `--all`
 
-    Print the contents of all login paths in the login path file.
+    Imprime o conteúdo de todos os login paths no arquivo de login path.
 
   + `--login-path=name`, `-G name`
 
-    Print the contents of the named login path.
+    Imprime o conteúdo do login path nomeado.
 
 * `remove [options]`
 
-  Remove a login path from the login path file, or modify a login path by removing options from it.
+  Remove um login path do arquivo de login path, ou modifica um login path removendo options dele.
 
-  This command removes from the login path only such options as are specified with the `--host`, `--password`, `--port`, `--socket`, and `--user` options. If none of those options are given, `remove` removes the entire login path. For example, this command removes only the `user` option from the `mypath` login path rather than the entire `mypath` login path:
+  Este command remove do login path apenas as options especificadas com as options `--host`, `--password`, `--port`, `--socket` e `--user`. Se nenhuma dessas options for fornecida, `remove` remove o login path inteiro. Por exemplo, este command remove apenas a option `user` do login path `mypath`, e não o login path `mypath` inteiro:
 
   ```sql
   mysql_config_editor remove --login-path=mypath --user
   ```
 
-  This command removes the entire `mypath` login path:
+  Este command remove o login path `mypath` inteiro:
 
   ```sql
   mysql_config_editor remove --login-path=mypath
   ```
 
-  The `remove` command permits these options following the command name:
+  O command `remove` permite estas options após o nome do command:
 
   + `--help`, `-?`
 
-    Display a help message for the `remove` command and exit.
+    Exibe uma mensagem de help para o command `remove` e sai.
 
-    To see a general help message, use **mysql_config_editor --help**.
+    Para ver uma mensagem de help geral, use **mysql_config_editor --help**.
 
   + `--host`, `-h`
 
-    Remove the host name from the login path.
+    Remove o host name do login path.
 
   + `--login-path=name`, `-G name`
 
-    The login path to remove or modify. The default login path name is `client` if this option is not given.
+    O login path a ser removido ou modificado. O nome default do login path é `client` se esta option não for fornecida.
 
   + `--password`, `-p`
 
-    Remove the password from the login path.
+    Remove a password do login path.
 
   + `--port`, `-P`
 
-    Remove the TCP/IP port number from the login path.
+    Remove o port number TCP/IP do login path.
 
   + `--socket`, `-S`
 
-    Remove the Unix socket file name from the login path.
+    Remove o nome do arquivo Unix socket do login path.
 
   + `--user`, `-u`
 
-    Remove the user name from the login path.
+    Remove o user name do login path.
 
   + `--warn`, `-w`
 
-    Warn and prompt the user for confirmation if the command attempts to remove the default login path (`client`) and `--login-path=client` was not specified. This option is enabled by default; use `--skip-warn` to disable it.
+    Alerta e solicita confirmação do usuário se o command tentar remover o login path default (`client`) e `--login-path=client` não foi especificado. Esta option é habilitada por default; use `--skip-warn` para desabilitá-la.
 
 * `reset [options]`
 
-  Empty the contents of the login path file.
+  Esvazia o conteúdo do arquivo de login path.
 
-  The `reset` command permits these options following the command name:
+  O command `reset` permite estas options após o nome do command:
 
   + `--help`, `-?`
 
-    Display a help message for the `reset` command and exit.
+    Exibe uma mensagem de help para o command `reset` e sai.
 
-    To see a general help message, use **mysql_config_editor --help**.
+    Para ver uma mensagem de help geral, use **mysql_config_editor --help**.
 
 * `set [options]`
 
-  Write a login path to the login path file.
+  Escreve um login path no arquivo de login path.
 
-  This command writes to the login path only such options as are specified with the `--host`, `--password`, `--port`, `--socket`, and `--user` options. If none of those options are given, **mysql_config_editor** writes the login path as an empty group.
+  Este command escreve no login path apenas as options especificadas com as options `--host`, `--password`, `--port`, `--socket` e `--user`. Se nenhuma dessas options for fornecida, o **mysql_config_editor** escreve o login path como um *group* vazio.
 
-  The `set` command permits these options following the command name:
+  O command `set` permite estas options após o nome do command:
 
   + `--help`, `-?`
 
-    Display a help message for the `set` command and exit.
+    Exibe uma mensagem de help para o command `set` e sai.
 
-    To see a general help message, use **mysql_config_editor --help**.
+    Para ver uma mensagem de help geral, use **mysql_config_editor --help**.
 
   + `--host=host_name`, `-h host_name`
 
-    The host name to write to the login path.
+    O host name a ser escrito no login path.
 
   + `--login-path=name`, `-G name`
 
-    The login path to create. The default login path name is `client` if this option is not given.
+    O login path a ser criado. O nome default do login path é `client` se esta option não for fornecida.
 
   + `--password`, `-p`
 
-    Prompt for a password to write to the login path. After **mysql_config_editor** displays the prompt, type the password and press Enter. To prevent other users from seeing the password, **mysql_config_editor** does not echo it.
+    Solicita uma password para ser escrita no login path. Depois que o **mysql_config_editor** exibe o prompt, digite a password e pressione Enter. Para evitar que outros usuários vejam a password, o **mysql_config_editor** não a exibe (*echo*).
 
-    To specify an empty password, press Enter at the password prompt. The resulting login path written to the login path file includes a line like this:
+    Para especificar uma password vazia, pressione Enter no prompt de password. O login path resultante escrito no arquivo de login path inclui uma linha como esta:
 
     ```sql
     password =
@@ -317,16 +317,16 @@ In addition, **mysql_config_editor** supports general options that can be used p
 
   + `--port=port_num`, `-P port_num`
 
-    The TCP/IP port number to write to the login path.
+    O port number TCP/IP a ser escrito no login path.
 
   + `--socket=file_name`, `-S file_name`
 
-    The Unix socket file name to write to the login path.
+    O nome do arquivo Unix socket a ser escrito no login path.
 
   + `--user=user_name`, `-u user_name`
 
-    The user name to write to the login path.
+    O user name a ser escrito no login path.
 
   + `--warn`, `-w`
 
-    Warn and prompt the user for confirmation if the command attempts to overwrite an existing login path. This option is enabled by default; use `--skip-warn` to disable it.
+    Alerta e solicita confirmação do usuário se o command tentar sobrescrever um login path existente. Esta option é habilitada por default; use `--skip-warn` para desabilitá-la.

@@ -1,8 +1,8 @@
-#### 3.3.4.8 Counting Rows
+#### 3.3.4.8 Contando Linhas
 
-Databases are often used to answer the question, “How often does a certain type of data occur in a table?” For example, you might want to know how many pets you have, or how many pets each owner has, or you might want to perform various kinds of census operations on your animals.
+Databases são frequentemente usados para responder à pergunta: "Com que frequência um certo tipo de dado ocorre em uma table?" Por exemplo, você pode querer saber quantos pets você tem, ou quantos pets cada owner possui, ou você pode querer realizar vários tipos de operações de censo em seus animais.
 
-Counting the total number of animals you have is the same question as “How many rows are in the `pet` table?” because there is one record per pet. [`COUNT(*)`](aggregate-functions.html#function_count) counts the number of rows, so the query to count your animals looks like this:
+Contar o número total de animais que você tem é a mesma pergunta que "Quantas rows existem na table `pet`?" porque há um registro por pet. O [`COUNT(*)`](aggregate-functions.html#function_count) conta o número de rows, então a Query para contar seus animais se parece com isto:
 
 ```sql
 mysql> SELECT COUNT(*) FROM pet;
@@ -13,7 +13,7 @@ mysql> SELECT COUNT(*) FROM pet;
 +----------+
 ```
 
-Earlier, you retrieved the names of the people who owned pets. You can use [`COUNT()`](aggregate-functions.html#function_count) if you want to find out how many pets each owner has:
+Anteriormente, você recuperou os nomes das pessoas que possuíam pets. Você pode usar [`COUNT()`](aggregate-functions.html#function_count) se quiser descobrir quantos pets cada owner tem:
 
 ```sql
 mysql> SELECT owner, COUNT(*) FROM pet GROUP BY owner;
@@ -27,9 +27,9 @@ mysql> SELECT owner, COUNT(*) FROM pet GROUP BY owner;
 +--------+----------+
 ```
 
-The preceding query uses `GROUP BY` to group all records for each `owner`. The use of [`COUNT()`](aggregate-functions.html#function_count) in conjunction with `GROUP BY` is useful for characterizing your data under various groupings. The following examples show different ways to perform animal census operations.
+A Query anterior usa `GROUP BY` para agrupar todos os registros para cada `owner`. O uso de [`COUNT()`](aggregate-functions.html#function_count) em conjunto com `GROUP BY` é útil para caracterizar seus dados sob vários agrupamentos. Os exemplos a seguir mostram diferentes maneiras de realizar operações de censo animal.
 
-Number of animals per species:
+Número de animais por espécie:
 
 ```sql
 mysql> SELECT species, COUNT(*) FROM pet GROUP BY species;
@@ -44,7 +44,7 @@ mysql> SELECT species, COUNT(*) FROM pet GROUP BY species;
 +---------+----------+
 ```
 
-Number of animals per sex:
+Número de animais por sexo:
 
 ```sql
 mysql> SELECT sex, COUNT(*) FROM pet GROUP BY sex;
@@ -57,9 +57,9 @@ mysql> SELECT sex, COUNT(*) FROM pet GROUP BY sex;
 +------+----------+
 ```
 
-(In this output, `NULL` indicates that the sex is unknown.)
+(Nesta saída, `NULL` indica que o sexo é desconhecido.)
 
-Number of animals per combination of species and sex:
+Número de animais por combinação de espécie e sexo:
 
 ```sql
 mysql> SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;
@@ -77,7 +77,7 @@ mysql> SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;
 +---------+------+----------+
 ```
 
-You need not retrieve an entire table when you use [`COUNT()`](aggregate-functions.html#function_count). For example, the previous query, when performed just on dogs and cats, looks like this:
+Você não precisa recuperar uma table inteira ao usar [`COUNT()`](aggregate-functions.html#function_count). Por exemplo, a Query anterior, quando executada apenas em cães e gatos, se parece com isto:
 
 ```sql
 mysql> SELECT species, sex, COUNT(*) FROM pet
@@ -93,7 +93,7 @@ mysql> SELECT species, sex, COUNT(*) FROM pet
 +---------+------+----------+
 ```
 
-Or, if you wanted the number of animals per sex only for animals whose sex is known:
+Ou, se você quisesse o número de animais por sexo apenas para animais cujo sexo é conhecido:
 
 ```sql
 mysql> SELECT species, sex, COUNT(*) FROM pet
@@ -112,9 +112,9 @@ mysql> SELECT species, sex, COUNT(*) FROM pet
 +---------+------+----------+
 ```
 
-If you name columns to select in addition to the [`COUNT()`](aggregate-functions.html#function_count) value, a `GROUP BY` clause should be present that names those same columns. Otherwise, the following occurs:
+Se você nomear colunas para selecionar além do valor de [`COUNT()`](aggregate-functions.html#function_count), uma cláusula `GROUP BY` deve estar presente nomeando essas mesmas colunas. Caso contrário, ocorre o seguinte:
 
-* If the [`ONLY_FULL_GROUP_BY`](sql-mode.html#sqlmode_only_full_group_by) SQL mode is enabled, an error occurs:
+* Se o [`ONLY_FULL_GROUP_BY`](sql-mode.html#sqlmode_only_full_group_by) SQL mode estiver habilitado, ocorre um error:
 
   ```sql
   mysql> SET sql_mode = 'ONLY_FULL_GROUP_BY';
@@ -126,7 +126,7 @@ If you name columns to select in addition to the [`COUNT()`](aggregate-functions
   this is incompatible with sql_mode=only_full_group_by
   ```
 
-* If [`ONLY_FULL_GROUP_BY`](sql-mode.html#sqlmode_only_full_group_by) is not enabled, the query is processed by treating all rows as a single group, but the value selected for each named column is nondeterministic. The server is free to select the value from any row:
+* Se [`ONLY_FULL_GROUP_BY`](sql-mode.html#sqlmode_only_full_group_by) não estiver habilitado, a Query é processada tratando todas as rows como um único group, mas o valor selecionado para cada coluna nomeada é não determinístico. O server é livre para selecionar o valor de qualquer row:
 
   ```sql
   mysql> SET sql_mode = '';
@@ -141,4 +141,4 @@ If you name columns to select in addition to the [`COUNT()`](aggregate-functions
   1 row in set (0.00 sec)
   ```
 
-See also [Section 12.19.3, “MySQL Handling of GROUP BY”](group-by-handling.html "12.19.3 MySQL Handling of GROUP BY"). See [Section 12.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "12.19.1 Aggregate Function Descriptions") for information about [`COUNT(expr)`](aggregate-functions.html#function_count) behavior and related optimizations.
+Veja também [Section 12.19.3, “MySQL Handling of GROUP BY”](group-by-handling.html "12.19.3 MySQL Handling of GROUP BY"). Consulte [Section 12.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "12.19.1 Aggregate Function Descriptions") para obter informações sobre o comportamento do [`COUNT(expr)`](aggregate-functions.html#function_count) e otimizações relacionadas.

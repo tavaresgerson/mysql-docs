@@ -1,6 +1,6 @@
-#### 1.6.2.1 SELECT INTO TABLE Differences
+#### 1.6.2.1 Diferenças de SELECT INTO TABLE
 
-MySQL Server does not support the `SELECT ... INTO TABLE` Sybase SQL extension. Instead, MySQL Server supports the `INSERT INTO ... SELECT` standard SQL syntax, which is basically the same thing. See Section 13.2.5.1, “INSERT ... SELECT Statement”. For example:
+O MySQL Server não oferece suporte à extensão SQL `SELECT ... INTO TABLE` do Sybase. Em vez disso, o MySQL Server suporta a sintaxe SQL padrão `INSERT INTO ... SELECT`, que é basicamente a mesma coisa. Consulte a Seção 13.2.5.1, “Instrução INSERT ... SELECT”. Por exemplo:
 
 ```sql
 INSERT INTO tbl_temp2 (fld_id)
@@ -8,6 +8,6 @@ INSERT INTO tbl_temp2 (fld_id)
     FROM tbl_temp1 WHERE tbl_temp1.fld_order_id > 100;
 ```
 
-Alternatively, you can use `SELECT ... INTO OUTFILE` or `CREATE TABLE ... SELECT`.
+Alternativamente, você pode usar `SELECT ... INTO OUTFILE` ou `CREATE TABLE ... SELECT`.
 
-You can use `SELECT ... INTO` with user-defined variables. The same syntax can also be used inside stored routines using cursors and local variables. See Section 13.2.9.1, “SELECT ... INTO Statement”.
+Você pode usar `SELECT ... INTO` com *user-defined variables* (variáveis definidas pelo usuário). A mesma sintaxe também pode ser usada dentro de *stored routines* (rotinas armazenadas) usando *cursors* e *local variables*. Consulte a Seção 13.2.9.1, “Instrução SELECT ... INTO”.

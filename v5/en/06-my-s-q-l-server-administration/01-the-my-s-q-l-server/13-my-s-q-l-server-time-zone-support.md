@@ -1,114 +1,114 @@
-### 5.1.13 MySQL Server Time Zone Support
+### 5.1.13 Suporte a Time Zone do MySQL Server
 
-This section describes the time zone settings maintained by MySQL, how to load the system tables required for named time support, how to stay current with time zone changes, and how to enable leap-second support.
+Esta seção descreve as configurações de Time Zone mantidas pelo MySQL, como carregar as system tables necessárias para o suporte a nomes de fusos horários, como manter-se atualizado com as mudanças de Time Zone e como habilitar o suporte a *leap-second* (segundo bissexto).
 
-For information about time zone settings in replication setups, see [Section 16.4.1.15, “Replication and System Functions”](replication-features-functions.html "16.4.1.15 Replication and System Functions") and [Section 16.4.1.31, “Replication and Time Zones”](replication-features-timezone.html "16.4.1.31 Replication and Time Zones").
+Para informações sobre as configurações de Time Zone em configurações de Replication, consulte [Section 16.4.1.15, “Replication and System Functions”](replication-features-functions.html "16.4.1.15 Replication and System Functions") e [Section 16.4.1.31, “Replication and Time Zones”](replication-features-timezone.html "16.4.1.31 Replication and Time Zones").
 
-* [Time Zone Variables](time-zone-support.html#time-zone-variables "Time Zone Variables")
-* [Populating the Time Zone Tables](time-zone-support.html#time-zone-installation "Populating the Time Zone Tables")
-* [Staying Current with Time Zone Changes](time-zone-support.html#time-zone-upgrades "Staying Current with Time Zone Changes")
-* [Time Zone Leap Second Support](time-zone-support.html#time-zone-leap-seconds "Time Zone Leap Second Support")
+* [Variáveis de Time Zone](time-zone-support.html#time-zone-variables "Time Zone Variables")
+* [Preenchendo as Time Zone Tables](time-zone-support.html#time-zone-installation "Populating the Time Zone Tables")
+* [Mantendo-se Atualizado com as Mudanças de Time Zone](time-zone-support.html#time-zone-upgrades "Staying Current with Time Zone Changes")
+* [Suporte a Leap Second de Time Zone](time-zone-support.html#time-zone-leap-seconds "Time Zone Leap Second Support")
 
-#### Time Zone Variables
+#### Variáveis de Time Zone
 
-MySQL Server maintains several time zone settings:
+O MySQL Server mantém diversas configurações de Time Zone:
 
-* The server system time zone. When the server starts, it attempts to determine the time zone of the host machine and uses it to set the [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone) system variable. The value does not change thereafter.
+* O Time Zone de sistema do server. Quando o server inicia, ele tenta determinar o Time Zone da máquina host e o utiliza para definir a system variable [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone). O valor não muda depois disso.
 
-  To explicitly specify the system time zone for MySQL Server at startup, set the `TZ` environment variable before you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). If you start the server using [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), its [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) option provides another way to set the system time zone. The permissible values for `TZ` and [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) are system dependent. Consult your operating system documentation to see what values are acceptable.
+  Para especificar explicitamente o Time Zone de sistema para o MySQL Server na inicialização (startup), defina a environment variable `TZ` antes de iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). Se você iniciar o server usando o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), sua opção [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) fornece outra maneira de definir o Time Zone de sistema. Os valores permitidos para `TZ` e [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) dependem do sistema. Consulte a documentação do seu sistema operacional para ver quais valores são aceitáveis.
 
-* The server current time zone. The global [`time_zone`](server-system-variables.html#sysvar_time_zone) system variable indicates the time zone the server currently is operating in. The initial [`time_zone`](server-system-variables.html#sysvar_time_zone) value is `'SYSTEM'`, which indicates that the server time zone is the same as the system time zone.
+* O Time Zone atual do server. A system variable global [`time_zone`](server-system-variables.html#sysvar_time_zone) indica o Time Zone no qual o server está operando atualmente. O valor inicial de [`time_zone`](server-system-variables.html#sysvar_time_zone) é `'SYSTEM'`, o que indica que o Time Zone do server é o mesmo que o Time Zone do sistema.
 
   Note
 
-  If set to `SYSTEM`, every MySQL function call that requires a time zone calculation makes a system library call to determine the current system time zone. This call may be protected by a global mutex, resulting in contention.
+  Se definido como `SYSTEM`, toda chamada de função MySQL que exige um cálculo de Time Zone faz uma chamada de system library para determinar o Time Zone de sistema atual. Essa chamada pode ser protegida por um mutex global, resultando em contenção.
 
-  The initial global server time zone value can be specified explicitly at startup with the [`--default-time-zone`](server-options.html#option_mysqld_default-time-zone) option on the command line, or you can use the following line in an option file:
+  O valor inicial do Time Zone global do server pode ser especificado explicitamente na inicialização com a opção [`--default-time-zone`](server-options.html#option_mysqld_default-time-zone) na linha de comando, ou você pode usar a seguinte linha em um option file:
 
   ```sql
   default-time-zone='timezone'
   ```
 
-  If you have the [`SUPER`](privileges-provided.html#priv_super) privilege, you can set the global server time zone value at runtime with this statement:
+  Se você tiver o privilégio [`SUPER`](privileges-provided.html#priv_super), você pode definir o valor do Time Zone global do server em tempo de execução (runtime) com esta instrução:
 
   ```sql
   SET GLOBAL time_zone = timezone;
   ```
 
-* Per-session time zones. Each client that connects has its own session time zone setting, given by the session [`time_zone`](server-system-variables.html#sysvar_time_zone) variable. Initially, the session variable takes its value from the global [`time_zone`](server-system-variables.html#sysvar_time_zone) variable, but the client can change its own time zone with this statement:
+* Time Zones por Session. Cada client que se conecta tem sua própria configuração de Time Zone de Session, dada pela variável [`time_zone`](server-system-variables.html#sysvar_time_zone) de Session. Inicialmente, a variável de Session recebe seu valor da variável global [`time_zone`](server-system-variables.html#sysvar_time_zone), mas o client pode alterar seu próprio Time Zone com esta instrução:
 
   ```sql
   SET time_zone = timezone;
   ```
 
-The session time zone setting affects display and storage of time values that are zone-sensitive. This includes the values displayed by functions such as [`NOW()`](date-and-time-functions.html#function_now) or [`CURTIME()`](date-and-time-functions.html#function_curtime), and values stored in and retrieved from [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns. Values for [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns are converted from the session time zone to UTC for storage, and from UTC to the session time zone for retrieval.
+A configuração de Time Zone da Session afeta a exibição e o armazenamento de valores de tempo que são sensíveis a fusos. Isso inclui os valores exibidos por funções como [`NOW()`](date-and-time-functions.html#function_now) ou [`CURTIME()`](date-and-time-functions.html#function_curtime), e valores armazenados e recuperados de colunas [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"). Os valores para colunas [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") são convertidos do Time Zone da Session para UTC para armazenamento e de UTC para o Time Zone da Session para recuperação.
 
-The session time zone setting does not affect values displayed by functions such as [`UTC_TIMESTAMP()`](date-and-time-functions.html#function_utc-timestamp) or values in [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns. Nor are values in those data types stored in UTC; the time zone applies for them only when converting from [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values. If you want locale-specific arithmetic for [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values, convert them to UTC, perform the arithmetic, and then convert back.
+A configuração de Time Zone da Session não afeta os valores exibidos por funções como [`UTC_TIMESTAMP()`](date-and-time-functions.html#function_utc-timestamp) ou valores em colunas [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), ou [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"). Nem os valores nesses tipos de dados são armazenados em UTC; o Time Zone se aplica a eles apenas ao converter de valores [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"). Se você deseja aritmética específica de localidade para valores [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), ou [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), converta-os para UTC, execute a aritmética e, em seguida, converta de volta.
 
-The current global and session time zone values can be retrieved like this:
+Os valores atuais de Time Zone global e de Session podem ser recuperados desta forma:
 
 ```sql
 SELECT @@GLOBAL.time_zone, @@SESSION.time_zone;
 ```
 
-*`timezone`* values can be given in several formats, none of which are case-sensitive:
+Os valores de *`timezone`* podem ser fornecidos em vários formatos, nenhum dos quais é case-sensitive (sensível a maiúsculas/minúsculas):
 
-* As the value `'SYSTEM'`, indicating that the server time zone is the same as the system time zone.
+* Como o valor `'SYSTEM'`, indicando que o Time Zone do server é o mesmo que o Time Zone do sistema.
 
-* As a string indicating an offset from UTC of the form `[H]H:MM`, prefixed with a `+` or `-`, such as `'+10:00'`, `'-6:00'`, or `'+05:30'`. A leading zero can optionally be used for hours values less than 10; MySQL prepends a leading zero when storing and retriving the value in such cases. MySQL converts `'-00:00'` or `'-0:00'` to `'+00:00'`.
+* Como uma string indicando um offset (deslocamento) de UTC no formato `[H]H:MM`, prefixado com `+` ou `-`, como `'+10:00'`, `'-6:00'`, ou `'+05:30'`. Um zero à esquerda pode ser usado opcionalmente para valores de horas menores que 10; o MySQL adiciona um zero à esquerda ao armazenar e recuperar o valor nesses casos. O MySQL converte `'-00:00'` ou `'-0:00'` para `'+00:00'`.
 
-  A time zone offset must be in the range `'-12:59'` to `'+13:00'`, inclusive.
+  Um offset de Time Zone deve estar no range de `'-12:59'` a `'+13:00'`, inclusive.
 
-* As a named time zone, such as `'Europe/Helsinki'`, `'US/Eastern'`, `'MET'`, or `'UTC'`.
+* Como um Time Zone nomeado, como `'Europe/Helsinki'`, `'US/Eastern'`, `'MET'`, ou `'UTC'`.
 
   Note
 
-  Named time zones can be used only if the time zone information tables in the `mysql` database have been created and populated. Otherwise, use of a named time zone results in an error:
+  Time Zones nomeados só podem ser usados se as tabelas de informação de Time Zone no `mysql` Database tiverem sido criadas e preenchidas (populated). Caso contrário, o uso de um Time Zone nomeado resulta em um erro:
 
   ```sql
   mysql> SET time_zone = 'UTC';
   ERROR 1298 (HY000): Unknown or incorrect time zone: 'UTC'
   ```
 
-#### Populating the Time Zone Tables
+#### Preenchendo as Time Zone Tables
 
-Several tables in the `mysql` system database exist to store time zone information (see [Section 5.3, “The mysql System Database”](system-schema.html "5.3 The mysql System Database")). The MySQL installation procedure creates the time zone tables, but does not load them. To do so manually, use the following instructions.
+Várias tabelas no `mysql` system database existem para armazenar informações de Time Zone (consulte [Section 5.3, “The mysql System Database”](system-schema.html "5.3 The mysql System Database")). O procedimento de instalação do MySQL cria as Time Zone tables, mas não as carrega (load). Para fazer isso manualmente, use as seguintes instruções.
 
 Note
 
-Loading the time zone information is not necessarily a one-time operation because the information changes occasionally. When such changes occur, applications that use the old rules become out of date and you may find it necessary to reload the time zone tables to keep the information used by your MySQL server current. See [Staying Current with Time Zone Changes](time-zone-support.html#time-zone-upgrades "Staying Current with Time Zone Changes").
+Carregar as informações de Time Zone não é necessariamente uma operação única, pois as informações mudam ocasionalmente. Quando tais mudanças ocorrem, os applications que usam as regras antigas ficam desatualizados, e você pode achar necessário recarregar as Time Zone tables para manter atualizadas as informações usadas pelo seu MySQL Server. Consulte [Staying Current with Time Zone Changes](time-zone-support.html#time-zone-upgrades "Staying Current with Time Zone Changes").
 
-If your system has its own zoneinfo database (the set of files describing time zones), use the [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") program to load the time zone tables. Examples of such systems are Linux, macOS, FreeBSD, and Solaris. One likely location for these files is the `/usr/share/zoneinfo` directory. If your system has no zoneinfo database, you can use a downloadable package, as described later in this section.
+Se o seu sistema tiver seu próprio zoneinfo database (o conjunto de arquivos que descrevem os Time Zones), use o programa [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") para carregar as Time Zone tables. Exemplos de tais sistemas são Linux, macOS, FreeBSD e Solaris. Um local provável para esses arquivos é o diretório `/usr/share/zoneinfo`. Se o seu sistema não tiver um zoneinfo database, você pode usar um pacote para download, conforme descrito mais adiante nesta seção.
 
-To load the time zone tables from the command line, pass the zoneinfo directory path name to [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") and send the output into the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") program. For example:
+Para carregar as Time Zone tables a partir da linha de comando, passe o path name do diretório zoneinfo para [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") e envie o output para o programa [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"). Por exemplo:
 
 ```sql
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
 ```
 
-The [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") command shown here assumes that you connect to the server using an account such as `root` that has privileges for modifying tables in the `mysql` system database. Adjust the connection parameters as required.
+O comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") mostrado aqui assume que você se conecta ao server usando uma conta como `root` que possui privilégios para modificar tabelas no `mysql` system database. Ajuste os connection parameters conforme necessário.
 
-[**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") reads your system's time zone files and generates SQL statements from them. [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") processes those statements to load the time zone tables.
+[**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") lê os arquivos de Time Zone do seu sistema e gera SQL statements a partir deles. O [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") processa essas statements para carregar as Time Zone tables.
 
-[**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") also can be used to load a single time zone file or generate leap second information:
+[**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") também pode ser usado para carregar um único arquivo de Time Zone ou gerar informações de *leap second*:
 
-* To load a single time zone file *`tz_file`* that corresponds to a time zone name *`tz_name`*, invoke [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") like this:
+* Para carregar um único arquivo de Time Zone *`tz_file`* que corresponda a um nome de Time Zone *`tz_name`*, invoque [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") desta forma:
 
   ```sql
   mysql_tzinfo_to_sql tz_file tz_name | mysql -u root -p mysql
   ```
 
-  With this approach, you must execute a separate command to load the time zone file for each named zone that the server needs to know about.
+  Com essa abordagem, você deve executar um comando separado para carregar o arquivo de Time Zone para cada zona nomeada que o server precisa conhecer.
 
-* If your time zone must account for leap seconds, initialize leap second information like this, where *`tz_file`* is the name of your time zone file:
+* Se o seu Time Zone deve contabilizar *leap seconds*, inicialize as informações de *leap second* desta forma, onde *`tz_file`* é o nome do seu arquivo de Time Zone:
 
   ```sql
   mysql_tzinfo_to_sql --leap tz_file | mysql -u root -p mysql
   ```
 
-After running [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables"), restart the server so that it does not continue to use any previously cached time zone data.
+Após executar [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables"), reinicie o server para que ele não continue a usar quaisquer dados de Time Zone previamente armazenados em cache.
 
-If your system has no zoneinfo database (for example, Windows), you can use a package containing SQL statements that is available for download at the MySQL Developer Zone:
+Se o seu sistema não tiver um zoneinfo database (por exemplo, Windows), você pode usar um pacote contendo SQL statements que está disponível para download na MySQL Developer Zone:
 
 ```sql
 https://dev.mysql.com/downloads/timezones.html
@@ -116,37 +116,37 @@ https://dev.mysql.com/downloads/timezones.html
 
 Warning
 
-Do *not* use a downloadable time zone package if your system has a zoneinfo database. Use the [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") utility instead. Otherwise, you may cause a difference in datetime handling between MySQL and other applications on your system.
+*Não* use um pacote de Time Zone para download se o seu sistema tiver um zoneinfo database. Em vez disso, use a utility [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables"). Caso contrário, você pode causar uma diferença no tratamento de datetime entre o MySQL e outros applications no seu sistema.
 
-To use an SQL-statement time zone package that you have downloaded, unpack it, then load the unpacked file contents into the time zone tables:
+Para usar um pacote de Time Zone de SQL-statement que você baixou, descompacte-o e carregue o conteúdo do arquivo descompactado nas Time Zone tables:
 
 ```sql
 mysql -u root -p mysql < file_name
 ```
 
-Then restart the server.
+Em seguida, reinicie o server.
 
 Warning
 
-Do *not* use a downloadable time zone package that contains `MyISAM` tables. That is intended for older MySQL versions. MySQL 5.7 and higher uses `InnoDB` for the time zone tables. Trying to replace them with `MyISAM` tables causes problems.
+*Não* use um pacote de Time Zone para download que contenha tabelas `MyISAM`. Isso é destinado a versões mais antigas do MySQL. O MySQL 5.7 e superior usa `InnoDB` para as Time Zone tables. Tentar substituí-las por tabelas `MyISAM` causa problemas.
 
-#### Staying Current with Time Zone Changes
+#### Mantendo-se Atualizado com as Mudanças de Time Zone
 
-When time zone rules change, applications that use the old rules become out of date. To stay current, it is necessary to make sure that your system uses current time zone information is used. For MySQL, there are multiple factors to consider in staying current:
+Quando as regras de Time Zone mudam, os applications que usam as regras antigas ficam desatualizados. Para manter-se atualizado, é necessário garantir que as informações atuais de Time Zone sejam usadas pelo seu sistema. Para o MySQL, há múltiplos fatores a considerar para manter-se atualizado:
 
-* The operating system time affects the value that the MySQL server uses for times if its time zone is set to `SYSTEM`. Make sure that your operating system is using the latest time zone information. For most operating systems, the latest update or service pack prepares your system for the time changes. Check the website for your operating system vendor for an update that addresses the time changes.
+* O horário do sistema operacional afeta o valor que o MySQL Server usa para horários se seu Time Zone estiver definido como `SYSTEM`. Certifique-se de que seu sistema operacional esteja usando as informações de Time Zone mais recentes. Para a maioria dos sistemas operacionais, a atualização ou service pack mais recente prepara seu sistema para as mudanças de horário. Verifique o website do fornecedor do seu sistema operacional para uma atualização que aborde as mudanças de horário.
 
-* If you replace the system's `/etc/localtime` time zone file with a version that uses rules differing from those in effect at [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") startup, restart [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") so that it uses the updated rules. Otherwise, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") might not notice when the system changes its time.
+* Se você substituir o arquivo de Time Zone `/etc/localtime` do sistema por uma versão que usa regras diferentes daquelas em vigor na inicialização do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), reinicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") para que ele use as regras atualizadas. Caso contrário, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") pode não perceber quando o sistema muda seu horário.
 
-* If you use named time zones with MySQL, make sure that the time zone tables in the `mysql` database are up to date:
+* Se você usa Time Zones nomeados com o MySQL, certifique-se de que as Time Zone tables no `mysql` database estejam up to date (atualizadas):
 
-  + If your system has its own zoneinfo database, reload the MySQL time zone tables whenever the zoneinfo database is updated.
+  + Se o seu sistema tiver seu próprio zoneinfo database, recarregue as Time Zone tables do MySQL sempre que o zoneinfo database for atualizado.
 
-  + For systems that do not have their own zoneinfo database, check the MySQL Developer Zone for updates. When a new update is available, download it and use it to replace the content of your current time zone tables.
+  + Para sistemas que não possuem seu próprio zoneinfo database, verifique a MySQL Developer Zone em busca de atualizações. Quando uma nova atualização estiver disponível, baixe-a e use-a para substituir o conteúdo das suas Time Zone tables atuais.
 
-  For instructions for both methods, see [Populating the Time Zone Tables](time-zone-support.html#time-zone-installation "Populating the Time Zone Tables"). [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") caches time zone information that it looks up, so after updating the time zone tables, restart [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to make sure that it does not continue to serve outdated time zone data.
+  Para instruções sobre ambos os métodos, consulte [Populating the Time Zone Tables](time-zone-support.html#time-zone-installation "Populating the Time Zone Tables"). O [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") armazena em cache (caches) informações de Time Zone que ele consulta, portanto, após atualizar as Time Zone tables, reinicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") para garantir que ele não continue a servir dados de Time Zone desatualizados.
 
-If you are uncertain whether named time zones are available, for use either as the server's time zone setting or by clients that set their own time zone, check whether your time zone tables are empty. The following query determines whether the table that contains time zone names has any rows:
+Se você não tiver certeza se os Time Zones nomeados estão disponíveis, seja para uso como configuração de Time Zone do server ou por clients que definem seu próprio Time Zone, verifique se suas Time Zone tables estão vazias. A seguinte Query determina se a tabela que contém nomes de Time Zone possui alguma linha:
 
 ```sql
 mysql> SELECT COUNT(*) FROM mysql.time_zone_name;
@@ -157,11 +157,11 @@ mysql> SELECT COUNT(*) FROM mysql.time_zone_name;
 +----------+
 ```
 
-A count of zero indicates that the table is empty. In this case, no applications currently are using named time zones, and you need not update the tables (unless you want to enable named time zone support). A count greater than zero indicates that the table is not empty and that its contents are available to be used for named time zone support. In this case, be sure to reload your time zone tables so that applications that use named time zones obtain correct query results.
+Uma contagem de zero indica que a tabela está vazia. Neste caso, nenhum application está usando Time Zones nomeados atualmente e você não precisa atualizar as tabelas (a menos que queira habilitar o suporte a Time Zone nomeado). Uma contagem maior que zero indica que a tabela não está vazia e que seu conteúdo está disponível para ser usado para suporte a Time Zone nomeado. Neste caso, certifique-se de recarregar suas Time Zone tables para que os applications que usam Time Zones nomeados obtenham resultados de Query corretos.
 
-To check whether your MySQL installation is updated properly for a change in Daylight Saving Time rules, use a test like the one following. The example uses values that are appropriate for the 2007 DST 1-hour change that occurs in the United States on March 11 at 2 a.m.
+Para verificar se sua instalação MySQL está atualizada corretamente para uma mudança nas regras do Horário de Verão (Daylight Saving Time - DST), use um teste como o seguinte. O exemplo usa valores apropriados para a mudança de 1 hora do DST de 2007 que ocorreu nos Estados Unidos em 11 de Março, às 2 da manhã.
 
-The test uses this query:
+O teste usa esta Query:
 
 ```sql
 SELECT
@@ -169,9 +169,9 @@ SELECT
   CONVERT_TZ('2007-03-11 3:00:00','US/Eastern','US/Central') AS time2;
 ```
 
-The two time values indicate the times at which the DST change occurs, and the use of named time zones requires that the time zone tables be used. The desired result is that both queries return the same result (the input time, converted to the equivalent value in the 'US/Central' time zone).
+Os dois valores de tempo indicam os horários em que ocorre a mudança de DST, e o uso de Time Zones nomeados requer que as Time Zone tables sejam usadas. O resultado desejado é que ambas as Queries retornem o mesmo resultado (o tempo de input, convertido para o valor equivalente no Time Zone 'US/Central').
 
-Before updating the time zone tables, you see an incorrect result like this:
+Antes de atualizar as Time Zone tables, você verá um resultado incorreto como este:
 
 ```sql
 +---------------------+---------------------+
@@ -181,7 +181,7 @@ Before updating the time zone tables, you see an incorrect result like this:
 +---------------------+---------------------+
 ```
 
-After updating the tables, you should see the correct result:
+Após atualizar as tabelas, você deve ver o resultado correto:
 
 ```sql
 +---------------------+---------------------+
@@ -191,11 +191,11 @@ After updating the tables, you should see the correct result:
 +---------------------+---------------------+
 ```
 
-#### Time Zone Leap Second Support
+#### Suporte a Leap Second de Time Zone
 
-Leap second values are returned with a time part that ends with `:59:59`. This means that a function such as [`NOW()`](date-and-time-functions.html#function_now) can return the same value for two or three consecutive seconds during the leap second. It remains true that literal temporal values having a time part that ends with `:59:60` or `:59:61` are considered invalid.
+Os valores de *leap second* são retornados com uma parte de tempo que termina em `:59:59`. Isso significa que uma função como [`NOW()`](date-and-time-functions.html#function_now) pode retornar o mesmo valor por dois ou três segundos consecutivos durante o *leap second*. Permanece verdadeiro que os valores temporais literais com uma parte de tempo que termina em `:59:60` ou `:59:61` são considerados inválidos.
 
-If it is necessary to search for [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values one second before the leap second, anomalous results may be obtained if you use a comparison with `'YYYY-MM-DD hh:mm:ss'` values. The following example demonstrates this. It changes the session time zone to UTC so there is no difference between internal [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values (which are in UTC) and displayed values (which have time zone correction applied).
+Se for necessário buscar valores [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") um segundo antes do *leap second*, resultados anômalos podem ser obtidos se você usar uma comparação com valores `'YYYY-MM-DD hh:mm:ss'`. O exemplo a seguir demonstra isso. Ele altera o Time Zone da Session para UTC para que não haja diferença entre os valores internos [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") (que estão em UTC) e os valores exibidos (que têm correção de Time Zone aplicada).
 
 ```sql
 mysql> CREATE TABLE t1 (
@@ -247,7 +247,7 @@ mysql> SELECT * FROM t1 WHERE ts = '2008-12-31 23:59:60';
 Empty set, 2 warnings (0.00 sec)
 ```
 
-To work around this, you can use a comparison based on the UTC value actually stored in the column, which has the leap second correction applied:
+Para contornar isso, você pode usar uma comparação baseada no valor UTC realmente armazenado na coluna, que tem a correção de *leap second* aplicada:
 
 ```sql
 mysql> -- selecting using UNIX_TIMESTAMP value return leap value

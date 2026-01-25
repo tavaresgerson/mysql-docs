@@ -1,6 +1,6 @@
-### 5.1.9 Server Status Variables
+### 5.1.9 Variáveis de Status do Servidor
 
-The MySQL server maintains many status variables that provide information about its operation. You can view these variables and their values by using the `SHOW [GLOBAL | SESSION] STATUS` statement (see [Section 13.7.5.35, “SHOW STATUS Statement”](show-status.html "13.7.5.35 SHOW STATUS Statement")). The optional `GLOBAL` keyword aggregates the values over all connections, and `SESSION` shows the values for the current connection.
+O servidor MySQL mantém muitas variáveis de status que fornecem informações sobre sua operação. Você pode visualizar essas variáveis e seus valores usando a instrução `SHOW [GLOBAL | SESSION] STATUS` (veja [Seção 13.7.5.35, “SHOW STATUS Statement”](show-status.html "13.7.5.35 SHOW STATUS Statement")). A palavra-chave opcional `GLOBAL` agrega os valores de todas as conexões, e `SESSION` mostra os valores para a conexão atual.
 
 ```sql
 mysql> SHOW GLOBAL STATUS;
@@ -23,59 +23,59 @@ mysql> SHOW GLOBAL STATUS;
 +-----------------------------------+------------+
 ```
 
-Many status variables are reset to 0 by the [`FLUSH STATUS`](flush.html#flush-status) statement.
+Muitas variáveis de status são redefinidas para 0 pela instrução [`FLUSH STATUS`](flush.html#flush-status).
 
-This section provides a description of each status variable. For a status variable summary, see [Section 5.1.5, “Server Status Variable Reference”](server-status-variable-reference.html "5.1.5 Server Status Variable Reference"). For information about status variables specific to NDB Cluster, see [Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables").
+Esta seção fornece uma descrição de cada variável de status. Para um resumo das variáveis de status, consulte [Seção 5.1.5, “Referência de Variáveis de Status do Servidor”](server-status-variable-reference.html "5.1.5 Referência de Variáveis de Status do Servidor"). Para obter informações sobre variáveis de status específicas para o NDB Cluster, consulte [Seção 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables").
 
-The status variables have the meanings shown in the following list.
+As variáveis de status têm os significados mostrados na lista a seguir.
 
 * [`Aborted_clients`](server-status-variables.html#statvar_Aborted_clients)
 
-  The number of connections that were aborted because the client died without closing the connection properly. See [Section B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections").
+  O número de conexões que foram abortadas porque o cliente morreu sem fechar a conexão adequadamente. Consulte [Seção B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections").
 
 * [`Aborted_connects`](server-status-variables.html#statvar_Aborted_connects)
 
-  The number of failed attempts to connect to the MySQL server. See [Section B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections").
+  O número de tentativas fracassadas de se conectar ao servidor MySQL. Consulte [Seção B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections").
 
-  For additional connection-related information, check the [`Connection_errors_xxx`](server-status-variables.html#statvar_Connection_errors_xxx) status variables and the [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table.
+  Para informações adicionais relacionadas à conexão, verifique as variáveis de status [`Connection_errors_xxx`](server-status-variables.html#statvar_Connection_errors_xxx) e a tabela [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
 
-  As of MySQL 5.7.3, [`Aborted_connects`](server-status-variables.html#statvar_Aborted_connects) is not visible in the embedded server because for that server it is not updated and is not meaningful.
+  A partir do MySQL 5.7.3, [`Aborted_connects`](server-status-variables.html#statvar_Aborted_connects) não é visível no servidor embedded porque, para esse servidor, ele não é atualizado e não é significativo.
 
 * [`Binlog_cache_disk_use`](server-status-variables.html#statvar_Binlog_cache_disk_use)
 
-  The number of transactions that used the temporary binary log cache but that exceeded the value of [`binlog_cache_size`](replication-options-binary-log.html#sysvar_binlog_cache_size) and used a temporary file to store statements from the transaction.
+  O número de transações que usaram o cache temporário do binary log, mas que excederam o valor de [`binlog_cache_size`](replication-options-binary-log.html#sysvar_binlog_cache_size) e usaram um arquivo temporário para armazenar instruções da transação.
 
-  The number of nontransactional statements that caused the binary log transaction cache to be written to disk is tracked separately in the [`Binlog_stmt_cache_disk_use`](server-status-variables.html#statvar_Binlog_stmt_cache_disk_use) status variable.
+  O número de instruções não transacionais que fizeram com que o cache de transações do binary log fosse escrito no disco é rastreado separadamente na variável de status [`Binlog_stmt_cache_disk_use`](server-status-variables.html#statvar_Binlog_stmt_cache_disk_use).
 
 * [`Binlog_cache_use`](server-status-variables.html#statvar_Binlog_cache_use)
 
-  The number of transactions that used the binary log cache.
+  O número de transações que usaram o cache do binary log.
 
 * [`Binlog_stmt_cache_disk_use`](server-status-variables.html#statvar_Binlog_stmt_cache_disk_use)
 
-  The number of nontransaction statements that used the binary log statement cache but that exceeded the value of [`binlog_stmt_cache_size`](replication-options-binary-log.html#sysvar_binlog_stmt_cache_size) and used a temporary file to store those statements.
+  O número de instruções não transacionais que usaram o cache de instruções do binary log, mas que excederam o valor de [`binlog_stmt_cache_size`](replication-options-binary-log.html#sysvar_binlog_stmt_cache_size) e usaram um arquivo temporário para armazenar essas instruções.
 
 * [`Binlog_stmt_cache_use`](server-status-variables.html#statvar_Binlog_stmt_cache_use)
 
-  The number of nontransactional statements that used the binary log statement cache.
+  O número de instruções não transacionais que usaram o cache de instruções do binary log.
 
 * [`Bytes_received`](server-status-variables.html#statvar_Bytes_received)
 
-  The number of bytes received from all clients.
+  O número de bytes recebidos de todos os clientes.
 
 * [`Bytes_sent`](server-status-variables.html#statvar_Bytes_sent)
 
-  The number of bytes sent to all clients.
+  O número de bytes enviados a todos os clientes.
 
 * `Com_xxx`
 
-  The `Com_xxx` statement counter variables indicate the number of times each *`xxx`* statement has been executed. There is one status variable for each type of statement. For example, `Com_delete` and `Com_update` count [`DELETE`](delete.html "13.2.2 DELETE Statement") and [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements, respectively. `Com_delete_multi` and `Com_update_multi` are similar but apply to [`DELETE`](delete.html "13.2.2 DELETE Statement") and [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements that use multiple-table syntax.
+  As variáveis contadoras de instruções `Com_xxx` indicam o número de vezes que cada instrução *`xxx`* foi executada. Existe uma variável de status para cada tipo de instrução. Por exemplo, `Com_delete` e `Com_update` contam as instruções [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`UPDATE`](update.html "13.2.11 UPDATE Statement"), respectivamente. `Com_delete_multi` e `Com_update_multi` são semelhantes, mas se aplicam às instruções [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`UPDATE`](update.html "13.2.11 UPDATE Statement") que usam sintaxe de múltiplas tabelas.
 
-  If a query result is returned from query cache, the server increments the [`Qcache_hits`](server-status-variables.html#statvar_Qcache_hits) status variable, not `Com_select`. See [Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance").
+  Se o resultado de uma Query for retornado do Query Cache, o servidor incrementa a variável de status [`Qcache_hits`](server-status-variables.html#statvar_Qcache_hits), e não `Com_select`. Consulte [Seção 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance").
 
-  All `Com_stmt_xxx` variables are increased even if a prepared statement argument is unknown or an error occurred during execution. In other words, their values correspond to the number of requests issued, not to the number of requests successfully completed. For example, because status variables are initialized for each server startup and do not persist across restarts, the `Com_shutdown` variable that tracks [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") statements normally has a value of zero, but can be nonzero if [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") statements were executed but failed.
+  Todas as variáveis `Com_stmt_xxx` são incrementadas mesmo que um argumento de prepared statement seja desconhecido ou ocorra um erro durante a execução. Em outras palavras, seus valores correspondem ao número de requisições emitidas, e não ao número de requisições concluídas com sucesso. Por exemplo, como as variáveis de status são inicializadas para cada inicialização do servidor e não persistem após reinicializações, a variável `Com_shutdown` que rastreia as instruções [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") normalmente tem um valor zero, mas pode ser diferente de zero se instruções [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") foram executadas, mas falharam.
 
-  The `Com_stmt_xxx` status variables are as follows:
+  As variáveis de status `Com_stmt_xxx` são as seguintes:
 
   + `Com_stmt_prepare`
   + `Com_stmt_execute`
@@ -84,843 +84,843 @@ The status variables have the meanings shown in the following list.
   + `Com_stmt_reset`
   + `Com_stmt_close`
 
-  Those variables stand for prepared statement commands. Their names refer to the `COM_xxx` command set used in the network layer. In other words, their values increase whenever prepared statement API calls such as **mysql_stmt_prepare()**, **mysql_stmt_execute()**, and so forth are executed. However, `Com_stmt_prepare`, `Com_stmt_execute` and `Com_stmt_close` also increase for [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), or [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement"), respectively. Additionally, the values of the older statement counter variables `Com_prepare_sql`, `Com_execute_sql`, and `Com_dealloc_sql` increase for the [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), and [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement") statements. `Com_stmt_fetch` stands for the total number of network round-trips issued when fetching from cursors.
+  Essas variáveis representam comandos de prepared statement. Seus nomes se referem ao conjunto de comandos `COM_xxx` usado na camada de rede. Em outras palavras, seus valores aumentam sempre que chamadas de API de prepared statement, como **mysql_stmt_prepare()**, **mysql_stmt_execute()** e assim por diante, são executadas. No entanto, `Com_stmt_prepare`, `Com_stmt_execute` e `Com_stmt_close` também aumentam para [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement") ou [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement"), respectivamente. Além disso, os valores das variáveis contadoras de instruções mais antigas `Com_prepare_sql`, `Com_execute_sql` e `Com_dealloc_sql` aumentam para as instruções [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement") e [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement"). `Com_stmt_fetch` representa o número total de viagens de ida e volta na rede emitidas ao buscar a partir de cursors.
 
-  `Com_stmt_reprepare` indicates the number of times statements were automatically reprepared by the server after metadata changes to tables or views referred to by the statement. A reprepare operation increments `Com_stmt_reprepare`, and also `Com_stmt_prepare`.
+  `Com_stmt_reprepare` indica o número de vezes que as instruções foram automaticamente *reprepared* pelo servidor após mudanças de metadados em tabelas ou views referenciadas pela instrução. Uma operação de reprepare incrementa `Com_stmt_reprepare` e também `Com_stmt_prepare`.
 
-  `Com_explain_other` indicates the number of [`EXPLAIN FOR CONNECTION`](explain.html "13.8.2 EXPLAIN Statement") statements executed. See [Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection").
+  `Com_explain_other` indica o número de instruções [`EXPLAIN FOR CONNECTION`](explain.html "13.8.2 EXPLAIN Statement") executadas. Consulte [Seção 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection").
 
-  `Com_change_repl_filter` indicates the number of [`CHANGE REPLICATION FILTER`](change-replication-filter.html "13.4.2.2 CHANGE REPLICATION FILTER Statement") statements executed.
+  `Com_change_repl_filter` indica o número de instruções [`CHANGE REPLICATION FILTER`](change-replication-filter.html "13.4.2.2 CHANGE REPLICATION FILTER Statement") executadas.
 
 * [`Compression`](server-status-variables.html#statvar_Compression)
 
-  Whether the client connection uses compression in the client/server protocol.
+  Se a conexão do cliente usa compression no protocolo cliente/servidor.
 
 * [`Connection_errors_xxx`](server-status-variables.html#statvar_Connection_errors_xxx)
 
-  These variables provide information about errors that occur during the client connection process. They are global only and represent error counts aggregated across connections from all hosts. These variables track errors not accounted for by the host cache (see [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")), such as errors that are not associated with TCP connections, occur very early in the connection process (even before an IP address is known), or are not specific to any particular IP address (such as out-of-memory conditions).
+  Essas variáveis fornecem informações sobre erros que ocorrem durante o processo de conexão do cliente. Elas são apenas globais e representam contagens de erros agregadas em todas as conexões de todos os hosts. Essas variáveis rastreiam erros não contabilizados pelo Host Cache (consulte [Seção 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")), como erros que não estão associados a conexões TCP, ocorrem muito cedo no processo de conexão (mesmo antes que um endereço IP seja conhecido) ou não são específicos de nenhum endereço IP em particular (como condições de falta de memória).
 
-  As of MySQL 5.7.3, the `Connection_errors_xxx` status variables are not visible in the embedded server because for that server they are not updated and are not meaningful.
+  A partir do MySQL 5.7.3, as variáveis de status `Connection_errors_xxx` não são visíveis no servidor embedded porque, para esse servidor, elas não são atualizadas e não são significativas.
 
   + [`Connection_errors_accept`](server-status-variables.html#statvar_Connection_errors_accept)
 
-    The number of errors that occurred during calls to `accept()` on the listening port.
+    O número de erros que ocorreram durante chamadas a `accept()` na porta de escuta.
 
   + [`Connection_errors_internal`](server-status-variables.html#statvar_Connection_errors_internal)
 
-    The number of connections refused due to internal errors in the server, such as failure to start a new thread or an out-of-memory condition.
+    O número de conexões recusadas devido a erros internos no servidor, como falha ao iniciar uma nova Thread ou uma condição de falta de memória.
 
   + [`Connection_errors_max_connections`](server-status-variables.html#statvar_Connection_errors_max_connections)
 
-    The number of connections refused because the server [`max_connections`](server-system-variables.html#sysvar_max_connections) limit was reached.
+    O número de conexões recusadas porque o limite [`max_connections`](server-system-variables.html#sysvar_max_connections) do servidor foi atingido.
 
   + [`Connection_errors_peer_address`](server-status-variables.html#statvar_Connection_errors_peer_address)
 
-    The number of errors that occurred while searching for connecting client IP addresses.
+    O número de erros que ocorreram durante a busca por endereços IP de clientes em conexão.
 
   + [`Connection_errors_select`](server-status-variables.html#statvar_Connection_errors_select)
 
-    The number of errors that occurred during calls to `select()` or `poll()` on the listening port. (Failure of this operation does not necessarily means a client connection was rejected.)
+    O número de erros que ocorreram durante chamadas a `select()` ou `poll()` na porta de escuta. (A falha desta operação não significa necessariamente que uma conexão de cliente foi rejeitada.)
 
   + [`Connection_errors_tcpwrap`](server-status-variables.html#statvar_Connection_errors_tcpwrap)
 
-    The number of connections refused by the `libwrap` library.
+    O número de conexões recusadas pela biblioteca `libwrap`.
 
 * [`Connections`](server-status-variables.html#statvar_Connections)
 
-  The number of connection attempts (successful or not) to the MySQL server.
+  O número de tentativas de conexão (bem-sucedidas ou não) ao servidor MySQL.
 
 * [`Created_tmp_disk_tables`](server-status-variables.html#statvar_Created_tmp_disk_tables)
 
-  The number of internal on-disk temporary tables created by the server while executing statements.
+  O número de tabelas temporárias internas em disco criadas pelo servidor durante a execução de instruções.
 
-  You can compare the number of internal on-disk temporary tables created to the total number of internal temporary tables created by comparing [`Created_tmp_disk_tables`](server-status-variables.html#statvar_Created_tmp_disk_tables) and [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables) values.
+  Você pode comparar o número de tabelas temporárias internas em disco criadas com o número total de tabelas temporárias internas criadas comparando os valores de [`Created_tmp_disk_tables`](server-status-variables.html#statvar_Created_tmp_disk_tables) e [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables).
 
-  See also [Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL").
+  Consulte também [Seção 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL").
 
 * [`Created_tmp_files`](server-status-variables.html#statvar_Created_tmp_files)
 
-  How many temporary files [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") has created.
+  Quantos arquivos temporários o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") criou.
 
 * [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables)
 
-  The number of internal temporary tables created by the server while executing statements.
+  O número de tabelas temporárias internas criadas pelo servidor durante a execução de instruções.
 
-  You can compare the number of internal on-disk temporary tables created to the total number of internal temporary tables created by comparing [`Created_tmp_disk_tables`](server-status-variables.html#statvar_Created_tmp_disk_tables) and [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables) values.
+  Você pode comparar o número de tabelas temporárias internas em disco criadas com o número total de tabelas temporárias internas criadas comparando os valores de [`Created_tmp_disk_tables`](server-status-variables.html#statvar_Created_tmp_disk_tables) e [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables).
 
-  See also [Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL").
+  Consulte também [Seção 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL").
 
-  Each invocation of the [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") statement uses an internal temporary table and increments the global [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables) value.
+  Cada invocação da instrução [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") usa uma tabela temporária interna e incrementa o valor global de [`Created_tmp_tables`](server-status-variables.html#statvar_Created_tmp_tables).
 
 * [`Delayed_errors`](server-status-variables.html#statvar_Delayed_errors)
 
-  This status variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
+  Esta variável de status está depreciada (porque inserções `DELAYED` não são suportadas); espere que ela seja removida em um lançamento futuro.
 
 * [`Delayed_insert_threads`](server-status-variables.html#statvar_Delayed_insert_threads)
 
-  This status variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
+  Esta variável de status está depreciada (porque inserções `DELAYED` não são suportadas); espere que ela seja removida em um lançamento futuro.
 
 * [`Delayed_writes`](server-status-variables.html#statvar_Delayed_writes)
 
-  This status variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
+  Esta variável de status está depreciada (porque inserções `DELAYED` não são suportadas); espere que ela seja removida em um lançamento futuro.
 
 * [`Flush_commands`](server-status-variables.html#statvar_Flush_commands)
 
-  The number of times the server flushes tables, whether because a user executed a [`FLUSH TABLES`](flush.html#flush-tables) statement or due to internal server operation. It is also incremented by receipt of a `COM_REFRESH` packet. This is in contrast to [`Com_flush`](server-status-variables.html#statvar_Com_xxx), which indicates how many `FLUSH` statements have been executed, whether [`FLUSH TABLES`](flush.html#flush-tables), [`FLUSH LOGS`](flush.html#flush-logs), and so forth.
+  O número de vezes que o servidor faz flush de tabelas, seja porque um usuário executou uma instrução [`FLUSH TABLES`](flush.html#flush-tables) ou devido a uma operação interna do servidor. Também é incrementado pelo recebimento de um pacote `COM_REFRESH`. Isso contrasta com [`Com_flush`](server-status-variables.html#statvar_Com_xxx), que indica quantas instruções `FLUSH` foram executadas, sejam [`FLUSH TABLES`](flush.html#flush-tables), [`FLUSH LOGS`](flush.html#flush-logs), e assim por diante.
 
 * [`group_replication_primary_member`](server-status-variables.html#statvar_group_replication_primary_member)
 
-  Shows the primary member's UUID when the group is operating in single-primary mode. If the group is operating in multi-primary mode, shows an empty string.
+  Mostra o UUID do membro primary quando o grupo está operando em modo single-primary. Se o grupo estiver operando em modo multi-primary, mostra uma string vazia.
 
 * [`Handler_commit`](server-status-variables.html#statvar_Handler_commit)
 
-  The number of internal [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statements.
+  O número de instruções [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") internas.
 
 * [`Handler_delete`](server-status-variables.html#statvar_Handler_delete)
 
-  The number of times that rows have been deleted from tables.
+  O número de vezes que rows foram deletadas de tabelas.
 
 * [`Handler_external_lock`](server-status-variables.html#statvar_Handler_external_lock)
 
-  The server increments this variable for each call to its `external_lock()` function, which generally occurs at the beginning and end of access to a table instance. There might be differences among storage engines. This variable can be used, for example, to discover for a statement that accesses a partitioned table how many partitions were pruned before locking occurred: Check how much the counter increased for the statement, subtract 2 (2 calls for the table itself), then divide by 2 to get the number of partitions locked.
+  O servidor incrementa esta variável para cada chamada à sua função `external_lock()`, o que geralmente ocorre no início e no fim do acesso a uma instância de tabela. Pode haver diferenças entre os storage engines. Esta variável pode ser usada, por exemplo, para descobrir para uma instrução que acessa uma tabela particionada quantas partições foram podadas (pruned) antes que o Lock ocorresse: Verifique o quanto o contador aumentou para a instrução, subtraia 2 (2 chamadas para a tabela em si) e, em seguida, divida por 2 para obter o número de partições locked.
 
 * [`Handler_mrr_init`](server-status-variables.html#statvar_Handler_mrr_init)
 
-  The number of times the server uses a storage engine's own Multi-Range Read implementation for table access.
+  O número de vezes que o servidor usa a implementação Multi-Range Read do próprio storage engine para acesso à tabela.
 
 * [`Handler_prepare`](server-status-variables.html#statvar_Handler_prepare)
 
-  A counter for the prepare phase of two-phase commit operations.
+  Um contador para a fase de prepare de operações de two-phase commit.
 
 * [`Handler_read_first`](server-status-variables.html#statvar_Handler_read_first)
 
-  The number of times the first entry in an index was read. If this value is high, it suggests that the server is doing a lot of full index scans (for example, `SELECT col1 FROM foo`, assuming that `col1` is indexed).
+  O número de vezes que o primeiro registro em um Index foi lido. Se este valor for alto, sugere que o servidor está fazendo muitos full Index scans (por exemplo, `SELECT col1 FROM foo`, assumindo que `col1` é indexed).
 
 * [`Handler_read_key`](server-status-variables.html#statvar_Handler_read_key)
 
-  The number of requests to read a row based on a key. If this value is high, it is a good indication that your tables are properly indexed for your queries.
+  O número de requisições para ler uma row baseada em uma key. Se este valor for alto, é uma boa indicação de que suas tabelas estão devidamente indexed para suas Queries.
 
 * [`Handler_read_last`](server-status-variables.html#statvar_Handler_read_last)
 
-  The number of requests to read the last key in an index. With `ORDER BY`, the server issues a first-key request followed by several next-key requests, whereas with `ORDER BY DESC`, the server issues a last-key request followed by several previous-key requests.
+  O número de requisições para ler a última key em um Index. Com `ORDER BY`, o servidor emite uma requisição de primeira key seguida por várias requisições de próxima key, enquanto com `ORDER BY DESC`, o servidor emite uma requisição de última key seguida por várias requisições de key anterior.
 
 * [`Handler_read_next`](server-status-variables.html#statvar_Handler_read_next)
 
-  The number of requests to read the next row in key order. This value is incremented if you are querying an index column with a range constraint or if you are doing an index scan.
+  O número de requisições para ler a próxima row em ordem de key. Este valor é incrementado se você estiver consultando uma coluna Index com uma restrição de range ou se estiver fazendo um Index scan.
 
 * [`Handler_read_prev`](server-status-variables.html#statvar_Handler_read_prev)
 
-  The number of requests to read the previous row in key order. This read method is mainly used to optimize `ORDER BY ... DESC`.
+  O número de requisições para ler a row anterior em ordem de key. Este método de leitura é usado principalmente para otimizar `ORDER BY ... DESC`.
 
 * [`Handler_read_rnd`](server-status-variables.html#statvar_Handler_read_rnd)
 
-  The number of requests to read a row based on a fixed position. This value is high if you are doing a lot of queries that require sorting of the result. You probably have a lot of queries that require MySQL to scan entire tables or you have joins that do not use keys properly.
+  O número de requisições para ler uma row baseada em uma posição fixa. Este valor é alto se você estiver fazendo muitas Queries que exigem sorting do resultado. Você provavelmente tem muitas Queries que exigem que o MySQL faça scan de tabelas inteiras ou tem JOINs que não usam keys adequadamente.
 
 * [`Handler_read_rnd_next`](server-status-variables.html#statvar_Handler_read_rnd_next)
 
-  The number of requests to read the next row in the data file. This value is high if you are doing a lot of table scans. Generally this suggests that your tables are not properly indexed or that your queries are not written to take advantage of the indexes you have.
+  O número de requisições para ler a próxima row no arquivo de dados. Este valor é alto se você estiver fazendo muitos table scans. Geralmente, isso sugere que suas tabelas não estão devidamente indexed ou que suas Queries não estão escritas para tirar proveito dos Index que você possui.
 
 * [`Handler_rollback`](server-status-variables.html#statvar_Handler_rollback)
 
-  The number of requests for a storage engine to perform a rollback operation.
+  O número de requisições para um storage engine realizar uma operação de rollback.
 
 * [`Handler_savepoint`](server-status-variables.html#statvar_Handler_savepoint)
 
-  The number of requests for a storage engine to place a savepoint.
+  O número de requisições para um storage engine colocar um savepoint.
 
 * [`Handler_savepoint_rollback`](server-status-variables.html#statvar_Handler_savepoint_rollback)
 
-  The number of requests for a storage engine to roll back to a savepoint.
+  O número de requisições para um storage engine fazer rollback para um savepoint.
 
 * [`Handler_update`](server-status-variables.html#statvar_Handler_update)
 
-  The number of requests to update a row in a table.
+  O número de requisições para atualizar uma row em uma tabela.
 
 * [`Handler_write`](server-status-variables.html#statvar_Handler_write)
 
-  The number of requests to insert a row in a table.
+  O número de requisições para inserir uma row em uma tabela.
 
 * [`Innodb_available_undo_logs`](server-status-variables.html#statvar_Innodb_available_undo_logs)
 
   Note
 
-  The [`Innodb_available_undo_logs`](server-status-variables.html#statvar_Innodb_available_undo_logs) status variable is deprecated as of MySQL 5.7.19; expect it to be removed in a future release.
+  A variável de status [`Innodb_available_undo_logs`](server-status-variables.html#statvar_Innodb_available_undo_logs) está depreciada a partir do MySQL 5.7.19; espere que ela seja removida em um lançamento futuro.
 
-  The total number of available `InnoDB` [rollback segments](glossary.html#glos_rollback_segment "rollback segment"). Supplements the [`innodb_rollback_segments`](innodb-parameters.html#sysvar_innodb_rollback_segments) system variable, which defines the number of active rollback segments.
+  O número total de rollback segments `InnoDB` disponíveis. Complementa a variável de sistema [`innodb_rollback_segments`](innodb-parameters.html#sysvar_innodb_rollback_segments), que define o número de rollback segments ativos.
 
-  One rollback segment always resides in the system tablespace, and 32 rollback segments are reserved for use by temporary tables and are hosted in the temporary tablespace (`ibtmp1`). See [Section 14.6.7, “Undo Logs”](innodb-undo-logs.html "14.6.7 Undo Logs").
+  Um rollback segment sempre reside no tablespace do sistema, e 32 rollback segments são reservados para uso por tabelas temporárias e são hospedados no tablespace temporário (`ibtmp1`). Consulte [Seção 14.6.7, “Undo Logs”](innodb-undo-logs.html "14.6.7 Undo Logs").
 
-  If you initiate a MySQL instance with 32 or fewer rollback segments, `InnoDB` still assigns one rollback segment to the system tablespace and 32 rollback segments to the temporary tablespace. In this case, `Innodb_available_undo_logs` reports 33 available rollback segments even though the instance was initialized with a lesser [`innodb_rollback_segments`](innodb-parameters.html#sysvar_innodb_rollback_segments) value.
+  Se você iniciar uma instância MySQL com 32 ou menos rollback segments, o `InnoDB` ainda atribui um rollback segment ao tablespace do sistema e 32 rollback segments ao tablespace temporário. Neste caso, `Innodb_available_undo_logs` relata 33 rollback segments disponíveis, embora a instância tenha sido inicializada com um valor [`innodb_rollback_segments`](innodb-parameters.html#sysvar_innodb_rollback_segments) menor.
 
 * [`Innodb_buffer_pool_dump_status`](server-status-variables.html#statvar_Innodb_buffer_pool_dump_status)
 
-  The progress of an operation to record the [pages](glossary.html#glos_page "page") held in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool"), triggered by the setting of `innodb_buffer_pool_dump_at_shutdown` or `innodb_buffer_pool_dump_now`.
+  O progresso de uma operação para registrar as pages mantidas no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool"), acionada pela configuração de `innodb_buffer_pool_dump_at_shutdown` ou `innodb_buffer_pool_dump_now`.
 
-  For related information and examples, see [Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”](innodb-preload-buffer-pool.html "14.8.3.6 Saving and Restoring the Buffer Pool State").
+  Para informações e exemplos relacionados, consulte [Seção 14.8.3.6, “Saving and Restoring the Buffer Pool State”](innodb-preload-buffer-pool.html "14.8.3.6 Saving and Restoring the Buffer Pool State").
 
 * [`Innodb_buffer_pool_load_status`](server-status-variables.html#statvar_Innodb_buffer_pool_load_status)
 
-  The progress of an operation to [warm up](glossary.html#glos_warm_up "warm up") the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") by reading in a set of [pages](glossary.html#glos_page "page") corresponding to an earlier point in time, triggered by the setting of [`innodb_buffer_pool_load_at_startup`](innodb-parameters.html#sysvar_innodb_buffer_pool_load_at_startup) or [`innodb_buffer_pool_load_now`](innodb-parameters.html#sysvar_innodb_buffer_pool_load_now). If the operation introduces too much overhead, you can cancel it by setting [`innodb_buffer_pool_load_abort`](innodb-parameters.html#sysvar_innodb_buffer_pool_load_abort).
+  O progresso de uma operação para fazer [warm up](glossary.html#glos_warm_up "warm up") do `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") lendo um conjunto de [pages](glossary.html#glos_page "page") correspondentes a um ponto anterior no tempo, acionada pela configuração de [`innodb_buffer_pool_load_at_startup`](innodb-parameters.html#sysvar_innodb_buffer_pool_load_at_startup) ou [`innodb_buffer_pool_load_now`](innodb-parameters.html#sysvar_innodb_buffer_pool_load_now). Se a operação introduzir muito overhead, você pode cancelá-la definindo [`innodb_buffer_pool_load_abort`](innodb-parameters.html#sysvar_innodb_buffer_pool_load_abort).
 
-  For related information and examples, see [Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”](innodb-preload-buffer-pool.html "14.8.3.6 Saving and Restoring the Buffer Pool State").
+  Para informações e exemplos relacionados, consulte [Seção 14.8.3.6, “Saving and Restoring the Buffer Pool State”](innodb-preload-buffer-pool.html "14.8.3.6 Saving and Restoring the Buffer Pool State").
 
 * [`Innodb_buffer_pool_bytes_data`](server-status-variables.html#statvar_Innodb_buffer_pool_bytes_data)
 
-  The total number of bytes in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") containing data. The number includes both [dirty](glossary.html#glos_dirty_page "dirty page") and clean pages. For more accurate memory usage calculations than with [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data), when [compressed](glossary.html#glos_compression "compression") tables cause the buffer pool to hold pages of different sizes.
+  O número total de bytes no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") contendo dados. O número inclui pages [dirty](glossary.html#glos_dirty_page "dirty page") e clean. Para cálculos de uso de memória mais precisos do que com [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data), quando tabelas [compressed](glossary.html#glos_compression "compression") fazem com que o Buffer Pool contenha pages de diferentes tamanhos.
 
 * [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data)
 
-  The number of [pages](glossary.html#glos_page "page") in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") containing data. The number includes both [dirty](glossary.html#glos_dirty_page "dirty page") and clean pages. When using [compressed tables](glossary.html#glos_compressed_table "compressed table"), the reported [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data) value may be larger than [`Innodb_buffer_pool_pages_total`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_total) (Bug #59550).
+  O número de [pages](glossary.html#glos_page "page") no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") contendo dados. O número inclui pages [dirty](glossary.html#glos_dirty_page "dirty page") e clean. Ao usar [tabelas compressed](glossary.html#glos_compressed_table "compressed table"), o valor [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data) relatado pode ser maior que [`Innodb_buffer_pool_pages_total`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_total) (Bug #59550).
 
 * [`Innodb_buffer_pool_bytes_dirty`](server-status-variables.html#statvar_Innodb_buffer_pool_bytes_dirty)
 
-  The total current number of bytes held in [dirty pages](glossary.html#glos_dirty_page "dirty page") in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool"). For more accurate memory usage calculations than with [`Innodb_buffer_pool_pages_dirty`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_dirty), when [compressed](glossary.html#glos_compression "compression") tables cause the buffer pool to hold pages of different sizes.
+  O número total atual de bytes mantidos em [dirty pages](glossary.html#glos_dirty_page "dirty page") no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool"). Para cálculos de uso de memória mais precisos do que com [`Innodb_buffer_pool_pages_dirty`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_dirty), quando tabelas [compressed](glossary.html#glos_compression "compression") fazem com que o Buffer Pool contenha pages de diferentes tamanhos.
 
 * [`Innodb_buffer_pool_pages_dirty`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_dirty)
 
-  The current number of [dirty pages](glossary.html#glos_dirty_page "dirty page") in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool").
+  O número atual de [dirty pages](glossary.html#glos_dirty_page "dirty page") no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool").
 
 * [`Innodb_buffer_pool_pages_flushed`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_flushed)
 
-  The number of requests to [flush](glossary.html#glos_flush "flush") [pages](glossary.html#glos_page "page") from the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool").
+  O número de requisições para fazer [flush](glossary.html#glos_flush "flush") de [pages](glossary.html#glos_page "page") do `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool").
 
 * [`Innodb_buffer_pool_pages_free`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_free)
 
-  The number of free [pages](glossary.html#glos_page "page") in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool").
+  O número de [pages](glossary.html#glos_page "page") livres no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool").
 
 * [`Innodb_buffer_pool_pages_latched`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_latched)
 
-  The number of latched [pages](glossary.html#glos_page "page") in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool"). These are pages currently being read or written, or that cannot be [flushed](glossary.html#glos_flush "flush") or removed for some other reason. Calculation of this variable is expensive, so it is available only when the `UNIV_DEBUG` system is defined at server build time.
+  O número de [pages](glossary.html#glos_page "page") latched no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool"). Estas são pages que estão sendo lidas ou escritas atualmente, ou que não podem ser [flushed](glossary.html#glos_flush "flush") ou removidas por algum outro motivo. O cálculo desta variável é dispendioso, então ela está disponível apenas quando o sistema `UNIV_DEBUG` é definido no momento da construção do servidor.
 
 * [`Innodb_buffer_pool_pages_misc`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_misc)
 
-  The number of [pages](glossary.html#glos_page "page") in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") that are busy because they have been allocated for administrative overhead, such as [row locks](glossary.html#glos_row_lock "row lock") or the [adaptive hash index](glossary.html#glos_adaptive_hash_index "adaptive hash index"). This value can also be calculated as [`Innodb_buffer_pool_pages_total`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_total) − [`Innodb_buffer_pool_pages_free`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_free) − [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data). When using [compressed tables](glossary.html#glos_compressed_table "compressed table"), [`Innodb_buffer_pool_pages_misc`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_misc) may report an out-of-bounds value (Bug #59550).
+  O número de [pages](glossary.html#glos_page "page") no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") que estão ocupadas porque foram alocadas para overhead administrativo, como [row locks](glossary.html#glos_row_lock "row lock") ou o [adaptive hash index](glossary.html#glos_adaptive_hash_index "adaptive hash index"). Este valor também pode ser calculado como [`Innodb_buffer_pool_pages_total`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_total) − [`Innodb_buffer_pool_pages_free`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_free) − [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data). Ao usar [tabelas compressed](glossary.html#glos_compressed_table "compressed table"), [`Innodb_buffer_pool_pages_misc`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_misc) pode relatar um valor fora dos limites (Bug #59550).
 
 * [`Innodb_buffer_pool_pages_total`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_total)
 
-  The total size of the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool"), in [pages](glossary.html#glos_page "page"). When using [compressed tables](glossary.html#glos_compressed_table "compressed table"), the reported [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data) value may be larger than [`Innodb_buffer_pool_pages_total`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_total) (Bug #59550)
+  O tamanho total do `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool"), em [pages](glossary.html#glos_page "page"). Ao usar [tabelas compressed](glossary.html#glos_compressed_table "compressed table"), o valor [`Innodb_buffer_pool_pages_data`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_data) relatado pode ser maior que [`Innodb_buffer_pool_pages_total`](server-status-variables.html#statvar_Innodb_buffer_pool_pages_total) (Bug #59550).
 
 * [`Innodb_buffer_pool_read_ahead`](server-status-variables.html#statvar_Innodb_buffer_pool_read_ahead)
 
-  The number of [pages](glossary.html#glos_page "page") read into the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") by the [read-ahead](glossary.html#glos_read_ahead "read-ahead") background thread.
+  O número de [pages](glossary.html#glos_page "page") lidas no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") pelo Thread de background de [read-ahead](glossary.html#glos_read_ahead "read-ahead").
 
 * [`Innodb_buffer_pool_read_ahead_evicted`](server-status-variables.html#statvar_Innodb_buffer_pool_read_ahead_evicted)
 
-  The number of [pages](glossary.html#glos_page "page") read into the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") by the [read-ahead](glossary.html#glos_read_ahead "read-ahead") background thread that were subsequently [evicted](glossary.html#glos_eviction "eviction") without having been accessed by queries.
+  O número de [pages](glossary.html#glos_page "page") lidas no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") pelo Thread de background de [read-ahead](glossary.html#glos_read_ahead "read-ahead") que foram subsequentemente [evicted](glossary.html#glos_eviction "eviction") sem terem sido acessadas por Queries.
 
 * [`Innodb_buffer_pool_read_ahead_rnd`](server-status-variables.html#statvar_Innodb_buffer_pool_read_ahead_rnd)
 
-  The number of “random” read-aheads initiated by `InnoDB`. This happens when a query scans a large portion of a table but in random order.
+  O número de read-aheads “aleatórios” iniciados pelo `InnoDB`. Isso acontece quando uma Query faz scan de uma grande porção de uma tabela, mas em ordem aleatória.
 
 * [`Innodb_buffer_pool_read_requests`](server-status-variables.html#statvar_Innodb_buffer_pool_read_requests)
 
-  The number of logical read requests.
+  O número de requisições de leitura lógicas.
 
 * [`Innodb_buffer_pool_reads`](server-status-variables.html#statvar_Innodb_buffer_pool_reads)
 
-  The number of logical reads that `InnoDB` could not satisfy from the [buffer pool](glossary.html#glos_buffer_pool "buffer pool"), and had to read directly from disk.
+  O número de leituras lógicas que o `InnoDB` não conseguiu satisfazer a partir do [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") e teve que ler diretamente do disco.
 
 * [`Innodb_buffer_pool_resize_status`](server-status-variables.html#statvar_Innodb_buffer_pool_resize_status)
 
-  The status of an operation to resize the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") dynamically, triggered by setting the [`innodb_buffer_pool_size`](innodb-parameters.html#sysvar_innodb_buffer_pool_size) parameter dynamically. The [`innodb_buffer_pool_size`](innodb-parameters.html#sysvar_innodb_buffer_pool_size) parameter is dynamic, which allows you to resize the buffer pool without restarting the server. See [Configuring InnoDB Buffer Pool Size Online](innodb-buffer-pool-resize.html#innodb-buffer-pool-online-resize "Configuring InnoDB Buffer Pool Size Online") for related information.
+  O status de uma operação para redimensionar o `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") dinamicamente, acionada pela definição dinâmica do parâmetro [`innodb_buffer_pool_size`](innodb-parameters.html#sysvar_innodb_buffer_pool_size). O parâmetro [`innodb_buffer_pool_size`](innodb-parameters.html#sysvar_innodb_buffer_pool_size) é dinâmico, o que permite redimensionar o Buffer Pool sem reiniciar o servidor. Consulte [Configuring InnoDB Buffer Pool Size Online](innodb-buffer-pool-resize.html#innodb-buffer-pool-online-resize "Configuring InnoDB Buffer Pool Size Online") para informações relacionadas.
 
 * [`Innodb_buffer_pool_wait_free`](server-status-variables.html#statvar_Innodb_buffer_pool_wait_free)
 
-  Normally, writes to the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool") happen in the background. When `InnoDB` needs to read or create a [page](glossary.html#glos_page "page") and no clean pages are available, `InnoDB` flushes some [dirty pages](glossary.html#glos_dirty_page "dirty page") first and waits for that operation to finish. This counter counts instances of these waits. If [`innodb_buffer_pool_size`](innodb-parameters.html#sysvar_innodb_buffer_pool_size) has been set properly, this value should be small.
+  Normalmente, os writes para o `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool") acontecem em background. Quando o `InnoDB` precisa ler ou criar uma [page](glossary.html#glos_page "page") e nenhuma page clean está disponível, o `InnoDB` faz flush de algumas [dirty pages](glossary.html#glos_dirty_page "dirty page") primeiro e espera que essa operação termine. Este contador conta as instâncias desses waits. Se [`innodb_buffer_pool_size`](innodb-parameters.html#sysvar_innodb_buffer_pool_size) foi definido corretamente, este valor deve ser pequeno.
 
 * [`Innodb_buffer_pool_write_requests`](server-status-variables.html#statvar_Innodb_buffer_pool_write_requests)
 
-  The number of writes done to the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool").
+  O número de writes realizados no `InnoDB` [Buffer Pool](glossary.html#glos_buffer_pool "buffer pool").
 
 * [`Innodb_data_fsyncs`](server-status-variables.html#statvar_Innodb_data_fsyncs)
 
-  The number of `fsync()` operations so far. The frequency of `fsync()` calls is influenced by the setting of the [`innodb_flush_method`](innodb-parameters.html#sysvar_innodb_flush_method) configuration option.
+  O número de operações `fsync()` até o momento. A frequência das chamadas `fsync()` é influenciada pela configuração da opção [`innodb_flush_method`](innodb-parameters.html#sysvar_innodb_flush_method).
 
 * [`Innodb_data_pending_fsyncs`](server-status-variables.html#statvar_Innodb_data_pending_fsyncs)
 
-  The current number of pending `fsync()` operations. The frequency of `fsync()` calls is influenced by the setting of the [`innodb_flush_method`](innodb-parameters.html#sysvar_innodb_flush_method) configuration option.
+  O número atual de operações `fsync()` pendentes. A frequência das chamadas `fsync()` é influenciada pela configuração da opção [`innodb_flush_method`](innodb-parameters.html#sysvar_innodb_flush_method).
 
 * [`Innodb_data_pending_reads`](server-status-variables.html#statvar_Innodb_data_pending_reads)
 
-  The current number of pending reads.
+  O número atual de reads pendentes.
 
 * [`Innodb_data_pending_writes`](server-status-variables.html#statvar_Innodb_data_pending_writes)
 
-  The current number of pending writes.
+  O número atual de writes pendentes.
 
 * [`Innodb_data_read`](server-status-variables.html#statvar_Innodb_data_read)
 
-  The amount of data read since the server was started (in bytes).
+  A quantidade de dados lidos desde o início do servidor (em bytes).
 
 * [`Innodb_data_reads`](server-status-variables.html#statvar_Innodb_data_reads)
 
-  The total number of data reads (OS file reads).
+  O número total de reads de dados (reads de arquivo OS).
 
 * [`Innodb_data_writes`](server-status-variables.html#statvar_Innodb_data_writes)
 
-  The total number of data writes.
+  O número total de writes de dados.
 
 * [`Innodb_data_written`](server-status-variables.html#statvar_Innodb_data_written)
 
-  The amount of data written so far, in bytes.
+  A quantidade de dados escritos até o momento, em bytes.
 
 * [`Innodb_dblwr_pages_written`](server-status-variables.html#statvar_Innodb_dblwr_pages_written)
 
-  The number of [pages](glossary.html#glos_page "page") that have been written to the [doublewrite buffer](glossary.html#glos_doublewrite_buffer "doublewrite buffer"). See [Section 14.12.1, “InnoDB Disk I/O”](innodb-disk-io.html "14.12.1 InnoDB Disk I/O").
+  O número de [pages](glossary.html#glos_page "page") que foram escritas no [doublewrite buffer](glossary.html#glos_doublewrite_buffer "doublewrite buffer"). Consulte [Seção 14.12.1, “InnoDB Disk I/O”](innodb-disk-io.html "14.12.1 InnoDB Disk I/O").
 
 * [`Innodb_dblwr_writes`](server-status-variables.html#statvar_Innodb_dblwr_writes)
 
-  The number of doublewrite operations that have been performed. See [Section 14.12.1, “InnoDB Disk I/O”](innodb-disk-io.html "14.12.1 InnoDB Disk I/O").
+  O número de operações doublewrite que foram realizadas. Consulte [Seção 14.12.1, “InnoDB Disk I/O”](innodb-disk-io.html "14.12.1 InnoDB Disk I/O").
 
 * [`Innodb_have_atomic_builtins`](server-status-variables.html#statvar_Innodb_have_atomic_builtins)
 
-  Indicates whether the server was built with [atomic instructions](glossary.html#glos_atomic_instruction "atomic instruction").
+  Indica se o servidor foi construído com [atomic instructions](glossary.html#glos_atomic_instruction "atomic instruction").
 
 * [`Innodb_log_waits`](server-status-variables.html#statvar_Innodb_log_waits)
 
-  The number of times that the [log buffer](glossary.html#glos_log_buffer "log buffer") was too small and a [wait](glossary.html#glos_wait "wait") was required for it to be [flushed](glossary.html#glos_flush "flush") before continuing.
+  O número de vezes que o [log buffer](glossary.html#glos_log_buffer "log buffer") estava muito pequeno e um [wait](glossary.html#glos_wait "wait") foi necessário para que ele fosse [flushed](glossary.html#glos_flush "flush") antes de continuar.
 
 * [`Innodb_log_write_requests`](server-status-variables.html#statvar_Innodb_log_write_requests)
 
-  The number of write requests for the `InnoDB` [redo log](glossary.html#glos_redo_log "redo log").
+  O número de requisições de write para o [redo log](glossary.html#glos_redo_log "redo log") do `InnoDB`.
 
 * [`Innodb_log_writes`](server-status-variables.html#statvar_Innodb_log_writes)
 
-  The number of physical writes to the `InnoDB` [redo log](glossary.html#glos_redo_log "redo log") file.
+  O número de writes físicos para o arquivo [redo log](glossary.html#glos_redo_log "redo log") do `InnoDB`.
 
 * [`Innodb_num_open_files`](server-status-variables.html#statvar_Innodb_num_open_files)
 
-  The number of files `InnoDB` currently holds open.
+  O número de arquivos que o `InnoDB` mantém abertos atualmente.
 
 * [`Innodb_os_log_fsyncs`](server-status-variables.html#statvar_Innodb_os_log_fsyncs)
 
-  The number of `fsync()` writes done to the `InnoDB` [redo log](glossary.html#glos_redo_log "redo log") files.
+  O número de writes `fsync()` realizados nos arquivos [redo log](glossary.html#glos_redo_log "redo log") do `InnoDB`.
 
 * [`Innodb_os_log_pending_fsyncs`](server-status-variables.html#statvar_Innodb_os_log_pending_fsyncs)
 
-  The number of pending `fsync()` operations for the `InnoDB` [redo log](glossary.html#glos_redo_log "redo log") files.
+  O número de operações `fsync()` pendentes para os arquivos [redo log](glossary.html#glos_redo_log "redo log") do `InnoDB`.
 
 * [`Innodb_os_log_pending_writes`](server-status-variables.html#statvar_Innodb_os_log_pending_writes)
 
-  The number of pending writes to the `InnoDB` [redo log](glossary.html#glos_redo_log "redo log") files.
+  O número de writes pendentes para os arquivos [redo log](glossary.html#glos_redo_log "redo log") do `InnoDB`.
 
 * [`Innodb_os_log_written`](server-status-variables.html#statvar_Innodb_os_log_written)
 
-  The number of bytes written to the `InnoDB` [redo log](glossary.html#glos_redo_log "redo log") files.
+  O número de bytes escritos nos arquivos [redo log](glossary.html#glos_redo_log "redo log") do `InnoDB`.
 
 * [`Innodb_page_size`](server-status-variables.html#statvar_Innodb_page_size)
 
-  `InnoDB` page size (default 16KB). Many values are counted in pages; the page size enables them to be easily converted to bytes.
+  Tamanho da page do `InnoDB` (padrão 16KB). Muitos valores são contados em pages; o tamanho da page permite que sejam facilmente convertidos em bytes.
 
 * [`Innodb_pages_created`](server-status-variables.html#statvar_Innodb_pages_created)
 
-  The number of pages created by operations on `InnoDB` tables.
+  O número de pages criadas por operações em tabelas `InnoDB`.
 
 * [`Innodb_pages_read`](server-status-variables.html#statvar_Innodb_pages_read)
 
-  The number of pages read from the `InnoDB` buffer pool by operations on `InnoDB` tables.
+  O número de pages lidas do Buffer Pool `InnoDB` por operações em tabelas `InnoDB`.
 
 * [`Innodb_pages_written`](server-status-variables.html#statvar_Innodb_pages_written)
 
-  The number of pages written by operations on `InnoDB` tables.
+  O número de pages escritas por operações em tabelas `InnoDB`.
 
 * [`Innodb_row_lock_current_waits`](server-status-variables.html#statvar_Innodb_row_lock_current_waits)
 
-  The number of [row locks](glossary.html#glos_row_lock "row lock") currently being waited for by operations on `InnoDB` tables.
+  O número de [row locks](glossary.html#glos_row_lock "row lock") atualmente aguardados por operações em tabelas `InnoDB`.
 
 * [`Innodb_row_lock_time`](server-status-variables.html#statvar_Innodb_row_lock_time)
 
-  The total time spent in acquiring [row locks](glossary.html#glos_row_lock "row lock") for `InnoDB` tables, in milliseconds.
+  O tempo total gasto na aquisição de [row locks](glossary.html#glos_row_lock "row lock") para tabelas `InnoDB`, em milissegundos.
 
 * [`Innodb_row_lock_time_avg`](server-status-variables.html#statvar_Innodb_row_lock_time_avg)
 
-  The average time to acquire a [row lock](glossary.html#glos_row_lock "row lock") for `InnoDB` tables, in milliseconds.
+  O tempo médio para adquirir um [row lock](glossary.html#glos_row_lock "row lock") para tabelas `InnoDB`, em milissegundos.
 
 * [`Innodb_row_lock_time_max`](server-status-variables.html#statvar_Innodb_row_lock_time_max)
 
-  The maximum time to acquire a [row lock](glossary.html#glos_row_lock "row lock") for `InnoDB` tables, in milliseconds.
+  O tempo máximo para adquirir um [row lock](glossary.html#glos_row_lock "row lock") para tabelas `InnoDB`, em milissegundos.
 
 * [`Innodb_row_lock_waits`](server-status-variables.html#statvar_Innodb_row_lock_waits)
 
-  The number of times operations on `InnoDB` tables had to wait for a [row lock](glossary.html#glos_row_lock "row lock").
+  O número de vezes que operações em tabelas `InnoDB` tiveram que esperar por um [row lock](glossary.html#glos_row_lock "row lock").
 
 * [`Innodb_rows_deleted`](server-status-variables.html#statvar_Innodb_rows_deleted)
 
-  The number of rows deleted from `InnoDB` tables.
+  O número de rows deletadas de tabelas `InnoDB`.
 
 * [`Innodb_rows_inserted`](server-status-variables.html#statvar_Innodb_rows_inserted)
 
-  The number of rows inserted into `InnoDB` tables.
+  O número de rows inseridas nas tabelas `InnoDB`.
 
 * [`Innodb_rows_read`](server-status-variables.html#statvar_Innodb_rows_read)
 
-  The number of rows read from `InnoDB` tables.
+  O número de rows lidas nas tabelas `InnoDB`.
 
 * [`Innodb_rows_updated`](server-status-variables.html#statvar_Innodb_rows_updated)
 
-  The estimated number of rows updated in `InnoDB` tables.
+  O número estimado de rows atualizadas nas tabelas `InnoDB`.
 
   Note
 
-  This value is not meant to be 100% accurate. For an accurate (but more expensive) result, use [`ROW_COUNT()`](information-functions.html#function_row-count).
+  Este valor não se destina a ser 100% preciso. Para um resultado preciso (mas mais custoso), use [`ROW_COUNT()`](information-functions.html#function_row-count).
 
 * [`Innodb_truncated_status_writes`](server-status-variables.html#statvar_Innodb_truncated_status_writes)
 
-  The number of times output from the `SHOW ENGINE INNODB STATUS` statement has been truncated.
+  O número de vezes que a saída da instrução `SHOW ENGINE INNODB STATUS` foi truncada.
 
 * [`Key_blocks_not_flushed`](server-status-variables.html#statvar_Key_blocks_not_flushed)
 
-  The number of key blocks in the `MyISAM` key cache that have changed but have not yet been flushed to disk.
+  O número de key blocks no `MyISAM` Key Cache que foram alterados, mas ainda não foram flushed para o disco.
 
 * [`Key_blocks_unused`](server-status-variables.html#statvar_Key_blocks_unused)
 
-  The number of unused blocks in the `MyISAM` key cache. You can use this value to determine how much of the key cache is in use; see the discussion of [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+  O número de blocks não utilizados no `MyISAM` Key Cache. Você pode usar este valor para determinar quanto do Key Cache está em uso; veja a discussão sobre [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) na [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
 * [`Key_blocks_used`](server-status-variables.html#statvar_Key_blocks_used)
 
-  The number of used blocks in the `MyISAM` key cache. This value is a high-water mark that indicates the maximum number of blocks that have ever been in use at one time.
+  O número de blocks usados no `MyISAM` Key Cache. Este valor é uma marca d'água alta (high-water mark) que indica o número máximo de blocks que já estiveram em uso ao mesmo tempo.
 
 * [`Key_read_requests`](server-status-variables.html#statvar_Key_read_requests)
 
-  The number of requests to read a key block from the `MyISAM` key cache.
+  O número de requisições para ler um key block do `MyISAM` Key Cache.
 
 * [`Key_reads`](server-status-variables.html#statvar_Key_reads)
 
-  The number of physical reads of a key block from disk into the `MyISAM` key cache. If [`Key_reads`](server-status-variables.html#statvar_Key_reads) is large, then your [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) value is probably too small. The cache miss rate can be calculated as [`Key_reads`](server-status-variables.html#statvar_Key_reads)/[`Key_read_requests`](server-status-variables.html#statvar_Key_read_requests).
+  O número de leituras físicas de um key block do disco para o `MyISAM` Key Cache. Se [`Key_reads`](server-status-variables.html#statvar_Key_reads) for grande, então o valor do seu [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) provavelmente é muito pequeno. A taxa de Cache Miss (falha no cache) pode ser calculada como [`Key_reads`](server-status-variables.html#statvar_Key_reads)/[`Key_read_requests`](server-status-variables.html#statvar_Key_read_requests).
 
 * [`Key_write_requests`](server-status-variables.html#statvar_Key_write_requests)
 
-  The number of requests to write a key block to the `MyISAM` key cache.
+  O número de requisições para escrever um key block no `MyISAM` Key Cache.
 
 * [`Key_writes`](server-status-variables.html#statvar_Key_writes)
 
-  The number of physical writes of a key block from the `MyISAM` key cache to disk.
+  O número de writes físicos de um key block do `MyISAM` Key Cache para o disco.
 
 * [`Last_query_cost`](server-status-variables.html#statvar_Last_query_cost)
 
-  The total cost of the last compiled query as computed by the query optimizer. This is useful for comparing the cost of different query plans for the same query. The default value of 0 means that no query has been compiled yet. The default value is 0. [`Last_query_cost`](server-status-variables.html#statvar_Last_query_cost) has session scope.
+  O custo total da última Query compilada, conforme calculado pelo Query optimizer. Isso é útil para comparar o custo de diferentes planos de Query para a mesma Query. O valor padrão de 0 significa que nenhuma Query foi compilada ainda. [`Last_query_cost`](server-status-variables.html#statvar_Last_query_cost) tem escopo de session.
 
-  `Last_query_cost` can be computed accurately only for simple, “flat” queries, but not for complex queries such as those containing subqueries or [`UNION`](union.html "13.2.9.3 UNION Clause"). For the latter, the value is set to 0.
+  `Last_query_cost` pode ser calculado com precisão apenas para Queries simples, "flat", mas não para Queries complexas, como aquelas que contêm subqueries ou [`UNION`](union.html "13.2.9.3 UNION Clause"). Para estas últimas, o valor é definido como 0.
 
 * [`Last_query_partial_plans`](server-status-variables.html#statvar_Last_query_partial_plans)
 
-  The number of iterations the query optimizer made in execution plan construction for the previous query.
+  O número de iterações que o Query optimizer fez na construção do plano de execução para a Query anterior.
 
-  `Last_query_partial_plans` has session scope.
+  `Last_query_partial_plans` tem escopo de session.
 
 * [`Locked_connects`](server-status-variables.html#statvar_Locked_connects)
 
-  The number of attempts to connect to locked user accounts. For information about account locking and unlocking, see [Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking").
+  O número de tentativas de conexão a contas de usuário locked. Para obter informações sobre Lock e unlock de contas, consulte [Seção 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking").
 
 * [`Max_execution_time_exceeded`](server-status-variables.html#statvar_Max_execution_time_exceeded)
 
-  The number of [`SELECT`](select.html "13.2.9 SELECT Statement") statements for which the execution timeout was exceeded.
+  O número de instruções [`SELECT`](select.html "13.2.9 SELECT Statement") para as quais o timeout de execução foi excedido.
 
 * [`Max_execution_time_set`](server-status-variables.html#statvar_Max_execution_time_set)
 
-  The number of [`SELECT`](select.html "13.2.9 SELECT Statement") statements for which a nonzero execution timeout was set. This includes statements that include a nonzero [`MAX_EXECUTION_TIME`](optimizer-hints.html#optimizer-hints-execution-time "Statement Execution Time Optimizer Hints") optimizer hint, and statements that include no such hint but execute while the timeout indicated by the [`max_execution_time`](server-system-variables.html#sysvar_max_execution_time) system variable is nonzero.
+  O número de instruções [`SELECT`](select.html "13.2.9 SELECT Statement") para as quais um timeout de execução diferente de zero foi definido. Isso inclui instruções que incluem uma dica de otimização [`MAX_EXECUTION_TIME`](optimizer-hints.html#optimizer-hints-execution-time "Statement Execution Time Optimizer Hints") diferente de zero, e instruções que não incluem tal dica, mas são executadas enquanto o timeout indicado pela variável de sistema [`max_execution_time`](server-system-variables.html#sysvar_max_execution_time) for diferente de zero.
 
 * [`Max_execution_time_set_failed`](server-status-variables.html#statvar_Max_execution_time_set_failed)
 
-  The number of [`SELECT`](select.html "13.2.9 SELECT Statement") statements for which the attempt to set an execution timeout failed.
+  O número de instruções [`SELECT`](select.html "13.2.9 SELECT Statement") para as quais a tentativa de definir um timeout de execução falhou.
 
 * [`Max_used_connections`](server-status-variables.html#statvar_Max_used_connections)
 
-  The maximum number of connections that have been in use simultaneously since the server started.
+  O número máximo de conexões que foram usadas simultaneamente desde o início do servidor.
 
 * [`Max_used_connections_time`](server-status-variables.html#statvar_Max_used_connections_time)
 
-  The time at which [`Max_used_connections`](server-status-variables.html#statvar_Max_used_connections) reached its current value.
+  O momento em que [`Max_used_connections`](server-status-variables.html#statvar_Max_used_connections) atingiu seu valor atual.
 
 * [`Not_flushed_delayed_rows`](server-status-variables.html#statvar_Not_flushed_delayed_rows)
 
-  This status variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
+  Esta variável de status está depreciada (porque inserções `DELAYED` não são suportadas); espere que ela seja removida em um lançamento futuro.
 
 * [`mecab_charset`](server-status-variables.html#statvar_mecab_charset)
 
-  The character set currently used by the MeCab full-text parser plugin. For related information, see [Section 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin").
+  O character set atualmente usado pelo plugin MeCab full-text parser. Para informações relacionadas, consulte [Seção 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin").
 
 * [`Ongoing_anonymous_transaction_count`](server-status-variables.html#statvar_Ongoing_anonymous_transaction_count)
 
-  Shows the number of ongoing transactions which have been marked as anonymous. This can be used to ensure that no further transactions are waiting to be processed.
+  Mostra o número de transações ongoing que foram marcadas como anonymous. Isso pode ser usado para garantir que não haja mais transações esperando para serem processadas.
 
 * [`Ongoing_anonymous_gtid_violating_transaction_count`](server-status-variables.html#statvar_Ongoing_anonymous_gtid_violating_transaction_count)
 
-  This status variable is only available in debug builds. Shows the number of ongoing transactions which use [`gtid_next=ANONYMOUS`](replication-options-gtids.html#sysvar_gtid_next) and that violate GTID consistency.
+  Esta variável de status está disponível apenas em builds de debug. Mostra o número de transações ongoing que usam [`gtid_next=ANONYMOUS`](replication-options-gtids.html#sysvar_gtid_next) e que violam a consistência GTID.
 
 * [`Ongoing_automatic_gtid_violating_transaction_count`](server-status-variables.html#statvar_Ongoing_automatic_gtid_violating_transaction_count)
 
-  This status variable is only available in debug builds. Shows the number of ongoing transactions which use [`gtid_next=AUTOMATIC`](replication-options-gtids.html#sysvar_gtid_next) and that violate GTID consistency.
+  Esta variável de status está disponível apenas em builds de debug. Mostra o número de transações ongoing que usam [`gtid_next=AUTOMATIC`](replication-options-gtids.html#sysvar_gtid_next) e que violam a consistência GTID.
 
 * [`Open_files`](server-status-variables.html#statvar_Open_files)
 
-  The number of files that are open. This count includes regular files opened by the server. It does not include other types of files such as sockets or pipes. Also, the count does not include files that storage engines open using their own internal functions rather than asking the server level to do so.
+  O número de arquivos que estão abertos. Esta contagem inclui arquivos regulares abertos pelo servidor. Não inclui outros tipos de arquivos, como sockets ou pipes. Além disso, a contagem não inclui arquivos que os storage engines abrem usando suas próprias funções internas, em vez de solicitar que o nível do servidor o faça.
 
 * [`Open_streams`](server-status-variables.html#statvar_Open_streams)
 
-  The number of streams that are open (used mainly for logging).
+  O número de streams que estão abertos (usados principalmente para logging).
 
 * [`Open_table_definitions`](server-status-variables.html#statvar_Open_table_definitions)
 
-  The number of cached `.frm` files.
+  O número de arquivos `.frm` em cache.
 
 * [`Open_tables`](server-status-variables.html#statvar_Open_tables)
 
-  The number of tables that are open.
+  O número de tabelas que estão abertas.
 
 * [`Opened_files`](server-status-variables.html#statvar_Opened_files)
 
-  The number of files that have been opened with `my_open()` (a `mysys` library function). Parts of the server that open files without using this function do not increment the count.
+  O número de arquivos que foram abertos com `my_open()` (uma função da biblioteca `mysys`). Partes do servidor que abrem arquivos sem usar esta função não incrementam a contagem.
 
 * [`Opened_table_definitions`](server-status-variables.html#statvar_Opened_table_definitions)
 
-  The number of `.frm` files that have been cached.
+  O número de arquivos `.frm` que foram armazenados em cache.
 
 * [`Opened_tables`](server-status-variables.html#statvar_Opened_tables)
 
-  The number of tables that have been opened. If [`Opened_tables`](server-status-variables.html#statvar_Opened_tables) is big, your [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache) value is probably too small.
+  O número de tabelas que foram abertas. Se [`Opened_tables`](server-status-variables.html#statvar_Opened_tables) for grande, seu valor [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache) provavelmente é muito pequeno.
 
 * `Performance_schema_xxx`
 
-  Performance Schema status variables are listed in [Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables"). These variables provide information about instrumentation that could not be loaded or created due to memory constraints.
+  As variáveis de status do Performance Schema estão listadas em [Seção 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables"). Estas variáveis fornecem informações sobre instrumentation que não pôde ser carregada ou criada devido a restrições de memória.
 
 * [`Prepared_stmt_count`](server-status-variables.html#statvar_Prepared_stmt_count)
 
-  The current number of prepared statements. (The maximum number of statements is given by the [`max_prepared_stmt_count`](server-system-variables.html#sysvar_max_prepared_stmt_count) system variable.)
+  O número atual de prepared statements. (O número máximo de statements é dado pela variável de sistema [`max_prepared_stmt_count`](server-system-variables.html#sysvar_max_prepared_stmt_count)).
 
 * [`Qcache_free_blocks`](server-status-variables.html#statvar_Qcache_free_blocks)
 
-  The number of free memory blocks in the query cache.
+  O número de free memory blocks no Query Cache.
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_free_blocks`](server-status-variables.html#statvar_Qcache_free_blocks).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_free_blocks`](server-status-variables.html#statvar_Qcache_free_blocks).
 
 * [`Qcache_free_memory`](server-status-variables.html#statvar_Qcache_free_memory)
 
-  The amount of free memory for the query cache.
+  A quantidade de free memory para o Query Cache.
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_free_memory`](server-status-variables.html#statvar_Qcache_free_memory).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_free_memory`](server-status-variables.html#statvar_Qcache_free_memory).
 
 * [`Qcache_hits`](server-status-variables.html#statvar_Qcache_hits)
 
-  The number of query cache hits.
+  O número de hits no Query Cache.
 
-  The discussion at the beginning of this section indicates how to relate this statement-counting status variable to other such variables.
+  A discussão no início desta seção indica como relacionar esta variável de status de contagem de statement com outras variáveis semelhantes.
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_hits`](server-status-variables.html#statvar_Qcache_hits).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_hits`](server-status-variables.html#statvar_Qcache_hits).
 
 * [`Qcache_inserts`](server-status-variables.html#statvar_Qcache_inserts)
 
-  The number of queries added to the query cache.
+  O número de Queries adicionadas ao Query Cache.
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_inserts`](server-status-variables.html#statvar_Qcache_inserts).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_inserts`](server-status-variables.html#statvar_Qcache_inserts).
 
 * [`Qcache_lowmem_prunes`](server-status-variables.html#statvar_Qcache_lowmem_prunes)
 
-  The number of queries that were deleted from the query cache because of low memory.
+  O número de Queries que foram deletadas do Query Cache devido à low memory.
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_lowmem_prunes`](server-status-variables.html#statvar_Qcache_lowmem_prunes).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_lowmem_prunes`](server-status-variables.html#statvar_Qcache_lowmem_prunes).
 
 * [`Qcache_not_cached`](server-status-variables.html#statvar_Qcache_not_cached)
 
-  The number of noncached queries (not cacheable, or not cached due to the [`query_cache_type`](server-system-variables.html#sysvar_query_cache_type) setting).
+  O número de Queries não armazenadas em cache (não cacheable ou não armazenadas em cache devido à configuração [`query_cache_type`](server-system-variables.html#sysvar_query_cache_type)).
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_not_cached`](server-status-variables.html#statvar_Qcache_not_cached).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_not_cached`](server-status-variables.html#statvar_Qcache_not_cached).
 
 * [`Qcache_queries_in_cache`](server-status-variables.html#statvar_Qcache_queries_in_cache)
 
-  The number of queries registered in the query cache.
+  O número de Queries registradas no Query Cache.
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_queries_in_cache`](server-status-variables.html#statvar_Qcache_queries_in_cache).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_queries_in_cache`](server-status-variables.html#statvar_Qcache_queries_in_cache).
 
 * [`Qcache_total_blocks`](server-status-variables.html#statvar_Qcache_total_blocks)
 
-  The total number of blocks in the query cache.
+  O número total de blocks no Query Cache.
 
   Note
 
-  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`Qcache_total_blocks`](server-status-variables.html#statvar_Qcache_total_blocks).
+  O Query Cache está depreciado a partir do MySQL 5.7.20 e foi removido no MySQL 8.0. A depreciação inclui [`Qcache_total_blocks`](server-status-variables.html#statvar_Qcache_total_blocks).
 
 * [`Queries`](server-status-variables.html#statvar_Queries)
 
-  The number of statements executed by the server. This variable includes statements executed within stored programs, unlike the [`Questions`](server-status-variables.html#statvar_Questions) variable. It does not count `COM_PING` or `COM_STATISTICS` commands.
+  O número de statements executados pelo servidor. Esta variável inclui statements executados dentro de stored programs, diferente da variável [`Questions`](server-status-variables.html#statvar_Questions). Não conta comandos `COM_PING` ou `COM_STATISTICS`.
 
-  The discussion at the beginning of this section indicates how to relate this statement-counting status variable to other such variables.
+  A discussão no início desta seção indica como relacionar esta variável de status de contagem de statement com outras variáveis semelhantes.
 
 * [`Questions`](server-status-variables.html#statvar_Questions)
 
-  The number of statements executed by the server. This includes only statements sent to the server by clients and not statements executed within stored programs, unlike the [`Queries`](server-status-variables.html#statvar_Queries) variable. This variable does not count `COM_PING`, `COM_STATISTICS`, `COM_STMT_PREPARE`, `COM_STMT_CLOSE`, or `COM_STMT_RESET` commands.
+  O número de statements executados pelo servidor. Isso inclui apenas statements enviados ao servidor por clientes e não statements executados dentro de stored programs, diferente da variável [`Queries`](server-status-variables.html#statvar_Queries). Esta variável não conta comandos `COM_PING`, `COM_STATISTICS`, `COM_STMT_PREPARE`, `COM_STMT_CLOSE` ou `COM_STMT_RESET`.
 
-  The discussion at the beginning of this section indicates how to relate this statement-counting status variable to other such variables.
+  A discussão no início desta seção indica como relacionar esta variável de status de contagem de statement com outras variáveis semelhantes.
 
 * [`Rpl_semi_sync_master_clients`](server-status-variables.html#statvar_Rpl_semi_sync_master_clients)
 
-  The number of semisynchronous replicas.
+  O número de replicas semisynchronous.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_net_avg_wait_time`](server-status-variables.html#statvar_Rpl_semi_sync_master_net_avg_wait_time)
 
-  The average time in microseconds the source waited for a replica reply. This variable is deprecated, always `0`; expect it to be in a future version.
+  O tempo médio em microssegundos que a source esperou por uma resposta da replica. Esta variável está depreciada, sempre `0`; espere que ela seja removida em uma versão futura.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_net_wait_time`](server-status-variables.html#statvar_Rpl_semi_sync_master_net_wait_time)
 
-  The total time in microseconds the source waited for replica replies. This variable is deprecated, and is always `0`; expect it to be removed in a future version.
+  O tempo total em microssegundos que a source esperou pelas respostas da replica. Esta variável está depreciada e é sempre `0`; espere que ela seja removida em uma versão futura.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_net_waits`](server-status-variables.html#statvar_Rpl_semi_sync_master_net_waits)
 
-  The total number of times the source waited for replica replies.
+  O número total de vezes que a source esperou pelas respostas da replica.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_no_times`](server-status-variables.html#statvar_Rpl_semi_sync_master_no_times)
 
-  The number of times the source turned off semisynchronous replication.
+  O número de vezes que a source desativou a replicação semisynchronous.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_no_tx`](server-status-variables.html#statvar_Rpl_semi_sync_master_no_tx)
 
-  The number of commits that were not acknowledged successfully by a replica.
+  O número de commits que não foram confirmados com sucesso por uma replica.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_status`](server-status-variables.html#statvar_Rpl_semi_sync_master_status)
 
-  Whether semisynchronous replication currently is operational on the source. The value is `ON` if the plugin has been enabled and a commit acknowledgment has occurred. It is `OFF` if the plugin is not enabled or the source has fallen back to asynchronous replication due to commit acknowledgment timeout.
+  Se a replicação semisynchronous está operacional na source atualmente. O valor é `ON` se o plugin foi habilitado e uma confirmação de commit ocorreu. É `OFF` se o plugin não estiver habilitado ou se a source voltou à replicação assíncrona devido a um timeout de confirmação de commit.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_timefunc_failures`](server-status-variables.html#statvar_Rpl_semi_sync_master_timefunc_failures)
 
-  The number of times the source failed when calling time functions such as `gettimeofday()`.
+  O número de vezes que a source falhou ao chamar time functions como `gettimeofday()`.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_tx_avg_wait_time`](server-status-variables.html#statvar_Rpl_semi_sync_master_tx_avg_wait_time)
 
-  The average time in microseconds the source waited for each transaction.
+  O tempo médio em microssegundos que a source esperou por cada transação.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_tx_wait_time`](server-status-variables.html#statvar_Rpl_semi_sync_master_tx_wait_time)
 
-  The total time in microseconds the source waited for transactions.
+  O tempo total em microssegundos que a source esperou por transações.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_tx_waits`](server-status-variables.html#statvar_Rpl_semi_sync_master_tx_waits)
 
-  The total number of times the source waited for transactions.
+  O número total de vezes que a source esperou por transações.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_wait_pos_backtraverse`](server-status-variables.html#statvar_Rpl_semi_sync_master_wait_pos_backtraverse)
 
-  The total number of times the source waited for an event with binary coordinates lower than events waited for previously. This can occur when the order in which transactions start waiting for a reply is different from the order in which their binary log events are written.
+  O número total de vezes que a source esperou por um evento com coordenadas binárias mais baixas do que eventos aguardados anteriormente. Isso pode ocorrer quando a ordem em que as transações começam a esperar por uma resposta é diferente da ordem em que seus binary log events são escritos.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_wait_sessions`](server-status-variables.html#statvar_Rpl_semi_sync_master_wait_sessions)
 
-  The number of sessions currently waiting for replica replies.
+  O número de sessions atualmente esperando por respostas da replica.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_master_yes_tx`](server-status-variables.html#statvar_Rpl_semi_sync_master_yes_tx)
 
-  The number of commits that were acknowledged successfully by a replica.
+  O número de commits que foram confirmados com sucesso por uma replica.
 
-  This variable is available only if the source-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da source estiver instalado.
 
 * [`Rpl_semi_sync_slave_status`](server-status-variables.html#statvar_Rpl_semi_sync_slave_status)
 
-  Whether semisynchronous replication currently is operational on the replica. This is `ON` if the plugin has been enabled and the replica I/O thread is running, `OFF` otherwise.
+  Se a replicação semisynchronous está operacional na replica atualmente. O valor é `ON` se o plugin foi habilitado e o Thread I/O da replica está em execução, `OFF` caso contrário.
 
-  This variable is available only if the replica-side semisynchronous replication plugin is installed.
+  Esta variável está disponível apenas se o plugin de replicação semisynchronous do lado da replica estiver instalado.
 
 * [`Rsa_public_key`](server-status-variables.html#statvar_Rsa_public_key)
 
-  This variable is available if MySQL was compiled using OpenSSL (see [Section 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities")). Its value is the public key used by the `sha256_password` authentication plugin for RSA key pair-based password exchange. The value is nonempty only if the server successfully initializes the private and public keys in the files named by the [`sha256_password_private_key_path`](server-system-variables.html#sysvar_sha256_password_private_key_path) and [`sha256_password_public_key_path`](server-system-variables.html#sysvar_sha256_password_public_key_path) system variables. The value of [`Rsa_public_key`](server-status-variables.html#statvar_Rsa_public_key) comes from the latter file.
+  Esta variável está disponível se o MySQL foi compilado usando OpenSSL (consulte [Seção 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities")). Seu valor é a chave pública usada pelo plugin de autenticação `sha256_password` para troca de senha baseada em par de chaves RSA. O valor só é diferente de vazio se o servidor inicializar com sucesso as chaves private e public nos arquivos nomeados pelas variáveis de sistema [`sha256_password_private_key_path`](server-system-variables.html#sysvar_sha256_password_private_key_path) e [`sha256_password_public_key_path`](server-system-variables.html#sysvar_sha256_password_public_key_path). O valor de [`Rsa_public_key`](server-status-variables.html#statvar_Rsa_public_key) vem deste último arquivo.
 
-  For information about `sha256_password`, see [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
+  Para obter informações sobre `sha256_password`, consulte [Seção 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
 
 * [`Select_full_join`](server-status-variables.html#statvar_Select_full_join)
 
-  The number of joins that perform table scans because they do not use indexes. If this value is not 0, you should carefully check the indexes of your tables.
+  O número de JOINs que realizam table scans porque não usam Index. Se este valor não for 0, você deve verificar cuidadosamente os Index de suas tabelas.
 
 * [`Select_full_range_join`](server-status-variables.html#statvar_Select_full_range_join)
 
-  The number of joins that used a range search on a reference table.
+  O número de JOINs que usaram uma range search em uma tabela de referência.
 
 * [`Select_range`](server-status-variables.html#statvar_Select_range)
 
-  The number of joins that used ranges on the first table. This is normally not a critical issue even if the value is quite large.
+  O número de JOINs que usaram ranges na primeira tabela. Normalmente, isso não é um problema crítico, mesmo que o valor seja bastante grande.
 
 * [`Select_range_check`](server-status-variables.html#statvar_Select_range_check)
 
-  The number of joins without keys that check for key usage after each row. If this is not 0, you should carefully check the indexes of your tables.
+  O número de JOINs sem keys que verificam o uso de key após cada row. Se este valor não for 0, você deve verificar cuidadosamente os Index de suas tabelas.
 
 * [`Select_scan`](server-status-variables.html#statvar_Select_scan)
 
-  The number of joins that did a full scan of the first table.
+  O número de JOINs que fizeram um full scan da primeira tabela.
 
 * [`Slave_heartbeat_period`](server-status-variables.html#statvar_Slave_heartbeat_period)
 
-  Shows the replication heartbeat interval (in seconds) on a replication replica.
+  Mostra o intervalo do replication heartbeat (em segundos) em uma replica de replicação.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  Esta variável é afetada pelo valor da variável de sistema [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56). Para detalhes, consulte [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
-  This variable only shows the status of the default replication channel. To monitor any replication channel, use the `HEARTBEAT_INTERVAL` column in the [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") table for the replication channel. [`Slave_heartbeat_period`](server-status-variables.html#statvar_Slave_heartbeat_period) is deprecated and is removed in MySQL 8.0.
+  Esta variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `HEARTBEAT_INTERVAL` na tabela [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") para o canal de replicação. [`Slave_heartbeat_period`](server-status-variables.html#statvar_Slave_heartbeat_period) está depreciada e será removida no MySQL 8.0.
 
 * [`Slave_last_heartbeat`](server-status-variables.html#statvar_Slave_last_heartbeat)
 
-  Shows when the most recent heartbeat signal was received by a replica, as a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value.
+  Mostra quando o sinal de heartbeat mais recente foi recebido por uma replica, como um valor [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types").
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  Esta variável é afetada pelo valor da variável de sistema [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56). Para detalhes, consulte [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
-  This variable only shows the status of the default replication channel. To monitor any replication channel, use the `LAST_HEARTBEAT_TIMESTAMP` column in the [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") table for the replication channel. [`Slave_last_heartbeat`](server-status-variables.html#statvar_Slave_last_heartbeat) is deprecated and is removed in MySQL 8.0.
+  Esta variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `LAST_HEARTBEAT_TIMESTAMP` na tabela [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") para o canal de replicação. [`Slave_last_heartbeat`](server-status-variables.html#statvar_Slave_last_heartbeat) está depreciada e será removida no MySQL 8.0.
 
 * [`Slave_open_temp_tables`](server-status-variables.html#statvar_Slave_open_temp_tables)
 
-  The number of temporary tables that the replica SQL thread currently has open. If the value is greater than zero, it is not safe to shut down the replica; see [Section 16.4.1.29, “Replication and Temporary Tables”](replication-features-temptables.html "16.4.1.29 Replication and Temporary Tables"). This variable reports the total count of open temporary tables for *all* replication channels.
+  O número de tabelas temporárias que o SQL Thread da replica tem abertas atualmente. Se o valor for maior que zero, não é seguro desligar a replica; consulte [Seção 16.4.1.29, “Replication and Temporary Tables”](replication-features-temptables.html "16.4.1.29 Replication and Temporary Tables"). Esta variável reporta a contagem total de tabelas temporárias abertas para *todos* os canais de replicação.
 
 * [`Slave_received_heartbeats`](server-status-variables.html#statvar_Slave_received_heartbeats)
 
-  This counter increments with each replication heartbeat received by a replication replica since the last time that the replica was restarted or reset, or a [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement was issued.
+  Este contador incrementa a cada replication heartbeat recebido por uma replica de replicação desde a última vez que a replica foi reiniciada ou resetada, ou uma instrução [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") foi emitida.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  Esta variável é afetada pelo valor da variável de sistema [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56). Para detalhes, consulte [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
-  This variable only shows the status of the default replication channel. To monitor any replication channel, use the `COUNT_RECEIVED_HEARTBEATS` column in the [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") table for the replication channel. [`Slave_received_heartbeats`](server-status-variables.html#statvar_Slave_received_heartbeats) is deprecated and is removed in MySQL 8.0.
+  Esta variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `COUNT_RECEIVED_HEARTBEATS` na tabela [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") para o canal de replicação. [`Slave_received_heartbeats`](server-status-variables.html#statvar_Slave_received_heartbeats) está depreciada e será removida no MySQL 8.0.
 
 * [`Slave_retried_transactions`](server-status-variables.html#statvar_Slave_retried_transactions)
 
-  The total number of times since startup that the replication replica SQL thread has retried transactions.
+  O número total de vezes desde a inicialização que o SQL Thread da replica de replicação tentou novamente (retried) transações.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  Esta variável é afetada pelo valor da variável de sistema [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56). Para detalhes, consulte [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
-  This variable only shows the status of the default replication channel. To monitor any replication channel, use the `COUNT_TRANSACTIONS_RETRIES` column in the [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") table for the replication channel. [`Slave_retried_transactions`](server-status-variables.html#statvar_Slave_retried_transactions) is deprecated and is removed in MySQL 8.0.
+  Esta variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `COUNT_TRANSACTIONS_RETRIES` na tabela [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") para o canal de replicação. [`Slave_retried_transactions`](server-status-variables.html#statvar_Slave_retried_transactions) está depreciada e será removida no MySQL 8.0.
 
 * [`Slave_rows_last_search_algorithm_used`](server-status-variables.html#statvar_Slave_rows_last_search_algorithm_used)
 
-  The search algorithm that was most recently used by this replica to locate rows for row-based replication. The result shows whether the replica used indexes, a table scan, or hashing as the search algorithm for the last transaction executed on any channel.
+  O search algorithm que foi usado mais recentemente por esta replica para localizar rows para replicação baseada em row. O resultado mostra se a replica usou Index, um table scan ou hashing como o search algorithm para a última transação executada em qualquer canal.
 
-  The method used depends on the setting for the [`slave_rows_search_algorithms`](replication-options-replica.html#sysvar_slave_rows_search_algorithms) system variable, and the keys that are available on the relevant table.
+  O método usado depende da configuração da variável de sistema [`slave_rows_search_algorithms`](replication-options-replica.html#sysvar_slave_rows_search_algorithms) e das keys disponíveis na tabela relevante.
 
-  This variable is available only for debug builds of MySQL.
+  Esta variável está disponível apenas para builds de debug do MySQL.
 
 * [`Slave_running`](server-status-variables.html#statvar_Slave_running)
 
-  This is `ON` if this server is a replica that is connected to a replication source, and both the I/O and SQL threads are running; otherwise, it is `OFF`.
+  Isto é `ON` se este servidor for uma replica que está conectada a uma source de replicação, e tanto o I/O Thread quanto o SQL Thread estiverem em execução; caso contrário, é `OFF`.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  Esta variável é afetada pelo valor da variável de sistema [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56). Para detalhes, consulte [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
-  This variable only shows the status of the default replication channel. To monitor any replication channel, use the `SERVICE_STATE` column in the [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") or [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") tables of the replication channel. [`Slave_running`](server-status-variables.html#statvar_Slave_running) is deprecated and is removed in MySQL 8.0.
+  Esta variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `SERVICE_STATE` na tabela [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") ou [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") para o canal de replicação. [`Slave_running`](server-status-variables.html#statvar_Slave_running) está depreciada e será removida no MySQL 8.0.
 
 * [`Slow_launch_threads`](server-status-variables.html#statvar_Slow_launch_threads)
 
-  The number of threads that have taken more than [`slow_launch_time`](server-system-variables.html#sysvar_slow_launch_time) seconds to create.
+  O número de Threads cuja criação demorou mais do que [`slow_launch_time`](server-system-variables.html#sysvar_slow_launch_time) segundos.
 
-  This variable is not meaningful in the embedded server (`libmysqld`) and as of MySQL 5.7.2 is no longer visible within the embedded server.
+  Esta variável não é significativa no servidor embedded (`libmysqld`) e a partir do MySQL 5.7.2 não é mais visível dentro do servidor embedded.
 
 * [`Slow_queries`](server-status-variables.html#statvar_Slow_queries)
 
-  The number of queries that have taken more than [`long_query_time`](server-system-variables.html#sysvar_long_query_time) seconds. This counter increments regardless of whether the slow query log is enabled. For information about that log, see [Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log").
+  O número de Queries que demoraram mais do que [`long_query_time`](server-system-variables.html#sysvar_long_query_time) segundos. Este contador incrementa independentemente de o slow Query log estar habilitado. Para obter informações sobre esse log, consulte [Seção 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log").
 
 * [`Sort_merge_passes`](server-status-variables.html#statvar_Sort_merge_passes)
 
-  The number of merge passes that the sort algorithm has had to do. If this value is large, you should consider increasing the value of the [`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size) system variable.
+  O número de merge passes que o algoritmo de sort precisou fazer. Se este valor for grande, você deve considerar aumentar o valor da variável de sistema [`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size).
 
 * [`Sort_range`](server-status-variables.html#statvar_Sort_range)
 
-  The number of sorts that were done using ranges.
+  O número de sorts que foram feitos usando ranges.
 
 * [`Sort_rows`](server-status-variables.html#statvar_Sort_rows)
 
-  The number of sorted rows.
+  O número de rows sortidas.
 
 * [`Sort_scan`](server-status-variables.html#statvar_Sort_scan)
 
-  The number of sorts that were done by scanning the table.
+  O número de sorts que foram feitos por scanning da tabela.
 
 * [`Ssl_accept_renegotiates`](server-status-variables.html#statvar_Ssl_accept_renegotiates)
 
-  The number of negotiates needed to establish the connection.
+  O número de negotiates necessários para estabelecer a conexão.
 
 * [`Ssl_accepts`](server-status-variables.html#statvar_Ssl_accepts)
 
-  The number of accepted SSL connections.
+  O número de conexões SSL aceitas.
 
 * [`Ssl_callback_cache_hits`](server-status-variables.html#statvar_Ssl_callback_cache_hits)
 
-  The number of callback cache hits.
+  O número de hits do callback cache.
 
 * [`Ssl_cipher`](server-status-variables.html#statvar_Ssl_cipher)
 
-  The current encryption cipher (empty for unencrypted connections).
+  O cipher de encryption atual (vazio para conexões não encrypted).
 
 * [`Ssl_cipher_list`](server-status-variables.html#statvar_Ssl_cipher_list)
 
-  The list of possible SSL ciphers (empty for non-SSL connections).
+  A lista de ciphers SSL possíveis (vazio para conexões não SSL).
 
 * [`Ssl_client_connects`](server-status-variables.html#statvar_Ssl_client_connects)
 
-  The number of SSL connection attempts to an SSL-enabled source.
+  O número de tentativas de conexão SSL a uma source habilitada para SSL.
 
 * [`Ssl_connect_renegotiates`](server-status-variables.html#statvar_Ssl_connect_renegotiates)
 
-  The number of negotiates needed to establish the connection to an SSL-enabled source.
+  O número de negotiates necessários para estabelecer a conexão a uma source habilitada para SSL.
 
 * [`Ssl_ctx_verify_depth`](server-status-variables.html#statvar_Ssl_ctx_verify_depth)
 
-  The SSL context verification depth (how many certificates in the chain are tested).
+  A profundidade de verificação do contexto SSL (quantos certificates na cadeia são testados).
 
 * [`Ssl_ctx_verify_mode`](server-status-variables.html#statvar_Ssl_ctx_verify_mode)
 
-  The SSL context verification mode.
+  O modo de verificação do contexto SSL.
 
 * [`Ssl_default_timeout`](server-status-variables.html#statvar_Ssl_default_timeout)
 
-  The default SSL timeout.
+  O timeout SSL padrão.
 
 * [`Ssl_finished_accepts`](server-status-variables.html#statvar_Ssl_finished_accepts)
 
-  The number of successful SSL connections to the server.
+  O número de conexões SSL bem-sucedidas ao servidor.
 
 * [`Ssl_finished_connects`](server-status-variables.html#statvar_Ssl_finished_connects)
 
-  The number of successful replica connections to an SSL-enabled source.
+  O número de conexões de replica bem-sucedidas a uma source habilitada para SSL.
 
 * [`Ssl_server_not_after`](server-status-variables.html#statvar_Ssl_server_not_after)
 
-  The last date for which the SSL certificate is valid. To check SSL certificate expiration information, use this statement:
+  A última data para a qual o certificate SSL é válido. Para verificar as informações de expiração do certificate SSL, use esta instrução:
 
   ```sql
   mysql> SHOW STATUS LIKE 'Ssl_server_not%';
@@ -934,49 +934,49 @@ The status variables have the meanings shown in the following list.
 
 * [`Ssl_server_not_before`](server-status-variables.html#statvar_Ssl_server_not_before)
 
-  The first date for which the SSL certificate is valid.
+  A primeira data para a qual o certificate SSL é válido.
 
 * [`Ssl_session_cache_hits`](server-status-variables.html#statvar_Ssl_session_cache_hits)
 
-  The number of SSL session cache hits.
+  O número de hits no SSL session cache.
 
 * [`Ssl_session_cache_misses`](server-status-variables.html#statvar_Ssl_session_cache_misses)
 
-  The number of SSL session cache misses.
+  O número de misses no SSL session cache.
 
 * [`Ssl_session_cache_mode`](server-status-variables.html#statvar_Ssl_session_cache_mode)
 
-  The SSL session cache mode.
+  O modo do SSL session cache.
 
 * [`Ssl_session_cache_overflows`](server-status-variables.html#statvar_Ssl_session_cache_overflows)
 
-  The number of SSL session cache overflows.
+  O número de overflows do SSL session cache.
 
 * [`Ssl_session_cache_size`](server-status-variables.html#statvar_Ssl_session_cache_size)
 
-  The SSL session cache size.
+  O tamanho do SSL session cache.
 
 * [`Ssl_session_cache_timeouts`](server-status-variables.html#statvar_Ssl_session_cache_timeouts)
 
-  The number of SSL session cache timeouts.
+  O número de timeouts do SSL session cache.
 
 * [`Ssl_sessions_reused`](server-status-variables.html#statvar_Ssl_sessions_reused)
 
-  This is equal to 0 if TLS was not used in the current MySQL session, or if a TLS session has not been reused; otherwise it is equal to 1.
+  Isto é igual a 0 se TLS não foi usado na session MySQL atual, ou se uma session TLS não foi reutilizada; caso contrário, é igual a 1.
 
-  `Ssl_sessions_reused` has session scope.
+  `Ssl_sessions_reused` tem escopo de session.
 
 * [`Ssl_used_session_cache_entries`](server-status-variables.html#statvar_Ssl_used_session_cache_entries)
 
-  How many SSL session cache entries were used.
+  Quantas entradas do SSL session cache foram usadas.
 
 * [`Ssl_verify_depth`](server-status-variables.html#statvar_Ssl_verify_depth)
 
-  The verification depth for replication SSL connections.
+  A profundidade de verificação para conexões SSL de replicação.
 
 * [`Ssl_verify_mode`](server-status-variables.html#statvar_Ssl_verify_mode)
 
-  The verification mode used by the server for a connection that uses SSL. The value is a bitmask; bits are defined in the `openssl/ssl.h` header file:
+  O modo de verificação usado pelo servidor para uma conexão que usa SSL. O valor é um bitmask; os bits são definidos no arquivo header `openssl/ssl.h`:
 
   ```sql
   # define SSL_VERIFY_NONE                 0x00
@@ -985,66 +985,66 @@ The status variables have the meanings shown in the following list.
   # define SSL_VERIFY_CLIENT_ONCE          0x04
   ```
 
-  `SSL_VERIFY_PEER` indicates that the server asks for a client certificate. If the client supplies one, the server performs verification and proceeds only if verification is successful. `SSL_VERIFY_CLIENT_ONCE` indicates that a request for the client certificate is done only in the initial handshake.
+  `SSL_VERIFY_PEER` indica que o servidor solicita um client certificate. Se o cliente fornecer um, o servidor realiza a verificação e procede somente se a verificação for bem-sucedida. `SSL_VERIFY_CLIENT_ONCE` indica que uma requisição para o client certificate é feita apenas no handshake inicial.
 
 * [`Ssl_version`](server-status-variables.html#statvar_Ssl_version)
 
-  The SSL protocol version of the connection (for example, TLSv1). If the connection is not encrypted, the value is empty.
+  A versão do protocolo SSL da conexão (por exemplo, TLSv1). Se a conexão não estiver encrypted, o valor será vazio.
 
 * [`Table_locks_immediate`](server-status-variables.html#statvar_Table_locks_immediate)
 
-  The number of times that a request for a table lock could be granted immediately.
+  O número de vezes que uma requisição para um table Lock pôde ser concedida imediatamente.
 
 * [`Table_locks_waited`](server-status-variables.html#statvar_Table_locks_waited)
 
-  The number of times that a request for a table lock could not be granted immediately and a wait was needed. If this is high and you have performance problems, you should first optimize your queries, and then either split your table or tables or use replication.
+  O número de vezes que uma requisição para um table Lock não pôde ser concedida imediatamente e foi necessário um wait. Se este valor for alto e você tiver problemas de performance, você deve primeiro otimizar suas Queries e, em seguida, dividir sua tabela ou tabelas ou usar replicação.
 
 * [`Table_open_cache_hits`](server-status-variables.html#statvar_Table_open_cache_hits)
 
-  The number of hits for open tables cache lookups.
+  O número de hits para lookups no cache de tabelas abertas.
 
 * [`Table_open_cache_misses`](server-status-variables.html#statvar_Table_open_cache_misses)
 
-  The number of misses for open tables cache lookups.
+  O número de misses para lookups no cache de tabelas abertas.
 
 * [`Table_open_cache_overflows`](server-status-variables.html#statvar_Table_open_cache_overflows)
 
-  The number of overflows for the open tables cache. This is the number of times, after a table is opened or closed, a cache instance has an unused entry and the size of the instance is larger than [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache) / [`table_open_cache_instances`](server-system-variables.html#sysvar_table_open_cache_instances).
+  O número de overflows para o cache de tabelas abertas. Este é o número de vezes que, após uma tabela ser aberta ou fechada, uma instância de cache tem uma entrada não utilizada e o tamanho da instância é maior que [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache) / [`table_open_cache_instances`](server-system-variables.html#sysvar_table_open_cache_instances).
 
 * [`Tc_log_max_pages_used`](server-status-variables.html#statvar_Tc_log_max_pages_used)
 
-  For the memory-mapped implementation of the log that is used by [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") when it acts as the transaction coordinator for recovery of internal XA transactions, this variable indicates the largest number of pages used for the log since the server started. If the product of [`Tc_log_max_pages_used`](server-status-variables.html#statvar_Tc_log_max_pages_used) and [`Tc_log_page_size`](server-status-variables.html#statvar_Tc_log_page_size) is always significantly less than the log size, the size is larger than necessary and can be reduced. (The size is set by the [`--log-tc-size`](server-options.html#option_mysqld_log-tc-size) option. This variable is unused: It is unneeded for binary log-based recovery, and the memory-mapped recovery log method is not used unless the number of storage engines that are capable of two-phase commit and that support XA transactions is greater than one. (`InnoDB` is the only applicable engine.)
+  Para a implementação memory-mapped do log que é usada pelo [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") quando ele atua como o transaction coordinator para recovery de transações XA internas, esta variável indica o maior número de pages usadas para o log desde o início do servidor. Se o produto de [`Tc_log_max_pages_used`](server-status-variables.html#statvar_Tc_log_max_pages_used) e [`Tc_log_page_size`](server-status-variables.html#statvar_Tc_log_page_size) for sempre significativamente menor do que o tamanho do log, o tamanho é maior do que o necessário e pode ser reduzido. (O tamanho é definido pela opção [`--log-tc-size`](server-options.html#option_mysqld_log-tc-size). Esta variável não é usada: não é necessária para binary log-based recovery, e o método de recovery log memory-mapped não é usado a menos que o número de storage engines capazes de two-phase commit e que suportam transações XA seja maior que um. (`InnoDB` é o único engine aplicável).
 
 * [`Tc_log_page_size`](server-status-variables.html#statvar_Tc_log_page_size)
 
-  The page size used for the memory-mapped implementation of the XA recovery log. The default value is determined using `getpagesize()`. This variable is unused for the same reasons as described for [`Tc_log_max_pages_used`](server-status-variables.html#statvar_Tc_log_max_pages_used).
+  O tamanho da page usado para a implementação memory-mapped do log de recovery XA. O valor padrão é determinado usando `getpagesize()`. Esta variável não é usada pelas mesmas razões descritas para [`Tc_log_max_pages_used`](server-status-variables.html#statvar_Tc_log_max_pages_used).
 
 * [`Tc_log_page_waits`](server-status-variables.html#statvar_Tc_log_page_waits)
 
-  For the memory-mapped implementation of the recovery log, this variable increments each time the server was not able to commit a transaction and had to wait for a free page in the log. If this value is large, you might want to increase the log size (with the [`--log-tc-size`](server-options.html#option_mysqld_log-tc-size) option). For binary log-based recovery, this variable increments each time the binary log cannot be closed because there are two-phase commits in progress. (The close operation waits until all such transactions are finished.)
+  Para a implementação memory-mapped do recovery log, esta variável incrementa cada vez que o servidor não conseguiu fazer commit de uma transação e teve que esperar por uma page free no log. Se este valor for grande, você pode querer aumentar o tamanho do log (com a opção [`--log-tc-size`](server-options-binary-log.html#option_mysqld_log-tc-size)). Para binary log-based recovery, esta variável incrementa cada vez que o binary log não pode ser fechado porque há two-phase commits em progresso. (A operação de close espera até que todas essas transações sejam concluídas).
 
 * [`Threads_cached`](server-status-variables.html#statvar_Threads_cached)
 
-  The number of threads in the thread cache.
+  O número de Threads no Thread Cache.
 
-  This variable is not meaningful in the embedded server (`libmysqld`) and as of MySQL 5.7.2 is no longer visible within the embedded server.
+  Esta variável não é significativa no servidor embedded (`libmysqld`) e a partir do MySQL 5.7.2 não é mais visível dentro do servidor embedded.
 
 * [`Threads_connected`](server-status-variables.html#statvar_Threads_connected)
 
-  The number of currently open connections.
+  O número de conexões abertas atualmente.
 
 * [`Threads_created`](server-status-variables.html#statvar_Threads_created)
 
-  The number of threads created to handle connections. If [`Threads_created`](server-status-variables.html#statvar_Threads_created) is big, you may want to increase the [`thread_cache_size`](server-system-variables.html#sysvar_thread_cache_size) value. The cache miss rate can be calculated as [`Threads_created`](server-status-variables.html#statvar_Threads_created)/[`Connections`](server-status-variables.html#statvar_Connections).
+  O número de Threads criadas para lidar com conexões. Se [`Threads_created`](server-status-variables.html#statvar_Threads_created) for grande, você pode querer aumentar o valor [`thread_cache_size`](server-system-variables.html#sysvar_thread_cache_size). A taxa de Cache Miss pode ser calculada como [`Threads_created`](server-status-variables.html#statvar_Threads_created)/[`Connections`](server-status-variables.html#statvar_Connections).
 
 * [`Threads_running`](server-status-variables.html#statvar_Threads_running)
 
-  The number of threads that are not sleeping.
+  O número de Threads que não estão sleeping.
 
 * [`Uptime`](server-status-variables.html#statvar_Uptime)
 
-  The number of seconds that the server has been up.
+  O número de segundos que o servidor está ativo.
 
 * [`Uptime_since_flush_status`](server-status-variables.html#statvar_Uptime_since_flush_status)
 
-  The number of seconds since the most recent `FLUSH STATUS` statement.
+  O número de segundos desde a instrução `FLUSH STATUS` mais recente.

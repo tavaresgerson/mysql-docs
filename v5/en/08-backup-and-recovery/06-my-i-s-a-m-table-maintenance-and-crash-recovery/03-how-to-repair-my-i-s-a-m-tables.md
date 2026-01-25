@@ -1,20 +1,18 @@
-### 7.6.3 How to Repair MyISAM Tables
+### 7.6.3 Como Reparar Tabelas MyISAM
 
-The discussion in this section describes how to use **myisamchk** on `MyISAM` tables (extensions `.MYI` and `.MYD`).
+A discussão nesta seção descreve como usar o **myisamchk** em tabelas `MyISAM` (extensões `.MYI` e `.MYD`).
 
-You can also use the `CHECK TABLE` and `REPAIR TABLE` statements to check and repair `MyISAM` tables. See Section 13.7.2.2, “CHECK TABLE Statement”, and Section 13.7.2.5, “REPAIR TABLE Statement”.
+Você também pode usar as instruções `CHECK TABLE` e `REPAIR TABLE` para verificar e reparar tabelas `MyISAM`. Consulte a Seção 13.7.2.2, “Instrução CHECK TABLE”, e a Seção 13.7.2.5, “Instrução REPAIR TABLE”.
 
-Symptoms of corrupted tables include queries that abort unexpectedly and observable errors such as these:
+Os sintomas de tabelas corrompidas incluem Queries que abortam inesperadamente e erros observáveis, como estes:
 
-* `tbl_name.frm` is locked against change
+* `tbl_name.frm` está travado contra alterações
+* Não é possível encontrar o arquivo `tbl_name.MYI` (Errcode: *`nnn`*)
+* Fim de arquivo inesperado
+* Arquivo de registro está corrompido
+* Erro *`nnn`* recebido do table handler
 
-* Can't find file `tbl_name.MYI` (Errcode: *`nnn`*)
-
-* Unexpected end of file
-* Record file is crashed
-* Got error *`nnn`* from table handler
-
-To get more information about the error, run **perror** *`nnn`*, where *`nnn`* is the error number. The following example shows how to use **perror** to find the meanings for the most common error numbers that indicate a problem with a table:
+Para obter mais informações sobre o erro, execute **perror** *`nnn`*, onde *`nnn`* é o número do erro. O exemplo a seguir mostra como usar o **perror** para encontrar os significados dos números de erro mais comuns que indicam um problema com uma tabela:
 
 ```sql
 $> perror 126 127 132 134 135 136 141 144 145
@@ -29,55 +27,54 @@ MySQL error code 144 = Table is crashed and last repair failed
 MySQL error code 145 = Table was marked as crashed and should be repaired
 ```
 
-Note that error 135 (no more room in record file) and error 136 (no more room in index file) are not errors that can be fixed by a simple repair. In this case, you must use `ALTER TABLE` to increase the `MAX_ROWS` and `AVG_ROW_LENGTH` table option values:
+Note que o erro 135 (não há mais espaço no arquivo de registro) e o erro 136 (não há mais espaço no Index file) não são erros que podem ser corrigidos por um simples repair. Neste caso, você deve usar `ALTER TABLE` para aumentar os valores das opções de tabela `MAX_ROWS` e `AVG_ROW_LENGTH`:
 
 ```sql
 ALTER TABLE tbl_name MAX_ROWS=xxx AVG_ROW_LENGTH=yyy;
 ```
 
-If you do not know the current table option values, use `SHOW CREATE TABLE`.
+Se você não souber os valores atuais das opções da tabela, use `SHOW CREATE TABLE`.
 
-For the other errors, you must repair your tables. **myisamchk** can usually detect and fix most problems that occur.
+Para os outros erros, você deve reparar suas tabelas. O **myisamchk** geralmente pode detectar e corrigir a maioria dos problemas que ocorrem.
 
-The repair process involves up to four stages, described here. Before you begin, you should change location to the database directory and check the permissions of the table files. On Unix, make sure that they are readable by the user that **mysqld** runs as (and to you, because you need to access the files you are checking). If it turns out you need to modify files, they must also be writable by you.
+O processo de repair envolve até quatro estágios, descritos aqui. Antes de começar, você deve mudar o diretório para o diretório do Database e verificar as permissões dos arquivos da tabela. No Unix, certifique-se de que eles sejam legíveis pelo usuário que executa o **mysqld** (e por você, pois você precisa acessar os arquivos que está verificando). Se for necessário modificar os arquivos, eles também devem ser graváveis por você.
 
-This section is for the cases where a table check fails (such as those described in Section 7.6.2, “How to Check MyISAM Tables for Errors”), or you want to use the extended features that **myisamchk** provides.
+Esta seção é para os casos em que uma verificação de tabela falha (como as descritas na Seção 7.6.2, “Como Verificar Erros em Tabelas MyISAM”), ou quando você deseja usar os recursos estendidos que o **myisamchk** oferece.
 
-The **myisamchk** options used for table maintenance with are described in Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”. **myisamchk** also has variables that you can set to control memory allocation that may improve performance. See Section 4.6.3.6, “myisamchk Memory Usage”.
+As opções do **myisamchk** usadas para manutenção de tabela estão descritas na Seção 4.6.3, “myisamchk — Utilitário de Manutenção de Tabela MyISAM”. O **myisamchk** também possui variáveis que você pode configurar para controlar a alocação de memória, o que pode melhorar o performance. Consulte a Seção 4.6.3.6, “Uso de Memória do myisamchk”.
 
-If you are going to repair a table from the command line, you must first stop the **mysqld** server. Note that when you do **mysqladmin shutdown** on a remote server, the **mysqld** server is still available for a while after **mysqladmin** returns, until all statement-processing has stopped and all index changes have been flushed to disk.
+Se você for reparar uma tabela a partir da linha de comando, você deve primeiro parar o servidor **mysqld**. Note que, quando você executa **mysqladmin shutdown** em um servidor remoto, o servidor **mysqld** ainda fica disponível por um tempo após o retorno do **mysqladmin**, até que todo o processamento de instruções tenha parado e todas as alterações de Index tenham sido descarregadas para o disco.
 
-**Stage 1: Checking your tables**
+**Estágio 1: Verificando suas tabelas**
 
-Run **myisamchk \*.MYI** or **myisamchk -e \*.MYI** if you have more time. Use the `-s` (silent) option to suppress unnecessary information.
+Execute **myisamchk \*.MYI** ou **myisamchk -e \*.MYI** se você tiver mais tempo. Use a opção `-s` (silent/silencioso) para suprimir informações desnecessárias.
 
-If the **mysqld** server is stopped, you should use the `--update-state` option to tell **myisamchk** to mark the table as “checked.”
+Se o servidor **mysqld** estiver parado, você deve usar a opção `--update-state` para instruir o **myisamchk** a marcar a tabela como “verificada” (checked).
 
-You have to repair only those tables for which **myisamchk** announces an error. For such tables, proceed to Stage 2.
+Você deve reparar apenas as tabelas para as quais o **myisamchk** anuncia um erro. Para essas tabelas, prossiga para o Estágio 2.
 
-If you get unexpected errors when checking (such as `out of memory` errors), or if **myisamchk** crashes, go to Stage 3.
+Se você receber erros inesperados durante a verificação (como erros de `out of memory`), ou se o **myisamchk** falhar (crash), vá para o Estágio 3.
 
-**Stage 2: Easy safe repair**
+**Estágio 2: Repair fácil e seguro**
 
-First, try **myisamchk -r -q *`tbl_name`*** (`-r -q` means “quick recovery mode”). This attempts to repair the index file without touching the data file. If the data file contains everything that it should and the delete links point at the correct locations within the data file, this should work, and the table is fixed. Start repairing the next table. Otherwise, use the following procedure:
+Primeiro, tente **myisamchk -r -q *`tbl_name`*** (`-r -q` significa “quick recovery mode” ou "modo de recuperação rápida"). Isso tenta reparar o Index file sem tocar no data file. Se o data file contiver tudo o que deveria e os links de exclusão apontarem para os locais corretos dentro do data file, isso deve funcionar e a tabela será corrigida. Comece a reparar a próxima tabela. Caso contrário, use o seguinte procedimento:
 
-1. Make a backup of the data file before continuing.
-2. Use **myisamchk -r *`tbl_name`*** (`-r` means “recovery mode”). This removes incorrect rows and deleted rows from the data file and reconstructs the index file.
+1. Faça um backup do data file antes de continuar.
+2. Use **myisamchk -r *`tbl_name`*** (`-r` significa “recovery mode”). Isso remove linhas incorretas e linhas excluídas do data file e reconstrói o Index file.
+3. Se a etapa anterior falhar, use **myisamchk --safe-recover *`tbl_name`***. O safe recovery mode (modo de recuperação seguro) utiliza um método de recuperação antigo que lida com alguns casos que o recovery mode regular não lida (mas é mais lento).
 
-3. If the preceding step fails, use **myisamchk --safe-recover *`tbl_name`***. Safe recovery mode uses an old recovery method that handles a few cases that regular recovery mode does not (but is slower).
+Nota
 
-Note
+Se você deseja que uma operação de repair seja muito mais rápida, você deve configurar os valores das variáveis `sort_buffer_size` e `key_buffer_size` para cerca de 25% da sua memória disponível ao executar o **myisamchk**.
 
-If you want a repair operation to go much faster, you should set the values of the `sort_buffer_size` and `key_buffer_size` variables each to about 25% of your available memory when running **myisamchk**.
+Se você receber erros inesperados durante o repair (como erros de `out of memory`), ou se o **myisamchk** falhar (crash), vá para o Estágio 3.
 
-If you get unexpected errors when repairing (such as `out of memory` errors), or if **myisamchk** crashes, go to Stage 3.
+**Estágio 3: Repair difícil**
 
-**Stage 3: Difficult repair**
+Você só deve chegar a este estágio se o primeiro bloco de 16KB no Index file estiver destruído ou contiver informações incorretas, ou se o Index file estiver faltando. Neste caso, é necessário criar um novo Index file. Faça isso da seguinte forma:
 
-You should reach this stage only if the first 16KB block in the index file is destroyed or contains incorrect information, or if the index file is missing. In this case, it is necessary to create a new index file. Do so as follows:
-
-1. Move the data file to a safe place.
-2. Use the table description file to create new (empty) data and index files:
+1. Mova o data file para um local seguro.
+2. Use o arquivo de descrição da tabela para criar novos data files e Index files (vazios):
 
    ```sql
    $> mysql db_name
@@ -89,20 +86,20 @@ You should reach this stage only if the first 16KB block in the index file is de
    mysql> quit
    ```
 
-3. Copy the old data file back onto the newly created data file. (Do not just move the old file back onto the new file. You want to retain a copy in case something goes wrong.)
+3. Copie o data file antigo de volta para o data file recém-criado. (Não apenas mova o arquivo antigo para o novo. Você deve manter uma cópia caso algo dê errado.)
 
-Important
+Importante
 
-If you are using replication, you should stop it prior to performing the above procedure, since it involves file system operations, and these are not logged by MySQL.
+Se você estiver usando Replication, você deve pará-lo antes de executar o procedimento acima, pois ele envolve operações de sistema de arquivos, e estas não são logadas pelo MySQL.
 
-Go back to Stage 2. **myisamchk -r -q** should work. (This should not be an endless loop.)
+Volte ao Estágio 2. O **myisamchk -r -q** deve funcionar. (Isto não deve ser um loop infinito.)
 
-You can also use the `REPAIR TABLE tbl_name USE_FRM` SQL statement, which performs the whole procedure automatically. There is also no possibility of unwanted interaction between a utility and the server, because the server does all the work when you use `REPAIR TABLE`. See Section 13.7.2.5, “REPAIR TABLE Statement”.
+Você também pode usar a instrução SQL `REPAIR TABLE tbl_name USE_FRM`, que executa todo o procedimento automaticamente. Além disso, não há possibilidade de interação indesejada entre um utilitário e o server, porque o server faz todo o trabalho quando você usa `REPAIR TABLE`. Consulte a Seção 13.7.2.5, “Instrução REPAIR TABLE”.
 
-**Stage 4: Very difficult repair**
+**Estágio 4: Repair muito difícil**
 
-You should reach this stage only if the `.frm` description file has also crashed. That should never happen, because the description file is not changed after the table is created:
+Você só deve chegar a este estágio se o arquivo de descrição `.frm` também tiver falhado (crash). Isso nunca deveria acontecer, pois o arquivo de descrição não é alterado após a criação da tabela:
 
-1. Restore the description file from a backup and go back to Stage 3. You can also restore the index file and go back to Stage 2. In the latter case, you should start with **myisamchk -r**.
+1. Restaure o arquivo de descrição a partir de um backup e volte ao Estágio 3. Você também pode restaurar o Index file e voltar ao Estágio 2. Neste último caso, você deve começar com **myisamchk -r**.
 
-2. If you do not have a backup but know exactly how the table was created, create a copy of the table in another database. Remove the new data file, and then move the `.frm` description and `.MYI` index files from the other database to your crashed database. This gives you new description and index files, but leaves the `.MYD` data file alone. Go back to Stage 2 and attempt to reconstruct the index file.
+2. Se você não tiver um backup, mas souber exatamente como a tabela foi criada, crie uma cópia da tabela em outro Database. Remova o novo data file e, em seguida, mova os arquivos de descrição `.frm` e Index files `.MYI` do outro Database para o seu Database corrompido. Isso fornece novos arquivos de descrição e Index files, mas deixa o data file `.MYD` intacto. Volte ao Estágio 2 e tente reconstruir o Index file.

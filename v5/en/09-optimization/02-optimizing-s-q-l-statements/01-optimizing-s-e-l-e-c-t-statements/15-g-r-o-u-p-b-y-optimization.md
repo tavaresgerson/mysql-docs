@@ -1,32 +1,32 @@
-#### 8.2.1.15 GROUP BY Optimization
+#### 8.2.1.15 Otimização de GROUP BY
 
-The most general way to satisfy a `GROUP BY` clause is to scan the whole table and create a new temporary table where all rows from each group are consecutive, and then use this temporary table to discover groups and apply aggregate functions (if any). In some cases, MySQL is able to do much better than that and avoid creation of temporary tables by using index access.
+A maneira mais geral de satisfazer uma cláusula `GROUP BY` é varrer a tabela inteira e criar uma nova temporary table onde todas as linhas de cada grupo são consecutivas, e então usar esta temporary table para descobrir grupos e aplicar aggregate functions (se houver). Em alguns casos, o MySQL consegue ser muito mais eficiente e evitar a criação de temporary tables usando index access.
 
-The most important preconditions for using indexes for `GROUP BY` are that all `GROUP BY` columns reference attributes from the same index, and that the index stores its keys in order (as is true, for example, for a `BTREE` index, but not for a `HASH` index). Whether use of temporary tables can be replaced by index access also depends on which parts of an index are used in a query, the conditions specified for these parts, and the selected aggregate functions.
+As pré-condições mais importantes para usar Indexes em `GROUP BY` são que todas as colunas `GROUP BY` referenciem atributos do mesmo Index, e que o Index armazene suas Keys em ordem (o que é verdadeiro, por exemplo, para um Index `BTREE`, mas não para um Index `HASH`). Se o uso de temporary tables pode ser substituído por index access também depende de quais partes de um Index são usadas na Query, das condições especificadas para essas partes e das aggregate functions selecionadas.
 
-There are two ways to execute a `GROUP BY` query through index access, as detailed in the following sections. The first method applies the grouping operation together with all range predicates (if any). The second method first performs a range scan, and then groups the resulting tuples.
+Existem duas maneiras de executar uma Query `GROUP BY` através de index access, conforme detalhado nas seções seguintes. O primeiro método aplica a operação de agrupamento juntamente com todos os range predicates (se houver). O segundo método primeiro executa um range scan e, em seguida, agrupa as tuplas resultantes.
 
-In MySQL, `GROUP BY` is used for sorting, so the server may also apply `ORDER BY` optimizations to grouping. However, relying on implicit or explicit `GROUP BY` sorting is deprecated. See Section 8.2.1.14, “ORDER BY Optimization”.
+No MySQL, `GROUP BY` é usado para sorting (ordenação), então o servidor também pode aplicar otimizações de `ORDER BY` ao agrupamento. No entanto, depender da ordenação implícita ou explícita de `GROUP BY` está obsoleto (deprecated). Consulte a Seção 8.2.1.14, “ORDER BY Optimization”.
 
 * Loose Index Scan
 * Tight Index Scan
 
 ##### Loose Index Scan
 
-The most efficient way to process `GROUP BY` is when an index is used to directly retrieve the grouping columns. With this access method, MySQL uses the property of some index types that the keys are ordered (for example, `BTREE`). This property enables use of lookup groups in an index without having to consider all keys in the index that satisfy all `WHERE` conditions. This access method considers only a fraction of the keys in an index, so it is called a Loose Index Scan. When there is no `WHERE` clause, a Loose Index Scan reads as many keys as the number of groups, which may be a much smaller number than that of all keys. If the `WHERE` clause contains range predicates (see the discussion of the `range` join type in Section 8.8.1, “Optimizing Queries with EXPLAIN”), a Loose Index Scan looks up the first key of each group that satisfies the range conditions, and again reads the smallest possible number of keys. This is possible under the following conditions:
+A maneira mais eficiente de processar `GROUP BY` é quando um Index é usado para recuperar diretamente as colunas de agrupamento. Com este método de acesso, o MySQL usa a propriedade de alguns tipos de Index de que as Keys são ordenadas (por exemplo, `BTREE`). Esta propriedade permite o uso de grupos de Lookup em um Index sem ter que considerar todas as Keys no Index que satisfazem todas as condições `WHERE`. Este método de acesso considera apenas uma fração das Keys em um Index, por isso é chamado de Loose Index Scan. Quando não há uma cláusula `WHERE`, um Loose Index Scan lê tantas Keys quanto o número de grupos, o que pode ser um número muito menor do que o total de Keys. Se a cláusula `WHERE` contiver range predicates (consulte a discussão sobre o tipo de JOIN `range` na Seção 8.8.1, “Optimizing Queries with EXPLAIN”), um Loose Index Scan procura a primeira Key de cada grupo que satisfaz as range conditions e, novamente, lê o menor número possível de Keys. Isto é possível sob as seguintes condições:
 
-* The query is over a single table.
-* The `GROUP BY` names only columns that form a leftmost prefix of the index and no other columns. (If, instead of `GROUP BY`, the query has a `DISTINCT` clause, all distinct attributes refer to columns that form a leftmost prefix of the index.) For example, if a table `t1` has an index on `(c1,c2,c3)`, Loose Index Scan is applicable if the query has `GROUP BY c1, c2`. It is not applicable if the query has `GROUP BY c2, c3` (the columns are not a leftmost prefix) or `GROUP BY c1, c2, c4` (`c4` is not in the index).
+* A Query é sobre uma única tabela.
+* O `GROUP BY` nomeia apenas colunas que formam um leftmost prefix do Index e nenhuma outra coluna. (Se, em vez de `GROUP BY`, a Query tiver uma cláusula `DISTINCT`, todos os atributos distinct referem-se a colunas que formam um leftmost prefix do Index.) Por exemplo, se uma tabela `t1` tiver um Index em `(c1,c2,c3)`, o Loose Index Scan é aplicável se a Query tiver `GROUP BY c1, c2`. Não é aplicável se a Query tiver `GROUP BY c2, c3` (as colunas não são um leftmost prefix) ou `GROUP BY c1, c2, c4` (`c4` não está no Index).
 
-* The only aggregate functions used in the select list (if any) are `MIN()` and `MAX()`, and all of them refer to the same column. The column must be in the index and must immediately follow the columns in the `GROUP BY`.
+* As únicas aggregate functions usadas na lista de seleção (se houver) são `MIN()` e `MAX()`, e todas elas se referem à mesma coluna. A coluna deve estar no Index e deve seguir imediatamente as colunas no `GROUP BY`.
 
-* Any other parts of the index than those from the `GROUP BY` referenced in the query must be constants (that is, they must be referenced in equalities with constants), except for the argument of `MIN()` or `MAX()` functions.
+* Quaisquer outras partes do Index além das do `GROUP BY` referenciadas na Query devem ser constantes (ou seja, devem ser referenciadas em igualdades com constantes), exceto pelo argumento das funções `MIN()` ou `MAX()`.
 
-* For columns in the index, full column values must be indexed, not just a prefix. For example, with `c1 VARCHAR(20), INDEX (c1(10))`, the index uses only a prefix of `c1` values and cannot be used for Loose Index Scan.
+* Para colunas no Index, os valores completos da coluna devem ser indexados, não apenas um prefixo. Por exemplo, com `c1 VARCHAR(20), INDEX (c1(10))`, o Index usa apenas um prefixo dos valores de `c1` e não pode ser usado para Loose Index Scan.
 
-If Loose Index Scan is applicable to a query, the `EXPLAIN` output shows `Using index for group-by` in the `Extra` column.
+Se o Loose Index Scan for aplicável a uma Query, a saída do `EXPLAIN` mostra `Using index for group-by` na coluna `Extra`.
 
-Assume that there is an index `idx(c1,c2,c3)` on table `t1(c1,c2,c3,c4)`. The Loose Index Scan access method can be used for the following queries:
+Suponha que exista um Index `idx(c1,c2,c3)` na tabela `t1(c1,c2,c3,c4)`. O método de acesso Loose Index Scan pode ser usado para as seguintes Queries:
 
 ```sql
 SELECT c1, c2 FROM t1 GROUP BY c1, c2;
@@ -38,37 +38,37 @@ SELECT c2 FROM t1 WHERE c1 < const GROUP BY c1, c2;
 SELECT c1, c2 FROM t1 WHERE c3 = const GROUP BY c1, c2;
 ```
 
-The following queries cannot be executed with this quick select method, for the reasons given:
+As seguintes Queries não podem ser executadas com este método de seleção rápida, pelas razões apresentadas:
 
-* There are aggregate functions other than `MIN()` or `MAX()`:
+* Existem aggregate functions diferentes de `MIN()` ou `MAX()`:
 
   ```sql
   SELECT c1, SUM(c2) FROM t1 GROUP BY c1;
   ```
 
-* The columns in the `GROUP BY` clause do not form a leftmost prefix of the index:
+* As colunas na cláusula `GROUP BY` não formam um leftmost prefix do Index:
 
   ```sql
   SELECT c1, c2 FROM t1 GROUP BY c2, c3;
   ```
 
-* The query refers to a part of a key that comes after the `GROUP BY` part, and for which there is no equality with a constant:
+* A Query se refere a uma parte de uma Key que vem depois da parte `GROUP BY`, e para a qual não há igualdade com uma constante:
 
   ```sql
   SELECT c1, c3 FROM t1 GROUP BY c1, c2;
   ```
 
-  Were the query to include `WHERE c3 = const`, Loose Index Scan could be used.
+  Se a Query incluísse `WHERE c3 = const`, o Loose Index Scan poderia ser usado.
 
-The Loose Index Scan access method can be applied to other forms of aggregate function references in the select list, in addition to the `MIN()` and `MAX()` references already supported:
+O método de acesso Loose Index Scan pode ser aplicado a outras formas de referências de aggregate function na lista de seleção, além das referências `MIN()` e `MAX()` já suportadas:
 
-* `AVG(DISTINCT)`, `SUM(DISTINCT)`, and `COUNT(DISTINCT)` are supported. `AVG(DISTINCT)` and `SUM(DISTINCT)` take a single argument. `COUNT(DISTINCT)` can have more than one column argument.
+* `AVG(DISTINCT)`, `SUM(DISTINCT)` e `COUNT(DISTINCT)` são suportados. `AVG(DISTINCT)` e `SUM(DISTINCT)` aceitam um único argumento. `COUNT(DISTINCT)` pode ter mais de um argumento de coluna.
 
-* There must be no `GROUP BY` or `DISTINCT` clause in the query.
+* Não deve haver cláusula `GROUP BY` ou `DISTINCT` na Query.
 
-* The Loose Index Scan limitations described previously still apply.
+* As limitações do Loose Index Scan descritas anteriormente ainda se aplicam.
 
-Assume that there is an index `idx(c1,c2,c3)` on table `t1(c1,c2,c3,c4)`. The Loose Index Scan access method can be used for the following queries:
+Suponha que exista um Index `idx(c1,c2,c3)` na tabela `t1(c1,c2,c3,c4)`. O método de acesso Loose Index Scan pode ser usado para as seguintes Queries:
 
 ```sql
 SELECT COUNT(DISTINCT c1), SUM(DISTINCT c1) FROM t1;
@@ -78,21 +78,21 @@ SELECT COUNT(DISTINCT c1, c2), COUNT(DISTINCT c2, c1) FROM t1;
 
 ##### Tight Index Scan
 
-A Tight Index Scan may be either a full index scan or a range index scan, depending on the query conditions.
+Um Tight Index Scan pode ser um full index scan ou um range index scan, dependendo das condições da Query.
 
-When the conditions for a Loose Index Scan are not met, it still may be possible to avoid creation of temporary tables for `GROUP BY` queries. If there are range conditions in the `WHERE` clause, this method reads only the keys that satisfy these conditions. Otherwise, it performs an index scan. Because this method reads all keys in each range defined by the `WHERE` clause, or scans the whole index if there are no range conditions, it is called a Tight Index Scan. With a Tight Index Scan, the grouping operation is performed only after all keys that satisfy the range conditions have been found.
+Quando as condições para um Loose Index Scan não são atendidas, ainda pode ser possível evitar a criação de temporary tables para Queries `GROUP BY`. Se houver range conditions na cláusula `WHERE`, este método lê apenas as Keys que satisfazem essas condições. Caso contrário, ele executa um index scan. Como este método lê todas as Keys em cada range definido pela cláusula `WHERE`, ou varre o Index inteiro se não houver range conditions, ele é chamado de Tight Index Scan. Com um Tight Index Scan, a operação de agrupamento é realizada somente depois que todas as Keys que satisfazem as range conditions forem encontradas.
 
-For this method to work, it is sufficient that there be a constant equality condition for all columns in a query referring to parts of the key coming before or in between parts of the `GROUP BY` key. The constants from the equality conditions fill in any “gaps” in the search keys so that it is possible to form complete prefixes of the index. These index prefixes then can be used for index lookups. If the `GROUP BY` result requires sorting, and it is possible to form search keys that are prefixes of the index, MySQL also avoids extra sorting operations because searching with prefixes in an ordered index already retrieves all the keys in order.
+Para que este método funcione, é suficiente que haja uma constant equality condition para todas as colunas em uma Query que se referem a partes da Key que vêm antes ou entre as partes da Key `GROUP BY`. As constantes das constant equality conditions preenchem quaisquer "lacunas" (gaps) nas search keys, de modo que seja possível formar prefixos completos do Index. Estes prefixos de Index podem então ser usados para Index Lookups. Se o resultado do `GROUP BY` exigir sorting, e for possível formar search keys que são prefixos do Index, o MySQL também evita operações de sorting extras porque a busca com prefixos em um Index ordenado já recupera todas as Keys em ordem.
 
-Assume that there is an index `idx(c1,c2,c3)` on table `t1(c1,c2,c3,c4)`. The following queries do not work with the Loose Index Scan access method described previously, but still work with the Tight Index Scan access method.
+Suponha que exista um Index `idx(c1,c2,c3)` na tabela `t1(c1,c2,c3,c4)`. As seguintes Queries não funcionam com o método de acesso Loose Index Scan descrito anteriormente, mas ainda funcionam com o método de acesso Tight Index Scan.
 
-* There is a gap in the `GROUP BY`, but it is covered by the condition `c2 = 'a'`:
+* Há uma lacuna (gap) no `GROUP BY`, mas ela é coberta pela condição `c2 = 'a'`:
 
   ```sql
   SELECT c1, c2, c3 FROM t1 WHERE c2 = 'a' GROUP BY c1, c3;
   ```
 
-* The `GROUP BY` does not begin with the first part of the key, but there is a condition that provides a constant for that part:
+* O `GROUP BY` não começa com a primeira parte da Key, mas há uma condição que fornece uma constante para essa parte:
 
   ```sql
   SELECT c1, c2, c3 FROM t1 WHERE c1 = 'a' GROUP BY c2, c3;

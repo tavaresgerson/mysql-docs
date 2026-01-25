@@ -1,62 +1,62 @@
-## 7.2 Database Backup Methods
+## 7.2 Métodos de Backup do Database
 
-This section summarizes some general methods for making backups.
+Esta seção resume alguns métodos gerais para realizar backups.
 
-### Making a Hot Backup with MySQL Enterprise Backup
+### Fazendo um Hot Backup com MySQL Enterprise Backup
 
-Customers of MySQL Enterprise Edition can use the MySQL Enterprise Backup product to do physical backups of entire instances or selected databases, tables, or both. This product includes features for incremental and compressed backups. Backing up the physical database files makes restore much faster than logical techniques such as the `mysqldump` command. `InnoDB` tables are copied using a hot backup mechanism. (Ideally, the `InnoDB` tables should represent a substantial majority of the data.) Tables from other storage engines are copied using a warm backup mechanism. For an overview of the MySQL Enterprise Backup product, see Section 28.1, “MySQL Enterprise Backup Overview”.
+Clientes do MySQL Enterprise Edition podem usar o produto MySQL Enterprise Backup para realizar backups físicos de instâncias inteiras ou de Databases e Tables selecionadas, ou ambos. Este produto inclui recursos para backups incrementais e compactados. Realizar o backup dos arquivos físicos do Database torna o restore muito mais rápido do que técnicas lógicas, como o comando `mysqldump`. Tables `InnoDB` são copiadas usando um mecanismo de hot backup. (Idealmente, as tables `InnoDB` devem representar a maioria substancial dos dados.) Tables de outros Storage Engines são copiadas usando um mecanismo de warm backup. Para uma visão geral do produto MySQL Enterprise Backup, consulte a Seção 28.1, “Visão Geral do MySQL Enterprise Backup”.
 
-### Making Backups with mysqldump
+### Fazendo Backups com mysqldump
 
-The **mysqldump** program can make backups. It can back up all kinds of tables. (See Section 7.4, “Using mysqldump for Backups”.)
+O programa **mysqldump** pode realizar backups. Ele pode fazer backup de todos os tipos de tables. (Consulte a Seção 7.4, “Usando mysqldump para Backups”.)
 
-For `InnoDB` tables, it is possible to perform an online backup that takes no locks on tables using the `--single-transaction` option to **mysqldump**. See Section 7.3.1, “Establishing a Backup Policy”.
+Para tables `InnoDB`, é possível realizar um backup online que não aplica Locks nas tables, utilizando a opção `--single-transaction` do **mysqldump**. Consulte a Seção 7.3.1, “Estabelecendo uma Política de Backup”.
 
-### Making Backups by Copying Table Files
+### Fazendo Backups Copiando Arquivos de Table
 
-For storage engines that represent each table using its own files, tables can be backed up by copying those files. For example, `MyISAM` tables are stored as files, so it is easy to do a backup by copying files (`*.frm`, `*.MYD`, and `*.MYI` files). To get a consistent backup, stop the server or lock and flush the relevant tables:
+Para Storage Engines que representam cada table usando seus próprios arquivos, as tables podem ter backup realizado pela cópia desses arquivos. Por exemplo, tables `MyISAM` são armazenadas como arquivos, então é fácil fazer um backup copiando arquivos (arquivos `*.frm`, `*.MYD` e `*.MYI`). Para obter um backup consistente, pare o Server ou aplique Lock e faça Flush nas tables relevantes:
 
 ```sql
 FLUSH TABLES tbl_list WITH READ LOCK;
 ```
 
-You need only a read lock; this enables other clients to continue to query the tables while you are making a copy of the files in the database directory. The flush is needed to ensure that the all active index pages are written to disk before you start the backup. See Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”, and Section 13.7.6.3, “FLUSH Statement”.
+Você precisa apenas de um read lock; isso permite que outros Clients continuem a executar Queries nas tables enquanto você está fazendo uma cópia dos arquivos no diretório do Database. O Flush é necessário para garantir que todas as páginas de Index ativas sejam gravadas em disco antes de você iniciar o backup. Consulte a Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”, e a Seção 13.7.6.3, “Instrução FLUSH”.
 
-You can also create a binary backup simply by copying all table files, as long as the server is not updating anything. (But note that table file copying methods do not work if your database contains `InnoDB` tables. Also, even if the server is not actively updating data, `InnoDB` may still have modified data cached in memory and not flushed to disk.)
+Você também pode criar um backup binário simplesmente copiando todos os arquivos de table, desde que o Server não esteja atualizando nada. (Mas observe que métodos de cópia de arquivos de table não funcionam se o seu Database contiver tables `InnoDB`. Além disso, mesmo que o Server não esteja ativamente atualizando dados, o `InnoDB` ainda pode ter dados modificados em cache na memória e não ter feito Flush para o disco.)
 
-### Making Delimited-Text File Backups
+### Fazendo Backups de Arquivos de Texto Delimitado
 
-To create a text file containing a table's data, you can use `SELECT * INTO OUTFILE 'file_name' FROM tbl_name`. The file is created on the MySQL server host, not the client host. For this statement, the output file cannot already exist because permitting files to be overwritten constitutes a security risk. See Section 13.2.9, “SELECT Statement”. This method works for any kind of data file, but saves only table data, not the table structure.
+Para criar um arquivo de texto contendo os dados de uma table, você pode usar `SELECT * INTO OUTFILE 'nome_do_arquivo' FROM nome_da_tabela`. O arquivo é criado no host do MySQL Server, e não no host do Client. Para esta instrução, o arquivo de saída não pode já existir, pois permitir que arquivos sejam sobrescritos constitui um risco de segurança. Consulte a Seção 13.2.9, “Instrução SELECT”. Este método funciona para qualquer tipo de arquivo de dados, mas salva apenas os dados da table, não a estrutura da table.
 
-Another way to create text data files (along with files containing `CREATE TABLE` statements for the backed up tables) is to use **mysqldump** with the `--tab` option. See Section 7.4.3, “Dumping Data in Delimited-Text Format with mysqldump”.
+Outra maneira de criar arquivos de dados de texto (juntamente com arquivos contendo instruções `CREATE TABLE` para as tables das quais foi feito backup) é usar o **mysqldump** com a opção `--tab`. Consulte a Seção 7.4.3, “Despejando Dados no Formato de Texto Delimitado com mysqldump”.
 
-To reload a delimited-text data file, use `LOAD DATA` or **mysqlimport**.
+Para recarregar um arquivo de dados de texto delimitado, use `LOAD DATA` ou **mysqlimport**.
 
-### Making Incremental Backups by Enabling the Binary Log
+### Fazendo Backups Incrementais Habilitando o Binary Log
 
-MySQL supports incremental backups: You must start the server with the `--log-bin` option to enable binary logging; see Section 5.4.4, “The Binary Log”. The binary log files provide you with the information you need to replicate changes to the database that are made subsequent to the point at which you performed a backup. At the moment you want to make an incremental backup (containing all changes that happened since the last full or incremental backup), you should rotate the binary log by using `FLUSH LOGS`. This done, you need to copy to the backup location all binary logs which range from the one of the moment of the last full or incremental backup to the last but one. These binary logs are the incremental backup; at restore time, you apply them as explained in Section 7.5, “Point-in-Time (Incremental) Recovery” Recovery"). The next time you do a full backup, you should also rotate the binary log using `FLUSH LOGS` or **mysqldump --flush-logs**. See Section 4.5.4, “mysqldump — A Database Backup Program”.
+O MySQL suporta backups incrementais: Você deve iniciar o Server com a opção `--log-bin` para habilitar o binary logging; consulte a Seção 5.4.4, “O Binary Log”. Os arquivos de binary log fornecem as informações necessárias para replicar as alterações no Database que foram feitas após o ponto em que você realizou um backup. No momento em que você deseja fazer um backup incremental (contendo todas as alterações que ocorreram desde o último backup completo ou incremental), você deve rotacionar o binary log usando `FLUSH LOGS`. Feito isso, você precisa copiar para o local de backup todos os binary logs que vão desde o momento do último backup completo ou incremental até o penúltimo. Estes binary logs são o backup incremental; no momento do restore, você os aplica conforme explicado na Seção 7.5, “Recuperação Pontual (Incremental)”. Na próxima vez que você fizer um backup completo, você também deve rotacionar o binary log usando `FLUSH LOGS` ou **mysqldump --flush-logs**. Consulte a Seção 4.5.4, “mysqldump — Um Programa de Backup de Database”.
 
-### Making Backups Using Replicas
+### Fazendo Backups Usando Replicas
 
-If you have performance problems with your source server while making backups, one strategy that can help is to set up replication and perform backups on the replica rather than on the source. See Section 16.3.1, “Using Replication for Backups”.
+Se você tiver problemas de performance com o seu Source Server durante a realização de backups, uma estratégia que pode ajudar é configurar a Replication e realizar backups na Replica em vez de na Source. Consulte a Seção 16.3.1, “Usando Replication para Backups”.
 
-If you are backing up a replica server, you should back up its source info and relay log info repositories (see Section 16.2.4, “Relay Log and Replication Metadata Repositories”) when you back up the replica's databases, regardless of the backup method you choose. These information files are always needed to resume replication after you restore the replica's data. If your replica is replicating `LOAD DATA` statements, you should also back up any `SQL_LOAD-*` files that exist in the directory that the replica uses for this purpose. The replica needs these files to resume replication of any interrupted `LOAD DATA` operations. The location of this directory is the value of the `slave_load_tmpdir` system variable. If the server was not started with that variable set, the directory location is the value of the `tmpdir` system variable.
+Se você estiver fazendo backup de um servidor Replica, você deve fazer backup dos seus repositórios de source info e relay log info (consulte a Seção 16.2.4, “Repositórios de Relay Log e Metadados de Replication”) ao fazer backup dos Databases da Replica, independentemente do método de backup que você escolher. Esses arquivos de informação são sempre necessários para retomar a Replication após você restaurar os dados da Replica. Se a sua Replica estiver replicando instruções `LOAD DATA`, você também deve fazer backup de quaisquer arquivos `SQL_LOAD-*` que existam no diretório que a Replica usa para essa finalidade. A Replica precisa desses arquivos para retomar a Replication de quaisquer operações `LOAD DATA` interrompidas. O local deste diretório é o valor da variável de sistema `slave_load_tmpdir`. Se o Server não foi iniciado com essa variável definida, o local do diretório é o valor da variável de sistema `tmpdir`.
 
-### Recovering Corrupt Tables
+### Recuperando Tables Corrompidas
 
-If you have to restore `MyISAM` tables that have become corrupt, try to recover them using `REPAIR TABLE` or **myisamchk -r** first. That should work in 99.9% of all cases. If **myisamchk** fails, see Section 7.6, “MyISAM Table Maintenance and Crash Recovery”.
+Se você precisar restaurar tables `MyISAM` que se corromperam, tente primeiro recuperá-las usando `REPAIR TABLE` ou **myisamchk -r**. Isso deve funcionar em 99,9% de todos os casos. Se o **myisamchk** falhar, consulte a Seção 7.6, “Manutenção de Table MyISAM e Recuperação de Falhas”.
 
-### Making Backups Using a File System Snapshot
+### Fazendo Backups Usando um Snapshot do File System
 
-If you are using a Veritas file system, you can make a backup like this:
+Se você estiver usando um file system Veritas, você pode fazer um backup da seguinte forma:
 
-1. From a client program, execute `FLUSH TABLES WITH READ LOCK`.
+1. A partir de um programa Client, execute `FLUSH TABLES WITH READ LOCK`.
 
-2. From another shell, execute `mount vxfs snapshot`.
+2. A partir de outro shell, execute `mount vxfs snapshot`.
 
-3. From the first client, execute `UNLOCK TABLES`.
+3. A partir do primeiro Client, execute `UNLOCK TABLES`.
 
-4. Copy files from the snapshot.
-5. Unmount the snapshot.
+4. Copie arquivos do Snapshot.
+5. Desmonte o Snapshot (Unmount).
 
-Similar snapshot capabilities may be available in other file systems, such as LVM or ZFS.
+Recursos de Snapshot semelhantes podem estar disponíveis em outros file systems, como LVM ou ZFS.

@@ -1,121 +1,121 @@
-#### 6.4.1.9 LDAP Pluggable Authentication
+#### 6.4.1.9 Autenticação Pluggable LDAP
 
-Note
+Nota
 
-LDAP pluggable authentication is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, see <https://www.mysql.com/products/>.
+A Autenticação Pluggable LDAP é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
-As of MySQL 5.7.19, MySQL Enterprise Edition supports an authentication method that enables MySQL Server to use LDAP (Lightweight Directory Access Protocol) to authenticate MySQL users by accessing directory services such as X.500. MySQL uses LDAP to fetch user, credential, and group information.
+A partir do MySQL 5.7.19, o MySQL Enterprise Edition oferece suporte a um método de authentication que permite ao MySQL Server usar o LDAP (Lightweight Directory Access Protocol) para autenticar usuários MySQL acessando serviços de directory, como o X.500. O MySQL usa LDAP para buscar informações de user, credential e group.
 
-LDAP pluggable authentication provides these capabilities:
+A Autenticação Pluggable LDAP oferece as seguintes funcionalidades:
 
-* External authentication: LDAP authentication enables MySQL Server to accept connections from users defined outside the MySQL grant tables in LDAP directories.
+* External authentication: A authentication LDAP permite que o MySQL Server aceite conexões de users definidos fora das tabelas de concessão (grant tables) do MySQL, nos LDAP directories.
 
-* Proxy user support: LDAP authentication can return to MySQL a user name different from the external user name passed by the client program, based on the LDAP groups the external user is a member of. This means that an LDAP plugin can return the MySQL user that defines the privileges the external LDAP-authenticated user should have. For example, an LDAP user named `joe` can connect and have the privileges of a MySQL user named `developer`, if the LDAP group for `joe` is `developer`.
+* Proxy user support: A authentication LDAP pode retornar ao MySQL um user name diferente do user name externo passado pelo programa client, com base nos LDAP groups dos quais o user externo é membro. Isso significa que um LDAP plugin pode retornar o user MySQL que define os privileges que o user externo autenticado via LDAP deve possuir. Por exemplo, um user LDAP chamado `joe` pode se conectar e ter os privileges de um user MySQL chamado `developer`, se o LDAP group para `joe` for `developer`.
 
-* Security: Using TLS, connections to the LDAP server can be secure.
+* Security: Usando TLS, as conexões com o LDAP server podem ser seguras.
 
-The following tables show the plugin and library file names for simple and SASL-based LDAP authentication. The file name suffix might differ on your system. The files must be located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+As tabelas a seguir mostram os nomes dos arquivos de plugin e library para authentication LDAP simples e baseada em SASL. O sufixo do nome do arquivo pode ser diferente em seu sistema. Os arquivos devem estar localizados no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir).
 
-**Table 6.15 Plugin and Library Names for Simple LDAP Authentication**
+**Table 6.15 Nomes de Plugin e Library para Autenticação LDAP Simples**
 
-<table summary="Names for the plugins and library file used for simple LDAP password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code>authentication_ldap_simple</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file name</td> <td><code>authentication_ldap_simple.so</code></td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo library usados para authentication de senha LDAP simples."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Nome do plugin do lado do Server</td> <td><code>authentication_ldap_simple</code></td> </tr><tr> <td>Nome do plugin do lado do Client</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Nome do arquivo Library</td> <td><code>authentication_ldap_simple.so</code></td> </tr> </tbody></table>
 
-**Table 6.16 Plugin and Library Names for SASL-Based LDAP Authentication**
+**Table 6.16 Nomes de Plugin e Library para Autenticação LDAP Baseada em SASL**
 
-<table summary="Names for the plugins and library file used for SASL-based LDAP password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code>authentication_ldap_sasl</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code>authentication_ldap_sasl_client</code></td> </tr><tr> <td>Library file names</td> <td><code>authentication_ldap_sasl.so</code>, <code>authentication_ldap_sasl_client.so</code></td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo library usados para authentication de senha LDAP baseada em SASL."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Nome do plugin do lado do Server</td> <td><code>authentication_ldap_sasl</code></td> </tr><tr> <td>Nome do plugin do lado do Client</td> <td><code>authentication_ldap_sasl_client</code></td> </tr><tr> <td>Nomes dos arquivos Library</td> <td><code>authentication_ldap_sasl.so</code>, <code>authentication_ldap_sasl_client.so</code></td> </tr> </tbody></table>
 
-The library files include only the `authentication_ldap_XXX` authentication plugins. The client-side `mysql_clear_password` plugin is built into the `libmysqlclient` client library.
+Os arquivos library incluem apenas os authentication plugins `authentication_ldap_XXX`. O plugin do lado do client `mysql_clear_password` é embutido na client library `libmysqlclient`.
 
-Each server-side LDAP plugin works with a specific client-side plugin:
+Cada LDAP plugin do lado do server funciona com um plugin do lado do client específico:
 
-* The server-side `authentication_ldap_simple` plugin performs simple LDAP authentication. For connections by accounts that use this plugin, client programs use the client-side `mysql_clear_password` plugin, which sends the password to the server as cleartext. No password hashing or encryption is used, so a secure connection between the MySQL client and server is recommended to prevent password exposure.
+* O plugin do lado do server `authentication_ldap_simple` executa authentication LDAP simples. Para conexões por accounts que usam este plugin, os programas client usam o plugin do lado do client `mysql_clear_password`, que envia a password para o server como cleartext. Nenhuma hash de password ou encryption é usada, portanto, é recomendável uma secure connection entre o MySQL client e o server para evitar a exposição da password.
 
-* The server-side `authentication_ldap_sasl` plugin performs SASL-based LDAP authentication. For connections by accounts that use this plugin, client programs use the client-side `authentication_ldap_sasl_client` plugin. The client-side and server-side SASL LDAP plugins use SASL messages for secure transmission of credentials within the LDAP protocol, to avoid sending the cleartext password between the MySQL client and server.
+* O plugin do lado do server `authentication_ldap_sasl` executa authentication LDAP baseada em SASL. Para conexões por accounts que usam este plugin, os programas client usam o plugin do lado do client `authentication_ldap_sasl_client`. Os SASL LDAP plugins do lado do client e do lado do server usam SASL messages para transmissão segura de credentials dentro do protocolo LDAP, para evitar o envio da cleartext password entre o MySQL client e o server.
 
-The server-side LDAP authentication plugins are included only in MySQL Enterprise Edition. They are not included in MySQL community distributions. The client-side SASL LDAP plugin is included in all distributions, including community distributions, and, as mentioned previously, the client-side `mysql_clear_password` plugin is built into the `libmysqlclient` client library, which also is included in all distributions. This enables clients from any distribution to connect to a server that has the appropriate server-side plugin loaded.
+Os authentication plugins LDAP do lado do server estão incluídos apenas no MySQL Enterprise Edition. Eles não estão incluídos nas distribuições da comunidade MySQL (community distributions). O SASL LDAP plugin do lado do client está incluído em todas as distribuições, incluindo as community distributions e, como mencionado anteriormente, o plugin do lado do client `mysql_clear_password` é embutido na client library `libmysqlclient`, que também está incluída em todas as distribuições. Isso permite que clients de qualquer distribuição se conectem a um server que tenha o plugin do lado do server apropriado carregado.
 
-The following sections provide installation and usage information specific to LDAP pluggable authentication:
+As seções a seguir fornecem informações de instalação e uso específicas para a Autenticação Pluggable LDAP:
 
-* [Prerequisites for LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-prerequisites "Prerequisites for LDAP Pluggable Authentication")
-* [How LDAP Authentication of MySQL Users Works](ldap-pluggable-authentication.html#ldap-pluggable-authentication-how-it-works "How LDAP Authentication of MySQL Users Works")
-* [Installing LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-installation "Installing LDAP Pluggable Authentication")
-* [Uninstalling LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-uninstallation "Uninstalling LDAP Pluggable Authentication")
-* [LDAP Pluggable Authentication and ldap.conf](ldap-pluggable-authentication.html#ldap-pluggable-authentication-ldap-conf "LDAP Pluggable Authentication and ldap.conf")
-* [Using LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage "Using LDAP Pluggable Authentication")
-* [Simple LDAP Authentication (Without Proxying)](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-simple "Simple LDAP Authentication (Without Proxying)")
-* [SASL-Based LDAP Authentication (Without Proxying)](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-sasl "SASL-Based LDAP Authentication (Without Proxying)")
-* [LDAP Authentication with Proxying](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-proxying "LDAP Authentication with Proxying")
-* [LDAP Authentication Group Preference and Mapping Specification](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-group-mapping "LDAP Authentication Group Preference and Mapping Specification")
-* [LDAP Authentication User DN Suffixes](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-user-dn-suffix "LDAP Authentication User DN Suffixes")
-* [LDAP Authentication Methods](ldap-pluggable-authentication.html#ldap-pluggable-authentication-auth-methods "LDAP Authentication Methods")
+* [Prerequisites for LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-prerequisites "Pré-requisitos para Autenticação Pluggable LDAP")
+* [How LDAP Authentication of MySQL Users Works](ldap-pluggable-authentication.html#ldap-pluggable-authentication-how-it-works "Como Funciona a Autenticação LDAP de Usuários MySQL")
+* [Installing LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-installation "Instalando a Autenticação Pluggable LDAP")
+* [Uninstalling LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-uninstallation "Desinstalando a Autenticação Pluggable LDAP")
+* [LDAP Pluggable Authentication and ldap.conf](ldap-pluggable-authentication.html#ldap-pluggable-authentication-ldap-conf "Autenticação Pluggable LDAP e ldap.conf")
+* [Using LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage "Usando a Autenticação Pluggable LDAP")
+* [Simple LDAP Authentication (Without Proxying)](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-simple "Autenticação LDAP Simples (Sem Proxying)")
+* [SASL-Based LDAP Authentication (Without Proxying)](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-sasl "Autenticação LDAP Baseada em SASL (Sem Proxying)")
+* [LDAP Authentication with Proxying](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-proxying "Autenticação LDAP com Proxying")
+* [LDAP Authentication Group Preference and Mapping Specification](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-group-mapping "Especificação de Mapeamento e Preferência de Group na Autenticação LDAP")
+* [LDAP Authentication User DN Suffixes](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-user-dn-suffix "Sufixos DN de User na Autenticação LDAP")
+* [LDAP Authentication Methods](ldap-pluggable-authentication.html#ldap-pluggable-authentication-auth-methods "Métodos de Autenticação LDAP")
 
-For general information about pluggable authentication in MySQL, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). For information about the `mysql_clear_password` plugin, see [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication"). For proxy user information, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+Para informações gerais sobre pluggable authentication no MySQL, consulte [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). Para obter informações sobre o plugin `mysql_clear_password`, consulte [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication"). Para informações de proxy user, consulte [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
-Note
+Nota
 
-If your system supports PAM and permits LDAP as a PAM authentication method, another way to use LDAP for MySQL user authentication is to use the server-side `authentication_pam` plugin. See [Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication").
+Se o seu sistema suporta PAM e permite LDAP como um método de authentication PAM, outra maneira de usar LDAP para authentication de user MySQL é usar o plugin do lado do server `authentication_pam`. Consulte [Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication").
 
-##### Prerequisites for LDAP Pluggable Authentication
+##### Pré-requisitos para Autenticação Pluggable LDAP
 
-To use LDAP pluggable authentication for MySQL, these prerequisites must be satisfied:
+Para usar a Autenticação Pluggable LDAP para MySQL, estes pré-requisitos devem ser atendidos:
 
-* An LDAP server must be available for the LDAP authentication plugins to communicate with.
+* Um LDAP server deve estar disponível para que os LDAP authentication plugins se comuniquem.
 
-* LDAP users to be authenticated by MySQL must be present in the directory managed by the LDAP server.
+* Os users LDAP a serem autenticados pelo MySQL devem estar presentes no directory gerenciado pelo LDAP server.
 
-* An LDAP client library must be available on systems where the server-side `authentication_ldap_sasl` or `authentication_ldap_simple` plugin is used. Currently, supported libraries are the Windows native LDAP library, or the OpenLDAP library on non-Windows systems.
+* Uma LDAP client library deve estar disponível em sistemas onde o plugin do lado do server `authentication_ldap_sasl` ou `authentication_ldap_simple` é usado. Atualmente, as libraries suportadas são a Windows native LDAP library, ou a OpenLDAP library em sistemas que não sejam Windows.
 
-* To use SASL-based LDAP authentication:
+* Para usar authentication LDAP baseada em SASL:
 
-  + The LDAP server must be configured to communicate with a SASL server.
+  + O LDAP server deve ser configurado para se comunicar com um SASL server.
 
-  + A SASL client library must be available on systems where the client-side `authentication_ldap_sasl_client` plugin is used. Currently, the only supported library is the Cyrus SASL library.
+  + Uma SASL client library deve estar disponível em sistemas onde o plugin do lado do client `authentication_ldap_sasl_client` é usado. Atualmente, a única library suportada é a Cyrus SASL library.
 
-##### How LDAP Authentication of MySQL Users Works
+##### Como Funciona a Autenticação LDAP de Usuários MySQL
 
-This section provides a general overview of how MySQL and LDAP work together to authenticate MySQL users. For examples showing how to set up MySQL accounts to use specific LDAP authentication plugins, see [Using LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage "Using LDAP Pluggable Authentication").
+Esta seção fornece uma visão geral de como o MySQL e o LDAP trabalham juntos para autenticar usuários MySQL. Para exemplos que mostram como configurar MySQL accounts para usar LDAP authentication plugins específicos, consulte [Using LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage "Using LDAP Pluggable Authentication").
 
-The client connects to the MySQL server, providing the MySQL client user name and the LDAP password:
+O client se conecta ao MySQL server, fornecendo o MySQL client user name e a LDAP password:
 
-* For simple LDAP authentication, the client-side and server-side plugins communicate the password as cleartext. A secure connection between the MySQL client and server is recommended to prevent password exposure.
+* Para authentication LDAP simples, os plugins do lado do client e do lado do server comunicam a password como cleartext. É recomendada uma secure connection entre o MySQL client e o server para evitar a exposição da password.
 
-* For SASL-based LDAP authentication, the client-side and server-side plugins avoid sending the cleartext password between the MySQL client and server. For example, the plugins might use SASL messages for secure transmission of credentials within the LDAP protocol.
+* Para authentication LDAP baseada em SASL, os plugins do lado do client e do lado do server evitam enviar a cleartext password entre o MySQL client e o server. Por exemplo, os plugins podem usar SASL messages para transmissão segura de credentials dentro do protocolo LDAP.
 
-If the client user name and host name match no MySQL account, the connection is rejected.
+Se o client user name e o host name não corresponderem a nenhuma MySQL account, a conexão é rejeitada.
 
-If there is a matching MySQL account, authentication against LDAP occurs. The LDAP server looks for an entry matching the user and authenticates the entry against the LDAP password:
+Se houver uma MySQL account correspondente, ocorre a authentication contra o LDAP. O LDAP server procura uma entry que corresponda ao user e autentica a entry em relação à LDAP password:
 
-* If the MySQL account names an LDAP user distinguished name (DN), LDAP authentication uses that value and the LDAP password provided by the client. (To associate an LDAP user DN with a MySQL account, include a `BY` clause that specifies an authentication string in the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement that creates the account.)
+* Se a MySQL account nomear um user distinguished name (DN) LDAP, a authentication LDAP usará esse valor e a LDAP password fornecida pelo client. (Para associar um user DN LDAP a uma MySQL account, inclua uma cláusula `BY` que especifique uma authentication string na instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") que cria a account.)
 
-* If the MySQL account names no LDAP user DN, LDAP authentication uses the user name and LDAP password provided by the client. In this case, the authentication plugin first binds to the LDAP server using the root DN and password as credentials to find the user DN based on the client user name, then authenticates that user DN against the LDAP password. This bind using the root credentials fails if the root DN and password are set to incorrect values, or are empty (not set) and the LDAP server does not permit anonymous connections.
+* Se a MySQL account não nomear um user DN LDAP, a authentication LDAP usará o user name e a LDAP password fornecidos pelo client. Neste caso, o authentication plugin primeiro faz um *bind* (conexão) ao LDAP server usando o root DN e a password como credentials para encontrar o user DN com base no client user name e, em seguida, autentica esse user DN em relação à LDAP password. Este bind usando as root credentials falhará se o root DN e a password estiverem definidos com valores incorretos, ou se estiverem vazios (não definidos) e o LDAP server não permitir conexões anônimas.
 
-If the LDAP server finds no match or multiple matches, authentication fails and the client connection is rejected.
+Se o LDAP server não encontrar correspondência ou encontrar múltiplas correspondências, a authentication falha e a conexão do client é rejeitada.
 
-If the LDAP server finds a single match, LDAP authentication succeeds (assuming that the password is correct), the LDAP server returns the LDAP entry, and the authentication plugin determines the name of the authenticated user based on that entry:
+Se o LDAP server encontrar uma única correspondência, a authentication LDAP é bem-sucedida (assumindo que a password esteja correta), o LDAP server retorna a LDAP entry, e o authentication plugin determina o nome do user autenticado com base nessa entry:
 
-* If the LDAP entry has a group attribute (by default, the `cn` attribute), the plugin returns its value as the authenticated user name.
+* Se a LDAP entry tiver um group attribute (por padrão, o attribute `cn`), o plugin retorna seu valor como o authenticated user name.
 
-* If the LDAP entry has no group attribute, the authentication plugin returns the client user name as the authenticated user name.
+* Se a LDAP entry não tiver um group attribute, o authentication plugin retorna o client user name como o authenticated user name.
 
-The MySQL server compares the client user name with the authenticated user name to determine whether proxying occurs for the client session:
+O MySQL server compara o client user name com o authenticated user name para determinar se ocorrerá proxying para a client session:
 
-* If the names are the same, no proxying occurs: The MySQL account matching the client user name is used for privilege checking.
+* Se os nomes forem os mesmos, não ocorrerá proxying: A MySQL account que corresponde ao client user name é usada para privilege checking.
 
-* If the names differ, proxying occurs: MySQL looks for an account matching the authenticated user name. That account becomes the proxied user, which is used for privilege checking. The MySQL account that matched the client user name is treated as the external proxy user.
+* Se os nomes diferirem, ocorrerá proxying: O MySQL procura uma account que corresponda ao authenticated user name. Essa account se torna o proxied user, que é usado para privilege checking. A MySQL account que correspondeu ao client user name é tratada como o external proxy user.
 
-##### Installing LDAP Pluggable Authentication
+##### Instalando a Autenticação Pluggable LDAP
 
-This section describes how to install the server-side LDAP authentication plugins. For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Esta seção descreve como instalar os LDAP authentication plugins do lado do server. Para informações gerais sobre a instalação de plugins, consulte [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
 
-To be usable by the server, the plugin library files must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para serem utilizáveis pelo server, os arquivos library do plugin devem estar localizados no diretório de plugins do MySQL (o diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure o local do diretório de plugins definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do server.
 
-The server-side plugin library file base names are `authentication_ldap_simple` and `authentication_ldap_sasl`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
+Os nomes base dos arquivos library do plugin do lado do server são `authentication_ldap_simple` e `authentication_ldap_sasl`. O sufixo do nome do arquivo difere por plataforma (por exemplo, `.so` para sistemas Unix e tipo Unix, `.dll` para Windows).
 
-To load the plugins at server startup, use [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) options to name the library files that contain them. With this plugin-loading method, the options must be given each time the server starts. Also, specify values for any plugin-provided system variables you wish to configure.
+Para carregar os plugins na inicialização do server, use as opções [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) para nomear os arquivos library que os contêm. Com este método de carregamento de plugin, as opções devem ser fornecidas toda vez que o server iniciar. Além disso, especifique valores para quaisquer system variables fornecidas pelo plugin que você deseja configurar.
 
-Each server-side LDAP plugin exposes a set of system variables that enable its operation to be configured. Setting most of these is optional, but you must set the variables that specify the LDAP server host (so the plugin knows where to connect) and base distinguished name for LDAP bind operations (to limit the scope of searches and obtain faster searches). For details about all LDAP system variables, see [Section 6.4.1.13, “Pluggable Authentication System Variables”](pluggable-authentication-system-variables.html "6.4.1.13 Pluggable Authentication System Variables").
+Cada LDAP plugin do lado do server expõe um conjunto de system variables que permitem que sua operação seja configurada. Definir a maioria delas é opcional, mas você deve definir as variáveis que especificam o host do LDAP server (para que o plugin saiba onde se conectar) e o base distinguished name para operações de LDAP bind (para limitar o escopo das buscas e obter buscas mais rápidas). Para detalhes sobre todas as LDAP system variables, consulte [Section 6.4.1.13, “Pluggable Authentication System Variables”](pluggable-authentication-system-variables.html#pluggable-authentication-system-variables "6.4.1.13 Pluggable Authentication System Variables").
 
-To load the plugins and set the LDAP server host and base distinguished name for LDAP bind operations, put lines such as these in your `my.cnf` file, adjusting the `.so` suffix for your platform as necessary:
+Para carregar os plugins e definir o host do LDAP server e o base distinguished name para operações de LDAP bind, insira linhas como estas em seu arquivo `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -127,9 +127,9 @@ authentication_ldap_sasl_server_host=127.0.0.1
 authentication_ldap_sasl_bind_base_dn="dc=example,dc=com"
 ```
 
-After modifying `my.cnf`, restart the server to cause the new settings to take effect.
+Após modificar `my.cnf`, reinicie o server para que as novas configurações entrem em vigor.
 
-Alternatively, to load the plugins at runtime, use these statements, adjusting the `.so` suffix for your platform as necessary:
+Alternativamente, para carregar os plugins em tempo de execução (runtime), use estas instruções, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 INSTALL PLUGIN authentication_ldap_simple
@@ -138,9 +138,9 @@ INSTALL PLUGIN authentication_ldap_sasl
   SONAME 'authentication_ldap_sasl.so';
 ```
 
-[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") loads the plugin immediately, and also registers it in the `mysql.plugins` system table to cause the server to load it for each subsequent normal startup without the need for [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
+[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") carrega o plugin imediatamente e também o registra na system table `mysql.plugins` para fazer com que o server o carregue em cada inicialização normal subsequente sem a necessidade de [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
 
-After installing the plugins at runtime, their system variables become available and you can add settings for them to your `my.cnf` file to configure the plugins for subsequent restarts. For example:
+Após instalar os plugins em tempo de execução, suas system variables tornam-se disponíveis e você pode adicionar configurações para elas ao seu arquivo `my.cnf` para configurar os plugins para reinicializações subsequentes. Por exemplo:
 
 ```sql
 [mysqld]
@@ -150,9 +150,9 @@ authentication_ldap_sasl_server_host=127.0.0.1
 authentication_ldap_sasl_bind_base_dn="dc=example,dc=com"
 ```
 
-After modifying `my.cnf`, restart the server to cause the new settings to take effect.
+Após modificar `my.cnf`, reinicie o server para que as novas configurações entrem em vigor.
 
-To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Para verificar a instalação do plugin, examine a tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") do Information Schema ou use a instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -166,15 +166,15 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +----------------------------+---------------+
 ```
 
-If a plugin fails to initialize, check the server error log for diagnostic messages.
+Se um plugin falhar ao inicializar, verifique o error log do server para mensagens de diagnóstico.
 
-To associate MySQL accounts with an LDAP plugin, see [Using LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage "Using LDAP Pluggable Authentication").
+Para associar MySQL accounts a um LDAP plugin, consulte [Using LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage "Using LDAP Pluggable Authentication").
 
-Additional Notes for SELinux
+Notas Adicionais para SELinux
 
-On systems running EL6 or EL that have SELinux enabled, changes to the SELinux policy are required to enable the MySQL LDAP plugins to communicate with the LDAP service:
+Em sistemas rodando EL6 ou EL que têm SELinux habilitado, são necessárias mudanças na política SELinux para permitir que os MySQL LDAP plugins se comuniquem com o serviço LDAP:
 
-1. Create a file `mysqlldap.te` with these contents:
+1. Crie um arquivo `mysqlldap.te` com este conteúdo:
 
    ```sql
    module mysqlldap 1.0;
@@ -190,106 +190,106 @@ On systems running EL6 or EL that have SELinux enabled, changes to the SELinux p
    allow mysqld_t ldap_port_t:tcp_socket name_connect;
    ```
 
-2. Compile the security policy module into a binary representation:
+2. Compile o security policy module em uma representação binária:
 
    ```sql
    checkmodule -M -m mysqlldap.te -o mysqlldap.mod
    ```
 
-3. Create an SELinux policy module package:
+3. Crie um SELinux policy module package:
 
    ```sql
    semodule_package -m mysqlldap.mod  -o mysqlldap.pp
    ```
 
-4. Install the module package:
+4. Instale o module package:
 
    ```sql
    semodule -i mysqlldap.pp
    ```
 
-5. When the SELinux policy changes have been made, restart the MySQL server:
+5. Quando as alterações na política SELinux tiverem sido feitas, reinicie o MySQL server:
 
    ```sql
    service mysqld restart
    ```
 
-##### Uninstalling LDAP Pluggable Authentication
+##### Desinstalando a Autenticação Pluggable LDAP
 
-The method used to uninstall the LDAP authentication plugins depends on how you installed them:
+O método usado para desinstalar os LDAP authentication plugins depende de como você os instalou:
 
-* If you installed the plugins at server startup using [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) options, restart the server without those options.
+* Se você instalou os plugins na inicialização do server usando as opções [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), reinicie o server sem essas opções.
 
-* If you installed the plugins at runtime using [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), they remain installed across server restarts. To uninstall them, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
+* Se você instalou os plugins em tempo de execução usando [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), eles permanecem instalados em todas as reinicializações do server. Para desinstalá-los, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
 
   ```sql
   UNINSTALL PLUGIN authentication_ldap_simple;
   UNINSTALL PLUGIN authentication_ldap_sasl;
   ```
 
-In addition, remove from your `my.cnf` file any startup options that set LDAP plugin-related system variables.
+Além disso, remova do seu arquivo `my.cnf` quaisquer opções de inicialização que definam system variables relacionadas ao LDAP plugin.
 
-##### LDAP Pluggable Authentication and ldap.conf
+##### Autenticação Pluggable LDAP e ldap.conf
 
-For installations that use OpenLDAP, the `ldap.conf` file provides global defaults for LDAP clients. Options can be set in this file to affect LDAP clients, including the LDAP authentication plugins. OpenLDAP uses configuration options in this order of precedence:
+Para instalações que usam OpenLDAP, o arquivo `ldap.conf` fornece defaults globais para LDAP clients. Opções podem ser definidas neste arquivo para afetar os LDAP clients, incluindo os LDAP authentication plugins. O OpenLDAP usa opções de configuration nesta ordem de precedência:
 
-* Configuration specified by the LDAP client.
-* Configuration specified in the `ldap.conf` file. To disable use of this file, set the `LDAPNOINIT` environment variable.
+* Configuration especificada pelo LDAP client.
+* Configuration especificada no arquivo `ldap.conf`. Para desabilitar o uso deste arquivo, defina a environment variable `LDAPNOINIT`.
 
-* OpenLDAP library built-in defaults.
+* Defaults embutidos na OpenLDAP library.
 
-If the library defaults or `ldap.conf` values do not yield appropriate option values, an LDAP authentication plugin may be able to set related variables to affect the LDAP configuration directly. For example, LDAP plugins can override `ldap.conf` parameters for TLS configuration: System variables are available to enable TLS and control CA configuration, such as [`authentication_ldap_simple_tls`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_tls) and [`authentication_ldap_simple_ca_path`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_ca_path) for simple LDAP authentication, and [`authentication_ldap_sasl_tls`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_tls) and [`authentication_ldap_sasl_ca_path`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_ca_path) for SASL LDAP authentication.
+Se os library defaults ou os valores de `ldap.conf` não resultarem em valores de opção apropriados, um LDAP authentication plugin pode ser capaz de definir variáveis relacionadas para afetar a configuração LDAP diretamente. Por exemplo, os LDAP plugins podem sobrescrever parâmetros de `ldap.conf` para TLS configuration: System variables estão disponíveis para habilitar TLS e controlar a CA configuration, como [`authentication_ldap_simple_tls`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_tls) e [`authentication_ldap_simple_ca_path`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_ca_path) para authentication LDAP simples, e [`authentication_ldap_sasl_tls`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_tls) e [`authentication_ldap_sasl_ca_path`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_ca_path) para authentication LDAP SASL.
 
-For more information about `ldap.conf` consult the `ldap.conf(5)` man page.
+Para mais informações sobre `ldap.conf`, consulte a página man `ldap.conf(5)`.
 
-##### Using LDAP Pluggable Authentication
+##### Usando a Autenticação Pluggable LDAP
 
-This section describes how to enable MySQL accounts to connect to the MySQL server using LDAP pluggable authentication. It is assumed that the server is running with the appropriate server-side plugins enabled, as described in [Installing LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-installation "Installing LDAP Pluggable Authentication"), and that the appropriate client-side plugins are available on the client host.
+Esta seção descreve como habilitar MySQL accounts para se conectarem ao MySQL server usando a Autenticação Pluggable LDAP. Assume-se que o server esteja rodando com os plugins do lado do server apropriados habilitados, conforme descrito em [Installing LDAP Pluggable Authentication](ldap-pluggable-authentication.html#ldap-pluggable-authentication-installation "Instalando a Autenticação Pluggable LDAP"), e que os plugins do lado do client apropriados estejam disponíveis no host do client.
 
-This section does not describe LDAP configuration or administration. You are assumed to be familiar with those topics.
+Esta seção não descreve configuration ou administration LDAP. Assume-se que você esteja familiarizado com esses tópicos.
 
-The two server-side LDAP plugins each work with a specific client-side plugin:
+Os dois plugins LDAP do lado do server funcionam cada um com um plugin do lado do client específico:
 
-* The server-side `authentication_ldap_simple` plugin performs simple LDAP authentication. For connections by accounts that use this plugin, client programs use the client-side `mysql_clear_password` plugin, which sends the password to the server as cleartext. No password hashing or encryption is used, so a secure connection between the MySQL client and server is recommended to prevent password exposure.
+* O plugin do lado do server `authentication_ldap_simple` executa authentication LDAP simples. Para conexões por accounts que usam este plugin, os programas client usam o plugin do lado do client `mysql_clear_password`, que envia a password para o server como cleartext. Nenhuma hash de password ou encryption é usada, portanto, é recomendável uma secure connection entre o MySQL client e o server para evitar a exposição da password.
 
-* The server-side `authentication_ldap_sasl` plugin performs SASL-based LDAP authentication. For connections by accounts that use this plugin, client programs use the client-side `authentication_ldap_sasl_client` plugin. The client-side and server-side SASL LDAP plugins use SASL messages for secure transmission of credentials within the LDAP protocol, to avoid sending the cleartext password between the MySQL client and server.
+* O plugin do lado do server `authentication_ldap_sasl` executa authentication LDAP baseada em SASL. Para conexões por accounts que usam este plugin, os programas client usam o plugin do lado do client `authentication_ldap_sasl_client`. Os SASL LDAP plugins do lado do client e do lado do server usam SASL messages para transmissão segura de credentials dentro do protocolo LDAP, para evitar o envio da cleartext password entre o MySQL client e o server.
 
-Overall requirements for LDAP authentication of MySQL users:
+Requisitos gerais para authentication LDAP de usuários MySQL:
 
-* There must be an LDAP directory entry for each user to be authenticated.
+* Deve haver uma LDAP directory entry para cada user a ser autenticado.
 
-* There must be a MySQL user account that specifies a server-side LDAP authentication plugin and optionally names the associated LDAP user distinguished name (DN). (To associate an LDAP user DN with a MySQL account, include a `BY` clause in the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement that creates the account.) If an account names no LDAP string, LDAP authentication uses the user name specified by the client to find the LDAP entry.
+* Deve haver uma MySQL user account que especifique um LDAP authentication plugin do lado do server e opcionalmente nomeie o user distinguished name (DN) LDAP associado. (Para associar um user DN LDAP a uma MySQL account, inclua uma cláusula `BY` na instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") que cria a account.) Se uma account não nomear uma LDAP string, a authentication LDAP usará o user name especificado pelo client para encontrar a LDAP entry.
 
-* Client programs connect using the connection method appropriate for the server-side authentication plugin the MySQL account uses. For LDAP authentication, connections require the MySQL user name and LDAP password. In addition, for accounts that use the server-side `authentication_ldap_simple` plugin, invoke client programs with the `--enable-cleartext-plugin` option to enable the client-side `mysql_clear_password` plugin.
+* Os programas client se conectam usando o método de conexão apropriado para o authentication plugin do lado do server que a MySQL account usa. Para authentication LDAP, as conexões requerem o MySQL user name e a LDAP password. Além disso, para accounts que usam o plugin do lado do server `authentication_ldap_simple`, invoque os programas client com a opção `--enable-cleartext-plugin` para habilitar o plugin do lado do client `mysql_clear_password`.
 
-The instructions here assume the following scenario:
+As instruções aqui assumem o seguinte cenário:
 
-* MySQL users `betsy` and `boris` authenticate to the LDAP entries for `betsy_ldap` and `boris_ldap`, respectively. (It is not necessary that the MySQL and LDAP user names differ. The use of different names in this discussion helps clarify whether an operation context is MySQL or LDAP.)
+* Os usuários MySQL `betsy` e `boris` autenticam-se nas LDAP entries para `betsy_ldap` e `boris_ldap`, respectivamente. (Não é necessário que os user names do MySQL e do LDAP sejam diferentes. O uso de nomes diferentes nesta discussão ajuda a esclarecer se um contexto de operação é MySQL ou LDAP.)
 
-* LDAP entries use the `uid` attribute to specify user names. This may vary depending on LDAP server. Some LDAP servers use the `cn` attribute for user names rather than `uid`. To change the attribute, modify the [`authentication_ldap_simple_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_user_search_attr) or [`authentication_ldap_sasl_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_user_search_attr) system variable appropriately.
+* As LDAP entries usam o attribute `uid` para especificar os user names. Isso pode variar dependendo do LDAP server. Alguns LDAP servers usam o attribute `cn` para user names em vez de `uid`. Para alterar o attribute, modifique a system variable [`authentication_ldap_simple_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_user_search_attr) ou [`authentication_ldap_sasl_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_user_search_attr) de forma apropriada.
 
-* These LDAP entries are available in the directory managed by the LDAP server, to provide distinguished name values that uniquely identify each user:
+* Estas LDAP entries estão disponíveis no directory gerenciado pelo LDAP server, para fornecer distinguished name values que identificam exclusivamente cada user:
 
   ```sql
   uid=betsy_ldap,ou=People,dc=example,dc=com
   uid=boris_ldap,ou=People,dc=example,dc=com
   ```
 
-* [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statements that create MySQL accounts name an LDAP user in the `BY` clause, to indicate which LDAP entry the MySQL account authenticates against.
+* As instruções [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") que criam MySQL accounts nomeiam um user LDAP na cláusula `BY`, para indicar em qual LDAP entry a MySQL account se autentica.
 
-The instructions for setting up an account that uses LDAP authentication depend on which server-side LDAP plugin is used. The following sections describe several usage scenarios.
+As instruções para configurar uma account que usa authentication LDAP dependem de qual LDAP plugin do lado do server é usado. As seções a seguir descrevem vários cenários de uso.
 
-##### Simple LDAP Authentication (Without Proxying)
+##### Autenticação LDAP Simples (Sem Proxying)
 
-The procedure outlined in this section requires that [`authentication_ldap_simple_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_group_search_attr) be set to an empty string, like this:
+O procedimento descrito nesta seção exige que [`authentication_ldap_simple_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_group_search_attr) seja definido como uma string vazia, assim:
 
 ```sql
 SET GLOBAL.authentication_ldap_simple_group_search_attr='';
 ```
 
-Otherwise, proxying is used by default.
+Caso contrário, o proxying é usado por padrão.
 
-To set up a MySQL account for simple LDAP authentication, use a [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement to specify the `authentication_ldap_simple` plugin, optionally including the LDAP user distinguished name (DN), as shown here:
+Para configurar uma MySQL account para authentication LDAP simples, use uma instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") para especificar o plugin `authentication_ldap_simple`, incluindo opcionalmente o LDAP user distinguished name (DN), conforme mostrado aqui:
 
 ```sql
 CREATE USER user
@@ -297,13 +297,13 @@ CREATE USER user
   [BY 'LDAP user DN'];
 ```
 
-Suppose that MySQL user `betsy` has this entry in the LDAP directory:
+Suponha que o user MySQL `betsy` tenha esta entry no LDAP directory:
 
 ```sql
 uid=betsy_ldap,ou=People,dc=example,dc=com
 ```
 
-Then the statement to create the MySQL account for `betsy` looks like this:
+Então a instrução para criar a MySQL account para `betsy` fica assim:
 
 ```sql
 CREATE USER 'betsy'@'localhost'
@@ -311,46 +311,46 @@ CREATE USER 'betsy'@'localhost'
   AS 'uid=betsy_ldap,ou=People,dc=example,dc=com';
 ```
 
-The authentication string specified in the `BY` clause does not include the LDAP password. That must be provided by the client user at connect time.
+A authentication string especificada na cláusula `BY` não inclui a LDAP password. Isso deve ser fornecido pelo client user no momento da conexão (connect time).
 
-Clients connect to the MySQL server by providing the MySQL user name and LDAP password, and by enabling the client-side `mysql_clear_password` plugin:
+Clients se conectam ao MySQL server fornecendo o MySQL user name e a LDAP password, e habilitando o plugin do lado do client `mysql_clear_password`:
 
 ```sql
 $> mysql --user=betsy --password --enable-cleartext-plugin
 Enter password: betsy_ldap_password
 ```
 
-Note
+Nota
 
-The client-side `mysql_clear_password` authentication plugin leaves the password untouched, so client programs send it to the MySQL server as cleartext. This enables the password to be passed as is to the LDAP server. A cleartext password is necessary to use the server-side LDAP library without SASL, but may be a security problem in some configurations. These measures minimize the risk:
+O authentication plugin do lado do client `mysql_clear_password` deixa a password intacta, então os programas client a enviam para o MySQL server como cleartext. Isso permite que a password seja passada como está para o LDAP server. Uma cleartext password é necessária para usar a LDAP library do lado do server sem SASL, mas pode ser um problema de security em algumas configurações. Estas medidas minimizam o risco:
 
-* To make inadvertent use of the `mysql_clear_password` plugin less likely, MySQL clients must explicitly enable it (for example, with the `--enable-cleartext-plugin` option). See [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
+* Para tornar o uso inadvertido do plugin `mysql_clear_password` menos provável, os MySQL clients devem habilitá-lo explicitamente (por exemplo, com a opção `--enable-cleartext-plugin`). Consulte [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
 
-* To avoid password exposure with the `mysql_clear_password` plugin enabled, MySQL clients should connect to the MySQL server using an encrypted connection. See [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
+* Para evitar a exposição da password com o plugin `mysql_clear_password` habilitado, os MySQL clients devem se conectar ao MySQL server usando uma encrypted connection. Consulte [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
 
-The authentication process occurs as follows:
+O authentication process ocorre da seguinte forma:
 
-1. The client-side plugin sends `betsy` and *`betsy_password`* as the client user name and LDAP password to the MySQL server.
+1. O plugin do lado do client envia `betsy` e *`betsy_password`* como o client user name e LDAP password para o MySQL server.
 
-2. The connection attempt matches the `'betsy'@'localhost'` account. The server-side LDAP plugin finds that this account has an authentication string of `'uid=betsy_ldap,ou=People,dc=example,dc=com'` to name the LDAP user DN. The plugin sends this string and the LDAP password to the LDAP server.
+2. A tentativa de conexão corresponde à account `'betsy'@'localhost'`. O LDAP plugin do lado do server descobre que esta account tem uma authentication string de `'uid=betsy_ldap,ou=People,dc=example,dc=com'` para nomear o LDAP user DN. O plugin envia esta string e a LDAP password para o LDAP server.
 
-3. The LDAP server finds the LDAP entry for `betsy_ldap` and the password matches, so LDAP authentication succeeds.
+3. O LDAP server encontra a LDAP entry para `betsy_ldap` e a password corresponde, então a authentication LDAP é bem-sucedida.
 
-4. The LDAP entry has no group attribute, so the server-side plugin returns the client user name (`betsy`) as the authenticated user. This is the same user name supplied by the client, so no proxying occurs and the client session uses the `'betsy'@'localhost'` account for privilege checking.
+4. A LDAP entry não tem group attribute, então o plugin do lado do server retorna o client user name (`betsy`) como o authenticated user. Este é o mesmo user name fornecido pelo client, então não ocorre proxying e a client session usa a account `'betsy'@'localhost'` para privilege checking.
 
-Had the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement contained no `BY` clause to specify the `betsy_ldap` LDAP distinguished name, authentication attempts would use the user name provided by the client (in this case, `betsy`). In the absence of an LDAP entry for `betsy`, authentication would fail.
+Se a instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") não contivesse uma cláusula `BY` para especificar o distinguished name LDAP de `betsy_ldap`, as tentativas de authentication usariam o user name fornecido pelo client (neste caso, `betsy`). Na ausência de uma LDAP entry para `betsy`, a authentication falharia.
 
-##### SASL-Based LDAP Authentication (Without Proxying)
+##### Autenticação LDAP Baseada em SASL (Sem Proxying)
 
-The procedure outlined in this section requires that [`authentication_ldap_sasl_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_group_search_attr) be set to an empty string, like this:
+O procedimento descrito nesta seção exige que [`authentication_ldap_sasl_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_group_search_attr) seja definido como uma string vazia, assim:
 
 ```sql
 SET GLOBAL.authentication_ldap_sasl_group_search_attr='';
 ```
 
-Otherwise, proxying is used by default.
+Caso contrário, o proxying é usado por padrão.
 
-To set up a MySQL account for SALS LDAP authentication, use a [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement to specify the `authentication_ldap_sasl` plugin, optionally including the LDAP user distinguished name (DN), as shown here:
+Para configurar uma MySQL account para authentication LDAP SASL, use uma instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") para especificar o plugin `authentication_ldap_sasl`, incluindo opcionalmente o LDAP user distinguished name (DN), conforme mostrado aqui:
 
 ```sql
 CREATE USER user
@@ -358,13 +358,13 @@ CREATE USER user
   [BY 'LDAP user DN'];
 ```
 
-Suppose that MySQL user `boris` has this entry in the LDAP directory:
+Suponha que o user MySQL `boris` tenha esta entry no LDAP directory:
 
 ```sql
 uid=boris_ldap,ou=People,dc=example,dc=com
 ```
 
-Then the statement to create the MySQL account for `boris` looks like this:
+Então a instrução para criar a MySQL account para `boris` fica assim:
 
 ```sql
 CREATE USER 'boris'@'localhost'
@@ -372,62 +372,62 @@ CREATE USER 'boris'@'localhost'
   AS 'uid=boris_ldap,ou=People,dc=example,dc=com';
 ```
 
-The authentication string specified in the `BY` clause does not include the LDAP password. That must be provided by the client user at connect time.
+A authentication string especificada na cláusula `BY` não inclui a LDAP password. Isso deve ser fornecido pelo client user no momento da conexão (connect time).
 
-Clients connect to the MySQL server by providing the MySQL user name and LDAP password:
+Clients se conectam ao MySQL server fornecendo o MySQL user name e a LDAP password:
 
 ```sql
 $> mysql --user=boris --password
 Enter password: boris_ldap_password
 ```
 
-For the server-side `authentication_ldap_sasl` plugin, clients use the client-side `authentication_ldap_sasl_client` plugin. If a client program does not find the client-side plugin, specify a [`--plugin-dir`](connection-options.html#option_general_plugin-dir) option that names the directory where the plugin library file is installed.
+Para o plugin do lado do server `authentication_ldap_sasl`, os clients usam o plugin do lado do client `authentication_ldap_sasl_client`. Se um programa client não encontrar o plugin do lado do client, especifique uma opção [`--plugin-dir`](connection-options.html#option_general_plugin-dir) que nomeia o diretório onde o arquivo library do plugin está instalado.
 
-The authentication process for `boris` is similar to that previously described for `betsy` with simple LDAP authentication, except that the client-side and server-side SASL LDAP plugins use SASL messages for secure transmission of credentials within the LDAP protocol, to avoid sending the cleartext password between the MySQL client and server.
+O authentication process para `boris` é semelhante ao descrito anteriormente para `betsy` com authentication LDAP simples, exceto que os SASL LDAP plugins do lado do client e do lado do server usam SASL messages para transmissão segura de credentials dentro do protocolo LDAP, para evitar o envio da cleartext password entre o MySQL client e o server.
 
-##### LDAP Authentication with Proxying
+##### Autenticação LDAP com Proxying
 
-LDAP authentication plugins support proxying, enabling a user to connect to the MySQL server as one user but assume the privileges of a different user. This section describes basic LDAP plugin proxy support. The LDAP plugins also support specification of group preference and proxy user mapping; see [LDAP Authentication Group Preference and Mapping Specification](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-group-mapping "LDAP Authentication Group Preference and Mapping Specification").
+Os LDAP authentication plugins suportam proxying, permitindo que um user se conecte ao MySQL server como um user, mas assuma os privileges de um user diferente. Esta seção descreve o suporte básico a LDAP plugin proxy. Os LDAP plugins também suportam a especificação de group preference e mapeamento de proxy user; consulte [LDAP Authentication Group Preference and Mapping Specification](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-group-mapping "Especificação de Mapeamento e Preferência de Group na Autenticação LDAP").
 
-The proxying implementation described here is based on use of LDAP group attribute values to map connecting MySQL users who authenticate using LDAP onto other MySQL accounts that define different sets of privileges. Users do not connect directly through the accounts that define the privileges. Instead, they connect through a default proxy account authenticated with LDAP, such that all external logins are mapped to the proxied MySQL accounts that hold the privileges. Any user who connects using the proxy account is mapped to one of those proxied MySQL accounts, the privileges for which determine the database operations permitted to the external user.
+A implementação de proxying descrita aqui é baseada no uso de LDAP group attribute values para mapear usuários MySQL que se autenticam usando LDAP para outras MySQL accounts que definem diferentes conjuntos de privileges. Os users não se conectam diretamente através das accounts que definem os privileges. Em vez disso, eles se conectam através de uma default proxy account autenticada com LDAP, de modo que todos os logins externos são mapeados para as MySQL accounts com proxy (proxied accounts) que detêm os privileges. Qualquer user que se conecta usando a proxy account é mapeado para uma dessas proxied MySQL accounts, cujos privileges determinam as database operations permitidas ao user externo.
 
-The instructions here assume the following scenario:
+As instruções aqui assumem o seguinte cenário:
 
-* LDAP entries use the `uid` and `cn` attributes to specify user name and group values, respectively. To use different user and group attribute names, set the appropriate plugin-specific system variables:
+* As LDAP entries usam os attributes `uid` e `cn` para especificar os user name e group values, respectivamente. Para usar diferentes user e group attribute names, defina as system variables apropriadas específicas do plugin:
 
-  + For the `authentication_ldap_simple` plugin: Set [`authentication_ldap_simple_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_user_search_attr) and [`authentication_ldap_simple_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_group_search_attr).
+  + Para o plugin `authentication_ldap_simple`: Defina [`authentication_ldap_simple_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_user_search_attr) e [`authentication_ldap_simple_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_group_search_attr).
 
-  + For the `authentication_ldap_sasl` plugin: Set [`authentication_ldap_sasl_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_user_search_attr) and [`authentication_ldap_sasl_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_group_search_attr).
+  + Para o plugin `authentication_ldap_sasl`: Defina [`authentication_ldap_sasl_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_user_search_attr) e [`authentication_ldap_sasl_group_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_group_search_attr).
 
-* These LDAP entries are available in the directory managed by the LDAP server, to provide distinguished name values that uniquely identify each user:
+* Estas LDAP entries estão disponíveis no directory gerenciado pelo LDAP server, para fornecer distinguished name values que identificam exclusivamente cada user:
 
   ```sql
   uid=basha,ou=People,dc=example,dc=com,cn=accounting
   uid=basil,ou=People,dc=example,dc=com,cn=front_office
   ```
 
-  At connect time, the group attribute values become the authenticated user names, so they name the `accounting` and `front_office` proxied accounts.
+  No connect time, os group attribute values se tornam os authenticated user names, então eles nomeiam as proxied accounts `accounting` e `front_office`.
 
-* The examples assume use of SASL LDAP authentication. Make the appropriate adjustments for simple LDAP authentication.
+* Os exemplos assumem o uso de authentication LDAP SASL. Faça os ajustes apropriados para authentication LDAP simples.
 
-Create the default proxy MySQL account:
+Crie a default proxy MySQL account:
 
 ```sql
 CREATE USER ''@'%'
   IDENTIFIED WITH authentication_ldap_sasl;
 ```
 
-The proxy account definition has no `AS 'auth_string'` clause to name an LDAP user DN. Thus:
+A definição da proxy account não possui uma cláusula `AS 'auth_string'` para nomear um LDAP user DN. Assim:
 
-* When a client connects, the client user name becomes the LDAP user name to search for.
+* Quando um client se conecta, o client user name torna-se o user name LDAP a ser pesquisado.
 
-* The matching LDAP entry is expected to include a group attribute naming the proxied MySQL account that defines the privileges the client should have.
+* Espera-se que a LDAP entry correspondente inclua um group attribute nomeando a proxied MySQL account que define os privileges que o client deve ter.
 
-Note
+Nota
 
-If your MySQL installation has anonymous users, they might conflict with the default proxy user. For more information about this issue, and ways of dealing with it, see [Default Proxy User and Anonymous User Conflicts](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts").
+Se sua instalação MySQL tiver anonymous users, eles podem entrar em conflito com o default proxy user. Para mais informações sobre este problema e formas de resolvê-lo, consulte [Default Proxy User and Anonymous User Conflicts](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts").
 
-Create the proxied accounts and grant to each one the privileges it should have:
+Crie as proxied accounts e conceda a cada uma os privileges que ela deve ter:
 
 ```sql
 CREATE USER 'accounting'@'localhost'
@@ -443,9 +443,9 @@ GRANT ALL PRIVILEGES
   TO 'front_office'@'localhost';
 ```
 
-The proxied accounts use the `mysql_no_login` authentication plugin to prevent clients from using the accounts to log in directly to the MySQL server. Instead, users who authenticate using LDAP are expected to use the default `''@'%'` proxy account. (This assumes that the `mysql_no_login` plugin is installed. For instructions, see [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").) For alternative methods of protecting proxied accounts against direct use, see [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
+As proxied accounts usam o `mysql_no_login` authentication plugin para impedir que os clients usem as accounts para fazer login diretamente no MySQL server. Em vez disso, espera-se que os users que se autenticam usando LDAP usem a default `''@'%'` proxy account. (Isso pressupõe que o plugin `mysql_no_login` esteja instalado. Para obter instruções, consulte [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").) Para métodos alternativos de proteção de proxied accounts contra uso direto, consulte [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
 
-Grant to the proxy account the [`PROXY`](privileges-provided.html#priv_proxy) privilege for each proxied account:
+Conceda à proxy account o privilege [`PROXY`](privileges-provided.html#priv_proxy) para cada proxied account:
 
 ```sql
 GRANT PROXY
@@ -456,26 +456,26 @@ GRANT PROXY
   TO ''@'%';
 ```
 
-Use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") command-line client to connect to the MySQL server as `basha`.
+Use o client de linha de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para se conectar ao MySQL server como `basha`.
 
 ```sql
 $> mysql --user=basha --password
 Enter password: basha_password (basha LDAP password)
 ```
 
-Authentication occurs as follows:
+A authentication ocorre da seguinte forma:
 
-1. The server authenticates the connection using the default `''@'%'` proxy account, for client user `basha`.
+1. O server autentica a conexão usando a default `''@'%'` proxy account, para o client user `basha`.
 
-2. The matching LDAP entry is:
+2. A LDAP entry correspondente é:
 
    ```sql
    uid=basha,ou=People,dc=example,dc=com,cn=accounting
    ```
 
-3. The matching LDAP entry has group attribute `cn=accounting`, so `accounting` becomes the authenticated proxied user.
+3. A LDAP entry correspondente tem o group attribute `cn=accounting`, então `accounting` torna-se o authenticated proxied user.
 
-4. The authenticated user differs from the client user name `basha`, with the result that `basha` is treated as a proxy for `accounting`, and `basha` assumes the privileges of the proxied `accounting` account. The following query returns output as shown:
+4. O authenticated user difere do client user name `basha`, com o resultado de que `basha` é tratado como um proxy para `accounting`, e `basha` assume os privileges da proxied account `accounting`. A seguinte query retorna output conforme mostrado:
 
    ```sql
    mysql> SELECT USER(), CURRENT_USER(), @@proxy_user;
@@ -486,28 +486,28 @@ Authentication occurs as follows:
    +-----------------+----------------------+--------------+
    ```
 
-This demonstrates that `basha` uses the privileges granted to the proxied `accounting` MySQL account, and that proxying occurs through the default proxy user account.
+Isso demonstra que `basha` usa os privileges concedidos à proxied MySQL account `accounting`, e que o proxying ocorre através da default proxy user account.
 
-Now connect as `basil` instead:
+Agora conecte-se como `basil`:
 
 ```sql
 $> mysql --user=basil --password
 Enter password: basil_password (basil LDAP password)
 ```
 
-The authentication process for `basil` is similar to that previously described for `basha`:
+O authentication process para `basil` é semelhante ao descrito anteriormente para `basha`:
 
-1. The server authenticates the connection using the default `''@'%'` proxy account, for client user `basil`.
+1. O server autentica a conexão usando a default `''@'%'` proxy account, para o client user `basil`.
 
-2. The matching LDAP entry is:
+2. A LDAP entry correspondente é:
 
    ```sql
    uid=basil,ou=People,dc=example,dc=com,cn=front_office
    ```
 
-3. The matching LDAP entry has group attribute `cn=front_office`, so `front_office` becomes the authenticated proxied user.
+3. A LDAP entry correspondente tem o group attribute `cn=front_office`, então `front_office` torna-se o authenticated proxied user.
 
-4. The authenticated user differs from the client user name `basil`, with the result that `basil` is treated as a proxy for `front_office`, and `basil` assumes the privileges of the proxied `front_office` account. The following query returns output as shown:
+4. O authenticated user difere do client user name `basil`, com o resultado de que `basil` é tratado como um proxy para `front_office`, e `basil` assume os privileges da proxied account `front_office`. A seguinte query retorna output conforme mostrado:
 
    ```sql
    mysql> SELECT USER(), CURRENT_USER(), @@proxy_user;
@@ -518,19 +518,19 @@ The authentication process for `basil` is similar to that previously described f
    +-----------------+------------------------+--------------+
    ```
 
-This demonstrates that `basil` uses the privileges granted to the proxied `front_office` MySQL account, and that proxying occurs through the default proxy user account.
+Isso demonstra que `basil` usa os privileges concedidos à proxied MySQL account `front_office`, e que o proxying ocorre através da default proxy user account.
 
-##### LDAP Authentication Group Preference and Mapping Specification
+##### Especificação de Mapeamento e Preferência de Group na Autenticação LDAP
 
-As described in [LDAP Authentication with Proxying](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-proxying "LDAP Authentication with Proxying"), basic LDAP authentication proxying works by the principle that the plugin uses the first group name returned by the LDAP server as the MySQL proxied user account name. This simple capability does not enable specifying any preference about which group name to use if the LDAP server returns multiple group names, or specifying any name other than the group name as the proxied user name.
+Conforme descrito em [LDAP Authentication with Proxying](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-proxying "Autenticação LDAP com Proxying"), o basic LDAP authentication proxying funciona pelo princípio de que o plugin usa o primeiro group name retornado pelo LDAP server como o MySQL proxied user account name. Esta capacidade simples não permite especificar nenhuma preference sobre qual group name usar se o LDAP server retornar múltiplos group names, ou especificar qualquer nome diferente do group name como o proxied user name.
 
-As of MySQL 5.7.25, for MySQL accounts that use LDAP authentication, the authentication string can specify the following information to enable greater proxying flexibility:
+A partir do MySQL 5.7.25, para MySQL accounts que usam authentication LDAP, a authentication string pode especificar as seguintes informações para permitir maior flexibilidade de proxying:
 
-* A list of groups in preference order, such that the plugin uses the first group name in the list that matches a group returned by the LDAP server.
+* Uma lista de groups em ordem de preference, de modo que o plugin use o primeiro group name na lista que corresponda a um group retornado pelo LDAP server.
 
-* A mapping from group names to proxied user names, such that a group name when matched can provide a specified name to use as the proxied user. This provides an alternative to using the group name as the proxied user.
+* Um mapping de group names para proxied user names, de modo que um group name, quando correspondido, possa fornecer um nome especificado para ser usado como o proxied user. Isso fornece uma alternativa ao uso do group name como o proxied user.
 
-Consider the following MySQL proxy account definition:
+Considere a seguinte MySQL proxy account definition:
 
 ```sql
 CREATE USER ''@'%'
@@ -538,37 +538,37 @@ CREATE USER ''@'%'
   AS '+ou=People,dc=example,dc=com#grp1=usera,grp2,grp3=userc';
 ```
 
-The authentication string has a user DN suffix `ou=People,dc=example,dc=com` prefixed by the `+` character. Thus, as described in [LDAP Authentication User DN Suffixes](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-user-dn-suffix "LDAP Authentication User DN Suffixes"), the full user DN is constructed from the user DN suffix as specified, plus the client user name as the `uid` attribute.
+A authentication string tem um user DN suffix `ou=People,dc=example,dc=com` prefixado pelo caractere `+`. Assim, conforme descrito em [LDAP Authentication User DN Suffixes](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-user-dn-suffix "Sufixos DN de User na Autenticação LDAP"), o full user DN é construído a partir do user DN suffix conforme especificado, mais o client user name como o attribute `uid`.
 
-The remaining part of the authentication string begins with `#`, which signifies the beginning of group preference and mapping information. This part of the authentication string lists group names in the order `grp1`, `grp2`, `grp3`. The LDAP plugin compares that list with the set of group names returned by the LDAP server, looking in list order for a match against the returned names. The plugin uses the first match, or if there is no match, authentication fails.
+A parte restante da authentication string começa com `#`, o que significa o início das informações de group preference e mapping. Esta parte da authentication string lista group names na ordem `grp1`, `grp2`, `grp3`. O LDAP plugin compara essa lista com o conjunto de group names retornado pelo LDAP server, procurando na ordem da lista por uma correspondência contra os nomes retornados. O plugin usa a primeira correspondência, ou se não houver correspondência, a authentication falha.
 
-Suppose that the LDAP server returns groups `grp3`, `grp2`, and `grp7`. The LDAP plugin uses `grp2` because it is the first group in the authentication string that matches, even though it is not the first group returned by the LDAP server. If the LDAP server returns `grp4`, `grp2`, and `grp1`, the plugin uses `grp1` even though `grp2` also matches. `grp1` has a precedence higher than `grp2` because it is listed earlier in the authentication string.
+Suponha que o LDAP server retorne os groups `grp3`, `grp2` e `grp7`. O LDAP plugin usa `grp2` porque é o primeiro group na authentication string que corresponde, mesmo que não seja o primeiro group retornado pelo LDAP server. Se o LDAP server retornar `grp4`, `grp2` e `grp1`, o plugin usa `grp1` mesmo que `grp2` também corresponda. `grp1` tem uma precedence maior que `grp2` porque está listado antes na authentication string.
 
-Assuming that the plugin finds a group name match, it performs mapping from that group name to the MySQL proxied user name, if there is one. For the example proxy account, mapping occurs as follows:
+Assumindo que o plugin encontre uma correspondência de group name, ele executa o mapping daquele group name para o MySQL proxied user name, se houver um. Para a proxy account de exemplo, o mapping ocorre da seguinte forma:
 
-* If the matching group name is `grp1` or `grp3`, those are associated in the authentication string with user names `usera` and `userc`, respectively. The plugin uses the corresponding associated user name as the proxied user name.
+* Se o group name correspondente for `grp1` ou `grp3`, eles estão associados na authentication string com os user names `usera` e `userc`, respectivamente. O plugin usa o user name associado correspondente como o proxied user name.
 
-* If the matching group name is `grp2`, there is no associated user name in the authentication string. The plugin uses `grp2` as the proxied user name.
+* Se o group name correspondente for `grp2`, não há user name associado na authentication string. O plugin usa `grp2` como o proxied user name.
 
-If the LDAP server returns a group in DN format, the LDAP plugin parses the group DN to extract the group name from it.
+Se o LDAP server retornar um group em formato DN, o LDAP plugin analisa o group DN para extrair o group name dele.
 
-To specify LDAP group preference and mapping information, these principles apply:
+Para especificar informações de LDAP group preference e mapping, estes princípios se aplicam:
 
-* Begin the group preference and mapping part of the authentication string with a `#` prefix character.
+* Comece a parte de group preference e mapping da authentication string com um caractere prefixo `#`.
 
-* The group preference and mapping specification is a list of one or more items, separated by commas. Each item has the form `group_name=user_name` or *`group_name`*. Items should be listed in group name preference order. For a group name selected by the plugin as a match from set of group names returned by the LDAP server, the two syntaxes differ in effect as follows:
+* A especificação de group preference e mapping é uma lista de um ou mais itens, separados por vírgulas. Cada item tem a forma `group_name=user_name` ou *`group_name`*. Os itens devem ser listados na ordem de group name preference. Para um group name selecionado pelo plugin como uma correspondência do conjunto de group names retornados pelo LDAP server, as duas sintaxes diferem em efeito da seguinte forma:
 
-  + For an item specified as `group_name=user_name` (with a user name), the group name maps to the user name, which is used as the MySQL proxied user name.
+  + Para um item especificado como `group_name=user_name` (com um user name), o group name mapeia para o user name, que é usado como o MySQL proxied user name.
 
-  + For an item specified as *`group_name`* (with no user name), the group name is used as the MySQL proxied user name.
+  + Para um item especificado como *`group_name`* (sem user name), o group name é usado como o MySQL proxied user name.
 
-* To quote a group or user name that contains special characters such as space, surround it by double quote (`"`) characters. For example, if an item has group and user names of `my group name` and `my user name`, it must be written in a group mapping using quotes:
+* Para citar um group ou user name que contenha special characters, como espaço, cerque-o com caracteres de double quote (`"`). Por exemplo, se um item tiver group e user names de `my group name` e `my user name`, ele deve ser escrito em um group mapping usando quotes:
 
   ```sql
   "my group name"="my user name"
   ```
 
-  If an item has group and user names of `my_group_name` and `my_user_name` (which contain no special characters), it may but need not be written using quotes. Any of the following are valid:
+* Se um item tiver group e user names de `my_group_name` e `my_user_name` (que não contêm special characters), ele pode ou não ser escrito usando quotes. Qualquer um dos seguintes é válido:
 
   ```sql
   my_group_name=my_user_name
@@ -577,19 +577,19 @@ To specify LDAP group preference and mapping information, these principles apply
   "my_group_name"="my_user_name"
   ```
 
-* To escape a character, precede it by a backslash (`\`). This is useful particularly to include a literal double quote or backslash, which are otherwise not included literally.
+* Para escapar um caractere, preceda-o com uma backslash (`\`). Isso é útil particularmente para incluir uma double quote ou backslash literal, que de outra forma não seriam incluídas literalmente.
 
-* A user DN need not be present in the authentication string, but if present, it must precede the group preference and mapping part. A user DN can be given as a full user DN, or as a user DN suffix with a `+` prefix character. (See [LDAP Authentication User DN Suffixes](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-user-dn-suffix "LDAP Authentication User DN Suffixes").)
+* Um user DN não precisa estar presente na authentication string, mas se estiver, deve preceder a parte de group preference e mapping. Um user DN pode ser fornecido como um full user DN, ou como um user DN suffix com um caractere prefixo `+`. (Consulte [LDAP Authentication User DN Suffixes](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-user-dn-suffix "Sufixos DN de User na Autenticação LDAP").)
 
-##### LDAP Authentication User DN Suffixes
+##### Sufixos DN de User na Autenticação LDAP
 
-As of MySQL 5.7.21, LDAP authentication plugins permit the authentication string that provides user DN information to begin with a `+` prefix character:
+A partir do MySQL 5.7.21, os LDAP authentication plugins permitem que a authentication string que fornece informações de user DN comece com um caractere prefixo `+`:
 
-* In the absence of a `+` character, the authentication string value is treated as is without modification.
+* Na ausência de um caractere `+`, o valor da authentication string é tratado como está, sem modificação.
 
-* If the authentication string begins with `+`, the plugin constructs the full user DN value from the user name sent by the client, together with the DN specified in the authentication string (with the `+` removed). In the constructed DN, the client user name becomes the value of the attribute that specifies LDAP user names. This is `uid` by default; to change the attribute, modify the appropriate system variable ([`authentication_ldap_simple_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_user_search_attr) or [`authentication_ldap_sasl_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_user_search_attr)). The authentication string is stored as given in the `mysql.user` system table, with the full user DN constructed on the fly before authentication.
+* Se a authentication string começar com `+`, o plugin constrói o full user DN value a partir do user name enviado pelo client, juntamente com o DN especificado na authentication string (com o `+` removido). No DN construído, o client user name torna-se o valor do attribute que especifica os LDAP user names. Este é `uid` por padrão; para alterar o attribute, modifique a system variable apropriada ([`authentication_ldap_simple_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_user_search_attr) ou [`authentication_ldap_sasl_user_search_attr`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_user_search_attr)). A authentication string é armazenada conforme fornecida na system table `mysql.user`, com o full user DN construído on the fly antes da authentication.
 
-This account authentication string does not have `+` at the beginning, so it is taken as the full user DN:
+A authentication string desta account não tem `+` no início, então é considerada o full user DN:
 
 ```sql
 CREATE USER 'baldwin'
@@ -597,9 +597,9 @@ CREATE USER 'baldwin'
   AS 'uid=admin,ou=People,dc=example,dc=com';
 ```
 
-The client connects with the user name specified in the account (`baldwin`). In this case, that name is not used because the authentication string has no prefix and thus fully specifies the user DN.
+O client se conecta com o user name especificado na account (`baldwin`). Neste caso, esse nome não é usado porque a authentication string não tem prefixo e, portanto, especifica totalmente o user DN.
 
-This account authentication string does have `+` at the beginning, so it is taken as just part of the user DN:
+A authentication string desta account tem `+` no início, então é considerada apenas parte do user DN:
 
 ```sql
 CREATE USER 'accounting'
@@ -607,16 +607,16 @@ CREATE USER 'accounting'
   AS '+ou=People,dc=example,dc=com';
 ```
 
-The client connects with the user name specified in the account (`accounting`), which in this case is used as the `uid` attribute together with the authentication string to construct the user DN: `uid=accounting,ou=People,dc=example,dc=com`
+O client se conecta com o user name especificado na account (`accounting`), que neste caso é usado como o attribute `uid` juntamente com a authentication string para construir o user DN: `uid=accounting,ou=People,dc=example,dc=com`
 
-The accounts in the preceding examples have a nonempty user name, so the client always connects to the MySQL server using the same name as specified in the account definition. If an account has an empty user name, such as the default anonymous `''@'%'` proxy account described in [LDAP Authentication with Proxying](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-proxying "LDAP Authentication with Proxying"), clients might connect to the MySQL server with varying user names. But the principle is the same: If the authentication string begins with `+`, the plugin uses the user name sent by the client together with the authentication string to construct the user DN.
+As accounts nos exemplos precedentes têm um user name não vazio, então o client sempre se conecta ao MySQL server usando o mesmo nome especificado na account definition. Se uma account tiver um user name vazio, como a default anonymous `''@'%'` proxy account descrita em [LDAP Authentication with Proxying](ldap-pluggable-authentication.html#ldap-pluggable-authentication-usage-proxying "Autenticação LDAP com Proxying"), os clients podem se conectar ao MySQL server com user names variados. Mas o princípio é o mesmo: Se a authentication string começar com `+`, o plugin usa o user name enviado pelo client juntamente com a authentication string para construir o user DN.
 
-##### LDAP Authentication Methods
+##### Métodos de Autenticação LDAP
 
-The LDAP authentication plugins use a configurable authentication method. The appropriate system variable and available method choices are plugin-specific:
+Os LDAP authentication plugins usam um authentication method configurável. A system variable apropriada e as opções de método disponíveis são específicas do plugin:
 
-* For the `authentication_ldap_simple` plugin: Configure the method by setting the [`authentication_ldap_simple_auth_method_name`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_auth_method_name) system variable. The permitted choices are `SIMPLE` and `AD-FOREST`.
+* Para o plugin `authentication_ldap_simple`: Configure o method definindo a system variable [`authentication_ldap_simple_auth_method_name`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_simple_auth_method_name). As opções permitidas são `SIMPLE` e `AD-FOREST`.
 
-* For the `authentication_ldap_sasl` plugin: Configure the method by setting the [`authentication_ldap_sasl_auth_method_name`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name) system variable. The only permitted choice is `SCRAM-SHA-1`.
+* Para o plugin `authentication_ldap_sasl`: Configure o method definindo a system variable [`authentication_ldap_sasl_auth_method_name`](pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name). A única opção permitida é `SCRAM-SHA-1`.
 
-See the system variable descriptions for information about each permitted method.
+Consulte as descrições das system variables para obter informações sobre cada method permitido.

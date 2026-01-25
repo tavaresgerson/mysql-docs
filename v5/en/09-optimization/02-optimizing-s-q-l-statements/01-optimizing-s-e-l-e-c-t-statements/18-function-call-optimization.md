@@ -1,69 +1,69 @@
-#### 8.2.1.18 Function Call Optimization
+#### 8.2.1.18 Otimização de Chamada de Função
 
-MySQL functions are tagged internally as deterministic or nondeterministic. A function is nondeterministic if, given fixed values for its arguments, it can return different results for different invocations. Examples of nondeterministic functions: `RAND()`, `UUID()`.
+As funções do MySQL são rotuladas internamente como determinísticas ou não determinísticas. Uma função é não determinística se, dados valores fixos para seus argumentos, ela puder retornar resultados diferentes para diferentes invocações. Exemplos de funções não determinísticas: `RAND()`, `UUID()`.
 
-If a function is tagged nondeterministic, a reference to it in a `WHERE` clause is evaluated for every row (when selecting from one table) or combination of rows (when selecting from a multiple-table join).
+Se uma função for rotulada como não determinística, uma referência a ela em uma cláusula `WHERE` é avaliada para cada linha (ao selecionar de uma tabela) ou combinação de linhas (ao selecionar de um JOIN de múltiplas tabelas).
 
-MySQL also determines when to evaluate functions based on types of arguments, whether the arguments are table columns or constant values. A deterministic function that takes a table column as argument must be evaluated whenever that column changes value.
+O MySQL também determina quando avaliar funções com base nos tipos de argumentos, se os argumentos são colunas da tabela ou valores constantes. Uma função determinística que utiliza uma coluna da tabela como argumento deve ser avaliada sempre que essa coluna mudar de valor.
 
-Nondeterministic functions may affect query performance. For example, some optimizations may not be available, or more locking might be required. The following discussion uses `RAND()` but applies to other nondeterministic functions as well.
+Funções não determinísticas podem afetar a performance de Querys. Por exemplo, algumas otimizações podem não estar disponíveis, ou pode ser necessário mais Lock. A discussão a seguir usa `RAND()`, mas se aplica a outras funções não determinísticas também.
 
-Suppose that a table `t` has this definition:
+Suponha que uma tabela `t` tenha esta definição:
 
 ```sql
 CREATE TABLE t (id INT NOT NULL PRIMARY KEY, col_a VARCHAR(100));
 ```
 
-Consider these two queries:
+Considere estas duas Querys:
 
 ```sql
 SELECT * FROM t WHERE id = POW(1,2);
 SELECT * FROM t WHERE id = FLOOR(1 + RAND() * 49);
 ```
 
-Both queries appear to use a primary key lookup because of the equality comparison against the primary key, but that is true only for the first of them:
+Ambas as Querys parecem usar uma Primary Key lookup devido à comparação de igualdade com a Primary Key, mas isso é verdade apenas para a primeira delas:
 
-* The first query always produces a maximum of one row because `POW()` with constant arguments is a constant value and is used for index lookup.
+*   A primeira Query sempre produz no máximo uma linha porque `POW()` com argumentos constantes é um valor constante e é usado para Index lookup.
 
-* The second query contains an expression that uses the nondeterministic function `RAND()`, which is not constant in the query but in fact has a new value for every row of table `t`. Consequently, the query reads every row of the table, evaluates the predicate for each row, and outputs all rows for which the primary key matches the random value. This might be zero, one, or multiple rows, depending on the `id` column values and the values in the `RAND()` sequence.
+*   A segunda Query contém uma expressão que usa a função não determinística `RAND()`, que não é constante na Query, mas na verdade tem um novo valor para cada linha da tabela `t`. Consequentemente, a Query lê todas as linhas da tabela, avalia o predicado para cada linha e exibe todas as linhas para as quais a Primary Key corresponde ao valor aleatório. Isso pode ser zero, uma ou múltiplas linhas, dependendo dos valores da coluna `id` e dos valores na sequência `RAND()`.
 
-The effects of nondeterminism are not limited to `SELECT` statements. This `UPDATE` statement uses a nondeterministic function to select rows to be modified:
+Os efeitos do não determinismo não se limitam às instruções `SELECT`. Esta instrução `UPDATE` usa uma função não determinística para selecionar linhas a serem modificadas:
 
 ```sql
 UPDATE t SET col_a = some_expr WHERE id = FLOOR(1 + RAND() * 49);
 ```
 
-Presumably the intent is to update at most a single row for which the primary key matches the expression. However, it might update zero, one, or multiple rows, depending on the `id` column values and the values in the `RAND()` sequence.
+Presumivelmente, a intenção é atualizar no máximo uma única linha para a qual a Primary Key corresponda à expressão. No entanto, ela pode atualizar zero, uma ou múltiplas linhas, dependendo dos valores da coluna `id` e dos valores na sequência `RAND()`.
 
-The behavior just described has implications for performance and replication:
+O comportamento recém-descrito tem implicações para performance e replicação:
 
-* Because a nondeterministic function does not produce a constant value, the optimizer cannot use strategies that might otherwise be applicable, such as index lookups. The result may be a table scan.
+*   Como uma função não determinística não produz um valor constante, o optimizer não pode usar estratégias que de outra forma seriam aplicáveis, como Index lookups. O resultado pode ser um table scan.
 
-* `InnoDB` might escalate to a range-key lock rather than taking a single row lock for one matching row.
+*   O `InnoDB` pode escalar para um range-key Lock em vez de aplicar um single row Lock para uma linha correspondente.
 
-* Updates that do not execute deterministically are unsafe for replication.
+*   Updates que não são executados deterministicamente não são seguros para replicação.
 
-The difficulties stem from the fact that the `RAND()` function is evaluated once for every row of the table. To avoid multiple function evaluations, use one of these techniques:
+As dificuldades decorrem do fato de que a função `RAND()` é avaliada uma vez para cada linha da tabela. Para evitar múltiplas avaliações de função, use uma destas técnicas:
 
-* Move the expression containing the nondeterministic function to a separate statement, saving the value in a variable. In the original statement, replace the expression with a reference to the variable, which the optimizer can treat as a constant value:
+*   Mova a expressão que contém a função não determinística para uma instrução separada, salvando o valor em uma variável. Na instrução original, substitua a expressão por uma referência à variável, que o optimizer pode tratar como um valor constante:
 
-  ```sql
+    ```sql
   SET @keyval = FLOOR(1 + RAND() * 49);
   UPDATE t SET col_a = some_expr WHERE id = @keyval;
   ```
 
-* Assign the random value to a variable in a derived table. This technique causes the variable to be assigned a value, once, prior to its use in the comparison in the `WHERE` clause:
+*   Atribua o valor aleatório a uma variável em uma derived table. Esta técnica faz com que a variável receba um valor, uma única vez, antes de seu uso na comparação na cláusula `WHERE`:
 
-  ```sql
+    ```sql
   SET optimizer_switch = 'derived_merge=off';
   UPDATE t, (SELECT @keyval := FLOOR(1 + RAND() * 49)) AS dt
   SET col_a = some_expr WHERE id = @keyval;
   ```
 
-As mentioned previously, a nondeterministic expression in the `WHERE` clause might prevent optimizations and result in a table scan. However, it may be possible to partially optimize the `WHERE` clause if other expressions are deterministic. For example:
+Conforme mencionado anteriormente, uma expressão não determinística na cláusula `WHERE` pode impedir otimizações e resultar em um table scan. No entanto, pode ser possível otimizar parcialmente a cláusula `WHERE` se outras expressões forem determinísticas. Por exemplo:
 
 ```sql
 SELECT * FROM t WHERE partial_key=5 AND some_column=RAND();
 ```
 
-If the optimizer can use `partial_key` to reduce the set of rows selected, `RAND()` is executed fewer times, which diminishes the effect of nondeterminism on optimization.
+Se o optimizer puder usar `partial_key` para reduzir o conjunto de linhas selecionadas, `RAND()` será executada menos vezes, o que diminui o efeito do não determinismo na otimização.

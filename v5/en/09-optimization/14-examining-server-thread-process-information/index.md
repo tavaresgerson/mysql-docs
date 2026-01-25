@@ -1,26 +1,26 @@
-## 8.14 Examining Server Thread (Process) Information
+## 8.14 Examinando Informações de Thread (Processo) do Server
 
-8.14.1 Accessing the Process List
+8.14.1 Acessando a Process List
 
-8.14.2 Thread Command Values
+8.14.2 Valores de Comando de Thread
 
-8.14.3 General Thread States
+8.14.3 Estados Gerais de Thread
 
-8.14.4 Query Cache Thread States
+8.14.4 Estados de Thread do Query Cache
 
-8.14.5 Replication Source Thread States
+8.14.5 Estados de Thread de Origem de Replication
 
-8.14.6 Replication Replica I/O Thread States
+8.14.6 Estados de Thread I/O da Réplica de Replication
 
-8.14.7 Replication Replica SQL Thread States
+8.14.7 Estados de Thread SQL da Réplica de Replication
 
-8.14.8 Replication Replica Connection Thread States
+8.14.8 Estados de Thread de Conexão da Réplica de Replication
 
-8.14.9 NDB Cluster Thread States
+8.14.9 Estados de Thread do NDB Cluster
 
-8.14.10 Event Scheduler Thread States
+8.14.10 Estados de Thread do Event Scheduler
 
-To ascertain what your MySQL server is doing, it can be helpful to examine the process list, which indicates the operations currently being performed by the set of threads executing within the server. For example:
+Para determinar o que o seu MySQL Server está fazendo, pode ser útil examinar a process list, que indica as operações atualmente sendo executadas pelo conjunto de threads dentro do Server. Por exemplo:
 
 ```sql
 mysql> SHOW PROCESSLIST\G
@@ -44,4 +44,4 @@ Command: Query
    Info: SHOW PROCESSLIST
 ```
 
-Threads can be killed with the `KILL` statement. See Section 13.7.6.4, “KILL Statement”.
+Threads podem ser encerradas com o comando `KILL`. Consulte a Seção 13.7.6.4, “KILL Statement”.

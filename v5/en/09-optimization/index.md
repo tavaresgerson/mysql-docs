@@ -1,187 +1,187 @@
-# Chapter 8 Optimization
+# Capítulo 8 Otimização
 
-**Table of Contents**
+**Sumário**
 
-8.1 Optimization Overview
+8.1 Visão Geral da Otimização
 
-8.2 Optimizing SQL Statements :   8.2.1 Optimizing SELECT Statements
+8.2 Otimizando Declarações SQL : 8.2.1 Otimizando Declarações SELECT
 
-    8.2.2 Optimizing Subqueries, Derived Tables, and View References
+    8.2.2 Otimizando Subqueries, Derived Tables e Referências de View
 
-    8.2.3 Optimizing INFORMATION_SCHEMA Queries
+    8.2.3 Otimizando Queries INFORMATION_SCHEMA
 
-    8.2.4 Optimizing Data Change Statements
+    8.2.4 Otimizando Declarações de Mudança de Dados
 
-    8.2.5 Optimizing Database Privileges
+    8.2.5 Otimizando Privilégios de Database
 
-    8.2.6 Other Optimization Tips
+    8.2.6 Outras Dicas de Otimização
 
-8.3 Optimization and Indexes :   8.3.1 How MySQL Uses Indexes
+8.3 Otimização e Indexes : 8.3.1 Como o MySQL Usa Indexes
 
-    8.3.2 Primary Key Optimization
+    8.3.2 Otimização de Primary Key
 
-    8.3.3 Foreign Key Optimization
+    8.3.3 Otimização de Foreign Key
 
-    8.3.4 Column Indexes
+    8.3.4 Indexes de Coluna
 
-    8.3.5 Multiple-Column Indexes
+    8.3.5 Indexes de Múltiplas Colunas
 
-    8.3.6 Verifying Index Usage
+    8.3.6 Verificando o Uso de Index
 
-    8.3.7 InnoDB and MyISAM Index Statistics Collection
+    8.3.7 Coleta de Estatísticas de Index no InnoDB e MyISAM
 
-    8.3.8 Comparison of B-Tree and Hash Indexes
+    8.3.8 Comparação de Indexes B-Tree e Hash
 
-    8.3.9 Use of Index Extensions
+    8.3.9 Uso de Extensões de Index
 
-    8.3.10 Optimizer Use of Generated Column Indexes
+    8.3.10 Uso de Indexes de Coluna Gerada pelo Otimizador
 
-    8.3.11 Indexed Lookups from TIMESTAMP Columns
+    8.3.11 Buscas Indexadas a partir de Colunas TIMESTAMP
 
-8.4 Optimizing Database Structure :   8.4.1 Optimizing Data Size
+8.4 Otimizando a Estrutura do Database : 8.4.1 Otimizando o Tamanho dos Dados
 
-    8.4.2 Optimizing MySQL Data Types
+    8.4.2 Otimizando Data Types do MySQL
 
-    8.4.3 Optimizing for Many Tables
+    8.4.3 Otimizando para Muitas Tabelas
 
-    8.4.4 Internal Temporary Table Use in MySQL
+    8.4.4 Uso de Tabela Temporária Interna no MySQL
 
-    8.4.5 Limits on Number of Databases and Tables
+    8.4.5 Limites no Número de Databases e Tabelas
 
-    8.4.6 Limits on Table Size
+    8.4.6 Limites no Tamanho da Tabela
 
-    8.4.7 Limits on Table Column Count and Row Size
+    8.4.7 Limites na Contagem de Colunas da Tabela e Tamanho da Linha
 
-8.5 Optimizing for InnoDB Tables :   8.5.1 Optimizing Storage Layout for InnoDB Tables
+8.5 Otimizando para Tabelas InnoDB : 8.5.1 Otimizando o Layout de Armazenamento para Tabelas InnoDB
 
-    8.5.2 Optimizing InnoDB Transaction Management
+    8.5.2 Otimizando o Gerenciamento de Transação do InnoDB
 
-    8.5.3 Optimizing InnoDB Read-Only Transactions
+    8.5.3 Otimizando Transações Somente Leitura do InnoDB
 
-    8.5.4 Optimizing InnoDB Redo Logging
+    8.5.4 Otimizando o Redo Logging do InnoDB
 
-    8.5.5 Bulk Data Loading for InnoDB Tables
+    8.5.5 Carregamento de Dados em Massa para Tabelas InnoDB
 
-    8.5.6 Optimizing InnoDB Queries
+    8.5.6 Otimizando Queries InnoDB
 
-    8.5.7 Optimizing InnoDB DDL Operations
+    8.5.7 Otimizando Operações DDL do InnoDB
 
-    8.5.8 Optimizing InnoDB Disk I/O
+    8.5.8 Otimizando I/O de Disco do InnoDB
 
-    8.5.9 Optimizing InnoDB Configuration Variables
+    8.5.9 Otimizando Variáveis de Configuração do InnoDB
 
-    8.5.10 Optimizing InnoDB for Systems with Many Tables
+    8.5.10 Otimizando o InnoDB para Sistemas com Muitas Tabelas
 
-8.6 Optimizing for MyISAM Tables :   8.6.1 Optimizing MyISAM Queries
+8.6 Otimizando para Tabelas MyISAM : 8.6.1 Otimizando Queries MyISAM
 
-    8.6.2 Bulk Data Loading for MyISAM Tables
+    8.6.2 Carregamento de Dados em Massa para Tabelas MyISAM
 
-    8.6.3 Optimizing REPAIR TABLE Statements
+    8.6.3 Otimizando Declarações REPAIR TABLE
 
-8.7 Optimizing for MEMORY Tables
+8.7 Otimizando para Tabelas MEMORY
 
-8.8 Understanding the Query Execution Plan :   8.8.1 Optimizing Queries with EXPLAIN
+8.8 Entendendo o Plano de Execução de Query : 8.8.1 Otimizando Queries com EXPLAIN
 
-    8.8.2 EXPLAIN Output Format
+    8.8.2 Formato de Saída EXPLAIN
 
-    8.8.3 Extended EXPLAIN Output Format
+    8.8.3 Formato de Saída EXPLAIN Estendido
 
-    8.8.4 Obtaining Execution Plan Information for a Named Connection
+    8.8.4 Obtendo Informações do Plano de Execução para uma Conexão Nomeada
 
-    8.8.5 Estimating Query Performance
+    8.8.5 Estimando a Performance de Query
 
-8.9 Controlling the Query Optimizer :   8.9.1 Controlling Query Plan Evaluation
+8.9 Controlando o Otimizador de Query : 8.9.1 Controlando a Avaliação do Plano de Query
 
-    8.9.2 Switchable Optimizations
+    8.9.2 Otimizações Chaveáveis
 
-    8.9.3 Optimizer Hints
+    8.9.3 Hints do Otimizador
 
-    8.9.4 Index Hints
+    8.9.4 Hints de Index
 
-    8.9.5 The Optimizer Cost Model
+    8.9.5 O Modelo de Custo do Otimizador
 
-8.10 Buffering and Caching :   8.10.1 InnoDB Buffer Pool Optimization
+8.10 Buffering e Caching : 8.10.1 Otimização do Buffer Pool do InnoDB
 
-    8.10.2 The MyISAM Key Cache
+    8.10.2 O Key Cache do MyISAM
 
-    8.10.3 The MySQL Query Cache
+    8.10.3 O Query Cache do MySQL
 
-    8.10.4 Caching of Prepared Statements and Stored Programs
+    8.10.4 Caching de Prepared Statements e Stored Programs
 
-8.11 Optimizing Locking Operations :   8.11.1 Internal Locking Methods
+8.11 Otimizando Operações de Locking : 8.11.1 Métodos de Locking Internos
 
-    8.11.2 Table Locking Issues
+    8.11.2 Problemas de Locking de Tabela
 
-    8.11.3 Concurrent Inserts
+    8.11.3 Inserts Concorrentes
 
     8.11.4 Metadata Locking
 
-    8.11.5 External Locking
+    8.11.5 Locking Externo
 
-8.12 Optimizing the MySQL Server :   8.12.1 System Factors
+8.12 Otimizando o Servidor MySQL : 8.12.1 Fatores do Sistema
 
-    8.12.2 Optimizing Disk I/O
+    8.12.2 Otimizando I/O de Disco
 
-    8.12.3 Using Symbolic Links
+    8.12.3 Usando Links Simbólicos
 
-    8.12.4 Optimizing Memory Use
+    8.12.4 Otimizando o Uso de Memória
 
-8.13 Measuring Performance (Benchmarking) :   8.13.1 Measuring the Speed of Expressions and Functions
+8.13 Medindo Performance (Benchmarking) : 8.13.1 Medindo a Velocidade de Expressões e Funções
 
-    8.13.2 Using Your Own Benchmarks
+    8.13.2 Usando Seus Próprios Benchmarks
 
-    8.13.3 Measuring Performance with performance_schema
+    8.13.3 Medindo Performance com performance_schema
 
-8.14 Examining Server Thread (Process) Information :   8.14.1 Accessing the Process List
+8.14 Examinando Informações de Thread (Processo) do Servidor : 8.14.1 Acessando a Lista de Processos
 
-    8.14.2 Thread Command Values
+    8.14.2 Valores de Comando de Thread
 
-    8.14.3 General Thread States
+    8.14.3 Estados Gerais de Thread
 
-    8.14.4 Query Cache Thread States
+    8.14.4 Estados de Thread do Query Cache
 
-    8.14.5 Replication Source Thread States
+    8.14.5 Estados de Thread Fonte de Replicação
 
-    8.14.6 Replication Replica I/O Thread States
+    8.14.6 Estados de Thread I/O de Réplica de Replicação
 
-    8.14.7 Replication Replica SQL Thread States
+    8.14.7 Estados de Thread SQL de Réplica de Replicação
 
-    8.14.8 Replication Replica Connection Thread States
+    8.14.8 Estados de Thread de Conexão de Réplica de Replicação
 
-    8.14.9 NDB Cluster Thread States
+    8.14.9 Estados de Thread NDB Cluster
 
-    8.14.10 Event Scheduler Thread States
+    8.14.10 Estados de Thread do Event Scheduler
 
-8.15 Tracing the Optimizer :   8.15.1 Typical Usage
+8.15 Rastreando o Otimizador : 8.15.1 Uso Típico
 
-    8.15.2 System Variables Controlling Tracing
+    8.15.2 Variáveis do Sistema que Controlam o Rastreamento
 
-    8.15.3 Traceable Statements
+    8.15.3 Declarações Rastreáveis
 
-    8.15.4 Tuning Trace Purging
+    8.15.4 Ajustando a Limpeza de Rastreamento
 
-    8.15.5 Tracing Memory Usage
+    8.15.5 Rastreando o Uso de Memória
 
-    8.15.6 Privilege Checking
+    8.15.6 Verificação de Privilégios
 
-    8.15.7 Interaction with the --debug Option
+    8.15.7 Interação com a Opção --debug
 
-    8.15.8 The optimizer_trace System Variable
+    8.15.8 A Variável de Sistema optimizer_trace
 
-    8.15.9 The end_markers_in_json System Variable
+    8.15.9 A Variável de Sistema end_markers_in_json
 
-    8.15.10 Selecting Optimizer Features to Trace
+    8.15.10 Selecionando Recursos do Otimizador para Rastrear
 
-    8.15.11 Trace General Structure
+    8.15.11 Estrutura Geral de Rastreamento
 
-    8.15.12 Example
+    8.15.12 Exemplo
 
-    8.15.13 Displaying Traces in Other Applications
+    8.15.13 Exibindo Rastreamentos em Outras Aplicações
 
-    8.15.14 Preventing the Use of Optimizer Trace
+    8.15.14 Prevenindo o Uso de Optimizer Trace
 
-    8.15.15 Testing Optimizer Trace
+    8.15.15 Testando o Optimizer Trace
 
-    8.15.16 Optimizer Trace Implementation
+    8.15.16 Implementação do Optimizer Trace
 
-This chapter explains how to optimize MySQL performance and provides examples. Optimization involves configuring, tuning, and measuring performance, at several levels. Depending on your job role (developer, DBA, or a combination of both), you might optimize at the level of individual SQL statements, entire applications, a single database server, or multiple networked database servers. Sometimes you can be proactive and plan in advance for performance, while other times you might troubleshoot a configuration or code issue after a problem occurs. Optimizing CPU and memory usage can also improve scalability, allowing the database to handle more load without slowing down.
+Este capítulo explica como otimizar a performance do MySQL e fornece exemplos. A otimização envolve a configuração, o ajuste fino (tuning) e a medição da performance em vários níveis. Dependendo do seu papel (desenvolvedor, DBA, ou uma combinação de ambos), você pode otimizar no nível de Declarações SQL individuais, aplicações inteiras, um único servidor de Database, ou múltiplos servidores de Database em rede. Às vezes, você pode ser proativo e planejar a performance com antecedência, enquanto outras vezes você pode ter que solucionar um problema de configuração ou código após a ocorrência de uma falha. A otimização do uso da CPU e da memória também pode melhorar a escalabilidade, permitindo que o Database lide com mais carga sem lentidão.

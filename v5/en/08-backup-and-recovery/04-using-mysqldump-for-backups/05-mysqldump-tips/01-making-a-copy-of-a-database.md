@@ -1,4 +1,4 @@
-#### 7.4.5.1 Making a Copy of a Database
+#### 7.4.5.1 Fazendo uma Cópia de um Database
 
 ```sql
 $> mysqldump db1 > dump.sql
@@ -6,4 +6,4 @@ $> mysqladmin create db2
 $> mysql db2 < dump.sql
 ```
 
-Do not use `--databases` on the **mysqldump** command line because that causes `USE db1` to be included in the dump file, which overrides the effect of naming `db2` on the **mysql** command line.
+Não use `--databases` na linha de comando do **mysqldump** porque isso faz com que `USE db1` seja incluído no arquivo de dump, o que anula o efeito de nomear `db2` na linha de comando do **mysql**.

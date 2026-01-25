@@ -1,15 +1,15 @@
-#### 8.2.1.6 Nested-Loop Join Algorithms
+#### 8.2.1.6 Algoritmos de JOIN de Loop Aninhado
 
-MySQL executes joins between tables using a nested-loop algorithm or variations on it.
+O MySQL executa JOINs entre tabelas usando um algoritmo de loop aninhado (nested-loop) ou variações dele.
 
-* Nested-Loop Join Algorithm
-* Block Nested-Loop Join Algorithm
+* Algoritmo de JOIN de Loop Aninhado (Nested-Loop Join Algorithm)
+* Algoritmo de JOIN de Loop Aninhado em Bloco (Block Nested-Loop Join Algorithm)
 
-##### Nested-Loop Join Algorithm
+##### Algoritmo de JOIN de Loop Aninhado
 
-A simple nested-loop join (NLJ) algorithm reads rows from the first table in a loop one at a time, passing each row to a nested loop that processes the next table in the join. This process is repeated as many times as there remain tables to be joined.
+Um algoritmo simples de JOIN de loop aninhado (NLJ) lê linhas da primeira tabela em um loop, uma de cada vez, passando cada linha para um loop aninhado que processa a próxima tabela no JOIN. Este processo é repetido tantas vezes quantas forem as tabelas restantes a serem unidas.
 
-Assume that a join between three tables `t1`, `t2`, and `t3` is to be executed using the following join types:
+Suponha que um JOIN entre três tabelas `t1`, `t2` e `t3` deva ser executado usando os seguintes tipos de JOIN:
 
 ```sql
 Table   Join Type
@@ -18,7 +18,7 @@ t2      ref
 t3      ALL
 ```
 
-If a simple NLJ algorithm is used, the join is processed like this:
+Se um algoritmo NLJ simples for usado, o JOIN é processado assim:
 
 ```sql
 for each row in t1 matching range {
@@ -30,27 +30,27 @@ for each row in t1 matching range {
 }
 ```
 
-Because the NLJ algorithm passes rows one at a time from outer loops to inner loops, it typically reads tables processed in the inner loops many times.
+Como o algoritmo NLJ passa linhas, uma de cada vez, dos loops externos para os loops internos, ele tipicamente lê as tabelas processadas nos loops internos muitas vezes.
 
-##### Block Nested-Loop Join Algorithm
+##### Algoritmo de JOIN de Loop Aninhado em Bloco
 
-A Block Nested-Loop (BNL) join algorithm uses buffering of rows read in outer loops to reduce the number of times that tables in inner loops must be read. For example, if 10 rows are read into a buffer and the buffer is passed to the next inner loop, each row read in the inner loop can be compared against all 10 rows in the buffer. This reduces by an order of magnitude the number of times the inner table must be read.
+Um algoritmo de JOIN de Loop Aninhado em Bloco (BNL) usa *buffering* de linhas lidas em loops externos para reduzir o número de vezes que as tabelas em loops internos devem ser lidas. Por exemplo, se 10 linhas forem lidas em um *buffer* e o *buffer* for passado para o próximo loop interno, cada linha lida no loop interno pode ser comparada com todas as 10 linhas no *buffer*. Isso reduz em uma ordem de magnitude o número de vezes que a tabela interna deve ser lida.
 
-MySQL join buffering has these characteristics:
+O *join buffering* do MySQL tem estas características:
 
-* Join buffering can be used when the join is of type `ALL` or `index` (in other words, when no possible keys can be used, and a full scan is done, of either the data or index rows, respectively), or `range`. Use of buffering is also applicable to outer joins, as described in Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”.
+* O *Join buffering* pode ser usado quando o JOIN é do tipo `ALL` ou `index` (em outras palavras, quando nenhuma chave possível pode ser usada, e um *full scan* é feito, respectivamente, nas linhas de dados ou de *Index*), ou `range`. O uso de *buffering* também se aplica a *outer joins*, conforme descrito na Seção 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”.
 
-* A join buffer is never allocated for the first nonconstant table, even if it would be of type `ALL` or `index`.
+* Um *join buffer* nunca é alocado para a primeira tabela não constante, mesmo que seja do tipo `ALL` ou `index`.
 
-* Only columns of interest to a join are stored in its join buffer, not whole rows.
+* Apenas colunas de interesse para um JOIN são armazenadas em seu *join buffer*, não linhas inteiras.
 
-* The `join_buffer_size` system variable determines the size of each join buffer used to process a query.
+* A variável de sistema `join_buffer_size` determina o tamanho de cada *join buffer* usado para processar uma *Query*.
 
-* One buffer is allocated for each join that can be buffered, so a given query might be processed using multiple join buffers.
+* Um *buffer* é alocado para cada JOIN que pode ser armazenado em *buffer*, portanto, uma determinada *Query* pode ser processada usando múltiplos *join buffers*.
 
-* A join buffer is allocated prior to executing the join and freed after the query is done.
+* Um *join buffer* é alocado antes da execução do JOIN e liberado após a conclusão da *Query*.
 
-For the example join described previously for the NLJ algorithm (without buffering), the join is done as follows using join buffering:
+Para o exemplo de JOIN descrito anteriormente para o algoritmo NLJ (sem *buffering*), o JOIN é feito da seguinte forma usando *join buffering*:
 
 ```sql
 for each row in t1 matching range {
@@ -76,10 +76,10 @@ if buffer is not empty {
 }
 ```
 
-If *`S`* is the size of each stored `t1`, `t2` combination in the join buffer and *`C`* is the number of combinations in the buffer, the number of times table `t3` is scanned is:
+Se *`S`* for o tamanho de cada combinação `t1`, `t2` armazenada no *join buffer* e *`C`* for o número de combinações no *buffer*, o número de vezes que a tabela `t3` é percorrida (*scanned*) é:
 
 ```sql
 (S * C)/join_buffer_size + 1
 ```
 
-The number of `t3` scans decreases as the value of `join_buffer_size` increases, up to the point when `join_buffer_size` is large enough to hold all previous row combinations. At that point, no speed is gained by making it larger.
+O número de *scans* em `t3` diminui à medida que o valor de `join_buffer_size` aumenta, até o ponto em que `join_buffer_size` é grande o suficiente para armazenar todas as combinações de linhas anteriores. Nesse ponto, nenhum ganho de velocidade é obtido ao aumentá-lo.

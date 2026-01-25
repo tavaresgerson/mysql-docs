@@ -1,24 +1,24 @@
-### 8.3.10 Optimizer Use of Generated Column Indexes
+### 8.3.10 Uso de Indexes de Coluna Gerada pelo Optimizer
 
-MySQL supports indexes on generated columns. For example:
+O MySQL suporta Indexes em colunas geradas. Por exemplo:
 
 ```sql
 CREATE TABLE t1 (f1 INT, gc INT AS (f1 + 1) STORED, INDEX (gc));
 ```
 
-The generated column, `gc`, is defined as the expression `f1 + 1`. The column is also indexed and the optimizer can take that index into account during execution plan construction. In the following query, the `WHERE` clause refers to `gc` and the optimizer considers whether the index on that column yields a more efficient plan:
+A coluna gerada, `gc`, é definida como a expressão `f1 + 1`. A coluna também é indexada e o Optimizer pode levar esse Index em consideração durante a construção do plano de execução. Na Query a seguir, a cláusula `WHERE` faz referência a `gc` e o Optimizer considera se o Index nessa coluna resulta em um plano mais eficiente:
 
 ```sql
 SELECT * FROM t1 WHERE gc > 9;
 ```
 
-The optimizer can use indexes on generated columns to generate execution plans, even in the absence of direct references in queries to those columns by name. This occurs if the `WHERE`, `ORDER BY`, or `GROUP BY` clause refers to an expression that matches the definition of some indexed generated column. The following query does not refer directly to `gc` but does use an expression that matches the definition of `gc`:
+O Optimizer pode usar Indexes em colunas geradas para gerar planos de execução, mesmo na ausência de referências diretas a essas colunas por nome nas Queries. Isso ocorre se a cláusula `WHERE`, `ORDER BY` ou `GROUP BY` fizer referência a uma expressão que corresponda à definição de alguma coluna gerada indexada. A Query a seguir não faz referência direta a `gc`, mas usa uma expressão que corresponde à definição de `gc`:
 
 ```sql
 SELECT * FROM t1 WHERE f1 + 1 > 9;
 ```
 
-The optimizer recognizes that the expression `f1 + 1` matches the definition of `gc` and that `gc` is indexed, so it considers that index during execution plan construction. You can see this using `EXPLAIN`:
+O Optimizer reconhece que a expressão `f1 + 1` corresponde à definição de `gc` e que `gc` está indexada, então ele considera esse Index durante a construção do plano de execução. Você pode ver isso usando `EXPLAIN`:
 
 ```sql
 mysql> EXPLAIN SELECT * FROM t1 WHERE f1 + 1 > 9\G
@@ -37,9 +37,9 @@ possible_keys: gc
         Extra: Using index condition
 ```
 
-In effect, the optimizer has replaced the expression `f1
+Na prática, o Optimizer substituiu a expressão `f1
 
-+ 1` with the name of the generated column that matches the expression. That is also apparent in the rewritten query available in the extended `EXPLAIN` information displayed by `SHOW WARNINGS`:
++ 1` pelo nome da coluna gerada que corresponde à expressão. Isso também fica evidente na Query reescrita disponível nas informações estendidas do `EXPLAIN` exibidas por `SHOW WARNINGS`:
 
 ```sql
 mysql> SHOW WARNINGS\G
@@ -50,35 +50,35 @@ Message: /* select#1 */ select `test`.`t1`.`f1` AS `f1`,`test`.`t1`.`gc`
          AS `gc` from `test`.`t1` where (`test`.`t1`.`gc` > 9)
 ```
 
-The following restrictions and conditions apply to the optimizer's use of generated column indexes:
+As seguintes restrições e condições se aplicam ao uso de Indexes de coluna gerada pelo Optimizer:
 
-* For a query expression to match a generated column definition, the expression must be identical and it must have the same result type. For example, if the generated column expression is `f1 + 1`, the optimizer does not recognize a match if the query uses `1 + f1`, or if `f1 + 1` (an integer expression) is compared with a string.
+* Para que uma expressão de Query corresponda a uma definição de coluna gerada, a expressão deve ser idêntica e deve ter o mesmo tipo de resultado (result type). Por exemplo, se a expressão da coluna gerada for `f1 + 1`, o Optimizer não reconhece uma correspondência se a Query usar `1 + f1`, ou se `f1 + 1` (uma expressão integer) for comparada com uma string.
 
-* The optimization applies to these operators: `=`, `<`, `<=`, `>`, `>=`, `BETWEEN`, and `IN()`.
+* A otimização se aplica a estes operadores: `=`, `<`, `<=`, `>`, `>=`, `BETWEEN` e `IN()`.
 
-  For operators other than `BETWEEN` and `IN()`, either operand can be replaced by a matching generated column. For `BETWEEN` and `IN()`, only the first argument can be replaced by a matching generated column, and the other arguments must have the same result type. `BETWEEN` and `IN()` are not yet supported for comparisons involving JSON values.
+  Para operadores diferentes de `BETWEEN` e `IN()`, qualquer um dos operandos pode ser substituído por uma coluna gerada correspondente. Para `BETWEEN` e `IN()`, apenas o primeiro argumento pode ser substituído por uma coluna gerada correspondente, e os outros argumentos devem ter o mesmo tipo de resultado (result type). `BETWEEN` e `IN()` ainda não são suportados para comparações envolvendo valores JSON.
 
-* The generated column must be defined as an expression that contains at least a function call or one of the operators mentioned in the preceding item. The expression cannot consist of a simple reference to another column. For example, `gc INT AS (f1) STORED` consists only of a column reference, so indexes on `gc` are not considered.
+* A coluna gerada deve ser definida como uma expressão que contenha pelo menos uma chamada de função (function call) ou um dos operadores mencionados no item anterior. A expressão não pode consistir em uma simples referência a outra coluna. Por exemplo, `gc INT AS (f1) STORED` consiste apenas em uma referência de coluna, portanto, Indexes em `gc` não são considerados.
 
-* For comparisons of strings to indexed generated columns that compute a value from a JSON function that returns a quoted string, `JSON_UNQUOTE()` is needed in the column definition to remove the extra quotes from the function value. (For direct comparison of a string to the function result, the JSON comparator handles quote removal, but this does not occur for index lookups.) For example, instead of writing a column definition like this:
+* Para comparações de strings com colunas geradas indexadas que calculam um valor a partir de uma função JSON que retorna uma string entre aspas, é necessário usar `JSON_UNQUOTE()` na definição da coluna para remover as aspas extras do valor da função. (Para comparação direta de uma string com o resultado da função, o comparador JSON lida com a remoção de aspas, mas isso não ocorre para index lookups.) Por exemplo, em vez de escrever uma definição de coluna assim:
 
   ```sql
   doc_name TEXT AS (JSON_EXTRACT(jdoc, '$.name')) STORED
   ```
 
-  Write it like this:
+  Escreva-a assim:
 
   ```sql
   doc_name TEXT AS (JSON_UNQUOTE(JSON_EXTRACT(jdoc, '$.name'))) STORED
   ```
 
-  With the latter definition, the optimizer can detect a match for both of these comparisons:
+  Com esta última definição, o Optimizer pode detectar uma correspondência para ambas as comparações:
 
   ```sql
   ... WHERE JSON_EXTRACT(jdoc, '$.name') = 'some_string' ...
   ... WHERE JSON_UNQUOTE(JSON_EXTRACT(jdoc, '$.name')) = 'some_string' ...
   ```
 
-  Without `JSON_UNQUOTE()` in the column definition, the optimizer detects a match only for the first of those comparisons.
+  Sem `JSON_UNQUOTE()` na definição da coluna, o Optimizer detecta uma correspondência apenas para a primeira dessas comparações.
 
-* If the optimizer fails to choose the desired index, an index hint can be used to force the optimizer to make a different choice.
+* Se o Optimizer falhar ao escolher o Index desejado, uma index hint pode ser usada para forçar o Optimizer a fazer uma escolha diferente.

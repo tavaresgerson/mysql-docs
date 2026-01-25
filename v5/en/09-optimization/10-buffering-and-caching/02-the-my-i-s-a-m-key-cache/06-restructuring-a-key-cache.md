@@ -1,11 +1,11 @@
-#### 8.10.2.6 Restructuring a Key Cache
+#### 8.10.2.6 Reestruturando um Key Cache
 
-A key cache can be restructured at any time by updating its parameter values. For example:
+Um Key Cache pode ser reestruturado a qualquer momento atualizando seus valores de parâmetro. Por exemplo:
 
 ```sql
 mysql> SET GLOBAL cold_cache.key_buffer_size=4*1024*1024;
 ```
 
-If you assign to either the `key_buffer_size` or `key_cache_block_size` key cache component a value that differs from the component's current value, the server destroys the cache's old structure and creates a new one based on the new values. If the cache contains any dirty blocks, the server saves them to disk before destroying and re-creating the cache. Restructuring does not occur if you change other key cache parameters.
+Se você atribuir ao componente de Key Cache `key_buffer_size` ou `key_cache_block_size` um valor que difere do valor atual do componente, o server destrói a estrutura antiga do cache e cria uma nova baseada nos novos valores. Se o cache contiver quaisquer *dirty blocks*, o server os salva no disco antes de destruir e recriar o cache. A reestruturação não ocorre se você alterar outros parâmetros do Key Cache.
 
-When restructuring a key cache, the server first flushes the contents of any dirty buffers to disk. After that, the cache contents become unavailable. However, restructuring does not block queries that need to use indexes assigned to the cache. Instead, the server directly accesses the table indexes using native file system caching. File system caching is not as efficient as using a key cache, so although queries execute, a slowdown can be anticipated. After the cache has been restructured, it becomes available again for caching indexes assigned to it, and the use of file system caching for the indexes ceases.
+Ao reestruturar um Key Cache, o server primeiramente descarrega (*flushes*) o conteúdo de quaisquer *dirty buffers* para o disco. Depois disso, o conteúdo do cache se torna indisponível. No entanto, a reestruturação não bloqueia as Queries que precisam usar os Indexes atribuídos ao cache. Em vez disso, o server acessa diretamente os Indexes da tabela usando o *native file system caching* (cache nativo do sistema de arquivos). O *File system caching* não é tão eficiente quanto usar um Key Cache, então, embora as Queries sejam executadas, uma lentidão pode ser antecipada. Depois que o cache é reestruturado, ele se torna disponível novamente para o caching dos Indexes a ele atribuídos, e o uso do *file system caching* para os Indexes cessa.

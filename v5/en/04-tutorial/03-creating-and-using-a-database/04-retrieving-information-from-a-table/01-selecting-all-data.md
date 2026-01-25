@@ -1,6 +1,6 @@
-#### 3.3.4.1 Selecting All Data
+#### 3.3.4.1 Selecionando Todos os Dados
 
-The simplest form of [`SELECT`](select.html "13.2.9 SELECT Statement") retrieves everything from a table:
+A forma mais simples de [`SELECT`](select.html "13.2.9 SELECT Statement") recupera tudo de uma tabela:
 
 ```sql
 mysql> SELECT * FROM pet;
@@ -19,23 +19,23 @@ mysql> SELECT * FROM pet;
 +----------+--------+---------+------+------------+------------+
 ```
 
-This form of [`SELECT`](select.html "13.2.9 SELECT Statement") uses `*`, which is shorthand for “select all columns.” This is useful if you want to review your entire table, for example, after you've just loaded it with your initial data set. For example, you may happen to think that the birth date for Bowser does not seem quite right. Consulting your original pedigree papers, you find that the correct birth year should be 1989, not 1979.
+Esta forma de [`SELECT`](select.html "13.2.9 SELECT Statement") usa `*`, que é a abreviação para “selecionar todas as colunas.” Isso é útil se você deseja revisar sua tabela inteira, por exemplo, depois de carregá-la com seu conjunto de dados inicial. Por exemplo, você pode achar que a data de nascimento de Bowser não parece totalmente correta. Consultando seus documentos de pedigree originais, você descobre que o ano de nascimento correto deveria ser 1989, e não 1979.
 
-There are at least two ways to fix this:
+Existem pelo menos duas maneiras de corrigir isso:
 
-* Edit the file `pet.txt` to correct the error, then empty the table and reload it using [`DELETE`](delete.html "13.2.2 DELETE Statement") and [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"):
+* Edite o arquivo `pet.txt` para corrigir o erro, depois esvazie a tabela e recarregue-a usando [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"):
 
   ```sql
   mysql> DELETE FROM pet;
   mysql> LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
   ```
 
-  However, if you do this, you must also re-enter the record for Puffball.
+  No entanto, se você fizer isso, você também deve reinserir o registro de Puffball.
 
-* Fix only the erroneous record with an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement:
+* Corrija apenas o registro incorreto com uma instrução [`UPDATE`](update.html "13.2.11 UPDATE Statement"):
 
   ```sql
   mysql> UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
   ```
 
-  The [`UPDATE`](update.html "13.2.11 UPDATE Statement") changes only the record in question and does not require you to reload the table.
+  O [`UPDATE`](update.html "13.2.11 UPDATE Statement") altera apenas o registro em questão e não exige que você recarregue a tabela.

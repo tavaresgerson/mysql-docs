@@ -1,44 +1,44 @@
-# Chapter 9 Language Structure
+# Capítulo 9 Estrutura da Linguagem
 
-**Table of Contents**
+**Sumário**
 
-9.1 Literal Values :   9.1.1 String Literals
+9.1 Valores Literais : 9.1.1 Literais de String
 
-    9.1.2 Numeric Literals
+    9.1.2 Literais Numéricos
 
-    9.1.3 Date and Time Literals
+    9.1.3 Literais de Data e Hora
 
-    9.1.4 Hexadecimal Literals
+    9.1.4 Literais Hexadecimais
 
-    9.1.5 Bit-Value Literals
+    9.1.5 Literais de Valor Bit
 
-    9.1.6 Boolean Literals
+    9.1.6 Literais Booleanos
 
-    9.1.7 NULL Values
+    9.1.7 Valores NULL
 
-9.2 Schema Object Names :   9.2.1 Identifier Length Limits
+9.2 Nomes de Objetos de Schema : 9.2.1 Limites de Comprimento de Identificador
 
-    9.2.2 Identifier Qualifiers
+    9.2.2 Qualificadores de Identificador
 
-    9.2.3 Identifier Case Sensitivity
+    9.2.3 Sensibilidade de Case de Identificador
 
-    9.2.4 Mapping of Identifiers to File Names
+    9.2.4 Mapeamento de Identificadores para Nomes de Arquivos
 
-    9.2.5 Function Name Parsing and Resolution
+    9.2.5 Análise (Parsing) e Resolução de Nomes de Função
 
-9.3 Keywords and Reserved Words
+9.3 Keywords e Palavras Reservadas
 
-9.4 User-Defined Variables
+9.4 Variáveis Definidas pelo Usuário
 
-9.5 Expressions
+9.5 Expressões
 
-9.6 Comments
+9.6 Comentários
 
-This chapter discusses the rules for writing the following elements of SQL statements when using MySQL:
+Este capítulo discute as regras para escrever os seguintes elementos de instruções SQL ao usar MySQL:
 
-* Literal values such as strings and numbers
-* Identifiers such as database, table, and column names
-* Keywords and reserved words
-* User-defined and system variables
-* Expressions
-* Comments
+* Valores literais, como strings e números
+* Identificadores, como nomes de database, table e column
+* Keywords e palavras reservadas
+* Variáveis definidas pelo usuário e variáveis de sistema
+* Expressões
+* Comentários

@@ -1,45 +1,45 @@
-#### 6.4.5.2 Installing or Uninstalling MySQL Enterprise Audit
+#### 6.4.5.2 Instalando ou Desinstalando o MySQL Enterprise Audit
 
-This section describes how to install or uninstall MySQL Enterprise Audit, which is implemented using the audit log plugin and related elements described in [Section 6.4.5.1, “Elements of MySQL Enterprise Audit”](audit-log-elements.html "6.4.5.1 Elements of MySQL Enterprise Audit"). For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Esta seção descreve como instalar ou desinstalar o MySQL Enterprise Audit, que é implementado usando o audit log plugin e elementos relacionados descritos na [Seção 6.4.5.1, “Elementos do MySQL Enterprise Audit”](audit-log-elements.html "6.4.5.1 Elementos do MySQL Enterprise Audit"). Para informações gerais sobre a instalação de Plugins, consulte a [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Instalando e Desinstalando Plugins").
 
-Important
+Importante
 
-Read this entire section before following its instructions. Parts of the procedure differ depending on your environment.
+Leia esta seção na íntegra antes de seguir suas instruções. Partes do procedimento diferem dependendo do seu ambiente.
 
-Note
+Nota
 
-If installed, the `audit_log` plugin involves some minimal overhead even when disabled. To avoid this overhead, do not install MySQL Enterprise Audit unless you plan to use it.
+Se instalado, o `audit_log` plugin envolve alguma sobrecarga (overhead) mínima, mesmo quando desabilitado. Para evitar essa sobrecarga, não instale o MySQL Enterprise Audit a menos que você planeje usá-lo.
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo Server, o arquivo da biblioteca do Plugin deve estar localizado no diretório de Plugin do MySQL (o diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do diretório do Plugin definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do Server.
 
-Note
+Nota
 
-The instructions here apply to MySQL 5.7.13 and later.
+As instruções aqui se aplicam ao MySQL 5.7.13 e versões posteriores.
 
-Also, prior to MySQL 5.7.13, MySQL Enterprise Audit consists only of the `audit_log` plugin and includes none of the other elements described in [Section 6.4.5.1, “Elements of MySQL Enterprise Audit”](audit-log-elements.html "6.4.5.1 Elements of MySQL Enterprise Audit"). As of MySQL 5.7.13, if the `audit_log` plugin is already installed from a version of MySQL prior to 5.7.13, uninstall it using the following statement and restart the server before installing the current version:
+Além disso, antes do MySQL 5.7.13, o MySQL Enterprise Audit consistia apenas no `audit_log` plugin e não incluía nenhum dos outros elementos descritos na [Seção 6.4.5.1, “Elementos do MySQL Enterprise Audit”](audit-log-elements.html "6.4.5.1 Elementos do MySQL Enterprise Audit"). A partir do MySQL 5.7.13, se o `audit_log` plugin já estiver instalado a partir de uma versão anterior ao MySQL 5.7.13, desinstale-o usando a seguinte instrução e reinicie o Server antes de instalar a versão atual:
 
 ```sql
 UNINSTALL PLUGIN audit_log;
 ```
 
-To install MySQL Enterprise Audit, look in the `share` directory of your MySQL installation and choose the script that is appropriate for your platform. The available scripts differ in the suffix used to refer to the plugin library file:
+Para instalar o MySQL Enterprise Audit, procure no diretório `share` da sua instalação MySQL e escolha o script apropriado para sua plataforma. Os scripts disponíveis diferem no sufixo usado para se referir ao arquivo da biblioteca do Plugin:
 
-* `audit_log_filter_win_install.sql`: Choose this script for Windows systems that use `.dll` as the file name suffix.
+* `audit_log_filter_win_install.sql`: Escolha este script para sistemas Windows que usam `.dll` como sufixo do nome do arquivo.
 
-* `audit_log_filter_linux_install.sql`: Choose this script for Linux and similar systems that use `.so` as the file name suffix.
+* `audit_log_filter_linux_install.sql`: Escolha este script para Linux e sistemas semelhantes que usam `.so` como sufixo do nome do arquivo.
 
-Run the script as follows. The example here uses the Linux installation script. Make the appropriate substitution for your system.
+Execute o script da seguinte forma. O exemplo aqui usa o script de instalação para Linux. Faça a substituição apropriada para o seu sistema.
 
 ```sql
 $> mysql -u root -p < audit_log_filter_linux_install.sql
 Enter password: (enter root password here)
 ```
 
-Note
+Nota
 
-Some MySQL versions have introduced changes to the structure of the MySQL Enterprise Audit tables. To ensure that your tables are up to date for upgrades from earlier versions of MySQL 5.7, run [**mysql_upgrade --force**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") (which also performs any other needed updates). If you prefer to run the update statements only for the MySQL Enterprise Audit tables, see the following discussion.
+Algumas versões do MySQL introduziram alterações na estrutura das tabelas do MySQL Enterprise Audit. Para garantir que suas tabelas estejam atualizadas para Upgrades de versões anteriores do MySQL 5.7, execute [**mysql_upgrade --force**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") (o que também executa quaisquer outras atualizações necessárias). Se você preferir executar as instruções de atualização apenas para as tabelas do MySQL Enterprise Audit, consulte a discussão a seguir.
 
-As of MySQL 5.7.23, for new MySQL installations, the `USER` and `HOST` columns in the `audit_log_user` table used by MySQL Enterprise Audit have definitions that better correspond to the definitions of the `User` and `Host` columns in the `mysql.user` system table. For upgrades to 5.7.23 or higher of an installation for which MySQL Enterprise Audit is already installed, it is recommended that you alter the table definitions as follows:
+A partir do MySQL 5.7.23, para novas instalações do MySQL, as colunas `USER` e `HOST` na tabela `audit_log_user` usadas pelo MySQL Enterprise Audit têm definições que correspondem melhor às definições das colunas `User` e `Host` na tabela de sistema `mysql.user`. Para Upgrades para 5.7.23 ou superior de uma instalação na qual o MySQL Enterprise Audit já está instalado, é recomendado que você altere as definições da tabela da seguinte forma:
 
 ```sql
 ALTER TABLE mysql.audit_log_user
@@ -58,22 +58,22 @@ ALTER TABLE mysql.audit_log_user
   ADD FOREIGN KEY (FILTERNAME) REFERENCES mysql.audit_log_filter(NAME);
 ```
 
-As of MySQL 5.7.21, for a new installation of MySQL Enterprise Audit, `InnoDB` is used instead of `MyISAM` for the audit log tables. For upgrades to 5.7.21 or higher of an installation for which MySQL Enterprise Audit is already installed, it is recommended that you alter the audit log tables to use `InnoDB`:
+A partir do MySQL 5.7.21, para uma nova instalação do MySQL Enterprise Audit, `InnoDB` é usado em vez de `MyISAM` para as tabelas de audit log. Para Upgrades para 5.7.21 ou superior de uma instalação na qual o MySQL Enterprise Audit já está instalado, é recomendado que você altere as tabelas de audit log para usar `InnoDB`:
 
 ```sql
 ALTER TABLE mysql.audit_log_user ENGINE=InnoDB;
 ALTER TABLE mysql.audit_log_filter ENGINE=InnoDB;
 ```
 
-Note
+Nota
 
-To use MySQL Enterprise Audit in the context of source/replica replication, Group Replication, or InnoDB Cluster, you must use MySQL 5.7.21 or higher, and ensure that the audit log tables use `InnoDB` as just described. Then you must prepare the replica nodes prior to running the installation script on the source node. This is necessary because the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement in the script is not replicated.
+Para usar o MySQL Enterprise Audit no contexto de replicação source/replica, Group Replication, ou InnoDB Cluster, você deve usar o MySQL 5.7.21 ou superior e garantir que as tabelas de audit log usem `InnoDB` conforme descrito. Em seguida, você deve preparar os nós Replica antes de executar o script de instalação no nó Source. Isto é necessário porque a instrução [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") no script não é replicada.
 
-1. On each replica node, extract the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement from the installation script and execute it manually.
+1. Em cada nó Replica, extraia a instrução [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") do script de instalação e execute-a manualmente.
 
-2. On the source node, run the installation script as described previously.
+2. No nó Source, execute o script de instalação conforme descrito anteriormente.
 
-To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Para verificar a instalação do Plugin, examine a tabela [PLUGINS](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") do Information Schema ou use a instrução [SHOW PLUGINS](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte a [Seção 5.5.2, “Obtendo Informações do Plugin do Server”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -86,29 +86,29 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +-------------+---------------+
 ```
 
-If the plugin fails to initialize, check the server error log for diagnostic messages.
+Se o Plugin falhar ao inicializar, verifique o error log do Server em busca de mensagens de diagnóstico.
 
-After MySQL Enterprise Audit is installed, you can use the [`--audit-log`](audit-log-reference.html#option_mysqld_audit-log) option for subsequent server startups to control `audit_log` plugin activation. For example, to prevent the plugin from being removed at runtime, use this option:
+Após a instalação do MySQL Enterprise Audit, você pode usar a opção [`--audit-log`](audit-log-reference.html#option_mysqld_audit-log) para inicializações subsequentes do Server, a fim de controlar a ativação do `audit_log` plugin. Por exemplo, para evitar que o Plugin seja removido em tempo de execução (runtime), use esta opção:
 
 ```sql
 [mysqld]
 audit-log=FORCE_PLUS_PERMANENT
 ```
 
-If it is desired to prevent the server from running without the audit plugin, use [`--audit-log`](audit-log-reference.html#option_mysqld_audit-log) with a value of `FORCE` or `FORCE_PLUS_PERMANENT` to force server startup to fail if the plugin does not initialize successfully.
+Se for desejado impedir que o Server seja executado sem o Audit Plugin, use [`--audit-log`](audit-log-reference.html#option_mysqld_audit-log) com o valor `FORCE` ou `FORCE_PLUS_PERMANENT` para forçar a falha na inicialização do Server caso o Plugin não seja inicializado com sucesso.
 
-Important
+Importante
 
-By default, rule-based audit log filtering logs no auditable events for any users. This differs from legacy audit log behavior (prior to MySQL 5.7.13), which logs all auditable events for all users (see [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")). Should you wish to produce log-everything behavior with rule-based filtering, create a simple filter to enable logging and assign it to the default account:
+Por padrão, a filtragem de audit log baseada em regras não registra eventos auditáveis para nenhum usuário. Isso difere do comportamento de audit log legacy (anterior ao MySQL 5.7.13), que registra todos os eventos auditáveis para todos os usuários (consulte a [Seção 6.4.5.10, “Filtragem de Audit Log em Modo Legacy”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")). Caso você deseje produzir o comportamento de registrar tudo (log-everything) com filtragem baseada em regras, crie um Filter simples para habilitar o logging e atribua-o à conta padrão:
 
 ```sql
 SELECT audit_log_filter_set_filter('log_all', '{ "filter": { "log": true } }');
 SELECT audit_log_filter_set_user('%', 'log_all');
 ```
 
-The filter assigned to `%` is used for connections from any account that has no explicitly assigned filter (which initially is true for all accounts).
+O Filter atribuído a `%` é usado para conexões de qualquer conta que não tenha um Filter atribuído explicitamente (o que inicialmente é verdadeiro para todas as contas).
 
-Once installed as just described, MySQL Enterprise Audit remains installed until uninstalled. To remove it, execute the following statements:
+Uma vez instalado conforme descrito, o MySQL Enterprise Audit permanece instalado até ser desinstalado. Para removê-lo, execute as seguintes instruções:
 
 ```sql
 DROP TABLE IF EXISTS mysql.audit_log_user;

@@ -1,48 +1,48 @@
-#### 2.5.7.1 Basic Steps for MySQL Server Deployment with Docker
+#### 2.5.7.1 Passos Básicos para o Deploy do MySQL Server com Docker
 
-Warning
+Aviso
 
-The MySQL Docker images maintained by the MySQL team are built specifically for Linux platforms. Other platforms are not supported, and users using these MySQL Docker images on them are doing so at their own risk. See the discussion here for some known limitations for running these containers on non-Linux operating systems.
+As imagens Docker do MySQL mantidas pela equipe MySQL são construídas especificamente para plataformas Linux. Outras plataformas não são suportadas, e os usuários que utilizam essas imagens Docker do MySQL nelas o fazem por sua conta e risco. Consulte a discussão [aqui](https://github.com/docker-library/mysql/issues/115#issuecomment-257404416) para algumas limitações conhecidas ao executar esses containers em sistemas operacionais que não sejam Linux.
 
-* Downloading a MySQL Server Docker Image
-* Starting a MySQL Server Instance
-* Connecting to MySQL Server from within the Container
-* Container Shell Access
-* Stopping and Deleting a MySQL Container
-* Upgrading a MySQL Server Container
-* More Topics on Deploying MySQL Server with Docker
+* Download de uma Imagem Docker do MySQL Server
+* Inicializando uma Instância do MySQL Server
+* Conectando ao MySQL Server de Dentro do Container
+* Acesso ao Shell do Container
+* Parando e Deletando um Container MySQL
+* Fazendo Upgrade de um Container do MySQL Server
+* Mais Tópicos sobre o Deploy do MySQL Server com Docker
 
-##### Downloading a MySQL Server Docker Image
+##### Download de uma Imagem Docker do MySQL Server
 
-Important
+Importante
 
-*For users of MySQL Enterprise Edition*: A subscription is required to use the Docker images for MySQL Enterprise Edition. Subscriptions work by a Bring Your Own License model; see [How to Buy MySQL Products and Services](https://www.mysql.com/buy-mysql/) for details.
+*Para usuários do MySQL Enterprise Edition*: É necessária uma assinatura para usar as imagens Docker do MySQL Enterprise Edition. As assinaturas funcionam pelo modelo "Traga Sua Própria Licença" (Bring Your Own License); consulte [Como Comprar Produtos e Serviços MySQL](https://www.mysql.com/buy-mysql/) para obter detalhes.
 
-Downloading the server image in a separate step is not strictly necessary; however, performing this step before you create your Docker container ensures your local image is up to date. To download the MySQL Community Edition image, run this command:
+O download da imagem do servidor em uma etapa separada não é estritamente necessário; no entanto, realizar esta etapa antes de criar seu container Docker garante que sua imagem local esteja atualizada. Para baixar a imagem do MySQL Community Edition, execute este comando:
 
 ```sql
 docker pull mysql/mysql-server:tag
 ```
 
-The *`tag`* is the label for the image version you want to pull (for example, `5.6`, `5.7`, `8.0`, or `latest`). If **`:tag`** is omitted, the `latest` label is used, and the image for the latest GA version of MySQL Community Server is downloaded. Refer to the list of tags for available versions on the [mysql/mysql-server page in the Docker Hub](https://hub.docker.com/r/mysql/mysql-server/tags/).
+A *`tag`* é o rótulo da versão da imagem que você deseja puxar (por exemplo, `5.6`, `5.7`, `8.0` ou `latest`). Se **`:tag`** for omitida, o rótulo `latest` é usado, e a imagem para a versão GA (General Availability) mais recente do MySQL Community Server é baixada. Consulte a lista de tags para as versões disponíveis na [página mysql/mysql-server no Docker Hub](https://hub.docker.com/r/mysql/mysql-server/tags/).
 
-To download the MySQL Community Edition image from the Oracle Container Registry (OCR), run this command:
+Para baixar a imagem do MySQL Community Edition a partir do Oracle Container Registry (OCR), execute este comando:
 
 ```sql
 docker pull container-registry.oracle.com/mysql/mysql-server:tag
 ```
 
-To download the MySQL Enterprise Edition image from the OCR, you need to first accept the license agreement on the OCR and log in to the container repository with your Docker client:
+Para baixar a imagem do MySQL Enterprise Edition a partir do OCR, você precisa primeiro aceitar o acordo de licença no OCR e fazer login no repositório de containers com seu cliente Docker:
 
-* Visit the OCR at <https://container-registry.oracle.com/> and choose MySQL.
+* Visite o OCR em <https://container-registry.oracle.com/> e escolha MySQL.
 
-* Under the list of MySQL repositories, choose `enterprise-server`.
+* Na lista de repositórios MySQL, escolha `enterprise-server`.
 
-* If you have not signed in to the OCR yet, click the Sign in button on the right of the page, and then enter your Oracle account credentials when prompted to.
+* Se você ainda não fez login no OCR, clique no botão Sign in (Entrar) no lado direito da página e, em seguida, insira suas credenciais de conta Oracle quando solicitado.
 
-* Follow the instructions on the right of the page to accept the license agreement.
+* Siga as instruções no lado direito da página para aceitar o acordo de licença.
 
-* Log in to the OCR with your Docker client (the `docker` command) using the `docker login` command:
+* Faça login no OCR com seu cliente Docker (o comando `docker`) usando o comando `docker login`:
 
   ```sql
   # docker login container-registry.oracle.com
@@ -51,42 +51,42 @@ To download the MySQL Enterprise Edition image from the OCR, you need to first a
   Login successful.
   ```
 
-Download the Docker image for MySQL Enterprise Edition from the OCR with this command:
+Baixe a imagem Docker para o MySQL Enterprise Edition do OCR com este comando:
 
 ```sql
 docker pull  container-registry.oracle.com/mysql/enterprise-server:tag
 ```
 
-There are different choices for **`tag`**, corresponding to different versions of MySQL Docker images provided by the OCR:
+Existem diferentes escolhas para **`tag`**, correspondendo a diferentes versões de imagens Docker do MySQL fornecidas pelo OCR:
 
-* `8.0`, `8.0.x` (*`x`* is the latest version number in the 8.0 series), `latest`: MySQL 8.0, the latest GA
+* `8.0`, `8.0.x` (*`x`* é o número da versão mais recente na série 8.0), `latest`: MySQL 8.0, o GA mais recente
 
-* `5.7`, `5.7.y` (*`y`* is the latest version number in the 5.7 series): MySQL 5.7
+* `5.7`, `5.7.y` (*`y`* é o número da versão mais recente na série 5.7): MySQL 5.7
 
-To download the MySQL Enterprise Edition image, visit the [My Oracle Support](https://support.oracle.com/) website, sign in to your Oracle account, and perform these steps once you are on the landing page:
+Para baixar a imagem do MySQL Enterprise Edition, visite o site [My Oracle Support](https://support.oracle.com/), faça login na sua conta Oracle e execute estas etapas após chegar à página inicial:
 
-* Select the Patches and Updates tab.
-* Go to the Patch Search region and, on the Search tab, switch to the Product or Family (Advanced) subtab.
+* Selecione a aba Patches and Updates (Patches e Atualizações).
+* Vá para a região Patch Search (Pesquisa de Patch) e, na aba Search (Pesquisa), mude para a sub-aba Product or Family (Advanced) (Produto ou Família (Avançado)).
 
-* Enter “MySQL Server” for the Product field, and the desired version number in the Release field.
+* Insira “MySQL Server” para o campo Product (Produto) e o número da versão desejada no campo Release (Lançamento).
 
-* Use the dropdowns for additional filters to select Description—contains, and enter “Docker” in the text field.
+* Use os menus suspensos para filtros adicionais para selecionar Description—contains (Descrição—contém) e insira “Docker” no campo de texto.
 
-  The following figure shows the search settings for a MySQL Enterprise Edition image:
+  A figura a seguir mostra as configurações de pesquisa para uma imagem do MySQL Enterprise Edition:
 
-  ![Diagram showing search settings for MySQL Enterprise image](images/docker-search2.png)
+  ![Diagrama mostrando configurações de pesquisa para imagem do MySQL Enterprise](images/docker-search2.png)
 
-* Click the Search button and, from the result list, select the version you want, and click the Download button.
+* Clique no botão Search (Pesquisar) e, na lista de resultados, selecione a versão desejada e clique no botão Download (Baixar).
 
-* In the File Download dialogue box that appears, click and download the `.zip` file for the Docker image.
+* Na caixa de diálogo File Download (Download de Arquivo) que aparece, clique e baixe o arquivo `.zip` para a imagem Docker.
 
-Unzip the downloaded `.zip` archive to obtain the tarball inside (`mysql-enterprise-server-version.tar`), and then load the image by running this command:
+Descompacte o arquivo `.zip` baixado para obter o tarball interno (`mysql-enterprise-server-version.tar`) e, em seguida, carregue a imagem executando este comando:
 
 ```sql
 docker load -i mysql-enterprise-server-version.tar
 ```
 
-You can list downloaded Docker images with this command:
+Você pode listar as imagens Docker baixadas com este comando:
 
 ```sql
 $> docker images
@@ -94,35 +94,35 @@ REPOSITORY           TAG                 IMAGE ID            CREATED            
 mysql/mysql-server   latest              3157d7f55f8d        4 weeks ago         241MB
 ```
 
-##### Starting a MySQL Server Instance
+##### Inicializando uma Instância do MySQL Server
 
-To start a new Docker container for a MySQL Server, use the following command:
+Para iniciar um novo container Docker para um MySQL Server, use o seguinte comando:
 
 ```sql
 docker run --name=container_name -d image_name:tag
 ```
 
-The image name can be obtained using the **docker images** command, as explained in Downloading a MySQL Server Docker Image. The `--name` option, for supplying a custom name for your server container, is optional; if no container name is supplied, a random one is generated.
+O nome da imagem pode ser obtido usando o comando **docker images**, conforme explicado em Download de uma Imagem Docker do MySQL Server. A opção `--name`, para fornecer um nome personalizado para o container do seu servidor, é opcional; se nenhum nome de container for fornecido, um nome aleatório será gerado.
 
-For example, to start a new Docker container for the MySQL Community Server, use this command:
+Por exemplo, para iniciar um novo container Docker para o MySQL Community Server, use este comando:
 
 ```sql
 docker run --name=mysql1 -d mysql/mysql-server:5.7
 ```
 
-To start a new Docker container for the MySQL Enterprise Server with a Docker image downloaded from the OCR, use this command:
+Para iniciar um novo container Docker para o MySQL Enterprise Server com uma imagem Docker baixada do OCR, use este comando:
 
 ```sql
 docker run --name=mysql1 -d container-registry.oracle.com/mysql/enterprise-server:5.7
 ```
 
-To start a new Docker container for the MySQL Enterprise Server with a Docker image downloaded from My Oracle Support, use this command:
+Para iniciar um novo container Docker para o MySQL Enterprise Server com uma imagem Docker baixada do My Oracle Support, use este comando:
 
 ```sql
 docker run --name=mysql1 -d mysql/enterprise-server:5.7
 ```
 
-If the Docker image of the specified name and tag has not been downloaded by an earlier **docker pull** or **docker run** command, the image is now downloaded. Initialization for the container begins, and the container appears in the list of running containers when you run the **docker ps** command. For example:
+Se a imagem Docker do nome e tag especificados não tiver sido baixada por um comando **docker pull** ou **docker run** anterior, a imagem será baixada agora. A inicialização para o container começa, e o container aparece na lista de containers em execução quando você executa o comando **docker ps**. Por exemplo:
 
 ```sql
 $> docker ps
@@ -130,47 +130,47 @@ CONTAINER ID   IMAGE                COMMAND                  CREATED            
 a24888f0d6f4   mysql/mysql-server   "/entrypoint.sh my..."   14 seconds ago      Up 13 seconds (health: starting)    3306/tcp, 33060/tcp  mysql1
 ```
 
-The container initialization might take some time. When the server is ready for use, the `STATUS` of the container in the output of the **docker ps** command changes from `(health: starting)` to `(healthy)`.
+A inicialização do container pode levar algum tempo. Quando o server estiver pronto para uso, o `STATUS` do container na saída do comando **docker ps** muda de `(health: starting)` para `(healthy)`.
 
-The `-d` option used in the **docker run** command above makes the container run in the background. Use this command to monitor the output from the container:
+A opção `-d` usada no comando **docker run** acima faz com que o container seja executado em segundo plano. Use este comando para monitorar a saída do container:
 
 ```sql
 docker logs mysql1
 ```
 
-Once initialization is finished, the command's output is going to contain the random password generated for the root user; check the password with, for example, this command:
+Assim que a inicialização for concluída, a saída do comando conterá a senha aleatória gerada para o usuário root; verifique a senha com, por exemplo, este comando:
 
 ```sql
 $> docker logs mysql1 2>&1 | grep GENERATED
 GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&EShOs
 ```
 
-##### Connecting to MySQL Server from within the Container
+##### Conectando ao MySQL Server de Dentro do Container
 
-Once the server is ready, you can run the **mysql** client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the **docker exec -it** command to start a **mysql** client inside the Docker container you have started, like the following:
+Assim que o server estiver pronto, você pode executar o cliente **mysql** dentro do container do MySQL Server que você acabou de iniciar e conectá-lo ao MySQL Server. Use o comando **docker exec -it** para iniciar um cliente **mysql** dentro do container Docker que você iniciou, como o seguinte:
 
 ```sql
 docker exec -it mysql1 mysql -uroot -p
 ```
 
-When asked, enter the generated root password (see the last step in Starting a MySQL Server Instance above on how to find the password). Because the `MYSQL_ONETIME_PASSWORD` option is true by default, after you have connected a **mysql** client to the server, you must reset the server root password by issuing this statement:
+Quando solicitado, insira a senha root gerada (consulte a última etapa em Inicializando uma Instância do MySQL Server acima sobre como encontrar a senha). Como a opção `MYSQL_ONETIME_PASSWORD` é verdadeira por padrão, depois de conectar um cliente **mysql** ao server, você deve redefinir a senha root do server emitindo esta instrução:
 
 ```sql
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 ```
 
-Substitute *`password`* with the password of your choice. Once the password is reset, the server is ready for use.
+Substitua *`password`* pela senha de sua escolha. Assim que a senha for redefinida, o server estará pronto para uso.
 
-##### Container Shell Access
+##### Acesso ao Shell do Container
 
-To have shell access to your MySQL Server container, use the **docker exec -it** command to start a bash shell inside the container:
+Para ter acesso ao shell do seu container do MySQL Server, use o comando **docker exec -it** para iniciar um shell bash dentro do container:
 
 ```sql
 $> docker exec -it mysql1 bash
 bash-4.2#
 ```
 
-You can then run Linux commands inside the container. For example, to view contents in the server's data directory inside the container, use this command:
+Você pode então executar comandos Linux dentro do container. Por exemplo, para visualizar o conteúdo no data directory do server dentro do container, use este comando:
 
 ```sql
 bash-4.2# ls /var/lib/mysql
@@ -178,31 +178,31 @@ auto.cnf    ca.pem	     client-key.pem  ib_logfile0  ibdata1  mysql       mysql.
 ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1   mysql.sock  performance_schema  public_key.pem   server-key.pem
 ```
 
-##### Stopping and Deleting a MySQL Container
+##### Parando e Deletando um Container MySQL
 
-To stop the MySQL Server container we have created, use this command:
+Para parar o container do MySQL Server que criamos, use este comando:
 
 ```sql
 docker stop mysql1
 ```
 
-**docker stop** sends a SIGTERM signal to the **mysqld** process, so that the server is shut down gracefully.
+**docker stop** envia um sinal SIGTERM para o processo **mysqld**, para que o server seja desligado de forma graciosa (gracefully).
 
-Also notice that when the main process of a container (**mysqld** in the case of a MySQL Server container) is stopped, the Docker container stops automatically.
+Observe também que quando o processo principal de um container (**mysqld** no caso de um container do MySQL Server) é interrompido, o container Docker para automaticamente.
 
-To start the MySQL Server container again:
+Para iniciar o container do MySQL Server novamente:
 
 ```sql
 docker start mysql1
 ```
 
-To stop and start again the MySQL Server container with a single command:
+Para parar e iniciar novamente o container do MySQL Server com um único comando:
 
 ```sql
 docker restart mysql1
 ```
 
-To delete the MySQL container, stop it first, and then use the **docker rm** command:
+Para deletar o container MySQL, pare-o primeiro e, em seguida, use o comando **docker rm**:
 
 ```sql
 docker stop mysql1
@@ -212,27 +212,27 @@ docker stop mysql1
 docker rm mysql1
 ```
 
-If you want the Docker volume for the server's data directory to be deleted at the same time, add the `-v` option to the **docker rm** command.
+Se você quiser que o Docker volume para o data directory do server seja deletado ao mesmo tempo, adicione a opção `-v` ao comando **docker rm**.
 
-##### Upgrading a MySQL Server Container
+##### Fazendo Upgrade de um Container do MySQL Server
 
-Important
+Importante
 
-* Before performing any upgrade to MySQL, follow carefully the instructions in Section 2.10, “Upgrading MySQL”. Among other instructions discussed there, it is especially important to back up your database before the upgrade.
+* Antes de realizar qualquer upgrade para o MySQL, siga cuidadosamente as instruções na Seção 2.10, “Fazendo Upgrade do MySQL”. Entre outras instruções discutidas lá, é especialmente importante fazer backup do seu Database antes do upgrade.
 
-* The instructions in this section require that the server's data and configuration have been persisted on the host. See Persisting Data and Configuration Changes for details.
+* As instruções nesta seção exigem que os dados e a configuração do server tenham sido persistidos no host. Consulte Persistência de Dados e Alterações de Configuração para obter detalhes.
 
-Follow these steps to upgrade a Docker installation of MySQL 5.6 to 5.7:
+Siga estas etapas para fazer upgrade de uma instalação Docker do MySQL 5.6 para 5.7:
 
-* Stop the MySQL 5.6 server (container name is `mysql56` in this example):
+* Pare o MySQL 5.6 Server (o nome do container é `mysql56` neste exemplo):
 
   ```sql
   docker stop mysql56
   ```
 
-* Download the MySQL 5.7 Server Docker image. See instructions in Downloading a MySQL Server Docker Image; make sure you use the right tag for MySQL 5.7.
+* Baixe a imagem Docker do MySQL 5.7 Server. Consulte as instruções em Download de uma Imagem Docker do MySQL Server; certifique-se de usar a tag correta para o MySQL 5.7.
 
-* Start a new MySQL 5.7 Docker container (named `mysql57` in this example) with the old server data and configuration (with proper modifications if needed—see Section 2.10, “Upgrading MySQL”) that have been persisted on the host (by [bind-mounting](https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-or-volumes) in this example). For the MySQL Community Server, run this command:
+* Inicie um novo container Docker do MySQL 5.7 (nomeado `mysql57` neste exemplo) com os dados e a configuração do server antigo (com as modificações adequadas, se necessário — consulte a Seção 2.10, “Fazendo Upgrade do MySQL”) que foram persistidos no host (por [bind-mounting](https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-or-volumes) neste exemplo). Para o MySQL Community Server, execute este comando:
 
   ```sql
   docker run --name=mysql57 \
@@ -241,24 +241,24 @@ Follow these steps to upgrade a Docker installation of MySQL 5.6 to 5.7:
      -d mysql/mysql-server:5.7
   ```
 
-  If needed, adjust `mysql/mysql-server` to the correct image name—for example, replace it with `container-registry.oracle.com/mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from the OCR, or `mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from [My Oracle Support](https://support.oracle.com/).
+  Se necessário, ajuste `mysql/mysql-server` para o nome de imagem correto — por exemplo, substitua-o por `container-registry.oracle.com/mysql/enterprise-server` para imagens do MySQL Enterprise Edition baixadas do OCR, ou `mysql/enterprise-server` para imagens do MySQL Enterprise Edition baixadas do [My Oracle Support](https://support.oracle.com/).
 
-* Wait for the server to finish startup. You can check the status of the server using the **docker ps** command (see Starting a MySQL Server Instance for how to do that).
+* Aguarde a conclusão da inicialização do server. Você pode verificar o status do server usando o comando **docker ps** (consulte Inicializando uma Instância do MySQL Server para saber como fazer isso).
 
-* Run the mysql_upgrade utility in the MySQL 5.7 Server container:
+* Execute o utilitário mysql_upgrade no container do MySQL 5.7 Server:
 
   ```sql
   docker exec -it mysql57 mysql_upgrade -uroot -p
   ```
 
-  When prompted, enter the root password for your old MySQL 5.6 Server.
+  Quando solicitado, insira a senha root do seu antigo MySQL 5.6 Server.
 
-* Finish the upgrade by restarting the MySQL 5.7 Server container:
+* Conclua o upgrade reiniciando o container do MySQL 5.7 Server:
 
   ```sql
   docker restart mysql57
   ```
 
-##### More Topics on Deploying MySQL Server with Docker
+##### Mais Tópicos sobre o Deploy do MySQL Server com Docker
 
-For more topics on deploying MySQL Server with Docker like server configuration, persisting data and configuration, server error log, and container environment variables, see Section 2.5.7.2, “More Topics on Deploying MySQL Server with Docker”.
+Para mais tópicos sobre o deploy do MySQL Server com Docker, como configuração do server, persistência de dados e configuração, log de erros do server e variáveis de ambiente do container, consulte a Seção 2.5.7.2, “Mais Tópicos sobre o Deploy do MySQL Server com Docker”.

@@ -1,28 +1,28 @@
-#### 6.4.4.8 General-Purpose Keyring Key-Management Functions
+#### 6.4.4.8 Funções de Gerenciamento de Chaves Keyring de Propósito Geral
 
-MySQL Server supports a keyring service that enables internal server components and plugins to store sensitive information securely for later retrieval.
+O MySQL Server oferece suporte a um service Keyring que permite que componentes internos do servidor e Plugins armazenem informações confidenciais de forma segura para recuperação posterior.
 
-As of MySQL 5.7.13, MySQL Server includes an SQL interface for keyring key management, implemented as a set of general-purpose functions that access the capabilities provided by the internal keyring service. The keyring functions are contained in a plugin library file, which also contains a `keyring_udf` plugin that must be enabled prior to function invocation. For these functions to be used, a keyring plugin such as `keyring_file` or `keyring_okv` must be enabled.
+A partir do MySQL 5.7.13, o MySQL Server inclui uma interface SQL para gerenciamento de chaves Keyring, implementada como um conjunto de funções de propósito geral que acessam os recursos fornecidos pelo service Keyring interno. As funções Keyring estão contidas em um arquivo de biblioteca de Plugin, que também contém um Plugin `keyring_udf` que deve ser habilitado antes da invocação da função. Para que essas funções sejam usadas, um Plugin Keyring como `keyring_file` ou `keyring_okv` deve ser habilitado.
 
-The functions described here are general-purpose and intended for use with any keyring component or plugin. A given keyring component or plugin may also provide functions of its own that are intended for use only with that component or plugin; see [Section 6.4.4.9, “Plugin-Specific Keyring Key-Management Functions”](keyring-functions-plugin-specific.html "6.4.4.9 Plugin-Specific Keyring Key-Management Functions").
+As funções descritas aqui são de propósito geral e destinadas ao uso com qualquer componente ou Plugin Keyring. Um determinado componente ou Plugin Keyring também pode fornecer funções próprias destinadas ao uso apenas com esse componente ou Plugin; consulte [Seção 6.4.4.9, “Funções de Gerenciamento de Chaves Keyring Específicas de Plugin”](keyring-functions-plugin-specific.html "6.4.4.9 Funções de Gerenciamento de Chaves Keyring Específicas de Plugin").
 
-The following sections provide installation instructions for the keyring functions and demonstrate how to use them. For information about the keyring service functions invoked by these functions, see [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service"). For general keyring information, see [Section 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
+As seções a seguir fornecem instruções de instalação para as funções Keyring e demonstram como usá-las. Para obter informações sobre as funções do service Keyring invocadas por essas funções, consulte [Seção 5.5.6.2, “O Service Keyring”](keyring-service.html "5.5.6.2 O Service Keyring"). Para informações gerais sobre Keyring, consulte [Seção 6.4.4, “O Keyring MySQL”](keyring.html "6.4.4 O Keyring MySQL").
 
-* [Installing or Uninstalling General-Purpose Keyring Functions](keyring-functions-general-purpose.html#keyring-function-installation "Installing or Uninstalling General-Purpose Keyring Functions")
-* [Using General-Purpose Keyring Functions](keyring-functions-general-purpose.html#keyring-function-usage "Using General-Purpose Keyring Functions")
-* [General-Purpose Keyring Function Reference](keyring-functions-general-purpose.html#keyring-function-reference "General-Purpose Keyring Function Reference")
+* [Instalando ou Desinstalando Funções Keyring de Propósito Geral](keyring-functions-general-purpose.html#keyring-function-installation "Instalando ou Desinstalando Funções Keyring de Propósito Geral")
+* [Usando Funções Keyring de Propósito Geral](keyring-functions-general-purpose.html#keyring-function-usage "Usando Funções Keyring de Propósito Geral")
+* [Referência de Funções Keyring de Propósito Geral](keyring-functions-general-purpose.html#keyring-function-reference "Referência de Funções Keyring de Propósito Geral")
 
-##### Installing or Uninstalling General-Purpose Keyring Functions
+##### Instalando ou Desinstalando Funções Keyring de Propósito Geral
 
-This section describes how to install or uninstall the keyring functions, which are implemented in a plugin library file that also contains a `keyring_udf` plugin. For general information about installing or uninstalling plugins and loadable functions, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins"), and [Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions").
+Esta seção descreve como instalar ou desinstalar as funções Keyring, que são implementadas em um arquivo de biblioteca de Plugin que também contém um Plugin `keyring_udf`. Para obter informações gerais sobre como instalar ou desinstalar Plugins e funções carregáveis, consulte [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Instalando e Desinstalando Plugins") e [Seção 5.6.1, “Instalando e Desinstalando Funções Carregáveis”](function-loading.html "5.6.1 Instalando e Desinstalando Funções Carregáveis").
 
-The keyring functions enable keyring key management operations, but the `keyring_udf` plugin must also be installed because the functions do not work correctly without it. Attempts to use the functions without the `keyring_udf` plugin result in an error.
+As funções Keyring habilitam operações de gerenciamento de chaves Keyring, mas o Plugin `keyring_udf` também deve ser instalado, pois as funções não funcionam corretamente sem ele. Tentativas de usar as funções sem o Plugin `keyring_udf` resultam em um erro.
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo servidor, o arquivo de biblioteca do Plugin deve estar localizado no diretório de Plugins do MySQL (o diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do diretório de Plugins definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do servidor.
 
-The plugin library file base name is `keyring_udf`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
+O nome base do arquivo de biblioteca do Plugin é `keyring_udf`. O sufixo do nome do arquivo difere por plataforma (por exemplo, `.so` para sistemas Unix e Unix-like, `.dll` para Windows).
 
-To install the `keyring_udf` plugin and the keyring functions, use the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") statements, adjusting the `.so` suffix for your platform as necessary:
+Para instalar o Plugin `keyring_udf` e as funções Keyring, use as instruções [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 Comando INSTALL PLUGIN") e [`CREATE FUNCTION`](create-function.html "13.1.13 Comando CREATE FUNCTION"), ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 INSTALL PLUGIN keyring_udf SONAME 'keyring_udf.so';
@@ -40,9 +40,9 @@ CREATE FUNCTION keyring_key_remove RETURNS INTEGER
   SONAME 'keyring_udf.so';
 ```
 
-If the plugin and functions are used on a source replication server, install them on all replicas as well to avoid replication issues.
+Se o Plugin e as funções forem usados em um source replication server, instale-os em todas as replicas também para evitar problemas de replicação.
 
-Once installed as just described, the plugin and functions remain installed until uninstalled. To remove them, use the [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") and [`DROP FUNCTION`](drop-function.html "13.1.24 DROP FUNCTION Statement") statements:
+Uma vez instalados conforme descrito, o Plugin e as funções permanecem instalados até que sejam desinstalados. Para removê-los, use os comandos [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 Comando UNINSTALL PLUGIN") e [`DROP FUNCTION`](drop-function.html "13.1.24 Comando DROP FUNCTION"):
 
 ```sql
 UNINSTALL PLUGIN keyring_udf;
@@ -54,13 +54,13 @@ DROP FUNCTION keyring_key_store;
 DROP FUNCTION keyring_key_remove;
 ```
 
-##### Using General-Purpose Keyring Functions
+##### Usando Funções Keyring de Propósito Geral
 
-Before using the keyring general-purpose functions, install them according to the instructions provided in [Installing or Uninstalling General-Purpose Keyring Functions](keyring-functions-general-purpose.html#keyring-function-installation "Installing or Uninstalling General-Purpose Keyring Functions").
+Antes de usar as funções de propósito geral Keyring, instale-as de acordo com as instruções fornecidas em [Instalando ou Desinstalando Funções Keyring de Propósito Geral](keyring-functions-general-purpose.html#keyring-function-installation "Instalando ou Desinstalando Funções Keyring de Propósito Geral").
 
-The keyring functions are subject to these constraints:
+As funções Keyring estão sujeitas a estas restrições:
 
-* To use any keyring function, the `keyring_udf` plugin must be enabled. Otherwise, an error occurs:
+* Para usar qualquer função Keyring, o Plugin `keyring_udf` deve estar habilitado. Caso contrário, ocorre um erro:
 
   ```sql
   ERROR 1123 (HY000): Can't initialize function 'keyring_key_generate';
@@ -68,9 +68,9 @@ The keyring functions are subject to these constraints:
   Please install
   ```
 
-  To install the `keyring_udf` plugin, see [Installing or Uninstalling General-Purpose Keyring Functions](keyring-functions-general-purpose.html#keyring-function-installation "Installing or Uninstalling General-Purpose Keyring Functions").
+  Para instalar o Plugin `keyring_udf`, consulte [Instalando ou Desinstalando Funções Keyring de Propósito Geral](keyring-functions-general-purpose.html#keyring-function-installation "Instalando ou Desinstalando Funções Keyring de Propósito Geral").
 
-* The keyring functions invoke keyring service functions (see [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service")). The service functions in turn use whatever keyring plugin is installed (for example, `keyring_file` or `keyring_okv`). Therefore, to use any keyring function, some underlying keyring plugin must be enabled. Otherwise, an error occurs:
+* As funções Keyring invocam funções do service Keyring (consulte [Seção 5.5.6.2, “O Service Keyring”](keyring-service.html "5.5.6.2 O Service Keyring")). As funções do service, por sua vez, usam qualquer Plugin Keyring que esteja instalado (por exemplo, `keyring_file` ou `keyring_okv`). Portanto, para usar qualquer função Keyring, algum Plugin Keyring subjacente deve estar habilitado. Caso contrário, ocorre um erro:
 
   ```sql
   ERROR 3188 (HY000): Function 'keyring_key_generate' failed because
@@ -79,9 +79,9 @@ The keyring functions are subject to these constraints:
   for the keyring you are using.
   ```
 
-  To install a keyring plugin, see [Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation").
+  Para instalar um Plugin Keyring, consulte [Seção 6.4.4.1, “Instalação do Plugin Keyring”](keyring-plugin-installation.html "6.4.4.1 Instalação do Plugin Keyring").
 
-* A user must possess the global [`EXECUTE`](privileges-provided.html#priv_execute) privilege to use any keyring function. Otherwise, an error occurs:
+* Um usuário deve possuir o privilégio global [`EXECUTE`](privileges-provided.html#priv_execute) para usar qualquer função Keyring. Caso contrário, ocorre um erro:
 
   ```sql
   ERROR 1123 (HY000): Can't initialize function 'keyring_key_generate';
@@ -89,21 +89,21 @@ The keyring functions are subject to these constraints:
   have EXECUTE
   ```
 
-  To grant the global [`EXECUTE`](privileges-provided.html#priv_execute) privilege to a user, use this statement:
+  Para conceder o privilégio global [`EXECUTE`](privileges-provided.html#priv_execute) a um usuário, use este comando:
 
   ```sql
   GRANT EXECUTE ON *.* TO user;
   ```
 
-  Alternatively, should you prefer to avoid granting the global [`EXECUTE`](privileges-provided.html#priv_execute) privilege while still permitting users to access specific key-management operations, “wrapper” stored programs can be defined (a technique described later in this section).
+  Alternativamente, se preferir evitar a concessão do privilégio global [`EXECUTE`](privileges-provided.html#priv_execute) enquanto ainda permite que os usuários acessem operações específicas de gerenciamento de chaves, podem ser definidos Stored Programs "wrapper" (uma técnica descrita mais adiante nesta seção).
 
-* A key stored in the keyring by a given user can be manipulated later only by the same user. That is, the value of the [`CURRENT_USER()`](information-functions.html#function_current-user) function at the time of key manipulation must have the same value as when the key was stored in the keyring. (This constraint rules out the use of the keyring functions for manipulation of instance-wide keys, such as those created by `InnoDB` to support tablespace encryption.)
+* Uma chave armazenada no Keyring por um determinado usuário pode ser manipulada posteriormente apenas pelo mesmo usuário. Ou seja, o valor da função [`CURRENT_USER()`](information-functions.html#function_current-user) no momento da manipulação da chave deve ter o mesmo valor de quando a chave foi armazenada no Keyring. (Essa restrição impede o uso das funções Keyring para manipulação de chaves de instância ampla, como aquelas criadas pelo `InnoDB` para suportar criptografia de tablespace.)
 
-  To enable multiple users to perform operations on the same key, “wrapper” stored programs can be defined (a technique described later in this section).
+  Para permitir que vários usuários realizem operações na mesma chave, podem ser definidos Stored Programs "wrapper" (uma técnica descrita mais adiante nesta seção).
 
-* Keyring functions support the key types and lengths supported by the underlying keyring plugin. For information about keys specific to a particular keyring plugin, see [Section 6.4.4.6, “Supported Keyring Key Types and Lengths”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
+* As funções Keyring suportam os key types e lengths suportados pelo Plugin Keyring subjacente. Para obter informações sobre chaves específicas de um determinado Plugin Keyring, consulte [Seção 6.4.4.6, “Tipos e Comprimentos de Chave Keyring Suportados”](keyring-key-types.html "6.4.4.6 Tipos e Comprimentos de Chave Keyring Suportados").
 
-To create a new random key and store it in the keyring, call [`keyring_key_generate()`](keyring-functions-general-purpose.html#function_keyring-key-generate), passing to it an ID for the key, along with the key type (encryption method) and its length in bytes. The following call creates a 2,048-bit DSA-encrypted key named `MyKey`:
+Para criar uma nova chave aleatória e armazená-la no Keyring, chame [`keyring_key_generate()`](keyring-functions-general-purpose.html#function_keyring-key-generate), passando a ele um ID para a chave, juntamente com o key type (método de criptografia) e seu length em bytes. A chamada a seguir cria uma chave criptografada DSA de 2.048 bits chamada `MyKey`:
 
 ```sql
 mysql> SELECT keyring_key_generate('MyKey', 'DSA', 256);
@@ -114,9 +114,9 @@ mysql> SELECT keyring_key_generate('MyKey', 'DSA', 256);
 +-------------------------------------------+
 ```
 
-A return value of 1 indicates success. If the key cannot be created, the return value is `NULL` and an error occurs. One reason this might be is that the underlying keyring plugin does not support the specified combination of key type and key length; see [Section 6.4.4.6, “Supported Keyring Key Types and Lengths”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
+Um valor de retorno de 1 indica sucesso. Se a chave não puder ser criada, o valor de retorno é `NULL` e ocorre um erro. Uma razão para isso pode ser que o Plugin Keyring subjacente não suporte a combinação especificada de key type e key length; consulte [Seção 6.4.4.6, “Tipos e Comprimentos de Chave Keyring Suportados”](keyring-key-types.html#keyring-key-types "6.4.4.6 Tipos e Comprimentos de Chave Keyring Suportados").
 
-To be able to check the return type regardless of whether an error occurs, use `SELECT ... INTO @var_name` and test the variable value:
+Para poder verificar o tipo de retorno, independentemente de ocorrer um erro, use `SELECT ... INTO @var_name` e teste o valor da variável:
 
 ```sql
 mysql> SELECT keyring_key_generate('', '', -1) INTO @x;
@@ -139,9 +139,9 @@ mysql> SELECT @x;
 +------+
 ```
 
-This technique also applies to other keyring functions that for failure return a value and an error.
+Esta técnica também se aplica a outras funções Keyring que, em caso de falha, retornam um valor e um erro.
 
-The ID passed to [`keyring_key_generate()`](keyring-functions-general-purpose.html#function_keyring-key-generate) provides a means by which to refer to the key in subsequent functions calls. For example, use the key ID to retrieve its type as a string or its length in bytes as an integer:
+O ID passado para [`keyring_key_generate()`](keyring-functions-general-purpose.html#function_keyring-key-generate) fornece um meio de se referir à chave em chamadas de função subsequentes. Por exemplo, use o Key ID para recuperar seu tipo como uma string ou seu length em bytes como um integer:
 
 ```sql
 mysql> SELECT keyring_key_type_fetch('MyKey');
@@ -158,7 +158,7 @@ mysql> SELECT keyring_key_length_fetch('MyKey');
 +-----------------------------------+
 ```
 
-To retrieve a key value, pass the key ID to [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch). The following example uses [`HEX()`](string-functions.html#function_hex) to display the key value because it may contain nonprintable characters. The example also uses a short key for brevity, but be aware that longer keys provide better security:
+Para recuperar um key value, passe o Key ID para [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch). O exemplo a seguir usa [`HEX()`](string-functions.html#function_hex) para exibir o key value, pois ele pode conter caracteres não imprimíveis. O exemplo também usa uma chave curta por brevidade, mas esteja ciente de que chaves mais longas oferecem melhor segurança:
 
 ```sql
 mysql> SELECT keyring_key_generate('MyShortKey', 'DSA', 8);
@@ -175,9 +175,9 @@ mysql> SELECT HEX(keyring_key_fetch('MyShortKey'));
 +--------------------------------------+
 ```
 
-Keyring functions treat key IDs, types, and values as binary strings, so comparisons are case-sensitive. For example, IDs of `MyKey` and `mykey` refer to different keys.
+As funções Keyring tratam Key IDs, tipos e valores como strings binárias, portanto, as comparações diferenciam maiúsculas de minúsculas. Por exemplo, IDs `MyKey` e `mykey` referem-se a chaves diferentes.
 
-To remove a key, pass the key ID to [`keyring_key_remove()`](keyring-functions-general-purpose.html#function_keyring-key-remove):
+Para remover uma chave, passe o Key ID para [`keyring_key_remove()`](keyring-functions-general-purpose.html#function_keyring-key-remove):
 
 ```sql
 mysql> SELECT keyring_key_remove('MyKey');
@@ -188,7 +188,7 @@ mysql> SELECT keyring_key_remove('MyKey');
 +-----------------------------+
 ```
 
-To obfuscate and store a key that you provide, pass the key ID, type, and value to [`keyring_key_store()`](keyring-functions-general-purpose.html#function_keyring-key-store):
+Para ofuscar e armazenar uma chave que você fornece, passe o Key ID, o type e o value para [`keyring_key_store()`](keyring-functions-general-purpose.html#function_keyring-key-store):
 
 ```sql
 mysql> SELECT keyring_key_store('AES_key', 'AES', 'Secret string');
@@ -199,19 +199,19 @@ mysql> SELECT keyring_key_store('AES_key', 'AES', 'Secret string');
 +------------------------------------------------------+
 ```
 
-As indicated previously, a user must have the global [`EXECUTE`](privileges-provided.html#priv_execute) privilege to call keyring functions, and the user who stores a key in the keyring initially must be the same user who performs subsequent operations on the key later, as determined from the [`CURRENT_USER()`](information-functions.html#function_current-user) value in effect for each function call. To permit key operations to users who do not have the global [`EXECUTE`](privileges-provided.html#priv_execute) privilege or who may not be the key “owner,” use this technique:
+Conforme indicado anteriormente, um usuário deve ter o privilégio global [`EXECUTE`](privileges-provided.html#priv_execute) para chamar funções Keyring, e o usuário que armazena uma chave no Keyring inicialmente deve ser o mesmo usuário que executa operações subsequentes na chave mais tarde, conforme determinado pelo valor [`CURRENT_USER()`](information-functions.html#function_current-user) em vigor para cada chamada de função. Para permitir operações de chave a usuários que não possuem o privilégio global [`EXECUTE`](privileges-provided.html#priv_execute) ou que podem não ser o "proprietário" da chave, use esta técnica:
 
-1. Define “wrapper” stored programs that encapsulate the required key operations and have a `DEFINER` value equal to the key owner.
+1. Defina Stored Programs "wrapper" que encapsulam as operações de chave necessárias e têm um valor `DEFINER` igual ao proprietário da chave.
 
-2. Grant the [`EXECUTE`](privileges-provided.html#priv_execute) privilege for specific stored programs to the individual users who should be able to invoke them.
+2. Conceda o privilégio [`EXECUTE`](privileges-provided.html#priv_execute) para Stored Programs específicos aos usuários individuais que devem poder invocá-los.
 
-3. If the operations implemented by the wrapper stored programs do not include key creation, create any necessary keys in advance, using the account named as the `DEFINER` in the stored program definitions.
+3. Se as operações implementadas pelos Stored Programs wrapper não incluírem a criação de chaves, crie as chaves necessárias com antecedência, usando a conta nomeada como `DEFINER` nas definições do Stored Program.
 
-This technique enables keys to be shared among users and provides to DBAs more fine-grained control over who can do what with keys, without having to grant global privileges.
+Essa técnica permite que as chaves sejam compartilhadas entre usuários e fornece aos DBAs um controle mais granular sobre quem pode fazer o quê com as chaves, sem a necessidade de conceder privilégios globais.
 
-The following example shows how to set up a shared key named `SharedKey` that is owned by the DBA, and a `get_shared_key()` stored function that provides access to the current key value. The value can be retrieved by any user with the [`EXECUTE`](privileges-provided.html#priv_execute) privilege for that function, which is created in the `key_schema` schema.
+O exemplo a seguir mostra como configurar uma chave compartilhada chamada `SharedKey` que pertence ao DBA, e uma função armazenada `get_shared_key()` que fornece acesso ao valor atual da chave. O valor pode ser recuperado por qualquer usuário com o privilégio [`EXECUTE`](privileges-provided.html#priv_execute) para essa função, que é criada no schema `key_schema`.
 
-From a MySQL administrative account (`'root'@'localhost'` in this example), create the administrative schema and the stored function to access the key:
+A partir de uma conta administrativa do MySQL (`'root'@'localhost'` neste exemplo), crie o schema administrativo e a função armazenada para acessar a chave:
 
 ```sql
 mysql> CREATE SCHEMA key_schema;
@@ -222,7 +222,7 @@ mysql> CREATE DEFINER = 'root'@'localhost'
        RETURN keyring_key_fetch('SharedKey');
 ```
 
-From the administrative account, ensure that the shared key exists:
+A partir da conta administrativa, garanta que a chave compartilhada exista:
 
 ```sql
 mysql> SELECT keyring_key_generate('SharedKey', 'DSA', 8);
@@ -233,14 +233,14 @@ mysql> SELECT keyring_key_generate('SharedKey', 'DSA', 8);
 +---------------------------------------------+
 ```
 
-From the administrative account, create an ordinary user account to which key access is to be granted:
+A partir da conta administrativa, crie uma conta de usuário comum à qual o acesso à chave será concedido:
 
 ```sql
 mysql> CREATE USER 'key_user'@'localhost'
        IDENTIFIED BY 'key_user_pwd';
 ```
 
-From the `key_user` account, verify that, without the proper [`EXECUTE`](privileges-provided.html#priv_execute) privilege, the new account cannot access the shared key:
+A partir da conta `key_user`, verifique se, sem o privilégio [`EXECUTE`](privileges-provided.html#priv_execute) adequado, a nova conta não pode acessar a chave compartilhada:
 
 ```sql
 mysql> SELECT HEX(key_schema.get_shared_key());
@@ -248,14 +248,14 @@ ERROR 1370 (42000): execute command denied to user 'key_user'@'localhost'
 for routine 'key_schema.get_shared_key'
 ```
 
-From the administrative account, grant [`EXECUTE`](privileges-provided.html#priv_execute) to `key_user` for the stored function:
+A partir da conta administrativa, conceda [`EXECUTE`](privileges-provided.html#priv_execute) a `key_user` para a função armazenada:
 
 ```sql
 mysql> GRANT EXECUTE ON FUNCTION key_schema.get_shared_key
        TO 'key_user'@'localhost';
 ```
 
-From the `key_user` account, verify that the key is now accessible:
+A partir da conta `key_user`, verifique se a chave agora está acessível:
 
 ```sql
 mysql> SELECT HEX(key_schema.get_shared_key());
@@ -266,27 +266,27 @@ mysql> SELECT HEX(key_schema.get_shared_key());
 +----------------------------------+
 ```
 
-##### General-Purpose Keyring Function Reference
+##### Referência de Funções Keyring de Propósito Geral
 
-For each general-purpose keyring function, this section describes its purpose, calling sequence, and return value. For information about the conditions under which these functions can be invoked, see [Using General-Purpose Keyring Functions](keyring-functions-general-purpose.html#keyring-function-usage "Using General-Purpose Keyring Functions").
+Para cada função Keyring de propósito geral, esta seção descreve sua finalidade, sequência de chamada e valor de retorno. Para obter informações sobre as condições sob as quais essas funções podem ser invocadas, consulte [Usando Funções Keyring de Propósito Geral](keyring-functions-general-purpose.html#keyring-function-usage "Usando Funções Keyring de Propósito Geral").
 
 * [`keyring_key_fetch(key_id)`](keyring-functions-general-purpose.html#function_keyring-key-fetch)
 
-  Given a key ID, deobfuscates and returns the key value.
+  Dado um Key ID, desofusca e retorna o key value.
 
-  Arguments:
+  Argumentos:
 
-  + *`key_id`*: A string that specifies the key ID.
+  + *`key_id`*: Uma string que especifica o Key ID.
 
-  Return value:
+  Valor de retorno:
 
-  Returns the key value as a string for success, `NULL` if the key does not exist, or `NULL` and an error for failure.
+  Retorna o key value como uma string em caso de sucesso, `NULL` se a chave não existir, ou `NULL` e um erro em caso de falha.
 
   Note
 
-  Key values retrieved using [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch) are subject to the general keyring function limits described in [Section 6.4.4.6, “Supported Keyring Key Types and Lengths”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths"). A key value longer than that length can be stored using a keyring service function (see [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service")), but if retrieved using [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch) is truncated to the general keyring function limit.
+  Os key values recuperados usando [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch) estão sujeitos aos limites gerais das funções Keyring descritos em [Seção 6.4.4.6, “Tipos e Comprimentos de Chave Keyring Suportados”](keyring-key-types.html "6.4.4.6 Tipos e Comprimentos de Chave Keyring Suportados"). Um key value mais longo do que esse length pode ser armazenado usando uma função de service Keyring (consulte [Seção 5.5.6.2, “O Service Keyring”](keyring-service.html "5.5.6.2 O Service Keyring")), mas se for recuperado usando [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch), é truncado para o limite geral da função Keyring.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT keyring_key_generate('RSA_key', 'RSA', 16);
@@ -315,25 +315,25 @@ For each general-purpose keyring function, this section describes its purpose, c
   +-------------------------------------+
   ```
 
-  The example uses [`HEX()`](string-functions.html#function_hex) to display the key value because it may contain nonprintable characters. The example also uses a short key for brevity, but be aware that longer keys provide better security.
+  O exemplo usa [`HEX()`](string-functions.html#function_hex) para exibir o key value, pois ele pode conter caracteres não imprimíveis. O exemplo também usa uma chave curta por brevidade, mas esteja ciente de que chaves mais longas oferecem melhor segurança.
 
 * [`keyring_key_generate(key_id, key_type, key_length)`](keyring-functions-general-purpose.html#function_keyring-key-generate)
 
-  Generates a new random key with a given ID, type, and length, and stores it in the keyring. The type and length values must be consistent with the values supported by the underlying keyring plugin. See [Section 6.4.4.6, “Supported Keyring Key Types and Lengths”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
+  Gera uma nova chave aleatória com um determinado ID, type e length, e a armazena no Keyring. Os valores de type e length devem ser consistentes com os valores suportados pelo Plugin Keyring subjacente. Consulte [Seção 6.4.4.6, “Tipos e Comprimentos de Chave Keyring Suportados”](keyring-key-types.html "6.4.4.6 Tipos e Comprimentos de Chave Keyring Suportados").
 
-  Arguments:
+  Argumentos:
 
-  + *`key_id`*: A string that specifies the key ID.
+  + *`key_id`*: Uma string que especifica o Key ID.
 
-  + *`key_type`*: A string that specifies the key type.
+  + *`key_type`*: Uma string que especifica o key type.
 
-  + *`key_length`*: An integer that specifies the key length in bytes.
+  + *`key_length`*: Um integer que especifica o key length em bytes.
 
-  Return value:
+  Valor de retorno:
 
-  Returns 1 for success, or `NULL` and an error for failure.
+  Retorna 1 em caso de sucesso, ou `NULL` e um erro em caso de falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT keyring_key_generate('RSA_key', 'RSA', 384);
@@ -346,33 +346,33 @@ For each general-purpose keyring function, this section describes its purpose, c
 
 * [`keyring_key_length_fetch(key_id)`](keyring-functions-general-purpose.html#function_keyring-key-length-fetch)
 
-  Given a key ID, returns the key length.
+  Dado um Key ID, retorna o key length.
 
-  Arguments:
+  Argumentos:
 
-  + *`key_id`*: A string that specifies the key ID.
+  + *`key_id`*: Uma string que especifica o Key ID.
 
-  Return value:
+  Valor de retorno:
 
-  Returns the key length in bytes as an integer for success, `NULL` if the key does not exist, or `NULL` and an error for failure.
+  Retorna o key length em bytes como um integer em caso de sucesso, `NULL` se a chave não existir, ou `NULL` e um erro em caso de falha.
 
-  Example:
+  Exemplo:
 
-  See the description of [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch).
+  Consulte a descrição de [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch).
 
 * [`keyring_key_remove(key_id)`](keyring-functions-general-purpose.html#function_keyring-key-remove)
 
-  Removes the key with a given ID from the keyring.
+  Remove a chave com um determinado ID do Keyring.
 
-  Arguments:
+  Argumentos:
 
-  + *`key_id`*: A string that specifies the key ID.
+  + *`key_id`*: Uma string que especifica o Key ID.
 
-  Return value:
+  Valor de retorno:
 
-  Returns 1 for success, or `NULL` for failure.
+  Retorna 1 em caso de sucesso, ou `NULL` em caso de falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT keyring_key_remove('AES_key');
@@ -385,21 +385,21 @@ For each general-purpose keyring function, this section describes its purpose, c
 
 * [`keyring_key_store(key_id, key_type, key)`](keyring-functions-general-purpose.html#function_keyring-key-store)
 
-  Obfuscates and stores a key in the keyring.
+  Ofusca e armazena uma chave no Keyring.
 
-  Arguments:
+  Argumentos:
 
-  + *`key_id`*: A string that specifies the key ID.
+  + *`key_id`*: Uma string que especifica o Key ID.
 
-  + *`key_type`*: A string that specifies the key type.
+  + *`key_type`*: Uma string que especifica o key type.
 
-  + *`key`*: A string that specifies the key value.
+  + *`key`*: Uma string que especifica o key value.
 
-  Return value:
+  Valor de retorno:
 
-  Returns 1 for success, or `NULL` and an error for failure.
+  Retorna 1 em caso de sucesso, ou `NULL` e um erro em caso de falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT keyring_key_store('new key', 'DSA', 'My key value');
@@ -412,16 +412,16 @@ For each general-purpose keyring function, this section describes its purpose, c
 
 * [`keyring_key_type_fetch(key_id)`](keyring-functions-general-purpose.html#function_keyring-key-type-fetch)
 
-  Given a key ID, returns the key type.
+  Dado um Key ID, retorna o key type.
 
-  Arguments:
+  Argumentos:
 
-  + *`key_id`*: A string that specifies the key ID.
+  + *`key_id`*: Uma string que especifica o Key ID.
 
-  Return value:
+  Valor de retorno:
 
-  Returns the key type as a string for success, `NULL` if the key does not exist, or `NULL` and an error for failure.
+  Retorna o key type como uma string em caso de sucesso, `NULL` se a chave não existir, ou `NULL` e um erro em caso de falha.
 
-  Example:
+  Exemplo:
 
-  See the description of [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch).
+  Consulte a descrição de [`keyring_key_fetch()`](keyring-functions-general-purpose.html#function_keyring-key-fetch).

@@ -1,19 +1,19 @@
-### 8.14.5 Replication Source Thread States
+### 8.14.5 Estados da Thread Source da Replicação
 
-The following list shows the most common states you may see in the `State` column for the `Binlog Dump` thread of the replication source. If you see no `Binlog Dump` threads on a source, this means that replication is not running; that is, that no replicas are currently connected.
+A lista a seguir mostra os estados mais comuns que você pode ver na coluna `State` para a `Binlog Dump` thread da source de replicação. Se você não vir nenhuma `Binlog Dump` thread em uma source, isso significa que a replicação não está sendo executada; ou seja, que nenhuma réplica está conectada no momento.
 
 * `Finished reading one binlog; switching to next binlog`
 
-  The thread has finished reading a binary log file and is opening the next one to send to the replica.
+  A thread terminou de ler um arquivo de binary log e está abrindo o próximo para enviar para a réplica.
 
 * `Master has sent all binlog to slave; waiting for more updates`
 
-  The thread has read all remaining updates from the binary logs and sent them to the replica. The thread is now idle, waiting for new events to appear in the binary log resulting from new updates occurring on the source.
+  A thread leu todos os updates restantes dos binary logs e os enviou para a réplica. A thread agora está ociosa, esperando que novos events apareçam no binary log, resultantes de novos updates ocorrendo na source.
 
 * `Sending binlog event to slave`
 
-  Binary logs consist of *events*, where an event is usually an update plus some other information. The thread has read an event from the binary log and is now sending it to the replica.
+  Binary logs consistem em *events*, onde um event é geralmente um update mais alguma outra informação. A thread leu um event do binary log e agora está enviando-o para a réplica.
 
 * `Waiting to finalize termination`
 
-  A very brief state that occurs as the thread is stopping.
+  Um estado muito breve que ocorre enquanto a thread está sendo interrompida.

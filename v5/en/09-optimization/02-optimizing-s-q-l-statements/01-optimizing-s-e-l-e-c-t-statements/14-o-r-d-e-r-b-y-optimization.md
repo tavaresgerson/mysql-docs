@@ -1,39 +1,39 @@
-#### 8.2.1.14 ORDER BY Optimization
+#### 8.2.1.14 Otimização de ORDER BY
 
-This section describes when MySQL can use an index to satisfy an `ORDER BY` clause, the `filesort` operation used when an index cannot be used, and execution plan information available from the optimizer about `ORDER BY`.
+Esta seção descreve quando o MySQL pode usar um Index para satisfazer uma cláusula `ORDER BY`, a operação `filesort` usada quando um Index não pode ser utilizado e as informações do plano de execução disponíveis no otimizador sobre `ORDER BY`.
 
-An `ORDER BY` with and without `LIMIT` may return rows in different orders, as discussed in Section 8.2.1.17, “LIMIT Query Optimization”.
+Um `ORDER BY` com e sem `LIMIT` pode retornar linhas em ordens diferentes, conforme discutido na Seção 8.2.1.17, “Otimização de Querys com LIMIT”.
 
-* Use of Indexes to Satisfy ORDER BY
-* Use of filesort to Satisfy ORDER BY
-* Influencing ORDER BY Optimization
-* ORDER BY Execution Plan Information Available
+* Uso de Indexes para Satisfazer ORDER BY
+* Uso de `filesort` para Satisfazer ORDER BY
+* Influenciando a Otimização de ORDER BY
+* Informações Disponíveis do Plano de Execução de ORDER BY
 
-##### Use of Indexes to Satisfy ORDER BY
+##### Uso de Indexes para Satisfazer ORDER BY
 
-In some cases, MySQL may use an index to satisfy an `ORDER BY` clause and avoid the extra sorting involved in performing a `filesort` operation.
+Em alguns casos, o MySQL pode usar um Index para satisfazer uma cláusula `ORDER BY` e evitar a classificação (sorting) extra envolvida na execução de uma operação `filesort`.
 
-The index may also be used even if the `ORDER BY` does not match the index exactly, as long as all unused portions of the index and all extra `ORDER BY` columns are constants in the `WHERE` clause. If the index does not contain all columns accessed by the query, the index is used only if index access is cheaper than other access methods.
+O Index também pode ser usado mesmo que o `ORDER BY` não corresponda exatamente ao Index, contanto que todas as partes não utilizadas do Index e todas as colunas `ORDER BY` extras sejam constantes na cláusula `WHERE`. Se o Index não contiver todas as colunas acessadas pela Query, o Index será usado apenas se o acesso ao Index for mais barato do que outros métodos de acesso.
 
-Assuming that there is an index on `(key_part1, key_part2)`, the following queries may use the index to resolve the `ORDER BY` part. Whether the optimizer actually does so depends on whether reading the index is more efficient than a table scan if columns not in the index must also be read.
+Assumindo que haja um Index em `(key_part1, key_part2)`, as seguintes Querys podem usar o Index para resolver a parte `ORDER BY`. Se o otimizador realmente o fará depende de se a leitura do Index é mais eficiente do que um table scan (leitura completa da tabela) caso as colunas que não estão no Index também precisem ser lidas.
 
-* In this query, the index on `(key_part1, key_part2)` enables the optimizer to avoid sorting:
+* Nesta Query, o Index em `(key_part1, key_part2)` permite ao otimizador evitar a classificação:
 
   ```sql
   SELECT * FROM t1
     ORDER BY key_part1, key_part2;
   ```
 
-  However, the query uses `SELECT *`, which may select more columns than *`key_part1`* and *`key_part2`*. In that case, scanning an entire index and looking up table rows to find columns not in the index may be more expensive than scanning the table and sorting the results. If so, the optimizer is not likely to use the index. If `SELECT *` selects only the index columns, the index is used and sorting avoided.
+  No entanto, a Query usa `SELECT *`, o que pode selecionar mais colunas do que *`key_part1`* e *`key_part2`*. Nesse caso, escanear um Index inteiro e procurar linhas da tabela para encontrar colunas que não estão no Index pode ser mais caro do que escanear a tabela e classificar os resultados. Se for esse o caso, é provável que o otimizador não use o Index. Se `SELECT *` selecionar apenas as colunas do Index, o Index será usado e a classificação será evitada.
 
-  If `t1` is an `InnoDB` table, the table primary key is implicitly part of the index, and the index can be used to resolve the `ORDER BY` for this query:
+  Se `t1` for uma tabela `InnoDB`, a Primary Key da tabela faz parte implicitamente do Index, e o Index pode ser usado para resolver o `ORDER BY` para esta Query:
 
   ```sql
   SELECT pk, key_part1, key_part2 FROM t1
     ORDER BY key_part1, key_part2;
   ```
 
-* In this query, *`key_part1`* is constant, so all rows accessed through the index are in *`key_part2`* order, and an index on `(key_part1, key_part2)` avoids sorting if the `WHERE` clause is selective enough to make an index range scan cheaper than a table scan:
+* Nesta Query, *`key_part1`* é constante, então todas as linhas acessadas através do Index estão na ordem *`key_part2`*, e um Index em `(key_part1, key_part2)` evita a classificação se a cláusula `WHERE` for seletiva o suficiente para tornar um index range scan mais barato do que um table scan:
 
   ```sql
   SELECT * FROM t1
@@ -41,7 +41,7 @@ Assuming that there is an index on `(key_part1, key_part2)`, the following queri
     ORDER BY key_part2;
   ```
 
-* In the next two queries, whether the index is used is similar to the same queries without `DESC` shown previously:
+* Nas próximas duas Querys, se o Index é usado é semelhante às mesmas Querys sem `DESC` mostradas anteriormente:
 
   ```sql
   SELECT * FROM t1
@@ -52,7 +52,7 @@ Assuming that there is an index on `(key_part1, key_part2)`, the following queri
     ORDER BY key_part2 DESC;
   ```
 
-* In the next two queries, *`key_part1`* is compared to a constant. The index is used if the `WHERE` clause is selective enough to make an index range scan cheaper than a table scan:
+* Nas próximas duas Querys, *`key_part1`* é comparado a uma constante. O Index é usado se a cláusula `WHERE` for seletiva o suficiente para tornar um index range scan mais barato do que um table scan:
 
   ```sql
   SELECT * FROM t1
@@ -64,7 +64,7 @@ Assuming that there is an index on `(key_part1, key_part2)`, the following queri
     ORDER BY key_part1 DESC;
   ```
 
-* In the next query, the `ORDER BY` does not name *`key_part1`*, but all rows selected have a constant *`key_part1`* value, so the index can still be used:
+* Na próxima Query, o `ORDER BY` não nomeia *`key_part1`*, mas todas as linhas selecionadas têm um valor *`key_part1`* constante, então o Index ainda pode ser usado:
 
   ```sql
   SELECT * FROM t1
@@ -72,124 +72,124 @@ Assuming that there is an index on `(key_part1, key_part2)`, the following queri
     ORDER BY key_part2;
   ```
 
-In some cases, MySQL *cannot* use indexes to resolve the `ORDER BY`, although it may still use indexes to find the rows that match the `WHERE` clause. Examples:
+Em alguns casos, o MySQL *não pode* usar Indexes para resolver o `ORDER BY`, embora ainda possa usar Indexes para encontrar as linhas que correspondem à cláusula `WHERE`. Exemplos:
 
-* The query uses `ORDER BY` on different indexes:
+* A Query usa `ORDER BY` em Indexes diferentes:
 
   ```sql
   SELECT * FROM t1 ORDER BY key1, key2;
   ```
 
-* The query uses `ORDER BY` on nonconsecutive parts of an index:
+* A Query usa `ORDER BY` em partes não consecutivas de um Index:
 
   ```sql
   SELECT * FROM t1 WHERE key2=constant ORDER BY key1_part1, key1_part3;
   ```
 
-* The query mixes `ASC` and `DESC`:
+* A Query mistura `ASC` e `DESC`:
 
   ```sql
   SELECT * FROM t1 ORDER BY key_part1 DESC, key_part2 ASC;
   ```
 
-* The index used to fetch the rows differs from the one used in the `ORDER BY`:
+* O Index usado para buscar as linhas difere daquele usado no `ORDER BY`:
 
   ```sql
   SELECT * FROM t1 WHERE key2=constant ORDER BY key1;
   ```
 
-* The query uses `ORDER BY` with an expression that includes terms other than the index column name:
+* A Query usa `ORDER BY` com uma expressão que inclui termos diferentes do nome da coluna do Index:
 
   ```sql
   SELECT * FROM t1 ORDER BY ABS(key);
   SELECT * FROM t1 ORDER BY -key;
   ```
 
-* The query joins many tables, and the columns in the `ORDER BY` are not all from the first nonconstant table that is used to retrieve rows. (This is the first table in the `EXPLAIN` output that does not have a `const` join type.)
+* A Query usa JOINs em muitas tabelas, e as colunas no `ORDER BY` não são todas provenientes da primeira tabela não constante usada para recuperar linhas. (Esta é a primeira tabela na saída do `EXPLAIN` que não possui um tipo de JOIN `const`.)
 
-* The query has different `ORDER BY` and `GROUP BY` expressions.
+* A Query possui expressões `ORDER BY` e `GROUP BY` diferentes.
 
-* There is an index on only a prefix of a column named in the `ORDER BY` clause. In this case, the index cannot be used to fully resolve the sort order. For example, if only the first 10 bytes of a `CHAR(20)` column are indexed, the index cannot distinguish values past the 10th byte and a `filesort` is needed.
+* Existe um Index em apenas um prefixo de uma coluna nomeada na cláusula `ORDER BY`. Neste caso, o Index não pode ser usado para resolver completamente a ordem de classificação. Por exemplo, se apenas os primeiros 10 bytes de uma coluna `CHAR(20)` forem indexados, o Index não pode distinguir valores após o 10º byte e é necessário um `filesort`.
 
-* The index does not store rows in order. For example, this is true for a `HASH` index in a `MEMORY` table.
+* O Index não armazena linhas em ordem. Por exemplo, isso é verdade para um Index `HASH` em uma tabela `MEMORY`.
 
-Availability of an index for sorting may be affected by the use of column aliases. Suppose that the column `t1.a` is indexed. In this statement, the name of the column in the select list is `a`. It refers to `t1.a`, as does the reference to `a` in the `ORDER BY`, so the index on `t1.a` can be used:
+A disponibilidade de um Index para classificação pode ser afetada pelo uso de aliases de coluna. Suponha que a coluna `t1.a` esteja indexada. Nesta declaração, o nome da coluna na lista `SELECT` é `a`. Ele se refere a `t1.a`, assim como a referência a `a` no `ORDER BY`, portanto, o Index em `t1.a` pode ser usado:
 
 ```sql
 SELECT a FROM t1 ORDER BY a;
 ```
 
-In this statement, the name of the column in the select list is also `a`, but it is the alias name. It refers to `ABS(a)`, as does the reference to `a` in the `ORDER BY`, so the index on `t1.a` cannot be used:
+Nesta declaração, o nome da coluna na lista `SELECT` também é `a`, mas é o nome do alias. Ele se refere a `ABS(a)`, assim como a referência a `a` no `ORDER BY`, portanto, o Index em `t1.a` não pode ser usado:
 
 ```sql
 SELECT ABS(a) AS a FROM t1 ORDER BY a;
 ```
 
-In the following statement, the `ORDER BY` refers to a name that is not the name of a column in the select list. But there is a column in `t1` named `a`, so the `ORDER BY` refers to `t1.a` and the index on `t1.a` can be used. (The resulting sort order may be completely different from the order for `ABS(a)`, of course.)
+Na declaração seguinte, o `ORDER BY` refere-se a um nome que não é o nome de uma coluna na lista `SELECT`. Mas há uma coluna em `t1` chamada `a`, então o `ORDER BY` se refere a `t1.a` e o Index em `t1.a` pode ser usado. (A ordem de classificação resultante pode ser completamente diferente da ordem para `ABS(a)`, é claro.)
 
 ```sql
 SELECT ABS(a) AS b FROM t1 ORDER BY a;
 ```
 
-By default, MySQL sorts `GROUP BY col1, col2, ...` queries as if you also included `ORDER BY col1, col2, ...` in the query. If you include an explicit `ORDER BY` clause that contains the same column list, MySQL optimizes it away without any speed penalty, although the sorting still occurs.
+Por padrão, o MySQL classifica as Querys `GROUP BY col1, col2, ...` como se você também tivesse incluído `ORDER BY col1, col2, ...` na Query. Se você incluir uma cláusula `ORDER BY` explícita que contém a mesma lista de colunas, o MySQL a otimiza, eliminando-a sem penalidade de velocidade, embora a classificação ainda ocorra.
 
-If a query includes `GROUP BY` but you want to avoid the overhead of sorting the result, you can suppress sorting by specifying `ORDER BY NULL`. For example:
+Se uma Query incluir `GROUP BY` mas você quiser evitar a sobrecarga de classificar o resultado, você pode suprimir a classificação especificando `ORDER BY NULL`. Por exemplo:
 
 ```sql
 INSERT INTO foo
 SELECT a, COUNT(*) FROM bar GROUP BY a ORDER BY NULL;
 ```
 
-The optimizer may still choose to use sorting to implement grouping operations. `ORDER BY NULL` suppresses sorting of the result, not prior sorting done by grouping operations to determine the result.
+O otimizador ainda pode optar por usar a classificação para implementar operações de agrupamento. `ORDER BY NULL` suprime a classificação do resultado, e não a classificação prévia feita pelas operações de agrupamento para determinar o resultado.
 
-Note
+Nota
 
-`GROUP BY` implicitly sorts by default (that is, in the absence of `ASC` or `DESC` designators for `GROUP BY` columns). However, relying on implicit `GROUP BY` sorting (that is, sorting in the absence of `ASC` or `DESC` designators) or explicit sorting for `GROUP BY` (that is, by using explicit `ASC` or `DESC` designators for `GROUP BY` columns) is deprecated. To produce a given sort order, provide an `ORDER BY` clause.
+`GROUP BY` classifica implicitamente por padrão (ou seja, na ausência de designadores `ASC` ou `DESC` para colunas `GROUP BY`). No entanto, confiar na classificação implícita de `GROUP BY` (ou seja, classificação na ausência de designadores `ASC` ou `DESC`) ou na classificação explícita para `GROUP BY` (ou seja, usando designadores explícitos `ASC` ou `DESC` para colunas `GROUP BY`) está obsoleto (deprecated). Para produzir uma determinada ordem de classificação, forneça uma cláusula `ORDER BY`.
 
-##### Use of filesort to Satisfy ORDER BY
+##### Uso de filesort para Satisfazer ORDER BY
 
-If an index cannot be used to satisfy an `ORDER BY` clause, MySQL performs a `filesort` operation that reads table rows and sorts them. A `filesort` constitutes an extra sorting phase in query execution.
+Se um Index não puder ser usado para satisfazer uma cláusula `ORDER BY`, o MySQL executa uma operação `filesort` que lê as linhas da tabela e as classifica. Um `filesort` constitui uma fase de classificação extra na execução da Query.
 
-To obtain memory for `filesort` operations, the optimizer allocates a fixed amount of `sort_buffer_size` bytes up front. Individual sessions can change the session value of this variable as desired to avoid excessive memory use, or to allocate more memory as necessary.
+Para obter memória para operações `filesort`, o otimizador aloca uma quantidade fixa de bytes de `sort_buffer_size` antecipadamente. Sessões individuais podem alterar o valor da sessão dessa variável conforme desejado para evitar o uso excessivo de memória ou para alocar mais memória conforme necessário.
 
-A `filesort` operation uses temporary disk files as necessary if the result set is too large to fit in memory. Some types of queries are particularly suited to completely in-memory `filesort` operations. For example, the optimizer can use `filesort` to efficiently handle in memory, without temporary files, the `ORDER BY` operation for queries (and subqueries) of the following form:
+Uma operação `filesort` usa arquivos de disco temporários conforme necessário se o conjunto de resultados for muito grande para caber na memória. Alguns tipos de Querys são particularmente adequados para operações `filesort` totalmente em memória. Por exemplo, o otimizador pode usar `filesort` para lidar eficientemente na memória, sem arquivos temporários, com a operação `ORDER BY` para Querys (e subqueries) do seguinte formato:
 
 ```sql
 SELECT ... FROM single_table ... ORDER BY non_index_column [DESC] LIMIT [M,]N;
 ```
 
-Such queries are common in web applications that display only a few rows from a larger result set. Examples:
+Tais Querys são comuns em aplicações web que exibem apenas algumas linhas de um conjunto de resultados maior. Exemplos:
 
 ```sql
 SELECT col1, ... FROM t1 ... ORDER BY name LIMIT 10;
 SELECT col1, ... FROM t1 ... ORDER BY RAND() LIMIT 15;
 ```
 
-##### Influencing ORDER BY Optimization
+##### Influenciando a Otimização de ORDER BY
 
-For slow `ORDER BY` queries for which `filesort` is not used, try lowering the `max_length_for_sort_data` system variable to a value that is appropriate to trigger a `filesort`. (A symptom of setting the value of this variable too high is a combination of high disk activity and low CPU activity.)
+Para Querys `ORDER BY` lentas para as quais o `filesort` não é usado, tente diminuir a variável de sistema `max_length_for_sort_data` para um valor apropriado para acionar um `filesort`. (Um sintoma de definir o valor desta variável muito alto é uma combinação de alta atividade de disco e baixa atividade de CPU.)
 
-To increase `ORDER BY` speed, check whether you can get MySQL to use indexes rather than an extra sorting phase. If this is not possible, try the following strategies:
+Para aumentar a velocidade de `ORDER BY`, verifique se você pode fazer com que o MySQL use Indexes em vez de uma fase de classificação extra. Se isso não for possível, tente as seguintes estratégias:
 
-* Increase the `sort_buffer_size` variable value. Ideally, the value should be large enough for the entire result set to fit in the sort buffer (to avoid writes to disk and merge passes), but at minimum the value must be large enough to accommodate 15 tuples. (Up to 15 temporary disk files are merged and there must be room in memory for at least one tuple per file.)
+* Aumente o valor da variável `sort_buffer_size`. Idealmente, o valor deve ser grande o suficiente para que todo o conjunto de resultados caiba no sort buffer (para evitar gravações em disco e merge passes), mas, no mínimo, o valor deve ser grande o suficiente para acomodar 15 tuplas. (Até 15 arquivos de disco temporários são mesclados e deve haver espaço na memória para pelo menos uma tupla por arquivo.)
 
-  Take into account that the size of column values stored in the sort buffer is affected by the `max_sort_length` system variable value. For example, if tuples store values of long string columns and you increase the value of `max_sort_length`, the size of sort buffer tuples increases as well and may require you to increase `sort_buffer_size`. For column values calculated as a result of string expressions (such as those that invoke a string-valued function), the `filesort` algorithm cannot tell the maximum length of expression values, so it must allocate `max_sort_length` bytes for each tuple.
+  Leve em consideração que o tamanho dos valores das colunas armazenados no sort buffer é afetado pelo valor da variável de sistema `max_sort_length`. Por exemplo, se as tuplas armazenam valores de colunas de string longas e você aumenta o valor de `max_sort_length`, o tamanho das tuplas do sort buffer também aumenta e pode exigir que você aumente o `sort_buffer_size`. Para valores de coluna calculados como resultado de expressões de string (como aqueles que invocam uma função com valor de string), o algoritmo `filesort` não consegue identificar o comprimento máximo dos valores de expressão, então ele deve alocar `max_sort_length` bytes para cada tupla.
 
-  To monitor the number of merge passes (to merge temporary files), check the `Sort_merge_passes` status variable.
+  Para monitorar o número de merge passes (para mesclar arquivos temporários), verifique a variável de status `Sort_merge_passes`.
 
-* Increase the `read_rnd_buffer_size` variable value so that more rows are read at a time.
+* Aumente o valor da variável `read_rnd_buffer_size` para que mais linhas sejam lidas por vez.
 
-* Change the `tmpdir` system variable to point to a dedicated file system with large amounts of free space. The variable value can list several paths that are used in round-robin fashion; you can use this feature to spread the load across several directories. Separate the paths by colon characters (`:`) on Unix and semicolon characters (`;`) on Windows. The paths should name directories in file systems located on different *physical* disks, not different partitions on the same disk.
+* Altere a variável de sistema `tmpdir` para apontar para um sistema de arquivos dedicado com grandes quantidades de espaço livre. O valor da variável pode listar vários caminhos que são usados em formato round-robin; você pode usar este recurso para distribuir a carga por vários diretórios. Separe os caminhos por dois-pontos (`:`) no Unix e ponto e vírgula (`;`) no Windows. Os caminhos devem nomear diretórios em sistemas de arquivos localizados em discos *físicos* diferentes, e não em partições diferentes no mesmo disco.
 
-##### ORDER BY Execution Plan Information Available
+##### Informações Disponíveis do Plano de Execução de ORDER BY
 
-With `EXPLAIN` (see Section 8.8.1, “Optimizing Queries with EXPLAIN”), you can check whether MySQL can use indexes to resolve an `ORDER BY` clause:
+Com `EXPLAIN` (consulte a Seção 8.8.1, “Otimizando Querys com EXPLAIN”), você pode verificar se o MySQL pode usar Indexes para resolver uma cláusula `ORDER BY`:
 
-* If the `Extra` column of `EXPLAIN` output does not contain `Using filesort`, the index is used and a `filesort` is not performed.
+* Se a coluna `Extra` da saída do `EXPLAIN` não contiver `Using filesort`, o Index é usado e um `filesort` não é executado.
 
-* If the `Extra` column of `EXPLAIN` output contains `Using filesort`, the index is not used and a `filesort` is performed.
+* Se a coluna `Extra` da saída do `EXPLAIN` contiver `Using filesort`, o Index não é usado e um `filesort` é executado.
 
-In addition, if a `filesort` is performed, optimizer trace output includes a `filesort_summary` block. For example:
+Além disso, se um `filesort` for executado, a saída do trace do otimizador inclui um bloco `filesort_summary`. Por exemplo:
 
 ```sql
 "filesort_summary": {
@@ -201,12 +201,12 @@ In addition, if a `filesort` is performed, optimizer trace output includes a `fi
 }
 ```
 
-The `sort_mode` value provides information about the contents of tuples in the sort buffer:
+O valor `sort_mode` fornece informações sobre o conteúdo das tuplas no sort buffer:
 
-* `<sort_key, rowid>`: This indicates that sort buffer tuples are pairs that contain the sort key value and row ID of the original table row. Tuples are sorted by sort key value and the row ID is used to read the row from the table.
+* `<sort_key, rowid>`: Isso indica que as tuplas do sort buffer são pares que contêm o valor da chave de classificação (sort key) e o row ID da linha original da tabela. As tuplas são classificadas pelo valor da chave de classificação e o row ID é usado para ler a linha da tabela.
 
-* `<sort_key, additional_fields>`: This indicates that sort buffer tuples contain the sort key value and columns referenced by the query. Tuples are sorted by sort key value and column values are read directly from the tuple.
+* `<sort_key, additional_fields>`: Isso indica que as tuplas do sort buffer contêm o valor da chave de classificação e as colunas referenciadas pela Query. As tuplas são classificadas pelo valor da chave de classificação e os valores das colunas são lidos diretamente da tupla.
 
-* `<sort_key, packed_additional_fields>`: Like the previous variant, but the additional columns are packed tightly together instead of using a fixed-length encoding.
+* `<sort_key, packed_additional_fields>`: Semelhante à variante anterior, mas as colunas adicionais são empacotadas de forma compacta em vez de usar uma codificação de comprimento fixo.
 
-`EXPLAIN` does not distinguish whether the optimizer does or does not perform a `filesort` in memory. Use of an in-memory `filesort` can be seen in optimizer trace output. Look for `filesort_priority_queue_optimization`. For information about the optimizer trace, see Section 8.15, “Tracing the Optimizer”.
+O `EXPLAIN` não distingue se o otimizador executa ou não um `filesort` na memória. O uso de um `filesort` na memória pode ser visto na saída do trace do otimizador. Procure por `filesort_priority_queue_optimization`. Para obter informações sobre o trace do otimizador, consulte a Seção 8.15, “Tracing the Optimizer”.

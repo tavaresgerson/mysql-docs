@@ -1,20 +1,20 @@
-### 10.2.1 Character Set Repertoire
+### 10.2.1 Repertório do Character Set
 
-The repertoire of a character set is the collection of characters in the set.
+O Repertório de um Character Set é a coleção de caracteres nesse set.
 
-String expressions have a repertoire attribute, which can have two values:
+Expressões de String possuem um atributo de Repertório, que pode ter dois valores:
 
-* `ASCII`: The expression can contain only ASCII characters; that is, characters in the Unicode range `U+0000` to `U+007F`.
+* `ASCII`: A expressão pode conter apenas caracteres ASCII; ou seja, caracteres no range Unicode de `U+0000` a `U+007F`.
 
-* `UNICODE`: The expression can contain characters in the Unicode range `U+0000` to `U+10FFFF`. This includes characters in the Basic Multilingual Plane (BMP) range (`U+0000` to `U+FFFF`) and supplementary characters outside the BMP range (`U+10000` to `U+10FFFF`).
+* `UNICODE`: A expressão pode conter caracteres no range Unicode de `U+0000` a `U+10FFFF`. Isso inclui caracteres no range do Plano Multilíngue Básico (BMP) (`U+0000` a `U+FFFF`) e caracteres suplementares fora do range BMP (`U+10000` a `U+10FFFF`).
 
-The `ASCII` range is a subset of `UNICODE` range, so a string with `ASCII` repertoire can be converted safely without loss of information to the character set of any string with `UNICODE` repertoire. It can also be converted safely to any character set that is a superset of the `ascii` character set. (All MySQL character sets are supersets of `ascii` with the exception of `swe7`, which reuses some punctuation characters for Swedish accented characters.)
+O range `ASCII` é um subset do range `UNICODE`, portanto, uma String com Repertório `ASCII` pode ser convertida de forma segura, sem perda de informação, para o Character Set de qualquer String com Repertório `UNICODE`. Ela também pode ser convertida de forma segura para qualquer Character Set que seja um superset do Character Set `ascii`. (Todos os Character Sets do MySQL são supersets de `ascii`, com exceção de `swe7`, que reutiliza alguns caracteres de pontuação para caracteres acentuados suecos.)
 
-The use of repertoire enables character set conversion in expressions for many cases where MySQL would otherwise return an “illegal mix of collations” error when the rules for collation coercibility are insufficient to resolve ambiguities. (For information about coercibility, see Section 10.8.4, “Collation Coercibility in Expressions”.)
+O uso de Repertório permite a conversão de Character Set em expressões para muitos casos onde o MySQL, de outra forma, retornaria um erro de “illegal mix of collations” (mistura ilegal de Collation) quando as regras para Collation Coercibility são insuficientes para resolver ambiguidades. (Para informações sobre Coercibility, consulte a Seção 10.8.4, “Collation Coercibility em Expressões”.)
 
-The following discussion provides examples of expressions and their repertoires, and describes how the use of repertoire changes string expression evaluation:
+A discussão a seguir fornece exemplos de expressões e seus repertórios, e descreve como o uso de Repertório altera a avaliação da String expression:
 
-* The repertoire for a string constant depends on string content and may differ from the repertoire of the string character set. Consider these statements:
+* O Repertório para uma constante de String depende do conteúdo da String e pode diferir do Repertório do Character Set da String. Considere estas declarações (statements):
 
   ```sql
   SET NAMES utf8; SELECT 'abc';
@@ -22,15 +22,15 @@ The following discussion provides examples of expressions and their repertoires,
   SELECT N'MySQL';
   ```
 
-  Although the character set is `utf8` in each of the preceding cases, the strings do not actually contain any characters outside the ASCII range, so their repertoire is `ASCII` rather than `UNICODE`.
+  Embora o Character Set seja `utf8` em cada um dos casos precedentes, as Strings na verdade não contêm nenhum caractere fora do range ASCII, então seu Repertório é `ASCII` em vez de `UNICODE`.
 
-* A column having the `ascii` character set has `ASCII` repertoire because of its character set. In the following table, `c1` has `ASCII` repertoire:
+* Uma coluna que possui o Character Set `ascii` tem Repertório `ASCII` devido ao seu Character Set. Na tabela a seguir, `c1` tem Repertório `ASCII`:
 
   ```sql
   CREATE TABLE t1 (c1 CHAR(1) CHARACTER SET ascii);
   ```
 
-  The following example illustrates how repertoire enables a result to be determined in a case where an error occurs without repertoire:
+  O exemplo a seguir ilustra como o Repertório permite que um resultado seja determinado em um caso onde um erro ocorreria sem o Repertório:
 
   ```sql
   CREATE TABLE t1 (
@@ -41,14 +41,14 @@ The following discussion provides examples of expressions and their repertoires,
   SELECT CONCAT(c1,c2) FROM t1;
   ```
 
-  Without repertoire, this error occurs:
+  Sem o Repertório, este erro ocorre:
 
   ```sql
   ERROR 1267 (HY000): Illegal mix of collations (latin1_swedish_ci,IMPLICIT)
   and (ascii_general_ci,IMPLICIT) for operation 'concat'
   ```
 
-  Using repertoire, subset to superset (`ascii` to `latin1`) conversion can occur and a result is returned:
+  Usando o Repertório, a conversão de subset para superset (`ascii` para `latin1`) pode ocorrer e um resultado é retornado:
 
   ```sql
   +---------------+
@@ -58,15 +58,15 @@ The following discussion provides examples of expressions and their repertoires,
   +---------------+
   ```
 
-* Functions with one string argument inherit the repertoire of their argument. The result of `UPPER(_utf8'abc')` has `ASCII` repertoire because its argument has `ASCII` repertoire. (Despite the `_utf8` introducer, the string `'abc'` contains no characters outside the ASCII range.)
+* Functions (Funções) com um argumento String herdam o Repertório de seu argumento. O resultado de `UPPER(_utf8'abc')` tem Repertório `ASCII` porque seu argumento tem Repertório `ASCII`. (Apesar do introducer `_utf8`, a String `'abc'` não contém caracteres fora do range ASCII.)
 
-* For functions that return a string but do not have string arguments and use `character_set_connection` as the result character set, the result repertoire is `ASCII` if `character_set_connection` is `ascii`, and `UNICODE` otherwise:
+* Para Functions que retornam uma String, mas não possuem argumentos String e usam `character_set_connection` como o Character Set do resultado, o Repertório do resultado é `ASCII` se `character_set_connection` for `ascii`, e `UNICODE` caso contrário:
 
   ```sql
   FORMAT(numeric_column, 4);
   ```
 
-  Use of repertoire changes how MySQL evaluates the following example:
+  O uso de Repertório altera como o MySQL avalia o seguinte exemplo:
 
   ```sql
   SET NAMES ascii;
@@ -75,14 +75,14 @@ The following discussion provides examples of expressions and their repertoires,
   SELECT CONCAT(FORMAT(a, 4), b) FROM t1;
   ```
 
-  Without repertoire, this error occurs:
+  Sem o Repertório, este erro ocorre:
 
   ```sql
   ERROR 1267 (HY000): Illegal mix of collations (ascii_general_ci,COERCIBLE)
   and (latin1_swedish_ci,IMPLICIT) for operation 'concat'
   ```
 
-  With repertoire, a result is returned:
+  Com o Repertório, um resultado é retornado:
 
   ```sql
   +-------------------------+
@@ -92,19 +92,19 @@ The following discussion provides examples of expressions and their repertoires,
   +-------------------------+
   ```
 
-* Functions with two or more string arguments use the “widest” argument repertoire for the result repertoire, where `UNICODE` is wider than `ASCII`. Consider the following `CONCAT()` calls:
+* Functions com dois ou mais argumentos String usam o Repertório do argumento “mais amplo” para o Repertório do resultado, onde `UNICODE` é mais amplo que `ASCII`. Considere as seguintes chamadas `CONCAT()`:
 
   ```sql
   CONCAT(_ucs2 X'0041', _ucs2 X'0042')
   CONCAT(_ucs2 X'0041', _ucs2 X'00C2')
   ```
 
-  For the first call, the repertoire is `ASCII` because both arguments are within the ASCII range. For the second call, the repertoire is `UNICODE` because the second argument is outside the ASCII range.
+  Para a primeira chamada, o Repertório é `ASCII` porque ambos os argumentos estão dentro do range ASCII. Para a segunda chamada, o Repertório é `UNICODE` porque o segundo argumento está fora do range ASCII.
 
-* The repertoire for function return values is determined based on the repertoire of only those arguments that affect the result's character set and collation.
+* O Repertório para valores de retorno de Function é determinado com base no Repertório apenas daqueles argumentos que afetam o Character Set e a Collation do resultado.
 
   ```sql
   IF(column1 < column2, 'smaller', 'greater')
   ```
 
-  The result repertoire is `ASCII` because the two string arguments (the second argument and the third argument) both have `ASCII` repertoire. The first argument does not matter for the result repertoire, even if the expression uses string values.
+  O Repertório do resultado é `ASCII` porque os dois argumentos String (o segundo argumento e o terceiro argumento) ambos têm Repertório `ASCII`. O primeiro argumento não importa para o Repertório do resultado, mesmo que a expressão use valores String.

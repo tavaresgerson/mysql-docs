@@ -1,27 +1,27 @@
-### 10.9.5 The utf16 Character Set (UTF-16 Unicode Encoding)
+### 10.9.5 O Conjunto de Caracteres utf16 (Codificação Unicode UTF-16)
 
-The `utf16` character set is the `ucs2` character set with an extension that enables encoding of supplementary characters:
+O conjunto de caracteres `utf16` é o conjunto de caracteres `ucs2` com uma extensão que permite a codificação de caracteres suplementares:
 
-* For a BMP character, `utf16` and `ucs2` have identical storage characteristics: same code values, same encoding, same length.
+* Para um caractere BMP (Basic Multilingual Plane), `utf16` e `ucs2` têm características de armazenamento idênticas: mesmos valores de código, mesma codificação (*encoding*), mesmo comprimento (*length*).
 
-* For a supplementary character, `utf16` has a special sequence for representing the character using 32 bits. This is called the “surrogate” mechanism: For a number greater than `0xffff`, take 10 bits and add them to `0xd800` and put them in the first 16-bit word, take 10 more bits and add them to `0xdc00` and put them in the next 16-bit word. Consequently, all supplementary characters require 32 bits, where the first 16 bits are a number between `0xd800` and `0xdbff`, and the last 16 bits are a number between `0xdc00` and `0xdfff`. Examples are in Section 15.5 Surrogates Area of the Unicode 4.0 document.
+* Para um caractere suplementar, `utf16` possui uma sequência especial para representar o caractere usando 32 bits. Isso é chamado de mecanismo “surrogate” (substituto): Para um número maior que `0xffff`, pegue 10 bits, adicione-os a `0xd800` e coloque-os na primeira palavra de 16 bits; pegue mais 10 bits, adicione-os a `0xdc00` e coloque-os na próxima palavra de 16 bits. Consequentemente, todos os caracteres suplementares exigem 32 bits, onde os primeiros 16 bits são um número entre `0xd800` e `0xdbff`, e os últimos 16 bits são um número entre `0xdc00` e `0xdfff`. Exemplos podem ser encontrados na Seção 15.5 Surrogates Area do documento Unicode 4.0.
 
-Because `utf16` supports surrogates and `ucs2` does not, there is a validity check that applies only in `utf16`: You cannot insert a top surrogate without a bottom surrogate, or vice versa. For example:
+Como `utf16` suporta *surrogates* e `ucs2` não, há uma verificação de validade que se aplica somente em `utf16`: Você não pode inserir um *top surrogate* sem um *bottom surrogate*, ou vice-versa. Por exemplo:
 
 ```sql
 INSERT INTO t (ucs2_column) VALUES (0xd800); /* legal */
 INSERT INTO t (utf16_column)VALUES (0xd800); /* illegal */
 ```
 
-There is no validity check for characters that are technically valid but are not true Unicode (that is, characters that Unicode considers to be “unassigned code points” or “private use” characters or even “illegals” like `0xffff`). For example, since `U+F8FF` is the Apple Logo, this is legal:
+Não há verificação de validade para caracteres que são tecnicamente válidos, mas que não são Unicode verdadeiros (ou seja, caracteres que o Unicode considera como *“unassigned code points”* (pontos de código não atribuídos) ou caracteres de *“private use”* (uso privado) ou até mesmo *“illegals”* (ilegais) como `0xffff`). Por exemplo, visto que `U+F8FF` é o Logo da Apple, isso é legal:
 
 ```sql
 INSERT INTO t (utf16_column)VALUES (0xf8ff); /* legal */
 ```
 
-Such characters cannot be expected to mean the same thing to everyone.
+Não se pode esperar que tais caracteres signifiquem a mesma coisa para todas as pessoas.
 
-Because MySQL must allow for the worst case (that one character requires four bytes) the maximum length of a `utf16` column or index is only half of the maximum length for a `ucs2` column or index. For example, the maximum length of a `MEMORY` table index key is 3072 bytes, so these statements create tables with the longest permitted indexes for `ucs2` and `utf16` columns:
+Como o MySQL deve considerar o pior caso (em que um caractere requer quatro bytes), o comprimento máximo de uma coluna ou índice `utf16` é apenas metade do comprimento máximo para uma coluna ou índice `ucs2`. Por exemplo, o comprimento máximo de uma chave de índice (*index key*) de uma tabela `MEMORY` é de 3072 bytes, portanto, estas instruções criam tabelas com os índices de maior comprimento permitido para colunas `ucs2` e `utf16`:
 
 ```sql
 CREATE TABLE tf (s1 VARCHAR(1536) CHARACTER SET ucs2) ENGINE=MEMORY;

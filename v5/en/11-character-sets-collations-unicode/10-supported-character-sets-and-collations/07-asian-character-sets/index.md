@@ -1,53 +1,53 @@
-### 10.10.7 Asian Character Sets
+### 10.10.7 Conjuntos de Caracteres Asiáticos
 
-10.10.7.1 The cp932 Character Set
+10.10.7.1 O Conjunto de Caracteres cp932
 
-10.10.7.2 The gb18030 Character Set
+10.10.7.2 O Conjunto de Caracteres gb18030
 
-The Asian character sets that we support include Chinese, Japanese, Korean, and Thai. These can be complicated. For example, the Chinese sets must allow for thousands of different characters. See Section 10.10.7.1, “The cp932 Character Set”, for additional information about the `cp932` and `sjis` character sets. See Section 10.10.7.2, “The gb18030 Character Set”, for additional information about character set support for the Chinese National Standard GB 18030.
+Os conjuntos de caracteres asiáticos que suportamos incluem Chinês, Japonês, Coreano e Tailandês. Eles podem ser complicados. Por exemplo, os conjuntos chineses devem suportar milhares de caracteres diferentes. Consulte a Seção 10.10.7.1, “O Conjunto de Caracteres cp932”, para obter informações adicionais sobre os conjuntos de caracteres `cp932` e `sjis`. Consulte a Seção 10.10.7.2, “O Conjunto de Caracteres gb18030”, para obter informações adicionais sobre o suporte a conjuntos de caracteres para o Padrão Nacional Chinês GB 18030.
 
-For answers to some common questions and problems relating support for Asian character sets in MySQL, see Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”.
+Para respostas a algumas perguntas e problemas comuns relacionados ao suporte de conjuntos de caracteres asiáticos no MySQL, consulte a Seção A.11, “FAQ do MySQL 5.7: Conjuntos de Caracteres Chinês, Japonês e Coreano do MySQL”.
 
-* `big5` (Big5 Traditional Chinese) collations:
+* `big5` (Big5 Chinês Tradicional) collations:
 
   + `big5_bin`
-  + `big5_chinese_ci` (default)
-* `cp932` (SJIS for Windows Japanese) collations:
+  + `big5_chinese_ci` (padrão)
+* `cp932` (SJIS para Windows Japonês) collations:
 
   + `cp932_bin`
-  + `cp932_japanese_ci` (default)
-* `eucjpms` (UJIS for Windows Japanese) collations:
+  + `cp932_japanese_ci` (padrão)
+* `eucjpms` (UJIS para Windows Japonês) collations:
 
   + `eucjpms_bin`
-  + `eucjpms_japanese_ci` (default)
-* `euckr` (EUC-KR Korean) collations:
+  + `eucjpms_japanese_ci` (padrão)
+* `euckr` (EUC-KR Coreano) collations:
 
   + `euckr_bin`
-  + `euckr_korean_ci` (default)
-* `gb2312` (GB2312 Simplified Chinese) collations:
+  + `euckr_korean_ci` (padrão)
+* `gb2312` (GB2312 Chinês Simplificado) collations:
 
   + `gb2312_bin`
-  + `gb2312_chinese_ci` (default)
-* `gbk` (GBK Simplified Chinese) collations:
+  + `gb2312_chinese_ci` (padrão)
+* `gbk` (GBK Chinês Simplificado) collations:
 
   + `gbk_bin`
-  + `gbk_chinese_ci` (default)
-* `gb18030` (China National Standard GB18030) collations:
+  + `gbk_chinese_ci` (padrão)
+* `gb18030` (Padrão Nacional Chinês GB18030) collations:
 
   + `gb18030_bin`
-  + `gb18030_chinese_ci` (default)
+  + `gb18030_chinese_ci` (padrão)
   + `gb18030_unicode_520_ci`
-* `sjis` (Shift-JIS Japanese) collations:
+* `sjis` (Shift-JIS Japonês) collations:
 
   + `sjis_bin`
-  + `sjis_japanese_ci` (default)
-* `tis620` (TIS620 Thai) collations:
+  + `sjis_japanese_ci` (padrão)
+* `tis620` (TIS620 Tailandês) collations:
 
   + `tis620_bin`
-  + `tis620_thai_ci` (default)
-* `ujis` (EUC-JP Japanese) collations:
+  + `tis620_thai_ci` (padrão)
+* `ujis` (EUC-JP Japonês) collations:
 
   + `ujis_bin`
-  + `ujis_japanese_ci` (default)
+  + `ujis_japanese_ci` (padrão)
 
-The `big5_chinese_ci` collation sorts on number of strokes.
+O collation `big5_chinese_ci` realiza a ordenação com base no número de traços.

@@ -1,46 +1,46 @@
-### 2.10.13 Copying MySQL Databases to Another Machine
+### 2.10.13 Copiando Databases MySQL para Outra Máquina
 
-In cases where you need to transfer databases between different architectures, you can use **mysqldump** to create a file containing SQL statements. You can then transfer the file to the other machine and feed it as input to the **mysql** client.
+Em casos em que você precisa transferir **Databases** entre diferentes arquiteturas, você pode usar o **mysqldump** para criar um arquivo contendo comandos SQL. Você pode então transferir o arquivo para a outra máquina e fornecê-lo como **input** para o cliente **mysql**.
 
-Use **mysqldump --help** to see what options are available.
+Use **mysqldump --help** para ver quais opções estão disponíveis.
 
-The easiest (although not the fastest) way to move a database between two machines is to run the following commands on the machine on which the database is located:
+A maneira mais fácil (embora não a mais rápida) de mover um **Database** entre duas máquinas é executar os seguintes comandos na máquina onde o **Database** está localizado:
 
 ```sql
 mysqladmin -h 'other_hostname' create db_name
 mysqldump db_name | mysql -h 'other_hostname' db_name
 ```
 
-If you want to copy a database from a remote machine over a slow network, you can use these commands:
+Se você quiser copiar um **Database** de uma máquina remota por meio de uma rede lenta, você pode usar estes comandos:
 
 ```sql
 mysqladmin create db_name
 mysqldump -h 'other_hostname' --compress db_name | mysql db_name
 ```
 
-You can also store the dump in a file, transfer the file to the target machine, and then load the file into the database there. For example, you can dump a database to a compressed file on the source machine like this:
+Você também pode armazenar o **dump** em um arquivo, transferir o arquivo para a máquina de destino e, em seguida, carregar o arquivo no **Database** lá. Por exemplo, você pode fazer um **dump** de um **Database** para um arquivo compactado na máquina de origem desta forma:
 
 ```sql
 mysqldump --quick db_name | gzip > db_name.gz
 ```
 
-Transfer the file containing the database contents to the target machine and run these commands there:
+Transfira o arquivo contendo o conteúdo do **Database** para a máquina de destino e execute estes comandos lá:
 
 ```sql
 mysqladmin create db_name
 gunzip < db_name.gz | mysql db_name
 ```
 
-You can also use **mysqldump** and **mysqlimport** to transfer the database. For large tables, this is much faster than simply using **mysqldump**. In the following commands, *`DUMPDIR`* represents the full path name of the directory you use to store the output from **mysqldump**.
+Você também pode usar **mysqldump** e **mysqlimport** para transferir o **Database**. Para **Tables** grandes, isso é muito mais rápido do que simplesmente usar **mysqldump**. Nos seguintes comandos, *`DUMPDIR`* representa o caminho completo (**full path name**) do diretório que você usa para armazenar a saída do **mysqldump**.
 
-First, create the directory for the output files and dump the database:
+Primeiro, crie o diretório para os arquivos de saída e faça o **dump** do **Database**:
 
 ```sql
 mkdir DUMPDIR
 mysqldump --tab=DUMPDIR db_name
 ```
 
-Then transfer the files in the *`DUMPDIR`* directory to some corresponding directory on the target machine and load the files into MySQL there:
+Em seguida, transfira os arquivos no diretório *`DUMPDIR`* para algum diretório correspondente na máquina de destino e carregue os arquivos no MySQL lá:
 
 ```sql
 mysqladmin create db_name           # create database
@@ -48,10 +48,10 @@ cat DUMPDIR/*.sql | mysql db_name   # create tables in database
 mysqlimport db_name DUMPDIR/*.txt   # load data into tables
 ```
 
-Do not forget to copy the `mysql` database because that is where the grant tables are stored. You might have to run commands as the MySQL `root` user on the new machine until you have the `mysql` database in place.
+Não se esqueça de copiar o **Database** `mysql`, pois é onde as **grant tables** são armazenadas. Você pode ter que executar comandos como o usuário `root` do MySQL na nova máquina até que o **Database** `mysql` esteja instalado.
 
-After you import the `mysql` database on the new machine, execute **mysqladmin flush-privileges** so that the server reloads the grant table information.
+Depois de importar o **Database** `mysql` na nova máquina, execute **mysqladmin flush-privileges** para que o **server** recarregue as informações da **grant table**.
 
-Note
+Nota
 
-You can copy the `.frm`, `.MYI`, and `.MYD` files for `MyISAM` tables between different architectures that support the same floating-point format. (MySQL takes care of any byte-swapping issues.) See Section 15.2, “The MyISAM Storage Engine”.
+Você pode copiar os arquivos `.frm`, `.MYI` e `.MYD` para **Tables** `MyISAM` entre diferentes arquiteturas que suportam o mesmo formato de ponto flutuante (**floating-point format**). (O MySQL cuida de quaisquer problemas de troca de *bytes* [**byte-swapping**].) Consulte a Seção 15.2, “The MyISAM Storage Engine”.

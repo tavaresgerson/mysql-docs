@@ -1,6 +1,6 @@
-### 6.7.1 Check if SELinux is Enabled
+### 6.7.1 Verificar se o SELinux está Ativado
 
-SELinux is enabled by default on some Linux distributions including Oracle Linux, RHEL, CentOS, and Fedora. Use the **sestatus** command to determine if SELinux is enabled on your distribution:
+O SELinux é habilitado por padrão em algumas distribuições Linux, incluindo Oracle Linux, RHEL, CentOS e Fedora. Use o **sestatus** command para determinar se o SELinux está ativado em sua distribuição:
 
 ```sql
 $> sestatus
@@ -16,4 +16,4 @@ Memory protection checking:     actual (secure)
 Max kernel policy version:      31
 ```
 
-If SELinux is disabled or the **sestatus** command is not found, refer to your distribution's SELinux documentation for guidance before enabling SELinux.
+Se o SELinux estiver desabilitado ou se o **sestatus** command não for encontrado, consulte a documentação SELinux de sua distribuição para obter orientação antes de habilitar o SELinux.

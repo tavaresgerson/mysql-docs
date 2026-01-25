@@ -1,40 +1,40 @@
-#### 4.5.1.5 Executing SQL Statements from a Text File
+#### 4.5.1.5 Executando SQL Statements a Partir de um Arquivo de Texto
 
-The **mysql** client typically is used interactively, like this:
+O **mysql** client é tipicamente usado de forma interativa, assim:
 
 ```sql
 mysql db_name
 ```
 
-However, it is also possible to put your SQL statements in a file and then tell **mysql** to read its input from that file. To do so, create a text file *`text_file`* that contains the statements you wish to execute. Then invoke **mysql** as shown here:
+No entanto, também é possível colocar seus SQL statements em um arquivo e, em seguida, instruir o **mysql** a ler sua entrada (input) a partir desse arquivo. Para fazer isso, crie um arquivo de texto *`text_file`* que contenha os statements que você deseja executar. Depois, invoque o **mysql** conforme mostrado aqui:
 
 ```sql
 mysql db_name < text_file
 ```
 
-If you place a `USE db_name` statement as the first statement in the file, it is unnecessary to specify the database name on the command line:
+Se você colocar um statement `USE db_name` como o primeiro statement no arquivo, não será necessário especificar o nome do Database na linha de comando:
 
 ```sql
 mysql < text_file
 ```
 
-If you are already running **mysql**, you can execute an SQL script file using the `source` command or `\.` command:
+Se você já estiver executando o **mysql**, você pode executar um arquivo SQL script usando o comando `source` ou o comando `\.`:
 
 ```sql
 mysql> source file_name
 mysql> \. file_name
 ```
 
-Sometimes you may want your script to display progress information to the user. For this you can insert statements like this:
+Às vezes, você pode querer que seu script exiba informações de progresso para o usuário. Para isso, você pode inserir statements como este:
 
 ```sql
 SELECT '<info_to_display>' AS ' ';
 ```
 
-The statement shown outputs `<info_to_display>`.
+O statement mostrado gera o output `<info_to_display>`.
 
-You can also invoke **mysql** with the `--verbose` option, which causes each statement to be displayed before the result that it produces.
+Você também pode invocar o **mysql** com a opção `--verbose`, o que faz com que cada statement seja exibido antes do resultado que ele produz.
 
-**mysql** ignores Unicode byte order mark (BOM) characters at the beginning of input files. Previously, it read them and sent them to the server, resulting in a syntax error. Presence of a BOM does not cause **mysql** to change its default character set. To do that, invoke **mysql** with an option such as `--default-character-set=utf8`.
+O **mysql** ignora caracteres Unicode byte order mark (BOM) no início dos arquivos de input. Anteriormente, ele os lia e os enviava para o server, resultando em um syntax error. A presença de um BOM não faz com que o **mysql** altere seu character set padrão. Para fazer isso, invoque o **mysql** com uma opção como `--default-character-set=utf8`.
 
-For more information about batch mode, see Section 3.5, “Using mysql in Batch Mode”.
+Para mais informações sobre batch mode, consulte a Seção 3.5, “Usando mysql em Batch Mode”.

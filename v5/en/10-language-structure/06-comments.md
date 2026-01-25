@@ -1,13 +1,12 @@
-## 9.6 Comments
+## 9.6 Comentários
 
-MySQL Server supports three comment styles:
+O MySQL Server suporta três estilos de comentário:
 
-* From a `#` character to the end of the line.
-* From a `--` sequence to the end of the line. In MySQL, the `--` (double-dash) comment style requires the second dash to be followed by at least one whitespace or control character, such as a space or tab. This syntax differs slightly from standard SQL comment syntax, as discussed in Section 1.6.2.4, “'--' as the Start of a Comment”.
+* Do caractere `#` até o final da linha.
+* De uma sequência `--` até o final da linha. No MySQL, o estilo de comentário `--` (traço duplo) exige que o segundo traço seja seguido por pelo menos um espaço em branco (*whitespace*) ou caractere de controle, como um espaço ou tabulação. Essa sintaxe difere ligeiramente da sintaxe de comentário SQL padrão, conforme discutido na Seção 1.6.2.4, “'--' as the Start of a Comment”.
+* De uma sequência `/*` até a sequência `*/` seguinte, como na linguagem de programação C. Essa sintaxe permite que um comentário se estenda por várias linhas, pois as sequências de início e fechamento não precisam estar na mesma linha.
 
-* From a `/*` sequence to the following `*/` sequence, as in the C programming language. This syntax enables a comment to extend over multiple lines because the beginning and closing sequences need not be on the same line.
-
-The following example demonstrates all three comment styles:
+O exemplo a seguir demonstra todos os três estilos de comentário:
 
 ```sql
 mysql> SELECT 1+1;     # This comment continues to the end of line
@@ -21,38 +20,38 @@ multiple-line comment
 1;
 ```
 
-Nested comments are not supported. (Under some conditions, nested comments might be permitted, but usually are not, and users should avoid them.)
+Comentários aninhados (*nested comments*) não são suportados. (Sob algumas condições, comentários aninhados podem ser permitidos, mas geralmente não são, e os usuários devem evitá-los.)
 
-MySQL Server supports certain variants of C-style comments. These enable you to write code that includes MySQL extensions, but is still portable, by using comments of the following form:
+O MySQL Server suporta certas variantes de comentários estilo C (*C-style comments*). Elas permitem que você escreva código que inclua extensões MySQL, mas que ainda seja portátil, usando comentários no seguinte formato:
 
 ```sql
 /*! MySQL-specific code */
 ```
 
-In this case, MySQL Server parses and executes the code within the comment as it would any other SQL statement, but other SQL servers ignore the extensions. For example, MySQL Server recognizes the `STRAIGHT_JOIN` keyword in the following statement, but other servers do not:
+Neste caso, o MySQL Server faz o *parse* e executa o código dentro do comentário como faria com qualquer outro *SQL statement*, mas outros servidores SQL ignoram as extensões. Por exemplo, o MySQL Server reconhece a *keyword* `STRAIGHT_JOIN` na seguinte *statement*, mas outros servidores não:
 
 ```sql
 SELECT /*! STRAIGHT_JOIN */ col1 FROM table1,table2 WHERE ...
 ```
 
-If you add a version number after the `!` character, the syntax within the comment is executed only if the MySQL version is greater than or equal to the specified version number. The `KEY_BLOCK_SIZE` keyword in the following comment is executed only by servers from MySQL 5.1.10 or higher:
+Se você adicionar um número de versão após o caractere `!`, a sintaxe dentro do comentário será executada apenas se a versão do MySQL for maior ou igual ao número de versão especificado. A *keyword* `KEY_BLOCK_SIZE` no comentário a seguir é executada apenas por servidores a partir do MySQL 5.1.10 ou superior:
 
 ```sql
 CREATE TABLE t1(a INT, KEY (a)) /*!50110 KEY_BLOCK_SIZE=1024 */;
 ```
 
-The version number uses the format *`Mmmrr`*, where *`M`* is a major version, *`mm`* is a two-digit minor version, and *`rr`* is a two-digit release number. For example: In a statement to be run only by a MySQL server version 5.7.31 or later, use `50731` in the comment.
+O número de versão usa o formato *`Mmmrr`*, onde *`M`* é uma versão *major*, *`mm`* é uma versão *minor* de dois dígitos e *`rr`* é um número de *release* de dois dígitos. Por exemplo: Em uma *statement* a ser executada apenas por um MySQL Server versão 5.7.31 ou posterior, use `50731` no comentário.
 
-The comment syntax just described applies to how the **mysqld** server parses SQL statements. The **mysql** client program also performs some parsing of statements before sending them to the server. (It does this to determine statement boundaries within a multiple-statement input line.) For information about differences between the server and **mysql** client parsers, see Section 4.5.1.6, “mysql Client Tips”.
+A sintaxe de comentário que acabamos de descrever se aplica à forma como o servidor **mysqld** faz o *parse* das *SQL statements*. O programa *client* **mysql** também executa algum *parsing* das *statements* antes de enviá-las ao servidor. (Ele faz isso para determinar os limites das *statements* dentro de uma linha de entrada com múltiplas *statements*.) Para obter informações sobre as diferenças entre os *parsers* do servidor e do *client* **mysql**, consulte a Seção 4.5.1.6, “mysql Client Tips”.
 
-Comments in `/*!12345 ... */` format are not stored on the server. If this format is used to comment stored programs, the comments are not retained in the program body.
+Comentários no formato `/*!12345 ... */` não são armazenados no servidor. Se este formato for usado para comentar *stored programs*, os comentários não são retidos no corpo do programa.
 
-Another variant of C-style comment syntax is used to specify optimizer hints. Hint comments include a `+` character following the `/*` comment opening sequence. Example:
+Outra variante da sintaxe de comentário estilo C é usada para especificar *optimizer hints*. Comentários de *hint* incluem um caractere `+` após a sequência de abertura de comentário `/*`. Exemplo:
 
 ```sql
 SELECT /*+ BKA(t1) */ FROM ... ;
 ```
 
-For more information, see Section 8.9.3, “Optimizer Hints”.
+Para mais informações, consulte a Seção 8.9.3, “Optimizer Hints”.
 
-The use of short-form **mysql** commands such as `\C` within multiple-line `/* ... */` comments is not supported. Short-form commands do work within single-line `/*! ... */` version comments, as do `/*+ ... */` optimizer-hint comments, which are stored in object definitions. If there is a concern that optimizer-hint comments may be stored in object definitions so that dump files when reloaded with `mysql` would result in execution of such commands, either invoke **mysql** with the `--binary-mode` option or use a reload client other than **mysql**.
+O uso de comandos **mysql** de formato curto, como `\C`, dentro de comentários de múltiplas linhas `/* ... */` não é suportado. Comandos de formato curto funcionam dentro de comentários de versão de linha única `/*! ... */`, assim como em comentários de *optimizer-hint* `/*+ ... */`, que são armazenados em definições de objeto. Se houver a preocupação de que comentários de *optimizer-hint* possam ser armazenados em definições de objeto, de modo que os arquivos de *dump* recarregados com o `mysql` resultem na execução desses comandos, invoque o **mysql** com a opção `--binary-mode` ou use um *client* de recarga diferente do **mysql**.

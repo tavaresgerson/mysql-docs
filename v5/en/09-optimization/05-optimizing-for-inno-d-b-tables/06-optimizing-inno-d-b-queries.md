@@ -1,13 +1,13 @@
-### 8.5.6 Optimizing InnoDB Queries
+### 8.5.6 Otimizando Queries InnoDB
 
-To tune queries for `InnoDB` tables, create an appropriate set of indexes on each table. See Section 8.3.1, “How MySQL Uses Indexes” for details. Follow these guidelines for `InnoDB` indexes:
+Para otimizar Queries para tabelas `InnoDB`, crie um conjunto apropriado de Indexes em cada tabela. Consulte a Seção 8.3.1, “Como o MySQL Usa Indexes” para obter detalhes. Siga estas diretrizes para Indexes `InnoDB`:
 
-* Because each `InnoDB` table has a primary key (whether you request one or not), specify a set of primary key columns for each table, columns that are used in the most important and time-critical queries.
+* Como cada tabela `InnoDB` possui uma Primary Key (solicitando você uma ou não), especifique um conjunto de colunas de Primary Key para cada tabela, colunas que são usadas nas Queries mais importantes e críticas em termos de tempo.
 
-* Do not specify too many or too long columns in the primary key, because these column values are duplicated in each secondary index. When an index contains unnecessary data, the I/O to read this data and memory to cache it reduce the performance and scalability of the server.
+* Não especifique muitas colunas ou colunas muito longas na Primary Key, pois esses valores de coluna são duplicados em cada Secondary Index. Quando um Index contém dados desnecessários, o I/O para ler esses dados e a memória para armazená-los em cache reduzem a performance e a escalabilidade do servidor.
 
-* Do not create a separate secondary index for each column, because each query can only make use of one index. Indexes on rarely tested columns or columns with only a few different values might not be helpful for any queries. If you have many queries for the same table, testing different combinations of columns, try to create a small number of concatenated indexes rather than a large number of single-column indexes. If an index contains all the columns needed for the result set (known as a covering index), the query might be able to avoid reading the table data at all.
+* Não crie um Secondary Index separado para cada coluna, pois cada Query pode utilizar apenas um Index. Indexes em colunas raramente testadas ou em colunas com apenas alguns valores diferentes podem não ser úteis para nenhuma Query. Se você tiver muitas Queries para a mesma tabela, testando diferentes combinações de colunas, tente criar um pequeno número de Indexes concatenados em vez de um grande número de Indexes de coluna única. Se um Index contiver todas as colunas necessárias para o conjunto de resultados (conhecido como *covering index*), a Query pode ser capaz de evitar a leitura dos dados da tabela por completo.
 
-* If an indexed column cannot contain any `NULL` values, declare it as `NOT NULL` when you create the table. The optimizer can better determine which index is most effective to use for a query, when it knows whether each column contains `NULL` values.
+* Se uma coluna indexada não puder conter valores `NULL`, declare-a como `NOT NULL` ao criar a tabela. O *optimizer* pode determinar melhor qual Index é mais eficaz para ser usado em uma Query, quando sabe se cada coluna contém valores `NULL`.
 
-* You can optimize single-query transactions for `InnoDB` tables, using the technique in Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”.
+* Você pode otimizar transações de Query única para tabelas `InnoDB`, usando a técnica descrita na Seção 8.5.3, “Otimizando Transações Read-Only InnoDB”.

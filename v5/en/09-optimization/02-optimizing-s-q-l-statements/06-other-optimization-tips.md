@@ -1,19 +1,19 @@
-### 8.2.6 Other Optimization Tips
+### 8.2.6 Outras Dicas de Otimização
 
-This section lists a number of miscellaneous tips for improving query processing speed:
+Esta seção lista várias dicas diversas para melhorar a velocidade de processamento de Querys:
 
-* If your application makes several database requests to perform related updates, combining the statements into a stored routine can help performance. Similarly, if your application computes a single result based on several column values or large volumes of data, combining the computation into a loadable function can help performance. The resulting fast database operations are then available to be reused by other queries, applications, and even code written in different programming languages. See Section 23.2, “Using Stored Routines” and Adding Functions to MySQL for more information.
+* Se sua aplicação faz várias requisições ao Database para executar atualizações relacionadas, combinar as instruções em uma *stored routine* pode ajudar no desempenho. Da mesma forma, se sua aplicação calcula um único resultado baseado em vários valores de coluna ou grandes volumes de dados, combinar o cálculo em uma *loadable function* pode ajudar no desempenho. As operações de Database rápidas resultantes ficam então disponíveis para serem reutilizadas por outras Querys, aplicações e até mesmo código escrito em diferentes linguagens de programação. Consulte a Seção 23.2, “Using Stored Routines” e Adicionando Funções ao MySQL para mais informações.
 
-* To fix any compression issues that occur with `ARCHIVE` tables, use `OPTIMIZE TABLE`. See Section 15.5, “The ARCHIVE Storage Engine”.
+* Para corrigir quaisquer problemas de compressão que ocorram com tabelas `ARCHIVE`, use `OPTIMIZE TABLE`. Consulte a Seção 15.5, “The ARCHIVE Storage Engine”.
 
-* If possible, classify reports as “live” or as “statistical”, where data needed for statistical reports is created only from summary tables that are generated periodically from the live data.
+* Se possível, classifique relatórios como “em tempo real” (*live*) ou “estatísticos”, onde os dados necessários para relatórios estatísticos são criados apenas a partir de tabelas de resumo que são geradas periodicamente a partir dos dados em tempo real (*live*).
 
-* If you have data that does not conform well to a rows-and-columns table structure, you can pack and store data into a `BLOB` column. In this case, you must provide code in your application to pack and unpack information, but this might save I/O operations to read and write the sets of related values.
+* Se você tem dados que não se ajustam bem a uma estrutura de tabela de linhas e colunas, você pode empacotar e armazenar dados em uma coluna `BLOB`. Neste caso, você deve fornecer código em sua aplicação para empacotar e desempacotar informações, mas isso pode economizar operações de I/O para ler e escrever os conjuntos de valores relacionados.
 
-* With Web servers, store images and other binary assets as files, with the path name stored in the database rather than the file itself. Most Web servers are better at caching files than database contents, so using files is generally faster. (Although you must handle backups and storage issues yourself in this case.)
+* Em servidores Web, armazene imagens e outros ativos binários como arquivos, com o nome do caminho (path name) armazenado no Database em vez do arquivo em si. A maioria dos servidores Web é melhor em fazer caching de arquivos do que do conteúdo do Database, então usar arquivos é geralmente mais rápido. (Embora você precise lidar com Backups e problemas de armazenamento por conta própria neste caso.)
 
-* If you need really high speed, look at the low-level MySQL interfaces. For example, by accessing the MySQL `InnoDB` or `MyISAM` storage engine directly, you could get a substantial speed increase compared to using the SQL interface.
+* Se você precisa de uma velocidade realmente alta, examine as interfaces MySQL de baixo nível. Por exemplo, ao acessar o Storage Engine `InnoDB` ou `MyISAM` do MySQL diretamente, você pode obter um aumento substancial de velocidade em comparação com o uso da interface SQL.
 
-  Similarly, for databases using the `NDBCLUSTER` storage engine, you may wish to investigate possible use of the NDB API (see MySQL NDB Cluster API Developer Guide).
+  Da mesma forma, para Databases que utilizam o Storage Engine `NDBCLUSTER`, você pode querer investigar o possível uso da NDB API (consulte o MySQL NDB Cluster API Developer Guide).
 
-* Replication can provide a performance benefit for some operations. You can distribute client retrievals among replicas to split up the load. To avoid slowing down the source while making backups, you can make backups using a replica. See Chapter 16, *Replication*.
+* Replication pode fornecer um benefício de desempenho para algumas operações. Você pode distribuir recuperações de clientes entre réplicas para dividir a carga. Para evitar o atraso da *source* ao fazer Backups, você pode fazer Backups usando uma réplica. Consulte o Capítulo 16, *Replication*.

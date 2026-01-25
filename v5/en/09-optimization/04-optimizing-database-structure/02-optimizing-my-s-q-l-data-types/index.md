@@ -1,9 +1,9 @@
-### 8.4.2 Optimizing MySQL Data Types
+### 8.4.2 Otimizando os Tipos de Dados MySQL
 
-8.4.2.1 Optimizing for Numeric Data
+8.4.2.1 Otimizando para Dados Numéricos
 
-8.4.2.2 Optimizing for Character and String Types
+8.4.2.2 Otimizando para Tipos de Caracteres e String
 
-8.4.2.3 Optimizing for BLOB Types
+8.4.2.3 Otimizando para Tipos BLOB
 
-8.4.2.4 Using PROCEDURE ANALYSE
+8.4.2.4 Usando PROCEDURE ANALYSE

@@ -1,14 +1,14 @@
-### 2.3.5 Troubleshooting a Microsoft Windows MySQL Server Installation
+### 2.3.5 Solução de Problemas em uma Instalação do MySQL Server no Microsoft Windows
 
-When installing and running MySQL for the first time, you may encounter certain errors that prevent the MySQL server from starting. This section helps you diagnose and correct some of these errors.
+Ao instalar e executar o MySQL pela primeira vez, você pode encontrar certos erros que impedem o MySQL server de iniciar. Esta seção ajuda você a diagnosticar e corrigir alguns desses erros.
 
-Your first resource when troubleshooting server issues is the error log. The MySQL server uses the error log to record information relevant to the error that prevents the server from starting. The error log is located in the data directory specified in your `my.ini` file. The default data directory location is `C:\Program Files\MySQL\MySQL Server 5.7\data`, or `C:\ProgramData\Mysql` on Windows 7 and Windows Server 2008. The `C:\ProgramData` directory is hidden by default. You need to change your folder options to see the directory and contents. For more information on the error log and understanding the content, see Section 5.4.2, “The Error Log”.
+Seu primeiro recurso ao solucionar problemas do server é o *error log*. O MySQL server usa o *error log* para registrar informações relevantes ao erro que impede o server de iniciar. O *error log* está localizado no *data directory* especificado no seu arquivo `my.ini`. O local padrão do *data directory* é `C:\Program Files\MySQL\MySQL Server 5.7\data`, ou `C:\ProgramData\Mysql` no Windows 7 e Windows Server 2008. O diretório `C:\ProgramData` fica oculto por padrão. Você precisa alterar suas opções de pasta (*folder options*) para ver o diretório e seu conteúdo. Para mais informações sobre o *error log* e a compreensão do seu conteúdo, consulte a Seção 5.4.2, “The Error Log”.
 
-For information regarding possible errors, also consult the console messages displayed when the MySQL service is starting. Use the **SC START *`mysqld_service_name`*** or **NET START *`mysqld_service_name`*** command from the command line after installing **mysqld** as a service to see any error messages regarding the starting of the MySQL server as a service. See Section 2.3.4.8, “Starting MySQL as a Windows Service”.
+Para obter informações sobre possíveis erros, consulte também as mensagens do console exibidas quando o MySQL *service* está sendo iniciado. Use o comando **SC START *`mysqld_service_name`*** ou **NET START *`mysqld_service_name`*** na *command line* após instalar o **mysqld** como um *service* para ver quaisquer mensagens de erro relacionadas à inicialização do MySQL server como um *service*. Consulte a Seção 2.3.4.8, “Starting MySQL as a Windows Service”.
 
-The following examples show other common error messages you might encounter when installing MySQL and starting the server for the first time:
+Os exemplos a seguir mostram outras mensagens de erro comuns que você pode encontrar ao instalar o MySQL e iniciar o server pela primeira vez:
 
-* If the MySQL server cannot find the `mysql` privileges database or other critical files, it displays these messages:
+* Se o MySQL server não conseguir encontrar o *privileges database* `mysql` ou outros arquivos críticos, ele exibirá estas mensagens:
 
   ```sql
   System error 1067 has occurred.
@@ -16,17 +16,17 @@ The following examples show other common error messages you might encounter when
   Table 'mysql.user' doesn't exist
   ```
 
-  These messages often occur when the MySQL base or data directories are installed in different locations than the default locations (`C:\Program Files\MySQL\MySQL Server 5.7` and `C:\Program Files\MySQL\MySQL Server 5.7\data`, respectively).
+  Essas mensagens ocorrem frequentemente quando os *base* ou *data directories* do MySQL são instalados em locais diferentes dos locais padrão (`C:\Program Files\MySQL\MySQL Server 5.7` e `C:\Program Files\MySQL\MySQL Server 5.7\data`, respectivamente).
 
-  This situation can occur when MySQL is upgraded and installed to a new location, but the configuration file is not updated to reflect the new location. In addition, old and new configuration files might conflict. Be sure to delete or rename any old configuration files when upgrading MySQL.
+  Essa situação pode ocorrer quando o MySQL é atualizado e instalado em um novo local, mas o *configuration file* não é atualizado para refletir o novo local. Além disso, arquivos de configuração antigos e novos podem entrar em conflito. Certifique-se de excluir ou renomear quaisquer arquivos de configuração antigos ao atualizar o MySQL.
 
-  If you have installed MySQL to a directory other than `C:\Program Files\MySQL\MySQL Server 5.7`, ensure that the MySQL server is aware of this through the use of a configuration (`my.ini`) file. Put the `my.ini` file in your Windows directory, typically `C:\WINDOWS`. To determine its exact location from the value of the `WINDIR` environment variable, issue the following command from the command prompt:
+  Se você instalou o MySQL em um diretório diferente de `C:\Program Files\MySQL\MySQL Server 5.7`, certifique-se de que o MySQL server esteja ciente disso através do uso de um *configuration file* (`my.ini`). Coloque o arquivo `my.ini` em seu diretório Windows, tipicamente `C:\WINDOWS`. Para determinar sua localização exata a partir do valor da variável de ambiente `WINDIR`, execute o seguinte comando no *command prompt*:
 
   ```sql
   C:\> echo %WINDIR%
   ```
 
-  You can create or modify an option file with any text editor, such as Notepad. For example, if MySQL is installed in `E:\mysql` and the data directory is `D:\MySQLdata`, you can create the option file and set up a `[mysqld]` section to specify values for the `basedir` and `datadir` options:
+  Você pode criar ou modificar um *option file* com qualquer editor de texto, como o Notepad. Por exemplo, se o MySQL estiver instalado em `E:\mysql` e o *data directory* for `D:\MySQLdata`, você pode criar o *option file* e configurar uma seção `[mysqld]` para especificar valores para as *options* `basedir` e `datadir`:
 
   ```sql
   [mysqld]
@@ -36,7 +36,7 @@ The following examples show other common error messages you might encounter when
   datadir=D:/MySQLdata
   ```
 
-  Microsoft Windows path names are specified in option files using (forward) slashes rather than backslashes. If you do use backslashes, double them:
+  Os nomes de caminho (*path names*) do Microsoft Windows são especificados em *option files* usando barras (diagonais) normais (*forward slashes*) em vez de barras invertidas (*backslashes*). Se você usar barras invertidas, duplique-as:
 
   ```sql
   [mysqld]
@@ -46,27 +46,27 @@ The following examples show other common error messages you might encounter when
   datadir=D:\\MySQLdata
   ```
 
-  The rules for use of backslash in option file values are given in Section 4.2.2.2, “Using Option Files”.
+  As regras para o uso de barra invertida em valores de *option file* são fornecidas na Seção 4.2.2.2, “Using Option Files”.
 
-  If you change the `datadir` value in your MySQL configuration file, you must move the contents of the existing MySQL data directory before restarting the MySQL server.
+  Se você alterar o valor `datadir` no seu arquivo de configuração do MySQL, você deve mover o conteúdo do *data directory* existente do MySQL antes de reiniciar o MySQL server.
 
-  See Section 2.3.4.2, “Creating an Option File”.
+  Consulte a Seção 2.3.4.2, “Creating an Option File”.
 
-* If you reinstall or upgrade MySQL without first stopping and removing the existing MySQL service and install MySQL using the MySQL Installer, you might see this error:
+* Se você reinstalar ou atualizar o MySQL sem primeiro parar e remover o MySQL *service* existente e instalar o MySQL usando o MySQL Installer, você poderá ver este erro:
 
   ```sql
   Error: Cannot create Windows service for MySql. Error: 0
   ```
 
-  This occurs when the Configuration Wizard tries to install the service and finds an existing service with the same name.
+  Isso ocorre quando o *Configuration Wizard* tenta instalar o *service* e encontra um *service* existente com o mesmo nome.
 
-  One solution to this problem is to choose a service name other than `mysql` when using the configuration wizard. This enables the new service to be installed correctly, but leaves the outdated service in place. Although this is harmless, it is best to remove old services that are no longer in use.
+  Uma solução para este problema é escolher um nome de *service* diferente de `mysql` ao usar o *configuration wizard*. Isso permite que o novo *service* seja instalado corretamente, mas deixa o *service* desatualizado no local. Embora isso seja inofensivo, é melhor remover *services* antigos que não estão mais em uso.
 
-  To permanently remove the old `mysql` service, execute the following command as a user with administrative privileges, on the command line:
+  Para remover permanentemente o antigo *service* `mysql`, execute o seguinte comando como um usuário com privilégios administrativos, na *command line*:
 
   ```sql
   C:\> SC DELETE mysql
   [SC] DeleteService SUCCESS
   ```
 
-  If the `SC` utility is not available for your version of Windows, download the `delsrv` utility from <http://www.microsoft.com/windows2000/techinfo/reskit/tools/existing/delsrv-o.asp> and use the `delsrv mysql` syntax.
+  Se o utilitário `SC` não estiver disponível para sua versão do Windows, baixe o utilitário `delsrv` em <http://www.microsoft.com/windows2000/techinfo/reskit/tools/existing/delsrv-o.asp> e use a sintaxe `delsrv mysql`.

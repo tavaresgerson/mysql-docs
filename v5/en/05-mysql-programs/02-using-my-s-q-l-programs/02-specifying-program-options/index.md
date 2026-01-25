@@ -1,39 +1,39 @@
-### 4.2.2 Specifying Program Options
+### 4.2.2 Especificando Opções de Programa
 
-4.2.2.1 Using Options on the Command Line
+4.2.2.1 Usando Options na Command Line
 
-4.2.2.2 Using Option Files
+4.2.2.2 Usando Arquivos de Option
 
-4.2.2.3 Command-Line Options that Affect Option-File Handling
+4.2.2.3 Options de Command Line que Afetam o Manuseio de Arquivos de Option
 
-4.2.2.4 Program Option Modifiers
+4.2.2.4 Modificadores de Option de Programa
 
-4.2.2.5 Using Options to Set Program Variables
+4.2.2.5 Usando Options para Definir Variáveis de Programa
 
-4.2.2.6 Option Defaults, Options Expecting Values, and the = Sign
+4.2.2.6 Defaults de Option, Options que Esperam Valores e o Sinal de =
 
-There are several ways to specify options for MySQL programs:
+Existem diversas maneiras de especificar options para programas MySQL:
 
-* List the options on the command line following the program name. This is common for options that apply to a specific invocation of the program.
+* Liste as options na Command Line após o nome do programa. Isso é comum para options que se aplicam a uma invocação específica do programa.
 
-* List the options in an option file that the program reads when it starts. This is common for options that you want the program to use each time it runs.
+* Liste as options em um arquivo de option que o programa lê ao ser iniciado. Isso é comum para options que você deseja que o programa utilize sempre que for executado.
 
-* List the options in environment variables (see Section 4.2.7, “Setting Environment Variables”). This method is useful for options that you want to apply each time the program runs. In practice, option files are used more commonly for this purpose, but Section 5.7.3, “Running Multiple MySQL Instances on Unix”, discusses one situation in which environment variables can be very helpful. It describes a handy technique that uses such variables to specify the TCP/IP port number and Unix socket file for the server and for client programs.
+* Liste as options em variáveis de ambiente (consulte a Seção 4.2.7, “Setting Environment Variables”). Este método é útil para options que você deseja aplicar sempre que o programa é executado. Na prática, arquivos de option são usados mais comumente para essa finalidade, mas a Seção 5.7.3, “Running Multiple MySQL Instances on Unix”, discute uma situação na qual variáveis de ambiente podem ser muito úteis. Ela descreve uma técnica prática que utiliza tais variáveis para especificar o número da porta TCP/IP e o Unix socket file para o Server e para programas Client.
 
-Options are processed in order, so if an option is specified multiple times, the last occurrence takes precedence. The following command causes **mysql** to connect to the server running on `localhost`:
+Options são processadas em ordem, portanto, se uma option for especificada várias vezes, a última ocorrência terá precedência. O comando a seguir faz com que o **mysql** se conecte ao Server rodando em `localhost`:
 
 ```sql
 mysql -h example.com -h localhost
 ```
 
-There is one exception: For **mysqld**, the *first* instance of the `--user` option is used as a security precaution, to prevent a user specified in an option file from being overridden on the command line.
+Há uma exceção: Para o **mysqld**, a *primeira* instância da option `--user` é usada como uma precaução de segurança, para evitar que um usuário especificado em um arquivo de option seja sobrescrito na Command Line.
 
-If conflicting or related options are given, later options take precedence over earlier options. The following command runs **mysql** in “no column names” mode:
+Se options conflitantes ou relacionadas forem fornecidas, as options posteriores terão precedência sobre as options anteriores. O comando a seguir executa o **mysql** no modo “no column names”:
 
 ```sql
 mysql --column-names --skip-column-names
 ```
 
-MySQL programs determine which options are given first by examining environment variables, then by processing option files, and then by checking the command line. Because later options take precedence over earlier ones, the processing order means that environment variables have the lowest precedence and command-line options the highest.
+Os programas MySQL determinam quais options são fornecidas primeiro examinando variáveis de ambiente, depois processando arquivos de option e, em seguida, verificando a Command Line. Como options posteriores têm precedência sobre as anteriores, a ordem de processamento significa que as variáveis de ambiente têm a precedência mais baixa e as options de Command Line, a mais alta.
 
-You can take advantage of the way that MySQL programs process options by specifying default option values for a program in an option file. That enables you to avoid typing them each time you run the program while enabling you to override the defaults if necessary by using command-line options.
+Você pode aproveitar a maneira como os programas MySQL processam options especificando valores de option default para um programa em um arquivo de option. Isso permite que você evite digitá-los toda vez que executar o programa, ao mesmo tempo que permite que você sobrescreva os defaults, se necessário, usando options de Command Line.

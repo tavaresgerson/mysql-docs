@@ -1,6 +1,6 @@
-#### 3.3.4.3 Selecting Particular Columns
+#### 3.3.4.3 Selecionando Colunas Específicas
 
-If you do not want to see entire rows from your table, just name the columns in which you are interested, separated by commas. For example, if you want to know when your animals were born, select the `name` and `birth` columns:
+Se você não quiser ver linhas inteiras da sua tabela, basta nomear as columns nas quais você está interessado, separadas por vírgulas. Por exemplo, se você quiser saber quando seus animais nasceram, use SELECT nas columns `name` e `birth`:
 
 ```sql
 mysql> SELECT name, birth FROM pet;
@@ -19,7 +19,7 @@ mysql> SELECT name, birth FROM pet;
 +----------+------------+
 ```
 
-To find out who owns pets, use this query:
+Para descobrir quem possui os pets, utilize esta Query:
 
 ```sql
 mysql> SELECT owner FROM pet;
@@ -38,7 +38,7 @@ mysql> SELECT owner FROM pet;
 +--------+
 ```
 
-Notice that the query simply retrieves the `owner` column from each record, and some of them appear more than once. To minimize the output, retrieve each unique output record just once by adding the keyword `DISTINCT`:
+Observe que a Query simplesmente recupera a column `owner` de cada registro, e alguns deles aparecem mais de uma vez. Para minimizar a saída (output), recupere cada registro de saída exclusivo apenas uma vez, adicionando a palavra-chave `DISTINCT`:
 
 ```sql
 mysql> SELECT DISTINCT owner FROM pet;
@@ -52,7 +52,7 @@ mysql> SELECT DISTINCT owner FROM pet;
 +--------+
 ```
 
-You can use a `WHERE` clause to combine row selection with column selection. For example, to get birth dates for dogs and cats only, use this query:
+Você pode usar uma cláusula `WHERE` para combinar a seleção de linha com a seleção de column. Por exemplo, para obter as datas de nascimento apenas para cães e gatos, utilize esta Query:
 
 ```sql
 mysql> SELECT name, species, birth FROM pet

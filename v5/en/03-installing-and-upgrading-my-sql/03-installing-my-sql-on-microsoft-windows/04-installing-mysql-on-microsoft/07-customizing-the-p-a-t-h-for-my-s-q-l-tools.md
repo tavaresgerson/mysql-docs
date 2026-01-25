@@ -1,23 +1,23 @@
-#### 2.3.4.7 Customizing the PATH for MySQL Tools
+#### 2.3.4.7 Customizando o PATH para Ferramentas MySQL
 
-Warning
+Aviso
 
-You must exercise great care when editing your system `PATH` by hand; accidental deletion or modification of any portion of the existing `PATH` value can leave you with a malfunctioning or even unusable system.
+Você deve ter extremo cuidado ao editar manualmente o `PATH` do seu sistema; a exclusão acidental ou modificação de qualquer porção do valor `PATH` existente pode resultar em um sistema com mau funcionamento ou até mesmo inutilizável.
 
-To make it easier to invoke MySQL programs, you can add the path name of the MySQL `bin` directory to your Windows system `PATH` environment variable:
+Para facilitar a invocação de programas MySQL, você pode adicionar o nome do caminho do diretório `bin` do MySQL à sua variável de ambiente `PATH` do sistema Windows:
 
-* On the Windows desktop, right-click the My Computer icon, and select Properties.
+* Na área de trabalho do Windows, clique com o botão direito no ícone Meu Computador (My Computer) e selecione Propriedades (Properties).
 
-* Next select the Advanced tab from the System Properties menu that appears, and click the Environment Variables button.
+* Em seguida, selecione a aba Avançado (Advanced) no menu Propriedades do Sistema (System Properties) que aparece e clique no botão Variáveis de Ambiente (Environment Variables).
 
-* Under System Variables, select Path, and then click the Edit button. The Edit System Variable dialogue should appear.
+* Em Variáveis do Sistema (System Variables), selecione Path e, em seguida, clique no botão Editar (Edit). O diálogo Editar Variável do Sistema (Edit System Variable) deve aparecer.
 
-* Place your cursor at the end of the text appearing in the space marked Variable Value. (Use the **End** key to ensure that your cursor is positioned at the very end of the text in this space.) Then enter the complete path name of your MySQL `bin` directory (for example, `C:\Program Files\MySQL\MySQL Server 5.7\bin`)
+* Posicione o cursor no final do texto que aparece no espaço marcado como Valor da Variável (Variable Value). (Use a tecla **End** para garantir que seu cursor esteja posicionado no final absoluto do texto neste espaço.) Em seguida, insira o nome do caminho completo do seu diretório `bin` do MySQL (por exemplo, `C:\Program Files\MySQL\MySQL Server 5.7\bin`)
 
-  Note
+  Nota
 
-  There must be a semicolon separating this path from any values present in this field.
+  Deve haver um ponto e vírgula separando este path de quaisquer valores presentes neste campo.
 
-  Dismiss this dialogue, and each dialogue in turn, by clicking OK until all of the dialogues that were opened have been dismissed. The new `PATH` value should now be available to any new command shell you open, allowing you to invoke any MySQL executable program by typing its name at the DOS prompt from any directory on the system, without having to supply the path. This includes the servers, the **mysql** client, and all MySQL command-line utilities such as **mysqladmin** and **mysqldump**.
+Feche este diálogo e cada diálogo seguinte, clicando em OK até que todos os diálogos abertos tenham sido dispensados. O novo valor `PATH` deve agora estar disponível para qualquer novo *command shell* que você abrir, permitindo que você invoque qualquer programa executável do MySQL digitando seu nome no *prompt* do DOS a partir de qualquer diretório no sistema, sem a necessidade de fornecer o *path*. Isso inclui os *servers*, o `client` **mysql** e todos os utilitários de linha de comando MySQL, como **mysqladmin** e **mysqldump**.
 
-You should not add the MySQL `bin` directory to your Windows `PATH` if you are running multiple MySQL servers on the same machine.
+Você não deve adicionar o diretório `bin` do MySQL ao seu `PATH` do Windows se estiver executando múltiplos *servers* MySQL na mesma máquina.

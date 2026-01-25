@@ -1,21 +1,21 @@
-#### 6.3.3.3 Creating RSA Keys Using openssl
+#### 6.3.3.3 Criação de Chaves RSA Usando openssl
 
-This section describes how to use the **openssl** command to set up the RSA key files that enable MySQL to support secure password exchange over unencrypted connections for accounts authenticated by the `sha256_password` plugin.
+Esta seção descreve como usar o comando **openssl** para configurar os arquivos de chave RSA que permitem ao MySQL oferecer suporte à troca segura de senhas em conexões não criptografadas para contas autenticadas pelo *plugin* `sha256_password`.
 
-Note
+Nota
 
-There are easier alternatives to generating the files required for RSA than the procedure described here: Let the server autogenerate them or use the [**mysql_ssl_rsa_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files") program. See [Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL").
+Existem alternativas mais fáceis para gerar os arquivos necessários para RSA do que o procedimento descrito aqui: Permita que o servidor os autogere ou use o programa [**mysql_ssl_rsa_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files"). Consulte [Seção 6.3.3.1, “Criação de Certificados e Chaves SSL e RSA usando MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Criação de Certificados e Chaves SSL e RSA usando MySQL").
 
-To create the RSA private and public key-pair files, run these commands while logged into the system account used to run the MySQL server so the files are owned by that account:
+Para criar os arquivos de par de chaves (*key-pair*) *private* e *public* RSA, execute estes comandos enquanto estiver logado na conta do sistema usada para executar o servidor MySQL, para que os arquivos sejam de propriedade dessa conta:
 
 ```sql
 openssl genrsa -out private_key.pem 2048
 openssl rsa -in private_key.pem -pubout -out public_key.pem
 ```
 
-Those commands create 2,048-bit keys. To create stronger keys, use a larger value.
+Esses comandos criam chaves de 2.048 bits. Para criar chaves mais fortes, use um valor maior.
 
-Then set the access modes for the key files. The private key should be readable only by the server, whereas the public key can be freely distributed to client users:
+Em seguida, defina os modos de acesso para os arquivos de *key*. A *private key* deve ser legível apenas pelo servidor, enquanto a *public key* pode ser distribuída livremente aos usuários *client*:
 
 ```sql
 chmod 400 private_key.pem

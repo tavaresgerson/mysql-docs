@@ -1,6 +1,6 @@
-### 8.3.9 Use of Index Extensions
+### 8.3.9 Uso de Extensões de Index
 
-`InnoDB` automatically extends each secondary index by appending the primary key columns to it. Consider this table definition:
+O `InnoDB` estende automaticamente cada Secondary Index anexando as colunas da Primary Key a ele. Considere esta definição de tabela:
 
 ```sql
 CREATE TABLE t1 (
@@ -12,13 +12,13 @@ CREATE TABLE t1 (
 ) ENGINE = InnoDB;
 ```
 
-This table defines the primary key on columns `(i1, i2)`. It also defines a secondary index `k_d` on column `(d)`, but internally `InnoDB` extends this index and treats it as columns `(d, i1, i2)`.
+Esta tabela define a Primary Key nas colunas `(i1, i2)`. Ela também define um Secondary Index `k_d` na coluna `(d)`, mas internamente o `InnoDB` estende este Index e o trata como as colunas `(d, i1, i2)`.
 
-The optimizer takes into account the primary key columns of the extended secondary index when determining how and whether to use that index. This can result in more efficient query execution plans and better performance.
+O Optimizer leva em consideração as colunas da Primary Key do Secondary Index estendido ao determinar como e se deve usar esse Index. Isso pode resultar em Execution Plans de Query mais eficientes e melhor performance.
 
-The optimizer can use extended secondary indexes for `ref`, `range`, and `index_merge` index access, for Loose Index Scan access, for join and sorting optimization, and for `MIN()`/`MAX()` optimization.
+O Optimizer pode usar Secondary Indexes estendidos para acesso a Index por `ref`, `range` e `index_merge`, para acesso por Loose Index Scan, para otimização de JOIN e ordenação, e para otimização de `MIN()`/`MAX()`.
 
-The following example shows how execution plans are affected by whether the optimizer uses extended secondary indexes. Suppose that `t1` is populated with these rows:
+O exemplo a seguir mostra como os Execution Plans são afetados dependendo se o Optimizer usa Secondary Indexes estendidos. Suponha que `t1` esteja populada com estas linhas:
 
 ```sql
 INSERT INTO t1 VALUES
@@ -37,15 +37,15 @@ INSERT INTO t1 VALUES
 (5, 5, '2002-01-01');
 ```
 
-Now consider this query:
+Agora considere esta Query:
 
 ```sql
 EXPLAIN SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01'
 ```
 
-The execution plan depends on whether the extended index is used.
+O Execution Plan depende se o Index estendido é usado.
 
-When the optimizer does not consider index extensions, it treats the index `k_d` as only `(d)`. `EXPLAIN` for the query produces this result:
+Quando o Optimizer não considera as extensões de Index, ele trata o Index `k_d` apenas como `(d)`. O `EXPLAIN` para a Query produz este resultado:
 
 ```sql
 mysql> EXPLAIN SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01'\G
@@ -62,7 +62,7 @@ possible_keys: PRIMARY,k_d
         Extra: Using where; Using index
 ```
 
-When the optimizer takes index extensions into account, it treats `k_d` as `(d, i1, i2)`. In this case, it can use the leftmost index prefix `(d, i1)` to produce a better execution plan:
+Quando o Optimizer leva as extensões de Index em consideração, ele trata `k_d` como `(d, i1, i2)`. Neste caso, ele pode usar o prefixo do Index mais à esquerda `(d, i1)` para produzir um Execution Plan melhor:
 
 ```sql
 mysql> EXPLAIN SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01'\G
@@ -79,17 +79,17 @@ possible_keys: PRIMARY,k_d
         Extra: Using index
 ```
 
-In both cases, `key` indicates that the optimizer uses secondary index `k_d` but the `EXPLAIN` output shows these improvements from using the extended index:
+Em ambos os casos, `key` indica que o Optimizer usa o Secondary Index `k_d`, mas a saída do `EXPLAIN` mostra estas melhorias ao usar o Index estendido:
 
-* `key_len` goes from 4 bytes to 8 bytes, indicating that key lookups use columns `d` and `i1`, not just `d`.
+* `key_len` passa de 4 bytes para 8 bytes, indicando que as pesquisas de Key usam as colunas `d` e `i1`, e não apenas `d`.
 
-* The `ref` value changes from `const` to `const,const` because the key lookup uses two key parts, not one.
+* O valor `ref` muda de `const` para `const,const` porque a pesquisa de Key usa duas Key Parts, e não uma.
 
-* The `rows` count decreases from 5 to 1, indicating that `InnoDB` should need to examine fewer rows to produce the result.
+* A contagem de `rows` diminui de 5 para 1, indicando que o `InnoDB` precisará examinar menos linhas para produzir o resultado.
 
-* The `Extra` value changes from `Using where; Using index` to `Using index`. This means that rows can be read using only the index, without consulting columns in the data row.
+* O valor `Extra` muda de `Using where; Using index` para `Using index`. Isso significa que as linhas podem ser lidas usando apenas o Index, sem consultar colunas na linha de dados.
 
-Differences in optimizer behavior for use of extended indexes can also be seen with `SHOW STATUS`:
+Diferenças no comportamento do Optimizer para o uso de Indexes estendidos também podem ser vistas com `SHOW STATUS`:
 
 ```sql
 FLUSH TABLE t1;
@@ -98,9 +98,9 @@ SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01';
 SHOW STATUS LIKE 'handler_read%'
 ```
 
-The preceding statements include `FLUSH TABLES` and `FLUSH STATUS` to flush the table cache and clear the status counters.
+As instruções anteriores incluem `FLUSH TABLES` e `FLUSH STATUS` para limpar o cache da tabela e zerar os contadores de status.
 
-Without index extensions, `SHOW STATUS` produces this result:
+Sem as extensões de Index, `SHOW STATUS` produz este resultado:
 
 ```sql
 +-----------------------+-------+
@@ -116,7 +116,7 @@ Without index extensions, `SHOW STATUS` produces this result:
 +-----------------------+-------+
 ```
 
-With index extensions, `SHOW STATUS` produces this result. The `Handler_read_next` value decreases from 5 to 1, indicating more efficient use of the index:
+Com as extensões de Index, `SHOW STATUS` produz este resultado. O valor `Handler_read_next` diminui de 5 para 1, indicando um uso mais eficiente do Index:
 
 ```sql
 +-----------------------+-------+
@@ -132,10 +132,10 @@ With index extensions, `SHOW STATUS` produces this result. The `Handler_read_nex
 +-----------------------+-------+
 ```
 
-The `use_index_extensions` flag of the `optimizer_switch` system variable permits control over whether the optimizer takes the primary key columns into account when determining how to use an `InnoDB` table's secondary indexes. By default, `use_index_extensions` is enabled. To check whether disabling use of index extensions improves performance, use this statement:
+O flag `use_index_extensions` da variável de sistema `optimizer_switch` permite controlar se o Optimizer deve levar as colunas da Primary Key em consideração ao determinar como usar os Secondary Indexes de uma tabela `InnoDB`. Por padrão, `use_index_extensions` está habilitado. Para verificar se desabilitar o uso de extensões de Index melhora a performance, use esta instrução:
 
 ```sql
 SET optimizer_switch = 'use_index_extensions=off';
 ```
 
-Use of index extensions by the optimizer is subject to the usual limits on the number of key parts in an index (16) and the maximum key length (3072 bytes).
+O uso de extensões de Index pelo Optimizer está sujeito aos limites usuais no número de Key Parts em um Index (16) e no comprimento máximo da Key (3072 bytes).

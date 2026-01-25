@@ -1,7 +1,7 @@
-#### 2.3.4.4 Initializing the Data Directory
+#### 2.3.4.4 Inicializando o Data Directory
 
-If you installed MySQL using the `noinstall` package, you may need to initialize the data directory:
+Se você instalou o MySQL usando o pacote `noinstall`, talvez seja necessário inicializar o Data Directory:
 
-* Windows distributions prior to MySQL 5.7.7 include a data directory with a set of preinitialized accounts in the `mysql` database.
+* Distribuições Windows anteriores ao MySQL 5.7.7 incluem um Data Directory com um conjunto de contas pré-inicializadas no Database `mysql`.
 
-* As of 5.7.7, Windows installation operations performed using the `noinstall` package do not include a data directory. To initialize the data directory, use the instructions at Section 2.9.1, “Initializing the Data Directory”.
+* A partir da versão 5.7.7, as operações de instalação do Windows realizadas usando o pacote `noinstall` não incluem um Data Directory. Para inicializar o Data Directory, use as instruções na Seção 2.9.1, “Inicializando o Data Directory”.

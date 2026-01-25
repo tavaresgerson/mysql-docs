@@ -1,48 +1,48 @@
-### 4.8.3 replace — A String-Replacement Utility
+### 4.8.3 replace — Um Utilitário de Substituição de String
 
-The **replace** utility program changes strings in place in files or on the standard input.
+O programa utilitário **replace** altera strings diretamente em arquivos ou na entrada padrão (*standard input*).
 
-Note
+Nota
 
-The **replace** utility is deprecated as of MySQL 5.7.18 and is removed in MySQL 8.0.
+O utilitário **replace** foi descontinuado (deprecated) a partir do MySQL 5.7.18 e foi removido no MySQL 8.0.
 
-Invoke **replace** in one of the following ways:
+Invoque **replace** de uma das seguintes maneiras:
 
 ```sql
 replace from to [from to] ... -- file_name [file_name] ...
 replace from to [from to] ... < file_name
 ```
 
-*`from`* represents a string to look for and *`to`* represents its replacement. There can be one or more pairs of strings.
+*`from`* representa uma string a ser procurada e *`to`* representa sua substituição. Pode haver um ou mais pares de strings.
 
-Use the `--` option to indicate where the string-replacement list ends and the file names begin. In this case, any file named on the command line is modified in place, so you may want to make a copy of the original before converting it. *`replace`* prints a message indicating which of the input files it actually modifies.
+Use a opção `--` para indicar onde a lista de substituição de string termina e onde os nomes dos arquivos começam. Neste caso, qualquer arquivo nomeado na linha de comando (*command line*) é modificado no local (in place), portanto, você pode querer fazer uma cópia do original antes de convertê-lo. O *`replace`* exibe uma mensagem indicando quais dos arquivos de entrada ele realmente modifica.
 
-If the `--` option is not given, **replace** reads the standard input and writes to the standard output.
+Se a opção `--` não for fornecida, **replace** lê a entrada padrão (*standard input*) e escreve na saída padrão (*standard output*).
 
-**replace** uses a finite state machine to match longer strings first. It can be used to swap strings. For example, the following command swaps `a` and `b` in the given files, `file1` and `file2`:
+O **replace** utiliza uma máquina de estado finito (*finite state machine*) para fazer a correspondência das strings mais longas primeiro. Ele pode ser usado para trocar (*swap*) strings. Por exemplo, o comando a seguir troca `a` e `b` nos arquivos fornecidos, `file1` e `file2`:
 
 ```sql
 replace a b b a -- file1 file2 ...
 ```
 
-**replace** supports the following options.
+O **replace** suporta as seguintes opções.
 
 * `-?`, `-I`
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `-#debug_options`
 
-  Enable debugging.
+  Habilita o debugging.
 
 * `-s`
 
-  Silent mode. Print less information what the program does.
+  Modo silencioso. Imprime menos informações sobre o que o programa faz.
 
 * `-v`
 
-  Verbose mode. Print more information about what the program does.
+  Modo verboso. Imprime mais informações sobre o que o programa faz.
 
 * `-V`
 
-  Display version information and exit.
+  Exibe informações de versão e sai.

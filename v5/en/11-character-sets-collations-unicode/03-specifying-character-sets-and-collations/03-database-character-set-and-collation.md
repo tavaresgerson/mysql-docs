@@ -1,6 +1,6 @@
-### 10.3.3 Database Character Set and Collation
+### 10.3.3 Character Set e Collation do Database
 
-Every database has a database character set and a database collation. The `CREATE DATABASE` and `ALTER DATABASE` statements have optional clauses for specifying the database character set and collation:
+Todo `Database` possui um character set e uma collation de `Database`. As instruções `CREATE DATABASE` e `ALTER DATABASE` possuem cláusulas opcionais para especificar o character set e a collation do `Database`:
 
 ```sql
 CREATE DATABASE db_name
@@ -12,48 +12,48 @@ ALTER DATABASE db_name
     DEFAULT] COLLATE collation_name]
 ```
 
-The keyword `SCHEMA` can be used instead of `DATABASE`.
+A palavra-chave `SCHEMA` pode ser usada em vez de `DATABASE`.
 
-All database options are stored in a text file named `db.opt` that can be found in the database directory.
+Todas as opções do `Database` são armazenadas em um arquivo de texto chamado `db.opt`, que pode ser encontrado no diretório do `Database`.
 
-The `CHARACTER SET` and `COLLATE` clauses make it possible to create databases with different character sets and collations on the same MySQL server.
+As cláusulas `CHARACTER SET` e `COLLATE` possibilitam a criação de `Databases` com diferentes character sets e collations no mesmo `server` MySQL.
 
-Example:
+Exemplo:
 
 ```sql
 CREATE DATABASE db_name CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 ```
 
-MySQL chooses the database character set and database collation in the following manner:
+O MySQL escolhe o character set e a collation do `Database` da seguinte maneira:
 
-* If both `CHARACTER SET charset_name` and `COLLATE collation_name` are specified, character set *`charset_name`* and collation *`collation_name`* are used.
+* Se ambos `CHARACTER SET charset_name` e `COLLATE collation_name` forem especificados, o character set *`charset_name`* e a collation *`collation_name`* são usados.
 
-* If `CHARACTER SET charset_name` is specified without `COLLATE`, character set *`charset_name`* and its default collation are used. To see the default collation for each character set, use the `SHOW CHARACTER SET` statement or query the `INFORMATION_SCHEMA` `CHARACTER_SETS` table.
+* Se `CHARACTER SET charset_name` for especificado sem `COLLATE`, o character set *`charset_name`* e sua collation padrão são usados. Para ver a collation padrão de cada character set, use a instrução `SHOW CHARACTER SET` ou faça uma `Query` na tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA`.
 
-* If `COLLATE collation_name` is specified without `CHARACTER SET`, the character set associated with *`collation_name`* and collation *`collation_name`* are used.
+* Se `COLLATE collation_name` for especificado sem `CHARACTER SET`, o character set associado a *`collation_name`* e a collation *`collation_name`* são usados.
 
-* Otherwise (neither `CHARACTER SET` nor `COLLATE` is specified), the server character set and server collation are used.
+* Caso contrário (se nem `CHARACTER SET` nem `COLLATE` forem especificados), o character set do `server` e a collation do `server` são usados.
 
-The character set and collation for the default database can be determined from the values of the `character_set_database` and `collation_database` system variables. The server sets these variables whenever the default database changes. If there is no default database, the variables have the same value as the corresponding server-level system variables, `character_set_server` and `collation_server`.
+O character set e a collation para o `Database` padrão podem ser determinados a partir dos valores das system variables `character_set_database` e `collation_database`. O `server` define essas variáveis sempre que o `Database` padrão é alterado. Se não houver um `Database` padrão, as variáveis terão o mesmo valor das correspondentes system variables de nível de `server`, `character_set_server` e `collation_server`.
 
-To see the default character set and collation for a given database, use these statements:
+Para ver o character set e a collation padrão para um determinado `Database`, use estas instruções:
 
 ```sql
 USE db_name;
 SELECT @@character_set_database, @@collation_database;
 ```
 
-Alternatively, to display the values without changing the default database:
+Alternativamente, para exibir os valores sem alterar o `Database` padrão:
 
 ```sql
 SELECT DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME
 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'db_name';
 ```
 
-The database character set and collation affect these aspects of server operation:
+O character set e a collation do `Database` afetam estes aspectos da operação do `server`:
 
-* For `CREATE TABLE` statements, the database character set and collation are used as default values for table definitions if the table character set and collation are not specified. To override this, provide explicit `CHARACTER SET` and `COLLATE` table options.
+* Para instruções `CREATE TABLE`, o character set e a collation do `Database` são usados como valores padrão para as definições de tabela, caso o character set e a collation da tabela não sejam especificados. Para sobrescrever isso, forneça opções explícitas de tabela `CHARACTER SET` e `COLLATE`.
 
-* For `LOAD DATA` statements that include no `CHARACTER SET` clause, the server uses the character set indicated by the `character_set_database` system variable to interpret the information in the file. To override this, provide an explicit `CHARACTER SET` clause.
+* Para instruções `LOAD DATA` que não incluem uma cláusula `CHARACTER SET`, o `server` usa o character set indicado pela system variable `character_set_database` para interpretar as informações no arquivo. Para sobrescrever isso, forneça uma cláusula `CHARACTER SET` explícita.
 
-* For stored routines (procedures and functions), the database character set and collation in effect at routine creation time are used as the character set and collation of character data parameters for which the declaration includes no `CHARACTER SET` or a `COLLATE` attribute. To override this, provide `CHARACTER SET` and `COLLATE` explicitly.
+* Para stored routines (procedures e functions), o character set e a collation do `Database` em vigor no momento da criação da rotina são usados como o character set e a collation dos parâmetros de dados de caracteres cuja declaração não inclui um atributo `CHARACTER SET` ou `COLLATE`. Para sobrescrever isso, forneça `CHARACTER SET` e `COLLATE` explicitamente.

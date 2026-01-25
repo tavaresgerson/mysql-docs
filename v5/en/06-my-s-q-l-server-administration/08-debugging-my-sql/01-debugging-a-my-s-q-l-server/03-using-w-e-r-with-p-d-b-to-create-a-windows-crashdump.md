@@ -1,28 +1,28 @@
-#### 5.8.1.3 Using WER with PDB to create a Windows crashdump
+#### 5.8.1.3 Usando WER com PDB para criar um crashdump do Windows
 
-Program Database files (with suffix `pdb`) are included in the **ZIP Archive Debug Binaries & Test Suite** distribution of MySQL. These files provide information for debugging your MySQL installation in the event of a problem. This is a separate download from the standard MSI or Zip file.
+Arquivos Program Database (com o sufixo `pdb`) estão incluídos na distribuição **ZIP Archive Debug Binaries & Test Suite** do MySQL. Estes arquivos fornecem informações para o debugging da sua instalação MySQL em caso de problemas. Este é um download separado do arquivo MSI ou Zip padrão.
 
-Note
+Nota
 
-The PDB files are available in a separate file labeled "ZIP Archive Debug Binaries & Test Suite".
+Os arquivos PDB estão disponíveis em um arquivo separado rotulado como "ZIP Archive Debug Binaries & Test Suite".
 
-The PDB file contains more detailed information about `mysqld` and other tools that enables more detailed trace and dump files to be created. You can use these with **WinDbg** or Visual Studio to debug [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
+O arquivo PDB contém informações mais detalhadas sobre `mysqld` e outras ferramentas, o que permite a criação de arquivos trace e dump mais detalhados. Você pode usá-los com o **WinDbg** ou Visual Studio para fazer o debug de [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-For more information on PDB files, see [Microsoft Knowledge Base Article 121366](http://support.microsoft.com/kb/121366/). For more information on the debugging options available, see [Debugging Tools for Windows](http://www.microsoft.com/whdc/devtools/debugging/default.mspx).
+Para mais informações sobre arquivos PDB, consulte [Microsoft Knowledge Base Article 121366](http://support.microsoft.com/kb/121366/). Para mais informações sobre as opções de debugging disponíveis, consulte [Debugging Tools for Windows](http://www.microsoft.com/whdc/devtools/debugging/default.mspx).
 
-To use WinDbg, either install the full Windows Driver Kit (WDK) or install the standalone version.
+Para usar o WinDbg, instale o Windows Driver Kit (WDK) completo ou instale a versão standalone.
 
-Important
+Importante
 
-The `.exe` and `.pdb` files must be an exact match (both version number and MySQL server edition) or WinDBG complains while attempting to load the symbols.
+Os arquivos `.exe` e `.pdb` devem ser uma correspondência exata (tanto o número de versão quanto a edição do MySQL Server) ou o WinDBG reclamará ao tentar carregar os symbols.
 
-1. To generate a minidump `mysqld.dmp`, enable the [`core-file`](server-options.html#option_mysqld_core-file) option under the [mysqld] section in `my.ini`. Restart the MySQL server after making these changes.
+1. Para gerar um minidump `mysqld.dmp`, habilite a opção [`core-file`](server-options.html#option_mysqld_core-file) sob a seção [mysqld] em `my.ini`. Reinicie o MySQL Server após realizar estas alterações.
 
-2. Create a directory to store the generated files, such as `c:\symbols`
+2. Crie um diretório para armazenar os arquivos gerados, como `c:\symbols`
 
-3. Determine the path to your **windbg.exe** executable using the Find GUI or from the command line, for example: `dir /s /b windbg.exe` -- a common default is *C:\Program Files\Debugging Tools for Windows (x64)\windbg.exe*
+3. Determine o path (caminho) para o seu executável **windbg.exe** usando o GUI Find ou a partir da command line, por exemplo: `dir /s /b windbg.exe` -- um default comum é *C:\Program Files\Debugging Tools for Windows (x64)\windbg.exe*
 
-4. Launch `windbg.exe` giving it the paths to `mysqld-debug.exe`, `mysqld.pdb`, `mysqld.dmp`, and the source code. Alternatively, pass in each path from the WinDbg GUI. For example:
+4. Inicie `windbg.exe`, fornecendo-lhe os paths para `mysqld-debug.exe`, `mysqld.pdb`, `mysqld.dmp` e o source code. Alternativamente, passe cada path pelo WinDbg GUI. Por exemplo:
 
    ```sql
    windbg.exe -i "C:\mysql-5.7.44-winx64\bin\"^
@@ -32,6 +32,6 @@ The `.exe` and `.pdb` files must be an exact match (both version number and MySQ
     -v -n -c "!analyze -vvvvv"
    ```
 
-   Note
+   Nota
 
-   The `^` character and newline are removed by the Windows command line processor, so be sure the spaces remain intact.
+   O caractere `^` e a newline são removidos pelo processador da command line do Windows, portanto, certifique-se de que os espaços permaneçam intactos.

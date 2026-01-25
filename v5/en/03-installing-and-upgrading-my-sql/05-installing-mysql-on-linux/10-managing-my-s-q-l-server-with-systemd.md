@@ -1,44 +1,44 @@
-### 2.5.10 Managing MySQL Server with systemd
+### 2.5.10 Gerenciando o Servidor MySQL com systemd
 
-If you install MySQL using an RPM or Debian package on the following Linux platforms, server startup and shutdown is managed by systemd:
+Se você instalar o MySQL usando um pacote RPM ou Debian nas seguintes plataformas Linux, a inicialização e o desligamento do servidor são gerenciados pelo systemd:
 
-* RPM package platforms:
+* Plataformas de pacote RPM:
 
-  + Enterprise Linux variants version 7 and higher
-  + SUSE Linux Enterprise Server 12 and higher
-* Debian family platforms:
+  + Variantes do Enterprise Linux versão 7 e superiores
+  + SUSE Linux Enterprise Server 12 e superiores
+* Plataformas da família Debian:
 
-  + Debian platforms
-  + Ubuntu platforms
+  + Plataformas Debian
+  + Plataformas Ubuntu
 
-If you install MySQL from a generic binary distribution on a platform that uses systemd, you can manually configure systemd support for MySQL following the instructions provided in the post-installation setup section of the MySQL 5.7 Secure Deployment Guide.
+Se você instalar o MySQL a partir de uma distribuição binária genérica em uma plataforma que usa systemd, você pode configurar manualmente o suporte systemd para MySQL seguindo as instruções fornecidas na seção de configuração pós-instalação do Guia de Implantação Segura do MySQL 5.7.
 
-If you install MySQL from a source distribution on a platform that uses systemd, obtain systemd support for MySQL by configuring the distribution using the `-DWITH_SYSTEMD=1` **CMake** option. See Section 2.8.7, “MySQL Source-Configuration Options”.
+Se você instalar o MySQL a partir de uma distribuição de código-fonte em uma plataforma que usa systemd, obtenha suporte systemd para MySQL configurando a distribuição usando a opção **CMake** `-DWITH_SYSTEMD=1`. Consulte a Seção 2.8.7, “Opções de Configuração do Código-Fonte do MySQL”.
 
-The following discussion covers these topics:
+A discussão a seguir abrange estes tópicos:
 
-* Overview of systemd
-* Configuring systemd for MySQL
-* Configuring Multiple MySQL Instances Using systemd
-* Migrating from mysqld_safe to systemd
+* Visão Geral do systemd
+* Configurando o systemd para MySQL
+* Configurando Múltiplas Instâncias MySQL Usando systemd
+* Migrando de mysqld_safe para systemd
 
 Note
 
-On platforms for which systemd support for MySQL is installed, scripts such as **mysqld_safe** and the System V initialization script are unnecessary and are not installed. For example, **mysqld_safe** can handle server restarts, but systemd provides the same capability, and does so in a manner consistent with management of other services rather than by using an application-specific program.
+Em plataformas onde o suporte systemd para MySQL está instalado, scripts como **mysqld_safe** e o script de inicialização do System V são desnecessários e não são instalados. Por exemplo, **mysqld_safe** pode lidar com reinicializações do servidor, mas o systemd fornece a mesma capacidade, e o faz de uma maneira consistente com o gerenciamento de outros services, em vez de usar um programa específico da aplicação.
 
-One implication of the non-use of **mysqld_safe** on platforms that use systemd for server management is that use of `[mysqld_safe]` or `[safe_mysqld]` sections in option files is not supported and might lead to unexpected behavior.
+Uma implicação da não utilização de **mysqld_safe** em plataformas que usam systemd para gerenciamento de servidor é que o uso das seções `[mysqld_safe]` ou `[safe_mysqld]` em arquivos de opções não é suportado e pode levar a um comportamento inesperado.
 
-Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support for MySQL is installed, **mysqld_multi** and **mysqld_multi.server** are unnecessary and are not installed.
+Como o systemd tem a capacidade de gerenciar múltiplas instâncias MySQL em plataformas onde o suporte systemd para MySQL está instalado, **mysqld_multi** e **mysqld_multi.server** são desnecessários e não são instalados.
 
-#### Overview of systemd
+#### Visão Geral do systemd
 
-systemd provides automatic MySQL server startup and shutdown. It also enables manual server management using the **systemctl** command. For example:
+O systemd fornece inicialização e desligamento automáticos do servidor MySQL. Ele também permite o gerenciamento manual do servidor usando o comando **systemctl**. Por exemplo:
 
 ```sql
 systemctl {start|stop|restart|status} mysqld
 ```
 
-Alternatively, use the **service** command (with the arguments reversed), which is compatible with System V systems:
+Alternativamente, use o comando **service** (com os argumentos invertidos), que é compatível com sistemas System V:
 
 ```sql
 service mysqld {start|stop|restart|status}
@@ -46,28 +46,27 @@ service mysqld {start|stop|restart|status}
 
 Note
 
-For the **systemctl** or **service** commands, if the MySQL service name is not `mysqld`, use the appropriate name. For example, use `mysql` rather than `mysqld` on Debian-based and SLES systems.
+Para os comandos **systemctl** ou **service**, se o nome do service MySQL não for `mysqld`, use o nome apropriado. Por exemplo, use `mysql` em vez de `mysqld` em sistemas baseados em Debian e SLES.
 
-Support for systemd includes these files:
+O suporte para systemd inclui estes arquivos:
 
-* `mysqld.service` (RPM platforms), `mysql.service` (Debian platforms): systemd service unit configuration file, with details about the MySQL service.
+* `mysqld.service` (plataformas RPM), `mysql.service` (plataformas Debian): Arquivo de configuração da unit de service do systemd, com detalhes sobre o service MySQL.
 
-* `mysqld@.service` (RPM platforms), `mysql@.service` (Debian platforms): Like `mysqld.service` or `mysql.service`, but used for managing multiple MySQL instances.
+* `mysqld@.service` (plataformas RPM), `mysql@.service` (plataformas Debian): Semelhante a `mysqld.service` ou `mysql.service`, mas usado para gerenciar múltiplas instâncias MySQL.
 
-* `mysqld.tmpfiles.d`: File containing information to support the `tmpfiles` feature. This file is installed under the name `mysql.conf`.
+* `mysqld.tmpfiles.d`: Arquivo contendo informações para suportar o recurso `tmpfiles`. Este arquivo é instalado sob o nome `mysql.conf`.
 
-* `mysqld_pre_systemd` (RPM platforms), `mysql-system-start` (Debian platforms): Support script for the unit file. This script assists in creating the error log file only if the log location matches a pattern (`/var/log/mysql*.log` for RPM platforms, `/var/log/mysql/*.log` for Debian platforms). In other cases, the error log directory must be writable or the error log must be present and writable for the user running the **mysqld** process.
+* `mysqld_pre_systemd` (plataformas RPM), `mysql-system-start` (plataformas Debian): Script de suporte para o unit file. Este script auxilia na criação do arquivo de log de erros somente se a localização do log corresponder a um padrão (`/var/log/mysql*.log` para plataformas RPM, `/var/log/mysql/*.log` para plataformas Debian). Em outros casos, o diretório de log de erros deve ser gravável ou o log de erros deve estar presente e gravável para o usuário que executa o processo **mysqld**.
 
-#### Configuring systemd for MySQL
+#### Configurando o systemd para MySQL
 
-To add or change systemd options for MySQL, these methods are available:
+Para adicionar ou alterar opções do systemd para MySQL, estes métodos estão disponíveis:
 
-* Use a localized systemd configuration file.
-* Arrange for systemd to set environment variables for the MySQL server process.
+* Usar um arquivo de configuração systemd localizado.
+* Fazer com que o systemd defina variáveis de ambiente para o processo do servidor MySQL.
+* Definir a variável systemd `MYSQLD_OPTS`.
 
-* Set the `MYSQLD_OPTS` systemd variable.
-
-To use a localized systemd configuration file, create the `/etc/systemd/system/mysqld.service.d` directory if it does not exist. In that directory, create a file that contains a `[Service]` section listing the desired settings. For example:
+Para usar um arquivo de configuração systemd localizado, crie o diretório `/etc/systemd/system/mysqld.service.d` se ele não existir. Nesse diretório, crie um arquivo que contenha uma seção `[Service]` listando as configurações desejadas. Por exemplo:
 
 ```sql
 [Service]
@@ -79,14 +78,14 @@ Environment="LD_PRELOAD=/path/to/malloc/library"
 Environment="TZ=time_zone_setting"
 ```
 
-The discussion here uses `override.conf` as the name of this file. Newer versions of systemd support the following command, which opens an editor and permits you to edit the file:
+A discussão aqui usa `override.conf` como o nome deste arquivo. Versões mais recentes do systemd suportam o seguinte comando, que abre um editor e permite editar o arquivo:
 
 ```sql
 systemctl edit mysqld  # RPM platforms
 systemctl edit mysql   # Debian platforms
 ```
 
-Whenever you create or change `override.conf`, reload the systemd configuration, then tell systemd to restart the MySQL service:
+Sempre que você criar ou alterar `override.conf`, recarregue a configuração do systemd e, em seguida, diga ao systemd para reiniciar o service MySQL:
 
 ```sql
 systemctl daemon-reload
@@ -94,19 +93,19 @@ systemctl restart mysqld  # RPM platforms
 systemctl restart mysql   # Debian platforms
 ```
 
-With systemd, the `override.conf` configuration method must be used for certain parameters, rather than settings in a `[mysqld]`, `[mysqld_safe]`, or `[safe_mysqld]` group in a MySQL option file:
+Com systemd, o método de configuração `override.conf` deve ser usado para certos parâmetros, em vez de configurações em um grupo `[mysqld]`, `[mysqld_safe]` ou `[safe_mysqld]` em um arquivo de opções do MySQL:
 
-* For some parameters, `override.conf` must be used because systemd itself must know their values and it cannot read MySQL option files to get them.
+* Para alguns parâmetros, `override.conf` deve ser usado porque o próprio systemd precisa saber seus valores e ele não pode ler arquivos de opções do MySQL para obtê-los.
 
-* Parameters that specify values otherwise settable only using options known to **mysqld_safe** must be specified using systemd because there is no corresponding **mysqld** parameter.
+* Parâmetros que especificam valores que, de outra forma, seriam configuráveis apenas usando opções conhecidas por **mysqld_safe**, devem ser especificados usando systemd porque não há um parâmetro **mysqld** correspondente.
 
-For additional information about using systemd rather than **mysqld_safe**, see Migrating from mysqld_safe to systemd.
+Para obter informações adicionais sobre o uso do systemd em vez de **mysqld_safe**, consulte Migrando de mysqld_safe para systemd.
 
-You can set the following parameters in `override.conf`:
+Você pode definir os seguintes parâmetros em `override.conf`:
 
-* To specify the process ID file:
+* Para especificar o arquivo de ID do processo (Process ID File):
 
-  + As of MySQL 5.7.10: Use `override.conf` and change both `PIDFile` and `ExecStart` to name the PID file path name. Any setting of the process ID file in MySQL option files is ignored. To modify `ExecStart`, it must first be cleared. For example:
+  + A partir do MySQL 5.7.10: Use `override.conf` e altere tanto `PIDFile` quanto `ExecStart` para nomear o caminho do arquivo PID. Qualquer configuração do arquivo de ID do processo em arquivos de opções do MySQL é ignorada. Para modificar `ExecStart`, ele deve ser limpo primeiro. Por exemplo:
 
     ```sql
     [Service]
@@ -115,77 +114,77 @@ You can set the following parameters in `override.conf`:
     ExecStart=/usr/sbin/mysqld --pid-file=/var/run/mysqld/mysqld-custom.pid $MYSQLD_OPTS
     ```
 
-  + Before MySQL 5.7.10: Use `PIDFile` in `override.conf` rather than the `--pid-file` option for **mysqld** or **mysqld_safe**. systemd must know the PID file location so that it can restart or stop the server. If the PID file value is specified in a MySQL option file, the value must match the `PIDFile` value or MySQL startup may fail.
+  + Antes do MySQL 5.7.10: Use `PIDFile` em `override.conf` em vez da opção `--pid-file` para **mysqld** ou **mysqld_safe**. O systemd deve saber a localização do arquivo PID para que possa reiniciar ou parar o servidor. Se o valor do arquivo PID for especificado em um arquivo de opções do MySQL, o valor deve corresponder ao valor `PIDFile` ou a inicialização do MySQL pode falhar.
 
-* To set the number of file descriptors available to the MySQL server, use `LimitNOFILE` in `override.conf` rather than the `open_files_limit` system variable for **mysqld** or `--open-files-limit` option for **mysqld_safe**.
+* Para definir o número de descritores de arquivo disponíveis para o servidor MySQL, use `LimitNOFILE` em `override.conf` em vez da variável de sistema `open_files_limit` para **mysqld** ou da opção `--open-files-limit` para **mysqld_safe**.
 
-* To set the maximum core file size, use `LimitCore` in `override.conf` rather than the `--core-file-size` option for **mysqld_safe**.
+* Para definir o tamanho máximo do arquivo core, use `LimitCore` em `override.conf` em vez da opção `--core-file-size` para **mysqld_safe**.
 
-* To set the scheduling priority for the MySQL server, use `Nice` in `override.conf` rather than the `--nice` option for **mysqld_safe**.
+* Para definir a prioridade de agendamento (scheduling priority) para o servidor MySQL, use `Nice` em `override.conf` em vez da opção `--nice` para **mysqld_safe**.
 
-Some MySQL parameters are configured using environment variables:
+Alguns parâmetros MySQL são configurados usando variáveis de ambiente:
 
-* `LD_PRELOAD`: Set this variable if the MySQL server should use a specific memory-allocation library.
+* `LD_PRELOAD`: Defina esta variável se o servidor MySQL deve usar uma biblioteca de alocação de memória específica.
 
-* `TZ`: Set this variable to specify the default time zone for the server.
+* `TZ`: Defina esta variável para especificar o fuso horário padrão para o servidor.
 
-There are multiple ways to specify environment variable values for use by the MySQL server process managed by systemd:
+Existem várias maneiras de especificar valores de variáveis de ambiente para uso pelo processo do servidor MySQL gerenciado pelo systemd:
 
-* Use `Environment` lines in the `override.conf` file. For the syntax, see the example in the preceding discussion that describes how to use this file.
+* Use linhas `Environment` no arquivo `override.conf`. Para a sintaxe, consulte o exemplo na discussão anterior que descreve como usar este arquivo.
 
-* Specify the values in the `/etc/sysconfig/mysql` file (create the file if it does not exist). Assign values using the following syntax:
+* Especifique os valores no arquivo `/etc/sysconfig/mysql` (crie o arquivo se não existir). Atribua valores usando a seguinte sintaxe:
 
   ```sql
   LD_PRELOAD=/path/to/malloc/library
   TZ=time_zone_setting
   ```
 
-  After modifying `/etc/sysconfig/mysql`, restart the server to make the changes effective:
+  Após modificar `/etc/sysconfig/mysql`, reinicie o servidor para que as alterações tenham efeito:
 
   ```sql
   systemctl restart mysqld  # RPM platforms
   systemctl restart mysql   # Debian platforms
   ```
 
-To specify options for **mysqld** without modifying systemd configuration files directly, set or unset the `MYSQLD_OPTS` systemd variable. For example:
+Para especificar opções para **mysqld** sem modificar diretamente os arquivos de configuração do systemd, defina ou indefina a variável systemd `MYSQLD_OPTS`. Por exemplo:
 
 ```sql
 systemctl set-environment MYSQLD_OPTS="--general_log=1"
 systemctl unset-environment MYSQLD_OPTS
 ```
 
-`MYSQLD_OPTS` can also be set in the `/etc/sysconfig/mysql` file.
+`MYSQLD_OPTS` também pode ser definido no arquivo `/etc/sysconfig/mysql`.
 
-After modifying the systemd environment, restart the server to make the changes effective:
+Após modificar o ambiente systemd, reinicie o servidor para que as alterações tenham efeito:
 
 ```sql
 systemctl restart mysqld  # RPM platforms
 systemctl restart mysql   # Debian platforms
 ```
 
-For platforms that use systemd, the data directory is initialized if empty at server startup. This might be a problem if the data directory is a remote mount that has temporarily disappeared: The mount point would appear to be an empty data directory, which then would be initialized as a new data directory. As of MySQL 5.7.20, to suppress this automatic initialization behavior, specify the following line in the `/etc/sysconfig/mysql` file (create the file if it does not exist):
+Para plataformas que usam systemd, o Data Directory é inicializado se estiver vazio na inicialização do servidor. Isso pode ser um problema se o Data Directory for um mount remoto que desapareceu temporariamente: O ponto de mount pareceria ser um Data Directory vazio, que então seria inicializado como um novo Data Directory. A partir do MySQL 5.7.20, para suprimir este comportamento de inicialização automática, especifique a seguinte linha no arquivo `/etc/sysconfig/mysql` (crie o arquivo se não existir):
 
 ```sql
 NO_INIT=true
 ```
 
-#### Configuring Multiple MySQL Instances Using systemd
+#### Configurando Múltiplas Instâncias MySQL Usando systemd
 
-This section describes how to configure systemd for multiple instances of MySQL.
+Esta seção descreve como configurar o systemd para múltiplas instâncias do MySQL.
 
 Note
 
-Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support is installed, **mysqld_multi** and **mysqld_multi.server** are unnecessary and are not installed. This is true as of MySQL 5.7.13 for RPM platforms, 5.7.19 for Debian platforms.
+Como o systemd tem a capacidade de gerenciar múltiplas instâncias MySQL em plataformas onde o suporte systemd está instalado, **mysqld_multi** e **mysqld_multi.server** são desnecessários e não são instalados. Isso é verdade a partir do MySQL 5.7.13 para plataformas RPM, e 5.7.19 para plataformas Debian.
 
-To use multiple-instance capability, modify the `my.cnf` option file to include configuration of key options for each instance. These file locations are typical:
+Para usar a capacidade de múltiplas instâncias, modifique o arquivo de opções `my.cnf` para incluir a configuração de opções chave para cada instância. Estes locais de arquivo são típicos:
 
-* `/etc/my.cnf` or `/etc/mysql/my.cnf` (RPM platforms)
+* `/etc/my.cnf` ou `/etc/mysql/my.cnf` (plataformas RPM)
 
-* `/etc/mysql/mysql.conf.d/mysqld.cnf` (Debian platforms)
+* `/etc/mysql/mysql.conf.d/mysqld.cnf` (plataformas Debian)
 
-For example, to manage two instances named `replica01` and `replica02`, add something like this to the option file:
+Por exemplo, para gerenciar duas instâncias nomeadas `replica01` e `replica02`, adicione algo assim ao arquivo de opções:
 
-RPM platforms:
+Plataformas RPM:
 
 ```sql
 [mysqld@replica01]
@@ -201,7 +200,7 @@ port=3308
 log-error=/var/log/mysqld-replica02.log
 ```
 
-Debian platforms:
+Plataformas Debian:
 
 ```sql
 [mysqld@replica01]
@@ -217,66 +216,66 @@ port=3308
 log-error=/var/log/mysql/replica02.log
 ```
 
-The replica names shown here use `@` as the delimiter because that is the only delimiter supported by systemd.
+Os nomes das réplicas mostrados aqui usam `@` como delimitador porque é o único delimitador suportado pelo systemd.
 
-Instances then are managed by normal systemd commands, such as:
+As instâncias são então gerenciadas por comandos systemd normais, tais como:
 
 ```sql
 systemctl start mysqld@replica01
 systemctl start mysqld@replica02
 ```
 
-To enable instances to run at boot time, do this:
+Para habilitar instâncias para rodar no momento da inicialização (boot time), faça o seguinte:
 
 ```sql
 systemctl enable mysqld@replica01
 systemctl enable mysqld@replica02
 ```
 
-Use of wildcards is also supported. For example, this command displays the status of all replica instances:
+O uso de curingas (wildcards) também é suportado. Por exemplo, este comando exibe o status de todas as instâncias de réplica:
 
 ```sql
 systemctl status 'mysqld@replica*'
 ```
 
-For management of multiple MySQL instances on the same machine, systemd automatically uses a different unit file:
+Para o gerenciamento de múltiplas instâncias MySQL na mesma máquina, o systemd usa automaticamente um unit file diferente:
 
-* `mysqld@.service` rather than `mysqld.service` (RPM platforms)
+* `mysqld@.service` em vez de `mysqld.service` (plataformas RPM)
 
-* `mysql@.service` rather than `mysql.service` (Debian platforms)
+* `mysql@.service` em vez de `mysql.service` (plataformas Debian)
 
-In the unit file, `%I` and `%i` reference the parameter passed in after the `@` marker and are used to manage the specific instance. For a command such as this:
+No unit file, `%I` e `%i` referenciam o parâmetro passado após o marcador `@` e são usados para gerenciar a instância específica. Para um comando como este:
 
 ```sql
 systemctl start mysqld@replica01
 ```
 
-systemd starts the server using a command such as this:
+O systemd inicia o servidor usando um comando como este:
 
 ```sql
 mysqld --defaults-group-suffix=@%I ...
 ```
 
-The result is that the `[server]`, `[mysqld]`, and `[mysqld@replica01]` option groups are read and used for that instance of the service.
+O resultado é que os grupos de opções `[server]`, `[mysqld]` e `[mysqld@replica01]` são lidos e usados para essa instância do service.
 
 Note
 
-On Debian platforms, AppArmor prevents the server from reading or writing `/var/lib/mysql-replica*`, or anything other than the default locations. To address this, you must customize or disable the profile in `/etc/apparmor.d/usr.sbin.mysqld`.
+Em plataformas Debian, o AppArmor impede que o servidor leia ou escreva em `/var/lib/mysql-replica*`, ou em qualquer outro lugar além dos locais padrão. Para resolver isso, você deve personalizar ou desabilitar o profile em `/etc/apparmor.d/usr.sbin.mysqld`.
 
 Note
 
-On Debian platforms, the packaging scripts for MySQL uninstallation cannot currently handle `mysqld@` instances. Before removing or upgrading the package, you must stop any extra instances manually first.
+Em plataformas Debian, os scripts de empacotamento para desinstalação do MySQL atualmente não conseguem lidar com instâncias `mysqld@`. Antes de remover ou atualizar o pacote, você deve parar manualmente quaisquer instâncias extras primeiro.
 
-#### Migrating from mysqld_safe to systemd
+#### Migrando de mysqld_safe para systemd
 
-Because **mysqld_safe** is not installed on platforms that use systemd to manage MySQL, options previously specified for that program (for example, in an `[mysqld_safe]` or `[safe_mysqld]` option group) must be specified another way:
+Como **mysqld_safe** não está instalado em plataformas que usam systemd para gerenciar MySQL, as opções previamente especificadas para esse programa (por exemplo, em um grupo de opções `[mysqld_safe]` ou `[safe_mysqld]`) devem ser especificadas de outra forma:
 
-* Some **mysqld_safe** options are also understood by **mysqld** and can be moved from the `[mysqld_safe]` or `[safe_mysqld]` option group to the `[mysqld]` group. This does *not* include `--pid-file`, `--open-files-limit`, or `--nice`. To specify those options, use the `override.conf` systemd file, described previously.
+* Algumas opções do **mysqld_safe** também são compreendidas por **mysqld** e podem ser movidas do grupo de opções `[mysqld_safe]` ou `[safe_mysqld]` para o grupo `[mysqld]`. Isso *não* inclui `--pid-file`, `--open-files-limit` ou `--nice`. Para especificar essas opções, use o arquivo systemd `override.conf`, descrito anteriormente.
 
   Note
 
-  On systemd platforms, use of `[mysqld_safe]` and `[safe_mysqld]` option groups is not supported and may lead to unexpected behavior.
+  Em plataformas systemd, o uso dos grupos de opções `[mysqld_safe]` e `[safe_mysqld]` não é suportado e pode levar a um comportamento inesperado.
 
-* For some **mysqld_safe** options, there are similar **mysqld** options. For example, the **mysqld_safe** option for enabling `syslog` logging is `--syslog`, which is deprecated. For **mysqld**, enable the `log_syslog` system variable instead. For details, see Section 5.4.2, “The Error Log”.
+* Para algumas opções do **mysqld_safe**, existem opções **mysqld** semelhantes. Por exemplo, a opção **mysqld_safe** para habilitar o logging `syslog` é `--syslog`, que está depreciada. Para **mysqld**, habilite a variável de sistema `log_syslog` em vez disso. Para detalhes, consulte a Seção 5.4.2, “O Error Log”.
 
-* **mysqld_safe** options not understood by **mysqld** can be specified in `override.conf` or environment variables. For example, with **mysqld_safe**, if the server should use a specific memory allocation library, this is specified using the `--malloc-lib` option. For installations that manage the server with systemd, arrange to set the `LD_PRELOAD` environment variable instead, as described previously.
+* Opções do **mysqld_safe** não compreendidas por **mysqld** podem ser especificadas em `override.conf` ou variáveis de ambiente. Por exemplo, com **mysqld_safe**, se o servidor deve usar uma biblioteca de alocação de memória específica, isso é especificado usando a opção `--malloc-lib`. Para instalações que gerenciam o servidor com systemd, providencie para definir a variável de ambiente `LD_PRELOAD` em vez disso, conforme descrito anteriormente.

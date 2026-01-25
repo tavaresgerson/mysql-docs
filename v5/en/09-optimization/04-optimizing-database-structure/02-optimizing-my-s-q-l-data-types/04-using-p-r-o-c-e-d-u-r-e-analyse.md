@@ -1,29 +1,29 @@
-#### 8.4.2.4 Using PROCEDURE ANALYSE
+#### 8.4.2.4 Usando PROCEDURE ANALYSE
 
 `ANALYSE([max_elements[,max_memory)`
 
-Note
+Nota
 
-`PROCEDURE ANALYSE()` is deprecated as of MySQL 5.7.18, and is removed in MySQL 8.0.
+`PROCEDURE ANALYSE()` está descontinuado a partir do MySQL 5.7.18 e foi removido no MySQL 8.0.
 
-`ANALYSE()` examines the result from a query and returns an analysis of the results that suggests optimal data types for each column that may help reduce table sizes. To obtain this analysis, append `PROCEDURE ANALYSE` to the end of a `SELECT` statement:
+`ANALYSE()` examina o resultado de uma Query e retorna uma análise dos resultados, sugerindo tipos de dados ideais para cada coluna, o que pode ajudar a reduzir os tamanhos das tabelas. Para obter esta análise, anexe `PROCEDURE ANALYSE` ao final de uma instrução `SELECT`:
 
 ```sql
 SELECT ... FROM ... WHERE ... PROCEDURE ANALYSE([max_elements,[max_memory)
 ```
 
-For example:
+Por exemplo:
 
 ```sql
 SELECT col1, col2 FROM table1 PROCEDURE ANALYSE(10, 2000);
 ```
 
-The results show some statistics for the values returned by the query, and propose an optimal data type for the columns. This can be helpful for checking your existing tables, or after importing new data. You may need to try different settings for the arguments so that `PROCEDURE ANALYSE()` does not suggest the `ENUM` data type when it is not appropriate.
+Os resultados mostram algumas estatísticas para os valores retornados pela Query e propõem um tipo de dado ideal para as colunas. Isso pode ser útil para verificar suas tabelas existentes ou após importar novos dados. Você pode precisar tentar configurações diferentes para os argumentos, para que `PROCEDURE ANALYSE()` não sugira o tipo de dado `ENUM` quando ele não for apropriado.
 
-The arguments are optional and are used as follows:
+Os argumentos são opcionais e são usados da seguinte forma:
 
-* *`max_elements`* (default 256) is the maximum number of distinct values that `ANALYSE()` notices per column. This is used by `ANALYSE()` to check whether the optimal data type should be of type `ENUM`; if there are more than *`max_elements`* distinct values, then `ENUM` is not a suggested type.
+* *`max_elements`* (padrão 256) é o número máximo de valores distintos que `ANALYSE()` observa por coluna. Isso é usado por `ANALYSE()` para verificar se o tipo de dado ideal deve ser do tipo `ENUM`; se houver mais de *`max_elements`* valores distintos, então `ENUM` não é um tipo sugerido.
 
-* *`max_memory`* (default 8192) is the maximum amount of memory that `ANALYSE()` should allocate per column while trying to find all distinct values.
+* *`max_memory`* (padrão 8192) é a quantidade máxima de memória que `ANALYSE()` deve alocar por coluna ao tentar encontrar todos os valores distintos.
 
-A `PROCEDURE` clause is not permitted in a `UNION` statement.
+Uma cláusula `PROCEDURE` não é permitida em uma instrução `UNION`.

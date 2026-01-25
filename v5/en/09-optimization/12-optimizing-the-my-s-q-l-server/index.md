@@ -1,11 +1,11 @@
-## 8.12 Optimizing the MySQL Server
+## 8.12 Otimizando o Servidor MySQL
 
-8.12.1 System Factors
+8.12.1 Fatores do Sistema
 
-8.12.2 Optimizing Disk I/O
+8.12.2 Otimizando I/O de Disco
 
-8.12.3 Using Symbolic Links
+8.12.3 Usando Links Simbólicos
 
-8.12.4 Optimizing Memory Use
+8.12.4 Otimizando o Uso de Memória
 
-This section discusses optimization techniques for the database server, primarily dealing with system configuration rather than tuning SQL statements. The information in this section is appropriate for DBAs who want to ensure performance and scalability across the servers they manage; for developers constructing installation scripts that include setting up the database; and people running MySQL themselves for development, testing, and so on who want to maximize their own productivity.
+Esta seção discute técnicas de otimização para o servidor de Database, tratando principalmente da configuração do sistema em vez do ajuste de comandos SQL. A informação nesta seção é apropriada para DBAs que querem garantir performance e escalabilidade nos servidores que gerenciam; para desenvolvedores que constroem scripts de instalação que incluem a configuração da Database; e para pessoas que executam o próprio MySQL para desenvolvimento, testes, e assim por diante, que querem maximizar sua própria produtividade.

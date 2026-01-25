@@ -1,33 +1,31 @@
-#### 4.2.2.5 Using Options to Set Program Variables
+#### 4.2.2.5 Usando Opções para Definir Variáveis de Programa
 
-Many MySQL programs have internal variables that can be set at runtime using the `SET` statement. See Section 13.7.4.1, “SET Syntax for Variable Assignment”, and Section 5.1.8, “Using System Variables”.
+Muitos programas MySQL possuem variáveis internas que podem ser definidas em tempo de execução usando o `SET` statement. Consulte a Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variable”, e a Seção 5.1.8, “Usando System Variables”.
 
-Most of these program variables also can be set at server startup by using the same syntax that applies to specifying program options. For example, **mysql** has a `max_allowed_packet` variable that controls the maximum size of its communication buffer. To set the `max_allowed_packet` variable for **mysql** to a value of 16MB, use either of the following commands:
+A maioria dessas variáveis de programa também pode ser definida na inicialização do server usando a mesma sintaxe aplicada à especificação de Options de programa. Por exemplo, o **mysql** possui uma variable `max_allowed_packet` que controla o tamanho máximo do seu communication buffer. Para definir a variable `max_allowed_packet` para o **mysql** com um valor de 16MB, use qualquer um dos seguintes comandos:
 
 ```sql
 mysql --max_allowed_packet=16777216
 mysql --max_allowed_packet=16M
 ```
 
-The first command specifies the value in bytes. The second specifies the value in megabytes. For variables that take a numeric value, the value can be given with a suffix of `K`, `M`, or `G` (either uppercase or lowercase) to indicate a multiplier of 1024, 10242 or
+O primeiro comando especifica o valor em bytes. O segundo especifica o valor em megabytes. Para variáveis que aceitam um valor numérico, o valor pode ser fornecido com um suffix `K`, `M` ou `G` (maiúsculo ou minúsculo) para indicar um multiplicador de 1024, 10242 ou 10243. (Por exemplo, quando usados para definir `max_allowed_packet`, os suffixes indicam unidades de kilobytes, megabytes ou gigabytes.)
 
-10243. (For example, when used to set `max_allowed_packet`, the suffixes indicate units of kilobytes, megabytes, or gigabytes.)
-
-In an option file, variable settings are given without the leading dashes:
+Em um arquivo de Option, as configurações de variable são fornecidas sem os traços iniciais:
 
 ```sql
 [mysql]
 max_allowed_packet=16777216
 ```
 
-Or:
+Ou:
 
 ```sql
 [mysql]
 max_allowed_packet=16M
 ```
 
-If you like, underscores in an option name can be specified as dashes. The following option groups are equivalent. Both set the size of the server's key buffer to 512MB:
+Se desejar, underscores (sublinhados) em um nome de Option podem ser especificados como traços. Os seguintes grupos de Option são equivalentes. Ambos definem o tamanho do key buffer do server para 512MB:
 
 ```sql
 [mysqld]
@@ -37,20 +35,20 @@ key_buffer_size=512M
 key-buffer-size=512M
 ```
 
-In older versions of MySQL, program options could be specified in full or as any unambiguous prefix. For example, the `--compress` option could be given to **mysqldump** as `--compr`, but not as `--comp` because the latter is ambiguous. In MySQL 5.7, option prefixes are no longer supported; only full options are accepted. This is because prefixes can cause problems when new options are implemented for programs and a prefix that is currently unambiguous might become ambiguous in the future. Some implications of this change:
+Em versões mais antigas do MySQL, Options de programa podiam ser especificadas por completo ou como qualquer prefixo não ambíguo. Por exemplo, a Option `--compress` poderia ser fornecida ao **mysqldump** como `--compr`, mas não como `--comp` porque esta última é ambígua. No MySQL 5.7, os prefixes de Option não são mais suportados; apenas Options completas são aceitas. Isso ocorre porque os prefixes podem causar problemas quando novas Options são implementadas para programas, e um prefixo que é atualmente não ambíguo pode se tornar ambíguo no futuro. Algumas implicações desta mudança:
 
-* The `--key-buffer` option must now be specified as `--key-buffer-size`.
+* A Option `--key-buffer` agora deve ser especificada como `--key-buffer-size`.
 
-* The `--skip-grant` option must now be specified as `--skip-grant-tables`.
+* A Option `--skip-grant` agora deve ser especificada como `--skip-grant-tables`.
 
-Suffixes for specifying a value multiplier can be used when setting a variable at program invocation time, but not to set the value with `SET` at runtime. On the other hand, with `SET`, you can assign a variable's value using an expression, which is not true when you set a variable at server startup. For example, the first of the following lines is legal at program invocation time, but the second is not:
+Suffixes para especificar um multiplicador de valor podem ser usados ao definir uma variable no momento da invocação do programa, mas não para definir o valor com `SET` em tempo de execução (runtime). Por outro lado, com `SET`, você pode atribuir o valor de uma variable usando uma expression, o que não é verdade quando você define uma variable na inicialização do server. Por exemplo, a primeira das seguintes linhas é legal no momento da invocação do programa, mas a segunda não é:
 
 ```sql
 $> mysql --max_allowed_packet=16M
 $> mysql --max_allowed_packet=16*1024*1024
 ```
 
-Conversely, the second of the following lines is legal at runtime, but the first is not:
+Inversamente, a segunda das seguintes linhas é legal em tempo de execução (runtime), mas a primeira não é:
 
 ```sql
 mysql> SET GLOBAL max_allowed_packet=16M;

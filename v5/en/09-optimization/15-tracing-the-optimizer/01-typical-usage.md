@@ -1,15 +1,15 @@
-### 8.15.1 Typical Usage
+### 8.15.1 Uso Típico
 
-To perform optimizer tracing entails the following steps:
+Para realizar o rastreamento do otimizador (optimizer tracing), siga os seguintes passos:
 
-1. Enable tracing by executing `SET` `optimizer_trace="enabled=ON"`.
+1. Habilite o rastreamento executando `SET` `optimizer_trace="enabled=ON"`.
 
-2. Execute the statement to be traced. See Section 8.15.3, “Traceable Statements”, for a listing of statements which can be traced.
+2. Execute o Statement a ser rastreado. Consulte a Seção 8.15.3, “Statements Rastreáveis”, para uma lista dos Statements que podem ser rastreados.
 
-3. Examine the contents of the `INFORMATION_SCHEMA.OPTIMIZER_TRACE` table.
+3. Examine o conteúdo da tabela `INFORMATION_SCHEMA.OPTIMIZER_TRACE`.
 
-4. To examine traces for multiple queries, repeat the previous two steps as needed.
+4. Para examinar traces de múltiplas Queries, repita as duas etapas anteriores conforme necessário.
 
-5. To disable tracing after you have finished, execute `SET optimizer_trace="enabled=OFF"`.
+5. Para desabilitar o rastreamento quando finalizar, execute `SET optimizer_trace="enabled=OFF"`.
 
-You can trace only statements which are executed within the current session; you cannot see traces from other sessions.
+Você pode rastrear apenas Statements que são executados dentro da Session atual; você não pode visualizar traces de outras Sessions.

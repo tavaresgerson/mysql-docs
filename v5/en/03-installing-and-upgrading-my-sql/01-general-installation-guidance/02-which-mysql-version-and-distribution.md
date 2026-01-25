@@ -1,45 +1,45 @@
-### 2.1.2 Which MySQL Version and Distribution to Install
+### 2.1.2 Qual Versão e Distribuição do MySQL Instalar
 
-When preparing to install MySQL, decide which version and distribution format (binary or source) to use.
+Ao se preparar para instalar o MySQL, decida qual versão e formato de distribuição (binary ou source) usar.
 
-First, decide whether to install a development release or a General Availability (GA) release. Development releases have the newest features, but are not recommended for production use. GA releases, also called production or stable releases, are meant for production use. We recommend using the most recent GA release.
+Primeiro, decida se irá instalar um *release* de desenvolvimento ou um *release* General Availability (GA). *Releases* de desenvolvimento possuem as funcionalidades mais recentes, mas não são recomendados para uso em produção. *Releases* GA, também chamados de *releases* de produção ou estáveis, são destinados ao uso em produção. Recomendamos usar o *release* GA mais recente.
 
-The naming scheme in MySQL 5.7 uses release names that consist of three numbers and an optional suffix; for example, **mysql-5.7.1-m1**. The numbers within the release name are interpreted as follows:
+O esquema de nomenclatura no MySQL 5.7 usa nomes de *release* que consistem em três números e um sufixo opcional; por exemplo, **mysql-5.7.1-m1**. Os números dentro do nome do *release* são interpretados da seguinte forma:
 
-* The first number (**5**) is the major version number.
+* O primeiro número (**5**) é o número da versão major (principal).
 
-* The second number (**7**) is the minor version number. Taken together, the major and minor numbers constitute the release series number. The series number describes the stable feature set.
+* O segundo número (**7**) é o número da versão minor (secundária). Juntos, os números major e minor constituem o número da série do *release*. O número da série descreve o conjunto estável de funcionalidades (*feature set*).
 
-* The third number (**1**) is the version number within the release series. This is incremented for each new bugfix release. In most cases, the most recent version within a series is the best choice.
+* O terceiro número (**1**) é o número da versão dentro da série do *release*. Este é incrementado para cada novo *release* de correção de *bugs* (*bugfix*). Na maioria dos casos, a versão mais recente dentro de uma série é a melhor escolha.
 
-Release names can also include a suffix to indicate the stability level of the release. Releases within a series progress through a set of suffixes to indicate how the stability level improves. The possible suffixes are:
+Nomes de *release* também podem incluir um sufixo para indicar o nível de estabilidade do *release*. *Releases* dentro de uma série progridem através de um conjunto de sufixos para indicar como o nível de estabilidade melhora. Os sufixos possíveis são:
 
-* **m*N*** (for example, **m1**, **m2**, **m3**, ...) indicates a milestone number. MySQL development uses a milestone model, in which each milestone introduces a small subset of thoroughly tested features. From one milestone to the next, feature interfaces may change or features may even be removed, based on feedback provided by community members who try these early releases. Features within milestone releases may be considered to be of pre-production quality.
+* **m*N*** (por exemplo, **m1**, **m2**, **m3**, ...) indica um número de *milestone* (marco). O desenvolvimento do MySQL usa um modelo de *milestone*, no qual cada *milestone* introduz um pequeno subconjunto de funcionalidades completamente testadas. De um *milestone* para o próximo, as interfaces de funcionalidade (*feature interfaces*) podem mudar ou as funcionalidades podem até ser removidas, com base no *feedback* fornecido pelos membros da comunidade que experimentam estes *releases* iniciais. As funcionalidades dentro dos *releases milestone* podem ser consideradas de qualidade de pré-produção.
 
-* **rc** indicates a Release Candidate (RC). Release candidates are believed to be stable, having passed all of MySQL's internal testing. New features may still be introduced in RC releases, but the focus shifts to fixing bugs to stabilize features introduced earlier within the series.
+* **rc** indica um Release Candidate (RC). Acredita-se que os *Release Candidates* sejam estáveis, tendo passado por todos os testes internos do MySQL. Novas funcionalidades ainda podem ser introduzidas nos *releases* RC, mas o foco muda para a correção de *bugs* para estabilizar funcionalidades introduzidas anteriormente na série.
 
-* Absence of a suffix indicates a General Availability (GA) or Production release. GA releases are stable, having successfully passed through the earlier release stages, and are believed to be reliable, free of serious bugs, and suitable for use in production systems.
+* A ausência de um sufixo indica um *release* General Availability (GA) ou de Produção. *Releases* GA são estáveis, tendo passado com sucesso pelos estágios de *release* anteriores, e são considerados confiáveis, livres de *bugs* sérios e adequados para uso em sistemas de produção.
 
-Development within a series begins with milestone releases, followed by RC releases, and finally reaches GA status releases.
+O desenvolvimento dentro de uma série começa com *releases milestone*, seguidos por *releases* RC e, finalmente, atinge os *releases* com status GA.
 
-After choosing which MySQL version to install, decide which distribution format to install for your operating system. For most use cases, a binary distribution is the right choice. Binary distributions are available in native format for many platforms, such as RPM packages for Linux or DMG packages for macOS. Distributions are also available in more generic formats such as Zip archives or compressed **tar** files. On Windows, you can use the MySQL Installer to install a binary distribution.
+Após escolher qual versão do MySQL instalar, decida qual formato de distribuição instalar para o seu sistema operacional. Para a maioria dos casos de uso, uma distribuição *binary* é a escolha certa. Distribuições *binary* estão disponíveis em formato nativo para muitas plataformas, como pacotes RPM para Linux ou pacotes DMG para macOS. As distribuições também estão disponíveis em formatos mais genéricos, como arquivos Zip ou arquivos **tar** compactados. No Windows, você pode usar o MySQL Installer para instalar uma distribuição *binary*.
 
-Under some circumstances, it may be preferable to install MySQL from a source distribution:
+Em algumas circunstâncias, pode ser preferível instalar o MySQL a partir de uma distribuição *source*:
 
-* You want to install MySQL at some explicit location. The standard binary distributions are ready to run at any installation location, but you might require even more flexibility to place MySQL components where you want.
+* Você deseja instalar o MySQL em algum local explícito. As distribuições *binary* padrão estão prontas para rodar em qualquer local de instalação, mas você pode exigir ainda mais flexibilidade para posicionar os componentes do MySQL onde desejar.
 
-* You want to configure **mysqld** with features that might not be included in the standard binary distributions. Here is a list of the most common extra options used to ensure feature availability:
+* Você deseja configurar o **mysqld** com funcionalidades (*features*) que podem não estar incluídas nas distribuições *binary* padrão. Aqui está uma lista das opções extras mais comuns usadas para garantir a disponibilidade de funcionalidades:
 
-  + `-DWITH_LIBWRAP=1` for TCP wrappers support.
+  + `-DWITH_LIBWRAP=1` para suporte a TCP wrappers.
 
-  + `-DWITH_ZLIB={system|bundled}` for features that depend on compression
+  + `-DWITH_ZLIB={system|bundled}` para funcionalidades que dependem de compressão
 
-  + `-DWITH_DEBUG=1` for debugging support
+  + `-DWITH_DEBUG=1` para suporte a *debugging*
 
-  For additional information, see Section 2.8.7, “MySQL Source-Configuration Options”.
+  Para informações adicionais, consulte a Seção 2.8.7, “MySQL Source-Configuration Options”.
 
-* You want to configure **mysqld** without some features that are included in the standard binary distributions. For example, distributions normally are compiled with support for all character sets. If you want a smaller MySQL server, you can recompile it with support for only the character sets you need.
+* Você deseja configurar o **mysqld** sem algumas funcionalidades que estão incluídas nas distribuições *binary* padrão. Por exemplo, as distribuições são normalmente compiladas com suporte para todos os *character sets*. Se você quiser um MySQL server menor, você pode recompilá-lo com suporte apenas para os *character sets* de que precisa.
 
-* You want to read or modify the C and C++ code that makes up MySQL. For this purpose, obtain a source distribution.
+* Você deseja ler ou modificar o código C e C++ que compõe o MySQL. Para este propósito, obtenha uma distribuição *source*.
 
-* Source distributions contain more tests and examples than binary distributions.
+* Distribuições *source* contêm mais testes e exemplos do que distribuições *binary*.

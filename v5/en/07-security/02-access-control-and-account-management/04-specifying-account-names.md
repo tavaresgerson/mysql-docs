@@ -1,79 +1,79 @@
-### 6.2.4 Specifying Account Names
+### 6.2.4 Especificando Nomes de Conta
 
-MySQL account names consist of a user name and a host name, which enables creation of distinct accounts for users with the same user name who connect from different hosts. This section describes the syntax for account names, including special values and wildcard rules.
+Nomes de conta MySQL consistem em um nome de usuário (`user name`) e um nome de host (`host name`), o que permite a criação de contas distintas para usuários com o mesmo nome de usuário que se conectam a partir de hosts diferentes. Esta seção descreve a sintaxe para nomes de conta, incluindo valores especiais e regras de *wildcard*.
 
-Account names appear in SQL statements such as [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), and [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") and follow these rules:
+Nomes de conta aparecem em instruções SQL como [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement") e [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement"), e seguem estas regras:
 
-* Account name syntax is `'user_name'@'host_name'`.
+* A sintaxe do nome de conta é `'user_name'@'host_name'`.
 
-* The `@'host_name'` part is optional. An account name consisting only of a user name is equivalent to `'user_name'@'%'`. For example, `'me'` is equivalent to `'me'@'%'`.
+* A parte `@'host_name'` é opcional. Um nome de conta que consiste apenas em um nome de usuário é equivalente a `'user_name'@'%'`. Por exemplo, `'me'` é equivalente a `'me'@'%'`.
 
-* The user name and host name need not be quoted if they are legal as unquoted identifiers. Quotes must be used if a *`user_name`* string contains special characters (such as space or `-`), or a *`host_name`* string contains special characters or wildcard characters (such as `.` or `%`). For example, in the account name `'test-user'@'%.com'`, both the user name and host name parts require quotes.
+* O nome de usuário e o nome de host não precisam ser citados (delimitados por aspas ou apóstrofos) se forem identificadores não citados válidos. Aspas devem ser usadas se uma string *`user_name`* contiver caracteres especiais (como espaço ou `-`), ou se uma string *`host_name`* contiver caracteres especiais ou caracteres *wildcard* (como `.` ou `%`). Por exemplo, no nome de conta `'test-user'@'%.com'`, ambas as partes de nome de usuário e nome de host exigem aspas.
 
-* Quote user names and host names as identifiers or as strings, using either backticks (`` ` ``), single quotation marks (`'`), or double quotation marks (`"`). For string-quoting and identifier-quoting guidelines, see [Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals"), and [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").
+* Cite (delimite) nomes de usuário e nomes de host como identificadores ou como strings, usando tanto *backticks* (`` ` ``), aspas simples (`'`) ou aspas duplas (`"`). Para diretrizes de delimitação de strings e identificadores, consulte [Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals"), e [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").
 
-* The user name and host name parts, if quoted, must be quoted separately. That is, write `'me'@'localhost'`, not `'me@localhost'`. The latter is actually equivalent to `'me@localhost'@'%'`.
+* As partes de nome de usuário e nome de host, se citadas, devem ser citadas separadamente. Ou seja, escreva `'me'@'localhost'`, não `'me@localhost'`. O último é, na verdade, equivalente a `'me@localhost'@'%'`.
 
-* A reference to the [`CURRENT_USER`](information-functions.html#function_current-user) or [`CURRENT_USER()`](information-functions.html#function_current-user) function is equivalent to specifying the current client's user name and host name literally.
+* Uma referência à função [`CURRENT_USER`](information-functions.html#function_current-user) ou [`CURRENT_USER()`](information-functions.html#function_current-user) é equivalente a especificar o nome de usuário e o nome de host do cliente atual literalmente.
 
-MySQL stores account names in grant tables in the `mysql` system database using separate columns for the user name and host name parts:
+O MySQL armazena nomes de conta nas *grant tables* no *Database* de sistema `mysql`, usando colunas separadas para as partes de nome de usuário e nome de host:
 
-* The `user` table contains one row for each account. The `User` and `Host` columns store the user name and host name. This table also indicates which global privileges the account has.
+* A tabela `user` contém uma linha para cada conta. As colunas `User` e `Host` armazenam o nome de usuário e o nome de host. Esta tabela também indica quais privilégios globais a conta possui.
 
-* Other grant tables indicate privileges an account has for databases and objects within databases. These tables have `User` and `Host` columns to store the account name. Each row in these tables associates with the account in the `user` table that has the same `User` and `Host` values.
+* Outras *grant tables* indicam os privilégios que uma conta possui para *Databases* e objetos dentro dos *Databases*. Essas tabelas possuem colunas `User` e `Host` para armazenar o nome de conta. Cada linha nessas tabelas se associa à conta na tabela `user` que possui os mesmos valores de `User` e `Host`.
 
-* For access-checking purposes, comparisons of User values are case-sensitive. Comparisons of Host values are not case-sensitive.
+* Para fins de verificação de acesso, as comparações dos valores de User diferenciam maiúsculas de minúsculas (*case-sensitive*). As comparações dos valores de Host não diferenciam maiúsculas de minúsculas (*not case-sensitive*).
 
-For additional detail about the properties of user names and host names as stored in the grant tables, such as maximum length, see [Grant Table Scope Column Properties](grant-tables.html#grant-tables-scope-column-properties "Grant Table Scope Column Properties").
+Para detalhes adicionais sobre as propriedades de nomes de usuário e nomes de host conforme armazenados nas *grant tables*, como o comprimento máximo, consulte [Grant Table Scope Column Properties](grant-tables.html#grant-tables-scope-column-properties "Grant Table Scope Column Properties").
 
-User names and host names have certain special values or wildcard conventions, as described following.
+Nomes de usuário e nomes de host possuem certos valores especiais ou convenções de *wildcard*, conforme descrito a seguir.
 
-The user name part of an account name is either a nonblank value that literally matches the user name for incoming connection attempts, or a blank value (the empty string) that matches any user name. An account with a blank user name is an anonymous user. To specify an anonymous user in SQL statements, use a quoted empty user name part, such as `''@'localhost'`.
+A parte de nome de usuário de um nome de conta é um valor não vazio que corresponde literalmente ao nome de usuário para tentativas de conexão de entrada, ou um valor vazio (*blank value*) (a string vazia) que corresponde a qualquer nome de usuário. Uma conta com um nome de usuário vazio é um usuário anônimo. Para especificar um usuário anônimo em instruções SQL, use uma parte de nome de usuário vazia entre aspas, como `''@'localhost'`.
 
-The host name part of an account name can take many forms, and wildcards are permitted:
+A parte de nome de host de um nome de conta pode assumir diversas formas, e *wildcards* são permitidos:
 
-* A host value can be a host name or an IP address (IPv4 or IPv6). The name `'localhost'` indicates the local host. The IP address `'127.0.0.1'` indicates the IPv4 loopback interface. The IP address `'::1'` indicates the IPv6 loopback interface.
+* Um valor de host pode ser um nome de host ou um endereço IP (IPv4 ou IPv6). O nome `'localhost'` indica o host local. O endereço IP `'127.0.0.1'` indica a interface de *loopback* IPv4. O endereço IP `'::1'` indica a interface de *loopback* IPv6.
 
-* The `%` and `_` wildcard characters are permitted in host name or IP address values. These have the same meaning as for pattern-matching operations performed with the [`LIKE`](string-comparison-functions.html#operator_like) operator. For example, a host value of `'%'` matches any host name, whereas a value of `'%.mysql.com'` matches any host in the `mysql.com` domain. `'198.51.100.%'` matches any host in the 198.51.100 class C network.
+* Os caracteres *wildcard* `%` e `_` são permitidos em valores de nome de host ou endereço IP. Eles têm o mesmo significado que nas operações de correspondência de padrão (*pattern-matching*) executadas com o operador [`LIKE`](string-comparison-functions.html#operator_like). Por exemplo, um valor de host de `'%'` corresponde a qualquer nome de host, enquanto um valor de `'%.mysql.com'` corresponde a qualquer host no domínio `mysql.com`. `'198.51.100.%'` corresponde a qualquer host na rede classe C 198.51.100.
 
-  Because IP wildcard values are permitted in host values (for example, `'198.51.100.%'` to match every host on a subnet), someone could try to exploit this capability by naming a host `198.51.100.somewhere.com`. To foil such attempts, MySQL does not perform matching on host names that start with digits and a dot. For example, if a host is named `1.2.example.com`, its name never matches the host part of account names. An IP wildcard value can match only IP addresses, not host names.
+  Como valores *wildcard* de IP são permitidos em valores de host (por exemplo, `'198.51.100.%'` para corresponder a todos os hosts em uma sub-rede), alguém poderia tentar explorar essa capacidade nomeando um host como `198.51.100.somewhere.com`. Para frustrar tais tentativas, o MySQL não executa a correspondência em nomes de host que começam com dígitos e um ponto. Por exemplo, se um host for nomeado `1.2.example.com`, seu nome nunca corresponderá à parte do host de nomes de conta. Um valor *wildcard* de IP só pode corresponder a endereços IP, e não a nomes de host.
 
-* For a host value specified as an IPv4 address, a netmask can be given to indicate how many address bits to use for the network number. Netmask notation cannot be used for IPv6 addresses.
+* Para um valor de host especificado como um endereço IPv4, uma *netmask* (máscara de rede) pode ser fornecida para indicar quantos bits de endereço devem ser usados para o número de rede. A notação de *Netmask* não pode ser usada para endereços IPv6.
 
-  The syntax is `host_ip/netmask`. For example:
+  A sintaxe é `host_ip/netmask`. Por exemplo:
 
   ```sql
   CREATE USER 'david'@'198.51.100.0/255.255.255.0';
   ```
 
-  This enables `david` to connect from any client host having an IP address *`client_ip`* for which the following condition is true:
+  Isso permite que `david` se conecte de qualquer host cliente que tenha um endereço IP *`client_ip`* para o qual a seguinte condição seja verdadeira:
 
   ```sql
   client_ip & netmask = host_ip
   ```
 
-  That is, for the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement just shown:
+  Ou seja, para a instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") mostrada acima:
 
   ```sql
   client_ip & 255.255.255.0 = 198.51.100.0
   ```
 
-  IP addresses that satisfy this condition range from `198.51.100.0` to `198.51.100.255`.
+  Endereços IP que satisfazem esta condição variam de `198.51.100.0` a `198.51.100.255`.
 
-  A netmask typically begins with bits set to 1, followed by bits set to 0. Examples:
+  Uma *netmask* tipicamente começa com bits definidos como 1, seguidos por bits definidos como 0. Exemplos:
 
-  + `198.0.0.0/255.0.0.0`: Any host on the 198 class A network
+  + `198.0.0.0/255.0.0.0`: Qualquer host na rede classe A 198
 
-  + `198.51.0.0/255.255.0.0`: Any host on the 198.51 class B network
+  + `198.51.0.0/255.255.0.0`: Qualquer host na rede classe B 198.51
 
-  + `198.51.100.0/255.255.255.0`: Any host on the 198.51.100 class C network
+  + `198.51.100.0/255.255.255.0`: Qualquer host na rede classe C 198.51.100
 
-  + `198.51.100.1`: Only the host with this specific IP address
+  + `198.51.100.1`: Apenas o host com este endereço IP específico
 
-The server performs matching of host values in account names against the client host using the value returned by the system DNS resolver for the client host name or IP address. Except in the case that the account host value is specified using netmask notation, the server performs this comparison as a string match, even for an account host value given as an IP address. This means that you should specify account host values in the same format used by DNS. Here are examples of problems to watch out for:
+O servidor executa a correspondência de valores de host em nomes de conta em relação ao host cliente usando o valor retornado pelo resolvedor DNS do sistema para o nome de host ou endereço IP do cliente. Exceto no caso em que o valor do host da conta é especificado usando a notação *netmask*, o servidor realiza esta comparação como uma correspondência de string, mesmo para um valor de host de conta fornecido como um endereço IP. Isso significa que você deve especificar os valores de host da conta no mesmo formato usado pelo DNS. Aqui estão exemplos de problemas a serem observados:
 
-* Suppose that a host on the local network has a fully qualified name of `host1.example.com`. If DNS returns name lookups for this host as `host1.example.com`, use that name in account host values. If DNS returns just `host1`, use `host1` instead.
+* Suponha que um host na rede local tenha um nome totalmente qualificado de `host1.example.com`. Se o DNS retornar pesquisas de nome para este host como `host1.example.com`, use esse nome nos valores de host da conta. Se o DNS retornar apenas `host1`, use `host1` em vez disso.
 
-* If DNS returns the IP address for a given host as `198.51.100.2`, that matches an account host value of `198.51.100.2` but not `198.051.100.2`. Similarly, it matches an account host pattern like `198.51.100.%` but not `198.051.100.%`.
+* Se o DNS retornar o endereço IP para um determinado host como `198.51.100.2`, isso corresponde a um valor de host de conta de `198.51.100.2`, mas não a `198.051.100.2`. Da mesma forma, corresponde a um padrão de host de conta como `198.51.100.%`, mas não a `198.051.100.%`.
 
-To avoid problems like these, it is advisable to check the format in which your DNS returns host names and addresses. Use values in the same format in MySQL account names.
+Para evitar problemas como esses, é aconselhável verificar o formato em que seu DNS retorna nomes de host e endereços. Use valores no mesmo formato nos nomes de conta MySQL.

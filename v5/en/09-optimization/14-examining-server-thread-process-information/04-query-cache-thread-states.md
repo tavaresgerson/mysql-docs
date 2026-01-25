@@ -1,27 +1,27 @@
-### 8.14.4 Query Cache Thread States
+### 8.14.4 Estados de Thread do Query Cache
 
-These thread states are associated with the query cache (see Section 8.10.3, “The MySQL Query Cache”).
+Estes estados de Thread estão associados ao Query Cache (consulte Seção 8.10.3, “O MySQL Query Cache”).
 
 * `checking privileges on cached query`
 
-  The server is checking whether the user has privileges to access a cached query result.
+  O server está verificando se o usuário tem privileges para acessar um resultado de Query em cache.
 
 * `checking query cache for query`
 
-  The server is checking whether the current query is present in the query cache.
+  O server está verificando se a Query atual está presente no Query Cache.
 
 * `invalidating query cache entries`
 
-  Query cache entries are being marked invalid because the underlying tables have changed.
+  Entradas do Query Cache estão sendo marcadas como inválidas porque as tables subjacentes foram alteradas.
 
 * `sending cached result to client`
 
-  The server is taking the result of a query from the query cache and sending it to the client.
+  O server está pegando o resultado de uma Query do Query Cache e enviando-o para o client.
 
 * `storing result in query cache`
 
-  The server is storing the result of a query in the query cache.
+  O server está armazenando o resultado de uma Query no Query Cache.
 
 * `Waiting for query cache lock`
 
-  This state occurs while a session is waiting to take the query cache lock. This can happen for any statement that needs to perform some query cache operation, such as an `INSERT` or `DELETE` that invalidates the query cache, a `SELECT` that looks for a cached entry, `RESET QUERY CACHE`, and so forth.
+  Este estado ocorre enquanto uma session está esperando para obter o Query Cache Lock. Isso pode acontecer para qualquer statement que precise executar alguma operação no Query Cache, como um `INSERT` ou `DELETE` que invalida o Query Cache, um `SELECT` que procura por uma entrada em cache, `RESET QUERY CACHE`, e assim por diante.

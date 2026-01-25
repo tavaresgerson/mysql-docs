@@ -1,31 +1,31 @@
-#### 8.2.2.3 Optimizing Subqueries with the EXISTS Strategy
+#### 8.2.2.3 Otimizando Subqueries com a Estratégia EXISTS
 
-Certain optimizations are applicable to comparisons that use the `IN` (or `=ANY`) operator to test subquery results. This section discusses these optimizations, particularly with regard to the challenges that `NULL` values present. The last part of the discussion suggests how you can help the optimizer.
+Certos otimizações são aplicáveis a comparações que usam o operador `IN` (ou `=ANY`) para testar resultados de subquery. Esta seção discute essas otimizações, particularmente em relação aos desafios que os valores `NULL` apresentam. A última parte da discussão sugere como você pode auxiliar o Optimizer.
 
-Consider the following subquery comparison:
+Considere a seguinte comparação de subquery:
 
 ```sql
 outer_expr IN (SELECT inner_expr FROM ... WHERE subquery_where)
 ```
 
-MySQL evaluates queries “from outside to inside.” That is, it first obtains the value of the outer expression *`outer_expr`*, and then runs the subquery and captures the rows that it produces.
+O MySQL avalia as Queries “de fora para dentro.” Ou seja, ele primeiro obtém o valor da expressão externa *`outer_expr`*, e então executa a subquery e captura as linhas que ela produz.
 
-A very useful optimization is to “inform” the subquery that the only rows of interest are those where the inner expression *`inner_expr`* is equal to *`outer_expr`*. This is done by pushing down an appropriate equality into the subquery's `WHERE` clause to make it more restrictive. The converted comparison looks like this:
+Uma otimização muito útil é “informar” à subquery que as únicas linhas de interesse são aquelas onde a expressão interna *`inner_expr`* é igual a *`outer_expr`*. Isso é feito propagando (pushing down) uma igualdade apropriada para a `WHERE clause` da subquery para torná-la mais restritiva. A comparação convertida se parece com isto:
 
 ```sql
 EXISTS (SELECT 1 FROM ... WHERE subquery_where AND outer_expr=inner_expr)
 ```
 
-After the conversion, MySQL can use the pushed-down equality to limit the number of rows it must examine to evaluate the subquery.
+Após a conversão, o MySQL pode usar a igualdade propagada para limitar o número de linhas que ele deve examinar para avaliar a subquery.
 
-More generally, a comparison of *`N`* values to a subquery that returns *`N`*-value rows is subject to the same conversion. If *`oe_i`* and *`ie_i`* represent corresponding outer and inner expression values, this subquery comparison:
+De forma mais geral, uma comparação de *`N`* valores para uma subquery que retorna linhas com *`N`* valores está sujeita à mesma conversão. Se *`oe_i`* e *`ie_i`* representam valores de expressão externa e interna correspondentes, esta comparação de subquery:
 
 ```sql
 (oe_1, ..., oe_N) IN
   (SELECT ie_1, ..., ie_N FROM ... WHERE subquery_where)
 ```
 
-Becomes:
+Torna-se:
 
 ```sql
 EXISTS (SELECT 1 FROM ... WHERE subquery_where
@@ -34,36 +34,36 @@ EXISTS (SELECT 1 FROM ... WHERE subquery_where
                           AND oe_N = ie_N)
 ```
 
-For simplicity, the following discussion assumes a single pair of outer and inner expression values.
+Para simplificar, a discussão a seguir assume um único par de valores de expressão externa e interna.
 
-The conversion just described has its limitations. It is valid only if we ignore possible `NULL` values. That is, the “pushdown” strategy works as long as both of these conditions are true:
+A conversão descrita tem suas limitações. Ela é válida apenas se ignorarmos possíveis valores `NULL`. Ou seja, a estratégia de “pushdown” funciona desde que ambas as condições a seguir sejam verdadeiras:
 
-* *`outer_expr`* and *`inner_expr`* cannot be `NULL`.
+* *`outer_expr`* e *`inner_expr`* não podem ser `NULL`.
 
-* You need not distinguish `NULL` from `FALSE` subquery results. If the subquery is a part of an `OR` or `AND` expression in the `WHERE` clause, MySQL assumes that you do not care. Another instance where the optimizer notices that `NULL` and `FALSE` subquery results need not be distinguished is this construct:
+* Você não precisa distinguir resultados de subquery `NULL` de `FALSE`. Se a subquery for parte de uma expressão `OR` ou `AND` na `WHERE clause`, o MySQL assume que isso não é relevante. Outra instância em que o Optimizer nota que resultados de subquery `NULL` e `FALSE` não precisam ser distinguidos é esta construção:
 
   ```sql
   ... WHERE outer_expr IN (subquery)
   ```
 
-  In this case, the `WHERE` clause rejects the row whether `IN (subquery)` returns `NULL` or `FALSE`.
+  Neste caso, a `WHERE clause` rejeita a linha, independentemente de `IN (subquery)` retornar `NULL` ou `FALSE`.
 
-When either or both of those conditions do not hold, optimization is more complex.
+Quando uma ou ambas as condições não se aplicam, a otimização é mais complexa.
 
-Suppose that *`outer_expr`* is known to be a non-`NULL` value but the subquery does not produce a row such that *`outer_expr`* = *`inner_expr`*. Then `outer_expr IN (SELECT ...)` evaluates as follows:
+Suponha que *`outer_expr`* seja conhecido por ser um valor não-`NULL`, mas a subquery não produz uma linha tal que *`outer_expr`* = *`inner_expr`*. Então `outer_expr IN (SELECT ...)` é avaliado da seguinte forma:
 
-* `NULL`, if the `SELECT` produces any row where *`inner_expr`* is `NULL`
+* `NULL`, se o `SELECT` produzir qualquer linha onde *`inner_expr`* é `NULL`
 
-* `FALSE`, if the `SELECT` produces only non-`NULL` values or produces nothing
+* `FALSE`, se o `SELECT` produzir apenas valores não-`NULL` ou não produzir nada
 
-In this situation, the approach of looking for rows with `outer_expr = inner_expr` is no longer valid. It is necessary to look for such rows, but if none are found, also look for rows where *`inner_expr`* is `NULL`. Roughly speaking, the subquery can be converted to something like this:
+Nesta situação, a abordagem de procurar por linhas com `outer_expr = inner_expr` não é mais válida. É necessário procurar por tais linhas, mas se nenhuma for encontrada, também procurar por linhas onde *`inner_expr`* é `NULL`. Grosso modo, a subquery pode ser convertida para algo como isto:
 
 ```sql
 EXISTS (SELECT 1 FROM ... WHERE subquery_where AND
         (outer_expr=inner_expr OR inner_expr IS NULL))
 ```
 
-The need to evaluate the extra `IS NULL` condition is why MySQL has the `ref_or_null` access method:
+A necessidade de avaliar a condição `IS NULL` extra é a razão pela qual o MySQL possui o método de acesso `ref_or_null`:
 
 ```sql
 mysql> EXPLAIN
@@ -89,64 +89,64 @@ possible_keys: maybe_null_key
 ...
 ```
 
-The `unique_subquery` and `index_subquery` subquery-specific access methods also have “or `NULL`” variants.
+Os métodos de acesso específicos para subquery `unique_subquery` e `index_subquery` também possuem variantes “or `NULL`”.
 
-The additional `OR ... IS NULL` condition makes query execution slightly more complicated (and some optimizations within the subquery become inapplicable), but generally this is tolerable.
+A condição adicional `OR ... IS NULL` torna a execução da Query ligeiramente mais complicada (e algumas otimizações dentro da subquery tornam-se inaplicáveis), mas geralmente isso é tolerável.
 
-The situation is much worse when *`outer_expr`* can be `NULL`. According to the SQL interpretation of `NULL` as “unknown value,” `NULL IN (SELECT inner_expr ...)` should evaluate to:
+A situação é muito pior quando *`outer_expr`* pode ser `NULL`. De acordo com a interpretação SQL de `NULL` como “valor desconhecido,” `NULL IN (SELECT inner_expr ...)` deve ser avaliado como:
 
-* `NULL`, if the `SELECT` produces any rows
+* `NULL`, se o `SELECT` produzir quaisquer linhas
 
-* `FALSE`, if the `SELECT` produces no rows
+* `FALSE`, se o `SELECT` não produzir nenhuma linha
 
-For proper evaluation, it is necessary to be able to check whether the `SELECT` has produced any rows at all, so `outer_expr = inner_expr` cannot be pushed down into the subquery. This is a problem because many real world subqueries become very slow unless the equality can be pushed down.
+Para uma avaliação adequada, é necessário poder verificar se o `SELECT` produziu alguma linha, de modo que `outer_expr = inner_expr` não pode ser propagado para a subquery. Isso é um problema porque muitas subqueries do mundo real se tornam muito lentas, a menos que a igualdade possa ser propagada.
 
-Essentially, there must be different ways to execute the subquery depending on the value of *`outer_expr`*.
+Essencialmente, deve haver diferentes maneiras de executar a subquery dependendo do valor de *`outer_expr`*.
 
-The optimizer chooses SQL compliance over speed, so it accounts for the possibility that *`outer_expr`* might be `NULL`:
+O Optimizer escolhe a conformidade SQL em detrimento da velocidade, então ele considera a possibilidade de que *`outer_expr`* possa ser `NULL`:
 
-* If *`outer_expr`* is `NULL`, to evaluate the following expression, it is necessary to execute the `SELECT` to determine whether it produces any rows:
+* Se *`outer_expr`* for `NULL`, para avaliar a seguinte expressão, é necessário executar o `SELECT` para determinar se ele produz quaisquer linhas:
 
   ```sql
   NULL IN (SELECT inner_expr FROM ... WHERE subquery_where)
   ```
 
-  It is necessary to execute the original `SELECT` here, without any pushed-down equalities of the kind mentioned previously.
+  É necessário executar o `SELECT` original aqui, sem quaisquer igualdades propagadas do tipo mencionado anteriormente.
 
-* On the other hand, when *`outer_expr`* is not `NULL`, it is absolutely essential that this comparison:
+* Por outro lado, quando *`outer_expr`* não é `NULL`, é absolutamente essencial que esta comparação:
 
   ```sql
   outer_expr IN (SELECT inner_expr FROM ... WHERE subquery_where)
   ```
 
-  Be converted to this expression that uses a pushed-down condition:
+  Seja convertida nesta expressão que usa uma condição propagada:
 
   ```sql
   EXISTS (SELECT 1 FROM ... WHERE subquery_where AND outer_expr=inner_expr)
   ```
 
-  Without this conversion, subqueries are slow.
+  Sem esta conversão, as subqueries são lentas.
 
-To solve the dilemma of whether or not to push down conditions into the subquery, the conditions are wrapped within “trigger” functions. Thus, an expression of the following form:
+Para resolver o dilema de propagar ou não as condições para a subquery, as condições são envolvidas em funções de “trigger”. Assim, uma expressão da seguinte forma:
 
 ```sql
 outer_expr IN (SELECT inner_expr FROM ... WHERE subquery_where)
 ```
 
-Is converted into:
+É convertida em:
 
 ```sql
 EXISTS (SELECT 1 FROM ... WHERE subquery_where
                           AND trigcond(outer_expr=inner_expr))
 ```
 
-More generally, if the subquery comparison is based on several pairs of outer and inner expressions, the conversion takes this comparison:
+De forma mais geral, se a comparação da subquery for baseada em vários pares de expressões externas e internas, a conversão pega esta comparação:
 
 ```sql
 (oe_1, ..., oe_N) IN (SELECT ie_1, ..., ie_N FROM ... WHERE subquery_where)
 ```
 
-And converts it to this expression:
+E a converte para esta expressão:
 
 ```sql
 EXISTS (SELECT 1 FROM ... WHERE subquery_where
@@ -156,25 +156,25 @@ EXISTS (SELECT 1 FROM ... WHERE subquery_where
        )
 ```
 
-Each `trigcond(X)` is a special function that evaluates to the following values:
+Cada `trigcond(X)` é uma função especial que é avaliada para os seguintes valores:
 
-* *`X`* when the “linked” outer expression *`oe_i`* is not `NULL`
+* *`X`* quando a expressão externa “linkada” *`oe_i`* não é `NULL`
 
-* `TRUE` when the “linked” outer expression *`oe_i`* is `NULL`
+* `TRUE` quando a expressão externa “linkada” *`oe_i`* é `NULL`
 
-Note
+Nota
 
-Trigger functions are *not* triggers of the kind that you create with `CREATE TRIGGER`.
+As funções Trigger *não* são triggers do tipo que você cria com `CREATE TRIGGER`.
 
-Equalities that are wrapped within `trigcond()` functions are not first class predicates for the query optimizer. Most optimizations cannot deal with predicates that may be turned on and off at query execution time, so they assume any `trigcond(X)` to be an unknown function and ignore it. Triggered equalities can be used by those optimizations:
+Igualdades envolvidas em funções `trigcond()` não são predicados de primeira classe para o Query Optimizer. A maioria das otimizações não pode lidar com predicados que podem ser ativados e desativados no momento da execução da Query, então eles assumem que qualquer `trigcond(X)` é uma função desconhecida e a ignoram. Igualdades com trigger podem ser usadas por estas otimizações:
 
-* Reference optimizations: `trigcond(X=Y [OR Y IS NULL])` can be used to construct `ref`, `eq_ref`, or `ref_or_null` table accesses.
+* Otimizações de referência: `trigcond(X=Y [OR Y IS NULL])` pode ser usado para construir acessos de tabela `ref`, `eq_ref` ou `ref_or_null`.
 
-* Index lookup-based subquery execution engines: `trigcond(X=Y)` can be used to construct `unique_subquery` or `index_subquery` accesses.
+* Motores de execução de subquery baseados em Index lookup: `trigcond(X=Y)` pode ser usado para construir acessos `unique_subquery` ou `index_subquery`.
 
-* Table-condition generator: If the subquery is a join of several tables, the triggered condition is checked as soon as possible.
+* Gerador de condição de tabela: Se a subquery for um JOIN de várias tabelas, a condição triggered é verificada o mais rápido possível.
 
-When the optimizer uses a triggered condition to create some kind of index lookup-based access (as for the first two items of the preceding list), it must have a fallback strategy for the case when the condition is turned off. This fallback strategy is always the same: Do a full table scan. In `EXPLAIN` output, the fallback shows up as `Full scan on NULL key` in the `Extra` column:
+Quando o Optimizer usa uma condição triggered para criar algum tipo de acesso baseado em Index lookup (como nos dois primeiros itens da lista anterior), ele deve ter uma estratégia de fallback para o caso em que a condição é desativada. Esta estratégia de fallback é sempre a mesma: Realizar um full table scan. Na saída do `EXPLAIN`, o fallback aparece como `Full scan on NULL key` na coluna `Extra`:
 
 ```sql
 mysql> EXPLAIN SELECT t1.col1,
@@ -197,7 +197,7 @@ possible_keys: key1
         Extra: Using where; Full scan on NULL key
 ```
 
-If you run `EXPLAIN` followed by `SHOW WARNINGS`, you can see the triggered condition:
+Se você executar `EXPLAIN` seguido por `SHOW WARNINGS`, você pode ver a condição triggered:
 
 ```sql
 *************************** 1. row ***************************
@@ -213,35 +213,35 @@ Message: select `test`.`t1`.`col1` AS `col1`,
          from `test`.`t1`
 ```
 
-The use of triggered conditions has some performance implications. A `NULL IN (SELECT ...)` expression now may cause a full table scan (which is slow) when it previously did not. This is the price paid for correct results (the goal of the trigger-condition strategy is to improve compliance, not speed).
+O uso de condições triggered tem algumas implicações de desempenho. Uma expressão `NULL IN (SELECT ...)` agora pode causar um full table scan (o que é lento) quando antes não causava. Este é o preço pago por resultados corretos (o objetivo da estratégia de condição de trigger é melhorar a conformidade, não a velocidade).
 
-For multiple-table subqueries, execution of `NULL IN (SELECT ...)` is particularly slow because the join optimizer does not optimize for the case where the outer expression is `NULL`. It assumes that subquery evaluations with `NULL` on the left side are very rare, even if there are statistics that indicate otherwise. On the other hand, if the outer expression might be `NULL` but never actually is, there is no performance penalty.
+Para subqueries de múltiplas tabelas, a execução de `NULL IN (SELECT ...)` é particularmente lenta porque o Join Optimizer não otimiza para o caso em que a expressão externa é `NULL`. Ele assume que as avaliações de subquery com `NULL` no lado esquerdo são muito raras, mesmo que existam estatísticas que indiquem o contrário. Por outro lado, se a expressão externa puder ser `NULL` mas nunca for de fato, não há penalidade de desempenho.
 
-To help the query optimizer better execute your queries, use these suggestions:
+Para ajudar o Query Optimizer a executar suas Queries melhor, use estas sugestões:
 
-* Declare a column as `NOT NULL` if it really is. This also helps other aspects of the optimizer by simplifying condition testing for the column.
+* Declare uma coluna como `NOT NULL` se ela realmente for. Isso também auxilia outros aspectos do Optimizer, simplificando o teste de condição para a coluna.
 
-* If you need not distinguish a `NULL` from `FALSE` subquery result, you can easily avoid the slow execution path. Replace a comparison that looks like this:
+* Se você não precisa distinguir um resultado de subquery `NULL` de `FALSE`, você pode facilmente evitar o caminho de execução lento. Substitua uma comparação que se parece com isto:
 
   ```sql
   outer_expr IN (SELECT inner_expr FROM ...)
   ```
 
-  with this expression:
+  por esta expressão:
 
   ```sql
   (outer_expr IS NOT NULL) AND (outer_expr IN (SELECT inner_expr FROM ...))
   ```
 
-  Then `NULL IN (SELECT ...)` is never evaluated because MySQL stops evaluating `AND` parts as soon as the expression result is clear.
+  Assim, `NULL IN (SELECT ...)` nunca é avaliado porque o MySQL para de avaliar as partes `AND` assim que o resultado da expressão fica claro.
 
-  Another possible rewrite:
+  Outra reescrita possível:
 
   ```sql
   EXISTS (SELECT inner_expr FROM ...
           WHERE inner_expr=outer_expr)
   ```
 
-  This would apply when you need not distinguish `NULL` from `FALSE` subquery results, in which case you may actually want `EXISTS`.
+  Isso se aplicaria quando você não precisa distinguir resultados de subquery `NULL` de `FALSE`, caso em que você pode, na verdade, desejar `EXISTS`.
 
-The `subquery_materialization_cost_based` flag of the `optimizer_switch` system variable enables control over the choice between subquery materialization and `IN`-to-`EXISTS` subquery transformation. See Section 8.9.2, “Switchable Optimizations”.
+A flag `subquery_materialization_cost_based` da variável de sistema `optimizer_switch` permite controlar a escolha entre a materialização da subquery e a transformação de subquery `IN`-para-`EXISTS`. Veja Seção 8.9.2, “Otimizações Alternáveis”.

@@ -1,47 +1,42 @@
-#### 4.2.2.1 Using Options on the Command Line
+#### 4.2.2.1 Usando Options na Command Line
 
-Program options specified on the command line follow these rules:
+As Options de programa especificadas na Command Line seguem estas regras:
 
-* Options are given after the command name.
-* An option argument begins with one dash or two dashes, depending on whether it is a short form or long form of the option name. Many options have both short and long forms. For example, `-?` and `--help` are the short and long forms of the option that instructs a MySQL program to display its help message.
-
-* Option names are case-sensitive. `-v` and `-V` are both legal and have different meanings. (They are the corresponding short forms of the `--verbose` and `--version` options.)
-
-* Some options take a value following the option name. For example, `-h localhost` or `--host=localhost` indicate the MySQL server host to a client program. The option value tells the program the name of the host where the MySQL server is running.
-
-* For a long option that takes a value, separate the option name and the value by an `=` sign. For a short option that takes a value, the option value can immediately follow the option letter, or there can be a space between: `-hlocalhost` and `-h localhost` are equivalent. An exception to this rule is the option for specifying your MySQL password. This option can be given in long form as `--password=pass_val` or as `--password`. In the latter case (with no password value given), the program interactively prompts you for the password. The password option also may be given in short form as `-ppass_val` or as `-p`. However, for the short form, if the password value is given, it must follow the option letter with *no intervening space*: If a space follows the option letter, the program has no way to tell whether a following argument is supposed to be the password value or some other kind of argument. Consequently, the following two commands have two completely different meanings:
+* As Options são fornecidas após o nome do comando.
+* Um argumento de Option começa com um traço ou dois traços, dependendo se é a forma curta (short form) ou forma longa (long form) do nome da Option. Muitas Options possuem ambas as formas. Por exemplo, `-?` e `--help` são as formas curta e longa da Option que instrui um programa MySQL a exibir sua mensagem de ajuda (help message).
+* Os nomes das Options diferenciam maiúsculas de minúsculas (case-sensitive). `-v` e `-V` são ambos válidos (legal) e têm significados diferentes. (Eles são as formas curtas correspondentes das Options `--verbose` e `--version`.)
+* Algumas Options aceitam um valor após o nome da Option. Por exemplo, `-h localhost` ou `--host=localhost` indicam o host do MySQL Server a um programa Client. O valor da Option informa ao programa o nome do host onde o MySQL Server está em execução.
+* Para uma Option longa que requer um valor, separe o nome da Option e o valor por um sinal de `=`. Para uma Option curta que requer um valor, o valor da Option pode seguir imediatamente a letra da Option, ou pode haver um espaço entre eles: `-hlocalhost` e `-h localhost` são equivalentes. Uma exceção a esta regra é a Option para especificar sua senha do MySQL. Esta Option pode ser fornecida na forma longa como `--password=pass_val` ou como `--password`. Neste último caso (sem valor de senha fornecido), o programa solicitará a senha de forma interativa. A Option de senha também pode ser fornecida na forma curta como `-ppass_val` ou como `-p`. No entanto, para a forma curta, se o valor da senha for fornecido, ele deve seguir a letra da Option *sem espaço intermediário*: Se um espaço seguir a letra da Option, o programa não tem como saber se um argumento subsequente deve ser o valor da senha ou algum outro tipo de argumento. Consequentemente, os dois comandos a seguir têm significados completamente diferentes:
 
   ```sql
   mysql -ptest
   mysql -p test
   ```
 
-  The first command instructs **mysql** to use a password value of `test`, but specifies no default database. The second instructs **mysql** to prompt for the password value and to use `test` as the default database.
+  O primeiro comando instrui o **mysql** a usar o valor de senha `test`, mas não especifica um Database padrão. O segundo instrui o **mysql** a solicitar interativamente o valor da senha e a usar `test` como o Database padrão.
 
-* Within option names, dash (`-`) and underscore (`_`) may be used interchangeably in most cases, although the leading dashes *cannot* be given as underscores. For example, `--skip-grant-tables` and `--skip_grant_tables` are equivalent.
+* Dentro dos nomes das Options, traço (`-`) e underscore (`_`) podem ser usados de forma intercambiável na maioria dos casos, embora os traços iniciais *não* possam ser fornecidos como underscores. Por exemplo, `--skip-grant-tables` e `--skip_grant_tables` são equivalentes.
 
-  In this Manual, we use dashes in option names, except where underscores are significant. This is the case with, for example, `--log-bin` and `--log_bin`, which are different options. We encourage you to do so as well.
+  Neste Manual, usamos traços nos nomes das Options, exceto onde underscores são significativos. É o caso de, por exemplo, `--log-bin` e `--log_bin`, que são Options diferentes. Encorajamos você a fazer o mesmo.
 
-* The MySQL server has certain command options that may be specified only at startup, and a set of system variables, some of which may be set at startup, at runtime, or both. System variable names use underscores rather than dashes, and when referenced at runtime (for example, using `SET` or `SELECT` statements), must be written using underscores:
+* O MySQL Server possui certas Options de comando que podem ser especificadas apenas na inicialização (startup), e um conjunto de variáveis de sistema, algumas das quais podem ser definidas na inicialização, em tempo de execução (runtime), ou em ambos. Os nomes das variáveis de sistema usam underscores em vez de traços e, quando referenciados em runtime (por exemplo, usando instruções `SET` ou `SELECT`), devem ser escritos usando underscores:
 
   ```sql
   SET GLOBAL general_log = ON;
   SELECT @@GLOBAL.general_log;
   ```
 
-  At server startup, the syntax for system variables is the same as for command options, so within variable names, dashes and underscores may be used interchangeably. For example, `--general_log=ON` and `--general-log=ON` are equivalent. (This is also true for system variables set within option files.)
+  Na inicialização do Server, a sintaxe para variáveis de sistema é a mesma que para Options de comando, então, dentro dos nomes das variáveis, traços e underscores podem ser usados de forma intercambiável. Por exemplo, `--general_log=ON` e `--general-log=ON` são equivalentes. (Isto também é verdadeiro para variáveis de sistema definidas dentro de arquivos de Option.)
 
-* For options that take a numeric value, the value can be given with a suffix of `K`, `M`, or `G` (either uppercase or lowercase) to indicate a multiplier of 1024, 10242 or
-
-  10243. For example, the following command tells **mysqladmin** to ping the server 1024 times, sleeping 10 seconds between each ping:
+* Para Options que aceitam um valor numérico, o valor pode ser fornecido com um sufixo `K`, `M` ou `G` (maiúsculo ou minúsculo) para indicar um multiplicador de 1024, 1024² ou 1024³. Por exemplo, o comando a seguir instrui o **mysqladmin** a fazer ping no Server 1024 vezes, com um intervalo de 10 segundos entre cada ping:
 
   ```sql
   mysqladmin --count=1K --sleep=10 ping
   ```
 
-* When specifying file names as option values, avoid the use of the `~` shell metacharacter. It might not be interpreted as you expect.
+* Ao especificar nomes de arquivo como valores de Option, evite o uso do metacaractere de shell `~`. Ele pode não ser interpretado como você espera.
 
-Option values that contain spaces must be quoted when given on the command line. For example, the `--execute` (or `-e`) option can be used with **mysql** to pass one or more semicolon-separated SQL statements to the server. When this option is used, **mysql** executes the statements in the option value and exits. The statements must be enclosed by quotation marks. For example:
+Valores de Option que contêm espaços devem ser citados (quoted) quando fornecidos na Command Line. Por exemplo, a Option `--execute` (ou `-e`) pode ser usada com o **mysql** para passar uma ou mais instruções SQL separadas por ponto e vírgula para o Server. Quando esta Option é usada, o **mysql** executa as instruções no valor da Option e sai. As instruções devem ser delimitadas por aspas. Por exemplo:
 
 ```sql
 $> mysql -u root -p -e "SELECT VERSION();SELECT NOW()"
@@ -59,8 +54,8 @@ Enter password: ******
 $>
 ```
 
-Note
+Nota
 
-The long form (`--execute`) is followed by an equal sign (`=`).
+A forma longa (`--execute`) é seguida por um sinal de igual (`=`).
 
-To use quoted values within a statement, you must either escape the inner quotation marks, or use a different type of quotation marks within the statement from those used to quote the statement itself. The capabilities of your command processor dictate your choices for whether you can use single or double quotation marks and the syntax for escaping quote characters. For example, if your command processor supports quoting with single or double quotation marks, you can use double quotation marks around the statement, and single quotation marks for any quoted values within the statement.
+Para usar valores entre aspas dentro de uma instrução, você deve escapar as aspas internas ou usar um tipo de aspas diferente dentro da instrução daquelas usadas para citar a instrução em si. As capacidades do seu processador de comandos ditam suas escolhas sobre se você pode usar aspas simples ou duplas e a sintaxe para escapar caracteres de aspas (quote characters). Por exemplo, se o seu processador de comandos suporta citação com aspas simples ou duplas, você pode usar aspas duplas ao redor da instrução e aspas simples para quaisquer valores citados dentro da instrução.

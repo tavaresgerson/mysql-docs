@@ -1,52 +1,52 @@
-### 9.2.2 Identifier Qualifiers
+### 9.2.2 Qualificadores de Identificadores
 
-Object names may be unqualified or qualified. An unqualified name is permitted in contexts where interpretation of the name is unambiguous. A qualified name includes at least one qualifier to clarify the interpretive context by overriding a default context or providing missing context.
+Nomes de objetos podem ser não qualificados (*unqualified*) ou qualificados (*qualified*). Um nome não qualificado é permitido em contextos onde a interpretação do nome é inequívoca. Um nome qualificado inclui pelo menos um *qualifier* para clarificar o contexto de interpretação, substituindo um contexto padrão (*default*) ou fornecendo um contexto ausente.
 
-For example, this statement creates a table using the unqualified name `t1`:
+Por exemplo, esta instrução cria uma table usando o nome não qualificado `t1`:
 
 ```sql
 CREATE TABLE t1 (i INT);
 ```
 
-Because `t1` includes no qualifier to specify a database, the statement creates the table in the default database. If there is no default database, an error occurs.
+Como `t1` não inclui nenhum *qualifier* para especificar um Database, a instrução cria a table no *default Database*. Se não houver um *default Database*, ocorre um erro.
 
-This statement creates a table using the qualified name `db1.t1`:
+Esta instrução cria uma table usando o nome qualificado `db1.t1`:
 
 ```sql
 CREATE TABLE db1.t1 (i INT);
 ```
 
-Because `db1.t1` includes a database qualifier `db1`, the statement creates `t1` in the database named `db1`, regardless of the default database. The qualifier *must* be specified if there is no default database. The qualifier *may* be specified if there is a default database, to specify a database different from the default, or to make the database explicit if the default is the same as the one specified.
+Como `db1.t1` inclui o *qualifier* de Database `db1`, a instrução cria `t1` no Database chamado `db1`, independentemente do *default Database*. O *qualifier* *deve* ser especificado se não houver um *default Database*. O *qualifier* *pode* ser especificado se houver um *default Database*, para especificar um Database diferente do padrão, ou para tornar o Database explícito se o padrão for o mesmo que o especificado.
 
-Qualifiers have these characteristics:
+Qualifiers possuem as seguintes características:
 
-* An unqualified name consists of a single identifier. A qualified name consists of multiple identifiers.
+* Um nome não qualificado consiste em um único *identifier*. Um nome qualificado consiste em múltiplos *identifiers*.
 
-* The components of a multiple-part name must be separated by period (`.`) characters. The initial parts of a multiple-part name act as qualifiers that affect the context within which to interpret the final identifier.
+* Os componentes de um nome com múltiplas partes devem ser separados por caracteres de ponto (`.`). As partes iniciais de um nome com múltiplas partes atuam como *qualifiers* que afetam o contexto no qual o *identifier* final deve ser interpretado.
 
-* The qualifier character is a separate token and need not be contiguous with the associated identifiers. For example, *`tbl_name.col_name`* and *`tbl_name . col_name`* are equivalent.
+* O caractere *qualifier* é um *token* separado e não precisa ser contíguo aos *identifiers* associados. Por exemplo, *`tbl_name.col_name`* e *`tbl_name . col_name`* são equivalentes.
 
-* If any components of a multiple-part name require quoting, quote them individually rather than quoting the name as a whole. For example, write `` `my-table`.`my-column` ``, not `` `my-table.my-column` ``.
+* Se qualquer componente de um nome com múltiplas partes exigir aspas (*quoting*), coloque aspas individualmente em vez de colocar aspas no nome como um todo. Por exemplo, escreva `` `my-table`.`my-column` ``, não `` `my-table.my-column` ``.
 
-* A reserved word that follows a period in a qualified name must be an identifier, so in that context it need not be quoted.
+* Uma palavra reservada que segue um ponto em um nome qualificado deve ser um *identifier*, portanto, nesse contexto, ela não precisa de aspas.
 
-* The syntax `.tbl_name` means the table *`tbl_name`* in the default database.
+* A sintaxe `.tbl_name` significa a table *`tbl_name`* no *default Database*.
 
   Note
 
-  This syntax is deprecated as of MySQL 5.7.20; expect it to be removed in a future version of MySQL.
+  Esta sintaxe está obsoleta (*deprecated*) desde o MySQL 5.7.20; espere que ela seja removida em uma versão futura do MySQL.
 
-The permitted qualifiers for object names depend on the object type:
+Os *qualifiers* permitidos para nomes de objetos dependem do tipo de objeto:
 
-* A database name is fully qualified and takes no qualifier:
+* Um nome de Database é totalmente qualificado e não requer *qualifier*:
 
-  ```sql
+```sql
   CREATE DATABASE db1;
   ```
 
-* A table, view, or stored program name may be given a database-name qualifier. Examples of unqualified and qualified names in `CREATE` statements:
+* Um nome de table, *view* ou programa armazenado pode receber um *qualifier* de nome de Database. Exemplos de nomes não qualificados e qualificados em instruções `CREATE`:
 
-  ```sql
+```sql
   CREATE TABLE mytable ...;
   CREATE VIEW myview ...;
   CREATE PROCEDURE myproc ...;
@@ -60,21 +60,21 @@ The permitted qualifiers for object names depend on the object type:
   CREATE EVENT mydb.myevent ...;
   ```
 
-* A trigger is associated with a table, so any qualifier applies to the table name:
+* Um *trigger* está associado a uma table, então qualquer *qualifier* se aplica ao nome da table:
 
-  ```sql
+```sql
   CREATE TRIGGER mytrigger ... ON mytable ...;
 
   CREATE TRIGGER mytrigger ... ON mydb.mytable ...;
   ```
 
-* A column name may be given multiple qualifiers to indicate context in statements that reference it, as shown in the following table.
+* Um nome de column pode receber múltiplos *qualifiers* para indicar o contexto em instruções que o referenciam, conforme mostrado na tabela a seguir.
 
-  <table summary="Column reference formats that can be used to refer to table columns."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Column Reference</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><em><code>col_name</code></em></td> <td>Column <em><code>col_name</code></em> from whichever table used in the statement contains a column of that name</td> </tr><tr> <td><em><code>tbl_name.col_name</code></em></td> <td>Column <em><code>col_name</code></em> from table <em><code>tbl_name</code></em> of the default database</td> </tr><tr> <td><em><code>db_name.tbl_name.col_name</code></em></td> <td>Column <em><code>col_name</code></em> from table <em><code>tbl_name</code></em> of the database <em><code>db_name</code></em></td> </tr></tbody></table>
+<table summary="Formatos de referência de column que podem ser usados para referenciar columns de table."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Referência de Column</th> <th>Significado</th> </tr></thead><tbody><tr> <td><em><code>col_name</code></em></td> <td>A Column <em><code>col_name</code></em> de qualquer table usada na instrução que contenha uma Column com esse nome</td> </tr><tr> <td><em><code>tbl_name.col_name</code></em></td> <td>A Column <em><code>col_name</code></em> da table <em><code>tbl_name</code></em> do default Database</td> </tr><tr> <td><em><code>db_name.tbl_name.col_name</code></em></td> <td>A Column <em><code>col_name</code></em> da table <em><code>tbl_name</code></em> do Database <em><code>db_name</code></em></td> </tr></tbody></table>
 
-  In other words, a column name may be given a table-name qualifier, which itself may be given a database-name qualifier. Examples of unqualified and qualified column references in `SELECT` statements:
+Em outras palavras, um nome de column pode receber um *qualifier* de nome de table, que por sua vez pode receber um *qualifier* de nome de Database. Exemplos de referências de column não qualificadas e qualificadas em instruções `SELECT`:
 
-  ```sql
+```sql
   SELECT c1 FROM mytable
   WHERE c2 > 100;
 
@@ -85,21 +85,21 @@ The permitted qualifiers for object names depend on the object type:
   WHERE mydb.mytable.c2 > 100;
   ```
 
-You need not specify a qualifier for an object reference in a statement unless the unqualified reference is ambiguous. Suppose that column `c1` occurs only in table `t1`, `c2` only in `t2`, and `c` in both `t1` and `t2`. Any unqualified reference to `c` is ambiguous in a statement that refers to both tables and must be qualified as `t1.c` or `t2.c` to indicate which table you mean:
+Você não precisa especificar um *qualifier* para uma referência de objeto em uma instrução, a menos que a referência não qualificada seja ambígua. Suponha que a column `c1` ocorra apenas na table `t1`, `c2` apenas na `t2`, e `c` em ambas `t1` e `t2`. Qualquer referência não qualificada a `c` é ambígua em uma instrução que se refere a ambas as tables e deve ser qualificada como `t1.c` ou `t2.c` para indicar qual table você quer dizer:
 
 ```sql
 SELECT c1, c2, t1.c FROM t1 INNER JOIN t2
 WHERE t2.c > 100;
 ```
 
-Similarly, to retrieve from a table `t` in database `db1` and from a table `t` in database `db2` in the same statement, you must qualify the table references: For references to columns in those tables, qualifiers are required only for column names that appear in both tables. Suppose that column `c1` occurs only in table `db1.t`, `c2` only in `db2.t`, and `c` in both `db1.t` and `db2.t`. In this case, `c` is ambiguous and must be qualified but `c1` and `c2` need not be:
+De forma semelhante, para recuperar dados de uma table `t` no Database `db1` e de uma table `t` no Database `db2` na mesma instrução, você deve qualificar as referências de table. Para referências a columns nessas tables, *qualifiers* são exigidos apenas para nomes de column que aparecem em ambas as tables. Suponha que a column `c1` ocorra apenas na table `db1.t`, `c2` apenas na `db2.t`, e `c` em ambas `db1.t` e `db2.t`. Neste caso, `c` é ambíguo e deve ser qualificado, mas `c1` e `c2` não precisam ser:
 
 ```sql
 SELECT c1, c2, db1.t.c FROM db1.t INNER JOIN db2.t
 WHERE db2.t.c > 100;
 ```
 
-Table aliases enable qualified column references to be written more simply:
+*Aliases* de table permitem que referências qualificadas de column sejam escritas de forma mais simples:
 
 ```sql
 SELECT c1, c2, t1.c FROM db1.t AS t1 INNER JOIN db2.t AS t2

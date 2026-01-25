@@ -1,55 +1,55 @@
-#### 6.4.4.1 Keyring Plugin Installation
+#### 6.4.4.1 Instalação do Plugin Keyring
 
-Keyring service consumers require that a keyring plugin be installed. This section describes how to install the keyring plugin of your choosing. Also, for general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Os consumidores do serviço Keyring exigem que um plugin keyring esteja instalado. Esta seção descreve como instalar o plugin keyring de sua escolha. Além disso, para informações gerais sobre a instalação de plugins, consulte [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Instaling and Uninstalling Plugins").
 
-If you intend to use keyring functions in conjunction with the chosen keyring plugin, install the functions after installing that plugin, using the instructions in [Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
+Se você pretende usar as funções de Keyring em conjunto com o plugin keyring escolhido, instale as funções após a instalação desse plugin, usando as instruções na [Seção 6.4.4.8, “Funções de Gerenciamento de Chaves de Uso Geral do Keyring”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
 
-Note
+Nota
 
-Only one keyring plugin should be enabled at a time. Enabling multiple keyring plugins is unsupported and results may not be as anticipated.
+Apenas um plugin keyring deve ser habilitado por vez. Habilitar múltiplos plugins keyring não é suportado e os resultados podem não ser os antecipados.
 
-MySQL provides these keyring plugin choices:
+O MySQL fornece estas opções de plugin keyring:
 
-* `keyring_file`: Stores keyring data in a file local to the server host. Available in MySQL Community Edition and MySQL Enterprise Edition distributions.
+* `keyring_file`: Armazena dados do Keyring em um arquivo local no host do server. Disponível nas distribuições MySQL Community Edition e MySQL Enterprise Edition.
 
-* `keyring_encrypted_file`: Stores keyring data in an encrypted, password-protected file local to the server host. Available in MySQL Enterprise Edition distributions.
+* `keyring_encrypted_file`: Armazena dados do Keyring em um arquivo criptografado e protegido por senha, local no host do server. Disponível nas distribuições MySQL Enterprise Edition.
 
-* `keyring_okv`: A KMIP 1.1 plugin for use with KMIP-compatible back end keyring storage products such as Oracle Key Vault and Gemalto SafeNet KeySecure Appliance. Available in MySQL Enterprise Edition distributions.
+* `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de Keyring storage de back end compatíveis com KMIP, como Oracle Key Vault e Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições MySQL Enterprise Edition.
 
-* `keyring_aws`: Communicates with the Amazon Web Services Key Management Service as a back end for key generation and uses a local file for key storage. Available in MySQL Enterprise Edition distributions.
+* `keyring_aws`: Comunica-se com o Amazon Web Services Key Management Service como um back end para geração de chaves e usa um arquivo local para key storage. Disponível nas distribuições MySQL Enterprise Edition.
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo server, o arquivo da biblioteca do plugin deve estar localizado no diretório de plugins do MySQL (o diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do diretório de plugins definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do server.
 
-The keyring plugin must be loaded early during the server startup sequence so that components can access it as necessary during their own initialization. For example, the `InnoDB` storage engine uses the keyring for tablespace encryption, so the keyring plugin must be loaded and available prior to `InnoDB` initialization.
+O plugin keyring deve ser carregado cedo durante a sequência de inicialização do server para que os componentes possam acessá-lo conforme necessário durante sua própria inicialização. Por exemplo, o `InnoDB` storage engine usa o Keyring para tablespace encryption, portanto, o plugin keyring deve ser carregado e estar disponível antes da inicialização do `InnoDB`.
 
-Installation for each keyring plugin is similar. The following instructions describe how to install `keyring_file`. To use a different keyring plugin, substitute its name for `keyring_file`.
+A instalação para cada plugin keyring é semelhante. As instruções a seguir descrevem como instalar o `keyring_file`. Para usar um plugin keyring diferente, substitua `keyring_file` pelo nome dele.
 
-The `keyring_file` plugin library file base name is `keyring_file`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
+O nome base do arquivo da biblioteca do plugin `keyring_file` é `keyring_file`. O sufixo do nome do arquivo difere por plataforma (por exemplo, `.so` para sistemas Unix e Unix-like, `.dll` para Windows).
 
-To load the plugin, use the [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option to name the plugin library file that contains it. For example, on platforms where the plugin library file suffix is `.so`, use these lines in the server `my.cnf` file, adjusting the `.so` suffix for your platform as necessary:
+Para carregar o plugin, use a opção [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) para nomear o arquivo da biblioteca do plugin que o contém. Por exemplo, em plataformas onde o sufixo do arquivo da biblioteca do plugin é `.so`, use estas linhas no arquivo `my.cnf` do server, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
 early-plugin-load=keyring_file.so
 ```
 
-Important
+Importante
 
-In MySQL 5.7.11, the default [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) value is the name of the `keyring_file` plugin library file, causing that plugin to be loaded by default. In MySQL 5.7.12 and higher, the default [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) value is empty; to load the `keyring_file` plugin, you must explicitly specify the option with a value naming the `keyring_file` plugin library file.
+No MySQL 5.7.11, o valor padrão de [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) é o nome do arquivo da biblioteca do plugin `keyring_file`, fazendo com que esse plugin seja carregado por padrão. No MySQL 5.7.12 e superior, o valor padrão de [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) é vazio; para carregar o plugin `keyring_file`, você deve especificar explicitamente a opção com um valor que nomeie o arquivo da biblioteca do plugin `keyring_file`.
 
-`InnoDB` tablespace encryption requires that the keyring plugin to be used be loaded prior to `InnoDB` initialization, so this change of default [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) value introduces an incompatibility for upgrades from 5.7.11 to 5.7.12 or higher. Administrators who have encrypted `InnoDB` tablespaces must take explicit action to ensure continued loading of the keyring plugin: Start the server with an [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option that names the plugin library file.
+A `InnoDB` tablespace encryption exige que o plugin keyring a ser usado seja carregado antes da inicialização do `InnoDB`, portanto, essa alteração do valor padrão de [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) introduz uma incompatibilidade para upgrades da versão 5.7.11 para 5.7.12 ou superior. Os administradores que têm tablespaces `InnoDB` criptografados devem tomar medidas explícitas para garantir o carregamento contínuo do plugin keyring: Inicie o server com uma opção [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) que nomeie o arquivo da biblioteca do plugin.
 
-Before starting the server, check the notes for your chosen keyring plugin for configuration instructions specific to that plugin:
+Antes de iniciar o server, verifique as notas do plugin keyring escolhido para obter instruções de configuração específicas desse plugin:
 
-* `keyring_file`: [Section 6.4.4.2, “Using the keyring_file File-Based Keyring Plugin”](keyring-file-plugin.html "6.4.4.2 Using the keyring_file File-Based Keyring Plugin").
+* `keyring_file`: [Seção 6.4.4.2, “Usando o Plugin Keyring Baseado em Arquivo keyring_file”](keyring-file-plugin.html "6.4.4.2 Using the keyring_file File-Based Keyring Plugin").
 
-* `keyring_encrypted_file`: [Section 6.4.4.3, “Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin”](keyring-encrypted-file-plugin.html "6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin").
+* `keyring_encrypted_file`: [Seção 6.4.4.3, “Usando o Plugin Keyring Baseado em Arquivo Criptografado keyring_encrypted_file”](keyring-encrypted-file-plugin.html "6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin").
 
-* `keyring_okv`: [Section 6.4.4.4, “Using the keyring_okv KMIP Plugin”](keyring-okv-plugin.html "6.4.4.4 Using the keyring_okv KMIP Plugin").
+* `keyring_okv`: [Seção 6.4.4.4, “Usando o Plugin KMIP keyring_okv”](keyring-okv-plugin.html "6.4.4.4 Using the keyring_okv KMIP Plugin").
 
-* `keyring_aws`: [Section 6.4.4.5, “Using the keyring_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin")
+* `keyring_aws`: [Seção 6.4.4.5, “Usando o Plugin Keyring Amazon Web Services keyring_aws”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin")
 
-After performing any plugin-specific configuration, start the server. Verify plugin installation by examining the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Após executar qualquer configuração específica do plugin, inicie o server. Verifique a instalação do plugin examinando a tabela Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") ou use a instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte [Seção 5.5.2, “Obtendo Informações sobre Plugins do Server”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -62,12 +62,12 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +--------------+---------------+
 ```
 
-If the plugin fails to initialize, check the server error log for diagnostic messages.
+Se o plugin falhar ao inicializar, verifique o error log do server para mensagens de diagnóstico.
 
-Plugins can be loaded by methods other than [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load), such as the [`--plugin-load`](server-options.html#option_mysqld_plugin-load) or [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option or the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement. However, keyring plugins loaded using those methods may be available too late in the server startup sequence for certain components that use the keyring, such as `InnoDB`:
+Plugins podem ser carregados por métodos que não sejam o [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load), como a opção [`--plugin-load`](server-options.html#option_mysqld_plugin-load) ou [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) ou a instrução [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"). No entanto, plugins keyring carregados usando esses métodos podem estar disponíveis muito tarde na sequência de inicialização do server para certos componentes que usam o Keyring, como o `InnoDB`:
 
-* Plugin loading using [`--plugin-load`](server-options.html#option_mysqld_plugin-load) or [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) occurs after `InnoDB` initialization.
+* O carregamento de plugins usando [`--plugin-load`](server-options.html#option_mysqld_plugin-load) ou [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) ocorre após a inicialização do `InnoDB`.
 
-* Plugins installed using [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") are registered in the `mysql.plugin` system table and loaded automatically for subsequent server restarts. However, because `mysql.plugin` is an `InnoDB` table, any plugins named in it can be loaded during startup only after `InnoDB` initialization.
+* Plugins instalados usando [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") são registrados na tabela de sistema `mysql.plugin` e carregados automaticamente para reinicializações subsequentes do server. No entanto, como `mysql.plugin` é uma tabela `InnoDB`, quaisquer plugins nela nomeados só podem ser carregados durante a inicialização após a inicialização do `InnoDB`.
 
-If no keyring plugin is available when a component tries to access the keyring service, the service cannot be used by that component. As a result, the component may fail to initialize or may initialize with limited functionality. For example, if `InnoDB` finds that there are encrypted tablespaces when it initializes, it attempts to access the keyring. If the keyring is unavailable, `InnoDB` can access only unencrypted tablespaces. To ensure that `InnoDB` can access encrypted tablespaces as well, use [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) to load the keyring plugin.
+Se nenhum plugin keyring estiver disponível quando um componente tentar acessar o serviço Keyring, o serviço não poderá ser usado por esse componente. Como resultado, o componente pode falhar ao inicializar ou pode inicializar com funcionalidade limitada. Por exemplo, se o `InnoDB` encontrar tablespaces criptografados ao inicializar, ele tentará acessar o Keyring. Se o Keyring não estiver disponível, o `InnoDB` só poderá acessar tablespaces não criptografados. Para garantir que o `InnoDB` possa acessar tablespaces criptografados também, use [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) para carregar o plugin keyring.

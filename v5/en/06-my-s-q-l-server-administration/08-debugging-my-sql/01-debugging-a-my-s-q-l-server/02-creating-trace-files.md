@@ -1,29 +1,29 @@
-#### 5.8.1.2 Creating Trace Files
+#### 5.8.1.2 Criando Arquivos Trace
 
-If the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server does not start or it crashes easily, you can try to create a trace file to find the problem.
+Se o Server [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") não iniciar ou travar facilmente, você pode tentar criar um arquivo trace para encontrar o problema.
 
-To do this, you must have a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") that has been compiled with debugging support. You can check this by executing `mysqld -V`. If the version number ends with `-debug`, it is compiled with support for trace files. (On Windows, the debugging server is named [**mysqld-debug**](mysqld.html "4.3.1 mysqld — The MySQL Server") rather than [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").)
+Para fazer isso, você deve ter um [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") que tenha sido compilado com suporte a Debugging. Você pode verificar isso executando `mysqld -V`. Se o número da versão terminar com `-debug`, ele foi compilado com suporte para arquivos trace. (No Windows, o Server de Debugging é chamado [**mysqld-debug**](mysqld.html "4.3.1 mysqld — The MySQL Server") em vez de [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").)
 
-Start the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server with a trace log in `/tmp/mysqld.trace` on Unix or `\mysqld.trace` on Windows:
+Inicie o Server [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com um log trace em `/tmp/mysqld.trace` no Unix ou `\mysqld.trace` no Windows:
 
 ```sql
 $> mysqld --debug
 ```
 
-On Windows, you should also use the [`--standalone`](server-options.html#option_mysqld_standalone) flag to not start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") as a service. In a console window, use this command:
+No Windows, você também deve usar o flag [`--standalone`](server-options.html#option_mysqld_standalone) para não iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") como um Service. Em uma janela console, use este comando:
 
 ```sql
 C:\> mysqld-debug --debug --standalone
 ```
 
-After this, you can use the `mysql.exe` command-line tool in a second console window to reproduce the problem. You can stop the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server with [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program").
+Depois disso, você pode usar a ferramenta de linha de comando `mysql.exe` em uma segunda janela console para reproduzir o problema. Você pode parar o Server [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program").
 
-The trace file can become **very large**! To generate a smaller trace file, you can use debugging options something like this:
+O arquivo trace pode se tornar **muito grande**! Para gerar um arquivo trace menor, você pode usar opções de debugging como estas:
 
 [**mysqld --debug=d,info,error,query,general,where:O,/tmp/mysqld.trace**](mysqld.html "4.3.1 mysqld — The MySQL Server")
 
-This only prints information with the most interesting tags to the trace file.
+Isso imprime apenas informações com as tags mais interessantes no arquivo trace.
 
-If you file a bug, please add only those lines from the trace file to the bug report that indicate where something seems to go wrong. If you cannot locate the wrong place, open a bug report and upload the whole trace file to the report, so that a MySQL developer can take a look at it. For instructions, see [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").
+Se você registrar um Bug, adicione ao Bug Report apenas as linhas do arquivo trace que indicam onde algo parece estar errado. Se você não conseguir localizar o local incorreto, abra um Bug Report e faça o upload de todo o arquivo trace para o relatório, para que um desenvolvedor MySQL possa analisá-lo. Para instruções, consulte [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").
 
-The trace file is made with the DBUG package by Fred Fish. See [Section 5.8.3, “The DBUG Package”](dbug-package.html "5.8.3 The DBUG Package").
+O arquivo trace é gerado com o pacote DBUG por Fred Fish. Consulte [Section 5.8.3, “The DBUG Package”](dbug-package.html "5.8.3 The DBUG Package").

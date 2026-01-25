@@ -1,14 +1,14 @@
-### 8.10.1 InnoDB Buffer Pool Optimization
+### 8.10.1 Otimização do InnoDB Buffer Pool
 
-`InnoDB` maintains a storage area called the buffer pool for caching data and indexes in memory. Knowing how the `InnoDB` buffer pool works, and taking advantage of it to keep frequently accessed data in memory, is an important aspect of MySQL tuning.
+O `InnoDB` mantém uma área de armazenamento chamada *buffer pool* para armazenar em cache dados e *indexes* na memória. Saber como o `InnoDB` Buffer Pool funciona e aproveitá-lo para manter dados acessados frequentemente na memória é um aspecto importante do *tuning* do MySQL.
 
-For an explanation of the inner workings of the `InnoDB` buffer pool, an overview of its LRU replacement algorithm, and general configuration information, see Section 14.5.1, “Buffer Pool”.
+Para uma explicação do funcionamento interno do `InnoDB` Buffer Pool, uma visão geral do seu algoritmo de substituição LRU e informações gerais de configuração, consulte a Seção 14.5.1, “Buffer Pool”.
 
-For additional `InnoDB` buffer pool configuration and tuning information, see these sections:
+Para informações adicionais de configuração e *tuning* do `InnoDB` Buffer Pool, consulte estas seções:
 
-* Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”")
-* Section 14.8.3.5, “Configuring Buffer Pool Flushing”
-* Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”
-* Section 14.8.3.2, “Configuring Multiple Buffer Pool Instances”
-* Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”
-* Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size”
+* Seção 14.8.3.4, “Configurando o Prefetching (Read-Ahead) do InnoDB Buffer Pool”
+* Seção 14.8.3.5, “Configurando o Flushing do Buffer Pool”
+* Seção 14.8.3.3, “Tornando o Buffer Pool Scan Resistant”
+* Seção 14.8.3.2, “Configurando Múltiplas Buffer Pool Instances”
+* Seção 14.8.3.6, “Salvando e Restaurando o Buffer Pool State”
+* Seção 14.8.3.1, “Configurando o Tamanho do InnoDB Buffer Pool”

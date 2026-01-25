@@ -1,137 +1,162 @@
-### 4.4.4 mysql_secure_installation — Improve MySQL Installation Security
+### 4.4.4 mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL
 
-This program enables you to improve the security of your MySQL installation in the following ways:
+Este programa permite que você melhore a segurança da sua instalação MySQL das seguintes maneiras:
 
-* You can set a password for `root` accounts.
-* You can remove `root` accounts that are accessible from outside the local host.
+* Você pode definir uma password para as contas `root`.
+* Você pode remover contas `root` que são acessíveis de fora do host local.
 
-* You can remove anonymous-user accounts.
-* You can remove the `test` database (which by default can be accessed by all users, even anonymous users), and privileges that permit anyone to access databases with names that start with `test_`.
+* Você pode remover contas de usuário anônimo.
+* Você pode remover o `test` database (que por padrão pode ser acessado por todos os usuários, até mesmo usuários anônimos), e privilégios que permitem que qualquer pessoa acesse Databases com nomes que começam com `test_`.
 
-**mysql_secure_installation** helps you implement security recommendations similar to those described at Section 2.9.4, “Securing the Initial MySQL Account”.
+**mysql_secure_installation** ajuda você a implementar recomendações de segurança semelhantes às descritas na Seção 2.9.4, “Securing the Initial MySQL Account”.
 
-Normal usage is to connect to the local MySQL server; invoke **mysql_secure_installation** without arguments:
+O uso normal é conectar-se ao servidor MySQL local; invoque **mysql_secure_installation** sem argumentos:
 
 ```sql
 mysql_secure_installation
 ```
 
-When executed, **mysql_secure_installation** prompts you to determine which actions to perform.
+Quando executado, **mysql_secure_installation** solicita que você determine quais ações executar.
 
-The `validate_password` plugin can be used for password strength checking. If the plugin is not installed, **mysql_secure_installation** prompts the user whether to install it. Any passwords entered later are checked using the plugin if it is enabled.
+O plugin `validate_password` pode ser usado para verificação da força da password. Se o plugin não estiver instalado, **mysql_secure_installation** solicita ao usuário se deseja instalá-lo. Qualquer password inserida posteriormente é verificada usando o plugin, caso esteja habilitado.
 
-Most of the usual MySQL client options such as `--host` and `--port` can be used on the command line and in option files. For example, to connect to the local server over IPv6 using port 3307, use this command:
+A maioria das opções usuais do client MySQL, como `--host` e `--port`, pode ser usada na linha de comando e em arquivos de opção. Por exemplo, para conectar-se ao servidor local via IPv6 usando a port 3307, use este comando:
 
 ```sql
 mysql_secure_installation --host=::1 --port=3307
 ```
 
-**mysql_secure_installation** supports the following options, which can be specified on the command line or in the `[mysql_secure_installation]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see Section 4.2.2.2, “Using Option Files”.
+**mysql_secure_installation** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql_secure_installation]` e `[client]` de um arquivo de opção. Para obter informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 4.2.2.2, “Using Option Files”.
 
-**Table 4.10 mysql_secure_installation Options**
+**Tabela 4.10 Opções de mysql_secure_installation**
 
-<table frame="box" rules="all" summary="Command-line options available for mysql_secure_installation."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th>--defaults-extra-file</th> <td>Read named option file in addition to usual option files</td> <td></td> </tr><tr><th>--defaults-file</th> <td>Read only named option file</td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Option group suffix value</td> <td></td> </tr><tr><th>--help</th> <td>Display help message and exit</td> <td></td> </tr><tr><th>--host</th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th>--no-defaults</th> <td>Read no option files</td> <td></td> </tr><tr><th>--password</th> <td>Accepted but always ignored. Whenever mysql_secure_installation is invoked, the user is prompted for a password, regardless</td> <td></td> </tr><tr><th>--port</th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th>--print-defaults</th> <td>Print default options</td> <td></td> </tr><tr><th>--protocol</th> <td>Transport protocol to use</td> <td></td> </tr><tr><th>--socket</th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th>--ssl</th> <td>Enable connection encryption</td> <td></td> </tr><tr><th>--ssl-ca</th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> </tr><tr><th>--ssl-cert</th> <td>File that contains X.509 certificate</td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Permissible ciphers for connection encryption</td> <td></td> </tr><tr><th>--ssl-crl</th> <td>File that contains certificate revocation lists</td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Directory that contains certificate revocation-list files</td> <td></td> </tr><tr><th>--ssl-key</th> <td>File that contains X.509 key</td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Desired security state of connection to server</td> <td>5.7.11</td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verify host name against server certificate Common Name identity</td> <td></td> </tr><tr><th>--tls-version</th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> </tr><tr><th>--use-default</th> <td>Execute with no user interactivity</td> <td></td> </tr><tr><th>--user</th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr></tbody></table>
+| Opção | Descrição | Introduzido em |
+| :--- | :--- | :--- |
+| `--defaults-extra-file` | Ler arquivo de opção nomeado além dos arquivos de opção usuais | |
+| `--defaults-file` | Ler apenas o arquivo de opção nomeado | |
+| `--defaults-group-suffix` | Valor do sufixo do grupo de opções | |
+| `--help` | Exibir mensagem de ajuda e sair | |
+| `--host` | Host onde o servidor MySQL está localizado | |
+| `--no-defaults` | Não ler arquivos de opção | |
+| `--password` | Aceita, mas sempre ignorada. Sempre que mysql_secure_installation é invocado, é solicitada uma password ao usuário, independentemente | |
+| `--port` | Número da port TCP/IP para conexão | |
+| `--print-defaults` | Imprimir opções padrão | |
+| `--protocol` | Protocolo de transporte a ser usado | |
+| `--socket` | Arquivo Unix socket ou named pipe do Windows a ser usado | |
+| `--ssl` | Habilitar a criptografia de conexão | |
+| `--ssl-ca` | Arquivo que contém a lista de Certificate Authorities SSL confiáveis | |
+| `--ssl-capath` | Diretório que contém arquivos de certificado de Certificate Authority SSL confiáveis | |
+| `--ssl-cert` | Arquivo que contém o certificado X.509 | |
+| `--ssl-cipher` | Cifras permitidas para criptografia de conexão | |
+| `--ssl-crl` | Arquivo que contém listas de revogação de certificado | |
+| `--ssl-crlpath` | Diretório que contém arquivos de lista de revogação de certificado | |
+| `--ssl-key` | Arquivo que contém a chave X.509 | |
+| `--ssl-mode` | Estado de segurança desejado da conexão com o servidor | 5.7.11 |
+| `--ssl-verify-server-cert` | Verificar o nome do host em relação à identidade Common Name do certificado do servidor | |
+| `--tls-version` | Protocolos TLS permitidos para conexões criptografadas | 5.7.10 |
+| `--use-default` | Executar sem interação do usuário | |
+| `--user` | Nome de usuário MySQL a ser usado ao conectar-se ao servidor | |
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Lê este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou for inacessível por qualquer outro motivo, ocorre um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opção, consulte a Seção 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
-  Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Usa apenas o arquivo de opção fornecido. Se o arquivo não existir ou for inacessível por qualquer outro motivo, ocorre um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opção, consulte a Seção 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql_secure_installation** normally reads the `[client]` and `[mysql_secure_installation]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql_secure_installation** also reads the `[client_other]` and `[mysql_secure_installation_other]` groups.
+  Lê não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo *`str`*. Por exemplo, **mysql_secure_installation** normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysql_secure_installation** também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opção, consulte a Seção 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para host"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--host</code></td> </tr></tbody></table>
 
-  Connect to the MySQL server on the given host.
+  Conecta-se ao servidor MySQL no host fornecido.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for no-defaults"><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-defaults"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--no-defaults</code></td> </tr></tbody></table>
 
-  Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
+  Não lê nenhum arquivo de opção. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opção, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as passwords sejam especificadas de maneira mais segura do que na linha de comando, mesmo quando `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Consulte a Seção 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opção, consulte a Seção 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--password=password`, `-p password`
 
-  <table frame="box" rules="all" summary="Properties for password"><tbody><tr><th>Command-Line Format</th> <td><code>--password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para password"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--password=password</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
-  This option is accepted but ignored. Whether or not this option is used, **mysql_secure_installation** always prompts the user for a password.
+  Esta opção é aceita, mas ignorada. Independentemente de esta opção ser usada ou não, **mysql_secure_installation** sempre solicita uma password ao usuário.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for port"><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para port"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--port=port_num</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>3306</code></td> </tr></tbody></table>
 
-  For TCP/IP connections, the port number to use.
+  Para conexões TCP/IP, o número da port a ser usado.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for print-defaults"><tbody><tr><th>Command-Line Format</th> <td><code>--print-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para print-defaults"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--print-defaults</code></td> </tr></tbody></table>
 
-  Print the program name and all options that it gets from option files.
+  Imprime o nome do programa e todas as opções que ele obtém dos arquivos de opção.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opção, consulte a Seção 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 4.2.5, “Connection Transport Protocols”.
+  O protocolo de transporte a ser usado para conectar-se ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente daquele que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Connection Transport Protocols”.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
+  Para conexões a `localhost`, o arquivo Unix socket a ser usado ou, no Windows, o nome do named pipe a ser usado.
 
-  On Windows, this option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
+  No Windows, esta opção se aplica apenas se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões named-pipe. Além disso, o usuário que faz a conexão deve ser membro do grupo Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--ssl*`
 
-  Options that begin with `--ssl` specify whether to connect to the server using encryption and indicate where to find SSL keys and certificates. See Command Options for Encrypted Connections.
+  Opções que começam com `--ssl` especificam se deve conectar-se ao servidor usando criptografia e indicam onde encontrar chaves e certificados SSL. Consulte Command Options for Encrypted Connections.
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
+  Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolo separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para obter detalhes, consulte a Seção 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
-  This option was added in MySQL 5.7.10.
+  Esta opção foi adicionada no MySQL 5.7.10.
 
 * `--use-default`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Execute noninteractively. This option can be used for unattended installation operations.
+  Executar sem interatividade. Esta opção pode ser usada para operações de instalação não assistidas.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The user name of the MySQL account to use for connecting to the server.
+  O nome de usuário da conta MySQL a ser usada para conectar-se ao servidor.

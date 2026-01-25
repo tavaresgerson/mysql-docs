@@ -1,6 +1,6 @@
-### 3.6.9 Using AUTO_INCREMENT
+### 3.6.9 Usando AUTO_INCREMENT
 
-The `AUTO_INCREMENT` attribute can be used to generate a unique identity for new rows:
+O atributo `AUTO_INCREMENT` pode ser usado para gerar uma identidade única para novas linhas (rows):
 
 ```sql
 CREATE TABLE animals (
@@ -16,7 +16,7 @@ INSERT INTO animals (name) VALUES
 SELECT * FROM animals;
 ```
 
-Which returns:
+O que retorna:
 
 ```sql
 +----+---------+
@@ -31,19 +31,19 @@ Which returns:
 +----+---------+
 ```
 
-No value was specified for the `AUTO_INCREMENT` column, so MySQL assigned sequence numbers automatically. You can also explicitly assign 0 to the column to generate sequence numbers, unless the [`NO_AUTO_VALUE_ON_ZERO`](sql-mode.html#sqlmode_no_auto_value_on_zero) SQL mode is enabled. For example:
+Nenhum valor foi especificado para a coluna `AUTO_INCREMENT`, então o MySQL atribuiu números de sequência automaticamente. Você também pode atribuir 0 explicitamente à coluna para gerar números de sequência, a menos que o SQL mode [`NO_AUTO_VALUE_ON_ZERO`](sql-mode.html#sqlmode_no_auto_value_on_zero) esteja habilitado. Por exemplo:
 
 ```sql
 INSERT INTO animals (id,name) VALUES(0,'groundhog');
 ```
 
-If the column is declared `NOT NULL`, it is also possible to assign `NULL` to the column to generate sequence numbers. For example:
+Se a coluna for declarada como `NOT NULL`, também é possível atribuir `NULL` à coluna para gerar números de sequência. Por exemplo:
 
 ```sql
 INSERT INTO animals (id,name) VALUES(NULL,'squirrel');
 ```
 
-When you insert any other value into an `AUTO_INCREMENT` column, the column is set to that value and the sequence is reset so that the next automatically generated value follows sequentially from the largest column value. For example:
+Quando você insere qualquer outro valor em uma coluna `AUTO_INCREMENT`, a coluna é definida com esse valor e a sequência é reiniciada de forma que o próximo valor gerado automaticamente siga sequencialmente o maior valor da coluna. Por exemplo:
 
 ```sql
 INSERT INTO animals (id,name) VALUES(100,'rabbit');
@@ -65,31 +65,31 @@ SELECT * FROM animals;
 +-----+-----------+
 ```
 
-Updating an existing `AUTO_INCREMENT` column value in an `InnoDB` table does not reset the `AUTO_INCREMENT` sequence as it does for `MyISAM` and `NDB` tables.
+Atualizar um valor de coluna `AUTO_INCREMENT` existente em uma tabela `InnoDB` não reinicia a sequência `AUTO_INCREMENT`, como acontece com as tabelas `MyISAM` e `NDB`.
 
-You can retrieve the most recent automatically generated `AUTO_INCREMENT` value with the [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) SQL function or the [`mysql_insert_id()`](/doc/c-api/5.7/en/mysql-insert-id.html) C API function. These functions are connection-specific, so their return values are not affected by another connection which is also performing inserts.
+Você pode recuperar o valor `AUTO_INCREMENT` gerado automaticamente mais recente com a função SQL [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) ou a função C API [`mysql_insert_id()`](/doc/c-api/5.7/en/mysql-insert-id.html). Essas funções são específicas da conexão (connection-specific), portanto, seus valores de retorno não são afetados por outra conexão que também esteja realizando INSERTs.
 
-Use the smallest integer data type for the `AUTO_INCREMENT` column that is large enough to hold the maximum sequence value you need. When the column reaches the upper limit of the data type, the next attempt to generate a sequence number fails. Use the `UNSIGNED` attribute if possible to allow a greater range. For example, if you use [`TINYINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), the maximum permissible sequence number is 127. For [`TINYINT UNSIGNED`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), the maximum is 255. See [Section 11.1.2, “Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT”](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") for the ranges of all the integer types.
+Use o menor tipo de dados integer para a coluna `AUTO_INCREMENT` que seja grande o suficiente para armazenar o valor máximo de sequência de que você precisa. Quando a coluna atinge o limite superior do tipo de dado, a próxima tentativa de gerar um número de sequência falha. Use o atributo `UNSIGNED`, se possível, para permitir um intervalo maior. Por exemplo, se você usar [`TINYINT`](integer-types.html "11.1.2 Tipos Integer (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), o número de sequência máximo permitido é 127. Para [`TINYINT UNSIGNED`](integer-types.html "11.1.2 Tipos Integer (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), o máximo é 255. Consulte [Seção 11.1.2, “Tipos Integer (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT”](integer-types.html "11.1.2 Tipos Integer (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") para ver os intervalos de todos os tipos integer.
 
-Note
+Nota
 
-For a multiple-row insert, [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) and [`mysql_insert_id()`](/doc/c-api/5.7/en/mysql-insert-id.html) actually return the `AUTO_INCREMENT` key from the *first* of the inserted rows. This enables multiple-row inserts to be reproduced correctly on other servers in a replication setup.
+Para um INSERT de múltiplas linhas, [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) e [`mysql_insert_id()`](/doc/c-api/5.7/en/mysql-insert-id.html) retornam, na verdade, a chave `AUTO_INCREMENT` da *primeira* das linhas inseridas. Isso permite que INSERTs de múltiplas linhas sejam reproduzidos corretamente em outros servidores em uma configuração de replication.
 
-To start with an `AUTO_INCREMENT` value other than 1, set that value with [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), like this:
+Para começar com um valor `AUTO_INCREMENT` diferente de 1, defina esse valor usando [`CREATE TABLE`](create-table.html "13.1.18 Instrução CREATE TABLE") ou [`ALTER TABLE`](alter-table.html "13.1.8 Instrução ALTER TABLE"), desta forma:
 
 ```sql
 mysql> ALTER TABLE tbl AUTO_INCREMENT = 100;
 ```
 
-#### InnoDB Notes
+#### Notas do InnoDB
 
-For information about `AUTO_INCREMENT` usage specific to `InnoDB`, see [Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB").
+Para obter informações sobre o uso de `AUTO_INCREMENT` específico do `InnoDB`, consulte [Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB").
 
-#### MyISAM Notes
+#### Notas do MyISAM
 
-* For `MyISAM` tables, you can specify `AUTO_INCREMENT` on a secondary column in a multiple-column index. In this case, the generated value for the `AUTO_INCREMENT` column is calculated as [`MAX(auto_increment_column)
+* Para tabelas `MyISAM`, você pode especificar `AUTO_INCREMENT` em uma coluna secundária em um Index de múltiplas colunas. Neste caso, o valor gerado para a coluna `AUTO_INCREMENT` é calculado como [`MAX(auto_increment_column)
 
-  + 1 WHERE prefix=given-prefix`](aggregate-functions.html#function_max). This is useful when you want to put data into ordered groups.
+  + 1 WHERE prefix=given-prefix`](aggregate-functions.html#function_max). Isso é útil quando você deseja agrupar dados em grupos ordenados.
 
   ```sql
   CREATE TABLE animals (
@@ -107,7 +107,7 @@ For information about `AUTO_INCREMENT` usage specific to `InnoDB`, see [Section�
   SELECT * FROM animals ORDER BY grp,id;
   ```
 
-  Which returns:
+  O que retorna:
 
   ```sql
   +--------+----+---------+
@@ -122,23 +122,23 @@ For information about `AUTO_INCREMENT` usage specific to `InnoDB`, see [Section�
   +--------+----+---------+
   ```
 
-  In this case (when the `AUTO_INCREMENT` column is part of a multiple-column index), `AUTO_INCREMENT` values are reused if you delete the row with the biggest `AUTO_INCREMENT` value in any group. This happens even for `MyISAM` tables, for which `AUTO_INCREMENT` values normally are not reused.
+  Neste caso (quando a coluna `AUTO_INCREMENT` faz parte de um Index de múltiplas colunas), os valores `AUTO_INCREMENT` são reutilizados se você excluir a row com o maior valor `AUTO_INCREMENT` em qualquer grupo. Isso acontece mesmo para tabelas `MyISAM`, para as quais os valores `AUTO_INCREMENT` normalmente não são reutilizados.
 
-* If the `AUTO_INCREMENT` column is part of multiple indexes, MySQL generates sequence values using the index that begins with the `AUTO_INCREMENT` column, if there is one. For example, if the `animals` table contained indexes `PRIMARY KEY (grp, id)` and `INDEX (id)`, MySQL would ignore the `PRIMARY KEY` for generating sequence values. As a result, the table would contain a single sequence, not a sequence per `grp` value.
+* Se a coluna `AUTO_INCREMENT` fizer parte de múltiplos Indexes, o MySQL gera valores de sequência usando o Index que começa com a coluna `AUTO_INCREMENT`, se houver. Por exemplo, se a tabela `animals` contivesse os Indexes `PRIMARY KEY (grp, id)` e `INDEX (id)`, o MySQL ignoraria a `PRIMARY KEY` para gerar valores de sequência. Como resultado, a tabela conteria uma única sequência, e não uma sequência por valor de `grp`.
 
-#### Further Reading
+#### Leitura Adicional
 
-More information about `AUTO_INCREMENT` is available here:
+Mais informações sobre `AUTO_INCREMENT` estão disponíveis aqui:
 
-* How to assign the `AUTO_INCREMENT` attribute to a column: [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), and [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement").
+* Como atribuir o atributo `AUTO_INCREMENT` a uma coluna: [Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html "13.1.18 CREATE TABLE Statement"), e [Seção 13.1.8, “Instrução ALTER TABLE”](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-* How `AUTO_INCREMENT` behaves depending on the [`NO_AUTO_VALUE_ON_ZERO`](sql-mode.html#sqlmode_no_auto_value_on_zero) SQL mode: [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+* Como o `AUTO_INCREMENT` se comporta dependendo do SQL mode [`NO_AUTO_VALUE_ON_ZERO`](sql-mode.html#sqlmode_no_auto_value_on_zero): [Seção 5.1.10, “SQL Modes do Servidor”](sql-mode.html "5.1.10 Server SQL Modes").
 
-* How to use the [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) function to find the row that contains the most recent `AUTO_INCREMENT` value: [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions").
+* Como usar a função [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) para encontrar a row que contém o valor `AUTO_INCREMENT` mais recente: [Seção 12.15, “Funções de Informação”](information-functions.html "12.15 Information Functions").
 
-* Setting the `AUTO_INCREMENT` value to be used: [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+* Definindo o valor `AUTO_INCREMENT` a ser usado: [Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Server System Variables").
 
-* [Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
-* `AUTO_INCREMENT` and replication: [Section 16.4.1.1, “Replication and AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT").
+* [Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
+* `AUTO_INCREMENT` e replication: [Seção 16.4.1.1, “Replication e AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT").
 
-* Server-system variables related to `AUTO_INCREMENT` ([`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) and [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset)) that can be used for replication: [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+* Variáveis de sistema do servidor relacionadas a `AUTO_INCREMENT` ([`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) e [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset)) que podem ser usadas para replication: [Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Server System Variables").

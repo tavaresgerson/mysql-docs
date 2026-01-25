@@ -1,40 +1,40 @@
-#### 8.10.3.1 How the Query Cache Operates
+#### 8.10.3.1 Como o Query Cache Opera
 
-Note
+Nota
 
-The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0.
+O query cache está descontinuado desde o MySQL 5.7.20 e foi removido no MySQL 8.0.
 
-This section describes how the query cache works when it is operational. Section 8.10.3.3, “Query Cache Configuration”, describes how to control whether it is operational.
+Esta seção descreve como o query cache funciona quando está operacional. A Seção 8.10.3.3, “Query Cache Configuration”, descreve como controlar se ele deve estar operacional.
 
-Incoming queries are compared to those in the query cache before parsing, so the following two queries are regarded as different by the query cache:
+As Queries de entrada são comparadas com as que estão no query cache antes da análise (parsing), de modo que as duas Queries a seguir são consideradas diferentes pelo query cache:
 
 ```sql
 SELECT * FROM tbl_name
 Select * from tbl_name
 ```
 
-Queries must be *exactly* the same (byte for byte) to be seen as identical. In addition, query strings that are identical may be treated as different for other reasons. Queries that use different databases, different protocol versions, or different default character sets are considered different queries and are cached separately.
+As Queries devem ser *exatamente* iguais (byte por byte) para serem consideradas idênticas. Além disso, strings de Query idênticas podem ser tratadas como diferentes por outros motivos. Queries que usam Databases diferentes, versões de protocolo diferentes ou conjuntos de caracteres (character sets) padrão diferentes são consideradas Queries distintas e são armazenadas em cache separadamente.
 
-The cache is not used for queries of the following types:
+O cache não é usado para Queries dos seguintes tipos:
 
-* Queries that are a subquery of an outer query
-* Queries executed within the body of a stored function, trigger, or event
+* Queries que são uma subquery de uma Query externa
+* Queries executadas dentro do corpo de uma stored function, trigger ou event
 
-Before a query result is fetched from the query cache, MySQL checks whether the user has `SELECT` privilege for all databases and tables involved. If this is not the case, the cached result is not used.
+Antes que um resultado de Query seja buscado no query cache, o MySQL verifica se o usuário tem o privilégio `SELECT` para todos os Databases e Tables envolvidos. Se este não for o caso, o resultado em cache não é usado.
 
-If a query result is returned from query cache, the server increments the `Qcache_hits` status variable, not `Com_select`. See Section 8.10.3.4, “Query Cache Status and Maintenance”.
+Se um resultado de Query for retornado do query cache, o servidor incrementa a variável de status `Qcache_hits`, e não a `Com_select`. Consulte a Seção 8.10.3.4, “Query Cache Status and Maintenance”.
 
-If a table changes, all cached queries that use the table become invalid and are removed from the cache. This includes queries that use `MERGE` tables that map to the changed table. A table can be changed by many types of statements, such as `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE TABLE`, `ALTER TABLE`, `DROP TABLE`, or `DROP DATABASE`.
+Se uma Table mudar, todas as Queries em cache que usam essa Table tornam-se inválidas e são removidas do cache. Isso inclui Queries que usam Tables `MERGE` mapeadas para a Table alterada. Uma Table pode ser alterada por muitos tipos de statements, como `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE TABLE`, `ALTER TABLE`, `DROP TABLE` ou `DROP DATABASE`.
 
-The query cache also works within transactions when using `InnoDB` tables.
+O query cache também funciona dentro de transactions ao usar Tables `InnoDB`.
 
-The result from a `SELECT` query on a view is cached.
+O resultado de uma Query `SELECT` em uma view é armazenado em cache.
 
-The query cache works for `SELECT SQL_CALC_FOUND_ROWS ...` queries and stores a value that is returned by a following `SELECT FOUND_ROWS()` query. `FOUND_ROWS()` returns the correct value even if the preceding query was fetched from the cache because the number of found rows is also stored in the cache. The `SELECT FOUND_ROWS()` query itself cannot be cached.
+O query cache funciona para Queries `SELECT SQL_CALC_FOUND_ROWS ...` e armazena um valor que é retornado por uma Query `SELECT FOUND_ROWS()` subsequente. `FOUND_ROWS()` retorna o valor correto mesmo se a Query anterior foi buscada do cache, pois o número de linhas encontradas também é armazenado no cache. A Query `SELECT FOUND_ROWS()` em si não pode ser armazenada em cache.
 
-Prepared statements that are issued using the binary protocol using `mysql_stmt_prepare()` and `mysql_stmt_execute()` (see C API Prepared Statement Interface), are subject to limitations on caching. Comparison with statements in the query cache is based on the text of the statement after expansion of `?` parameter markers. The statement is compared only with other cached statements that were executed using the binary protocol. That is, for query cache purposes, prepared statements issued using the binary protocol are distinct from prepared statements issued using the text protocol (see Section 13.5, “Prepared Statements”).
+Prepared statements (declarações preparadas) que são emitidas usando o protocolo binário, utilizando `mysql_stmt_prepare()` e `mysql_stmt_execute()` (consulte C API Prepared Statement Interface), estão sujeitas a limitações no caching. A comparação com statements no query cache é baseada no texto do statement após a expansão dos marcadores de parâmetro (`?` parameter markers). O statement é comparado apenas com outros statements em cache que foram executados usando o protocolo binário. Ou seja, para fins de query cache, prepared statements emitidos usando o protocolo binário são distintos de prepared statements emitidos usando o protocolo de texto (consulte a Seção 13.5, “Prepared Statements”).
 
-A query cannot be cached if it uses any of the following functions:
+Uma Query não pode ser armazenada em cache se usar qualquer uma das seguintes funções:
 
 * `AES_DECRYPT()`
 * `AES_ENCRYPT()`
@@ -48,7 +48,7 @@ A query cannot be cached if it uses any of the following functions:
 * `CURRENT_USER()`
 * `CURTIME()`
 * `DATABASE()`
-* `ENCRYPT()` with one parameter
+* `ENCRYPT()` com um parâmetro
 
 * `FOUND_ROWS()`
 * `GET_LOCK()`
@@ -65,21 +65,21 @@ A query cannot be cached if it uses any of the following functions:
 * `RELEASE_LOCK()`
 * `SLEEP()`
 * `SYSDATE()`
-* `UNIX_TIMESTAMP()` with no parameters
+* `UNIX_TIMESTAMP()` sem parâmetros
 
 * `USER()`
 * `UUID()`
 * `UUID_SHORT()`
 
-A query also is not cached under these conditions:
+Uma Query também não é armazenada em cache sob estas condições:
 
-* It refers to loadable functions or stored functions.
-* It refers to user variables or local stored program variables.
+* Ela se refere a funções carregáveis (loadable functions) ou stored functions.
+* Ela se refere a variáveis de usuário (user variables) ou variáveis locais de programa armazenado.
 
-* It refers to tables in the `mysql`, `INFORMATION_SCHEMA`, or `performance_schema` database.
+* Ela se refere a Tables nos Databases `mysql`, `INFORMATION_SCHEMA` ou `performance_schema`.
 
-* It refers to any partitioned tables.
-* It is of any of the following forms:
+* Ela se refere a quaisquer Tables particionadas.
+* Está em qualquer uma das seguintes formas:
 
   ```sql
   SELECT ... LOCK IN SHARE MODE
@@ -89,11 +89,11 @@ A query also is not cached under these conditions:
   SELECT * FROM ... WHERE autoincrement_col IS NULL
   ```
 
-  The last form is not cached because it is used as the ODBC workaround for obtaining the last insert ID value. See the Connector/ODBC section of Chapter 27, *Connectors and APIs*.
+  A última forma não é armazenada em cache porque é usada como solução alternativa (workaround) do ODBC para obter o valor do last insert ID. Consulte a seção Connector/ODBC do Capítulo 27, *Connectors and APIs*.
 
-  Statements within transactions that use `SERIALIZABLE` isolation level also cannot be cached because they use `LOCK IN SHARE MODE` locking.
+  Statements dentro de transactions que usam o nível de isolamento `SERIALIZABLE` também não podem ser armazenados em cache porque utilizam locking `LOCK IN SHARE MODE`.
 
-* It uses `TEMPORARY` tables.
-* It does not use any tables.
-* It generates warnings.
-* The user has a column-level privilege for any of the involved tables.
+* Ela usa `TEMPORARY` tables.
+* Ela não usa nenhuma Table.
+* Ela gera avisos (warnings).
+* O usuário tem um privilégio de nível de coluna para qualquer uma das Tables envolvidas.

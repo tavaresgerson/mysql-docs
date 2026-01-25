@@ -1,6 +1,6 @@
-#### 5.1.12.1 Verifying System Support for IPv6
+#### 5.1.12.1 Verificando o Suporte do Sistema para IPv6
 
-Before MySQL Server can accept IPv6 connections, the operating system on your server host must support IPv6. As a simple test to determine whether that is true, try this command:
+Antes que o MySQL Server possa aceitar conexões IPv6, o *operating system* (sistema operacional) no seu *host* de servidor deve suportar IPv6. Como um teste simples para determinar se isso é verdade, tente este comando:
 
 ```sql
 $> ping6 ::1
@@ -9,17 +9,14 @@ $> ping6 ::1
 ...
 ```
 
-To produce a description of your system's network interfaces, invoke **ifconfig -a** and look for IPv6 addresses in the output.
+Para produzir uma descrição das *interfaces* de rede do seu sistema, invoque **ifconfig -a** e procure por *IPv6 addresses* na saída.
 
-If your host does not support IPv6, consult your system documentation for instructions on enabling it. It might be that you need only reconfigure an existing network interface to add an IPv6 address. Or a more extensive change might be needed, such as rebuilding the kernel with IPv6 options enabled.
+Se o seu *host* não suporta IPv6, consulte a documentação do seu sistema para obter instruções sobre como habilitá-lo. Pode ser que você precise apenas reconfigurar uma *network interface* existente para adicionar um *IPv6 address*. Ou pode ser necessária uma mudança mais extensa, como reconstruir o *kernel* com as opções de IPv6 habilitadas.
 
-These links may be helpful in setting up IPv6 on various platforms:
+Estes links podem ser úteis para configurar o IPv6 em várias plataformas:
 
 * [Windows](https://msdn.microsoft.com/en-us/library/dd163569.aspx)
 * [Gentoo Linux](http://www.gentoo.org/doc/en/ipv6.xml)
-
 * [Ubuntu Linux](https://wiki.ubuntu.com/IPv6)
-
 * [Linux (Generic)](http://www.tldp.org/HOWTO/Linux+IPv6-HOWTO/)
-
 * [macOS](https://support.apple.com/en-us/HT202237)

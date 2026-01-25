@@ -1,26 +1,26 @@
-### 4.6.1 innochecksum — Offline InnoDB File Checksum Utility
+### 4.6.1 innochecksum — Utilitário Offline de Checksum para Arquivos InnoDB
 
-**innochecksum** prints checksums for `InnoDB` files. This tool reads an `InnoDB` tablespace file, calculates the checksum for each page, compares the calculated checksum to the stored checksum, and reports mismatches, which indicate damaged pages. It was originally developed to speed up verifying the integrity of tablespace files after power outages but can also be used after file copies. Because checksum mismatches cause `InnoDB` to deliberately shut down a running server, it may be preferable to use this tool rather than waiting for an in-production server to encounter the damaged pages.
+**innochecksum** imprime Checksums para arquivos `InnoDB`. Essa ferramenta lê um arquivo de tablespace `InnoDB`, calcula o Checksum para cada Page, compara o Checksum calculado com o Checksum armazenado e reporta incompatibilidades (*mismatches*), que indicam Pages danificadas. Foi originalmente desenvolvida para acelerar a verificação da integridade de arquivos de tablespace após quedas de energia, mas também pode ser usada após cópias de arquivos. Como incompatibilidades de Checksum fazem com que o `InnoDB` desligue propositalmente um servidor em execução, pode ser preferível usar esta ferramenta em vez de esperar que um servidor em produção encontre as Pages danificadas.
 
-**innochecksum** cannot be used on tablespace files that the server already has open. For such files, you should use `CHECK TABLE` to check tables within the tablespace. Attempting to run **innochecksum** on a tablespace that the server already has open results in an Unable to lock file error.
+**innochecksum** não pode ser usado em arquivos de tablespace que o servidor já abriu. Para tais arquivos, você deve usar `CHECK TABLE` para verificar tabelas dentro do tablespace. Tentar executar **innochecksum** em um tablespace que o servidor já tem aberto resulta em um erro `Unable to lock file`.
 
-If checksum mismatches are found, restore the tablespace from backup or start the server and attempt to use **mysqldump** to make a backup of the tables within the tablespace.
+Se forem encontradas incompatibilidades de Checksum, restaure o tablespace a partir do backup ou inicie o servidor e tente usar **mysqldump** para fazer um backup das tabelas dentro do tablespace.
 
-Invoke **innochecksum** like this:
+Invoque **innochecksum** desta forma:
 
 ```sql
 innochecksum [options] file_name
 ```
 
-#### innochecksum Options
+#### Opções do innochecksum
 
-**innochecksum** supports the following options. For options that refer to page numbers, the numbers are zero-based.
+**innochecksum** suporta as seguintes opções. Para opções que se referem a números de Page, os números são baseados em zero.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--help</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Displays command line help. Example usage:
+  Exibe a ajuda da linha de comando. Exemplo de uso:
 
   ```sql
   innochecksum --help
@@ -28,9 +28,9 @@ innochecksum [options] file_name
 
 * `--info`, `-I`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para info"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--info</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Synonym for `--help`. Displays command line help. Example usage:
+  Sinônimo para `--help`. Exibe a ajuda da linha de comando. Exemplo de uso:
 
   ```sql
   innochecksum --info
@@ -38,9 +38,9 @@ innochecksum [options] file_name
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for version"><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--version</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Displays version information. Example usage:
+  Exibe informações de versão. Exemplo de uso:
 
   ```sql
   innochecksum --version
@@ -48,33 +48,33 @@ innochecksum [options] file_name
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--verbose</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Verbose mode; prints a progress indicator to the log file every five seconds. In order for the progress indicator to be printed, the log file must be specified using the `--log option`. To turn on `verbose` mode, run:
+  Modo Verbose (detalhado); imprime um indicador de progresso no arquivo de log a cada cinco segundos. Para que o indicador de progresso seja impresso, o arquivo de log deve ser especificado usando a opção `--log`. Para ativar o modo `verbose`, execute:
 
   ```sql
   innochecksum --verbose
   ```
 
-  To turn off verbose mode, run:
+  Para desativar o modo verbose, execute:
 
   ```sql
   innochecksum --verbose=FALSE
   ```
 
-  The `--verbose` option and `--log` option can be specified at the same time. For example:
+  As opções `--verbose` e `--log` podem ser especificadas ao mesmo tempo. Por exemplo:
 
   ```sql
   innochecksum --verbose --log=/var/lib/mysql/test/logtest.txt
   ```
 
-  To locate the progress indicator information in the log file, you can perform the following search:
+  Para localizar as informações do indicador de progresso no arquivo de log, você pode realizar a seguinte busca:
 
   ```sql
   cat ./logtest.txt | grep -i "okay"
   ```
 
-  The progress indicator information in the log file appears similar to the following:
+  As informações do indicador de progresso no arquivo de log aparecem de forma semelhante ao seguinte:
 
   ```sql
   page 1663 okay: 2.863% done
@@ -93,9 +93,9 @@ innochecksum [options] file_name
 
 * `--count`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for count"><tbody><tr><th>Command-Line Format</th> <td><code>--count</code></td> </tr><tr><th>Type</th> <td>Base name</td> </tr><tr><th>Default Value</th> <td><code>true</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para count"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--count</code></td> <td>Nome Base</td> <td><code>true</code></td> </tr></tbody></table>
 
-  Print a count of the number of pages in the file and exit. Example usage:
+  Imprime a contagem do número de Pages no arquivo e sai. Exemplo de uso:
 
   ```sql
   innochecksum --count ../data/test/tab1.ibd
@@ -103,15 +103,15 @@ innochecksum [options] file_name
 
 * `--start-page=num`, `-s num`
 
-  <table frame="box" rules="all" summary="Properties for start-page"><tbody><tr><th>Command-Line Format</th> <td><code>--start-page=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para start-page"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--start-page=#</code></td> <td>Numérico</td> <td><code>0</code></td> </tr></tbody></table>
 
-  Start at this page number. Example usage:
+  Começa neste número de Page. Exemplo de uso:
 
   ```sql
   innochecksum --start-page=600 ../data/test/tab1.ibd
   ```
 
-  or:
+  ou:
 
   ```sql
   innochecksum -s 600 ../data/test/tab1.ibd
@@ -119,15 +119,15 @@ innochecksum [options] file_name
 
 * `--end-page=num`, `-e num`
 
-  <table frame="box" rules="all" summary="Properties for end-page"><tbody><tr><th>Command-Line Format</th> <td><code>--end-page=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para end-page"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> <th>Valor Mínimo</th> <th>Valor Máximo</th> </tr></thead><tbody><tr><td><code>--end-page=#</code></td> <td>Numérico</td> <td><code>0</code></td> <td><code>0</code></td> <td><code>18446744073709551615</code></td> </tr></tbody></table>
 
-  End at this page number. Example usage:
+  Termina neste número de Page. Exemplo de uso:
 
   ```sql
   innochecksum --end-page=700 ../data/test/tab1.ibd
   ```
 
-  or:
+  ou:
 
   ```sql
   innochecksum --p 700 ../data/test/tab1.ibd
@@ -135,9 +135,9 @@ innochecksum [options] file_name
 
 * `--page=num`, `-p num`
 
-  <table frame="box" rules="all" summary="Properties for page"><tbody><tr><th>Command-Line Format</th> <td><code>--page=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para page"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--page=#</code></td> <td>Inteiro</td> <td><code>0</code></td> </tr></tbody></table>
 
-  Check only this page number. Example usage:
+  Verifica apenas este número de Page. Exemplo de uso:
 
   ```sql
   innochecksum --page=701 ../data/test/tab1.ibd
@@ -145,39 +145,39 @@ innochecksum [options] file_name
 
 * `--strict-check`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for strict-check"><tbody><tr><th>Command-Line Format</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>crc32</code></td> </tr><tr><th>Valid Values</th> <td><p><code>innodb</code></p><p><code>crc32</code></p><p><code>none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para strict-check"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> <th>Valores Válidos</th> </tr></thead><tbody><tr><td><code>--strict-check=algorithm</code></td> <td>Enumeração</td> <td><code>crc32</code></td> <td><p><code>innodb</code></p><p><code>crc32</code></p><p><code>none</code></p></td> </tr></tbody></table>
 
-  Specify a strict checksum algorithm. Options include `innodb`, `crc32`, and `none`.
+  Especifica um algoritmo de Checksum estrito. As opções incluem `innodb`, `crc32` e `none`.
 
-  In this example, the `innodb` checksum algorithm is specified:
+  Neste exemplo, o algoritmo de Checksum `innodb` é especificado:
 
   ```sql
   innochecksum --strict-check=innodb ../data/test/tab1.ibd
   ```
 
-  In this example, the `crc32` checksum algorithm is specified:
+  Neste exemplo, o algoritmo de Checksum `crc32` é especificado:
 
   ```sql
   innochecksum -C crc32 ../data/test/tab1.ibd
   ```
 
-  The following conditions apply:
+  As seguintes condições se aplicam:
 
-  + If you do not specify the `--strict-check` option, **innochecksum** validates against `innodb`, `crc32` and `none`.
+  + Se você não especificar a opção `--strict-check`, **innochecksum** valida contra `innodb`, `crc32` e `none`.
 
-  + If you specify the `none` option, only checksums generated by `none` are allowed.
+  + Se você especificar a opção `none`, apenas Checksums gerados por `none` são permitidos.
 
-  + If you specify the `innodb` option, only checksums generated by `innodb` are allowed.
+  + Se você especificar a opção `innodb`, apenas Checksums gerados por `innodb` são permitidos.
 
-  + If you specify the `crc32` option, only checksums generated by `crc32` are allowed.
+  + Se você especificar a opção `crc32`, apenas Checksums gerados por `crc32` são permitidos.
 
 * `--no-check`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for no-check"><tbody><tr><th>Command-Line Format</th> <td><code>--no-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-check"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--no-check</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Ignore the checksum verification when rewriting a checksum. This option may only be used with the **innochecksum** `--write` option. If the `--write` option is not specified, **innochecksum** terminates.
+  Ignora a verificação do Checksum ao reescrever um Checksum. Esta opção só pode ser usada com a opção `--write` do **innochecksum**. Se a opção `--write` não for especificada, **innochecksum** é encerrado.
 
-  In this example, an `innodb` checksum is rewritten to replace an invalid checksum:
+  Neste exemplo, um Checksum `innodb` é reescrito para substituir um Checksum inválido:
 
   ```sql
   innochecksum --no-check --write innodb ../data/test/tab1.ibd
@@ -185,43 +185,43 @@ innochecksum [options] file_name
 
 * `--allow-mismatches`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para info"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--info</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  The maximum number of checksum mismatches allowed before **innochecksum** terminates. The default setting is 0. If `--allow-mismatches=`*`N`*, where `N>=0`, *`N`* mismatches are permitted and **innochecksum** terminates at `N+1`. When `--allow-mismatches` is set to 0, **innochecksum** terminates on the first checksum mismatch.
+  O número máximo de incompatibilidades de Checksum permitidas antes que o **innochecksum** seja encerrado. A configuração padrão é 0. Se `--allow-mismatches=`*`N`*, onde `N>=0`, *`N`* incompatibilidades são permitidas e **innochecksum** é encerrado em `N+1`. Quando `--allow-mismatches` é definido como 0, **innochecksum** é encerrado na primeira incompatibilidade de Checksum.
 
-  In this example, an existing `innodb` checksum is rewritten to set `--allow-mismatches` to 1.
+  Neste exemplo, um Checksum `innodb` existente é reescrito para definir `--allow-mismatches` como 1.
 
   ```sql
   innochecksum --allow-mismatches=1 --write innodb ../data/test/tab1.ibd
   ```
 
-  With `--allow-mismatches` set to 1, if there is a mismatch at page 600 and another at page 700 on a file with 1000 pages, the checksum is updated for pages 0-599 and 601-699. Because `--allow-mismatches` is set to 1, the checksum tolerates the first mismatch and terminates on the second mismatch, leaving page 600 and pages 700-999 unchanged.
+  Com `--allow-mismatches` definido como 1, se houver uma incompatibilidade na Page 600 e outra na Page 700 em um arquivo com 1000 Pages, o Checksum é atualizado para as Pages 0-599 e 601-699. Como `--allow-mismatches` está definido como 1, o Checksum tolera a primeira incompatibilidade e é encerrado na segunda, deixando a Page 600 e as Pages 700-999 inalteradas.
 
 * `--write=name`, `-w num`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para info"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--info</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Rewrite a checksum. When rewriting an invalid checksum, the `--no-check` option must be used together with the `--write` option. The `--no-check` option tells **innochecksum** to ignore verification of the invalid checksum. You do not have to specify the `--no-check` option if the current checksum is valid.
+  Reescreve um Checksum. Ao reescrever um Checksum inválido, a opção `--no-check` deve ser usada juntamente com a opção `--write`. A opção `--no-check` instrui o **innochecksum** a ignorar a verificação do Checksum inválido. Você não precisa especificar a opção `--no-check` se o Checksum atual for válido.
 
-  An algorithm must be specified when using the `--write` option. Possible values for the `--write` option are:
+  Um algoritmo deve ser especificado ao usar a opção `--write`. Os valores possíveis para a opção `--write` são:
 
-  + `innodb`: A checksum calculated in software, using the original algorithm from `InnoDB`.
+  + `innodb`: Um Checksum calculado em software, usando o algoritmo original do `InnoDB`.
 
-  + `crc32`: A checksum calculated using the `crc32` algorithm, possibly done with a hardware assist.
+  + `crc32`: Um Checksum calculado usando o algoritmo `crc32`, possivelmente feito com assistência de hardware.
 
-  + `none`: A constant number.
+  + `none`: Um número constante.
 
-  The `--write` option rewrites entire pages to disk. If the new checksum is identical to the existing checksum, the new checksum is not written to disk in order to minimize I/O.
+  A opção `--write` reescreve Pages inteiras no disco. Se o novo Checksum for idêntico ao Checksum existente, o novo Checksum não é escrito no disco para minimizar I/O.
 
-  **innochecksum** obtains an exclusive lock when the `--write` option is used.
+  **innochecksum** obtém um Lock exclusivo quando a opção `--write` é usada.
 
-  In this example, a `crc32` checksum is written for `tab1.ibd`:
+  Neste exemplo, um Checksum `crc32` é escrito para `tab1.ibd`:
 
   ```sql
   innochecksum -w crc32 ../data/test/tab1.ibd
   ```
 
-  In this example, a `crc32` checksum is rewritten to replace an invalid `crc32` checksum:
+  Neste exemplo, um Checksum `crc32` é reescrito para substituir um Checksum `crc32` inválido:
 
   ```sql
   innochecksum --no-check --write crc32 ../data/test/tab1.ibd
@@ -229,15 +229,15 @@ innochecksum [options] file_name
 
 * `--page-type-summary`, `-S`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para info"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--info</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Display a count of each page type in a tablespace. Example usage:
+  Exibe uma contagem de cada tipo de Page em um tablespace. Exemplo de uso:
 
   ```sql
   innochecksum --page-type-summary ../data/test/tab1.ibd
   ```
 
-  Sample output for `--page-type-summary`:
+  Exemplo de saída para `--page-type-summary`:
 
   ```sql
   File::../data/test/tab1.ibd
@@ -265,9 +265,9 @@ innochecksum [options] file_name
 
 * `--page-type-dump`, `-D`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para info"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--info</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Dump the page type information for each page in a tablespace to `stderr` or `stdout`. Example usage:
+  Despeja as informações do tipo de Page para cada Page em um tablespace para `stderr` ou `stdout`. Exemplo de uso:
 
   ```sql
   innochecksum --page-type-dump=/tmp/a.txt ../data/test/tab1.ibd
@@ -275,59 +275,59 @@ innochecksum [options] file_name
 
 * `--log`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para info"><thead><tr><th>Formato da Linha de Comando</th> <th>Tipo</th> <th>Valor Padrão</th> </tr></thead><tbody><tr><td><code>--info</code></td> <td>Booleano</td> <td><code>false</code></td> </tr></tbody></table>
 
-  Log output for the **innochecksum** tool. A log file name must be provided. Log output contains checksum values for each tablespace page. For uncompressed tables, LSN values are also provided. The `--log` replaces the `--debug` option, which was available in earlier releases. Example usage:
+  Saída de log para a ferramenta **innochecksum**. Um nome de arquivo de log deve ser fornecido. A saída de log contém valores de Checksum para cada Page do tablespace. Para tabelas não compactadas, os valores LSN também são fornecidos. O `--log` substitui a opção `--debug`, que estava disponível em releases anteriores. Exemplo de uso:
 
   ```sql
   innochecksum --log=/tmp/log.txt ../data/test/tab1.ibd
   ```
 
-  or:
+  ou:
 
   ```sql
   innochecksum -l /tmp/log.txt ../data/test/tab1.ibd
   ```
 
-* `-` option.
+* Opção `-`.
 
-  Specify the `-` option to read from standard input. If the `-` option is missing when “read from standard in” is expected, **innochecksum** prints **innochecksum** usage information indicating that the “-” option was omitted. Example usages:
+  Especifique a opção `-` para ler da entrada padrão (standard input). Se a opção `-` estiver ausente quando for esperado “leitura da entrada padrão”, **innochecksum** imprime informações de uso do **innochecksum** indicando que a opção “-” foi omitida. Exemplos de uso:
 
   ```sql
   cat t1.ibd | innochecksum -
   ```
 
-  In this example, **innochecksum** writes the `crc32` checksum algorithm to `a.ibd` without changing the original `t1.ibd` file.
+  Neste exemplo, **innochecksum** escreve o algoritmo de Checksum `crc32` para `a.ibd` sem alterar o arquivo original `t1.ibd`.
 
   ```sql
   cat t1.ibd | innochecksum --write=crc32 - > a.ibd
   ```
 
-#### Running innochecksum on Multiple User-defined Tablespace Files
+#### Executando innochecksum em Múltiplos Arquivos de Tablespace Definidos pelo Usuário
 
-The following examples demonstrate how to run **innochecksum** on multiple user-defined tablespace files (`.ibd` files).
+Os exemplos a seguir demonstram como executar **innochecksum** em múltiplos arquivos de tablespace definidos pelo usuário (arquivos `.ibd`).
 
-Run **innochecksum** for all tablespace (`.ibd`) files in the “test” database:
+Execute **innochecksum** para todos os arquivos de tablespace (`.ibd`) no Database “test”:
 
 ```sql
 innochecksum ./data/test/*.ibd
 ```
 
-Run **innochecksum** for all tablespace files (`.ibd` files) that have a file name starting with “t”:
+Execute **innochecksum** para todos os arquivos de tablespace (arquivos `.ibd`) cujo nome de arquivo começa com “t”:
 
 ```sql
 innochecksum ./data/test/t*.ibd
 ```
 
-Run **innochecksum** for all tablespace files (`.ibd` files) in the `data` directory:
+Execute **innochecksum** para todos os arquivos de tablespace (arquivos `.ibd`) no diretório `data`:
 
 ```sql
 innochecksum ./data/*/*.ibd
 ```
 
-Note
+Nota
 
-Running **innochecksum** on multiple user-defined tablespace files is not supported on Windows operating systems, as Windows shells such as **cmd.exe** do not support glob pattern expansion. On Windows systems, **innochecksum** must be run separately for each user-defined tablespace file. For example:
+A execução de **innochecksum** em múltiplos arquivos de tablespace definidos pelo usuário não é suportada em sistemas operacionais Windows, pois shells do Windows como **cmd.exe** não suportam expansão de padrões glob (*glob pattern expansion*). Em sistemas Windows, **innochecksum** deve ser executado separadamente para cada arquivo de tablespace definido pelo usuário. Por exemplo:
 
 ```sql
 innochecksum.exe t1.ibd
@@ -335,25 +335,25 @@ innochecksum.exe t2.ibd
 innochecksum.exe t3.ibd
 ```
 
-#### Running innochecksum on Multiple System Tablespace Files
+#### Executando innochecksum em Múltiplos Arquivos de System Tablespace
 
-By default, there is only one `InnoDB` system tablespace file (`ibdata1`) but multiple files for the system tablespace can be defined using the `innodb_data_file_path` option. In the following example, three files for the system tablespace are defined using the `innodb_data_file_path` option: `ibdata1`, `ibdata2`, and `ibdata3`.
+Por padrão, existe apenas um arquivo de system tablespace `InnoDB` (`ibdata1`), mas múltiplos arquivos para o system tablespace podem ser definidos usando a opção `innodb_data_file_path`. No exemplo a seguir, três arquivos para o system tablespace são definidos usando a opção `innodb_data_file_path`: `ibdata1`, `ibdata2` e `ibdata3`.
 
 ```sql
 ./bin/mysqld --no-defaults --innodb-data-file-path="ibdata1:10M;ibdata2:10M;ibdata3:10M:autoextend"
 ```
 
-The three files (`ibdata1`, `ibdata2`, and `ibdata3`) form one logical system tablespace. To run **innochecksum** on multiple files that form one logical system tablespace, **innochecksum** requires the `-` option to read tablespace files in from standard input, which is equivalent to concatenating multiple files to create one single file. For the example provided above, the following **innochecksum** command would be used:
+Os três arquivos (`ibdata1`, `ibdata2` e `ibdata3`) formam um único system tablespace lógico. Para executar **innochecksum** em múltiplos arquivos que formam um único system tablespace lógico, **innochecksum** requer a opção `-` para ler arquivos de tablespace a partir da entrada padrão (standard input), o que é equivalente a concatenar múltiplos arquivos para criar um único arquivo. Para o exemplo fornecido acima, o seguinte comando **innochecksum** seria usado:
 
 ```sql
 cat ibdata* | innochecksum -
 ```
 
-Refer to the **innochecksum** options information for more information about the “-” option.
+Consulte as informações das opções do **innochecksum** para mais detalhes sobre a opção “-”.
 
-Note
+Nota
 
-Running **innochecksum** on multiple files in the same tablespace is not supported on Windows operating systems, as Windows shells such as **cmd.exe** do not support glob pattern expansion. On Windows systems, **innochecksum** must be run separately for each system tablespace file. For example:
+A execução de **innochecksum** em múltiplos arquivos no mesmo tablespace não é suportada em sistemas operacionais Windows, pois shells do Windows como **cmd.exe** não suportam expansão de padrões glob (*glob pattern expansion*). Em sistemas Windows, **innochecksum** deve ser executado separadamente para cada arquivo de system tablespace. Por exemplo:
 
 ```sql
 innochecksum.exe ibdata1

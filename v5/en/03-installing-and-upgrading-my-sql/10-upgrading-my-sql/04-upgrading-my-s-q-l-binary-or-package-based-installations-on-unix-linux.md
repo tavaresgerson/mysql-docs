@@ -1,82 +1,82 @@
-### 2.10.4 Upgrading MySQL Binary or Package-based Installations on Unix/Linux
+### 2.10.4 Atualizando Instalações Binárias ou Baseadas em Pacotes MySQL no Unix/Linux
 
-This section describes how to upgrade MySQL binary and package-based installations on Unix/Linux. In-place and logical upgrade methods are described.
+Esta seção descreve como atualizar instalações MySQL binárias e baseadas em pacotes no Unix/Linux. Os métodos de atualização *in-place* e lógico são descritos.
 
-* In-Place Upgrade
-* Logical Upgrade
+* Atualização In-Place
+* Atualização Lógica
 
-#### In-Place Upgrade
+#### Atualização In-Place
 
-An in-place upgrade involves shutting down the old MySQL server, replacing the old MySQL binaries or packages with the new ones, restarting MySQL on the existing data directory, and upgrading any remaining parts of the existing installation that require upgrading.
+Uma atualização *in-place* envolve o desligamento do servidor MySQL antigo, a substituição dos *binaries* ou pacotes MySQL antigos pelos novos, a reinicialização do MySQL sobre o *data directory* existente e a atualização de quaisquer partes restantes da instalação existente que exijam atualização.
 
-Note
+**Nota**
 
-Only upgrade a MySQL server instance that was properly shut down. If the instance unexpectedly shutdown, then restart the instance and shut it down with `innodb_fast_shutdown=0` before upgrade.
+Atualize apenas uma instância do servidor MySQL que tenha sido desligada corretamente. Se a instância foi desligada inesperadamente (*unexpectedly shutdown*), reinicie a instância e desligue-a com `innodb_fast_shutdown=0` antes da atualização (*upgrade*).
 
-Note
+**Nota**
 
-If you upgrade an installation originally produced by installing multiple RPM packages, upgrade all the packages, not just some. For example, if you previously installed the server and client RPMs, do not upgrade just the server RPM.
+Se você atualizar uma instalação originalmente produzida pela instalação de múltiplos pacotes RPM, atualize todos os pacotes, e não apenas alguns. Por exemplo, se você instalou anteriormente os RPMs do servidor e do *client*, não atualize apenas o RPM do servidor.
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte ao `systemd` para gerenciar a inicialização e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld_safe** não é instalado. Nesses casos, use o `systemd` para a inicialização e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Consulte a Seção 2.5.10, “Gerenciando o Servidor MySQL com systemd”.
 
-To perform an in-place upgrade:
+Para realizar uma atualização *in-place*:
 
-1. If you use XA transactions with `InnoDB`, run `XA RECOVER` before upgrading to check for uncommitted XA transactions. If results are returned, either commit or rollback the XA transactions by issuing an `XA COMMIT` or `XA ROLLBACK` statement.
+1. Se você usa XA transactions com `InnoDB`, execute `XA RECOVER` antes de atualizar para verificar se há XA transactions não confirmadas. Se houver resultados retornados, confirme ou reverta as XA transactions emitindo uma instrução `XA COMMIT` ou `XA ROLLBACK`.
 
-2. Configure MySQL to perform a slow shutdown by setting `innodb_fast_shutdown` to `0`. For example:
+2. Configure o MySQL para realizar um desligamento lento, definindo `innodb_fast_shutdown` como `0`. Por exemplo:
 
    ```sql
    mysql -u root -p --execute="SET GLOBAL innodb_fast_shutdown=0"
    ```
 
-   With a slow shutdown, `InnoDB` performs a full purge and change buffer merge before shutting down, which ensures that data files are fully prepared in case of file format differences between releases.
+   Com um desligamento lento, o `InnoDB` executa um *full purge* e a *change buffer merge* antes de desligar, o que garante que os arquivos de dados estejam totalmente preparados em caso de diferenças no formato de arquivo entre as versões.
 
-3. Shut down the old MySQL server. For example:
+3. Desligue o servidor MySQL antigo. Por exemplo:
 
    ```sql
    mysqladmin -u root -p shutdown
    ```
 
-4. Upgrade the MySQL binary installation or packages. If upgrading a binary installation, unpack the new MySQL binary distribution package. See Obtain and Unpack the Distribution. For package-based installations, install the new packages.
+4. Atualize a instalação binária ou os pacotes MySQL. Se estiver atualizando uma instalação binária, descompacte o novo pacote de distribuição binária MySQL. Consulte Obter e Descompactar a Distribuição. Para instalações baseadas em pacotes, instale os novos pacotes.
 
-5. Start the MySQL 5.7 server, using the existing data directory. For example:
+5. Inicie o servidor MySQL 5.7, usando o *data directory* existente. Por exemplo:
 
    ```sql
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir &
    ```
 
-6. Run **mysql_upgrade**. For example:
+6. Execute o **mysql_upgrade**. Por exemplo:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL. **mysql_upgrade** also upgrades the `mysql` system database so that you can take advantage of new privileges or capabilities.
+   O **mysql_upgrade** examina todas as *tables* em todos os *databases* em busca de incompatibilidades com a versão atual do MySQL. O **mysql_upgrade** também atualiza o *database* de sistema `mysql` para que você possa aproveitar novos *privileges* ou recursos.
 
-   Note
+   **Nota**
 
-   **mysql_upgrade** does not upgrade the contents of the time zone tables or help tables. For upgrade instructions, see Section 5.1.13, “MySQL Server Time Zone Support”, and Section 5.1.14, “Server-Side Help Support”.
+   O **mysql_upgrade** não atualiza o conteúdo das *time zone tables* ou *help tables*. Para instruções de atualização, consulte a Seção 5.1.13, “Suporte a Time Zone do Servidor MySQL”, e a Seção 5.1.14, “Suporte a Help no Lado do Servidor”.
 
-7. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
+7. Desligue e reinicie o servidor MySQL para garantir que quaisquer alterações feitas nas *system tables* entrem em vigor. Por exemplo:
 
    ```sql
    mysqladmin -u root -p shutdown
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir &
    ```
 
-#### Logical Upgrade
+#### Atualização Lógica
 
-A logical upgrade involves exporting SQL from the old MySQL instance using a backup or export utility such as **mysqldump** or **mysqlpump**, installing the new MySQL server, and applying the SQL to your new MySQL instance.
+Uma atualização lógica envolve a exportação de SQL da instância MySQL antiga usando uma utilidade de *backup* ou exportação como **mysqldump** ou **mysqlpump**, a instalação do novo servidor MySQL e a aplicação do SQL na sua nova instância MySQL.
 
-Note
+**Nota**
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte ao `systemd` para gerenciar a inicialização e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld_safe** não é instalado. Nesses casos, use o `systemd` para a inicialização e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Consulte a Seção 2.5.10, “Gerenciando o Servidor MySQL com systemd”.
 
-To perform a logical upgrade:
+Para realizar uma atualização lógica:
 
-1. Review the information in Section 2.10.1, “Before You Begin”.
+1. Revise as informações na Seção 2.10.1, “Antes de Começar”.
 
-2. Export your existing data from the previous MySQL installation:
+2. Exporte seus dados existentes da instalação MySQL anterior:
 
    ```sql
    mysqldump -u root -p
@@ -84,37 +84,37 @@ To perform a logical upgrade:
      --all-databases --force > data-for-upgrade.sql
    ```
 
-   Note
+   **Nota**
 
-   Use the `--routines` and `--events` options with **mysqldump** (as shown above) if your databases include stored programs. The `--all-databases` option includes all databases in the dump, including the `mysql` database that holds the system tables.
+   Use as opções `--routines` e `--events` com **mysqldump** (conforme mostrado acima) se seus *databases* incluírem *stored programs*. A opção `--all-databases` inclui todos os *databases* no *dump*, incluindo o *database* `mysql` que contém as *system tables*.
 
-   Important
+   **Importante**
 
-   If you have tables that contain generated columns, use the **mysqldump** utility provided with MySQL 5.7.9 or higher to create your dump files. The **mysqldump** utility provided in earlier releases uses incorrect syntax for generated column definitions (Bug #20769542). You can use the Information Schema `COLUMNS` table to identify tables with generated columns.
+   Se você tiver *tables* que contêm *generated columns*, use a utilidade **mysqldump** fornecida com MySQL 5.7.9 ou superior para criar seus arquivos de *dump*. A utilidade **mysqldump** fornecida em versões anteriores usa sintaxe incorreta para definições de *generated column* (Bug #20769542). Você pode usar a *Information Schema* `COLUMNS table` para identificar *tables* com *generated columns*.
 
-3. Shut down the old MySQL server. For example:
+3. Desligue o servidor MySQL antigo. Por exemplo:
 
    ```sql
    mysqladmin -u root -p shutdown
    ```
 
-4. Install MySQL 5.7. For installation instructions, see Chapter 2, *Installing and Upgrading MySQL*.
+4. Instale o MySQL 5.7. Para instruções de instalação, consulte o Capítulo 2, *Installing and Upgrading MySQL*.
 
-5. Initialize a new data directory, as described at Section 2.9.1, “Initializing the Data Directory”. For example:
+5. Inicialize um novo *data directory*, conforme descrito na Seção 2.9.1, “Inicializando o Data Directory”. Por exemplo:
 
    ```sql
    mysqld --initialize --datadir=/path/to/5.7-datadir
    ```
 
-   Copy the temporary `'root'@'localhost'` password displayed to your screen or written to your error log for later use.
+   Copie a senha temporária de `'root'@'localhost'` exibida na sua tela ou gravada no seu *error log* para uso posterior.
 
-6. Start the MySQL 5.7 server, using the new data directory. For example:
+6. Inicie o servidor MySQL 5.7, usando o novo *data directory*. Por exemplo:
 
    ```sql
    mysqld_safe --user=mysql --datadir=/path/to/5.7-datadir &
    ```
 
-7. Reset the `root` password:
+7. Redefina a senha do `root`:
 
    ```sql
    $> mysql -u root -p
@@ -125,29 +125,29 @@ To perform a logical upgrade:
    mysql> ALTER USER USER() IDENTIFIED BY 'your new password';
    ```
 
-8. Load the previously created dump file into the new MySQL server. For example:
+8. Carregue o arquivo de *dump* criado anteriormente no novo servidor MySQL. Por exemplo:
 
    ```sql
    mysql -u root -p --force < data-for-upgrade.sql
    ```
 
-   Note
+   **Nota**
 
-   It is not recommended to load a dump file when GTIDs are enabled on the server (`gtid_mode=ON`), if your dump file includes system tables. **mysqldump** issues DML instructions for the system tables which use the non-transactional MyISAM storage engine, and this combination is not permitted when GTIDs are enabled. Also be aware that loading a dump file from a server with GTIDs enabled, into another server with GTIDs enabled, causes different transaction identifiers to be generated.
+   Não é recomendado carregar um arquivo de *dump* quando GTIDs estão habilitados no servidor (`gtid_mode=ON`), se o seu arquivo de *dump* incluir *system tables*. O **mysqldump** emite instruções DML para as *system tables* que usam o *storage engine* MyISAM, que não suporta *transactions*, e essa combinação não é permitida quando GTIDs estão habilitados. Esteja ciente também de que carregar um arquivo de *dump* de um servidor com GTIDs habilitados, em outro servidor com GTIDs habilitados, causa a geração de identificadores de *transaction* diferentes.
 
-9. Run **mysql_upgrade**. For example:
+9. Execute o **mysql_upgrade**. Por exemplo:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL. **mysql_upgrade** also upgrades the `mysql` system database so that you can take advantage of new privileges or capabilities.
+   O **mysql_upgrade** examina todas as *tables* em todos os *databases* em busca de incompatibilidades com a versão atual do MySQL. O **mysql_upgrade** também atualiza o *database* de sistema `mysql` para que você possa aproveitar novos *privileges* ou recursos.
 
-   Note
+   **Nota**
 
-   **mysql_upgrade** does not upgrade the contents of the time zone tables or help tables. For upgrade instructions, see Section 5.1.13, “MySQL Server Time Zone Support”, and Section 5.1.14, “Server-Side Help Support”.
+   O **mysql_upgrade** não atualiza o conteúdo das *time zone tables* ou *help tables*. Para instruções de atualização, consulte a Seção 5.1.13, “Suporte a Time Zone do Servidor MySQL”, e a Seção 5.1.14, “Suporte a Help no Lado do Servidor”.
 
-10. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
+10. Desligue e reinicie o servidor MySQL para garantir que quaisquer alterações feitas nas *system tables* entrem em vigor. Por exemplo:
 
     ```sql
     mysqladmin -u root -p shutdown

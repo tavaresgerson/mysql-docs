@@ -1,19 +1,17 @@
-### 5.1.2 Server Configuration Defaults
+### 5.1.2 Padrões de Configuração do Servidor
 
-The MySQL server has many operating parameters, which you can change at server startup using command-line options or configuration files (option files). It is also possible to change many parameters at runtime. For general instructions on setting parameters at startup or runtime, see [Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options"), and [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+O MySQL server possui muitos *operating parameters* (parâmetros operacionais), que você pode alterar no *startup* do servidor usando *command-line options* ou *configuration files* (*option files*). Também é possível alterar muitos *parameters* em *runtime*. Para instruções gerais sobre como definir *parameters* no *startup* ou em *runtime*, consulte [Seção 5.1.6, “Opções de Comando do Servidor”](server-options.html "5.1.6 Server Command Options") e [Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html "5.1.7 Server System Variables").
 
-On Windows, MySQL Installer interacts with the user and creates a file named `my.ini` in the base installation directory as the default option file. If you install on Windows from a Zip archive, you can copy the `my-default.ini` template file in the base installation directory to `my.ini` and use the latter as the default option file.
+No Windows, o MySQL Installer interage com o usuário e cria um arquivo chamado `my.ini` no *base installation directory* (diretório de instalação base) como o *default option file* (arquivo de opção padrão). Se você instalar no Windows a partir de um *Zip archive*, você pode copiar o arquivo de *template* `my-default.ini` no *base installation directory* para `my.ini` e usar este último como o *default option file*.
 
-Note
+**Nota**
+A partir do MySQL 5.7.18, o `my-default.ini` não está mais incluído ou é instalado pelos pacotes de distribuição.
 
-As of MySQL 5.7.18, `my-default.ini` is no longer included in or installed by distribution packages.
+**Nota**
+No Windows, a extensão de *option file* `.ini` ou `.cnf` pode não ser exibida.
 
-Note
+Após concluir o processo de instalação, você pode editar o *default option file* a qualquer momento para modificar os *parameters* utilizados pelo *server*. Por exemplo, para usar uma *setting* (configuração) de *parameter* no arquivo que está comentada com um caractere `#` no início da linha, remova o `#` e modifique o valor do *parameter* se necessário. Para desabilitar uma *setting*, adicione um `#` ao início da linha ou a remova.
 
-On Windows, the `.ini` or `.cnf` option file extension might not be displayed.
+Para *platforms* que não são Windows, nenhum *default option file* é criado durante a instalação do *server* ou o processo de inicialização do *data directory* (diretório de dados). Crie seu *option file* seguindo as instruções fornecidas em [Seção 4.2.2.2, “Utilizando Option Files”](option-files.html "4.2.2.2 Using Option Files"). Sem um *option file*, o *server* simplesmente inicia com suas *default settings* (configurações padrão) — veja [Seção 5.1.2, “Padrões de Configuração do Servidor”](server-configuration-defaults.html "5.1.2 Server Configuration Defaults") sobre como verificar essas *settings*.
 
-After completing the installation process, you can edit the default option file at any time to modify the parameters used by the server. For example, to use a parameter setting in the file that is commented with a `#` character at the beginning of the line, remove the `#`, and modify the parameter value if necessary. To disable a setting, either add a `#` to the beginning of the line or remove it.
-
-For non-Windows platforms, no default option file is created during either the server installation or the data directory initialization process. Create your option file by following the instructions given in [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files"). Without an option file, the server just starts with its default settings—see [Section 5.1.2, “Server Configuration Defaults”](server-configuration-defaults.html "5.1.2 Server Configuration Defaults") on how to check those settings.
-
-For additional information about option file format and syntax, see [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files").
+Para informações adicionais sobre *format* e *syntax* de *option file*, consulte [Seção 4.2.2.2, “Utilizando Option Files”](option-files.html "4.2.2.2 Using Option Files").

@@ -1,27 +1,27 @@
-### 10.9.1 The utf8mb4 Character Set (4-Byte UTF-8 Unicode Encoding)
+### 10.9.1 O Character Set utf8mb4 (Codificação UTF-8 Unicode de 4 Bytes)
 
-The `utf8mb4` character set has these characteristics:
+O character set `utf8mb4` possui estas características:
 
-* Supports BMP and supplementary characters.
-* Requires a maximum of four bytes per multibyte character.
+* Suporta caracteres BMP e suplementares.
+* Requer um máximo de quatro bytes por caractere multibyte.
 
-`utf8mb4` contrasts with the `utf8mb3` character set, which supports only BMP characters and uses a maximum of three bytes per character:
+`utf8mb4` contrasta com o character set `utf8mb3`, que suporta apenas caracteres BMP e usa um máximo de três bytes por caractere:
 
-* For a BMP character, `utf8mb4` and `utf8mb3` have identical storage characteristics: same code values, same encoding, same length.
+* Para um caractere BMP, `utf8mb4` e `utf8mb3` têm características de armazenamento idênticas: mesmos valores de código, mesma Encoding, mesmo comprimento.
 
-* For a supplementary character, `utf8mb4` requires four bytes to store it, whereas `utf8mb3` cannot store the character at all. When converting `utf8mb3` columns to `utf8mb4`, you need not worry about converting supplementary characters because there are none.
+* Para um caractere suplementar, `utf8mb4` requer quatro bytes para armazená-lo, enquanto `utf8mb3` não consegue armazenar o caractere. Ao converter colunas `utf8mb3` para `utf8mb4`, você não precisa se preocupar em converter caracteres suplementares, pois não há nenhum.
 
-`utf8mb4` is a superset of `utf8mb3`, so for an operation such as the following concatenation, the result has character set `utf8mb4` and the collation of `utf8mb4_col`:
+`utf8mb4` é um superset de `utf8mb3`, então para uma operação como a seguinte concatenação, o resultado terá o character set `utf8mb4` e a Collation de `utf8mb4_col`:
 
 ```sql
 SELECT CONCAT(utf8mb3_col, utf8mb4_col);
 ```
 
-Similarly, the following comparison in the `WHERE` clause works according to the collation of `utf8mb4_col`:
+Da mesma forma, a seguinte comparação na cláusula `WHERE` funciona de acordo com a Collation de `utf8mb4_col`:
 
 ```sql
 SELECT * FROM utf8mb3_tbl, utf8mb4_tbl
 WHERE utf8mb3_tbl.utf8mb3_col = utf8mb4_tbl.utf8mb4_col;
 ```
 
-For information about data type storage as it relates to multibyte character sets, see String Type Storage Requirements.
+Para obter informações sobre o armazenamento de tipos de dados conforme ele se relaciona a character sets multibyte, consulte String Type Storage Requirements.

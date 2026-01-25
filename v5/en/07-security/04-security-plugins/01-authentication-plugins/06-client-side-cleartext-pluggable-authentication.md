@@ -1,27 +1,27 @@
-#### 6.4.1.6 Client-Side Cleartext Pluggable Authentication
+#### 6.4.1.6 Autenticação Pluggable Cleartext do Lado do Cliente
 
-A client-side authentication plugin is available that enables clients to send passwords to the server as cleartext, without hashing or encryption. This plugin is built into the MySQL client library.
+Um Plugin de autenticação do lado do cliente está disponível, o qual permite que os clientes enviem senhas para o servidor como cleartext, sem Hashing ou Encryption. Este Plugin é integrado à biblioteca de cliente do MySQL.
 
-The following table shows the plugin name.
+A tabela a seguir mostra o nome do Plugin.
 
-**Table 6.12 Plugin and Library Names for Cleartext Authentication**
+**Tabela 6.12 Nomes de Plugin e Biblioteca para Autenticação Cleartext**
 
-<table summary="Names for the plugins and library file used for cleartext password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td>None, see discussion</td> </tr><tr> <td>Client-side plugin</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugin is built in)</td> </tr></tbody></table>
+<table summary="Nomes para os Plugins e o arquivo de biblioteca usados para autenticação de senha cleartext."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do Servidor</td> <td>Nenhum, veja a discussão</td> </tr><tr> <td>Plugin do lado do Cliente</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Arquivo de Biblioteca</td> <td>Nenhum (o Plugin é integrado)</td> </tr></tbody></table>
 
-Many client-side authentication plugins perform hashing or encryption of a password before the client sends it to the server. This enables clients to avoid sending passwords as cleartext.
+Muitos Plugins de autenticação do lado do cliente realizam Hashing ou Encryption de uma senha antes que o cliente a envie para o servidor. Isso permite que os clientes evitem o envio de senhas como cleartext.
 
-Hashing or encryption cannot be done for authentication schemes that require the server to receive the password as entered on the client side. In such cases, the client-side `mysql_clear_password` plugin is used, which enables the client to send the password to the server as cleartext. There is no corresponding server-side plugin. Rather, `mysql_clear_password` can be used on the client side in concert with any server-side plugin that needs a cleartext password. (Examples are the PAM and simple LDAP authentication plugins; see [Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication"), and [Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication").)
+Hashing ou Encryption não podem ser feitos para esquemas de autenticação que exigem que o servidor receba a senha conforme digitada no lado do cliente. Nesses casos, o Plugin `mysql_clear_password` do lado do cliente é usado, o qual permite que o cliente envie a senha para o servidor como cleartext. Não há um Plugin correspondente do lado do servidor. Em vez disso, `mysql_clear_password` pode ser usado no lado do cliente em conjunto com qualquer Plugin do lado do servidor que necessite de uma senha cleartext. (Exemplos são os Plugins de autenticação PAM e LDAP simples; consulte [Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication"), e [Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication").)
 
-The following discussion provides usage information specific to cleartext pluggable authentication. For general information about pluggable authentication in MySQL, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
+A discussão a seguir fornece informações de uso específicas para a autenticação pluggable cleartext. Para obter informações gerais sobre autenticação pluggable no MySQL, consulte [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
 
-Note
+Nota
 
-Sending passwords as cleartext may be a security problem in some configurations. To avoid problems if there is any possibility that the password would be intercepted, clients should connect to MySQL Server using a method that protects the password. Possibilities include SSL (see [Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections")), IPsec, or a private network.
+O envio de senhas como cleartext pode ser um problema de segurança em algumas configurações. Para evitar problemas caso haja alguma possibilidade de a senha ser interceptada, os clientes devem se conectar ao MySQL Server usando um método que proteja a senha. As possibilidades incluem SSL (consulte [Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections")), IPsec, ou uma rede privada.
 
-To make inadvertent use of the `mysql_clear_password` plugin less likely, MySQL clients must explicitly enable it. This can be done in several ways:
+Para tornar o uso inadvertido do Plugin `mysql_clear_password` menos provável, os clientes MySQL devem habilitá-lo explicitamente. Isso pode ser feito de várias maneiras:
 
-* Set the `LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN` environment variable to a value that begins with `1`, `Y`, or `y`. This enables the plugin for all client connections.
+* Defina a Environment Variable `LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN` para um valor que comece com `1`, `Y`, ou `y`. Isso habilita o Plugin para todas as conexões de cliente.
 
-* The [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), and [**mysqlslap**](mysqlslap.html "4.5.8 mysqlslap — A Load Emulation Client") client programs (also [**mysqlcheck**](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program"), [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), and [**mysqlshow**](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information") for MySQL 5.7.10 and later) support an `--enable-cleartext-plugin` option that enables the plugin on a per-invocation basis.
+* Os programas de cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), e [**mysqlslap**](mysqlslap.html "4.5.8 mysqlslap — A Load Emulation Client") (também [**mysqlcheck**](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program"), [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), e [**mysqlshow**](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information") para MySQL 5.7.10 e posterior) suportam uma opção `--enable-cleartext-plugin` que habilita o Plugin em uma base por invocação.
 
-* The [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) C API function supports a `MYSQL_ENABLE_CLEARTEXT_PLUGIN` option that enables the plugin on a per-connection basis. Also, any program that uses `libmysqlclient` and reads option files can enable the plugin by including an `enable-cleartext-plugin` option in an option group read by the client library.
+* A função C API [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) suporta uma opção `MYSQL_ENABLE_CLEARTEXT_PLUGIN` que habilita o Plugin em uma base por conexão. Além disso, qualquer programa que use `libmysqlclient` e leia arquivos de opção pode habilitar o Plugin incluindo uma opção `enable-cleartext-plugin` em um grupo de opções lido pela biblioteca de cliente.

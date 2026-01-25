@@ -1,11 +1,11 @@
-#### 1.6.3.4 ENUM and SET Constraints
+#### 1.6.3.4 Restrições ENUM e SET
 
-`ENUM` and `SET` columns provide an efficient way to define columns that can contain only a given set of values. See Section 11.3.5, “The ENUM Type”, and Section 11.3.6, “The SET Type”.
+Colunas `ENUM` e `SET` fornecem uma maneira eficiente de definir colunas que podem conter apenas um determinado conjunto de valores. Consulte a Seção 11.3.5, “O Tipo ENUM”, e a Seção 11.3.6, “O Tipo SET”.
 
-Unless strict mode is disabled (not recommended, but see Section 5.1.10, “Server SQL Modes”), the definition of a `ENUM` or `SET` column acts as a constraint on values entered into the column. An error occurs for values that do not satisfy these conditions:
+A menos que o *strict mode* esteja desativado (o que não é recomendado, mas consulte a Seção 5.1.10, “Modos SQL do Servidor”), a definição de uma coluna `ENUM` ou `SET` atua como uma restrição sobre os valores inseridos na coluna. Ocorre um erro para valores que não satisfazem estas condições:
 
-* An `ENUM` value must be one of those listed in the column definition, or the internal numeric equivalent thereof. The value cannot be the error value (that is, 0 or the empty string). For a column defined as `ENUM('a','b','c')`, values such as `''`, `'d'`, or `'ax'` are invalid and are rejected.
+* Um valor `ENUM` deve ser um dos listados na definição da coluna, ou o equivalente numérico interno do mesmo. O valor não pode ser o valor de erro (ou seja, 0 ou a *empty string*). Para uma coluna definida como `ENUM('a','b','c')`, valores como `''`, `'d'`, ou `'ax'` são inválidos e são rejeitados.
 
-* A `SET` value must be the empty string or a value consisting only of the values listed in the column definition separated by commas. For a column defined as `SET('a','b','c')`, values such as `'d'` or `'a,b,c,d'` are invalid and are rejected.
+* Um valor `SET` deve ser a *empty string* ou um valor que consista apenas nos valores listados na definição da coluna, separados por vírgulas. Para uma coluna definida como `SET('a','b','c')`, valores como `'d'` ou `'a,b,c,d'` são inválidos e são rejeitados.
 
-Errors for invalid values can be suppressed in strict mode if you use `INSERT IGNORE` or `UPDATE IGNORE`. In this case, a warning is generated rather than an error. For `ENUM`, the value is inserted as the error member (`0`). For `SET`, the value is inserted as given except that any invalid substrings are deleted. For example, `'a,x,b,y'` results in a value of `'a,b'`.
+Erros para valores inválidos podem ser suprimidos no *strict mode* se você usar `INSERT IGNORE` ou `UPDATE IGNORE`. Neste caso, um *warning* é gerado em vez de um erro. Para `ENUM`, o valor é inserido como o membro de erro (`0`). Para `SET`, o valor é inserido conforme fornecido, exceto que quaisquer *substrings* inválidas são excluídas. Por exemplo, `'a,x,b,y'` resulta em um valor de `'a,b'`.

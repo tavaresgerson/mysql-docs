@@ -1,16 +1,16 @@
-### 5.6.1 Installing and Uninstalling Loadable Functions
+### 5.6.1 Instalando e Desinstalando Funções Carregáveis (Loadable Functions)
 
-Loadable functions, as the name implies, must be loaded into the server before they can be used. MySQL supports automatic function loading during server startup and manual loading thereafter.
+Funções carregáveis (Loadable functions), como o nome sugere, devem ser carregadas no Server antes que possam ser usadas. O MySQL suporta o carregamento automático de funções durante a inicialização do Server e o carregamento manual posteriormente.
 
-While a loadable function is loaded, information about it is available as described in [Section 5.6.2, “Obtaining Information About Loadable Functions”](obtaining-loadable-function-information.html "5.6.2 Obtaining Information About Loadable Functions").
+Enquanto uma função carregável estiver carregada, as informações sobre ela estarão disponíveis conforme descrito na [Seção 5.6.2, “Obtendo Informações Sobre Funções Carregáveis (Loadable Functions)”](obtaining-loadable-function-information.html "5.6.2 Obtendo Informações Sobre Funções Carregáveis").
 
-* [Installing Loadable Functions](function-loading.html#loadable-function-installing "Installing Loadable Functions")
-* [Uninstalling Loadable Functions](function-loading.html#loadable-function-uninstalling "Uninstalling Loadable Functions")
-* [Reinstalling or Upgrading Loadable Functions](function-loading.html#loadable-function-upgrading "Reinstalling or Upgrading Loadable Functions")
+* [Instalando Funções Carregáveis](function-loading.html#loadable-function-installing "Instalando Funções Carregáveis")
+* [Desinstalando Funções Carregáveis](function-loading.html#loadable-function-uninstalling "Desinstalando Funções Carregáveis")
+* [Reinstalando ou Fazendo Upgrade de Funções Carregáveis](function-loading.html#loadable-function-upgrading "Reinstalando ou Fazendo Upgrade de Funções Carregáveis")
 
-#### Installing Loadable Functions
+#### Instalando Funções Carregáveis
 
-To load a loadable function manually, use the [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") statement. For example:
+Para carregar uma função carregável manualmente, use o Statement [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). Por exemplo:
 
 ```sql
 CREATE FUNCTION metaphon
@@ -18,31 +18,31 @@ CREATE FUNCTION metaphon
   SONAME 'udf_example.so';
 ```
 
-The file base name depends on your platform. Common suffixes are `.so` for Unix and Unix-like systems, `.dll` for Windows.
+O nome base do arquivo depende da sua plataforma. Os sufixos comuns são `.so` para sistemas Unix e semelhantes a Unix, e `.dll` para Windows.
 
-[`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") has these effects:
+[`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") tem os seguintes efeitos:
 
-* It loads the function into the server to make it available immediately.
+* Carrega a função no Server para torná-la disponível imediatamente.
 
-* It registers the function in the `mysql.func` system table to make it persistent across server restarts. For this reason, [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") requires the [`INSERT`](privileges-provided.html#priv_insert) privilege for the `mysql` system database.
+* Registra a função na tabela de sistema `mysql.func` para torná-la persistente após reinicializações do Server. Por esta razão, [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") requer o Privilege [`INSERT`](privileges-provided.html#priv_insert) para o Database de sistema `mysql`.
 
-Automatic loading of loadable functions occurs during the normal server startup sequence. The server loads functions registered in the `mysql.func` table. If the server is started with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option, functions registered in the table are not loaded and are unavailable.
+O carregamento automático de funções carregáveis ocorre durante a sequência normal de inicialização do Server. O Server carrega funções registradas na tabela `mysql.func`. Se o Server for iniciado com a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables), as funções registradas na tabela não são carregadas e ficam indisponíveis.
 
-#### Uninstalling Loadable Functions
+#### Desinstalando Funções Carregáveis
 
-To remove a loadable function, use the [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") statement. For example:
+Para remover uma função carregável, use o Statement [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"). Por exemplo:
 
 ```sql
 DROP FUNCTION metaphon;
 ```
 
-[`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") has these effects:
+[`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") tem os seguintes efeitos:
 
-* It unloads the function to make it unavailable.
-* It removes the function from the `mysql.func` system table. For this reason, [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") requires the [`DELETE`](privileges-provided.html#priv_delete) privilege for the `mysql` system database. With the function no longer registered in the `mysql.func` table, the server does not load the function during subsequent restarts.
+* Descarrega a função para torná-la indisponível.
+* Remove a função da tabela de sistema `mysql.func`. Por esta razão, [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") requer o Privilege [`DELETE`](privileges-provided.html#priv_delete) para o Database de sistema `mysql`. Como a função não está mais registrada na tabela `mysql.func`, o Server não a carregará durante as reinicializações subsequentes.
 
-While a loadable function is loaded, information about it is available from the `mysql.func` system table. See [Section 5.6.2, “Obtaining Information About Loadable Functions”](obtaining-loadable-function-information.html "5.6.2 Obtaining Information About Loadable Functions"). [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") adds the function to the table and [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") removes it.
+Enquanto uma função carregável estiver carregada, as informações sobre ela estarão disponíveis na tabela de sistema `mysql.func`. Consulte a [Seção 5.6.2, “Obtendo Informações Sobre Funções Carregáveis (Loadable Functions)”](obtaining-loadable-function-information.html "5.6.2 Obtendo Informações Sobre Funções Carregáveis"). [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") adiciona a função à tabela e [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") a remove.
 
-#### Reinstalling or Upgrading Loadable Functions
+#### Reinstalando ou Fazendo Upgrade de Funções Carregáveis
 
-To reinstall or upgrade the shared library associated with a loadable function, issue a [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") statement, upgrade the shared library, and then issue a [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") statement. If you upgrade the shared library first and then use [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"), the server may unexpectedly shut down.
+Para reinstalar ou fazer upgrade da biblioteca compartilhada associada a uma função carregável, execute um Statement [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"), faça o upgrade da biblioteca compartilhada e, em seguida, execute um Statement [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). Se você fizer o upgrade da biblioteca compartilhada primeiro e depois usar [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"), o Server pode ser encerrado inesperadamente.

@@ -1,106 +1,106 @@
-### 5.5.1 Installing and Uninstalling Plugins
+### 5.5.1 Instalando e Desinstalando Plugins
 
-Server plugins must be loaded into the server before they can be used. MySQL supports plugin loading at server startup and runtime. It is also possible to control the activation state of loaded plugins at startup, and to unload them at runtime.
+Plugins do Server devem ser carregados no Server antes de poderem ser usados. O MySQL suporta o carregamento de *plugins* no *startup* (inicialização) do Server e em *runtime* (tempo de execução). Também é possível controlar o estado de ativação dos *plugins* carregados no *startup* e descarregá-los em *runtime*.
 
-While a plugin is loaded, information about it is available as described in [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information").
+Enquanto um *plugin* está carregado, informações sobre ele estão disponíveis conforme descrito na [Seção 5.5.2, “Obtendo Informações de Plugin do Server”](obtaining-plugin-information.html "5.5.2 Obtendo Informações de Plugin do Server").
 
-* [Installing Plugins](plugin-loading.html#server-plugin-installing "Installing Plugins")
-* [Controlling Plugin Activation State](plugin-loading.html#server-plugin-activating "Controlling Plugin Activation State")
-* [Uninstalling Plugins](plugin-loading.html#server-plugin-uninstalling "Uninstalling Plugins")
+* [Instalando Plugins](plugin-loading.html#server-plugin-installing "Installing Plugins")
+* [Controlando o Estado de Ativação do Plugin](plugin-loading.html#server-plugin-activating "Controlling Plugin Activation State")
+* [Desinstalando Plugins](plugin-loading.html#server-plugin-uninstalling "Uninstalling Plugins")
 
-#### Installing Plugins
+#### Instalando Plugins
 
-Before a server plugin can be used, it must be installed using one of the following methods. In the descriptions, *`plugin_name`* stands for a plugin name such as `innodb`, `csv`, or `validate_password`.
+Antes que um *plugin* do Server possa ser usado, ele deve ser instalado usando um dos seguintes métodos. Nas descrições, *`plugin_name`* representa um nome de *plugin*, como `innodb`, `csv` ou `validate_password`.
 
-* [Built-in Plugins](plugin-loading.html#server-plugin-installing-built-in "Built-in Plugins")
-* [Plugins Registered in the mysql.plugin System Table](plugin-loading.html#server-plugin-installing-system-table "Plugins Registered in the mysql.plugin System Table")
-* [Plugins Named with Command-Line Options](plugin-loading.html#server-plugin-installing-command-line "Plugins Named with Command-Line Options")
-* [Plugins Installed with the INSTALL PLUGIN Statement](plugin-loading.html#server-plugin-installing-install-plugin "Plugins Installed with the INSTALL PLUGIN Statement")
+* [Plugins Integrados (Built-in)](plugin-loading.html#server-plugin-installing-built-in "Built-in Plugins")
+* [Plugins Registrados na Tabela de Sistema mysql.plugin](plugin-loading.html#server-plugin-installing-system-table "Plugins Registered in the mysql.plugin System Table")
+* [Plugins Nomeados com Opções de Linha de Comando](plugin-loading.html#server-plugin-installing-command-line "Plugins Named with Command-Line Options")
+* [Plugins Instalados com a Declaração INSTALL PLUGIN](plugin-loading.html#server-plugin-installing-install-plugin "Plugins Installed with the INSTALL PLUGIN Statement")
 
-##### Built-in Plugins
+##### Plugins Integrados (Built-in)
 
-A built-in plugin is known by the server automatically. By default, the server enables the plugin at startup. Some built-in plugins permit this to be changed with the `--plugin_name[=activation_state]` option.
+Um *plugin built-in* é reconhecido pelo Server automaticamente. Por padrão, o Server habilita o *plugin* no *startup*. Alguns *plugins built-in* permitem que isso seja alterado com a opção `--plugin_name[=activation_state]`.
 
-##### Plugins Registered in the mysql.plugin System Table
+##### Plugins Registrados na Tabela de Sistema mysql.plugin
 
-The `mysql.plugin` system table serves as a registry of plugins (other than built-in plugins, which need not be registered). During the normal startup sequence, the server loads plugins registered in the table. By default, for a plugin loaded from the `mysql.plugin` table, the server also enables the plugin. This can be changed with the `--plugin_name[=activation_state]` option.
+A tabela de sistema `mysql.plugin` serve como um registro de *plugins* (diferentes dos *plugins built-in*, que não precisam ser registrados). Durante a sequência normal de *startup*, o Server carrega os *plugins* registrados na tabela. Por padrão, para um *plugin* carregado da tabela `mysql.plugin`, o Server também o habilita. Isso pode ser alterado com a opção `--plugin_name[=activation_state]`.
 
-If the server is started with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option, plugins registered in the `mysql.plugin` table are not loaded and are unavailable.
+Se o Server for iniciado com a opção [`--skip-grant-tables`], os *plugins* registrados na tabela `mysql.plugin` não são carregados e ficam indisponíveis.
 
-##### Plugins Named with Command-Line Options
+##### Plugins Nomeados com Opções de Linha de Comando
 
-A plugin located in a plugin library file can be loaded at server startup with the [`--plugin-load`](server-options.html#option_mysqld_plugin-load), [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), or [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option. Normally, for a plugin loaded at startup, the server also enables the plugin. This can be changed with the `--plugin_name[=activation_state]` option.
+Um *plugin* localizado em um arquivo de biblioteca de *plugins* pode ser carregado no *startup* do Server com a opção [`--plugin-load`], [`--plugin-load-add`] ou [`--early-plugin-load`]. Normalmente, para um *plugin* carregado no *startup*, o Server também o habilita. Isso pode ser alterado com a opção `--plugin_name[=activation_state]`.
 
-The [`--plugin-load`](server-options.html#option_mysqld_plugin-load) and [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) options load plugins after built-in plugins and storage engines have initialized during the server startup sequence. The [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option is used to load plugins that must be available prior to initialization of built-in plugins and storage engines.
+As opções [`--plugin-load`] e [`--plugin-load-add`] carregam *plugins* após os *plugins built-in* e os *storage engines* terem sido inicializados durante a sequência de *startup* do Server. A opção [`--early-plugin-load`] é usada para carregar *plugins* que devem estar disponíveis antes da inicialização de *plugins built-in* e *storage engines*.
 
-The value of each plugin-loading option is a semicolon-separated list of *`plugin_library`* and *`name`*`=`*`plugin_library`* values. Each *`plugin_library`* is the name of a library file that contains plugin code, and each *`name`* is the name of a plugin to load. If a plugin library is named without any preceding plugin name, the server loads all plugins in the library. With a preceding plugin name, the server loads only the named plugin from the libary. The server looks for plugin library files in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+O valor de cada opção de carregamento de *plugin* é uma lista separada por ponto e vírgula de valores *`plugin_library`* e *`name`*`=`*`plugin_library`*. Cada *`plugin_library`* é o nome de um arquivo de biblioteca que contém o código do *plugin*, e cada *`name`* é o nome de um *plugin* a ser carregado. Se uma biblioteca de *plugin* for nomeada sem nenhum nome de *plugin* precedente, o Server carrega todos os *plugins* na biblioteca. Com um nome de *plugin* precedente, o Server carrega apenas o *plugin* nomeado da biblioteca. O Server procura por arquivos de biblioteca de *plugins* no diretório nomeado pela variável de sistema [`plugin_dir`].
 
-Plugin-loading options do not register any plugin in the `mysql.plugin` table. For subsequent restarts, the server loads the plugin again only if [`--plugin-load`](server-options.html#option_mysqld_plugin-load), [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), or [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) is given again. That is, the option produces a one-time plugin-installation operation that persists for a single server invocation.
+As opções de carregamento de *plugin* não registram nenhum *plugin* na tabela `mysql.plugin`. Para reinicializações subsequentes, o Server carrega o *plugin* novamente apenas se [`--plugin-load`], [`--plugin-load-add`] ou [`--early-plugin-load`] for fornecido novamente. Ou seja, a opção produz uma operação de instalação de *plugin* única que persiste por uma única invocação do Server.
 
-[`--plugin-load`](server-options.html#option_mysqld_plugin-load), [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), and [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) enable plugins to be loaded even when [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) is given (which causes the server to ignore the `mysql.plugin` table). [`--plugin-load`](server-options.html#option_mysqld_plugin-load), [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), and [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) also enable plugins to be loaded at startup that cannot be loaded at runtime.
+[`--plugin-load`], [`--plugin-load-add`] e [`--early-plugin-load`] permitem que *plugins* sejam carregados mesmo quando [`--skip-grant-tables`] é fornecido (o que faz com que o Server ignore a tabela `mysql.plugin`). Essas opções também permitem que *plugins* sejam carregados no *startup* que não podem ser carregados em *runtime*.
 
-The [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option complements the [`--plugin-load`](server-options.html#option_mysqld_plugin-load) option:
+A opção [`--plugin-load-add`] complementa a opção [`--plugin-load`]:
 
-* Each instance of [`--plugin-load`](server-options.html#option_mysqld_plugin-load) resets the set of plugins to load at startup, whereas [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) adds a plugin or plugins to the set of plugins to be loaded without resetting the current set. Consequently, if multiple instances of [`--plugin-load`](server-options.html#option_mysqld_plugin-load) are specified, only the last one applies. With multiple instances of [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), all of them apply.
+* Cada instância de [`--plugin-load`] redefine o conjunto de *plugins* a serem carregados no *startup*, enquanto [`--plugin-load-add`] adiciona um ou mais *plugins* ao conjunto de *plugins* a serem carregados sem redefinir o conjunto atual. Consequentemente, se múltiplas instâncias de [`--plugin-load`] forem especificadas, apenas a última se aplica. Com múltiplas instâncias de [`--plugin-load-add`], todas elas se aplicam.
 
-* The argument format is the same as for [`--plugin-load`](server-options.html#option_mysqld_plugin-load), but multiple instances of [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) can be used to avoid specifying a large set of plugins as a single long unwieldy [`--plugin-load`](server-options.html#option_mysqld_plugin-load) argument.
+* O formato do argumento é o mesmo que para [`--plugin-load`], mas múltiplas instâncias de [`--plugin-load-add`] podem ser usadas para evitar especificar um grande conjunto de *plugins* como um único argumento longo e complicado [`--plugin-load`].
 
-* [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) can be given in the absence of [`--plugin-load`](server-options.html#option_mysqld_plugin-load), but any instance of [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) that appears before [`--plugin-load`](server-options.html#option_mysqld_plugin-load) has no effect because [`--plugin-load`](server-options.html#option_mysqld_plugin-load) resets the set of plugins to load.
+* [`--plugin-load-add`] pode ser fornecido na ausência de [`--plugin-load`], mas qualquer instância de [`--plugin-load-add`] que apareça antes de [`--plugin-load`] não tem efeito porque [`--plugin-load`] redefine o conjunto de *plugins* a serem carregados.
 
-For example, these options:
+Por exemplo, estas opções:
 
 ```sql
 --plugin-load=x --plugin-load-add=y
 ```
 
-are equivalent to these options:
+são equivalentes a estas opções:
 
 ```sql
 --plugin-load-add=x --plugin-load-add=y
 ```
 
-and are also equivalent to this option:
+e também são equivalentes a esta opção:
 
 ```sql
 --plugin-load="x;y"
 ```
 
-But these options:
+Mas estas opções:
 
 ```sql
 --plugin-load-add=y --plugin-load=x
 ```
 
-are equivalent to this option:
+são equivalentes a esta opção:
 
 ```sql
 --plugin-load=x
 ```
 
-##### Plugins Installed with the INSTALL PLUGIN Statement
+##### Plugins Instalados com a Declaração INSTALL PLUGIN
 
-A plugin located in a plugin library file can be loaded at runtime with the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement. The statement also registers the plugin in the `mysql.plugin` table to cause the server to load it on subsequent restarts. For this reason, [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") requires the [`INSERT`](privileges-provided.html#priv_insert) privilege for the `mysql.plugin` table.
+Um *plugin* localizado em um arquivo de biblioteca de *plugins* pode ser carregado em *runtime* com a declaração [`INSTALL PLUGIN`]. A declaração também registra o *plugin* na tabela `mysql.plugin` para fazer com que o Server o carregue em reinicializações subsequentes. Por esta razão, [`INSTALL PLUGIN`] requer o privilégio [`INSERT`] para a tabela `mysql.plugin`.
 
-The plugin library file base name depends on your platform. Common suffixes are `.so` for Unix and Unix-like systems, `.dll` for Windows.
+O nome base do arquivo da biblioteca de *plugin* depende da sua plataforma. Sufixos comuns são `.so` para sistemas Unix e similares a Unix, e `.dll` para Windows.
 
-Example: The [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option installs a plugin at server startup. To install a plugin named `myplugin` from a plugin library file named `somepluglib.so`, use these lines in a `my.cnf` file:
+Exemplo: A opção [`--plugin-load-add`] instala um *plugin* no *startup* do Server. Para instalar um *plugin* chamado `myplugin` a partir de um arquivo de biblioteca de *plugin* chamado `somepluglib.so`, use estas linhas em um arquivo `my.cnf`:
 
 ```sql
 [mysqld]
 plugin-load-add=myplugin=somepluglib.so
 ```
 
-In this case, the plugin is not registered in `mysql.plugin`. Restarting the server without the [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option causes the plugin not to be loaded at startup.
+Neste caso, o *plugin* não é registrado em `mysql.plugin`. Reiniciar o Server sem a opção [`--plugin-load-add`] faz com que o *plugin* não seja carregado no *startup*.
 
-Alternatively, the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement causes the server to load the plugin code from the library file at runtime:
+Alternativamente, a declaração [`INSTALL PLUGIN`] faz com que o Server carregue o código do *plugin* do arquivo de biblioteca em *runtime*:
 
 ```sql
 INSTALL PLUGIN myplugin SONAME 'somepluglib.so';
 ```
 
-[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") also causes “permanent” plugin registration: The plugin is listed in the `mysql.plugin` table to ensure that the server loads it on subsequent restarts.
+[`INSTALL PLUGIN`] também causa o registro “permanente” do *plugin*: O *plugin* é listado na tabela `mysql.plugin` para garantir que o Server o carregue em reinicializações subsequentes.
 
-Many plugins can be loaded either at server startup or at runtime. However, if a plugin is designed such that it must be loaded and initialized during server startup, attempts to load it at runtime using [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") produce an error:
+Muitos *plugins* podem ser carregados tanto no *startup* do Server quanto em *runtime*. No entanto, se um *plugin* for projetado de modo que deva ser carregado e inicializado durante o *startup* do Server, tentativas de carregá-lo em *runtime* usando [`INSTALL PLUGIN`] produzem um erro:
 
 ```sql
 mysql> INSTALL PLUGIN myplugin SONAME 'somepluglib.so';
@@ -108,9 +108,9 @@ ERROR 1721 (HY000): Plugin 'myplugin' is marked as not dynamically
 installable. You have to stop the server to install it.
 ```
 
-In this case, you must use [`--plugin-load`](server-options.html#option_mysqld_plugin-load), [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), or [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load).
+Neste caso, você deve usar [`--plugin-load`], [`--plugin-load-add`] ou [`--early-plugin-load`].
 
-If a plugin is named both using a [`--plugin-load`](server-options.html#option_mysqld_plugin-load), [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), or [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option and (as a result of an earlier [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement) in the `mysql.plugin` table, the server starts but writes these messages to the error log:
+Se um *plugin* for nomeado tanto usando uma opção de carregamento de *plugin* quanto (como resultado de uma declaração [`INSTALL PLUGIN`] anterior) na tabela `mysql.plugin`, o Server inicia, mas escreve estas mensagens no *error log*:
 
 ```sql
 [ERROR] Function 'plugin_name' already exists
@@ -118,29 +118,29 @@ If a plugin is named both using a [`--plugin-load`](server-options.html#option_m
 with soname 'plugin_object_file'.
 ```
 
-#### Controlling Plugin Activation State
+#### Controlando o Estado de Ativação do Plugin
 
-If the server knows about a plugin when it starts (for example, because the plugin is named using a [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option or is registered in the `mysql.plugin` table), the server loads and enables the plugin by default. It is possible to control activation state for such a plugin using a `--plugin_name[=activation_state]` startup option, where *`plugin_name`* is the name of the plugin to affect, such as `innodb`, `csv`, or `validate_password`. As with other options, dashes and underscores are interchangeable in option names. Also, activation state values are not case-sensitive. For example, `--my_plugin=ON` and `--my-plugin=on` are equivalent.
+Se o Server souber de um *plugin* ao iniciar (por exemplo, porque o *plugin* é nomeado usando uma opção [`--plugin-load-add`] ou está registrado na tabela `mysql.plugin`), o Server carrega e habilita o *plugin* por padrão. É possível controlar o estado de ativação para tal *plugin* usando uma opção de *startup* `--plugin_name[=activation_state]`, onde *`plugin_name`* é o nome do *plugin* a ser afetado, como `innodb`, `csv` ou `validate_password`. Assim como em outras opções, traços e sublinhados são intercambiáveis nos nomes das opções. Além disso, os valores do estado de ativação não diferenciam maiúsculas de minúsculas. Por exemplo, `--my_plugin=ON` e `--my-plugin=on` são equivalentes.
 
 * `--plugin_name=OFF`
 
-  Tells the server to disable the plugin. This may not be possible for certain built-in plugins, such as `mysql_native_password`.
+  Informa ao Server para desabilitar o *plugin*. Isso pode não ser possível para certos *plugins built-in*, como `mysql_native_password`.
 
 * `--plugin_name[=ON]`
 
-  Tells the server to enable the plugin. (Specifying the option as `--plugin_name` without a value has the same effect.) If the plugin fails to initialize, the server runs with the plugin disabled.
+  Informa ao Server para habilitar o *plugin*. (Especificar a opção como `--plugin_name` sem um valor tem o mesmo efeito.) Se o *plugin* falhar ao inicializar, o Server executa com o *plugin* desabilitado.
 
 * `--plugin_name=FORCE`
 
-  Tells the server to enable the plugin, but if plugin initialization fails, the server does not start. In other words, this option forces the server to run with the plugin enabled or not at all.
+  Informa ao Server para habilitar o *plugin*, mas se a inicialização do *plugin* falhar, o Server não inicia. Em outras palavras, esta opção força o Server a rodar com o *plugin* habilitado ou a não rodar.
 
 * `--plugin_name=FORCE_PLUS_PERMANENT`
 
-  Like `FORCE`, but in addition prevents the plugin from being unloaded at runtime. If a user attempts to do so with [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"), an error occurs.
+  Semelhante a `FORCE`, mas, adicionalmente, impede que o *plugin* seja descarregado em *runtime*. Se um usuário tentar fazê-lo com [`UNINSTALL PLUGIN`], um erro ocorrerá.
 
-Plugin activation states are visible in the `LOAD_OPTION` column of the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table.
+Os estados de ativação do *plugin* são visíveis na coluna `LOAD_OPTION` da tabela [`PLUGINS`] do Information Schema.
 
-Suppose that `CSV`, `BLACKHOLE`, and `ARCHIVE` are built-in pluggable storage engines and that you want the server to load them at startup, subject to these conditions: The server is permitted to run if `CSV` initialization fails, must require that `BLACKHOLE` initialization succeeds, and should disable `ARCHIVE`. To accomplish that, use these lines in an option file:
+Suponha que `CSV`, `BLACKHOLE` e `ARCHIVE` sejam *storage engines pluggables built-in* e que você queira que o Server os carregue no *startup*, sujeitos a estas condições: O Server é permitido a rodar se a inicialização de `CSV` falhar, deve exigir que a inicialização de `BLACKHOLE` seja bem-sucedida e deve desabilitar `ARCHIVE`. Para realizar isso, use estas linhas em um arquivo de opções:
 
 ```sql
 [mysqld]
@@ -149,25 +149,25 @@ blackhole=FORCE
 archive=OFF
 ```
 
-The `--enable-plugin_name` option format is a synonym for `--plugin_name=ON`. The `--disable-plugin_name` and `--skip-plugin_name` option formats are synonyms for `--plugin_name=OFF`.
+O formato de opção `--enable-plugin_name` é um sinônimo para `--plugin_name=ON`. Os formatos de opção `--disable-plugin_name` e `--skip-plugin_name` são sinônimos para `--plugin_name=OFF`.
 
-If a plugin is disabled, either explicitly with `OFF` or implicitly because it was enabled with `ON` but fails to initialize, aspects of server operation that require the plugin change. For example, if the plugin implements a storage engine, existing tables for the storage engine become inaccessible, and attempts to create new tables for the storage engine result in tables that use the default storage engine unless the [`NO_ENGINE_SUBSTITUTION`](sql-mode.html#sqlmode_no_engine_substitution) SQL mode is enabled to cause an error to occur instead.
+Se um *plugin* for desabilitado, seja explicitamente com `OFF` ou implicitamente porque foi habilitado com `ON`, mas falhou ao inicializar, aspectos da operação do Server que requerem o *plugin* mudam. Por exemplo, se o *plugin* implementar um *storage engine*, as tabelas existentes para esse *storage engine* tornam-se inacessíveis, e as tentativas de criar novas tabelas para ele resultam em tabelas que usam o *default storage engine*, a menos que o modo SQL [`NO_ENGINE_SUBSTITUTION`] esteja habilitado para fazer com que um erro ocorra em vez disso.
 
-Disabling a plugin may require adjustment to other options. For example, if you start the server using [`--skip-innodb`](innodb-parameters.html#option_mysqld_innodb) to disable [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), other `innodb_xxx` options likely need to be omitted at startup. In addition, because [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") is the default storage engine, it cannot start unless you specify another available storage engine with [`--default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine). You must also set [`--default_tmp_storage_engine`](server-system-variables.html#sysvar_default_tmp_storage_engine).
+Desabilitar um *plugin* pode exigir ajustes em outras opções. Por exemplo, se você iniciar o Server usando [`--skip-innodb`] para desabilitar [`InnoDB`], outras opções `innodb_xxx` provavelmente precisarão ser omitidas no *startup*. Além disso, como [`InnoDB`] é o *default storage engine*, ele não pode iniciar a menos que você especifique outro *storage engine* disponível com [`--default_storage_engine`]. Você também deve configurar [`--default_tmp_storage_engine`].
 
-#### Uninstalling Plugins
+#### Desinstalando Plugins
 
-At runtime, the [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") statement disables and uninstalls a plugin known to the server. The statement unloads the plugin and removes it from the `mysql.plugin` system table, if it is registered there. For this reason, [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") statement requires the [`DELETE`](privileges-provided.html#priv_delete) privilege for the `mysql.plugin` table. With the plugin no longer registered in the table, the server does not load the plugin during subsequent restarts.
+Em *runtime*, a declaração [`UNINSTALL PLUGIN`] desabilita e desinstala um *plugin* conhecido pelo Server. A declaração descarrega o *plugin* e o remove da tabela de sistema `mysql.plugin`, se estiver registrado lá. Por esta razão, a declaração [`UNINSTALL PLUGIN`] requer o privilégio [`DELETE`] para a tabela `mysql.plugin`. Com o *plugin* não mais registrado na tabela, o Server não carrega o *plugin* durante reinicializações subsequentes.
 
-[`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") can unload a plugin regardless of whether it was loaded at runtime with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") or at startup with a plugin-loading option, subject to these conditions:
+[`UNINSTALL PLUGIN`] pode descarregar um *plugin* independentemente de ter sido carregado em *runtime* com [`INSTALL PLUGIN`] ou no *startup* com uma opção de carregamento de *plugin*, sujeito a estas condições:
 
-* It cannot unload plugins that are built in to the server. These can be identified as those that have a library name of `NULL` in the output from [`INFORMATION_SCHEMA.PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") or [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement").
+* Não pode descarregar *plugins* que são *built in* no Server. Estes podem ser identificados como aqueles que têm um nome de biblioteca `NULL` na saída de [`INFORMATION_SCHEMA.PLUGINS`] ou [`SHOW PLUGINS`].
 
-* It cannot unload plugins for which the server was started with `--plugin_name=FORCE_PLUS_PERMANENT`, which prevents plugin unloading at runtime. These can be identified from the `LOAD_OPTION` column of the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table.
+* Não pode descarregar *plugins* para os quais o Server foi iniciado com `--plugin_name=FORCE_PLUS_PERMANENT`, o que impede o descarregamento do *plugin* em *runtime*. Estes podem ser identificados a partir da coluna `LOAD_OPTION` da tabela [`PLUGINS`] do Information Schema.
 
-To uninstall a plugin that currently is loaded at server startup with a plugin-loading option, use this procedure.
+Para desinstalar um *plugin* que está atualmente carregado no *startup* do Server com uma opção de carregamento de *plugin*, use este procedimento.
 
-1. Remove from the `my.cnf` file any options related to the plugin.
+1. Remova do arquivo `my.cnf` quaisquer opções relacionadas ao *plugin*.
 
-2. Restart the server.
-3. Plugins normally are installed using either a plugin-loading option at startup or with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") at runtime, but not both. However, removing options for a plugin from the `my.cnf` file may not be sufficient to uninstall it if at some point [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") has also been used. If the plugin still appears in the output from [`INFORMATION_SCHEMA.PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") or [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"), use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") to remove it from the `mysql.plugin` table. Then restart the server again.
+2. Reinicie o Server.
+3. Normalmente, os *plugins* são instalados usando uma opção de carregamento de *plugin* no *startup* ou com [`INSTALL PLUGIN`] em *runtime*, mas não ambos. No entanto, remover as opções de um *plugin* do arquivo `my.cnf` pode não ser suficiente para desinstalá-lo se em algum momento [`INSTALL PLUGIN`] também tiver sido usado. Se o *plugin* ainda aparecer na saída de [`INFORMATION_SCHEMA.PLUGINS`] ou [`SHOW PLUGINS`], use [`UNINSTALL PLUGIN`] para removê-lo da tabela `mysql.plugin`. Em seguida, reinicie o Server novamente.

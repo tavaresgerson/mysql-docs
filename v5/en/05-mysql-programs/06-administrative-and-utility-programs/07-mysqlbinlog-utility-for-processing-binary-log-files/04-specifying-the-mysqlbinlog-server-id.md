@@ -1,15 +1,15 @@
-#### 4.6.7.4 Specifying the mysqlbinlog Server ID
+#### 4.6.7.4 Especificando o Server ID do mysqlbinlog
 
-When invoked with the `--read-from-remote-server` option, **mysqlbinlog** connects to a MySQL server, specifies a server ID to identify itself, and requests binary log files from the server. You can use **mysqlbinlog** to request log files from a server in several ways:
+Quando invocado com a opção `--read-from-remote-server`, o **mysqlbinlog** se conecta a um servidor MySQL, especifica um Server ID para se identificar e solicita arquivos de log binário do servidor. Você pode usar o **mysqlbinlog** para solicitar arquivos de log de um servidor de várias maneiras:
 
-* Specify an explicitly named set of files: For each file, **mysqlbinlog** connects and issues a `Binlog dump` command. The server sends the file and disconnects. There is one connection per file.
+*   Especificar um conjunto de arquivos nomeados explicitamente: Para cada arquivo, o **mysqlbinlog** se conecta e emite um comando `Binlog dump`. O servidor envia o arquivo e se desconecta. Há uma conexão por arquivo.
 
-* Specify the beginning file and `--to-last-log`: **mysqlbinlog** connects and issues a `Binlog dump` command for all files. The server sends all files and disconnects.
+*   Especificar o arquivo inicial e `--to-last-log`: O **mysqlbinlog** se conecta e emite um comando `Binlog dump` para todos os arquivos. O servidor envia todos os arquivos e se desconecta.
 
-* Specify the beginning file and `--stop-never` (which implies `--to-last-log`): **mysqlbinlog** connects and issues a `Binlog dump` command for all files. The server sends all files, but does not disconnect after sending the last one.
+*   Especificar o arquivo inicial e `--stop-never` (o que implica `--to-last-log`): O **mysqlbinlog** se conecta e emite um comando `Binlog dump` para todos os arquivos. O servidor envia todos os arquivos, mas não se desconecta após enviar o último.
 
-With `--read-from-remote-server` only, **mysqlbinlog** connects using a server ID of 0, which tells the server to disconnect after sending the last requested log file.
+Apenas com `--read-from-remote-server`, o **mysqlbinlog** se conecta usando um Server ID de 0, o que instrui o servidor a se desconectar após enviar o último arquivo de log solicitado.
 
-With `--read-from-remote-server` and `--stop-never`, **mysqlbinlog** connects using a nonzero server ID, so the server does not disconnect after sending the last log file. The server ID is 65535 by default, but this can be changed with `--stop-never-slave-server-id`.
+Com `--read-from-remote-server` e `--stop-never`, o **mysqlbinlog** se conecta usando um Server ID diferente de zero, para que o servidor não se desconecte após enviar o último arquivo de log. O Server ID é 65535 por padrão, mas isso pode ser alterado com `--stop-never-slave-server-id`.
 
-Thus, for the first two ways of requesting files, the server disconnects because **mysqlbinlog** specifies a server ID of 0. It does not disconnect if `--stop-never` is given because **mysqlbinlog** specifies a nonzero server ID.
+Portanto, para as duas primeiras formas de solicitar arquivos, o servidor se desconecta porque o **mysqlbinlog** especifica um Server ID de 0. Ele não se desconecta se `--stop-never` for fornecido, pois o **mysqlbinlog** especifica um Server ID diferente de zero.

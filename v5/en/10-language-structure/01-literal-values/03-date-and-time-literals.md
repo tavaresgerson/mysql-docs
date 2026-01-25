@@ -1,15 +1,15 @@
-### 9.1.3 Date and Time Literals
+### 9.1.3 Literais de Data e Hora
 
-* Standard SQL and ODBC Date and Time Literals
-* String and Numeric Literals in Date and Time Context
+* Literais de DATE e TIME do SQL Padrão e ODBC
+* Literais de String e Numéricos em Contextos de Data e Hora
 
-Date and time values can be represented in several formats, such as quoted strings or as numbers, depending on the exact type of the value and other factors. For example, in contexts where MySQL expects a date, it interprets any of `'2015-07-21'`, `'20150721'`, and `20150721` as a date.
+Valores de data e hora podem ser representados em diversos formatos, como strings entre aspas ou como números, dependendo do tipo exato do valor e de outros fatores. Por exemplo, em contextos onde o MySQL espera uma data, ele interpreta qualquer um de `'2015-07-21'`, `'20150721'` e `20150721` como uma data.
 
-This section describes the acceptable formats for date and time literals. For more information about the temporal data types, such as the range of permitted values, see Section 11.2, “Date and Time Data Types”.
+Esta seção descreve os formatos aceitáveis para literais de data e hora. Para mais informações sobre os tipos de dados temporais, como o range de valores permitidos, consulte a Seção 11.2, “Date and Time Data Types”.
 
-#### Standard SQL and ODBC Date and Time Literals
+#### Literais de Data e Hora do SQL Padrão e ODBC
 
-Standard SQL requires temporal literals to be specified using a type keyword and a string. The space between the keyword and string is optional.
+O SQL padrão exige que os literais temporais sejam especificados usando uma palavra-chave de tipo e uma string. O espaço entre a palavra-chave e a string é opcional.
 
 ```sql
 DATE 'str'
@@ -17,9 +17,9 @@ TIME 'str'
 TIMESTAMP 'str'
 ```
 
-MySQL recognizes but, unlike standard SQL, does not require the type keyword. Applications that are to be standard-compliant should include the type keyword for temporal literals.
+O MySQL reconhece, mas, diferentemente do SQL padrão, não exige a palavra-chave de tipo. Aplicações que buscam conformidade com o padrão devem incluir a palavra-chave de tipo para literais temporais.
 
-MySQL also recognizes the ODBC syntax corresponding to the standard SQL syntax:
+O MySQL também reconhece a sintaxe ODBC correspondente à sintaxe do SQL padrão:
 
 ```sql
 { d 'str' }
@@ -27,54 +27,54 @@ MySQL also recognizes the ODBC syntax corresponding to the standard SQL syntax:
 { ts 'str' }
 ```
 
-MySQL uses the type keywords and the ODBC constructions to produce `DATE`, `TIME`, and `DATETIME` values, respectively, including a trailing fractional seconds part if specified. The `TIMESTAMP` syntax produces a `DATETIME` value in MySQL because `DATETIME` has a range that more closely corresponds to the standard SQL `TIMESTAMP` type, which has a year range from `0001` to `9999`. (The MySQL `TIMESTAMP` year range is `1970` to `2038`.)
+O MySQL usa as palavras-chave de tipo e as construções ODBC para produzir valores `DATE`, `TIME` e `DATETIME`, respectivamente, incluindo uma parte final de segundos fracionários, se especificada. A sintaxe `TIMESTAMP` produz um valor `DATETIME` no MySQL porque `DATETIME` possui um range que corresponde mais de perto ao tipo `TIMESTAMP` do SQL padrão, que tem um range de ano de `0001` a `9999`. (O range de ano do `TIMESTAMP` do MySQL é `1970` a `2038`.)
 
-#### String and Numeric Literals in Date and Time Context
+#### Literais de String e Numéricos em Contexto de Data e Hora
 
-MySQL recognizes `DATE` values in these formats:
+O MySQL reconhece valores `DATE` nestes formatos:
 
-* As a string in either `'YYYY-MM-DD'` or `'YY-MM-DD'` format. A “relaxed” syntax is permitted: Any punctuation character may be used as the delimiter between date parts. For example, `'2012-12-31'`, `'2012/12/31'`, `'2012^12^31'`, and `'2012@12@31'` are equivalent.
+* Como uma string no formato `'YYYY-MM-DD'` ou `'YY-MM-DD'`. Uma sintaxe "relaxada" é permitida: Qualquer caractere de pontuação pode ser usado como delimiter entre as partes da data. Por exemplo, `'2012-12-31'`, `'2012/12/31'`, `'2012^12^31'` e `'2012@12@31'` são equivalentes.
 
-* As a string with no delimiters in either `'YYYYMMDD'` or `'YYMMDD'` format, provided that the string makes sense as a date. For example, `'20070523'` and `'070523'` are interpreted as `'2007-05-23'`, but `'071332'` is illegal (it has nonsensical month and day parts) and becomes `'0000-00-00'`.
+* Como uma string sem delimiters, no formato `'YYYYMMDD'` ou `'YYMMDD'`, desde que a string faça sentido como uma data. Por exemplo, `'20070523'` e `'070523'` são interpretados como `'2007-05-23'`, mas `'071332'` é ilegal (possui partes de mês e dia sem sentido) e se torna `'0000-00-00'`.
 
-* As a number in either *`YYYYMMDD`* or *`YYMMDD`* format, provided that the number makes sense as a date. For example, `19830905` and `830905` are interpreted as `'1983-09-05'`.
+* Como um número no formato *`YYYYMMDD`* ou *`YYMMDD`*, desde que o número faça sentido como uma data. Por exemplo, `19830905` e `830905` são interpretados como `'1983-09-05'`.
 
-MySQL recognizes `DATETIME` and `TIMESTAMP` values in these formats:
+O MySQL reconhece valores `DATETIME` e `TIMESTAMP` nestes formatos:
 
-* As a string in either `'YYYY-MM-DD hh:mm:ss'` or `'YY-MM-DD hh:mm:ss'` format. A “relaxed” syntax is permitted here, too: Any punctuation character may be used as the delimiter between date parts or time parts. For example, `'2012-12-31 11:30:45'`, `'2012^12^31 11+30+45'`, `'2012/12/31 11*30*45'`, and `'2012@12@31 11^30^45'` are equivalent.
+* Como uma string no formato `'YYYY-MM-DD hh:mm:ss'` ou `'YY-MM-DD hh:mm:ss'`. Uma sintaxe "relaxada" também é permitida aqui: Qualquer caractere de pontuação pode ser usado como delimiter entre as partes da data ou as partes da hora. Por exemplo, `'2012-12-31 11:30:45'`, `'2012^12^31 11+30+45'`, `'2012/12/31 11*30*45'` e `'2012@12@31 11^30^45'` são equivalentes.
 
-  The only delimiter recognized between a date and time part and a fractional seconds part is the decimal point.
+  O único delimiter reconhecido entre a parte de data e hora e uma parte de segundos fracionários é o ponto decimal.
 
-  The date and time parts can be separated by `T` rather than a space. For example, `'2012-12-31 11:30:45'` `'2012-12-31T11:30:45'` are equivalent.
+  As partes de data e hora podem ser separadas por `T` em vez de um espaço. Por exemplo, `'2012-12-31 11:30:45'` e `'2012-12-31T11:30:45'` são equivalentes.
 
-* As a string with no delimiters in either `'YYYYMMDDhhmmss'` or `'YYMMDDhhmmss'` format, provided that the string makes sense as a date. For example, `'20070523091528'` and `'070523091528'` are interpreted as `'2007-05-23 09:15:28'`, but `'071122129015'` is illegal (it has a nonsensical minute part) and becomes `'0000-00-00 00:00:00'`.
+* Como uma string sem delimiters nos formatos `'YYYYMMDDhhmmss'` ou `'YYMMDDhhmmss'`, desde que a string faça sentido como uma data. Por exemplo, `'20070523091528'` e `'070523091528'` são interpretados como `'2007-05-23 09:15:28'`, mas `'071122129015'` é ilegal (possui uma parte de minuto sem sentido) e se torna `'0000-00-00 00:00:00'`.
 
-* As a number in either *`YYYYMMDDhhmmss`* or *`YYMMDDhhmmss`* format, provided that the number makes sense as a date. For example, `19830905132800` and `830905132800` are interpreted as `'1983-09-05 13:28:00'`.
+* Como um número no formato *`YYYYMMDDhhmmss`* ou *`YYMMDDhhmmss`*, desde que o número faça sentido como uma data. Por exemplo, `19830905132800` e `830905132800` são interpretados como `'1983-09-05 13:28:00'`.
 
-A `DATETIME` or `TIMESTAMP` value can include a trailing fractional seconds part in up to microseconds (6 digits) precision. The fractional part should always be separated from the rest of the time by a decimal point; no other fractional seconds delimiter is recognized. For information about fractional seconds support in MySQL, see Section 11.2.7, “Fractional Seconds in Time Values”.
+Um valor `DATETIME` ou `TIMESTAMP` pode incluir uma parte final de segundos fracionários com precisão de até microssegundos (6 dígitos). A parte fracionária deve ser sempre separada do restante da hora por um ponto decimal; nenhum outro delimiter de segundos fracionários é reconhecido. Para informações sobre suporte a segundos fracionários no MySQL, consulte a Seção 11.2.7, “Fractional Seconds in Time Values”.
 
-Dates containing two-digit year values are ambiguous because the century is unknown. MySQL interprets two-digit year values using these rules:
+Datas que contêm valores de ano de dois dígitos são ambíguas porque o século é desconhecido. O MySQL interpreta valores de ano de dois dígitos usando estas regras:
 
-* Year values in the range `70-99` become `1970-1999`.
+* Valores de ano no range `70-99` tornam-se `1970-1999`.
 
-* Year values in the range `00-69` become `2000-2069`.
+* Valores de ano no range `00-69` tornam-se `2000-2069`.
 
-See also Section 11.2.10, “2-Digit Years in Dates”.
+Consulte também a Seção 11.2.10, “2-Digit Years in Dates”.
 
-For values specified as strings that include date part delimiters, it is unnecessary to specify two digits for month or day values that are less than `10`. `'2015-6-9'` is the same as `'2015-06-09'`. Similarly, for values specified as strings that include time part delimiters, it is unnecessary to specify two digits for hour, minute, or second values that are less than `10`. `'2015-10-30 1:2:3'` is the same as `'2015-10-30 01:02:03'`.
+Para valores especificados como strings que incluem delimiters de parte da data, não é necessário especificar dois dígitos para valores de mês ou dia que sejam menores que `10`. `'2015-6-9'` é o mesmo que `'2015-06-09'`. Da mesma forma, para valores especificados como strings que incluem delimiters de parte da hora, não é necessário especificar dois dígitos para valores de hora, minuto ou segundo que sejam menores que `10`. `'2015-10-30 1:2:3'` é o mesmo que `'2015-10-30 01:02:03'`.
 
-Values specified as numbers should be 6, 8, 12, or 14 digits long. If a number is 8 or 14 digits long, it is assumed to be in *`YYYYMMDD`* or *`YYYYMMDDhhmmss`* format and that the year is given by the first 4 digits. If the number is 6 or 12 digits long, it is assumed to be in *`YYMMDD`* or *`YYMMDDhhmmss`* format and that the year is given by the first 2 digits. Numbers that are not one of these lengths are interpreted as though padded with leading zeros to the closest length.
+Valores especificados como números devem ter 6, 8, 12 ou 14 dígitos. Se um número tiver 8 ou 14 dígitos, presume-se que esteja no formato *`YYYYMMDD`* ou *`YYYYMMDDhhmmss`* e que o ano seja fornecido pelos primeiros 4 dígitos. Se o número tiver 6 ou 12 dígitos, presume-se que esteja no formato *`YYMMDD`* ou *`YYMMDDhhmmss`* e que o ano seja fornecido pelos primeiros 2 dígitos. Números que não possuem um desses comprimentos são interpretados como se fossem preenchidos com zeros à esquerda até o comprimento mais próximo.
 
-Values specified as nondelimited strings are interpreted according their length. For a string 8 or 14 characters long, the year is assumed to be given by the first 4 characters. Otherwise, the year is assumed to be given by the first 2 characters. The string is interpreted from left to right to find year, month, day, hour, minute, and second values, for as many parts as are present in the string. This means you should not use strings that have fewer than 6 characters. For example, if you specify `'9903'`, thinking that represents March, 1999, MySQL converts it to the “zero” date value. This occurs because the year and month values are `99` and `03`, but the day part is completely missing. However, you can explicitly specify a value of zero to represent missing month or day parts. For example, to insert the value `'1999-03-00'`, use `'990300'`.
+Valores especificados como strings sem delimiter são interpretados de acordo com seu comprimento. Para uma string de 8 ou 14 caracteres, presume-se que o ano seja fornecido pelos primeiros 4 caracteres. Caso contrário, presume-se que o ano seja fornecido pelos primeiros 2 caracteres. A string é interpretada da esquerda para a direita para encontrar valores de ano, mês, dia, hora, minuto e segundo, para tantas partes quantas estiverem presentes na string. Isso significa que você não deve usar strings que tenham menos de 6 caracteres. Por exemplo, se você especificar `'9903'`, pensando que representa Março de 1999, o MySQL o converte para o valor de data "zero". Isso ocorre porque os valores de ano e mês são `99` e `03`, mas a parte do dia está completamente ausente. No entanto, você pode especificar explicitamente um valor zero para representar partes de mês ou dia ausentes. Por exemplo, para inserir o valor `'1999-03-00'`, use `'990300'`.
 
-MySQL recognizes `TIME` values in these formats:
+O MySQL reconhece valores `TIME` nestes formatos:
 
-* As a string in *`'D hh:mm:ss'`* format. You can also use one of the following “relaxed” syntaxes: *`'hh:mm:ss'`*, *`'hh:mm'`*, *`'D hh:mm'`*, *`'D hh'`*, or *`'ss'`*. Here *`D`* represents days and can have a value from 0 to 34.
+* Como uma string no formato *`'D hh:mm:ss'`*. Você também pode usar uma das seguintes sintaxes "relaxadas": *`'hh:mm:ss'`*, *`'hh:mm'`*, *`'D hh:mm'`*, *`'D hh'`* ou *`'ss'`*. Aqui, *`D`* representa dias e pode ter um valor de 0 a 34.
 
-* As a string with no delimiters in *`'hhmmss'`* format, provided that it makes sense as a time. For example, `'101112'` is understood as `'10:11:12'`, but `'109712'` is illegal (it has a nonsensical minute part) and becomes `'00:00:00'`.
+* Como uma string sem delimiters no formato *`'hhmmss'`*, desde que faça sentido como uma hora. Por exemplo, `'101112'` é entendido como `'10:11:12'`, mas `'109712'` é ilegal (possui uma parte de minuto sem sentido) e se torna `'00:00:00'`.
 
-* As a number in *`hhmmss`* format, provided that it makes sense as a time. For example, `101112` is understood as `'10:11:12'`. The following alternative formats are also understood: *`ss`*, *`mmss`*, or *`hhmmss`*.
+* Como um número no formato *`hhmmss`*, desde que faça sentido como uma hora. Por exemplo, `101112` é entendido como `'10:11:12'`. Os seguintes formatos alternativos também são entendidos: *`ss`*, *`mmss`* ou *`hhmmss`*.
 
-A trailing fractional seconds part is recognized in the *`'D hh:mm:ss.fraction'`*, *`'hh:mm:ss.fraction'`*, *`'hhmmss.fraction'`*, and *`hhmmss.fraction`* time formats, where `fraction` is the fractional part in up to microseconds (6 digits) precision. The fractional part should always be separated from the rest of the time by a decimal point; no other fractional seconds delimiter is recognized. For information about fractional seconds support in MySQL, see Section 11.2.7, “Fractional Seconds in Time Values”.
+Uma parte final de segundos fracionários é reconhecida nos formatos de hora *`'D hh:mm:ss.fraction'`*, *`'hh:mm:ss.fraction'`*, *`'hhmmss.fraction'`* e *`hhmmss.fraction`*, onde `fraction` é a parte fracionária com precisão de até microssegundos (6 dígitos). A parte fracionária deve ser sempre separada do restante da hora por um ponto decimal; nenhum outro delimiter de segundos fracionários é reconhecido. Para informações sobre suporte a segundos fracionários no MySQL, consulte a Seção 11.2.7, “Fractional Seconds in Time Values”.
 
-For `TIME` values specified as strings that include a time part delimiter, it is unnecessary to specify two digits for hours, minutes, or seconds values that are less than `10`. `'8:3:2'` is the same as `'08:03:02'`.
+Para valores `TIME` especificados como strings que incluem um delimiter de parte da hora, não é necessário especificar dois dígitos para valores de hora, minuto ou segundo que sejam menores que `10`. `'8:3:2'` é o mesmo que `'08:03:02'`.

@@ -1,17 +1,17 @@
-#### 8.12.3.1 Using Symbolic Links for Databases on Unix
+#### 8.12.3.1 Usando Links Simbólicos para Databases no Unix
 
-On Unix, the way to symlink a database is first to create a directory on some disk where you have free space and then to create a soft link to it from the MySQL data directory.
+No Unix, a maneira de criar um symlink para um Database é primeiro criar um diretório em algum disco onde você tenha espaço livre e, em seguida, criar um soft link para ele a partir do diretório de dados do MySQL.
 
 ```sql
 $> mkdir /dr1/databases/test
 $> ln -s /dr1/databases/test /path/to/datadir
 ```
 
-MySQL does not support linking one directory to multiple databases. Replacing a database directory with a symbolic link works as long as you do not make a symbolic link between databases. Suppose that you have a database `db1` under the MySQL data directory, and then make a symlink `db2` that points to `db1`:
+O MySQL não oferece suporte para ligar um diretório a múltiplos Databases. Substituir um diretório de Database por um link simbólico funciona, contanto que você não crie um link simbólico entre Databases. Suponha que você tenha um Database `db1` sob o diretório de dados do MySQL e, em seguida, crie um symlink `db2` que aponte para `db1`:
 
 ```sql
 $> cd /path/to/datadir
 $> ln -s db1 db2
 ```
 
-The result is that, for any table `tbl_a` in `db1`, there also appears to be a table `tbl_a` in `db2`. If one client updates `db1.tbl_a` and another client updates `db2.tbl_a`, problems are likely to occur.
+O resultado é que, para qualquer table `tbl_a` em `db1`, também parece haver uma table `tbl_a` em `db2`. Se um client atualizar `db1.tbl_a` e outro client atualizar `db2.tbl_a`, é provável que ocorram problemas.

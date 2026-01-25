@@ -1,24 +1,24 @@
-#### 10.14.4.3 Diagnostics During Index.xml Parsing
+#### 10.14.4.3 Diagnósticos Durante a Análise (Parsing) de Index.xml
 
-The MySQL server generates diagnostics when it finds problems while parsing the `Index.xml` file:
+O servidor MySQL gera diagnósticos quando encontra problemas durante a análise (parsing) do arquivo `Index.xml`:
 
-* Unknown tags are written to the error log. For example, the following message results if a collation definition contains a `<aaa>` tag:
+* Tags desconhecidas são escritas no log de erro. Por exemplo, a seguinte mensagem resulta se uma definição de collation contiver uma tag `<aaa>`:
 
   ```sql
   [Warning] Buffered warning: Unknown LDML tag:
   'charsets/charset/collation/rules/aaa'
   ```
 
-* If collation initialization is not possible, the server reports an “Unknown collation” error, and also generates warnings explaining the problems, such as in the previous example. In other cases, when a collation description is generally correct but contains some unknown tags, the collation is initialized and is available for use. The unknown parts are ignored, but a warning is generated in the error log.
+* Se a inicialização do collation não for possível, o servidor relata um erro de “Unknown collation” e também gera warnings explicando os problemas, como no exemplo anterior. Em outros casos, quando a descrição de um collation está geralmente correta, mas contém algumas tags desconhecidas, o collation é inicializado e fica disponível para uso. As partes desconhecidas são ignoradas, mas um warning é gerado no log de erro.
 
-* Problems with collations generate warnings that clients can display with `SHOW WARNINGS`. Suppose that a reset rule contains an expansion longer than the maximum supported length of 6 characters:
+* Problemas com collations geram warnings que os clientes podem exibir com `SHOW WARNINGS`. Suponha que uma regra de reset contenha uma expansão maior que o comprimento máximo suportado de 6 caracteres:
 
   ```sql
   <reset>abcdefghi</reset>
   <i>x</i>
   ```
 
-  An attempt to use the collation produces warnings:
+  Uma tentativa de usar o collation produz warnings:
 
   ```sql
   mysql> SELECT _utf8'test' COLLATE utf8_test_ci;

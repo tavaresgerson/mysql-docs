@@ -1,32 +1,32 @@
-### 8.2.2 Optimizing Subqueries, Derived Tables, and View References
+### 8.2.2 Otimizando Subqueries, Derived Tables e Referências de View
 
-8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations
+8.2.2.1 Otimizando Subqueries, Derived Tables e Referências de View com Transformações Semijoin
 
-8.2.2.2 Optimizing Subqueries with Materialization
+8.2.2.2 Otimizando Subqueries com Materialization
 
-8.2.2.3 Optimizing Subqueries with the EXISTS Strategy
+8.2.2.3 Otimizando Subqueries com a Estratégia EXISTS
 
-8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization
+8.2.2.4 Otimizando Derived Tables e Referências de View com Merging ou Materialization
 
-The MySQL query optimizer has different strategies available to evaluate subqueries:
+O otimizador de Query do MySQL possui diferentes estratégias disponíveis para avaliar subqueries:
 
-* For `IN` (or `=ANY`) subqueries, the optimizer has these choices:
+* Para subqueries `IN` (ou `=ANY`), o otimizador tem estas escolhas:
 
   + Semijoin
   + Materialization
-  + `EXISTS` strategy
-* For `NOT IN` (or `<>ALL`) subqueries, the optimizer has these choices:
+  + Estratégia `EXISTS`
+* Para subqueries `NOT IN` (ou `<>ALL`), o otimizador tem estas escolhas:
 
   + Materialization
-  + `EXISTS` strategy
+  + Estratégia `EXISTS`
 
-For derived tables, the optimizer has these choices (which also apply to view references):
+Para derived tables, o otimizador tem estas escolhas (que também se aplicam a referências de view):
 
-* Merge the derived table into the outer query block
-* Materialize the derived table to an internal temporary table
+* Merge a derived table no bloco de Query externo
+* Materialize a derived table em uma tabela temporária interna
 
-The following discussion provides more information about the preceding optimization strategies.
+A discussão a seguir fornece mais informações sobre as estratégias de otimização precedentes.
 
-Note
+Nota
 
-A limitation on `UPDATE` and `DELETE` statements that use a subquery to modify a single table is that the optimizer does not use semijoin or materialization subquery optimizations. As a workaround, try rewriting them as multiple-table `UPDATE` and `DELETE` statements that use a join rather than a subquery.
+Uma limitação em comandos `UPDATE` e `DELETE` que usam uma subquery para modificar uma única tabela é que o otimizador não utiliza otimizações de subquery semijoin ou materialization. Como solução alternativa (workaround), tente reescrevê-los como comandos `UPDATE` e `DELETE` de múltiplas tabelas que utilizam um JOIN em vez de uma subquery.

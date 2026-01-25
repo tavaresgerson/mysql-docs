@@ -1,18 +1,18 @@
-### 10.14.2 Choosing a Collation ID
+### 10.14.2 Escolhendo um ID de Collation
 
-Each collation must have a unique ID. To add a collation, you must choose an ID value that is not currently used. MySQL supports two-byte collation IDs. The range of IDs from 1024 to 2047 is reserved for user-defined collations.
+Cada collation deve ter um ID exclusivo. Para adicionar uma collation, você deve escolher um valor de ID que não esteja sendo usado atualmente. O MySQL suporta IDs de collation de dois bytes. O intervalo de IDs de 1024 a 2047 é reservado para collations definidas pelo usuário.
 
-The collation ID that you choose appears in these contexts:
+O ID de collation que você escolher aparece nestes contextos:
 
-* The `ID` column of the Information Schema `COLLATIONS` table.
+* A coluna `ID` da tabela `COLLATIONS` do Information Schema.
 
-* The `Id` column of `SHOW COLLATION` output.
+* A coluna `Id` da saída de `SHOW COLLATION`.
 
-* The `charsetnr` member of the `MYSQL_FIELD` C API data structure.
+* O membro `charsetnr` da estrutura de dados `MYSQL_FIELD` da C API.
 
-* The `number` member of the `MY_CHARSET_INFO` data structure returned by the `mysql_get_character_set_info()` C API function.
+* O membro `number` da estrutura de dados `MY_CHARSET_INFO` retornada pela função C API `mysql_get_character_set_info()`.
 
-To determine the largest currently used ID, issue the following statement:
+Para determinar o maior ID atualmente em uso, execute a seguinte instrução:
 
 ```sql
 mysql> SELECT MAX(ID) FROM INFORMATION_SCHEMA.COLLATIONS;
@@ -23,7 +23,7 @@ mysql> SELECT MAX(ID) FROM INFORMATION_SCHEMA.COLLATIONS;
 +---------+
 ```
 
-To display a list of all currently used IDs, issue this statement:
+Para exibir uma lista de todos os IDs atualmente em uso, execute esta instrução:
 
 ```sql
 mysql> SELECT ID FROM INFORMATION_SCHEMA.COLLATIONS ORDER BY ID;
@@ -47,6 +47,6 @@ mysql> SELECT ID FROM INFORMATION_SCHEMA.COLLATIONS ORDER BY ID;
 +-----+
 ```
 
-Warning
+Aviso
 
-Before upgrading, you should save the configuration files that you change. If you upgrade in place, the process replaces the modified files.
+Antes de fazer o upgrade, você deve salvar os arquivos de configuração que alterar. Se você fizer o upgrade no local (in place), o processo substituirá os arquivos modificados.

@@ -1,37 +1,37 @@
-### 8.3.8 Comparison of B-Tree and Hash Indexes
+### 8.3.8 Comparação de Indexes B-Tree e Hash
 
-Understanding the B-tree and hash data structures can help predict how different queries perform on different storage engines that use these data structures in their indexes, particularly for the `MEMORY` storage engine that lets you choose B-tree or hash indexes.
+Entender as estruturas de dados B-tree e hash pode ajudar a prever como diferentes Queries performam em diferentes storage engines que utilizam essas estruturas de dados em seus Indexes, particularmente para o storage engine `MEMORY`, que permite escolher Indexes B-tree ou hash.
 
-* B-Tree Index Characteristics
-* Hash Index Characteristics
+* Características do Index B-tree
+* Características do Index Hash
 
-#### B-Tree Index Characteristics
+#### Características do Index B-tree
 
-A B-tree index can be used for column comparisons in expressions that use the `=`, `>`, `>=`, `<`, `<=`, or `BETWEEN` operators. The index also can be used for `LIKE` comparisons if the argument to `LIKE` is a constant string that does not start with a wildcard character. For example, the following `SELECT` statements use indexes:
+Um Index B-tree pode ser usado para comparações de colunas em expressões que utilizam os operadores `=`, `>`, `>=`, `<`, `<=`, ou `BETWEEN`. O Index também pode ser usado para comparações `LIKE` se o argumento para `LIKE` for uma string constante que não comece com um caractere wildcard. Por exemplo, os seguintes comandos `SELECT` utilizam Indexes:
 
 ```sql
 SELECT * FROM tbl_name WHERE key_col LIKE 'Patrick%';
 SELECT * FROM tbl_name WHERE key_col LIKE 'Pat%_ck%';
 ```
 
-In the first statement, only rows with `'Patrick' <= key_col < 'Patricl'` are considered. In the second statement, only rows with `'Pat' <= key_col < 'Pau'` are considered.
+No primeiro comando, apenas as linhas com `'Patrick' <= key_col < 'Patricl'` são consideradas. No segundo comando, apenas as linhas com `'Pat' <= key_col < 'Pau'` são consideradas.
 
-The following `SELECT` statements do not use indexes:
+Os seguintes comandos `SELECT` não utilizam Indexes:
 
 ```sql
 SELECT * FROM tbl_name WHERE key_col LIKE '%Patrick%';
 SELECT * FROM tbl_name WHERE key_col LIKE other_col;
 ```
 
-In the first statement, the `LIKE` value begins with a wildcard character. In the second statement, the `LIKE` value is not a constant.
+No primeiro comando, o valor `LIKE` começa com um caractere wildcard. No segundo comando, o valor `LIKE` não é uma constante.
 
-If you use `... LIKE '%string%'` and *`string`* is longer than three characters, MySQL uses the Turbo Boyer-Moore algorithm to initialize the pattern for the string and then uses this pattern to perform the search more quickly.
+Se você usar `... LIKE '%string%'` e *`string`* for mais longa que três caracteres, o MySQL usa o algoritmo Turbo Boyer-Moore para inicializar o padrão da string e então usa esse padrão para realizar a busca mais rapidamente.
 
-A search using `col_name IS NULL` employs indexes if *`col_name`* is indexed.
+Uma busca usando `col_name IS NULL` utiliza Indexes se *`col_name`* for indexada.
 
-Any index that does not span all `AND` levels in the `WHERE` clause is not used to optimize the query. In other words, to be able to use an index, a prefix of the index must be used in every `AND` group.
+Qualquer Index que não abranja todos os níveis `AND` na cláusula `WHERE` não é usado para otimizar a Query. Em outras palavras, para poder usar um Index, um prefixo do Index deve ser usado em cada grupo `AND`.
 
-The following `WHERE` clauses use indexes:
+As seguintes cláusulas `WHERE` usam Indexes:
 
 ```sql
 ... WHERE index_part1=1 AND index_part2=2 AND other_column=3
@@ -46,7 +46,7 @@ The following `WHERE` clauses use indexes:
 ... WHERE index1=1 AND index2=2 OR index1=3 AND index3=3;
 ```
 
-These `WHERE` clauses do *not* use indexes:
+Estas cláusulas `WHERE` *não* usam Indexes:
 
 ```sql
     /* index_part1 is not used */
@@ -59,16 +59,16 @@ These `WHERE` clauses do *not* use indexes:
 ... WHERE index_part1=1 OR index_part2=10
 ```
 
-Sometimes MySQL does not use an index, even if one is available. One circumstance under which this occurs is when the optimizer estimates that using the index would require MySQL to access a very large percentage of the rows in the table. (In this case, a table scan is likely to be much faster because it requires fewer seeks.) However, if such a query uses `LIMIT` to retrieve only some of the rows, MySQL uses an index anyway, because it can much more quickly find the few rows to return in the result.
+Às vezes, o MySQL não usa um Index, mesmo que haja um disponível. Uma circunstância em que isso ocorre é quando o otimizador estima que usar o Index exigiria que o MySQL acessasse uma porcentagem muito grande das linhas na tabela. (Neste caso, um table scan provavelmente seria muito mais rápido porque exige menos seeks.) No entanto, se essa Query usar `LIMIT` para recuperar apenas algumas das linhas, o MySQL usará um Index de qualquer forma, pois pode encontrar muito mais rapidamente as poucas linhas a serem retornadas no resultado.
 
-#### Hash Index Characteristics
+#### Características do Index Hash
 
-Hash indexes have somewhat different characteristics from those just discussed:
+Os hash indexes têm características um pouco diferentes das que acabamos de discutir:
 
-* They are used only for equality comparisons that use the `=` or `<=>` operators (but are *very* fast). They are not used for comparison operators such as `<` that find a range of values. Systems that rely on this type of single-value lookup are known as “key-value stores”; to use MySQL for such applications, use hash indexes wherever possible.
+* Eles são usados apenas para comparações de igualdade que utilizam os operadores `=` ou `<=>` (mas são *muito* rápidos). Não são usados para operadores de comparação como `<` que encontram um range de valores. Sistemas que dependem desse tipo de lookup de valor único são conhecidos como “key-value stores”; para usar o MySQL para tais aplicações, utilize hash indexes sempre que possível.
 
-* The optimizer cannot use a hash index to speed up `ORDER BY` operations. (This type of index cannot be used to search for the next entry in order.)
+* O otimizador não pode usar um hash index para acelerar operações `ORDER BY`. (Este tipo de Index não pode ser usado para buscar a próxima entrada em ordem.)
 
-* MySQL cannot determine approximately how many rows there are between two values (this is used by the range optimizer to decide which index to use). This may affect some queries if you change a `MyISAM` or `InnoDB` table to a hash-indexed `MEMORY` table.
+* O MySQL não pode determinar aproximadamente quantas linhas existem entre dois valores (isso é usado pelo range optimizer para decidir qual Index utilizar). Isso pode afetar algumas Queries se você alterar uma tabela `MyISAM` ou `InnoDB` para uma tabela `MEMORY` indexada por hash.
 
-* Only whole keys can be used to search for a row. (With a B-tree index, any leftmost prefix of the key can be used to find rows.)
+* Apenas chaves inteiras podem ser usadas para buscar uma linha. (Com um Index B-tree, qualquer prefixo à esquerda da chave pode ser usado para encontrar linhas.)

@@ -1,8 +1,8 @@
-### 5.5.2 Obtaining Server Plugin Information
+### 5.5.2 Obtendo Informações de Plugins do Servidor
 
-There are several ways to determine which plugins are installed in the server:
+Existem várias maneiras de determinar quais plugins estão instalados no servidor:
 
-* The Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table contains a row for each loaded plugin. Any that have a `PLUGIN_LIBRARY` value of `NULL` are built in and cannot be unloaded.
+* A tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") do Information Schema contém uma linha para cada plugin carregado. Quaisquer plugins que possuam um valor `PLUGIN_LIBRARY` de `NULL` são embutidos (built in) e não podem ser descarregados (unloaded).
 
   ```sql
   mysql> SELECT * FROM INFORMATION_SCHEMA.PLUGINS\G
@@ -35,7 +35,7 @@ There are several ways to determine which plugins are installed in the server:
   ...
   ```
 
-* The [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement displays a row for each loaded plugin. Any that have a `Library` value of `NULL` are built in and cannot be unloaded.
+* O comando [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") exibe uma linha para cada plugin carregado. Quaisquer plugins que possuam um valor `Library` de `NULL` são embutidos (built in) e não podem ser descarregados (unloaded).
 
   ```sql
   mysql> SHOW PLUGINS\G
@@ -55,4 +55,4 @@ There are several ways to determine which plugins are installed in the server:
   ...
   ```
 
-* The `mysql.plugin` table shows which plugins have been registered with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"). The table contains only plugin names and library file names, so it does not provide as much information as the [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement.
+* A tabela `mysql.plugin` mostra quais plugins foram registrados com [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"). A tabela contém apenas nomes de plugins e nomes de arquivos de library, portanto, ela não fornece tantas informações quanto a tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") ou o comando [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement").

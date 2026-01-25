@@ -1,8 +1,8 @@
-### 10.3.9 Examples of Character Set and Collation Assignment
+### 10.3.9 Exemplos de Atribuição de Character Set e Collation
 
-The following examples show how MySQL determines default character set and collation values.
+Os exemplos a seguir mostram como o MySQL determina os valores padrão de character set e collation.
 
-**Example 1: Table and Column Definition**
+**Exemplo 1: Definição de Tabela e Coluna**
 
 ```sql
 CREATE TABLE t1
@@ -11,9 +11,9 @@ CREATE TABLE t1
 ) DEFAULT CHARACTER SET latin2 COLLATE latin2_bin;
 ```
 
-Here we have a column with a `latin1` character set and a `latin1_german1_ci` collation. The definition is explicit, so that is straightforward. Notice that there is no problem with storing a `latin1` column in a `latin2` table.
+Aqui temos uma coluna com o character set `latin1` e a collation `latin1_german1_ci`. A definição é explícita, o que torna isso direto. Note que não há problema em armazenar uma coluna `latin1` em uma tabela `latin2`.
 
-**Example 2: Table and Column Definition**
+**Exemplo 2: Definição de Tabela e Coluna**
 
 ```sql
 CREATE TABLE t1
@@ -22,9 +22,9 @@ CREATE TABLE t1
 ) DEFAULT CHARACTER SET latin1 COLLATE latin1_danish_ci;
 ```
 
-This time we have a column with a `latin1` character set and a default collation. Although it might seem natural, the default collation is not taken from the table level. Instead, because the default collation for `latin1` is always `latin1_swedish_ci`, column `c1` has a collation of `latin1_swedish_ci` (not `latin1_danish_ci`).
+Desta vez, temos uma coluna com o character set `latin1` e uma collation padrão. Embora possa parecer natural, a collation padrão não é herdada do nível da tabela. Em vez disso, como a collation padrão para `latin1` é sempre `latin1_swedish_ci`, a coluna `c1` tem uma collation de `latin1_swedish_ci` (não `latin1_danish_ci`).
 
-**Example 3: Table and Column Definition**
+**Exemplo 3: Definição de Tabela e Coluna**
 
 ```sql
 CREATE TABLE t1
@@ -33,9 +33,9 @@ CREATE TABLE t1
 ) DEFAULT CHARACTER SET latin1 COLLATE latin1_danish_ci;
 ```
 
-We have a column with a default character set and a default collation. In this circumstance, MySQL checks the table level to determine the column character set and collation. Consequently, the character set for column `c1` is `latin1` and its collation is `latin1_danish_ci`.
+Temos uma coluna com character set padrão e collation padrão. Nesta circunstância, o MySQL verifica o nível da tabela para determinar o character set e a collation da coluna. Consequentemente, o character set para a coluna `c1` é `latin1` e sua collation é `latin1_danish_ci`.
 
-**Example 4: Database, Table, and Column Definition**
+**Exemplo 4: Definição de Database, Tabela e Coluna**
 
 ```sql
 CREATE DATABASE d1
@@ -47,4 +47,4 @@ CREATE TABLE t1
 );
 ```
 
-We create a column without specifying its character set and collation. We're also not specifying a character set and a collation at the table level. In this circumstance, MySQL checks the database level to determine the table settings, which thereafter become the column settings.) Consequently, the character set for column `c1` is `latin2` and its collation is `latin2_czech_cs`.
+Criamos uma coluna sem especificar seu character set e collation. Também não estamos especificando um character set e uma collation no nível da tabela. Nesta circunstância, o MySQL verifica o nível do Database para determinar as configurações da tabela, que posteriormente se tornam as configurações da coluna. Consequentemente, o character set para a coluna `c1` é `latin2` e sua collation é `latin2_czech_cs`.

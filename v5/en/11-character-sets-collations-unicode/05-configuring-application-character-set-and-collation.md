@@ -1,20 +1,20 @@
-## 10.5 Configuring Application Character Set and Collation
+## 10.5 Configurando o Character Set e a Collation da Aplicação
 
-For applications that store data using the default MySQL character set and collation (`latin1`, `latin1_swedish_ci`), no special configuration should be needed. If applications require data storage using a different character set or collation, you can configure character set information several ways:
+Para aplicações que armazenam dados usando o character set e a collation padrão do MySQL (`latin1`, `latin1_swedish_ci`), nenhuma configuração especial deve ser necessária. Se as aplicações exigirem o armazenamento de dados usando um character set ou collation diferente, você pode configurar as informações de character set de várias maneiras:
 
-* Specify character settings per database. For example, applications that use one database might use the default of `latin1`, whereas applications that use another database might use `sjis`.
+* Especifique as configurações de character set por Database. Por exemplo, aplicações que usam um Database podem usar o padrão `latin1`, enquanto aplicações que usam outro Database podem usar `sjis`.
 
-* Specify character settings at server startup. This causes the server to use the given settings for all applications that do not make other arrangements.
+* Especifique as configurações de character set na inicialização do Server. Isso faz com que o Server utilize as configurações fornecidas para todas as aplicações que não fizerem outros arranjos.
 
-* Specify character settings at configuration time, if you build MySQL from source. This causes the server to use the given settings as the defaults for all applications, without having to specify them at server startup.
+* Especifique as configurações de character set no momento da configuração, se você compilar o MySQL a partir do código-fonte. Isso faz com que o Server utilize as configurações fornecidas como os defaults para todas as aplicações, sem a necessidade de especificá-las na inicialização do Server.
 
-When different applications require different character settings, the per-database technique provides a good deal of flexibility. If most or all applications use the same character set, specifying character settings at server startup or configuration time may be most convenient.
+Quando diferentes aplicações exigem diferentes configurações de character set, a técnica por Database oferece uma boa flexibilidade. Se a maioria ou todas as aplicações usarem o mesmo character set, especificar as configurações de character set na inicialização ou no momento da configuração do Server pode ser mais conveniente.
 
-For the per-database or server-startup techniques, the settings control the character set for data storage. Applications must also tell the server which character set to use for client/server communications, as described in the following instructions.
+Para as técnicas por Database ou de inicialização do Server, as configurações controlam o character set para o armazenamento de dados. As aplicações também devem informar ao Server qual character set usar para as comunicações client/server, conforme descrito nas instruções a seguir.
 
-The examples shown here assume use of the `utf8` character set and `utf8_general_ci` collation in particular contexts as an alternative to the defaults of `latin1` and `latin1_swedish_ci`.
+Os exemplos mostrados aqui assumem o uso do character set `utf8` e da collation `utf8_general_ci` em contextos específicos como uma alternativa aos defaults de `latin1` e `latin1_swedish_ci`.
 
-* **Specify character settings per database.** To create a database such that its tables use a given default character set and collation for data storage, use a `CREATE DATABASE` statement like this:
+* **Especifique as configurações de character set por Database.** Para criar um Database de modo que suas tabelas usem um dado character set e collation default para armazenamento de dados, use uma instrução `CREATE DATABASE` como esta:
 
   ```sql
   CREATE DATABASE mydb
@@ -22,19 +22,19 @@ The examples shown here assume use of the `utf8` character set and `utf8_general
     COLLATE utf8_general_ci;
   ```
 
-  Tables created in the database use `utf8` and `utf8_general_ci` by default for any character columns.
+  As tabelas criadas no Database usam `utf8` e `utf8_general_ci` por default para quaisquer colunas de caracteres.
 
-  Applications that use the database should also configure their connection to the server each time they connect. This can be done by executing a `SET NAMES 'utf8'` statement after connecting. The statement can be used regardless of connection method (the **mysql** client, PHP scripts, and so forth).
+  As aplicações que usam o Database também devem configurar sua Connection com o Server toda vez que se conectarem. Isso pode ser feito executando uma instrução `SET NAMES 'utf8'` após a conexão. A instrução pode ser usada independentemente do método de conexão (o Client **mysql**, scripts PHP, e assim por diante).
 
-  In some cases, it may be possible to configure the connection to use the desired character set some other way. For example, to connect using **mysql**, you can specify the `--default-character-set=utf8` command-line option to achieve the same effect as `SET NAMES 'utf8'`.
+  Em alguns casos, pode ser possível configurar a Connection para usar o character set desejado de outra forma. Por exemplo, para se conectar usando o **mysql**, você pode especificar a opção de linha de comando `--default-character-set=utf8` para obter o mesmo efeito que `SET NAMES 'utf8'`.
 
-  For more information about configuring client connections, see Section 10.4, “Connection Character Sets and Collations”.
+  Para mais informações sobre a configuração de Client Connections, consulte a Seção 10.4, “Connection Character Sets and Collations”.
 
-  Note
+  Nota
 
-  If you use `ALTER DATABASE` to change the database default character set or collation, existing stored routines in the database that use those defaults must be dropped and recreated so that they use the new defaults. (In a stored routine, variables with character data types use the database defaults if the character set or collation are not specified explicitly. See Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”.)
+  Se você usar `ALTER DATABASE` para alterar o character set ou a collation default do Database, as Stored Routines existentes no Database que usam esses defaults devem ser removidas e recriadas para que passem a usar os novos defaults. (Em uma Stored Routine, as variáveis com tipos de dados de caracteres usam os defaults do Database se o character set ou a collation não forem especificados explicitamente. Consulte a Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”.)
 
-* **Specify character settings at server startup.** To select a character set and collation at server startup, use the `--character-set-server` and `--collation-server` options. For example, to specify the options in an option file, include these lines:
+* **Especifique as configurações de character set na inicialização do Server.** Para selecionar um character set e uma collation na inicialização do Server, use as opções `--character-set-server` e `--collation-server`. Por exemplo, para especificar as opções em um arquivo de opções, inclua estas linhas:
 
   ```sql
   [mysqld]
@@ -42,20 +42,20 @@ The examples shown here assume use of the `utf8` character set and `utf8_general
   collation-server=utf8_general_ci
   ```
 
-  These settings apply server-wide and apply as the defaults for databases created by any application, and for tables created in those databases.
+  Essas configurações se aplicam em todo o Server e funcionam como defaults para Databases criados por qualquer aplicação e para tabelas criadas nesses Databases.
 
-  It is still necessary for applications to configure their connection using `SET NAMES` or equivalent after they connect, as described previously. You might be tempted to start the server with the `--init_connect="SET NAMES 'utf8'"` option to cause `SET NAMES` to be executed automatically for each client that connects. However, this may yield inconsistent results because the `init_connect` value is not executed for users who have the `SUPER` privilege.
+  Ainda é necessário que as aplicações configurem sua Connection usando `SET NAMES` ou equivalente após se conectarem, conforme descrito anteriormente. Você pode ficar tentado a iniciar o Server com a opção `--init_connect="SET NAMES 'utf8'"` para fazer com que `SET NAMES` seja executado automaticamente para cada Client que se conectar. No entanto, isso pode gerar resultados inconsistentes, pois o valor de `init_connect` não é executado para usuários que possuem o privilégio `SUPER`.
 
-* **Specify character settings at MySQL configuration time.** To select a character set and collation if you configure and build MySQL from source, use the `DEFAULT_CHARSET` and `DEFAULT_COLLATION` **CMake** options:
+* **Especifique as configurações de character set no momento da configuração do MySQL.** Para selecionar um character set e uma collation se você configurar e compilar o MySQL a partir do código-fonte, use as opções **CMake** `DEFAULT_CHARSET` e `DEFAULT_COLLATION`:
 
   ```sql
   cmake . -DDEFAULT_CHARSET=utf8 \
     -DDEFAULT_COLLATION=utf8_general_ci
   ```
 
-  The resulting server uses `utf8` and `utf8_general_ci` as the default for databases and tables and for client connections. It is unnecessary to use `--character-set-server` and `--collation-server` to specify those defaults at server startup. It is also unnecessary for applications to configure their connection using `SET NAMES` or equivalent after they connect to the server.
+  O Server resultante usa `utf8` e `utf8_general_ci` como default para Databases e tabelas e para Client Connections. É desnecessário usar `--character-set-server` e `--collation-server` para especificar esses defaults na inicialização do Server. Também é desnecessário que as aplicações configurem sua Connection usando `SET NAMES` ou equivalente após se conectarem ao Server.
 
-Regardless of how you configure the MySQL character set for application use, you must also consider the environment within which those applications execute. For example, if you send statements using UTF-8 text taken from a file that you create in an editor, you should edit the file with the locale of your environment set to UTF-8 so that the file encoding is correct and so that the operating system handles it correctly. If you use the **mysql** client from within a terminal window, the window must be configured to use UTF-8 or characters may not display properly. For a script that executes in a Web environment, the script must handle character encoding properly for its interaction with the MySQL server, and it must generate pages that correctly indicate the encoding so that browsers know how to display the content of the pages. For example, you can include this `<meta>` tag within your `<head>` element:
+Independentemente de como você configurar o character set do MySQL para o uso da aplicação, você também deve considerar o ambiente no qual essas aplicações são executadas. Por exemplo, se você enviar instruções usando texto UTF-8 retirado de um arquivo que você cria em um editor, você deve editar o arquivo com a localidade (locale) do seu ambiente definida como UTF-8 para que a codificação do arquivo esteja correta e para que o sistema operacional o manipule corretamente. Se você usar o Client **mysql** a partir de uma janela de terminal, a janela deve ser configurada para usar UTF-8 ou os caracteres podem não ser exibidos corretamente. Para um script que é executado em um ambiente Web, o script deve lidar com a codificação de caracteres corretamente para sua interação com o MySQL Server, e deve gerar páginas que indiquem corretamente a codificação para que os navegadores saibam como exibir o conteúdo das páginas. Por exemplo, você pode incluir esta tag `<meta>` dentro do seu elemento `<head>`:
 
 ```sql
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

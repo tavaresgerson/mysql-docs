@@ -1,12 +1,12 @@
-#### 5.7.2.1 Starting Multiple MySQL Instances at the Windows Command Line
+#### 5.7.2.1 Iniciando Múltiplas Instâncias MySQL na Linha de Comando do Windows
 
-The procedure for starting a single MySQL server manually from the command line is described in [Section 2.3.4.6, “Starting MySQL from the Windows Command Line”](windows-start-command-line.html "2.3.4.6 Starting MySQL from the Windows Command Line"). To start multiple servers this way, you can specify the appropriate options on the command line or in an option file. It is more convenient to place the options in an option file, but it is necessary to make sure that each server gets its own set of options. To do this, create an option file for each server and tell the server the file name with a [`--defaults-file`](option-file-options.html#option_general_defaults-file) option when you run it.
+O procedimento para iniciar um único servidor MySQL manualmente a partir da linha de comando é descrito na [Seção 2.3.4.6, “Iniciando MySQL a partir da Linha de Comando do Windows”](windows-start-command-line.html "2.3.4.6 Starting MySQL from the Windows Command Line"). Para iniciar múltiplos servidores dessa forma, você pode especificar as opções apropriadas na linha de comando ou em um option file. É mais conveniente colocar as opções em um option file, mas é necessário garantir que cada servidor receba seu próprio conjunto de opções. Para fazer isso, crie um option file para cada servidor e informe ao servidor o nome do arquivo usando a opção [`--defaults-file`](option-file-options.html#option_general_defaults-file) ao executá-lo.
 
-Suppose that you want to run one instance of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") on port 3307 with a data directory of `C:\mydata1`, and another instance on port 3308 with a data directory of `C:\mydata2`. Use this procedure:
+Suponha que você deseja executar uma instância de [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") na porta 3307 com um data directory de `C:\mydata1`, e outra instância na porta 3308 com um data directory de `C:\mydata2`. Use este procedimento:
 
-1. Make sure that each data directory exists, including its own copy of the `mysql` database that contains the grant tables.
+1. Certifique-se de que cada data directory exista, incluindo sua própria cópia do Database `mysql` que contém as grant tables.
 
-2. Create two option files. For example, create one file named `C:\my-opts1.cnf` that looks like this:
+2. Crie dois option files. Por exemplo, crie um arquivo chamado `C:\my-opts1.cnf` que se parece com isto:
 
    ```sql
    [mysqld]
@@ -14,7 +14,7 @@ Suppose that you want to run one instance of [**mysqld**](mysqld.html "4.3.1 my
    port = 3307
    ```
 
-   Create a second file named `C:\my-opts2.cnf` that looks like this:
+   Crie um segundo arquivo chamado `C:\my-opts2.cnf` que se parece com isto:
 
    ```sql
    [mysqld]
@@ -22,23 +22,23 @@ Suppose that you want to run one instance of [**mysqld**](mysqld.html "4.3.1 my
    port = 3308
    ```
 
-3. Use the [`--defaults-file`](option-file-options.html#option_general_defaults-file) option to start each server with its own option file:
+3. Use a opção [`--defaults-file`](option-file-options.html#option_general_defaults-file) para iniciar cada servidor com seu próprio option file:
 
    ```sql
    C:\> C:\mysql\bin\mysqld --defaults-file=C:\my-opts1.cnf
    C:\> C:\mysql\bin\mysqld --defaults-file=C:\my-opts2.cnf
    ```
 
-   Each server starts in the foreground (no new prompt appears until the server exits later), so you must issue those two commands in separate console windows.
+   Cada servidor inicia em primeiro plano (nenhum novo prompt aparece até que o servidor seja encerrado mais tarde), então você deve emitir esses dois comandos em janelas de console separadas.
 
-To shut down the servers, connect to each using the appropriate port number:
+Para encerrar os servidores, conecte-se a cada um usando o número de porta apropriado:
 
 ```sql
 C:\> C:\mysql\bin\mysqladmin --port=3307 --host=127.0.0.1 --user=root --password shutdown
 C:\> C:\mysql\bin\mysqladmin --port=3308 --host=127.0.0.1 --user=root --password shutdown
 ```
 
-Servers configured as just described permit clients to connect over TCP/IP. If your version of Windows supports named pipes and you also want to permit named-pipe connections, specify options that enable the named pipe and specify its name. Each server that supports named-pipe connections must use a unique pipe name. For example, the `C:\my-opts1.cnf` file might be written like this:
+Os servidores configurados conforme descrito permitem que os clientes se conectem via TCP/IP. Se sua versão do Windows suportar named pipes e você também quiser permitir conexões de named-pipe, especifique opções que habilitem o named pipe e definam seu nome. Cada servidor que suporta conexões de named-pipe deve usar um nome de pipe exclusivo. Por exemplo, o arquivo `C:\my-opts1.cnf` poderia ser escrito desta forma:
 
 ```sql
 [mysqld]
@@ -48,6 +48,6 @@ enable-named-pipe
 socket = mypipe1
 ```
 
-Modify `C:\my-opts2.cnf` similarly for use by the second server. Then start the servers as described previously.
+Modifique `C:\my-opts2.cnf` de forma similar para uso pelo segundo servidor. Em seguida, inicie os servidores conforme descrito anteriormente.
 
-A similar procedure applies for servers that you want to permit shared-memory connections. Enable such connections by starting the server with the [`shared_memory`](server-system-variables.html#sysvar_shared_memory) system variable enabled and specify a unique shared-memory name for each server by setting the [`shared_memory_base_name`](server-system-variables.html#sysvar_shared_memory_base_name) system variable.
+Um procedimento semelhante se aplica a servidores que você deseja permitir conexões de shared-memory. Habilite tais conexões iniciando o servidor com a variável de sistema [`shared_memory`](server-system-variables.html#sysvar_shared_memory) ativada e especifique um nome de shared-memory exclusivo para cada servidor definindo a variável de sistema [`shared_memory_base_name`](server-system-variables.html#sysvar_shared_memory_base_name).

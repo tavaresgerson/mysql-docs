@@ -1,118 +1,118 @@
-## 1.3 What Is New in MySQL 5.7
+## 1.3 O Que Há de Novo no MySQL 5.7
 
-This section summarizes what has been added to, deprecated in, and removed from MySQL 5.7. A companion section lists MySQL server options and variables that have been added, deprecated, or removed in MySQL 5.7; see Section 1.4, “Server and Status Variables and Options Added, Deprecated, or Removed in MySQL 5.7”.
+Esta seção resume o que foi adicionado, descontinuado e removido no MySQL 5.7. Uma seção complementar lista as opções e variáveis de servidor do MySQL que foram adicionadas, descontinuadas ou removidas no MySQL 5.7; veja Seção 1.4, “Variáveis e Opções de Servidor e Status Adicionadas, Descontinuadas ou Removidas no MySQL 5.7”.
 
-### Features Added in MySQL 5.7
+### Funcionalidades Adicionadas no MySQL 5.7
 
-The following features have been added to MySQL 5.7:
+As seguintes funcionalidades foram adicionadas ao MySQL 5.7:
 
-* **Security improvements.** These security enhancements were added:
+* **Melhorias de segurança.** Esses aprimoramentos de segurança foram adicionados:
 
-  + In MySQL 8.0, `caching_sha2_password` is the default authentication plugin. To enable MySQL 5.7 clients to connect to 8.0 servers using accounts that authenticate using `caching_sha2_password`, the MySQL 5.7 client library and client programs support the `caching_sha2_password` client-side authentication plugin as of MySQL 5.7.23. This improves compatibility of MySQL 5.7 with MySQL 8.0 and higher servers. See Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  + No MySQL 8.0, `caching_sha2_password` é o plugin de autenticação padrão. Para permitir que clientes MySQL 5.7 se conectem a servidores 8.0 usando contas que autenticam via `caching_sha2_password`, a biblioteca cliente e os programas cliente do MySQL 5.7 suportam o plugin de autenticação `caching_sha2_password` do lado do cliente a partir do MySQL 5.7.23. Isso melhora a compatibilidade do MySQL 5.7 com o MySQL 8.0 e servidores superiores. Veja Seção 6.4.1.4, “Autenticação Plug-in SHA-2 com Caching”.
 
-  + The server now requires account rows in the `mysql.user` system table to have a nonempty `plugin` column value and disables accounts with an empty value. For server upgrade instructions, see Section 2.10.3, “Changes in MySQL 5.7”. DBAs are advised to also convert accounts that use the `mysql_old_password` authentication plugin to use `mysql_native_password` instead, because support for `mysql_old_password` has been removed. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
+  + O servidor agora exige que as linhas de conta na tabela de sistema `mysql.user` tenham um valor não vazio na coluna `plugin` e desativa contas com um valor vazio. Para instruções de atualização do servidor, veja Seção 2.10.3, “Mudanças no MySQL 5.7”. Aconselha-se aos DBAs que também convertam contas que usam o plugin de autenticação `mysql_old_password` para usar `mysql_native_password` em seu lugar, pois o suporte para `mysql_old_password` foi removido. Para instruções de atualização de conta, veja Seção 6.4.1.3, “Migrando da Geração de Hash de Senha Pré-4.1 e do Plugin mysql_old_password”.
 
-  + MySQL now enables database administrators to establish a policy for automatic password expiration: Any user who connects to the server using an account for which the password is past its permitted lifetime must change the password. For more information, see Section 6.2.11, “Password Management”.
+  + O MySQL agora permite que os administradores de banco de dados estabeleçam uma política para expiração automática de senha: Qualquer usuário que se conectar ao servidor usando uma conta cuja senha expirou o prazo de validade permitido deve alterar a senha. Para mais informações, veja Seção 6.2.11, “Gerenciamento de Senhas”.
 
-  + Administrators can lock and unlock accounts for better control over who can log in. For more information, see Section 6.2.15, “Account Locking”.
+  + Os administradores podem bloquear e desbloquear contas para um melhor controle sobre quem pode fazer login. Para mais informações, veja Seção 6.2.15, “Bloqueio de Contas”.
 
-  + To make it easier to support secure connections, MySQL servers compiled using OpenSSL can automatically generate missing SSL and RSA certificate and key files at startup. See Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”.
+  + Para facilitar o suporte a conexões seguras, os servidores MySQL compilados usando OpenSSL podem gerar automaticamente certificados SSL e RSA e arquivos de chave ausentes na inicialização. Veja Seção 6.3.3.1, “Criação de Certificados e Chaves SSL e RSA usando MySQL”.
 
-    All servers, if not configured for SSL explicitly, attempt to enable SSL automatically at startup if they find the requisite SSL files in the data directory. See Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”.
+    Todos os servidores, se não configurados explicitamente para SSL, tentam habilitar o SSL automaticamente na inicialização, caso encontrem os arquivos SSL necessários no `data directory`. Veja Seção 6.3.1, “Configurando o MySQL para Usar Conexões Criptografadas”.
 
-    In addition, MySQL distributions include a **mysql_ssl_rsa_setup** utility that can be invoked manually to create SSL and RSA key and certificate files. For more information, see Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
+    Além disso, as distribuições do MySQL incluem um utilitário **mysql_ssl_rsa_setup** que pode ser invocado manualmente para criar arquivos de chave e certificado SSL e RSA. Para mais informações, veja Seção 4.4.5, “mysql_ssl_rsa_setup — Criar Arquivos SSL/RSA”.
 
-  + MySQL deployments installed using **mysqld --initialize** are secure by default. The following changes have been implemented as the default deployment characteristics:
+  + As implantações do MySQL instaladas usando **mysqld --initialize** são seguras por padrão. As seguintes alterações foram implementadas como características de implantação padrão:
 
-    - The installation process creates only a single `root` account, `'root'@'localhost'`, automatically generates a random password for this account, and marks the password expired. The MySQL administrator must connect as `root` using the random password and assign a new password. (The server writes the random password to the error log.)
+    - O processo de instalação cria apenas uma única conta `root`, `'root'@'localhost'`, gera automaticamente uma senha aleatória para esta conta e marca a senha como expirada. O administrador do MySQL deve se conectar como `root` usando a senha aleatória e atribuir uma nova senha. (O servidor registra a senha aleatória no `error log`.)
 
-    - Installation creates no anonymous-user accounts.
-    - Installation creates no `test` database.
+    - A instalação não cria contas de usuário anônimas.
+    - A instalação não cria o `database` `test`.
 
-    For more information, see Section 2.9.1, “Initializing the Data Directory”.
+    Para mais informações, veja Seção 2.9.1, “Inicializando o Data Directory”.
 
-  + MySQL Enterprise Edition now provides data masking and de-identification capabilities. Data masking hides sensitive information by replacing real values with substitutes. MySQL Enterprise Data Masking and De-Identification functions enable masking existing data using several methods such as obfuscation (removing identifying characteristics), generation of formatted random data, and data replacement or substitution. For more information, see Section 6.5, “MySQL Enterprise Data Masking and De-Identification”.
+  + O MySQL Enterprise Edition agora fornece recursos de mascaramento e desidentificação de dados. O mascaramento de dados oculta informações confidenciais, substituindo valores reais por substitutos. As funções MySQL Enterprise Data Masking and De-Identification permitem mascarar dados existentes usando vários métodos, como ofuscação (remoção de características de identificação), geração de dados aleatórios formatados e substituição ou substituição de dados. Para mais informações, veja Seção 6.5, “Mascaramento e Desidentificação de Dados do MySQL Enterprise”.
 
-  + MySQL now sets the access control granted to clients on the named pipe to the minimum necessary for successful communication on Windows. Newer MySQL client software can open named pipe connections without any additional configuration. If older client software cannot be upgraded immediately, the new `named_pipe_full_access_group` system variable can be used to give a Windows group the necessary permissions to open a named pipe connection. Membership in the full-access group should be restricted and temporary.
+  + O MySQL agora define o controle de acesso concedido aos clientes no `named pipe` para o mínimo necessário para uma comunicação bem-sucedida no Windows. O software cliente MySQL mais recente pode abrir conexões de `named pipe` sem qualquer configuração adicional. Se o software cliente mais antigo não puder ser atualizado imediatamente, a nova variável de sistema `named_pipe_full_access_group` pode ser usada para dar a um grupo do Windows as permissões necessárias para abrir uma conexão de `named pipe`. A associação ao grupo de acesso total deve ser restrita e temporária.
 
-* **SQL mode changes.** Strict SQL mode for transactional storage engines (`STRICT_TRANS_TABLES`) is now enabled by default.
+* **Alterações no SQL mode.** O `strict SQL mode` para `transactional storage engines` (`STRICT_TRANS_TABLES`) agora está habilitado por padrão.
 
-  Implementation for the `ONLY_FULL_GROUP_BY` SQL mode has been made more sophisticated, to no longer reject deterministic queries that previously were rejected. In consequence, this mode is now enabled by default, to prohibit only nondeterministic queries containing expressions not guaranteed to be uniquely determined within a group.
+  A implementação para o SQL mode `ONLY_FULL_GROUP_BY` foi tornada mais sofisticada, para não mais rejeitar `queries` determinísticas que antes eram rejeitadas. Consequentemente, este modo agora está habilitado por padrão, para proibir apenas `queries` não determinísticas que contenham expressões que não têm garantia de serem determinadas unicamente dentro de um grupo.
 
-  The `ERROR_FOR_DIVISION_BY_ZERO`, `NO_ZERO_DATE`, and `NO_ZERO_IN_DATE` SQL modes are now deprecated but enabled by default. The long term plan is to have them included in strict SQL mode and to remove them as explicit modes in a future MySQL release. See SQL Mode Changes in MySQL 5.7.
+  Os SQL modes `ERROR_FOR_DIVISION_BY_ZERO`, `NO_ZERO_DATE` e `NO_ZERO_IN_DATE` agora estão descontinuados, mas habilitados por padrão. O plano de longo prazo é tê-los incluídos no `strict SQL mode` e removê-los como modos explícitos em uma futura versão do MySQL. Veja Mudanças no SQL Mode no MySQL 5.7.
 
-  The changes to the default SQL mode result in a default `sql_mode` system variable value with these modes enabled: `ONLY_FULL_GROUP_BY`, `STRICT_TRANS_TABLES`, `NO_ZERO_IN_DATE`, `NO_ZERO_DATE`, `ERROR_FOR_DIVISION_BY_ZERO`, `NO_AUTO_CREATE_USER`, and `NO_ENGINE_SUBSTITUTION`.
+  As alterações no SQL mode padrão resultam em um valor padrão da variável de sistema `sql_mode` com estes modos habilitados: `ONLY_FULL_GROUP_BY`, `STRICT_TRANS_TABLES`, `NO_ZERO_IN_DATE`, `NO_ZERO_DATE`, `ERROR_FOR_DIVISION_BY_ZERO`, `NO_AUTO_CREATE_USER` e `NO_ENGINE_SUBSTITUTION`.
 
-* **Online ALTER TABLE.** `ALTER TABLE` now supports a `RENAME INDEX` clause that renames an index. The change is made in place without a table-copy operation. It works for all storage engines. See Section 13.1.8, “ALTER TABLE Statement”.
+* **ALTER TABLE Online.** `ALTER TABLE` agora suporta uma cláusula `RENAME INDEX` que renomeia um `Index`. A mudança é feita no local sem uma operação de cópia de tabela. Funciona para todos os `storage engines`. Veja Seção 13.1.8, “Instrução ALTER TABLE”.
 
-* **ngram and MeCab full-text parser plugins.** MySQL provides a built-in full-text ngram parser plugin that supports Chinese, Japanese, and Korean (CJK), and an installable MeCab full-text parser plugin for Japanese.
+* **Plugins de parser full-text ngram e MeCab.** O MySQL fornece um plugin de parser full-text ngram embutido que suporta Chinês, Japonês e Coreano (CJK), e um plugin de parser full-text MeCab instalável para Japonês.
 
-  For more information, see Section 12.9.8, “ngram Full-Text Parser”, and Section 12.9.9, “MeCab Full-Text Parser Plugin”.
+  Para mais informações, veja Seção 12.9.8, “Parser Full-Text ngram”, e Seção 12.9.9, “Plugin de Parser Full-Text MeCab”.
 
-* **InnoDB enhancements.** These `InnoDB` enhancements were added:
+* **Aprimoramentos do InnoDB.** Estes aprimoramentos do `InnoDB` foram adicionados:
 
-  + `VARCHAR` column size can be increased using an in-place `ALTER TABLE`, as in this example:
+  + O tamanho da coluna `VARCHAR` pode ser aumentado usando um `ALTER TABLE` in-place, como neste exemplo:
 
     ```sql
     ALTER TABLE t1 ALGORITHM=INPLACE, CHANGE COLUMN c1 c1 VARCHAR(255);
     ```
 
-    This is true as long as the number of length bytes required by a `VARCHAR` column remains the same. For `VARCHAR` columns of 0 to 255 bytes in size, one length byte is required to encode the value. For `VARCHAR` columns of 256 bytes in size or more, two length bytes are required. As a result, in-place `ALTER TABLE` only supports increasing `VARCHAR` column size from 0 to 255 bytes, or from 256 bytes to a greater size. In-place `ALTER TABLE` does not support increasing the size of a `VARCHAR` column from less than 256 bytes to a size equal to or greater than 256 bytes. In this case, the number of required length bytes changes from 1 to 2, which is only supported by a table copy (`ALGORITHM=COPY`).
+    Isso é verdade desde que o número de `length bytes` exigidos por uma coluna `VARCHAR` permaneça o mesmo. Para colunas `VARCHAR` de 0 a 255 bytes de tamanho, um `length byte` é necessário para codificar o valor. Para colunas `VARCHAR` de 256 bytes de tamanho ou mais, dois `length bytes` são necessários. Como resultado, o `ALTER TABLE` in-place apenas suporta o aumento do tamanho da coluna `VARCHAR` de 0 a 255 bytes, ou de 256 bytes para um tamanho maior. O `ALTER TABLE` in-place não suporta o aumento do tamanho de uma coluna `VARCHAR` de menos de 256 bytes para um tamanho igual ou maior que 256 bytes. Neste caso, o número de `length bytes` necessários muda de 1 para 2, o que é suportado apenas por uma cópia de tabela (`ALGORITHM=COPY`).
 
-    Decreasing `VARCHAR` size using in-place `ALTER TABLE` is not supported. Decreasing `VARCHAR` size requires a table copy (`ALGORITHM=COPY`).
+    A diminuição do tamanho `VARCHAR` usando `ALTER TABLE` in-place não é suportada. A diminuição do tamanho `VARCHAR` requer uma cópia de tabela (`ALGORITHM=COPY`).
 
-    For more information, see Section 14.13.1, “Online DDL Operations”.
+    Para mais informações, veja Seção 14.13.1, “Operações DDL Online”.
 
-  + DDL performance for `InnoDB` temporary tables is improved through optimization of `CREATE TABLE`, `DROP TABLE`, `TRUNCATE TABLE`, and `ALTER TABLE` statements.
+  + O desempenho de DDL para tabelas temporárias `InnoDB` é melhorado por meio da otimização das instruções `CREATE TABLE`, `DROP TABLE`, `TRUNCATE TABLE` e `ALTER TABLE`.
 
-  + `InnoDB` temporary table metadata is no longer stored to `InnoDB` system tables. Instead, a new table, `INNODB_TEMP_TABLE_INFO`, provides users with a snapshot of active temporary tables. The table contains metadata and reports on all user and system-created temporary tables that are active within a given `InnoDB` instance. The table is created when the first `SELECT` statement is run against it.
+  + Os metadados da tabela temporária `InnoDB` não são mais armazenados nas tabelas de sistema `InnoDB`. Em vez disso, uma nova tabela, `INNODB_TEMP_TABLE_INFO`, fornece aos usuários um instantâneo de tabelas temporárias ativas. A tabela contém metadados e relatórios sobre todas as tabelas temporárias criadas pelo usuário e pelo sistema que estão ativas dentro de uma determinada instância `InnoDB`. A tabela é criada quando a primeira instrução `SELECT` é executada nela.
 
-  + `InnoDB` now supports MySQL-supported spatial data types. Prior to this release, `InnoDB` would store spatial data as binary `BLOB` data. `BLOB` remains the underlying data type but spatial data types are now mapped to a new `InnoDB` internal data type, `DATA_GEOMETRY`.
+  + O `InnoDB` agora suporta tipos de dados espaciais suportados pelo MySQL. Antes desta versão, o `InnoDB` armazenava dados espaciais como dados `BLOB` binários. `BLOB` continua sendo o tipo de dados subjacente, mas os tipos de dados espaciais agora são mapeados para um novo tipo de dados interno do `InnoDB`, `DATA_GEOMETRY`.
 
-  + There is now a separate tablespace for all non-compressed `InnoDB` temporary tables. The new tablespace is always recreated on server startup and is located in `DATADIR` by default. A newly added configuration file option, `innodb_temp_data_file_path`, allows for a user-defined temporary data file path.
+  + Agora existe um `tablespace` separado para todas as tabelas temporárias `InnoDB` não compactadas. O novo `tablespace` é sempre recriado na inicialização do servidor e está localizado em `DATADIR` por padrão. Uma nova opção de arquivo de configuração adicionada, `innodb_temp_data_file_path`, permite um caminho de arquivo de dados temporário definido pelo usuário.
 
-  + **innochecksum** functionality is enhanced with several new options and extended capabilities. See Section 4.6.1, “innochecksum — Offline InnoDB File Checksum Utility”.
+  + A funcionalidade **innochecksum** é aprimorada com várias novas opções e capacidades estendidas. Veja Seção 4.6.1, “innochecksum — Utilitário de Checksum de Arquivo InnoDB Offline”.
 
-  + A new type of non-redo undo log for both normal and compressed temporary tables and related objects now resides in the temporary tablespace. For more information, see Section 14.6.7, “Undo Logs”.
+  + Um novo tipo de `undo log` sem `redo` para tabelas temporárias normais e compactadas e objetos relacionados agora reside no `temporary tablespace`. Para mais informações, veja Seção 14.6.7, “Undo Logs”.
 
-  + `InnoDB` buffer pool dump and load operations are enhanced. A new system variable, `innodb_buffer_pool_dump_pct`, allows you to specify the percentage of most recently used pages in each buffer pool to read out and dump. When there is other I/O activity being performed by `InnoDB` background tasks, `InnoDB` attempts to limit the number of buffer pool load operations per second using the `innodb_io_capacity` setting.
+  + As operações de `dump` e `load` do `InnoDB buffer pool` são aprimoradas. Uma nova variável de sistema, `innodb_buffer_pool_dump_pct`, permite especificar a porcentagem das páginas usadas mais recentemente em cada `buffer pool` para serem lidas e despejadas (`dump`). Quando há outra atividade de I/O sendo executada por tarefas de background do `InnoDB`, o `InnoDB` tenta limitar o número de operações de `load` do `buffer pool` por segundo usando a configuração `innodb_io_capacity`.
 
-  + Support is added to `InnoDB` for full-text parser plugins. For information about full-text parser plugins, see Full-Text Parser Plugins and Writing Full-Text Parser Plugins.
+  + O suporte a plugins de parser full-text é adicionado ao `InnoDB`. Para obter informações sobre plugins de parser full-text, veja Plugins de Parser Full-Text e Escrevendo Plugins de Parser Full-Text.
 
-  + `InnoDB` supports multiple page cleaner threads for flushing dirty pages from buffer pool instances. A new system variable, `innodb_page_cleaners`, is used to specify the number of page cleaner threads. The default value of `1` maintains the previous configuration in which there is a single page cleaner thread. This enhancement builds on work completed in MySQL 5.6, which introduced a single page cleaner thread to offload buffer pool flushing work from the `InnoDB` master thread.
+  + O `InnoDB` suporta múltiplos `page cleaner threads` para descarregar (`flush`) páginas sujas de instâncias do `buffer pool`. Uma nova variável de sistema, `innodb_page_cleaners`, é usada para especificar o número de `page cleaner threads`. O valor padrão de `1` mantém a configuração anterior em que há um único `page cleaner thread`. Este aprimoramento se baseia no trabalho concluído no MySQL 5.6, que introduziu um único `page cleaner thread` para descarregar o trabalho de `flush` do `buffer pool` do `InnoDB master thread`.
 
-  + Online DDL support is extended to the following operations for regular and partitioned `InnoDB` tables:
+  + O suporte a DDL Online é estendido para as seguintes operações para tabelas `InnoDB` regulares e particionadas:
 
     - `OPTIMIZE TABLE`
     - `ALTER TABLE ... FORCE`
 
-    - `ALTER TABLE ... ENGINE=INNODB` (when run on an `InnoDB` table)
+    - `ALTER TABLE ... ENGINE=INNODB` (quando executado em uma tabela `InnoDB`)
 
-      Online DDL support reduces table rebuild time and permits concurrent DML. See Section 14.13, “InnoDB and Online DDL”.
+      O suporte a DDL Online reduz o tempo de reconstrução da tabela e permite DML concorrente. Veja Seção 14.13, “InnoDB e DDL Online”.
 
-  + The Fusion-io Non-Volatile Memory (NVM) file system on Linux provides atomic write capability, which makes the `InnoDB` doublewrite buffer redundant. The `InnoDB` doublewrite buffer is automatically disabled for system tablespace files (ibdata files) located on Fusion-io devices that support atomic writes.
+  + O sistema de arquivos Fusion-io Non-Volatile Memory (NVM) no Linux fornece capacidade de `atomic write`, o que torna o `InnoDB doublewrite buffer` redundante. O `InnoDB doublewrite buffer` é desabilitado automaticamente para arquivos de `system tablespace` (`ibdata files`) localizados em dispositivos Fusion-io que suportam `atomic writes`.
 
-  + `InnoDB` supports the Transportable Tablespace feature for partitioned `InnoDB` tables and individual `InnoDB` table partitions. This enhancement eases backup procedures for partitioned tables and enables copying of partitioned tables and individual table partitions between MySQL instances. For more information, see Section 14.6.1.3, “Importing InnoDB Tables”.
+  + O `InnoDB` suporta o recurso Transportable Tablespace para tabelas `InnoDB` particionadas e partições de tabela `InnoDB` individuais. Este aprimoramento facilita os procedimentos de backup para tabelas particionadas e permite a cópia de tabelas particionadas e partições de tabela individuais entre instâncias do MySQL. Para mais informações, veja Seção 14.6.1.3, “Importando Tabelas InnoDB”.
 
-  + The `innodb_buffer_pool_size` parameter is dynamic, allowing you to resize the buffer pool without restarting the server. The resizing operation, which involves moving pages to a new location in memory, is performed in chunks. Chunk size is configurable using the new `innodb_buffer_pool_chunk_size` configuration option. You can monitor resizing progress using the new `Innodb_buffer_pool_resize_status` status variable. For more information, see Configuring InnoDB Buffer Pool Size Online.
+  + O parâmetro `innodb_buffer_pool_size` é dinâmico, permitindo que você redimensione o `buffer pool` sem reiniciar o servidor. A operação de redimensionamento, que envolve a movimentação de páginas para um novo local na memória, é realizada em `chunks`. O tamanho do `chunk` é configurável usando a nova opção de configuração `innodb_buffer_pool_chunk_size`. Você pode monitorar o progresso do redimensionamento usando a nova variável de status `Innodb_buffer_pool_resize_status`. Para mais informações, veja Configurando o Tamanho do Buffer Pool do InnoDB Online.
 
-  + Multithreaded page cleaner support (`innodb_page_cleaners`) is extended to shutdown and recovery phases.
+  + O suporte ao `page cleaner` multithreaded (`innodb_page_cleaners`) é estendido para fases de desligamento e recuperação.
 
-  + `InnoDB` supports indexing of spatial data types using `SPATIAL` indexes, including use of `ALTER TABLE ... ALGORITHM=INPLACE` for online operations (`ADD SPATIAL INDEX`).
+  + O `InnoDB` suporta a indexação de tipos de dados espaciais usando `SPATIAL indexes`, incluindo o uso de `ALTER TABLE ... ALGORITHM=INPLACE` para operações online (`ADD SPATIAL INDEX`).
 
-  + `InnoDB` performs a bulk load when creating or rebuilding indexes. This method of index creation is known as a “sorted index build”. This enhancement, which improves the efficiency of index creation, also applies to full-text indexes. A new global configuration option, `innodb_fill_factor`, defines the percentage of space on each page that is filled with data during a sorted index build, with the remaining space reserved for future index growth. For more information, see Section 14.6.2.3, “Sorted Index Builds”.
+  + O `InnoDB` executa um `bulk load` ao criar ou reconstruir `indexes`. Este método de criação de `index` é conhecido como “construção de `index` classificado” (`sorted index build`). Este aprimoramento, que melhora a eficiência da criação de `index`, também se aplica a `full-text indexes`. Uma nova opção de configuração global, `innodb_fill_factor`, define a porcentagem de espaço em cada página que é preenchida com dados durante uma construção de `index` classificado, com o espaço restante reservado para crescimento futuro do `index`. Para mais informações, veja Seção 14.6.2.3, “Construção de Indexes Classificados”.
 
-  + A new log record type (`MLOG_FILE_NAME`) is used to identify tablespaces that have been modified since the last checkpoint. This enhancement simplifies tablespace discovery during crash recovery and eliminates scans on the file system prior to redo log application. For more information about the benefits of this enhancement, see Tablespace Discovery During Crash Recovery.
+  + Um novo tipo de registro de log (`MLOG_FILE_NAME`) é usado para identificar `tablespaces` que foram modificados desde o último `checkpoint`. Este aprimoramento simplifica a descoberta de `tablespace` durante a recuperação de falhas e elimina varreduras no sistema de arquivos antes da aplicação do `redo log`. Para mais informações sobre os benefícios deste aprimoramento, veja Descoberta de Tablespace Durante a Recuperação de Falhas.
 
-    This enhancement changes the redo log format, requiring that MySQL be shut down cleanly before upgrading to or downgrading from MySQL 5.7.5.
+    Este aprimoramento altera o formato do `redo log`, exigindo que o MySQL seja desligado de forma limpa antes de atualizar ou fazer downgrade para ou de MySQL 5.7.5.
 
-  + You can truncate undo logs that reside in undo tablespaces. This feature is enabled using the `innodb_undo_log_truncate` configuration option. For more information, see Truncating Undo Tablespaces.
+  + Você pode truncar `undo logs` que residem em `undo tablespaces`. Este recurso é habilitado usando a opção de configuração `innodb_undo_log_truncate`. Para mais informações, veja Truncando Undo Tablespaces.
 
-  + `InnoDB` supports native partitioning. Previously, `InnoDB` relied on the `ha_partition` handler, which creates a handler object for each partition. With native partitioning, a partitioned `InnoDB` table uses a single partition-aware handler object. This enhancement reduces the amount of memory required for partitioned `InnoDB` tables.
+  + O `InnoDB` suporta particionamento nativo. Anteriormente, o `InnoDB` dependia do manipulador `ha_partition`, que criava um objeto manipulador para cada partição. Com o particionamento nativo, uma tabela `InnoDB` particionada usa um único objeto manipulador com reconhecimento de partição. Este aprimoramento reduz a quantidade de memória necessária para tabelas `InnoDB` particionadas.
 
-    As of MySQL 5.7.9, **mysql_upgrade** looks for and attempts to upgrade partitioned `InnoDB` tables that were created using the `ha_partition` handler. Also in MySQL 5.7.9 and later, you can upgrade such tables by name in the **mysql** client using `ALTER TABLE ... UPGRADE PARTITIONING`.
+    A partir do MySQL 5.7.9, o **mysql_upgrade** procura e tenta atualizar tabelas `InnoDB` particionadas que foram criadas usando o manipulador `ha_partition`. Também no MySQL 5.7.9 e posterior, você pode atualizar essas tabelas por nome no cliente **mysql** usando `ALTER TABLE ... UPGRADE PARTITIONING`.
 
-  + `InnoDB` supports the creation of general tablespaces using `CREATE TABLESPACE` syntax.
+  + O `InnoDB` suporta a criação de `general tablespaces` usando a sintaxe `CREATE TABLESPACE`.
 
     ```sql
     CREATE TABLESPACE `tablespace_name`
@@ -120,139 +120,139 @@ The following features have been added to MySQL 5.7:
       [FILE_BLOCK_SIZE = n]
     ```
 
-    General tablespaces can be created outside of the MySQL data directory, are capable of holding multiple tables, and support tables of all row formats.
+    Os `General tablespaces` podem ser criados fora do `MySQL data directory`, são capazes de armazenar múltiplas tabelas e suportam tabelas de todos os formatos de linha.
 
-    Tables are added to a general tablespace using `CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name` or `ALTER TABLE tbl_name TABLESPACE [=] tablespace_name` syntax.
+    As tabelas são adicionadas a um `general tablespace` usando a sintaxe `CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name` ou `ALTER TABLE tbl_name TABLESPACE [=] tablespace_name`.
 
-    For more information, see Section 14.6.3.3, “General Tablespaces”.
+    Para mais informações, veja Seção 14.6.3.3, “General Tablespaces”.
 
-  + `DYNAMIC` replaces `COMPACT` as the implicit default row format for `InnoDB` tables. A new configuration option, `innodb_default_row_format`, specifies the default `InnoDB` row format. For more information, see Defining the Row Format of a Table.
+  + `DYNAMIC` substitui `COMPACT` como o formato de linha padrão implícito para tabelas `InnoDB`. Uma nova opção de configuração, `innodb_default_row_format`, especifica o formato de linha padrão do `InnoDB`. Para mais informações, veja Definindo o Formato de Linha de uma Tabela.
 
-  + As of MySQL 5.7.11, `InnoDB` supports data-at-rest encryption for file-per-table tablespaces. Encryption is enabled by specifying the `ENCRYPTION` option when creating or altering an `InnoDB` table. This feature relies on a `keyring` plugin for encryption key management. For more information, see Section 6.4.4, “The MySQL Keyring”, and Section 14.14, “InnoDB Data-at-Rest Encryption”.
+  + A partir do MySQL 5.7.11, o `InnoDB` suporta criptografia de dados em repouso (`data-at-rest encryption`) para `file-per-table tablespaces`. A criptografia é habilitada especificando a opção `ENCRYPTION` ao criar ou alterar uma tabela `InnoDB`. Este recurso depende de um plugin `keyring` para gerenciamento de chaves de criptografia. Para mais informações, veja Seção 6.4.4, “O Keyring do MySQL”, e Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”.
 
-  + As of MySQL 5.7.24, the zlib library version bundled with MySQL was raised from version 1.2.3 to version 1.2.11. MySQL implements compression with the help of the zlib library.
+  + A partir do MySQL 5.7.24, a versão da biblioteca zlib incluída com o MySQL foi elevada da versão 1.2.3 para a versão 1.2.11. O MySQL implementa compressão com a ajuda da biblioteca zlib.
 
-    If you use `InnoDB` compressed tables, see Section 2.10.3, “Changes in MySQL 5.7” for related upgrade implications.
+    Se você usar tabelas compactadas `InnoDB`, veja Seção 2.10.3, “Mudanças no MySQL 5.7” para implicações de atualização relacionadas.
 
-* **JSON support.** Beginning with MySQL 5.7.8, MySQL supports a native `JSON` type. JSON values are not stored as strings, instead using an internal binary format that permits quick read access to document elements. JSON documents stored in `JSON` columns are automatically validated whenever they are inserted or updated, with an invalid document producing an error. JSON documents are normalized on creation, and can be compared using most comparison operators such as `=`, `<`, `<=`, `>`, `>=`, `<>`, `!=`, and `<=>`; for information about supported operators as well as precedence and other rules that MySQL follows when comparing `JSON` values, see Comparison and Ordering of JSON Values.
+* **Suporte a JSON.** A partir do MySQL 5.7.8, o MySQL suporta um tipo `JSON` nativo. Os valores JSON não são armazenados como `strings`, usando em vez disso um formato binário interno que permite acesso rápido de leitura a elementos do documento. Os documentos JSON armazenados em colunas `JSON` são validados automaticamente sempre que são inseridos ou atualizados, com um documento inválido produzindo um erro. Os documentos JSON são normalizados na criação e podem ser comparados usando a maioria dos operadores de comparação, como `=`, `<`, `<=`, `>`, `>=`, `<>`, `!=` e `<=>`; para obter informações sobre operadores suportados, bem como precedência e outras regras que o MySQL segue ao comparar valores `JSON`, veja Comparação e Ordenação de Valores JSON.
 
-  MySQL 5.7.8 also introduces a number of functions for working with `JSON` values. These functions include those listed here:
+  O MySQL 5.7.8 também introduz uma série de funções para trabalhar com valores `JSON`. Estas funções incluem as listadas aqui:
 
-  + Functions that create `JSON` values: `JSON_ARRAY()`, `JSON_MERGE()`, and `JSON_OBJECT()`. See Section 12.17.2, “Functions That Create JSON Values”.
+  + Funções que criam valores `JSON`: `JSON_ARRAY()`, `JSON_MERGE()` e `JSON_OBJECT()`. Veja Seção 12.17.2, “Funções Que Criam Valores JSON”.
 
-  + Functions that search `JSON` values: `JSON_CONTAINS()`, `JSON_CONTAINS_PATH()`, `JSON_EXTRACT()`, `JSON_KEYS()`, and `JSON_SEARCH()`. See Section 12.17.3, “Functions That Search JSON Values”.
+  + Funções que pesquisam valores `JSON`: `JSON_CONTAINS()`, `JSON_CONTAINS_PATH()`, `JSON_EXTRACT()`, `JSON_KEYS()` e `JSON_SEARCH()`. Veja Seção 12.17.3, “Funções Que Pesquisam Valores JSON”.
 
-  + Functions that modify `JSON` values: `JSON_APPEND()`, `JSON_ARRAY_APPEND()`, `JSON_ARRAY_INSERT()`, `JSON_INSERT()`, `JSON_QUOTE()`, `JSON_REMOVE()`, `JSON_REPLACE()`, `JSON_SET()`, and `JSON_UNQUOTE()`. See Section 12.17.4, “Functions That Modify JSON Values”.
+  + Funções que modificam valores `JSON`: `JSON_APPEND()`, `JSON_ARRAY_APPEND()`, `JSON_ARRAY_INSERT()`, `JSON_INSERT()`, `JSON_QUOTE()`, `JSON_REMOVE()`, `JSON_REPLACE()`, `JSON_SET()` e `JSON_UNQUOTE()`. Veja Seção 12.17.4, “Funções Que Modificam Valores JSON”.
 
-  + Functions that provide information about `JSON` values: `JSON_DEPTH()`, `JSON_LENGTH()`, `JSON_TYPE()`, and `JSON_VALID()`. See Section 12.17.5, “Functions That Return JSON Value Attributes”.
+  + Funções que fornecem informações sobre valores `JSON`: `JSON_DEPTH()`, `JSON_LENGTH()`, `JSON_TYPE()` e `JSON_VALID()`. Veja Seção 12.17.5, “Funções Que Retornam Atributos de Valor JSON”.
 
-  In MySQL 5.7.9 and later, you can use `column->path` as shorthand for `JSON_EXTRACT(column, path)`. This works as an alias for a column wherever a column identifier can occur in an SQL statement, including `WHERE`, `ORDER BY`, and `GROUP BY` clauses. This includes `SELECT`, `UPDATE`, `DELETE`, `CREATE TABLE`, and other SQL statements. The left hand side must be a `JSON` column identifier (and not an alias). The right hand side is a quoted JSON path expression which is evaluated against the JSON document returned as the column value.
+  No MySQL 5.7.9 e posterior, você pode usar `column->path` como abreviação para `JSON_EXTRACT(column, path)`. Isso funciona como um `alias` para uma coluna onde quer que um identificador de coluna possa ocorrer em uma instrução SQL, incluindo as cláusulas `WHERE`, `ORDER BY` e `GROUP BY`. Isso inclui `SELECT`, `UPDATE`, `DELETE`, `CREATE TABLE` e outras instruções SQL. O lado esquerdo deve ser um identificador de coluna `JSON` (e não um `alias`). O lado direito é uma expressão de caminho JSON entre aspas que é avaliada em relação ao documento JSON retornado como o valor da coluna.
 
-  MySQL 5.7.22 adds the following JSON functions:
+  O MySQL 5.7.22 adiciona as seguintes funções JSON:
 
-  + Two JSON aggregation functions `JSON_ARRAYAGG()` and `JSON_OBJECTAGG()`. `JSON_ARRAYAGG()` takes a column or expression as its argument, and aggregates the result as a single `JSON` array. The expression can evaluate to any MySQL data type; this does not have to be a `JSON` value. `JSON_OBJECTAGG()` takes two columns or expressions which it interprets as a key and a value; it returns the result as a single `JSON` object. For more information and examples, see Section 12.19, “Aggregate Functions”.
+  + Duas funções de agregação JSON, `JSON_ARRAYAGG()` e `JSON_OBJECTAGG()`. `JSON_ARRAYAGG()` recebe uma coluna ou expressão como argumento e agrega o resultado como um único `JSON array`. A expressão pode ser avaliada para qualquer tipo de dados MySQL; não precisa ser um valor `JSON`. `JSON_OBJECTAGG()` recebe duas colunas ou expressões que interpreta como uma chave e um valor; ele retorna o resultado como um único `JSON object`. Para mais informações e exemplos, veja Seção 12.19, “Funções de Agregação”.
 
-  + The JSON utility function `JSON_PRETTY()`, which outputs an existing `JSON` value in an easy-to-read format; each JSON object member or array value is printed on a separate line, and a child object or array is intended 2 spaces with respect to its parent.
+  + A função de utilidade JSON `JSON_PRETTY()`, que exibe um valor `JSON` existente em um formato fácil de ler; cada membro do `JSON object` ou valor do `array` é impresso em uma linha separada, e um objeto ou `array` filho é recuado 2 espaços em relação ao seu pai.
 
-    This function also works with a string that can be parsed as a JSON value.
+    Esta função também funciona com uma `string` que pode ser analisada como um valor JSON.
 
-    See also Section 12.17.6, “JSON Utility Functions”.
+    Veja também Seção 12.17.6, “Funções de Utilidade JSON”.
 
-  + The JSON utility function `JSON_STORAGE_SIZE()`, which returns the storage space in bytes used for the binary representation of a JSON document prior to any partial update (see previous item).
+  + A função de utilidade JSON `JSON_STORAGE_SIZE()`, que retorna o espaço de armazenamento em bytes usado para a representação binária de um documento JSON antes de qualquer atualização parcial (veja o item anterior).
 
-    This function also accepts a valid string representation of a JSON document. For such a value, `JSON_STORAGE_SIZE()` returns the space used by its binary representation following its conversion to a JSON document. For a variable containing the string representation of a JSON document, `JSON_STORAGE_FREE()` returns zero. Either function produces an error if its (non-null) argument cannot be parsed as a valid JSON document, and `NULL` if the argument is `NULL`.
+    Esta função também aceita uma representação de `string` válida de um documento JSON. Para tal valor, `JSON_STORAGE_SIZE()` retorna o espaço usado por sua representação binária após sua conversão para um documento JSON. Para uma variável contendo a representação de `string` de um documento JSON, `JSON_STORAGE_FREE()` retorna zero. Qualquer uma das funções produz um erro se seu argumento (não nulo) não puder ser analisado como um documento JSON válido e `NULL` se o argumento for `NULL`.
 
-    For more information and examples, see Section 12.17.6, “JSON Utility Functions”.
+    Para mais informações e exemplos, veja Seção 12.17.6, “Funções de Utilidade JSON”.
 
-  + A JSON merge function intended to conform to RFC 7396. `JSON_MERGE_PATCH()`, when used on 2 JSON objects, merges them into a single JSON object that has as members a union of the following sets:
+  + Uma função de mesclagem JSON destinada a estar em conformidade com o RFC 7396. `JSON_MERGE_PATCH()`, quando usado em 2 objetos JSON, os mescla em um único `JSON object` que tem como membros uma união dos seguintes conjuntos:
 
-    - Each member of the first object for which there is no member with the same key in the second object.
+    - Cada membro do primeiro objeto para o qual não há membro com a mesma chave no segundo objeto.
 
-    - Each member of the second object for which there is no member having the same key in the first object, and whose value is not the JSON `null` literal.
+    - Cada membro do segundo objeto para o qual não há membro com a mesma chave no primeiro objeto e cujo valor não é o literal JSON `null`.
 
-    - Each member having a key that exists in both objects, and whose value in the second object is not the JSON `null` literal.
+    - Cada membro com uma chave que existe em ambos os objetos e cujo valor no segundo objeto não é o literal JSON `null`.
 
-    As part of this work, the `JSON_MERGE()` function has been renamed `JSON_MERGE_PRESERVE()`. `JSON_MERGE()` continues to be recognized as an alias for `JSON_MERGE_PRESERVE()` in MySQL 5.7, but is now deprecated and is subject to removal in a future version of MySQL.
+    Como parte deste trabalho, a função `JSON_MERGE()` foi renomeada para `JSON_MERGE_PRESERVE()`. `JSON_MERGE()` continua a ser reconhecida como um `alias` para `JSON_MERGE_PRESERVE()` no MySQL 5.7, mas agora está descontinuada e sujeita a remoção em uma versão futura do MySQL.
 
-    For more information and examples, see Section 12.17.4, “Functions That Modify JSON Values”.
+    Para mais informações e exemplos, veja Seção 12.17.4, “Funções Que Modificam Valores JSON”.
 
-  See Section 12.17.3, “Functions That Search JSON Values”, for more information about `->` and `JSON_EXTRACT()`. For information about JSON path support in MySQL 5.7, see Searching and Modifying JSON Values. See also Indexing a Generated Column to Provide a JSON Column Index.
+  Veja Seção 12.17.3, “Funções Que Pesquisam Valores JSON”, para mais informações sobre `->` e `JSON_EXTRACT()`. Para obter informações sobre o suporte a caminhos JSON no MySQL 5.7, veja Pesquisando e Modificando Valores JSON. Veja também Indexando uma Coluna Gerada para Fornecer um Index de Coluna JSON.
 
-* **System and status variables.** System and status variable information is now available in Performance Schema tables, in preference to use of `INFORMATION_SCHEMA` tables to obtain these variable. This also affects the operation of the `SHOW VARIABLES` and `SHOW STATUS` statements. The value of the `show_compatibility_56` system variable affects the output produced from and privileges required for system and status variable statements and tables. For details, see the description of that variable in Section 5.1.7, “Server System Variables”.
+* **Variáveis de sistema e status.** As informações de variáveis de sistema e status agora estão disponíveis em tabelas do Performance Schema, em preferência ao uso de tabelas `INFORMATION_SCHEMA` para obter essas variáveis. Isso também afeta a operação das instruções `SHOW VARIABLES` e `SHOW STATUS`. O valor da variável de sistema `show_compatibility_56` afeta a saída produzida e os privilégios exigidos para instruções e tabelas de variáveis de sistema e status. Para detalhes, veja a descrição dessa variável na Seção 5.1.7, “Variáveis de Sistema do Servidor”.
 
-  Note
+  Nota
 
-  The default for `show_compatibility_56` is `OFF`. Applications that require 5.6 behavior should set this variable to `ON` until such time as they have been migrated to the new behavior for system variables and status variables. See Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”
+  O padrão para `show_compatibility_56` é `OFF`. Os aplicativos que exigem o comportamento 5.6 devem definir esta variável como `ON` até que tenham sido migrados para o novo comportamento de variáveis de sistema e variáveis de status. Veja Seção 25.20, “Migrando para as Tabelas de Variáveis de Sistema e Status do Performance Schema”
 
-* **sys schema.** MySQL distributions now include the `sys` schema, which is a set of objects that help DBAs and developers interpret data collected by the Performance Schema. `sys` schema objects can be used for typical tuning and diagnosis use cases. For more information, see Chapter 26, *MySQL sys Schema*.
+* **sys schema.** As distribuições do MySQL agora incluem o `sys schema`, que é um conjunto de objetos que ajudam DBAs e desenvolvedores a interpretar os dados coletados pelo Performance Schema. Os objetos do `sys schema` podem ser usados para casos de uso típicos de `tuning` e diagnóstico. Para mais informações, veja Capítulo 26, *MySQL sys Schema*.
 
-* **Condition handling.** MySQL now supports stacked diagnostics areas. When the diagnostics area stack is pushed, the first (current) diagnostics area becomes the second (stacked) diagnostics area and a new current diagnostics area is created as a copy of it. Within a condition handler, executed statements modify the new current diagnostics area, but `GET STACKED DIAGNOSTICS` can be used to inspect the stacked diagnostics area to obtain information about the condition that caused the handler to activate, independent of current conditions within the handler itself. (Previously, there was a single diagnostics area. To inspect handler-activating conditions within a handler, it was necessary to check this diagnostics area before executing any statements that could change it.) See Section 13.6.7.3, “GET DIAGNOSTICS Statement”, and Section 13.6.7.7, “The MySQL Diagnostics Area”.
+* **Tratamento de condição.** O MySQL agora suporta áreas de diagnóstico empilhadas (`stacked diagnostics areas`). Quando a pilha da área de diagnóstico é empurrada (`pushed`), a primeira área de diagnóstico (atual) se torna a segunda área de diagnóstico (empilhada) e uma nova área de diagnóstico atual é criada como uma cópia dela. Dentro de um `condition handler`, as instruções executadas modificam a nova área de diagnóstico atual, mas `GET STACKED DIAGNOSTICS` pode ser usado para inspecionar a área de diagnóstico empilhada para obter informações sobre a condição que causou a ativação do `handler`, independentemente das condições atuais dentro do próprio `handler`. (Anteriormente, havia uma única área de diagnóstico. Para inspecionar as condições de ativação do `handler` dentro de um `handler`, era necessário verificar esta área de diagnóstico antes de executar qualquer instrução que pudesse alterá-la.) Veja Seção 13.6.7.3, “Instrução GET DIAGNOSTICS”, e Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”.
 
-* **Optimizer.** These optimizer enhancements were added:
+* **Optimizer.** Estes aprimoramentos do `optimizer` foram adicionados:
 
-  + `EXPLAIN` can be used to obtain the execution plan for an explainable statement executing in a named connection:
+  + `EXPLAIN` pode ser usado para obter o plano de execução para uma instrução explicável sendo executada em uma conexão nomeada:
 
     ```sql
     EXPLAIN [options] FOR CONNECTION connection_id;
     ```
 
-    For more information, see Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”.
+    Para mais informações, veja Seção 8.8.4, “Obtendo Informações do Plano de Execução para uma Conexão Nomeada”.
 
-  + It is possible to provide hints to the optimizer within individual SQL statements, which enables finer control over statement execution plans than can be achieved using the `optimizer_switch` system variable. Hints are also permitted in statements used with `EXPLAIN`, enabling you to see how hints affect execution plans. For more information, see Section 8.9.3, “Optimizer Hints”.
+  + É possível fornecer `hints` ao `optimizer` dentro de instruções SQL individuais, o que permite um controle mais refinado sobre os planos de execução de instrução do que pode ser alcançado usando a variável de sistema `optimizer_switch`. `Hints` também são permitidos em instruções usadas com `EXPLAIN`, permitindo que você veja como os `hints` afetam os planos de execução. Para mais informações, veja Seção 8.9.3, “Optimizer Hints”.
 
-  + **prefer_ordering_index flag.** By default, MySQL attempts to use an ordered index for any `ORDER BY` or `GROUP BY` query that has a `LIMIT` clause, whenever the optimizer determines that this would result in faster execution. Because it is possible in some cases that choosing a different optimization for such queries actually performs better, it is possible as of MySQL 5.7.33 to disable this optimization by setting the `prefer_ordering_index` flag to `off`.
+  + **flag prefer_ordering_index.** Por padrão, o MySQL tenta usar um `ordered index` para qualquer `Query ORDER BY` ou `GROUP BY` que tenha uma cláusula `LIMIT`, sempre que o `optimizer` determinar que isso resultaria em execução mais rápida. Como é possível em alguns casos que a escolha de uma otimização diferente para tais `queries` realmente tenha um desempenho melhor, é possível a partir do MySQL 5.7.33 desabilitar esta otimização definindo a `flag` `prefer_ordering_index` como `off`.
 
-    The default value for this flag is `on`.
+    O valor padrão para esta `flag` é `on`.
 
-    For more information and examples, see Section 8.9.2, “Switchable Optimizations”, and Section 8.2.1.17, “LIMIT Query Optimization”.
+    Para mais informações e exemplos, veja Seção 8.9.2, “Otimizações Alternáveis”, e Seção 8.2.1.17, “Otimização de Query LIMIT”.
 
-* **Triggers.** Previously, a table could have at most one trigger for each combination of trigger event (`INSERT`, `UPDATE`, `DELETE`) and action time (`BEFORE`, `AFTER`). This limitation has been lifted and multiple triggers are permitted. For more information, see Section 23.3, “Using Triggers”.
+* **Triggers.** Anteriormente, uma tabela podia ter no máximo um `trigger` para cada combinação de evento de `trigger` (`INSERT`, `UPDATE`, `DELETE`) e tempo de ação (`BEFORE`, `AFTER`). Esta limitação foi removida e múltiplos `triggers` são permitidos. Para mais informações, veja Seção 23.3, “Usando Triggers”.
 
-* **Logging.** These logging enhancements were added:
+* **Logging.** Estes aprimoramentos de `logging` foram adicionados:
 
-  + Previously, on Unix and Unix-like systems, MySQL support for sending the server error log to `syslog` was implemented by having **mysqld_safe** capture server error output and pass it to `syslog`. The server now includes native `syslog` support, which has been extended to include Windows. For more information about sending server error output to `syslog`, see Section 5.4.2, “The Error Log”.
+  + Anteriormente, em sistemas Unix e semelhantes ao Unix, o suporte do MySQL para enviar o `server error log` para o `syslog` era implementado fazendo com que **mysqld_safe** capturasse a saída de erro do servidor e a passasse para o `syslog`. O servidor agora inclui suporte nativo ao `syslog`, que foi estendido para incluir o Windows. Para mais informações sobre como enviar a saída de erro do servidor para o `syslog`, veja Seção 5.4.2, “O Error Log”.
 
-  + The **mysql** client now has a `--syslog` option that causes interactive statements to be sent to the system `syslog` facility. Logging is suppressed for statements that match the default “ignore” pattern list (`"*IDENTIFIED*:*PASSWORD*"`), as well as statements that match any patterns specified using the `--histignore` option. See Section 4.5.1.3, “mysql Client Logging”.
+  + O cliente **mysql** agora tem uma opção `--syslog` que faz com que as instruções interativas sejam enviadas para o recurso `syslog` do sistema. O `logging` é suprimido para instruções que correspondem à lista de padrões “ignorar” padrão (`"*IDENTIFIED*:*PASSWORD*"`), bem como instruções que correspondem a quaisquer padrões especificados usando a opção `--histignore`. Veja Seção 4.5.1.3, “Logging do Cliente mysql”.
 
-* **Generated Columns.** MySQL now supports the specification of generated columns in `CREATE TABLE` and `ALTER TABLE` statements. Values of a generated column are computed from an expression specified at column creation time. Generated columns can be virtual (computed “on the fly” when rows are read) or stored (computed when rows are inserted or updated). For more information, see Section 13.1.18.7, “CREATE TABLE and Generated Columns”.
+* **Generated Columns.** O MySQL agora suporta a especificação de `generated columns` nas instruções `CREATE TABLE` e `ALTER TABLE`. Os valores de uma `generated column` são calculados a partir de uma expressão especificada no momento da criação da coluna. As `Generated columns` podem ser virtuais (calculadas “on the fly” quando as linhas são lidas) ou armazenadas (calculadas quando as linhas são inseridas ou atualizadas). Para mais informações, veja Seção 13.1.18.7, “CREATE TABLE e Generated Columns”.
 
-* **mysql client.** Previously, **Control+C** in mysql interrupted the current statement if there was one, or exited mysql if not. Now **Control+C** interrupts the current statement if there was one, or cancels any partial input line otherwise, but does not exit.
+* **Cliente mysql.** Anteriormente, **Control+C** no mysql interrompia a instrução atual, se houvesse, ou saía do mysql, se não houvesse. Agora, **Control+C** interrompe a instrução atual, se houver, ou cancela qualquer linha de entrada parcial, caso contrário, mas não sai.
 
-* **Database name rewriting with mysqlbinlog.** Renaming of databases by **mysqlbinlog** when reading from binary logs written using the row-based format is now supported using the `--rewrite-db` option added in MySQL 5.7.1.
+* **Renomeação de database com mysqlbinlog.** A renomeação de `databases` por **mysqlbinlog** ao ler a partir de `binary logs` escritos usando o formato baseado em linha agora é suportada usando a opção `--rewrite-db` adicionada no MySQL 5.7.1.
 
-  This option uses the format `--rewrite-db='dboldname->dbnewname'`. You can implement multiple rewrite rules, by specifying the option multiple times.
+  Esta opção usa o formato `--rewrite-db='dboldname->dbnewname'`. Você pode implementar múltiplas regras de reescrita, especificando a opção várias vezes.
 
-* **HANDLER with partitioned tables.** The `HANDLER` statement may now be used with user-partitioned tables. Such tables may use any of the available partitioning types (see Section 22.2, “Partitioning Types”).
+* **HANDLER com tabelas particionadas.** A instrução `HANDLER` agora pode ser usada com tabelas particionadas pelo usuário. Tais tabelas podem usar qualquer um dos tipos de particionamento disponíveis (veja Seção 22.2, “Tipos de Particionamento”).
 
-* **Index condition pushdown support for partitioned tables.** Queries on partitioned tables using the `InnoDB` or `MyISAM` storage engine may employ the index condition pushdown optimization that was introduced in MySQL 5.6. See Section 8.2.1.5, “Index Condition Pushdown Optimization”, for more information.
+* **Suporte a Index condition pushdown para tabelas particionadas.** Queries em tabelas particionadas usando o `storage engine` `InnoDB` ou `MyISAM` podem empregar a otimização `index condition pushdown` que foi introduzida no MySQL 5.6. Veja Seção 8.2.1.5, “Otimização Index Condition Pushdown”, para mais informações.
 
-* **WITHOUT VALIDATION support for ALTER TABLE ... EXCHANGE PARTITION.** As of MySQL 5.7.5, `ALTER TABLE ... EXCHANGE PARTITION` syntax includes an optional `{WITH|WITHOUT} VALIDATION` clause. When `WITHOUT VALIDATION` is specified, `ALTER TABLE ... EXCHANGE PARTITION` does not perform row-by-row validation when exchanging a populated table with the partition, permitting database administrators to assume responsibility for ensuring that rows are within the boundaries of the partition definition. `WITH VALIDATION` is the default behavior and need not be specified explicitly. For more information, see Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”.
+* **Suporte a WITHOUT VALIDATION para ALTER TABLE ... EXCHANGE PARTITION.** A partir do MySQL 5.7.5, a sintaxe `ALTER TABLE ... EXCHANGE PARTITION` inclui uma cláusula opcional `{WITH|WITHOUT} VALIDATION`. Quando `WITHOUT VALIDATION` é especificado, `ALTER TABLE ... EXCHANGE PARTITION` não executa a validação linha por linha ao trocar uma tabela populada pela partição, permitindo que os administradores de banco de dados assumam a responsabilidade de garantir que as linhas estejam dentro dos limites da definição da partição. `WITH VALIDATION` é o comportamento padrão e não precisa ser especificado explicitamente. Para mais informações, veja Seção 22.3.3, “Trocando Partições e Subpartições com Tabelas”.
 
-* **Source dump thread improvements.** The source dump thread was refactored to reduce lock contention and improve source throughput. Previous to MySQL 5.7.2, the dump thread took a lock on the binary log whenever reading an event; in MySQL 5.7.2 and later, this lock is held only while reading the position at the end of the last successfully written event. This means both that multiple dump threads are now able to read concurrently from the binary log file, and that dump threads are now able to read while clients are writing to the binary log.
+* **Melhorias no source dump thread.** O `source dump thread` foi refatorado para reduzir a contenção de `lock` e melhorar o `throughput` da `source`. Antes do MySQL 5.7.2, o `dump thread` pegava um `lock` no `binary log` sempre que lia um evento; no MySQL 5.7.2 e posterior, este `lock` é mantido apenas durante a leitura da posição no final do último evento escrito com sucesso. Isso significa que agora múltiplos `dump threads` são capazes de ler concorrentemente do arquivo `binary log`, e que os `dump threads` agora são capazes de ler enquanto os clientes estão escrevendo no `binary log`.
 
-* **Character set support.** MySQL 5.7.4 includes a `gb18030` character set that supports the China National Standard GB18030 character set. For more information about MySQL character set support, see Chapter 10, *Character Sets, Collations, Unicode*.
+* **Suporte a Character set.** O MySQL 5.7.4 inclui um `character set` `gb18030` que suporta o `character set` China National Standard GB18030. Para mais informações sobre o suporte a `character set` do MySQL, veja Capítulo 10, *Character Sets, Collation, Unicode*.
 
-* **Changing the replication source without STOP SLAVE.** In MySQL 5.7.4 and later, the strict requirement to execute `STOP SLAVE` prior to issuing any `CHANGE MASTER TO` statement is removed. Instead of depending on whether the replica is stopped, the behavior of `CHANGE MASTER TO` now depends on the states of the replica SQL thread and replica I/O threads; which of these threads is stopped or running now determines the options that can or cannot be used with a `CHANGE MASTER TO` statement at a given point in time. The rules for making this determination are listed here:
+* **Alterando a source de Replication sem STOP SLAVE.** No MySQL 5.7.4 e posterior, o requisito estrito de executar `STOP SLAVE` antes de emitir qualquer instrução `CHANGE MASTER TO` é removido. Em vez de depender se a `replica` está parada, o comportamento de `CHANGE MASTER TO` agora depende dos estados do `replica SQL thread` e dos `replica I/O threads`; qual desses `threads` está parado ou em execução agora determina as opções que podem ou não ser usadas com uma instrução `CHANGE MASTER TO` em um determinado momento. As regras para fazer esta determinação estão listadas aqui:
 
-  + If the SQL thread is stopped, you can execute `CHANGE MASTER TO` using any combination of `RELAY_LOG_FILE`, `RELAY_LOG_POS`, and `MASTER_DELAY` options, even if the replica I/O thread is running. No other options may be used with this statement when the I/O thread is running.
+  + Se o `SQL thread` estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer combinação das opções `RELAY_LOG_FILE`, `RELAY_LOG_POS` e `MASTER_DELAY`, mesmo que o `replica I/O thread` esteja em execução. Nenhuma outra opção pode ser usada com esta instrução quando o `I/O thread` está em execução.
 
-  + If the I/O thread is stopped, you can execute `CHANGE MASTER TO` using any of the options for this statement (in any allowed combination) *except* `RELAY_LOG_FILE`, `RELAY_LOG_POS`, or `MASTER_DELAY`, even when the SQL thread is running. These three options may not be used when the I/O thread is running.
+  + Se o `I/O thread` estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer uma das opções para esta instrução (em qualquer combinação permitida), *exceto* `RELAY_LOG_FILE`, `RELAY_LOG_POS` ou `MASTER_DELAY`, mesmo quando o `SQL thread` está em execução. Estas três opções não podem ser usadas quando o `I/O thread` está em execução.
 
-  + Both the SQL thread and the I/O thread must be stopped before issuing `CHANGE MASTER TO ... MASTER_AUTO_POSITION = 1`.
+  + Tanto o `SQL thread` quanto o `I/O thread` devem ser interrompidos antes de emitir `CHANGE MASTER TO ... MASTER_AUTO_POSITION = 1`.
 
-  You can check the current state of the replica SQL and I/O threads using `SHOW SLAVE STATUS`.
+  Você pode verificar o estado atual dos `SQL` e `I/O threads` da `replica` usando `SHOW SLAVE STATUS`.
 
-  If you are using statement-based replication and temporary tables, it is possible for a `CHANGE MASTER TO` statement following a `STOP SLAVE` statement to leave behind temporary tables on the replica. As part of this set of improvements, a warning is now issued whenever `CHANGE MASTER TO` is issued following `STOP SLAVE` when statement-based replication is in use and `Slave_open_temp_tables` remains greater than 0.
+  Se você estiver usando `statement-based replication` e tabelas temporárias, é possível que uma instrução `CHANGE MASTER TO` após uma instrução `STOP SLAVE` deixe tabelas temporárias na `replica`. Como parte deste conjunto de melhorias, agora é emitido um aviso sempre que `CHANGE MASTER TO` é emitido após `STOP SLAVE` quando o `statement-based replication` está em uso e `Slave_open_temp_tables` permanece maior que 0.
 
-  For more information, see Section 13.4.2.1, “CHANGE MASTER TO Statement”, and Section 16.3.7, “Switching Sources During Failover”.
+  Para mais informações, veja Seção 13.4.2.1, “Instrução CHANGE MASTER TO”, e Seção 16.3.7, “Mudança de Sources Durante o Failover”.
 
-* **Test suite.** The MySQL test suite now uses `InnoDB` as the default storage engine.
+* **Test suite.** O `test suite` do MySQL agora usa `InnoDB` como o `storage engine` padrão.
 
-* **Multi-source replication is now possible.** MySQL Multi-Source Replication adds the ability to replicate from multiple sources to a replica. MySQL Multi-Source Replication topologies can be used to back up multiple servers to a single server, to merge table shards, and consolidate data from multiple servers to a single server. See Section 16.1.5, “MySQL Multi-Source Replication”.
+* **Replication Multi-Source agora é possível.** O MySQL Multi-Source Replication adiciona a capacidade de replicar de múltiplas `sources` para uma `replica`. As topologias do MySQL Multi-Source Replication podem ser usadas para fazer backup de múltiplos servidores em um único servidor, para mesclar `table shards` e consolidar dados de múltiplos servidores em um único servidor. Veja Seção 16.1.5, “MySQL Multi-Source Replication”.
 
-  As part of MySQL Multi-Source Replication, replication channels have been added. Replication channels enable a replica to open multiple connections to replicate from, with each channel being a connection to a source. See Section 16.2.2, “Replication Channels”.
+  Como parte do MySQL Multi-Source Replication, `replication channels` foram adicionados. Os `Replication channels` permitem que uma `replica` abra múltiplas conexões para replicar, sendo cada `channel` uma conexão com uma `source`. Veja Seção 16.2.2, “Replication Channels”.
 
-* **Group Replication Performance Schema tables.** MySQL 5.7 adds a number of new tables to the Performance Schema to provide information about replication groups and channels. These include the following tables:
+* **Tabelas do Performance Schema do Group Replication.** O MySQL 5.7 adiciona uma série de novas tabelas ao Performance Schema para fornecer informações sobre `replication groups` e `channels`. Estas incluem as seguintes tabelas:
 
   + `replication_applier_configuration`
   + `replication_applier_status`
@@ -263,232 +263,232 @@ The following features have been added to MySQL 5.7:
   + `replication_group_members`
   + `replication_group_member_stats`
 
-  All of these tables were added in MySQL 5.7.2, except for `replication_group_members` and `replication_group_member_stats`, which were added in MySQL 5.7.6. For more information, see Section 25.12.11, “Performance Schema Replication Tables”.
+  Todas essas tabelas foram adicionadas no MySQL 5.7.2, exceto `replication_group_members` e `replication_group_member_stats`, que foram adicionadas no MySQL 5.7.6. Para mais informações, veja Seção 25.12.11, “Tabelas de Replication do Performance Schema”.
 
-* **Group Replication SQL.** The following statements were added in MySQL 5.7.6 for controlling Group Replication:
+* **SQL do Group Replication.** As seguintes instruções foram adicionadas no MySQL 5.7.6 para controlar o Group Replication:
 
   + `START GROUP_REPLICATION`
   + `STOP GROUP_REPLICATION`
 
-  For more information, see Section 13.4.3, “SQL Statements for Controlling Group Replication”.
+  Para mais informações, veja Seção 13.4.3, “Instruções SQL para Controle de Group Replication”.
 
-### Features Deprecated in MySQL 5.7
+### Funcionalidades Descontinuadas no MySQL 5.7
 
-The following features are deprecated in MySQL 5.7 and may be removed in a future series. Where alternatives are shown, applications should be updated to use them.
+As seguintes funcionalidades estão descontinuadas no MySQL 5.7 e podem ser removidas em uma série futura. Onde alternativas são mostradas, os aplicativos devem ser atualizados para usá-las.
 
-For applications that use features deprecated in MySQL 5.7 that have been removed in a higher MySQL series, statements may fail when replicated from a MySQL 5.7 source to a higher-series replica, or may have different effects on source and replica. To avoid such problems, applications that use features deprecated in 5.7 should be revised to avoid them and use alternatives when possible.
+Para aplicativos que usam funcionalidades descontinuadas no MySQL 5.7 que foram removidas em uma série MySQL superior, as instruções podem falhar quando replicadas de uma `source` MySQL 5.7 para uma `replica` de série superior, ou podem ter efeitos diferentes na `source` e na `replica`. Para evitar tais problemas, os aplicativos que usam funcionalidades descontinuadas no 5.7 devem ser revisados para evitá-las e usar alternativas quando possível.
 
-* The `ERROR_FOR_DIVISION_BY_ZERO`, `NO_ZERO_DATE`, and `NO_ZERO_IN_DATE` SQL modes are now deprecated but enabled by default. The long term plan is to have them included in strict SQL mode and to remove them as explicit modes in a future MySQL release.
+* Os SQL modes `ERROR_FOR_DIVISION_BY_ZERO`, `NO_ZERO_DATE` e `NO_ZERO_IN_DATE` agora estão descontinuados, mas habilitados por padrão. O plano de longo prazo é tê-los incluídos no `strict SQL mode` e removê-los como modos explícitos em uma futura versão do MySQL.
 
-  The deprecated `ERROR_FOR_DIVISION_BY_ZERO`, `NO_ZERO_DATE`, and `NO_ZERO_IN_DATE` SQL modes are still recognized so that statements that name them do not produce an error, but are expected to be removed in a future version of MySQL. To make advance preparation for versions of MySQL in which these mode names do not exist, applications should be modified not to refer to them. See SQL Mode Changes in MySQL 5.7.
+  Os SQL modes descontinuados `ERROR_FOR_DIVISION_BY_ZERO`, `NO_ZERO_DATE` e `NO_ZERO_IN_DATE` ainda são reconhecidos para que as instruções que os nomeiam não produzam um erro, mas espera-se que sejam removidos em uma versão futura do MySQL. Para se preparar antecipadamente para versões do MySQL nas quais esses nomes de modo não existam, os aplicativos devem ser modificados para não se referirem a eles. Veja Mudanças no SQL Mode no MySQL 5.7.
 
-* These SQL modes are now deprecated; expect them to be removed in a future version of MySQL: `DB2`, `MAXDB`, `MSSQL`, `MYSQL323`, `MYSQL40`, `ORACLE`, `POSTGRESQL`, `NO_FIELD_OPTIONS`, `NO_KEY_OPTIONS`, `NO_TABLE_OPTIONS`. These deprecations have two implications:
+* Estes SQL modes agora estão descontinuados; espere que sejam removidos em uma versão futura do MySQL: `DB2`, `MAXDB`, `MSSQL`, `MYSQL323`, `MYSQL40`, `ORACLE`, `POSTGRESQL`, `NO_FIELD_OPTIONS`, `NO_KEY_OPTIONS`, `NO_TABLE_OPTIONS`. Estas descontinuações têm duas implicações:
 
-  + Assigning a deprecated mode to the `sql_mode` system variable produces a warning.
+  + Atribuir um modo descontinuado à variável de sistema `sql_mode` produz um aviso.
 
-  + With the `MAXDB` SQL mode enabled, using `CREATE TABLE` or `ALTER TABLE` to add a `TIMESTAMP` column to a table produces a warning.
+  + Com o SQL mode `MAXDB` habilitado, usar `CREATE TABLE` ou `ALTER TABLE` para adicionar uma coluna `TIMESTAMP` a uma tabela produz um aviso.
 
-* Changes to account-management statements make the following features obsolete. They are now deprecated:
+* Alterações nas instruções de gerenciamento de contas tornam os seguintes recursos obsoletos. Eles agora estão descontinuados:
 
-  + Using `GRANT` to create users. Instead, use `CREATE USER`. Following this practice makes the `NO_AUTO_CREATE_USER` SQL mode immaterial for `GRANT` statements, so it too is deprecated.
+  + Usar `GRANT` para criar usuários. Em vez disso, use `CREATE USER`. Seguir esta prática torna o SQL mode `NO_AUTO_CREATE_USER` imaterial para instruções `GRANT`, então ele também está descontinuado.
 
-  + Using `GRANT` to modify account properties other than privilege assignments. This includes authentication, SSL, and resource-limit properties. Instead, establish such properties at account-creation time with `CREATE USER` or modify them afterward with `ALTER USER`.
+  + Usar `GRANT` para modificar propriedades de conta diferentes das atribuições de privilégio. Isso inclui propriedades de autenticação, SSL e `resource-limit`. Em vez disso, estabeleça tais propriedades no momento da criação da conta com `CREATE USER` ou modifique-as depois com `ALTER USER`.
 
-  + `IDENTIFIED BY PASSWORD 'auth_string'` syntax for `CREATE USER` and `GRANT`. Instead, use `IDENTIFIED WITH auth_plugin AS 'auth_string'` for `CREATE USER` and `ALTER USER`, where the `'auth_string'` value is in a format compatible with the named plugin.
+  + Sintaxe `IDENTIFIED BY PASSWORD 'auth_string'` para `CREATE USER` e `GRANT`. Em vez disso, use `IDENTIFIED WITH auth_plugin AS 'auth_string'` para `CREATE USER` e `ALTER USER`, onde o valor `'auth_string'` está em um formato compatível com o plugin nomeado.
 
-  + The `PASSWORD()` function is deprecated and should be avoided in any context. Thus, `SET PASSWORD ... = PASSWORD('auth_string')` syntax is also deprecated. `SET PASSWORD ... = 'auth_string'` syntax is not deprecated; nevertheless, `ALTER USER` is now the preferred statement for assigning passwords.
+  + A função `PASSWORD()` está descontinuada e deve ser evitada em qualquer contexto. Assim, a sintaxe `SET PASSWORD ... = PASSWORD('auth_string')` também está descontinuada. A sintaxe `SET PASSWORD ... = 'auth_string'` não está descontinuada; no entanto, `ALTER USER` agora é a instrução preferida para atribuição de senhas.
 
-  + The `old_passwords` system variable. Account authentication plugins can no longer be left unspecified in the `mysql.user` system table, so any statement that assigns a password from a cleartext string can unambiguously determine the hashing method to use on the string before storing it in the `mysql.user` table. This renders `old_passwords` superflous.
+  + A variável de sistema `old_passwords`. Os plugins de autenticação de conta não podem mais ser deixados sem especificação na tabela de sistema `mysql.user`, então qualquer instrução que atribua uma senha a partir de uma `string` de texto simples pode determinar inequivocamente o método de `hashing` a ser usado na `string` antes de armazená-la na tabela `mysql.user`. Isso torna `old_passwords` supérflua.
 
-* The query cache is deprecated. Deprecation includes these items:
+* O `Query cache` está descontinuado. A descontinuação inclui estes itens:
 
-  + The `FLUSH QUERY CACHE` and `RESET QUERY CACHE` statements.
+  + As instruções `FLUSH QUERY CACHE` e `RESET QUERY CACHE`.
 
-  + The `SQL_CACHE` and `SQL_NO_CACHE` `SELECT` modifiers.
+  + Os modificadores `SELECT` `SQL_CACHE` e `SQL_NO_CACHE`.
 
-  + These system variables: `have_query_cache`, `ndb_cache_check_time`, `query_cache_limit`, `query_cache_min_res_unit`, `query_cache_size`, `query_cache_type`, `query_cache_wlock_invalidate`.
+  + Estas variáveis de sistema: `have_query_cache`, `ndb_cache_check_time`, `query_cache_limit`, `query_cache_min_res_unit`, `query_cache_size`, `query_cache_type`, `query_cache_wlock_invalidate`.
 
-  + These status variables: `Qcache_free_blocks`, `Qcache_free_memory`, `Qcache_hits`, `Qcache_inserts`, `Qcache_lowmem_prunes`, `Qcache_not_cached`, `Qcache_queries_in_cache`, `Qcache_total_blocks`.
+  + Estas variáveis de status: `Qcache_free_blocks`, `Qcache_free_memory`, `Qcache_hits`, `Qcache_inserts`, `Qcache_lowmem_prunes`, `Qcache_not_cached`, `Qcache_queries_in_cache`, `Qcache_total_blocks`.
 
-* Previously, the `--transaction-isolation` and `--transaction-read-only` server startup options corresponded to the `tx_isolation` and `tx_read_only` system variables. For better name correspondence between startup option and system variable names, `transaction_isolation` and `transaction_read_only` have been created as aliases for `tx_isolation` and `tx_read_only`. The `tx_isolation` and `tx_read_only` variables are now deprecated;expect them to be removed in MySQL 8.0. Applications should be adjusted to use `transaction_isolation` and `transaction_read_only` instead.
+* Anteriormente, as opções de inicialização do servidor `--transaction-isolation` e `--transaction-read-only` correspondiam às variáveis de sistema `tx_isolation` e `tx_read_only`. Para melhor correspondência de nomes entre a opção de inicialização e os nomes das variáveis de sistema, `transaction_isolation` e `transaction_read_only` foram criados como `aliases` para `tx_isolation` e `tx_read_only`. As variáveis `tx_isolation` e `tx_read_only` agora estão descontinuadas; espere que sejam removidas no MySQL 8.0. Os aplicativos devem ser ajustados para usar `transaction_isolation` e `transaction_read_only` em seu lugar.
 
-* The `--skip-innodb` option and its synonyms (`--innodb=OFF`, `--disable-innodb`, and so forth) are deprecated. These options have no effect as of MySQL 5.7. because `InnoDB` cannot be disabled.
+* A opção `--skip-innodb` e seus sinônimos (`--innodb=OFF`, `--disable-innodb`, e assim por diante) estão descontinuados. Essas opções não têm efeito a partir do MySQL 5.7. porque o `InnoDB` não pode ser desabilitado.
 
-* The client-side `--ssl` and `--ssl-verify-server-cert` options are deprecated. Use `--ssl-mode=REQUIRED` instead of `--ssl=1` or `--enable-ssl`. Use `--ssl-mode=DISABLED` instead of `--ssl=0`, `--skip-ssl`, or `--disable-ssl`. Use `--ssl-mode=VERIFY_IDENTITY` instead of `--ssl-verify-server-cert` options. (The server-side `--ssl` option is *not* deprecated.)
+* As opções do lado do cliente `--ssl` e `--ssl-verify-server-cert` estão descontinuadas. Use `--ssl-mode=REQUIRED` em vez de `--ssl=1` ou `--enable-ssl`. Use `--ssl-mode=DISABLED` em vez de `--ssl=0`, `--skip-ssl` ou `--disable-ssl`. Use `--ssl-mode=VERIFY_IDENTITY` em vez das opções `--ssl-verify-server-cert`. (A opção `--ssl` do lado do servidor *não* está descontinuada.)
 
-  For the C API, `MYSQL_OPT_SSL_ENFORCE` and `MYSQL_OPT_SSL_VERIFY_SERVER_CERT` options for `mysql_options()` correspond to the client-side `--ssl` and `--ssl-verify-server-cert` options and are deprecated. Use `MYSQL_OPT_SSL_MODE` with an option value of `SSL_MODE_REQUIRED` or `SSL_MODE_VERIFY_IDENTITY` instead.
+  Para a C API, as opções `MYSQL_OPT_SSL_ENFORCE` e `MYSQL_OPT_SSL_VERIFY_SERVER_CERT` para `mysql_options()` correspondem às opções do lado do cliente `--ssl` e `--ssl-verify-server-cert` e estão descontinuadas. Use `MYSQL_OPT_SSL_MODE` com um valor de opção de `SSL_MODE_REQUIRED` ou `SSL_MODE_VERIFY_IDENTITY` em seu lugar.
 
-* The `log_warnings` system variable and `--log-warnings` server option are deprecated. Use the `log_error_verbosity` system variable instead.
+* A variável de sistema `log_warnings` e a opção de servidor `--log-warnings` estão descontinuadas. Use a variável de sistema `log_error_verbosity` em seu lugar.
 
-* The `--temp-pool` server option is deprecated.
+* A opção de servidor `--temp-pool` está descontinuada.
 
-* The `binlog_max_flush_queue_time` system variable does nothing in MySQL 5.7, and is deprecated as of MySQL 5.7.9.
+* A variável de sistema `binlog_max_flush_queue_time` não faz nada no MySQL 5.7 e está descontinuada a partir do MySQL 5.7.9.
 
-* The `innodb_support_xa` system variable, which enables `InnoDB` support for two-phase commit in XA transactions, is deprecated as of MySQL 5.7.10. `InnoDB` support for two-phase commit in XA transactions is always enabled as of MySQL 5.7.10.
+* A variável de sistema `innodb_support_xa`, que habilita o suporte do `InnoDB` para `two-phase commit` em XA `transactions`, está descontinuada a partir do MySQL 5.7.10. O suporte do `InnoDB` para `two-phase commit` em XA `transactions` está sempre habilitado a partir do MySQL 5.7.10.
 
-* The `metadata_locks_cache_size` and `metadata_locks_hash_instances` system variables are deprecated. These do nothing as of MySQL 5.7.4.
+* As variáveis de sistema `metadata_locks_cache_size` e `metadata_locks_hash_instances` estão descontinuadas. Elas não fazem nada a partir do MySQL 5.7.4.
 
-* The `sync_frm` system variable is deprecated.
+* A variável de sistema `sync_frm` está descontinuada.
 
-* The global `character_set_database` and `collation_database` system variables are deprecated; expect them to be removed in a future version of MySQL.
+* As variáveis de sistema global `character_set_database` e `collation_database` estão descontinuadas; espere que sejam removidas em uma versão futura do MySQL.
 
-  Assigning a value to the session `character_set_database` and `collation_database` system variables is deprecated and assignments produce a warning. The session variables are expected to become read only in a future version of MySQL, and assignments to them to produce an error, while remaining possible to read the session variables to determine the database character set and collation for the default database.
+  Atribuir um valor às variáveis de sistema de sessão `character_set_database` e `collation_database` está descontinuado e as atribuições produzem um aviso. Espera-se que as variáveis de sessão se tornem somente leitura em uma versão futura do MySQL, e as atribuições a elas produzam um erro, enquanto permanece possível ler as variáveis de sessão para determinar o `database character set` e `collation` para o `default database`.
 
-* The global scope for the `sql_log_bin` system variable has been deprecated, and this variable can now be set with session scope only. The statement `SET GLOBAL SQL_LOG_BIN` now produces an error. It remains possible to read the global value of `sql_log_bin`, but doing so produces a warning. You should act now to remove from your applications any dependencies on reading this value; the global scope `sql_log_bin` is removed in MySQL 8.0.
+* O escopo global para a variável de sistema `sql_log_bin` foi descontinuado, e esta variável agora pode ser definida apenas com escopo de sessão. A instrução `SET GLOBAL SQL_LOG_BIN` agora produz um erro. Continua sendo possível ler o valor global de `sql_log_bin`, mas fazê-lo produz um aviso. Você deve agir agora para remover de seus aplicativos quaisquer dependências na leitura deste valor; o escopo global `sql_log_bin` é removido no MySQL 8.0.
 
-* With the introduction of the data dictionary in MySQL 8.0, the `--ignore-db-dir` option and `ignore_db_dirs` system variable became superfluous and were removed in that version. Consequently, they are deprecated in MySQL 5.7.
+* Com a introdução do dicionário de dados no MySQL 8.0, a opção `--ignore-db-dir` e a variável de sistema `ignore_db_dirs` se tornaram supérfluas e foram removidas nessa versão. Consequentemente, elas estão descontinuadas no MySQL 5.7.
 
-* `GROUP BY` implicitly sorts by default (that is, in the absence of `ASC` or `DESC` designators), but relying on implicit `GROUP BY` sorting in MySQL 5.7 is deprecated. To achieve a specific sort order of grouped results, it is preferable to use To produce a given sort order, use explicit `ASC` or `DESC` designators for `GROUP BY` columns or provide an `ORDER BY` clause. `GROUP BY` sorting is a MySQL extension that may change in a future release; for example, to make it possible for the optimizer to order groupings in whatever manner it deems most efficient and to avoid the sorting overhead.
+* `GROUP BY` implicitamente ordena por padrão (ou seja, na ausência de designadores `ASC` ou `DESC`), mas confiar na ordenação implícita de `GROUP BY` no MySQL 5.7 está descontinuado. Para obter uma ordem de classificação específica de resultados agrupados, é preferível usar designadores explícitos `ASC` ou `DESC` para colunas `GROUP BY` ou fornecer uma cláusula `ORDER BY`. A ordenação `GROUP BY` é uma extensão do MySQL que pode mudar em uma versão futura; por exemplo, para tornar possível que o `optimizer` ordene agrupamentos da maneira que julgar mais eficiente e evitar a sobrecarga de ordenação.
 
-* The `EXTENDED` and `PARTITIONS` keywords for the `EXPLAIN` statement are deprecated. These keywords are still recognized but are now unnecessary because their effect is always enabled.
+* As palavras-chave `EXTENDED` e `PARTITIONS` para a instrução `EXPLAIN` estão descontinuadas. Essas palavras-chave ainda são reconhecidas, mas agora são desnecessárias porque seu efeito está sempre habilitado.
 
-* The `ENCRYPT()`, `ENCODE()`, `DECODE()`, `DES_ENCRYPT()`, and `DES_DECRYPT()` encryption functions are deprecated. For `ENCRYPT()`, consider using `SHA2()` instead for one-way hashing. For the others, consider using `AES_ENCRYPT()` and `AES_DECRYPT()` instead. The `--des-key-file` option, the `have_crypt` system variable, the `DES_KEY_FILE` option for the `FLUSH` statement, and the `HAVE_CRYPT` **CMake** option also are deprecated.
+* As funções de criptografia `ENCRYPT()`, `ENCODE()`, `DECODE()`, `DES_ENCRYPT()` e `DES_DECRYPT()` estão descontinuadas. Para `ENCRYPT()`, considere usar `SHA2()` em vez disso para `one-way hashing`. Para as outras, considere usar `AES_ENCRYPT()` e `AES_DECRYPT()` em seu lugar. A opção `--des-key-file`, a variável de sistema `have_crypt`, a opção `DES_KEY_FILE` para a instrução `FLUSH` e a opção `HAVE_CRYPT` do **CMake** também estão descontinuadas.
 
-* The `MBREqual()` spatial function is deprecated. Use `MBREquals()` instead.
+* A função espacial `MBREqual()` está descontinuada. Use `MBREquals()` em seu lugar.
 
-* The functions described in Section 12.16.4, “Functions That Create Geometry Values from WKB Values” previously accepted either WKB strings or geometry arguments. Use of geometry arguments is deprecated. See that section for guidelines for migrating queries away from using geometry arguments.
+* As funções descritas na Seção 12.16.4, “Funções Que Criam Valores de Geometria a partir de Valores WKB” anteriormente aceitavam `strings` WKB ou argumentos de geometria. O uso de argumentos de geometria está descontinuado. Veja essa seção para diretrizes sobre como migrar `queries` para longe do uso de argumentos de geometria.
 
-* The `INFORMATION_SCHEMA` `PROFILING` table is deprecated. Use the Performance Schema instead; see Chapter 25, *MySQL Performance Schema*.
+* A tabela `PROFILING` do `INFORMATION_SCHEMA` está descontinuada. Use o Performance Schema em seu lugar; veja Capítulo 25, *MySQL Performance Schema*.
 
-* The `INFORMATION_SCHEMA` `INNODB_LOCKS` and `INNODB_LOCK_WAITS` tables are deprecated, to be removed in MySQL 8.0, which provides replacement Performance Schema tables.
+* As tabelas `INNODB_LOCKS` e `INNODB_LOCK_WAITS` do `INFORMATION_SCHEMA` estão descontinuadas, para serem removidas no MySQL 8.0, que fornece tabelas de substituição do Performance Schema.
 
-* The Performance Schema `setup_timers` table is deprecated and is removed in MySQL 8.0, as is the `TICK` row in the `performance_timers` table.
+* A tabela `setup_timers` do Performance Schema está descontinuada e é removida no MySQL 8.0, assim como a linha `TICK` na tabela `performance_timers`.
 
-* The `sys` schema `sys.version` view is deprecated; expect it be removed in a future version of MySQL. Affected applications should be adjusted to use an alternative instead. For example, use the `VERSION()` function to retrieve the MySQL server version.
+* A `view` `sys.version` do `sys schema` está descontinuada; espere que seja removida em uma versão futura do MySQL. Os aplicativos afetados devem ser ajustados para usar uma alternativa em seu lugar. Por exemplo, use a função `VERSION()` para recuperar a versão do servidor MySQL.
 
-* Treatment of `\N` as a synonym for `NULL` in SQL statements is deprecated and is removed in MySQL 8.0; use `NULL` instead.
+* O tratamento de `\N` como sinônimo de `NULL` em instruções SQL está descontinuado e é removido no MySQL 8.0; use `NULL` em seu lugar.
 
-  This change does not affect text file import or export operations performed with `LOAD DATA` or `SELECT ... INTO OUTFILE`, for which `NULL` continues to be represented by `\N`. See Section 13.2.6, “LOAD DATA Statement”.
+  Esta alteração não afeta as operações de importação ou exportação de arquivos de texto realizadas com `LOAD DATA` ou `SELECT ... INTO OUTFILE`, para as quais `NULL` continua a ser representado por `\N`. Veja Seção 13.2.6, “Instrução LOAD DATA”.
 
-* `PROCEDURE ANALYSE()` syntax is deprecated.
-* Comment stripping by the **mysql** client and the options to control it (`--skip-comments`, `--comments`) are deprecated.
+* A sintaxe `PROCEDURE ANALYSE()` está descontinuada.
+* A remoção de comentários pelo cliente **mysql** e as opções para controlá-la (`--skip-comments`, `--comments`) estão descontinuadas.
 
-* **mysqld_safe** support for `syslog` output is deprecated. Use the native server `syslog` support used instead. See Section 5.4.2, “The Error Log”.
+* O suporte de **mysqld_safe** para saída `syslog` está descontinuado. Use o suporte nativo do `syslog` do servidor em vez disso. Veja Seção 5.4.2, “O Error Log”.
 
-* Conversion of pre-MySQL 5.1 database names containing special characters to 5.1 format with the addition of a `#mysql50#` prefix is deprecated. Because of this, the `--fix-db-names` and `--fix-table-names` options for **mysqlcheck** and the `UPGRADE DATA DIRECTORY NAME` clause for the `ALTER DATABASE` statement are also deprecated.
+* A conversão de nomes de `database` pré-MySQL 5.1 contendo caracteres especiais para o formato 5.1 com a adição de um prefixo `#mysql50#` está descontinuada. Por causa disso, as opções `--fix-db-names` e `--fix-table-names` para **mysqlcheck** e a cláusula `UPGRADE DATA DIRECTORY NAME` para a instrução `ALTER DATABASE` também estão descontinuadas.
 
-  Upgrades are supported only from one release series to another (for example, 5.0 to 5.1, or 5.1 to 5.5), so there should be little remaining need for conversion of older 5.0 database names to current versions of MySQL. As a workaround, upgrade a MySQL 5.0 installation to MySQL 5.1 before upgrading to a more recent release.
+  As atualizações são suportadas apenas de uma série de lançamento para outra (por exemplo, 5.0 para 5.1, ou 5.1 para 5.5), então deve haver pouca necessidade restante de conversão de nomes de `database` 5.0 mais antigos para versões atuais do MySQL. Como solução alternativa, atualize uma instalação do MySQL 5.0 para o MySQL 5.1 antes de atualizar para uma versão mais recente.
 
-* **mysql_install_db** functionality has been integrated into the MySQL server, **mysqld**. To use this capability to initialize a MySQL installation, if you previously invoked **mysql_install_db** manually, invoke **mysqld** with the `--initialize` or `--initialize-insecure` option, depending on whether you want the server to generate a random password for the initial `'root'@'localhost'` account.
+* A funcionalidade **mysql_install_db** foi integrada ao servidor MySQL, **mysqld**. Para usar este recurso para inicializar uma instalação do MySQL, se você invocou **mysql_install_db** manualmente anteriormente, invoque **mysqld** com a opção `--initialize` ou `--initialize-insecure`, dependendo se você deseja que o servidor gere uma senha aleatória para a conta inicial `'root'@'localhost'`.
 
-  **mysql_install_db** is now deprecated, as is the special `--bootstrap` option that **mysql_install_db** passes to **mysqld**.
+  **mysql_install_db** agora está descontinuado, assim como a opção especial `--bootstrap` que **mysql_install_db** passa para **mysqld**.
 
-* The **mysql_plugin** utility is deprecated. Alternatives include loading plugins at server startup using the `--plugin-load` or `--plugin-load-add` option, or at runtime using the `INSTALL PLUGIN` statement.
+* O utilitário **mysql_plugin** está descontinuado. As alternativas incluem carregar `plugins` na inicialização do servidor usando a opção `--plugin-load` ou `--plugin-load-add`, ou em tempo de execução usando a instrução `INSTALL PLUGIN`.
 
-* The **resolveip** utility is deprecated. **nslookup**, **host**, or **dig** can be used instead.
+* O utilitário **resolveip** está descontinuado. **nslookup**, **host** ou **dig** podem ser usados em seu lugar.
 
-* The **resolve_stack_dump** utility is deprecated. Stack traces from official MySQL builds are always symbolized, so there is no need to use **resolve_stack_dump**.
+* O utilitário **resolve_stack_dump** está descontinuado. Os rastreamentos de pilha de compilações oficiais do MySQL são sempre simbolizados, então não há necessidade de usar **resolve_stack_dump**.
 
-* The `mysql_kill()`, `mysql_list_fields()`, `mysql_list_processes()`, and `mysql_refresh()` C API functions are deprecated. The same is true of the corresponding `COM_PROCESS_KILL`, `COM_FIELD_LIST`, `COM_PROCESS_INFO`, and `COM_REFRESH` client/server protocol commands. Instead, use `mysql_query()` to execute a `KILL`, `SHOW COLUMNS`, `SHOW PROCESSLIST`, or `FLUSH` statement, respectively.
+* As funções C API `mysql_kill()`, `mysql_list_fields()`, `mysql_list_processes()` e `mysql_refresh()` estão descontinuadas. O mesmo se aplica aos comandos de protocolo cliente/servidor correspondentes `COM_PROCESS_KILL`, `COM_FIELD_LIST`, `COM_PROCESS_INFO` e `COM_REFRESH`. Em vez disso, use `mysql_query()` para executar uma instrução `KILL`, `SHOW COLUMNS`, `SHOW PROCESSLIST` ou `FLUSH`, respectivamente.
 
-* The `mysql_shutdown()` C API function is deprecated. Instead, use `mysql_query()` to execute a `SHUTDOWN` statement.
+* A função C API `mysql_shutdown()` está descontinuada. Em vez disso, use `mysql_query()` para executar uma instrução `SHUTDOWN`.
 
-* The `libmysqld` embedded server library is deprecated as of MySQL 5.7.19. These are also deprecated:
+* A biblioteca de servidor embarcado `libmysqld` está descontinuada a partir do MySQL 5.7.19. Estes também estão descontinuados:
 
-  + The **mysql_config** `--libmysqld-libs`, `--embedded-libs`, and `--embedded` options
+  + As opções **mysql_config** `--libmysqld-libs`, `--embedded-libs` e `--embedded`
 
-  + The **CMake** `WITH_EMBEDDED_SERVER`, `WITH_EMBEDDED_SHARED_LIBRARY`, and `INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR` options
+  + As opções **CMake** `WITH_EMBEDDED_SERVER`, `WITH_EMBEDDED_SHARED_LIBRARY` e `INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR`
 
-  + The (undocumented) **mysql** `--server-arg` option
+  + A opção (não documentada) **mysql** `--server-arg`
 
-  + The **mysqltest** `--embedded-server`, `--server-arg`, and `--server-file` options
+  + As opções **mysqltest** `--embedded-server`, `--server-arg` e `--server-file`
 
-  + The **mysqltest_embedded** and **mysql_client_test_embedded** test programs
+  + Os programas de teste **mysqltest_embedded** e **mysql_client_test_embedded**
 
-  Because `libmysqld` uses an API comparable to that of `libmysqlclient`, the migration path away from `libmysqld` is straightforward:
+  Como `libmysqld` usa uma API comparável à de `libmysqlclient`, o caminho de migração para longe de `libmysqld` é direto:
 
-  1. Bring up a standalone MySQL server (**mysqld**).
+  1. Inicie um servidor MySQL autônomo (**mysqld**).
 
-  2. Modify application code to remove API calls that are specific to `libmysqld`.
+  2. Modifique o código do aplicativo para remover chamadas de API específicas para `libmysqld`.
 
-  3. Modify application code to connect to the standalone MySQL server.
+  3. Modifique o código do aplicativo para conectar-se ao servidor MySQL autônomo.
 
-  4. Modify build scripts to use `libmysqlclient` rather than `libmysqld`. For example, if you use **mysql_config**, invoke it with the `--libs` option rather than `--libmysqld-libs`.
+  4. Modifique os scripts de compilação para usar `libmysqlclient` em vez de `libmysqld`. Por exemplo, se você usar **mysql_config**, invoque-o com a opção `--libs` em vez de `--libmysqld-libs`.
 
-* The **replace** utility is deprecated.
-* Support for DTrace is deprecated.
-* The `JSON_MERGE()` function is deprecated as of MySQL 5.7.22. Use `JSON_MERGE_PRESERVE()` instead.
+* O utilitário **replace** está descontinuado.
+* O suporte para DTrace está descontinuado.
+* A função `JSON_MERGE()` está descontinuada a partir do MySQL 5.7.22. Use `JSON_MERGE_PRESERVE()` em seu lugar.
 
-* Support for placing table partitions in shared `InnoDB` tablespaces is deprecated as of MySQL 5.7.24. Shared tablespaces include the `InnoDB` system tablespace and general tablespaces. For information about identifying partitions in shared tablespaces and moving them to file-per-table tablespaces, see Preparing Your Installation for Upgrade.
+* O suporte para colocar partições de tabela em `InnoDB tablespaces` compartilhados está descontinuado a partir do MySQL 5.7.24. Os `tablespaces` compartilhados incluem o `InnoDB system tablespace` e os `general tablespaces`. Para obter informações sobre como identificar partições em `tablespaces` compartilhados e movê-las para `file-per-table tablespaces`, veja Preparando Sua Instalação para Atualização.
 
-* Support for `TABLESPACE = innodb_file_per_table` and `TABLESPACE = innodb_temporary` clauses with `CREATE TEMPORARY TABLE` is deprecated as of MySQL 5.7.24.
+* O suporte para cláusulas `TABLESPACE = innodb_file_per_table` e `TABLESPACE = innodb_temporary` com `CREATE TEMPORARY TABLE` está descontinuado a partir do MySQL 5.7.24.
 
-* The `--ndb` **perror** option is deprecated. Use the **ndb_perror** utility instead.
+* A opção **perror** `--ndb` está descontinuada. Use o utilitário **ndb_perror** em seu lugar.
 
-* The `myisam_repair_threads` system variable `myisam_repair_threads` are deprecated as of MySQL 5.7.38; expect support for both to be removed in a future release of MySQL.
+* A variável de sistema `myisam_repair_threads` está descontinuada a partir do MySQL 5.7.38; espere que o suporte para ambos seja removido em uma futura versão do MySQL.
 
-  From MySQL 5.7.38, values other than 1 (the default) for `myisam_repair_threads` produce a warning.
+  A partir do MySQL 5.7.38, valores diferentes de 1 (o padrão) para `myisam_repair_threads` produzem um aviso.
 
-### Features Removed in MySQL 5.7
+### Funcionalidades Removidas no MySQL 5.7
 
-The following items are obsolete and have been removed in MySQL 5.7. Where alternatives are shown, applications should be updated to use them.
+Os seguintes itens estão obsoletos e foram removidos no MySQL 5.7. Onde alternativas são mostradas, os aplicativos devem ser atualizados para usá-las.
 
-For MySQL 5.6 applications that use features removed in MySQL 5.7, statements may fail when replicated from a MySQL 5.6 source to a MySQL 5.7 replica, or may have different effects on source and replica. To avoid such problems, applications that use features removed in MySQL 5.7 should be revised to avoid them and use alternatives when possible.
+Para aplicativos MySQL 5.6 que usam funcionalidades removidas no MySQL 5.7, as instruções podem falhar quando replicadas de uma `source` MySQL 5.6 para uma `replica` MySQL 5.7, ou podem ter efeitos diferentes na `source` e na `replica`. Para evitar tais problemas, os aplicativos que usam funcionalidades removidas no MySQL 5.7 devem ser revisados para evitá-las e usar alternativas quando possível.
 
-* Support for passwords that use the older pre-4.1 password hashing format is removed, which involves the following changes. Applications that use any feature no longer supported must be modified.
+* O suporte para senhas que usam o formato de `password hashing` mais antigo pré-4.1 é removido, o que envolve as seguintes alterações. Os aplicativos que usam qualquer recurso não mais suportado devem ser modificados.
 
-  + The `mysql_old_password` authentication plugin is removed. Accounts that use this plugin are disabled at startup and the server writes an “unknown plugin” message to the error log. For instructions on upgrading accounts that use this plugin, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
+  + O plugin de autenticação `mysql_old_password` é removido. As contas que usam este plugin são desabilitadas na inicialização e o servidor escreve uma mensagem de “unknown plugin” no `error log`. Para obter instruções sobre como atualizar contas que usam este plugin, veja Seção 6.4.1.3, “Migrando da Geração de Hash de Senha Pré-4.1 e do Plugin mysql_old_password”.
 
-  + The `--secure-auth` option to the server and client programs is the default, but is now a no-op. It is deprecated; expect it to be removed in a future MySQL release.
+  + A opção `--secure-auth` para o servidor e programas cliente é o padrão, mas agora é um `no-op`. Está descontinuada; espere que seja removida em uma futura versão do MySQL.
 
-  + The `--skip-secure-auth` option to the server and client programs is no longer supported and using it produces an error.
+  + A opção `--skip-secure-auth` para o servidor e programas cliente não é mais suportada e usá-la produz um erro.
 
-  + The `secure_auth` system variable permits only a value of 1; a value of 0 is no longer permitted.
+  + A variável de sistema `secure_auth` permite apenas um valor de 1; um valor de 0 não é mais permitido.
 
-  + For the `old_passwords` system variable, a value of 1 (produce pre-4.1 hashes) is no longer permitted.
+  + Para a variável de sistema `old_passwords`, um valor de 1 (produzir `hashes` pré-4.1) não é mais permitido.
 
-  + The `OLD_PASSWORD()` function is removed.
+  + A função `OLD_PASSWORD()` é removida.
 
-* In MySQL 5.6.6, the 2-digit `YEAR(2)` data type was deprecated. Support for `YEAR(2)` is now removed. Once you upgrade to MySQL 5.7.5 or higher, any remaining 2-digit `YEAR(2)` columns must be converted to 4-digit `YEAR` columns to become usable again. For conversion strategies, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR"). For example, run **mysql_upgrade** after upgrading.
+* No MySQL 5.6.6, o tipo de dados `YEAR(2)` de 2 dígitos foi descontinuado. O suporte para `YEAR(2)` agora é removido. Assim que você atualizar para o MySQL 5.7.5 ou superior, quaisquer colunas `YEAR(2)` de 2 dígitos restantes devem ser convertidas em colunas `YEAR` de 4 dígitos para se tornarem utilizáveis novamente. Para estratégias de conversão, veja Seção 11.2.5, “Limitações do YEAR(2) de 2 Dígitos e Migração para YEAR de 4 Dígitos”). Por exemplo, execute **mysql_upgrade** após a atualização.
 
-* The `innodb_mirrored_log_groups` system variable. The only supported value was 1, so it had no purpose.
+* A variável de sistema `innodb_mirrored_log_groups`. O único valor suportado era 1, então não tinha propósito.
 
-* The `storage_engine` system variable. Use `default_storage_engine` instead.
+* A variável de sistema `storage_engine`. Use `default_storage_engine` em seu lugar.
 
-* The `thread_concurrency` system variable.
-* The `timed_mutexes` system variable, which had no effect.
+* A variável de sistema `thread_concurrency`.
+* A variável de sistema `timed_mutexes`, que não tinha efeito.
 
-* The `IGNORE` clause for `ALTER TABLE`.
+* A cláusula `IGNORE` para `ALTER TABLE`.
 
-* `INSERT DELAYED` is no longer supported. The server recognizes but ignores the `DELAYED` keyword, handles the insert as a nondelayed insert, and generates an `ER_WARN_LEGACY_SYNTAX_CONVERTED` warning. (“INSERT DELAYED is no longer supported. The statement was converted to INSERT.”) Similarly, `REPLACE DELAYED` is handled as a nondelayed replace. You should expect the `DELAYED` keyword to be removed in a future release.
+* `INSERT DELAYED` não é mais suportado. O servidor reconhece, mas ignora a palavra-chave `DELAYED`, trata a inserção como uma inserção não atrasada e gera um aviso `ER_WARN_LEGACY_SYNTAX_CONVERTED`. (“INSERT DELAYED não é mais suportado. A instrução foi convertida para INSERT.”) Da mesma forma, `REPLACE DELAYED` é tratado como um `replace` não atrasado. Você deve esperar que a palavra-chave `DELAYED` seja removida em uma versão futura.
 
-  In addition, several `DELAYED`-related options or features were removed:
+  Além disso, várias opções ou recursos relacionados a `DELAYED` foram removidos:
 
-  + The `--delayed-insert` option for **mysqldump**.
+  + A opção `--delayed-insert` para **mysqldump**.
 
-  + The `COUNT_WRITE_DELAYED`, `SUM_TIMER_WRITE_DELAYED`, `MIN_TIMER_WRITE_DELAYED`, `AVG_TIMER_WRITE_DELAYED`, and `MAX_TIMER_WRITE_DELAYED` columns of the Performance Schema `table_lock_waits_summary_by_table` table.
+  + As colunas `COUNT_WRITE_DELAYED`, `SUM_TIMER_WRITE_DELAYED`, `MIN_TIMER_WRITE_DELAYED`, `AVG_TIMER_WRITE_DELAYED` e `MAX_TIMER_WRITE_DELAYED` da tabela `table_lock_waits_summary_by_table` do Performance Schema.
 
-  + **mysqlbinlog** no longer writes comments mentioning `INSERT DELAYED`.
+  + **mysqlbinlog** não escreve mais comentários mencionando `INSERT DELAYED`.
 
-* Database symlinking on Windows using `.sym` files has been removed because it is redundant with native symlink support available using **mklink**. Any `.sym` file symbolic links are now ignored and should be replaced with symlinks created using **mklink**. See Section 8.12.3.3, “Using Symbolic Links for Databases on Windows”.
+* A criação de `symlinks` de `database` no Windows usando arquivos `.sym` foi removida porque é redundante com o suporte nativo a `symlink` disponível usando **mklink**. Quaisquer `symbolic links` de arquivo `.sym` agora são ignorados e devem ser substituídos por `symlinks` criados usando **mklink**. Veja Seção 8.12.3.3, “Usando Symbolic Links para Databases no Windows”.
 
-* The unused `--basedir`, `--datadir`, and `--tmpdir` options for **mysql_upgrade** were removed.
+* As opções não utilizadas `--basedir`, `--datadir` e `--tmpdir` para **mysql_upgrade** foram removidas.
 
-* Previously, program options could be specified in full or as any unambiguous prefix. For example, the `--compress` option could be given to **mysqldump** as `--compr`, but not as `--comp` because the latter is ambiguous. Option prefixes are no longer supported; only full options are accepted. This is because prefixes can cause problems when new options are implemented for programs and a prefix that is currently unambiguous might become ambiguous in the future. Some implications of this change:
+* Anteriormente, as opções de programa podiam ser especificadas por completo ou como qualquer prefixo não ambíguo. Por exemplo, a opção `--compress` podia ser dada a **mysqldump** como `--compr`, mas não como `--comp` porque esta última é ambígua. Prefixos de opção não são mais suportados; apenas opções completas são aceitas. Isso ocorre porque os prefixos podem causar problemas quando novas opções são implementadas para programas e um prefixo que é atualmente não ambíguo pode se tornar ambíguo no futuro. Algumas implicações desta mudança:
 
-  + The `--key-buffer` option must now be specified as `--key-buffer-size`.
+  + A opção `--key-buffer` agora deve ser especificada como `--key-buffer-size`.
 
-  + The `--skip-grant` option must now be specified as `--skip-grant-tables`.
+  + A opção `--skip-grant` agora deve ser especificada como `--skip-grant-tables`.
 
-* `SHOW ENGINE INNODB MUTEX` output is removed. Comparable information can be generated by creating views on Performance Schema tables.
+* A saída de `SHOW ENGINE INNODB MUTEX` é removida. Informações comparáveis podem ser geradas criando `views` nas tabelas do Performance Schema.
 
-* The `InnoDB` Tablespace Monitor and `InnoDB` Table Monitor are removed. For the Table Monitor, equivalent information can be obtained from `InnoDB` `INFORMATION_SCHEMA` tables.
+* O `InnoDB Tablespace Monitor` e o `InnoDB Table Monitor` são removidos. Para o `Table Monitor`, informações equivalentes podem ser obtidas das tabelas `INFORMATION_SCHEMA` do `InnoDB`.
 
-* The specially named tables used to enable and disable the standard `InnoDB` Monitor and `InnoDB` Lock Monitor (`innodb_monitor` and `innodb_lock_monitor`) are removed and replaced by two dynamic system variables: `innodb_status_output` and `innodb_status_output_locks`. For additional information, see Section 14.18, “InnoDB Monitors”.
+* As tabelas nomeadas especialmente usadas para habilitar e desabilitar o `InnoDB Monitor` padrão e o `InnoDB Lock Monitor` (`innodb_monitor` e `innodb_lock_monitor`) são removidas e substituídas por duas variáveis de sistema dinâmicas: `innodb_status_output` e `innodb_status_output_locks`. Para informações adicionais, veja Seção 14.18, “Monitors do InnoDB”.
 
-* The `innodb_use_sys_malloc` and `innodb_additional_mem_pool_size` system variables, deprecated in MySQL 5.6.3, were removed.
+* As variáveis de sistema `innodb_use_sys_malloc` e `innodb_additional_mem_pool_size`, descontinuadas no MySQL 5.6.3, foram removidas.
 
-* The **msql2mysql**, **mysql_convert_table_format**, **mysql_find_rows**, **mysql_fix_extensions**, **mysql_setpermission**, **mysql_waitpid**, **mysql_zap**, **mysqlaccess**, and **mysqlbug** utilities.
+* Os utilitários **msql2mysql**, **mysql_convert_table_format**, **mysql_find_rows**, **mysql_fix_extensions**, **mysql_setpermission**, **mysql_waitpid**, **mysql_zap**, **mysqlaccess** e **mysqlbug**.
 
-* The **mysqlhotcopy** utility. Alternatives include **mysqldump** and MySQL Enterprise Backup.
+* O utilitário **mysqlhotcopy**. As alternativas incluem **mysqldump** e MySQL Enterprise Backup.
 
-* The **binary-configure.sh** script.
-* The `INNODB_PAGE_ATOMIC_REF_COUNT` **CMake** option is removed.
+* O `script` **binary-configure.sh**.
+* A opção **CMake** `INNODB_PAGE_ATOMIC_REF_COUNT` é removida.
 
-* The `innodb_create_intrinsic` option is removed.
+* A opção `innodb_create_intrinsic` é removida.
 
-* The `innodb_optimize_point_storage` option and related internal data types (`DATA_POINT` and `DATA_VAR_POINT`) are removed.
+* A opção `innodb_optimize_point_storage` e os tipos de dados internos relacionados (`DATA_POINT` e `DATA_VAR_POINT`) são removidos.
 
-* The `innodb_log_checksum_algorithm` option is removed.
+* A opção `innodb_log_checksum_algorithm` é removida.
 
-* The `myisam_repair_threads` system variable as of MySQL 5.7.39.
+* A variável de sistema `myisam_repair_threads` a partir do MySQL 5.7.39.

@@ -1,42 +1,42 @@
-#### 8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix
+#### 8.12.3.2 Usando Symbolic Links para Tabelas MyISAM no Unix
 
-Symlinks are fully supported only for `MyISAM` tables. For files used by tables for other storage engines, you may get strange problems if you try to use symbolic links. For `InnoDB` tables, use the alternative technique explained in Section 14.6.1.2, “Creating Tables Externally” instead.
+Symlinks são totalmente suportados apenas para tabelas `MyISAM`. Para arquivos usados por tabelas de outros storage engines, você pode enfrentar problemas estranhos se tentar usar symbolic links. Para tabelas `InnoDB`, use a técnica alternativa explicada na Seção 14.6.1.2, “Criando Tabelas Externamente”.
 
-Do not symlink tables on systems that do not have a fully operational `realpath()` call. (Linux and Solaris support `realpath()`). To determine whether your system supports symbolic links, check the value of the `have_symlink` system variable using this statement:
+Não utilize symlinks em tabelas em sistemas que não possuem uma chamada `realpath()` totalmente operacional. (Linux e Solaris suportam `realpath()`). Para determinar se seu sistema suporta symbolic links, verifique o valor da variável de sistema `have_symlink` usando esta instrução:
 
 ```sql
 SHOW VARIABLES LIKE 'have_symlink';
 ```
 
-The handling of symbolic links for `MyISAM` tables works as follows:
+O tratamento de symbolic links para tabelas `MyISAM` funciona da seguinte forma:
 
-* In the data directory, you always have the table format (`.frm`) file, the data (`.MYD`) file, and the index (`.MYI`) file. The data file and index file can be moved elsewhere and replaced in the data directory by symlinks. The format file cannot.
+* No data directory, você sempre tem o arquivo de formato da tabela (`.frm`), o arquivo de dados (`.MYD`) e o arquivo de Index (`.MYI`). O arquivo de dados e o arquivo de Index podem ser movidos para outro local e substituídos no data directory por symlinks. O arquivo de formato não pode.
 
-* You can symlink the data file and the index file independently to different directories.
+* Você pode criar symlinks para o arquivo de dados e o arquivo de Index independentemente para diferentes directories.
 
-* To instruct a running MySQL server to perform the symlinking, use the `DATA DIRECTORY` and `INDEX DIRECTORY` options to `CREATE TABLE`. See Section 13.1.18, “CREATE TABLE Statement”. Alternatively, if **mysqld** is not running, symlinking can be accomplished manually using **ln -s** from the command line.
+* Para instruir um servidor MySQL em execução a realizar a criação do symlink, use as opções `DATA DIRECTORY` e `INDEX DIRECTORY` no `CREATE TABLE`. Consulte a Seção 13.1.18, “Instrução CREATE TABLE”. Alternativamente, se o **mysqld** não estiver em execução, a criação de symlinks pode ser realizada manualmente usando **ln -s** na linha de comando.
 
   Note
 
-  The path used with either or both of the `DATA DIRECTORY` and `INDEX DIRECTORY` options may not include the MySQL `data` directory. (Bug #32167)
+  O path usado com uma ou ambas as opções `DATA DIRECTORY` e `INDEX DIRECTORY` não deve incluir o data directory do MySQL. (Bug #32167)
 
-* **myisamchk** does not replace a symlink with the data file or index file. It works directly on the file to which the symlink points. Any temporary files are created in the directory where the data file or index file is located. The same is true for the `ALTER TABLE`, `OPTIMIZE TABLE`, and `REPAIR TABLE` statements.
+* O **myisamchk** não substitui um symlink pelo arquivo de dados ou arquivo de Index. Ele trabalha diretamente no arquivo para o qual o symlink aponta. Quaisquer arquivos temporários são criados no directory onde o arquivo de dados ou arquivo de Index está localizado. O mesmo se aplica às instruções `ALTER TABLE`, `OPTIMIZE TABLE` e `REPAIR TABLE`.
 
 * Note
 
-  When you drop a table that is using symlinks, *both the symlink and the file to which the symlink points are dropped*. This is an extremely good reason *not* to run **mysqld** as the `root` operating system user or permit operating system users to have write access to MySQL database directories.
+  Quando você executa um DROP em uma tabela que está usando symlinks, *tanto o symlink quanto o arquivo para o qual o symlink aponta são excluídos*. Esta é uma excelente razão para *não* executar o **mysqld** como usuário `root` do sistema operacional ou permitir que usuários do sistema operacional tenham acesso de gravação aos database directories do MySQL.
 
-* If you rename a table with `ALTER TABLE ... RENAME` or `RENAME TABLE` and you do not move the table to another database, the symlinks in the database directory are renamed to the new names and the data file and index file are renamed accordingly.
+* Se você renomear uma tabela com `ALTER TABLE ... RENAME` ou `RENAME TABLE` e não mover a tabela para outro database, os symlinks no database directory são renomeados para os novos nomes e o arquivo de dados e o arquivo de Index são renomeados de acordo.
 
-* If you use `ALTER TABLE ... RENAME` or `RENAME TABLE` to move a table to another database, the table is moved to the other database directory. If the table name changed, the symlinks in the new database directory are renamed to the new names and the data file and index file are renamed accordingly.
+* Se você usar `ALTER TABLE ... RENAME` ou `RENAME TABLE` para mover uma tabela para outro database, a tabela será movida para o database directory de destino. Se o nome da tabela mudou, os symlinks no novo database directory são renomeados para os novos nomes e o arquivo de dados e o arquivo de Index são renomeados de acordo.
 
-* If you are not using symlinks, start **mysqld** with the `--skip-symbolic-links` option to ensure that no one can use **mysqld** to drop or rename a file outside of the data directory.
+* Se você não estiver usando symlinks, inicie o **mysqld** com a opção `--skip-symbolic-links` para garantir que ninguém possa usar o **mysqld** para excluir ou renomear um arquivo fora do data directory.
 
-These table symlink operations are not supported:
+Estas operações de symlink de tabela não são suportadas:
 
-* `ALTER TABLE` ignores the `DATA DIRECTORY` and `INDEX DIRECTORY` table options.
+* `ALTER TABLE` ignora as opções de tabela `DATA DIRECTORY` e `INDEX DIRECTORY`.
 
-* As indicated previously, only the data and index files can be symbolic links. The `.frm` file must *never* be a symbolic link. Attempting to do this (for example, to make one table name a synonym for another) produces incorrect results. Suppose that you have a database `db1` under the MySQL data directory, a table `tbl1` in this database, and in the `db1` directory you make a symlink `tbl2` that points to `tbl1`:
+* Conforme indicado anteriormente, apenas os arquivos de dados e Index podem ser symbolic links. O arquivo `.frm` *nunca* deve ser um symbolic link. Tentar fazer isso (por exemplo, para tornar um nome de tabela sinônimo de outro) produz resultados incorretos. Suponha que você tenha um database `db1` sob o data directory do MySQL, uma tabela `tbl1` neste database, e no directory `db1` você crie um symlink `tbl2` que aponta para `tbl1`:
 
   ```sql
   $> cd /path/to/datadir/db1
@@ -45,8 +45,8 @@ These table symlink operations are not supported:
   $> ln -s tbl1.MYI tbl2.MYI
   ```
 
-  Problems result if one thread reads `db1.tbl1` and another thread updates `db1.tbl2`:
+  Problemas resultam se um Thread ler `db1.tbl1` e outro Thread atualizar `db1.tbl2`:
 
-  + The query cache is “fooled” (it has no way of knowing that `tbl1` has not been updated, so it returns outdated results).
+  + O Query cache é “enganado” (ele não tem como saber que `tbl1` não foi atualizado, então ele retorna resultados desatualizados).
 
-  + `ALTER` statements on `tbl2` fail.
+  + Instruções `ALTER` em `tbl2` falham.

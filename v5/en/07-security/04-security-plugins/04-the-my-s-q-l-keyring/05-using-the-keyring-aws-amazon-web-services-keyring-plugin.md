@@ -1,42 +1,42 @@
-#### 6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin
+#### 6.4.4.5 Utilizando o Plugin Keyring Amazon Web Services keyring_aws
 
-Note
+Nota
 
-The `keyring_aws` plugin is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, see <https://www.mysql.com/products/>.
+O plugin `keyring_aws` é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
-The `keyring_aws` keyring plugin communicates with the Amazon Web Services Key Management Service (AWS KMS) as a back end for key generation and uses a local file for key storage. All keyring material is generated exclusively by the AWS server, not by `keyring_aws`.
+O plugin Keyring `keyring_aws` se comunica com o Amazon Web Services Key Management Service (AWS KMS) como um back end para geração de Key e utiliza um arquivo local para armazenamento de Key. Todo o material do Keyring é gerado exclusivamente pelo servidor AWS, e não pelo `keyring_aws`.
 
-MySQL Enterprise Edition can work with `keyring_aws` on Red Hat Enterprise Linux, SUSE Linux Enterprise Server, Debian, Ubuntu, macOS, and Windows. MySQL Enterprise Edition does not support the use of `keyring_aws` on these platforms:
+O MySQL Enterprise Edition pode funcionar com `keyring_aws` no Red Hat Enterprise Linux, SUSE Linux Enterprise Server, Debian, Ubuntu, macOS e Windows. O MySQL Enterprise Edition não oferece suporte ao uso de `keyring_aws` nestas plataformas:
 
 * EL6
 * Generic Linux (glibc2.12)
 * Solaris
 
-The discussion here assumes that you are familiar with AWS in general and KMS in particular. Some pertinent information sources:
+A discussão aqui pressupõe que você esteja familiarizado com o AWS em geral e o KMS em particular. Algumas fontes de informação pertinentes:
 
-* [AWS site](https://aws.amazon.com/kms/)
-* [KMS documentation](https://docs.aws.amazon.com/kms/)
+* [Site do AWS](https://aws.amazon.com/kms/)
+* [Documentação do KMS](https://docs.aws.amazon.com/kms/)
 
-The following sections provide configuration and usage information for the `keyring_aws` keyring plugin:
+As seções a seguir fornecem informações de configuração e uso para o plugin Keyring `keyring_aws`:
 
-* [keyring_aws Configuration](keyring-aws-plugin.html#keyring-aws-plugin-configuration "keyring_aws Configuration")
-* [keyring_aws Operation](keyring-aws-plugin.html#keyring-aws-plugin-operation "keyring_aws Operation")
-* [keyring_aws Credential Changes](keyring-aws-plugin.html#keyring-aws-plugin-credential-changes "keyring_aws Credential Changes")
+* [Configuração do keyring_aws](keyring-aws-plugin.html#keyring-aws-plugin-configuration "keyring_aws Configuration")
+* [Operação do keyring_aws](keyring-aws-plugin.html#keyring-aws-plugin-operation "keyring_aws Operation")
+* [Mudanças de Credenciais do keyring_aws](keyring-aws-plugin.html#keyring-aws-plugin-credential-changes "keyring_aws Credential Changes")
 
-##### keyring_aws Configuration
+##### Configuração do keyring_aws
 
-To install `keyring_aws`, use the general instructions found in [Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation"), together with the plugin-specific configuration information found here.
+Para instalar `keyring_aws`, utilize as instruções gerais encontradas na [Seção 6.4.4.1, “Instalação de Plugins Keyring”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation"), juntamente com as informações de configuração específicas do plugin encontradas aqui.
 
-The plugin library file contains the `keyring_aws` plugin and two loadable functions, [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk) and [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys).
+O arquivo de biblioteca do plugin contém o plugin `keyring_aws` e duas funções carregáveis, [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk) e [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys).
 
-To configure `keyring_aws`, you must obtain a secret access key that provides credentials for communicating with AWS KMS and write it to a configuration file:
+Para configurar `keyring_aws`, você deve obter uma secret access key que fornece Credentials para comunicação com o AWS KMS e escrevê-la em um arquivo de configuração:
 
-1. Create an AWS KMS account.
-2. Use AWS KMS to create a secret access key ID and secret access key. The access key serves to verify your identity and that of your applications.
+1. Crie uma conta AWS KMS.
+2. Use o AWS KMS para criar um secret access key ID e uma secret access key. A access key serve para verificar sua identidade e a de suas aplicações.
 
-3. Use the AWS KMS account to create a customer master key (CMK) ID. At MySQL startup, set the [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) system variable to the CMK ID value. This variable is mandatory and there is no default. (Its value can be changed at runtime if desired using [`SET GLOBAL`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment").)
+3. Use a conta AWS KMS para criar um customer master key (CMK) ID. Na startup do MySQL, defina a variável de sistema [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) para o valor do CMK ID. Esta variável é obrigatória e não possui default. (Seu valor pode ser alterado em runtime, se desejado, usando [`SET GLOBAL`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment").)
 
-4. If necessary, create the directory in which the configuration file should be located. The directory should have a restrictive mode and be accessible only to the account used to run the MySQL server. For example, on many Unix and Unix-like systems, such as Oracle Enterprise Linux, to use `/usr/local/mysql/mysql-keyring/keyring_aws_conf` as the file name, the following commands (executed as `root`) create its parent directory and set the directory mode and ownership:
+4. Se necessário, crie o diretório onde o arquivo de configuração deve ser localizado. O diretório deve ter um modo restritivo e ser acessível apenas à conta usada para executar o MySQL server. Por exemplo, em muitos sistemas Unix e tipo Unix, como o Oracle Enterprise Linux, para usar `/usr/local/mysql/mysql-keyring/keyring_aws_conf` como nome do arquivo, os comandos a seguir (executados como `root`) criam o diretório pai e definem o modo e a propriedade do diretório:
 
    ```sql
    $> cd /usr/local/mysql
@@ -46,23 +46,23 @@ To configure `keyring_aws`, you must obtain a secret access key that provides cr
    $> chgrp mysql mysql-keyring
    ```
 
-   At MySQL startup, set the [`keyring_aws_conf_file`](keyring-system-variables.html#sysvar_keyring_aws_conf_file) system variable to `/usr/local/mysql/mysql-keyring/keyring_aws_conf` to indicate the configuration file location to the server.
+   Na startup do MySQL, defina a variável de sistema [`keyring_aws_conf_file`](keyring-system-variables.html#sysvar_keyring_aws_conf_file) como `/usr/local/mysql/mysql-keyring/keyring_aws_conf` para indicar a localização do arquivo de configuração ao server.
 
-   The location of the configuration file may vary according to Linux distribution; the directory for this file may also already be provided by a system module or other application such as AppArmor. For example, under AppArmor on recent editions of Ubuntu Linux, the keyring directory is specified as `/var/lib/mysql-keyring`. See [Ubuntu Server: AppArmor](https://documentation.ubuntu.com/server/how-to/security/apparmor/index.html) for more information about using AppArmor on Ubuntu systems; see also [this example MySQL configuration file](https://exampleconfig.com/view/mysql-ubuntu20-04-etc-apparmor-d-usr-sbin-mysqld). For other operating platforms, see the system documentation for guidance.
+   A localização do arquivo de configuração pode variar conforme a distribuição Linux; o diretório para este arquivo também pode já ser fornecido por um módulo do sistema ou outra aplicação, como o AppArmor. Por exemplo, sob o AppArmor em edições recentes do Ubuntu Linux, o diretório keyring é especificado como `/var/lib/mysql-keyring`. Consulte [Ubuntu Server: AppArmor](https://documentation.ubuntu.com/server/how-to/security/apparmor/index.html) para obter mais informações sobre como usar o AppArmor em sistemas Ubuntu; consulte também [este exemplo de arquivo de configuração do MySQL](https://exampleconfig.com/view/mysql-ubuntu20-04-etc-apparmor-d-usr-sbin-mysqld). Para outras plataformas operacionais, consulte a documentação do sistema para orientação.
 
-5. Prepare the `keyring_aws` configuration file, which should contain two lines:
+5. Prepare o arquivo de configuração `keyring_aws`, que deve conter duas linhas:
 
-   * Line 1: The secret access key ID
-   * Line 2: The secret access key
+   * Linha 1: O secret access key ID
+   * Linha 2: O secret access key
 
-   For example, if the key ID is `wwwwwwwwwwwwwEXAMPLE` and the key is `xxxxxxxxxxxxx/yyyyyyy/zzzzzzzzEXAMPLEKEY`, the configuration file looks like this:
+   Por exemplo, se o Key ID for `wwwwwwwwwwwwwEXAMPLE` e a Key for `xxxxxxxxxxxxx/yyyyyyy/zzzzzzzzEXAMPLEKEY`, o arquivo de configuração se parecerá com isto:
 
    ```sql
    wwwwwwwwwwwwwEXAMPLE
    xxxxxxxxxxxxx/yyyyyyy/zzzzzzzzEXAMPLEKEY
    ```
 
-To be usable during the server startup process, `keyring_aws` must be loaded using the [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option. The [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) system variable is mandatory and configures the customer master key (CMK) ID obtained from the AWS KMS server. The [`keyring_aws_conf_file`](keyring-system-variables.html#sysvar_keyring_aws_conf_file) and [`keyring_aws_data_file`](keyring-system-variables.html#sysvar_keyring_aws_data_file) system variables optionally configure the locations of the files used by the `keyring_aws` plugin for configuration information and data storage. The file location variable default values are platform specific. To configure the locations explicitly, set the variable values at startup. For example, use these lines in the server `my.cnf` file, adjusting the `.so` suffix and file locations for your platform as necessary:
+Para ser utilizável durante o processo de startup do server, `keyring_aws` deve ser carregado usando a opção [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load). A variável de sistema [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) é obrigatória e configura o customer master key (CMK) ID obtido do AWS KMS server. As variáveis de sistema [`keyring_aws_conf_file`](keyring-system-variables.html#sysvar_keyring_aws_conf_file) e [`keyring_aws_data_file`](keyring-system-variables.html#sysvar_keyring_aws_data_file) configuram opcionalmente as localizações dos arquivos usados pelo plugin `keyring_aws` para informações de configuração e armazenamento de dados. Os valores default da variável de localização do arquivo são específicos da plataforma. Para configurar as localizações explicitamente, defina os valores das variáveis na startup. Por exemplo, use estas linhas no arquivo `my.cnf` do server, ajustando o sufixo `.so` e as localizações dos arquivos para sua plataforma, conforme necessário:
 
 ```sql
 [mysqld]
@@ -72,15 +72,15 @@ keyring_aws_conf_file=/usr/local/mysql/mysql-keyring/keyring_aws_conf
 keyring_aws_data_file=/usr/local/mysql/mysql-keyring/keyring_aws_data
 ```
 
-For the `keyring_aws` plugin to start successfully, the configuration file must exist and contain valid secret access key information, initialized as described previously. The storage file need not exist. If it does not, `keyring_aws` attempts to create it (as well as its parent directory, if necessary).
+Para que o plugin `keyring_aws` inicie com sucesso, o arquivo de configuração deve existir e conter informações válidas de secret access key, inicializadas conforme descrito anteriormente. O arquivo de storage não precisa existir. Se não existir, `keyring_aws` tenta criá-lo (assim como seu diretório pai, se necessário).
 
-Important
+Importante
 
-The default AWS region is `us-east-1`. For any other region, you must also set [`keyring_aws_region`](keyring-system-variables.html#sysvar_keyring_aws_region) explicitly in `my.cnf`.
+A AWS region default é `us-east-1`. Para qualquer outra region, você também deve definir [`keyring_aws_region`](keyring-system-variables.html#sysvar_keyring_aws_region) explicitamente em `my.cnf`.
 
-For additional information about the system variables used to configure the `keyring_aws` plugin, see [Section 6.4.4.12, “Keyring System Variables”](keyring-system-variables.html "6.4.4.12 Keyring System Variables").
+Para obter informações adicionais sobre as variáveis de sistema usadas para configurar o plugin `keyring_aws`, consulte a [Seção 6.4.4.12, “Variáveis de Sistema Keyring”](keyring-system-variables.html "6.4.4.12 Keyring System Variables").
 
-Start the MySQL server and install the functions associated with the `keyring_aws` plugin. This is a one-time operation, performed by executing the following statements, adjusting the `.so` suffix for your platform as necessary:
+Inicie o MySQL server e instale as funções associadas ao plugin `keyring_aws`. Esta é uma operação única, realizada pela execução das seguintes instruções, ajustando o sufixo `.so` para sua plataforma, conforme necessário:
 
 ```sql
 CREATE FUNCTION keyring_aws_rotate_cmk RETURNS INTEGER
@@ -89,56 +89,56 @@ CREATE FUNCTION keyring_aws_rotate_keys RETURNS INTEGER
   SONAME 'keyring_aws.so';
 ```
 
-For additional information about the `keyring_aws` functions, see [Section 6.4.4.9, “Plugin-Specific Keyring Key-Management Functions”](keyring-functions-plugin-specific.html "6.4.4.9 Plugin-Specific Keyring Key-Management Functions").
+Para obter informações adicionais sobre as funções `keyring_aws`, consulte a [Seção 6.4.4.9, “Funções de Gerenciamento de Key Keyring Específicas do Plugin”](keyring-functions-plugin-specific.html "6.4.4.9 Plugin-Specific Keyring Key-Management Functions").
 
-##### keyring_aws Operation
+##### Operação do keyring_aws
 
-At plugin startup, the `keyring_aws` plugin reads the AWS secret access key ID and key from its configuration file. It also reads any encrypted keys contained in its storage file into its in-memory cache.
+Na startup do plugin, o plugin `keyring_aws` lê o AWS secret access key ID e a Key do seu arquivo de configuração. Ele também lê quaisquer Key criptografadas contidas em seu arquivo de storage para o seu Cache in-memory.
 
-During operation, `keyring_aws` maintains encrypted keys in the in-memory cache and uses the storage file as local persistent storage. Each keyring operation is transactional: `keyring_aws` either successfully changes both the in-memory key cache and the keyring storage file, or the operation fails and the keyring state remains unchanged.
+Durante a operação, `keyring_aws` mantém as Key criptografadas no Cache in-memory e usa o arquivo de storage como persistent storage local. Cada operação Keyring é transacional: `keyring_aws` muda com sucesso o Key Cache in-memory e o arquivo de storage Keyring, ou a operação falha e o estado do Keyring permanece inalterado.
 
-To ensure that keys are flushed only when the correct keyring storage file exists, `keyring_aws` stores a SHA-256 checksum of the keyring in the file. Before updating the file, the plugin verifies that it contains the expected checksum.
+Para garantir que as Key sejam descarregadas (flushed) apenas quando o arquivo de storage Keyring correto existir, `keyring_aws` armazena um Checksum SHA-256 do Keyring no arquivo. Antes de atualizar o arquivo, o plugin verifica se ele contém o Checksum esperado.
 
-The `keyring_aws` plugin supports the functions that comprise the standard MySQL Keyring service interface. Keyring operations performed by these functions are accessible at two levels:
+O plugin `keyring_aws` oferece suporte às funções que compõem o service interface Keyring padrão do MySQL. As operações Keyring executadas por estas funções são acessíveis em dois níveis:
 
-* SQL interface: In SQL statements, call the functions described in [Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
+* SQL interface: Em comandos SQL, chame as funções descritas na [Seção 6.4.4.8, “Funções de Gerenciamento de Key Keyring de Propósito Geral”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
 
-* C interface: In C-language code, call the keyring service functions described in [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service").
+* C interface: Em código na linguagem C, chame as service functions Keyring descritas na [Seção 5.5.6.2, “O Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service").
 
-Example (using the SQL interface):
+Exemplo (usando o SQL interface):
 
 ```sql
 SELECT keyring_key_generate('MyKey', 'AES', 32);
 SELECT keyring_key_remove('MyKey');
 ```
 
-In addition, the [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk) and [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys) functions “extend” the keyring plugin interface to provide AWS-related capabilities not covered by the standard keyring service interface. These capabilities are accessible only by calling these functions using SQL. There are no corresponding C-languge key service functions.
+Além disso, as funções [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk) e [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys) “estendem” o interface do plugin Keyring para fornecer capacidades relacionadas ao AWS não cobertas pelo service interface Keyring padrão. Essas capacidades são acessíveis apenas chamando estas funções usando SQL. Não existem service functions de Key em linguagem C correspondentes.
 
-For information about the characteristics of key values permitted by `keyring_aws`, see [Section 6.4.4.6, “Supported Keyring Key Types and Lengths”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
+Para obter informações sobre as características dos Key values permitidos por `keyring_aws`, consulte a [Seção 6.4.4.6, “Tipos e Tamanhos de Key Keyring Suportados”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
 
-##### keyring_aws Credential Changes
+##### Mudanças de Credenciais do keyring_aws
 
-Assuming that the `keyring_aws` plugin has initialized properly at server startup, it is possible to change the credentials used for communicating with AWS KMS:
+Assumindo que o plugin `keyring_aws` tenha sido inicializado corretamente na startup do server, é possível alterar as Credentials usadas para comunicação com o AWS KMS:
 
-1. Use AWS KMS to create a new secret access key ID and secret access key.
+1. Use o AWS KMS para criar um novo secret access key ID e secret access key.
 
-2. Store the new credentials in the configuration file (the file named by the [`keyring_aws_conf_file`](keyring-system-variables.html#sysvar_keyring_aws_conf_file) system variable). The file format is as described previously.
+2. Armazene as novas Credentials no arquivo de configuração (o arquivo nomeado pela variável de sistema [`keyring_aws_conf_file`](keyring-system-variables.html#sysvar_keyring_aws_conf_file)). O formato do arquivo é o descrito anteriormente.
 
-3. Reinitialize the `keyring_aws` plugin so that it re-reads the configuration file. Assuming that the new credentials are valid, the plugin should initialize successfully.
+3. Reinicialize o plugin `keyring_aws` para que ele releia o arquivo de configuração. Assumindo que as novas Credentials sejam válidas, o plugin deve inicializar com sucesso.
 
-   There are two ways to reinitialize the plugin:
+   Existem duas maneiras de reinicializar o plugin:
 
-   * Restart the server. This is simpler and has no side effects, but is not suitable for installations that require minimal server downtime with as few restarts as possible.
+   * Reiniciar o server. Isso é mais simples e não tem efeitos colaterais, mas não é adequado para instalações que exigem tempo de inatividade mínimo do server com o menor número possível de restarts.
 
-   * Reinitialize the plugin without restarting the server by executing the following statements, adjusting the `.so` suffix for your platform as necessary:
+   * Reinicializar o plugin sem reiniciar o server executando as seguintes instruções, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
      ```sql
      UNINSTALL PLUGIN keyring_aws;
      INSTALL PLUGIN keyring_aws SONAME 'keyring_aws.so';
      ```
 
-     Note
+     Nota
 
-     In addition to loading a plugin at runtime, [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") has the side effect of registering the plugin it in the `mysql.plugin` system table. Because of this, if you decide to stop using `keyring_aws`, it is not sufficient to remove the [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option from the set of options used to start the server. That stops the plugin from loading early, but the server still attempts to load it when it gets to the point in the startup sequence where it loads the plugins registered in `mysql.plugin`.
+     Além de carregar um plugin em runtime, [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") tem o efeito colateral de registrar o plugin na tabela do sistema `mysql.plugin`. Por causa disso, se você decidir parar de usar `keyring_aws`, não é suficiente remover a opção [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) do conjunto de opções usadas para iniciar o server. Isso impede que o plugin seja carregado cedo (early), mas o server ainda tentará carregá-lo quando chegar ao ponto na sequência de startup onde carrega os plugins registrados em `mysql.plugin`.
 
-     Consequently, if you execute the [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") plus [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") sequence just described to change the AWS KMS credentials, then to stop using `keyring_aws`, it is necessary to execute [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") again to unregister the plugin in addition to removing the [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option.
+     Consequentemente, se você executar a sequência [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") mais [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") descrita acima para alterar as Credentials do AWS KMS, para parar de usar `keyring_aws`, será necessário executar [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") novamente para desregistrar o plugin, além de remover a opção [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option.

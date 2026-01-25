@@ -1,19 +1,19 @@
-### 3.6.7 Searching on Two Keys
+### 3.6.7 Pesquisando em Duas Chaves
 
-An [`OR`](logical-operators.html#operator_or) using a single key is well optimized, as is the handling of [`AND`](logical-operators.html#operator_and).
+Um [`OR`](logical-operators.html#operator_or) usando uma única chave é bem otimizado, assim como o tratamento de [`AND`](logical-operators.html#operator_and).
 
-The one tricky case is that of searching on two different keys combined with [`OR`](logical-operators.html#operator_or):
+O único caso complicado é o de pesquisar em duas chaves diferentes combinadas com [`OR`](logical-operators.html#operator_or):
 
 ```sql
 SELECT field1_index, field2_index FROM test_table
 WHERE field1_index = '1' OR  field2_index = '1'
 ```
 
-This case is optimized. See [Section 8.2.1.3, “Index Merge Optimization”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization").
+Este caso é otimizado. Consulte a [Seção 8.2.1.3, “Otimização Index Merge”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization").
 
-You can also solve the problem efficiently by using a [`UNION`](union.html "13.2.9.3 UNION Clause") that combines the output of two separate [`SELECT`](select.html "13.2.9 SELECT Statement") statements. See [Section 13.2.9.3, “UNION Clause”](union.html "13.2.9.3 UNION Clause").
+Você também pode resolver o problema de forma eficiente usando uma [`UNION`](union.html "13.2.9.3 UNION Clause") que combina a saída de duas instruções [`SELECT`](select.html "13.2.9 SELECT Statement") separadas. Consulte a [Seção 13.2.9.3, “Cláusula UNION”](union.html "13.2.9.3 UNION Clause").
 
-Each [`SELECT`](select.html "13.2.9 SELECT Statement") searches only one key and can be optimized:
+Cada [`SELECT`](select.html "13.2.9 SELECT Statement") pesquisa apenas uma chave e pode ser otimizado:
 
 ```sql
 SELECT field1_index, field2_index

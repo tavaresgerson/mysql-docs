@@ -1,55 +1,55 @@
-### 4.2.5 Connection Transport Protocols
+### 4.2.5 Protocolos de Transporte de Conexão
 
-For programs that use the MySQL client library (for example, **mysql** and **mysqldump**), MySQL supports connections to the server based on several transport protocols: TCP/IP, Unix socket file, named pipe, and shared memory. This section describes how to select these protocols, and how they are similar and different.
+Para programas que utilizam a biblioteca cliente MySQL (por exemplo, **mysql** e **mysqldump**), o MySQL suporta conexões ao server baseadas em diversos protocolos de transporte: TCP/IP, arquivo de socket Unix, named pipe (pipe nomeado) e shared memory (memória compartilhada). Esta seção descreve como selecionar esses protocolos e quais são suas similaridades e diferenças.
 
-* Transport Protocol Selection
-* Transport Support for Local and Remote Connections
-* Interpretation of localhost
-* Encryption and Security Characteristics
-* Connection Compression
+* Seleção do Protocolo de Transporte
+* Suporte de Transporte para Conexões Locais e Remotas
+* Interpretação de localhost
+* Criptografia e Características de Segurança
+* Compressão de Conexão
 
-#### Transport Protocol Selection
+#### Seleção do Protocolo de Transporte
 
-For a given connection, if the transport protocol is not specified explicitly, it is determined implicitly. For example, connections to `localhost` result in a socket file connection on Unix and Unix-like systems, and a TCP/IP connection to `127.0.0.1` otherwise. For additional information, see Section 4.2.4, “Connecting to the MySQL Server Using Command Options”.
+Para uma dada conexão, se o protocolo de transporte não for especificado explicitamente, ele é determinado implicitamente. Por exemplo, conexões a `localhost` resultam em uma conexão por arquivo de socket em sistemas Unix e similares a Unix, e uma conexão TCP/IP para `127.0.0.1` caso contrário. Para informações adicionais, consulte a Seção 4.2.4, “Conectando-se ao Servidor MySQL Usando Opções de Comando”.
 
-To specify the protocol explicitly, use the `--protocol` command option. The following table shows the permissible values for `--protocol` and indicates the applicable platforms for each value. The values are not case-sensitive.
+Para especificar o protocolo explicitamente, utilize a opção de comando `--protocol`. A tabela a seguir mostra os valores permitidos para `--protocol` e indica as plataformas aplicáveis para cada valor. Os valores não diferenciam maiúsculas de minúsculas.
 
-<table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th><code>--protocol</code> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket file</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named pipe</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared memory</td> <td>Windows</td> </tr></tbody></table>
+<table summary="Valores permitidos para o protocolo de transporte, o protocolo de transporte resultante utilizado e as plataformas aplicáveis para cada valor."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th>Valor de <code>--protocol</code></th> <th>Protocolo de Transporte Utilizado</th> <th>Plataformas Aplicáveis</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP</td> <td>Todas</td> </tr><tr> <th><code>SOCKET</code></th> <td>Arquivo de socket Unix</td> <td>Sistemas Unix e similares a Unix</td> </tr><tr> <th><code>PIPE</code></th> <td>Named pipe (Pipe nomeado)</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared memory (Memória compartilhada)</td> <td>Windows</td> </tr> </tbody></table>
 
-#### Transport Support for Local and Remote Connections
+#### Suporte de Transporte para Conexões Locais e Remotas
 
-TCP/IP transport supports connections to local or remote MySQL servers.
+O transporte TCP/IP suporta conexões a servidores MySQL locais ou remotos.
 
-Socket-file, named-pipe, and shared-memory transports support connections only to local MySQL servers. (Named-pipe transport does allow for remote connections, but this capability is not implemented in MySQL.)
+Os transportes por arquivo de socket, named-pipe e shared-memory suportam conexões apenas a servidores MySQL locais. (O transporte named-pipe permite conexões remotas, mas essa capacidade não está implementada no MySQL.)
 
-#### Interpretation of localhost
+#### Interpretação de localhost
 
-If the transport protocol is not specified explicitly, `localhost` is interpreted as follows:
+Se o protocolo de transporte não for especificado explicitamente, `localhost` é interpretado da seguinte forma:
 
-* On Unix and Unix-like systems, a connection to `localhost` results in a socket-file connection.
+* Em sistemas Unix e similares a Unix, uma conexão a `localhost` resulta em uma conexão por arquivo de socket.
 
-* Otherwise, a connection to `localhost` results in a TCP/IP connection to `127.0.0.1`.
+* Caso contrário, uma conexão a `localhost` resulta em uma conexão TCP/IP para `127.0.0.1`.
 
-If the transport protocol is specified explicitly, `localhost` is interpreted with respect to that protocol. For example, with `--protocol=TCP`, a connection to `localhost` results in a TCP/IP connection to `127.0.0.1` on all platforms.
+Se o protocolo de transporte for especificado explicitamente, `localhost` é interpretado em relação a esse protocolo. Por exemplo, com `--protocol=TCP`, uma conexão a `localhost` resulta em uma conexão TCP/IP para `127.0.0.1` em todas as plataformas.
 
-#### Encryption and Security Characteristics
+#### Criptografia e Características de Segurança
 
-TCP/IP and socket-file transports are subject to TLS/SSL encryption, using the options described in Command Options for Encrypted Connections. Named-pipe and shared-memory transports are not subject to TLS/SSL encryption.
+Os transportes TCP/IP e por arquivo de socket estão sujeitos à criptografia TLS/SSL, usando as opções descritas em Opções de Comando para Conexões Criptografadas. Os transportes named-pipe e shared-memory não estão sujeitos à criptografia TLS/SSL.
 
-A connection is secure by default if made over a transport protocol that is secure by default. Otherwise, for protocols that are subject to TLS/SSL encryption, a connection may be made secure using encryption:
+Uma conexão é segura por padrão se for feita por meio de um protocolo de transporte que é seguro por padrão. Caso contrário, para protocolos sujeitos à criptografia TLS/SSL, uma conexão pode ser tornada segura utilizando criptografia:
 
-* TCP/IP connections are not secure by default, but can be encrypted to make them secure.
+* Conexões TCP/IP não são seguras por padrão, mas podem ser criptografadas para torná-las seguras.
 
-* Socket-file connections are secure by default. They can also be encrypted, but encrypting a socket-file connection makes it no more secure and increases CPU load.
+* Conexões por arquivo de socket são seguras por padrão. Elas também podem ser criptografadas, mas criptografar uma conexão por arquivo de socket não a torna mais segura e aumenta a carga da CPU.
 
-* Named-pipe connections are not secure by default, and are not subject to encryption to make them secure. However, the `named_pipe_full_access_group` system variable is available to control which MySQL users are permitted to use named-pipe connections.
+* Conexões named-pipe não são seguras por padrão e não estão sujeitas à criptografia para torná-las seguras. No entanto, a variável de sistema `named_pipe_full_access_group` está disponível para controlar quais usuários MySQL têm permissão para usar conexões named-pipe.
 
-* Shared-memory connections are secure by default.
+* Conexões shared-memory são seguras por padrão.
 
-If the `require_secure_transport` system variable is enabled, the server permits only connections that use some form of secure transport. Per the preceding remarks, connections that use TCP/IP encrypted using TLS/SSL, a socket file, or shared memory are secure connections. TCP/IP connections not encrypted using TLS/SSL and named-pipe connections are not secure.
+Se a variável de sistema `require_secure_transport` estiver habilitada, o server permite apenas conexões que utilizam alguma forma de transporte seguro. De acordo com as observações anteriores, conexões que utilizam TCP/IP criptografado via TLS/SSL, um arquivo de socket ou shared memory são conexões seguras. Conexões TCP/IP não criptografadas usando TLS/SSL e conexões named-pipe não são seguras.
 
-See also Configuring Encrypted Connections as Mandatory.
+Consulte também Configurando Conexões Criptografadas como Obrigatórias.
 
-#### Connection Compression
+#### Compressão de Conexão
 
-All transport protocols are subject to use of compression on the traffic between the client and server. If both compression and encryption are used for a given connection, compression occurs before encryption. For more information, see Section 4.2.6, “Connection Compression Control”.
+Todos os protocolos de transporte estão sujeitos ao uso de compressão no tráfego entre o client e o server. Se tanto a compressão quanto a criptografia forem utilizadas para uma dada conexão, a compressão ocorre antes da criptografia. Para mais informações, consulte a Seção 4.2.6, “Controle de Compressão de Conexão”.

@@ -1,32 +1,32 @@
-### 5.1.8 Using System Variables
+### 5.1.8 Usando Variáveis de Sistema
 
-[5.1.8.1 System Variable Privileges](system-variable-privileges.html)
+[5.1.8.1 Privilégios de Variável de Sistema](system-variable-privileges.html)
 
-[5.1.8.2 Dynamic System Variables](dynamic-system-variables.html)
+[5.1.8.2 Variáveis de Sistema Dinâmicas](dynamic-system-variables.html)
 
-[5.1.8.3 Structured System Variables](structured-system-variables.html)
+[5.1.8.3 Variáveis de Sistema Estruturadas](structured-system-variables.html)
 
-The MySQL server maintains many system variables that configure its operation. [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"), describes the meaning of these variables. Each system variable has a default value. System variables can be set at server startup using options on the command line or in an option file. Most of them can be changed dynamically while the server is running by means of the [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement, which enables you to modify operation of the server without having to stop and restart it. You can also use system variable values in expressions.
+O servidor MySQL mantém muitas *system variables* que configuram sua operação. A [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Variáveis de Sistema do Servidor"), descreve o significado dessas variáveis. Cada *system variable* possui um valor padrão (*default value*). As *system variables* podem ser definidas na inicialização do servidor (*server startup*) usando opções na linha de comando ou em um *option file*. A maioria delas pode ser alterada dinamicamente enquanto o servidor está em execução por meio da instrução [`SET`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis"), o que permite modificar a operação do servidor sem a necessidade de pará-lo e reiniciá-lo. Você também pode usar valores de *system variables* em expressões.
 
-Many system variables are built in. System variables implemented by a server plugin are exposed when the plugin is installed and have names that begin with the plugin name. For example, the `audit_log` plugin implements a system variable named [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy).
+Muitas *system variables* são *built in* (incorporadas). *System variables* implementadas por um *plugin* de servidor são expostas quando o *plugin* é instalado e têm nomes que começam com o nome do *plugin*. Por exemplo, o *plugin* `audit_log` implementa uma *system variable* chamada [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy).
 
-There are two scopes in which system variables exist. Global variables affect the overall operation of the server. Session variables affect its operation for individual client connections. A given system variable can have both a global and a session value. Global and session system variables are related as follows:
+Existem dois *scopes* nos quais as *system variables* existem. Variáveis *Global* afetam a operação geral do servidor. Variáveis *Session* afetam a operação para conexões de clientes individuais. Uma determinada *system variable* pode ter um valor *Global* e um valor *Session*. As *system variables Global* e *Session* se relacionam da seguinte forma:
 
-* When the server starts, it initializes each global variable to its default value. These defaults can be changed by options specified on the command line or in an option file. (See [Section 4.2.2, “Specifying Program Options”](program-options.html "4.2.2 Specifying Program Options").)
+* Quando o servidor é iniciado, ele inicializa cada variável *Global* com seu valor padrão. Esses padrões podem ser alterados por opções especificadas na linha de comando ou em um *option file*. (Veja [Seção 4.2.2, “Especificando Opções de Programa”](program-options.html "4.2.2 Especificando Opções de Programa").)
 
-* The server also maintains a set of session variables for each client that connects. The client's session variables are initialized at connect time using the current values of the corresponding global variables. For example, a client's SQL mode is controlled by the session [`sql_mode`](server-system-variables.html#sysvar_sql_mode) value, which is initialized when the client connects to the value of the global [`sql_mode`](server-system-variables.html#sysvar_sql_mode) value.
+* O servidor também mantém um conjunto de variáveis *Session* para cada cliente que se conecta. As variáveis *Session* do cliente são inicializadas no momento da conexão usando os valores atuais das variáveis *Global* correspondentes. Por exemplo, o *SQL mode* de um cliente é controlado pelo valor da *Session* [`sql_mode`](server-system-variables.html#sysvar_sql_mode), que é inicializado quando o cliente se conecta ao valor da *Global* [`sql_mode`](server-system-variables.html#sysvar_sql_mode).
 
-  For some system variables, the session value is not initialized from the corresponding global value; if so, that is indicated in the variable description.
+  Para algumas *system variables*, o valor *Session* não é inicializado a partir do valor *Global* correspondente; se for o caso, isso é indicado na descrição da variável.
 
-System variable values can be set globally at server startup by using options on the command line or in an option file. At startup, the syntax for system variables is the same as for command options, so within variable names, dashes and underscores may be used interchangeably. For example, [`--general_log=ON`](server-system-variables.html#sysvar_general_log) and [`--general-log=ON`](server-system-variables.html#sysvar_general_log) are equivalent.
+Os valores das *system variables* podem ser definidos *Globalmente* na inicialização do servidor, usando opções na linha de comando ou em um *option file*. Na inicialização, a sintaxe para *system variables* é a mesma que para opções de comando, portanto, dentro dos nomes das variáveis, traços (*dashes*) e sublinhados (*underscores*) podem ser usados de forma intercambiável. Por exemplo, [`--general_log=ON`](server-system-variables.html#sysvar_general_log) e [`--general-log=ON`](server-system-variables.html#sysvar_general_log) são equivalentes.
 
-When you use a startup option to set a variable that takes a numeric value, the value can be given with a suffix of `K`, `M`, or `G` (either uppercase or lowercase) to indicate a multiplier of 1024, 10242 or 10243; that is, units of kilobytes, megabytes, or gigabytes, respectively. Thus, the following command starts the server with an `InnoDB` log file size of 16 megabytes and a maximum packet size of one gigabyte:
+Ao usar uma opção de inicialização para definir uma variável que aceita um valor numérico, o valor pode ser fornecido com um sufixo de `K`, `M` ou `G` (maiúsculo ou minúsculo) para indicar um multiplicador de 1024, $1024^2$ ou $1024^3$; ou seja, unidades de *kilobytes*, *megabytes* ou *gigabytes*, respectivamente. Assim, o seguinte comando inicia o servidor com um tamanho de arquivo de *log* do `InnoDB` de 16 *megabytes* e um tamanho máximo de *packet* de um *gigabyte*:
 
 ```sql
 mysqld --innodb-log-file-size=16M --max-allowed-packet=1G
 ```
 
-Within an option file, those variables are set like this:
+Dentro de um *option file*, essas variáveis são definidas desta forma:
 
 ```sql
 [mysqld]
@@ -34,20 +34,20 @@ innodb_log_file_size=16M
 max_allowed_packet=1G
 ```
 
-The lettercase of suffix letters does not matter; `16M` and `16m` are equivalent, as are `1G` and `1g`.
+O uso de maiúsculas ou minúsculas nas letras do sufixo não importa; `16M` e `16m` são equivalentes, assim como `1G` e `1g`.
 
-To restrict the maximum value to which a system variable can be set at runtime with the [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement, specify this maximum by using an option of the form `--maximum-var_name=value` at server startup. For example, to prevent the value of [`innodb_log_file_size`](innodb-parameters.html#sysvar_innodb_log_file_size) from being increased to more than 32MB at runtime, use the option `--maximum-innodb-log-file-size=32M`.
+Para restringir o valor máximo para o qual uma *system variable* pode ser definida em tempo de execução (*runtime*) com a instrução [`SET`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis"), especifique este máximo usando uma opção no formato `--maximum-var_name=value` na inicialização do servidor. Por exemplo, para evitar que o valor de [`innodb_log_file_size`](innodb-parameters.html#sysvar_innodb_log_file_size) seja aumentado para mais de 32MB em *runtime*, use a opção `--maximum-innodb-log-file-size=32M`.
 
-Many system variables are dynamic and can be changed at runtime by using the [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement. For a list, see [Section 5.1.8.2, “Dynamic System Variables”](dynamic-system-variables.html "5.1.8.2 Dynamic System Variables"). To change a system variable with [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment"), refer to it by name, optionally preceded by a modifier. At runtime, system variable names must be written using underscores, not dashes. The following examples briefly illustrate this syntax:
+Muitas *system variables* são dinâmicas e podem ser alteradas em tempo de execução (*runtime*) usando a instrução [`SET`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis"). Para uma lista, veja [Seção 5.1.8.2, “Variáveis de Sistema Dinâmicas”](dynamic-system-variables.html "5.1.8.2 Variáveis de Sistema Dinâmicas"). Para alterar uma *system variable* com [`SET`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis"), faça referência a ela pelo nome, opcionalmente precedido por um modificador. Em *runtime*, os nomes das *system variables* devem ser escritos usando sublinhados (*underscores*), e não traços (*dashes*). Os exemplos a seguir ilustram brevemente esta sintaxe:
 
-* Set a global system variable:
+* Define uma *system variable Global*:
 
   ```sql
   SET GLOBAL max_connections = 1000;
   SET @@GLOBAL.max_connections = 1000;
   ```
 
-* Set a session system variable:
+* Define uma *system variable Session*:
 
   ```sql
   SET SESSION sql_mode = 'TRADITIONAL';
@@ -55,23 +55,23 @@ Many system variables are dynamic and can be changed at runtime by using the [`S
   SET @@sql_mode = 'TRADITIONAL';
   ```
 
-For complete details about [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") syntax, see [Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment"). For a description of the privilege requirements for setting system variables, see [Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges")
+Para detalhes completos sobre a sintaxe [`SET`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis"), veja [Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variáveis”](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis"). Para uma descrição dos requisitos de privilégio para definir *system variables*, veja [Seção 5.1.8.1, “Privilégios de Variável de Sistema”](system-variable-privileges.html "5.1.8.1 Privilégios de Variável de Sistema").
 
-Suffixes for specifying a value multiplier can be used when setting a variable at server startup, but not to set the value with [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") at runtime. On the other hand, with [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") you can assign a variable's value using an expression, which is not true when you set a variable at server startup. For example, the first of the following lines is legal at server startup, but the second is not:
+Sufixos para especificar um multiplicador de valor podem ser usados ao definir uma variável na inicialização do servidor, mas não para definir o valor com [`SET`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis") em tempo de execução (*runtime*). Por outro lado, com [`SET`](set-variable.html "13.7.4.1 Sintaxe SET para Atribuição de Variáveis"), você pode atribuir o valor de uma variável usando uma expressão, o que não é verdade quando você define uma variável na inicialização do servidor. Por exemplo, a primeira das linhas a seguir é legal na inicialização do servidor, mas a segunda não é:
 
 ```sql
 $> mysql --max_allowed_packet=16M
 $> mysql --max_allowed_packet=16*1024*1024
 ```
 
-Conversely, the second of the following lines is legal at runtime, but the first is not:
+Por outro lado, a segunda das linhas a seguir é legal em *runtime*, mas a primeira não é:
 
 ```sql
 mysql> SET GLOBAL max_allowed_packet=16M;
 mysql> SET GLOBAL max_allowed_packet=16*1024*1024;
 ```
 
-To display system variable names and values, use the [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") statement:
+Para exibir nomes e valores de *system variables*, use a instrução [`SHOW VARIABLES`](show-variables.html "13.7.5.39 Instrução SHOW VARIABLES"):
 
 ```sql
 mysql> SHOW VARIABLES;
@@ -113,26 +113,26 @@ mysql> SHOW VARIABLES;
 +---------------------------------+-----------------------------------+
 ```
 
-With a [`LIKE`](string-comparison-functions.html#operator_like) clause, the statement displays only those variables that match the pattern. To obtain a specific variable name, use a [`LIKE`](string-comparison-functions.html#operator_like) clause as shown:
+Com uma cláusula [`LIKE`](string-comparison-functions.html#operator_like), a instrução exibe apenas as variáveis que correspondem ao padrão (*pattern*). Para obter o nome de uma variável específica, use uma cláusula [`LIKE`](string-comparison-functions.html#operator_like) conforme mostrado:
 
 ```sql
 SHOW VARIABLES LIKE 'max_join_size';
 SHOW SESSION VARIABLES LIKE 'max_join_size';
 ```
 
-To get a list of variables whose name match a pattern, use the `%` wildcard character in a [`LIKE`](string-comparison-functions.html#operator_like) clause:
+Para obter uma lista de variáveis cujos nomes correspondem a um padrão, use o caractere *wildcard* `%` em uma cláusula [`LIKE`](string-comparison-functions.html#operator_like):
 
 ```sql
 SHOW VARIABLES LIKE '%size%';
 SHOW GLOBAL VARIABLES LIKE '%size%';
 ```
 
-Wildcard characters can be used in any position within the pattern to be matched. Strictly speaking, because `_` is a wildcard that matches any single character, you should escape it as `_` to match it literally. In practice, this is rarely necessary.
+Caracteres *wildcard* podem ser usados em qualquer posição dentro do padrão a ser correspondido. Estritamente falando, como `_` é um *wildcard* que corresponde a qualquer caractere único, você deve fazer o *escape* dele como `\_` para corresponder literalmente a ele. Na prática, isso raramente é necessário.
 
-For [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement"), if you specify neither `GLOBAL` nor `SESSION`, MySQL returns `SESSION` values.
+Para [`SHOW VARIABLES`](show-variables.html "13.7.5.39 Instrução SHOW VARIABLES"), se você não especificar nem `GLOBAL` nem `SESSION`, o MySQL retorna valores `SESSION`.
 
-The reason for requiring the `GLOBAL` keyword when setting `GLOBAL`-only variables but not when retrieving them is to prevent problems in the future:
+A razão pela qual é necessário o *keyword* `GLOBAL` ao definir variáveis somente `GLOBAL`, mas não ao recuperá-las, é prevenir problemas futuros:
 
-* Were a `SESSION` variable to be removed that has the same name as a `GLOBAL` variable, a client with privileges sufficient to modify global variables might accidentally change the `GLOBAL` variable rather than just the `SESSION` variable for its own session.
+* Caso uma variável `SESSION` com o mesmo nome de uma variável `GLOBAL` seja removida, um cliente com privilégios suficientes para modificar variáveis *Global* pode acidentalmente alterar a variável `GLOBAL` em vez de apenas a variável `SESSION` para sua própria *session*.
 
-* Were a `SESSION` variable to be added with the same name as a `GLOBAL` variable, a client that intends to change the `GLOBAL` variable might find only its own `SESSION` variable changed.
+* Caso uma variável `SESSION` seja adicionada com o mesmo nome de uma variável `GLOBAL`, um cliente que pretende alterar a variável `GLOBAL` pode descobrir que apenas sua própria variável `SESSION` foi alterada.

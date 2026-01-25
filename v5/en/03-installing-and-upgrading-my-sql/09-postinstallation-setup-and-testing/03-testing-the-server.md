@@ -1,24 +1,24 @@
-### 2.9.3 Testing the Server
+### 2.9.3 Testando o Server
 
-After the data directory is initialized and you have started the server, perform some simple tests to make sure that it works satisfactorily. This section assumes that your current location is the MySQL installation directory and that it has a `bin` subdirectory containing the MySQL programs used here. If that is not true, adjust the command path names accordingly.
+Após o diretório de dados ser inicializado e você ter iniciado o Server, realize alguns testes simples para garantir que ele esteja funcionando satisfatoriamente. Esta seção pressupõe que sua localização atual seja o diretório de instalação do MySQL e que ele possua um subdiretório `bin` contendo os programas MySQL usados aqui. Se isso não for verdade, ajuste os nomes dos caminhos de comando (command path names) conforme necessário.
 
-Alternatively, add the `bin` directory to your `PATH` environment variable setting. That enables your shell (command interpreter) to find MySQL programs properly, so that you can run a program by typing only its name, not its path name. See Section 4.2.7, “Setting Environment Variables”.
+Alternativamente, adicione o diretório `bin` à configuração da sua variável de ambiente `PATH`. Isso permite que seu shell (interpretador de comandos) encontre os programas MySQL adequadamente, de modo que você possa executar um programa digitando apenas o nome dele, e não seu nome de caminho (path name). Consulte a Seção 4.2.7, “Configurando Variáveis de Ambiente”.
 
-Use **mysqladmin** to verify that the server is running. The following commands provide simple tests to check whether the server is up and responding to connections:
+Use **mysqladmin** para verificar se o Server está em execução. Os comandos a seguir fornecem testes simples para verificar se o Server está ativo e respondendo a conexões:
 
 ```sql
 $> bin/mysqladmin version
 $> bin/mysqladmin variables
 ```
 
-If you cannot connect to the server, specify a `-u root` option to connect as `root`. If you have assigned a password for the `root` account already, you'll also need to specify `-p` on the command line and enter the password when prompted. For example:
+Se você não conseguir conectar-se ao Server, especifique a opção `-u root` para conectar-se como `root`. Se você já tiver atribuído uma senha para a conta `root`, também precisará especificar `-p` na linha de comando e digitar a senha quando solicitado. Por exemplo:
 
 ```sql
 $> bin/mysqladmin -u root -p version
 Enter password: (enter root password here)
 ```
 
-The output from **mysqladmin version** varies slightly depending on your platform and version of MySQL, but should be similar to that shown here:
+A saída de **mysqladmin version** varia ligeiramente dependendo da sua plataforma e versão do MySQL, mas deve ser semelhante à mostrada aqui:
 
 ```sql
 $> bin/mysqladmin version
@@ -36,25 +36,25 @@ Opens: 0  Flush tables: 1  Open tables: 19
 Queries per second avg: 0.000
 ```
 
-To see what else you can do with **mysqladmin**, invoke it with the `--help` option.
+Para ver o que mais você pode fazer com **mysqladmin**, invoque-o com a opção `--help`.
 
-Verify that you can shut down the server (include a `-p` option if the `root` account has a password already):
+Verifique se você consegue desligar o Server (inclua a opção `-p` se a conta `root` já tiver uma senha):
 
 ```sql
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verify that you can start the server again. Do this by using **mysqld_safe** or by invoking **mysqld** directly. For example:
+Verifique se você pode iniciar o Server novamente. Faça isso usando **mysqld_safe** ou invocando **mysqld** diretamente. Por exemplo:
 
 ```sql
 $> bin/mysqld_safe --user=mysql &
 ```
 
-If **mysqld_safe** fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
+Se **mysqld_safe** falhar, consulte a Seção 2.9.2.1, “Solucionando Problemas ao Iniciar o MySQL Server”.
 
-Run some simple tests to verify that you can retrieve information from the server. The output should be similar to that shown here.
+Execute alguns testes simples para verificar se você consegue recuperar informações do Server. A saída deve ser semelhante à mostrada aqui.
 
-Use **mysqlshow** to see what databases exist:
+Use **mysqlshow** para ver quais Databases existem:
 
 ```sql
 $> bin/mysqlshow
@@ -68,9 +68,9 @@ $> bin/mysqlshow
 +--------------------+
 ```
 
-The list of installed databases may vary, but always includes at least `mysql` and `information_schema`.
+A lista de Databases instalados pode variar, mas sempre inclui pelo menos `mysql` e `information_schema`.
 
-If you specify a database name, **mysqlshow** displays a list of the tables within the database:
+Se você especificar um nome de Database, **mysqlshow** exibirá uma lista das tables dentro desse Database:
 
 ```sql
 $> bin/mysqlshow mysql
@@ -112,7 +112,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use the **mysql** program to select information from a table in the `mysql` database:
+Use o programa **mysql** para selecionar informações de uma table no Database `mysql`:
 
 ```sql
 $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -123,6 +123,6 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-At this point, your server is running and you can access it. To tighten security if you have not yet assigned a password to the initial account, follow the instructions in Section 2.9.4, “Securing the Initial MySQL Account”.
+Neste ponto, seu Server está em execução e você pode acessá-lo. Para reforçar a segurança, caso ainda não tenha atribuído uma senha à conta inicial, siga as instruções na Seção 2.9.4, “Protegendo a Conta Inicial do MySQL”.
 
-For more information about **mysql**, **mysqladmin**, and **mysqlshow**, see Section 4.5.1, “mysql — The MySQL Command-Line Client”, Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 4.5.7, “mysqlshow — Display Database, Table, and Column Information”.
+Para obter mais informações sobre **mysql**, **mysqladmin** e **mysqlshow**, consulte a Seção 4.5.1, “mysql — The MySQL Command-Line Client”, a Seção 4.5.2, “mysqladmin — Um Programa de Administração do MySQL Server”, e a Seção 4.5.7, “mysqlshow — Exibindo Informações de Database, Table e Column”.

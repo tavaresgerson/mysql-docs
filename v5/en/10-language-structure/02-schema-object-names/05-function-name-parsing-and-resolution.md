@@ -1,32 +1,32 @@
-### 9.2.5 Function Name Parsing and Resolution
+### 9.2.5 Análise e Resolução de Nomes de Funções
 
-MySQL supports built-in (native) functions, loadable functions, and stored functions. This section describes how the server recognizes whether the name of a built-in function is used as a function call or as an identifier, and how the server determines which function to use in cases when functions of different types exist with a given name.
+O MySQL suporta Funções built-in (nativas), Funções loadable (carregáveis) e Funções stored (armazenadas). Esta seção descreve como o servidor reconhece se o nome de uma Função built-in está sendo usado como uma chamada de Função ou como um Identifier (Identificador), e como o servidor determina qual Função usar nos casos em que Funções de diferentes tipos existem com um determinado nome.
 
-* Built-In Function Name Parsing
-* Function Name Resolution
+* Análise de Nomes de Funções Built-In
+* Resolução de Nomes de Funções
 
-#### Built-In Function Name Parsing
+#### Análise de Nomes de Funções Built-In
 
-The parser uses default rules for parsing names of built-in functions. These rules can be changed by enabling the `IGNORE_SPACE` SQL mode.
+O Parser usa regras padrão para a análise (parsing) de nomes de Funções built-in. Estas regras podem ser alteradas ativando o SQL mode `IGNORE_SPACE`.
 
-When the parser encounters a word that is the name of a built-in function, it must determine whether the name signifies a function call or is instead a nonexpression reference to an identifier such as a table or column name. For example, in the following statements, the first reference to `count` is a function call, whereas the second reference is a table name:
+Quando o Parser encontra uma palavra que é o nome de uma Função built-in, ele deve determinar se o nome significa uma chamada de Função ou se é, em vez disso, uma referência sem expressão (nonexpression reference) a um Identifier, como um nome de tabela ou coluna. Por exemplo, nas seguintes statements, a primeira referência a `count` é uma chamada de Função, enquanto a segunda referência é um nome de tabela:
 
 ```sql
 SELECT COUNT(*) FROM mytable;
 CREATE TABLE count (i INT);
 ```
 
-The parser should recognize the name of a built-in function as indicating a function call only when parsing what is expected to be an expression. That is, in nonexpression context, function names are permitted as identifiers.
+O Parser deve reconhecer o nome de uma Função built-in como indicando uma chamada de Função apenas ao analisar o que se espera ser uma expression. Ou seja, em um Contexto sem expressão (nonexpression context), nomes de Funções são permitidos como Identifiers.
 
-However, some built-in functions have special parsing or implementation considerations, so the parser uses the following rules by default to distinguish whether their names are being used as function calls or as identifiers in nonexpression context:
+No entanto, algumas Funções built-in têm considerações especiais de análise ou implementação, então o Parser usa as seguintes regras por padrão para distinguir se seus nomes estão sendo usados como chamadas de Função ou como Identifiers em Contexto sem expressão:
 
-* To use the name as a function call in an expression, there must be no whitespace between the name and the following `(` parenthesis character.
+* Para usar o nome como uma chamada de Função em uma expression, não deve haver espaço em branco entre o nome e o caractere de parêntese `(` seguinte.
 
-* Conversely, to use the function name as an identifier, it must not be followed immediately by a parenthesis.
+* Inversamente, para usar o nome da Função como um Identifier, ele não deve ser seguido imediatamente por um parêntese.
 
-The requirement that function calls be written with no whitespace between the name and the parenthesis applies only to the built-in functions that have special considerations. `COUNT` is one such name. The `sql/lex.h` source file lists the names of these special functions for which following whitespace determines their interpretation: names defined by the `SYM_FN()` macro in the `symbols[]` array.
+A exigência de que as chamadas de Função sejam escritas sem espaço em branco entre o nome e o parêntese aplica-se apenas às Funções built-in que têm considerações especiais. `COUNT` é um desses nomes. O arquivo fonte `sql/lex.h` lista os nomes dessas Funções especiais para as quais o espaço em branco subsequente determina sua interpretação: nomes definidos pela macro `SYM_FN()` no array `symbols[]`.
 
-The following list names the functions in MySQL 5.7 that are affected by the `IGNORE_SPACE` setting and listed as special in the `sql/lex.h` source file. You may find it easiest to treat the no-whitespace requirement as applying to all function calls.
+A lista a seguir nomeia as Funções no MySQL 5.7 que são afetadas pela configuração `IGNORE_SPACE` e listadas como especiais no arquivo fonte `sql/lex.h`. Você pode achar mais fácil tratar a exigência de não haver espaço em branco como aplicável a todas as chamadas de Função.
 
 * `ADDDATE`
 * `BIT_AND`
@@ -61,11 +61,11 @@ The following list names the functions in MySQL 5.7 that are affected by the `IG
 * `VAR_POP`
 * `VAR_SAMP`
 
-For functions not listed as special in `sql/lex.h`, whitespace does not matter. They are interpreted as function calls only when used in expression context and may be used freely as identifiers otherwise. `ASCII` is one such name. However, for these nonaffected function names, interpretation may vary in expression context: `func_name ()` is interpreted as a built-in function if there is one with the given name; if not, `func_name ()` is interpreted as a loadable function or stored function if one exists with that name.
+Para Funções não listadas como especiais em `sql/lex.h`, o espaço em branco não importa. Elas são interpretadas como chamadas de Função apenas quando usadas em Contexto de expression e podem ser usadas livremente como Identifiers em outros casos. `ASCII` é um desses nomes. No entanto, para esses nomes de Funções não afetadas, a interpretação pode variar no Contexto de expression: `func_name ()` é interpretado como uma Função built-in se houver uma com o nome fornecido; caso contrário, `func_name ()` é interpretado como uma Função loadable ou stored se uma existir com esse nome.
 
-The `IGNORE_SPACE` SQL mode can be used to modify how the parser treats function names that are whitespace-sensitive:
+O SQL mode `IGNORE_SPACE` pode ser usado para modificar como o Parser trata nomes de Funções que são sensíveis a espaço em branco:
 
-* With `IGNORE_SPACE` disabled, the parser interprets the name as a function call when there is no whitespace between the name and the following parenthesis. This occurs even when the function name is used in nonexpression context:
+* Com `IGNORE_SPACE` desabilitado, o Parser interpreta o nome como uma chamada de Função quando não há espaço em branco entre o nome e o parêntese seguinte. Isso ocorre mesmo quando o nome da Função é usado em Contexto sem expressão (nonexpression context):
 
   ```sql
   mysql> CREATE TABLE count(i INT);
@@ -73,7 +73,7 @@ The `IGNORE_SPACE` SQL mode can be used to modify how the parser treats function
   near 'count(i INT)'
   ```
 
-  To eliminate the error and cause the name to be treated as an identifier, either use whitespace following the name or write it as a quoted identifier (or both):
+  Para eliminar o erro e fazer com que o nome seja tratado como um Identifier, use espaço em branco após o nome ou escreva-o como um Identifier entre aspas (quoted identifier) (ou ambos):
 
   ```sql
   CREATE TABLE count (i INT);
@@ -81,77 +81,77 @@ The `IGNORE_SPACE` SQL mode can be used to modify how the parser treats function
   CREATE TABLE `count` (i INT);
   ```
 
-* With `IGNORE_SPACE` enabled, the parser loosens the requirement that there be no whitespace between the function name and the following parenthesis. This provides more flexibility in writing function calls. For example, either of the following function calls are legal:
+* Com `IGNORE_SPACE` ativado, o Parser flexibiliza a exigência de que não haja espaço em branco entre o nome da Função e o parêntese seguinte. Isso proporciona mais flexibilidade na escrita de chamadas de Função. Por exemplo, qualquer uma das seguintes chamadas de Função é legal:
 
   ```sql
   SELECT COUNT(*) FROM mytable;
   SELECT COUNT (*) FROM mytable;
   ```
 
-  However, enabling `IGNORE_SPACE` also has the side effect that the parser treats the affected function names as reserved words (see Section 9.3, “Keywords and Reserved Words”). This means that a space following the name no longer signifies its use as an identifier. The name can be used in function calls with or without following whitespace, but causes a syntax error in nonexpression context unless it is quoted. For example, with `IGNORE_SPACE` enabled, both of the following statements fail with a syntax error because the parser interprets `count` as a reserved word:
+  No entanto, ativar `IGNORE_SPACE` também tem o efeito colateral de que o Parser trata os nomes de Funções afetadas como reserved words (palavras reservadas) (consulte Seção 9.3, “Keywords e Reserved Words”). Isso significa que um espaço após o nome não sinaliza mais seu uso como um Identifier. O nome pode ser usado em chamadas de Função com ou sem espaço em branco subsequente, mas causa um erro de syntax em Contexto sem expressão, a menos que seja colocado entre aspas (quoted). Por exemplo, com `IGNORE_SPACE` ativado, ambas as seguintes statements falham com um erro de syntax porque o Parser interpreta `count` como uma reserved word:
 
   ```sql
   CREATE TABLE count(i INT);
   CREATE TABLE count (i INT);
   ```
 
-  To use the function name in nonexpression context, write it as a quoted identifier:
+  Para usar o nome da Função em Contexto sem expressão, escreva-o como um Identifier entre aspas (quoted identifier):
 
   ```sql
   CREATE TABLE `count`(i INT);
   CREATE TABLE `count` (i INT);
   ```
 
-To enable the `IGNORE_SPACE` SQL mode, use this statement:
+Para ativar o SQL mode `IGNORE_SPACE`, use esta statement:
 
 ```sql
 SET sql_mode = 'IGNORE_SPACE';
 ```
 
-`IGNORE_SPACE` is also enabled by certain other composite modes such as `ANSI` that include it in their value:
+O `IGNORE_SPACE` também é ativado por outros modos compostos, como `ANSI`, que o incluem em seu valor:
 
 ```sql
 SET sql_mode = 'ANSI';
 ```
 
-Check Section 5.1.10, “Server SQL Modes”, to see which composite modes enable `IGNORE_SPACE`.
+Verifique a Seção 5.1.10, “Server SQL Modes”, para ver quais modos compostos ativam o `IGNORE_SPACE`.
 
-To minimize the dependency of SQL code on the `IGNORE_SPACE` setting, use these guidelines:
+Para minimizar a dependência do código SQL na configuração `IGNORE_SPACE`, use estas diretrizes:
 
-* Avoid creating loadable functions or stored functions that have the same name as a built-in function.
+* Evite criar Funções loadable ou Funções stored que tenham o mesmo nome de uma Função built-in.
 
-* Avoid using function names in nonexpression context. For example, these statements use `count` (one of the affected function names affected by `IGNORE_SPACE`), so they fail with or without whitespace following the name if `IGNORE_SPACE` is enabled:
+* Evite usar nomes de Funções em Contexto sem expressão. Por exemplo, estas statements usam `count` (um dos nomes de Funções afetadas pelo `IGNORE_SPACE`), portanto, elas falham com ou sem espaço em branco após o nome se `IGNORE_SPACE` estiver ativado:
 
   ```sql
   CREATE TABLE count(i INT);
   CREATE TABLE count (i INT);
   ```
 
-  If you must use a function name in nonexpression context, write it as a quoted identifier:
+  Se você precisar usar um nome de Função em Contexto sem expressão, escreva-o como um Identifier entre aspas (quoted identifier):
 
   ```sql
   CREATE TABLE `count`(i INT);
   CREATE TABLE `count` (i INT);
   ```
 
-#### Function Name Resolution
+#### Resolução de Nomes de Funções
 
-The following rules describe how the server resolves references to function names for function creation and invocation:
+As seguintes regras descrevem como o servidor resolve referências a nomes de Funções para a criação e invocação de Funções:
 
-* Built-in functions and loadable functions
+* Funções built-in e Funções loadable
 
-  An error occurs if you try to create a loadable function with the same name as a built-in function.
+  Um erro ocorre se você tentar criar uma Função loadable com o mesmo nome de uma Função built-in.
 
-* Built-in functions and stored functions
+* Funções built-in e Funções stored
 
-  It is possible to create a stored function with the same name as a built-in function, but to invoke the stored function it is necessary to qualify it with a schema name. For example, if you create a stored function named `PI` in the `test` schema, invoke it as `test.PI()` because the server resolves `PI()` without a qualifier as a reference to the built-in function. The server generates a warning if the stored function name collides with a built-in function name. The warning can be displayed with `SHOW WARNINGS`.
+  É possível criar uma Função stored com o mesmo nome de uma Função built-in, mas para invocar a Função stored é necessário qualificá-la com um nome de schema. Por exemplo, se você criar uma Função stored chamada `PI` no schema `test`, invoque-a como `test.PI()` porque o servidor resolve `PI()` sem um qualificador como uma referência à Função built-in. O servidor gera um warning se o nome da Função stored colidir com um nome de Função built-in. O warning pode ser exibido com `SHOW WARNINGS`.
 
-* Loadable functions and stored functions
+* Funções loadable e Funções stored
 
-  Loadable functions and stored functions share the same namespace, so you cannot create a loadable function and a stored function with the same name.
+  Funções loadable e Funções stored compartilham o mesmo namespace, portanto, você não pode criar uma Função loadable e uma Função stored com o mesmo nome.
 
-The preceding function name resolution rules have implications for upgrading to versions of MySQL that implement new built-in functions:
+As regras de resolução de nome de Função anteriores têm implicações para o upgrade para versões do MySQL que implementam novas Funções built-in:
 
-* If you have already created a loadable function with a given name and upgrade MySQL to a version that implements a new built-in function with the same name, the loadable function becomes inaccessible. To correct this, use `DROP FUNCTION` to drop the loadable function and `CREATE FUNCTION` to re-create the loadable function with a different nonconflicting name. Then modify any affected code to use the new name.
+* Se você já criou uma Função loadable com um determinado nome e fizer upgrade do MySQL para uma versão que implemente uma nova Função built-in com o mesmo nome, a Função loadable se tornará inacessível. Para corrigir isso, use `DROP FUNCTION` para descartar a Função loadable e `CREATE FUNCTION` para recriá-la com um nome diferente e não conflitante. Em seguida, modifique qualquer código afetado para usar o novo nome.
 
-* If a new version of MySQL implements a built-in function with the same name as an existing stored function, you have two choices: Rename the stored function to use a nonconflicting name, or change calls to the function so that they use a schema qualifier (that is, use `schema_name.func_name()` syntax). In either case, modify any affected code accordingly.
+* Se uma nova versão do MySQL implementar uma Função built-in com o mesmo nome de uma Função stored existente, você tem duas opções: Renomear a Função stored para usar um nome não conflitante ou alterar as chamadas para a Função para que usem um qualificador de schema (ou seja, use a syntax `schema_name.func_name()`). Em ambos os casos, modifique o código afetado de acordo.

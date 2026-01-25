@@ -1,8 +1,8 @@
-### 10.8.6 Examples of the Effect of Collation
+### 10.8.6 Exemplos do Efeito de Collation
 
-**Example 1: Sorting German Umlauts**
+**Exemplo 1: Ordenando Umlauts Alemães**
 
-Suppose that column `X` in table `T` has these `latin1` column values:
+Suponha que a coluna `X` na tabela `T` tenha estes valores de coluna `latin1`:
 
 ```sql
 Muffler
@@ -11,27 +11,27 @@ MX Systems
 MySQL
 ```
 
-Suppose also that the column values are retrieved using the following statement:
+Suponha também que os valores da coluna sejam recuperados usando a seguinte instrução:
 
 ```sql
 SELECT X FROM T ORDER BY X COLLATE collation_name;
 ```
 
-The following table shows the resulting order of the values if we use `ORDER BY` with different collations.
+A tabela a seguir mostra a ordem resultante dos valores se usarmos `ORDER BY` com diferentes collations.
 
-<table summary="An example of the effect of collation, as described in the preceding text. The table shows the resulting order of values for three collations (latin1_swedish_ci, latin1_german1_ci, latin1_german2_ci) when using ORDER BY."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th><code>latin1_swedish_ci</code></th> <th><code>latin1_german1_ci</code></th> <th><code>latin1_german2_ci</code></th> </tr></thead><tbody><tr> <th>Muffler</th> <td>Muffler</td> <td>Müller</td> </tr><tr> <th>MX Systems</th> <td>Müller</td> <td>Muffler</td> </tr><tr> <th>Müller</th> <td>MX Systems</td> <td>MX Systems</td> </tr><tr> <th>MySQL</th> <td>MySQL</td> <td>MySQL</td> </tr></tbody></table>
+<table summary="Um exemplo do efeito de collation, conforme descrito no texto anterior. A tabela mostra a ordem resultante dos valores para três collations (latin1_swedish_ci, latin1_german1_ci, latin1_german2_ci) ao usar ORDER BY."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th><code>latin1_swedish_ci</code></th> <th><code>latin1_german1_ci</code></th> <th><code>latin1_german2_ci</code></th> </tr></thead><tbody><tr> <th>Muffler</th> <td>Muffler</td> <td>Müller</td> </tr><tr> <th>MX Systems</th> <td>Müller</td> <td>Muffler</td> </tr><tr> <th>Müller</th> <td>MX Systems</td> <td>MX Systems</td> </tr><tr> <th>MySQL</th> <td>MySQL</td> <td>MySQL</td> </tr> </tbody></table>
 
-The character that causes the different sort orders in this example is the U with two dots over it (`ü`), which the Germans call “U-umlaut.”
+O caractere que causa as diferentes ordens de classificação (sort orders) neste exemplo é o U com dois pontos sobre ele (`ü`), que os alemães chamam de "U-umlaut".
 
-* The first column shows the result of the `SELECT` using the Swedish/Finnish collating rule, which says that U-umlaut sorts with Y.
+* A primeira coluna mostra o resultado do `SELECT` usando a regra de collation Sueca/Finlandesa, que diz que o U-umlaut é classificado (sorts) com Y.
 
-* The second column shows the result of the `SELECT` using the German DIN-1 rule, which says that U-umlaut sorts with U.
+* A segunda coluna mostra o resultado do `SELECT` usando a regra Alemã DIN-1, que diz que o U-umlaut é classificado (sorts) com U.
 
-* The third column shows the result of the `SELECT` using the German DIN-2 rule, which says that U-umlaut sorts with UE.
+* A terceira coluna mostra o resultado do `SELECT` usando a regra Alemã DIN-2, que diz que o U-umlaut é classificado (sorts) com UE.
 
-**Example 2: Searching for German Umlauts**
+**Exemplo 2: Pesquisando por Umlauts Alemães**
 
-Suppose that you have three tables that differ only by the character set and collation used:
+Suponha que você tenha três tabelas que diferem apenas pelo conjunto de caracteres e pela collation usados:
 
 ```sql
 mysql> SET NAMES utf8;
@@ -46,7 +46,7 @@ mysql> CREATE TABLE germanutf8 (
        ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ```
 
-Each table contains two records:
+Cada tabela contém dois registros:
 
 ```sql
 mysql> INSERT INTO german1 VALUES ('Bar'), ('Bär');
@@ -54,7 +54,7 @@ mysql> INSERT INTO german2 VALUES ('Bar'), ('Bär');
 mysql> INSERT INTO germanutf8 VALUES ('Bar'), ('Bär');
 ```
 
-Two of the above collations have an `A = Ä` equality, and one has no such equality (`latin1_german2_ci`). For that reason, you'll get these results in comparisons:
+Duas das collations acima têm uma igualdade `A = Ä`, e uma não tem tal igualdade (`latin1_german2_ci`). Por esse motivo, você obterá estes resultados nas comparações:
 
 ```sql
 mysql> SELECT * FROM german1 WHERE c = 'Bär';
@@ -79,4 +79,4 @@ mysql> SELECT * FROM germanutf8 WHERE c = 'Bär';
 +------+
 ```
 
-This is not a bug but rather a consequence of the sorting properties of `latin1_german1_ci` and `utf8_unicode_ci` (the sorting shown is done according to the German DIN 5007 standard).
+Isso não é um bug, mas sim uma consequência das propriedades de ordenação (sorting properties) de `latin1_german1_ci` e `utf8_unicode_ci` (a ordenação mostrada é feita de acordo com o padrão Alemão DIN 5007).

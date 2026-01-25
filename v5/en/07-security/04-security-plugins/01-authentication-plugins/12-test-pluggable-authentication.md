@@ -1,51 +1,55 @@
-#### 6.4.1.12 Test Pluggable Authentication
+#### 6.4.1.12 Teste de Autenticação Pluggable
 
-MySQL includes a test plugin that checks account credentials and logs success or failure to the server error log. This is a loadable plugin (not built in) and must be installed prior to use.
+MySQL inclui um plugin de teste que verifica as credenciais da conta e registra o sucesso ou falha no error log do servidor. Este é um plugin loadable (não embutido) e deve ser instalado antes do uso.
 
-The test plugin source code is separate from the server source, unlike the built-in native plugin, so it can be examined as a relatively simple example demonstrating how to write a loadable authentication plugin.
+O código fonte do plugin de teste é separado do código fonte do servidor, diferentemente do plugin native embutido, para que possa ser examinado como um exemplo relativamente simples que demonstra como escrever um plugin de autenticação loadable.
 
 Note
 
-This plugin is intended for testing and development purposes, and is not for use in production environments or on servers that are exposed to public networks.
+Este plugin destina-se a fins de teste e desenvolvimento, e não deve ser usado em ambientes de produção ou em servidores expostos a redes públicas.
 
-The following table shows the plugin and library file names. The file name suffix might differ on your system. The file must be located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+A tabela a seguir mostra os nomes dos arquivos do plugin e da library. O sufixo do nome do arquivo pode ser diferente no seu sistema. O arquivo deve estar localizado no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir).
 
-**Table 6.19 Plugin and Library Names for Test Authentication**
+**Tabela 6.19 Nomes de Plugin e Library para Autenticação de Teste**
 
-<table summary="Names for the plugins and library file used for test password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>test_plugin_server</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>auth_test_plugin</code></td> </tr><tr> <td>Library file</td> <td><code>auth_test_plugin.so</code></td> </tr></tbody></table>
+| Plugin ou Arquivo | Nome do Plugin ou Arquivo |
+| :--- | :--- |
+| Plugin do lado do servidor | `test_plugin_server` |
+| Plugin do lado do cliente | `auth_test_plugin` |
+| Arquivo Library | `auth_test_plugin.so` |
 
-The following sections provide installation and usage information specific to test pluggable authentication:
+As seções a seguir fornecem informações de instalação e uso específicas para a Autenticação Pluggable de Teste:
 
-* [Installing Test Pluggable Authentication](test-pluggable-authentication.html#test-pluggable-authentication-installation "Installing Test Pluggable Authentication")
-* [Uninstalling Test Pluggable Authentication](test-pluggable-authentication.html#test-pluggable-authentication-uninstallation "Uninstalling Test Pluggable Authentication")
-* [Using Test Pluggable Authentication](test-pluggable-authentication.html#test-pluggable-authentication-usage "Using Test Pluggable Authentication")
+* [Instalando a Autenticação Pluggable de Teste](test-pluggable-authentication.html#test-pluggable-authentication-installation "Installing Test Pluggable Authentication")
+* [Desinstalando a Autenticação Pluggable de Teste](test-pluggable-authentication.html#test-pluggable-authentication-uninstallation "Uninstalling Test Pluggable Authentication")
+* [Usando a Autenticação Pluggable de Teste](test-pluggable-authentication.html#test-pluggable-authentication-usage "Using Test Pluggable Authentication")
 
-For general information about pluggable authentication in MySQL, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
+Para informações gerais sobre Autenticação Pluggable no MySQL, consulte [Seção 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
 
-##### Installing Test Pluggable Authentication
+##### Instalando a Autenticação Pluggable de Teste
 
-This section describes how to install the server-side test authentication plugin. For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Esta seção descreve como instalar o plugin de autenticação de teste do lado do servidor. Para obter informações gerais sobre a instalação de plugins, consulte [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo servidor, o arquivo library do plugin deve estar localizado no diretório de plugins do MySQL (o diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do diretório de plugins definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do servidor.
 
-To load the plugin at server startup, use the [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option to name the library file that contains it. With this plugin-loading method, the option must be given each time the server starts. For example, put these lines in the server `my.cnf` file, adjusting the `.so` suffix for your platform as necessary:
+Para carregar o plugin na inicialização do servidor, use a opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) para nomear o arquivo library que o contém. Com este método de carregamento de plugin, a opção deve ser fornecida sempre que o servidor for iniciado. Por exemplo, coloque estas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` conforme necessário para a sua plataforma:
 
 ```sql
 [mysqld]
 plugin-load-add=auth_test_plugin.so
 ```
 
-After modifying `my.cnf`, restart the server to cause the new settings to take effect.
+Após modificar `my.cnf`, reinicie o servidor para que as novas configurações entrem em vigor.
 
-Alternatively, to load the plugin at runtime, use this statement, adjusting the `.so` suffix for your platform as necessary:
+Alternativamente, para carregar o plugin em tempo de execução, use esta instrução, ajustando o sufixo `.so` conforme necessário para a sua plataforma:
 
 ```sql
 INSTALL PLUGIN test_plugin_server SONAME 'auth_test_plugin.so';
 ```
 
-[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") loads the plugin immediately, and also registers it in the `mysql.plugins` system table to cause the server to load it for each subsequent normal startup without the need for [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
+[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") carrega o plugin imediatamente e também o registra na tabela de sistema `mysql.plugins` para fazer com que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
 
-To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Para verificar a instalação do plugin, examine a tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") do Information Schema ou use a instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte [Seção 5.5.2, “Obtendo Informações de Plugin do Servidor”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -58,25 +62,25 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +--------------------+---------------+
 ```
 
-If the plugin fails to initialize, check the server error log for diagnostic messages.
+Se o plugin falhar ao inicializar, verifique o error log do servidor em busca de mensagens de diagnóstico.
 
-To associate MySQL accounts with the test plugin, see [Using Test Pluggable Authentication](test-pluggable-authentication.html#test-pluggable-authentication-usage "Using Test Pluggable Authentication").
+Para associar contas MySQL ao plugin de teste, consulte [Usando a Autenticação Pluggable de Teste](test-pluggable-authentication.html#test-pluggable-authentication-usage "Using Test Pluggable Authentication").
 
-##### Uninstalling Test Pluggable Authentication
+##### Desinstalando a Autenticação Pluggable de Teste
 
-The method used to uninstall the test authentication plugin depends on how you installed it:
+O método usado para desinstalar o plugin de autenticação de teste depende de como você o instalou:
 
-* If you installed the plugin at server startup using a [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option, restart the server without the option.
+* Se você instalou o plugin na inicialização do servidor usando a opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), reinicie o servidor sem a opção.
 
-* If you installed the plugin at runtime using an [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement, it remains installed across server restarts. To uninstall it, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
+* Se você instalou o plugin em tempo de execução usando uma instrução [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), ele permanece instalado nas reinicializações do servidor. Para desinstalá-lo, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
 
   ```sql
   UNINSTALL PLUGIN test_plugin_server;
   ```
 
-##### Using Test Pluggable Authentication
+##### Usando a Autenticação Pluggable de Teste
 
-To use the test authentication plugin, create an account and name that plugin in the `IDENTIFIED WITH` clause:
+Para usar o plugin de autenticação de teste, crie uma conta e nomeie esse plugin na cláusula `IDENTIFIED WITH`:
 
 ```sql
 CREATE USER 'testuser'@'localhost'
@@ -84,16 +88,16 @@ IDENTIFIED WITH test_plugin_server
 BY 'testpassword';
 ```
 
-Then provide the [`--user`](connection-options.html#option_general_user) and [`--password`](connection-options.html#option_general_password) options for that account when you connect to the server. For example:
+Em seguida, forneça as opções [`--user`](connection-options.html#option_general_user) e [`--password`](connection-options.html#option_general_password) para essa conta ao se conectar ao servidor. Por exemplo:
 
 ```sql
 $> mysql --user=testuser --password
 Enter password: testpassword
 ```
 
-The plugin fetches the password as received from the client and compares it with the value stored in the `authentication_string` column of the account row in the `mysql.user` system table. If the two values match, the plugin returns the `authentication_string` value as the new effective user ID.
+O plugin busca o password conforme recebido do cliente e o compara com o valor armazenado na coluna `authentication_string` da linha da conta na tabela de sistema `mysql.user`. Se os dois valores coincidirem, o plugin retorna o valor de `authentication_string` como o novo ID de usuário efetivo.
 
-You can look in the server error log for a message indicating whether authentication succeeded (notice that the password is reported as the “user”):
+Você pode procurar no error log do servidor por uma mensagem que indique se a autenticação foi bem-sucedida (observe que o password é relatado como o "user"):
 
 ```sql
 [Note] Plugin test_plugin_server reported:

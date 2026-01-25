@@ -1,17 +1,17 @@
-### 4.2.6 Connection Compression Control
+### 4.2.6 Controle de Compressão de Conexão
 
-Connections to the server can use compression on the traffic between client and server to reduce the number of bytes sent over the connection. By default, connections are uncompressed, but can be compressed if the server and the client both support compression.
+Conexões com o *server* podem usar *compression* no tráfego entre o *client* e o *server* para reduzir o número de *bytes* enviados pela conexão. Por padrão, as conexões não são comprimidas, mas podem ser comprimidas se tanto o *server* quanto o *client* suportarem *compression*.
 
-Compressed connections originate on the client side but affect CPU load on both the client and server sides because both sides perform compression and decompression operations. Because enabling compression decreases performance, its benefits occur primarily when there is low network bandwidth, network transfer time dominates the cost of compression and decompression operations, and result sets are large.
+Conexões comprimidas são iniciadas no lado do *client*, mas afetam a carga de *CPU* em ambos os lados (*client* e *server*), pois ambos realizam operações de *compression* e descompressão. Como habilitar a *compression* diminui a *performance*, seus benefícios ocorrem principalmente quando há baixa *network bandwidth*, o tempo de transferência de rede domina o custo das operações de *compression* e descompressão, e os *result sets* são grandes.
 
-Compression control applies to connections to the server by client programs and by servers participating in source/replica replication. Compression control does not apply to Group Replication connections, X Protocol connections, or connections for `FEDERATED` tables.
+O controle de *compression* se aplica a conexões com o *server* por programas *client* e por *servers* que participam da replicação *source/replica*. O controle de *compression* não se aplica a conexões de Group Replication, conexões X *Protocol*, ou conexões para tabelas `FEDERATED`.
 
-These configuration parameters are available for controlling connection compression:
+Estes parâmetros de configuração estão disponíveis para controlar a *compression* da conexão:
 
-* Client programs support a `--compress` command-line option to specify use of compression for the connection to the server.
+*   Programas *client* suportam uma opção de linha de comando `--compress` para especificar o uso de *compression* para a conexão com o *server*.
 
-* For programs that use the MySQL C API, enabling the `MYSQL_OPT_COMPRESS` option for the `mysql_options()` function specifies use of compression for the connection to the server.
+*   Para programas que usam a C *API* do MySQL, habilitar a opção `MYSQL_OPT_COMPRESS` para a função `mysql_options()` especifica o uso de *compression* para a conexão com o *server*.
 
-* For source/replica replication, enabling the `slave_compressed_protocol` system variable specifies use of compression for replica connections to the source.
+*   Para replicação *source/replica*, habilitar a variável de sistema `slave_compressed_protocol` especifica o uso de *compression* para conexões da *replica* com o *source*.
 
-In each case, when use of compression is specified, the connection uses the `zlib` compression algorithm if both sides support it, with fallback to an uncompressed connection otherwise.
+Em cada caso, quando o uso de *compression* é especificado, a conexão utiliza o algoritmo de *compression* `zlib` se ambos os lados o suportarem, com *fallback* para uma conexão não comprimida caso contrário.

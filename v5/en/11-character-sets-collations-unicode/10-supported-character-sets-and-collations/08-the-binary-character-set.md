@@ -1,10 +1,10 @@
-### 10.10.8 The Binary Character Set
+### 10.10.8 O Conjunto de Caracteres Binary
 
-The `binary` character set is the character set for binary strings, which are sequences of bytes. The `binary` character set has one collation, also named `binary`. Comparison and sorting are based on numeric byte values, rather than on numeric character code values (which for multibyte characters differ from numeric byte values). For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see Section 10.8.5, “The binary Collation Compared to _bin Collations”.
+O `binary` character set é o conjunto de caracteres para binary strings, que são sequências de bytes. O `binary` character set possui um único collation, também chamado `binary`. A comparação e a ordenação são baseadas em valores numéricos de byte, em vez de valores numéricos de código de caractere (os quais, para caracteres multibyte, diferem dos valores numéricos de byte). Para informações sobre as diferenças entre o collation `binary` do character set `binary` e os collations `_bin` de character sets não binários, consulte a Seção 10.8.5, “O Collation binary Comparado aos Collations _bin”.
 
-For the `binary` character set, the concepts of lettercase and accent equivalence do not apply:
+Para o `binary` character set, os conceitos de equivalência de maiúsculas/minúsculas (lettercase) e acentuação (accent) não se aplicam:
 
-* For single-byte characters stored as binary strings, character and byte boundaries are the same, so lettercase and accent differences are significant in comparisons. That is, the `binary` collation is case-sensitive and accent-sensitive.
+* Para caracteres de byte único armazenados como binary strings, os limites de caractere e byte são os mesmos, portanto, as diferenças de maiúsculas/minúsculas e acentuação são significativas nas comparações. Ou seja, o collation `binary` é case-sensitive e accent-sensitive.
 
   ```sql
   mysql> SET NAMES 'binary';
@@ -22,9 +22,9 @@ For the `binary` character set, the concepts of lettercase and accent equivalenc
   +---------------+------------+
   ```
 
-* For multibyte characters stored as binary strings, character and byte boundaries differ. Character boundaries are lost, so comparisons that depend on them are not meaningful.
+* Para caracteres multibyte armazenados como binary strings, os limites de caractere e byte diferem. Os limites de caractere são perdidos, de modo que as comparações que dependem deles não são significativas.
 
-To perform lettercase conversion of a binary string, first convert it to a nonbinary string using a character set appropriate for the data stored in the string:
+Para realizar a conversão de maiúsculas/minúsculas (lettercase) de uma binary string, primeiro converta-a para uma string não binária usando um character set apropriado para os dados armazenados na string:
 
 ```sql
 mysql> SET @str = BINARY 'New York';
@@ -36,7 +36,7 @@ mysql> SELECT LOWER(@str), LOWER(CONVERT(@str USING utf8mb4));
 +-------------+------------------------------------+
 ```
 
-To convert a string expression to a binary string, these constructs are equivalent:
+Para converter uma string expression em uma binary string, estas construções são equivalentes:
 
 ```sql
 BINARY expr
@@ -44,16 +44,16 @@ CAST(expr AS BINARY)
 CONVERT(expr USING BINARY)
 ```
 
-If a value is a character string literal, the `_binary` introducer may be used to designate it as a binary string. For example:
+Se um valor for um literal de string de caractere, o introducer `_binary` pode ser usado para designá-lo como uma binary string. Por exemplo:
 
 ```sql
 _binary 'a'
 ```
 
-The `_binary` introducer is permitted for hexadecimal literals and bit-value literals as well, but unnecessary; such literals are binary strings by default.
+O introducer `_binary` também é permitido para literais hexadecimais e literais de valor de bit, mas é desnecessário; tais literais são binary strings por padrão.
 
-For more information about introducers, see Section 10.3.8, “Character Set Introducers”.
+Para mais informações sobre introducers, consulte a Seção 10.3.8, “Character Set Introducers”.
 
-Note
+Nota
 
-Within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+Dentro do cliente **mysql**, binary strings são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O Cliente de Linha de Comando MySQL”.

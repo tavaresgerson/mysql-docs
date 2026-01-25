@@ -1,67 +1,78 @@
-### 2.4.2 Installing MySQL on macOS Using Native Packages
+### 2.4.2 Instalação do MySQL no macOS Usando Pacotes Nativos
 
-The package is located inside a disk image (`.dmg`) file that you first need to mount by double-clicking its icon in the Finder. It should then mount the image and display its contents.
+O pacote está localizado dentro de um arquivo de imagem de disco (`.dmg`) que você precisa montar primeiro, dando um clique duplo em seu ícone no Finder. Ele deve então montar a imagem e exibir seu conteúdo.
 
-Note
+Nota
 
-Before proceeding with the installation, be sure to stop all running MySQL server instances by using either the MySQL Manager Application (on macOS Server), the preference pane, or **mysqladmin shutdown** on the command line.
+Antes de prosseguir com a instalação, certifique-se de interromper todas as instâncias do MySQL Server em execução, usando o MySQL Manager Application (no macOS Server), o painel de preferência, ou o comando **mysqladmin shutdown** na linha de comando.
 
-To install MySQL using the package installer:
+Para instalar o MySQL usando o instalador de pacote:
 
-1. Download the disk image (`.dmg`) file (the community version is available [here](https://dev.mysql.com/downloads/mysql/)) that contains the MySQL package installer. Double-click the file to mount the disk image and see its contents.
+1. Baixe o arquivo de imagem de disco (`.dmg`) (a versão Community está disponível [aqui](https://dev.mysql.com/downloads/mysql/)) que contém o instalador do pacote MySQL. Dê um clique duplo no arquivo para montar a imagem de disco e visualizar seu conteúdo.
 
-   **Figure 2.13 MySQL Package Installer: DMG Contents**
+   **Figura 2.13 Instalador do Pacote MySQL: Conteúdo do DMG**
 
    ![Mounted macOS disk image contents that contains the MySQL Server package file.](images/mac-installer-dmg-contents.png)
 
-2. Double-click the MySQL installer package from the disk. It is named according to the version of MySQL you have downloaded. For example, for MySQL server 5.7.44 it might be named `mysql-5.7.44-macos-10.13-x86_64.pkg`.
+2. Dê um clique duplo no pacote de instalação do MySQL a partir do disco. Ele é nomeado de acordo com a versão do MySQL que você baixou. Por exemplo, para o MySQL Server 5.7.44, ele pode ser nomeado `mysql-5.7.44-macos-10.13-x86_64.pkg`.
 
-3. The initial wizard introduction screen references the MySQL server version to install. Click Continue to begin the installation.
+3. A tela de introdução inicial do assistente faz referência à versão do MySQL Server a ser instalada. Clique em Continuar (Continue) para iniciar a instalação.
 
-   **Figure 2.14 MySQL Package Installer Wizard: Introduction**
+   **Figura 2.14 Assistente de Instalação do Pacote MySQL: Introdução**
 
    ![Shows that the installation is ready to start, the MySQL server version being installed, and includes links to the MySQL manual, mysql.com, and oracle.com.](images/mac-installer-dmg-introduction.png)
 
-4. The MySQL community edition shows a copy of the relevant GNU General Public License. Click Continue and then Agree to continue.
+4. A edição MySQL Community exibe uma cópia da Licença Pública Geral GNU relevante. Clique em Continuar (Continue) e, em seguida, em Concordar (Agree) para prosseguir.
 
-5. From the Installation Type page you can either click Install to execute the installation wizard using all defaults, click Customize to alter which components to install (MySQL server, Preference Pane, Launchd Support -- all enabled by default).
+5. Na página Tipo de Instalação (Installation Type), você pode clicar em Instalar (Install) para executar o assistente de instalação usando todos os padrões, ou clicar em Personalizar (Customize) para alterar quais componentes instalar (MySQL Server, Preference Pane, Launchd Support -- todos habilitados por padrão).
 
-   Note
+   Nota
 
-   Although the Change Install Location option is visible, the installation location cannot be changed.
+   Embora a opção Alterar Local de Instalação (Change Install Location) esteja visível, o local de instalação não pode ser alterado.
 
-   **Figure 2.15 MySQL Package Installer Wizard: Installation Type**
+   **Figura 2.15 Assistente de Instalação do Pacote MySQL: Tipo de Instalação**
 
    ![Content is described in the surrounding text.](images/mac-installer-installation-type.png)
 
-   **Figure 2.16 MySQL Package Installer Wizard: Customize**
+   **Figura 2.16 Assistente de Instalação do Pacote MySQL: Personalizar**
 
    ![Customize shows three package name options: MySQL Server, Preference Pane, and Launchd Support. All three options are checked.](images/mac-installer-installation-customize.png)
 
-6. Click Install to begin the installation process.
+6. Clique em Instalar (Install) para iniciar o processo de instalação.
 
-7. After a successful installation, the installer displays a window with your temporary root password. This cannot be recovered so you must save this password for the initial login to MySQL. For example:
+7. Após uma instalação bem-sucedida, o instalador exibe uma janela com sua senha temporária do root. Ela não pode ser recuperada, portanto, você deve salvar esta senha para o login inicial no MySQL. Por exemplo:
 
-   **Figure 2.17 MySQL Package Installer Wizard: Temporary Root Password**
+   **Figura 2.17 Assistente de Instalação do Pacote MySQL: Senha Temporária do Root**
 
    ![Content is described in the surrounding text.](images/mac-installer-root-password.png)
 
-   Note
+   Nota
 
-   MySQL expires this temporary root password after the initial login and requires you to create a new password.
+   O MySQL expira esta senha temporária do root após o login inicial e exige que você crie uma nova senha.
 
-8. Summary is the final step and references a successful and complete MySQL Server installation. Close the wizard.
+8. O Resumo (Summary) é a etapa final e faz referência a uma instalação bem-sucedida e completa do MySQL Server. Feche o assistente.
 
-   **Figure 2.18 MySQL Package Installer Wizard: Summary**
+   **Figura 2.18 Assistente de Instalação do Pacote MySQL: Resumo**
 
    ![Shows that the installation was a success, and includes links to the MySQL manual, mysql.com, and oracle.com.](images/mac-installer-summary.png)
 
-MySQL server is now installed, but it is not loaded (or started) by default. Use either launchctl from the command line, or start MySQL by clicking "Start" using the MySQL preference pane. For additional information, see Section 2.4.3, “Installing a MySQL Launch Daemon”, and Section 2.4.4, “Installing and Using the MySQL Preference Pane”. Use the MySQL Preference Pane or launchd to configure MySQL to automatically start at bootup.
+O MySQL Server está instalado, mas não é carregado (ou iniciado) por padrão. Use `launchctl` a partir da linha de comando, ou inicie o MySQL clicando em "Start" (Iniciar) usando o MySQL Preference Pane. Para obter informações adicionais, consulte a Seção 2.4.3, “Instalação de um MySQL Launch Daemon”, e a Seção 2.4.4, “Instalação e Uso do MySQL Preference Pane”. Use o MySQL Preference Pane ou `launchd` para configurar o MySQL para iniciar automaticamente na inicialização.
 
-When installing using the package installer, the files are installed into a directory within `/usr/local` matching the name of the installation version and platform. For example, the installer file `mysql-5.7.44-macos10.13-x86_64.dmg` installs MySQL into `/usr/local/mysql-5.7.44-macos10.13-x86_64/`. The following table shows the layout of the installation directory.
+Ao instalar usando o instalador de pacote, os arquivos são instalados em um diretório dentro de `/usr/local` que corresponde ao nome da versão e da plataforma de instalação. Por exemplo, o arquivo instalador `mysql-5.7.44-macos10.13-x86_64.dmg` instala o MySQL em `/usr/local/mysql-5.7.44-macos10.13-x86_64/`. A tabela a seguir mostra o layout do diretório de instalação.
 
-**Table 2.7 MySQL Installation Layout on macOS**
+**Tabela 2.7 Layout da Instalação do MySQL no macOS**
 
-<table><col style="width: 45%"/><col style="width: 55%"/><thead><tr> <th>Directory</th> <th>Contents of Directory</th> </tr></thead><tbody><tr> <td><code>bin</code></td> <td><span><strong>mysqld</strong></span> server, client and utility programs</td> </tr><tr> <td><code>data</code></td> <td>Log files, databases</td> </tr><tr> <td><code>docs</code></td> <td>Helper documents, like the Release Notes and build information</td> </tr><tr> <td><code>include</code></td> <td>Include (header) files</td> </tr><tr> <td><code>lib</code></td> <td>Libraries</td> </tr><tr> <td><code>man</code></td> <td>Unix manual pages</td> </tr><tr> <td><code>mysql-test</code></td> <td>MySQL test suite</td> </tr><tr> <td><code>share</code></td> <td>Miscellaneous support files, including error messages, sample configuration files, SQL for database installation</td> </tr><tr> <td><code>support-files</code></td> <td>Scripts and sample configuration files</td> </tr><tr> <td><code>/tmp/mysql.sock</code></td> <td>Location of the MySQL Unix socket</td> </tr></tbody></table>
+| Diretório | Conteúdo do Diretório |
+| :--- | :--- |
+| `bin` | Server **mysqld**, Client e programas Utility |
+| `data` | Log files, Databases |
+| `docs` | Documentos auxiliares, como as Notas de Release e informações de build |
+| `include` | Arquivos Include (header) |
+| `lib` | Libraries |
+| `man` | Páginas de manual Unix |
+| `mysql-test` | Suite de testes MySQL |
+| `share` | Arquivos de suporte diversos, incluindo mensagens de erro, arquivos de configuração de amostra, SQL para instalação de Database |
+| `support-files` | Scripts e arquivos de configuração de amostra |
+| `/tmp/mysql.sock` | Localização do Unix socket do MySQL |
 
-During the package installer process, a symbolic link from `/usr/local/mysql` to the version/platform specific directory created during installation is created automatically.
+Durante o processo do instalador de pacote, um link simbólico de `/usr/local/mysql` para o diretório específico de versão/plataforma criado durante a instalação é criado automaticamente.

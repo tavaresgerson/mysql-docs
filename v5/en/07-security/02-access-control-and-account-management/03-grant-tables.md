@@ -1,90 +1,90 @@
-### 6.2.3 Grant Tables
+### 6.2.3 Tabelas de Concessão (Grant Tables)
 
-The `mysql` system database includes several grant tables that contain information about user accounts and the privileges held by them. This section describes those tables. For information about other tables in the system database, see [Section 5.3, “The mysql System Database”](system-schema.html "5.3 The mysql System Database").
+O Database de sistema `mysql` inclui diversas Grant Tables que contêm informações sobre contas de usuário e os privilégios concedidos a elas. Esta seção descreve essas tabelas. Para obter informações sobre outras tabelas no Database de sistema, consulte [Seção 5.3, “O Database de Sistema mysql”](system-schema.html "5.3 The mysql System Database").
 
-The discussion here describes the underlying structure of the grant tables and how the server uses their contents when interacting with clients. However, normally you do not modify the grant tables directly. Modifications occur indirectly when you use account-management statements such as [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), and [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") to set up accounts and control the privileges available to each one. See [Section 13.7.1, “Account Management Statements”](account-management-statements.html "13.7.1 Account Management Statements"). When you use such statements to perform account manipulations, the server modifies the grant tables on your behalf.
+A discussão aqui descreve a estrutura subjacente das Grant Tables e como o servidor usa seu conteúdo ao interagir com clientes. No entanto, normalmente você não modifica as Grant Tables diretamente. As modificações ocorrem indiretamente quando você usa instruções de gerenciamento de conta, como [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement") e [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement"), para configurar contas e controlar os privilégios disponíveis para cada uma. Consulte [Seção 13.7.1, “Instruções de Gerenciamento de Conta”](account-management-statements.html "13.7.1 Account Management Statements"). Ao usar tais instruções para realizar manipulações de conta, o servidor modifica as Grant Tables em seu nome.
 
 Note
 
-Direct modification of grant tables using statements such as [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), or [`DELETE`](delete.html "13.2.2 DELETE Statement") is discouraged and done at your own risk. The server is free to ignore rows that become malformed as a result of such modifications.
+A modificação direta das Grant Tables usando instruções como [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement") ou [`DELETE`](delete.html "13.2.2 DELETE Statement") é desencorajada e feita por sua conta e risco. O servidor pode ignorar linhas que se tornem malformadas como resultado de tais modificações.
 
-As of MySQL 5.7.18, for any operation that modifies a grant table, the server checks whether the table has the expected structure and produces an error if not. To update the tables to the expected structure, perform the MySQL upgrade procedure. See [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
+A partir do MySQL 5.7.18, para qualquer operação que modifique uma Grant Table, o servidor verifica se a tabela possui a estrutura esperada e produz um erro caso contrário. Para atualizar as tabelas para a estrutura esperada, execute o procedimento de upgrade do MySQL. Consulte [Seção 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
 
-* [Grant Table Overview](grant-tables.html#grant-tables-overview "Grant Table Overview")
-* [The user and db Grant Tables](grant-tables.html#grant-tables-user-db "The user and db Grant Tables")
-* [The tables_priv and columns_priv Grant Tables](grant-tables.html#grant-tables-tables-priv-columns-priv "The tables_priv and columns_priv Grant Tables")
-* [The procs_priv Grant Table](grant-tables.html#grant-tables-procs-priv "The procs_priv Grant Table")
-* [The proxies_priv Grant Table](grant-tables.html#grant-tables-proxies-priv "The proxies_priv Grant Table")
-* [Grant Table Scope Column Properties](grant-tables.html#grant-tables-scope-column-properties "Grant Table Scope Column Properties")
-* [Grant Table Privilege Column Properties](grant-tables.html#grant-tables-privilege-column-properties "Grant Table Privilege Column Properties")
+* [Visão Geral das Grant Tables](grant-tables.html#grant-tables-overview "Grant Table Overview")
+* [As Grant Tables user e db](grant-tables.html#grant-tables-user-db "The user and db Grant Tables")
+* [As Grant Tables tables_priv e columns_priv](grant-tables.html#grant-tables-tables-priv-columns-priv "The tables_priv and columns_priv Grant Tables")
+* [A Grant Table procs_priv](grant-tables.html#grant-tables-procs-priv "The procs_priv Grant Table")
+* [A Grant Table proxies_priv](grant-tables.html#grant-tables-proxies-priv "The proxies_priv Grant Table")
+* [Propriedades da Coluna de Escopo das Grant Tables](grant-tables.html#grant-tables-scope-column-properties "Grant Table Scope Column Properties")
+* [Propriedades da Coluna de Privilégio das Grant Tables](grant-tables.html#grant-tables-privilege-column-properties "Grant Table Privilege Column Properties")
 
-#### Grant Table Overview
+#### Visão Geral das Grant Tables
 
-These `mysql` database tables contain grant information:
+Estas tabelas do Database `mysql` contêm informações de concessão:
 
-* [`user`](grant-tables.html#grant-tables-user-db "The user and db Grant Tables"): User accounts, global privileges, and other nonprivilege columns.
+* [`user`](grant-tables.html#grant-tables-user-db "The user and db Grant Tables"): Contas de usuário, privilégios globais e outras colunas não relacionadas a privilégios.
 
-* [`db`](grant-tables.html#grant-tables-user-db "The user and db Grant Tables"): Database-level privileges.
+* [`db`](grant-tables.html#grant-tables-user-db "The user and db Grant Tables"): Privilégios no nível do Database.
 
-* [`tables_priv`](grant-tables.html#grant-tables-tables-priv-columns-priv "The tables_priv and columns_priv Grant Tables"): Table-level privileges.
+* [`tables_priv`](grant-tables.html#grant-tables-tables-priv-columns-priv "The tables_priv and columns_priv Grant Tables"): Privilégios no nível da Tabela.
 
-* [`columns_priv`](grant-tables.html#grant-tables-tables-priv-columns-priv "The tables_priv and columns_priv Grant Tables"): Column-level privileges.
+* [`columns_priv`](grant-tables.html#grant-tables-tables-priv-columns-priv "The tables_priv and columns_priv Grant Tables"): Privilégios no nível da Coluna.
 
-* [`procs_priv`](grant-tables.html#grant-tables-procs-priv "The procs_priv Grant Table"): Stored procedure and function privileges.
+* [`procs_priv`](grant-tables.html#grant-tables-procs-priv "The procs_priv Grant Table"): Privilégios de stored procedure e function.
 
-* [`proxies_priv`](grant-tables.html#grant-tables-proxies-priv "The proxies_priv Grant Table"): Proxy-user privileges.
+* [`proxies_priv`](grant-tables.html#grant-tables-proxies-priv "The proxies_priv Grant Table"): Privilégios de usuário proxy.
 
-Each grant table contains scope columns and privilege columns:
+Cada Grant Table contém colunas de escopo e colunas de privilégio:
 
-* Scope columns determine the scope of each row in the tables; that is, the context in which the row applies. For example, a `user` table row with `Host` and `User` values of `'h1.example.net'` and `'bob'` applies to authenticating connections made to the server from the host `h1.example.net` by a client that specifies a user name of `bob`. Similarly, a `db` table row with `Host`, `User`, and `Db` column values of `'h1.example.net'`, `'bob'` and `'reports'` applies when `bob` connects from the host `h1.example.net` to access the `reports` database. The `tables_priv` and `columns_priv` tables contain scope columns indicating tables or table/column combinations to which each row applies. The `procs_priv` scope columns indicate the stored routine to which each row applies.
+* As colunas de escopo (Scope columns) determinam o escopo de cada linha nas tabelas; ou seja, o contexto em que a linha se aplica. Por exemplo, uma linha da tabela `user` com valores `Host` e `User` de `'h1.example.net'` e `'bob'` aplica-se a conexões de autenticação feitas ao servidor a partir do host `h1.example.net` por um cliente que especifica um nome de usuário de `bob`. De forma semelhante, uma linha da tabela `db` com valores de coluna `Host`, `User` e `Db` de `'h1.example.net'`, `'bob'` e `'reports'` aplica-se quando `bob` se conecta a partir do host `h1.example.net` para acessar o Database `reports`. As tabelas `tables_priv` e `columns_priv` contêm colunas de escopo que indicam as tabelas ou combinações de tabela/coluna às quais cada linha se aplica. As colunas de escopo de `procs_priv` indicam a stored routine à qual cada linha se aplica.
 
-* Privilege columns indicate which privileges a table row grants; that is, which operations it permits to be performed. The server combines the information in the various grant tables to form a complete description of a user's privileges. [Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification"), describes the rules for this.
+* As colunas de privilégio (Privilege columns) indicam quais privilégios uma linha da tabela concede; ou seja, quais operações ela permite que sejam executadas. O servidor combina as informações nas várias Grant Tables para formar uma descrição completa dos privilégios de um usuário. [Seção 6.2.6, “Controle de Acesso, Estágio 2: Verificação de Request”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification"), descreve as regras para isso.
 
-In addition, a grant table may contain columns used for purposes other than scope or privilege assessment.
+Além disso, uma Grant Table pode conter colunas usadas para outros fins além da avaliação de escopo ou privilégio.
 
-The server uses the grant tables in the following manner:
+O servidor usa as Grant Tables da seguinte maneira:
 
-* The `user` table scope columns determine whether to reject or permit incoming connections. For permitted connections, any privileges granted in the `user` table indicate the user's global privileges. Any privileges granted in this table apply to *all* databases on the server.
+* As colunas de escopo da tabela `user` determinam se as conexões de entrada devem ser rejeitadas ou permitidas. Para conexões permitidas, quaisquer privilégios concedidos na tabela `user` indicam os privilégios globais do usuário. Quaisquer privilégios concedidos nesta tabela se aplicam a *todos* os Databases no servidor.
 
-  Caution
+  Cuidado
 
-  Because a global privilege is considered a privilege for all databases, *any* global privilege enables a user to see all database names with [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") or by examining the `INFORMATION_SCHEMA` [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table.
+  Como um privilégio global é considerado um privilégio para todos os Databases, *qualquer* privilégio global permite que um usuário veja todos os nomes de Database com [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") ou examinando a tabela `SCHEMATA` do `INFORMATION_SCHEMA`.
 
-* The `db` table scope columns determine which users can access which databases from which hosts. The privilege columns determine the permitted operations. A privilege granted at the database level applies to the database and to all objects in the database, such as tables and stored programs.
+* As colunas de escopo da tabela `db` determinam quais usuários podem acessar quais Databases a partir de quais hosts. As colunas de privilégio determinam as operações permitidas. Um privilégio concedido no nível do Database se aplica ao Database e a todos os objetos no Database, como tabelas e stored programs.
 
-* The `tables_priv` and `columns_priv` tables are similar to the `db` table, but are more fine-grained: They apply at the table and column levels rather than at the database level. A privilege granted at the table level applies to the table and to all its columns. A privilege granted at the column level applies only to a specific column.
+* As tabelas `tables_priv` e `columns_priv` são semelhantes à tabela `db`, mas são mais refinadas: Elas se aplicam nos níveis de tabela e coluna, em vez de no nível do Database. Um privilégio concedido no nível da tabela se aplica à tabela e a todas as suas colunas. Um privilégio concedido no nível da coluna se aplica apenas a uma coluna específica.
 
-* The `procs_priv` table applies to stored routines (stored procedures and functions). A privilege granted at the routine level applies only to a single procedure or function.
+* A tabela `procs_priv` aplica-se a stored routines (stored procedures e functions). Um privilégio concedido no nível da rotina aplica-se apenas a uma única procedure ou function.
 
-* The `proxies_priv` table indicates which users can act as proxies for other users and whether a user can grant the [`PROXY`](privileges-provided.html#priv_proxy) privilege to other users.
+* A tabela `proxies_priv` indica quais usuários podem atuar como proxies para outros usuários e se um usuário pode conceder o privilégio [`PROXY`](privileges-provided.html#priv_proxy) a outros usuários.
 
-The server reads the contents of the grant tables into memory when it starts. You can tell it to reload the tables by issuing a [`FLUSH PRIVILEGES`](flush.html#flush-privileges) statement or executing a [**mysqladmin flush-privileges**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") or [**mysqladmin reload**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command. Changes to the grant tables take effect as indicated in [Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect").
+O servidor lê o conteúdo das Grant Tables na memória quando é iniciado. Você pode instruí-lo a recarregar as tabelas emitindo uma instrução [`FLUSH PRIVILEGES`](flush.html#flush-privileges) ou executando um comando [**mysqladmin flush-privileges**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") ou [**mysqladmin reload**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"). As alterações nas Grant Tables entram em vigor conforme indicado em [Seção 6.2.9, “Quando as Alterações de Privilégio Entram em Vigor”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect").
 
-When you modify an account, it is a good idea to verify that your changes have the intended effect. To check the privileges for a given account, use the [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") statement. For example, to determine the privileges that are granted to an account with user name and host name values of `bob` and `pc84.example.com`, use this statement:
+Ao modificar uma conta, é recomendável verificar se suas alterações têm o efeito pretendido. Para verificar os privilégios de uma determinada conta, use a instrução [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement"). Por exemplo, para determinar os privilégios concedidos a uma conta com nome de usuário e host de `bob` e `pc84.example.com`, use esta instrução:
 
 ```sql
 SHOW GRANTS FOR 'bob'@'pc84.example.com';
 ```
 
-To display nonprivilege properties of an account, use [`SHOW CREATE USER`](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement"):
+Para exibir propriedades não relacionadas a privilégios de uma conta, use [`SHOW CREATE USER`](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement"):
 
 ```sql
 SHOW CREATE USER 'bob'@'pc84.example.com';
 ```
 
-#### The user and db Grant Tables
+#### As Grant Tables user e db
 
-The server uses the `user` and `db` tables in the `mysql` database at both the first and second stages of access control (see [Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")). The columns in the `user` and `db` tables are shown here.
+O servidor usa as tabelas `user` e `db` no Database `mysql` tanto no primeiro quanto no segundo estágio do controle de acesso (consulte [Seção 6.2, “Controle de Acesso e Gerenciamento de Conta”](access-control.html "6.2 Access Control and Account Management")). As colunas nas tabelas `user` e `db` são mostradas aqui.
 
-**Table 6.3 user and db Table Columns**
+**Tabela 6.3 Colunas das Tabelas user e db**
 
-<table><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Table Name</th> <th><code>user</code></th> <th><code>db</code></th> </tr></thead><tbody><tr> <th><span><strong>Scope columns</strong></span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td></td> <td><code>User</code></td> </tr><tr> <th><span><strong>Privilege columns</strong></span></th> <td><code>Select_priv</code></td> <td><code>Select_priv</code></td> </tr><tr> <th></th> <td><code>Insert_priv</code></td> <td><code>Insert_priv</code></td> </tr><tr> <th></th> <td><code>Update_priv</code></td> <td><code>Update_priv</code></td> </tr><tr> <th></th> <td><code>Delete_priv</code></td> <td><code>Delete_priv</code></td> </tr><tr> <th></th> <td><code>Index_priv</code></td> <td><code>Index_priv</code></td> </tr><tr> <th></th> <td><code>Alter_priv</code></td> <td><code>Alter_priv</code></td> </tr><tr> <th></th> <td><code>Create_priv</code></td> <td><code>Create_priv</code></td> </tr><tr> <th></th> <td><code>Drop_priv</code></td> <td><code>Drop_priv</code></td> </tr><tr> <th></th> <td><code>Grant_priv</code></td> <td><code>Grant_priv</code></td> </tr><tr> <th></th> <td><code>Create_view_priv</code></td> <td><code>Create_view_priv</code></td> </tr><tr> <th></th> <td><code>Show_view_priv</code></td> <td><code>Show_view_priv</code></td> </tr><tr> <th></th> <td><code>Create_routine_priv</code></td> <td><code>Create_routine_priv</code></td> </tr><tr> <th></th> <td><code>Alter_routine_priv</code></td> <td><code>Alter_routine_priv</code></td> </tr><tr> <th></th> <td><code>Execute_priv</code></td> <td><code>Execute_priv</code></td> </tr><tr> <th></th> <td><code>Trigger_priv</code></td> <td><code>Trigger_priv</code></td> </tr><tr> <th></th> <td><code>Event_priv</code></td> <td><code>Event_priv</code></td> </tr><tr> <th></th> <td><code>Create_tmp_table_priv</code></td> <td><code>Create_tmp_table_priv</code></td> </tr><tr> <th></th> <td><code>Lock_tables_priv</code></td> <td><code>Lock_tables_priv</code></td> </tr><tr> <th></th> <td><code>References_priv</code></td> <td><code>References_priv</code></td> </tr><tr> <th></th> <td><code>Reload_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Shutdown_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Process_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>File_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Show_db_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Super_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Repl_slave_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Repl_client_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Create_user_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Create_tablespace_priv</code></td> <td></td> </tr><tr> <th><span><strong>Security columns</strong></span></th> <td><code>ssl_type</code></td> <td></td> </tr><tr> <th></th> <td><code>ssl_cipher</code></td> <td></td> </tr><tr> <th></th> <td><code>x509_issuer</code></td> <td></td> </tr><tr> <th></th> <td><code>x509_subject</code></td> <td></td> </tr><tr> <th></th> <td><code>plugin</code></td> <td></td> </tr><tr> <th></th> <td><code>authentication_string</code></td> <td></td> </tr><tr> <th></th> <td><code>password_expired</code></td> <td></td> </tr><tr> <th></th> <td><code>password_last_changed</code></td> <td></td> </tr><tr> <th></th> <td><code>password_lifetime</code></td> <td></td> </tr><tr> <th></th> <td><code>account_locked</code></td> <td></td> </tr><tr> <th><span><strong>Resource control columns</strong></span></th> <td><code>max_questions</code></td> <td></td> </tr><tr> <th></th> <td><code>max_updates</code></td> <td></td> </tr><tr> <th></th> <td><code>max_connections</code></td> <td></td> </tr><tr> <th></th> <td><code>max_user_connections</code></td> <td></td> </tr></tbody></table>
+<table><thead><tr> <th>Nome da Tabela</th> <th><code>user</code></th> <th><code>db</code></th> </tr></thead><tbody><tr> <th><span><strong>Colunas de Escopo</strong></span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td></td> <td><code>User</code></td> </tr><tr> <th><span><strong>Colunas de Privilégio</strong></span></th> <td><code>Select_priv</code></td> <td><code>Select_priv</code></td> </tr><tr> <th></th> <td><code>Insert_priv</code></td> <td><code>Insert_priv</code></td> </tr><tr> <th></th> <td><code>Update_priv</code></td> <td><code>Update_priv</code></td> </tr><tr> <th></th> <td><code>Delete_priv</code></td> <td><code>Delete_priv</code></td> </tr><tr> <th></th> <td><code>Index_priv</code></td> <td><code>Index_priv</code></td> </tr><tr> <th></th> <td><code>Alter_priv</code></td> <td><code>Alter_priv</code></td> </tr><tr> <th></th> <td><code>Create_priv</code></td> <td><code>Create_priv</code></td> </tr><tr> <th></th> <td><code>Drop_priv</code></td> <td><code>Drop_priv</code></td> </tr><tr> <th></th> <td><code>Grant_priv</code></td> <td><code>Grant_priv</code></td> </tr><tr> <th></th> <td><code>Create_view_priv</code></td> <td><code>Create_view_priv</code></td> </tr><tr> <th></th> <td><code>Show_view_priv</code></td> <td><code>Show_view_priv</code></td> </tr><tr> <th></th> <td><code>Create_routine_priv</code></td> <td><code>Create_routine_priv</code></td> </tr><tr> <th></th> <td><code>Alter_routine_priv</code></td> <td><code>Alter_routine_priv</code></td> </tr><tr> <th></th> <td><code>Execute_priv</code></td> <td><code>Execute_priv</code></td> </tr><tr> <th></th> <td><code>Trigger_priv</code></td> <td><code>Trigger_priv</code></td> </tr><tr> <th></th> <td><code>Event_priv</code></td> <td><code>Event_priv</code></td> </tr><tr> <th></th> <td><code>Create_tmp_table_priv</code></td> <td><code>Create_tmp_table_priv</code></td> </tr><tr> <th></th> <td><code>Lock_tables_priv</code></td> <td><code>Lock_tables_priv</code></td> </tr><tr> <th></th> <td><code>References_priv</code></td> <td><code>References_priv</code></td> </tr><tr> <th></th> <td><code>Reload_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Shutdown_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Process_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>File_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Show_db_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Super_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Repl_slave_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Repl_client_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Create_user_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Create_tablespace_priv</code></td> <td></td> </tr><tr> <th><span><strong>Colunas de Segurança</strong></span></th> <td><code>ssl_type</code></td> <td></td> </tr><tr> <th></th> <td><code>ssl_cipher</code></td> <td></td> </tr><tr> <th></th> <td><code>x509_issuer</code></td> <td></td> </tr><tr> <th></th> <td><code>x509_subject</code></td> <td></td> </tr><tr> <th></th> <td><code>plugin</code></td> <td></td> </tr><tr> <th></th> <td><code>authentication_string</code></td> <td></td> </tr><tr> <th></th> <td><code>password_expired</code></td> <td></td> </tr><tr> <th></th> <td><code>password_last_changed</code></td> <td></td> </tr><tr> <th></th> <td><code>password_lifetime</code></td> <td></td> </tr><tr> <th></th> <td><code>account_locked</code></td> <td></td> </tr><tr> <th><span><strong>Colunas de Controle de Recursos</strong></span></th> <td><code>max_questions</code></td> <td></td> </tr><tr> <th></th> <td><code>max_updates</code></td> <td></td> </tr><tr> <th></th> <td><code>max_connections</code></td> <td></td> </tr><tr> <th></th> <td><code>max_user_connections</code></td> <td></td> </tr></tbody></table>
 
-The `user` table `plugin` and `authentication_string` columns store authentication plugin and credential information.
+As colunas `plugin` e `authentication_string` da tabela `user` armazenam informações de plugin de autenticação e credenciais.
 
-The server uses the plugin named in the `plugin` column of an account row to authenticate connection attempts for the account.
+O servidor usa o plugin nomeado na coluna `plugin` de uma linha de conta para autenticar tentativas de conexão para essa conta.
 
-The `plugin` column must be nonempty. At startup, and at runtime when [`FLUSH PRIVILEGES`](flush.html#flush-privileges) is executed, the server checks `user` table rows. For any row with an empty `plugin` column, the server writes a warning to the error log of this form:
+A coluna `plugin` não deve estar vazia. Na inicialização e em tempo de execução quando [`FLUSH PRIVILEGES`](flush.html#flush-privileges) é executado, o servidor verifica as linhas da tabela `user`. Para qualquer linha com uma coluna `plugin` vazia, o servidor escreve um aviso no log de erros neste formato:
 
 ```sql
 [Warning] User entry 'user_name'@'host_name' has an empty plugin
@@ -92,80 +92,80 @@ value. The user will be ignored and no one can login with this user
 anymore.
 ```
 
-To address this problem, see [Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”](account-upgrades.html "6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin").
+Para resolver este problema, consulte [Seção 6.4.1.3, “Migrando de Hashing de Senha Pré-4.1 e o Plugin mysql_old_password”](account-upgrades.html "6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin").
 
-The `password_expired` column permits DBAs to expire account passwords and require users to reset their password. The default `password_expired` value is `'N'`, but can be set to `'Y'` with the [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement. After an account's password has been expired, all operations performed by the account in subsequent connections to the server result in an error until the user issues an [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement to establish a new account password.
+A coluna `password_expired` permite que DBAs expirem senhas de contas e exijam que os usuários redefinam sua senha. O valor padrão de `password_expired` é `'N'`, mas pode ser definido como `'Y'` com a instrução [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"). Depois que a senha de uma conta expira, todas as operações realizadas pela conta em conexões subsequentes ao servidor resultam em erro até que o usuário emita uma instrução [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") para estabelecer uma nova senha para a conta.
 
 Note
 
-Although it is possible to “reset” an expired password by setting it to its current value, it is preferable, as a matter of good policy, to choose a different password.
+Embora seja possível "redefinir" uma senha expirada definindo-a com seu valor atual, é preferível, como uma boa política, escolher uma senha diferente.
 
-`password_last_changed` is a `TIMESTAMP` column indicating when the password was last changed. The value is non-`NULL` only for accounts that use MySQL built-in authentication methods (accounts that use an authentication plugin of `mysql_native_password` or `sha256_password`). The value is `NULL` for other accounts, such as those authenticated using an external authentication system.
+`password_last_changed` é uma coluna `TIMESTAMP` indicando quando a senha foi alterada pela última vez. O valor não é `NULL` apenas para contas que usam métodos de autenticação internos do MySQL (contas que usam um plugin de autenticação de `mysql_native_password` ou `sha256_password`). O valor é `NULL` para outras contas, como aquelas autenticadas usando um sistema de autenticação externo.
 
-`password_last_changed` is updated by the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), and [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") statements, and by [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements that create an account or change an account password.
+`password_last_changed` é atualizada pelas instruções [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") e [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement"), e por instruções [`GRANT`](grant.html "13.7.1.4 GRANT Statement") que criam uma conta ou alteram a senha de uma conta.
 
-`password_lifetime` indicates the account password lifetime, in days. If the password is past its lifetime (assessed using the `password_last_changed` column), the server considers the password expired when clients connect using the account. A value of *`N`* greater than zero means that the password must be changed every *`N`* days. A value of 0 disables automatic password expiration. If the value is `NULL` (the default), the global expiration policy applies, as defined by the [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime) system variable.
+`password_lifetime` indica o tempo de vida da senha da conta, em dias. Se a senha ultrapassou seu tempo de vida (avaliado usando a coluna `password_last_changed`), o servidor considera a senha expirada quando os clientes se conectam usando a conta. Um valor de *`N`* maior que zero significa que a senha deve ser alterada a cada *`N`* dias. Um valor de 0 desabilita a expiração automática de senhas. Se o valor for `NULL` (o padrão), a política de expiração global se aplica, conforme definido pela variável de sistema [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime).
 
-`account_locked` indicates whether the account is locked (see [Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking")).
+`account_locked` indica se a conta está bloqueada (consulte [Seção 6.2.15, “Bloqueio de Conta”](account-locking.html "6.2.15 Account Locking")).
 
-#### The tables_priv and columns_priv Grant Tables
+#### As Grant Tables tables_priv e columns_priv
 
-During the second stage of access control, the server performs request verification to ensure that each client has sufficient privileges for each request that it issues. In addition to the `user` and `db` grant tables, the server may also consult the `tables_priv` and `columns_priv` tables for requests that involve tables. The latter tables provide finer privilege control at the table and column levels. They have the columns shown in the following table.
+Durante o segundo estágio do controle de acesso, o servidor executa a verificação de request para garantir que cada cliente tenha privilégios suficientes para cada request que emite. Além das Grant Tables `user` e `db`, o servidor também pode consultar as tabelas `tables_priv` e `columns_priv` para requests que envolvem tabelas. Estas últimas tabelas fornecem um controle de privilégio mais refinado nos níveis de tabela e coluna. Elas possuem as colunas mostradas na tabela a seguir.
 
-**Table 6.4 tables_priv and columns_priv Table Columns**
+**Tabela 6.4 Colunas das Tabelas tables_priv e columns_priv**
 
-<table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Table Name</th> <th><code>tables_priv</code></th> <th><code>columns_priv</code></th> </tr></thead><tbody><tr> <th><span><strong>Scope columns</strong></span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>Db</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>User</code></td> </tr><tr> <th></th> <td><code>Table_name</code></td> <td><code>Table_name</code></td> </tr><tr> <th></th> <td></td> <td><code>Column_name</code></td> </tr><tr> <th><span><strong>Privilege columns</strong></span></th> <td><code>Table_priv</code></td> <td><code>Column_priv</code></td> </tr><tr> <th></th> <td><code>Column_priv</code></td> <td></td> </tr><tr> <th><span><strong>Other columns</strong></span></th> <td><code>Timestamp</code></td> <td><code>Timestamp</code></td> </tr><tr> <th></th> <td><code>Grantor</code></td> <td></td> </tr></tbody></table>
+<table><thead><tr> <th>Nome da Tabela</th> <th><code>tables_priv</code></th> <th><code>columns_priv</code></th> </tr></thead><tbody><tr> <th><span><strong>Colunas de Escopo</strong></span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>Db</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>User</code></td> </tr><tr> <th></th> <td><code>Table_name</code></td> <td><code>Table_name</code></td> </tr><tr> <th></th> <td></td> <td><code>Column_name</code></td> </tr><tr> <th><span><strong>Colunas de Privilégio</strong></span></th> <td><code>Table_priv</code></td> <td><code>Column_priv</code></td> </tr><tr> <th></th> <td><code>Column_priv</code></td> <td></td> </tr><tr> <th><span><strong>Outras Colunas</strong></span></th> <td><code>Timestamp</code></td> <td><code>Timestamp</code></td> </tr><tr> <th></th> <td><code>Grantor</code></td> <td></td> </tr></tbody></table>
 
-The `Timestamp` and `Grantor` columns are set to the current timestamp and the [`CURRENT_USER`](information-functions.html#function_current-user) value, respectively, but are otherwise unused.
+As colunas `Timestamp` e `Grantor` são definidas com o timestamp atual e o valor de [`CURRENT_USER`](information-functions.html#function_current-user), respectivamente, mas são inutilizadas de outra forma.
 
-#### The procs_priv Grant Table
+#### A Grant Table procs_priv
 
-For verification of requests that involve stored routines, the server may consult the `procs_priv` table, which has the columns shown in the following table.
+Para verificação de requests que envolvem stored routines, o servidor pode consultar a tabela `procs_priv`, que possui as colunas mostradas na tabela a seguir.
 
-**Table 6.5 procs_priv Table Columns**
+**Tabela 6.5 Colunas da Tabela procs_priv**
 
-<table><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Table Name</th> <th><code>procs_priv</code></th> </tr></thead><tbody><tr> <td><span><strong>Scope columns</strong></span></td> <td><code>Host</code></td> </tr><tr> <td></td> <td><code>Db</code></td> </tr><tr> <td></td> <td><code>User</code></td> </tr><tr> <td></td> <td><code>Routine_name</code></td> </tr><tr> <td></td> <td><code>Routine_type</code></td> </tr><tr> <td><span><strong>Privilege columns</strong></span></td> <td><code>Proc_priv</code></td> </tr><tr> <td><span><strong>Other columns</strong></span></td> <td><code>Timestamp</code></td> </tr><tr> <td></td> <td><code>Grantor</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Nome da Tabela</th> <th><code>procs_priv</code></th> </tr></thead><tbody><tr> <td><span><strong>Colunas de Escopo</strong></span></td> <td><code>Host</code></td> </tr><tr> <td></td> <td><code>Db</code></td> </tr><tr> <td></td> <td><code>User</code></td> </tr><tr> <td></td> <td><code>Routine_name</code></td> </tr><tr> <td></td> <td><code>Routine_type</code></td> </tr><tr> <td><span><strong>Colunas de Privilégio</strong></span></td> <td><code>Proc_priv</code></td> </tr><tr> <td><span><strong>Outras Colunas</strong></span></td> <td><code>Timestamp</code></td> </tr><tr> <td></td> <td><code>Grantor</code></td> </tr></tbody></table>
 
-The `Routine_type` column is an [`ENUM`](enum.html "11.3.5 The ENUM Type") column with values of `'FUNCTION'` or `'PROCEDURE'` to indicate the type of routine the row refers to. This column enables privileges to be granted separately for a function and a procedure with the same name.
+A coluna `Routine_type` é uma coluna [`ENUM`](enum.html "11.3.5 The ENUM Type") com valores `'FUNCTION'` ou `'PROCEDURE'` para indicar o tipo de rotina a que a linha se refere. Esta coluna permite que os privilégios sejam concedidos separadamente para uma function e uma procedure com o mesmo nome.
 
-The `Timestamp` and `Grantor` columns are unused.
+As colunas `Timestamp` e `Grantor` são inutilizadas.
 
-#### The proxies_priv Grant Table
+#### A Grant Table proxies_priv
 
-The `proxies_priv` table records information about proxy accounts. It has these columns:
+A tabela `proxies_priv` registra informações sobre contas proxy. Ela possui as seguintes colunas:
 
-* `Host`, `User`: The proxy account; that is, the account that has the [`PROXY`](privileges-provided.html#priv_proxy) privilege for the proxied account.
+* `Host`, `User`: A conta proxy; ou seja, a conta que possui o privilégio [`PROXY`](privileges-provided.html#priv_proxy) para a conta proxyiada.
 
-* `Proxied_host`, `Proxied_user`: The proxied account.
+* `Proxied_host`, `Proxied_user`: A conta proxyiada.
 
-* `Grantor`, `Timestamp`: Unused.
+* `Grantor`, `Timestamp`: Inutilizadas.
 
-* `With_grant`: Whether the proxy account can grant the [`PROXY`](privileges-provided.html#priv_proxy) privilege to other accounts.
+* `With_grant`: Se a conta proxy pode conceder o privilégio [`PROXY`](privileges-provided.html#priv_proxy) a outras contas.
 
-For an account to be able to grant the [`PROXY`](privileges-provided.html#priv_proxy) privilege to other accounts, it must have a row in the `proxies_priv` table with `With_grant` set to 1 and `Proxied_host` and `Proxied_user` set to indicate the account or accounts for which the privilege can be granted. For example, the `'root'@'localhost'` account created during MySQL installation has a row in the `proxies_priv` table that enables granting the [`PROXY`](privileges-provided.html#priv_proxy) privilege for `''@''`, that is, for all users and all hosts. This enables `root` to set up proxy users, as well as to delegate to other accounts the authority to set up proxy users. See [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+Para que uma conta possa conceder o privilégio [`PROXY`](privileges-provided.html#priv_proxy) a outras contas, ela deve ter uma linha na tabela `proxies_priv` com `With_grant` definido como 1 e `Proxied_host` e `Proxied_user` definidos para indicar a conta ou contas para as quais o privilégio pode ser concedido. Por exemplo, a conta `'root'@'localhost'` criada durante a instalação do MySQL tem uma linha na tabela `proxies_priv` que permite a concessão do privilégio `PROXY` para `''@''`, ou seja, para todos os usuários e todos os hosts. Isso permite que `root` configure usuários proxy, bem como delegue a outras contas a autoridade para configurar usuários proxy. Consulte [Seção 6.2.14, “Usuários Proxy”](proxy-users.html "6.2.14 Proxy Users").
 
-#### Grant Table Scope Column Properties
+#### Propriedades da Coluna de Escopo das Grant Tables
 
-Scope columns in the grant tables contain strings. The default value for each is the empty string. The following table shows the number of characters permitted in each column.
+As colunas de escopo nas Grant Tables contêm strings. O valor padrão para cada uma é a string vazia. A tabela a seguir mostra o número de caracteres permitidos em cada coluna.
 
-**Table 6.6 Grant Table Scope Column Lengths**
+**Tabela 6.6 Comprimentos das Colunas de Escopo das Grant Tables**
 
-<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Column Name</th> <th>Maximum Permitted Characters</th> </tr></thead><tbody><tr> <td><code>Host</code>, <code>Proxied_host</code></td> <td>60</td> </tr><tr> <td><code>User</code>, <code>Proxied_user</code></td> <td>32</td> </tr><tr> <td><code>Password</code></td> <td>41</td> </tr><tr> <td><code>Db</code></td> <td>64</td> </tr><tr> <td><code>Table_name</code></td> <td>64</td> </tr><tr> <td><code>Column_name</code></td> <td>64</td> </tr><tr> <td><code>Routine_name</code></td> <td>64</td> </tr></tbody></table>
+<table><thead><tr> <th>Nome da Coluna</th> <th>Máximo de Caracteres Permitidos</th> </tr></thead><tbody><tr> <td><code>Host</code>, <code>Proxied_host</code></td> <td>60</td> </tr><tr> <td><code>User</code>, <code>Proxied_user</code></td> <td>32</td> </tr><tr> <td><code>Password</code></td> <td>41</td> </tr><tr> <td><code>Db</code></td> <td>64</td> </tr><tr> <td><code>Table_name</code></td> <td>64</td> </tr><tr> <td><code>Column_name</code></td> <td>64</td> </tr><tr> <td><code>Routine_name</code></td> <td>64</td> </tr></tbody></table>
 
-`Host` and `Proxied_host` values are converted to lowercase before being stored in the grant tables.
+Os valores de `Host` e `Proxied_host` são convertidos para minúsculas antes de serem armazenados nas Grant Tables.
 
-For access-checking purposes, comparisons of `User`, `Proxied_user`, `Password`, `authentication_string`, `Db`, and `Table_name` values are case-sensitive. Comparisons of `Host`, `Proxied_host`, `Column_name`, and `Routine_name` values are not case-sensitive.
+Para fins de verificação de acesso, as comparações dos valores de `User`, `Proxied_user`, `Password`, `authentication_string`, `Db` e `Table_name` diferenciam maiúsculas de minúsculas (case-sensitive). As comparações dos valores de `Host`, `Proxied_host`, `Column_name` e `Routine_name` não diferenciam maiúsculas de minúsculas (not case-sensitive).
 
-#### Grant Table Privilege Column Properties
+#### Propriedades das Colunas de Privilégio das Grant Tables
 
-The `user` and `db` tables list each privilege in a separate column that is declared as `ENUM('N','Y') DEFAULT 'N'`. In other words, each privilege can be disabled or enabled, with the default being disabled.
+As tabelas `user` e `db` listam cada privilégio em uma coluna separada que é declarada como `ENUM('N','Y') DEFAULT 'N'`. Em outras palavras, cada privilégio pode ser desabilitado ou habilitado, sendo o padrão desabilitado.
 
-The `tables_priv`, `columns_priv`, and `procs_priv` tables declare the privilege columns as [`SET`](set.html "11.3.6 The SET Type") columns. Values in these columns can contain any combination of the privileges controlled by the table. Only those privileges listed in the column value are enabled.
+As tabelas `tables_priv`, `columns_priv` e `procs_priv` declaram as colunas de privilégio como colunas [`SET`](set.html "11.3.6 The SET Type"). Os valores nessas colunas podem conter qualquer combinação dos privilégios controlados pela tabela. Apenas os privilégios listados no valor da coluna são habilitados.
 
-**Table 6.7 Set-Type Privilege Column Values**
+**Tabela 6.7 Valores de Colunas de Privilégio Tipo Set**
 
-<table><col style="width: 20%"/><col style="width: 25%"/><col style="width: 45%"/><thead><tr> <th>Table Name</th> <th>Column Name</th> <th>Possible Set Elements</th> </tr></thead><tbody><tr> <th><code>tables_priv</code></th> <td><code>Table_priv</code></td> <td><code>'Select', 'Insert', 'Update', 'Delete', 'Create', 'Drop', 'Grant', 'References', 'Index', 'Alter', 'Create View', 'Show view', 'Trigger'</code></td> </tr><tr> <th><code>tables_priv</code></th> <td><code>Column_priv</code></td> <td><code>'Select', 'Insert', 'Update', 'References'</code></td> </tr><tr> <th><code>columns_priv</code></th> <td><code>Column_priv</code></td> <td><code>'Select', 'Insert', 'Update', 'References'</code></td> </tr><tr> <th><code>procs_priv</code></th> <td><code>Proc_priv</code></td> <td><code>'Execute', 'Alter Routine', 'Grant'</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Nome da Tabela</th> <th>Nome da Coluna</th> <th>Elementos SET Possíveis</th> </tr></thead><tbody><tr> <th><code>tables_priv</code></th> <td><code>Table_priv</code></td> <td><code>'Select', 'Insert', 'Update', 'Delete', 'Create', 'Drop', 'Grant', 'References', 'Index', 'Alter', 'Create View', 'Show view', 'Trigger'</code></td> </tr><tr> <th><code>tables_priv</code></th> <td><code>Column_priv</code></td> <td><code>'Select', 'Insert', 'Update', 'References'</code></td> </tr><tr> <th><code>columns_priv</code></th> <td><code>Column_priv</code></td> <td><code>'Select', 'Insert', 'Update', 'References'</code></td> </tr><tr> <th><code>procs_priv</code></th> <td><code>Proc_priv</code></td> <td><code>'Execute', 'Alter Routine', 'Grant'</code></td> </tr></tbody></table>
 
-Only the `user` table specifies administrative privileges, such as [`RELOAD`](privileges-provided.html#priv_reload) and [`SHUTDOWN`](privileges-provided.html#priv_shutdown). Administrative operations are operations on the server itself and are not database-specific, so there is no reason to list these privileges in the other grant tables. Consequently, the server need consult only the `user` table to determine whether a user can perform an administrative operation.
+Apenas a tabela `user` especifica privilégios administrativos, como [`RELOAD`](privileges-provided.html#priv_reload) e [`SHUTDOWN`](privileges-provided.html#priv_shutdown). Operações administrativas são operações no próprio servidor e não são específicas de Database, portanto, não há razão para listar esses privilégios nas outras Grant Tables. Consequentemente, o servidor precisa consultar apenas a tabela `user` para determinar se um usuário pode realizar uma operação administrativa.
 
-The [`FILE`](privileges-provided.html#priv_file) privilege also is specified only in the `user` table. It is not an administrative privilege as such, but a user's ability to read or write files on the server host is independent of the database being accessed.
+O privilégio [`FILE`](privileges-provided.html#priv_file) também é especificado apenas na tabela `user`. Não é um privilégio administrativo como tal, mas a capacidade de um usuário ler ou gravar arquivos no host do servidor é independente do Database que está sendo acessado.

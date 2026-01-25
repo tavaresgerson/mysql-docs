@@ -1,11 +1,11 @@
-#### 7.4.5.3 Dumping Stored Programs
+#### 7.4.5.3 Dump de Stored Programs
 
-Several options control how **mysqldump** handles stored programs (stored procedures and functions, triggers, and events):
+Várias opções controlam como o **mysqldump** lida com Stored Programs (Stored Procedures e Functions, Triggers e Events):
 
-* `--events`: Dump Event Scheduler events
+* `--events`: Realiza o Dump dos Events do Event Scheduler
 
-* `--routines`: Dump stored procedures and functions
+* `--routines`: Realiza o Dump de Stored Procedures e Functions
 
-* `--triggers`: Dump triggers for tables
+* `--triggers`: Realiza o Dump dos Triggers das tabelas
 
-The `--triggers` option is enabled by default so that when tables are dumped, they are accompanied by any triggers they have. The other options are disabled by default and must be specified explicitly to dump the corresponding objects. To disable any of these options explicitly, use its skip form: `--skip-events`, `--skip-routines`, or `--skip-triggers`.
+A opção `--triggers` é habilitada por padrão, de modo que, quando as tabelas são submetidas ao Dump, elas são acompanhadas por quaisquer Triggers que possuam. As outras opções estão desabilitadas por padrão e devem ser especificadas explicitamente para que o Dump dos objetos correspondentes seja realizado. Para desabilitar explicitamente qualquer uma dessas opções, use sua forma de "skip": `--skip-events`, `--skip-routines` ou `--skip-triggers`.

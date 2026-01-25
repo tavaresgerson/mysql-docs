@@ -1,8 +1,8 @@
-#### 8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations
+#### 8.2.2.1 Otimizando Subqueries, Derived Tables e Referências a Views com Transformações Semijoin
 
-A semijoin is a preparation-time transformation that enables multiple execution strategies such as table pullout, duplicate weedout, first match, loose scan, and materialization. The optimizer uses semijoin strategies to improve subquery execution, as described in this section.
+Uma *semijoin* é uma transformação realizada em tempo de preparação que permite múltiplas estratégias de execução, como *table pullout* (extração de tabela), *duplicate weedout* (remoção de duplicatas), *first match* (primeira correspondência), *loose scan* e *materialization*. O otimizador usa estratégias de *semijoin* para melhorar a execução de *subquery*, conforme descrito nesta seção.
 
-For an inner join between two tables, the join returns a row from one table as many times as there are matches in the other table. But for some questions, the only information that matters is whether there is a match, not the number of matches. Suppose that there are tables named `class` and `roster` that list classes in a course curriculum and class rosters (students enrolled in each class), respectively. To list the classes that actually have students enrolled, you could use this join:
+Para um *inner join* entre duas tabelas, o *join* retorna uma linha de uma tabela tantas vezes quantas forem as correspondências na outra tabela. Mas para algumas questões, a única informação relevante é se existe uma correspondência, e não o número de correspondências. Suponha que existam tabelas chamadas `class` e `roster` que listam as aulas em um currículo de curso e as listas de chamada (alunos matriculados em cada aula), respectivamente. Para listar as aulas que realmente têm alunos matriculados, você poderia usar este *join*:
 
 ```sql
 SELECT class.class_num, class.class_name
@@ -10,11 +10,11 @@ FROM class INNER JOIN roster
 WHERE class.class_num = roster.class_num;
 ```
 
-However, the result lists each class once for each enrolled student. For the question being asked, this is unnecessary duplication of information.
+No entanto, o resultado lista cada aula uma vez para cada aluno matriculado. Para a pergunta feita, isso é uma duplicação desnecessária de informação.
 
-Assuming that `class_num` is a primary key in the `class` table, duplicate suppression is possible by using `SELECT DISTINCT`, but it is inefficient to generate all matching rows first only to eliminate duplicates later.
+Assumindo que `class_num` é uma *Primary Key* na tabela `class`, a supressão de duplicatas é possível usando `SELECT DISTINCT`, mas é ineficiente gerar primeiro todas as linhas correspondentes apenas para eliminar duplicatas posteriormente.
 
-The same duplicate-free result can be obtained by using a subquery:
+O mesmo resultado sem duplicatas pode ser obtido usando uma *subquery*:
 
 ```sql
 SELECT class_num, class_name
@@ -22,63 +22,63 @@ FROM class
 WHERE class_num IN (SELECT class_num FROM roster);
 ```
 
-Here, the optimizer can recognize that the `IN` clause requires the subquery to return only one instance of each class number from the `roster` table. In this case, the query can use a semijoin; that is, an operation that returns only one instance of each row in `class` that is matched by rows in `roster`.
+Aqui, o otimizador pode reconhecer que a cláusula `IN` exige que a *subquery* retorne apenas uma instância de cada número de aula da tabela `roster`. Neste caso, a *Query* pode usar uma *semijoin*; ou seja, uma operação que retorna apenas uma instância de cada linha em `class` que é correspondida por linhas em `roster`.
 
-Outer join and inner join syntax is permitted in the outer query specification, and table references may be base tables, derived tables, or view references.
+A sintaxe de *outer join* e *inner join* é permitida na especificação da *Query* externa, e as referências de tabela podem ser tabelas base, *derived tables* ou referências a *views*.
 
-In MySQL, a subquery must satisfy these criteria to be handled as a semijoin:
+No MySQL, uma *subquery* deve satisfazer estes critérios para ser tratada como uma *semijoin*:
 
-* It must be an `IN` (or `=ANY`) subquery that appears at the top level of the `WHERE` or `ON` clause, possibly as a term in an `AND` expression. For example:
+*   Deve ser uma *subquery* `IN` (ou `=ANY`) que aparece no nível superior da cláusula `WHERE` ou `ON`, possivelmente como um termo em uma expressão `AND`. Por exemplo:
 
-  ```sql
+    ```sql
   SELECT ...
   FROM ot1, ...
   WHERE (oe1, ...) IN (SELECT ie1, ... FROM it1, ... WHERE ...);
   ```
 
-  Here, `ot_i` and `it_i` represent tables in the outer and inner parts of the query, and `oe_i` and `ie_i` represent expressions that refer to columns in the outer and inner tables.
+    Aqui, `ot_i` e `it_i` representam tabelas nas partes externa e interna da *Query*, e `oe_i` e `ie_i` representam expressões que se referem a colunas nas tabelas externas e internas.
 
-* It must be a single `SELECT` without `UNION` constructs.
+*   Deve ser um único `SELECT` sem construções `UNION`.
 
-* It must not contain a `GROUP BY` or `HAVING` clause.
+*   Não deve conter uma cláusula `GROUP BY` ou `HAVING`.
 
-* It must not be implicitly grouped (it must contain no aggregate functions).
+*   Não deve ser implicitamente agrupada (não deve conter funções de agregação).
 
-* It must not have `ORDER BY` with `LIMIT`.
+*   Não deve ter `ORDER BY` com `LIMIT`.
 
-* The statement must not use the `STRAIGHT_JOIN` join type in the outer query.
+*   A instrução não deve usar o tipo de *join* `STRAIGHT_JOIN` na *Query* externa.
 
-* The `STRAIGHT_JOIN` modifier must not be present.
+*   O modificador `STRAIGHT_JOIN` não deve estar presente.
 
-* The number of outer and inner tables together must be less than the maximum number of tables permitted in a join.
+*   O número de tabelas externas e internas juntas deve ser menor que o número máximo de tabelas permitido em um *join*.
 
-The subquery may be correlated or uncorrelated. `DISTINCT` is permitted, as is `LIMIT` unless `ORDER BY` is also used.
+A *subquery* pode ser correlacionada ou não correlacionada. `DISTINCT` é permitido, assim como `LIMIT`, a menos que `ORDER BY` também seja usado.
 
-If a subquery meets the preceding criteria, MySQL converts it to a semijoin and makes a cost-based choice from these strategies:
+Se uma *subquery* atender aos critérios anteriores, o MySQL a converte em uma *semijoin* e faz uma escolha baseada em custo a partir destas estratégias:
 
-* Convert the subquery to a join, or use table pullout and run the query as an inner join between subquery tables and outer tables. Table pullout pulls a table out from the subquery to the outer query.
+*   Converter a *subquery* em um *join*, ou usar *table pullout* e executar a *Query* como um *inner join* entre as tabelas da *subquery* e as tabelas externas. *Table pullout* extrai uma tabela da *subquery* para a *Query* externa.
 
-* Duplicate Weedout: Run the semijoin as if it was a join and remove duplicate records using a temporary table.
+*   *Duplicate Weedout*: Executar a *semijoin* como se fosse um *join* e remover registros duplicados usando uma tabela temporária.
 
-* FirstMatch: When scanning the inner tables for row combinations and there are multiple instances of a given value group, choose one rather than returning them all. This "shortcuts" scanning and eliminates production of unnecessary rows.
+*   *FirstMatch*: Ao escanear as tabelas internas em busca de combinações de linhas e houver múltiplas instâncias de um determinado grupo de valores, escolher uma em vez de retornar todas. Isso "atalha" o escaneamento e elimina a produção de linhas desnecessárias.
 
-* LooseScan: Scan a subquery table using an index that enables a single value to be chosen from each subquery's value group.
+*   *LooseScan*: Escanear uma tabela de *subquery* usando um *Index* que permite que um único valor seja escolhido de cada grupo de valores da *subquery*.
 
-* Materialize the subquery into an indexed temporary table that is used to perform a join, where the index is used to remove duplicates. The index might also be used later for lookups when joining the temporary table with the outer tables; if not, the table is scanned. For more information about materialization, see Section 8.2.2.2, “Optimizing Subqueries with Materialization”.
+*   *Materialize* (Materializar) a *subquery* em uma tabela temporária indexada que é usada para realizar um *join*, onde o *Index* é usado para remover duplicatas. O *Index* também pode ser usado posteriormente para *lookups* (pesquisas) ao fazer *join* da tabela temporária com as tabelas externas; caso contrário, a tabela é escaneada. Para mais informações sobre *materialization*, consulte a Seção 8.2.2.2, “Otimizando Subqueries com Materialization”.
 
-Each of these strategies can be enabled or disabled using the following `optimizer_switch` system variable flags:
+Cada uma dessas estratégias pode ser ativada ou desativada usando os seguintes *flags* da variável de sistema `optimizer_switch`:
 
-* The `semijoin` flag controls whether semijoins are used.
+*   O *flag* `semijoin` controla se as *semijoins* são usadas.
 
-* If `semijoin` is enabled, the `firstmatch`, `loosescan`, `duplicateweedout`, and `materialization` flags enable finer control over the permitted semijoin strategies.
+*   Se `semijoin` estiver ativado, os *flags* `firstmatch`, `loosescan`, `duplicateweedout` e `materialization` permitem um controle mais refinado sobre as estratégias de *semijoin* permitidas.
 
-* If the `duplicateweedout` semijoin strategy is disabled, it is not used unless all other applicable strategies are also disabled.
+*   Se a estratégia de *semijoin* `duplicateweedout` estiver desativada, ela não será usada a menos que todas as outras estratégias aplicáveis também estejam desativadas.
 
-* If `duplicateweedout` is disabled, on occasion the optimizer may generate a query plan that is far from optimal. This occurs due to heuristic pruning during greedy search, which can be avoided by setting `optimizer_prune_level=0`.
+*   Se `duplicateweedout` estiver desativado, ocasionalmente o otimizador pode gerar um plano de *Query* que está longe de ser ideal. Isso ocorre devido à poda heurística durante a busca gulosa (*greedy search*), o que pode ser evitado definindo `optimizer_prune_level=0`.
 
-These flags are enabled by default. See Section 8.9.2, “Switchable Optimizations”.
+Esses *flags* estão ativados por padrão. Consulte a Seção 8.9.2, “Otimizações Alternáveis”.
 
-The optimizer minimizes differences in handling of views and derived tables. This affects queries that use the `STRAIGHT_JOIN` modifier and a view with an `IN` subquery that can be converted to a semijoin. The following query illustrates this because the change in processing causes a change in transformation, and thus a different execution strategy:
+O otimizador minimiza as diferenças no tratamento de *views* e *derived tables*. Isso afeta as *queries* que usam o modificador `STRAIGHT_JOIN` e uma *view* com uma *subquery* `IN` que pode ser convertida para uma *semijoin*. A seguinte *query* ilustra isso porque a mudança no processamento causa uma mudança na transformação e, portanto, uma estratégia de execução diferente:
 
 ```sql
 CREATE VIEW v AS
@@ -91,16 +91,16 @@ SELECT STRAIGHT_JOIN *
 FROM t3 JOIN v ON t3.x = v.a;
 ```
 
-The optimizer first looks at the view and converts the `IN` subquery to a semijoin, then checks whether it is possible to merge the view into the outer query. Because the `STRAIGHT_JOIN` modifier in the outer query prevents semijoin, the optimizer refuses the merge, causing derived table evaluation using a materialized table.
+O otimizador primeiro examina a *view* e converte a *subquery* `IN` em uma *semijoin*, depois verifica se é possível mesclar a *view* na *Query* externa. Como o modificador `STRAIGHT_JOIN` na *Query* externa impede a *semijoin*, o otimizador recusa a mesclagem, causando a avaliação da *derived table* usando uma tabela *materialized*.
 
-`EXPLAIN` output indicates the use of semijoin strategies as follows:
+A saída do `EXPLAIN` indica o uso de estratégias de *semijoin* da seguinte forma:
 
-* Semijoined tables show up in the outer select. For extended `EXPLAIN` output, the text displayed by a following `SHOW WARNINGS` shows the rewritten query, which displays the semijoin structure. (See Section 8.8.3, “Extended EXPLAIN Output Format”.) From this you can get an idea about which tables were pulled out of the semijoin. If a subquery was converted to a semijoin, you can see that the subquery predicate is gone and its tables and `WHERE` clause were merged into the outer query join list and `WHERE` clause.
+*   Tabelas com *semijoin* aparecem no *select* externo. Para a saída `EXPLAIN` estendida, o texto exibido por um subsequente `SHOW WARNINGS` mostra a *Query* reescrita, que exibe a estrutura da *semijoin*. (Consulte a Seção 8.8.3, “Extended EXPLAIN Output Format”.) A partir disso, você pode ter uma ideia de quais tabelas foram extraídas da *semijoin*. Se uma *subquery* foi convertida em uma *semijoin*, você pode ver que o predicado da *subquery* desapareceu e suas tabelas e cláusula `WHERE` foram mescladas na lista de *join* da *Query* externa e na cláusula `WHERE`.
 
-* Temporary table use for Duplicate Weedout is indicated by `Start temporary` and `End temporary` in the `Extra` column. Tables that were not pulled out and are in the range of `EXPLAIN` output rows covered by `Start temporary` and `End temporary` have their `rowid` in the temporary table.
+*   O uso de tabela temporária para *Duplicate Weedout* é indicado por `Start temporary` e `End temporary` na coluna `Extra`. As tabelas que não foram extraídas e estão no intervalo de linhas de saída do `EXPLAIN` cobertas por `Start temporary` e `End temporary` têm seu `rowid` na tabela temporária.
 
-* `FirstMatch(tbl_name)` in the `Extra` column indicates join shortcutting.
+*   `FirstMatch(tbl_name)` na coluna `Extra` indica atalho de *join* (*join shortcutting*).
 
-* `LooseScan(m..n)` in the `Extra` column indicates use of the LooseScan strategy. *`m`* and *`n`* are key part numbers.
+*   `LooseScan(m..n)` na coluna `Extra` indica o uso da estratégia *LooseScan*. *`m`* e *`n`* são números de parte da chave (*key part numbers*).
 
-* Temporary table use for materialization is indicated by rows with a `select_type` value of `MATERIALIZED` and rows with a `table` value of `<subqueryN>`.
+*   O uso de tabela temporária para *materialization* é indicado por linhas com um valor `select_type` de `MATERIALIZED` e linhas com um valor `table` de `<subqueryN>`.

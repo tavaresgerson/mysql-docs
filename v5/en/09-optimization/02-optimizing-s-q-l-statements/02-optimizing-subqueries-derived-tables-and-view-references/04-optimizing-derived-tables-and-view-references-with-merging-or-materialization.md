@@ -1,23 +1,23 @@
-#### 8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization
+#### 8.2.2.4 Otimizando Derived Tables e Referências a Views com Merge ou Materialization
 
-The optimizer can handle derived table references using two strategies (which also apply to view references):
+O otimizador pode lidar com referências a derived tables usando duas estratégias (que também se aplicam a referências de view):
 
-* Merge the derived table into the outer query block
-* Materialize the derived table to an internal temporary table
+* Fazer o Merge da derived table no bloco de Query externo
+* Fazer a Materialization da derived table em uma tabela temporária interna
 
-Example 1:
+Exemplo 1:
 
 ```sql
 SELECT * FROM (SELECT * FROM t1) AS derived_t1;
 ```
 
-With merging of the derived table `derived_t1`, that query is executed similar to:
+Com o Merge da derived table `derived_t1`, essa Query é executada de forma semelhante a:
 
 ```sql
 SELECT * FROM t1;
 ```
 
-Example 2:
+Exemplo 2:
 
 ```sql
 SELECT *
@@ -25,7 +25,7 @@ SELECT *
   WHERE t1.f1 > 0;
 ```
 
-With merging of the derived table `derived_t2`, that query is executed similar to:
+Com o Merge da derived table `derived_t2`, essa Query é executada de forma semelhante a:
 
 ```sql
 SELECT t1.*, t2.f1
@@ -33,58 +33,57 @@ SELECT t1.*, t2.f1
   WHERE t1.f1 > 0;
 ```
 
-With materialization, `derived_t1` and `derived_t2` are each treated as a separate table within their respective queries.
+Com a Materialization, `derived_t1` e `derived_t2` são tratadas cada uma como uma tabela separada dentro de suas respectivas Queries.
 
-The optimizer handles derived tables and view references the same way: It avoids unnecessary materialization whenever possible, which enables pushing down conditions from the outer query to derived tables and produces more efficient execution plans. (For an example, see Section 8.2.2.2, “Optimizing Subqueries with Materialization”.)
+O otimizador lida com derived tables e referências a views da mesma forma: Ele evita Materialization desnecessária sempre que possível, o que permite "empurrar" condições (pushing down conditions) da Query externa para as derived tables e produzir planos de execução mais eficientes. (Para um exemplo, veja a Seção 8.2.2.2, “Otimizando Subqueries com Materialization”.)
 
-If merging would result in an outer query block that references more than 61 base tables, the optimizer chooses materialization instead.
+Se o Merge resultar em um bloco de Query externo que referencia mais de 61 tabelas base, o otimizador escolhe a Materialization.
 
-The optimizer propagates an `ORDER BY` clause in a derived table or view reference to the outer query block if these conditions are all true:
+O otimizador propaga uma cláusula `ORDER BY` em uma derived table ou referência de view para o bloco de Query externo se todas estas condições forem verdadeiras:
 
-* The outer query is not grouped or aggregated.
-* The outer query does not specify `DISTINCT`, `HAVING`, or `ORDER BY`.
+* A Query externa não está agrupada ou agregada.
+* A Query externa não especifica `DISTINCT`, `HAVING` ou `ORDER BY`.
+* A Query externa tem esta derived table ou referência de view como a única fonte na cláusula `FROM`.
 
-* The outer query has this derived table or view reference as the only source in the `FROM` clause.
+Caso contrário, o otimizador ignora a cláusula `ORDER BY`.
 
-Otherwise, the optimizer ignores the `ORDER BY` clause.
+Os seguintes meios estão disponíveis para influenciar se o otimizador tenta fazer o Merge de derived tables e referências de views no bloco de Query externo:
 
-The following means are available to influence whether the optimizer attempts to merge derived tables and view references into the outer query block:
+* O flag `derived_merge` da variável de sistema `optimizer_switch` pode ser usado, assumindo que nenhuma outra regra impeça o Merge. Consulte a Seção 8.9.2, “Switchable Optimizations”. Por padrão, o flag está ativado para permitir o Merge. Desabilitar o flag impede o Merge e evita erros `ER_UPDATE_TABLE_USED`.
 
-* The `derived_merge` flag of the `optimizer_switch` system variable can be used, assuming that no other rule prevents merging. See Section 8.9.2, “Switchable Optimizations”. By default, the flag is enabled to permit merging. Disabling the flag prevents merging and avoids `ER_UPDATE_TABLE_USED` errors.
+  O flag `derived_merge` também se aplica a views que não contêm uma cláusula `ALGORITHM`. Assim, se ocorrer um erro `ER_UPDATE_TABLE_USED` para uma referência de view que usa uma expressão equivalente à Subquery, adicionar `ALGORITHM=TEMPTABLE` à definição da view impede o Merge e tem precedência sobre o valor de `derived_merge`.
 
-  The `derived_merge` flag also applies to views that contain no `ALGORITHM` clause. Thus, if an `ER_UPDATE_TABLE_USED` error occurs for a view reference that uses an expression equivalent to the subquery, adding `ALGORITHM=TEMPTABLE` to the view definition prevents merging and takes precedence over the `derived_merge` value.
+* É possível desabilitar o Merge usando na Subquery quaisquer construções que o impeçam, embora estas não sejam tão explícitas em seu efeito sobre a Materialization. As construções que impedem o Merge são as mesmas para derived tables e referências de views:
 
-* It is possible to disable merging by using in the subquery any constructs that prevent merging, although these are not as explicit in their effect on materialization. Constructs that prevent merging are the same for derived tables and view references:
-
-  + Aggregate functions (`SUM()`, `MIN()`, `MAX()`, `COUNT()`, and so forth)
+  + Funções de agregação (`SUM()`, `MIN()`, `MAX()`, `COUNT()`, e assim por diante)
 
   + `DISTINCT`
   + `GROUP BY`
   + `HAVING`
   + `LIMIT`
-  + `UNION` or `UNION ALL`
+  + `UNION` ou `UNION ALL`
 
-  + Subqueries in the select list
-  + Assignments to user variables
-  + Refererences only to literal values (in this case, there is no underlying table)
+  + Subqueries na lista SELECT
+  + Atribuições a variáveis de usuário
+  + Referências apenas a valores literais (neste caso, não há tabela subjacente)
 
-The `derived_merge` flag also applies to views that contain no `ALGORITHM` clause. Thus, if an `ER_UPDATE_TABLE_USED` error occurs for a view reference that uses an expression equivalent to the subquery, adding `ALGORITHM=TEMPTABLE` to the view definition prevents merging and takes precedence over the current `derived_merge` value.
+O flag `derived_merge` também se aplica a views que não contêm uma cláusula `ALGORITHM`. Assim, se ocorrer um erro `ER_UPDATE_TABLE_USED` para uma referência de view que usa uma expressão equivalente à Subquery, adicionar `ALGORITHM=TEMPTABLE` à definição da view impede o Merge e tem precedência sobre o valor atual de `derived_merge`.
 
-If the optimizer chooses the materialization strategy rather than merging for a derived table, it handles the query as follows:
+Se o otimizador escolher a estratégia de Materialization em vez do Merge para uma derived table, ele lida com a Query da seguinte forma:
 
-* The optimizer postpones derived table materialization until its contents are needed during query execution. This improves performance because delaying materialization may result in not having to do it at all. Consider a query that joins the result of a derived table to another table: If the optimizer processes that other table first and finds that it returns no rows, the join need not be carried out further and the optimizer can completely skip materializing the derived table.
+* O otimizador adia a Materialization da derived table até que seu conteúdo seja necessário durante a execução da Query. Isso melhora a performance, pois o atraso na Materialization pode fazer com que ela não precise ser feita. Considere uma Query que faz um JOIN do resultado de uma derived table com outra tabela: Se o otimizador processar essa outra tabela primeiro e descobrir que ela não retorna linhas, o JOIN não precisa ser executado e o otimizador pode pular completamente a Materialization da derived table.
 
-* During query execution, the optimizer may add an index to a derived table to speed up row retrieval from it.
+* Durante a execução da Query, o otimizador pode adicionar um Index a uma derived table para acelerar a recuperação de linhas a partir dela.
 
-Consider the following `EXPLAIN` statement, for a `SELECT` query that contains a derived table:
+Considere o seguinte comando `EXPLAIN`, para uma Query `SELECT` que contém uma derived table:
 
 ```sql
 EXPLAIN SELECT * FROM (SELECT * FROM t1) AS derived_t1;
 ```
 
-The optimizer avoids materializing the derived table by delaying it until the result is needed during `SELECT` execution. In this case, the query is not executed (because it occurs in an `EXPLAIN` statement), so the result is never needed.
+O otimizador evita materializar a derived table adiando-a até que o resultado seja necessário durante a execução do `SELECT`. Neste caso, a Query não é executada (porque ocorre em um comando `EXPLAIN`), então o resultado nunca é necessário.
 
-Even for queries that are executed, delay of derived table materialization may enable the optimizer to avoid materialization entirely. When this happens, query execution is quicker by the time needed to perform materialization. Consider the following query, which joins the result of a derived table to another table:
+Mesmo para Queries que são executadas, o atraso na Materialization da derived table pode permitir que o otimizador evite a Materialization por completo. Quando isso acontece, a execução da Query é mais rápida pelo tempo necessário para realizar a Materialization. Considere a seguinte Query, que faz um JOIN do resultado de uma derived table com outra tabela:
 
 ```sql
 SELECT *
@@ -93,9 +92,9 @@ SELECT *
   WHERE t1.f1 > 0;
 ```
 
-If the optimization processes `t1` first and the `WHERE` clause produces an empty result, the join must necessarily be empty and the derived table need not be materialized.
+Se a otimização processar `t1` primeiro e a cláusula `WHERE` produzir um resultado vazio, o JOIN será necessariamente vazio e a derived table não precisa ser materializada.
 
-For cases when a derived table requires materialization, the optimizer may add an index to the materialized table to speed up access to it. If such an index enables `ref` access to the table, it can greatly reduce amount of data read during query execution. Consider the following query:
+Para os casos em que uma derived table requer Materialization, o otimizador pode adicionar um Index à tabela materializada para acelerar o acesso a ela. Se tal Index permitir o `ref` access à tabela, isso pode reduzir significativamente a quantidade de dados lidos durante a execução da Query. Considere a seguinte Query:
 
 ```sql
 SELECT *
@@ -103,6 +102,6 @@ SELECT *
          ON t1.f1=derived_t2.f1;
 ```
 
-The optimizer constructs an index over column `f1` from `derived_t2` if doing so would enable use of `ref` access for the lowest cost execution plan. After adding the index, the optimizer can treat the materialized derived table the same as a regular table with an index, and it benefits similarly from the generated index. The overhead of index creation is negligible compared to the cost of query execution without the index. If `ref` access would result in higher cost than some other access method, the optimizer creates no index and loses nothing.
+O otimizador constrói um Index sobre a coluna `f1` de `derived_t2` se isso permitir o uso de `ref` access para o plano de execução de menor custo. Após adicionar o Index, o otimizador pode tratar a derived table materializada da mesma forma que uma tabela regular com um Index, e se beneficia de forma semelhante do Index gerado. O overhead (custo adicional) da criação do Index é insignificante em comparação com o custo da execução da Query sem o Index. Se o `ref` access resultar em um custo maior do que algum outro método de acesso, o otimizador não cria Index e não há perda.
 
-For optimizer trace output, a merged derived table or view reference is not shown as a node. Only its underlying tables appear in the top query's plan.
+Para o output de trace do otimizador, uma derived table ou referência de view que sofreu Merge não é mostrada como um nó. Apenas suas tabelas subjacentes aparecem no plano da Query principal.

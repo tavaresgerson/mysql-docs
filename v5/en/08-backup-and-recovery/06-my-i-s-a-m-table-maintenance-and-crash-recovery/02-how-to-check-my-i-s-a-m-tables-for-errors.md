@@ -1,21 +1,21 @@
-### 7.6.2 How to Check MyISAM Tables for Errors
+### 7.6.2 Como Verificar Tabelas MyISAM em Busca de Erros
 
-To check a `MyISAM` table, use the following commands:
+Para verificar uma tabela `MyISAM`, use os seguintes comandos:
 
 * **myisamchk *`tbl_name`***
 
-  This finds 99.99% of all errors. What it cannot find is corruption that involves *only* the data file (which is very unusual). If you want to check a table, you should normally run **myisamchk** without options or with the `-s` (silent) option.
+  Isso encontra 99,99% de todos os erros. O que ele não consegue encontrar é corrupção que envolve *apenas* o arquivo de dados (o que é muito incomum). Se você deseja verificar uma tabela, você deve normalmente executar **myisamchk** sem opções ou com a opção `-s` (silent).
 
 * **myisamchk -m *`tbl_name`***
 
-  This finds 99.999% of all errors. It first checks all index entries for errors and then reads through all rows. It calculates a checksum for all key values in the rows and verifies that the checksum matches the checksum for the keys in the index tree.
+  Isso encontra 99,999% de todos os erros. Ele primeiro verifica todas as entradas de Index em busca de erros e, em seguida, lê todas as linhas. Ele calcula um `Checksum` para todos os valores de `Key` nas linhas e verifica se o `Checksum` corresponde ao `Checksum` das `Keys` na árvore de Index.
 
 * **myisamchk -e *`tbl_name`***
 
-  This does a complete and thorough check of all data (`-e` means “extended check”). It does a check-read of every key for each row to verify that they indeed point to the correct row. This may take a long time for a large table that has many indexes. Normally, **myisamchk** stops after the first error it finds. If you want to obtain more information, you can add the `-v` (verbose) option. This causes **myisamchk** to keep going, up through a maximum of 20 errors.
+  Isso realiza uma verificação completa e minuciosa de todos os dados (`-e` significa “extended check” [verificação estendida]). Ele realiza uma leitura de verificação (`check-read`) de cada `Key` para cada linha para verificar se elas realmente apontam para a linha correta. Isso pode levar muito tempo para uma tabela grande que possui muitos `Indexes`. Normalmente, **myisamchk** para após o primeiro erro encontrado. Se você deseja obter mais informações, você pode adicionar a opção `-v` (verbose). Isso faz com que **myisamchk** continue, registrando um máximo de 20 erros.
 
 * **myisamchk -e -i *`tbl_name`***
 
-  This is like the previous command, but the `-i` option tells **myisamchk** to print additional statistical information.
+  Isto é como o comando anterior, mas a opção `-i` instrui **myisamchk** a imprimir informações estatísticas adicionais.
 
-In most cases, a simple **myisamchk** command with no arguments other than the table name is sufficient to check a table.
+Na maioria dos casos, um comando simples **myisamchk** sem argumentos além do nome da tabela é suficiente para verificar uma tabela.

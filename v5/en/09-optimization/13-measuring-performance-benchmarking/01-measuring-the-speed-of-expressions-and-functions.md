@@ -1,6 +1,6 @@
-### 8.13.1 Measuring the Speed of Expressions and Functions
+### 8.13.1 Medindo a Velocidade de Expressões e Functions
 
-To measure the speed of a specific MySQL expression or function, invoke the `BENCHMARK()` function using the **mysql** client program. Its syntax is `BENCHMARK(loop_count,expr)`. The return value is always zero, but **mysql** prints a line displaying approximately how long the statement took to execute. For example:
+Para medir a velocidade de uma expressão ou function específica do MySQL, invoque a function `BENCHMARK()` utilizando o **mysql** client program. Sua sintaxe é `BENCHMARK(loop_count,expr)`. O valor de retorno é sempre zero, mas o **mysql** imprime uma linha exibindo aproximadamente quanto tempo a instrução levou para executar. Por exemplo:
 
 ```sql
 mysql> SELECT BENCHMARK(1000000,1+1);
@@ -12,6 +12,6 @@ mysql> SELECT BENCHMARK(1000000,1+1);
 1 row in set (0.32 sec)
 ```
 
-This result was obtained on a Pentium II 400MHz system. It shows that MySQL can execute 1,000,000 simple addition expressions in 0.32 seconds on that system.
+Este resultado foi obtido em um sistema Pentium II de 400MHz. Ele mostra que o MySQL pode executar 1.000.000 de expressões de adição simples em 0,32 segundos nesse sistema.
 
-The built-in MySQL functions are typically highly optimized, but there may be some exceptions. `BENCHMARK()` is an excellent tool for finding out if some function is a problem for your queries.
+As functions built-in do MySQL são tipicamente altamente otimizadas, mas pode haver algumas exceções. `BENCHMARK()` é uma excelente ferramenta para descobrir se alguma function está causando problemas para suas Queries.

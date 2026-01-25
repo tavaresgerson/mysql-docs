@@ -1,52 +1,52 @@
-### 6.3.2 Encrypted Connection TLS Protocols and Ciphers
+### 6.3.2 Protocolos TLS e Ciphers de Conexão Criptografada
 
-MySQL supports multiple TLS protocols and ciphers, and enables configuring which protocols and ciphers to permit for encrypted connections. It is also possible to determine which protocol and cipher the current session uses.
+O MySQL suporta múltiplos protocolos TLS e *ciphers*, e permite configurar quais protocolos e *ciphers* devem ser permitidos para conexões criptografadas. Também é possível determinar qual protocolo e *cipher* a sessão atual utiliza.
 
-* [Supported Connection TLS Protocols](encrypted-connection-protocols-ciphers.html#encrypted-connection-supported-protocols "Supported Connection TLS Protocols")
-* [Connection TLS Protocol Configuration](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-configuration "Connection TLS Protocol Configuration")
-* [Deprecated TLS Protocols](encrypted-connection-protocols-ciphers.html#encrypted-connection-deprecated-protocols "Deprecated TLS Protocols")
-* [Connection Cipher Configuration](encrypted-connection-protocols-ciphers.html#encrypted-connection-cipher-configuration "Connection Cipher Configuration")
-* [Connection TLS Protocol Negotiation](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation")
-* [Monitoring Current Client Session TLS Protocol and Cipher](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-monitoring "Monitoring Current Client Session TLS Protocol and Cipher")
+* [Protocolos TLS de Conexão Suportados](encrypted-connection-protocols-ciphers.html#encrypted-connection-supported-protocols "Supported Connection TLS Protocols")
+* [Configuração do Protocolo TLS de Conexão](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-configuration "Connection TLS Protocol Configuration")
+* [Protocolos TLS Descontinuados](encrypted-connection-protocols-ciphers.html#encrypted-connection-deprecated-protocols "Deprecated TLS Protocols")
+* [Configuração de Cipher de Conexão](encrypted-connection-protocols-ciphers.html#encrypted-connection-cipher-configuration "Connection Cipher Configuration")
+* [Negociação do Protocolo TLS de Conexão](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation")
+* [Monitoramento do Protocolo TLS e Cipher da Sessão Client Atual](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-monitoring "Monitoring Current Client Session TLS Protocol and Cipher")
 
-#### Supported Connection TLS Protocols
+#### Protocolos TLS de Conexão Suportados
 
-MySQL supports encrypted connections using the TLSv1, TLSv1.1, and TLSv1.2 protocols, listed in order from less secure to more secure. The set of protocols actually permitted for connections is subject to multiple factors:
+O MySQL suporta conexões criptografadas usando os protocolos TLSv1, TLSv1.1 e TLSv1.2, listados em ordem do menos seguro para o mais seguro. O conjunto de protocolos realmente permitido para conexões está sujeito a múltiplos fatores:
 
-* MySQL configuration. Permitted TLS protocols can be configured on both the server side and client side to include only a subset of the supported TLS protocols. The configuration on both sides must include at least one protocol in common or connection attempts cannot negotiate a protocol to use. For details, see [Connection TLS Protocol Negotiation](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation").
+* Configuração do MySQL. Os protocolos TLS permitidos podem ser configurados tanto no lado do Server quanto no lado do Client para incluir apenas um subconjunto dos protocolos TLS suportados. A configuração em ambos os lados deve incluir pelo menos um protocolo em comum, ou as tentativas de conexão não conseguirão negociar um protocolo a ser usado. Para detalhes, consulte [Negociação do Protocolo TLS de Conexão](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation").
 
-* System-wide host configuration. The host system may permit only certain TLS protocols, which means that MySQL connections cannot use nonpermitted protocols even if MySQL itself permits them:
+* Configuração de Host em todo o Sistema (*System-wide host configuration*). O sistema *host* pode permitir apenas certos protocolos TLS, o que significa que as conexões MySQL não podem usar protocolos não permitidos, mesmo que o próprio MySQL os permita:
 
-  + Suppose that MySQL configuration permits TLSv1, TLSv1.1, and TLSv1.2, but your host system configuration permits only connections that use TLSv1.2 or higher. In this case, you cannot establish MySQL connections that use TLSv1 or TLSv1.1, even though MySQL is configured to permit them, because the host system does not permit them.
+  + Suponha que a configuração do MySQL permita TLSv1, TLSv1.1 e TLSv1.2, mas a configuração do seu sistema *host* permita apenas conexões que utilizem TLSv1.2 ou superior. Neste caso, você não pode estabelecer conexões MySQL que utilizem TLSv1 ou TLSv1.1, mesmo que o MySQL esteja configurado para permiti-los, porque o sistema *host* não os permite.
 
-  + If MySQL configuration permits TLSv1, TLSv1.1, and TLSv1.2, but your host system configuration permits only connections that use TLSv1.3 or higher, you cannot establish MySQL connections at all, because no protocol permitted by MySQL is permitted by the host system.
+  + Se a configuração do MySQL permitir TLSv1, TLSv1.1 e TLSv1.2, mas a configuração do seu sistema *host* permitir apenas conexões que utilizem TLSv1.3 ou superior, você não poderá estabelecer conexões MySQL de forma alguma, pois nenhum protocolo permitido pelo MySQL é permitido pelo sistema *host*.
 
-  Workarounds for this issue include:
+  As soluções alternativas (*workarounds*) para este problema incluem:
 
-  + Change the system-wide host configuration to permit additional TLS protocols. Consult your operating system documentation for instructions. For example, your system may have an `/etc/ssl/openssl.cnf` file that contains these lines to restrict TLS protocols to TLSv1.2 or higher:
+  + Altere a configuração de *host system-wide* para permitir protocolos TLS adicionais. Consulte a documentação do seu sistema operacional para obter instruções. Por exemplo, seu sistema pode ter um arquivo `/etc/ssl/openssl.cnf` que contém estas linhas para restringir os protocolos TLS a TLSv1.2 ou superior:
 
     ```sql
     [system_default_sect]
     MinProtocol = TLSv1.2
     ```
 
-    Changing the value to a lower protocol version or `None` makes the system more permissive. This workaround has the disadvantage that permitting lower (less secure) protocols may have adverse security consequences.
+    Alterar o valor para uma versão de protocolo inferior ou para `None` torna o sistema mais permissivo. Esta solução alternativa tem a desvantagem de que permitir protocolos mais baixos (menos seguros) pode ter consequências adversas de segurança.
 
-  + If you cannot or prefer not to change the host system TLS configuration, change MySQL applications to use higher (more secure) TLS protocols that are permitted by the host system. This may not be possible for older versions of MySQL that support only lower protocol versions. For example, TLSv1 is the only supported protocol prior to MySQL 5.6.46, so attempts to connect to a pre-5.6.46 server fail even if the client is from a newer MySQL version that supports higher protocol versions. In such cases, an upgrade to a version of MySQL that supports additional TLS versions may be required.
+  + Se você não puder ou preferir não alterar a configuração TLS do sistema *host*, altere as aplicações MySQL para usar protocolos TLS mais altos (mais seguros) que sejam permitidos pelo sistema *host*. Isso pode não ser possível para versões mais antigas do MySQL que suportam apenas versões de protocolo inferiores. Por exemplo, TLSv1 é o único protocolo suportado antes do MySQL 5.6.46, então as tentativas de conexão a um Server pré-5.6.46 falham, mesmo que o Client seja de uma versão mais nova do MySQL que suporte versões de protocolo mais altas. Nesses casos, pode ser necessário um *upgrade* para uma versão do MySQL que suporte versões TLS adicionais.
 
-* The SSL library. If the SSL library does not support a particular protocol, neither does MySQL, and any parts of the following discussion that specify that protocol do not apply.
+* A *library* SSL. Se a *library* SSL não suportar um protocolo específico, o MySQL também não suportará, e quaisquer partes da discussão a seguir que especifiquem esse protocolo não se aplicarão.
 
-  + When compiled using OpenSSL 1.0.1 or higher, MySQL supports the TLSv1, TLSv1.1, and TLSv1.2 protocols.
+  + Quando compilado usando OpenSSL 1.0.1 ou superior, o MySQL suporta os protocolos TLSv1, TLSv1.1 e TLSv1.2.
 
-  + When compiled using yaSSL, MySQL supports the TLSv1 and TLSv1.1 protocols.
+  + Quando compilado usando yaSSL, o MySQL suporta os protocolos TLSv1 e TLSv1.1.
 
-  Note
+  Nota
 
-  It is possible to compile MySQL using yaSSL as an alternative to OpenSSL only prior to MySQL 5.7.28. As of MySQL 5.7.28, support for yaSSL is removed and all MySQL builds use OpenSSL.
+  É possível compilar o MySQL usando yaSSL como alternativa ao OpenSSL somente antes do MySQL 5.7.28. A partir do MySQL 5.7.28, o suporte ao yaSSL é removido e todas as *builds* do MySQL usam OpenSSL.
 
-#### Connection TLS Protocol Configuration
+#### Configuração do Protocolo TLS de Conexão
 
-On the server side, the value of the [`tls_version`](server-system-variables.html#sysvar_tls_version) system variable determines which TLS protocols a MySQL server permits for encrypted connections. The [`tls_version`](server-system-variables.html#sysvar_tls_version) value applies to connections from clients and from replica servers using regular source/replica replication. The variable value is a list of one or more comma-separated protocol versions from this list (not case-sensitive): TLSv1, TLSv1.1, TLSv1.2. By default, this variable lists all protocols supported by the SSL library used to compile MySQL (`TLSv1,TLSv1.1,TLSv1.2` for OpenSSL, `TLSv1,TLSv1.1` for yaSSL). To determine the value of [`tls_version`](server-system-variables.html#sysvar_tls_version) at runtime, use this statement:
+No lado do Server, o valor da System Variable [`tls_version`](server-system-variables.html#sysvar_tls_version) determina quais protocolos TLS um Server MySQL permite para conexões criptografadas. O valor de [`tls_version`](server-system-variables.html#sysvar_tls_version) se aplica a conexões de Clients e de *replica servers* usando replicação regular *source/replica*. O valor da variável é uma lista de uma ou mais versões de protocolo separadas por vírgula desta lista (sem distinção entre maiúsculas e minúsculas): TLSv1, TLSv1.1, TLSv1.2. Por padrão, esta variável lista todos os protocolos suportados pela *library* SSL usada para compilar o MySQL (`TLSv1,TLSv1.1,TLSv1.2` para OpenSSL, `TLSv1,TLSv1.1` para yaSSL). Para determinar o valor de [`tls_version`](server-system-variables.html#sysvar_tls_version) em tempo de execução, use esta instrução:
 
 ```sql
 mysql> SHOW GLOBAL VARIABLES LIKE 'tls_version';
@@ -57,33 +57,33 @@ mysql> SHOW GLOBAL VARIABLES LIKE 'tls_version';
 +---------------+-----------------------+
 ```
 
-To change the value of [`tls_version`](server-system-variables.html#sysvar_tls_version), set it at server startup. For example, to permit connections that use the TLSv1.1 or TLSv1.2 protocol, but prohibit connections that use the less-secure TLSv1 protocol, use these lines in the server `my.cnf` file:
+Para alterar o valor de [`tls_version`](server-system-variables.html#sysvar_tls_version), defina-o na inicialização do Server. Por exemplo, para permitir conexões que usem o protocolo TLSv1.1 ou TLSv1.2, mas proibir conexões que usem o protocolo TLSv1, menos seguro, use estas linhas no arquivo `my.cnf` do Server:
 
 ```sql
 [mysqld]
 tls_version=TLSv1.1,TLSv1.2
 ```
 
-To be even more restrictive and permit only TLSv1.2 connections, set [`tls_version`](server-system-variables.html#sysvar_tls_version) like this (assuming that your server is compiled using OpenSSL because yaSSL does not support TLSv1.2):
+Para ser ainda mais restritivo e permitir apenas conexões TLSv1.2, defina [`tls_version`](server-system-variables.html#sysvar_tls_version) desta forma (assumindo que seu Server esteja compilado usando OpenSSL, pois yaSSL não suporta TLSv1.2):
 
 ```sql
 [mysqld]
 tls_version=TLSv1.2
 ```
 
-Note
+Nota
 
-As of MySQL 5.7.35, the TLSv1 and TLSv1.1 connection protocols are deprecated and support for them is subject to removal in a future version of MySQL. See [Deprecated TLS Protocols](encrypted-connection-protocols-ciphers.html#encrypted-connection-deprecated-protocols "Deprecated TLS Protocols").
+A partir do MySQL 5.7.35, os protocolos de conexão TLSv1 e TLSv1.1 são descontinuados e o suporte a eles está sujeito a remoção em uma versão futura do MySQL. Consulte [Protocolos TLS Descontinuados](encrypted-connection-protocols-ciphers.html#encrypted-connection-deprecated-protocols "Deprecated TLS Protocols").
 
-On the client side, the [`--tls-version`](connection-options.html#option_general_tls-version) option specifies which TLS protocols a client program permits for connections to the server. The format of the option value is the same as for the [`tls_version`](server-system-variables.html#sysvar_tls_version) system variable described previously (a list of one or more comma-separated protocol versions).
+No lado do Client, a opção [`--tls-version`](connection-options.html#option_general_tls-version) especifica quais protocolos TLS um programa Client permite para conexões com o Server. O formato do valor da opção é o mesmo que para a System Variable [`tls_version`](server-system-variables.html#sysvar_tls_version) descrita anteriormente (uma lista de uma ou mais versões de protocolo separadas por vírgula).
 
-For source/replica replication, the `MASTER_TLS_VERSION` option for the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement specifies which TLS protocols a replica server permits for connections to the source. The format of the option value is the same as for the [`tls_version`](server-system-variables.html#sysvar_tls_version) system variable described previously. See [Section 16.3.8, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections").
+Para replicação *source/replica*, a opção `MASTER_TLS_VERSION` para a instrução [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") especifica quais protocolos TLS um *replica server* permite para conexões com a *source*. O formato do valor da opção é o mesmo que para a System Variable [`tls_version`](server-system-variables.html#sysvar_tls_version) descrita anteriormente. Consulte [Seção 16.3.8, “Configurando a Replicação para Usar Conexões Criptografadas”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections").
 
-The protocols that can be specified for `MASTER_TLS_VERSION` depend on the SSL library. This option is independent of and not affected by the server [`tls_version`](server-system-variables.html#sysvar_tls_version) value. For example, a server that acts as a replica can be configured with [`tls_version`](server-system-variables.html#sysvar_tls_version) set to TLSv1.2 to permit only incoming connections that use TLSv1.2, but also configured with `MASTER_TLS_VERSION` set to TLSv1.1 to permit only TLSv1.1 for outgoing replica connections to the source.
+Os protocolos que podem ser especificados para `MASTER_TLS_VERSION` dependem da *library* SSL. Esta opção é independente e não é afetada pelo valor [`tls_version`](server-system-variables.html#sysvar_tls_version) do Server. Por exemplo, um Server que atua como *replica* pode ser configurado com [`tls_version`](server-system-variables.html#sysvar_tls_version) definido como TLSv1.2 para permitir apenas conexões de entrada que usem TLSv1.2, mas também configurado com `MASTER_TLS_VERSION` definido como TLSv1.1 para permitir apenas TLSv1.1 para conexões de *replica* de saída para a *source*.
 
-TLS protocol configuration affects which protocol a given connection uses, as described in [Connection TLS Protocol Negotiation](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation").
+A configuração do protocolo TLS afeta qual protocolo uma determinada conexão usa, conforme descrito em [Negociação do Protocolo TLS de Conexão](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation").
 
-Permitted protocols should be chosen such as not to leave “holes” in the list. For example, these server configuration values do not have holes:
+Os protocolos permitidos devem ser escolhidos de forma a não deixar "buracos" (*holes*) na lista. Por exemplo, estes valores de configuração do Server não têm buracos:
 
 ```sql
 tls_version=TLSv1,TLSv1.1,TLSv1.2
@@ -91,63 +91,63 @@ tls_version=TLSv1.1,TLSv1.2
 tls_version=TLSv1.2
 ```
 
-This value does have a hole and should not be used:
+Este valor tem um buraco e não deve ser usado:
 
 ```sql
 tls_version=TLSv1,TLSv1.2       (TLSv1.1 is missing)
 ```
 
-The prohibition on holes also applies in other configuration contexts, such as for clients or replicas.
+A proibição de buracos também se aplica em outros contextos de configuração, como para Clients ou Replicas.
 
-Unless you intend to disable encrypted connections, the list of permitted protocols should not be empty. If you set a TLS version parameter to the empty string, encrypted connections cannot be established:
+A menos que você pretenda desabilitar conexões criptografadas, a lista de protocolos permitidos não deve estar vazia. Se você definir um parâmetro de versão TLS como uma *string* vazia, conexões criptografadas não poderão ser estabelecidas:
 
-* [`tls_version`](server-system-variables.html#sysvar_tls_version): The server does not permit encrypted incoming connections.
+* [`tls_version`](server-system-variables.html#sysvar_tls_version): O Server não permite conexões de entrada criptografadas.
 
-* [`--tls-version`](connection-options.html#option_general_tls-version): The client does not permit encrypted outgoing connections to the server.
+* [`--tls-version`](connection-options.html#option_general_tls-version): O Client não permite conexões de saída criptografadas para o Server.
 
-* `MASTER_TLS_VERSION`: The replica does not permit encrypted outgoing connections to the source.
+* `MASTER_TLS_VERSION`: A Replica não permite conexões de saída criptografadas para a Source.
 
-#### Deprecated TLS Protocols
+#### Protocolos TLS Descontinuados
 
-As of MySQL 5.7.35, the TLSv1 and TLSv1.1 connection protocols are deprecated and support for them is subject to removal in a future MySQL version. (For background, refer to the IETF memo [Deprecating TLSv1.0 and TLSv1.1](https://tools.ietf.org/id/draft-ietf-tls-oldversions-deprecate-02.html).) It is recommended that connections be made using the more-secure TLSv1.2 and TLSv1.3 protocols. TLSv1.3 requires that both the MySQL server and the client application be compiled with OpenSSL 1.1.1 or higher.
+A partir do MySQL 5.7.35, os protocolos de conexão TLSv1 e TLSv1.1 são descontinuados e o suporte a eles está sujeito a remoção em uma versão futura do MySQL. (Para contexto, consulte o memorando IETF [Deprecating TLSv1.0 and TLSv1.1](https://tools.ietf.org/id/draft-ietf-tls-oldversions-deprecate-02.html).) É recomendado que as conexões sejam feitas usando os protocolos mais seguros TLSv1.2 e TLSv1.3. O TLSv1.3 requer que tanto o Server MySQL quanto o aplicativo Client sejam compilados com OpenSSL 1.1.1 ou superior.
 
-On the server side, this deprecation has the following effects:
+No lado do Server, esta descontinuação tem os seguintes efeitos:
 
-* If the [`tls_version`](server-system-variables.html#sysvar_tls_version) system variable is assigned a value containing a deprecated TLS protocol during server startup, the server writes a warning for each deprecated protocol to the error log.
+* Se a System Variable [`tls_version`](server-system-variables.html#sysvar_tls_version) receber um valor contendo um protocolo TLS descontinuado durante a inicialização do Server, o Server registra um aviso (*warning*) para cada protocolo descontinuado no *error log*.
 
-* If a client successfully connects using a deprecated TLS protocol, the server writes a warning to the error log.
+* Se um Client se conectar com sucesso usando um protocolo TLS descontinuado, o Server registra um aviso no *error log*.
 
-On the client side, the deprecation has no visible effect. Clients do not issue a warning if configured to permit a deprecated TLS protocol. This includes:
+No lado do Client, a descontinuação não tem efeito visível. Os Clients não emitem um aviso se configurados para permitir um protocolo TLS descontinuado. Isso inclui:
 
-* Client programs that support a [`--tls-version`](connection-options.html#option_general_tls-version) option for specifying TLS protocols for connections to the MySQL server.
+* Programas Client que suportam a opção [`--tls-version`](connection-options.html#option_general_tls-version) para especificar protocolos TLS para conexões com o Server MySQL.
 
-* Statements that enable replicas to specify TLS protocols for connections to the source server. ([`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") has a `MASTER_TLS_VERSION` option.)
+* Instruções que permitem que Replicas especifiquem protocolos TLS para conexões com o *source server*. (A instrução [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") tem uma opção `MASTER_TLS_VERSION`.)
 
-#### Connection Cipher Configuration
+#### Configuração de Cipher de Conexão
 
-A default set of ciphers applies to encrypted connections, which can be overridden by explicitly configuring the permitted ciphers. During connection establishment, both sides of a connection must permit some cipher in common or the connection fails. Of the permitted ciphers common to both sides, the SSL library chooses the one supported by the provided certificate that has the highest priority.
+Um conjunto padrão de *ciphers* se aplica a conexões criptografadas, o qual pode ser substituído pela configuração explícita dos *ciphers* permitidos. Durante o estabelecimento da conexão, ambos os lados de uma conexão devem permitir algum *cipher* em comum ou a conexão falhará. Dos *ciphers* permitidos comuns a ambos os lados, a *library* SSL escolhe aquele suportado pelo certificado fornecido que tiver a prioridade mais alta.
 
-To specify a cipher or ciphers for encrypted connections, set the [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher) system variable on the server side, and use the [`--ssl-cipher`](connection-options.html#option_general_ssl-cipher) option for client programs.
+Para especificar um ou mais *ciphers* para conexões criptografadas, defina a System Variable [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher) no lado do Server e use a opção [`--ssl-cipher`](connection-options.html#option_general_ssl-cipher) para programas Client.
 
-For source/replica replication connections, where this server instance is the source, set the [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher) system variable. Where this server instance is the replica, use the `MASTER_SSL_CIPHER` option for the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement. See [Section 16.3.8, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections").
+Para conexões de replicação *source/replica*, onde esta instância do Server é a *source*, defina a System Variable [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher). Onde esta instância do Server é a *replica*, use a opção `MASTER_SSL_CIPHER` para a instrução [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement"). Consulte [Seção 16.3.8, “Configurando a Replicação para Usar Conexões Criptografadas”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections").
 
-A given cipher may work only with particular TLS protocols, which affects the TLS protocol negotiation process. See [Connection TLS Protocol Negotiation](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation").
+Um determinado *cipher* pode funcionar apenas com protocolos TLS específicos, o que afeta o processo de negociação do protocolo TLS. Consulte [Negociação do Protocolo TLS de Conexão](encrypted-connection-protocols-ciphers.html#encrypted-connection-protocol-negotiation "Connection TLS Protocol Negotiation").
 
-To determine which ciphers a given server supports, check the session value of the [`Ssl_cipher_list`](server-status-variables.html#statvar_Ssl_cipher_list) status variable:
+Para determinar quais *ciphers* um determinado Server suporta, verifique o valor de sessão da Status Variable [`Ssl_cipher_list`](server-status-variables.html#statvar_Ssl_cipher_list):
 
 ```sql
 SHOW SESSION STATUS LIKE 'Ssl_cipher_list';
 ```
 
-The [`Ssl_cipher_list`](server-status-variables.html#statvar_Ssl_cipher_list) status variable lists the possible SSL ciphers (empty for non-SSL connections). The set of available ciphers depends on your MySQL version and whether MySQL was compiled using OpenSSL or yaSSL, and (for OpenSSL) the library version used to compile MySQL.
+A Status Variable [`Ssl_cipher_list`](server-status-variables.html#statvar_Ssl_cipher_list) lista os *ciphers* SSL possíveis (vazio para conexões não-SSL). O conjunto de *ciphers* disponíveis depende da sua versão do MySQL e se o MySQL foi compilado usando OpenSSL ou yaSSL e (para OpenSSL) a versão da *library* usada para compilar o MySQL.
 
-Note
+Nota
 
-ECDSA ciphers only work in combination with an SSL certificate that uses ECDSA for the digital signature, and they do not work with certificates that use RSA. MySQL Server’s automatic generation process for SSL certificates does not generate ECDSA signed certificates, it generates only RSA signed certificates. Do not select ECDSA ciphers unless you have an ECDSA certificate available to you.
+Os *ciphers* ECDSA funcionam apenas em combinação com um certificado SSL que usa ECDSA para a assinatura digital, e não funcionam com certificados que usam RSA. O processo de geração automática do Server MySQL para certificados SSL não gera certificados assinados por ECDSA, ele gera apenas certificados assinados por RSA. Não selecione *ciphers* ECDSA a menos que você tenha um certificado ECDSA disponível.
 
-MySQL passes a default cipher list to the SSL library.
+O MySQL passa uma lista de *ciphers* padrão para a *library* SSL.
 
-MySQL passes this default cipher list to OpenSSL:
+O MySQL passa esta lista de *ciphers* padrão para o OpenSSL:
 
 ```sql
 ECDHE-ECDSA-AES128-GCM-SHA256
@@ -221,7 +221,7 @@ ECDH-RSA-AES256-SHA
 DES-CBC3-SHA
 ```
 
-MySQL passes this default cipher list to yaSSL:
+O MySQL passa esta lista de *ciphers* padrão para o yaSSL:
 
 ```sql
 DHE-RSA-AES256-SHA
@@ -241,9 +241,9 @@ EDH-RSA-DES-CBC-SHA
 AES128-SHA:AES256-RMD
 ```
 
-As of MySQL 5.7.10, these cipher restrictions are in place:
+A partir do MySQL 5.7.10, estas restrições de *cipher* estão em vigor:
 
-* The following ciphers are permanently restricted:
+* Os seguintes *ciphers* são permanentemente restritos:
 
   ```sql
   !DHE-DSS-DES-CBC3-SHA
@@ -254,7 +254,7 @@ As of MySQL 5.7.10, these cipher restrictions are in place:
   !ECDHE-ECDSA-DES-CBC3-SHA
   ```
 
-* The following categories of ciphers are permanently restricted:
+* As seguintes categorias de *ciphers* são permanentemente restritas:
 
   ```sql
   !aNULL
@@ -269,23 +269,23 @@ As of MySQL 5.7.10, these cipher restrictions are in place:
   !SSLv3
   ```
 
-If the server is started with the [`ssl_cert`](server-system-variables.html#sysvar_ssl_cert) system variable set to a certificate that uses any of the preceding restricted ciphers or cipher categories, the server starts with support for encrypted connections disabled.
+Se o Server for iniciado com a System Variable [`ssl_cert`](server-system-variables.html#sysvar_ssl_cert) definida para um certificado que usa qualquer um dos *ciphers* ou categorias de *cipher* restritos acima, o Server inicia com o suporte a conexões criptografadas desabilitado.
 
-#### Connection TLS Protocol Negotiation
+#### Negociação do Protocolo TLS de Conexão
 
-Connection attempts in MySQL negotiate use of the highest TLS protocol version available on both sides for which a protocol-compatible encryption cipher is available on both sides. The negotiation process depends on factors such as the SSL library used to compile the server and client, the TLS protocol and encryption cipher configuration, and which key size is used:
+As tentativas de conexão no MySQL negociam o uso da versão de protocolo TLS mais alta disponível em ambos os lados para a qual um *cipher* de criptografia compatível com o protocolo esteja disponível em ambos os lados. O processo de negociação depende de fatores como a *library* SSL usada para compilar o Server e o Client, a configuração do protocolo TLS e do *cipher* de criptografia, e qual tamanho de chave é usado:
 
-* For a connection attempt to succeed, the server and client TLS protocol configuration must permit some protocol in common.
+* Para que uma tentativa de conexão seja bem-sucedida, a configuração do protocolo TLS do Server e do Client deve permitir algum protocolo em comum.
 
-* Similarly, the server and client encryption cipher configuration must permit some cipher in common. A given cipher may work only with particular TLS protocols, so a protocol available to the negotiation process is not chosen unless there is also a compatible cipher.
+* Da mesma forma, a configuração do *cipher* de criptografia do Server e do Client deve permitir algum *cipher* em comum. Um determinado *cipher* pode funcionar apenas com protocolos TLS específicos, portanto, um protocolo disponível para o processo de negociação não é escolhido a menos que também haja um *cipher* compatível.
 
-* If the server and client are compiled using OpenSSL, TLSv1.2 is used if possible. If either or both the server and client are compiled using yaSSL, TLSv1.1 is used if possible. (“Possible” means that server and client configuration both must permit the indicated protocol, and both must also permit some protocol-compatible encryption cipher.) Otherwise, MySQL continues through the list of available protocols, proceeding from more secure protocols to less secure. Negotiation order is independent of the order in which protocols are configured. For example, negotiation order is the same regardless of whether [`tls_version`](server-system-variables.html#sysvar_tls_version) has a value of `TLSv1,TLSv1.1,TLSv1.2` or `TLSv1.2,TLSv1.1,TLSv1`.
+* Se o Server e o Client forem compilados usando OpenSSL, o TLSv1.2 será usado se possível. Se um ou ambos, Server e Client, forem compilados usando yaSSL, o TLSv1.1 será usado se possível. ("Possível" significa que a configuração do Server e do Client devem permitir o protocolo indicado, e ambos também devem permitir algum *cipher* de criptografia compatível com o protocolo.) Caso contrário, o MySQL continua através da lista de protocolos disponíveis, prosseguindo dos protocolos mais seguros para os menos seguros. A ordem de negociação é independente da ordem em que os protocolos são configurados. Por exemplo, a ordem de negociação é a mesma, independentemente de [`tls_version`](server-system-variables.html#sysvar_tls_version) ter um valor de `TLSv1,TLSv1.1,TLSv1.2` ou `TLSv1.2,TLSv1.1,TLSv1`.
 
-  Note
+  Nota
 
-  Prior to MySQL 5.7.10, MySQL supports only TLSv1, for both OpenSSL and yaSSL, and no system variable or client option exist for specifying which TLS protocols to permit.
+  Antes do MySQL 5.7.10, o MySQL suportava apenas TLSv1, tanto para OpenSSL quanto para yaSSL, e não existia System Variable ou opção de Client para especificar quais protocolos TLS permitir.
 
-* TLSv1.2 does not work with all ciphers that have a key size of 512 bits or less. To use this protocol with such a key, set the [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher) system variable on the server side or use the [`--ssl-cipher`](connection-options.html#option_general_ssl-cipher) client option to specify the cipher name explicitly:
+* O TLSv1.2 não funciona com todos os *ciphers* que possuem um tamanho de chave de 512 *bits* ou menos. Para usar este protocolo com tal chave, defina a System Variable [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher) no lado do Server ou use a opção Client [`--ssl-cipher`](connection-options.html#option_general_ssl-cipher) para especificar o nome do *cipher* explicitamente:
 
   ```sql
   AES128-SHA
@@ -301,27 +301,27 @@ Connection attempts in MySQL negotiate use of the highest TLS protocol version a
   SEED-SHA
   ```
 
-* For better security, use a certificate with an RSA key size of at least 2048 bits.
+* Para melhor segurança, use um certificado com um tamanho de chave RSA de pelo menos 2048 *bits*.
 
-If the server and client do not have a permitted protocol in common, and a protocol-compatible cipher in common, the server terminates the connection request. Examples:
+Se o Server e o Client não tiverem um protocolo permitido em comum e um *cipher* compatível com o protocolo em comum, o Server encerra a solicitação de conexão. Exemplos:
 
-* If the server is configured with [`tls_version=TLSv1.1,TLSv1.2`](server-system-variables.html#sysvar_tls_version):
+* Se o Server estiver configurado com [`tls_version=TLSv1.1,TLSv1.2`](server-system-variables.html#sysvar_tls_version):
 
-  + Connection attempts fail for clients invoked with [`--tls-version=TLSv1`](connection-options.html#option_general_tls-version), and for older clients that support only TLSv1.
+  + As tentativas de conexão falham para Clients invocados com [`--tls-version=TLSv1`](connection-options.html#option_general_tls-version) e para Clients mais antigos que suportam apenas TLSv1.
 
-  + Similarly, connection attempts fail for replicas configured with `MASTER_TLS_VERSION = 'TLSv1'`, and for older replicas that support only TLSv1.
+  + Da mesma forma, as tentativas de conexão falham para Replicas configuradas com `MASTER_TLS_VERSION = 'TLSv1'` e para Replicas mais antigas que suportam apenas TLSv1.
 
-* If the server is configured with [`tls_version=TLSv1`](server-system-variables.html#sysvar_tls_version) or is an older server that supports only TLSv1:
+* Se o Server estiver configurado com [`tls_version=TLSv1`](server-system-variables.html#sysvar_tls_version) ou for um Server mais antigo que suporta apenas TLSv1:
 
-  + Connection attempts fail for clients invoked with [`--tls-version=TLSv1.1,TLSv1.2`](connection-options.html#option_general_tls-version).
+  + As tentativas de conexão falham para Clients invocados com [`--tls-version=TLSv1.1,TLSv1.2`](connection-options.html#option_general_tls-version).
 
-  + Similarly, connection attempts fail for replicas configured with `MASTER_TLS_VERSION = 'TLSv1.1,TLSv1.2'`.
+  + Da mesma forma, as tentativas de conexão falham para Replicas configuradas com `MASTER_TLS_VERSION = 'TLSv1.1,TLSv1.2'`.
 
-MySQL permits specifying a list of protocols to support. This list is passed directly down to the underlying SSL library and is ultimately up to that library what protocols it actually enables from the supplied list. Please refer to the MySQL source code and the OpenSSL [`SSL_CTX_new()`](https://www.openssl.org/docs/man1.1.0/ssl/SSL_CTX_new.html) documentation for information about how the SSL library handles this.
+O MySQL permite especificar uma lista de protocolos a serem suportados. Esta lista é passada diretamente para a *library* SSL subjacente e cabe, em última análise, a essa *library* quais protocolos ela realmente habilita a partir da lista fornecida. Consulte o código-fonte do MySQL e a documentação do OpenSSL [`SSL_CTX_new()`](https://www.openssl.org/docs/man1.1.0/ssl/SSL_CTX_new.html) para obter informações sobre como a *library* SSL lida com isso.
 
-#### Monitoring Current Client Session TLS Protocol and Cipher
+#### Monitoramento do Protocolo TLS e Cipher da Sessão Client Atual
 
-To determine which encryption TLS protocol and cipher the current client session uses, check the session values of the [`Ssl_version`](server-status-variables.html#statvar_Ssl_version) and [`Ssl_cipher`](server-status-variables.html#statvar_Ssl_cipher) status variables:
+Para determinar qual protocolo TLS de criptografia e *cipher* a sessão Client atual usa, verifique os valores de sessão das Status Variables [`Ssl_version`](server-status-variables.html#statvar_Ssl_version) e [`Ssl_cipher`](server-status-variables.html#statvar_Ssl_cipher):
 
 ```sql
 mysql> SELECT * FROM performance_schema.session_status
@@ -334,4 +334,4 @@ mysql> SELECT * FROM performance_schema.session_status
 +---------------+---------------------------+
 ```
 
-If the connection is not encrypted, both variables have an empty value.
+Se a conexão não estiver criptografada, ambas as variáveis terão um valor vazio.

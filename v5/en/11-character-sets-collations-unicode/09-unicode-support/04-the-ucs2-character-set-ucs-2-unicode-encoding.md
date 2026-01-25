@@ -1,9 +1,9 @@
-### 10.9.4 The ucs2 Character Set (UCS-2 Unicode Encoding)
+### 10.9.4 O Character Set ucs2 (Codificação Unicode UCS-2)
 
-In UCS-2, every character is represented by a 2-byte Unicode code with the most significant byte first. For example: `LATIN CAPITAL LETTER A` has the code `0x0041` and it is stored as a 2-byte sequence: `0x00 0x41`. `CYRILLIC SMALL LETTER YERU` (Unicode `0x044B`) is stored as a 2-byte sequence: `0x04 0x4B`. For Unicode characters and their codes, please refer to the Unicode Consortium website.
+Em UCS-2, cada caractere é representado por um código Unicode de 2 bytes, com o byte mais significativo primeiro. Por exemplo: `LATIN CAPITAL LETTER A` tem o código `0x0041` e é armazenado como uma sequência de 2 bytes: `0x00 0x41`. `CYRILLIC SMALL LETTER YERU` (Unicode `0x044B`) é armazenado como uma sequência de 2 bytes: `0x04 0x4B`. Para caracteres Unicode e seus códigos, consulte o site do Unicode Consortium.
 
-The `ucs2` character set has these characteristics:
+O `character set` `ucs2` possui estas características:
 
-* Supports BMP characters only (no support for supplementary characters)
+* Suporta apenas caracteres BMP (sem suporte para caracteres suplementares)
 
-* Uses a fixed-length 16-bit encoding and requires two bytes per character.
+* Utiliza uma codificação de 16 bits de comprimento fixo e requer dois bytes por caractere.

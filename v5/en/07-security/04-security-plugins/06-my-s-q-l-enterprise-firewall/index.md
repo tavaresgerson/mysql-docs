@@ -1,23 +1,23 @@
-### 6.4.6 MySQL Enterprise Firewall
+### 6.4.6 MySQL Enterprise Firewall
 
-[6.4.6.1 Elements of MySQL Enterprise Firewall](firewall-elements.html)
+[6.4.6.1 Elementos do MySQL Enterprise Firewall](firewall-elements.html)
 
-[6.4.6.2 Installing or Uninstalling MySQL Enterprise Firewall](firewall-installation.html)
+[6.4.6.2 Instalação ou Desinstalação do MySQL Enterprise Firewall](firewall-installation.html)
 
-[6.4.6.3 Using MySQL Enterprise Firewall](firewall-usage.html)
+[6.4.6.3 Utilizando o MySQL Enterprise Firewall](firewall-usage.html)
 
-[6.4.6.4 MySQL Enterprise Firewall Reference](firewall-reference.html)
+[6.4.6.4 Referência do MySQL Enterprise Firewall](firewall-reference.html)
 
-Note
+Nota
 
-MySQL Enterprise Firewall is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, see <https://www.mysql.com/products/>.
+O MySQL Enterprise Firewall é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
-MySQL Enterprise Edition includes MySQL Enterprise Firewall, an application-level firewall that enables database administrators to permit or deny SQL statement execution based on matching against lists of accepted statement patterns. This helps harden MySQL Server against attacks such as SQL injection or attempts to exploit applications by using them outside of their legitimate query workload characteristics.
+O MySQL Enterprise Edition inclui o MySQL Enterprise Firewall, um Firewall de nível de aplicação que permite aos administradores de Database permitir ou negar a execução de instruções SQL com base na correspondência com listas de padrões de instruções aceitas. Isso ajuda a proteger o MySQL Server contra ataques como SQL injection ou tentativas de explorar aplicações, utilizando-as fora de suas características legítimas de workload de Query.
 
-Each MySQL account registered with the firewall has its own statement allowlist, enabling protection to be tailored per account. For a given account, the firewall can operate in recording, protecting, or detecting mode, for training in the accepted statement patterns, active protection against unacceptable statements, or passive detection of unacceptable statements. The diagram illustrates how the firewall processes incoming statements in each mode.
+Cada conta MySQL registrada no Firewall possui sua própria allowlist de instruções, permitindo que a proteção seja personalizada por conta. Para uma determinada conta, o Firewall pode operar nos modos recording, protecting ou detecting, para treinamento nos padrões de instruções aceitas, proteção ativa contra instruções inaceitáveis ou detecção passiva de instruções inaceitáveis. O diagrama ilustra como o Firewall processa as instruções de entrada em cada modo.
 
-**Figure 6.1 MySQL Enterprise Firewall Operation**
+**Figura 6.1 Operação do MySQL Enterprise Firewall**
 
-![Flow chart showing how MySQL Enterprise Firewall processes incoming SQL statements in recording, protecting, and detecting modes.](images/firewall-diagram-1.png)
+![Fluxograma mostrando como o MySQL Enterprise Firewall processa as instruções SQL de entrada nos modos recording, protecting e detecting.](images/firewall-diagram-1.png)
 
-The following sections describe the elements of MySQL Enterprise Firewall, discuss how to install and use it, and provide reference information for its elements.
+As seções a seguir descrevem os elementos do MySQL Enterprise Firewall, discutem como instalá-lo e utilizá-lo, e fornecem informações de referência para seus elementos.

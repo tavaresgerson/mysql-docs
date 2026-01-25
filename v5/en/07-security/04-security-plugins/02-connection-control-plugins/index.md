@@ -1,15 +1,15 @@
-### 6.4.2 Connection Control Plugins
+### 6.4.2 Plugins de Controle de Conexão
 
-[6.4.2.1 Connection Control Plugin Installation](connection-control-plugin-installation.html)
+[6.4.2.1 Instalação do Plugin de Controle de Conexão](connection-control-plugin-installation.html)
 
-[6.4.2.2 Connection Control Plugin System and Status Variables](connection-control-plugin-variables.html)
+[6.4.2.2 Variáveis de Sistema e de Status do Plugin de Controle de Conexão](connection-control-plugin-variables.html)
 
-As of MySQL 5.7.17, MySQL Server includes a plugin library that enables administrators to introduce an increasing delay in server response to connection attempts after a configurable number of consecutive failed attempts. This capability provides a deterrent that slows down brute force attacks against MySQL user accounts. The plugin library contains two plugins:
+A partir do MySQL 5.7.17, o MySQL Server inclui uma biblioteca de *plugins* que permite aos administradores introduzir um atraso crescente na resposta do *server* a tentativas de *connection* após um número configurável de tentativas consecutivas falhas. Essa capacidade fornece um impedimento que retarda os ataques de força bruta contra contas de usuários MySQL. A biblioteca de *plugins* contém dois *plugins*:
 
-* `CONNECTION_CONTROL` checks incoming connection attempts and adds a delay to server responses as necessary. This plugin also exposes system variables that enable its operation to be configured and a status variable that provides rudimentary monitoring information.
+* `CONNECTION_CONTROL` verifica as tentativas de *connection* de entrada e adiciona um atraso às respostas do *server* conforme necessário. Este *plugin* também expõe variáveis de sistema que permitem que sua operação seja configurada e uma variável de *status* que fornece informações rudimentares de monitoramento.
 
-  The `CONNECTION_CONTROL` plugin uses the audit plugin interface (see [Writing Audit Plugins](/doc/extending-mysql/5.7/en/writing-audit-plugins.html)). To collect information, it subscribes to the `MYSQL_AUDIT_CONNECTION_CLASSMASK` event class, and processes `MYSQL_AUDIT_CONNECTION_CONNECT` and `MYSQL_AUDIT_CONNECTION_CHANGE_USER` subevents to check whether the server should introduce a delay before responding to connection attempts.
+  O *plugin* `CONNECTION_CONTROL` usa a interface do *audit plugin* (veja [Escrevendo Audit Plugins](/doc/extending-mysql/5.7/en/writing-audit-plugins.html)). Para coletar informações, ele se inscreve na classe de evento `MYSQL_AUDIT_CONNECTION_CLASSMASK` e processa os subeventos `MYSQL_AUDIT_CONNECTION_CONNECT` e `MYSQL_AUDIT_CONNECTION_CHANGE_USER` para verificar se o *server* deve introduzir um atraso antes de responder às tentativas de *connection*.
 
-* `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` implements an `INFORMATION_SCHEMA` table that exposes more detailed monitoring information for failed connection attempts. For more information about this table, see [Section 24.6.2, “The INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS Table”](information-schema-connection-control-failed-login-attempts-table.html "24.6.2 The INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS Table").
+* `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` implementa uma tabela do `INFORMATION_SCHEMA` que expõe informações de monitoramento mais detalhadas para tentativas de *connection* falhas. Para mais informações sobre esta tabela, veja [Seção 24.6.2, “A Tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS”](information-schema-connection-control-failed-login-attempts-table.html "24.6.2 A Tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS").
 
-The following sections provide information about connection control plugin installation and configuration.
+As seções a seguir fornecem informações sobre a instalação e a configuração do *plugin* de controle de *connection*.

@@ -1,352 +1,352 @@
-### 4.5.5 mysqlimport — A Data Import Program
+### 4.5.5 mysqlimport — Um Programa de Importação de Dados
 
-The **mysqlimport** client provides a command-line interface to the `LOAD DATA` SQL statement. Most options to **mysqlimport** correspond directly to clauses of `LOAD DATA` syntax. See Section 13.2.6, “LOAD DATA Statement”.
+O cliente **mysqlimport** fornece uma interface de linha de comando para a instrução SQL `LOAD DATA`. A maioria das opções do **mysqlimport** corresponde diretamente às cláusulas da sintaxe `LOAD DATA`. Consulte a Seção 13.2.6, “Instrução LOAD DATA”.
 
-Invoke **mysqlimport** like this:
+Invoque o **mysqlimport** desta forma:
 
 ```sql
 mysqlimport [options] db_name textfile1 [textfile2 ...]
 ```
 
-For each text file named on the command line, **mysqlimport** strips any extension from the file name and uses the result to determine the name of the table into which to import the file's contents. For example, files named `patient.txt`, `patient.text`, and `patient` all would be imported into a table named `patient`.
+Para cada arquivo de texto nomeado na linha de comando, o **mysqlimport** remove qualquer extensão do nome do arquivo e usa o resultado para determinar o nome da table na qual o conteúdo do arquivo será importado. Por exemplo, arquivos nomeados `patient.txt`, `patient.text` e `patient` seriam todos importados para uma table nomeada `patient`.
 
-**mysqlimport** supports the following options, which can be specified on the command line or in the `[mysqlimport]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see Section 4.2.2.2, “Using Option Files”.
+O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlimport]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando Arquivos de Opções”.
 
-**Table 4.17 mysqlimport Options**
+**Tabela 4.17 Opções do mysqlimport**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlimport."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Introduced</th> <th>Deprecated</th> </tr></thead><tbody><tr><th>--bind-address</th> <td>Use specified network interface to connect to MySQL Server</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Directory where character sets can be found</td> <td></td> <td></td> </tr><tr><th>--columns</th> <td>This option takes a comma-separated list of column names as its value</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compress all information sent between client and server</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Write debugging log</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Print debugging information when program exits</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Authentication plugin to use</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Specify default character set</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Read named option file in addition to usual option files</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Read only named option file</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Option group suffix value</td> <td></td> <td></td> </tr><tr><th>--delete</th> <td>Empty the table before importing the text file</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Enable cleartext authentication plugin</td> <td>5.7.10</td> <td></td> </tr><tr><th>--fields-enclosed-by</th> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--fields-escaped-by</th> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--fields-optionally-enclosed-by</th> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--fields-terminated-by</th> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--force</th> <td>Continue even if an SQL error occurs</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Request RSA public key from server</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Display help message and exit</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Host on which MySQL server is located</td> <td></td> <td></td> </tr><tr><th>--ignore</th> <td>See the description for the --replace option</td> <td></td> <td></td> </tr><tr><th>--ignore-lines</th> <td>Ignore the first N lines of the data file</td> <td></td> <td></td> </tr><tr><th>--lines-terminated-by</th> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--local</th> <td>Read input files locally from the client host</td> <td></td> <td></td> </tr><tr><th>--lock-tables</th> <td>Lock all tables for writing before processing any text files</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Read login path options from .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--low-priority</th> <td>Use LOW_PRIORITY when loading the table</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Read no option files</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Password to use when connecting to server</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Connect to server using named pipe (Windows only)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Directory where plugins are installed</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>TCP/IP port number for connection</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Print default options</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Transport protocol to use</td> <td></td> <td></td> </tr><tr><th>--replace</th> <td>The --replace and --ignore options control handling of input rows that duplicate existing rows on unique key values</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td></td> <td>Yes</td> </tr><tr><th>--server-public-key-path</th> <td>Path name to file containing RSA public key</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Produce output only when errors occur</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Unix socket file or Windows named pipe to use</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Enable connection encryption</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>File that contains X.509 certificate</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Permissible ciphers for connection encryption</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>File that contains certificate revocation lists</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Directory that contains certificate revocation-list files</td> <td></td> <td></td> </tr><tr><th>--ssl-key</th> <td>File that contains X.509 key</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Desired security state of connection to server</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verify host name against server certificate Common Name identity</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-threads</th> <td>Number of threads for parallel file-loading</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>MySQL user name to use when connecting to server</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Verbose mode</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Display version information and exit</td> <td></td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlimport."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzida</th> <th>Descontinuada</th> </tr></thead><tbody><tr><th>--bind-address</th> <td>Usar a interface de rede especificada para conectar ao MySQL Server</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os character sets podem ser encontrados</td> <td></td> <td></td> </tr><tr><th>--columns</th> <td>Esta opção aceita uma lista de nomes de colunas separados por vírgula como seu valor</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Comprime todas as informações enviadas entre o client e o server</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreve o log de debugging</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprime informações de debugging quando o programa é encerrado</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprime informações de debugging, estatísticas de memória e CPU quando o programa é encerrado</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de Authentication a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especificar o character set padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Lê o arquivo de opções nomeado, além dos arquivos de opções usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Lê apenas o arquivo de opções nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--delete</th> <td>Esvaziar a table antes de importar o arquivo de texto</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilita o plugin de authentication cleartext</td> <td>5.7.10</td> <td></td> </tr><tr><th>--fields-enclosed-by</th> <td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--fields-escaped-by</th> <td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--fields-optionally-enclosed-by</th> <td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--fields-terminated-by</th> <td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--force</th> <td>Continua mesmo se ocorrer um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicita a public key RSA do server</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibe a mensagem de ajuda e sai</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Host onde o MySQL server está localizado</td> <td></td> <td></td> </tr><tr><th>--ignore</th> <td>Veja a descrição para a opção --replace</td> <td></td> <td></td> </tr><tr><th>--ignore-lines</th> <td>Ignora as primeiras N linhas do arquivo de dados</td> <td></td> <td></td> </tr><tr><th>--lines-terminated-by</th> <td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--local</th> <td>Lê arquivos de input localmente a partir do host client</td> <td></td> <td></td> </tr><tr><th>--lock-tables</th> <td>Aplica Lock em todas as tables para escrita antes de processar quaisquer arquivos de texto</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Lê as opções de login path de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--low-priority</th> <td>Usa LOW_PRIORITY ao carregar a table</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não lê nenhum arquivo de opções</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Password a ser usada ao conectar ao server</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecta ao server usando named pipe (somente Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins estão instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número da port TCP/IP para conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Imprime as opções padrão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser usado</td> <td></td> <td></td> </tr><tr><th>--replace</th> <td>As opções --replace e --ignore controlam o tratamento de linhas de input que duplicam linhas existentes com base em valores de Primary Key únicas</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envia passwords para o server no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do Path para o arquivo contendo a public key RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome da shared-memory para conexões de shared-memory (somente Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Produz output apenas quando ocorrem erros</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo Unix socket ou named pipe do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Habilita a encryption da conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Certificate Authorities SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém os arquivos de certificado da Certificate Authority SSL confiável</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Ciphers permitidos para a encryption da conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém as listas de revogação de certificado</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém os arquivos de lista de revogação de certificado</td> <td></td> <td></td> </tr><tr><th>--ssl-key</th> <td>Arquivo que contém a key X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o server</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifica o nome do host em relação à identidade Common Name do certificado do server</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões encriptadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-threads</th> <td>Número de threads para carregamento paralelo de arquivos</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome do user MySQL a ser usado ao conectar ao server</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbose</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibe informações de versão e sai</td> <td></td> <td></td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
+  Em um computador com múltiplas interfaces de rede, use esta opção para selecionar qual interface usar para conectar ao MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The directory where character sets are installed. See Section 10.15, “Character Set Configuration”.
+  O diretório onde os character sets estão instalados. Consulte a Seção 10.15, “Configuração de Character Set”.
 
 * `--columns=column_list`, `-c column_list`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  This option takes a list of comma-separated column names as its value. The order of the column names indicates how to match data file columns with table columns.
+  Esta opção aceita uma lista de nomes de colunas separados por vírgula como seu valor. A ordem dos nomes das colunas indica como combinar as colunas do arquivo de dados com as colunas da table.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for compress"><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para compress"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Compress all information sent between the client and the server if possible. See Section 4.2.6, “Connection Compression Control”.
+  Comprime todas as informações enviadas entre o client e o server, se possível. Consulte a Seção 4.2.6, “Controle de Compression de Conexão”.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
-  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o`.
+  Escreve um log de debugging. Uma string *`debug_options`* típica é `d:t:o,file_name`. O padrão é `d:t:o`.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Os binários de lançamento do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for debug-check"><tbody><tr><th>Command-Line Format</th> <td><code>--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug-check"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--debug-check</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Print some debugging information when the program exits.
+  Imprime algumas informações de debugging quando o programa é encerrado.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Os binários de lançamento do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Properties for debug-info"><tbody><tr><th>Command-Line Format</th> <td><code>--debug-info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug-info"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--debug-info</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Print debugging information and memory and CPU usage statistics when the program exits.
+  Imprime informações de debugging e estatísticas de uso de memória e CPU quando o programa é encerrado.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Os binários de lançamento do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for default-character-set"><tbody><tr><th>Command-Line Format</th> <td><code>--default-character-set=charset_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para default-character-set"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--default-character-set=charset_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  Use *`charset_name`* as the default character set. See Section 10.15, “Character Set Configuration”.
+  Usa *`charset_name`* como o character set padrão. Consulte a Seção 10.15, “Configuração de Character Set”.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  A hint about which client-side authentication plugin to use. See Section 6.2.13, “Pluggable Authentication”.
+  Uma dica sobre qual plugin de authentication no lado do client usar. Consulte a Seção 6.2.13, “Pluggable Authentication”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Lê este arquivo de opções após o arquivo de opções global, mas (no Unix) antes do arquivo de opções do user. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de Path absoluto, ele será interpretado em relação ao diretório atual.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Usa apenas o arquivo de opções fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de Path absoluto, ele será interpretado em relação ao diretório atual.
 
-  Exception: Even with `--defaults-file`, client programs read `.mylogin.cnf`.
+  Exceção: Mesmo com `--defaults-file`, os programas client leem `.mylogin.cnf`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlimport** normally reads the `[client]` and `[mysqlimport]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlimport** also reads the `[client_other]` and `[mysqlimport_other]` groups.
+  Lê não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, o **mysqlimport** normalmente lê os grupos `[client]` e `[mysqlimport]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, o **mysqlimport** também lê os grupos `[client_other]` e `[mysqlimport_other]`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--delete`, `-D`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Empty the table before importing the text file.
+  Esvazia a table antes de importar o arquivo de texto.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”.)
+  Habilita o plugin de authentication cleartext `mysql_clear_password`. (Consulte a Seção 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”.)
 
-  This option was added in MySQL 5.7.10.
+  Esta opção foi adicionada no MySQL 5.7.10.
 
 * `--fields-terminated-by=...`, `--fields-enclosed-by=...`, `--fields-optionally-enclosed-by=...`, `--fields-escaped-by=...`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  These options have the same meaning as the corresponding clauses for `LOAD DATA`. See Section 13.2.6, “LOAD DATA Statement”.
+  Estas opções têm o mesmo significado que as cláusulas correspondentes para `LOAD DATA`. Consulte a Seção 13.2.6, “Instrução LOAD DATA”.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Ignore errors. For example, if a table for a text file does not exist, continue processing any remaining files. Without `--force`, **mysqlimport** exits if a table does not exist.
+  Ignora erros. Por exemplo, se uma table para um arquivo de texto não existir, continua processando quaisquer arquivos restantes. Sem `--force`, o **mysqlimport** é encerrado se uma table não existir.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Solicita ao server a public key necessária para a troca de password baseada no par de keys RSA. Esta opção se aplica a clients que se autenticam com o plugin de authentication `caching_sha2_password`. Para esse plugin, o server não envia a public key, a menos que seja solicitada. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de password baseada em RSA não for usada, como é o caso quando o client se conecta ao server usando uma conexão segura.
 
-  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
+  Se `--server-public-key-path=file_name` for fornecido e especificar um arquivo de public key válido, ele terá precedência sobre `--get-server-public-key`.
 
-  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  Para informações sobre o plugin `caching_sha2_password`, consulte a Seção 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
-  The `--get-server-public-key` option was added in MySQL 5.7.23.
+  A opção `--get-server-public-key` foi adicionada no MySQL 5.7.23.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Import data to the MySQL server on the given host. The default host is `localhost`.
+  Importa dados para o MySQL server no host fornecido. O host padrão é `localhost`.
 
 * `--ignore`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  See the description for the `--replace` option.
+  Consulte a descrição para a opção `--replace`.
 
 * `--ignore-lines=N`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Ignore the first *`N`* lines of the data file.
+  Ignora as primeiras *`N`* linhas do arquivo de dados.
 
 * `--lines-terminated-by=...`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  This option has the same meaning as the corresponding clause for `LOAD DATA`. For example, to import Windows files that have lines terminated with carriage return/linefeed pairs, use `--lines-terminated-by="\r\n"`. (You might have to double the backslashes, depending on the escaping conventions of your command interpreter.) See Section 13.2.6, “LOAD DATA Statement”.
+  Esta opção tem o mesmo significado que a cláusula correspondente para `LOAD DATA`. Por exemplo, para importar arquivos do Windows que têm linhas terminadas com pares de carriage return/linefeed, use `--lines-terminated-by="\r\n"`. (Você pode precisar duplicar as barras invertidas, dependendo das convenções de escaping do seu interpretador de comando.) Consulte a Seção 13.2.6, “Instrução LOAD DATA”.
 
 * `--local`, `-L`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  By default, files are read by the server on the server host. With this option, **mysqlimport** reads input files locally on the client host.
+  Por padrão, os arquivos são lidos pelo server no host do server. Com esta opção, o **mysqlimport** lê os arquivos de input localmente no host client.
 
-  Successful use of `LOCAL` load operations within **mysqlimport** also requires that the server permits local loading; see Section 6.1.6, “Security Considerations for LOAD DATA LOCAL”
+  O uso bem-sucedido de operações de load `LOCAL` dentro do **mysqlimport** também exige que o server permita o carregamento local; consulte a Seção 6.1.6, “Considerações de Segurança para LOAD DATA LOCAL”.
 
 * `--lock-tables`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Lock *all* tables for writing before processing any text files. This ensures that all tables are synchronized on the server.
+  Aplica Lock em *todas* as tables para escrita antes de processar quaisquer arquivos de texto. Isso garante que todas as tables estejam sincronizadas no server.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  Lê opções do login path nomeado no arquivo de login path `.mylogin.cnf`. Um “login path” é um grupo de opções contendo opções que especificam a qual MySQL server conectar e com qual conta autenticar. Para criar ou modificar um arquivo de login path, use a utilidade **mysql_config_editor**. Consulte a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração do MySQL”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--low-priority`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Use `LOW_PRIORITY` when loading the table. This affects only storage engines that use only table-level locking (such as `MyISAM`, `MEMORY`, and `MERGE`).
+  Usa `LOW_PRIORITY` ao carregar a table. Isso afeta apenas storage engines que usam apenas Lock de nível de table (como `MyISAM`, `MEMORY` e `MERGE`).
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
+  Não lê nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que passwords sejam especificadas de uma forma mais segura do que na linha de comando, mesmo quando `--no-defaults` é usado. Para criar `.mylogin.cnf`, use a utilidade **mysql_config_editor**. Consulte a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração do MySQL”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlimport** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  A password da conta MySQL usada para conectar ao server. O valor da password é opcional. Se não for fornecido, o **mysqlimport** solicita uma. Se fornecido, não deve haver *espaço* entre `--password=` ou `-p` e a password subsequente. Se nenhuma opção de password for especificada, o padrão é não enviar password.
 
-  Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 6.1.2.1, “End-User Guidelines for Password Security”.
+  Especificar uma password na linha de comando deve ser considerado inseguro. Para evitar fornecer a password na linha de comando, use um arquivo de opções. Consulte a Seção 6.1.2.1, “Diretrizes para Usuários Finais sobre Segurança de Password”.
 
-  To explicitly specify that there is no password and that **mysqlimport** should not prompt for one, use the `--skip-password` option.
+  Para especificar explicitamente que não há password e que o **mysqlimport** não deve solicitar uma, use a opção `--skip-password`.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
+  No Windows, conecta ao server usando um named pipe. Esta opção se aplica apenas se o server foi iniciado com a system variable `named_pipe` habilitada para suportar conexões named-pipe. Além disso, o user que faz a conexão deve ser membro do grupo do Windows especificado pela system variable `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlimport** does not find it. See Section 6.2.13, “Pluggable Authentication”.
+  O diretório no qual procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de authentication, mas o **mysqlimport** não o encontrar. Consulte a Seção 6.2.13, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  For TCP/IP connections, the port number to use.
+  Para conexões TCP/IP, o número da port a ser usado.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Print the program name and all options that it gets from option files.
+  Imprime o nome do programa e todas as opções que ele obtém dos arquivos de opções.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 4.2.5, “Connection Transport Protocols”.
+  O protocolo de transporte a ser usado para conectar ao server. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do desejado. Para detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 * `--replace`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The `--replace` and `--ignore` options control handling of input rows that duplicate existing rows on unique key values. If you specify `--replace`, new rows replace existing rows that have the same unique key value. If you specify `--ignore`, input rows that duplicate an existing row on a unique key value are skipped. If you do not specify either option, an error occurs when a duplicate key value is found, and the rest of the text file is ignored.
+  As opções `--replace` e `--ignore` controlam o tratamento de linhas de input que duplicam linhas existentes com base em valores de Primary Key únicas. Se você especificar `--replace`, novas linhas substituem as linhas existentes que têm o mesmo valor de Primary Key única. Se você especificar `--ignore`, as linhas de input que duplicam uma linha existente com base em um valor de Primary Key única são ignoradas. Se você não especificar nenhuma das opções, ocorrerá um erro quando um valor de key duplicado for encontrado, e o restante do arquivo de texto será ignorado.
 
 * `--secure-auth`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Do not send passwords to the server in old (pre-4.1) format. This prevents connections except for servers that use the newer password format.
+  Não envia passwords para o server no formato antigo (pré-4.1). Isso impede conexões, exceto para servers que usam o formato de password mais recente.
 
-  As of MySQL 5.7.5, this option is deprecated;expect it to be removed in a future MySQL release. It is always enabled and attempting to disable it (`--skip-secure-auth`, `--secure-auth=0`) produces an error. Before MySQL 5.7.5, this option is enabled by default but can be disabled.
+  A partir do MySQL 5.7.5, esta opção está descontinuada; espere que ela seja removida em um futuro lançamento do MySQL. Ela está sempre habilitada e a tentativa de desabilitá-la (`--skip-secure-auth`, `--secure-auth=0`) produz um erro. Antes do MySQL 5.7.5, esta opção é habilitada por padrão, mas pode ser desabilitada.
 
   Note
 
-  Passwords that use the pre-4.1 hashing method are less secure than passwords that use the native password hashing method and should be avoided. Pre-4.1 passwords are deprecated and support for them was removed in MySQL 5.7.5. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
+  Passwords que usam o método de hashing pré-4.1 são menos seguras do que passwords que usam o método de hashing de password nativo e devem ser evitadas. Passwords pré-4.1 estão descontinuadas e o suporte a elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando do Hashing de Password Pré-4.1 e do Plugin mysql_old_password”.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  O nome do Path para um arquivo no formato PEM contendo uma cópia do lado do client da public key exigida pelo server para a troca de password baseada em par de keys RSA. Esta opção se aplica a clients que se autenticam com o plugin de authentication `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de password baseada em RSA não for usada, como é o caso quando o client se conecta ao server usando uma conexão segura.
 
-  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
+  Se `--server-public-key-path=file_name` for fornecido e especificar um arquivo de public key válido, ele terá precedência sobre `--get-server-public-key`.
 
-  For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
+  Para `sha256_password`, esta opção se aplica apenas se o MySQL foi construído usando OpenSSL.
 
-  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  Para informações sobre os plugins `sha256_password` e `caching_sha2_password`, consulte a Seção 6.4.1.5, “SHA-256 Pluggable Authentication”, e a Seção 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
-  The `--server-public-key-path` option was added in MySQL 5.7.23.
+  A opção `--server-public-key-path` foi adicionada no MySQL 5.7.23.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
+  No Windows, o nome da shared-memory a ser usado para conexões feitas usando shared memory para um server local. O valor padrão é `MYSQL`. O nome da shared-memory é case-sensitive.
 
-  This option applies only if the server was started with the `shared_memory` system variable enabled to support shared-memory connections.
+  Esta opção se aplica apenas se o server foi iniciado com a system variable `shared_memory` habilitada para suportar conexões shared-memory.
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  Silent mode. Produce output only when errors occur.
+  Modo silent. Produz output apenas quando ocorrem erros.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
+  Para conexões a `localhost`, o arquivo Unix socket a ser usado ou, no Windows, o nome do named pipe a ser usado.
 
-  On Windows, this option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
+  No Windows, esta opção se aplica apenas se o server foi iniciado com a system variable `named_pipe` habilitada para suportar conexões named-pipe. Além disso, o user que faz a conexão deve ser membro do grupo do Windows especificado pela system variable `named_pipe_full_access_group`.
 
 * `--ssl*`
 
-  Options that begin with `--ssl` specify whether to connect to the server using encryption and indicate where to find SSL keys and certificates. See Command Options for Encrypted Connections.
+  Opções que começam com `--ssl` especificam se deve conectar ao server usando encryption e indicam onde encontrar keys e certificados SSL. Consulte Opções de Comando para Conexões Encriptadas.
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
+  Os protocolos TLS permitidos para conexões encriptadas. O valor é uma lista de um ou mais nomes de protocolo separados por vírgulas. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 6.3.2, “Protocolos TLS e Ciphers de Conexão Encriptada”.
 
-  This option was added in MySQL 5.7.10.
+  Esta opção foi adicionada no MySQL 5.7.10.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  The user name of the MySQL account to use for connecting to the server.
+  O nome do user MySQL a ser usado para conectar ao server.
 
 * `--use-threads=N`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  Load files in parallel using *`N`* threads.
+  Carrega arquivos em paralelo usando *`N`* threads.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  Verbose mode. Print more information about what the program does.
+  Modo verbose. Imprime mais informações sobre o que o programa faz.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for columns"><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para columns"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações de versão e sai.
 
-Here is a sample session that demonstrates use of **mysqlimport**:
+Aqui está uma sessão de exemplo que demonstra o uso do **mysqlimport**:
 
 ```sql
 $> mysql -e 'CREATE TABLE imptest(id INT, n VARCHAR(30))' test

@@ -1,9 +1,9 @@
-### 2.1.6 Compiler-Specific Build Characteristics
+### 2.1.6 Características de Build Específicas do Compiler
 
-In some cases, the compiler used to build MySQL affects the features available for use. The notes in this section apply for binary distributions provided by Oracle Corporation or that you compile yourself from source.
+Em alguns casos, o *compiler* usado para construir o MySQL afeta os recursos disponíveis para uso. As notas nesta seção se aplicam a distribuições binárias fornecidas pela Oracle Corporation ou àquelas que você compila a partir do *source*.
 
 ****icc** (Intel C++ Compiler) Builds**
 
-A server built with **icc** has these characteristics:
+Um servidor construído com **icc** possui estas características:
 
-* SSL support is not included.
+* O suporte a SSL não está incluído.

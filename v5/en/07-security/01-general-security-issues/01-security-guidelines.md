@@ -1,55 +1,55 @@
-### 6.1.1 Security Guidelines
+### 6.1.1 Diretrizes de Segurança
 
-Anyone using MySQL on a computer connected to the Internet should read this section to avoid the most common security mistakes.
+Qualquer pessoa usando MySQL em um computador conectado à Internet deve ler esta seção para evitar os erros de segurança mais comuns.
 
-In discussing security, it is necessary to consider fully protecting the entire server host (not just the MySQL server) against all types of applicable attacks: eavesdropping, altering, playback, and denial of service. We do not cover all aspects of availability and fault tolerance here.
+Ao discutir segurança, é necessário considerar a proteção total de todo o *server host* (e não apenas do servidor MySQL) contra todos os tipos de ataques aplicáveis: *eavesdropping* (escuta), alteração, *playback* (repetição) e *denial of service*. Não cobrimos todos os aspectos de disponibilidade e tolerância a falhas aqui.
 
-MySQL uses security based on Access Control Lists (ACLs) for all connections, queries, and other operations that users can attempt to perform. There is also support for SSL-encrypted connections between MySQL clients and servers. Many of the concepts discussed here are not specific to MySQL at all; the same general ideas apply to almost all applications.
+O MySQL utiliza segurança baseada em Access Control Lists (ACLs) para todas as connections, Queries e outras operações que os usuários podem tentar executar. Há também suporte para connections criptografadas via SSL entre clientes e servidores MySQL. Muitos dos conceitos discutidos aqui não são específicos do MySQL; as mesmas ideias gerais se aplicam a quase todas as aplicações.
 
-When running MySQL, follow these guidelines:
+Ao executar o MySQL, siga estas diretrizes:
 
-* **Do not ever give anyone (except MySQL `root` accounts) access to the `user` table in the `mysql` system database!** This is critical.
+* **Nunca dê acesso a ninguém (exceto contas `root` do MySQL) à tabela `user` no Database de sistema `mysql`!** Isso é crítico.
 
-* Learn how the MySQL access privilege system works (see [Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")). Use the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") and [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") statements to control access to MySQL. Do not grant more privileges than necessary. Never grant privileges to all hosts.
-
-  Checklist:
-
-  + Try `mysql -u root`. If you are able to connect successfully to the server without being asked for a password, anyone can connect to your MySQL server as the MySQL `root` user with full privileges! Review the MySQL installation instructions, paying particular attention to the information about setting a `root` password. See [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
-
-  + Use the [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") statement to check which accounts have access to what. Then use the [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") statement to remove those privileges that are not necessary.
-
-* Do not store cleartext passwords in your database. If your computer becomes compromised, the intruder can take the full list of passwords and use them. Instead, use [`SHA2()`](encryption-functions.html#function_sha2) or some other one-way hashing function and store the hash value.
-
-  To prevent password recovery using rainbow tables, do not use these functions on a plain password; instead, choose some string to be used as a salt, and use hash(hash(password)+salt) values.
-
-* Assume that all passwords will be subject to automated cracking attempts using lists of known passwords, and also to targeted guessing using publicly available information about you, such as social media posts. Do not choose passwords that consist of easily cracked or guessed items such as a dictionary word, proper name, sports team name, acronym, or commonly known phrase, particularly if they are relevant to you. The use of upper case letters, number substitutions and additions, and special characters does not help if these are used in predictable ways. Also do not choose any password you have seen used as an example anywhere, or a variation on it, even if it was presented as an example of a strong password.
-
-  Instead, choose passwords that are as long and as unpredictable as possible. That does not mean the combination needs to be a random string of characters that is difficult to remember and reproduce, although this is a good approach if you have, for example, password manager software that can generate and fill such passwords and store them securely. A passphrase containing multiple words is easy to create, remember, and reproduce, and is much more secure than a typical user-selected password consisting of a single modified word or a predictable sequence of characters. To create a secure passphrase, ensure that the words and other items in it are not a known phrase or quotation, do not occur in a predictable order, and preferably have no previous relationship to each other at all.
-
-* Invest in a firewall. This protects you from at least 50% of all types of exploits in any software. Put MySQL behind the firewall or in a demilitarized zone (DMZ).
+* Aprenda como o sistema de privilégios de acesso do MySQL funciona (consulte [Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")). Use as Statements [`GRANT`](grant.html "13.7.1.4 GRANT Statement") e [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") para controlar o acesso ao MySQL. Não conceda mais privilégios do que o necessário. Nunca conceda privilégios a todos os hosts.
 
   Checklist:
 
-  + Try to scan your ports from the Internet using a tool such as `nmap`. MySQL uses port 3306 by default. This port should not be accessible from untrusted hosts. As a simple way to check whether your MySQL port is open, try the following command from some remote machine, where *`server_host`* is the host name or IP address of the host on which your MySQL server runs:
+  + Tente `mysql -u root`. Se você conseguir se conectar ao server com sucesso sem que uma senha seja solicitada, qualquer pessoa poderá se conectar ao seu servidor MySQL como o usuário `root` do MySQL com privilégios totais! Revise as instruções de instalação do MySQL, prestando atenção especial às informações sobre como definir uma senha `root`. Consulte [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
+
+  + Use a Statement [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") para verificar quais contas têm acesso a quê. Em seguida, use a Statement [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") para remover os privilégios desnecessários.
+
+* Não armazene senhas em *cleartext* (texto simples) no seu Database. Se o seu computador for comprometido, o invasor poderá pegar a lista completa de senhas e usá-las. Em vez disso, use [`SHA2()`](encryption-functions.html#function_sha2) ou alguma outra função de *hashing* unidirecional (*one-way hashing function*) e armazene o valor do *hash*.
+
+  Para evitar a recuperação de senhas usando *rainbow tables*, não use essas funções em uma senha simples; em vez disso, escolha alguma *string* para ser usada como *salt*, e use os valores hash(hash(password)+salt).
+
+* Presuma que todas as senhas estarão sujeitas a tentativas automatizadas de quebra usando listas de senhas conhecidas e também a tentativas direcionadas de adivinhação usando informações publicamente disponíveis sobre você, como postagens em mídias sociais. Não escolha senhas que consistam em itens fáceis de quebrar ou adivinhar, como uma palavra de dicionário, nome próprio, nome de time esportivo, acrônimo ou frase comumente conhecida, principalmente se forem relevantes para você. O uso de letras maiúsculas, substituições e adições de números e caracteres especiais não ajuda se forem usados de maneiras previsíveis. Além disso, não escolha nenhuma senha que você tenha visto usada como exemplo em qualquer lugar, ou uma variação dela, mesmo que tenha sido apresentada como um exemplo de senha forte.
+
+  Em vez disso, escolha senhas que sejam o mais longas e imprevisíveis possível. Isso não significa que a combinação precise ser uma *string* aleatória de caracteres difícil de lembrar e reproduzir, embora esta seja uma boa abordagem se você tiver, por exemplo, um software gerenciador de senhas que possa gerar e preencher essas senhas e armazená-las de forma segura. Uma *passphrase* contendo várias palavras é fácil de criar, lembrar e reproduzir, e é muito mais segura do que uma senha típica selecionada pelo usuário, que consiste em uma única palavra modificada ou uma sequência previsível de caracteres. Para criar uma *passphrase* segura, certifique-se de que as palavras e outros itens nela não sejam uma frase ou citação conhecida, não ocorram em uma ordem previsível e, de preferência, não tenham nenhuma relação prévia entre si.
+
+* Invista em um *firewall*. Isso o protege de pelo menos 50% de todos os tipos de *exploits* em qualquer software. Coloque o MySQL atrás do *firewall* ou em uma *demilitarized zone* (DMZ).
+
+  Checklist:
+
+  + Tente escanear suas portas a partir da Internet usando uma ferramenta como `nmap`. O MySQL usa a porta 3306 por padrão. Esta porta não deve estar acessível a partir de hosts não confiáveis. Como uma maneira simples de verificar se sua porta MySQL está aberta, tente o seguinte comando a partir de alguma máquina remota, onde *`server_host`* é o nome do host ou o endereço IP do host no qual seu servidor MySQL está sendo executado:
 
     ```sql
     $> telnet server_host 3306
     ```
 
-    If **telnet** hangs or the connection is refused, the port is blocked, which is how you want it to be. If you get a connection and some garbage characters, the port is open, and should be closed on your firewall or router, unless you really have a good reason to keep it open.
+    Se o **telnet** travar ou a connection for recusada, a porta está bloqueada, que é o estado desejado. Se você conseguir uma connection e alguns caracteres estranhos (*garbage characters*), a porta está aberta e deve ser fechada no seu *firewall* ou *router*, a menos que você realmente tenha um bom motivo para mantê-la aberta.
 
-* Applications that access MySQL should not trust any data entered by users, and should be written using proper defensive programming techniques. See [Section 6.1.7, “Client Programming Security Guidelines”](secure-client-programming.html "6.1.7 Client Programming Security Guidelines").
+* Aplicações que acessam o MySQL não devem confiar em nenhum dado inserido pelos usuários e devem ser escritas usando técnicas adequadas de programação defensiva. Consulte [Section 6.1.7, “Client Programming Security Guidelines”](secure-client-programming.html "6.1.7 Client Programming Security Guidelines").
 
-* Do not transmit plain (unencrypted) data over the Internet. This information is accessible to everyone who has the time and ability to intercept it and use it for their own purposes. Instead, use an encrypted protocol such as SSL or SSH. MySQL supports internal SSL connections. Another technique is to use SSH port-forwarding to create an encrypted (and compressed) tunnel for the communication.
+* Não transmita dados simples (não criptografados) pela Internet. Essas informações são acessíveis a todos que têm tempo e capacidade de interceptá-las e usá-las para seus próprios propósitos. Em vez disso, use um protocolo criptografado como SSL ou SSH. O MySQL suporta connections SSL internas. Outra técnica é usar o *port-forwarding* SSH para criar um *tunnel* criptografado (e compactado) para a comunicação.
 
-* Learn to use the **tcpdump** and **strings** utilities. In most cases, you can check whether MySQL data streams are unencrypted by issuing a command like the following:
+* Aprenda a usar as utilidades **tcpdump** e **strings**. Na maioria dos casos, você pode verificar se os fluxos de dados do MySQL não estão criptografados emitindo um comando como o seguinte:
 
   ```sql
   $> tcpdump -l -i eth0 -w - src or dst port 3306 | strings
   ```
 
-  This works under Linux and should work with small modifications under other systems.
+  Isso funciona no Linux e deve funcionar com pequenas modificações em outros sistemas.
 
   Warning
 
-  If you do not see cleartext data, this does not always mean that the information actually is encrypted. If you need high security, consult with a security expert.
+  Se você não vir dados em *cleartext* (texto simples), isso nem sempre significa que a informação está realmente criptografada. Se você precisar de alta segurança, consulte um especialista em segurança.

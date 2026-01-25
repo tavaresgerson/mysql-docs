@@ -1,36 +1,36 @@
-#### 10.10.7.2 The gb18030 Character Set
+#### 10.10.7.2 O Character Set gb18030
 
-In MySQL, the `gb18030` character set corresponds to the “Chinese National Standard GB 18030-2005: Information technology — Chinese coded character set”, which is the official character set of the People's Republic of China (PRC).
+No MySQL, o `character set` `gb18030` corresponde ao “Padrão Nacional Chinês GB 18030-2005: Tecnologia da informação—Conjunto de caracteres codificados chinês”, que é o `character set` oficial da República Popular da China (RPC).
 
-##### Characteristics of the MySQL gb18030 Character Set
+##### Características do Character Set gb18030 do MySQL
 
-* Supports all code points defined by the GB 18030-2005 standard. Unassigned code points in the ranges (GB+8431A439, GB+90308130) and (GB+E3329A36, GB+EF39EF39) are treated as '`?`' (0x3F). Conversion of unassigned code points return '`?`'.
+* Suporta todos os `code points` definidos pelo padrão GB 18030-2005. Os `code points` não atribuídos nos `ranges` (GB+8431A439, GB+90308130) e (GB+E3329A36, GB+EF39EF39) são tratados como '`?`' (0x3F). A conversão de `code points` não atribuídos retorna '`?`'.
 
-* Supports UPPER and LOWER conversion for all GB18030 code points. Case folding defined by Unicode is also supported (based on `CaseFolding-6.3.0.txt`).
+* Suporta conversão UPPER e LOWER para todos os `code points` GB18030. O `case folding` definido pelo Unicode também é suportado (baseado em `CaseFolding-6.3.0.txt`).
 
-* Supports Conversion of data to and from other character sets.
+* Suporta a conversão de dados de e para outros `character sets`.
 
-* Supports SQL statements such as `SET NAMES`.
+* Suporta comandos SQL como `SET NAMES`.
 
-* Supports comparison between `gb18030` strings, and between `gb18030` strings and strings of other character sets. There is a conversion if strings have different character sets. Comparisons that include or ignore trailing spaces are also supported.
+* Suporta a comparação entre `strings` `gb18030`, e entre `strings` `gb18030` e `strings` de outros `character sets`. Uma conversão é realizada se as `strings` possuírem `character sets` diferentes. Comparações que incluem ou ignoram espaços em branco à direita (`trailing spaces`) também são suportadas.
 
-* The private use area (U+E000, U+F8FF) in Unicode is mapped to `gb18030`.
+* A área de uso privado (`private use area`) (U+E000, U+F8FF) no Unicode é mapeada para `gb18030`.
 
-* There is no mapping between (U+D800, U+DFFF) and GB18030. Attempted conversion of code points in this range returns '`?`'.
+* Não há mapeamento entre (U+D800, U+DFFF) e GB18030. Tentativas de conversão de `code points` neste `range` retornam '`?`'.
 
-* If an incoming sequence is illegal, an error or warning is returned. If an illegal sequence is used in `CONVERT()`, an error is returned. Otherwise, a warning is returned.
+* Se uma sequência de entrada for ilegal, um erro ou `warning` é retornado. Se uma sequência ilegal for usada em `CONVERT()`, um erro é retornado. Caso contrário, um `warning` é retornado.
 
-* For consistency with `utf8` and `utf8mb4`, UPPER is not supported for ligatures.
+* Para consistência com `utf8` e `utf8mb4`, UPPER não é suportado para ligaturas.
 
-* Searches for ligatures also match uppercase ligatures when using the `gb18030_unicode_520_ci` collation.
+* Buscas por ligaturas também correspondem a ligaturas em caixa alta (`uppercase`) ao usar a `collation` `gb18030_unicode_520_ci`.
 
-* If a character has more than one uppercase character, the chosen uppercase character is the one whose lowercase is the character itself.
+* Se um caractere tiver mais de um caractere em caixa alta (`uppercase`), o caractere em caixa alta escolhido é aquele cuja caixa baixa (`lowercase`) é o próprio caractere.
 
-* The minimum multibyte length is 1 and the maximum is 4. The character set determines the length of a sequence using the first 1 or 2 bytes.
+* O comprimento mínimo multibyte é 1 e o máximo é 4. O `character set` determina o comprimento de uma sequência usando o primeiro 1 ou 2 `bytes`.
 
-##### Supported Collations
+##### Collations Suportadas
 
-* `gb18030_bin`: A binary collation.
-* `gb18030_chinese_ci`: The default collation, which supports Pinyin. Sorting of non-Chinese characters is based on the order of the original sort key. The original sort key is `GB(UPPER(ch))` if `UPPER(ch)` exists. Otherwise, the original sort key is `GB(ch)`. Chinese characters are sorted according to the Pinyin collation defined in the Unicode Common Locale Data Repository (CLDR 24). Non-Chinese characters are sorted before Chinese characters with the exception of `GB+FE39FE39`, which is the code point maximum.
+* `gb18030_bin`: Uma `collation` binária.
+* `gb18030_chinese_ci`: A `collation` padrão, que suporta Pinyin. A ordenação de caracteres não-chineses é baseada na ordem da `sort key` original. A `sort key` original é `GB(UPPER(ch))` se `UPPER(ch)` existir. Caso contrário, a `sort key` original é `GB(ch)`. Os caracteres chineses são ordenados de acordo com a `collation` Pinyin definida no Repositório de Dados de Localidade Comum Unicode (`Unicode Common Locale Data Repository - CLDR 24`). Caracteres não-chineses são ordenados antes dos caracteres chineses, com exceção de `GB+FE39FE39`, que é o `code point` máximo.
 
-* `gb18030_unicode_520_ci`: A Unicode collation. Use this collation if you need to ensure that ligatures are sorted correctly.
+* `gb18030_unicode_520_ci`: Uma `collation` Unicode. Use esta `collation` se você precisar garantir que as ligaturas sejam ordenadas corretamente.

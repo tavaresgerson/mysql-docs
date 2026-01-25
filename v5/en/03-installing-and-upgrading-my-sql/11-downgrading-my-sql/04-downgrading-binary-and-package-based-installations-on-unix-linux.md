@@ -1,88 +1,88 @@
-### 2.11.4 Downgrading Binary and Package-based Installations on Unix/Linux
+### 2.11.4 Downgrade de Instalações Baseadas em Binários e Pacotes no Unix/Linux
 
-This section describes how to downgrade MySQL binary and package-based installations on Unix/Linux. In-place and logical downgrade methods are described.
+Esta seção descreve como realizar o downgrade de instalações MySQL baseadas em binários e pacotes no Unix/Linux. São descritos os métodos de downgrade *in-place* e lógico.
 
-* In-Place Downgrade
-* Logical Downgrade
+* Downgrade In-Place
+* Downgrade Lógico
 
-#### In-Place Downgrade
+#### Downgrade In-Place
 
-In-place downgrade involves shutting down the new MySQL version, replacing the new MySQL binaries or packages with the old ones, and restarting the old MySQL version on the existing data directory.
+O downgrade *in-place* envolve o desligamento da nova versão do MySQL, a substituição dos novos binários ou pacotes do MySQL pelos antigos e a reinicialização da versão antiga do MySQL no diretório de *data* existente.
 
-In-place downgrade is supported for downgrades between GA releases within the same release series.
+O downgrade *in-place* é suportado para downgrades entre *releases* GA (General Availability) dentro da mesma série de *release*.
 
-In-place downgrade is not supported for MySQL APT, SLES, and Yum repository installations.
+O downgrade *in-place* não é suportado para instalações de repositórios MySQL APT, SLES e Yum.
 
 Note
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte ao `systemd` para gerenciar a inicialização e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld_safe** não é instalado. Nesses casos, use o `systemd` para inicialização e desligamento do servidor em vez dos métodos utilizados nas instruções a seguir. Consulte a Seção 2.5.10, “Gerenciamento do Servidor MySQL com systemd”.
 
-To perform an in-place downgrade:
+Para realizar um downgrade *in-place*:
 
-1. Review the information in Section 2.11.1, “Before You Begin”.
+1. Revise as informações na Seção 2.11.1, “Antes de Começar”.
 
-2. If you use XA transactions with `InnoDB`, run `XA RECOVER` before downgrading to check for uncommitted XA transactions. If results are returned, either commit or rollback the XA transactions by issuing an `XA COMMIT` or `XA ROLLBACK` statement.
+2. Se você usa XA transactions com `InnoDB`, execute `XA RECOVER` antes do downgrade para verificar se há XA transactions não consolidadas (*uncommitted*). Se houver resultados, faça o `commit` ou `rollback` das XA transactions emitindo uma instrução `XA COMMIT` ou `XA ROLLBACK`.
 
-3. Configure MySQL to perform a slow shutdown by setting `innodb_fast_shutdown` to `0`. For example:
+3. Configure o MySQL para realizar um *slow shutdown* (desligamento lento) definindo `innodb_fast_shutdown` como `0`. Por exemplo:
 
    ```sql
    mysql -u root -p --execute="SET GLOBAL innodb_fast_shutdown=0"
    ```
 
-   With a slow shutdown, `InnoDB` performs a full purge and change buffer merge before shutting down, which ensures that data files are fully prepared in case of file format differences between releases.
+   Com um *slow shutdown*, o `InnoDB` executa um *full purge* e *change buffer merge* antes de desligar, o que garante que os arquivos de *data* estejam totalmente preparados em caso de diferenças de formato de arquivo entre *releases*.
 
-4. Shut down the newer MySQL server. For example:
+4. Desligue o servidor MySQL mais novo. Por exemplo:
 
    ```sql
    mysqladmin -u root -p shutdown
    ```
 
-5. After the slow shutdown, remove the `InnoDB` redo log files (the `ib_logfile*` files) from the `data` directory to avoid downgrade issues related to redo log file format changes that may have occurred between releases.
+5. Após o *slow shutdown*, remova os arquivos de *redo log* do `InnoDB` (os arquivos `ib_logfile*`) do diretório *data* para evitar problemas de downgrade relacionados a alterações no formato de arquivo de *redo log* que possam ter ocorrido entre *releases*.
 
    ```sql
    rm ib_logfile*
    ```
 
-6. Downgrade the MySQL binaries or packages in-place by replacing the newer binaries or packages with the older ones.
+6. Faça o downgrade dos binários ou pacotes do MySQL *in-place* substituindo os binários ou pacotes mais novos pelos antigos.
 
-7. Start the older (downgraded) MySQL server, using the existing data directory. For example:
+7. Inicie o servidor MySQL mais antigo (com downgrade), usando o diretório *data* existente. Por exemplo:
 
    ```sql
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir
    ```
 
-8. Run **mysql_upgrade**. For example:
+8. Execute o **mysql_upgrade**. Por exemplo:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL, and attempts to repair the tables if problems are found.
+   O **mysql_upgrade** examina todas as *tables* em todos os *databases* em busca de incompatibilidades com a versão atual do MySQL e tenta reparar as *tables* se forem encontrados problemas.
 
-9. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
+9. Desligue e reinicie o servidor MySQL para garantir que quaisquer alterações feitas nas *system tables* entrem em vigor. Por exemplo:
 
    ```sql
    mysqladmin -u root -p shutdown
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir
    ```
 
-#### Logical Downgrade
+#### Downgrade Lógico
 
-Logical downgrade involves using **mysqldump** to dump all tables from the new MySQL version, and then loading the dump file into the old MySQL version.
+O downgrade lógico envolve o uso do **mysqldump** para realizar o *dump* de todas as *tables* da nova versão do MySQL e, em seguida, carregar o arquivo de *dump* na versão antiga do MySQL.
 
-Logical downgrades are supported for downgrades between releases within the same release series and for downgrades to the previous release level. Only downgrades between General Availability (GA) releases are supported. Before proceeding, review Section 2.11.1, “Before You Begin”.
+Downgrades lógicos são suportados para downgrades entre *releases* dentro da mesma série de *release* e para downgrades para o nível de *release* anterior. Apenas downgrades entre *releases* General Availability (GA) são suportados. Antes de prosseguir, revise a Seção 2.11.1, “Antes de Começar”.
 
 Note
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte ao `systemd` para gerenciar a inicialização e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld_safe** não é instalado. Nesses casos, use o `systemd` para inicialização e desligamento do servidor em vez dos métodos utilizados nas instruções a seguir. Consulte a Seção 2.5.10, “Gerenciamento do Servidor MySQL com systemd”.
 
-For MySQL APT, SLES, and Yum repository installations, only downgrades to the previous release level are supported. Where the instructions call for initializing an older instance, use the package management utility to remove MySQL 5.7 packages and install MySQL 5.6 packages.
+Para instalações de repositórios MySQL APT, SLES e Yum, apenas downgrades para o nível de *release* anterior são suportados. Onde as instruções solicitarem a inicialização de uma instância mais antiga, use o utilitário de gerenciamento de pacotes para remover os pacotes MySQL 5.7 e instalar os pacotes MySQL 5.6.
 
-To perform a logical downgrade:
+Para realizar um downgrade lógico:
 
-1. Review the information in Section 2.11.1, “Before You Begin”.
+1. Revise as informações na Seção 2.11.1, “Antes de Começar”.
 
-2. Dump all databases. For example:
+2. Faça o *dump* de todos os *databases*. Por exemplo:
 
    ```sql
    mysqldump -u root -p
@@ -90,39 +90,39 @@ To perform a logical downgrade:
      --all-databases --force > data-for-downgrade.sql
    ```
 
-3. Shut down the newer MySQL server. For example:
+3. Desligue o servidor MySQL mais novo. Por exemplo:
 
    ```sql
    mysqladmin -u root -p shutdown
    ```
 
-4. To initialize a MySQL 5.7 instance, use **mysqld** with the `--initialize` or `--initialize-insecure` option.
+4. Para inicializar uma instância MySQL 5.7, use o **mysqld** com a opção `--initialize` ou `--initialize-insecure`.
 
    ```sql
    mysqld --initialize --user=mysql
    ```
 
-5. Start the older MySQL server, using the new data directory. For example:
+5. Inicie o servidor MySQL mais antigo, usando o novo diretório *data*. Por exemplo:
 
    ```sql
    mysqld_safe --user=mysql --datadir=/path/to/new-datadir
    ```
 
-6. Load the dump file into the older MySQL server. For example:
+6. Carregue o arquivo de *dump* no servidor MySQL mais antigo. Por exemplo:
 
    ```sql
    mysql -u root -p --force < data-for-upgrade.sql
    ```
 
-7. Run **mysql_upgrade**. For example:
+7. Execute o **mysql_upgrade**. Por exemplo:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL, and attempts to repair the tables if problems are found.
+   O **mysql_upgrade** examina todas as *tables* em todos os *databases* em busca de incompatibilidades com a versão atual do MySQL e tenta reparar as *tables* se forem encontrados problemas.
 
-8. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
+8. Desligue e reinicie o servidor MySQL para garantir que quaisquer alterações feitas nas *system tables* entrem em vigor. Por exemplo:
 
    ```sql
    mysqladmin -u root -p shutdown

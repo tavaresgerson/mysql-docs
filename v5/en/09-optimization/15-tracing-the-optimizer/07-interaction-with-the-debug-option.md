@@ -1,3 +1,3 @@
-### 8.15.7 Interaction with the --debug Option
+### 8.15.7 Interação com a Opção --debug
 
-Anything written to the trace is automatically written to the debug file.
+Tudo que é escrito no rastreamento é automaticamente escrito no arquivo de debug.

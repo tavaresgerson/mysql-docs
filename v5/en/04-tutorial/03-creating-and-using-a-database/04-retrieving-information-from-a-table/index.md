@@ -1,24 +1,24 @@
-### 3.3.4 Retrieving Information from a Table
+### 3.3.4 Recuperando Informações de uma Tabela
 
-[3.3.4.1 Selecting All Data](selecting-all.html)
+[3.3.4.1 Selecionando Todos os Dados](selecting-all.html)
 
-[3.3.4.2 Selecting Particular Rows](selecting-rows.html)
+[3.3.4.2 Selecionando Linhas Específicas](selecting-rows.html)
 
-[3.3.4.3 Selecting Particular Columns](selecting-columns.html)
+[3.3.4.3 Selecionando Colunas Específicas](selecting-columns.html)
 
-[3.3.4.4 Sorting Rows](sorting-rows.html)
+[3.3.4.4 Ordenando Linhas](sorting-rows.html)
 
-[3.3.4.5 Date Calculations](date-calculations.html)
+[3.3.4.5 Cálculos de Data](date-calculations.html)
 
-[3.3.4.6 Working with NULL Values](working-with-null.html)
+[3.3.4.6 Trabalhando com Valores NULL](working-with-null.html)
 
-[3.3.4.7 Pattern Matching](pattern-matching.html)
+[3.3.4.7 Casamento de Padrões (Pattern Matching)](pattern-matching.html)
 
-[3.3.4.8 Counting Rows](counting-rows.html)
+[3.3.4.8 Contando Linhas](counting-rows.html)
 
-[3.3.4.9 Using More Than one Table](multiple-tables.html)
+[3.3.4.9 Usando Mais de uma Tabela](multiple-tables.html)
 
-The [`SELECT`](select.html "13.2.9 SELECT Statement") statement is used to pull information from a table. The general form of the statement is:
+A instrução [`SELECT`](select.html "13.2.9 SELECT Statement") é usada para extrair informações de uma tabela. A forma geral da instrução é:
 
 ```sql
 SELECT what_to_select
@@ -26,4 +26,4 @@ FROM which_table
 WHERE conditions_to_satisfy;
 ```
 
-*`what_to_select`* indicates what you want to see. This can be a list of columns, or `*` to indicate “all columns.” *`which_table`* indicates the table from which you want to retrieve data. The `WHERE` clause is optional. If it is present, *`conditions_to_satisfy`* specifies one or more conditions that rows must satisfy to qualify for retrieval.
+*`what_to_select`* indica o que você deseja visualizar. Isso pode ser uma lista de colunas, ou `*` para indicar “todas as colunas”. *`which_table`* indica a tabela da qual você deseja recuperar dados. A cláusula `WHERE` é opcional. Se estiver presente, *`conditions_to_satisfy`* especifica uma ou mais condições que as linhas devem satisfazer para serem qualificadas para a recuperação.

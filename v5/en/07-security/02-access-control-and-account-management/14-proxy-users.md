@@ -1,49 +1,48 @@
-### 6.2.14 Proxy Users
+### 6.2.14 Usuários Proxy
 
-The MySQL server authenticates client connections using authentication plugins. The plugin that authenticates a given connection may request that the connecting (external) user be treated as a different user for privilege-checking purposes. This enables the external user to be a proxy for the second user; that is, to assume the privileges of the second user:
+O MySQL server autentica as conexões de CLIENTs usando AUTHENTICATION PLUGINs. O PLUGIN que autentica uma determinada conexão pode solicitar que o USER (externo) de conexão seja tratado como um USER diferente para fins de verificação de privilégios. Isso permite que o USER externo seja um PROXY para o segundo USER; ou seja, assumir os privilégios do segundo USER:
 
-* The external user is a “proxy user” (a user who can impersonate or become known as another user).
+* O USER externo é um "proxy user" (um USER que pode se passar ou ser reconhecido como outro USER).
+* O segundo USER é um "proxied user" (um USER cuja identidade e privilégios podem ser assumidos por um proxy user).
 
-* The second user is a “proxied user” (a user whose identity and privileges can be assumed by a proxy user).
+Esta seção descreve como funciona a capacidade de proxy user. Para obter informações gerais sobre AUTHENTICATION PLUGINs, consulte [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). Para obter informações sobre PLUGINs específicos, consulte [Section 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins"). Para obter informações sobre como escrever AUTHENTICATION PLUGINs que suportam proxy users, consulte [Implementing Proxy User Support in Authentication Plugins](/doc/extending-mysql/5.7/en/writing-authentication-plugins-proxy-users.html).
 
-This section describes how the proxy user capability works. For general information about authentication plugins, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). For information about specific plugins, see [Section 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins"). For information about writing authentication plugins that support proxy users, see [Implementing Proxy User Support in Authentication Plugins](/doc/extending-mysql/5.7/en/writing-authentication-plugins-proxy-users.html).
+* [Requisitos para Suporte a Proxy User](proxy-users.html#proxy-users-support-requirements "Requirements for Proxy User Support")
+* [Exemplo Simples de Proxy User](proxy-users.html#proxy-users-example "Simple Proxy User Example")
+* [Prevenindo LOGIN Direto em Contas Proxied](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts")
+* [Concedendo e Revogando o PROXY Privilege](proxy-users.html#proxy-users-granting-proxy-privilege "Granting and Revoking the PROXY Privilege")
+* [Proxy Users Padrão](proxy-users.html#default-proxy-users "Default Proxy Users")
+* [Conflitos entre Proxy User Padrão e USER Anônimo](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts")
+* [Suporte do Server para Mapeamento de Proxy User](proxy-users.html#proxy-users-server-user-mapping "Server Support for Proxy User Mapping")
+* [Variáveis de Sistema de Proxy User](proxy-users.html#proxy-users-system-variables "Proxy User System Variables")
 
-* [Requirements for Proxy User Support](proxy-users.html#proxy-users-support-requirements "Requirements for Proxy User Support")
-* [Simple Proxy User Example](proxy-users.html#proxy-users-example "Simple Proxy User Example")
-* [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts")
-* [Granting and Revoking the PROXY Privilege](proxy-users.html#proxy-users-granting-proxy-privilege "Granting and Revoking the PROXY Privilege")
-* [Default Proxy Users](proxy-users.html#default-proxy-users "Default Proxy Users")
-* [Default Proxy User and Anonymous User Conflicts](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts")
-* [Server Support for Proxy User Mapping](proxy-users.html#proxy-users-server-user-mapping "Server Support for Proxy User Mapping")
-* [Proxy User System Variables](proxy-users.html#proxy-users-system-variables "Proxy User System Variables")
+#### Requisitos para Suporte a Proxy User
 
-#### Requirements for Proxy User Support
+Para que o proxying ocorra para um determinado AUTHENTICATION PLUGIN, estas condições devem ser satisfeitas:
 
-For proxying to occur for a given authentication plugin, these conditions must be satisfied:
+* O proxying deve ser suportado, seja pelo PLUGIN em si, ou pelo MySQL server em nome do PLUGIN. Neste último caso, o suporte do server pode precisar ser habilitado explicitamente; consulte [Server Support for Proxy User Mapping](proxy-users.html#proxy-users-server-user-mapping "Server Support for Proxy User Mapping").
 
-* Proxying must be supported, either by the plugin itself, or by the MySQL server on behalf of the plugin. In the latter case, server support may need to be enabled explicitly; see [Server Support for Proxy User Mapping](proxy-users.html#proxy-users-server-user-mapping "Server Support for Proxy User Mapping").
+* O ACCOUNT para o proxy user externo deve ser configurado para ser autenticado pelo PLUGIN. Use o comando [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") para associar um ACCOUNT a um AUTHENTICATION PLUGIN, ou [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") para alterar seu PLUGIN.
 
-* The account for the external proxy user must be set up to be authenticated by the plugin. Use the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement to associate an account with an authentication plugin, or [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") to change its plugin.
+* O ACCOUNT para o proxied user deve existir e ter os privilégios concedidos que serão assumidos pelo proxy user. Use os comandos [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") e [`GRANT`](grant.html "13.7.1.4 GRANT Statement") para isso.
 
-* The account for the proxied user must exist and be granted the privileges to be assumed by the proxy user. Use the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") and [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements for this.
+* Normalmente, o proxied user é configurado para que possa ser usado apenas em cenários de proxying e não para LOGINS diretos.
 
-* Normally, the proxied user is configured so that it can be used only in proxying scenaries and not for direct logins.
+* O ACCOUNT do proxy user deve ter o [`PROXY`](privileges-provided.html#priv_proxy) privilege para o ACCOUNT proxied. Use o comando [`GRANT`](grant.html "13.7.1.4 GRANT Statement") para isso.
 
-* The proxy user account must have the [`PROXY`](privileges-provided.html#priv_proxy) privilege for the proxied account. Use the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement for this.
+* Para que um CLIENT que se conecta ao ACCOUNT PROXY seja tratado como um proxy user, o AUTHENTICATION PLUGIN deve retornar um USER name diferente do USER name do CLIENT, para indicar o USER name do ACCOUNT proxied que define os privilégios a serem assumidos pelo proxy user.
 
-* For a client connecting to the proxy account to be treated as a proxy user, the authentication plugin must return a user name different from the client user name, to indicate the user name of the proxied account that defines the privileges to be assumed by the proxy user.
+* Alternativamente, para PLUGINs que recebem mapeamento PROXY pelo SERVER, o proxied user é determinado a partir do [`PROXY`](privileges-provided.html#priv_proxy) privilege detido pelo proxy user.
 
-  Alternatively, for plugins that are provided proxy mapping by the server, the proxied user is determined from the [`PROXY`](privileges-provided.html#priv_proxy) privilege held by the proxy user.
+O mecanismo PROXY permite mapear apenas o USER name do CLIENT externo para o USER name proxied. Não há previsão para mapeamento de HOST names:
 
-The proxy mechanism permits mapping only the external client user name to the proxied user name. There is no provision for mapping host names:
+* Quando um CLIENT se conecta ao server, o server determina o ACCOUNT apropriado com base no USER name passado pelo programa CLIENT e no HOST de onde o CLIENT se conecta.
 
-* When a client connects to the server, the server determines the proper account based on the user name passed by the client program and the host from which the client connects.
+* Se esse ACCOUNT for um ACCOUNT PROXY, o server tenta determinar o ACCOUNT proxied apropriado encontrando uma correspondência para um ACCOUNT proxied usando o USER name retornado pelo AUTHENTICATION PLUGIN e o HOST name do ACCOUNT PROXY. O HOST name no ACCOUNT proxied é ignorado.
 
-* If that account is a proxy account, the server attempts to determine the appropriate proxied account by finding a match for a proxied account using the user name returned by the authentication plugin and the host name of the proxy account. The host name in the proxied account is ignored.
+#### Exemplo Simples de Proxy User
 
-#### Simple Proxy User Example
-
-Consider the following account definitions:
+Considere as seguintes definições de ACCOUNTs:
 
 ```sql
 -- create proxy account
@@ -66,15 +65,15 @@ GRANT PROXY
   TO 'employee_ext'@'localhost';
 ```
 
-When a client connects as `employee_ext` from the local host, MySQL uses the plugin named `my_auth_plugin` to perform authentication. Suppose that `my_auth_plugin` returns a user name of `employee` to the server, based on the content of `'my_auth_string'` and perhaps by consulting some external authentication system. The name `employee` differs from `employee_ext`, so returning `employee` serves as a request to the server to treat the `employee_ext` external user, for purposes of privilege checking, as the `employee` local user.
+Quando um CLIENT se conecta como `employee_ext` a partir do HOST local, o MySQL usa o PLUGIN chamado `my_auth_plugin` para realizar a AUTHENTICATION. Suponha que `my_auth_plugin` retorne um USER name `employee` para o server, com base no conteúdo de `'my_auth_string'` e talvez consultando algum sistema de AUTHENTICATION externo. O nome `employee` difere de `employee_ext`, então retornar `employee` serve como uma solicitação ao server para tratar o USER externo `employee_ext`, para fins de verificação de privilégios, como o USER local `employee`.
 
-In this case, `employee_ext` is the proxy user and `employee` is the proxied user.
+Neste caso, `employee_ext` é o proxy user e `employee` é o proxied user.
 
-The server verifies that proxy authentication for `employee` is possible for the `employee_ext` user by checking whether `employee_ext` (the proxy user) has the [`PROXY`](privileges-provided.html#priv_proxy) privilege for `employee` (the proxied user). If this privilege has not been granted, an error occurs. Otherwise, `employee_ext` assumes the privileges of `employee`. The server checks statements executed during the client session by `employee_ext` against the privileges granted to `employee`. In this case, `employee_ext` can access tables in the `employees` database.
+O server verifica se a AUTHENTICATION PROXY para `employee` é possível para o USER `employee_ext`, verificando se `employee_ext` (o proxy user) tem o [`PROXY`](privileges-provided.html#priv_proxy) privilege para `employee` (o proxied user). Se este privilégio não tiver sido concedido, ocorre um erro. Caso contrário, `employee_ext` assume os privilégios de `employee`. O server verifica os comandos executados durante a sessão do CLIENT por `employee_ext` em relação aos privilégios concedidos a `employee`. Neste caso, `employee_ext` pode acessar tabelas no DATABASE `employees`.
 
-The proxied account, `employee`, uses the `mysql_no_login` authentication plugin to prevent clients from using the account to log in directly. (This assumes that the plugin is installed. For instructions, see [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").) For alternative methods of protecting proxied accounts against direct use, see [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
+O ACCOUNT proxied, `employee`, usa o AUTHENTICATION PLUGIN `mysql_no_login` para evitar que CLIENTs usem o ACCOUNT para fazer LOGIN diretamente. (Isso pressupõe que o PLUGIN esteja instalado. Para instruções, consulte [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").) Para métodos alternativos de proteção de ACCOUNTs proxied contra uso direto, consulte [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
 
-When proxying occurs, the [`USER()`](information-functions.html#function_user) and [`CURRENT_USER()`](information-functions.html#function_current-user) functions can be used to see the difference between the connecting user (the proxy user) and the account whose privileges apply during the current session (the proxied user). For the example just described, those functions return these values:
+Quando o proxying ocorre, as funções [`USER()`](information-functions.html#function_user) e [`CURRENT_USER()`](information-functions.html#function_current-user) podem ser usadas para ver a diferença entre o USER que se conecta (o proxy user) e o ACCOUNT cujos privilégios se aplicam durante a sessão atual (o proxied user). Para o exemplo recém-descrito, essas funções retornam estes valores:
 
 ```sql
 mysql> SELECT USER(), CURRENT_USER();
@@ -85,39 +84,39 @@ mysql> SELECT USER(), CURRENT_USER();
 +------------------------+--------------------+
 ```
 
-In the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement that creates the proxy user account, the `IDENTIFIED WITH` clause that names the proxy-supporting authentication plugin is optionally followed by an `AS 'auth_string'` clause specifying a string that the server passes to the plugin when the user connects. If present, the string provides information that helps the plugin determine how to map the proxy (external) client user name to a proxied user name. It is up to each plugin whether it requires the `AS` clause. If so, the format of the authentication string depends on how the plugin intends to use it. Consult the documentation for a given plugin for information about the authentication string values it accepts.
+No comando [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") que cria o ACCOUNT do proxy user, a cláusula `IDENTIFIED WITH` que nomeia o AUTHENTICATION PLUGIN que suporta PROXY é opcionalmente seguida por uma cláusula `AS 'auth_string'` especificando uma string que o server passa ao PLUGIN quando o USER se conecta. Se presente, a string fornece informações que ajudam o PLUGIN a determinar como mapear o USER name do CLIENT PROXY (externo) para um USER name proxied. Cabe a cada PLUGIN decidir se ele requer a cláusula `AS`. Nesse caso, o formato da string de AUTHENTICATION depende de como o PLUGIN pretende usá-la. Consulte a documentação de um dado PLUGIN para obter informações sobre os valores de string de AUTHENTICATION que ele aceita.
 
-#### Preventing Direct Login to Proxied Accounts
+#### Prevenindo LOGIN Direto em Contas Proxied
 
-Proxied accounts generally are intended to be used only by means of proxy accounts. That is, clients connect using a proxy account, then are mapped onto and assume the privileges of the appropriate proxied user.
+ACCOUNTs proxied geralmente são destinados a serem usados apenas por meio de ACCOUNTs PROXY. Ou seja, os CLIENTs se conectam usando um ACCOUNT PROXY, e então são mapeados para o proxied user apropriado e assumem seus privilégios.
 
-There are multiple ways to ensure that a proxied account cannot be used directly:
+Existem várias maneiras de garantir que um ACCOUNT proxied não possa ser usado diretamente:
 
-* Associate the account with the `mysql_no_login` authentication plugin. In this case, the account cannot be used for direct logins under any circumstances. This assumes that the plugin is installed. For instructions, see [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").
+* Associe o ACCOUNT com o AUTHENTICATION PLUGIN `mysql_no_login`. Neste caso, o ACCOUNT não pode ser usado para LOGINS diretos sob nenhuma circunstância. Isso pressupõe que o PLUGIN esteja instalado. Para instruções, consulte [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").
 
-* Include the `ACCOUNT LOCK` option when you create the account. See [Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement"). With this method, also include a password so that if the account is unlocked later, it cannot be accessed with no password. (If the `validate_password` plugin is enabled, it does not permit creating an account without a password, even if the account is locked. See [Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin").)
+* Inclua a opção `ACCOUNT LOCK` ao criar o ACCOUNT. Consulte [Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement"). Com este método, inclua também uma password para que, se o ACCOUNT for desbloqueado posteriormente, ele não possa ser acessado sem uma password. (Se o PLUGIN `validate_password` estiver habilitado, ele não permite criar um ACCOUNT sem uma password, mesmo que o ACCOUNT esteja bloqueado. Consulte [Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin").)
 
-* Create the account with a password but do not tell anyone else the password. If you do not let anyone know the password for the account, clients cannot use it to connect directly to the MySQL server.
+* Crie o ACCOUNT com uma password, mas não revele a password a ninguém. Se você não permitir que ninguém saiba a password do ACCOUNT, os CLIENTs não poderão usá-la para se conectar diretamente ao MySQL server.
 
-#### Granting and Revoking the PROXY Privilege
+#### Concedendo e Revogando o PROXY Privilege
 
-The [`PROXY`](privileges-provided.html#priv_proxy) privilege is needed to enable an external user to connect as and have the privileges of another user. To grant this privilege, use the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement. For example:
+O [`PROXY`](privileges-provided.html#priv_proxy) privilege é necessário para permitir que um USER externo se conecte como e tenha os privilégios de outro USER. Para conceder este privilégio, use o comando [`GRANT`](grant.html "13.7.1.4 GRANT Statement"). Por exemplo:
 
 ```sql
 GRANT PROXY ON 'proxied_user' TO 'proxy_user';
 ```
 
-The statement creates a row in the `mysql.proxies_priv` grant table.
+O comando cria uma linha na tabela de GRANT `mysql.proxies_priv`.
 
-At connect time, *`proxy_user`* must represent a valid externally authenticated MySQL user, and *`proxied_user`* must represent a valid locally authenticated user. Otherwise, the connection attempt fails.
+No momento da conexão, *`proxy_user`* deve representar um USER MySQL válido autenticado externamente, e *`proxied_user`* deve representar um USER válido autenticado localmente. Caso contrário, a tentativa de conexão falha.
 
-The corresponding [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") syntax is:
+A sintaxe [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") correspondente é:
 
 ```sql
 REVOKE PROXY ON 'proxied_user' FROM 'proxy_user';
 ```
 
-MySQL [`GRANT`](grant.html "13.7.1.4 GRANT Statement") and [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") syntax extensions work as usual. Examples:
+As extensões de sintaxe [`GRANT`](grant.html "13.7.1.4 GRANT Statement") e [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") do MySQL funcionam como de costume. Exemplos:
 
 ```sql
 -- grant PROXY to multiple accounts
@@ -134,13 +133,13 @@ GRANT PROXY ON 'a' TO 'd' WITH GRANT OPTION;
 GRANT PROXY ON 'a' TO ''@'';
 ```
 
-The [`PROXY`](privileges-provided.html#priv_proxy) privilege can be granted in these cases:
+O [`PROXY`](privileges-provided.html#priv_proxy) privilege pode ser concedido nestes casos:
 
-* By a user that has `GRANT PROXY ... WITH GRANT OPTION` for *`proxied_user`*.
+* Por um USER que tenha `GRANT PROXY ... WITH GRANT OPTION` para *`proxied_user`*.
 
-* By *`proxied_user`* for itself: The value of [`USER()`](information-functions.html#function_user) must exactly match [`CURRENT_USER()`](information-functions.html#function_current-user) and *`proxied_user`*, for both the user name and host name parts of the account name.
+* Por *`proxied_user`* para si mesmo: O valor de [`USER()`](information-functions.html#function_user) deve corresponder exatamente a [`CURRENT_USER()`](information-functions.html#function_current-user) e *`proxied_user`*, tanto para as partes de USER name quanto de HOST name do ACCOUNT name.
 
-The initial `root` account created during MySQL installation has the [`PROXY ... WITH GRANT OPTION`](privileges-provided.html#priv_proxy) privilege for `''@''`, that is, for all users and all hosts. This enables `root` to set up proxy users, as well as to delegate to other accounts the authority to set up proxy users. For example, `root` can do this:
+O ACCOUNT `root` inicial criado durante a instalação do MySQL tem o [`PROXY ... WITH GRANT OPTION`](privileges-provided.html#priv_proxy) privilege para `''@''`, ou seja, para todos os USERs e todos os HOSTs. Isso permite que `root` configure proxy users, bem como delegue a outros ACCOUNTs a autoridade para configurar proxy users. Por exemplo, `root` pode fazer isso:
 
 ```sql
 CREATE USER 'admin'@'localhost'
@@ -151,15 +150,15 @@ GRANT PROXY
   WITH GRANT OPTION;
 ```
 
-Those statements create an `admin` user that can manage all `GRANT PROXY` mappings. For example, `admin` can do this:
+Esses comandos criam um USER `admin` que pode gerenciar todos os mapeamentos `GRANT PROXY`. Por exemplo, `admin` pode fazer isso:
 
 ```sql
 GRANT PROXY ON sally TO joe;
 ```
 
-#### Default Proxy Users
+#### Proxy Users Padrão
 
-To specify that some or all users should connect using a given authentication plugin, create a “blank” MySQL account with an empty user name and host name (`''@''`), associate it with that plugin, and let the plugin return the real authenticated user name (if different from the blank user). Suppose that there exists a plugin named `ldap_auth` that implements LDAP authentication and maps connecting users onto either a developer or manager account. To set up proxying of users onto these accounts, use the following statements:
+Para especificar que alguns ou todos os USERs devem se conectar usando um determinado AUTHENTICATION PLUGIN, crie um ACCOUNT MySQL "em branco" com um USER name e um HOST name vazios (`''@''`), associe-o a esse PLUGIN e deixe o PLUGIN retornar o USER name autenticado real (se diferente do USER em branco). Suponha que exista um PLUGIN chamado `ldap_auth` que implementa AUTHENTICATION LDAP e mapeia USERs de conexão para um ACCOUNT de developer ou manager. Para configurar o proxying de USERs para esses ACCOUNTs, use os seguintes comandos:
 
 ```sql
 -- create default proxy account
@@ -184,18 +183,18 @@ GRANT PROXY
   TO ''@'';
 ```
 
-Now assume that a client connects as follows:
+Agora, suponha que um CLIENT se conecte da seguinte forma:
 
 ```sql
 $> mysql --user=myuser --password ...
 Enter password: myuser_password
 ```
 
-The server does not find `myuser` defined as a MySQL user, but because there is a blank user account (`''@''`) that matches the client user name and host name, the server authenticates the client against that account: The server invokes the `ldap_auth` authentication plugin and passes `myuser` and *`myuser_password`* to it as the user name and password.
+O server não encontra `myuser` definido como um USER MySQL, mas como existe um ACCOUNT de USER em branco (`''@''`) que corresponde ao USER name e HOST name do CLIENT, o server autentica o CLIENT contra esse ACCOUNT: O server invoca o AUTHENTICATION PLUGIN `ldap_auth` e passa `myuser` e *`myuser_password`* para ele como USER name e password.
 
-If the `ldap_auth` plugin finds in the LDAP directory that *`myuser_password`* is not the correct password for `myuser`, authentication fails and the server rejects the connection.
+Se o PLUGIN `ldap_auth` encontrar no diretório LDAP que *`myuser_password`* não é a password correta para `myuser`, a AUTHENTICATION falha e o server rejeita a conexão.
 
-If the password is correct and `ldap_auth` finds that `myuser` is a developer, it returns the user name `developer` to the MySQL server, rather than `myuser`. Returning a user name different from the client user name of `myuser` signals to the server that it should treat `myuser` as a proxy. The server verifies that `''@''` can authenticate as `developer` (because `''@''` has the [`PROXY`](privileges-provided.html#priv_proxy) privilege to do so) and accepts the connection. The session proceeds with `myuser` having the privileges of the `developer` proxied user. (These privileges should be set up by the DBA using [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements, not shown.) The [`USER()`](information-functions.html#function_user) and [`CURRENT_USER()`](information-functions.html#function_current-user) functions return these values:
+Se a password estiver correta e `ldap_auth` descobrir que `myuser` é um developer, ele retornará o USER name `developer` para o MySQL server, em vez de `myuser`. Retornar um USER name diferente do USER name do CLIENT (`myuser`) sinaliza para o server que ele deve tratar `myuser` como um PROXY. O server verifica se `''@''` pode autenticar como `developer` (porque `''@''` tem o [`PROXY`](privileges-provided.html#priv_proxy) privilege para fazê-lo) e aceita a conexão. A sessão prossegue com `myuser` tendo os privilégios do proxied user `developer`. (Estes privilégios devem ser configurados pelo DBA usando comandos [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), não mostrado.) As funções [`USER()`](information-functions.html#function_user) e [`CURRENT_USER()`](information-functions.html#function_current-user) retornam estes valores:
 
 ```sql
 mysql> SELECT USER(), CURRENT_USER();
@@ -206,7 +205,7 @@ mysql> SELECT USER(), CURRENT_USER();
 +------------------+---------------------+
 ```
 
-If the plugin instead finds in the LDAP directory that `myuser` is a manager, it returns `manager` as the user name and the session proceeds with `myuser` having the privileges of the `manager` proxied user.
+Se o PLUGIN, em vez disso, encontrar no diretório LDAP que `myuser` é um manager, ele retornará `manager` como o USER name e a sessão prosseguirá com `myuser` tendo os privilégios do proxied user `manager`.
 
 ```sql
 mysql> SELECT USER(), CURRENT_USER();
@@ -217,15 +216,15 @@ mysql> SELECT USER(), CURRENT_USER();
 +------------------+-------------------+
 ```
 
-For simplicity, external authentication cannot be multilevel: Neither the credentials for `developer` nor those for `manager` are taken into account in the preceding example. However, they are still used if a client tries to connect and authenticate directly as the `developer` or `manager` account, which is why those proxied accounts should be protected against direct login (see [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts")).
+Para simplificar, a AUTHENTICATION externa não pode ser multinível: Nem as credenciais para `developer` nem as para `manager` são levadas em consideração no exemplo anterior. No entanto, elas ainda são usadas se um CLIENT tentar se conectar e autenticar diretamente como o ACCOUNT `developer` ou `manager`, razão pela qual esses ACCOUNTs proxied devem ser protegidos contra LOGIN direto (consulte [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts")).
 
-#### Default Proxy User and Anonymous User Conflicts
+#### Conflitos entre Proxy User Padrão e USER Anônimo
 
-If you intend to create a default proxy user, check for other existing “match any user” accounts that take precedence over the default proxy user because they can prevent that user from working as intended.
+Se você pretende criar um default proxy user (proxy user padrão), verifique a existência de outros ACCOUNTs "que correspondem a qualquer USER" que tenham precedência sobre o default proxy user, pois eles podem impedir que esse USER funcione conforme o esperado.
 
-In the preceding discussion, the default proxy user account has `''` in the host part, which matches any host. If you set up a default proxy user, take care to also check whether nonproxy accounts exist with the same user part and `'%'` in the host part, because `'%'` also matches any host, but has precedence over `''` by the rules that the server uses to sort account rows internally (see [Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification")).
+Na discussão anterior, o ACCOUNT de default proxy user tem `''` na parte do HOST, que corresponde a qualquer HOST. Se você configurar um default proxy user, tome cuidado para verificar também se existem ACCOUNTs não-PROXY com a mesma parte de USER e `'%'` na parte do HOST, porque `'%'` também corresponde a qualquer HOST, mas tem precedência sobre `''` pelas regras que o server usa para ordenar as linhas de ACCOUNT internamente (conssulte [Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification")).
 
-Suppose that a MySQL installation includes these two accounts:
+Suponha que uma instalação MySQL inclua estes dois ACCOUNTs:
 
 ```sql
 -- create default proxy account
@@ -237,33 +236,33 @@ CREATE USER ''@'%'
   IDENTIFIED BY 'anon_user_password';
 ```
 
-The first account (`''@''`) is intended as the default proxy user, used to authenticate connections for users who do not otherwise match a more-specific account. The second account (`''@'%'`) is an anonymous-user account, which might have been created, for example, to enable users without their own account to connect anonymously.
+O primeiro ACCOUNT (`''@''`) é destinado a ser o default proxy user, usado para autenticar conexões para USERs que, de outra forma, não correspondem a um ACCOUNT mais específico. O segundo ACCOUNT (`''@'%'`) é um ACCOUNT de USER anônimo, que pode ter sido criado, por exemplo, para permitir que USERs sem seu próprio ACCOUNT se conectem anonimamente.
 
-Both accounts have the same user part (`''`), which matches any user. And each account has a host part that matches any host. Nevertheless, there is a priority in account matching for connection attempts because the matching rules sort a host of `'%'` ahead of `''`. For accounts that do not match any more-specific account, the server attempts to authenticate them against `''@'%'` (the anonymous user) rather than `''@''` (the default proxy user). As a result, the default proxy account is never used.
+Ambos os ACCOUNTs têm a mesma parte de USER (`''`), que corresponde a qualquer USER. E cada ACCOUNT tem uma parte de HOST que corresponde a qualquer HOST. No entanto, há uma prioridade no ACCOUNT matching para tentativas de conexão, porque as regras de matching classificam um HOST de `'%'` à frente de `''`. Para ACCOUNTs que não correspondem a nenhum ACCOUNT mais específico, o server tenta autenticá-los contra `''@'%'` (o USER anônimo) em vez de `''@''` (o default proxy user). Como resultado, o default proxy account nunca é usado.
 
-To avoid this problem, use one of the following strategies:
+Para evitar este problema, use uma das seguintes estratégias:
 
-* Remove the anonymous account so that it does not conflict with the default proxy user.
+* Remova o ACCOUNT anônimo para que ele não entre em conflito com o default proxy user.
 
-* Use a more-specific default proxy user that matches ahead of the anonymous user. For example, to permit only `localhost` proxy connections, use `''@'localhost'`:
+* Use um default proxy user mais específico que corresponda antes do USER anônimo. Por exemplo, para permitir apenas conexões PROXY de `localhost`, use `''@'localhost'`:
 
-  ```sql
+```sql
   CREATE USER ''@'localhost'
     IDENTIFIED WITH some_plugin
     AS 'some_auth_string';
   ```
 
-  In addition, modify any `GRANT PROXY` statements to name `''@'localhost'` rather than `''@''` as the proxy user.
+Além disso, modifique quaisquer comandos `GRANT PROXY` para nomear `''@'localhost'` em vez de `''@''` como o proxy user.
 
-  Be aware that this strategy prevents anonymous-user connections from `localhost`.
+Esteja ciente de que esta estratégia impede conexões de USER anônimo a partir de `localhost`.
 
-* Use a named default account rather than an anonymous default account. For an example of this technique, consult the instructions for using the `authentication_windows` plugin. See [Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication").
+* Use um ACCOUNT padrão nomeado em vez de um ACCOUNT padrão anônimo. Para um exemplo desta técnica, consulte as instruções para usar o PLUGIN `authentication_windows`. Consulte [Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication").
 
-* Create multiple proxy users, one for local connections and one for “everything else” (remote connections). This can be useful particularly when local users should have different privileges from remote users.
+* Crie múltiplos proxy users, um para conexões locais e outro para "todo o resto" (conexões remotas). Isso pode ser útil, particularmente quando os USERs locais devem ter privilégios diferentes dos USERs remotos.
 
-  Create the proxy users:
+Crie os proxy users:
 
-  ```sql
+```sql
   -- create proxy user for local connections
   CREATE USER ''@'localhost'
     IDENTIFIED WITH some_plugin
@@ -274,9 +273,9 @@ To avoid this problem, use one of the following strategies:
     AS 'some_auth_string';
   ```
 
-  Create the proxied users:
+Crie os proxied users:
 
-  ```sql
+```sql
   -- create proxied user for local connections
   CREATE USER 'developer'@'localhost'
     IDENTIFIED WITH mysql_no_login;
@@ -285,9 +284,9 @@ To avoid this problem, use one of the following strategies:
     IDENTIFIED WITH mysql_no_login;
   ```
 
-  Grant to each proxy account the [`PROXY`](privileges-provided.html#priv_proxy) privilege for the corresponding proxied account:
+Conceda a cada ACCOUNT PROXY o [`PROXY`](privileges-provided.html#priv_proxy) privilege para o ACCOUNT proxied correspondente:
 
-  ```sql
+```sql
   GRANT PROXY
     ON 'developer'@'localhost'
     TO ''@'localhost';
@@ -296,23 +295,23 @@ To avoid this problem, use one of the following strategies:
     TO ''@'%';
   ```
 
-  Finally, grant appropriate privileges to the local and remote proxied users (not shown).
+Finalmente, conceda privilégios apropriados aos proxied users locais e remotos (não mostrado).
 
-  Assume that the `some_plugin`/`'some_auth_string'` combination causes `some_plugin` to map the client user name to `developer`. Local connections match the `''@'localhost'` proxy user, which maps to the `'developer'@'localhost'` proxied user. Remote connections match the `''@'%'` proxy user, which maps to the `'developer'@'%'` proxied user.
+Assuma que a combinação `some_plugin`/`'some_auth_string'` faz com que `some_plugin` mapeie o USER name do CLIENT para `developer`. Conexões locais correspondem ao proxy user `''@'localhost'`, que mapeia para o proxied user `'developer'@'localhost'`. Conexões remotas correspondem ao proxy user `''@'%'`, que mapeia para o proxied user `'developer'@'%'`.
 
-#### Server Support for Proxy User Mapping
+#### Suporte do Server para Mapeamento de Proxy User
 
-Some authentication plugins implement proxy user mapping for themselves (for example, the PAM and Windows authentication plugins). Other authentication plugins do not support proxy users by default. Of these, some can request that the MySQL server itself map proxy users according to granted proxy privileges: `mysql_native_password`, `sha256_password`. If the [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) system variable is enabled, the server performs proxy user mapping for any authentication plugins that make such a request:
+Alguns AUTHENTICATION PLUGINs implementam o mapeamento de proxy user por conta própria (por exemplo, os AUTHENTICATION PLUGINs PAM e Windows). Outros AUTHENTICATION PLUGINs não suportam proxy users por padrão. Desses, alguns podem solicitar que o próprio MySQL server mapeie proxy users de acordo com os privilégios PROXY concedidos: `mysql_native_password`, `sha256_password`. Se a variável de sistema [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) estiver habilitada, o server executa o mapeamento de proxy user para quaisquer AUTHENTICATION PLUGINs que façam tal solicitação:
 
-* By default, [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) is disabled, so the server performs no proxy user mapping even for authentication plugins that request server support for proxy users.
+* Por padrão, [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) está desabilitado, então o server não executa mapeamento de proxy user, mesmo para AUTHENTICATION PLUGINs que solicitem suporte do server para proxy users.
 
-* If [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) is enabled, it may also be necessary to enable a plugin-specific system variable to take advantage of server proxy user mapping support:
+* Se [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) estiver habilitado, também pode ser necessário habilitar uma variável de sistema específica do PLUGIN para aproveitar o suporte de mapeamento de proxy user do server:
 
-  + For the `mysql_native_password` plugin, enable [`mysql_native_password_proxy_users`](server-system-variables.html#sysvar_mysql_native_password_proxy_users).
+  + Para o PLUGIN `mysql_native_password`, habilite [`mysql_native_password_proxy_users`](server-system-variables.html#sysvar_mysql_native_password_proxy_users).
 
-  + For the `sha256_password` plugin, enable [`sha256_password_proxy_users`](server-system-variables.html#sysvar_sha256_password_proxy_users).
+  + Para o PLUGIN `sha256_password`, habilite [`sha256_password_proxy_users`](server-system-variables.html#sysvar_sha256_password_proxy_users).
 
-For example, to enable all the preceding capabilities, start the server with these lines in the `my.cnf` file:
+Por exemplo, para habilitar todas as capacidades anteriores, inicie o server com estas linhas no arquivo `my.cnf`:
 
 ```sql
 [mysqld]
@@ -321,7 +320,7 @@ mysql_native_password_proxy_users=ON
 sha256_password_proxy_users=ON
 ```
 
-Assuming that the relevant system variables have been enabled, create the proxy user as usual using [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), then grant it the [`PROXY`](privileges-provided.html#priv_proxy) privilege to a single other account to be treated as the proxied user. When the server receives a successful connection request for the proxy user, it finds that the user has the [`PROXY`](privileges-provided.html#priv_proxy) privilege and uses it to determine the proper proxied user.
+Assumindo que as variáveis de sistema relevantes foram habilitadas, crie o proxy user como de costume usando [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), então conceda a ele o [`PROXY`](privileges-provided.html#priv_proxy) privilege para um único outro ACCOUNT a ser tratado como o proxied user. Quando o server recebe uma solicitação de conexão bem-sucedida para o proxy user, ele descobre que o USER tem o [`PROXY`](privileges-provided.html#priv_proxy) privilege e o usa para determinar o proxied user adequado.
 
 ```sql
 -- create proxy account
@@ -345,28 +344,28 @@ GRANT PROXY
   TO 'proxy_user'@'localhost';
 ```
 
-To use the proxy account, connect to the server using its name and password:
+Para usar o ACCOUNT PROXY, conecte-se ao server usando seu nome e password:
 
 ```sql
 $> mysql -u proxy_user -p
 Enter password: (enter proxy_user password here)
 ```
 
-Authentication succeeds, the server finds that `proxy_user` has the [`PROXY`](privileges-provided.html#priv_proxy) privilege for `proxied_user`, and the session proceeds with `proxy_user` having the privileges of `proxied_user`.
+A AUTHENTICATION é bem-sucedida, o server descobre que `proxy_user` tem o [`PROXY`](privileges-provided.html#priv_proxy) privilege para `proxied_user`, e a sessão prossegue com `proxy_user` tendo os privilégios de `proxied_user`.
 
-Proxy user mapping performed by the server is subject to these restrictions:
+O mapeamento de proxy user realizado pelo server está sujeito a estas restrições:
 
-* The server does not proxy to or from an anonymous user, even if the associated [`PROXY`](privileges-provided.html#priv_proxy) privilege is granted.
+* O server não faz PROXY para ou a partir de um USER anônimo, mesmo que o [`PROXY`](privileges-provided.html#priv_proxy) privilege associado seja concedido.
 
-* When a single account has been granted proxy privileges for more than one proxied account, server proxy user mapping is nondeterministic. Therefore, granting to a single account proxy privileges for multiple proxied accounts is discouraged.
+* Quando a um único ACCOUNT são concedidos privilégios PROXY para mais de um ACCOUNT proxied, o mapeamento de proxy user do server é não determinístico. Portanto, não é recomendado conceder privilégios PROXY a um único ACCOUNT para múltiplos ACCOUNTs proxied.
 
-#### Proxy User System Variables
+#### Variáveis de Sistema de Proxy User
 
-Two system variables help trace the proxy login process:
+Duas variáveis de sistema ajudam a rastrear o processo de LOGIN PROXY:
 
-* [`proxy_user`](server-system-variables.html#sysvar_proxy_user): This value is `NULL` if proxying is not used. Otherwise, it indicates the proxy user account. For example, if a client authenticates through the `''@''` proxy account, this variable is set as follows:
+* [`proxy_user`](server-system-variables.html#sysvar_proxy_user): Este valor é `NULL` se o proxying não for usado. Caso contrário, ele indica o ACCOUNT do proxy user. Por exemplo, se um CLIENT se autenticar através do ACCOUNT PROXY `''@''`, esta variável é definida da seguinte forma:
 
-  ```sql
+```sql
   mysql> SELECT @@proxy_user;
   +--------------+
   | @@proxy_user |
@@ -375,4 +374,4 @@ Two system variables help trace the proxy login process:
   +--------------+
   ```
 
-* [`external_user`](server-system-variables.html#sysvar_external_user): Sometimes the authentication plugin may use an external user to authenticate to the MySQL server. For example, when using Windows native authentication, a plugin that authenticates using the windows API does not need the login ID passed to it. However, it still uses a Windows user ID to authenticate. The plugin may return this external user ID (or the first 512 UTF-8 bytes of it) to the server using the `external_user` read-only session variable. If the plugin does not set this variable, its value is `NULL`.
+* [`external_user`](server-system-variables.html#sysvar_external_user): Às vezes, o AUTHENTICATION PLUGIN pode usar um USER externo para autenticar-se no MySQL server. Por exemplo, ao usar a AUTHENTICATION nativa do Windows, um PLUGIN que autentica usando a API do Windows não precisa do LOGIN ID que lhe é passado. No entanto, ele ainda usa um USER ID do Windows para autenticar. O PLUGIN pode retornar este USER ID externo (ou os primeiros 512 bytes UTF-8 dele) para o server usando a variável de sessão somente leitura `external_user`. Se o PLUGIN não definir esta variável, seu valor é `NULL`.

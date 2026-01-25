@@ -1,35 +1,35 @@
 ### 4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols
 
-**resolve_stack_dump** resolves a numeric stack dump to symbols.
+**resolve_stack_dump** resolve um dump numérico de Stack Trace para símbolos.
 
-Note
+Nota
 
-**resolve_stack_dump** is deprecated and is removed in MySQL 8.0. Stack traces from official MySQL builds are always symbolized, so there is no need to use **resolve_stack_dump**.
+**resolve_stack_dump** está obsoleto e foi removido no MySQL 8.0. Stack Traces de builds oficiais do MySQL são sempre simbolizados, então não há necessidade de usar **resolve_stack_dump**.
 
-Invoke **resolve_stack_dump** like this:
+Invoque **resolve_stack_dump** da seguinte forma:
 
 ```sql
 resolve_stack_dump [options] symbols_file [numeric_dump_file]
 ```
 
-The symbols file should include the output from the **nm --numeric-sort mysqld** command. The numeric dump file should contain a numeric stack track from **mysqld**. If no numeric dump file is named on the command line, the stack trace is read from the standard input.
+O arquivo de símbolos deve incluir a saída do comando **nm --numeric-sort mysqld**. O arquivo de dump numérico deve conter um Stack Trace numérico do **mysqld**. Se nenhum arquivo de dump numérico for especificado na linha de comando, o Stack Trace é lido da entrada padrão.
 
-**resolve_stack_dump** supports the following options.
+**resolve_stack_dump** suporta as seguintes opções.
 
 * `--help`, `-h`
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--numeric-dump-file=file_name`, `-n file_name`
 
-  Read the stack trace from the given file.
+  Lê o Stack Trace do arquivo fornecido.
 
 * `--symbols-file=file_name`, `-s file_name`
 
-  Use the given symbols file.
+  Usa o arquivo de símbolos fornecido.
 
 * `--version`, `-V`
 
-  Display version information and exit.
+  Exibe informações de versão e sai.
 
-For more information, see Section 5.8.1.5, “Using a Stack Trace”.
+Para mais informações, consulte a Seção 5.8.1.5, “Using a Stack Trace”.

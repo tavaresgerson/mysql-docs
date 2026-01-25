@@ -1,53 +1,53 @@
-### 8.4.1 Optimizing Data Size
+### 8.4.1 Otimizando o Tamanho dos Dados
 
-Design your tables to minimize their space on the disk. This can result in huge improvements by reducing the amount of data written to and read from disk. Smaller tables normally require less main memory while their contents are being actively processed during query execution. Any space reduction for table data also results in smaller indexes that can be processed faster.
+Projete suas tabelas para minimizar seu espaço em disco. Isso pode resultar em grandes melhorias ao reduzir a quantidade de dados gravados e lidos do disco. Tabelas menores normalmente exigem menos memória principal enquanto seu conteúdo é ativamente processado durante a execução de Querys. Qualquer redução de espaço para dados de tabela também resulta em Indexes menores que podem ser processados mais rapidamente.
 
-MySQL supports many different storage engines (table types) and row formats. For each table, you can decide which storage and indexing method to use. Choosing the proper table format for your application can give you a big performance gain. See Chapter 14, *The InnoDB Storage Engine*, and Chapter 15, *Alternative Storage Engines*.
+O MySQL suporta muitos *storage engines* (tipos de tabela) e formatos de linha diferentes. Para cada tabela, você pode decidir qual método de armazenamento (*storage*) e Indexação usar. Escolher o formato de tabela adequado para sua aplicação pode proporcionar um grande ganho de performance. Consulte o Capítulo 14, *The InnoDB Storage Engine*, e o Capítulo 15, *Alternative Storage Engines*.
 
-You can get better performance for a table and minimize storage space by using the techniques listed here:
+Você pode obter melhor performance para uma tabela e minimizar o espaço de armazenamento usando as técnicas listadas aqui:
 
-* Table Columns
-* Row Format
-* Indexes
-* Joins
-* Normalization
+*   Colunas da Tabela
+*   Formato de Linha (*Row Format*)
+*   Indexes
+*   Joins
+*   Normalização
 
-#### Table Columns
+#### Colunas da Tabela
 
-* Use the most efficient (smallest) data types possible. MySQL has many specialized types that save disk space and memory. For example, use the smaller integer types if possible to get smaller tables. `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") is often a better choice than `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") because a `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column uses 25% less space.
+*   Use os tipos de dados mais eficientes (menores) possível. O MySQL possui muitos tipos especializados que economizam espaço em disco e memória. Por exemplo, use os tipos inteiros menores, se possível, para obter tabelas menores. `MEDIUMINT` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) é frequentemente uma escolha melhor do que `INT` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) porque uma coluna `MEDIUMINT` usa 25% menos espaço.
 
-* Declare columns to be `NOT NULL` if possible. It makes SQL operations faster, by enabling better use of indexes and eliminating overhead for testing whether each value is `NULL`. You also save some storage space, one bit per column. If you really need `NULL` values in your tables, use them. Just avoid the default setting that allows `NULL` values in every column.
+*   Declare colunas como `NOT NULL` se possível. Isso torna as operações SQL mais rápidas, permitindo um melhor uso de Indexes e eliminando a sobrecarga para testar se cada valor é `NULL`. Você também economiza algum espaço de armazenamento, um bit por coluna. Se você realmente precisa de valores `NULL` em suas tabelas, use-os. Apenas evite a configuração padrão que permite valores `NULL` em todas as colunas.
 
-#### Row Format
+#### Formato de Linha (*Row Format*)
 
-* `InnoDB` tables are created using the `DYNAMIC` row format by default. To use a row format other than `DYNAMIC`, configure `innodb_default_row_format`, or specify the `ROW_FORMAT` option explicitly in a `CREATE TABLE` or `ALTER TABLE` statement.
+*   As tabelas `InnoDB` são criadas usando o formato de linha `DYNAMIC` por padrão. Para usar um formato de linha diferente de `DYNAMIC`, configure `innodb_default_row_format` ou especifique explicitamente a opção `ROW_FORMAT` em uma instrução `CREATE TABLE` ou `ALTER TABLE`.
 
-  The compact family of row formats, which includes `COMPACT`, `DYNAMIC`, and `COMPRESSED`, decreases row storage space at the cost of increasing CPU use for some operations. If your workload is a typical one that is limited by cache hit rates and disk speed it is likely to be faster. If it is a rare case that is limited by CPU speed, it might be slower.
+*   A família compacta de formatos de linha, que inclui `COMPACT`, `DYNAMIC` e `COMPRESSED`, diminui o espaço de armazenamento da linha ao custo de aumentar o uso da CPU para algumas operações. Se sua carga de trabalho for típica e limitada pelas taxas de *cache hit* e velocidade do disco, é provável que seja mais rápida. Se for um caso raro limitado pela velocidade da CPU, pode ser mais lenta.
 
-  The compact family of row formats also optimizes `CHAR` column storage when using a variable-length character set such as `utf8mb3` or `utf8mb4`. With `ROW_FORMAT=REDUNDANT`, `CHAR(N)` occupies *`N`* × the maximum byte length of the character set. Many languages can be written primarily using single-byte `utf8` characters, so a fixed storage length often wastes space. With the compact family of rows formats, `InnoDB` allocates a variable amount of storage in the range of *`N`* to *`N`* × the maximum byte length of the character set for these columns by stripping trailing spaces. The minimum storage length is *`N`* bytes to facilitate in-place updates in typical cases. For more information, see Section 14.11, “InnoDB Row Formats”.
+*   A família compacta de formatos de linha também otimiza o armazenamento de colunas `CHAR` ao usar um conjunto de caracteres de comprimento variável, como `utf8mb3` ou `utf8mb4`. Com `ROW_FORMAT=REDUNDANT`, `CHAR(N)` ocupa *`N`* × o comprimento máximo de byte do conjunto de caracteres. Muitos idiomas podem ser escritos principalmente usando caracteres `utf8` de byte único, portanto, um comprimento de armazenamento fixo frequentemente desperdiça espaço. Com a família compacta de formatos de linha, o `InnoDB` aloca uma quantidade variável de armazenamento no intervalo de *`N`* a *`N`* × o comprimento máximo de byte do conjunto de caracteres para essas colunas, removendo espaços à direita (*trailing spaces*). O comprimento mínimo de armazenamento é *`N`* bytes para facilitar atualizações *in-place* em casos típicos. Para mais informações, consulte a Seção 14.11, “InnoDB Row Formats”.
 
-* To minimize space even further by storing table data in compressed form, specify `ROW_FORMAT=COMPRESSED` when creating `InnoDB` tables, or run the **myisampack** command on an existing `MyISAM` table. (`InnoDB` compressed tables are readable and writable, while `MyISAM` compressed tables are read-only.)
+*   Para minimizar ainda mais o espaço, armazenando dados da tabela em formato compactado, especifique `ROW_FORMAT=COMPRESSED` ao criar tabelas `InnoDB`, ou execute o comando **myisampack** em uma tabela `MyISAM` existente. (Tabelas compactadas `InnoDB` são legíveis e graváveis, enquanto tabelas compactadas `MyISAM` são somente leitura.)
 
-* For `MyISAM` tables, if you do not have any variable-length columns (`VARCHAR`, `TEXT`, or `BLOB` columns), a fixed-size row format is used. This is faster but may waste some space. See Section 15.2.3, “MyISAM Table Storage Formats”. You can hint that you want to have fixed length rows even if you have `VARCHAR` columns with the `CREATE TABLE` option `ROW_FORMAT=FIXED`.
+*   Para tabelas `MyISAM`, se você não tiver nenhuma coluna de comprimento variável (`VARCHAR`, `TEXT` ou `BLOB`), um formato de linha de tamanho fixo será usado. Isso é mais rápido, mas pode desperdiçar algum espaço. Consulte a Seção 15.2.3, “MyISAM Table Storage Formats”. Você pode sugerir que deseja ter linhas de comprimento fixo, mesmo que tenha colunas `VARCHAR`, usando a opção `CREATE TABLE` `ROW_FORMAT=FIXED`.
 
 #### Indexes
 
-* The primary index of a table should be as short as possible. This makes identification of each row easy and efficient. For `InnoDB` tables, the primary key columns are duplicated in each secondary index entry, so a short primary key saves considerable space if you have many secondary indexes.
+*   O Primary Index de uma tabela deve ser o mais curto possível. Isso torna a identificação de cada linha fácil e eficiente. Para tabelas `InnoDB`, as colunas da Primary Key são duplicadas em cada entrada de Secondary Index, então uma Primary Key curta economiza um espaço considerável se você tiver muitos Secondary Indexes.
 
-* Create only the indexes that you need to improve query performance. Indexes are good for retrieval, but slow down insert and update operations. If you access a table mostly by searching on a combination of columns, create a single composite index on them rather than a separate index for each column. The first part of the index should be the column most used. If you *always* use many columns when selecting from the table, the first column in the index should be the one with the most duplicates, to obtain better compression of the index.
+*   Crie apenas os Indexes de que você precisa para melhorar a performance da Query. Indexes são bons para recuperação, mas lentificam as operações de *insert* e *update*. Se você acessa uma tabela principalmente pesquisando em uma combinação de colunas, crie um único Index composto nelas, em vez de um Index separado para cada coluna. A primeira parte do Index deve ser a coluna mais utilizada. Se você *sempre* usa muitas colunas ao selecionar na tabela, a primeira coluna no Index deve ser aquela com mais duplicatas, para obter melhor compactação do Index.
 
-* If it is very likely that a long string column has a unique prefix on the first number of characters, it is better to index only this prefix, using MySQL's support for creating an index on the leftmost part of the column (see Section 13.1.14, “CREATE INDEX Statement”). Shorter indexes are faster, not only because they require less disk space, but because they also give you more hits in the index cache, and thus fewer disk seeks. See Section 5.1.1, “Configuring the Server”.
+*   Se for muito provável que uma coluna de string longa tenha um prefixo exclusivo no primeiro número de caracteres, é melhor indexar apenas este prefixo, usando o suporte do MySQL para criar um Index na parte mais à esquerda da coluna (consulte a Seção 13.1.14, “CREATE INDEX Statement”). Indexes mais curtos são mais rápidos, não apenas porque exigem menos espaço em disco, mas também porque fornecem mais *hits* no *index cache* e, consequentemente, menos *disk seeks*. Consulte a Seção 5.1.1, “Configuring the Server”.
 
 #### Joins
 
-* In some circumstances, it can be beneficial to split into two a table that is scanned very often. This is especially true if it is a dynamic-format table and it is possible to use a smaller static format table that can be used to find the relevant rows when scanning the table.
+*   Em algumas circunstâncias, pode ser benéfico dividir em duas uma tabela que é escaneada com muita frequência. Isso é especialmente verdadeiro se for uma tabela de formato dinâmico e for possível usar uma tabela de formato estático menor que possa ser usada para encontrar as linhas relevantes ao escanear a tabela.
 
-* Declare columns with identical information in different tables with identical data types, to speed up joins based on the corresponding columns.
+*   Declare colunas com informações idênticas em tabelas diferentes com tipos de dados idênticos, para acelerar Joins baseados nas colunas correspondentes.
 
-* Keep column names simple, so that you can use the same name across different tables and simplify join queries. For example, in a table named `customer`, use a column name of `name` instead of `customer_name`. To make your names portable to other SQL servers, consider keeping them shorter than 18 characters.
+*   Mantenha os nomes das colunas simples, para que você possa usar o mesmo nome em diferentes tabelas e simplificar as Querys de Join. Por exemplo, em uma tabela chamada `customer`, use um nome de coluna `name` em vez de `customer_name`. Para tornar seus nomes portáteis para outros servidores SQL, considere mantê-los com menos de 18 caracteres.
 
-#### Normalization
+#### Normalização
 
-* Normally, try to keep all data nonredundant (observing what is referred to in database theory as third normal form). Instead of repeating lengthy values such as names and addresses, assign them unique IDs, repeat these IDs as needed across multiple smaller tables, and join the tables in queries by referencing the IDs in the join clause.
+*   Normalmente, tente manter todos os dados não redundantes (observando o que é referido na teoria de Database como terceira forma normal). Em vez de repetir valores longos, como nomes e endereços, atribua-lhes IDs exclusivos, repita esses IDs conforme necessário em várias tabelas menores e faça o Join das tabelas em Querys referenciando os IDs na cláusula JOIN.
 
-* If speed is more important than disk space and the maintenance costs of keeping multiple copies of data, for example in a business intelligence scenario where you analyze all the data from large tables, you can relax the normalization rules, duplicating information or creating summary tables to gain more speed.
+*   Se a velocidade for mais importante do que o espaço em disco e os custos de manutenção de manter múltiplas cópias de dados, por exemplo, em um cenário de *business intelligence* onde você analisa todos os dados de tabelas grandes, você pode flexibilizar as regras de normalização, duplicando informações ou criando tabelas de resumo para ganhar mais velocidade.

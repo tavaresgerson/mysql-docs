@@ -1,39 +1,64 @@
-#### 5.8.4.1 mysqld DTrace Probe Reference
+#### 5.8.4.1 Referência dos Probes DTrace do mysqld
 
-MySQL supports the following static probes, organized into groups of functionality.
+O MySQL suporta os seguintes static probes, organizados em grupos de funcionalidade.
 
-**Table 5.5 MySQL DTrace Probes**
+**Tabela 5.5 Probes DTrace do MySQL**
 
-<table><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Group</th> <th>Probes</th> </tr></thead><tbody><tr> <td>Connection</td> <td><code>connection-start</code>, <code>connection-done</code></td> </tr><tr> <td>Command</td> <td><code>command-start</code>, <code>command-done</code></td> </tr><tr> <td>Query</td> <td><code>query-start</code>, <code>query-done</code></td> </tr><tr> <td>Query Parsing</td> <td><code>query-parse-start</code>, <code>query-parse-done</code></td> </tr><tr> <td>Query Cache</td> <td><code>query-cache-hit</code>, <code>query-cache-miss</code></td> </tr><tr> <td>Query Execution</td> <td><code>query-exec-start</code>, <code>query-exec-done</code></td> </tr><tr> <td>Row Level</td> <td><code>insert-row-start</code>, <code>insert-row-done</code></td> </tr><tr> <td></td> <td><code>update-row-start</code>, <code>update-row-done</code></td> </tr><tr> <td></td> <td><code>delete-row-start</code>, <code>delete-row-done</code></td> </tr><tr> <td>Row Reads</td> <td><code>read-row-start</code>, <code>read-row-done</code></td> </tr><tr> <td>Index Reads</td> <td><code>index-read-row-start</code>, <code>index-read-row-done</code></td> </tr><tr> <td>Lock</td> <td><code>handler-rdlock-start</code>, <code>handler-rdlock-done</code></td> </tr><tr> <td></td> <td><code>handler-wrlock-start</code>, <code>handler-wrlock-done</code></td> </tr><tr> <td></td> <td><code>handler-unlock-start</code>, <code>handler-unlock-done</code></td> </tr><tr> <td>Filesort</td> <td><code>filesort-start</code>, <code>filesort-done</code></td> </tr><tr> <td>Statement</td> <td><code>select-start</code>, <code>select-done</code></td> </tr><tr> <td></td> <td><code>insert-start</code>, <code>insert-done</code></td> </tr><tr> <td></td> <td><code>insert-select-start</code>, <code>insert-select-done</code></td> </tr><tr> <td></td> <td><code>update-start</code>, <code>update-done</code></td> </tr><tr> <td></td> <td><code>multi-update-start</code>, <code>multi-update-done</code></td> </tr><tr> <td></td> <td><code>delete-start</code>, <code>delete-done</code></td> </tr><tr> <td></td> <td><code>multi-delete-start</code>, <code>multi-delete-done</code></td> </tr><tr> <td>Network</td> <td><code>net-read-start</code>, <code>net-read-done</code>, <code>net-write-start</code>, <code>net-write-done</code></td> </tr><tr> <td>Keycache</td> <td><code>keycache-read-start</code>, <code>keycache-read-block</code>, <code>keycache-read-done</code>, <code>keycache-read-hit</code>, <code>keycache-read-miss</code>, <code>keycache-write-start</code>, <code>keycache-write-block</code>, <code>keycache-write-done</code></td> </tr></tbody></table>
+| Grupo | Probes |
+| :--- | :--- |
+| Conexão | `connection-start`, `connection-done` |
+| Comando | `command-start`, `command-done` |
+| Query | `query-start`, `query-done` |
+| Parsing de Query | `query-parse-start`, `query-parse-done` |
+| Query Cache | `query-cache-hit`, `query-cache-miss` |
+| Execução de Query | `query-exec-start`, `query-exec-done` |
+| Nível de Linha | `insert-row-start`, `insert-row-done` |
+| | `update-row-start`, `update-row-done` |
+| | `delete-row-start`, `delete-row-done` |
+| Leituras de Linha | `read-row-start`, `read-row-done` |
+| Leituras de Index | `index-read-row-start`, `index-read-row-done` |
+| Lock | `handler-rdlock-start`, `handler-rdlock-done` |
+| | `handler-wrlock-start`, `handler-wrlock-done` |
+| | `handler-unlock-start`, `handler-unlock-done` |
+| Filesort | `filesort-start`, `filesort-done` |
+| Statement | `select-start`, `select-done` |
+| | `insert-start`, `insert-done` |
+| | `insert-select-start`, `insert-select-done` |
+| | `update-start`, `update-done` |
+| | `multi-update-start`, `multi-update-done` |
+| | `delete-start`, `delete-done` |
+| | `multi-delete-start`, `multi-delete-done` |
+| Network | `net-read-start`, `net-read-done`, `net-write-start`, `net-write-done` |
+| Keycache | `keycache-read-start`, `keycache-read-block`, `keycache-read-done`, `keycache-read-hit`, `keycache-read-miss`, `keycache-write-start`, `keycache-write-block`, `keycache-write-done` |
 
-Note
+Nota
 
-When extracting the argument data from the probes, each argument is available as `argN`, starting with `arg0`. To identify each argument within the definitions they are provided with a descriptive name, but you must access the information using the corresponding `argN` parameter.
+Ao extrair os dados de argumento dos probes, cada argumento está disponível como `argN`, começando com `arg0`. Para identificar cada argumento dentro das definições, eles são fornecidos com um nome descritivo, mas você deve acessar a informação utilizando o parâmetro `argN` correspondente.
 
-##### 5.8.4.1.1 Connection Probes
+##### 5.8.4.1.1 Probes de Conexão
 
-The `connection-start` and `connection-done` probes enclose a connection from a client, regardless of whether the connection is through a socket or network connection.
+Os probes `connection-start` e `connection-done` delimitam uma conexão de um cliente, independentemente de a conexão ser através de um socket ou de uma Network connection.
 
 ```sql
 connection-start(connectionid, user, host)
 connection-done(status, connectionid)
 ```
 
-* `connection-start`: Triggered after a connection and successful login/authentication have been completed by a client. The arguments contain the connection information:
+* `connection-start`: Acionado após uma conexão e login/autenticação bem-sucedidos terem sido concluídos por um cliente. Os argumentos contêm as informações da conexão:
 
-  + `connectionid`: An `unsigned long` containing the connection ID. This is the same as the process ID shown as the `Id` value in the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
+  + `connectionid`: Um `unsigned long` contendo o ID de conexão (`connection ID`). Este é o mesmo que o ID de processo mostrado como o valor `Id` na saída de [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-  + `user`: The username used when authenticating. The value is blank for the anonymous user.
+  + `user`: O nome de usuário usado durante a autenticação. O valor é vazio para o usuário anônimo.
 
-  + `host`: The host of the client connection. For a connection made using Unix sockets, the value is blank.
+  + `host`: O host da conexão do cliente. Para uma conexão feita usando Unix sockets, o valor é vazio.
 
-* `connection-done`: Triggered just as the connection to the client has been closed. The arguments are:
+* `connection-done`: Acionado logo após a conexão com o cliente ter sido fechada. Os argumentos são:
 
-  + `status`: The status of the connection when it was closed. A logout operation has a value of 0; any other termination of the connection has a nonzero value.
+  + `status`: O status da conexão no momento em que foi fechada. Uma operação de logout tem o valor 0; qualquer outra terminação da conexão tem um valor diferente de zero.
 
-  + `connectionid`: The connection ID of the connection that was closed.
+  + `connectionid`: O ID de conexão da conexão que foi encerrada.
 
-The following D script quantifies and summarizes the average duration of individual connections, and provides a count, dumping the information every 60 seconds:
+O script D a seguir quantifica e resume a duração média das conexões individuais e fornece uma contagem, despejando as informações a cada 60 segundos:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -57,7 +82,7 @@ tick-60s
 }
 ```
 
-When executed on a server with a large number of clients you might see output similar to this:
+Quando executado em um server com um grande número de clientes, você pode ver uma saída semelhante a esta:
 
 ```sql
   1  57413                        :tick-60s
@@ -87,53 +112,83 @@ When executed on a server with a large number of clients you might see output si
 524288 |                                         0
 ```
 
-##### 5.8.4.1.2 Command Probes
+##### 5.8.4.1.2 Probes de Comando
 
-The command probes are executed before and after a client command is executed, including any SQL statement that might be executed during that period. Commands include operations such as the initialization of the DB, use of the `COM_CHANGE_USER` operation (supported by the MySQL protocol), and manipulation of prepared statements. Many of these commands are used only by the MySQL client API from various connectors such as PHP and Java.
+Os probes de comando são executados antes e depois que um comando do cliente é executado, incluindo qualquer SQL statement que possa ser executada durante esse período. Comandos incluem operações como a inicialização do Database, o uso da operação `COM_CHANGE_USER` (suportada pelo protocolo MySQL) e a manipulação de prepared statements. Muitos desses comandos são usados apenas pela API de cliente do MySQL a partir de vários connectors como PHP e Java.
 
 ```sql
 command-start(connectionid, command, user, host)
 command-done(status)
 ```
 
-* `command-start`: Triggered when a command is submitted to the server.
+* `command-start`: Acionado quando um comando é submetido ao server.
 
-  + `connectionid`: The connection ID of the client executing the command.
+  + `connectionid`: O ID de conexão do cliente que está executando o comando.
 
-  + `command`: An integer representing the command that was executed. Possible values are shown in the following table.
+  + `command`: Um inteiro que representa o comando que foi executado. Os valores possíveis são mostrados na tabela a seguir.
 
-    <table summary="Possible command-start command values and a name and description for each."><col style="width: 10%"/><col style="width: 20%"/><col style="width: 70%"/><thead><tr> <th>Value</th> <th>Name</th> <th>Description</th> </tr></thead><tbody><tr> <th>00</th> <td>COM_SLEEP</td> <td>Internal thread state</td> </tr><tr> <th>01</th> <td>COM_QUIT</td> <td>Close connection</td> </tr><tr> <th>02</th> <td>COM_INIT_DB</td> <td>Select database (<code>USE ...</code>)</td> </tr><tr> <th>03</th> <td>COM_QUERY</td> <td>Execute a query</td> </tr><tr> <th>04</th> <td>COM_FIELD_LIST</td> <td>Get a list of fields</td> </tr><tr> <th>05</th> <td>COM_CREATE_DB</td> <td>Create a database (deprecated)</td> </tr><tr> <th>06</th> <td>COM_DROP_DB</td> <td>Drop a database (deprecated)</td> </tr><tr> <th>07</th> <td>COM_REFRESH</td> <td>Refresh connection</td> </tr><tr> <th>08</th> <td>COM_SHUTDOWN</td> <td>Shutdown server</td> </tr><tr> <th>09</th> <td>COM_STATISTICS</td> <td>Get statistics</td> </tr><tr> <th>10</th> <td>COM_PROCESS_INFO</td> <td>Get processes (<code>SHOW PROCESSLIST</code>)</td> </tr><tr> <th>11</th> <td>COM_CONNECT</td> <td>Initialize connection</td> </tr><tr> <th>12</th> <td>COM_PROCESS_KILL</td> <td>Kill process</td> </tr><tr> <th>13</th> <td>COM_DEBUG</td> <td>Get debug information</td> </tr><tr> <th>14</th> <td>COM_PING</td> <td>Ping</td> </tr><tr> <th>15</th> <td>COM_TIME</td> <td>Internal thread state</td> </tr><tr> <th>16</th> <td>COM_DELAYED_INSERT</td> <td>Internal thread state</td> </tr><tr> <th>17</th> <td>COM_CHANGE_USER</td> <td>Change user</td> </tr><tr> <th>18</th> <td>COM_BINLOG_DUMP</td> <td>Used by a replica or <span><strong>mysqlbinlog</strong></span> to initiate a binary log read</td> </tr><tr> <th>19</th> <td>COM_TABLE_DUMP</td> <td>Used by a replica to get the source table information</td> </tr><tr> <th>20</th> <td>COM_CONNECT_OUT</td> <td>Used by a replica to log a connection to the server</td> </tr><tr> <th>21</th> <td>COM_REGISTER_SLAVE</td> <td>Used by a replica during registration</td> </tr><tr> <th>22</th> <td>COM_STMT_PREPARE</td> <td>Prepare a statement</td> </tr><tr> <th>23</th> <td>COM_STMT_EXECUTE</td> <td>Execute a statement</td> </tr><tr> <th>24</th> <td>COM_STMT_SEND_LONG_DATA</td> <td>Used by a client when requesting extended data</td> </tr><tr> <th>25</th> <td>COM_STMT_CLOSE</td> <td>Close a prepared statement</td> </tr><tr> <th>26</th> <td>COM_STMT_RESET</td> <td>Reset a prepared statement</td> </tr><tr> <th>27</th> <td>COM_SET_OPTION</td> <td>Set a server option</td> </tr><tr> <th>28</th> <td>COM_STMT_FETCH</td> <td>Fetch a prepared statement</td> </tr></tbody></table>
+    | Valor | Nome | Descrição |
+    | :--- | :--- | :--- |
+    | 00 | COM_SLEEP | Estado interno da Thread |
+    | 01 | COM_QUIT | Fechar conexão |
+    | 02 | COM_INIT_DB | Selecionar Database (<code>USE ...</code>) |
+    | 03 | COM_QUERY | Executar uma Query |
+    | 04 | COM_FIELD_LIST | Obter uma lista de Fields |
+    | 05 | COM_CREATE_DB | Criar um Database (obsoleto) |
+    | 06 | COM_DROP_DB | Eliminar um Database (obsoleto) |
+    | 07 | COM_REFRESH | Atualizar conexão |
+    | 08 | COM_SHUTDOWN | Desligar Server |
+    | 09 | COM_STATISTICS | Obter estatísticas |
+    | 10 | COM_PROCESS_INFO | Obter processos (<code>SHOW PROCESSLIST</code>) |
+    | 11 | COM_CONNECT | Inicializar conexão |
+    | 12 | COM_PROCESS_KILL | Encerrar processo |
+    | 13 | COM_DEBUG | Obter informações de Debug |
+    | 14 | COM_PING | Ping |
+    | 15 | COM_TIME | Estado interno da Thread |
+    | 16 | COM_DELAYED_INSERT | Estado interno da Thread |
+    | 17 | COM_CHANGE_USER | Mudar usuário |
+    | 18 | COM_BINLOG_DUMP | Usado por uma réplica ou **mysqlbinlog** para iniciar uma leitura de binary log |
+    | 19 | COM_TABLE_DUMP | Usado por uma réplica para obter as informações da tabela de origem |
+    | 20 | COM_CONNECT_OUT | Usado por uma réplica para registrar uma conexão com o server |
+    | 21 | COM_REGISTER_SLAVE | Usado por uma réplica durante o registro |
+    | 22 | COM_STMT_PREPARE | Preparar um Statement |
+    | 23 | COM_STMT_EXECUTE | Executar um Statement |
+    | 24 | COM_STMT_SEND_LONG_DATA | Usado por um cliente ao solicitar dados estendidos |
+    | 25 | COM_STMT_CLOSE | Fechar um prepared statement |
+    | 26 | COM_STMT_RESET | Resetar um prepared statement |
+    | 27 | COM_SET_OPTION | Definir uma Server option |
+    | 28 | COM_STMT_FETCH | Fazer Fetch de um prepared statement |
 
-  + `user`: The user executing the command.
+  + `user`: O usuário executando o comando.
 
-  + `host`: The client host.
-* `command-done`: Triggered when the command execution completes. The `status` argument contains 0 if the command executed successfully, or 1 if the statement was terminated before normal completion.
+  + `host`: O client host.
+* `command-done`: Acionado quando a execução do comando é concluída. O argumento `status` contém 0 se o comando foi executado com sucesso ou 1 se o statement foi encerrado antes da conclusão normal.
 
-The `command-start` and `command-done` probes are best used when combined with the statement probes to get an idea of overall execution time.
+Os probes `command-start` e `command-done` são melhor utilizados quando combinados com os statement probes para obter uma ideia do tempo total de execução.
 
-##### 5.8.4.1.3 Query Probes
+##### 5.8.4.1.3 Probes de Query
 
-The `query-start` and `query-done` probes are triggered when a specific query is received by the server and when the query has been completed and the information has been successfully sent to the client.
+Os probes `query-start` e `query-done` são acionados quando uma Query específica é recebida pelo server e quando a Query foi concluída e a informação foi enviada com sucesso para o cliente.
 
 ```sql
 query-start(query, connectionid, database, user, host)
 query-done(status)
 ```
 
-* `query-start`: Triggered after the query string has been received from the client. The arguments are:
+* `query-start`: Acionado depois que a string da Query foi recebida do cliente. Os argumentos são:
 
-  + `query`: The full text of the submitted query.
+  + `query`: O texto completo da Query submetida.
 
-  + `connectionid`: The connection ID of the client that submitted the query. The connection ID equals the connection ID returned when the client first connects and the `Id` value in the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
+  + `connectionid`: O ID de conexão do cliente que submeteu a Query. O ID de conexão é igual ao ID de conexão retornado quando o cliente se conecta pela primeira vez e ao valor `Id` na saída de [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-  + `database`: The database name on which the query is being executed.
+  + `database`: O nome do Database no qual a Query está sendo executada.
 
-  + `user`: The username used to connect to the server.
+  + `user`: O nome de usuário usado para conectar-se ao server.
 
-  + `host`: The hostname of the client.
-* `query-done`: Triggered once the query has been executed and the information has been returned to the client. The probe includes a single argument, `status`, which returns 0 when the query is successfully executed and 1 if there was an error.
+  + `host`: O hostname do cliente.
+* `query-done`: Acionado assim que a Query é executada e a informação é retornada ao cliente. O probe inclui um único argumento, `status`, que retorna 0 quando a Query é executada com sucesso e 1 se houve um erro.
 
-You can get a simple report of the execution time for each query using the following D script:
+Você pode obter um relatório simples do tempo de execução para cada Query usando o seguinte script D:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -161,7 +216,7 @@ mysql*:::query-done
 }
 ```
 
-When executing the above script you should get a basic idea of the execution time of your queries:
+Ao executar o script acima, você deve obter uma ideia básica do tempo de execução de suas Queries:
 
 ```sql
 $> ./query.d
@@ -173,20 +228,20 @@ root@localhost       test                 select * from t1 order by i limit 10  
 root@localhost       test                 select * from t1 order by i desc limit 10 795
 ```
 
-##### 5.8.4.1.4 Query Parsing Probes
+##### 5.8.4.1.4 Probes de Parsing de Query
 
-The query parsing probes are triggered before the original SQL statement is parsed and when the parsing of the statement and determination of the execution model required to process the statement has been completed:
+Os probes de Parsing de Query são acionados antes que o SQL statement original seja parseado e quando o parsing do statement e a determinação do modelo de execução exigido para processar o statement foram concluídos:
 
 ```sql
 query-parse-start(query)
 query-parse-done(status)
 ```
 
-* `query-parse-start`: Triggered just before the statement is parsed by the MySQL query parser. The single argument, `query`, is a string containing the full text of the original query.
+* `query-parse-start`: Acionado pouco antes de o statement ser parseado pelo query parser do MySQL. O único argumento, `query`, é uma string contendo o texto completo da Query original.
 
-* `query-parse-done`: Triggered when the parsing of the original statement has been completed. The `status` is an integer describing the status of the operation. A `0` indicates that the query was successfully parsed. A `1` indicates that the parsing of the query failed.
+* `query-parse-done`: Acionado quando o parsing do statement original foi concluído. O `status` é um inteiro que descreve o status da operação. Um `0` indica que a Query foi parseada com sucesso. Um `1` indica que o parsing da Query falhou.
 
-For example, you could monitor the execution time for parsing a given query using the following D script:
+Por exemplo, você poderia monitorar o tempo de execução para o parsing de uma determinada Query usando o seguinte script D:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -212,9 +267,9 @@ mysql*:::query-parse-done
 }
 ```
 
-In the above script a predicate is used on `query-parse-done` so that different output is generated based on the status value of the probe.
+No script acima, um predicate é usado em `query-parse-done` para que uma saída diferente seja gerada com base no valor do status do probe.
 
-When running the script and monitoring the execution:
+Ao executar o script e monitorar a execução:
 
 ```sql
 $> ./query-parsing.d
@@ -222,20 +277,20 @@ Error parsing select from t1 join (t2) on (t1.i = t2.i) order by t1.s,t1.i limit
 Parsing select * from t1 join (t2) on (t1.i = t2.i) order by t1.s,t1.i limit 10: 176 ms
 ```
 
-##### 5.8.4.1.5 Query Cache Probes
+##### 5.8.4.1.5 Probes do Query Cache
 
-The query cache probes are fired when executing any query. The `query-cache-hit` query is triggered when a query exists in the query cache and can be used to return the query cache information. The arguments contain the original query text and the number of rows returned from the query cache for the query. If the query is not within the query cache, or the query cache is not enabled, then the `query-cache-miss` probe is triggered instead.
+Os probes do Query Cache são disparados ao executar qualquer Query. O probe `query-cache-hit` é acionado quando uma Query existe no Query Cache e pode ser usado para retornar a informação do Query Cache. Os argumentos contêm o texto original da Query e o número de linhas retornadas do Query Cache para a Query. Se a Query não estiver dentro do Query Cache, ou se o Query Cache não estiver habilitado, o probe `query-cache-miss` é acionado em vez disso.
 
 ```sql
 query-cache-hit(query, rows)
 query-cache-miss(query)
 ```
 
-* `query-cache-hit`: Triggered when the query has been found within the query cache. The first argument, `query`, contains the original text of the query. The second argument, `rows`, is an integer containing the number of rows in the cached query.
+* `query-cache-hit`: Acionado quando a Query é encontrada dentro do Query Cache. O primeiro argumento, `query`, contém o texto original da Query. O segundo argumento, `rows`, é um inteiro contendo o número de linhas na Query em cache.
 
-* `query-cache-miss`: Triggered when the query is not found within the query cache. The first argument, `query`, contains the original text of the query.
+* `query-cache-miss`: Acionado quando a Query não é encontrada dentro do Query Cache. O primeiro argumento, `query`, contém o texto original da Query.
 
-The query cache probes are best combined with a probe on the main query so that you can determine the differences in times between using or not using the query cache for specified queries. For example, in the following D script, the query and query cache information are combined into the information output during monitoring:
+Os probes do Query Cache são melhor combinados com um probe na Query principal para que você possa determinar as diferenças de tempo entre usar ou não usar o Query Cache para Queries especificadas. Por exemplo, no seguinte script D, as informações da Query e do Query Cache são combinadas na saída de informação durante o monitoramento:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -274,7 +329,7 @@ mysql*:::query-done
 }
 ```
 
-When executing the script you can see the effects of the query cache. Initially the query cache is disabled. If you set the query cache size and then execute the query multiple times you should see that the query cache is being used to return the query data:
+Ao executar o script, você pode ver os efeitos do Query Cache. Inicialmente, o Query Cache está desabilitado. Se você definir o tamanho do Query Cache e então executar a Query várias vezes, você deverá ver que o Query Cache está sendo usado para retornar os dados da Query:
 
 ```sql
 $> ./query-cache.d
@@ -284,39 +339,44 @@ root@localhost       test                 select * from t1 order by i limit 10  
 root@localhost       test                 select * from t1 order by i limit 10     Y  0
 ```
 
-##### 5.8.4.1.6 Query Execution Probes
+##### 5.8.4.1.6 Probes de Execução de Query
 
-The query execution probe is triggered when the actual execution of the query starts, after the parsing and checking the query cache but before any privilege checks or optimization. By comparing the difference between the start and done probes you can monitor the time actually spent servicing the query (instead of just handling the parsing and other elements of the query).
+O probe de execução de Query é acionado quando a execução real da Query começa, após o parsing e a verificação do Query Cache, mas antes de qualquer verificação de privilégio ou optimization. Ao comparar a diferença entre os probes `start` e `done`, você pode monitorar o tempo realmente gasto para atender à Query (em vez de apenas lidar com o parsing e outros elementos da Query).
 
 ```sql
 query-exec-start(query, connectionid, database, user, host, exec_type)
 query-exec-done(status)
 ```
 
-Note
+Nota
 
-The information provided in the arguments for `query-start` and `query-exec-start` are almost identical and designed so that you can choose to monitor either the entire query process (using `query-start`) or only the execution (using `query-exec-start`) while exposing the core information about the user, client, and query being executed.
+A informação fornecida nos argumentos para `query-start` e `query-exec-start` é quase idêntica e projetada para que você possa optar por monitorar todo o processo da Query (usando `query-start`) ou apenas a execução (usando `query-exec-start`) enquanto expõe as informações centrais sobre o user, client e a Query que está sendo executada.
 
-* `query-exec-start`: Triggered when the execution of a individual query is started. The arguments are:
+* `query-exec-start`: Acionado quando a execução de uma Query individual é iniciada. Os argumentos são:
 
-  + `query`: The full text of the submitted query.
+  + `query`: O texto completo da Query submetida.
 
-  + `connectionid`: The connection ID of the client that submitted the query. The connection ID equals the connection ID returned when the client first connects and the `Id` value in the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
+  + `connectionid`: O ID de conexão do cliente que submeteu a Query. O ID de conexão é igual ao ID de conexão retornado quando o cliente se conecta pela primeira vez e ao valor `Id` na saída de [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-  + `database`: The database name on which the query is being executed.
+  + `database`: O nome do Database no qual a Query está sendo executada.
 
-  + `user`: The username used to connect to the server.
+  + `user`: O nome de usuário usado para conectar-se ao server.
 
-  + `host`: The hostname of the client.
-  + `exec_type`: The type of execution. Execution types are determined based on the contents of the query and where it was submitted. The values for each type are shown in the following table.
+  + `host`: O hostname do cliente.
+  + `exec_type`: O tipo de execução. Os tipos de execução são determinados com base no conteúdo da Query e onde ela foi submetida. Os valores para cada tipo são mostrados na tabela a seguir.
 
-    <table summary="exec_type values."><col style="width: 10%"/><col style="width: 90%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>Executed query from sql_parse, top-level query.</td> </tr><tr> <td>1</td> <td>Executed prepared statement</td> </tr><tr> <td>2</td> <td>Executed cursor statement</td> </tr><tr> <td>3</td> <td>Executed query in stored procedure</td> </tr></tbody></table>
+    | Valor | Descrição |
+    | :--- | :--- |
+    | 0 | Query executada a partir de sql_parse, Query de nível superior. |
+    | 1 | Prepared statement executado |
+    | 2 | Cursor statement executado |
+    | 3 | Query executada em stored procedure |
 
-* `query-exec-done`: Triggered when the execution of the query has completed. The probe includes a single argument, `status`, which returns 0 when the query is successfully executed and 1 if there was an error.
+* `query-exec-done`: Acionado quando a execução da Query foi concluída. O probe inclui um único argumento, `status`, que retorna 0 quando a Query é executada com sucesso e 1 se houve um erro.
 
-##### 5.8.4.1.7 Row-Level Probes
+##### 5.8.4.1.7 Probes de Nível de Linha (Row-Level Probes)
 
-The `*row-{start,done}` probes are triggered each time a row operation is pushed down to a storage engine. For example, if you execute an [`INSERT`](insert.html "13.2.5 INSERT Statement") statement with 100 rows of data, then the `insert-row-start` and `insert-row-done` probes are triggered 100 times each, for each row insert.
+Os probes `*row-{start,done}` são acionados cada vez que uma operação de linha é enviada a um storage engine. Por exemplo, se você executar um [`INSERT`](insert.html "13.2.5 INSERT Statement") statement com 100 linhas de dados, os probes `insert-row-start` e `insert-row-done` são acionados 100 vezes cada, para cada inserção de linha.
 
 ```sql
 insert-row-start(database, table)
@@ -329,27 +389,27 @@ delete-row-start(database, table)
 delete-row-done(status)
 ```
 
-* `insert-row-start`: Triggered before a row is inserted into a table.
+* `insert-row-start`: Acionado antes que uma linha seja inserida em uma tabela.
 
-* `insert-row-done`: Triggered after a row is inserted into a table.
+* `insert-row-done`: Acionado após uma linha ser inserida em uma tabela.
 
-* `update-row-start`: Triggered before a row is updated in a table.
+* `update-row-start`: Acionado antes que uma linha seja atualizada em uma tabela.
 
-* `update-row-done`: Triggered before a row is updated in a table.
+* `update-row-done`: Acionado após uma linha ser atualizada em uma tabela.
 
-* `delete-row-start`: Triggered before a row is deleted from a table.
+* `delete-row-start`: Acionado antes que uma linha seja excluída de uma tabela.
 
-* `delete-row-done`: Triggered before a row is deleted from a table.
+* `delete-row-done`: Acionado após uma linha ser excluída de uma tabela.
 
-The arguments supported by the probes are consistent for the corresponding `start` and `done` probes in each case:
+Os argumentos suportados pelos probes são consistentes para os probes `start` e `done` correspondentes em cada caso:
 
-* `database`: The database name.
-* `table`: The table name.
-* `status`: The status; 0 for success or 1 for failure.
+* `database`: O nome do Database.
+* `table`: O nome da tabela.
+* `status`: O status; 0 para sucesso ou 1 para falha.
 
-Because the row-level probes are triggered for each individual row access, these probes can be triggered many thousands of times each second, which may have a detrimental effect on both the monitoring script and MySQL. The DTrace environment should limit the triggering on these probes to prevent the performance being adversely affected. Either use the probes sparingly, or use counter or aggregation functions to report on these probes and then provide a summary when the script terminates or as part of a `query-done` or `query-exec-done` probes.
+Como os probes de nível de linha são acionados para cada acesso individual à linha, esses probes podem ser acionados milhares de vezes por segundo, o que pode ter um efeito prejudicial tanto no script de monitoramento quanto no MySQL. O ambiente DTrace deve limitar o acionamento desses probes para evitar que o performance seja afetado negativamente. Use os probes com moderação ou use funções de contador ou agregação para relatar esses probes e, em seguida, forneça um resumo quando o script for encerrado ou como parte dos probes `query-done` ou `query-exec-done`.
 
-The following example script summarizes the duration of each row operation within a larger query:
+O seguinte script de exemplo resume a duração de cada operação de linha dentro de uma Query maior:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -417,7 +477,7 @@ mysql*:::update-row-done
 }
 ```
 
-Running the above script with a query that inserts data into a table, you can monitor the exact time spent performing the raw row insertion:
+Ao executar o script acima com uma Query que insere dados em uma tabela, você pode monitorar o tempo exato gasto na execução da raw row insertion (inserção bruta de linha):
 
 ```sql
 St Who        DB            ConnID    Dur ms Query
@@ -425,35 +485,35 @@ St Who        DB            ConnID    Dur ms Query
                                         4827 -> Row ops
 ```
 
-##### 5.8.4.1.8 Read Row Probes
+##### 5.8.4.1.8 Probes de Leitura de Linha (Read Row Probes)
 
-The read row probes are triggered at a storage engine level each time a row read operation occurs. These probes are specified within each storage engine (as opposed to the `*row-start` probes which are in the storage engine interface). These probes can therefore be used to monitor individual storage engine row-level operations and performance. Because these probes are triggered around the storage engine row read interface, they may be hit a significant number of times during a basic query.
+Os read row probes são acionados no nível do storage engine cada vez que ocorre uma operação de leitura de linha. Esses probes são especificados dentro de cada storage engine (em oposição aos probes `*row-start` que estão na interface do storage engine). Portanto, esses probes podem ser usados para monitorar operações de nível de linha e performance de storage engine individuais. Como esses probes são acionados em torno da interface de leitura de linha do storage engine, eles podem ser atingidos um número significativo de vezes durante uma Query básica.
 
 ```sql
 read-row-start(database, table, scan_flag)
 read-row-done(status)
 ```
 
-* `read-row-start`: Triggered when a row is read by the storage engine from the specified `database` and `table`. The `scan_flag` is set to 1 (true) when the read is part of a table scan (that is, a sequential read), or 0 (false) when the read is of a specific record.
+* `read-row-start`: Acionado quando uma linha é lida pelo storage engine do `database` e `table` especificados. O `scan_flag` é definido como 1 (true) quando a leitura faz parte de um table scan (ou seja, uma leitura sequencial), ou 0 (false) quando a leitura é de um registro específico.
 
-* `read-row-done`: Triggered when a row read operation within a storage engine completes. The `status` returns 0 on success, or a positive value on failure.
+* `read-row-done`: Acionado quando uma operação de leitura de linha dentro de um storage engine é concluída. O `status` retorna 0 em caso de sucesso, ou um valor positivo em caso de falha.
 
-##### 5.8.4.1.9 Index Probes
+##### 5.8.4.1.9 Probes de Index
 
-The index probes are triggered each time a row is read using one of the indexes for the specified table. The probe is triggered within the corresponding storage engine for the table.
+Os index probes são acionados cada vez que uma linha é lida usando um dos Indexes para a tabela especificada. O probe é acionado dentro do storage engine correspondente para a tabela.
 
 ```sql
 index-read-row-start(database, table)
 index-read-row-done(status)
 ```
 
-* `index-read-row-start`: Triggered when a row is read by the storage engine from the specified `database` and `table`.
+* `index-read-row-start`: Acionado quando uma linha é lida pelo storage engine do `database` e `table` especificados.
 
-* `index-read-row-done`: Triggered when an indexed row read operation within a storage engine completes. The `status` returns 0 on success, or a positive value on failure.
+* `index-read-row-done`: Acionado quando uma operação de leitura de linha indexada dentro de um storage engine é concluída. O `status` retorna 0 em caso de sucesso, ou um valor positivo em caso de falha.
 
-##### 5.8.4.1.10 Lock Probes
+##### 5.8.4.1.10 Probes de Lock
 
-The lock probes are called whenever an external lock is requested by MySQL for a table using the corresponding lock mechanism on the table as defined by the table's engine type. There are three different types of lock, the read lock, write lock, and unlock operations. Using the probes you can determine the duration of the external locking routine (that is, the time taken by the storage engine to implement the lock, including any time waiting for another lock to become free) and the total duration of the lock/unlock process.
+Os lock probes são chamados sempre que um external Lock é solicitado pelo MySQL para uma tabela usando o mecanismo de Lock correspondente na tabela, conforme definido pelo tipo de engine da tabela. Existem três tipos diferentes de Lock: as operações de Read Lock, Write Lock e Unlock. Usando os probes, você pode determinar a duração da rotina de external locking (ou seja, o tempo que o storage engine leva para implementar o Lock, incluindo qualquer tempo de espera para que outro Lock fique livre) e a duração total do processo de Lock/Unlock.
 
 ```sql
 handler-rdlock-start(database, table)
@@ -466,19 +526,19 @@ handler-unlock-start(database, table)
 handler-unlock-done(status)
 ```
 
-* `handler-rdlock-start`: Triggered when a read lock is requested on the specified `database` and `table`.
+* `handler-rdlock-start`: Acionado quando um Read Lock é solicitado no `database` e `table` especificados.
 
-* `handler-wrlock-start`: Triggered when a write lock is requested on the specified `database` and `table`.
+* `handler-wrlock-start`: Acionado quando um Write Lock é solicitado no `database` e `table` especificados.
 
-* `handler-unlock-start`: Triggered when an unlock request is made on the specified `database` and `table`.
+* `handler-unlock-start`: Acionado quando uma solicitação de Unlock é feita no `database` e `table` especificados.
 
-* `handler-rdlock-done`: Triggered when a read lock request completes. The `status` is 0 if the lock operation succeeded, or `>0` on failure.
+* `handler-rdlock-done`: Acionado quando uma solicitação de Read Lock é concluída. O `status` é 0 se a operação de Lock foi bem-sucedida, ou `>0` em caso de falha.
 
-* `handler-wrlock-done`: Triggered when a write lock request completes. The `status` is 0 if the lock operation succeeded, or `>0` on failure.
+* `handler-wrlock-done`: Acionado quando uma solicitação de Write Lock é concluída. O `status` é 0 se a operação de Lock foi bem-sucedida, ou `>0` em caso de falha.
 
-* `handler-unlock-done`: Triggered when an unlock request completes. The `status` is 0 if the unlock operation succeeded, or `>0` on failure.
+* `handler-unlock-done`: Acionado quando uma solicitação de Unlock é concluída. O `status` é 0 se a operação de Unlock foi bem-sucedida, ou `>0` em caso de falha.
 
-You can use arrays to monitor the locking and unlocking of individual tables and then calculate the duration of the entire table lock using the following script:
+Você pode usar arrays para monitorar o Lock e Unlock de tabelas individuais e, em seguida, calcular a duração do Lock total da tabela usando o seguinte script:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -529,7 +589,7 @@ mysql*:::handler-unlock-done
 }
 ```
 
-When executed, you should get information both about the duration of the locking process itself, and of the locks on a specific table:
+Quando executado, você deve obter informações tanto sobre a duração do processo de locking em si, quanto dos Locks em uma tabela específica:
 
 ```sql
 Start: Lock->Read   test.t2
@@ -548,20 +608,20 @@ Start: Lock->Read   test.t2
 End:   Lock->Read   0 ms
 ```
 
-##### 5.8.4.1.11 Filesort Probes
+##### 5.8.4.1.11 Probes de Filesort
 
-The filesort probes are triggered whenever a filesort operation is applied to a table. For more information on filesort and the conditions under which it occurs, see [Section 8.2.1.14, “ORDER BY Optimization”](order-by-optimization.html "8.2.1.14 ORDER BY Optimization").
+Os filesort probes são acionados sempre que uma operação filesort é aplicada a uma tabela. Para mais informações sobre filesort e as condições sob as quais ele ocorre, consulte [Seção 8.2.1.14, “ORDER BY Optimization”](order-by-optimization.html "8.2.1.14 ORDER BY Optimization").
 
 ```sql
 filesort-start(database, table)
 filesort-done(status, rows)
 ```
 
-* `filesort-start`: Triggered when the filesort operation starts on a table. The two arguments to the probe, `database` and `table`, identify the table being sorted.
+* `filesort-start`: Acionado quando a operação filesort começa em uma tabela. Os dois argumentos para o probe, `database` e `table`, identificam a tabela que está sendo ordenada.
 
-* `filesort-done`: Triggered when the filesort operation completes. Two arguments are supplied, the `status` (0 for success, 1 for failure), and the number of rows sorted during the filesort process.
+* `filesort-done`: Acionado quando a operação filesort é concluída. São fornecidos dois argumentos: o `status` (0 para sucesso, 1 para falha) e o número de linhas ordenadas durante o processo filesort.
 
-An example of this is in the following script, which tracks the duration of the filesort process in addition to the duration of the main query:
+Um exemplo disso está no seguinte script, que rastreia a duração do processo filesort, além da duração da Query principal:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -610,7 +670,7 @@ mysql*:::query-done
 }
 ```
 
-Executing a query on a large table with an `ORDER BY` clause that triggers a filesort, and then creating an index on the table and then repeating the same query, you can see the difference in execution speed:
+Executando uma Query em uma tabela grande com uma cláusula `ORDER BY` que aciona um filesort, e então criando um Index na tabela e repetindo a mesma Query, você pode ver a diferença na velocidade de execução:
 
 ```sql
 St Who        DB            ConnID       Dur microsec Query
@@ -620,11 +680,11 @@ St Who        DB            ConnID       Dur microsec Query
  0 @localhost test              14              26472 select * from t1 order by i limit 100
 ```
 
-##### 5.8.4.1.12 Statement Probes
+##### 5.8.4.1.12 Probes de Statement
 
-The individual statement probes are provided to give specific information about different statement types. For the start probes the string of the query is provided as the only argument. Depending on the statement type, the information provided by the corresponding done probe can differ. For all done probes the status of the operation (`0` for success, `>0` for failure) is provided. For [`SELECT`](select.html "13.2.9 SELECT Statement"), [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`INSERT ... (SELECT FROM ...)`](insert.html "13.2.5 INSERT Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement"), and [`DELETE FROM t1,t2`](delete.html "13.2.2 DELETE Statement") operations the number of rows affected is returned.
+Os probes de Statement individuais são fornecidos para dar informações específicas sobre diferentes tipos de Statement. Para os probes `start`, a string da Query é fornecida como o único argumento. Dependendo do tipo de Statement, a informação fornecida pelo probe `done` correspondente pode diferir. Para todos os probes `done`, o status da operação (`0` para sucesso, `>0` para falha) é fornecido. Para operações [`SELECT`](select.html "13.2.9 SELECT Statement"), [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`INSERT ... (SELECT FROM ...)`](insert.html "13.2.5 INSERT Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement") e [`DELETE FROM t1,t2`](delete.html "13.2.2 DELETE Statement"), o número de linhas afetadas é retornado.
 
-For [`UPDATE`](update.html "13.2.11 UPDATE Statement") and [`UPDATE t1,t2 ...`](update.html "13.2.11 UPDATE Statement") statements the number of rows matched and the number of rows actually changed is provided. This is because the number of rows actually matched by the corresponding `WHERE` clause, and the number of rows changed can differ. MySQL does not update the value of a row if the value already matches the new setting.
+Para statements [`UPDATE`](update.html "13.2.11 UPDATE Statement") e [`UPDATE t1,t2 ...`](update.html "13.2.11 UPDATE Statement"), o número de linhas matched (correspondidas) e o número de linhas realmente changed (alteradas) são fornecidos. Isso ocorre porque o número de linhas realmente correspondidas pela cláusula `WHERE` correspondente e o número de linhas alteradas podem ser diferentes. O MySQL não atualiza o valor de uma linha se o valor já corresponder à nova configuração.
 
 ```sql
 select-start(query)
@@ -649,46 +709,46 @@ multi-delete-start(query)
 multi-delete-done(status,rows)
 ```
 
-* `select-start`: Triggered before a [`SELECT`](select.html "13.2.9 SELECT Statement") statement.
+* `select-start`: Acionado antes de um statement [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-* `select-done`: Triggered at the end of a [`SELECT`](select.html "13.2.9 SELECT Statement") statement.
+* `select-done`: Acionado no final de um statement [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-* `insert-start`: Triggered before a [`INSERT`](insert.html "13.2.5 INSERT Statement") statement.
+* `insert-start`: Acionado antes de um statement [`INSERT`](insert.html "13.2.5 INSERT Statement").
 
-* `insert-done`: Triggered at the end of an [`INSERT`](insert.html "13.2.5 INSERT Statement") statement.
+* `insert-done`: Acionado no final de um statement [`INSERT`](insert.html "13.2.5 INSERT Statement").
 
-* `insert-select-start`: Triggered before an [`INSERT ... SELECT`](insert.html "13.2.5 INSERT Statement") statement.
+* `insert-select-start`: Acionado antes de um statement [`INSERT ... SELECT`](insert.html "13.2.5 INSERT Statement").
 
-* `insert-select-done`: Triggered at the end of an [`INSERT ... SELECT`](insert.html "13.2.5 INSERT Statement") statement.
+* `insert-select-done`: Acionado no final de um statement [`INSERT ... SELECT`](insert.html "13.2.5 INSERT Statement").
 
-* `update-start`: Triggered before an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement.
+* `update-start`: Acionado antes de um statement [`UPDATE`](update.html "13.2.11 UPDATE Statement").
 
-* `update-done`: Triggered at the end of an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement.
+* `update-done`: Acionado no final de um statement [`UPDATE`](update.html "13.2.11 UPDATE Statement").
 
-* `multi-update-start`: Triggered before an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement involving multiple tables.
+* `multi-update-start`: Acionado antes de um statement [`UPDATE`](update.html "13.2.11 UPDATE Statement") envolvendo múltiplas tabelas.
 
-* `multi-update-done`: Triggered at the end of an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement involving multiple tables.
+* `multi-update-done`: Acionado no final de um statement [`UPDATE`](update.html "13.2.11 UPDATE Statement") envolvendo múltiplas tabelas.
 
-* `delete-start`: Triggered before a [`DELETE`](delete.html "13.2.2 DELETE Statement") statement.
+* `delete-start`: Acionado antes de um statement [`DELETE`](delete.html "13.2.2 DELETE Statement").
 
-* `delete-done`: Triggered at the end of a [`DELETE`](delete.html "13.2.2 DELETE Statement") statement.
+* `delete-done`: Acionado no final de um statement [`DELETE`](delete.html "13.2.2 DELETE Statement").
 
-* `multi-delete-start`: Triggered before a [`DELETE`](delete.html "13.2.2 DELETE Statement") statement involving multiple tables.
+* `multi-delete-start`: Acionado antes de um statement [`DELETE`](delete.html "13.2.2 DELETE Statement") envolvendo múltiplas tabelas.
 
-* `multi-delete-done`: Triggered at the end of a [`DELETE`](delete.html "13.2.2 DELETE Statement") statement involving multiple tables.
+* `multi-delete-done`: Acionado no final de um statement [`DELETE`](delete.html "13.2.2 DELETE Statement") envolvendo múltiplas tabelas.
 
-The arguments for the statement probes are:
+Os argumentos para os statement probes são:
 
-* `query`: The query string.
-* `status`: The status of the query. `0` for success, and `>0` for failure.
+* `query`: A string da Query.
+* `status`: O status da Query. `0` para sucesso e `>0` para falha.
 
-* `rows`: The number of rows affected by the statement. This returns the number rows found for [`SELECT`](select.html "13.2.9 SELECT Statement"), the number of rows deleted for [`DELETE`](delete.html "13.2.2 DELETE Statement"), and the number of rows successfully inserted for [`INSERT`](insert.html "13.2.5 INSERT Statement").
+* `rows`: O número de linhas afetadas pelo statement. Isso retorna o número de linhas encontradas para [`SELECT`](select.html "13.2.9 SELECT Statement"), o número de linhas excluídas para [`DELETE`](delete.html "13.2.2 DELETE Statement") e o número de linhas inseridas com sucesso para [`INSERT`](insert.html "13.2.5 INSERT Statement").
 
-* `rowsmatched`: The number of rows matched by the `WHERE` clause of an [`UPDATE`](update.html "13.2.11 UPDATE Statement") operation.
+* `rowsmatched`: O número de linhas correspondidas pela cláusula `WHERE` de uma operação [`UPDATE`](update.html "13.2.11 UPDATE Statement").
 
-* `rowschanged`: The number of rows actually changed during an [`UPDATE`](update.html "13.2.11 UPDATE Statement") operation.
+* `rowschanged`: O número de linhas realmente alteradas durante uma operação [`UPDATE`](update.html "13.2.11 UPDATE Statement").
 
-You use these probes to monitor the execution of these statement types without having to monitor the user or client executing the statements. A simple example of this is to track the execution times:
+Você usa esses probes para monitorar a execução desses tipos de statement sem ter que monitorar o user ou client que está executando os statements. Um exemplo simples disso é rastrear os tempos de execução:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -735,7 +795,7 @@ mysql*:::update-done, mysql*:::multi-update-done
 }
 ```
 
-When executed you can see the basic execution times and rows matches:
+Quando executado, você pode ver os tempos básicos de execução e as linhas correspondidas:
 
 ```sql
 Query                                                        RowsU    RowsM    Dur (ms)
@@ -746,7 +806,7 @@ update t2 set i=5 where i < 25                               254      134      1
 delete from t2 where i < 5                                   0        0        0
 ```
 
-Another alternative is to use the aggregation functions in DTrace to aggregate the execution time of individual statements together:
+Outra alternativa é usar as funções de agregação no DTrace para agregar o tempo de execução de statements individuais:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -788,7 +848,7 @@ tick-30s
 }
 ```
 
-The script just shown aggregates the times spent doing each operation, which could be used to help benchmark a standard suite of tests.
+O script que acabou de ser mostrado agrega os tempos gastos em cada operação, o que pode ser usado para ajudar a fazer o benchmark de um conjunto padrão de testes.
 
 ```sql
  delete                                                            0
@@ -812,9 +872,9 @@ The script just shown aggregates the times spent doing each operation, which cou
   select                                                        15985
 ```
 
-##### 5.8.4.1.13 Network Probes
+##### 5.8.4.1.13 Probes de Network
 
-The network probes monitor the transfer of information from the MySQL server and clients of all types over the network. The probes are defined as follows:
+Os network probes monitoram a transferência de informação do server MySQL e clientes de todos os tipos pela Network. Os probes são definidos da seguinte forma:
 
 ```sql
 net-read-start()
@@ -823,15 +883,15 @@ net-write-start(bytes)
 net-write-done(status)
 ```
 
-* `net-read-start`: Triggered when a network read operation is started.
+* `net-read-start`: Acionado quando uma operação de network read (leitura de Network) é iniciada.
 
-* `net-read-done`: Triggered when the network read operation completes. The `status` is an `integer` representing the return status for the operation, `0` for success and `1` for failure. The `bytes` argument is an integer specifying the number of bytes read during the process.
+* `net-read-done`: Acionado quando a operação de network read é concluída. O `status` é um `integer` que representa o status de retorno da operação, `0` para sucesso e `1` para falha. O argumento `bytes` é um inteiro que especifica o número de bytes lidos durante o processo.
 
-* `net-start-bytes`: Triggered when data is written to a network socket. The single argument, `bytes`, specifies the number of bytes written to the network socket.
+* `net-start-bytes`: Acionado quando dados são escritos em um network socket. O único argumento, `bytes`, especifica o número de bytes escritos no network socket.
 
-* `net-write-done`: Triggered when the network write operation has completed. The single argument, `status`, is an integer representing the return status for the operation, `0` for success and `1` for failure.
+* `net-write-done`: Acionado quando a operação de network write (escrita de Network) foi concluída. O único argumento, `status`, é um inteiro que representa o status de retorno da operação, `0` para sucesso e `1` para falha.
 
-You can use the network probes to monitor the time spent reading from and writing to network clients during execution. The following D script provides an example of this. Both the cumulative time for the read or write is calculated, and the number of bytes. Note that the dynamic variable size has been increased (using the `dynvarsize` option) to cope with the rapid firing of the individual probes for the network reads/writes.
+Você pode usar os network probes para monitorar o tempo gasto lendo e escrevendo para clientes de Network durante a execução. O seguinte script D fornece um exemplo disso. Tanto o tempo cumulativo para a leitura ou escrita é calculado, quanto o número de bytes. Observe que o tamanho da variável dinâmica foi aumentado (usando a opção `dynvarsize`) para lidar com o disparo rápido dos probes individuais para as leituras/escritas de Network.
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -896,7 +956,7 @@ mysql*:::query-done
 }
 ```
 
-When executing the above script on a machine with a remote client, you can see that approximately a third of the time spent executing the query is related to writing the query results back to the client.
+Ao executar o script acima em uma máquina com um cliente remoto, você pode ver que aproximadamente um terço do tempo gasto na execução da Query está relacionado à escrita dos resultados da Query de volta ao cliente.
 
 ```sql
 St Who                            DB            ConnID       Dur microsec Query
@@ -904,11 +964,11 @@ St Who                            DB            ConnID       Dur microsec Query
 Net read: 0 bytes (0 ms) write: 10000075 bytes (1220 ms)
 ```
 
-##### 5.8.4.1.14 Keycache Probes
+##### 5.8.4.1.14 Probes de Keycache
 
-The keycache probes are triggered when using the index key cache used with the MyISAM storage engine. Probes exist to monitor when data is read into the keycache, cached key data is written from the cache into a cached file, or when accessing the keycache.
+Os keycache probes são acionados ao usar o Index Key Cache utilizado com o storage engine MyISAM. Existem probes para monitorar quando os dados são lidos no keycache, quando os dados de chave em cache são escritos do cache para um arquivo em cache, ou ao acessar o keycache.
 
-Keycache usage indicates when data is read or written from the index files into the cache, and can be used to monitor how efficient the memory allocated to the keycache is being used. A high number of keycache reads across a range of queries may indicate that the keycache is too small for size of data being accessed.
+O uso do Keycache indica quando os dados são lidos ou escritos dos arquivos de Index no cache, e pode ser usado para monitorar a eficiência com que a memória alocada para o keycache está sendo utilizada. Um alto número de keycache reads em um intervalo de Queries pode indicar que o keycache é muito pequeno para o volume de dados que está sendo acessado.
 
 ```sql
 keycache-read-start(filepath, bytes, mem_used, mem_free)
@@ -921,24 +981,24 @@ keycache-write-block(bytes)
 keycache-write-done(mem_used, mem_free)
 ```
 
-When reading data from the index files into the keycache, the process first initializes the read operation (indicated by `keycache-read-start`), then loads blocks of data (`keycache-read-block`), and then the read block is either matches the data being identified (`keycache-read-hit`) or more data needs to be read (`keycache-read-miss`). Once the read operation has completed, reading stops with the `keycache-read-done`.
+Ao ler dados dos arquivos de Index no keycache, o processo primeiro inicializa a operação de leitura (indicada por `keycache-read-start`), depois carrega blocks de dados (`keycache-read-block`) e, em seguida, o block lido corresponde aos dados que estão sendo identificados (`keycache-read-hit`) ou mais dados precisam ser lidos (`keycache-read-miss`). Uma vez que a operação de leitura tenha sido concluída, a leitura para com `keycache-read-done`.
 
-Data can be read from the index file into the keycache only when the specified key is not already within the keycache.
+Os dados podem ser lidos do arquivo de Index para o keycache somente quando a chave especificada ainda não está dentro do keycache.
 
-* `keycache-read-start`: Triggered when the keycache read operation is started. Data is read from the specified `filepath`, reading the specified number of `bytes`. The `mem_used` and `mem_avail` indicate memory currently used by the keycache and the amount of memory available within the keycache.
+* `keycache-read-start`: Acionado quando a operação de leitura do keycache é iniciada. Os dados são lidos do `filepath` especificado, lendo o número especificado de `bytes`. Os campos `mem_used` e `mem_avail` indicam a memória atualmente usada pelo keycache e a quantidade de memória disponível dentro do keycache.
 
-* `keycache-read-block`: Triggered when the keycache reads a block of data, of the specified number of `bytes`, from the index file into the keycache.
+* `keycache-read-block`: Acionado quando o keycache lê um block de dados, do número especificado de `bytes`, do arquivo de Index para o keycache.
 
-* `keycache-read-hit`: Triggered when the block of data read from the index file matches the key data requested.
+* `keycache-read-hit`: Acionado quando o block de dados lido do arquivo de Index corresponde aos dados de chave solicitados.
 
-* `keycache-read-miss`: Triggered when the block of data read from the index file does not match the key data needed.
+* `keycache-read-miss`: Acionado quando o block de dados lido do arquivo de Index não corresponde aos dados de chave necessários.
 
-* `keycache-read-done`: Triggered when the keycache read operation has completed. The `mem_used` and `mem_avail` indicate memory currently used by the keycache and the amount of memory available within the keycache.
+* `keycache-read-done`: Acionado quando a operação de leitura do keycache foi concluída. Os campos `mem_used` e `mem_avail` indicam a memória atualmente usada pelo keycache e a quantidade de memória disponível dentro do keycache.
 
-Keycache writes occur when the index information is updated during an `INSERT`, `UPDATE`, or `DELETE` operation, and the cached key information is flushed back to the index file.
+As escritas no Keycache ocorrem quando a informação do Index é atualizada durante uma operação `INSERT`, `UPDATE` ou `DELETE`, e a informação da chave em cache é descarregada de volta para o arquivo de Index.
 
-* `keycache-write-start`: Triggered when the keycache write operation is started. Data is written to the specified `filepath`, reading the specified number of `bytes`. The `mem_used` and `mem_avail` indicate memory currently used by the keycache and the amount of memory available within the keycache.
+* `keycache-write-start`: Acionado quando a operação de escrita do keycache é iniciada. Os dados são escritos no `filepath` especificado, lendo o número especificado de `bytes`. Os campos `mem_used` e `mem_avail` indicam a memória atualmente usada pelo keycache e a quantidade de memória disponível dentro do keycache.
 
-* `keycache-write-block`: Triggered when the keycache writes a block of data, of the specified number of `bytes`, to the index file from the keycache.
+* `keycache-write-block`: Acionado quando o keycache escreve um block de dados, do número especificado de `bytes`, para o arquivo de Index a partir do keycache.
 
-* `keycache-write-done`: Triggered when the keycache write operation has completed. The `mem_used` and `mem_avail` indicate memory currently used by the keycache and the amount of memory available within the keycache.
+* `keycache-write-done`: Acionado quando a operação de escrita do keycache foi concluída. Os campos `mem_used` e `mem_avail` indicam a memória atualmente usada pelo keycache e a quantidade de memória disponível dentro do keycache.

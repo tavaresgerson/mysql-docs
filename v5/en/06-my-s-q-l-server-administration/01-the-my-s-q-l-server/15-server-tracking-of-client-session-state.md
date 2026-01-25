@@ -1,32 +1,32 @@
-### 5.1.15 Server Tracking of Client Session State
+### 5.1.15 Rastreamento do Estado da Sessão do Cliente pelo Servidor
 
-The MySQL server implements several session state trackers. A client can enable these trackers to receive notification of changes to its session state.
+O servidor MySQL implementa vários rastreadores (*trackers*) de estado de sessão. Um cliente pode habilitar esses rastreadores para receber notificação de alterações no estado de sua sessão.
 
-* [Uses for Session State Trackers](session-state-tracking.html#session-state-tracking-uses "Uses for Session State Trackers")
-* [Available Session State Trackers](session-state-tracking.html#session-state-tracking-notifications "Available Session State Trackers")
-* [C API Session State Tracker Support](session-state-tracking.html#session-state-tracking-capi-support "C API Session State Tracker Support")
-* [Test Suite Session State Tracker Support](session-state-tracking.html#session-state-tracking-test-suite-support "Test Suite Session State Tracker Support")
+* [Usos para Rastreamento de Estado de Sessão](session-state-tracking.html#session-state-tracking-uses "Usos para Rastreamento de Estado de Sessão")
+* [Rastreadores de Estado de Sessão Disponíveis](session-state-tracking.html#session-state-tracking-notifications "Rastreadores de Estado de Sessão Disponíveis")
+* [Suporte a Rastreador de Estado de Sessão na API C](session-state-tracking.html#session-state-tracking-capi-support "Suporte a Rastreador de Estado de Sessão na API C")
+* [Suporte a Rastreador de Estado de Sessão no Test Suite](session-state-tracking.html#session-state-tracking-test-suite-support "Suporte a Rastreador de Estado de Sessão no Test Suite")
 
-#### Uses for Session State Trackers
+#### Usos para Rastreamento de Estado de Sessão
 
-Session state trackers have uses such as these:
+Os rastreadores de estado de sessão têm usos como estes:
 
-* To facilitate session migration.
-* To facilitate transaction switching.
+* Para facilitar a migração de sessão.
+* Para facilitar a troca (*switching*) de transaction.
 
-One use for the tracker mechanism is to provide a means for MySQL connectors and client applications to determine whether any session context is available to permit session migration from one server to another. (To change sessions in a load-balanced environment, it is necessary to detect whether there is session state to take into consideration when deciding whether a switch can be made.)
+Um uso para o mecanismo de rastreamento é fornecer um meio para que conectores MySQL e aplicações cliente determinem se algum contexto de sessão está disponível para permitir a migração de sessão de um servidor para outro. (Para trocar sessões em um ambiente com balanceamento de carga, é necessário detectar se existe um estado de sessão a ser levado em consideração ao decidir se uma troca pode ser feita.)
 
-Another use for the tracker mechanism is to permit applications to know when transactions can be moved from one session to another. Transaction state tracking enables this, which is useful for applications that may wish to move transactions from a busy server to one that is less loaded. For example, a load-balancing connector managing a client connection pool could move transactions between available sessions in the pool.
+Outro uso para o mecanismo de rastreamento é permitir que aplicações saibam quando transactions podem ser movidas de uma sessão para outra. O rastreamento do estado de Transaction permite isso, o que é útil para aplicações que desejam mover transactions de um servidor ocupado para um com menos carga. Por exemplo, um conector de balanceamento de carga gerenciando um *connection pool* de clientes poderia mover transactions entre sessões disponíveis no *pool*.
 
-However, session switching cannot be done at arbitrary times. If a session is in the middle of a transaction for which reads or writes have been done, switching to a different session implies a transaction rollback on the original session. A session switch must be done only when a transaction does not yet have any reads or writes performed within it.
+No entanto, a troca de sessão não pode ser feita em momentos arbitrários. Se uma sessão estiver no meio de uma transaction para a qual leituras ou escritas foram realizadas, a troca para uma sessão diferente implica um *rollback* da transaction na sessão original. Uma troca de sessão deve ser feita apenas quando uma transaction ainda não tiver nenhuma leitura ou escrita executada dentro dela.
 
-Examples of when transactions might reasonably be switched:
+Exemplos de quando transactions podem ser razoavelmente trocadas:
 
-* Immediately after [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
+* Imediatamente após [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-* After [`COMMIT AND CHAIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
+* Após [`COMMIT AND CHAIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-In addition to knowing transaction state, it is useful to know transaction characteristics, so as to use the same characteristics if the transaction is moved to a different session. The following characteristics are relevant for this purpose:
+Além de conhecer o estado da transaction, é útil saber as características da transaction, para usar as mesmas características caso a transaction seja movida para uma sessão diferente. As seguintes características são relevantes para este propósito:
 
 ```sql
 READ ONLY
@@ -35,41 +35,41 @@ ISOLATION LEVEL
 WITH CONSISTENT SNAPSHOT
 ```
 
-#### Available Session State Trackers
+#### Rastreadores de Estado de Sessão Disponíveis
 
-To support the session-tracking activities, notification is available for these types of client session state information:
+Para suportar as atividades de rastreamento de sessão, a notificação está disponível para estes tipos de informações de estado de sessão do cliente:
 
-* Changes to these attributes of client session state:
+* Alterações nestes atributos do estado da sessão do cliente:
 
-  + The default schema (database).
-  + Session-specific values for system variables.
-  + User-defined variables.
-  + Temporary tables.
-  + Prepared statements.
+  + O *schema* (Database) padrão.
+  + Valores específicos da sessão para *system variables*.
+  + *User-defined variables*.
+  + Tabelas temporárias.
+  + *Prepared statements*.
 
-  The [`session_track_state_change`](server-system-variables.html#sysvar_session_track_state_change) system variable controls this tracker.
+  A *system variable* [`session_track_state_change`](server-system-variables.html#sysvar_session_track_state_change) controla este rastreador.
 
-* Changes to the default schema name. The [`session_track_schema`](server-system-variables.html#sysvar_session_track_schema) system variable controls this tracker.
+* Alterações no nome do *schema* padrão. A *system variable* [`session_track_schema`](server-system-variables.html#sysvar_session_track_schema) controla este rastreador.
 
-* Changes to the session values of system variables. The [`session_track_system_variables`](server-system-variables.html#sysvar_session_track_system_variables) system variable controls this tracker.
+* Alterações nos valores de sessão de *system variables*. A *system variable* [`session_track_system_variables`](server-system-variables.html#sysvar_session_track_system_variables) controla este rastreador.
 
-* Available GTIDs. The [`session_track_gtids`](server-system-variables.html#sysvar_session_track_gtids) system variable controls this tracker.
+* GTIDs disponíveis. A *system variable* [`session_track_gtids`](server-system-variables.html#sysvar_session_track_gtids) controla este rastreador.
 
-* Information about transaction state and characteristics. The [`session_track_transaction_info`](server-system-variables.html#sysvar_session_track_transaction_info) system variable controls this tracker.
+* Informações sobre o estado e características da transaction. A *system variable* [`session_track_transaction_info`](server-system-variables.html#sysvar_session_track_transaction_info) controla este rastreador.
 
-For descriptions of the tracker-related system variables, see [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"). Those system variables permit control over which change notifications occur, but do not provide a way to access notification information. Notification occurs in the MySQL client/server protocol, which includes tracker information in OK packets so that session state changes can be detected.
+Para descrições das *system variables* relacionadas ao rastreador, consulte [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"). Essas *system variables* permitem o controle sobre quais notificações de alteração ocorrem, mas não fornecem uma maneira de acessar as informações de notificação. A notificação ocorre no protocolo cliente/servidor MySQL, que inclui informações do rastreador em *OK packets* para que as mudanças de estado da sessão possam ser detectadas.
 
-#### C API Session State Tracker Support
+#### Suporte a Rastreador de Estado de Sessão na API C
 
-To enable client applications to extract state-change information from OK packets returned by the server, the MySQL C API provides a pair of functions:
+Para permitir que as aplicações cliente extraiam informações de mudança de estado dos *OK packets* retornados pelo servidor, a API C do MySQL fornece um par de funções:
 
-* [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html) fetches the first part of the state-change information received from the server. See [mysql_session_track_get_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
+* [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html) busca a primeira parte da informação de mudança de estado recebida do servidor. Consulte [mysql_session_track_get_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
 
-* [`mysql_session_track_get_next()`](/doc/c-api/5.7/en/mysql-session-track-get-next.html) fetches any remaining state-change information received from the server. Following a successful call to [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html), call this function repeatedly as long as it returns success. See [mysql_session_track_get_next()](/doc/c-api/5.7/en/mysql-session-track-get-next.html).
+* [`mysql_session_track_get_next()`](/doc/c-api/5.7/en/mysql-session-track-get-next.html) busca qualquer informação de mudança de estado restante recebida do servidor. Após uma chamada bem-sucedida a [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html), chame esta função repetidamente enquanto ela retornar sucesso. Consulte [mysql_session_track_get_next()](/doc/c-api/5.7/en/mysql-session-track-get-next.html).
 
-#### Test Suite Session State Tracker Support
+#### Suporte a Rastreador de Estado de Sessão no Test Suite
 
-The **mysqltest** program has `disable_session_track_info` and `enable_session_track_info` commands that control whether session tracker notifications occur. You can use these commands to see from the command line what notifications SQL statements produce. Suppose that a file `testscript` contains the following **mysqltest** script:
+O programa **mysqltest** possui os comandos `disable_session_track_info` e `enable_session_track_info` que controlam se as notificações do rastreador de sessão ocorrem. Você pode usar esses comandos para ver na linha de comando quais notificações as *SQL statements* produzem. Suponha que um arquivo `testscript` contenha o seguinte script **mysqltest**:
 
 ```sql
 DROP TABLE IF EXISTS test.t1;
@@ -90,7 +90,7 @@ INSERT INTO test.t1 () VALUES(1, RAND());
 COMMIT;
 ```
 
-Run the script as follows to see the information provided by the enabled trackers. For a description of the `Tracker:` information displayed by **mysqltest** for the various trackers, see [mysql_session_track_get_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
+Execute o script da seguinte forma para ver as informações fornecidas pelos rastreadores habilitados. Para uma descrição da informação `Tracker:` exibida pelo **mysqltest** para os vários rastreadores, consulte [mysql_session_track_get_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
 
 ```sql
 $> mysqltest < testscript
@@ -179,8 +179,8 @@ COMMIT;
 ok
 ```
 
-Preceding the [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement, two [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") statements execute that set the isolation level and access mode characteristics for the next transaction. The `SESSION_TRACK_TRANSACTION_CHARACTERISTICS` value indicates those next-transaction values that have been set.
+Precedendo a *statement* [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), duas *statements* [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") são executadas que definem o nível de *isolation* e as características do modo de acesso para a próxima transaction. O valor `SESSION_TRACK_TRANSACTION_CHARACTERISTICS` indica os valores de próxima-transaction que foram definidos.
 
-Following the [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement that ends the transaction, the `SESSION_TRACK_TRANSACTION_CHARACTERISTICS` value is reported as empty. This indicates that the next-transaction characteristics that were set preceding the start of the transaction have been reset, and that the session defaults apply. To track changes to those session defaults, track the session values of the [`transaction_isolation`](server-system-variables.html#sysvar_transaction_isolation) and [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only) system variables.
+Após a *statement* [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") que encerra a transaction, o valor `SESSION_TRACK_TRANSACTION_CHARACTERISTICS` é reportado como vazio. Isso indica que as características de próxima-transaction que foram definidas antes do início da transaction foram redefinidas e que os *defaults* da sessão se aplicam. Para rastrear alterações nesses *defaults* de sessão, rastreie os valores de sessão das *system variables* [`transaction_isolation`](server-system-variables.html#sysvar_transaction_isolation) e [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only).
 
-To see information about GTIDs, enable the `SESSION_TRACK_GTIDS` tracker using the [`session_track_gtids`](server-system-variables.html#sysvar_session_track_gtids) system system variable.
+Para ver informações sobre GTIDs, habilite o rastreador `SESSION_TRACK_GTIDS` usando a *system variable* [`session_track_gtids`](server-system-variables.html#sysvar_session_track_gtids).

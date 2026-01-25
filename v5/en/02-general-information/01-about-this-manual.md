@@ -1,39 +1,39 @@
-## 1.1 About This Manual
+## 1.1 Sobre Este Manual
 
-This is the Reference Manual for the MySQL Database System, version 5.7, through release 5.7.44. Differences between minor versions of MySQL 5.7 are noted in the present text with reference to release numbers (5.7.*`x`*). For license information, see the Legal Notices.
+Este é o Manual de Referência para o Sistema de Banco de Dados MySQL, versão 5.7, até a *release* 5.7.44. Diferenças entre as versões menores do MySQL 5.7 são observadas neste texto com referência aos números de *release* (5.7.*`x`*). Para informações sobre licença, consulte os Avisos Legais.
 
-This manual is not intended for use with older versions of the MySQL software due to the many functional and other differences between MySQL 5.7 and previous versions. If you are using an earlier release of the MySQL software, please refer to the appropriate manual. For example, *MySQL 5.6 Reference Manual* covers the 5.6 series of MySQL software releases.
+Este manual não se destina ao uso com versões mais antigas do *software* MySQL devido às muitas diferenças funcionais e outras entre o MySQL 5.7 e versões anteriores. Se você estiver usando uma *release* anterior do *software* MySQL, consulte o manual apropriado. Por exemplo, o *MySQL 5.6 Reference Manual* cobre a série 5.6 de *releases* do *software* MySQL.
 
-If you are using MySQL 8.0, please refer to the *MySQL 8.0 Reference Manual*.
+Se você estiver usando o MySQL 8.0, consulte o *MySQL 8.0 Reference Manual*.
 
-Because this manual serves as a reference, it does not provide general instruction on SQL or relational database concepts. It also does not teach you how to use your operating system or command-line interpreter.
+Como este manual serve como referência, ele não fornece instruções gerais sobre SQL ou conceitos de banco de dados relacionais. Ele também não ensina como usar seu sistema operacional ou interpretador de linha de comando.
 
-The MySQL Database Software is under constant development, and the Reference Manual is updated frequently as well. The most recent version of the manual is available online in searchable form at https://dev.mysql.com/doc/. Other formats also are available there, including downloadable HTML and PDF versions.
+O Software de Banco de Dados MySQL está em constante desenvolvimento, e o Manual de Referência também é atualizado frequentemente. A versão mais recente do manual está disponível online em formato pesquisável em https://dev.mysql.com/doc/. Outros formatos também estão disponíveis, incluindo versões HTML e PDF para download.
 
-If you have questions about using MySQL, join the [MySQL Community Slack](https://mysqlcommunity.slack.com/). If you have suggestions concerning additions or corrections to the manual itself, please send them to the <http://www.mysql.com/company/contact/>.
+Se você tiver dúvidas sobre como usar o MySQL, junte-se ao [MySQL Community Slack](https://mysqlcommunity.slack.com/). Se você tiver sugestões sobre adições ou correções ao próprio manual, envie-as para <http://www.mysql.com/company/contact/>.
 
-### Typographical and Syntax Conventions
+### Convenções Tipográficas e de Sintaxe
 
-This manual uses certain typographical conventions:
+Este manual utiliza certas convenções tipográficas:
 
-* `Text in this style` is used for SQL statements; database, table, and column names; program listings and source code; and environment variables. Example: “To reload the grant tables, use the `FLUSH PRIVILEGES` statement.”
+* `Text in this style` é usado para comandos SQL; nomes de database, table e column; listagens de programa e código-fonte; e variáveis de ambiente. Exemplo: “Para recarregar as *grant tables*, use o comando `FLUSH PRIVILEGES`.”
 
-* **`Text in this style`** indicates input that you type in examples.
+* **`Text in this style`** indica a entrada que você digita em exemplos.
 
-* **Text in this style** indicates the names of executable programs and scripts, examples being **mysql** (the MySQL command-line client program) and **mysqld** (the MySQL server executable).
+* **Text in this style** indica os nomes de programas e *scripts* executáveis, sendo exemplos o **mysql** (o programa cliente de linha de comando MySQL) e o **mysqld** (o executável do servidor MySQL).
 
-* *`Text in this style`* is used for variable input for which you should substitute a value of your own choosing.
+* *`Text in this style`* é usado para entrada variável pela qual você deve substituir um valor de sua própria escolha.
 
-* *Text in this style* is used for emphasis.
-* **Text in this style** is used in table headings and to convey especially strong emphasis.
+* *Text in this style* é usado para ênfase.
+* **Text in this style** é usado em cabeçalhos de tabela e para transmitir ênfase especialmente forte.
 
-* `Text in this style` is used to indicate a program option that affects how the program is executed, or that supplies information that is needed for the program to function in a certain way. *Example*: “The `--host` option (short form `-h`) tells the **mysql** client program the hostname or IP address of the MySQL server that it should connect to”.
+* `Text in this style` é usado para indicar uma opção de programa que afeta como o programa é executado, ou que fornece informações necessárias para que o programa funcione de uma certa maneira. *Exemplo*: “A opção `--host` (forma abreviada `-h`) informa ao programa cliente **mysql** o *hostname* ou endereço IP do servidor MySQL ao qual ele deve se conectar”.
 
-* File names and directory names are written like this: “The global `my.cnf` file is located in the `/etc` directory.”
+* Nomes de arquivos e diretórios são escritos assim: “O arquivo global `my.cnf` está localizado no diretório `/etc`.”
 
-* Character sequences are written like this: “To specify a wildcard, use the ‘`%`’ character.”
+* Sequências de caracteres são escritas assim: “Para especificar um *wildcard*, use o caractere ‘`%`’.”
 
-When commands or statements are prefixed by a prompt, we use these:
+Quando comandos ou declarações são prefixados por um *prompt*, usamos estes:
 
 ```sql
 $> type a command here
@@ -42,74 +42,72 @@ C:\> type a command here (Windows only)
 mysql> type a mysql statement here
 ```
 
-Commands are issued in your command interpreter. On Unix, this is typically a program such as **sh**, **csh**, or **bash**. On Windows, the equivalent program is **command.com** or **cmd.exe**, typically run in a console window. Statements prefixed by `mysql` are issued in the **mysql** command-line client.
+Os comandos são emitidos no seu interpretador de comandos. No Unix, este é tipicamente um programa como **sh**, **csh** ou **bash**. No Windows, o programa equivalente é **command.com** ou **cmd.exe**, geralmente executado em uma janela de console. Comandos prefixados por `mysql` são emitidos no cliente de linha de comando **mysql**.
 
-Note
+Nota: Ao inserir um comando ou declaração mostrado em um exemplo, não digite o *prompt* exibido no exemplo.
 
-When you enter a command or statement shown in an example, do not type the prompt shown in the example.
-
-In some areas different systems may be distinguished from each other to show that commands should be executed in two different environments. For example, while working with replication the commands might be prefixed with `source` and `replica`:
+Em algumas áreas, sistemas diferentes podem ser distinguidos uns dos outros para mostrar que os comandos devem ser executados em dois ambientes distintos. Por exemplo, ao trabalhar com replicação, os comandos podem ser prefixados com `source` e `replica`:
 
 ```sql
 source> type a mysql statement on the replication source here
 replica> type a mysql statement on the replica here
 ```
 
-Database, table, and column names must often be substituted into statements. To indicate that such substitution is necessary, this manual uses *`db_name`*, *`tbl_name`*, and *`col_name`*. For example, you might see a statement like this:
+Nomes de Database, table e column frequentemente precisam ser substituídos em comandos. Para indicar que tal substituição é necessária, este manual usa *`db_name`*, *`tbl_name`* e *`col_name`*. Por exemplo, você pode ver um comando como este:
 
 ```sql
 mysql> SELECT col_name FROM db_name.tbl_name;
 ```
 
-This means that if you were to enter a similar statement, you would supply your own database, table, and column names, perhaps like this:
+Isso significa que, se você fosse inserir um comando semelhante, forneceria seus próprios nomes de database, table e column, talvez assim:
 
 ```sql
 mysql> SELECT author_name FROM biblio_db.author_list;
 ```
 
-SQL keywords are not case-sensitive and may be written in any lettercase. This manual uses uppercase.
+As palavras-chave SQL não são sensíveis a maiúsculas/minúsculas e podem ser escritas em qualquer caixa. Este manual utiliza maiúsculas.
 
-In syntax descriptions, square brackets (“`[`” and “`]`”) indicate optional words or clauses. For example, in the following statement, `IF EXISTS` is optional:
+Em descrições de sintaxe, colchetes (“`[`” e “`]`”) indicam palavras ou cláusulas opcionais. Por exemplo, no seguinte comando, `IF EXISTS` é opcional:
 
 ```sql
 DROP TABLE [IF EXISTS] tbl_name
 ```
 
-When a syntax element consists of a number of alternatives, the alternatives are separated by vertical bars (“`|`”). When one member from a set of choices *may* be chosen, the alternatives are listed within square brackets (“`[`” and “`]`”):
+Quando um elemento de sintaxe consiste em várias alternativas, as alternativas são separadas por barras verticais (“`|`”). Quando um membro de um conjunto de escolhas *pode* ser escolhido, as alternativas são listadas dentro de colchetes (“`[`” e “`]`”):
 
 ```sql
 TRIM(BOTH | LEADING | TRAILING] [remstr] FROM] str)
 ```
 
-When one member from a set of choices *must* be chosen, the alternatives are listed within braces (“`{`” and “`}`”):
+Quando um membro de um conjunto de escolhas *deve* ser escolhido, as alternativas são listadas dentro de chaves (“`{`” e “`}`”):
 
 ```sql
 {DESCRIBE | DESC} tbl_name [col_name | wild]
 ```
 
-An ellipsis (`...`) indicates the omission of a section of a statement, typically to provide a shorter version of more complex syntax. For example, `SELECT ... INTO OUTFILE` is shorthand for the form of `SELECT` statement that has an `INTO OUTFILE` clause following other parts of the statement.
+Uma elipse (`...`) indica a omissão de uma seção de um comando, tipicamente para fornecer uma versão mais curta de uma sintaxe mais complexa. Por exemplo, `SELECT ... INTO OUTFILE` é uma abreviação para a forma do comando `SELECT` que possui uma cláusula `INTO OUTFILE` seguindo outras partes do comando.
 
-An ellipsis can also indicate that the preceding syntax element of a statement may be repeated. In the following example, multiple *`reset_option`* values may be given, with each of those after the first preceded by commas:
+Uma elipse também pode indicar que o elemento de sintaxe precedente de um comando pode ser repetido. No exemplo a seguir, múltiplos valores *`reset_option`* podem ser fornecidos, com cada um após o primeiro precedido por vírgulas:
 
 ```sql
 RESET reset_option [,reset_option] ...
 ```
 
-Commands for setting shell variables are shown using Bourne shell syntax. For example, the sequence to set the `CC` environment variable and run the **configure** command looks like this in Bourne shell syntax:
+Os comandos para definir variáveis de *shell* são mostrados usando a sintaxe do Bourne shell. Por exemplo, a sequência para definir a variável de ambiente `CC` e executar o comando **configure** se parece com isto na sintaxe do Bourne shell:
 
 ```sql
 $> CC=gcc ./configure
 ```
 
-If you are using **csh** or **tcsh**, you must issue commands somewhat differently:
+Se você estiver usando **csh** ou **tcsh**, você deve emitir os comandos de forma ligeiramente diferente:
 
 ```sql
 $> setenv CC gcc
 $> ./configure
 ```
 
-### Manual Authorship
+### Autoria do Manual
 
-The Reference Manual source files are written in DocBook XML format. The HTML version and other formats are produced automatically, primarily using the DocBook XSL stylesheets. For information about DocBook, see <http://docbook.org/>
+Os arquivos-fonte do Manual de Referência são escritos no formato DocBook XML. A versão HTML e outros formatos são produzidos automaticamente, principalmente usando os *stylesheets* XSL DocBook. Para informações sobre DocBook, consulte <http://docbook.org/>.
 
-This manual was originally written by David Axmark and Michael “Monty” Widenius. It is maintained by the MySQL Documentation Team, consisting of Edward Gilmore, Sudharsana Gomadam, Kim seong Loh, Garima Sharma, Carlos Ortiz, Daniel So, and Jon Stephens.
+Este manual foi escrito originalmente por David Axmark e Michael “Monty” Widenius. Ele é mantido pela Equipe de Documentação MySQL, composta por Edward Gilmore, Sudharsana Gomadam, Kim seong Loh, Garima Sharma, Carlos Ortiz, Daniel So e Jon Stephens.

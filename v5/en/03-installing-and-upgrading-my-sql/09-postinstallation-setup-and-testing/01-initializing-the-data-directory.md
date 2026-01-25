@@ -1,56 +1,56 @@
-### 2.9.1 Initializing the Data Directory
+### 2.9.1 Inicializando o Diretório de Dados
 
-After MySQL is installed, the data directory must be initialized, including the tables in the `mysql` system database:
+Após a instalação do MySQL, o diretório de dados deve ser inicializado, incluindo as tabelas na database do sistema `mysql`:
 
-* For some MySQL installation methods, data directory initialization is automatic, as described in Section 2.9, “Postinstallation Setup and Testing”.
+* Para alguns métodos de instalação do MySQL, a inicialização do diretório de dados é automática, conforme descrito na Seção 2.9, “Configuração Pós-instalação e Testes”.
 
-* For other installation methods, you must initialize the data directory manually. These include installation from generic binary and source distributions on Unix and Unix-like systems, and installation from a ZIP Archive package on Windows.
+* Para outros métodos de instalação, você deve inicializar o diretório de dados manualmente. Isso inclui instalações a partir de distribuições binárias genéricas e de código-fonte em sistemas Unix e Unix-like, e instalações a partir de um pacote ZIP Archive no Windows.
 
-This section describes how to initialize the data directory manually for MySQL installation methods for which data directory initialization is not automatic. For some suggested commands that enable testing whether the server is accessible and working properly, see Section 2.9.3, “Testing the Server”.
+Esta seção descreve como inicializar o diretório de dados manualmente para métodos de instalação do MySQL para os quais a inicialização do diretório de dados não é automática. Para alguns comandos sugeridos que permitem testar se o Server está acessível e funcionando corretamente, consulte a Seção 2.9.3, “Testando o Server”.
 
-* Data Directory Initialization Overview
-* Data Directory Initialization Procedure
-* Server Actions During Data Directory Initialization
-* Post-Initialization root Password Assignment
+* Visão Geral da Inicialização do Diretório de Dados
+* Procedimento de Inicialização do Diretório de Dados
+* Ações do Server Durante a Inicialização do Diretório de Dados
+* Atribuição de Senha de root Pós-Inicialização
 
-#### Data Directory Initialization Overview
+#### Visão Geral da Inicialização do Diretório de Dados
 
-In the examples shown here, the server is intended to run under the user ID of the `mysql` login account. Either create the account if it does not exist (see Create a mysql User and Group), or substitute the name of a different existing login account that you plan to use for running the server.
+Nos exemplos mostrados aqui, o Server deve ser executado sob o ID de usuário da conta de login `mysql`. Crie a conta, se ela não existir (consulte Criar um Usuário e Grupo mysql), ou substitua pelo nome de uma conta de login existente diferente que você planeja usar para executar o Server.
 
-1. Change location to the top-level directory of your MySQL installation, which is typically `/usr/local/mysql` (adjust the path name for your system as necessary):
+1. Altere a localização para o diretório de nível superior de sua instalação do MySQL, que geralmente é `/usr/local/mysql` (ajuste o nome do caminho para o seu sistema conforme necessário):
 
    ```sql
    cd /usr/local/mysql
    ```
 
-   Within this directory are several files and subdirectories, including the `bin` subdirectory that contains the server as well as client and utility programs.
+   Dentro deste diretório estão vários arquivos e subdiretórios, incluindo o subdiretório `bin` que contém o Server, bem como programas clientes e utilitários.
 
-2. The `secure_file_priv` system variable limits import and export operations to a specific directory. Create a directory whose location can be specified as the value of that variable:
+2. A variável de sistema `secure_file_priv` limita as operações de importação e exportação a um diretório específico. Crie um diretório cuja localização possa ser especificada como o valor dessa variável:
 
    ```sql
    mkdir mysql-files
    ```
 
-   Grant directory user and group ownership to the `mysql` user and `mysql` group, and set the directory permissions appropriately:
+   Conceda a propriedade de usuário e grupo do diretório ao usuário `mysql` e ao grupo `mysql`, e defina as permissões do diretório apropriadamente:
 
    ```sql
    chown mysql:mysql mysql-files
    chmod 750 mysql-files
    ```
 
-3. Use the server to initialize the data directory, including the `mysql` database containing the initial MySQL grant tables that determine how users are permitted to connect to the server. For example:
+3. Use o Server para inicializar o diretório de dados, incluindo a database `mysql` que contém as tabelas GRANT iniciais do MySQL que determinam como os usuários têm permissão para se conectar ao Server. Por exemplo:
 
    ```sql
    bin/mysqld --initialize --user=mysql
    ```
 
-   For important information about the command, especially regarding command options you might use, see Data Directory Initialization Procedure. For details about how the server performs initialization, see Server Actions During Data Directory Initialization.
+   Para informações importantes sobre o comando, especialmente em relação às opções de comando que você pode usar, consulte Procedimento de Inicialização do Diretório de Dados. Para obter detalhes sobre como o Server executa a inicialização, consulte Ações do Server Durante a Inicialização do Diretório de Dados.
 
-   Typically, data directory initialization need be done only after you first install MySQL. (For upgrades to an existing installation, perform the upgrade procedure instead; see Section 2.10, “Upgrading MySQL”.) However, the command that initializes the data directory does not overwrite any existing `mysql` database tables, so it is safe to run in any circumstances.
+   Geralmente, a inicialização do diretório de dados só precisa ser feita após a primeira instalação do MySQL. (Para atualizações em uma instalação existente, execute o procedimento de upgrade; consulte a Seção 2.10, “Atualizando o MySQL”.) No entanto, o comando que inicializa o diretório de dados não sobrescreve nenhuma tabela de database `mysql` existente, portanto, é seguro executá-lo em qualquer circunstância.
 
    Note
 
-   Initialization of the data directory might fail if required system libraries are missing. For example, you might see an error like this:
+   A inicialização do diretório de dados pode falhar se bibliotecas de sistema obrigatórias estiverem faltando. Por exemplo, você pode ver um erro como este:
 
    ```sql
    bin/mysqld: error while loading shared libraries:
@@ -58,54 +58,54 @@ In the examples shown here, the server is intended to run under the user ID of t
    No such file or directory
    ```
 
-   If this happens, you must install the missing libraries manually or with your system's package manager. Then retry the data directory initialization command.
+   Se isso acontecer, você deve instalar as bibliotecas ausentes manualmente ou com o gerenciador de pacotes do seu sistema. Em seguida, tente novamente o comando de inicialização do diretório de dados.
 
-4. If you want to deploy the server with automatic support for secure connections, use the **mysql_ssl_rsa_setup** utility to create default SSL and RSA files:
+4. Se você deseja implantar o Server com suporte automático para conexões seguras, use o utilitário **mysql_ssl_rsa_setup** para criar arquivos SSL e RSA padrão:
 
    ```sql
    bin/mysql_ssl_rsa_setup
    ```
 
-   For more information, see Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
+   Para obter mais informações, consulte a Seção 4.4.5, “mysql_ssl_rsa_setup — Criar Arquivos SSL/RSA”.
 
-5. In the absence of any option files, the server starts with its default settings. (See Section 5.1.2, “Server Configuration Defaults”.) To explicitly specify options that the MySQL server should use at startup, put them in an option file such as `/etc/my.cnf` or `/etc/mysql/my.cnf`. (See Section 4.2.2.2, “Using Option Files”.) For example, you can use an option file to set the `secure_file_priv` system variable.
+5. Na ausência de quaisquer arquivos de opções, o Server é iniciado com suas configurações padrão. (Consulte a Seção 5.1.2, “Padrões de Configuração do Server”.) Para especificar explicitamente as opções que o Server MySQL deve usar na inicialização, coloque-as em um arquivo de opções, como `/etc/my.cnf` ou `/etc/mysql/my.cnf`. (Consulte a Seção 4.2.2.2, “Usando Arquivos de Opções”.) Por exemplo, você pode usar um arquivo de opções para definir a variável de sistema `secure_file_priv`.
 
-6. To arrange for MySQL to start without manual intervention at system boot time, see Section 2.9.5, “Starting and Stopping MySQL Automatically”.
+6. Para configurar o MySQL para iniciar sem intervenção manual no momento da inicialização do sistema, consulte a Seção 2.9.5, “Iniciando e Parando o MySQL Automaticamente”.
 
-7. Data directory initialization creates time zone tables in the `mysql` database but does not populate them. To do so, use the instructions in Section 5.1.13, “MySQL Server Time Zone Support”.
+7. A inicialização do diretório de dados cria tabelas de fuso horário na database `mysql`, mas não as preenche. Para fazer isso, use as instruções na Seção 5.1.13, “Suporte a Fuso Horário do Server MySQL”.
 
-#### Data Directory Initialization Procedure
+#### Procedimento de Inicialização do Diretório de Dados
 
-Change location to the top-level directory of your MySQL installation, which is typically `/usr/local/mysql` (adjust the path name for your system as necessary):
+Altere a localização para o diretório de nível superior de sua instalação do MySQL, que geralmente é `/usr/local/mysql` (ajuste o nome do caminho para o seu sistema conforme necessário):
 
 ```sql
 cd /usr/local/mysql
 ```
 
-To initialize the data directory, invoke **mysqld** with the `--initialize` or `--initialize-insecure` option, depending on whether you want the server to generate a random initial password for the `'root'@'localhost'` account, or to create that account with no password:
+Para inicializar o diretório de dados, invoque **mysqld** com a opção `--initialize` ou `--initialize-insecure`, dependendo se você deseja que o Server gere uma senha inicial aleatória para a conta `'root'@'localhost'`, ou crie essa conta sem senha:
 
-* Use `--initialize` for “secure by default” installation (that is, including generation of a random initial `root` password). In this case, the password is marked as expired and you must choose a new one.
+* Use `--initialize` para instalação “segura por padrão” (ou seja, incluindo a geração de uma senha de `root` inicial aleatória). Neste caso, a senha é marcada como expirada e você deve escolher uma nova.
 
-* With `--initialize-insecure`, no `root` password is generated. This is insecure; it is assumed that you assign a password to the account in timely fashion before putting the server into production use.
+* Com `--initialize-insecure`, nenhuma senha de `root` é gerada. Isso é inseguro; presume-se que você atribua uma senha à conta em tempo hábil antes de colocar o Server em uso de produção.
 
-For instructions on assigning a new `'root'@'localhost'` password, see Post-Initialization root Password Assignment.
+Para obter instruções sobre como atribuir uma nova senha a `'root'@'localhost'`, consulte Atribuição de Senha de root Pós-Inicialização.
 
 Note
 
-The server writes any messages (including any initial password) to its standard error output. This may be redirected to the error log, so look there if you do not see the messages on your screen. For information about the error log, including where it is located, see Section 5.4.2, “The Error Log”.
+O Server grava quaisquer mensagens (incluindo qualquer senha inicial) em sua saída de erro padrão. Isso pode ser redirecionado para o log de erro, então procure lá se você não vir as mensagens na sua tela. Para obter informações sobre o log de erro, incluindo onde ele está localizado, consulte a Seção 5.4.2, “O Log de Erro”.
 
-On Windows, use the `--console` option to direct messages to the console.
+No Windows, use a opção `--console` para direcionar as mensagens para o console.
 
-On Unix and Unix-like systems, it is important for the database directories and files to be owned by the `mysql` login account so that the server has read and write access to them when you run it later. To ensure this, start **mysqld** from the system `root` account and include the `--user` option as shown here:
+Em sistemas Unix e Unix-like, é importante que os diretórios e arquivos da database sejam de propriedade da conta de login `mysql` para que o Server tenha acesso de leitura e gravação a eles quando você o executar posteriormente. Para garantir isso, inicie **mysqld** a partir da conta `root` do sistema e inclua a opção `--user` conforme mostrado aqui:
 
 ```sql
 bin/mysqld --initialize --user=mysql
 bin/mysqld --initialize-insecure --user=mysql
 ```
 
-Alternatively, execute **mysqld** while logged in as `mysql`, in which case you can omit the `--user` option from the command.
+Alternativamente, execute **mysqld** enquanto estiver logado como `mysql`, caso em que você pode omitir a opção `--user` do comando.
 
-On Windows, use one of these commands:
+No Windows, use um destes comandos:
 
 ```sql
 bin\mysqld --initialize --console
@@ -114,7 +114,7 @@ bin\mysqld --initialize-insecure --console
 
 Note
 
-Data directory initialization might fail if required system libraries are missing. For example, you might see an error like this:
+A inicialização do diretório de dados pode falhar se bibliotecas de sistema obrigatórias estiverem faltando. Por exemplo, você pode ver um erro como este:
 
 ```sql
 bin/mysqld: error while loading shared libraries:
@@ -122,9 +122,9 @@ libnuma.so.1: cannot open shared object file:
 No such file or directory
 ```
 
-If this happens, you must install the missing libraries manually or with your system's package manager. Then retry the data directory initialization command.
+Se isso acontecer, você deve instalar as bibliotecas ausentes manualmente ou com o gerenciador de pacotes do seu sistema. Em seguida, tente novamente o comando de inicialização do diretório de dados.
 
-It might be necessary to specify other options such as `--basedir` or `--datadir` if **mysqld** cannot identify the correct locations for the installation directory or data directory. For example (enter the command on a single line):
+Pode ser necessário especificar outras opções, como `--basedir` ou `--datadir`, se o **mysqld** não conseguir identificar as localizações corretas para o diretório de instalação ou o diretório de dados. Por exemplo (insira o comando em uma única linha):
 
 ```sql
 bin/mysqld --initialize --user=mysql
@@ -132,7 +132,7 @@ bin/mysqld --initialize --user=mysql
   --datadir=/opt/mysql/mysql/data
 ```
 
-Alternatively, put the relevant option settings in an option file and pass the name of that file to **mysqld**. For Unix and Unix-like systems, suppose that the option file name is `/opt/mysql/mysql/etc/my.cnf`. Put these lines in the file:
+Alternativamente, coloque as configurações de opção relevantes em um arquivo de opções e passe o nome desse arquivo para o **mysqld**. Para sistemas Unix e Unix-like, suponha que o nome do arquivo de opções seja `/opt/mysql/mysql/etc/my.cnf`. Coloque estas linhas no arquivo:
 
 ```sql
 [mysqld]
@@ -140,14 +140,14 @@ basedir=/opt/mysql/mysql
 datadir=/opt/mysql/mysql/data
 ```
 
-Then invoke **mysqld** as follows (enter the command on a single line, with the `--defaults-file` option first):
+Em seguida, invoque **mysqld** da seguinte forma (insira o comando em uma única linha, com a opção `--defaults-file` primeiro):
 
 ```sql
 bin/mysqld --defaults-file=/opt/mysql/mysql/etc/my.cnf
   --initialize --user=mysql
 ```
 
-On Windows, suppose that `C:\my.ini` contains these lines:
+No Windows, suponha que `C:\my.ini` contenha estas linhas:
 
 ```sql
 [mysqld]
@@ -155,7 +155,7 @@ basedir=C:\\Program Files\\MySQL\\MySQL Server 5.7
 datadir=D:\\MySQLdata
 ```
 
-Then invoke **mysqld** as follows (again, you should enter the command on a single line, with the `--defaults-file` option first):
+Em seguida, invoque **mysqld** da seguinte forma (novamente, você deve inserir o comando em uma única linha, com a opção `--defaults-file` primeiro):
 
 ```sql
 bin\mysqld --defaults-file=C:\my.ini
@@ -164,114 +164,114 @@ bin\mysqld --defaults-file=C:\my.ini
 
 Important
 
-When initializing the data directory, you should not specify any options other than those used for setting directory locations such as `--basedir` or `--datadir`, and the `--user` option if needed. Options to be employed by the MySQL server during normal use can be set when restarting it following initialization. See the description of the `--initialize` option for further information.
+Ao inicializar o diretório de dados, você não deve especificar nenhuma opção além daquelas usadas para definir localizações de diretório, como `--basedir` ou `--datadir`, e a opção `--user`, se necessário. As opções a serem empregadas pelo Server MySQL durante o uso normal podem ser definidas ao reiniciá-lo após a inicialização. Consulte a descrição da opção `--initialize` para obter mais informações.
 
-#### Server Actions During Data Directory Initialization
+#### Ações do Server Durante a Inicialização do Diretório de Dados
 
 Note
 
-The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql_secure_installation** and **mysql_ssl_rsa_setup**. See Section 4.4.4, “mysql_secure_installation — Improve MySQL Installation Security”, and Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
+A sequência de inicialização do diretório de dados realizada pelo Server não substitui as ações realizadas por **mysql_secure_installation** e **mysql_ssl_rsa_setup**. Consulte a Seção 4.4.4, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”, e a Seção 4.4.5, “mysql_ssl_rsa_setup — Criar Arquivos SSL/RSA”.
 
-When invoked with the `--initialize` or `--initialize-insecure` option, **mysqld** performs the following actions during the data directory initialization sequence:
+Quando invocado com a opção `--initialize` ou `--initialize-insecure`, o **mysqld** executa as seguintes ações durante a sequência de inicialização do diretório de dados:
 
-1. The server checks for the existence of the data directory as follows:
+1. O Server verifica a existência do diretório de dados da seguinte forma:
 
-   * If no data directory exists, the server creates it.
-   * If the data directory exists but is not empty (that is, it contains files or subdirectories), the server exits after producing an error message:
+   * Se nenhum diretório de dados existir, o Server o cria.
+   * Se o diretório de dados existir, mas não estiver vazio (ou seja, contiver arquivos ou subdiretórios), o Server é encerrado após produzir uma mensagem de erro:
 
      ```sql
      [ERROR] --initialize specified but the data directory exists. Aborting.
      ```
 
-     In this case, remove or rename the data directory and try again.
+     Neste caso, remova ou renomeie o diretório de dados e tente novamente.
 
-     As of MySQL 5.7.11, an existing data directory is permitted to be nonempty if every entry either has a name that begins with a period (`.`) or is named using an `--ignore-db-dir` option.
+     A partir do MySQL 5.7.11, um diretório de dados existente pode não estar vazio se cada entrada tiver um nome que comece com um ponto (`.`) ou for nomeada usando uma opção `--ignore-db-dir`.
 
      Note
 
-     Avoid the use of the `--ignore-db-dir` option, which has been deprecated since MySQL 5.7.16.
+     Evite o uso da opção `--ignore-db-dir`, que foi descontinuada desde o MySQL 5.7.16.
 
-2. Within the data directory, the server creates the `mysql` system database and its tables, including the grant tables, time zone tables, and server-side help tables. See Section 5.3, “The mysql System Database”.
+2. Dentro do diretório de dados, o Server cria a database do sistema `mysql` e suas tabelas, incluindo as tabelas GRANT, tabelas de fuso horário e tabelas de ajuda do lado do Server. Consulte a Seção 5.3, “A Database do Sistema mysql”.
 
-3. The server initializes the system tablespace and related data structures needed to manage `InnoDB` tables.
+3. O Server inicializa o tablespace do sistema e as estruturas de dados relacionadas necessárias para gerenciar as tabelas `InnoDB`.
 
    Note
 
-   After **mysqld** sets up the `InnoDB` system tablespace, certain changes to tablespace characteristics require setting up a whole new instance. Qualifying changes include the file name of the first file in the system tablespace and the number of undo logs. If you do not want to use the default values, make sure that the settings for the `innodb_data_file_path` and `innodb_log_file_size` configuration parameters are in place in the MySQL configuration file *before* running **mysqld**. Also make sure to specify as necessary other parameters that affect the creation and location of `InnoDB` files, such as `innodb_data_home_dir` and `innodb_log_group_home_dir`.
+   Depois que o **mysqld** configura o tablespace do sistema `InnoDB`, certas alterações nas características do tablespace exigem a configuração de uma nova instância completa. As alterações qualificadas incluem o nome do primeiro arquivo no tablespace do sistema e o número de logs de undo. Se você não quiser usar os valores padrão, certifique-se de que as configurações para os parâmetros de configuração `innodb_data_file_path` e `innodb_log_file_size` estejam no lugar no arquivo de configuração do MySQL *antes* de executar o **mysqld**. Além disso, certifique-se de especificar, conforme necessário, outros parâmetros que afetam a criação e localização dos arquivos `InnoDB`, como `innodb_data_home_dir` e `innodb_log_group_home_dir`.
 
-   If those options are in your configuration file but that file is not in a location that MySQL reads by default, specify the file location using the `--defaults-extra-file` option when you run **mysqld**.
+   Se essas opções estiverem no seu arquivo de configuração, mas esse arquivo não estiver em um local que o MySQL leia por padrão, especifique a localização do arquivo usando a opção `--defaults-extra-file` ao executar o **mysqld**.
 
-4. The server creates a `'root'@'localhost'` superuser account and other reserved accounts (see Section 6.2.8, “Reserved Accounts”). Some reserved accounts are locked and cannot be used by clients, but `'root'@'localhost'` is intended for administrative use and you should assign it a password.
+4. O Server cria uma conta de superusuário `'root'@'localhost'` e outras contas reservadas (consulte a Seção 6.2.8, “Contas Reservadas”). Algumas contas reservadas são bloqueadas e não podem ser usadas por clientes, mas `'root'@'localhost'` é destinada ao uso administrativo e você deve atribuir-lhe uma senha.
 
-   Server actions with respect to a password for the `'root'@'localhost'` account depend on how you invoke it:
+   As ações do Server em relação a uma senha para a conta `'root'@'localhost'` dependem de como você o invoca:
 
-   * With `--initialize` but not `--initialize-insecure`, the server generates a random password, marks it as expired, and writes a message displaying the password:
+   * Com `--initialize`, mas não `--initialize-insecure`, o Server gera uma senha aleatória, a marca como expirada e escreve uma mensagem exibindo a senha:
 
      ```sql
      [Warning] A temporary password is generated for root@localhost:
      iTag*AfrH5ej
      ```
 
-   * With `--initialize-insecure`, (either with or without `--initialize` because `--initialize-insecure` implies `--initialize`), the server does not generate a password or mark it expired, and writes a warning message:
+   * Com `--initialize-insecure` (com ou sem `--initialize`, pois `--initialize-insecure` implica `--initialize`), o Server não gera uma senha nem a marca como expirada, e escreve uma mensagem de aviso:
 
      ```sql
      [Warning] root@localhost is created with an empty password ! Please
      consider switching off the --initialize-insecure option.
      ```
 
-   For instructions on assigning a new `'root'@'localhost'` password, see Post-Initialization root Password Assignment.
+   Para obter instruções sobre como atribuir uma nova senha a `'root'@'localhost'`, consulte Atribuição de Senha de root Pós-Inicialização.
 
-5. The server populates the server-side help tables used for the `HELP` statement (see Section 13.8.3, “HELP Statement”). The server does not populate the time zone tables. To do so manually, see Section 5.1.13, “MySQL Server Time Zone Support”.
+5. O Server preenche as tabelas de ajuda do lado do Server usadas para a instrução `HELP` (consulte a Seção 13.8.3, “Instrução HELP”). O Server não preenche as tabelas de fuso horário. Para fazer isso manualmente, consulte a Seção 5.1.13, “Suporte a Fuso Horário do Server MySQL”.
 
-6. If the `init_file` system variable was given to name a file of SQL statements, the server executes the statements in the file. This option enables you to perform custom bootstrapping sequences.
+6. Se a variável de sistema `init_file` foi fornecida para nomear um arquivo de instruções SQL, o Server executa as instruções no arquivo. Esta opção permite que você execute sequências de bootstrap personalizadas.
 
-   When the server operates in bootstrap mode, some functionality is unavailable that limits the statements permitted in the file. These include statements that relate to account management (such as `CREATE USER` or `GRANT`), replication, and global transaction identifiers.
+   Quando o Server opera no modo de bootstrap, algumas funcionalidades ficam indisponíveis, o que limita as instruções permitidas no arquivo. Isso inclui instruções relacionadas ao gerenciamento de contas (como `CREATE USER` ou `GRANT`), replicação e identificadores de transação global.
 
-7. The server exits.
+7. O Server é encerrado.
 
-#### Post-Initialization root Password Assignment
+#### Atribuição de Senha de root Pós-Inicialização
 
-After you initialize the data directory by starting the server with `--initialize` or `--initialize-insecure`, start the server normally (that is, without either of those options) and assign the `'root'@'localhost'` account a new password:
+Depois de inicializar o diretório de dados iniciando o Server com `--initialize` ou `--initialize-insecure`, inicie o Server normalmente (ou seja, sem nenhuma dessas opções) e atribua uma nova senha à conta `'root'@'localhost'`:
 
-1. Start the server. For instructions, see Section 2.9.2, “Starting the Server”.
+1. Inicie o Server. Para obter instruções, consulte a Seção 2.9.2, “Iniciando o Server”.
 
-2. Connect to the server:
+2. Conecte-se ao Server:
 
-   * If you used `--initialize` but not `--initialize-insecure` to initialize the data directory, connect to the server as `root`:
+   * Se você usou `--initialize`, mas não `--initialize-insecure`, para inicializar o diretório de dados, conecte-se ao Server como `root`:
 
      ```sql
      mysql -u root -p
      ```
 
-     Then, at the password prompt, enter the random password that the server generated during the initialization sequence:
+     Em seguida, no prompt de senha, insira a senha aleatória que o Server gerou durante a sequência de inicialização:
 
      ```sql
      Enter password: (enter the random root password here)
      ```
 
-     Look in the server error log if you do not know this password.
+     Procure no log de erro do Server se você não souber esta senha.
 
-   * If you used `--initialize-insecure` to initialize the data directory, connect to the server as `root` without a password:
+   * Se você usou `--initialize-insecure` para inicializar o diretório de dados, conecte-se ao Server como `root` sem uma senha:
 
      ```sql
      mysql -u root --skip-password
      ```
 
-3. After connecting, use an `ALTER USER` statement to assign a new `root` password:
+3. Após a conexão, use uma instrução `ALTER USER` para atribuir uma nova senha de `root`:
 
    ```sql
    ALTER USER 'root'@'localhost' IDENTIFIED BY 'root-password';
    ```
 
-See also Section 2.9.4, “Securing the Initial MySQL Account”.
+Consulte também a Seção 2.9.4, “Protegendo a Conta MySQL Inicial”.
 
 Note
 
-Attempts to connect to the host `127.0.0.1` normally resolve to the `localhost` account. However, this fails if the server is run with `skip_name_resolve` enabled. If you plan to do that, make sure that an account exists that can accept a connection. For example, to be able to connect as `root` using `--host=127.0.0.1` or `--host=::1`, create these accounts:
+As tentativas de conexão ao host `127.0.0.1` normalmente se resolvem para a conta `localhost`. No entanto, isso falha se o Server for executado com `skip_name_resolve` habilitado. Se você planeja fazer isso, certifique-se de que exista uma conta que possa aceitar uma conexão. Por exemplo, para poder se conectar como `root` usando `--host=127.0.0.1` ou `--host=::1`, crie estas contas:
 
 ```sql
 CREATE USER 'root'@'127.0.0.1' IDENTIFIED BY 'root-password';
 CREATE USER 'root'@'::1' IDENTIFIED BY 'root-password';
 ```
 
-It is possible to put those statements in a file to be executed using the `init_file` system variable, as discussed in Server Actions During Data Directory Initialization.
+É possível colocar essas instruções em um arquivo a ser executado usando a variável de sistema `init_file`, conforme discutido em Ações do Server Durante a Inicialização do Diretório de Dados.

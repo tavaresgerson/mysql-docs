@@ -1,12 +1,12 @@
-### 6.5.2 Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification
+### 6.5.2 Instalação ou Desinstalação do MySQL Enterprise Data Masking and De-Identification
 
-This section describes how to install or uninstall MySQL Enterprise Data Masking and De-Identification, which is implemented as a plugin library file containing a plugin and several loadable functions. For general information about installing or uninstalling plugins and loadable functions, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins"), and [Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions").
+Esta seção descreve como instalar ou desinstalar o MySQL Enterprise Data Masking and De-Identification, que é implementado como um arquivo de biblioteca de plugin contendo um plugin e várias loadable functions. Para informações gerais sobre como instalar ou desinstalar plugins e loadable functions, consulte [Seção 5.5.1, “Instalação e Desinstalação de Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins"), e [Seção 5.6.1, “Instalação e Desinstalação de Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions").
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo server, o arquivo da biblioteca de plugin deve estar localizado no diretório de plugin do MySQL (o diretório nomeado pela system variable [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do diretório de plugin definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do server.
 
-The plugin library file base name is `data_masking`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
+O nome base do arquivo da biblioteca de plugin é `data_masking`. O sufixo do nome do arquivo difere por plataforma (por exemplo, `.so` para sistemas Unix e similares a Unix, `.dll` para Windows).
 
-To install the MySQL Enterprise Data Masking and De-Identification plugin and functions, use the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") statements, adjusting the `.so` suffix for your platform as necessary:
+Para instalar o plugin e as functions do MySQL Enterprise Data Masking and De-Identification, use as instruções [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") e [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement"), ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 INSTALL PLUGIN data_masking SONAME 'data_masking.so';
@@ -40,9 +40,9 @@ CREATE FUNCTION mask_ssn RETURNS STRING
   SONAME 'data_masking.so';
 ```
 
-If the plugin and functions are used on a replication source server, install them on all replica servers as well to avoid replication issues.
+Se o plugin e as functions forem utilizados em um replication source server, instale-os em todos os replica servers também para evitar problemas de replication.
 
-Once installed as just described, the plugin and functions remain installed until uninstalled. To remove them, use the [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") and [`DROP FUNCTION`](drop-function.html "13.1.24 DROP FUNCTION Statement") statements:
+Uma vez instalados conforme descrito, o plugin e as functions permanecem instalados até que sejam desinstalados. Para removê-los, use as instruções [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement") e [`DROP FUNCTION`](drop-function.html "13.1.24 DROP FUNCTION Statement"):
 
 ```sql
 UNINSTALL PLUGIN data_masking;

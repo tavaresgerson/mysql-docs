@@ -1,36 +1,36 @@
-### 8.10.4 Caching of Prepared Statements and Stored Programs
+### 8.10.4 Cache de Prepared Statements e Stored Programs
 
-For certain statements that a client might execute multiple times during a session, the server converts the statement to an internal structure and caches that structure to be used during execution. Caching enables the server to perform more efficiently because it avoids the overhead of reconverting the statement should it be needed again during the session. Conversion and caching occurs for these statements:
+Para certas instruções que um cliente pode executar múltiplas vezes durante uma sessão, o server converte a instrução em uma estrutura interna e armazena essa estrutura em cache para ser usada durante a execução. O Caching permite que o server tenha um desempenho mais eficiente porque evita a sobrecarga de reconverter a instrução caso ela seja necessária novamente durante a sessão. A conversão e o caching ocorrem para estas instruções:
 
-* Prepared statements, both those processed at the SQL level (using the `PREPARE` statement) and those processed using the binary client/server protocol (using the `mysql_stmt_prepare()` C API function). The `max_prepared_stmt_count` system variable controls the total number of statements the server caches. (The sum of the number of prepared statements across all sessions.)
+* Prepared statements, tanto aqueles processados no nível SQL (usando a instrução `PREPARE`) quanto aqueles processados usando o protocolo binário cliente/server (usando a função C API `mysql_stmt_prepare()`). A variável de sistema `max_prepared_stmt_count` controla o número total de statements que o server armazena em cache. (A soma do número de prepared statements em todas as sessões.)
 
-* Stored programs (stored procedures and functions, triggers, and events). In this case, the server converts and caches the entire program body. The `stored_program_cache` system variable indicates the approximate number of stored programs the server caches per session.
+* Stored programs (stored procedures e functions, triggers e events). Neste caso, o server converte e armazena em cache o corpo completo do programa. A variável de sistema `stored_program_cache` indica o número aproximado de stored programs que o server armazena em cache por sessão.
 
-The server maintains caches for prepared statements and stored programs on a per-session basis. Statements cached for one session are not accessible to other sessions. When a session ends, the server discards any statements cached for it.
+O server mantém caches para prepared statements e stored programs por sessão. Statements armazenados em cache para uma sessão não são acessíveis a outras sessões. Quando uma sessão termina, o server descarta quaisquer statements armazenados em cache para ela.
 
-When the server uses a cached internal statement structure, it must take care that the structure does not go out of date. Metadata changes can occur for an object used by the statement, causing a mismatch between the current object definition and the definition as represented in the internal statement structure. Metadata changes occur for DDL statements such as those that create, drop, alter, rename, or truncate tables, or that analyze, optimize, or repair tables. Table content changes (for example, with `INSERT` or `UPDATE`) do not change metadata, nor do `SELECT` statements.
+Quando o server usa uma estrutura interna de statement em cache, ele deve tomar cuidado para que a estrutura não fique desatualizada (out of date). Alterações de Metadata podem ocorrer para um objeto usado pelo statement, causando uma incompatibilidade entre a definição atual do objeto e a definição representada na estrutura interna do statement. Alterações de Metadata ocorrem para instruções DDL, como aquelas que criam, drop, alteram, renomeiam (rename) ou truncam tables, ou que analisam (analyze), otimizam (optimize) ou reparam (repair) tables. Alterações no conteúdo da Table (por exemplo, com `INSERT` ou `UPDATE`) não alteram o metadata, nem as instruções `SELECT`.
 
-Here is an illustration of the problem. Suppose that a client prepares this statement:
+Aqui está uma ilustração do problema. Suponha que um cliente prepare este statement:
 
 ```sql
 PREPARE s1 FROM 'SELECT * FROM t1';
 ```
 
-The `SELECT *` expands in the internal structure to the list of columns in the table. If the set of columns in the table is modified with `ALTER TABLE`, the prepared statement goes out of date. If the server does not detect this change the next time the client executes `s1`, the prepared statement returns incorrect results.
+O `SELECT *` se expande na estrutura interna para a lista de colunas na table. Se o conjunto de colunas na table for modificado com `ALTER TABLE`, o prepared statement fica desatualizado (out of date). Se o server não detectar essa mudança na próxima vez que o cliente executar `s1`, o prepared statement retornará resultados incorretos.
 
-To avoid problems caused by metadata changes to tables or views referred to by the prepared statement, the server detects these changes and automatically reprepares the statement when it is next executed. That is, the server reparses the statement and rebuilds the internal structure. Reparsing also occurs after referenced tables or views are flushed from the table definition cache, either implicitly to make room for new entries in the cache, or explicitly due to `FLUSH TABLES`.
+Para evitar problemas causados por alterações de metadata em tables ou views referenciadas pelo prepared statement, o server detecta essas alterações e automaticamente "reprepara" (reprepares) o statement quando ele for executado em seguida. Ou seja, o server realiza o reparsing do statement e reconstrói a estrutura interna. O Reparsing também ocorre depois que as tables ou views referenciadas são removidas (flushed) do cache de definição de table, seja implicitamente para abrir espaço para novas entradas no cache, ou explicitamente devido a `FLUSH TABLES`.
 
-Similarly, if changes occur to objects used by a stored program, the server reparses affected statements within the program.
+Da mesma forma, se ocorrerem alterações em objetos usados por um stored program, o server realiza o reparsing dos statements afetados dentro do programa.
 
-The server also detects metadata changes for objects in expressions. These might be used in statements specific to stored programs, such as `DECLARE CURSOR` or flow-control statements such as `IF`, `CASE`, and `RETURN`.
+O server também detecta alterações de metadata para objetos em expressions. Estes podem ser usados em statements específicos para stored programs, como `DECLARE CURSOR` ou statements de controle de fluxo, como `IF`, `CASE` e `RETURN`.
 
-To avoid reparsing entire stored programs, the server reparses affected statements or expressions within a program only as needed. Examples:
+Para evitar o reparsing de stored programs inteiros, o server realiza o reparsing apenas dos statements ou expressions afetadas dentro de um programa, conforme a necessidade. Exemplos:
 
-* Suppose that metadata for a table or view is changed. Reparsing occurs for a `SELECT *` within the program that accesses the table or view, but not for a `SELECT *` that does not access the table or view.
+* Suponha que o metadata para uma table ou view seja alterado. O Reparsing ocorre para um `SELECT *` dentro do programa que acessa a table ou view, mas não para um `SELECT *` que não acessa a table ou view.
 
-* When a statement is affected, the server reparses it only partially if possible. Consider this `CASE` statement:
+* Quando um statement é afetado, o server realiza seu reparsing apenas parcialmente, se possível. Considere este statement `CASE`:
 
-  ```sql
+```sql
   CASE case_expr
     WHEN when_expr1 ...
     WHEN when_expr2 ...
@@ -39,12 +39,12 @@ To avoid reparsing entire stored programs, the server reparses affected statemen
   END CASE
   ```
 
-  If a metadata change affects only `WHEN when_expr3`, that expression is reparsed. *`case_expr`* and the other `WHEN` expressions are not reparsed.
+Se uma alteração de metadata afetar apenas `WHEN when_expr3`, essa expression é submetida ao reparsing. *`case_expr`* e as outras expressions `WHEN` não são submetidas ao reparsing.
 
-Reparsing uses the default database and SQL mode that were in effect for the original conversion to internal form.
+O Reparsing usa o default Database e o SQL mode que estavam em vigor para a conversão original para o formato interno.
 
-The server attempts reparsing up to three times. An error occurs if all attempts fail.
+O server tenta o reparsing até três vezes. Ocorre um error se todas as tentativas falharem.
 
-Reparsing is automatic, but to the extent that it occurs, diminishes prepared statement and stored program performance.
+O Reparsing é automático, mas na medida em que ocorre, diminui o desempenho do prepared statement e do stored program.
 
-For prepared statements, the `Com_stmt_reprepare` status variable tracks the number of repreparations.
+Para prepared statements, a variável de status `Com_stmt_reprepare` rastreia o número de "repreparations".

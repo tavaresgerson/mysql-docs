@@ -1,27 +1,27 @@
-## 8.3 Optimization and Indexes
+## 8.3 Otimização e Indexes
 
-8.3.1 How MySQL Uses Indexes
+8.3.1 Como o MySQL Usa Indexes
 
-8.3.2 Primary Key Optimization
+8.3.2 Otimização de Primary Key
 
-8.3.3 Foreign Key Optimization
+8.3.3 Otimização de Foreign Key
 
-8.3.4 Column Indexes
+8.3.4 Indexes de Coluna
 
-8.3.5 Multiple-Column Indexes
+8.3.5 Indexes de Múltiplas Colunas
 
-8.3.6 Verifying Index Usage
+8.3.6 Verificando o Uso de Index
 
-8.3.7 InnoDB and MyISAM Index Statistics Collection
+8.3.7 Coleta de Estatísticas de Index do InnoDB e MyISAM
 
-8.3.8 Comparison of B-Tree and Hash Indexes
+8.3.8 Comparação de Indexes B-Tree e Hash
 
-8.3.9 Use of Index Extensions
+8.3.9 Uso de Extensões de Index
 
-8.3.10 Optimizer Use of Generated Column Indexes
+8.3.10 Uso de Indexes de Coluna Gerada pelo Optimizer
 
-8.3.11 Indexed Lookups from TIMESTAMP Columns
+8.3.11 Buscas Indexadas em Colunas TIMESTAMP
 
-The best way to improve the performance of `SELECT` operations is to create indexes on one or more of the columns that are tested in the query. The index entries act like pointers to the table rows, allowing the query to quickly determine which rows match a condition in the `WHERE` clause, and retrieve the other column values for those rows. All MySQL data types can be indexed.
+A melhor maneira de melhorar a performance de operações `SELECT` é criar indexes em uma ou mais colunas que são testadas na `query`. As entradas do index agem como ponteiros para as linhas da tabela, permitindo que a `query` determine rapidamente quais linhas correspondem a uma condição na cláusula `WHERE`, e recupere os demais valores das colunas para essas linhas. Todos os tipos de dados do MySQL podem ser indexados.
 
-Although it can be tempting to create an indexes for every possible column used in a query, unnecessary indexes waste space and waste time for MySQL to determine which indexes to use. Indexes also add to the cost of inserts, updates, and deletes because each index must be updated. You must find the right balance to achieve fast queries using the optimal set of indexes.
+Embora possa ser tentador criar um index para cada coluna possível usada em uma `query`, indexes desnecessários desperdiçam espaço e tempo para o MySQL determinar quais indexes usar. Indexes também aumentam o custo de `inserts`, `updates` e `deletes` porque cada index deve ser atualizado. É necessário encontrar o equilíbrio certo para alcançar `queries` rápidas usando o conjunto ideal de indexes.

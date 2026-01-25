@@ -1,8 +1,8 @@
-#### 8.10.2.2 Multiple Key Caches
+#### 8.10.2.2 Múltiplos Key Caches
 
-Shared access to the key cache improves performance but does not eliminate contention among sessions entirely. They still compete for control structures that manage access to the key cache buffers. To reduce key cache access contention further, MySQL also provides multiple key caches. This feature enables you to assign different table indexes to different key caches.
+O acesso compartilhado ao key cache melhora o desempenho, mas não elimina totalmente a contenção entre as sessões. Elas ainda competem por estruturas de controle que gerenciam o acesso aos buffers do key cache. Para reduzir ainda mais a contenção de acesso ao key cache, o MySQL também oferece múltiplos key caches. Este recurso permite que você atribua diferentes table indexes a diferentes key caches.
 
-Where there are multiple key caches, the server must know which cache to use when processing queries for a given `MyISAM` table. By default, all `MyISAM` table indexes are cached in the default key cache. To assign table indexes to a specific key cache, use the `CACHE INDEX` statement (see Section 13.7.6.2, “CACHE INDEX Statement”). For example, the following statement assigns indexes from the tables `t1`, `t2`, and `t3` to the key cache named `hot_cache`:
+Onde há múltiplos key caches, o server deve saber qual cache usar ao processar queries para uma determinada tabela `MyISAM`. Por padrão, todos os table indexes `MyISAM` são armazenados em cache no default key cache. Para atribuir table indexes a um key cache específico, use a instrução `CACHE INDEX` (consulte a Seção 13.7.6.2, “Instrução CACHE INDEX”). Por exemplo, a instrução a seguir atribui indexes das tabelas `t1`, `t2` e `t3` ao key cache denominado `hot_cache`:
 
 ```sql
 mysql> CACHE INDEX t1, t2, t3 IN hot_cache;
@@ -15,19 +15,19 @@ mysql> CACHE INDEX t1, t2, t3 IN hot_cache;
 +---------+--------------------+----------+----------+
 ```
 
-The key cache referred to in a `CACHE INDEX` statement can be created by setting its size with a `SET GLOBAL` parameter setting statement or by using server startup options. For example:
+O key cache referenciado em uma instrução `CACHE INDEX` pode ser criado definindo seu tamanho com uma instrução de configuração de parâmetro `SET GLOBAL` ou usando opções de startup do server. Por exemplo:
 
 ```sql
 mysql> SET GLOBAL keycache1.key_buffer_size=128*1024;
 ```
 
-To destroy a key cache, set its size to zero:
+Para destruir um key cache, defina seu tamanho como zero:
 
 ```sql
 mysql> SET GLOBAL keycache1.key_buffer_size=0;
 ```
 
-You cannot destroy the default key cache. Any attempt to do this is ignored:
+Você não pode destruir o default key cache. Qualquer tentativa de fazer isso é ignorada:
 
 ```sql
 mysql> SET GLOBAL key_buffer_size = 0;
@@ -40,27 +40,27 @@ mysql> SHOW VARIABLES LIKE 'key_buffer_size';
 +-----------------+---------+
 ```
 
-Key cache variables are structured system variables that have a name and components. For `keycache1.key_buffer_size`, `keycache1` is the cache variable name and `key_buffer_size` is the cache component. See Section 5.1.8.3, “Structured System Variables”, for a description of the syntax used for referring to structured key cache system variables.
+Variáveis de key cache são structured system variables que possuem um nome e componentes. Para `keycache1.key_buffer_size`, `keycache1` é o nome da variável do cache e `key_buffer_size` é o componente do cache. Consulte a Seção 5.1.8.3, “Structured System Variables”, para obter uma descrição da sintaxe usada para se referir a structured key cache system variables.
 
-By default, table indexes are assigned to the main (default) key cache created at the server startup. When a key cache is destroyed, all indexes assigned to it are reassigned to the default key cache.
+Por padrão, table indexes são atribuídos ao key cache principal (default) criado durante o startup do server. Quando um key cache é destruído, todos os indexes atribuídos a ele são reatribuídos ao default key cache.
 
-For a busy server, you can use a strategy that involves three key caches:
+Para um server movimentado, você pode usar uma estratégia que envolve três key caches:
 
-* A “hot” key cache that takes up 20% of the space allocated for all key caches. Use this for tables that are heavily used for searches but that are not updated.
+* Um key cache “hot” (quente) que ocupa 20% do espaço alocado para todos os key caches. Use-o para tabelas que são muito usadas para buscas (searches), mas que não são atualizadas.
 
-* A “cold” key cache that takes up 20% of the space allocated for all key caches. Use this cache for medium-sized, intensively modified tables, such as temporary tables.
+* Um key cache “cold” (frio) que ocupa 20% do espaço alocado para todos os key caches. Use este cache para tabelas de tamanho médio intensamente modificadas, como temporary tables.
 
-* A “warm” key cache that takes up 60% of the key cache space. Employ this as the default key cache, to be used by default for all other tables.
+* Um key cache “warm” (morno) que ocupa 60% do espaço do key cache. Empregue-o como o default key cache, a ser usado por padrão para todas as outras tabelas.
 
-One reason the use of three key caches is beneficial is that access to one key cache structure does not block access to the others. Statements that access tables assigned to one cache do not compete with statements that access tables assigned to another cache. Performance gains occur for other reasons as well:
+Uma razão pela qual o uso de três key caches é benéfico é que o acesso à estrutura de um key cache não bloqueia o acesso aos outros. Instruções que acessam tabelas atribuídas a um cache não competem com instruções que acessam tabelas atribuídas a outro cache. Os ganhos de performance ocorrem também por outras razões:
 
-* The hot cache is used only for retrieval queries, so its contents are never modified. Consequently, whenever an index block needs to be pulled in from disk, the contents of the cache block chosen for replacement need not be flushed first.
+* O hot cache é usado apenas para retrieval queries, portanto, seu conteúdo nunca é modificado. Consequentemente, sempre que um index block precisar ser puxado do disk, o conteúdo do cache block escolhido para substituição não precisa ser descarregado (flushed) primeiro.
 
-* For an index assigned to the hot cache, if there are no queries requiring an index scan, there is a high probability that the index blocks corresponding to nonleaf nodes of the index B-tree remain in the cache.
+* Para um index atribuído ao hot cache, se não houver queries que exijam um index scan, há uma alta probabilidade de que os index blocks correspondentes aos nonleaf nodes da B-tree do index permaneçam no cache.
 
-* An update operation most frequently executed for temporary tables is performed much faster when the updated node is in the cache and need not be read from disk first. If the size of the indexes of the temporary tables are comparable with the size of cold key cache, the probability is very high that the updated node is in the cache.
+* Uma operation de update executada com mais frequência para temporary tables é realizada muito mais rapidamente quando o node atualizado está no cache e não precisa ser lido do disk primeiro. Se o tamanho dos indexes das temporary tables for comparável ao tamanho do cold key cache, a probabilidade é muito alta de que o node atualizado esteja no cache.
 
-The `CACHE INDEX` statement sets up an association between a table and a key cache, but the association is lost each time the server restarts. If you want the association to take effect each time the server starts, one way to accomplish this is to use an option file: Include variable settings that configure your key caches, and an `init_file` system variable that names a file containing `CACHE INDEX` statements to be executed. For example:
+A instrução `CACHE INDEX` estabelece uma associação entre uma tabela e um key cache, mas a associação é perdida toda vez que o server reinicia. Se você quiser que a associação entre em vigor toda vez que o server iniciar, uma maneira de conseguir isso é usar um option file: Inclua configurações de variáveis que configurem seus key caches e uma system variable `init_file` que nomeie um arquivo contendo instruções `CACHE INDEX` a serem executadas. Por exemplo:
 
 ```sql
 key_buffer_size = 4G
@@ -69,7 +69,7 @@ cold_cache.key_buffer_size = 2G
 init_file=/path/to/data-directory/mysqld_init.sql
 ```
 
-The statements in `mysqld_init.sql` are executed each time the server starts. The file should contain one SQL statement per line. The following example assigns several tables each to `hot_cache` and `cold_cache`:
+As instruções em `mysqld_init.sql` são executadas toda vez que o server inicia. O arquivo deve conter uma instrução SQL por linha. O exemplo a seguir atribui várias tabelas a `hot_cache` e `cold_cache`:
 
 ```sql
 CACHE INDEX db1.t1, db1.t2, db2.t3 IN hot_cache

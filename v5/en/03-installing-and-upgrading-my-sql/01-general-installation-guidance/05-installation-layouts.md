@@ -1,10 +1,10 @@
-### 2.1.5 Installation Layouts
+### 2.1.5 Layouts de Instalação
 
-The installation layout differs for different installation types (for example, native packages, binary tarballs, and source tarballs), which can lead to confusion when managing different systems or using different installation sources. The individual layouts are given in the corresponding installation type or platform chapter, as described following. Note that the layout of installations from vendors other than Oracle may differ from these layouts.
+O layout de instalação difere para diferentes tipos de instalação (por exemplo, native packages, binary tarballs e source tarballs), o que pode gerar confusão ao gerenciar sistemas distintos ou usar diferentes fontes de instalação. Os layouts individuais são fornecidos no capítulo correspondente ao tipo de instalação ou plataforma, conforme descrito a seguir. Observe que o layout de instalações provenientes de fornecedores que não sejam a Oracle pode diferir destes layouts.
 
-* Section 2.3.1, “MySQL Installation Layout on Microsoft Windows”
-* Section 2.8.3, “MySQL Layout for Source Installation”
-* Table 2.3, “MySQL Installation Layout for Generic Unix/Linux Binary Package”
-* Table 2.12, “MySQL Installation Layout for Linux RPM Packages from the MySQL Developer Zone”
+* Seção 2.3.1, “Layout de Instalação do MySQL no Microsoft Windows”
+* Seção 2.8.3, “Layout do MySQL para Instalação a partir do Código-Fonte (Source Installation)”
+* Tabela 2.3, “Layout de Instalação do MySQL para Binary Package Genérico Unix/Linux”
+* Tabela 2.12, “Layout de Instalação do MySQL para RPM Packages Linux da MySQL Developer Zone”
 
-* Table 2.7, “MySQL Installation Layout on macOS”
+* Tabela 2.7, “Layout de Instalação do MySQL no macOS”

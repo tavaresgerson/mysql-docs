@@ -1,21 +1,21 @@
-#### 5.1.8.3 Structured System Variables
+#### 5.1.8.3 Variáveis de Sistema Estruturadas
 
-A structured variable differs from a regular system variable in two respects:
+Uma variável estruturada difere de uma variável de sistema regular em dois aspectos:
 
-* Its value is a structure with components that specify server parameters considered to be closely related.
+* Seu valor é uma estrutura com componentes que especificam parâmetros do server considerados intimamente relacionados.
 
-* There might be several instances of a given type of structured variable. Each one has a different name and refers to a different resource maintained by the server.
+* Pode haver várias instâncias de um determinado tipo de variável estruturada. Cada uma tem um nome diferente e se refere a um recurso diferente mantido pelo server.
 
-MySQL supports one structured variable type, which specifies parameters governing the operation of key caches. A key cache structured variable has these components:
+O MySQL suporta um tipo de variável estruturada, que especifica parâmetros que governam a operação de key caches. Uma variável estruturada de key cache possui estes componentes:
 
 * [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size)
 * [`key_cache_block_size`](server-system-variables.html#sysvar_key_cache_block_size)
 * [`key_cache_division_limit`](server-system-variables.html#sysvar_key_cache_division_limit)
 * [`key_cache_age_threshold`](server-system-variables.html#sysvar_key_cache_age_threshold)
 
-This section describes the syntax for referring to structured variables. Key cache variables are used for syntax examples, but specific details about how key caches operate are found elsewhere, in [Section 8.10.2, “The MyISAM Key Cache”](myisam-key-cache.html "8.10.2 The MyISAM Key Cache").
+Esta seção descreve a sintaxe para fazer referência a variáveis estruturadas. Variáveis de Key Cache são usadas para exemplos de sintaxe, mas detalhes específicos sobre como os key caches operam são encontrados em outro lugar, na [Seção 8.10.2, “O MyISAM Key Cache”](myisam-key-cache.html "8.10.2 The MyISAM Key Cache").
 
-To refer to a component of a structured variable instance, you can use a compound name in *`instance_name.component_name`* format. Examples:
+Para fazer referência a um componente de uma instância de variável estruturada, você pode usar um nome composto no formato *`instance_name.component_name`*. Exemplos:
 
 ```sql
 hot_cache.key_buffer_size
@@ -23,36 +23,36 @@ hot_cache.key_cache_block_size
 cold_cache.key_cache_block_size
 ```
 
-For each structured system variable, an instance with the name of `default` is always predefined. If you refer to a component of a structured variable without any instance name, the `default` instance is used. Thus, `default.key_buffer_size` and [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) both refer to the same system variable.
+Para cada variável de sistema estruturada, uma instância com o nome `default` é sempre predefinida. Se você fizer referência a um componente de uma variável estruturada sem nenhum nome de instância, a instância `default` é usada. Assim, `default.key_buffer_size` e [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) referem-se à mesma variável de sistema.
 
-Structured variable instances and components follow these naming rules:
+Instâncias e componentes de variáveis estruturadas seguem estas regras de nomenclatura:
 
-* For a given type of structured variable, each instance must have a name that is unique *within* variables of that type. However, instance names need not be unique *across* structured variable types. For example, each structured variable has an instance named `default`, so `default` is not unique across variable types.
+* Para um determinado tipo de variável estruturada, cada instância deve ter um nome que seja único *dentro* das variáveis desse tipo. No entanto, os nomes das instâncias não precisam ser únicos *entre* os tipos de variáveis estruturadas. Por exemplo, cada variável estruturada tem uma instância chamada `default`, portanto, `default` não é única entre os tipos de variáveis.
 
-* The names of the components of each structured variable type must be unique across all system variable names. If this were not true (that is, if two different types of structured variables could share component member names), it would not be clear which default structured variable to use for references to member names that are not qualified by an instance name.
+* Os nomes dos componentes de cada tipo de variável estruturada devem ser únicos em todos os nomes de variáveis de sistema. Se isso não fosse verdade (isto é, se dois tipos diferentes de variáveis estruturadas pudessem compartilhar nomes de membros componentes), não estaria claro qual variável estruturada *default* usar para referências a nomes de membros que não são qualificados por um nome de instância.
 
-* If a structured variable instance name is not legal as an unquoted identifier, refer to it as a quoted identifier using backticks. For example, `hot-cache` is not legal, but `` `hot-cache` `` is.
+* Se um nome de instância de variável estruturada não for legal como um identificador não entre aspas, faça referência a ele como um identificador entre aspas usando backticks. Por exemplo, `hot-cache` não é legal, mas `` `hot-cache` `` é.
 
-* `global`, `session`, and `local` are not legal instance names. This avoids a conflict with notation such as `@@GLOBAL.var_name` for referring to nonstructured system variables.
+* `global`, `session` e `local` não são nomes de instâncias legais. Isso evita um conflito com notações como `@@GLOBAL.var_name` para fazer referência a variáveis de sistema não estruturadas.
 
-Currently, the first two rules have no possibility of being violated because the only structured variable type is the one for key caches. These rules may assume greater significance if some other type of structured variable is created in the future.
+Atualmente, não há possibilidade de as duas primeiras regras serem violadas porque o único tipo de variável estruturada é o dos key caches. Essas regras podem assumir maior significado se algum outro tipo de variável estruturada for criado no futuro.
 
-With one exception, you can refer to structured variable components using compound names in any context where simple variable names can occur. For example, you can assign a value to a structured variable using a command-line option:
+Com uma exceção, você pode fazer referência a componentes de variáveis estruturadas usando nomes compostos em qualquer contexto onde nomes de variáveis simples possam ocorrer. Por exemplo, você pode atribuir um valor a uma variável estruturada usando uma opção de linha de comando:
 
 ```sql
 $> mysqld --hot_cache.key_buffer_size=64K
 ```
 
-In an option file, use this syntax:
+Em um arquivo de opções, use esta sintaxe:
 
 ```sql
 [mysqld]
 hot_cache.key_buffer_size=64K
 ```
 
-If you start the server with this option, it creates a key cache named `hot_cache` with a size of 64KB in addition to the default key cache that has a default size of 8MB.
+Se você iniciar o server com esta opção, ele cria um key cache chamado `hot_cache` com um size de 64KB, além do key cache *default* que tem um size *default* de 8MB.
 
-Suppose that you start the server as follows:
+Suponha que você inicie o server da seguinte forma:
 
 ```sql
 $> mysqld --key_buffer_size=256K \
@@ -60,9 +60,9 @@ $> mysqld --key_buffer_size=256K \
          --extra_cache.key_cache_block_size=2048
 ```
 
-In this case, the server sets the size of the default key cache to 256KB. (You could also have written `--default.key_buffer_size=256K`.) In addition, the server creates a second key cache named `extra_cache` that has a size of 128KB, with the size of block buffers for caching table index blocks set to 2048 bytes.
+Neste caso, o server define o size do key cache *default* para 256KB. (Você também poderia ter escrito `--default.key_buffer_size=256K`.) Além disso, o server cria um segundo key cache chamado `extra_cache` com um size de 128KB, com o size dos block buffers para cache de table Index blocks definido como 2048 bytes.
 
-The following example starts the server with three different key caches having sizes in a 3:1:1 ratio:
+O exemplo a seguir inicia o server com três key caches diferentes, com sizes em uma proporção de 3:1:1:
 
 ```sql
 $> mysqld --key_buffer_size=6M \
@@ -70,23 +70,23 @@ $> mysqld --key_buffer_size=6M \
          --cold_cache.key_buffer_size=2M
 ```
 
-Structured variable values may be set and retrieved at runtime as well. For example, to set a key cache named `hot_cache` to a size of 10MB, use either of these statements:
+Os valores de variáveis estruturadas também podem ser definidos e recuperados em runtime. Por exemplo, para definir um key cache chamado `hot_cache` para um size de 10MB, use uma destas instruções:
 
 ```sql
 mysql> SET GLOBAL hot_cache.key_buffer_size = 10*1024*1024;
 mysql> SET @@GLOBAL.hot_cache.key_buffer_size = 10*1024*1024;
 ```
 
-To retrieve the cache size, do this:
+Para recuperar o cache size, faça isto:
 
 ```sql
 mysql> SELECT @@GLOBAL.hot_cache.key_buffer_size;
 ```
 
-However, the following statement does not work. The variable is not interpreted as a compound name, but as a simple string for a [`LIKE`](string-comparison-functions.html#operator_like) pattern-matching operation:
+No entanto, a seguinte instrução não funciona. A variável não é interpretada como um nome composto, mas sim como uma string simples para uma operação de pattern-matching [`LIKE`](string-comparison-functions.html#operator_like):
 
 ```sql
 mysql> SHOW GLOBAL VARIABLES LIKE 'hot_cache.key_buffer_size';
 ```
 
-This is the exception to being able to use structured variable names anywhere a simple variable name may occur.
+Esta é a exceção para poder usar nomes de variáveis estruturadas em qualquer lugar onde um nome de variável simples possa ocorrer.

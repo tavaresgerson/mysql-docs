@@ -1,31 +1,31 @@
-# Chapter 1 General Information
+# Capítulo 1 Informações Gerais
 
-The MySQL software delivers a very fast, multithreaded, multi-user, and robust SQL (Structured Query Language) database server. MySQL Server is intended for mission-critical, heavy-load production systems as well as for embedding into mass-deployed software. Oracle is a registered trademark of Oracle Corporation and/or its affiliates. MySQL is a trademark of Oracle Corporation and/or its affiliates, and shall not be used by Customer without Oracle's express written authorization. Other names may be trademarks of their respective owners.
+O software MySQL oferece um Database Server SQL (Structured Query Language) muito rápido, multithreaded, multiusuário e robusto. O MySQL Server é destinado a sistemas de produção de missão crítica e alta carga, bem como para incorporação em software de implantação em massa. Oracle é uma marca registrada da Oracle Corporation e/ou suas afiliadas. MySQL é uma marca comercial da Oracle Corporation e/ou suas afiliadas, e não deve ser usada pelo Cliente sem a autorização expressa por escrito da Oracle. Outros nomes podem ser marcas comerciais de seus respectivos proprietários.
 
-The MySQL software is Dual Licensed. Users can choose to use the MySQL software as an Open Source product under the terms of the GNU General Public License (<http://www.fsf.org/licenses/>) or can purchase a standard commercial license from Oracle. See <http://www.mysql.com/company/legal/licensing/> for more information on our licensing policies.
+O software MySQL possui Licença Dupla (Dual Licensed). Os usuários podem optar por usar o software MySQL como um produto Open Source sob os termos da GNU General Public License (<http://www.fsf.org/licenses/>) ou podem adquirir uma Licença comercial padrão da Oracle. Consulte <http://www.mysql.com/company/legal/licensing/> para obter mais informações sobre nossas políticas de Licenciamento.
 
-The following list describes some sections of particular interest in this manual:
+A lista a seguir descreve algumas seções de interesse particular neste manual:
 
-* For a discussion of MySQL Database Server capabilities, see Section 1.2.2, “The Main Features of MySQL”.
+* Para uma discussão sobre as capacidades do MySQL Database Server, consulte a Seção 1.2.2, “Os Principais Recursos do MySQL”.
 
-* For an overview of new MySQL features, see Section 1.3, “What Is New in MySQL 5.7”. For information about the changes in each version, see the Release Notes.
+* Para uma visão geral dos novos recursos do MySQL, consulte a Seção 1.3, “O Que Há de Novo no MySQL 5.7”. Para obter informações sobre as alterações em cada versão, consulte as Release Notes.
 
-* For installation instructions, see Chapter 2, *Installing and Upgrading MySQL*. For information about upgrading MySQL, see Section 2.10, “Upgrading MySQL”.
+* Para instruções de instalação, consulte o Capítulo 2, *Instalando e Atualizando o MySQL*. Para obter informações sobre o Upgrade do MySQL, consulte a Seção 2.10, “Atualizando o MySQL”.
 
-* For a tutorial introduction to the MySQL Database Server, see Chapter 3, *Tutorial*.
+* Para uma introdução em formato tutorial ao MySQL Database Server, consulte o Capítulo 3, *Tutorial*.
 
-* For information about configuring and administering MySQL Server, see Chapter 5, *MySQL Server Administration*.
+* Para obter informações sobre como configurar e administrar o MySQL Server, consulte o Capítulo 5, *Administração do MySQL Server*.
 
-* For information about security in MySQL, see Chapter 6, *Security*.
+* Para obter informações sobre Security no MySQL, consulte o Capítulo 6, *Security*.
 
-* For information about setting up replication servers, see Chapter 16, *Replication*.
+* Para obter informações sobre como configurar servers de Replication, consulte o Capítulo 16, *Replication*.
 
-* For information about MySQL Enterprise, the commercial MySQL release with advanced features and management tools, see Chapter 28, *MySQL Enterprise Edition*.
+* Para obter informações sobre o MySQL Enterprise, a versão comercial do MySQL com recursos avançados e ferramentas de gerenciamento, consulte o Capítulo 28, *MySQL Enterprise Edition*.
 
-* For answers to a number of questions that are often asked concerning the MySQL Database Server and its capabilities, see Appendix A, *MySQL 5.7 Frequently Asked Questions*.
+* Para respostas a várias perguntas frequentes sobre o MySQL Database Server e suas capacidades, consulte o Apêndice A, *Perguntas Frequentes do MySQL 5.7*.
 
-* For a history of new features and bug fixes, see the Release Notes.
+* Para um histórico de novos recursos e correções de Bug, consulte as Release Notes.
 
-Important
+Importante
 
-To report problems or bugs, please use the instructions at Section 1.5, “How to Report Bugs or Problems”. If you find a security bug in MySQL Server, please let us know immediately by sending an email message to `<secalert_us@oracle.com>`. Exception: Support customers should report all problems, including security bugs, to Oracle Support.
+Para relatar problemas ou Bugs, utilize as instruções na Seção 1.5, “Como Relatar Bugs ou Problemas”. Se você encontrar um Security Bug no MySQL Server, informe-nos imediatamente enviando uma mensagem de e-mail para `<secalert_us@oracle.com>`. Exceção: Clientes de Support devem relatar todos os problemas, incluindo Security Bugs, para o Oracle Support.

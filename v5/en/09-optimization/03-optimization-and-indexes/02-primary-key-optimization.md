@@ -1,5 +1,5 @@
-### 8.3.2 Primary Key Optimization
+### 8.3.2 Otimização de Primary Key
 
-The primary key for a table represents the column or set of columns that you use in your most vital queries. It has an associated index, for fast query performance. Query performance benefits from the `NOT NULL` optimization, because it cannot include any `NULL` values. With the `InnoDB` storage engine, the table data is physically organized to do ultra-fast lookups and sorts based on the primary key column or columns.
+A Primary Key para uma tabela representa a coluna ou o conjunto de colunas que você usa em suas Queries mais vitais. Ela possui um Index associado, para um desempenho rápido de Query. O desempenho de Query se beneficia da otimização `NOT NULL`, pois não pode incluir quaisquer valores `NULL`. Com a storage engine `InnoDB`, os dados da tabela são organizados fisicamente para realizar buscas (lookups) e ordenações (sorts) ultrarrápidas baseadas na coluna ou conjunto de colunas da Primary Key.
 
-If your table is big and important, but does not have an obvious column or set of columns to use as a primary key, you might create a separate column with auto-increment values to use as the primary key. These unique IDs can serve as pointers to corresponding rows in other tables when you join tables using foreign keys.
+Se sua tabela for grande e importante, mas não possuir uma coluna óbvia ou um conjunto de colunas para usar como Primary Key, você pode criar uma coluna separada com valores auto-incrementais para usar como Primary Key. Estes IDs exclusivos podem servir como ponteiros para linhas correspondentes em outras tabelas quando você realiza um JOIN de tabelas usando foreign keys.

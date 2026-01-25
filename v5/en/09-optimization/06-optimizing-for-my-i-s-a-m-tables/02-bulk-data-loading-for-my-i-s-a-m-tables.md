@@ -1,33 +1,33 @@
-### 8.6.2 Bulk Data Loading for MyISAM Tables
+### 8.6.2 Carregamento Massivo de Dados para Tabelas MyISAM
 
-These performance tips supplement the general guidelines for fast inserts in Section 8.2.4.1, “Optimizing INSERT Statements”.
+Estas dicas de desempenho complementam as diretrizes gerais para INSERTs rápidos na Seção 8.2.4.1, “Otimizando Instruções INSERT”.
 
-* For a `MyISAM` table, you can use concurrent inserts to add rows at the same time that `SELECT` statements are running, if there are no deleted rows in middle of the data file. See Section 8.11.3, “Concurrent Inserts”.
+* Para uma tabela `MyISAM`, você pode usar INSERTs concorrentes para adicionar linhas ao mesmo tempo que instruções `SELECT` estão sendo executadas, se não houver linhas excluídas no meio do arquivo de dados. Consulte a Seção 8.11.3, “Concurrent Inserts”.
 
-* With some extra work, it is possible to make `LOAD DATA` run even faster for a `MyISAM` table when the table has many indexes. Use the following procedure:
+* Com algum trabalho extra, é possível fazer o `LOAD DATA` rodar ainda mais rápido para uma tabela `MyISAM` quando a tabela possui muitos Indexes. Utilize o seguinte procedimento:
 
-  1. Execute a `FLUSH TABLES` statement or a **mysqladmin flush-tables** command.
+  1. Execute uma instrução `FLUSH TABLES` ou um comando **mysqladmin flush-tables**.
 
-  2. Use **myisamchk --keys-used=0 -rq *`/path/to/db/tbl_name`*** to remove all use of indexes for the table.
+  2. Use **myisamchk --keys-used=0 -rq *`/path/to/db/tbl_name`*** para remover todo o uso de Indexes para a tabela.
 
-  3. Insert data into the table with `LOAD DATA`. This does not update any indexes and therefore is very fast.
+  3. Insira dados na tabela com `LOAD DATA`. Isso não atualiza nenhum Index e, portanto, é muito rápido.
 
-  4. If you intend only to read from the table in the future, use **myisampack** to compress it. See Section 15.2.3.3, “Compressed Table Characteristics”.
+  4. Se você pretende apenas ler a tabela no futuro, use **myisampack** para compactá-la. Consulte a Seção 15.2.3.3, “Compressed Table Characteristics”.
 
-  5. Re-create the indexes with **myisamchk -rq *`/path/to/db/tbl_name`***. This creates the index tree in memory before writing it to disk, which is much faster than updating the index during `LOAD DATA` because it avoids lots of disk seeks. The resulting index tree is also perfectly balanced.
+  5. Recrie os Indexes com **myisamchk -rq *`/path/to/db/tbl_name`***. Isso cria a árvore de Index na memória antes de gravá-la no disco, o que é muito mais rápido do que atualizar o Index durante o `LOAD DATA`, pois evita muitas buscas em disco (*disk seeks*). A árvore de Index resultante também fica perfeitamente balanceada.
 
-  6. Execute a `FLUSH TABLES` statement or a **mysqladmin flush-tables** command.
+  6. Execute uma instrução `FLUSH TABLES` ou um comando **mysqladmin flush-tables**.
 
-  `LOAD DATA` performs the preceding optimization automatically if the `MyISAM` table into which you insert data is empty. The main difference between automatic optimization and using the procedure explicitly is that you can let **myisamchk** allocate much more temporary memory for the index creation than you might want the server to allocate for index re-creation when it executes the `LOAD DATA` statement.
+  O `LOAD DATA` executa a otimização anterior automaticamente se a tabela `MyISAM` na qual você insere dados estiver vazia. A principal diferença entre a otimização automática e o uso explícito do procedimento é que você pode permitir que o **myisamchk** aloque muito mais memória temporária para a criação do Index do que você gostaria que o servidor alocasse para a recriação do Index ao executar a instrução `LOAD DATA`.
 
-  You can also disable or enable the nonunique indexes for a `MyISAM` table by using the following statements rather than **myisamchk**. If you use these statements, you can skip the `FLUSH TABLES` operations:
+  Você também pode desabilitar ou habilitar os Indexes não únicos para uma tabela `MyISAM` usando as seguintes instruções em vez de **myisamchk**. Se você usar estas instruções, poderá pular as operações `FLUSH TABLES`:
 
   ```sql
   ALTER TABLE tbl_name DISABLE KEYS;
   ALTER TABLE tbl_name ENABLE KEYS;
   ```
 
-* To speed up `INSERT` operations that are performed with multiple statements for nontransactional tables, lock your tables:
+* Para acelerar operações de `INSERT` que são executadas com múltiplas instruções em tabelas não transacionais, aplique Lock nas suas tabelas:
 
   ```sql
   LOCK TABLES a WRITE;
@@ -37,18 +37,18 @@ These performance tips supplement the general guidelines for fast inserts in Sec
   UNLOCK TABLES;
   ```
 
-  This benefits performance because the index buffer is flushed to disk only once, after all `INSERT` statements have completed. Normally, there would be as many index buffer flushes as there are `INSERT` statements. Explicit locking statements are not needed if you can insert all rows with a single `INSERT`.
+  Isso beneficia o desempenho porque o Buffer de Index é descarregado para o disco apenas uma vez, após todas as instruções `INSERT` serem concluídas. Normalmente, haveria tantas descargas do Buffer de Index quanto há instruções `INSERT`. Instruções de Lock explícitas não são necessárias se você puder inserir todas as linhas com um único `INSERT`.
 
-  Locking also lowers the total time for multiple-connection tests, although the maximum wait time for individual connections might go up because they wait for locks. Suppose that five clients attempt to perform inserts simultaneously as follows:
+  O Lock também reduz o tempo total em testes de múltiplas conexões, embora o tempo máximo de espera para conexões individuais possa aumentar porque elas esperam pelos Locks. Suponha que cinco clientes tentem executar INSERTs simultaneamente da seguinte forma:
 
-  + Connection 1 does 1000 inserts
-  + Connections 2, 3, and 4 do 1 insert
-  + Connection 5 does 1000 inserts
+  + Conexão 1 executa 1000 INSERTs
+  + Conexões 2, 3 e 4 executam 1 INSERT
+  + Conexão 5 executa 1000 INSERTs
 
-  If you do not use locking, connections 2, 3, and 4 finish before 1 and 5. If you use locking, connections 2, 3, and 4 probably do not finish before 1 or 5, but the total time should be about 40% faster.
+  Se você não usar Lock, as conexões 2, 3 e 4 terminam antes de 1 e 5. Se você usar Lock, as conexões 2, 3 e 4 provavelmente não terminarão antes de 1 ou 5, mas o tempo total deve ser cerca de 40% mais rápido.
 
-  `INSERT`, `UPDATE`, and `DELETE` operations are very fast in MySQL, but you can obtain better overall performance by adding locks around everything that does more than about five successive inserts or updates. If you do very many successive inserts, you could do a `LOCK TABLES` followed by an `UNLOCK TABLES` once in a while (each 1,000 rows or so) to permit other threads to access table. This would still result in a nice performance gain.
+  Operações `INSERT`, `UPDATE` e `DELETE` são muito rápidas no MySQL, mas você pode obter um desempenho geral melhor adicionando Locks em torno de tudo o que faz mais do que cerca de cinco INSERTs ou UPDATEs sucessivos. Se você fizer muitos INSERTs sucessivos, você pode executar um `LOCK TABLES` seguido por um `UNLOCK TABLES` ocasionalmente (a cada 1.000 linhas ou mais) para permitir que outros Threads acessem a tabela. Isso ainda resultaria em um bom ganho de desempenho.
 
-  `INSERT` is still much slower for loading data than `LOAD DATA`, even when using the strategies just outlined.
+  O `INSERT` ainda é muito mais lento para carregar dados do que o `LOAD DATA`, mesmo ao usar as estratégias que acabamos de descrever.
 
-* To increase performance for `MyISAM` tables, for both `LOAD DATA` and `INSERT`, enlarge the key cache by increasing the `key_buffer_size` system variable. See Section 5.1.1, “Configuring the Server”.
+* Para aumentar o desempenho das tabelas `MyISAM`, tanto para `LOAD DATA` quanto para `INSERT`, amplie o cache de chaves (*key cache*) aumentando a variável de sistema `key_buffer_size`. Consulte a Seção 5.1.1, “Configuring the Server”.

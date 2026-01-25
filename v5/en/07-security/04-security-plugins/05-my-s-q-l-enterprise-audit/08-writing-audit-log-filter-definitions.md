@@ -1,29 +1,29 @@
-#### 6.4.5.8 Writing Audit Log Filter Definitions
+#### 6.4.5.8 Escrevendo Definições de Filtro do Audit Log
 
-Filter definitions are [`JSON`](json.html "11.5 The JSON Data Type") values. For information about using [`JSON`](json.html "11.5 The JSON Data Type") data in MySQL, see [Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type").
+Definições de filtro são valores [`JSON`](json.html "11.5 The JSON Data Type"). Para informações sobre o uso de dados [`JSON`](json.html "11.5 The JSON Data Type") no MySQL, veja [Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type").
 
-Filter definitions have this form, where *`actions`* indicates how filtering takes place:
+Definições de filtro têm esta forma, onde *`actions`* indica como a filtragem ocorre:
 
 ```sql
 { "filter": actions }
 ```
 
-The following discussion describes permitted constructs in filter definitions.
+A discussão a seguir descreve os constructos permitidos nas definições de filtro.
 
-* [Logging All Events](audit-log-filter-definitions.html#audit-log-filtering-enabling-logging "Logging All Events")
-* [Logging Specific Event Classes](audit-log-filter-definitions.html#audit-log-filtering-class-logging "Logging Specific Event Classes")
-* [Logging Specific Event Subclasses](audit-log-filter-definitions.html#audit-log-filtering-subclass-logging "Logging Specific Event Subclasses")
-* [Inclusive and Exclusive Logging](audit-log-filter-definitions.html#audit-log-filtering-inclusive-exclusive "Inclusive and Exclusive Logging")
-* [Testing Event Field Values](audit-log-filter-definitions.html#audit-log-filtering-event-fields "Testing Event Field Values")
-* [Blocking Execution of Specific Events](audit-log-filter-definitions.html#audit-log-filtering-blocking-events "Blocking Execution of Specific Events")
-* [Logical Operators](audit-log-filter-definitions.html#audit-log-filtering-logical-operators "Logical Operators")
-* [Referencing Predefined Variables](audit-log-filter-definitions.html#audit-log-filtering-predefined-variables "Referencing Predefined Variables")
-* [Referencing Predefined Functions](audit-log-filter-definitions.html#audit-log-filtering-predefined-functions "Referencing Predefined Functions")
-* [Replacing a User Filter](audit-log-filter-definitions.html#audit-log-filtering-filter-replacement "Replacing a User Filter")
+* [Registrando Todos os Eventos](audit-log-filter-definitions.html#audit-log-filtering-enabling-logging "Logging All Events")
+* [Registrando Classes de Eventos Específicas](audit-log-filter-definitions.html#audit-log-filtering-class-logging "Logging Specific Event Classes")
+* [Registrando Subclasses de Eventos Específicas](audit-log-filter-definitions.html#audit-log-filtering-subclass-logging "Logging Specific Event Subclasses")
+* [Registro Inclusivo e Exclusivo](audit-log-filter-definitions.html#audit-log-filtering-inclusive-exclusive "Inclusive and Exclusive Logging")
+* [Testando Valores de Campos de Evento](audit-log-filter-definitions.html#audit-log-filtering-event-fields "Testing Event Field Values")
+* [Bloqueando a Execução de Eventos Específicos](audit-log-filter-definitions.html#audit-log-filtering-blocking-events "Blocking Execution of Specific Events")
+* [Operadores Lógicos](audit-log-filter-definitions.html#audit-log-filtering-logical-operators "Logical Operators")
+* [Referenciando Variáveis Predefinidas](audit-log-filter-definitions.html#audit-log-filtering-predefined-variables "Referencing Predefined Variables")
+* [Referenciando Funções Predefinidas](audit-log-filter-definitions.html#audit-log-filtering-predefined-functions "Referencing Predefined Functions")
+* [Substituindo um Filtro de Usuário](audit-log-filter-definitions.html#audit-log-filtering-filter-replacement "Replacing a User Filter")
 
-##### Logging All Events
+##### Registrando Todos os Eventos
 
-To explicitly enable or disable logging of all events, use a `log` item in the filter:
+Para habilitar ou desabilitar explicitamente o registro de todos os eventos, use um item `log` no filtro:
 
 ```sql
 {
@@ -31,9 +31,9 @@ To explicitly enable or disable logging of all events, use a `log` item in the f
 }
 ```
 
-The `log` value can be either `true` or `false`.
+O valor de `log` pode ser `true` ou `false`.
 
-The preceding filter enables logging of all events. It is equivalent to:
+O filtro anterior habilita o registro de todos os eventos. É equivalente a:
 
 ```sql
 {
@@ -41,15 +41,15 @@ The preceding filter enables logging of all events. It is equivalent to:
 }
 ```
 
-Logging behavior depends on the `log` value and whether `class` or `event` items are specified:
+O comportamento de registro depende do valor de `log` e se os itens `class` ou `event` são especificados:
 
-* With `log` specified, its given value is used.
+* Com `log` especificado, seu valor fornecido é usado.
 
-* Without `log` specified, logging is `true` if no `class` or `event` item is specified, and `false` otherwise (in which case, `class` or `event` can include their own `log` item).
+* Sem `log` especificado, o registro é `true` se nenhum item `class` ou `event` for especificado, e `false` caso contrário (em cujo caso, `class` ou `event` podem incluir seu próprio item `log`).
 
-##### Logging Specific Event Classes
+##### Registrando Classes de Eventos Específicas
 
-To log events of a specific class, use a `class` item in the filter, with its `name` field denoting the name of the class to log:
+Para registrar eventos de uma classe específica, use um item `class` no filtro, com seu campo `name` denotando o nome da classe a ser registrada:
 
 ```sql
 {
@@ -59,9 +59,9 @@ To log events of a specific class, use a `class` item in the filter, with its `n
 }
 ```
 
-The `name` value can be `connection`, `general`, or `table_access` to log connection, general, or table-access events, respectively.
+O valor de `name` pode ser `connection`, `general` ou `table_access` para registrar eventos de connection, gerais ou de acesso a Table, respectivamente.
 
-The preceding filter enables logging of events in the `connection` class. It is equivalent to the following filter with `log` items made explicit:
+O filtro anterior habilita o registro de eventos na classe `connection`. É equivalente ao seguinte filtro com itens `log` tornados explícitos:
 
 ```sql
 {
@@ -73,7 +73,7 @@ The preceding filter enables logging of events in the `connection` class. It is 
 }
 ```
 
-To enable logging of multiple classes, define the `class` value as a [`JSON`](json.html "11.5 The JSON Data Type") array element that names the classes:
+Para habilitar o registro de múltiplas classes, defina o valor `class` como um elemento de array [`JSON`](json.html "11.5 The JSON Data Type") que nomeia as classes:
 
 ```sql
 {
@@ -87,9 +87,9 @@ To enable logging of multiple classes, define the `class` value as a [`JSON`](js
 }
 ```
 
-Note
+Nota
 
-When multiple instances of a given item appear at the same level within a filter definition, the item values can be combined into a single instance of that item within an array value. The preceding definition can be written like this:
+Quando múltiplas instâncias de um dado item aparecem no mesmo nível dentro de uma definição de filtro, os valores dos itens podem ser combinados em uma única instância desse item dentro de um valor de array. A definição anterior pode ser escrita assim:
 
 ```sql
 {
@@ -101,9 +101,9 @@ When multiple instances of a given item appear at the same level within a filter
 }
 ```
 
-##### Logging Specific Event Subclasses
+##### Registrando Subclasses de Eventos Específicas
 
-To select specific event subclasses, use an `event` item containing a `name` item that names the subclasses. The default action for events selected by an `event` item is to log them. For example, this filter enables logging for the named event subclasses:
+Para selecionar subclasses de eventos específicas, use um item `event` contendo um item `name` que nomeia as subclasses. A ação padrão para eventos selecionados por um item `event` é registrá-los. Por exemplo, este filtro habilita o registro para as subclasses de eventos nomeadas:
 
 ```sql
 {
@@ -130,7 +130,7 @@ To select specific event subclasses, use an `event` item containing a `name` ite
 }
 ```
 
-The `event` item can also contain explicit `log` items to indicate whether to log qualifying events. This `event` item selects multiple events and explicitly indicates logging behavior for them:
+O item `event` também pode conter itens `log` explícitos para indicar se deve registrar eventos qualificadores. Este item `event` seleciona múltiplos eventos e indica explicitamente o comportamento de registro para eles:
 
 ```sql
 "event": [
@@ -141,11 +141,11 @@ The `event` item can also contain explicit `log` items to indicate whether to lo
 ]
 ```
 
-As of MySQL 5.7.20, the `event` item can also indicate whether to block qualifying events, if it contains an `abort` item. For details, see [Blocking Execution of Specific Events](audit-log-filter-definitions.html#audit-log-filtering-blocking-events "Blocking Execution of Specific Events").
+A partir do MySQL 5.7.20, o item `event` também pode indicar se deve bloquear eventos qualificadores, se contiver um item `abort`. Para detalhes, veja [Bloqueando a Execução de Eventos Específicos](audit-log-filter-definitions.html#audit-log-filtering-blocking-events "Blocking Execution of Specific Events").
 
-[Table 6.26, “Event Class and Subclass Combinations”](audit-log-filter-definitions.html#audit-log-event-subclass-combinations "Table 6.26 Event Class and Subclass Combinations") describes the permitted subclass values for each event class.
+[Table 6.26, “Event Class and Subclass Combinations”](audit-log-filter-definitions.html#audit-log-event-subclass-combinations "Table 6.26 Event Class and Subclass Combinations") descreve os valores de subclasse permitidos para cada classe de evento.
 
-**Table 6.26 Event Class and Subclass Combinations**
+**Table 6.26 Combinações de Classe e Subclasse de Evento**
 
 <table summary="Permitted combiniations of event class and subclass values.">
   <col style="width: 20%"/>
@@ -153,69 +153,69 @@ As of MySQL 5.7.20, the `event` item can also indicate whether to block qualifyi
   <col style="width: 60%"/>
   <thead>
     <tr>
-      <th>Event Class</th>
-      <th>Event Subclass</th>
-      <th>Description</th>
+      <th>Classe de Evento</th>
+      <th>Subclasse de Evento</th>
+      <th>Descrição</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th><code>connection</code></th>
       <td><code>connect</code></td>
-      <td>Connection initiation (successful or unsuccessful)</td>
+      <td>Iniciação de Connection (bem-sucedida ou malsucedida)</td>
     </tr>
     <tr>
       <th><code>connection</code></th>
       <td><code>change_user</code></td>
-      <td>User re-authentication with different user/password during session</td>
+      <td>Reautenticação de usuário com usuário/senha diferentes durante a sessão</td>
     </tr>
     <tr>
       <th><code>connection</code></th>
       <td><code>disconnect</code></td>
-      <td>Connection termination</td>
+      <td>Término de Connection</td>
     </tr>
     <tr>
       <th><code>general</code></th>
       <td><code>status</code></td>
-      <td>General operation information</td>
+      <td>Informações gerais de operação</td>
     </tr>
     <tr>
       <th><code>table_access</code></th>
       <td><code>read</code></td>
-      <td>Table read statements, such as <code>SELECT</code> or <code>INSERT INTO ... SELECT</code></td>
+      <td>Declarações de leitura de Table, como <code>SELECT</code> ou <code>INSERT INTO ... SELECT</code></td>
     </tr>
     <tr>
       <th><code>table_access</code></th>
       <td><code>delete</code></td>
-      <td>Table delete statements, such as <code>DELETE</code> or <code>TRUNCATE TABLE</code></td>
+      <td>Declarações de exclusão de Table, como <code>DELETE</code> ou <code>TRUNCATE TABLE</code></td>
     </tr>
     <tr>
       <th><code>table_access</code></th>
       <td><code>insert</code></td>
-      <td>Table insert statements, such as <code>INSERT</code> or <code>REPLACE</code></td>
+      <td>Declarações de inserção de Table, como <code>INSERT</code> ou <code>REPLACE</code></td>
     </tr>
     <tr>
       <th><code>table_access</code></th>
       <td><code>update</code></td>
-      <td>Table update statements, such as <code>UPDATE</code></td>
+      <td>Declarações de atualização de Table, como <code>UPDATE</code></td>
     </tr>
   </tbody>
 </table>
 
-[Table 6.27, “Log and Abort Characteristics Per Event Class and Subclass Combination”](audit-log-filter-definitions.html#audit-log-event-subclass-log-abort "Table 6.27 Log and Abort Characteristics Per Event Class and Subclass Combination") describes for each event subclass whether it can be logged or aborted.
+[Table 6.27, “Log and Abort Characteristics Per Event Class and Subclass Combination”](audit-log-filter-definitions.html#audit-log-event-subclass-log-abort "Table 6.27 Log and Abort Characteristics Per Event Class and Subclass Combination") descreve para cada subclasse de evento se ela pode ser registrada (logged) ou abortada (aborted).
 
-**Table 6.27 Log and Abort Characteristics Per Event Class and Subclass Combination**
+**Table 6.27 Características de Registro e Abortamento por Combinação de Classe e Subclasse de Evento**
 
-<table summary="Log and abort characteristics for event class and subclass combinations."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Event Class</th> <th>Event Subclass</th> <th>Can be Logged</th> <th>Can be Aborted</th> </tr></thead><tbody><tr> <th><code>connection</code></th> <td><code>connect</code></td> <td>Yes</td> <td>No</td> </tr><tr> <th><code>connection</code></th> <td><code>change_user</code></td> <td>Yes</td> <td>No</td> </tr><tr> <th><code>connection</code></th> <td><code>disconnect</code></td> <td>Yes</td> <td>No</td> </tr><tr> <th><code>general</code></th> <td><code>status</code></td> <td>Yes</td> <td>No</td> </tr><tr> <th><code>table_access</code></th> <td><code>read</code></td> <td>Yes</td> <td>Yes</td> </tr><tr> <th><code>table_access</code></th> <td><code>delete</code></td> <td>Yes</td> <td>Yes</td> </tr><tr> <th><code>table_access</code></th> <td><code>insert</code></td> <td>Yes</td> <td>Yes</td> </tr><tr> <th><code>table_access</code></th> <td><code>update</code></td> <td>Yes</td> <td>Yes</td> </tr></tbody></table>
+<table summary="Log and abort characteristics for event class and subclass combinations."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Classe de Evento</th> <th>Subclasse de Evento</th> <th>Pode ser Registrado</th> <th>Pode ser Abortado</th> </tr></thead><tbody><tr> <th><code>connection</code></th> <td><code>connect</code></td> <td>Sim</td> <td>Não</td> </tr><tr> <th><code>connection</code></th> <td><code>change_user</code></td> <td>Sim</td> <td>Não</td> </tr><tr> <th><code>connection</code></th> <td><code>disconnect</code></td> <td>Sim</td> <td>Não</td> </tr><tr> <th><code>general</code></th> <td><code>status</code></td> <td>Sim</td> <td>Não</td> </tr><tr> <th><code>table_access</code></th> <td><code>read</code></td> <td>Sim</td> <td>Sim</td> </tr><tr> <th><code>table_access</code></th> <td><code>delete</code></td> <td>Sim</td> <td>Sim</td> </tr><tr> <th><code>table_access</code></th> <td><code>insert</code></td> <td>Sim</td> <td>Sim</td> </tr><tr> <th><code>table_access</code></th> <td><code>update</code></td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
 
-##### Inclusive and Exclusive Logging
+##### Registro Inclusivo e Exclusivo
 
-A filter can be defined in inclusive or exclusive mode:
+Um filtro pode ser definido em modo inclusivo ou exclusivo:
 
-* Inclusive mode logs only explicitly specified items.
-* Exclusive mode logs everything but explicitly specified items.
+* O modo inclusivo registra apenas itens explicitamente especificados.
+* O modo exclusivo registra tudo, exceto itens explicitamente especificados.
 
-To perform inclusive logging, disable logging globally and enable logging for specific classes. This filter logs `connect` and `disconnect` events in the `connection` class, and events in the `general` class:
+Para realizar o registro inclusivo, desabilite o registro globalmente e habilite o registro para classes específicas. Este filtro registra eventos `connect` e `disconnect` na classe `connection`, e eventos na classe `general`:
 
 ```sql
 {
@@ -235,7 +235,7 @@ To perform inclusive logging, disable logging globally and enable logging for sp
 }
 ```
 
-To perform exclusive logging, enable logging globally and disable logging for specific classes. This filter logs everything except events in the `general` class:
+Para realizar o registro exclusivo, habilite o registro globalmente e desabilite o registro para classes específicas. Este filtro registra tudo, exceto eventos na classe `general`:
 
 ```sql
 {
@@ -247,7 +247,7 @@ To perform exclusive logging, enable logging globally and disable logging for sp
 }
 ```
 
-This filter logs `change_user` events in the `connection` class, and `table_access` events, by virtue of *not* logging everything else:
+Este filtro registra eventos `change_user` na classe `connection` e eventos `table_access`, em virtude de *não* registrar todo o resto:
 
 ```sql
 {
@@ -267,9 +267,9 @@ This filter logs `change_user` events in the `connection` class, and `table_acce
 }
 ```
 
-##### Testing Event Field Values
+##### Testando Valores de Campos de Evento
 
-To enable logging based on specific event field values, specify a `field` item within the `log` item that indicates the field name and its expected value:
+Para habilitar o registro baseado em valores de campos de eventos específicos, especifique um item `field` dentro do item `log` que indica o nome do campo e seu valor esperado:
 
 ```sql
 {
@@ -287,25 +287,25 @@ To enable logging based on specific event field values, specify a `field` item w
 }
 ```
 
-Each event contains event class-specific fields that can be accessed from within a filter to perform custom filtering.
+Cada evento contém campos específicos da classe de evento que podem ser acessados dentro de um filtro para realizar filtragem personalizada.
 
-An event in the `connection` class indicates when a connection-related activity occurs during a session, such as a user connecting to or disconnecting from the server. [Table 6.28, “Connection Event Fields”](audit-log-filter-definitions.html#audit-log-connection-event-fields "Table 6.28 Connection Event Fields") indicates the permitted fields for `connection` events.
+Um evento na classe `connection` indica quando uma atividade relacionada à connection ocorre durante uma sessão, como um usuário conectando-se ou desconectando-se do servidor. [Table 6.28, “Connection Event Fields”](audit-log-filter-definitions.html#audit-log-connection-event-fields "Table 6.28 Connection Event Fields") indica os campos permitidos para eventos `connection`.
 
-**Table 6.28 Connection Event Fields**
+**Table 6.28 Campos de Evento de Connection**
 
-<table summary="Permitted fields for connection events."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Field Name</th> <th>Field Type</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>status</code></th> <td>integer</td> <td><p> Event status: </p><p> 0: OK </p><p> Otherwise: Failed </p></td> </tr><tr> <th><code>connection_id</code></th> <td>unsigned integer</td> <td>Connection ID</td> </tr><tr> <th><code>user.str</code></th> <td>string</td> <td>User name specified during authentication</td> </tr><tr> <th><code>user.length</code></th> <td>unsigned integer</td> <td>User name length</td> </tr><tr> <th><code>priv_user.str</code></th> <td>string</td> <td>Authenticated user name (account user name)</td> </tr><tr> <th><code>priv_user.length</code></th> <td>unsigned integer</td> <td>Authenticated user name length</td> </tr><tr> <th><code>external_user.str</code></th> <td>string</td> <td>External user name (provided by third-party authentication plugin)</td> </tr><tr> <th><code>external_user.length</code></th> <td>unsigned integer</td> <td>External user name length</td> </tr><tr> <th><code>proxy_user.str</code></th> <td>string</td> <td>Proxy user name</td> </tr><tr> <th><code>proxy_user.length</code></th> <td>unsigned integer</td> <td>Proxy user name length</td> </tr><tr> <th><code>host.str</code></th> <td>string</td> <td>Connected user host</td> </tr><tr> <th><code>host.length</code></th> <td>unsigned integer</td> <td>Connected user host length</td> </tr><tr> <th><code>ip.str</code></th> <td>string</td> <td>Connected user IP address</td> </tr><tr> <th><code>ip.length</code></th> <td>unsigned integer</td> <td>Connected user IP address length</td> </tr><tr> <th><code>database.str</code></th> <td>string</td> <td>Database name specified at connect time</td> </tr><tr> <th><code>database.length</code></th> <td>unsigned integer</td> <td>Database name length</td> </tr><tr> <th><code>connection_type</code></th> <td>integer</td> <td><p> Connection type: </p><p> 0 or <code>"::undefined"</code>: Undefined </p><p> 1 or <code>"::tcp/ip"</code>: TCP/IP </p><p> 2 or <code>"::socket"</code>: Socket </p><p> 3 or <code>"::named_pipe"</code>: Named pipe </p><p> 4 or <code>"::ssl"</code>: TCP/IP with encryption </p><p> 5 or <code>"::shared_memory"</code>: Shared memory </p></td> </tr></tbody></table>
+<table summary="Permitted fields for connection events."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Nome do Campo</th> <th>Tipo de Campo</th> <th>Descrição</th> </tr></thead><tbody><tr> <th><code>status</code></th> <td>integer</td> <td><p> Status do Evento: </p><p> 0: OK </p><p> Caso contrário: Falha </p></td> </tr><tr> <th><code>connection_id</code></th> <td>unsigned integer</td> <td>ID da Connection</td> </tr><tr> <th><code>user.str</code></th> <td>string</td> <td>Nome de usuário especificado durante a autenticação</td> </tr><tr> <th><code>user.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome de usuário</td> </tr><tr> <th><code>priv_user.str</code></th> <td>string</td> <td>Nome de usuário autenticado (nome de usuário da conta)</td> </tr><tr> <th><code>priv_user.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome de usuário autenticado</td> </tr><tr> <th><code>external_user.str</code></th> <td>string</td> <td>Nome de usuário externo (fornecido por plugin de autenticação de terceiros)</td> </tr><tr> <th><code>external_user.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome de usuário externo</td> </tr><tr> <th><code>proxy_user.str</code></th> <td>string</td> <td>Nome de usuário Proxy</td> </tr><tr> <th><code>proxy_user.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome de usuário Proxy</td> </tr><tr> <th><code>host.str</code></th> <td>string</td> <td>Host do usuário conectado</td> </tr><tr> <th><code>host.length</code></th> <td>unsigned integer</td> <td>Comprimento do host do usuário conectado</td> </tr><tr> <th><code>ip.str</code></th> <td>string</td> <td>Endereço IP do usuário conectado</td> </tr><tr> <th><code>ip.length</code></th> <td>unsigned integer</td> <td>Comprimento do endereço IP do usuário conectado</td> </tr><tr> <th><code>database.str</code></th> <td>string</td> <td>Nome do Database especificado no momento da conexão</td> </tr><tr> <th><code>database.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome do Database</td> </tr><tr> <th><code>connection_type</code></th> <td>integer</td> <td><p> Tipo de Connection: </p><p> 0 ou <code>"::undefined"</code>: Indefinido </p><p> 1 ou <code>"::tcp/ip"</code>: TCP/IP </p><p> 2 ou <code>"::socket"</code>: Socket </p><p> 3 ou <code>"::named_pipe"</code>: Named pipe </p><p> 4 ou <code>"::ssl"</code>: TCP/IP com criptografia </p><p> 5 ou <code>"::shared_memory"</code>: Shared memory </p></td> </tr></tbody></table>
 
-The `"::xxx"` values are symbolic pseudo-constants that may be given instead of the literal numeric values. They must be quoted as strings and are case-sensitive.
+Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser fornecidas em vez dos valores numéricos literais. Eles devem ser citados como strings e são case-sensitive.
 
-An event in the `general` class indicates the status code of an operation and its details. [Table 6.29, “General Event Fields”](audit-log-filter-definitions.html#audit-log-general-event-fields "Table 6.29 General Event Fields") indicates the permitted fields for `general` events.
+Um evento na classe `general` indica o código de status de uma operação e seus detalhes. [Table 6.29, “General Event Fields”](audit-log-filter-definitions.html#audit-log-general-event-fields "Table 6.29 General Event Fields") indica os campos permitidos para eventos `general`.
 
-**Table 6.29 General Event Fields**
+**Table 6.29 Campos de Evento Geral**
 
-<table summary="Permitted field types for general events."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Field Name</th> <th>Field Type</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>general_error_code</code></th> <td>integer</td> <td><p> Event status: </p><p> 0: OK </p><p> Otherwise: Failed </p></td> </tr><tr> <th><code>general_thread_id</code></th> <td>unsigned integer</td> <td>Connection/thread ID</td> </tr><tr> <th><code>general_user.str</code></th> <td>string</td> <td>User name specified during authentication</td> </tr><tr> <th><code>general_user.length</code></th> <td>unsigned integer</td> <td>User name length</td> </tr><tr> <th><code>general_command.str</code></th> <td>string</td> <td>Command name</td> </tr><tr> <th><code>general_command.length</code></th> <td>unsigned integer</td> <td>Command name length</td> </tr><tr> <th><code>general_query.str</code></th> <td>string</td> <td>SQL statement text</td> </tr><tr> <th><code>general_query.length</code></th> <td>unsigned integer</td> <td>SQL statement text length</td> </tr><tr> <th><code>general_host.str</code></th> <td>string</td> <td>Host name</td> </tr><tr> <th><code>general_host.length</code></th> <td>unsigned integer</td> <td>Host name length</td> </tr><tr> <th><code>general_sql_command.str</code></th> <td>string</td> <td>SQL command type name</td> </tr><tr> <th><code>general_sql_command.length</code></th> <td>unsigned integer</td> <td>SQL command type name length</td> </tr><tr> <th><code>general_external_user.str</code></th> <td>string</td> <td>External user name (provided by third-party authentication plugin)</td> </tr><tr> <th><code>general_external_user.length</code></th> <td>unsigned integer</td> <td>External user name length</td> </tr><tr> <th><code>general_ip.str</code></th> <td>string</td> <td>Connected user IP address</td> </tr><tr> <th><code>general_ip.length</code></th> <td>unsigned integer</td> <td>Connection user IP address length</td> </tr></tbody></table>
+<table summary="Permitted field types for general events."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Nome do Campo</th> <th>Tipo de Campo</th> <th>Descrição</th> </tr></thead><tbody><tr> <th><code>general_error_code</code></th> <td>integer</td> <td><p> Status do Evento: </p><p> 0: OK </p><p> Caso contrário: Falha </p></td> </tr><tr> <th><code>general_thread_id</code></th> <td>unsigned integer</td> <td>ID da Connection/Thread</td> </tr><tr> <th><code>general_user.str</code></th> <td>string</td> <td>Nome de usuário especificado durante a autenticação</td> </tr><tr> <th><code>general_user.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome de usuário</td> </tr><tr> <th><code>general_command.str</code></th> <td>string</td> <td>Nome do Command</td> </tr><tr> <th><code>general_command.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome do Command</td> </tr><tr> <th><code>general_query.str</code></th> <td>string</td> <td>Texto da Declaração SQL</td> </tr><tr> <th><code>general_query.length</code></th> <td>unsigned integer</td> <td>Comprimento do texto da Declaração SQL</td> </tr><tr> <th><code>general_host.str</code></th> <td>string</td> <td>Nome do Host</td> </tr><tr> <th><code>general_host.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome do Host</td> </tr><tr> <th><code>general_sql_command.str</code></th> <td>string</td> <td>Nome do tipo de Command SQL</td> </tr><tr> <th><code>general_sql_command.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome do tipo de Command SQL</td> </tr><tr> <th><code>general_external_user.str</code></th> <td>string</td> <td>Nome de usuário externo (fornecido por plugin de autenticação de terceiros)</td> </tr><tr> <th><code>general_external_user.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome de usuário externo</td> </tr><tr> <th><code>general_ip.str</code></th> <td>string</td> <td>Endereço IP do usuário conectado</td> </tr><tr> <th><code>general_ip.length</code></th> <td>unsigned integer</td> <td>Comprimento do endereço IP do usuário conectado</td> </tr></tbody></table>
 
-`general_command.str` indicates a command name: `Query`, `Execute`, `Quit`, or `Change user`.
+`general_command.str` indica um nome de Command: `Query`, `Execute`, `Quit` ou `Change user`.
 
-A `general` event with the `general_command.str` field set to `Query` or `Execute` contains `general_sql_command.str` set to a value that specifies the type of SQL command: `alter_db`, `alter_db_upgrade`, `admin_commands`, and so forth. The available `general_sql_command.str` values can be seen as the last components of the Performance Schema instruments displayed by this statement:
+Um evento `general` com o campo `general_command.str` definido como `Query` ou `Execute` contém `general_sql_command.str` definido para um valor que especifica o tipo de Command SQL: `alter_db`, `alter_db_upgrade`, `admin_commands`, e assim por diante. Os valores `general_sql_command.str` disponíveis podem ser vistos como os últimos componentes dos instrumentos Performance Schema exibidos por esta declaração:
 
 ```sql
 mysql> SELECT NAME FROM performance_schema.setup_instruments
@@ -323,48 +323,48 @@ mysql> SELECT NAME FROM performance_schema.setup_instruments
 ...
 ```
 
-An event in the `table_access` class provides information about a specific type of access to a table. [Table 6.30, “Table-Access Event Fields”](audit-log-filter-definitions.html#audit-log-table-access-event-fields "Table 6.30 Table-Access Event Fields") indicates the permitted fields for `table_access` events.
+Um evento na classe `table_access` fornece informações sobre um tipo específico de acesso a uma Table. [Table 6.30, “Table-Access Event Fields”](audit-log-filter-definitions.html#audit-log-table-access-event-fields "Table 6.30 Table-Access Event Fields") indica os campos permitidos para eventos `table_access`.
 
-**Table 6.30 Table-Access Event Fields**
+**Table 6.30 Campos de Evento de Acesso a Table**
 
-<table summary="Permitted fields for table-access events."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Field Name</th> <th>Field Type</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>connection_id</code></th> <td>unsigned integer</td> <td>Event connection ID</td> </tr><tr> <th><code>sql_command_id</code></th> <td>integer</td> <td>SQL command ID</td> </tr><tr> <th><code>query.str</code></th> <td>string</td> <td>SQL statement text</td> </tr><tr> <th><code>query.length</code></th> <td>unsigned integer</td> <td>SQL statement text length</td> </tr><tr> <th><code>table_database.str</code></th> <td>string</td> <td>Database name associated with event</td> </tr><tr> <th><code>table_database.length</code></th> <td>unsigned integer</td> <td>Database name length</td> </tr><tr> <th><code>table_name.str</code></th> <td>string</td> <td>Table name associated with event</td> </tr><tr> <th><code>table_name.length</code></th> <td>unsigned integer</td> <td>Table name length</td> </tr></tbody></table>
+<table summary="Permitted fields for table-access events."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Nome do Campo</th> <th>Tipo de Campo</th> <th>Descrição</th> </tr></thead><tbody><tr> <th><code>connection_id</code></th> <td>unsigned integer</td> <td>ID da Connection do Evento</td> </tr><tr> <th><code>sql_command_id</code></th> <td>integer</td> <td>ID do Comando SQL</td> </tr><tr> <th><code>query.str</code></th> <td>string</td> <td>Texto da Declaração SQL</td> </tr><tr> <th><code>query.length</code></th> <td>unsigned integer</td> <td>Comprimento do texto da Declaração SQL</td> </tr><tr> <th><code>table_database.str</code></th> <td>string</td> <td>Nome do Database associado ao evento</td> </tr><tr> <th><code>table_database.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome do Database</td> </tr><tr> <th><code>table_name.str</code></th> <td>string</td> <td>Nome da Table associada ao evento</td> </tr><tr> <th><code>table_name.length</code></th> <td>unsigned integer</td> <td>Comprimento do nome da Table</td> </tr></tbody></table>
 
-The following list shows which statements produce which table-access events:
+A lista a seguir mostra quais declarações produzem quais eventos de acesso à Table:
 
-* `read` event:
+* Evento `read`:
 
   + `SELECT`
-  + `INSERT ... SELECT` (for tables referenced in `SELECT` clause)
+  + `INSERT ... SELECT` (para Tables referenciadas na cláusula `SELECT`)
 
-  + `REPLACE ... SELECT` (for tables referenced in `SELECT` clause)
+  + `REPLACE ... SELECT` (para Tables referenciadas na cláusula `SELECT`)
 
-  + `UPDATE ... WHERE` (for tables referenced in `WHERE` clause)
+  + `UPDATE ... WHERE` (para Tables referenciadas na cláusula `WHERE`)
 
   + `HANDLER ... READ`
-* `delete` event:
+* Evento `delete`:
 
   + `DELETE`
   + `TRUNCATE TABLE`
-* `insert` event:
+* Evento `insert`:
 
   + `INSERT`
-  + `INSERT ... SELECT` (for table referenced in `INSERT` clause)
+  + `INSERT ... SELECT` (para Table referenciada na cláusula `INSERT`)
 
   + `REPLACE`
-  + `REPLACE ... SELECT` (for table referenced in `REPLACE` clause
+  + `REPLACE ... SELECT` (para Table referenciada na cláusula `REPLACE`)
 
   + `LOAD DATA`
   + `LOAD XML`
-* `update` event:
+* Evento `update`:
 
   + `UPDATE`
-  + `UPDATE ... WHERE` (for tables referenced in `UPDATE` clause)
+  + `UPDATE ... WHERE` (para Tables referenciadas na cláusula `UPDATE`)
 
-##### Blocking Execution of Specific Events
+##### Bloqueando a Execução de Eventos Específicos
 
-As of MySQL 5.7.20, `event` items can include an `abort` item that indicates whether to prevent qualifying events from executing. `abort` enables rules to be written that block execution of specific SQL statements.
+A partir do MySQL 5.7.20, os itens `event` podem incluir um item `abort` que indica se deve impedir a execução de eventos qualificadores. `abort` permite que regras sejam escritas para bloquear a execução de declarações SQL específicas.
 
-The `abort` item must appear within an `event` item. For example:
+O item `abort` deve aparecer dentro de um item `event`. Por exemplo:
 
 ```sql
 "event": {
@@ -373,11 +373,11 @@ The `abort` item must appear within an `event` item. For example:
 }
 ```
 
-For event subclasses selected by the `name` item, the `abort` action is true or false, depending on *`condition`* evaluation. If the condition evaluates to true, the event is blocked. Otherwise, the event continues executing.
+Para subclasses de eventos selecionadas pelo item `name`, a ação `abort` é true ou false, dependendo da avaliação da *`condition`*. Se a condição for avaliada como true, o evento é bloqueado. Caso contrário, o evento continua a ser executado.
 
-The *`condition`* specification can be as simple as `true` or `false`, or it can be more complex such that evaluation depends on event characteristics.
+A especificação da *`condition`* pode ser tão simples quanto `true` ou `false`, ou pode ser mais complexa, dependendo das características do evento.
 
-This filter blocks [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), and [`DELETE`](delete.html "13.2.2 DELETE Statement") statements:
+Este filtro bloqueia as declarações [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement") e [`DELETE`](delete.html "13.2.2 DELETE Statement"):
 
 ```sql
 {
@@ -393,7 +393,7 @@ This filter blocks [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`
 }
 ```
 
-This more complex filter blocks the same statements, but only for a specific table (`finances.bank_account`):
+Este filtro mais complexo bloqueia as mesmas declarações, mas apenas para uma Table específica (`finances.bank_account`):
 
 ```sql
 {
@@ -414,19 +414,19 @@ This more complex filter blocks the same statements, but only for a specific tab
 }
 ```
 
-Statements matched and blocked by the filter return an error to the client:
+Declarações correspondidas e bloqueadas pelo filtro retornam um erro ao cliente:
 
 ```sql
 ERROR 1045 (28000): Statement was aborted by an audit log filter
 ```
 
-Not all events can be blocked (see [Table 6.27, “Log and Abort Characteristics Per Event Class and Subclass Combination”](audit-log-filter-definitions.html#audit-log-event-subclass-log-abort "Table 6.27 Log and Abort Characteristics Per Event Class and Subclass Combination")). For an event that cannot be blocked, the audit log writes a warning to the error log rather than blocking it.
+Nem todos os eventos podem ser bloqueados (veja [Table 6.27, “Log and Abort Characteristics Per Event Class and Subclass Combination”](audit-log-filter-definitions.html#audit-log-event-subclass-log-abort "Table 6.27 Log and Abort Characteristics Per Event Class and Subclass Combination")). Para um evento que não pode ser bloqueado, o audit log escreve um aviso no error log em vez de bloqueá-lo.
 
-For attempts to define a filter in which the `abort` item appears elsewhere than in an `event` item, an error occurs.
+Para tentativas de definir um filtro no qual o item `abort` aparece em outro lugar que não seja um item `event`, ocorre um erro.
 
-##### Logical Operators
+##### Operadores Lógicos
 
-Logical operators (`and`, `or`, `not`) permit construction of complex conditions, enabling more advanced filtering configurations to be written. The following `log` item logs only `general` events with `general_command` fields having a specific value and length:
+Operadores lógicos (`and`, `or`, `not`) permitem a construção de condições complexas, possibilitando a escrita de configurações de filtragem mais avançadas. O seguinte item `log` registra apenas eventos `general` com campos `general_command` que possuem um valor e comprimento específicos:
 
 ```sql
 {
@@ -457,9 +457,9 @@ Logical operators (`and`, `or`, `not`) permit construction of complex conditions
 }
 ```
 
-##### Referencing Predefined Variables
+##### Referenciando Variáveis Predefinidas
 
-To refer to a predefined variable in a `log` condition, use a `variable` item, which takes `name` and `value` items and tests equality of the named variable against a given value:
+Para referir-se a uma variável predefinida em uma condição `log`, use um item `variable`, que aceita itens `name` e `value` e testa a igualdade da variável nomeada em relação a um valor fornecido:
 
 ```sql
 "variable": {
@@ -468,9 +468,9 @@ To refer to a predefined variable in a `log` condition, use a `variable` item, w
 }
 ```
 
-This is true if *`variable_name`* has the value *`comparison_value`*, false otherwise.
+Isso é true se *`variable_name`* tiver o valor *`comparison_value`*, false caso contrário.
 
-Example:
+Exemplo:
 
 ```sql
 {
@@ -491,45 +491,45 @@ Example:
 }
 ```
 
-Each predefined variable corresponds to a system variable. By writing a filter that tests a predefined variable, you can modify filter operation by setting the corresponding system variable, without having to redefine the filter. For example, by writing a filter that tests the value of the `audit_log_connection_policy_value` predefined variable, you can modify filter operation by changing the value of the [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) system variable.
+Cada variável predefinida corresponde a uma variável de sistema. Ao escrever um filtro que testa uma variável predefinida, você pode modificar a operação do filtro definindo a variável de sistema correspondente, sem ter que redefinir o filtro. Por exemplo, ao escrever um filtro que testa o valor da variável predefinida `audit_log_connection_policy_value`, você pode modificar a operação do filtro alterando o valor da variável de sistema [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy).
 
-The `audit_log_xxx_policy` system variables are used for the legacy mode audit log (see [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")). With rule-based audit log filtering, those variables remain visible (for example, using [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")), but changes to them have no effect unless you write filters containing constructs that refer to them.
+As variáveis de sistema `audit_log_xxx_policy` são usadas para o audit log em modo legado (veja [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")). Com a filtragem do audit log baseada em regras, essas variáveis permanecem visíveis (por exemplo, usando [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")), mas as alterações nelas não têm efeito a menos que você escreva filtros contendo constructos que se refiram a elas.
 
-The following list describes the permitted predefined variables for `variable` items:
+A lista a seguir descreve as variáveis predefinidas permitidas para itens `variable`:
 
 * `audit_log_connection_policy_value`
 
-  This variable corresponds to the value of the [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) system variable. The value is an unsigned integer. [Table 6.31, “audit_log_connection_policy_value Values”](audit-log-filter-definitions.html#audit-log-connection-policy-value-values "Table 6.31 audit_log_connection_policy_value Values") shows the permitted values and the corresponding [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) values.
+  Esta variável corresponde ao valor da variável de sistema [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy). O valor é um unsigned integer. [Table 6.31, “audit_log_connection_policy_value Values”](audit-log-filter-definitions.html#audit-log-connection-policy-value-values "Table 6.31 audit_log_connection_policy_value Values") mostra os valores permitidos e os valores [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) correspondentes.
 
-  **Table 6.31 audit_log_connection_policy_value Values**
+  **Table 6.31 Valores de audit_log_connection_policy_value**
 
-  <table summary="Permitted audit_log_connection_policy_value values and the corresponding audit_log_connection_policy values."><thead><tr> <th>Value</th> <th>Corresponding audit_log_connection_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code> or <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> or <code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code> or <code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
+  <table summary="Permitted audit_log_connection_policy_value values and the corresponding audit_log_connection_policy values."><thead><tr> <th>Valor</th> <th>Valor Correspondente de audit_log_connection_policy</th> </tr></thead><tbody><tr> <td><code>0</code> ou <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> ou <code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code> ou <code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
 
-  The `"::xxx"` values are symbolic pseudo-constants that may be given instead of the literal numeric values. They must be quoted as strings and are case-sensitive.
+  Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser fornecidas em vez dos valores numéricos literais. Eles devem ser citados como strings e são case-sensitive.
 
 * `audit_log_policy_value`
 
-  This variable corresponds to the value of the [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) system variable. The value is an unsigned integer. [Table 6.32, “audit_log_policy_value Values”](audit-log-filter-definitions.html#audit-log-policy-value-values "Table 6.32 audit_log_policy_value Values") shows the permitted values and the corresponding [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) values.
+  Esta variável corresponde ao valor da variável de sistema [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy). O valor é um unsigned integer. [Table 6.32, “audit_log_policy_value Values”](audit-log-filter-definitions.html#audit-log-policy-value-values "Table 6.32 audit_log_policy_value Values") mostra os valores permitidos e os valores [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) correspondentes.
 
-  **Table 6.32 audit_log_policy_value Values**
+  **Table 6.32 Valores de audit_log_policy_value**
 
-  <table summary="Permitted audit_log_policy_value values and the corresponding audit_log_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Value</th> <th>Corresponding audit_log_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code> or <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> or <code>"::logins"</code></td> <td><code>LOGINS</code></td> </tr><tr> <td><code>2</code> or <code>"::all"</code></td> <td><code>ALL</code></td> </tr><tr> <td><code>3</code> or <code>"::queries"</code></td> <td><code>QUERIES</code></td> </tr></tbody></table>
+  <table summary="Permitted audit_log_policy_value values and the corresponding audit_log_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Valor Correspondente de audit_log_policy</th> </tr></thead><tbody><tr> <td><code>0</code> ou <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> ou <code>"::logins"</code></td> <td><code>LOGINS</code></td> </tr><tr> <td><code>2</code> ou <code>"::all"</code></td> <td><code>ALL</code></td> </tr><tr> <td><code>3</code> ou <code>"::queries"</code></td> <td><code>QUERIES</code></td> </tr></tbody></table>
 
-  The `"::xxx"` values are symbolic pseudo-constants that may be given instead of the literal numeric values. They must be quoted as strings and are case-sensitive.
+  Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser fornecidas em vez dos valores numéricos literais. Eles devem ser citados como strings e são case-sensitive.
 
 * `audit_log_statement_policy_value`
 
-  This variable corresponds to the value of the [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy) system variable. The value is an unsigned integer. [Table 6.33, “audit_log_statement_policy_value Values”](audit-log-filter-definitions.html#audit-log-statement-policy-value-values "Table 6.33 audit_log_statement_policy_value Values") shows the permitted values and the corresponding [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy) values.
+  Esta variável corresponde ao valor da variável de sistema [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy). O valor é um unsigned integer. [Table 6.33, “audit_log_statement_policy_value Values”](audit-log-filter-definitions.html#audit-log-statement-policy-value-values "Table 6.33 audit_log_statement_policy_value Values") mostra os valores permitidos e os valores [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy) correspondentes.
 
-  **Table 6.33 audit_log_statement_policy_value Values**
+  **Table 6.33 Valores de audit_log_statement_policy_value**
 
-  <table summary="Permitted audit_log_statement_policy_value values and the corresponding audit_log_statement_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Value</th> <th>Corresponding audit_log_statement_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code> or <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> or <code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code> or <code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
+  <table summary="Permitted audit_log_statement_policy_value values and the corresponding audit_log_statement_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Valor Correspondente de audit_log_statement_policy</th> </tr></thead><tbody><tr> <td><code>0</code> ou <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> ou <code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code> ou <code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
 
-  The `"::xxx"` values are symbolic pseudo-constants that may be given instead of the literal numeric values. They must be quoted as strings and are case-sensitive.
+  Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser fornecidas em vez dos valores numéricos literais. Eles devem ser citados como strings e são case-sensitive.
 
-##### Referencing Predefined Functions
+##### Referenciando Funções Predefinidas
 
-To refer to a predefined function in a `log` condition, use a `function` item, which takes `name` and `args` items to specify the function name and its arguments, respectively:
+Para referir-se a uma função predefinida em uma condição `log`, use um item `function`, que aceita itens `name` e `args` para especificar o nome da função e seus argumentos, respectivamente:
 
 ```sql
 "function": {
@@ -538,17 +538,17 @@ To refer to a predefined function in a `log` condition, use a `function` item, w
 }
 ```
 
-The `name` item should specify the function name only, without parentheses or the argument list.
+O item `name` deve especificar apenas o nome da função, sem parênteses ou a lista de argumentos.
 
-The `args` item must satisfy these conditions:
+O item `args` deve satisfazer estas condições:
 
-* If the function takes no arguments, no `args` item should be given.
+* Se a função não aceitar argumentos, nenhum item `args` deve ser fornecido.
 
-* If the function does take arguments, an `args` item is needed, and the arguments must be given in the order listed in the function description. Arguments can refer to predefined variables, event fields, or string or numeric constants.
+* Se a função aceitar argumentos, um item `args` é necessário, e os argumentos devem ser fornecidos na ordem listada na descrição da função. Os argumentos podem se referir a variáveis predefinidas, campos de evento ou constantes string ou numéricas.
 
-If the number of arguments is incorrect or the arguments are not of the correct data types required by the function an error occurs.
+Se o número de argumentos estiver incorreto ou os argumentos não forem dos tipos de dados corretos exigidos pela função, ocorre um erro.
 
-Example:
+Exemplo:
 
 ```sql
 {
@@ -571,65 +571,65 @@ Example:
 }
 ```
 
-The preceding filter determines whether to log `general` class `status` events depending on whether the current user is found in the [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) system variable. That user is constructed using fields in the event.
+O filtro anterior determina se deve registrar eventos de `status` da classe `general` dependendo se o usuário atual é encontrado na variável de sistema [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts). Esse usuário é construído usando campos no evento.
 
-The following list describes the permitted predefined functions for `function` items:
+A lista a seguir descreve as funções predefinidas permitidas para itens `function`:
 
 * `audit_log_exclude_accounts_is_null()`
 
-  Checks whether the [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) system variable is `NULL`. This function can be helpful when defining filters that correspond to the legacy audit log implementation.
+  Verifica se a variável de sistema [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) é `NULL`. Esta função pode ser útil ao definir filtros que correspondem à implementação do audit log legado.
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
 * `audit_log_include_accounts_is_null()`
 
-  Checks whether the [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) system variable is `NULL`. This function can be helpful when defining filters that correspond to the legacy audit log implementation.
+  Verifica se a variável de sistema [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) é `NULL`. Esta função pode ser útil ao definir filtros que correspondem à implementação do audit log legado.
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
 * `debug_sleep(millisec)`
 
-  Sleeps for the given number of milliseconds. This function is used during performance measurement.
+  Suspende a execução (sleep) pelo número de milissegundos fornecido. Esta função é usada durante a medição de performance.
 
-  `debug_sleep()` is available for debug builds only.
+  `debug_sleep()` está disponível apenas para compilações de debug.
 
-  Arguments:
+  Argumentos:
 
-  + *`millisec`*: An unsigned integer that specifies the number of milliseconds to sleep.
+  + *`millisec`*: Um unsigned integer que especifica o número de milissegundos para suspender.
 
 * `find_in_exclude_list(account)`
 
-  Checks whether an account string exists in the audit log exclude list (the value of the [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) system variable).
+  Verifica se uma string de conta existe na lista de exclusão do audit log (o valor da variável de sistema [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts)).
 
-  Arguments:
+  Argumentos:
 
-  + *`account`*: A string that specifies the user account name.
+  + *`account`*: Uma string que especifica o nome da conta de usuário.
 
 * `find_in_include_list(account)`
 
-  Checks whether an account string exists in the audit log include list (the value of the [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) system variable).
+  Verifica se uma string de conta existe na lista de inclusão do audit log (o valor da variável de sistema [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts)).
 
-  Arguments:
+  Argumentos:
 
-  + *`account`*: A string that specifies the user account name.
+  + *`account`*: Uma string que especifica o nome da conta de usuário.
 
 * `string_find(text, substr)`
 
-  Checks whether the `substr` value is contained in the `text` value. This search is case-sensitive.
+  Verifica se o valor `substr` está contido no valor `text`. Esta pesquisa é case-sensitive.
 
-  Arguments:
+  Argumentos:
 
-  + *`text`*: The text string to search.
+  + *`text`*: A string de texto para pesquisar.
 
-  + *`substr`*: The substring to search for in *`text`*.
+  + *`substr`*: A substring a ser procurada em *`text`*.
 
-##### Replacing a User Filter
+##### Substituindo um Filtro de Usuário
 
-In some cases, the filter definition can be changed dynamically. To do this, define a `filter` configuration within an existing `filter`. For example:
+Em alguns casos, a definição do filtro pode ser alterada dinamicamente. Para fazer isso, defina uma configuração `filter` dentro de um `filter` existente. Por exemplo:
 
 ```sql
 {
@@ -659,26 +659,26 @@ In some cases, the filter definition can be changed dynamically. To do this, def
 }
 ```
 
-A new filter is activated when the `activate` item within a subfilter evaluates to `true`. Using `activate` in a top-level `filter` is not permitted.
+Um novo filtro é ativado quando o item `activate` dentro de um subfiltro é avaliado como `true`. Usar `activate` em um `filter` de nível superior não é permitido.
 
-A new filter can be replaced with the original one by using a `ref` item inside the subfilter to refer to the original filter `id`.
+Um novo filtro pode ser substituído pelo original usando um item `ref` dentro do subfiltro para referir-se ao `id` do filtro original.
 
-The filter shown operates like this:
+O filtro mostrado opera da seguinte forma:
 
-* The `main` filter waits for `table_access` events, either `update` or `delete`.
+* O filtro `main` espera por eventos `table_access`, seja `update` ou `delete`.
 
-* If the `update` or `delete` `table_access` event occurs on the `temp_1` or `temp_2` table, the filter is replaced with the internal one (without an `id`, since there is no need to refer to it explicitly).
+* Se o evento `table_access` de `update` ou `delete` ocorrer na Table `temp_1` ou `temp_2`, o filtro é substituído pelo filtro interno (sem um `id`, já que não há necessidade de se referir a ele explicitamente).
 
-* If the end of the command is signalled (`general` / `status` event), an entry is written to the audit log file and the filter is replaced with the `main` filter.
+* Se o fim do comando for sinalizado (evento `general` / `status`), uma entrada é escrita no arquivo de audit log e o filtro é substituído pelo filtro `main`.
 
-The filter is useful to log statements that update or delete anything from the `temp_1` or `temp_2` tables, such as this one:
+O filtro é útil para registrar declarações que atualizam ou excluem algo das Tables `temp_1` ou `temp_2`, como esta:
 
 ```sql
 UPDATE temp_1, temp_3 SET temp_1.a=21, temp_3.a=23;
 ```
 
-The statement generates multiple `table_access` events, but the audit log file contains only `general` or `status` entries.
+A declaração gera múltiplos eventos `table_access`, mas o arquivo de audit log contém apenas entradas `general` ou `status`.
 
-Note
+Nota
 
-Any `id` values used in the definition are evaluated with respect only to that definition. They have nothing to do with the value of the [`audit_log_filter_id`](audit-log-reference.html#sysvar_audit_log_filter_id) system variable.
+Quaisquer valores `id` usados na definição são avaliados apenas em relação a essa definição. Eles não têm nada a ver com o valor da variável de sistema [`audit_log_filter_id`](audit-log-reference.html#sysvar_audit_log_filter_id).

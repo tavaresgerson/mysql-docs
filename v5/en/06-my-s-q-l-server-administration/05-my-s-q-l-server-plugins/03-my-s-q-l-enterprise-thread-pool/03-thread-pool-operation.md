@@ -1,75 +1,75 @@
-#### 5.5.3.3 Thread Pool Operation
+#### 5.5.3.3 Operação do Thread Pool
 
-The thread pool consists of a number of thread groups, each of which manages a set of client connections. As connections are established, the thread pool assigns them to thread groups in round-robin fashion.
+O Thread Pool consiste em um número de Thread Groups, cada um dos quais gerencia um conjunto de Connections de cliente. À medida que as Connections são estabelecidas, o Thread Pool as atribui aos Thread Groups em modo *round-robin*.
 
-The thread pool exposes system variables that may be used to configure its operation:
+O Thread Pool expõe variáveis de sistema que podem ser usadas para configurar sua operação:
 
-* [`thread_pool_algorithm`](server-system-variables.html#sysvar_thread_pool_algorithm): The concurrency algorithm to use for scheduling.
+* [`thread_pool_algorithm`](server-system-variables.html#sysvar_thread_pool_algorithm): O algoritmo de concorrência a ser usado para *scheduling*.
 
-* [`thread_pool_high_priority_connection`](server-system-variables.html#sysvar_thread_pool_high_priority_connection): How to schedule statement execution for a session.
+* [`thread_pool_high_priority_connection`](server-system-variables.html#sysvar_thread_pool_high_priority_connection): Como agendar a execução de *statements* para uma sessão.
 
-* [`thread_pool_max_unused_threads`](server-system-variables.html#sysvar_thread_pool_max_unused_threads): How many sleeping threads to permit.
+* [`thread_pool_max_unused_threads`](server-system-variables.html#sysvar_thread_pool_max_unused_threads): Quantos *sleeping threads* permitir.
 
-* [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer): How long before the thread pool moves a statement awaiting execution from the low-priority queue to the high-priority queue.
+* [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer): Quanto tempo o Thread Pool espera antes de mover um *statement* aguardando execução da *low-priority queue* para a *high-priority queue*.
 
-* [`thread_pool_size`](server-system-variables.html#sysvar_thread_pool_size): The number of thread groups in the thread pool. This is the most important parameter controlling thread pool performance.
+* [`thread_pool_size`](server-system-variables.html#sysvar_thread_pool_size): O número de Thread Groups no Thread Pool. Este é o parâmetro mais importante que controla o desempenho do Thread Pool.
 
-* [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit): The time before an executing statement is considered to be stalled.
+* [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit): O tempo antes que um *statement* em execução seja considerado *stalled*.
 
-To configure the number of thread groups, use the [`thread_pool_size`](server-system-variables.html#sysvar_thread_pool_size) system variable. The default number of groups is 16. For guidelines on setting this variable, see [Section 5.5.3.4, “Thread Pool Tuning”](thread-pool-tuning.html "5.5.3.4 Thread Pool Tuning").
+Para configurar o número de Thread Groups, use a variável de sistema [`thread_pool_size`](server-system-variables.html#sysvar_thread_pool_size). O número padrão de Groups é 16. Para orientações sobre como definir esta variável, consulte [Section 5.5.3.4, “Thread Pool Tuning”](thread-pool-tuning.html "5.5.3.4 Thread Pool Tuning").
 
-The maximum number of threads per group is 4096 (or 4095 on some systems where one thread is used internally).
+O número máximo de Threads por Group é 4096 (ou 4095 em alguns sistemas onde um Thread é usado internamente).
 
-The thread pool separates connections and threads, so there is no fixed relationship between connections and the threads that execute statements received from those connections. This differs from the default thread-handling model that associates one thread with one connection such that a given thread executes all statements from its connection.
+O Thread Pool separa Connections e Threads, de modo que não há uma relação fixa entre Connections e os Threads que executam os *statements* recebidos dessas Connections. Isso difere do modelo padrão de manuseio de Threads que associa um Thread a uma Connection, de modo que um determinado Thread executa todos os *statements* de sua Connection.
 
-The thread pool tries to ensure a maximum of one thread executing in each group at any time, but sometimes permits more threads to execute temporarily for best performance:
+O Thread Pool tenta garantir no máximo um Thread em execução em cada Group a qualquer momento, mas às vezes permite que mais Threads sejam executados temporariamente para obter o melhor desempenho:
 
-* Each thread group has a listener thread that listens for incoming statements from the connections assigned to the group. When a statement arrives, the thread group either begins executing it immediately or queues it for later execution:
+* Cada Thread Group possui um *listener thread* que escuta *statements* recebidos das Connections atribuídas ao Group. Quando um *statement* chega, o Thread Group inicia sua execução imediatamente ou o enfileira para execução posterior:
 
-  + Immediate execution occurs if the statement is the only one received and no statements are queued or currently executing.
+  + A execução imediata ocorre se o *statement* for o único recebido e não houver *statements* enfileirados ou atualmente em execução.
 
-  + Queuing occurs if the statement cannot begin executing immediately.
+  + O enfileiramento ocorre se o *statement* não puder iniciar a execução imediatamente.
 
-* If immediate execution occurs, the listener thread performs it. (This means that temporarily no thread in the group is listening.) If the statement finishes quickly, the executing thread returns to listening for statements. Otherwise, the thread pool considers the statement stalled and starts another thread as a listener thread (creating it if necessary). To ensure that no thread group becomes blocked by stalled statements, the thread pool has a background thread that regularly monitors thread group states.
+* Se ocorrer execução imediata, o *listener thread* a executa. (Isso significa que, temporariamente, nenhum Thread no Group está escutando.) Se o *statement* terminar rapidamente, o Thread em execução retorna à escuta por *statements*. Caso contrário, o Thread Pool considera o *statement* *stalled* e inicia outro Thread como *listener thread* (criando-o se necessário). Para garantir que nenhum Thread Group seja bloqueado por *stalled statements*, o Thread Pool possui um Thread de fundo que monitora regularmente os estados do Thread Group.
 
-  By using the listening thread to execute a statement that can begin immediately, there is no need to create an additional thread if the statement finishes quickly. This ensures the most efficient execution possible in the case of a low number of concurrent threads.
+  Ao usar o *listening thread* para executar um *statement* que pode começar imediatamente, não há necessidade de criar um Thread adicional se o *statement* terminar rapidamente. Isso garante a execução mais eficiente possível no caso de um baixo número de Threads concorrentes.
 
-  When the thread pool plugin starts, it creates one thread per group (the listener thread), plus the background thread. Additional threads are created as necessary to execute statements.
+  Quando o *plugin* do Thread Pool inicia, ele cria um Thread por Group (o *listener thread*), mais o Thread de fundo. Threads adicionais são criados conforme necessário para executar *statements*.
 
-* The value of the [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit) system variable determines the meaning of “finishes quickly” in the previous item. The default time before threads are considered stalled is 60ms but can be set to a maximum of 6s. This parameter is configurable to enable you to strike a balance appropriate for the server work load. Short wait values permit threads to start more quickly. Short values are also better for avoiding deadlock situations. Long wait values are useful for workloads that include long-running statements, to avoid starting too many new statements while the current ones execute.
+* O valor da variável de sistema [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit) determina o significado de “termina rapidamente” no item anterior. O tempo padrão antes que os Threads sejam considerados *stalled* é 60ms, mas pode ser configurado para um máximo de 6s. Este parâmetro é configurável para permitir que você encontre um equilíbrio apropriado para a carga de trabalho do servidor. Valores de espera curtos permitem que os Threads iniciem mais rapidamente. Valores curtos também são melhores para evitar situações de Deadlock. Valores de espera longos são úteis para cargas de trabalho que incluem *statements* de longa duração, para evitar iniciar muitos novos *statements* enquanto os atuais estão em execução.
 
-* The thread pool focuses on limiting the number of concurrent short-running statements. Before an executing statement reaches the stall time, it prevents other statements from beginning to execute. If the statement executes past the stall time, it is permitted to continue but no longer prevents other statements from starting. In this way, the thread pool tries to ensure that in each thread group there is never more than one short-running statement, although there might be multiple long-running statements. It is undesirable to let long-running statements prevent other statements from executing because there is no limit on the amount of waiting that might be necessary. For example, on a replication source, a thread that is sending binary log events to a replica effectively runs forever.
+* O Thread Pool foca em limitar o número de *statements* concorrentes de curta duração. Antes que um *statement* em execução atinja o tempo de *stall*, ele impede que outros *statements* comecem a ser executados. Se o *statement* for executado após o tempo de *stall*, ele pode continuar, mas não impede mais que outros *statements* iniciem. Desta forma, o Thread Pool tenta garantir que em cada Thread Group nunca haja mais do que um *statement* de curta duração, embora possa haver vários *statements* de longa duração. Não é desejável permitir que *statements* de longa duração impeçam a execução de outros *statements* porque não há limite para a quantidade de espera que pode ser necessária. Por exemplo, em uma fonte de replicação, um Thread que está enviando eventos do Binary Log para uma Replica é executado efetivamente para sempre.
 
-* A statement becomes blocked if it encounters a disk I/O operation or a user level lock (row lock or table lock). The block would cause the thread group to become unused, so there are callbacks to the thread pool to ensure that the thread pool can immediately start a new thread in this group to execute another statement. When a blocked thread returns, the thread pool permits it to restart immediately.
+* Um *statement* fica *blocked* (bloqueado) se encontrar uma operação de Disk I/O ou um Lock de nível de usuário (Row Lock ou Table Lock). O Block faria com que o Thread Group ficasse inutilizado, então existem *callbacks* para o Thread Pool para garantir que ele possa iniciar imediatamente um novo Thread neste Group para executar outro *statement*. Quando um Thread *blocked* retorna, o Thread Pool permite que ele reinicie imediatamente.
 
-* There are two queues, a high-priority queue and a low-priority queue. The first statement in a transaction goes to the low-priority queue. Any following statements for the transaction go to the high-priority queue if the transaction is ongoing (statements for it have begun executing), or to the low-priority queue otherwise. Queue assignment can be affected by enabling the [`thread_pool_high_priority_connection`](server-system-variables.html#sysvar_thread_pool_high_priority_connection) system variable, which causes all queued statements for a session to go into the high-priority queue.
+* Existem duas Queues: uma *high-priority queue* e uma *low-priority queue*. O primeiro *statement* em uma Transaction vai para a *low-priority queue*. Quaisquer *statements* seguintes para a Transaction vão para a *high-priority queue* se a Transaction estiver em andamento (*statements* para ela começaram a ser executados) ou para a *low-priority queue* caso contrário. A atribuição à Queue pode ser afetada ao habilitar a variável de sistema [`thread_pool_high_priority_connection`](server-system-variables.html#sysvar_thread_pool_high_priority_connection), o que faz com que todos os *statements* enfileirados para uma sessão entrem na *high-priority queue*.
 
-  Statements for a nontransactional storage engine, or a transactional engine if [`autocommit`](server-system-variables.html#sysvar_autocommit) is enabled, are treated as low-priority statements because in this case each statement is a transaction. Thus, given a mix of statements for `InnoDB` and `MyISAM` tables, the thread pool prioritizes those for `InnoDB` over those for `MyISAM` unless [`autocommit`](server-system-variables.html#sysvar_autocommit) is enabled. With [`autocommit`](server-system-variables.html#sysvar_autocommit) enabled, all statements are low priority.
+  *Statements* para um Storage Engine não transacional, ou um Engine transacional se [`autocommit`](server-system-variables.html#sysvar_autocommit) estiver habilitado, são tratados como *statements* de baixa prioridade, pois neste caso, cada *statement* é uma Transaction. Assim, dada uma mistura de *statements* para tabelas `InnoDB` e `MyISAM`, o Thread Pool prioriza aqueles para `InnoDB` em detrimento daqueles para `MyISAM`, a menos que [`autocommit`](server-system-variables.html#sysvar_autocommit) esteja habilitado. Com [`autocommit`](server-system-variables.html#sysvar_autocommit) habilitado, todos os *statements* são de baixa prioridade.
 
-* When the thread group selects a queued statement for execution, it first looks in the high-priority queue, then in the low-priority queue. If a statement is found, it is removed from its queue and begins to execute.
+* Quando o Thread Group seleciona um *statement* enfileirado para execução, ele primeiro procura na *high-priority queue*, depois na *low-priority queue*. Se um *statement* for encontrado, ele é removido de sua Queue e começa a ser executado.
 
-* If a statement stays in the low-priority queue too long, the thread pool moves to the high-priority queue. The value of the [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer) system variable controls the time before movement. For each thread group, a maximum of one statement per 10ms (100 per second) is moved from the low-priority queue to the high-priority queue.
+* Se um *statement* permanecer na *low-priority queue* por muito tempo, o Thread Pool o move para a *high-priority queue*. O valor da variável de sistema [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer) controla o tempo antes dessa movimentação. Para cada Thread Group, um máximo de um *statement* a cada 10ms (100 por segundo) é movido da *low-priority queue* para a *high-priority queue*.
 
-* The thread pool reuses the most active threads to obtain a much better use of CPU caches. This is a small adjustment that has a great impact on performance.
+* O Thread Pool reutiliza os Threads mais ativos para obter um uso muito melhor dos CPU Caches. Este é um pequeno ajuste que tem um grande impacto no desempenho.
 
-* While a thread executes a statement from a user connection, Performance Schema instrumentation accounts thread activity to the user connection. Otherwise, Performance Schema accounts activity to the thread pool.
+* Enquanto um Thread executa um *statement* a partir de uma Connection de usuário, a instrumentação do Performance Schema atribui a atividade do Thread à Connection de usuário. Caso contrário, o Performance Schema atribui a atividade ao Thread Pool.
 
-Here are examples of conditions under which a thread group might have multiple threads started to execute statements:
+Aqui estão exemplos de condições sob as quais um Thread Group pode ter vários Threads iniciados para executar *statements*:
 
-* One thread begins executing a statement, but runs long enough to be considered stalled. The thread group permits another thread to begin executing another statement even through the first thread is still executing.
+* Um Thread começa a executar um *statement*, mas é executado por tempo suficiente para ser considerado *stalled*. O Thread Group permite que outro Thread comece a executar outro *statement*, mesmo que o primeiro Thread ainda esteja em execução.
 
-* One thread begins executing a statement, then becomes blocked and reports this back to the thread pool. The thread group permits another thread to begin executing another statement.
+* Um Thread começa a executar um *statement*, então fica *blocked* e reporta isso de volta ao Thread Pool. O Thread Group permite que outro Thread comece a executar outro *statement*.
 
-* One thread begins executing a statement, becomes blocked, but does not report back that it is blocked because the block does not occur in code that has been instrumented with thread pool callbacks. In this case, the thread appears to the thread group to be still running. If the block lasts long enough for the statement to be considered stalled, the group permits another thread to begin executing another statement.
+* Um Thread começa a executar um *statement*, fica *blocked*, mas não reporta que está *blocked* porque o Block não ocorre em código que foi instrumentado com *callbacks* do Thread Pool. Neste caso, o Thread parece ao Thread Group estar ainda em execução. Se o Block durar tempo suficiente para o *statement* ser considerado *stalled*, o Group permite que outro Thread comece a executar outro *statement*.
 
-The thread pool is designed to be scalable across an increasing number of connections. It is also designed to avoid deadlocks that can arise from limiting the number of actively executing statements. It is important that threads that do not report back to the thread pool do not prevent other statements from executing and thus cause the thread pool to become deadlocked. Examples of such statements follow:
+O Thread Pool é projetado para ser escalável em um número crescente de Connections. Ele também é projetado para evitar Deadlocks que podem surgir ao limitar o número de *statements* em execução ativa. É importante que os Threads que não reportam ao Thread Pool não impeçam a execução de outros *statements* e, assim, causem um Deadlock no Thread Pool. Exemplos de tais *statements* a seguir:
 
-* Long-running statements. These would lead to all resources used by only a few statements and they could prevent all others from accessing the server.
+* *Statements* de longa duração. Estes levariam todos os recursos a serem usados por apenas alguns *statements* e poderiam impedir que todos os outros acessassem o servidor.
 
-* Binary log dump threads that read the binary log and send it to replicas. This is a kind of long-running “statement” that runs for a very long time, and that should not prevent other statements from executing.
+* *Binary Log dump threads* que leem o Binary Log e o enviam para Replicas. Este é um tipo de “*statement*” de longa duração que é executado por muito tempo e que não deve impedir a execução de outros *statements*.
 
-* Statements blocked on a row lock, table lock, sleep, or any other blocking activity that has not been reported back to the thread pool by MySQL Server or a storage engine.
+* *Statements* *blocked* em um Row Lock, Table Lock, *sleep*, ou qualquer outra atividade de Block que não tenha sido reportada ao Thread Pool pelo MySQL Server ou por um Storage Engine.
 
-In each case, to prevent deadlock, the statement is moved to the stalled category when it does not complete quickly, so that the thread group can permit another statement to begin executing. With this design, when a thread executes or becomes blocked for an extended time, the thread pool moves the thread to the stalled category and for the rest of the statement's execution, it does not prevent other statements from executing.
+Em cada caso, para prevenir Deadlock, o *statement* é movido para a categoria *stalled* quando não é concluído rapidamente, para que o Thread Group possa permitir que outro *statement* comece a ser executado. Com este design, quando um Thread executa ou fica *blocked* por um tempo prolongado, o Thread Pool move o Thread para a categoria *stalled* e, durante o resto da execução do *statement*, ele não impede a execução de outros *statements*.
 
-The maximum number of threads that can occur is the sum of [`max_connections`](server-system-variables.html#sysvar_max_connections) and [`thread_pool_size`](server-system-variables.html#sysvar_thread_pool_size). This can happen in a situation where all connections are in execution mode and an extra thread is created per group to listen for more statements. This is not necessarily a state that happens often, but it is theoretically possible.
+O número máximo de Threads que podem ocorrer é a soma de [`max_connections`](server-system-variables.html#sysvar_max_connections) e [`thread_pool_size`](server-system-variables.html#sysvar_thread_pool_size). Isso pode acontecer em uma situação em que todas as Connections estão em modo de execução e um Thread extra é criado por Group para escutar mais *statements*. Este não é necessariamente um estado que ocorre frequentemente, mas é teoricamente possível.

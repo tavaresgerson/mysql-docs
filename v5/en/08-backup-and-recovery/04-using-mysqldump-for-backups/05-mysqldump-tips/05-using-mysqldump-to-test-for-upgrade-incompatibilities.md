@@ -1,33 +1,33 @@
-#### 7.4.5.5 Using mysqldump to Test for Upgrade Incompatibilities
+#### 7.4.5.5 Usando mysqldump para Testar Incompatibilidades de Upgrade
 
-When contemplating a MySQL upgrade, it is prudent to install the newer version separately from your current production version. Then you can dump the database and database object definitions from the production server and load them into the new server to verify that they are handled properly. (This is also useful for testing downgrades.)
+Ao considerar um Upgrade do MySQL, é prudente instalar a versão mais recente separadamente da sua versão de produção atual. Em seguida, você pode fazer o dump das definições do Database e dos objetos do Database a partir do servidor de produção e carregá-las no novo servidor para verificar se são tratadas corretamente. (Isto também é útil para testar downgrades.)
 
-On the production server:
+No servidor de produção:
 
 ```sql
 $> mysqldump --all-databases --no-data --routines --events > dump-defs.sql
 ```
 
-On the upgraded server:
+No servidor com Upgrade:
 
 ```sql
 $> mysql < dump-defs.sql
 ```
 
-Because the dump file does not contain table data, it can be processed quickly. This enables you to spot potential incompatibilities without waiting for lengthy data-loading operations. Look for warnings or errors while the dump file is being processed.
+Como o arquivo dump não contém os dados das tabelas, ele pode ser processado rapidamente. Isso permite identificar incompatibilidades potenciais sem ter que esperar por operações demoradas de carregamento de dados (data-loading). Procure por warnings ou errors enquanto o arquivo dump estiver sendo processado.
 
-After you have verified that the definitions are handled properly, dump the data and try to load it into the upgraded server.
+Após verificar que as definições estão sendo tratadas corretamente, faça o dump dos dados e tente carregá-los no servidor com Upgrade.
 
-On the production server:
+No servidor de produção:
 
 ```sql
 $> mysqldump --all-databases --no-create-info > dump-data.sql
 ```
 
-On the upgraded server:
+No servidor com Upgrade:
 
 ```sql
 $> mysql < dump-data.sql
 ```
 
-Now check the table contents and run some test queries.
+Agora verifique o conteúdo das tabelas e execute algumas test queries.

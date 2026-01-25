@@ -1,25 +1,25 @@
-#### 5.5.4.1 Installing or Uninstalling the Rewriter Query Rewrite Plugin
+#### 5.5.4.1 Instalando ou Desinstalando o Plugin de Rewrite de Query Rewriter
 
-Note
+Nota
 
-If installed, the `Rewriter` plugin involves some overhead even when disabled. To avoid this overhead, do not install the plugin unless you plan to use it.
+Se instalado, o plugin `Rewriter` envolve alguma sobrecarga (overhead) mesmo quando desabilitado. Para evitar essa sobrecarga, não instale o plugin a menos que você planeje usá-lo.
 
-To install or uninstall the `Rewriter` query rewrite plugin, choose the appropriate script located in the `share` directory of your MySQL installation:
+Para instalar ou desinstalar o plugin de rewrite de Query `Rewriter`, escolha o script apropriado localizado no diretório `share` de sua instalação MySQL:
 
-* `install_rewriter.sql`: Choose this script to install the `Rewriter` plugin and its associated elements.
+* `install_rewriter.sql`: Escolha este script para instalar o plugin `Rewriter` e seus elementos associados.
 
-* `uninstall_rewriter.sql`: Choose this script to uninstall the `Rewriter` plugin and its associated elements.
+* `uninstall_rewriter.sql`: Escolha este script para desinstalar o plugin `Rewriter` e seus elementos associados.
 
-Run the chosen script as follows:
+Execute o script escolhido da seguinte forma:
 
 ```sql
 $> mysql -u root -p < install_rewriter.sql
 Enter password: (enter root password here)
 ```
 
-The example here uses the `install_rewriter.sql` installation script. Substitute `uninstall_rewriter.sql` if you are uninstalling the plugin.
+O exemplo aqui usa o script de instalação `install_rewriter.sql`. Substitua por `uninstall_rewriter.sql` se você estiver desinstalando o plugin.
 
-Running an installation script should install and enable the plugin. To verify that, connect to the server and execute this statement:
+A execução de um script de instalação deve instalar e habilitar o plugin. Para verificar isso, conecte-se ao server e execute esta instrução (statement):
 
 ```sql
 mysql> SHOW GLOBAL VARIABLES LIKE 'rewriter_enabled';
@@ -30,4 +30,4 @@ mysql> SHOW GLOBAL VARIABLES LIKE 'rewriter_enabled';
 +------------------+-------+
 ```
 
-For usage instructions, see [Section 5.5.4.2, “Using the Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin-usage.html "5.5.4.2 Using the Rewriter Query Rewrite Plugin"). For reference information, see [Section 5.5.4.3, “Rewriter Query Rewrite Plugin Reference”](rewriter-query-rewrite-plugin-reference.html "5.5.4.3 Rewriter Query Rewrite Plugin Reference").
+Para instruções de uso, consulte [Seção 5.5.4.2, “Usando o Plugin de Rewrite de Query Rewriter”](rewriter-query-rewrite-plugin-usage.html "5.5.4.2 Usando o Plugin de Rewrite de Query Rewriter"). Para informações de referência, consulte [Seção 5.5.4.3, “Referência do Plugin de Rewrite de Query Rewriter”](rewriter-query-rewrite-plugin-reference.html "5.5.4.3 Referência do Plugin de Rewrite de Query Rewriter").

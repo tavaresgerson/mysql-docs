@@ -1,156 +1,156 @@
-### 2.10.3 Changes in MySQL 5.7
+### 2.10.3 Mudanças no MySQL 5.7
 
-Before upgrading to MySQL 5.7, review the changes described in this section to identify those that apply to your current MySQL installation and applications. Perform any recommended actions.
+Antes de fazer o upgrade para o MySQL 5.7, revise as mudanças descritas nesta seção para identificar aquelas que se aplicam à sua instalação e aplicações atuais do MySQL. Execute quaisquer ações recomendadas.
 
-Changes marked as **Incompatible change** are incompatibilities with earlier versions of MySQL, and may require your attention *before upgrading*. Our aim is to avoid these changes, but occasionally they are necessary to correct problems that would be worse than an incompatibility between releases. If an upgrade issue applicable to your installation involves an incompatibility, follow the instructions given in the description. Sometimes this involves dumping and reloading tables, or use of a statement such as `CHECK TABLE` or `REPAIR TABLE`.
+As mudanças marcadas como **Mudança incompatível** são incompatibilidades com versões anteriores do MySQL e podem exigir sua atenção *antes do upgrade*. Nosso objetivo é evitar essas mudanças, mas ocasionalmente elas são necessárias para corrigir problemas que seriam piores do que uma incompatibilidade entre releases. Se um problema de upgrade aplicável à sua instalação envolver uma incompatibilidade, siga as instruções fornecidas na descrição. Às vezes, isso envolve dump e recarregamento de tabelas, ou o uso de uma instrução como `CHECK TABLE` ou `REPAIR TABLE`.
 
-For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairing Tables or Indexes”. Any procedure that involves `REPAIR TABLE` with the `USE_FRM` option *must* be done before upgrading. Use of this statement with a version of MySQL different from the one used to create the table (that is, using it after upgrading) may damage the table. See Section 13.7.2.5, “REPAIR TABLE Statement”.
+Para instruções de dump e recarregamento, consulte a Seção 2.10.12, “Reconstrução ou Reparo de Tabelas ou Indexes”. Qualquer procedimento que envolva `REPAIR TABLE` com a opção `USE_FRM` *deve* ser feito antes do upgrade. O uso desta instrução com uma versão do MySQL diferente daquela usada para criar a tabela (ou seja, usá-la após o upgrade) pode danificar a tabela. Consulte a Seção 13.7.2.5, “Instrução REPAIR TABLE”.
 
-* Configuration Changes
-* System Table Changes
-* Server Changes
-* InnoDB Changes
-* SQL Changes
+* Mudanças de Configuração
+* Mudanças na Tabela de Sistema
+* Mudanças no Servidor
+* Mudanças no InnoDB
+* Mudanças no SQL
 
-#### Configuration Changes
+#### Mudanças de Configuração
 
-* **Incompatible change**: In MySQL 5.7.11, the default `--early-plugin-load` value is the name of the `keyring_file` plugin library file, causing that plugin to be loaded by default. In MySQL 5.7.12 and higher, the default `--early-plugin-load` value is empty; to load the `keyring_file` plugin, you must explicitly specify the option with a value naming the `keyring_file` plugin library file.
+* **Mudança incompatível**: No MySQL 5.7.11, o valor padrão de `--early-plugin-load` é o nome do arquivo da biblioteca do plugin `keyring_file`, fazendo com que esse plugin seja carregado por padrão. No MySQL 5.7.12 e superior, o valor padrão de `--early-plugin-load` é vazio; para carregar o plugin `keyring_file`, você deve especificar explicitamente a opção com um valor que nomeie o arquivo da biblioteca do plugin `keyring_file`.
 
-  `InnoDB` tablespace encryption requires that the keyring plugin to be used be loaded prior to `InnoDB` initialization, so this change of default `--early-plugin-load` value introduces an incompatibility for upgrades from 5.7.11 to 5.7.12 or higher. Administrators who have encrypted `InnoDB` tablespaces must take explicit action to ensure continued loading of the keyring plugin: Start the server with an `--early-plugin-load` option that names the plugin library file. For additional information, see Section 6.4.4.1, “Keyring Plugin Installation”.
+  A encryption do tablespace `InnoDB` exige que o plugin keyring a ser usado seja carregado antes da inicialização do `InnoDB`, portanto, essa mudança no valor padrão de `--early-plugin-load` introduz uma incompatibilidade para upgrades da versão 5.7.11 para 5.7.12 ou superior. Os administradores que possuem tablespaces `InnoDB` criptografados devem tomar ações explícitas para garantir o carregamento contínuo do plugin keyring: Inicie o servidor com uma opção `--early-plugin-load` que nomeie o arquivo da biblioteca do plugin. Para informações adicionais, consulte a Seção 6.4.4.1, “Instalação do Plugin Keyring”.
 
-* **Incompatible change**: The `INFORMATION_SCHEMA` has tables that contain system and status variable information (see Section 24.3.11, “The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables”, and Section 24.3.10, “The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables”). As of MySQL 5.7.6, the Performance Schema also contains system and status variable tables (see Section 25.12.13, “Performance Schema System Variable Tables”, and Section 25.12.14, “Performance Schema Status Variable Tables”). The Performance Schema tables are intended to replace the `INFORMATION_SCHEMA` tables, which are deprecated as of MySQL 5.7.6 and are removed in MySQL 8.0.
+* **Mudança incompatível**: O `INFORMATION_SCHEMA` possui tabelas que contêm informações de variáveis de sistema e status (consulte a Seção 24.3.11, “As Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”, e a Seção 24.3.10, “As Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”). A partir do MySQL 5.7.6, o Performance Schema também contém tabelas de variáveis de sistema e status (consulte a Seção 25.12.13, “Tabelas de Variáveis de Sistema do Performance Schema”, e a Seção 25.12.14, “Tabelas de Variáveis de Status do Performance Schema”). As tabelas do Performance Schema destinam-se a substituir as tabelas do `INFORMATION_SCHEMA`, que estão descontinuadas (deprecated) a partir do MySQL 5.7.6 e foram removidas no MySQL 8.0.
 
-  For advice on migrating away from the `INFORMATION_SCHEMA` tables to the Performance Schema tables, see Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”. To assist in the migration, you can use the `show_compatibility_56` system variable, which affects how system and status variable information is provided by the `INFORMATION_SCHEMA` and Performance Schema tables, and also by the `SHOW VARIABLES` and `SHOW STATUS` statements. `show_compatibility_56` is enabled by default in 5.7.6 and 5.7.7, and disabled by default in MySQL 5.7.8.
+  Para conselhos sobre a migração das tabelas do `INFORMATION_SCHEMA` para as tabelas do Performance Schema, consulte a Seção 25.20, “Migrando para as Tabelas de Variáveis de Status e Sistema do Performance Schema”. Para auxiliar na migração, você pode usar a variável de sistema `show_compatibility_56`, que afeta como as informações de variáveis de sistema e status são fornecidas pelas tabelas `INFORMATION_SCHEMA` e Performance Schema, e também pelas instruções `SHOW VARIABLES` e `SHOW STATUS`. `show_compatibility_56` está habilitada por padrão nas versões 5.7.6 e 5.7.7, e desabilitada por padrão no MySQL 5.7.8.
 
-  For details about the effects of `show_compatibility_56`, see Section 5.1.7, “Server System Variables” For better understanding, it is strongly recommended that you read also these sections:
+  Para detalhes sobre os efeitos de `show_compatibility_56`, consulte a Seção 5.1.7, “Variáveis de Sistema do Servidor”. Para melhor compreensão, é altamente recomendável que você leia também estas seções:
 
-  + Section 25.12.13, “Performance Schema System Variable Tables”
-  + Section 25.12.14, “Performance Schema Status Variable Tables”
-  + Section 25.12.15.10, “Status Variable Summary Tables”
-* **Incompatible change**: As of MySQL 5.7.6, data directory initialization creates only a single `root` account, `'root'@'localhost'`. (See Section 2.9.1, “Initializing the Data Directory”.) An attempt to connect to the host `127.0.0.1` normally resolves to the `localhost` account. However, this fails if the server is run with `skip_name_resolve` enabled. If you plan to do that, make sure that an account exists that can accept a connection. For example, to be able to connect as `root` using `--host=127.0.0.1` or `--host=::1`, create these accounts:
+  + Seção 25.12.13, “Tabelas de Variáveis de Sistema do Performance Schema”
+  + Seção 25.12.14, “Tabelas de Variáveis de Status do Performance Schema”
+  + Seção 25.12.15.10, “Tabelas de Resumo de Variáveis de Status”
+* **Mudança incompatível**: A partir do MySQL 5.7.6, a inicialização do diretório de dados cria apenas uma única conta `root`, `'root'@'localhost'`. (Consulte a Seção 2.9.1, “Inicializando o Diretório de Dados”.) Uma tentativa de conexão ao host `127.0.0.1` normalmente resolve para a conta `localhost`. No entanto, isso falha se o servidor for executado com `skip_name_resolve` habilitado. Se você planeja fazer isso, certifique-se de que exista uma conta que possa aceitar uma Connection. Por exemplo, para poder se conectar como `root` usando `--host=127.0.0.1` ou `--host=::1`, crie estas contas:
 
   ```sql
   CREATE USER 'root'@'127.0.0.1' IDENTIFIED BY 'root-password';
   CREATE USER 'root'@'::1' IDENTIFIED BY 'root-password';
   ```
 
-* **Incompatible change**: As of MySQL 5.7.6, for some Linux platforms, when MySQL is installed using RPM and Debian packages, server startup and shutdown now is managed using systemd rather than **mysqld_safe**, and **mysqld_safe** is not installed. This may require some adjustment to the manner in which you specify server options. For details, see Section 2.5.10, “Managing MySQL Server with systemd”.
+* **Mudança incompatível**: A partir do MySQL 5.7.6, para algumas plataformas Linux, quando o MySQL é instalado usando pacotes RPM e Debian, a inicialização e o desligamento do servidor agora são gerenciados usando systemd em vez de **mysqld_safe**, e o **mysqld_safe** não é instalado. Isso pode exigir algum ajuste na forma como você especifica as opções do servidor. Para obter detalhes, consulte a Seção 2.5.10, “Gerenciando o Servidor MySQL com systemd”.
 
-* **Incompatible change**: In MySQL 5.7.5, the executable binary version of **mysql_install_db** is located in the `bin` installation directory, whereas the Perl version was located in the `scripts` installation directory. For upgrades from an older version of MySQL, you may find a version in both directories. To avoid confusion, remove the version in the `scripts` directory. For fresh installations of MySQL 5.7.5 or later, **mysql_install_db** is only found in the `bin` directory, and the `scripts` directory is no longer present. Applications that expect to find **mysql_install_db** in the `scripts` directory should be updated to look in the `bin` directory instead.
+* **Mudança incompatível**: No MySQL 5.7.5, a versão binária executável de **mysql_install_db** está localizada no diretório de instalação `bin`, enquanto a versão Perl estava localizada no diretório de instalação `scripts`. Para upgrades de uma versão mais antiga do MySQL, você pode encontrar uma versão em ambos os diretórios. Para evitar confusão, remova a versão no diretório `scripts`. Para novas instalações do MySQL 5.7.5 ou posterior, **mysql_install_db** é encontrado apenas no diretório `bin`, e o diretório `scripts` não está mais presente. As aplicações que esperam encontrar **mysql_install_db** no diretório `scripts` devem ser atualizadas para procurar no diretório `bin`.
 
-  The location of **mysql_install_db** becomes less material as of MySQL 5.7.6 because as of that version it is deprecated in favor of **mysqld --initialize** (or **mysqld --initialize-insecure**). See Section 2.9.1, “Initializing the Data Directory”
+  A localização de **mysql_install_db** torna-se menos relevante a partir do MySQL 5.7.6 porque, a partir dessa versão, ele está descontinuado em favor de **mysqld --initialize** (ou **mysqld --initialize-insecure**). Consulte a Seção 2.9.1, “Inicializando o Diretório de Dados”
 
-* **Incompatible change**: In MySQL 5.7.5, these SQL mode changes were made:
+* **Mudança incompatível**: No MySQL 5.7.5, estas mudanças no SQL mode foram feitas:
 
-  + Strict SQL mode for transactional storage engines (`STRICT_TRANS_TABLES`) is now enabled by default.
+  + O SQL mode estrito para storage engines transacionais (`STRICT_TRANS_TABLES`) agora está habilitado por padrão.
 
-  + Implementation of the `ONLY_FULL_GROUP_BY` SQL mode has been made more sophisticated, to no longer reject deterministic queries that previously were rejected. In consequence, `ONLY_FULL_GROUP_BY` is now enabled by default, to prohibit nondeterministic queries containing expressions not guaranteed to be uniquely determined within a group.
+  + A implementação do SQL mode `ONLY_FULL_GROUP_BY` foi tornada mais sofisticada, para não mais rejeitar Queries determinísticas que eram rejeitadas anteriormente. Consequentemente, `ONLY_FULL_GROUP_BY` agora está habilitado por padrão, para proibir Queries não determinísticas contendo expressões não garantidas de serem determinadas exclusivamente dentro de um grupo.
 
-  + The changes to the default SQL mode result in a default `sql_mode` system variable value with these modes enabled: `ONLY_FULL_GROUP_BY`, `STRICT_TRANS_TABLES`, `NO_ENGINE_SUBSTITUTION`.
+  + As mudanças no SQL mode padrão resultam em um valor de variável de sistema `sql_mode` padrão com estes modes habilitados: `ONLY_FULL_GROUP_BY`, `STRICT_TRANS_TABLES`, `NO_ENGINE_SUBSTITUTION`.
 
-  + The `ONLY_FULL_GROUP_BY` mode is also now included in the modes comprised by the `ANSI` SQL mode.
+  + O mode `ONLY_FULL_GROUP_BY` agora também está incluído nos modes compreendidos pelo SQL mode `ANSI`.
 
-  If you find that having `ONLY_FULL_GROUP_BY` enabled causes queries for existing applications to be rejected, either of these actions should restore operation:
+  Se você descobrir que ter `ONLY_FULL_GROUP_BY` habilitado faz com que Queries para aplicações existentes sejam rejeitadas, qualquer uma destas ações deve restaurar a operação:
 
-  + If it is possible to modify an offending query, do so, either so that nondeterministic nonaggregated columns are functionally dependent on `GROUP BY` columns, or by referring to nonaggregated columns using `ANY_VALUE()`.
+  + Se for possível modificar uma Query ofensiva, faça-o, seja para que as colunas não agregadas não determinísticas sejam funcionalmente dependentes das colunas `GROUP BY`, ou referenciando colunas não agregadas usando `ANY_VALUE()`.
 
-  + If it is not possible to modify an offending query (for example, if it is generated by a third-party application), set the `sql_mode` system variable at server startup to not enable `ONLY_FULL_GROUP_BY`.
+  + Se não for possível modificar uma Query ofensiva (por exemplo, se for gerada por uma aplicação de terceiros), defina a variável de sistema `sql_mode` na inicialização do servidor para não habilitar `ONLY_FULL_GROUP_BY`.
 
-  For more information about SQL modes and `GROUP BY` queries, see Section 5.1.10, “Server SQL Modes”, and Section 12.19.3, “MySQL Handling of GROUP BY”.
+  Para obter mais informações sobre SQL modes e Queries `GROUP BY`, consulte a Seção 5.1.10, “SQL Modes do Servidor”, e a Seção 12.19.3, “Manuseio de GROUP BY pelo MySQL”.
 
-#### System Table Changes
+#### Mudanças na Tabela de Sistema
 
-* **Incompatible change**: The `Password` column of the `mysql.user` system table was removed in MySQL 5.7.6. All credentials are stored in the `authentication_string` column, including those formerly stored in the `Password` column. If performing an in-place upgrade to MySQL 5.7.6 or later, run **mysql_upgrade** as directed by the in-place upgrade procedure to migrate the `Password` column contents to the `authentication_string` column.
+* **Mudança incompatível**: A coluna `Password` da tabela de sistema `mysql.user` foi removida no MySQL 5.7.6. Todas as credenciais são armazenadas na coluna `authentication_string`, incluindo aquelas anteriormente armazenadas na coluna `Password`. Se estiver realizando um in-place upgrade para MySQL 5.7.6 ou posterior, execute **mysql_upgrade** conforme as instruções do procedimento de in-place upgrade para migrar o conteúdo da coluna `Password` para a coluna `authentication_string`.
 
-  If performing a logical upgrade using a **mysqldump** dump file from a pre-5.7.6 MySQL installation, you must observe these conditions for the **mysqldump** command used to generate the dump file:
+  Se estiver realizando um upgrade lógico usando um arquivo dump do **mysqldump** de uma instalação MySQL pré-5.7.6, você deve observar estas condições para o comando **mysqldump** usado para gerar o arquivo dump:
 
-  + You must include the `--add-drop-table` option
+  + Você deve incluir a opção `--add-drop-table`
 
-  + You must not include the `--flush-privileges` option
+  + Você não deve incluir a opção `--flush-privileges`
 
-  As outlined in the logical upgrade procedure, load the pre-5.7.6 dump file into the 5.7.6 (or later) server before running **mysql_upgrade**.
+  Conforme descrito no procedimento de upgrade lógico, carregue o arquivo dump pré-5.7.6 no servidor 5.7.6 (ou posterior) antes de executar **mysql_upgrade**.
 
-#### Server Changes
+#### Mudanças no Servidor
 
-* **Incompatible change**: As of MySQL 5.7.5, support for passwords that use the older pre-4.1 password hashing format is removed, which involves the following changes. Applications that use any feature no longer supported must be modified.
+* **Mudança incompatível**: A partir do MySQL 5.7.5, o suporte para senhas que usam o formato mais antigo de password hashing pré-4.1 é removido, o que envolve as seguintes mudanças. As aplicações que usam qualquer recurso não mais suportado devem ser modificadas.
 
-  + The `mysql_old_password` authentication plugin that used pre-4.1 password hash values is removed. Accounts that use this plugin are disabled at startup and the server writes an “unknown plugin” message to the error log. For instructions on upgrading accounts that use this plugin, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
+  + O plugin de autenticação `mysql_old_password` que usava valores hash de senha pré-4.1 é removido. As contas que usam este plugin são desabilitadas na inicialização e o servidor grava uma mensagem de “unknown plugin” (plugin desconhecido) no error log. Para instruções sobre como fazer upgrade de contas que usam este plugin, consulte a Seção 6.4.1.3, “Migrando de Hashing de Senha Pré-4.1 e o Plugin mysql_old_password”.
 
-  + For the `old_passwords` system variable, a value of 1 (produce pre-4.1 hash values) is no longer permitted.
+  + Para a variável de sistema `old_passwords`, um valor de 1 (produzir valores hash pré-4.1) não é mais permitido.
 
-  + The `--secure-auth` option to the server and client programs is the default, but is now a no-op. It is deprecated;expect it to be removed in a future MySQL release.
+  + A opção `--secure-auth` para o servidor e programas cliente é o padrão, mas agora é um no-op. Ela está descontinuada (deprecated); espere que seja removida em um futuro release do MySQL.
 
-  + The `--skip-secure-auth` option to the server and client programs is no longer supported and using it produces an error.
+  + A opção `--skip-secure-auth` para o servidor e programas cliente não é mais suportada e usá-la produz um erro.
 
-  + The `secure_auth` system variable permits only a value of 1; a value of 0 is no longer permitted.
+  + A variável de sistema `secure_auth` permite apenas um valor de 1; um valor de 0 não é mais permitido.
 
-  + The `OLD_PASSWORD()` function is removed.
+  + A função `OLD_PASSWORD()` é removida.
 
-* **Incompatible change**: In MySQL 5.6.6, the 2-digit `YEAR(2)` data type was deprecated. In MySQL 5.7.5, support for `YEAR(2)` is removed. Once you upgrade to MySQL 5.7.5 or higher, any remaining 2-digit `YEAR(2)` columns must be converted to 4-digit `YEAR` columns to become usable again. For conversion strategies, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR"). Running **mysql_upgrade** after upgrading is one of the possible conversion strategies.
+* **Mudança incompatível**: No MySQL 5.6.6, o data type `YEAR(2)` de 2 dígitos foi descontinuado. No MySQL 5.7.5, o suporte para `YEAR(2)` é removido. Uma vez que você faça o upgrade para MySQL 5.7.5 ou superior, quaisquer colunas `YEAR(2)` de 2 dígitos restantes devem ser convertidas para colunas `YEAR` de 4 dígitos para se tornarem utilizáveis novamente. Para estratégias de conversão, consulte a Seção 11.2.5, “Limitações de YEAR(2) de 2 Dígitos e Migração para YEAR de 4 Dígitos”. A execução de **mysql_upgrade** após o upgrade é uma das possíveis estratégias de conversão.
 
-* As of MySQL 5.7.7, `CHECK TABLE ... FOR UPGRADE` reports a table as needing a rebuild if it contains old temporal columns in pre-5.6.4 format (`TIME`, `DATETIME`, and `TIMESTAMP` columns without support for fractional seconds precision) and the `avoid_temporal_upgrade` system variable is disabled. This helps **mysql_upgrade** to detect and upgrade tables containing old temporal columns. If `avoid_temporal_upgrade` is enabled, `FOR UPGRADE` ignores the old temporal columns present in the table; consequently, **mysql_upgrade** does not upgrade them.
+* A partir do MySQL 5.7.7, `CHECK TABLE ... FOR UPGRADE` relata que uma tabela precisa de um rebuild se contiver colunas temporais antigas em formato pré-5.6.4 (colunas `TIME`, `DATETIME` e `TIMESTAMP` sem suporte para precisão de segundos fracionários) e a variável de sistema `avoid_temporal_upgrade` estiver desabilitada. Isso ajuda o **mysql_upgrade** a detectar e fazer o upgrade de tabelas contendo colunas temporais antigas. Se `avoid_temporal_upgrade` estiver habilitada, `FOR UPGRADE` ignora as colunas temporais antigas presentes na tabela; consequentemente, o **mysql_upgrade** não faz o upgrade delas.
 
-  As of MySQL 5.7.7, `REPAIR TABLE` upgrades a table if it contains old temporal columns in pre-5.6.4 format and the `avoid_temporal_upgrade` system variable is disabled. If `avoid_temporal_upgrade` is enabled, `REPAIR TABLE` ignores the old temporal columns present in the table and does not upgrade them.
+  A partir do MySQL 5.7.7, `REPAIR TABLE` faz o upgrade de uma tabela se ela contiver colunas temporais antigas em formato pré-5.6.4 e a variável de sistema `avoid_temporal_upgrade` estiver desabilitada. Se `avoid_temporal_upgrade` estiver habilitada, `REPAIR TABLE` ignora as colunas temporais antigas presentes na tabela e não faz o upgrade delas.
 
-  To check for tables that contain such temporal columns and need a rebuild, disable `avoid_temporal_upgrade` before executing `CHECK TABLE ... FOR UPGRADE`.
+  Para verificar tabelas que contêm tais colunas temporais e precisam de um rebuild, desabilite `avoid_temporal_upgrade` antes de executar `CHECK TABLE ... FOR UPGRADE`.
 
-  To upgrade tables that contain such temporal columns, disable `avoid_temporal_upgrade` before executing `REPAIR TABLE` or **mysql_upgrade**.
+  Para fazer o upgrade de tabelas que contêm tais colunas temporais, desabilite `avoid_temporal_upgrade` antes de executar `REPAIR TABLE` ou **mysql_upgrade**.
 
-* **Incompatible change**: As of MySQL 5.7.2, the server requires account rows in the `mysql.user` system table to have a nonempty `plugin` column value and disables accounts with an empty value. This requires that you upgrade your `mysql.user` table to fill in all `plugin` values. As of MySQL 5.7.6, use this procedure:
+* **Mudança incompatível**: A partir do MySQL 5.7.2, o servidor exige que as linhas de conta na tabela de sistema `mysql.user` tenham um valor de coluna `plugin` não vazio e desabilita contas com um valor vazio. Isso exige que você faça o upgrade de sua tabela `mysql.user` para preencher todos os valores `plugin`. A partir do MySQL 5.7.6, use este procedimento:
 
-  If you plan to upgrade using the data directory from your existing MySQL installation:
+  Se você planeja fazer o upgrade usando o diretório de dados de sua instalação MySQL existente:
 
-  1. Stop the old (MySQL 5.6) server
-  2. Upgrade the MySQL binaries in place by replacing the old binaries with the new ones
+  1. Pare o servidor antigo (MySQL 5.6)
+  2. Faça o upgrade dos binários do MySQL no local, substituindo os binários antigos pelos novos
 
-  3. Start the MySQL 5.7 server normally (no special options)
-  4. Run **mysql_upgrade** to upgrade the system tables
+  3. Inicie o servidor MySQL 5.7 normalmente (sem opções especiais)
+  4. Execute **mysql_upgrade** para fazer o upgrade das tabelas de sistema
 
-  5. Restart the MySQL 5.7 server
+  5. Reinicie o servidor MySQL 5.7
 
-  If you plan to upgrade by reloading a dump file generated from your existing MySQL installation:
+  Se você planeja fazer o upgrade recarregando um arquivo dump gerado a partir de sua instalação MySQL existente:
 
-  1. To generate the dump file, run **mysqldump** with the `--add-drop-table` option and without the `--flush-privileges` option
+  1. Para gerar o arquivo dump, execute **mysqldump** com a opção `--add-drop-table` e sem a opção `--flush-privileges`
 
-  2. Stop the old (MySQL 5.6) server
-  3. Upgrade the MySQL binaries in place (replace the old binaries with the new ones)
+  2. Pare o servidor antigo (MySQL 5.6)
+  3. Faça o upgrade dos binários do MySQL no local (substitua os binários antigos pelos novos)
 
-  4. Start the MySQL 5.7 server normally (no special options)
-  5. Reload the dump file (**mysql < *`dump_file`***)
+  4. Inicie o servidor MySQL 5.7 normalmente (sem opções especiais)
+  5. Recarregue o arquivo dump (**mysql < *`dump_file`***)
 
-  6. Run **mysql_upgrade** to upgrade the system tables
+  6. Execute **mysql_upgrade** para fazer o upgrade das tabelas de sistema
 
-  7. Restart the MySQL 5.7 server
+  7. Reinicie o servidor MySQL 5.7
 
-  Before MySQL 5.7.6, the procedure is more involved:
+  Antes do MySQL 5.7.6, o procedimento é mais envolvido:
 
-  If you plan to upgrade using the data directory from your existing MySQL installation:
+  Se você planeja fazer o upgrade usando o diretório de dados de sua instalação MySQL existente:
 
-  1. Stop the old (MySQL 5.6) server
-  2. Upgrade the MySQL binaries in place (replace the old binaries with the new ones)
+  1. Pare o servidor antigo (MySQL 5.6)
+  2. Faça o upgrade dos binários do MySQL no local (substitua os binários antigos pelos novos)
 
-  3. Restart the server with the `--skip-grant-tables` option to disable privilege checking
+  3. Reinicie o servidor com a opção `--skip-grant-tables` para desabilitar a verificação de privilégios
 
-  4. Run **mysql_upgrade** to upgrade the system tables
+  4. Execute **mysql_upgrade** para fazer o upgrade das tabelas de sistema
 
-  5. Restart the server normally (without `--skip-grant-tables`)
+  5. Reinicie o servidor normalmente (sem `--skip-grant-tables`)
 
-  If you plan to upgrade by reloading a dump file generated from your existing MySQL installation:
+  Se você planeja fazer o upgrade recarregando um arquivo dump gerado a partir de sua instalação MySQL existente:
 
-  1. To generate the dump file, run **mysqldump** without the `--flush-privileges` option
+  1. Para gerar o arquivo dump, execute **mysqldump** sem a opção `--flush-privileges`
 
-  2. Stop the old (MySQL 5.6) server
-  3. Upgrade the MySQL binaries in place (replace the old binaries with the new ones)
+  2. Pare o servidor antigo (MySQL 5.6)
+  3. Faça o upgrade dos binários do MySQL no local (substitua os binários antigos pelos novos)
 
-  4. Restart the server with the `--skip-grant-tables` option to disable privilege checking
+  4. Reinicie o servidor com a opção `--skip-grant-tables` para desabilitar a verificação de privilégios
 
-  5. Reload the dump file (**mysql < *`dump_file`***)
+  5. Recarregue o arquivo dump (**mysql < *`dump_file`***)
 
-  6. Run **mysql_upgrade** to upgrade the system tables
+  6. Execute **mysql_upgrade** para fazer o upgrade das tabelas de sistema
 
-  7. Restart the server normally (without `--skip-grant-tables`)
+  7. Reinicie o servidor normalmente (sem `--skip-grant-tables`)
 
-  **mysql_upgrade** runs by default as the MySQL `root` user. For the preceding procedures, if the `root` password is expired when you run **mysql_upgrade**, it displays a message informing you that your password is expired and that **mysql_upgrade** failed as a result. To correct this, reset the `root` password and run **mysql_upgrade** again:
+  O **mysql_upgrade** é executado por padrão como o usuário `root` do MySQL. Para os procedimentos anteriores, se a senha do `root` estiver expirada quando você executar **mysql_upgrade**, ele exibirá uma mensagem informando que sua senha expirou e que o **mysql_upgrade** falhou como resultado. Para corrigir isso, redefina a senha do `root` e execute **mysql_upgrade** novamente:
 
   ```sql
   $> mysql -u root -p
@@ -163,13 +163,13 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   Enter password: ****  <- enter root password here
   ```
 
-  The password-resetting statement normally does not work if the server is started with `--skip-grant-tables`, but the first invocation of **mysql_upgrade** flushes the privileges, so when you run **mysql**, the statement is accepted.
+  A instrução de redefinição de senha normalmente não funciona se o servidor for iniciado com `--skip-grant-tables`, mas a primeira invocação de **mysql_upgrade** faz um flush dos privilégios, então quando você executa **mysql**, a instrução é aceita.
 
-  If **mysql_upgrade** itself expires the `root` password, you must reset the password again in the same manner.
+  Se o próprio **mysql_upgrade** expirar a senha do `root`, você deve redefinir a senha novamente da mesma maneira.
 
-  After following the preceding instructions, DBAs are advised also to convert accounts that use the `mysql_old_password` authentication plugin to use `mysql_native_password` instead, because support for `mysql_old_password` has been removed. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
+  Após seguir as instruções anteriores, é aconselhável que os DBAs também convertam as contas que usam o plugin de autenticação `mysql_old_password` para usar `mysql_native_password`, pois o suporte para `mysql_old_password` foi removido. Para instruções de upgrade de conta, consulte a Seção 6.4.1.3, “Migrando de Hashing de Senha Pré-4.1 e o Plugin mysql_old_password”.
 
-* **Incompatible change**: It is possible for a column `DEFAULT` value to be valid for the `sql_mode` value at table-creation time but invalid for the `sql_mode` value when rows are inserted or updated. Example:
+* **Mudança incompatível**: É possível que um valor `DEFAULT` de coluna seja válido para o valor `sql_mode` no momento da criação da tabela, mas inválido para o valor `sql_mode` quando as linhas são inseridas ou atualizadas. Exemplo:
 
   ```sql
   SET sql_mode = '';
@@ -178,17 +178,17 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   INSERT INTO t (d) VALUES(DEFAULT);
   ```
 
-  In this case, 0 should be accepted for the `CREATE TABLE` but rejected for the `INSERT`. However, previously the server did not evaluate `DEFAULT` values used for inserts or updates against the current `sql_mode`. In the example, the `INSERT` succeeds and inserts `'0000-00-00'` into the `DATE` column.
+  Neste caso, 0 deve ser aceito para o `CREATE TABLE`, mas rejeitado para o `INSERT`. No entanto, anteriormente o servidor não avaliava os valores `DEFAULT` usados para inserções ou atualizações em relação ao `sql_mode` atual. No exemplo, o `INSERT` é bem-sucedido e insere `'0000-00-00'` na coluna `DATE`.
 
-  As of MySQL 5.7.2, the server applies the proper `sql_mode` checks to generate a warning or error at insert or update time.
+  A partir do MySQL 5.7.2, o servidor aplica as verificações `sql_mode` adequadas para gerar um Warning ou Error no momento da inserção ou atualização.
 
-  A resulting incompatibility for replication if you use statement-based logging (`binlog_format=STATEMENT`) is that if a replica is upgraded, a source which has not been upgraded executes the preceding example without error, whereas the `INSERT` fails on the replica and replication stops.
+  Uma incompatibilidade resultante para replicação, se você usar logging baseado em instrução (`binlog_format=STATEMENT`), é que se uma replica for atualizada, uma source que não foi atualizada executa o exemplo anterior sem erro, enquanto o `INSERT` falha na replica e a replicação para.
 
-  To deal with this, stop all new statements on the source and wait until the replicas catch up. Then upgrade the replicas followed by the source. Alternatively, if you cannot stop new statements, temporarily change to row-based logging on the source (`binlog_format=ROW`) and wait until all replicas have processed all binary logs produced up to the point of this change. Then upgrade the replicas followed by the source and change the source back to statement-based logging.
+  Para lidar com isso, pare todas as novas instruções na source e espere até que as replicas se atualizem. Em seguida, faça o upgrade das replicas seguido pela source. Alternativamente, se você não puder parar novas instruções, mude temporariamente para logging baseado em linha na source (`binlog_format=ROW`) e espere até que todas as replicas tenham processado todos os binary logs produzidos até o ponto desta mudança. Em seguida, faça o upgrade das replicas seguido pela source e mude a source de volta para logging baseado em instrução.
 
-* **Incompatible change**: Several changes were made to the audit log plugin for better compatibility with Oracle Audit Vault. For upgrading purpose, the main issue is that the default format of the audit log file has changed: Information within `<AUDIT_RECORD>` elements previously written using attributes now is written using subelements.
+* **Mudança incompatível**: Várias mudanças foram feitas no audit log plugin para melhor compatibilidade com o Oracle Audit Vault. Para fins de upgrade, o principal problema é que o formato padrão do arquivo de audit log mudou: As informações dentro dos elementos `<AUDIT_RECORD>` que eram escritas anteriormente usando atributos agora são escritas usando subelementos.
 
-  Example of old `<AUDIT_RECORD>` format:
+  Exemplo do formato antigo de `<AUDIT_RECORD>`:
 
   ```sql
   <AUDIT_RECORD
@@ -200,7 +200,7 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   />
   ```
 
-  Example of new format:
+  Exemplo do novo formato:
 
   ```sql
   <AUDIT_RECORD>
@@ -219,70 +219,70 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   </AUDIT_RECORD>
   ```
 
-  If you previously used an older version of the audit log plugin, use this procedure to avoid writing new-format log entries to an existing log file that contains old-format entries:
+  Se você usou anteriormente uma versão mais antiga do audit log plugin, use este procedimento para evitar escrever entradas de log de novo formato em um arquivo de log existente que contém entradas de formato antigo:
 
-  1. Stop the server.
-  2. Rename the current audit log file manually. This file contains log entries using only the old format.
+  1. Pare o servidor.
+  2. Renomeie o arquivo de audit log atual manualmente. Este arquivo contém entradas de log usando apenas o formato antigo.
 
-  3. Update the server and restart it. The audit log plugin creates a new log file, which contains log entries using only the new format.
+  3. Atualize o servidor e reinicie-o. O audit log plugin cria um novo arquivo de log, que contém entradas de log usando apenas o novo formato.
 
-  For information about the audit log plugin, see Section 6.4.5, “MySQL Enterprise Audit”.
+  Para obter informações sobre o audit log plugin, consulte a Seção 6.4.5, “MySQL Enterprise Audit”.
 
-* As of MySQL 5.7.7, the default connection timeout for a replica was changed from 3600 seconds (one hour) to 60 seconds (one minute). The new default is applied when a replica without a setting for the `slave_net_timeout` system variable is upgraded to MySQL 5.7. The default setting for the heartbeat interval, which regulates the heartbeat signal to stop the connection timeout occurring in the absence of data if the connection is still good, is calculated as half the value of `slave_net_timeout`. The heartbeat interval is recorded in the replica's source info log (the `mysql.slave_master_info` table or `master.info` file), and it is not changed automatically when the value or default setting of `slave_net_timeout` is changed. A MySQL 5.6 replica that used the default connection timeout and heartbeat interval, and was then upgraded to MySQL 5.7, therefore has a heartbeat interval that is much longer than the connection timeout.
+* A partir do MySQL 5.7.7, o connection timeout padrão para uma replica foi alterado de 3600 segundos (uma hora) para 60 segundos (um minuto). O novo padrão é aplicado quando uma replica sem uma configuração para a variável de sistema `slave_net_timeout` é atualizada para MySQL 5.7. A configuração padrão para o heartbeat interval, que regula o sinal heartbeat para impedir que o connection timeout ocorra na ausência de dados se a Connection ainda estiver boa, é calculado como metade do valor de `slave_net_timeout`. O heartbeat interval é registrado no source info log da replica (a tabela `mysql.slave_master_info` ou arquivo `master.info`), e não é alterado automaticamente quando o valor ou a configuração padrão de `slave_net_timeout` é alterado. Uma replica MySQL 5.6 que usou o connection timeout e o heartbeat interval padrão e foi então atualizada para MySQL 5.7, portanto, tem um heartbeat interval que é muito mais longo do que o connection timeout.
 
-  If the level of activity on the source is such that updates to the binary log are sent to the replica at least once every 60 seconds, this situation is not an issue. However, if no data is received from the source, because the heartbeat is not being sent, the connection timeout expires. The replica therefore thinks the connection to the source has been lost and makes multiple reconnection attempts (as controlled by the `MASTER_CONNECT_RETRY` and `MASTER_RETRY_COUNT` settings, which can also be seen in the source info log). The reconnection attempts spawn numerous zombie dump threads that the source must kill, causing the error log on the source to contain multiple errors of the form While initializing dump thread for slave with UUID *`uuid`*, found a zombie dump thread with the same UUID. Master is killing the zombie dump thread *`threadid`*. To avoid this issue, immediately before upgrading a replica to MySQL 5.7, check whether the `slave_net_timeout` system variable is using the default setting. If so, issue `CHANGE MASTER TO` with the `MASTER_HEARTBEAT_PERIOD` option, and set the heartbeat interval to 30 seconds, so that it works with the new connection timeout of 60 seconds that applies after the upgrade.
+  Se o nível de atividade na source for tal que as atualizações para o binary log são enviadas para a replica pelo menos uma vez a cada 60 segundos, esta situação não é um problema. No entanto, se nenhum dado for recebido da source, porque o heartbeat não está sendo enviado, o connection timeout expira. A replica, portanto, pensa que a Connection com a source foi perdida e faz múltiplas tentativas de reconexão (conforme controlado pelas configurações `MASTER_CONNECT_RETRY` e `MASTER_RETRY_COUNT`, que também podem ser vistas no source info log). As tentativas de reconexão geram inúmeras dump threads zumbis que a source deve eliminar, fazendo com que o error log na source contenha múltiplos Errors na forma While initializing dump thread for slave with UUID *`uuid`*, found a zombie dump thread with the same UUID. Master is killing the zombie dump thread *`threadid`*. Para evitar esse problema, imediatamente antes de fazer o upgrade de uma replica para MySQL 5.7, verifique se a variável de sistema `slave_net_timeout` está usando a configuração padrão. Em caso afirmativo, emita `CHANGE MASTER TO` com a opção `MASTER_HEARTBEAT_PERIOD` e defina o heartbeat interval para 30 segundos, para que funcione com o novo connection timeout de 60 segundos que se aplica após o upgrade.
 
-* **Incompatible change**: MySQL 5.6.22 and later recognized the `REFERENCES` privilege but did not entirely enforce it; a user with at least one of `SELECT`, `INSERT`, `UPDATE`, `DELETE`, or `REFERENCES` could create a foreign key constraint on a table. MySQL 5.7 (and later) requires the user to have the `REFERENCES` privilege to do this. This means that if you migrate users from a MySQL 5.6 server (any version) to one running MySQL 5.7, you must make sure to grant this privilege explicitly to any users which need to be able to create foreign keys. This includes the user account employed to import dumps containing tables with foreign keys.
+* **Mudança incompatível**: O MySQL 5.6.22 e posterior reconhecia o privilégio `REFERENCES`, mas não o impunha totalmente; um usuário com pelo menos um de `SELECT`, `INSERT`, `UPDATE`, `DELETE` ou `REFERENCES` poderia criar uma foreign key constraint em uma tabela. O MySQL 5.7 (e posterior) exige que o usuário tenha o privilégio `REFERENCES` para fazer isso. Isso significa que, se você migrar usuários de um servidor MySQL 5.6 (qualquer versão) para um que execute o MySQL 5.7, você deve garantir que conceda este privilégio explicitamente a quaisquer usuários que precisem ser capazes de criar foreign keys. Isso inclui a conta de usuário empregada para importar dumps contendo tabelas com foreign keys.
 
-#### InnoDB Changes
+#### Mudanças no InnoDB
 
-* As of MySQL 5.7.24, the zlib library version bundled with MySQL was raised from version 1.2.3 to version 1.2.11.
+* A partir do MySQL 5.7.24, a versão da biblioteca zlib incluída no MySQL foi elevada da versão 1.2.3 para a versão 1.2.11.
 
-  The zlib `compressBound()` function in zlib 1.2.11 returns a slightly higher estimate of the buffer size required to compress a given length of bytes than it did in zlib version 1.2.3. The `compressBound()` function is called by `InnoDB` functions that determine the maximum row size permitted when creating compressed `InnoDB` tables or inserting rows into compressed `InnoDB` tables. As a result, `CREATE TABLE ... ROW_FORMAT=COMPRESSED` or `INSERT` operations with row sizes very close to the maximum row size that were successful in earlier releases could now fail.
+  A função `compressBound()` do zlib na versão 1.2.11 do zlib retorna uma estimativa ligeiramente superior do tamanho do Buffer necessário para comprimir um determinado comprimento de bytes do que retornava na versão 1.2.3 do zlib. A função `compressBound()` é chamada pelas funções do `InnoDB` que determinam o tamanho máximo da linha permitido ao criar tabelas `InnoDB` comprimidas ou inserir linhas em tabelas `InnoDB` comprimidas. Como resultado, as operações `CREATE TABLE ... ROW_FORMAT=COMPRESSED` ou `INSERT` com tamanhos de linha muito próximos ao tamanho máximo da linha que foram bem-sucedidas em releases anteriores podem agora falhar.
 
-  If you have compressed `InnoDB` tables with large rows, it is recommended that you test compressed table `CREATE TABLE` statements on a MySQL 5.7 test instance prior to upgrading.
+  Se você tiver tabelas `InnoDB` comprimidas com linhas grandes, é recomendável que você teste as instruções `CREATE TABLE` de tabelas comprimidas em uma instância de teste do MySQL 5.7 antes de fazer o upgrade.
 
-* **Incompatible change**: To simplify `InnoDB` tablespace discovery during crash recovery, new redo log record types were introduced in MySQL 5.7.5. This enhancement changes the redo log format. Before performing an in-place upgrade, perform a clean shutdown using an `innodb_fast_shutdown` setting of `0` or `1`. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Upgrade.
+* **Mudança incompatível**: Para simplificar a tablespace discovery do `InnoDB` durante o crash recovery, novos tipos de redo log record foram introduzidos no MySQL 5.7.5. Este aprimoramento altera o formato do redo log. Antes de realizar um in-place upgrade, execute um clean shutdown usando uma configuração `innodb_fast_shutdown` de `0` ou `1`. Um slow shutdown usando `innodb_fast_shutdown=0` é uma etapa recomendada no In-Place Upgrade.
 
-* **Incompatible change**: MySQL 5.7.8 and 5.7.9 undo logs may contain insufficient information about spatial columns, which could result in a upgrade failure (Bug #21508582). Before performing an in-place upgrade from MySQL 5.7.8 or 5.7.9 to 5.7.10 or higher, perform a slow shutdown using `innodb_fast_shutdown=0` to clear the undo logs. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Upgrade.
+* **Mudança incompatível**: Os undo logs do MySQL 5.7.8 e 5.7.9 podem conter informações insuficientes sobre spatial columns, o que pode resultar em uma falha de upgrade (Bug #21508582). Antes de realizar um in-place upgrade do MySQL 5.7.8 ou 5.7.9 para 5.7.10 ou superior, execute um slow shutdown usando `innodb_fast_shutdown=0` para limpar os undo logs. Um slow shutdown usando `innodb_fast_shutdown=0` é uma etapa recomendada no In-Place Upgrade.
 
-* **Incompatible change**: MySQL 5.7.8 undo logs may contain insufficient information about virtual columns and virtual column indexes, which could result in a upgrade failure (Bug #21869656). Before performing an in-place upgrade from MySQL 5.7.8 to MySQL 5.7.9 or higher, perform a slow shutdown using `innodb_fast_shutdown=0` to clear the undo logs. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Upgrade.
+* **Mudança incompatível**: Os undo logs do MySQL 5.7.8 podem conter informações insuficientes sobre virtual columns e virtual column indexes, o que pode resultar em uma falha de upgrade (Bug #21869656). Antes de realizar um in-place upgrade do MySQL 5.7.8 para MySQL 5.7.9 ou superior, execute um slow shutdown usando `innodb_fast_shutdown=0` para limpar os undo logs. Um slow shutdown usando `innodb_fast_shutdown=0` é uma etapa recomendada no In-Place Upgrade.
 
-* **Incompatible change**: As of MySQL 5.7.9, the redo log header of the first redo log file (`ib_logfile0`) includes a format version identifier and a text string that identifies the MySQL version that created the redo log files. This enhancement changes the redo log format, requiring that MySQL be shutdown cleanly using an `innodb_fast_shutdown` setting of `0` or `1` before performing an in-place upgrade to MySQL 5.7.9 or higher. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Upgrade.
+* **Mudança incompatível**: A partir do MySQL 5.7.9, o redo log header do primeiro arquivo de redo log (`ib_logfile0`) inclui um format version identifier e uma string de texto que identifica a versão do MySQL que criou os arquivos de redo log. Este aprimoramento altera o formato do redo log, exigindo que o MySQL seja desligado de forma limpa usando uma configuração `innodb_fast_shutdown` de `0` ou `1` antes de realizar um in-place upgrade para MySQL 5.7.9 ou superior. Um slow shutdown usando `innodb_fast_shutdown=0` é uma etapa recomendada no In-Place Upgrade.
 
-* In MySQL 5.7.9, `DYNAMIC` replaces `COMPACT` as the implicit default row format for `InnoDB` tables. A new configuration option, `innodb_default_row_format`, specifies the default `InnoDB` row format. Permitted values include `DYNAMIC` (the default), `COMPACT`, and `REDUNDANT`.
+* No MySQL 5.7.9, `DYNAMIC` substitui `COMPACT` como o row format padrão implícito para tabelas `InnoDB`. Uma nova opção de configuração, `innodb_default_row_format`, especifica o row format padrão do `InnoDB`. Os valores permitidos incluem `DYNAMIC` (o padrão), `COMPACT` e `REDUNDANT`.
 
-  After upgrading to 5.7.9, any new tables that you create use the row format defined by `innodb_default_row_format` unless you explicitly define a row format (`ROW_FORMAT`).
+  Após o upgrade para 5.7.9, quaisquer novas tabelas que você criar usam o row format definido por `innodb_default_row_format`, a menos que você defina explicitamente um row format (`ROW_FORMAT`).
 
-  For existing tables that do not explicitly define a `ROW_FORMAT` option or that use `ROW_FORMAT=DEFAULT`, any operation that rebuilds a table also silently changes the row format of the table to the format defined by `innodb_default_row_format`. Otherwise, existing tables retain their current row format setting. For more information, see Defining the Row Format of a Table.
+  Para tabelas existentes que não definem explicitamente uma opção `ROW_FORMAT` ou que usam `ROW_FORMAT=DEFAULT`, qualquer operação que reconstrua uma tabela também altera silenciosamente o row format da tabela para o formato definido por `innodb_default_row_format`. Caso contrário, as tabelas existentes mantêm sua configuração de row format atual. Para obter mais informações, consulte Definindo o Row Format de uma Tabela.
 
-* Beginning with MySQL 5.7.6, the `InnoDB` storage engine uses its own built-in (“native”) partitioning handler for any new partitioned tables created using `InnoDB`. Partitioned `InnoDB` tables created in previous versions of MySQL are not automatically upgraded. You can easily upgrade such tables to use `InnoDB` native partitioning in MySQL 5.7.9 or later using either of the following methods:
+* A partir do MySQL 5.7.6, o storage engine `InnoDB` usa seu próprio manipulador de particionamento (partitioning handler) integrado (“nativo”) para quaisquer novas tabelas particionadas criadas usando `InnoDB`. As tabelas `InnoDB` particionadas criadas em versões anteriores do MySQL não são atualizadas automaticamente. Você pode facilmente fazer o upgrade de tais tabelas para usar o native partitioning do `InnoDB` no MySQL 5.7.9 ou posterior usando qualquer um dos seguintes métodos:
 
-  + To upgrade an individual table from the generic partitioning handler to *`InnoDB`* native partitioning, execute the statement `ALTER TABLE table_name UPGRADE PARTITIONING`.
+  + Para fazer o upgrade de uma tabela individual do generic partitioning handler para o native partitioning do *`InnoDB`*, execute a instrução `ALTER TABLE table_name UPGRADE PARTITIONING`.
 
-  + To upgrade all `InnoDB` tables that use the generic partitioning handler to use the native partitioning handler instead, run **mysql_upgrade**.
+  + Para fazer o upgrade de todas as tabelas `InnoDB` que usam o generic partitioning handler para usar o native partitioning handler, execute **mysql_upgrade**.
 
-#### SQL Changes
+#### Mudanças no SQL
 
-* **Incompatible change**: The `GET_LOCK()` function was reimplemented in MySQL 5.7.5 using the metadata locking (MDL) subsystem and its capabilities have been extended:
+* **Mudança incompatível**: A função `GET_LOCK()` foi reimplementada no MySQL 5.7.5 usando o subsistema metadata locking (MDL) e suas capacidades foram estendidas:
 
-  + Previously, `GET_LOCK()` permitted acquisition of only one named lock at a time, and a second `GET_LOCK()` call released any existing lock. Now `GET_LOCK()` permits acquisition of more than one simultaneous named lock and does not release existing locks.
+  + Anteriormente, `GET_LOCK()` permitia a aquisição de apenas um Lock nomeado por vez, e uma segunda chamada `GET_LOCK()` liberava qualquer Lock existente. Agora, `GET_LOCK()` permite a aquisição de mais de um Lock nomeado simultâneo e não libera Locks existentes.
 
-    Applications that rely on the behavior of `GET_LOCK()` releasing any previous lock must be modified for the new behavior.
+    As aplicações que dependem do comportamento do `GET_LOCK()` de liberar qualquer Lock anterior devem ser modificadas para o novo comportamento.
 
-  + The capability of acquiring multiple locks introduces the possibility of deadlock among clients. The MDL subsystem detects deadlock and returns an `ER_USER_LOCK_DEADLOCK` error when this occurs.
+  + A capacidade de adquirir múltiplos Locks introduz a possibilidade de deadlock entre clientes. O subsistema MDL detecta deadlock e retorna um Error `ER_USER_LOCK_DEADLOCK` quando isso ocorre.
 
-  + The MDL subsystem imposes a limit of 64 characters on lock names, so this limit now also applies to named locks. Previously, no length limit was enforced.
+  + O subsistema MDL impõe um limite de 64 caracteres nos lock names, então este limite agora também se aplica aos Locks nomeados. Anteriormente, nenhum limite de comprimento era imposto.
 
-  + Locks acquired with `GET_LOCK()` now appear in the Performance Schema `metadata_locks` table. The `OBJECT_TYPE` column says `USER LEVEL LOCK` and the `OBJECT_NAME` column indicates the lock name.
+  + Os Locks adquiridos com `GET_LOCK()` agora aparecem na tabela `metadata_locks` do Performance Schema. A coluna `OBJECT_TYPE` diz `USER LEVEL LOCK` e a coluna `OBJECT_NAME` indica o lock name.
 
-  + A new function, `RELEASE_ALL_LOCKS()` permits release of all acquired named locks at once.
+  + Uma nova função, `RELEASE_ALL_LOCKS()`, permite a liberação de todos os Locks nomeados adquiridos de uma só vez.
 
-  For more information, see Section 12.14, “Locking Functions”.
+  Para obter mais informações, consulte a Seção 12.14, “Funções de Locking”.
 
-* The optimizer now handles derived tables and views in the `FROM` clause in consistent fashion to better avoid unnecessary materialization and to enable use of pushed-down conditions that produce more efficient execution plans.
+* O optimizer agora manipula derived tables e views na cláusula `FROM` de forma consistente para melhor evitar materialization desnecessária e para permitir o uso de pushed-down conditions que produzem planos de execução mais eficientes.
 
-  However in MySQL 5.7 before MySQL 5.7.11, and for statements such as `DELETE` or `UPDATE` that modify tables, using the merge strategy for a derived table that previously was materialized can result in an `ER_UPDATE_TABLE_USED` error:
+  No entanto, no MySQL 5.7, antes do MySQL 5.7.11, e para instruções como `DELETE` ou `UPDATE` que modificam tabelas, usar a estratégia de merge para uma derived table que anteriormente foi materializada pode resultar em um Error `ER_UPDATE_TABLE_USED`:
 
   ```sql
   mysql> DELETE FROM t1
@@ -294,19 +294,19 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   for update in FROM clause
   ```
 
-  The error occurs when merging a derived table into the outer query block results in a statement that both selects from and modifies a table. (Materialization does not cause the problem because, in effect, it converts the derived table to a separate table.) The workaround to avoid this error was to disable the `derived_merge` flag of the `optimizer_switch` system variable before executing the statement:
+  O Error ocorre quando o merge de uma derived table no bloco de Query externo resulta em uma instrução que seleciona e modifica uma tabela simultaneamente. (A materialization não causa o problema porque, na prática, ela converte a derived table em uma tabela separada.) A solução alternativa para evitar esse Error era desabilitar o flag `derived_merge` da variável de sistema `optimizer_switch` antes de executar a instrução:
 
   ```sql
   SET optimizer_switch = 'derived_merge=off';
   ```
 
-  The `derived_merge` flag controls whether the optimizer attempts to merge subqueries and views in the `FROM` clause into the outer query block, assuming that no other rule prevents merging. By default, the flag is `on` to enable merging. Setting the flag to `off` prevents merging and avoids the error just described. For more information, see Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”.
+  O flag `derived_merge` controla se o optimizer tenta fazer o merge de subqueries e views na cláusula `FROM` no bloco de Query externo, assumindo que nenhuma outra regra impeça o merge. Por padrão, o flag é `on` para habilitar o merge. Definir o flag como `off` evita o merge e o Error que acabamos de descrever. Para obter mais informações, consulte a Seção 8.2.2.4, “Otimizando Derived Tables e Referências de View com Merging ou Materialization”.
 
-* Some keywords may be reserved in MySQL 5.7 that were not reserved in MySQL 5.6. See Section 9.3, “Keywords and Reserved Words”. This can cause words previously used as identifiers to become illegal. To fix affected statements, use identifier quoting. See Section 9.2, “Schema Object Names”.
+* Algumas Keywords podem estar reservadas no MySQL 5.7 que não estavam reservadas no MySQL 5.6. Consulte a Seção 9.3, “Keywords e Reserved Words”. Isso pode fazer com que palavras anteriormente usadas como identifiers se tornem ilegais. Para corrigir instruções afetadas, use identifier quoting. Consulte a Seção 9.2, “Nomes de Schema Object”.
 
-* After upgrading, it is recommended that you test optimizer hints specified in application code to ensure that the hints are still required to achieve the desired optimization strategy. Optimizer enhancements can sometimes render certain optimizer hints unnecessary. In some cases, an unnecessary optimizer hint may even be counterproductive.
+* Após o upgrade, é recomendável que você teste os optimizer hints especificados no código da aplicação para garantir que os hints ainda sejam necessários para atingir a estratégia de optimization desejada. Os aprimoramentos do optimizer podem, às vezes, tornar certos optimizer hints desnecessários. Em alguns casos, um optimizer hint desnecessário pode até ser contraproducente.
 
-* In `UNION` statements, to apply `ORDER BY` or `LIMIT` to an individual `SELECT`, place the clause inside the parentheses that enclose the `SELECT`:
+* Em instruções `UNION`, para aplicar `ORDER BY` ou `LIMIT` a um `SELECT` individual, coloque a cláusula dentro dos parênteses que envolvem o `SELECT`:
 
   ```sql
   (SELECT a FROM t1 WHERE a=10 AND B=1 ORDER BY a LIMIT 10)
@@ -314,4 +314,4 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   (SELECT a FROM t2 WHERE a=11 AND B=2 ORDER BY a LIMIT 10);
   ```
 
-  Previous versions of MySQL may permit such statements without parentheses. In MySQL 5.7, the requirement for parentheses is enforced.
+  Versões anteriores do MySQL podem permitir tais instruções sem parênteses. No MySQL 5.7, o requisito de parênteses é imposto.

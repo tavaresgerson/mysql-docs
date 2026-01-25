@@ -1,15 +1,15 @@
-### 6.6.2 MySQL Enterprise Encryption Usage and Examples
+### 6.6.2 Uso e Exemplos de MySQL Enterprise Encryption
 
-To use MySQL Enterprise Encryption in applications, invoke the functions that are appropriate for the operations you wish to perform. This section demonstrates how to carry out some representative tasks:
+Para usar o MySQL Enterprise Encryption em aplicações, invoque as funções apropriadas para as operações que você deseja realizar. Esta seção demonstra como executar algumas tarefas representativas:
 
-* [Create a private/public key pair using RSA encryption](enterprise-encryption-usage.html#enterprise-encryption-usage-create-key-pair "Create a private/public key pair using RSA encryption")
-* [Use the private key to encrypt data and the public key to decrypt it](enterprise-encryption-usage.html#enterprise-encryption-usage-encrypt-decrypt "Use the private key to encrypt data and the public key to decrypt it")
-* [Generate a digest from a string](enterprise-encryption-usage.html#enterprise-encryption-usage-create-digest "Generate a digest from a string")
-* [Use the digest with a key pair](enterprise-encryption-usage.html#enterprise-encryption-usage-digital-signing "Use the digest with a key pair")
-* [Create a symmetric key](enterprise-encryption-usage.html#enterprise-encryption-usage-create-symmetic-key "Create a symmetric key")
-* [Limit CPU usage by key-generation operations](enterprise-encryption-usage.html#enterprise-encryption-usage-limit-cpu "Limit CPU usage by key-generation operations")
+* [Criação de um par de chaves privada/pública usando criptografia RSA](enterprise-encryption-usage.html#enterprise-encryption-usage-create-key-pair "Criação de um par de chaves privada/pública usando criptografia RSA")
+* [Uso da chave privada para criptografar dados e da chave pública para descriptografá-los](enterprise-encryption-usage.html#enterprise-encryption-usage-encrypt-decrypt "Uso da chave privada para criptografar dados e da chave pública para descriptografá-los")
+* [Geração de um digest a partir de uma string](enterprise-encryption-usage.html#enterprise-encryption-usage-create-digest "Geração de um digest a partir de uma string")
+* [Uso do digest com um par de chaves](enterprise-encryption-usage.html#enterprise-encryption-usage-digital-signing "Uso do digest com um par de chaves")
+* [Criação de uma chave simétrica](enterprise-encryption-usage.html#enterprise-encryption-usage-create-symmetic-key "Criação de uma chave simétrica")
+* [Limitação do uso de CPU por operações de geração de chaves](enterprise-encryption-usage.html#enterprise-encryption-usage-limit-cpu "Limitação do uso de CPU por operações de geração de chaves")
 
-#### Create a private/public key pair using RSA encryption
+#### Criação de um par de chaves privada/pública usando criptografia RSA
 
 ```sql
 -- Encryption algorithm; can be 'DSA' or 'DH' instead
@@ -23,27 +23,27 @@ SET @priv = create_asymmetric_priv_key(@algo, @key_len);
 SET @pub = create_asymmetric_pub_key(@algo, @priv);
 ```
 
-Now you can use the key pair to encrypt and decrypt data, sign and verify data, or generate symmetric keys.
+Agora você pode usar o par de chaves para criptografar e descriptografar dados, assinar e verificar dados, ou gerar chaves simétricas.
 
-#### Use the private key to encrypt data and the public key to decrypt it
+#### Uso da chave privada para criptografar dados e da chave pública para descriptografá-los
 
-This requires that the members of the key pair be RSA keys.
+Isso exige que os membros do par de chaves sejam chaves RSA.
 
 ```sql
 SET @ciphertext = asymmetric_encrypt(@algo, 'My secret text', @priv);
 SET @plaintext = asymmetric_decrypt(@algo, @ciphertext, @pub);
 ```
 
-Conversely, you can encrypt using the public key and decrypt using the private key.
+Inversamente, você pode criptografar usando a chave pública e descriptografar usando a chave privada.
 
 ```sql
 SET @ciphertext = asymmetric_encrypt(@algo, 'My secret text', @pub);
 SET @plaintext = asymmetric_decrypt(@algo, @ciphertext, @priv);
 ```
 
-In either case, the algorithm specified for the encryption and decryption functions must match that used to generate the keys.
+Em ambos os casos, o algoritmo especificado para as funções de criptografia e descriptografia deve coincidir com o usado para gerar as chaves.
 
-#### Generate a digest from a string
+#### Geração de um digest a partir de uma string
 
 ```sql
 -- Digest type; can be 'SHA256', 'SHA384', or 'SHA512' instead
@@ -53,9 +53,9 @@ SET @dig_type = 'SHA224';
 SET @dig = create_digest(@dig_type, 'My text to digest');
 ```
 
-#### Use the digest with a key pair
+#### Uso do digest com um par de chaves
 
-The key pair can be used to sign data, then verify that the signature matches the digest.
+O par de chaves pode ser usado para assinar dados e, em seguida, verificar se a signature (assinatura) corresponde ao digest.
 
 ```sql
 -- Encryption algorithm; could be 'DSA' instead; keys must
@@ -68,9 +68,9 @@ SET @sig = asymmetric_sign(@algo, @dig, @priv, @dig_type);
 SET @verf = asymmetric_verify(@algo, @dig, @sig, @pub, @dig_type);
 ```
 
-#### Create a symmetric key
+#### Criação de uma chave simétrica
 
-This requires DH private/public keys as inputs, created using a shared symmetric secret. Create the secret by passing the key length to [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters), then pass the secret as the “key length” to [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key).
+Isso requer chaves privadas/públicas DH como entradas, criadas usando um segredo simétrico compartilhado. Crie o segredo passando o comprimento da chave (key length) para [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters) e, em seguida, passe o segredo como o "comprimento da chave" para [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key).
 
 ```sql
 -- Generate DH shared symmetric secret
@@ -90,7 +90,7 @@ SET @sym1 = asymmetric_derive(@pub1, @priv2);
 SET @sym2 = asymmetric_derive(@pub2, @priv1);
 ```
 
-Key string values can be created at runtime and stored into a variable or table using [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment"), [`SELECT`](select.html "13.2.9 SELECT Statement"), or [`INSERT`](insert.html "13.2.5 INSERT Statement"):
+Valores de string de chave podem ser criados em tempo de execução e armazenados em uma variável ou tabela usando [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment"), [`SELECT`](select.html "13.2.9 SELECT Statement") ou [`INSERT`](insert.html "13.2.5 INSERT Statement"):
 
 ```sql
 SET @priv1 = create_asymmetric_priv_key('RSA', 1024);
@@ -98,27 +98,27 @@ SELECT create_asymmetric_priv_key('RSA', 1024) INTO @priv2;
 INSERT INTO t (key_col) VALUES(create_asymmetric_priv_key('RSA', 1024));
 ```
 
-Key string values stored in files can be read using the [`LOAD_FILE()`](string-functions.html#function_load-file) function by users who have the [`FILE`](privileges-provided.html#priv_file) privilege.
+Valores de string de chave armazenados em arquivos podem ser lidos usando a função [`LOAD_FILE()`](string-functions.html#function_load-file) por usuários que possuem o privilégio [`FILE`](privileges-provided.html#priv_file).
 
-Digest and signature strings can be handled similarly.
+Strings de digest e signature podem ser tratadas de forma semelhante.
 
-#### Limit CPU usage by key-generation operations
+#### Limitação do uso de CPU por operações de geração de chaves
 
-The [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key) and [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters) encryption functions take a key-length parameter, and the amount of CPU resources required by these functions increases as the key length increases. For some installations, this might result in unacceptable CPU usage if applications frequently generate excessively long keys.
+As funções de criptografia [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key) e [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters) aceitam um parâmetro de comprimento de chave (key length), e a quantidade de recursos de CPU exigidos por essas funções aumenta à medida que o comprimento da chave aumenta. Para algumas instalações, isso pode resultar em uso inaceitável de CPU se as aplicações gerarem chaves excessivamente longas com frequência.
 
-OpenSSL imposes a minimum key length of 1,024 bits for all keys. OpenSSL also imposes a maximum key length of 10,000 bits and 16,384 bits for DSA and RSA keys, respectively, for [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key), and a maximum key length of 10,000 bits for [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters). If those maximum values are too high, three environment variables are available as of MySQL 5.7.17 to enable MySQL server administrators to set lower maximum lengths for key generation, and thereby to limit CPU usage:
+O OpenSSL impõe um comprimento mínimo de chave de 1.024 bits para todas as chaves. O OpenSSL também impõe um comprimento máximo de chave de 10.000 bits e 16.384 bits para chaves DSA e RSA, respectivamente, para [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key), e um comprimento máximo de chave de 10.000 bits para [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters). Se esses valores máximos forem muito altos, três variáveis de ambiente estão disponíveis a partir do MySQL 5.7.17 para permitir que administradores do servidor MySQL definam comprimentos máximos menores para a geração de chaves e, assim, limitem o uso de CPU:
 
-* `MYSQL_OPENSSL_UDF_DSA_BITS_THRESHOLD`: Maximum DSA key length in bits for [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key). The minimum and maximum values for this variable are 1,024 and 10,000.
+* `MYSQL_OPENSSL_UDF_DSA_BITS_THRESHOLD`: Comprimento máximo de chave DSA em bits para [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key). Os valores mínimo e máximo para esta variável são 1.024 e 10.000.
 
-* `MYSQL_OPENSSL_UDF_RSA_BITS_THRESHOLD`: Maximum RSA key length in bits for [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key). The minimum and maximum values for this variable are 1,024 and 16,384.
+* `MYSQL_OPENSSL_UDF_RSA_BITS_THRESHOLD`: Comprimento máximo de chave RSA em bits para [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key). Os valores mínimo e máximo para esta variável são 1.024 e 16.384.
 
-* `MYSQL_OPENSSL_UDF_DH_BITS_THRESHOLD`: Maximum key length in bits for [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters). The minimum and maximum values for this variable are 1,024 and 10,000.
+* `MYSQL_OPENSSL_UDF_DH_BITS_THRESHOLD`: Comprimento máximo de chave em bits para [`create_dh_parameters()`](enterprise-encryption-functions.html#function_create-dh-parameters). Os valores mínimo e máximo para esta variável são 1.024 e 10.000.
 
-To use any of these environment variables, set them in the environment of the process that starts the server. If set, their values take precedence over the maximum key lengths imposed by OpenSSL. For example, to set a maximum key length of 4,096 bits for DSA and RSA keys for [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key), set these variables:
+Para usar qualquer uma dessas variáveis de ambiente, defina-as no ambiente do processo que inicia o servidor. Se definidos, seus valores têm precedência sobre os comprimentos máximos de chave impostos pelo OpenSSL. Por exemplo, para definir um comprimento máximo de chave de 4.096 bits para chaves DSA e RSA para [`create_asymmetric_priv_key()`](enterprise-encryption-functions.html#function_create-asymmetric-priv-key), defina estas variáveis:
 
 ```sql
 export MYSQL_OPENSSL_UDF_DSA_BITS_THRESHOLD=4096
 export MYSQL_OPENSSL_UDF_RSA_BITS_THRESHOLD=4096
 ```
 
-The example uses Bourne shell syntax. The syntax for other shells may differ.
+O exemplo usa a sintaxe Bourne shell. A sintaxe para outros shells pode diferir.

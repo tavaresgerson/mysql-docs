@@ -1,23 +1,23 @@
-### 4.8.2 perror — Display MySQL Error Message Information
+### 4.8.2 perror — Exibir Informações de Mensagens de Erro do MySQL
 
-For most system errors, MySQL displays, in addition to an internal text message, the system error code in one of the following styles:
+Para a maioria dos system errors, o MySQL exibe, além de uma mensagem de texto interna, o system error code em um dos seguintes estilos:
 
 ```sql
 message ... (errno: #)
 message ... (Errcode: #)
 ```
 
-You can find out what the error code means by examining the documentation for your system or by using the **perror** utility.
+Você pode descobrir o que o error code significa examinando a documentação do seu sistema ou usando o utilitário **perror**.
 
-**perror** prints a description for a system error code or for a storage engine (table handler) error code.
+O **perror** exibe uma descrição para um system error code ou para um error code do storage engine (manipulador de tabela).
 
-Invoke **perror** like this:
+Invoque o **perror** desta forma:
 
 ```sql
 perror [options] errorcode ...
 ```
 
-Examples:
+Exemplos:
 
 ```sql
 $> perror 1231
@@ -31,30 +31,30 @@ OS error code  13:  Permission denied
 OS error code  64:  Machine is not on the network
 ```
 
-To obtain the error message for a MySQL Cluster error code, use the **ndb_perror** utility.
+Para obter a mensagem de erro para um MySQL Cluster error code, utilize o utilitário **ndb_perror**.
 
-The meaning of system error messages may be dependent on your operating system. A given error code may mean different things on different operating systems.
+O significado das mensagens de system error pode depender do seu sistema operacional. Um determinado error code pode significar coisas diferentes em sistemas operacionais distintos.
 
-**perror** supports the following options.
+O **perror** suporta as seguintes opções.
 
 * `--help`, `--info`, `-I`, `-?`
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--ndb`
 
-  Print the error message for an NDB Cluster error code.
+  Exibe a mensagem de erro para um NDB Cluster error code.
 
-  This option is deprecated in NDB 7.6.4 and later, where **perror** prints a warning if it is used, and is removed in NDB Cluster 8.0. Use the **ndb_perror** utility instead.
+  Esta opção está depreciada no NDB 7.6.4 e versões posteriores, onde o **perror** exibe um aviso se for utilizada, e foi removida no NDB Cluster 8.0. Use o utilitário **ndb_perror** em seu lugar.
 
 * `--silent`, `-s`
 
-  Silent mode. Print only the error message.
+  Modo silencioso. Exibe apenas a mensagem de erro.
 
 * `--verbose`, `-v`
 
-  Verbose mode. Print error code and message. This is the default behavior.
+  Modo verbose. Exibe o error code e a mensagem. Este é o comportamento padrão.
 
 * `--version`, `-V`
 
-  Display version information and exit.
+  Exibe informações de versão e sai.

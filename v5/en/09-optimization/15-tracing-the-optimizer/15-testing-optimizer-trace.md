@@ -1,3 +1,3 @@
-### 8.15.15 Testing Optimizer Trace
+### 8.15.15 Testando Optimizer Trace
 
-This feature is tested in `mysql-test/suite/opt_trace` and `unittest/gunit/opt_trace-t`.
+Este recurso é testado em `mysql-test/suite/opt_trace` e `unittest/gunit/opt_trace-t`.

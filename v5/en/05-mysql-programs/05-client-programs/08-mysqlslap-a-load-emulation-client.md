@@ -1,26 +1,26 @@
-### 4.5.8 mysqlslap — A Load Emulation Client
+### 4.5.8 mysqlslap — Um Cliente de Emulação de Carga
 
-**mysqlslap** is a diagnostic program designed to emulate client load for a MySQL server and to report the timing of each stage. It works as if multiple clients are accessing the server.
+O **mysqlslap** é um programa de diagnóstico projetado para emular a carga de clientes em um servidor MySQL e relatar o tempo de cada estágio. Ele funciona como se múltiplos clientes estivessem acessando o servidor.
 
-Invoke **mysqlslap** like this:
+Invoque o **mysqlslap** desta forma:
 
 ```sql
 mysqlslap [options]
 ```
 
-Some options such as `--create` or `--query` enable you to specify a string containing an SQL statement or a file containing statements. If you specify a file, by default it must contain one statement per line. (That is, the implicit statement delimiter is the newline character.) Use the `--delimiter` option to specify a different delimiter, which enables you to specify statements that span multiple lines or place multiple statements on a single line. You cannot include comments in a file; **mysqlslap** does not understand them.
+Algumas opções, como `--create` ou `--query`, permitem que você especifique uma string contendo uma instrução SQL ou um arquivo contendo instruções. Se você especificar um arquivo, por padrão ele deve conter uma instrução por linha. (Ou seja, o delimitador implícito da instrução é o caractere de nova linha.) Use a opção `--delimiter` para especificar um delimitador diferente, o que permite especificar instruções que se estendem por várias linhas ou colocar múltiplas instruções em uma única linha. Você não pode incluir comentários em um arquivo; o **mysqlslap** não os reconhece.
 
-**mysqlslap** runs in three stages:
+O **mysqlslap** é executado em três estágios:
 
-1. Create schema, table, and optionally any stored programs or data to use for the test. This stage uses a single client connection.
+1. Criação do schema, table e, opcionalmente, quaisquer stored programs ou dados a serem usados para o teste. Este estágio usa uma única conexão de cliente.
 
-2. Run the load test. This stage can use many client connections.
+2. Execução do teste de carga (load test). Este estágio pode usar muitas conexões de cliente.
 
-3. Clean up (disconnect, drop table if specified). This stage uses a single client connection.
+3. Limpeza (desconectar, DROP TABLE se especificado). Este estágio usa uma única conexão de cliente.
 
-Examples:
+Exemplos:
 
-Supply your own create and query SQL statements, with 50 clients querying and 200 selects for each (enter the command on a single line):
+Forneça suas próprias instruções SQL de CREATE e QUERY, com 50 clientes consultando e 200 SELECTs para cada um (digite o comando em uma única linha):
 
 ```sql
 mysqlslap --delimiter=";"
@@ -28,7 +28,7 @@ mysqlslap --delimiter=";"
   --query="SELECT * FROM a" --concurrency=50 --iterations=200
 ```
 
-Let **mysqlslap** build the query SQL statement with a table of two `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") columns and three `VARCHAR` columns. Use five clients querying 20 times each. Do not create the table or insert the data (that is, use the previous test's schema and data):
+Permita que o **mysqlslap** construa a instrução SQL de QUERY com uma TABLE de duas colunas `INT` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) e três colunas `VARCHAR`. Use cinco clientes consultando 20 vezes cada. Não crie a TABLE nem insira os dados (ou seja, use o schema e os dados do teste anterior):
 
 ```sql
 mysqlslap --concurrency=5 --iterations=20
@@ -36,7 +36,7 @@ mysqlslap --concurrency=5 --iterations=20
   --auto-generate-sql
 ```
 
-Tell the program to load the create, insert, and query SQL statements from the specified files, where the `create.sql` file has multiple table creation statements delimited by `';'` and multiple insert statements delimited by `';'`. The `--query` file has multiple queries delimited by `';'`. Run all the load statements, then run all the queries in the query file with five clients (five times each):
+Instrua o programa a carregar as instruções SQL de CREATE, INSERT e QUERY dos arquivos especificados, onde o arquivo `create.sql` possui múltiplas instruções de criação de TABLE delimitadas por `';'` e múltiplas instruções INSERT delimitadas por `';'`. O arquivo `--query` possui múltiplas QUERYs delimitadas por `';'`. Execute todas as instruções de carga (load statements) e, em seguida, execute todas as QUERYs no arquivo de QUERY com cinco clientes (cinco vezes cada):
 
 ```sql
 mysqlslap --concurrency=5
@@ -44,257 +44,257 @@ mysqlslap --concurrency=5
   --delimiter=";"
 ```
 
-**mysqlslap** supports the following options, which can be specified on the command line or in the `[mysqlslap]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see Section 4.2.2.2, “Using Option Files”.
+O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlslap]` e `[client]` de um arquivo de opções. Para obter informações sobre arquivos de opções usados pelos programas MySQL, consulte a Seção 4.2.2.2, “Usando Arquivos de Opções”.
 
-**Table 4.20 mysqlslap Options**
+**Tabela 4.20 Opções do mysqlslap**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlslap."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Introduced</th> <th>Deprecated</th> </tr></thead><tbody><tr><th>--auto-generate-sql</th> <td>Generate SQL statements automatically when they are not supplied in files or using command options</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-add-autoincrement</th> <td>Add AUTO_INCREMENT column to automatically generated tables</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-execute-number</th> <td>Specify how many queries to generate automatically</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-guid-primary</th> <td>Add a GUID-based primary key to automatically generated tables</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-load-type</th> <td>Specify the test load type</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-secondary-indexes</th> <td>Specify how many secondary indexes to add to automatically generated tables</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-unique-query-number</th> <td>How many different queries to generate for automatic tests</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-unique-write-number</th> <td>How many different queries to generate for --auto-generate-sql-write-number</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-write-number</th> <td>How many row inserts to perform on each thread</td> <td></td> <td></td> </tr><tr><th>--commit</th> <td>How many statements to execute before committing</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compress all information sent between client and server</td> <td></td> <td></td> </tr><tr><th>--concurrency</th> <td>Number of clients to simulate when issuing the SELECT statement</td> <td></td> <td></td> </tr><tr><th>--create</th> <td>File or string containing the statement to use for creating the table</td> <td></td> <td></td> </tr><tr><th>--create-schema</th> <td>Schema in which to run the tests</td> <td></td> <td></td> </tr><tr><th>--csv</th> <td>Generate output in comma-separated values format</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Write debugging log</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Print debugging information when program exits</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Authentication plugin to use</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Read named option file in addition to usual option files</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Read only named option file</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Option group suffix value</td> <td></td> <td></td> </tr><tr><th>--delimiter</th> <td>Delimiter to use in SQL statements</td> <td></td> <td></td> </tr><tr><th>--detach</th> <td>Detach (close and reopen) each connection after each N statements</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Enable cleartext authentication plugin</td> <td></td> <td></td> </tr><tr><th>--engine</th> <td>Storage engine to use for creating the table</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Request RSA public key from server</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Display help message and exit</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Host on which MySQL server is located</td> <td></td> <td></td> </tr><tr><th>--iterations</th> <td>Number of times to run the tests</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Read login path options from .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Read no option files</td> <td></td> <td></td> </tr><tr><th>--no-drop</th> <td>Do not drop any schema created during the test run</td> <td></td> <td></td> </tr><tr><th>--number-char-cols</th> <td>Number of VARCHAR columns to use if --auto-generate-sql is specified</td> <td></td> <td></td> </tr><tr><th>--number-int-cols</th> <td>Number of INT columns to use if --auto-generate-sql is specified</td> <td></td> <td></td> </tr><tr><th>--number-of-queries</th> <td>Limit each client to approximately this number of queries</td> <td></td> <td></td> </tr><tr><th>--only-print</th> <td>Do not connect to databases. mysqlslap only prints what it would have done</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Password to use when connecting to server</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Connect to server using named pipe (Windows only)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Directory where plugins are installed</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>TCP/IP port number for connection</td> <td></td> <td></td> </tr><tr><th>--post-query</th> <td>File or string containing the statement to execute after the tests have completed</td> <td></td> <td></td> </tr><tr><th>--post-system</th> <td>String to execute using system() after the tests have completed</td> <td></td> <td></td> </tr><tr><th>--pre-query</th> <td>File or string containing the statement to execute before running the tests</td> <td></td> <td></td> </tr><tr><th>--pre-system</th> <td>String to execute using system() before running the tests</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Print default options</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Transport protocol to use</td> <td></td> <td></td> </tr><tr><th>--query</th> <td>File or string containing the SELECT statement to use for retrieving data</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td></td> <td>Yes</td> </tr><tr><th>--server-public-key-path</th> <td>Path name to file containing RSA public key</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Silent mode</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Unix socket file or Windows named pipe to use</td> <td></td> <td></td> </tr><tr><th>--sql-mode</th> <td>Set SQL mode for client session</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Enable connection encryption</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>File that contains X.509 certificate</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Permissible ciphers for connection encryption</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>File that contains certificate revocation lists</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Directory that contains certificate revocation-list files</td> <td></td> <td></td> </tr><tr><th>--ssl-key</th> <td>File that contains X.509 key</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Desired security state of connection to server</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verify host name against server certificate Common Name identity</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> <td></td> </tr><tr><th>--user</th> <td>MySQL user name to use when connecting to server</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Verbose mode</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Display version information and exit</td> <td></td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para o mysqlslap."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzida</th> <th>Obsoleta</th> </tr></thead><tbody><tr><th>--auto-generate-sql</th> <td>Gera instruções SQL automaticamente quando não são fornecidas em arquivos ou usando opções de comando</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-add-autoincrement</th> <td>Adiciona coluna AUTO_INCREMENT a TABLEs geradas automaticamente</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-execute-number</th> <td>Especifica quantas QUERYs gerar automaticamente</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-guid-primary</th> <td>Adiciona uma Primary Key baseada em GUID a TABLEs geradas automaticamente</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-load-type</th> <td>Especifica o tipo de carga de teste (load type)</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-secondary-indexes</th> <td>Especifica quantos Secondary Indexes adicionar a TABLEs geradas automaticamente</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-unique-query-number</th> <td>Quantas QUERYs diferentes gerar para testes automáticos</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-unique-write-number</th> <td>Quantas QUERYs diferentes gerar para --auto-generate-sql-write-number</td> <td></td> <td></td> </tr><tr><th>--auto-generate-sql-write-number</th> <td>Quantas inserções de linha (row INSERTs) executar em cada Thread</td> <td></td> <td></td> </tr><tr><th>--commit</th> <td>Quantas instruções executar antes de COMMIT</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compacta todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--concurrency</th> <td>Número de clientes para simular ao emitir a instrução SELECT</td> <td></td> <td></td> </tr><tr><th>--create</th> <td>Arquivo ou string contendo a instrução a ser usada para criar a TABLE</td> <td></td> <td></td> </tr><tr><th>--create-schema</th> <td>Schema no qual executar os testes</td> <td></td> <td></td> </tr><tr><th>--csv</th> <td>Gera a saída no formato de valores separados por vírgula (comma-separated values)</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreve log de debugging</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprime informações de debugging quando o programa é encerrado</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprime informações de debugging, memória e estatísticas de CPU quando o programa é encerrado</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Lê o arquivo de opções nomeado além dos arquivos de opções usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Lê apenas o arquivo de opções nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--delimiter</th> <td>Delimitador a ser usado em instruções SQL</td> <td></td> <td></td> </tr><tr><th>--detach</th> <td>Desanexa (fecha e reabre) cada conexão após cada N instruções</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilita o plugin de autenticação cleartext</td> <td></td> <td></td> </tr><tr><th>--engine</th> <td>Storage Engine a ser usado para criar a TABLE</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicita a chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibe mensagem de ajuda e sai</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Host onde o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th>--iterations</th> <td>Número de vezes para executar os testes</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Lê opções de login path de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não lê arquivos de opções</td> <td></td> <td></td> </tr><tr><th>--no-drop</th> <td>Não executa DROP em nenhum schema criado durante a execução do teste</td> <td></td> <td></td> </tr><tr><th>--number-char-cols</th> <td>Número de colunas VARCHAR a serem usadas se --auto-generate-sql for especificado</td> <td></td> <td></td> </tr><tr><th>--number-int-cols</th> <td>Número de colunas INT a serem usadas se --auto-generate-sql for especificado</td> <td></td> <td></td> </tr><tr><th>--number-of-queries</th> <td>Limita cada cliente a aproximadamente este número de QUERYs</td> <td></td> <td></td> </tr><tr><th>--only-print</th> <td>Não se conecta a Databases. O mysqlslap apenas imprime o que teria feito</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Senha a ser usada ao conectar-se ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecta-se ao servidor usando named pipe (somente Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins estão instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número da porta TCP/IP para conexão</td> <td></td> <td></td> </tr><tr><th>--post-query</th> <td>Arquivo ou string contendo a instrução a ser executada após a conclusão dos testes</td> <td></td> <td></td> </tr><tr><th>--post-system</th> <td>String a ser executada usando system() após a conclusão dos testes</td> <td></td> <td></td> </tr><tr><th>--pre-query</th> <td>Arquivo ou string contendo a instrução a ser executada antes de executar os testes</td> <td></td> <td></td> </tr><tr><th>--pre-system</th> <td>String a ser executada usando system() antes de executar os testes</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Imprime as opções padrão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser usado</td> <td></td> <td></td> </tr><tr><th>--query</th> <td>Arquivo ou string contendo a instrução SELECT a ser usada para recuperar dados</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envia senhas ao servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo contendo a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome da shared-memory para conexões shared-memory (somente Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo socket Unix ou named pipe Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--sql-mode</th> <td>Define o SQL mode para a sessão do cliente</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Habilita a criptografia da conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Certificate Authorities SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificado de Certificate Authority SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificado</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificado</td> <td></td> <td></td> </tr><tr><th>--ssl-key</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifica o nome do Host contra a identidade Common Name do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--user</th> <td>Nome de usuário MySQL a ser usado ao conectar-se ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbose</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibe informações da versão e sai</td> <td></td> <td></td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--auto-generate-sql`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Generate SQL statements automatically when they are not supplied in files or using command options.
+  Gera instruções SQL automaticamente quando elas não são fornecidas em arquivos ou usando opções de comando.
 
 * `--auto-generate-sql-add-autoincrement`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Add an `AUTO_INCREMENT` column to automatically generated tables.
+  Adiciona uma coluna `AUTO_INCREMENT` a TABLEs geradas automaticamente.
 
 * `--auto-generate-sql-execute-number=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  Specify how many queries to generate automatically.
+  Especifica quantas QUERYs gerar automaticamente.
 
 * `--auto-generate-sql-guid-primary`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Add a GUID-based primary key to automatically generated tables.
+  Adiciona uma Primary Key baseada em GUID a TABLEs geradas automaticamente.
 
 * `--auto-generate-sql-load-type=type`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><p><code>read</code></p><p><code>write</code></p><p><code>key</code></p><p><code>update</code></p><p><code>mixed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-load-type"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>mixed</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>read</code></p><p><code>write</code></p><p><code>key</code></p><p><code>update</code></p><p><code>mixed</code></p></td> </tr></tbody></table>
 
-  Specify the test load type. The permissible values are `read` (scan tables), `write` (insert into tables), `key` (read primary keys), `update` (update primary keys), or `mixed` (half inserts, half scanning selects). The default is `mixed`.
+  Especifica o tipo de carga de teste (load type). Os valores permitidos são `read` (varredura de TABLEs), `write` (INSERT em TABLEs), `key` (leitura de Primary Keys), `update` (UPDATE de Primary Keys) ou `mixed` (metade INSERTs, metade SELECTs de varredura). O padrão é `mixed`.
 
 * `--auto-generate-sql-secondary-indexes=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-secondary-indexes"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-secondary-indexes=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-secondary-indexes"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-secondary-indexes=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr></tbody></table>
 
-  Specify how many secondary indexes to add to automatically generated tables. By default, none are added.
+  Especifica quantos Secondary Indexes adicionar a TABLEs geradas automaticamente. Por padrão, nenhum é adicionado.
 
 * `--auto-generate-sql-unique-query-number=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-unique-query-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-unique-query-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-unique-query-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-unique-query-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>10</code></td> </tr></tbody></table>
 
-  How many different queries to generate for automatic tests. For example, if you run a `key` test that performs 1000 selects, you can use this option with a value of 1000 to run 1000 unique queries, or with a value of 50 to perform 50 different selects. The default is 10.
+  Quantas QUERYs diferentes gerar para testes automáticos. Por exemplo, se você executar um teste `key` que realiza 1000 SELECTs, você pode usar esta opção com o valor 1000 para executar 1000 QUERYs únicas, ou com o valor 50 para executar 50 SELECTs diferentes. O padrão é 10.
 
 * `--auto-generate-sql-unique-write-number=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-unique-write-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-unique-write-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-unique-write-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-unique-write-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>10</code></td> </tr></tbody></table>
 
-  How many different queries to generate for `--auto-generate-sql-write-number`. The default is 10.
+  Quantas QUERYs diferentes gerar para `--auto-generate-sql-write-number`. O padrão é 10.
 
 * `--auto-generate-sql-write-number=N`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  How many row inserts to perform. The default is 100.
+  Quantas inserções de linha (row INSERTs) executar. O padrão é 100.
 
 * `--commit=N`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  How many statements to execute before committing. The default is 0 (no commits are done).
+  Quantas instruções executar antes de COMMIT. O padrão é 0 (nenhum COMMIT é feito).
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Compress all information sent between the client and the server if possible. See Section 4.2.6, “Connection Compression Control”.
+  Compacta todas as informações enviadas entre o cliente e o servidor, se possível. Consulte a Seção 4.2.6, “Controle de Compressão de Conexão”.
 
 * `--concurrency=N`, `-c N`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The number of parallel clients to simulate.
+  O número de clientes paralelos a serem simulados.
 
 * `--create=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The file or string containing the statement to use for creating the table.
+  O arquivo ou string contendo a instrução a ser usada para criar a TABLE.
 
 * `--create-schema=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The schema in which to run the tests.
+  O schema no qual executar os testes.
 
   Note
 
-  If the `--auto-generate-sql` option is also given, **mysqlslap** drops the schema at the end of the test run. To avoid this, use the `--no-drop` option as well.
+  Se a opção `--auto-generate-sql` também for fornecida, o **mysqlslap** executa DROP no schema ao final da execução do teste. Para evitar isso, use também a opção `--no-drop`.
 
 * `--csv[=file_name]`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Generate output in comma-separated values format. The output goes to the named file, or to the standard output if no file is given.
+  Gera a saída no formato de valores separados por vírgula (comma-separated values). A saída vai para o arquivo nomeado, ou para a saída padrão (standard output) se nenhum arquivo for fornecido.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysqlslap.trace`.
+  Escreve um log de debugging. Uma string *`debug_options`* típica é `d:t:o,file_name`. O padrão é `d:t:o,/tmp/mysqlslap.trace`.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Binários de lançamento do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Print some debugging information when the program exits.
+  Imprime algumas informações de debugging quando o programa é encerrado.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Binários de lançamento do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Print debugging information and memory and CPU usage statistics when the program exits.
+  Imprime informações de debugging e estatísticas de uso de memória e CPU quando o programa é encerrado.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Binários de lançamento do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  A hint about which client-side authentication plugin to use. See Section 6.2.13, “Pluggable Authentication”.
+  Uma dica sobre qual plugin de autenticação do lado do cliente usar. Consulte a Seção 6.2.13, “Autenticação Plugável”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Lê este arquivo de opções após o arquivo de opções global, mas (no Unix) antes do arquivo de opções do usuário. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Usa apenas o arquivo de opções fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-  Exception: Even with `--defaults-file`, client programs read `.mylogin.cnf`.
+  Exceção: Mesmo com `--defaults-file`, os programas cliente leem `.mylogin.cnf`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlslap** normally reads the `[client]` and `[mysqlslap]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlslap** also reads the `[client_other]` and `[mysqlslap_other]` groups.
+  Lê não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo *`str`*. Por exemplo, o **mysqlslap** normalmente lê os grupos `[client]` e `[mysqlslap]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, o **mysqlslap** também lê os grupos `[client_other]` e `[mysqlslap_other]`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--delimiter=str`, `-F str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The delimiter to use in SQL statements supplied in files or using command options.
+  O delimitador a ser usado nas instruções SQL fornecidas em arquivos ou usando opções de comando.
 
 * `--detach=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Detach (close and reopen) each connection after each *`N`* statements. The default is 0 (connections are not detached).
+  Desanexa (fecha e reabre) cada conexão após cada *`N`* instruções. O padrão é 0 (as conexões não são desanexadas).
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”.)
+  Habilita o plugin de autenticação cleartext `mysql_clear_password`. (Consulte a Seção 6.4.1.6, “Autenticação Plugável Cleartext do Lado do Cliente”.)
 
 * `--engine=engine_name`, `-e engine_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The storage engine to use for creating tables.
+  O Storage Engine a ser usado para criar TABLEs.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Request from the server the RSA public key that it uses for key pair-based password exchange. This option applies to clients that connect to the server using an account that authenticates with the `caching_sha2_password` authentication plugin. For connections by such accounts, the server does not send the public key to the client unless requested. The option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not needed, as is the case when the client connects to the server using a secure connection.
+  Solicita ao servidor a chave pública RSA que ele usa para a troca de senha baseada em par de chaves. Esta opção se aplica a clientes que se conectam ao servidor usando uma conta que se autentica com o plugin de autenticação `caching_sha2_password`. Para conexões feitas por tais contas, o servidor não envia a chave pública ao cliente, a menos que seja solicitada. A opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha baseada em RSA não for necessária, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
-  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
+  Se `--server-public-key-path=file_name` for fornecida e especificar um arquivo de chave pública válido, ela terá precedência sobre `--get-server-public-key`.
 
-  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  Para obter informações sobre o plugin `caching_sha2_password`, consulte a Seção 6.4.1.4, “Autenticação Plugável SHA-2 com Caching”.
 
-  The `--get-server-public-key` option was added in MySQL 5.7.23.
+  A opção `--get-server-public-key` foi adicionada no MySQL 5.7.23.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Connect to the MySQL server on the given host.
+  Conecta-se ao servidor MySQL no Host fornecido.
 
 * `--iterations=N`, `-i N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The number of times to run the tests.
+  O número de vezes para executar os testes.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  Lê opções do login path nomeado no arquivo de login path `.mylogin.cnf`. Um “login path” é um grupo de opções contendo opções que especificam a qual servidor MySQL conectar e com qual conta autenticar. Para criar ou modificar um arquivo de login path, use o utilitário **mysql_config_editor**. Consulte a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--no-drop`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Prevent **mysqlslap** from dropping any schema it creates during the test run.
+  Impede que o **mysqlslap** execute DROP em qualquer schema que ele crie durante a execução do teste.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
+  Não lê arquivos de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que sejam lidas.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de forma mais segura do que na linha de comando, mesmo quando `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Consulte a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--number-char-cols=N`, `-x N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The number of `VARCHAR` columns to use if `--auto-generate-sql` is specified.
+  O número de colunas `VARCHAR` a serem usadas se `--auto-generate-sql` for especificado.
 
 * `--number-int-cols=N`, `-y N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The number of `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") columns to use if `--auto-generate-sql` is specified.
+  O número de colunas `INT` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) a serem usadas se `--auto-generate-sql` for especificado.
 
 * `--number-of-queries=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Limit each client to approximately this many queries. Query counting takes into account the statement delimiter. For example, if you invoke **mysqlslap** as follows, the `;` delimiter is recognized so that each instance of the query string counts as two queries. As a result, 5 rows (not 10) are inserted.
+  Limita cada cliente a aproximadamente esse número de QUERYs. A contagem de QUERYs leva em consideração o delimitador de instrução. Por exemplo, se você invocar o **mysqlslap** da seguinte forma, o delimitador `;` é reconhecido de modo que cada instância da string de QUERY conte como duas QUERYs. Como resultado, 5 linhas (não 10) são inseridas.
 
   ```sql
   mysqlslap --delimiter=";" --number-of-queries=10
@@ -303,162 +303,162 @@ mysqlslap --concurrency=5
 
 * `--only-print`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Do not connect to databases. **mysqlslap** only prints what it would have done.
+  Não se conecta a Databases. O **mysqlslap** apenas imprime o que teria feito.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlslap** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  A senha da conta MySQL usada para conectar-se ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlslap** solicitará um. Se fornecido, *não deve haver espaço* entre `--password=` ou `-p` e a senha seguinte. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
 
-  Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 6.1.2.1, “End-User Guidelines for Password Security”.
+  Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opções. Consulte a Seção 6.1.2.1, “Diretrizes para o Usuário Final para Segurança de Senhas”.
 
-  To explicitly specify that there is no password and that **mysqlslap** should not prompt for one, use the `--skip-password` option.
+  Para especificar explicitamente que não há senha e que o **mysqlslap** não deve solicitá-la, use a opção `--skip-password`.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-add-autoincrement"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
+  No Windows, conecta-se ao servidor usando um named pipe. Esta opção se aplica somente se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por named pipe. Além disso, o usuário que faz a conexão deve ser um membro do grupo Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlslap** does not find it. See Section 6.2.13, “Pluggable Authentication”.
+  O diretório onde procurar plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlslap** não o encontrar. Consulte a Seção 6.2.13, “Autenticação Plugável”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  For TCP/IP connections, the port number to use.
+  Para conexões TCP/IP, o número da porta a ser usado.
 
 * `--post-query=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  The file or string containing the statement to execute after the tests have completed. This execution is not counted for timing purposes.
+  O arquivo ou string contendo a instrução a ser executada após a conclusão dos testes. Esta execução não é contabilizada para fins de medição de tempo (timing).
 
 * `--post-system=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  The string to execute using `system()` after the tests have completed. This execution is not counted for timing purposes.
+  A string a ser executada usando `system()` após a conclusão dos testes. Esta execução não é contabilizada para fins de medição de tempo (timing).
 
 * `--pre-query=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  The file or string containing the statement to execute before running the tests. This execution is not counted for timing purposes.
+  O arquivo ou string contendo a instrução a ser executada antes de executar os testes. Esta execução não é contabilizada para fins de medição de tempo (timing).
 
 * `--pre-system=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  The string to execute using `system()` before running the tests. This execution is not counted for timing purposes.
+  A string a ser executada usando `system()` antes de executar os testes. Esta execução não é contabilizada para fins de medição de tempo (timing).
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  Print the program name and all options that it gets from option files.
+  Imprime o nome do programa e todas as opções que ele obtém dos arquivos de opções.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 4.2.5, “Connection Transport Protocols”.
+  O protocolo de transporte a ser usado para conectar-se ao servidor. É útil quando os outros parâmetros de conexão normalmente resultariam no uso de um protocolo diferente daquele que você deseja. Para detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 * `--query=value`, `-q value`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  The file or string containing the `SELECT` statement to use for retrieving data.
+  O arquivo ou string contendo a instrução `SELECT` a ser usada para recuperar dados.
 
 * `--secure-auth`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-execute-number"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
-  Do not send passwords to the server in old (pre-4.1) format. This prevents connections except for servers that use the newer password format.
+  Não envia senhas ao servidor no formato antigo (pré-4.1). Isso impede conexões, exceto para servidores que usam o formato de senha mais recente.
 
-  As of MySQL 5.7.5, this option is deprecated; expect it to be removed in a future MySQL release. It is always enabled and attempting to disable it (`--skip-secure-auth`, `--secure-auth=0`) produces an error. Before MySQL 5.7.5, this option is enabled by default but can be disabled.
+  A partir do MySQL 5.7.5, esta opção está obsoleta (deprecated); espere que seja removida em um futuro lançamento do MySQL. Ela está sempre habilitada e tentar desabilitá-la (`--skip-secure-auth`, `--secure-auth=0`) produz um erro. Antes do MySQL 5.7.5, esta opção era habilitada por padrão, mas podia ser desabilitada.
 
   Note
 
-  Passwords that use the pre-4.1 hashing method are less secure than passwords that use the native password hashing method and should be avoided. Pre-4.1 passwords are deprecated and support for them was removed in MySQL 5.7.5. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
+  Senhas que usam o método de hashing pré-4.1 são menos seguras do que senhas que usam o método nativo de hashing de senha e devem ser evitadas. Senhas pré-4.1 estão obsoletas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando do Hashing de Senha Pré-4.1 e do Plugin mysql_old_password”.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  O nome do caminho para um arquivo em formato PEM contendo uma cópia do lado do cliente da chave pública exigida pelo servidor para a troca de senha baseada em par de chaves RSA. Esta opção se aplica a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
-  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
+  Se `--server-public-key-path=file_name` for fornecida e especificar um arquivo de chave pública válido, ela terá precedência sobre `--get-server-public-key`.
 
-  For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
+  Para `sha256_password`, esta opção se aplica somente se o MySQL foi construído usando OpenSSL.
 
-  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  Para obter informações sobre os plugins `sha256_password` e `caching_sha2_password`, consulte a Seção 6.4.1.5, “Autenticação Plugável SHA-256”, e a Seção 6.4.1.4, “Autenticação Plugável SHA-2 com Caching”.
 
-  The `--server-public-key-path` option was added in MySQL 5.7.23.
+  A opção `--server-public-key-path` foi adicionada no MySQL 5.7.23.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
+  No Windows, o nome da shared-memory a ser usado para conexões feitas usando shared memory para um servidor local. O valor padrão é `MYSQL`. O nome da shared-memory diferencia maiúsculas de minúsculas.
 
-  This option applies only if the server was started with the `shared_memory` system variable enabled to support shared-memory connections.
+  Esta opção se aplica somente se o servidor foi iniciado com a variável de sistema `shared_memory` habilitada para suportar conexões por shared memory.
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Silent mode. No output.
+  Modo silencioso (Silent mode). Sem saída.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
+  Para conexões a `localhost`, o arquivo socket Unix a ser usado ou, no Windows, o nome do named pipe a ser usado.
 
-  On Windows, this option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
+  No Windows, esta opção se aplica somente se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por named pipe. Além disso, o usuário que faz a conexão deve ser um membro do grupo Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--sql-mode=mode`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Set the SQL mode for the client session.
+  Define o SQL mode para a sessão do cliente.
 
 * `--ssl*`
 
-  Options that begin with `--ssl` specify whether to connect to the server using encryption and indicate where to find SSL keys and certificates. See Command Options for Encrypted Connections.
+  Opções que começam com `--ssl` especificam se deve haver conexão com o servidor usando criptografia e indicam onde encontrar chaves e certificados SSL. Consulte Opções de Comando para Conexões Criptografadas.
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
+  Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgulas. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 6.3.2, “Protocolos TLS e Cifras de Conexão Criptografada”.
 
-  This option was added in MySQL 5.7.10.
+  Esta opção foi adicionada no MySQL 5.7.10.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The user name of the MySQL account to use for connecting to the server.
+  O nome de usuário (user name) da conta MySQL a ser usado para conectar-se ao servidor.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Verbose mode. Print more information about what the program does. This option can be used multiple times to increase the amount of information.
+  Modo verbose. Imprime mais informações sobre o que o programa faz. Esta opção pode ser usada múltiplas vezes para aumentar a quantidade de informação.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-generate-sql-guid-primary"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações da versão e sai.

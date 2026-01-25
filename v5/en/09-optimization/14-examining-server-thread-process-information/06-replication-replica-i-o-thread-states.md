@@ -1,59 +1,59 @@
-### 8.14.6 Replication Replica I/O Thread States
+### 8.14.6 Estados do Thread I/O da Replica de Replicação
 
-The following list shows the most common states you see in the `State` column for a replica server I/O thread. This state also appears in the `Slave_IO_State` column displayed by `SHOW SLAVE STATUS`, so you can get a good view of what is happening by using that statement.
+A lista a seguir mostra os estados mais comuns que você pode ver na coluna `State` para um I/O Thread do servidor replica. Este estado também aparece na coluna `Slave_IO_State` exibida por `SHOW SLAVE STATUS`, permitindo que você tenha uma boa visão do que está acontecendo ao usar essa instrução.
 
 * `Checking master version`
 
-  A state that occurs very briefly, after the connection to the source is established.
+  Um estado que ocorre muito brevemente, após a conexão com o Source ser estabelecida.
 
 * `Connecting to master`
 
-  The thread is attempting to connect to the source.
+  O Thread está tentando se conectar ao Source.
 
 * `Queueing master event to the relay log`
 
-  The thread has read an event and is copying it to the relay log so that the SQL thread can process it.
+  O Thread leu um evento e o está copiando para o relay log para que o SQL Thread possa processá-lo.
 
 * `Reconnecting after a failed binlog dump request`
 
-  The thread is trying to reconnect to the source.
+  O Thread está tentando se reconectar ao Source.
 
 * `Reconnecting after a failed master event read`
 
-  The thread is trying to reconnect to the source. When connection is established again, the state becomes `Waiting for master to send event`.
+  O Thread está tentando se reconectar ao Source. Quando a conexão é estabelecida novamente, o estado se torna `Waiting for master to send event`.
 
 * `Registering slave on master`
 
-  A state that occurs very briefly after the connection to the source is established.
+  Um estado que ocorre muito brevemente após a conexão com o Source ser estabelecida.
 
 * `Requesting binlog dump`
 
-  A state that occurs very briefly, after the connection to the source is established. The thread sends to the source a request for the contents of its binary logs, starting from the requested binary log file name and position.
+  Um estado que ocorre muito brevemente, após a conexão com o Source ser estabelecida. O Thread envia ao Source uma solicitação pelo conteúdo de seus binary logs, começando a partir do nome do arquivo de binary log e da posição solicitados.
 
 * `Waiting for its turn to commit`
 
-  A state that occurs when the replica thread is waiting for older worker threads to commit if `slave_preserve_commit_order` is enabled.
+  Um estado que ocorre quando o Thread da replica está aguardando threads worker mais antigos realizarem o commit, caso `slave_preserve_commit_order` esteja habilitado.
 
 * `Waiting for master to send event`
 
-  The thread has connected to the source and is waiting for binary log events to arrive. This can last for a long time if the source is idle. If the wait lasts for `slave_net_timeout` seconds, a timeout occurs. At that point, the thread considers the connection to be broken and makes an attempt to reconnect.
+  O Thread se conectou ao Source e está aguardando a chegada de eventos do binary log. Isso pode durar muito tempo se o Source estiver ocioso. Se a espera durar `slave_net_timeout` segundos, um timeout ocorre. Nesse ponto, o Thread considera que a conexão foi interrompida e tenta se reconectar.
 
 * `Waiting for master update`
 
-  The initial state before `Connecting to master`.
+  O estado inicial antes de `Connecting to master`.
 
 * `Waiting for slave mutex on exit`
 
-  A state that occurs briefly as the thread is stopping.
+  Um estado que ocorre brevemente enquanto o Thread está parando.
 
 * `Waiting for the slave SQL thread to free enough relay log space`
 
-  You are using a nonzero `relay_log_space_limit` value, and the relay logs have grown large enough that their combined size exceeds this value. The I/O thread is waiting until the SQL thread frees enough space by processing relay log contents so that it can delete some relay log files.
+  Você está usando um valor `relay_log_space_limit` diferente de zero, e os relay logs cresceram o suficiente para que seu tamanho combinado exceda esse valor. O I/O Thread está esperando até que o SQL Thread libere espaço suficiente, processando o conteúdo do relay log, para que possa excluir alguns arquivos de relay log.
 
 * `Waiting to reconnect after a failed binlog dump request`
 
-  If the binary log dump request failed (due to disconnection), the thread goes into this state while it sleeps, then tries to reconnect periodically. The interval between retries can be specified using the `CHANGE MASTER TO` statement.
+  Se a solicitação de binary log dump falhou (devido à desconexão), o Thread entra neste estado enquanto dorme, e então tenta se reconectar periodicamente. O intervalo entre as novas tentativas pode ser especificado usando a instrução `CHANGE MASTER TO`.
 
 * `Waiting to reconnect after a failed master event read`
 
-  An error occurred while reading (due to disconnection). The thread is sleeping for the number of seconds set by the `CHANGE MASTER TO` statement (default 60) before attempting to reconnect.
+  Ocorreu um erro durante a leitura (devido à desconexão). O Thread está em modo de espera (sleeping) pelo número de segundos definido pela instrução `CHANGE MASTER TO` (padrão 60) antes de tentar se reconectar.

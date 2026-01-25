@@ -1,9 +1,9 @@
-#### 2.5.7.3 Deploying MySQL on Windows and Other Non-Linux Platforms with Docker
+#### 2.5.7.3 Implantando MySQL no Windows e Outras Plataformas Não-Linux com Docker
 
-Warning
+Aviso
 
-The MySQL Docker images provided by Oracle are built specifically for Linux platforms. Other platforms are not supported, and users running the MySQL Docker images from Oracle on them are doing so at their own risk. This section discusses some known issues for the images when used on non-Linux platforms.
+As imagens Docker do MySQL fornecidas pela Oracle são construídas especificamente para plataformas Linux. Outras plataformas não são suportadas, e os usuários que executam as imagens Docker do MySQL da Oracle nelas o fazem por sua conta e risco. Esta seção discute alguns problemas conhecidos para as imagens quando usadas em plataformas não-Linux.
 
-Known Issues for using the MySQL Server Docker images from Oracle on Windows include:
+Problemas Conhecidos para o uso das imagens Docker do Servidor MySQL da Oracle no Windows incluem:
 
-* If you are bind-mounting on the container's MySQL data directory (see Persisting Data and Configuration Changes for details), you have to set the location of the server socket file with the `--socket` option to somewhere outside of the MySQL data directory; otherwise, the server fails to start. This is because the way Docker for Windows handles file mounting does not allow a host file from being bind-mounted on the socket file.
+*   Se você estiver fazendo *bind-mounting* no *data directory* do MySQL do container (consulte Persistência de Dados e Alterações de Configuração para detalhes), você deve definir a localização do *server socket file* com a opção `--socket` para algum lugar fora do *MySQL data directory*; caso contrário, o *server* falha ao iniciar. Isso ocorre porque a maneira como o Docker for Windows lida com a montagem de arquivos não permite que um *host file* seja *bind-mounted* no *socket file*.

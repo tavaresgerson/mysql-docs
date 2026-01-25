@@ -1,123 +1,123 @@
-### 1.6.1 MySQL Extensions to Standard SQL
+### 1.6.1 Extensões MySQL para SQL Padrão
 
-MySQL Server supports some extensions that are likely not to be found in other SQL DBMSs. Be warned that if you use them, your code is not portable to other SQL servers. In some cases, you can write code that includes MySQL extensions, but is still portable, by using comments of the following form:
+O MySQL Server suporta algumas extensões que provavelmente não serão encontradas em outros SGBDs SQL. Esteja avisado que, se você as utilizar, seu código não será portátil para outros servidores SQL. Em alguns casos, você pode escrever código que inclua extensões MySQL, mas que ainda seja portátil, utilizando comentários do seguinte formato:
 
 ```sql
 /*! MySQL-specific code */
 ```
 
-In this case, MySQL Server parses and executes the code within the comment as it would any other SQL statement, but other SQL servers ignore the extensions. For example, MySQL Server recognizes the `STRAIGHT_JOIN` keyword in the following statement, but other servers do not:
+Neste caso, o MySQL Server analisa (parses) e executa o código dentro do comentário como faria com qualquer outra instrução SQL, mas outros servidores SQL ignoram as extensões. Por exemplo, o MySQL Server reconhece a palavra-chave `STRAIGHT_JOIN` na seguinte instrução, mas outros servidores não:
 
 ```sql
 SELECT /*! STRAIGHT_JOIN */ col1 FROM table1,table2 WHERE ...
 ```
 
-If you add a version number after the `!` character, the syntax within the comment is executed only if the MySQL version is greater than or equal to the specified version number. The `KEY_BLOCK_SIZE` clause in the following comment is executed only by servers from MySQL 5.1.10 or higher:
+Se você adicionar um número de versão após o caractere `!`, a sintaxe dentro do comentário é executada apenas se a versão do MySQL for maior ou igual ao número de versão especificado. A cláusula `KEY_BLOCK_SIZE` no seguinte comentário é executada apenas por servidores a partir do MySQL 5.1.10 ou superior:
 
 ```sql
 CREATE TABLE t1(a INT, KEY (a)) /*!50110 KEY_BLOCK_SIZE=1024 */;
 ```
 
-The following descriptions list MySQL extensions, organized by category.
+As descrições a seguir listam as extensões MySQL, organizadas por categoria.
 
-* Organization of data on disk
+* Organização de dados em disco
 
-  MySQL Server maps each database to a directory under the MySQL data directory, and maps tables within a database to file names in the database directory. This has a few implications:
+  O MySQL Server mapeia cada Database para um diretório sob o diretório de dados do MySQL, e mapeia Tables dentro de um Database para nomes de arquivo no diretório do Database. Isso tem algumas implicações:
 
-  + Database and table names are case-sensitive in MySQL Server on operating systems that have case-sensitive file names (such as most Unix systems). See Section 9.2.3, “Identifier Case Sensitivity”.
+  + Nomes de Database e Table são sensíveis a maiúsculas e minúsculas (case-sensitive) no MySQL Server em sistemas operacionais que possuem nomes de arquivo sensíveis a maiúsculas e minúsculas (como a maioria dos sistemas Unix). Veja a Seção 9.2.3, “Sensibilidade a Maiúsculas e Minúsculas de Identificadores”.
 
-  + You can use standard system commands to back up, rename, move, delete, and copy tables that are managed by the `MyISAM` storage engine. For example, it is possible to rename a `MyISAM` table by renaming the `.MYD`, `.MYI`, and `.frm` files to which the table corresponds. (Nevertheless, it is preferable to use `RENAME TABLE` or `ALTER TABLE ... RENAME` and let the server rename the files.)
+  + Você pode usar comandos de sistema padrão para fazer backup, renomear, mover, excluir e copiar Tables que são gerenciadas pela Storage Engine `MyISAM`. Por exemplo, é possível renomear uma Table `MyISAM` renomeando os arquivos `.MYD`, `.MYI` e `.frm` aos quais a Table corresponde. (Não obstante, é preferível usar `RENAME TABLE` ou `ALTER TABLE ... RENAME` e deixar o Server renomear os arquivos.)
 
-* General language syntax
+* Sintaxe geral da linguagem
 
-  + By default, strings can be enclosed by `"` as well as `'`. If the `ANSI_QUOTES` SQL mode is enabled, strings can be enclosed only by `'` and the server interprets strings enclosed by `"` as identifiers.
+  + Por padrão, strings podem ser delimitadas por `"` assim como por `'`. Se o modo SQL `ANSI_QUOTES` estiver habilitado, strings podem ser delimitadas apenas por `'` e o Server interpreta strings delimitadas por `"` como identificadores.
 
-  + `\` is the escape character in strings.
-  + In SQL statements, you can access tables from different databases with the *`db_name.tbl_name`* syntax. Some SQL servers provide the same functionality but call this `User space`. MySQL Server does not support tablespaces such as used in statements like this: `CREATE TABLE ralph.my_table ... IN my_tablespace`.
+  + `\` é o caractere de escape em strings.
+  + Em instruções SQL, você pode acessar Tables de diferentes Databases com a sintaxe *`db_name.tbl_name`*. Alguns servidores SQL fornecem a mesma funcionalidade, mas a chamam de `User space`. O MySQL Server não suporta tablespaces como os usados em instruções como esta: `CREATE TABLE ralph.my_table ... IN my_tablespace`.
 
-* SQL statement syntax
+* Sintaxe de instruções SQL
 
-  + The `ANALYZE TABLE`, `CHECK TABLE`, `OPTIMIZE TABLE`, and `REPAIR TABLE` statements.
+  + As instruções `ANALYZE TABLE`, `CHECK TABLE`, `OPTIMIZE TABLE` e `REPAIR TABLE`.
 
-  + The `CREATE DATABASE`, `DROP DATABASE`, and `ALTER DATABASE` statements. See Section 13.1.11, “CREATE DATABASE Statement”, Section 13.1.22, “DROP DATABASE Statement”, and Section 13.1.1, “ALTER DATABASE Statement”.
+  + As instruções `CREATE DATABASE`, `DROP DATABASE` e `ALTER DATABASE`. Veja a Seção 13.1.11, “Instrução CREATE DATABASE”, Seção 13.1.22, “Instrução DROP DATABASE”, e Seção 13.1.1, “Instrução ALTER DATABASE”.
 
-  + The `DO` statement.
-  + `EXPLAIN SELECT` to obtain a description of how tables are processed by the query optimizer.
+  + A instrução `DO`.
+  + `EXPLAIN SELECT` para obter uma descrição de como as Tables são processadas pelo Query optimizer.
 
-  + The `FLUSH` and `RESET` statements.
+  + As instruções `FLUSH` e `RESET`.
 
-  + The `SET` statement. See Section 13.7.4.1, “SET Syntax for Variable Assignment”.
+  + A instrução `SET`. Veja a Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variáveis”.
 
-  + The `SHOW` statement. See Section 13.7.5, “SHOW Statements”. The information produced by many of the MySQL-specific `SHOW` statements can be obtained in more standard fashion by using `SELECT` to query `INFORMATION_SCHEMA`. See Chapter 24, *INFORMATION_SCHEMA Tables*.
+  + A instrução `SHOW`. Veja a Seção 13.7.5, “Instruções SHOW”. As informações produzidas por muitas das instruções `SHOW` específicas do MySQL podem ser obtidas de maneira mais padrão usando `SELECT` para consultar o `INFORMATION_SCHEMA`. Veja o Capítulo 24, *INFORMATION_SCHEMA Tables*.
 
-  + Use of `LOAD DATA`. In many cases, this syntax is compatible with Oracle `LOAD DATA`. See Section 13.2.6, “LOAD DATA Statement”.
+  + Uso de `LOAD DATA`. Em muitos casos, esta sintaxe é compatível com o Oracle `LOAD DATA`. Veja a Seção 13.2.6, “Instrução LOAD DATA”.
 
-  + Use of `RENAME TABLE`. See Section 13.1.33, “RENAME TABLE Statement”.
+  + Uso de `RENAME TABLE`. Veja a Seção 13.1.33, “Instrução RENAME TABLE”.
 
-  + Use of `REPLACE` instead of `DELETE` plus `INSERT`. See Section 13.2.8, “REPLACE Statement”.
+  + Uso de `REPLACE` em vez de `DELETE` mais `INSERT`. Veja a Seção 13.2.8, “Instrução REPLACE”.
 
-  + Use of `CHANGE col_name`, `DROP col_name`, or `DROP INDEX`, `IGNORE` or `RENAME` in `ALTER TABLE` statements. Use of multiple `ADD`, `ALTER`, `DROP`, or `CHANGE` clauses in an `ALTER TABLE` statement. See Section 13.1.8, “ALTER TABLE Statement”.
+  + Uso de `CHANGE col_name`, `DROP col_name`, ou `DROP INDEX`, `IGNORE` ou `RENAME` em instruções `ALTER TABLE`. Uso de múltiplas cláusulas `ADD`, `ALTER`, `DROP` ou `CHANGE` em uma instrução `ALTER TABLE`. Veja a Seção 13.1.8, “Instrução ALTER TABLE”.
 
-  + Use of index names, indexes on a prefix of a column, and use of `INDEX` or `KEY` in `CREATE TABLE` statements. See Section 13.1.18, “CREATE TABLE Statement”.
+  + Uso de nomes de Index, Indexes em um prefixo de uma Column, e uso de `INDEX` ou `KEY` em instruções `CREATE TABLE`. Veja a Seção 13.1.18, “Instrução CREATE TABLE”.
 
-  + Use of `TEMPORARY` or `IF NOT EXISTS` with `CREATE TABLE`.
+  + Uso de `TEMPORARY` ou `IF NOT EXISTS` com `CREATE TABLE`.
 
-  + Use of `IF EXISTS` with `DROP TABLE` and `DROP DATABASE`.
+  + Uso de `IF EXISTS` com `DROP TABLE` e `DROP DATABASE`.
 
-  + The capability of dropping multiple tables with a single `DROP TABLE` statement.
+  + A capacidade de remover múltiplas Tables com uma única instrução `DROP TABLE`.
 
-  + The `ORDER BY` and `LIMIT` clauses of the `UPDATE` and `DELETE` statements.
+  + As cláusulas `ORDER BY` e `LIMIT` das instruções `UPDATE` e `DELETE`.
 
-  + `INSERT INTO tbl_name SET col_name = ...` syntax.
+  + Sintaxe `INSERT INTO tbl_name SET col_name = ...`.
 
-  + The `DELAYED` clause of the `INSERT` and `REPLACE` statements.
+  + A cláusula `DELAYED` das instruções `INSERT` e `REPLACE`.
 
-  + The `LOW_PRIORITY` clause of the `INSERT`, `REPLACE`, `DELETE`, and `UPDATE` statements.
+  + A cláusula `LOW_PRIORITY` das instruções `INSERT`, `REPLACE`, `DELETE` e `UPDATE`.
 
-  + Use of `INTO OUTFILE` or `INTO DUMPFILE` in `SELECT` statements. See Section 13.2.9, “SELECT Statement”.
+  + Uso de `INTO OUTFILE` ou `INTO DUMPFILE` em instruções `SELECT`. Veja a Seção 13.2.9, “Instrução SELECT”.
 
-  + Options such as `STRAIGHT_JOIN` or `SQL_SMALL_RESULT` in `SELECT` statements.
+  + Opções como `STRAIGHT_JOIN` ou `SQL_SMALL_RESULT` em instruções `SELECT`.
 
-  + You don't need to name all selected columns in the `GROUP BY` clause. This gives better performance for some very specific, but quite normal queries. See Section 12.19, “Aggregate Functions”.
+  + Você não precisa nomear todas as Columns selecionadas na cláusula `GROUP BY`. Isso proporciona melhor performance para algumas Queries muito específicas, mas bastante normais. Veja a Seção 12.19, “Funções de Agregação”.
 
-  + You can specify `ASC` and `DESC` with `GROUP BY`, not just with `ORDER BY`.
+  + Você pode especificar `ASC` e `DESC` com `GROUP BY`, e não apenas com `ORDER BY`.
 
-  + The ability to set variables in a statement with the `:=` assignment operator. See Section 9.4, “User-Defined Variables”.
+  + A capacidade de definir variáveis em uma instrução com o operador de atribuição `:=`. Veja a Seção 9.4, “Variáveis Definidas pelo Usuário”.
 
-* Data types
+* Tipos de Dados
 
-  + The `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SET`, and `ENUM` data types, and the various `BLOB` and `TEXT` data types.
+  + Os Tipos de Dados `MEDIUMINT`, `SET` e `ENUM`, e os diversos Tipos de Dados `BLOB` e `TEXT`.
 
-  + The `AUTO_INCREMENT`, `BINARY`, `NULL`, `UNSIGNED`, and `ZEROFILL` data type attributes.
+  + Os atributos de Tipo de Dado `AUTO_INCREMENT`, `BINARY`, `NULL`, `UNSIGNED` e `ZEROFILL`.
 
-* Functions and operators
+* Functions e operadores
 
-  + To make it easier for users who migrate from other SQL environments, MySQL Server supports aliases for many functions. For example, all string functions support both standard SQL syntax and ODBC syntax.
+  + Para facilitar para usuários que migram de outros ambientes SQL, o MySQL Server suporta aliases para muitas Functions. Por exemplo, todas as Funções de string suportam tanto a sintaxe SQL padrão quanto a sintaxe ODBC.
 
-  + MySQL Server understands the `||` and `&&` operators to mean logical OR and AND, as in the C programming language. In MySQL Server, `||` and `OR` are synonyms, as are `&&` and `AND`. Because of this nice syntax, MySQL Server does not support the standard SQL `||` operator for string concatenation; use `CONCAT()` instead. Because `CONCAT()` takes any number of arguments, it is easy to convert use of the `||` operator to MySQL Server.
+  + O MySQL Server interpreta os operadores `||` e `&&` como OR lógico e AND lógico, como na linguagem de programação C. No MySQL Server, `||` e `OR` são sinônimos, assim como `&&` e `AND`. Devido a esta sintaxe conveniente, o MySQL Server não suporta o operador SQL padrão `||` para concatenação de strings; utilize `CONCAT()` em vez disso. Como `CONCAT()` aceita qualquer número de argumentos, é fácil converter o uso do operador `||` para o MySQL Server.
 
-  + Use of `COUNT(DISTINCT value_list)` where *`value_list`* has more than one element.
+  + Uso de `COUNT(DISTINCT value_list)` onde *`value_list`* tem mais de um elemento.
 
-  + String comparisons are case-insensitive by default, with sort ordering determined by the collation of the current character set, which is `latin1` (cp1252 West European) by default. To perform case-sensitive comparisons instead, you should declare your columns with the `BINARY` attribute or use the `BINARY` cast, which causes comparisons to be done using the underlying character code values rather than a lexical ordering.
+  + As comparações de String são, por padrão, case-insensitive (não sensíveis a maiúsculas e minúsculas), com a ordenação de classificação determinada pela collation do conjunto de caracteres atual, que é `latin1` (cp1252 Europeu Ocidental) por padrão. Para realizar comparações case-sensitive (sensíveis a maiúsculas e minúsculas), você deve declarar suas Columns com o atributo `BINARY` ou usar o cast `BINARY`, o que faz com que as comparações sejam feitas usando os valores subjacentes do código de caracteres em vez de uma ordenação lexical.
 
-  + The `%` operator is a synonym for `MOD()`. That is, `N % M` is equivalent to `MOD(N,M)`. `%` is supported for C programmers and for compatibility with PostgreSQL.
+  + O operador `%` é um sinônimo para `MOD()`. Isto é, `N % M` é equivalente a `MOD(N,M)`. `%` é suportado para programadores C e para compatibilidade com PostgreSQL.
 
-  + The `=`, `<>`, `<=`, `<`, `>=`, `>`, `<<`, `>>`, `<=>`, `AND`, `OR`, or `LIKE` operators may be used in expressions in the output column list (to the left of the `FROM`) in `SELECT` statements. For example:
+  + Os operadores `=`, `<>`, `<=`, `<`, `>=`, `>`, `<<`, `>>`, `<=>`, `AND`, `OR` ou `LIKE` podem ser usados em expressões na lista de Columns de saída (à esquerda do `FROM`) em instruções `SELECT`. Por exemplo:
 
     ```sql
     mysql> SELECT col1=1 AND col2=2 FROM my_table;
     ```
 
-  + The `LAST_INSERT_ID()` function returns the most recent `AUTO_INCREMENT` value. See Section 12.15, “Information Functions”.
+  + A Function `LAST_INSERT_ID()` retorna o valor `AUTO_INCREMENT` mais recente. Veja a Seção 12.15, “Information Functions”.
 
-  + `LIKE` is permitted on numeric values.
+  + `LIKE` é permitido em valores numéricos.
 
-  + The `REGEXP` and `NOT REGEXP` extended regular expression operators.
+  + Os operadores de expressão regular estendida `REGEXP` e `NOT REGEXP`.
 
-  + `CONCAT()` or `CHAR()` with one argument or more than two arguments. (In MySQL Server, these functions can take a variable number of arguments.)
+  + `CONCAT()` ou `CHAR()` com um argumento ou mais de dois argumentos. (No MySQL Server, estas Functions podem aceitar um número variável de argumentos.)
 
-  + The `BIT_COUNT()`, `CASE`, `ELT()`, `FROM_DAYS()`, `FORMAT()`, `IF()`, `PASSWORD()`, `ENCRYPT()`, `MD5()`, `ENCODE()`, `DECODE()`, `PERIOD_ADD()`, `PERIOD_DIFF()`, `TO_DAYS()`, and `WEEKDAY()` functions.
+  + As Functions `BIT_COUNT()`, `CASE`, `ELT()`, `FROM_DAYS()`, `FORMAT()`, `IF()`, `PASSWORD()`, `ENCRYPT()`, `MD5()`, `ENCODE()`, `DECODE()`, `PERIOD_ADD()`, `PERIOD_DIFF()`, `TO_DAYS()` e `WEEKDAY()`.
 
-  + Use of `TRIM()` to trim substrings. Standard SQL supports removal of single characters only.
+  + Uso de `TRIM()` para remover (trim) substrings. O SQL padrão suporta a remoção de caracteres únicos apenas.
 
-  + The `GROUP BY` functions `STD()`, `BIT_OR()`, `BIT_AND()`, `BIT_XOR()`, and `GROUP_CONCAT()`. See Section 12.19, “Aggregate Functions”.
+  + As Functions de `GROUP BY` `STD()`, `BIT_OR()`, `BIT_AND()`, `BIT_XOR()` e `GROUP_CONCAT()`. Veja a Seção 12.19, “Funções de Agregação”.

@@ -1,8 +1,8 @@
-### 9.1.5 Bit-Value Literals
+### 9.1.5 Literais de Valor Bit
 
-Bit-value literals are written using `b'val'` or `0bval` notation. *`val`* is a binary value written using zeros and ones. Lettercase of any leading `b` does not matter. A leading `0b` is case-sensitive and cannot be written as `0B`.
+Literais de valor bit são escritos usando a notação `b'val'` ou `0bval`. *`val`* é um valor binário escrito usando zeros e uns. O uso de maiúsculas/minúsculas para qualquer `b` inicial não importa. Um `0b` inicial diferencia maiúsculas de minúsculas e não pode ser escrito como `0B`.
 
-Legal bit-value literals:
+Literais de valor bit válidos:
 
 ```sql
 b'01'
@@ -10,14 +10,14 @@ B'01'
 0b01
 ```
 
-Illegal bit-value literals:
+Literais de valor bit inválidos:
 
 ```sql
 b'2'    (2 is not a binary digit)
 0B01    (0B must be written as 0b)
 ```
 
-By default, a bit-value literal is a binary string:
+Por padrão, um literal de valor bit é uma *string* binária:
 
 ```sql
 mysql> SELECT b'1000001', CHARSET(b'1000001');
@@ -34,22 +34,22 @@ mysql> SELECT 0b1100001, CHARSET(0b1100001);
 +-----------+--------------------+
 ```
 
-A bit-value literal may have an optional character set introducer and `COLLATE` clause, to designate it as a string that uses a particular character set and collation:
+Um literal de valor bit pode ter um *introducer* de *character set* opcional e uma cláusula `COLLATE`, para designá-lo como uma *string* que utiliza um *character set* e uma *collation* específicos:
 
 ```sql
 [_charset_name] b'val' [COLLATE collation_name]
 ```
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT _latin1 b'1000001';
 SELECT _utf8 0b1000001 COLLATE utf8_danish_ci;
 ```
 
-The examples use `b'val'` notation, but `0bval` notation permits introducers as well. For information about introducers, see Section 10.3.8, “Character Set Introducers”.
+Os exemplos usam a notação `b'val'`, mas a notação `0bval` também permite *introducers*. Para obter informações sobre *introducers*, consulte a Seção 10.3.8, “Character Set Introducers”.
 
-In numeric contexts, MySQL treats a bit literal like an integer. To ensure numeric treatment of a bit literal, use it in numeric context. Ways to do this include adding 0 or using `CAST(... AS UNSIGNED)`. For example, a bit literal assigned to a user-defined variable is a binary string by default. To assign the value as a number, use it in numeric context:
+Em contextos numéricos, o MySQL trata um literal bit como um inteiro. Para garantir o tratamento numérico de um literal bit, use-o em um contexto numérico. Maneiras de fazer isso incluem adicionar 0 ou usar `CAST(... AS UNSIGNED)`. Por exemplo, um literal bit atribuído a uma variável definida pelo usuário é uma *string* binária por padrão. Para atribuir o valor como um número, use-o em um contexto numérico:
 
 ```sql
 mysql> SET @v1 = b'1100001';
@@ -63,7 +63,7 @@ mysql> SELECT @v1, @v2, @v3;
 +------+------+------+
 ```
 
-An empty bit value (`b''`) evaluates to a zero-length binary string. Converted to a number, it produces 0:
+Um valor bit vazio (`b''`) é avaliado como uma *string* binária de comprimento zero. Convertido para um número, ele produz 0:
 
 ```sql
 mysql> SELECT CHARSET(b''), LENGTH(b'');
@@ -80,7 +80,7 @@ mysql> SELECT b''+0;
 +-------+
 ```
 
-Bit-value notation is convenient for specifying values to be assigned to `BIT` columns:
+A notação de valor bit é conveniente para especificar valores a serem atribuídos a colunas `BIT`:
 
 ```sql
 mysql> CREATE TABLE t (b BIT(8));
@@ -89,7 +89,7 @@ mysql> INSERT INTO t SET b = b'1010';
 mysql> INSERT INTO t SET b = b'0101';
 ```
 
-Bit values in result sets are returned as binary values, which may not display well. To convert a bit value to printable form, use it in numeric context or use a conversion function such as `BIN()` or `HEX()`. High-order 0 digits are not displayed in the converted value.
+Valores bit em *result sets* são retornados como valores binários, que podem não ser exibidos corretamente. Para converter um valor bit para um formato que possa ser impresso, use-o em um contexto numérico ou use uma função de conversão como `BIN()` ou `HEX()`. Os dígitos 0 de ordem superior não são exibidos no valor convertido.
 
 ```sql
 mysql> SELECT b+0, BIN(b), OCT(b), HEX(b) FROM t;

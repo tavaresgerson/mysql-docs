@@ -1,5 +1,5 @@
-### 2.5.3 Installing MySQL on Linux Using the MySQL APT Repository
+### 2.5.3 Instalando MySQL no Linux Usando o MySQL APT Repository
 
-The MySQL APT repository provides `deb` packages for installing and managing the MySQL server, client, and other components on the current Debian and Ubuntu releases.
+O MySQL APT repository fornece pacotes `deb` para instalar e gerenciar o MySQL server, client e outros components nas releases atuais do Debian e Ubuntu.
 
-Instructions for using the MySQL APT Repository are available in A Quick Guide to Using the MySQL APT Repository.
+Instruções para usar o MySQL APT Repository estão disponíveis em A Quick Guide to Using the MySQL APT Repository.

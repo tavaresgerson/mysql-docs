@@ -1,6 +1,6 @@
-#### 4.6.3.6 myisamchk Memory Usage
+#### 4.6.3.6 Uso de Memória do myisamchk
 
-Memory allocation is important when you run **myisamchk**. **myisamchk** uses no more memory than its memory-related variables are set to. If you are going to use **myisamchk** on very large tables, you should first decide how much memory you want it to use. The default is to use only about 3MB to perform repairs. By using larger values, you can get **myisamchk** to operate faster. For example, if you have more than 512MB RAM available, you could use options such as these (in addition to any other options you might specify):
+A alocação de memória é importante ao executar o **myisamchk**. O **myisamchk** não usa mais memória do que o definido em suas variáveis relacionadas à memória. Se você for usar o **myisamchk** em tabelas muito grandes, você deve primeiro decidir quanta memória deseja que ele use. O padrão é usar apenas cerca de 3MB para realizar reparos. Ao usar valores maiores, você pode fazer com que o **myisamchk** opere mais rapidamente. Por exemplo, se você tiver mais de 512MB de RAM disponível, você pode usar opções como estas (além de quaisquer outras opções que você possa especificar):
 
 ```sql
 myisamchk --myisam_sort_buffer_size=256M \
@@ -9,22 +9,22 @@ myisamchk --myisam_sort_buffer_size=256M \
            --write_buffer_size=64M ...
 ```
 
-Using `--myisam_sort_buffer_size=16M` is probably enough for most cases.
+Usar `--myisam_sort_buffer_size=16M` é provavelmente suficiente para a maioria dos casos.
 
-Be aware that **myisamchk** uses temporary files in `TMPDIR`. If `TMPDIR` points to a memory file system, out of memory errors can easily occur. If this happens, run **myisamchk** with the `--tmpdir=dir_name` option to specify a directory located on a file system that has more space.
+Esteja ciente de que o **myisamchk** usa arquivos temporários no `TMPDIR`. Se o `TMPDIR` apontar para um sistema de arquivos em memória, erros de falta de memória podem ocorrer facilmente. Se isso acontecer, execute o **myisamchk** com a opção `--tmpdir=dir_name` para especificar um diretório localizado em um sistema de arquivos que tenha mais espaço.
 
-When performing repair operations, **myisamchk** also needs a lot of disk space:
+Ao realizar operações de reparo, o **myisamchk** também precisa de bastante espaço em disco:
 
-* Twice the size of the data file (the original file and a copy). This space is not needed if you do a repair with `--quick`; in this case, only the index file is re-created. *This space must be available on the same file system as the original data file*, as the copy is created in the same directory as the original.
+* O dobro do tamanho do arquivo de Data (o arquivo original e uma cópia). Este espaço não é necessário se você fizer um reparo com `--quick`; neste caso, apenas o arquivo de Index é recriado. *Este espaço deve estar disponível no mesmo file system que o arquivo de Data original*, pois a cópia é criada no mesmo diretório do original.
 
-* Space for the new index file that replaces the old one. The old index file is truncated at the start of the repair operation, so you usually ignore this space. This space must be available on the same file system as the original data file.
+* Espaço para o novo arquivo de Index que substitui o antigo. O arquivo de Index antigo é truncado no início da operação de reparo, então você geralmente ignora este espaço. Este espaço deve estar disponível no mesmo file system que o arquivo de Data original.
 
-* When using `--recover` or `--sort-recover` (but not when using `--safe-recover`), you need space on disk for sorting. This space is allocated in the temporary directory (specified by `TMPDIR` or `--tmpdir=dir_name`). The following formula yields the amount of space required:
+* Ao usar `--recover` ou `--sort-recover` (mas não ao usar `--safe-recover`), você precisa de espaço em disco para a ordenação (sorting). Este espaço é alocado no diretório temporário (especificado por `TMPDIR` ou `--tmpdir=dir_name`). A fórmula a seguir fornece a quantidade de espaço necessária:
 
   ```sql
   (largest_key + row_pointer_length) * number_of_rows * 2
   ```
 
-  You can check the length of the keys and the *`row_pointer_length`* with **myisamchk -dv *`tbl_name`*** (see Section 4.6.3.5, “Obtaining Table Information with myisamchk”). The *`row_pointer_length`* and *`number_of_rows`* values are the `Datafile pointer` and `Data records` values in the table description. To determine the *`largest_key`* value, check the `Key` lines in the table description. The `Len` column indicates the number of bytes for each key part. For a multiple-column index, the key size is the sum of the `Len` values for all key parts.
+  Você pode verificar o comprimento das Keys e o *`row_pointer_length`* com **myisamchk -dv *`tbl_name`*** (consulte a Seção 4.6.3.5, “Obtendo Informações da Tabela com myisamchk”). Os valores *`row_pointer_length`* e *`number_of_rows`* são os valores de `Datafile pointer` e `Data records` na descrição da tabela. Para determinar o valor *`largest_key`*, verifique as linhas `Key` na descrição da tabela. A coluna `Len` indica o número de bytes para cada parte da Key. Para um Index de múltiplas colunas, o tamanho da Key é a soma dos valores `Len` para todas as partes da Key.
 
-If you have a problem with disk space during repair, you can try `--safe-recover` instead of `--recover`.
+Se você tiver um problema com espaço em disco durante o reparo, você pode tentar `--safe-recover` em vez de `--recover`.

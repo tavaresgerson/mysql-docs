@@ -1,19 +1,19 @@
-#### 6.4.5.12 Audit Log Restrictions
+#### 6.4.5.12 Restrições do Log de Auditoria
 
-MySQL Enterprise Audit is subject to these general restrictions:
+O MySQL Enterprise Audit está sujeito a estas restrições gerais:
 
-* Only SQL statements are logged. Changes made by no-SQL APIs, such as memcached, Node.JS, and the NDB API, are not logged.
+* Apenas instruções SQL são registradas (logged). Alterações feitas por APIs no-SQL, como memcached, Node.JS e a NDB API, não são registradas.
 
-* Only top-level statements are logged, not statements within stored programs such as triggers or stored procedures.
+* Apenas instruções de nível superior (top-level) são registradas, não instruções dentro de programas armazenados (stored programs), como triggers ou stored procedures.
 
-* Contents of files referenced by statements such as [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") are not logged.
+* O conteúdo de arquivos referenciados por instruções como [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") não é registrado.
 
-* Prior to MySQL 5.7.21, MySQL Enterprise Audit uses `MyISAM` tables in the `mysql` system database. Group Replication does not support `MyISAM` tables. Consequently, MySQL Enterprise Audit and Group Replication cannot be used together.
+* Antes do MySQL 5.7.21, o MySQL Enterprise Audit usava tabelas `MyISAM` no system database `mysql`. O Group Replication não suporta tabelas `MyISAM`. Consequentemente, o MySQL Enterprise Audit e o Group Replication não podem ser usados em conjunto.
 
-**NDB Cluster.** It is possible to use MySQL Enterprise Audit with MySQL NDB Cluster, subject to the following conditions:
+**NDB Cluster.** É possível usar o MySQL Enterprise Audit com o MySQL NDB Cluster, sujeito às seguintes condições:
 
-* All changes to be logged must be done using the SQL interface. Changes using no-SQL interfaces, such as those provided by the NDB API, memcached, or ClusterJ, are not logged.
+* Todas as alterações a serem registradas devem ser feitas usando a interface SQL. Alterações que utilizam interfaces no-SQL, como aquelas fornecidas pela NDB API, memcached ou ClusterJ, não são registradas.
 
-* The plugin must be installed on each MySQL server that is used to execute SQL on the cluster.
+* O plugin deve ser instalado em cada MySQL server que é usado para executar SQL no cluster.
 
-* Audit plugin data must be aggregated amongst all MySQL servers used with the cluster. This aggregation is the responsibility of the application or user.
+* Os dados do Audit plugin devem ser agregados entre todos os MySQL servers usados com o cluster. Essa agregação é de responsabilidade da aplicação ou do usuário.

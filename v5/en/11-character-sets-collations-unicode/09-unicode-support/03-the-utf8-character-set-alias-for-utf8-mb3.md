@@ -1,3 +1,3 @@
-### 10.9.3 The utf8 Character Set (Alias for utf8mb3)
+### 10.9.3 O Conjunto de Caracteres utf8 (Alias para utf8mb3)
 
-`utf8` is an alias for the `utf8mb3` character set. For more information, see Section 10.9.2, “The utf8mb3 Character Set (3-Byte UTF-8 Unicode Encoding)”").
+`utf8` é um alias para o conjunto de caracteres `utf8mb3`. Para mais informações, consulte a Seção 10.9.2, “O Conjunto de Caracteres utf8mb3 (Codificação Unicode UTF-8 de 3 Bytes)”.

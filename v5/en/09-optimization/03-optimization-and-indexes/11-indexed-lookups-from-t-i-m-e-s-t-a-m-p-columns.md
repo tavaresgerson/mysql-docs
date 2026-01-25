@@ -1,8 +1,8 @@
-### 8.3.11 Indexed Lookups from TIMESTAMP Columns
+### 8.3.11 Buscas Indexadas em Colunas TIMESTAMP
 
-Temporal values are stored in `TIMESTAMP` columns as UTC values, and values inserted into and retrieved from `TIMESTAMP` columns are converted between the session time zone and UTC. (This is the same type of conversion performed by the `CONVERT_TZ()` function. If the session time zone is UTC, there is effectively no time zone conversion.)
+Valores temporais são armazenados em colunas `TIMESTAMP` como valores UTC, e os valores inseridos e recuperados de colunas `TIMESTAMP` são convertidos entre o time zone da sessão e UTC. (Este é o mesmo tipo de conversão realizada pela função `CONVERT_TZ()`. Se o time zone da sessão for UTC, não há, efetivamente, nenhuma conversão de time zone.)
 
-Due to conventions for local time zone changes such as Daylight Saving Time (DST), conversions between UTC and non-UTC time zones are not one-to-one in both directions. UTC values that are distinct may not be distinct in another time zone. The following example shows distinct UTC values that become identical in a non-UTC time zone:
+Devido a convenções para alterações locais de time zone, como o Horário de Verão (Daylight Saving Time – DST), as conversões entre UTC e time zones não-UTC não são biunívocas (one-to-one) em ambas as direções. Valores UTC que são distintos podem não ser distintos em outro time zone. O exemplo a seguir mostra valores UTC distintos que se tornam idênticos em um time zone não-UTC:
 
 ```sql
 mysql> CREATE TABLE tstable (ts TIMESTAMP);
@@ -29,32 +29,32 @@ mysql> SELECT ts FROM tstable;
 
 Note
 
-To use named time zones such as `'MET'` or `'Europe/Amsterdam'`, the time zone tables must be properly set up. For instructions, see Section 5.1.13, “MySQL Server Time Zone Support”.
+Para usar time zones nomeados, como `'MET'` ou `'Europe/Amsterdam'`, as tabelas de time zone devem ser configuradas corretamente. Para instruções, consulte a Seção 5.1.13, “MySQL Server Time Zone Support”.
 
-You can see that the two distinct UTC values are the same when converted to the `'MET'` time zone. This phenomenon can lead to different results for a given `TIMESTAMP` column query, depending on whether the optimizer uses an index to execute the query.
+Você pode ver que os dois valores UTC distintos são os mesmos quando convertidos para o time zone `'MET'`. Este fenômeno pode levar a resultados diferentes para uma determinada Query em colunas `TIMESTAMP`, dependendo de o Optimizer usar ou não um Index para executar a Query.
 
-Suppose that a query selects values from the table shown earlier using a `WHERE` clause to search the `ts` column for a single specific value such as a user-provided timestamp literal:
+Suponha que uma Query selecione valores da tabela mostrada anteriormente usando uma `WHERE` clause para buscar na coluna `ts` por um único valor específico, como um literal de timestamp fornecido pelo usuário:
 
 ```sql
 SELECT ts FROM tstable
 WHERE ts = 'literal';
 ```
 
-Suppose further that the query executes under these conditions:
+Suponha, ainda, que a Query seja executada sob estas condições:
 
-* The session time zone is not UTC and has a DST shift. For example:
+* O time zone da sessão não é UTC e possui uma mudança de DST (Horário de Verão). Por exemplo:
 
   ```sql
   SET time_zone = 'MET';
   ```
 
-* Unique UTC values stored in the `TIMESTAMP` column are not unique in the session time zone due to DST shifts. (The example shown earlier illustrates how this can occur.)
+* Valores UTC únicos armazenados na coluna `TIMESTAMP` não são únicos no time zone da sessão devido às mudanças de DST. (O exemplo mostrado anteriormente ilustra como isso pode ocorrer.)
 
-* The query specifies a search value that is within the hour of entry into DST in the session time zone.
+* A Query especifica um valor de busca que está dentro da hora de entrada do DST no time zone da sessão.
 
-Under those conditions, the comparison in the `WHERE` clause occurs in different ways for nonindexed and indexed lookups and leads to different results:
+Sob essas condições, a comparação na `WHERE` clause ocorre de maneiras diferentes para buscas não-indexadas e buscas indexadas, e leva a resultados diferentes:
 
-* If there is no index or the optimizer cannot use it, comparisons occur in the session time zone. The optimizer performs a table scan in which it retrieves each `ts` column value, converts it from UTC to the session time zone, and compares it to the search value (also interpreted in the session time zone):
+* Se não houver Index ou se o Optimizer não puder usá-lo, as comparações ocorrem no time zone da sessão. O Optimizer executa um Table Scan no qual ele recupera cada valor da coluna `ts`, o converte de UTC para o time zone da sessão e o compara ao valor de busca (também interpretado no time zone da sessão):
 
   ```sql
   mysql> SELECT ts FROM tstable
@@ -67,9 +67,9 @@ Under those conditions, the comparison in the `WHERE` clause occurs in different
   +---------------------+
   ```
 
-  Because the stored `ts` values are converted to the session time zone, it is possible for the query to return two timestamp values that are distinct as UTC values but equal in the session time zone: One value that occurs before the DST shift when clocks are changed, and one value that was occurs after the DST shift.
+  Como os valores `ts` armazenados são convertidos para o time zone da sessão, é possível que a Query retorne dois valores de timestamp que são distintos como valores UTC, mas iguais no time zone da sessão: Um valor que ocorre antes da mudança de DST, quando os relógios são ajustados, e um valor que ocorre após a mudança de DST.
 
-* If there is a usable index, comparisons occur in UTC. The optimizer performs an index scan, first converting the search value from the session time zone to UTC, then comparing the result to the UTC index entries:
+* Se houver um Index utilizável, as comparações ocorrem em UTC. O Optimizer executa um Index Scan, convertendo primeiro o valor de busca do time zone da sessão para UTC e, em seguida, comparando o resultado com as entradas do Index UTC:
 
   ```sql
   mysql> ALTER TABLE tstable ADD INDEX (ts);
@@ -82,19 +82,19 @@ Under those conditions, the comparison in the `WHERE` clause occurs in different
   +---------------------+
   ```
 
-  In this case, the (converted) search value is matched only to index entries, and because the index entries for the distinct stored UTC values are also distinct, the search value can match only one of them.
+  Neste caso, o valor de busca (convertido) é comparado apenas com as entradas do Index e, como as entradas do Index para os valores UTC distintos armazenados também são distintas, o valor de busca pode corresponder apenas a uma delas.
 
-Due to different optimizer operation for nonindexed and indexed lookups, the query produces different results in each case. The result from the nonindexed lookup returns all values that match in the session time zone. The indexed lookup cannot do so:
+Devido à operação diferente do Optimizer para buscas não-indexadas e indexadas, a Query produz resultados diferentes em cada caso. O resultado da busca não-indexada retorna todos os valores que correspondem no time zone da sessão. A busca indexada não consegue fazer isso:
 
-* It is performed within the storage engine, which knows only about UTC values.
+* Ela é realizada dentro do Storage Engine, que conhece apenas os valores UTC.
 
-* For the two distinct session time zone values that map to the same UTC value, the indexed lookup matches only the corresponding UTC index entry and returns only a single row.
+* Para os dois valores distintos de time zone da sessão que são mapeados para o mesmo valor UTC, a busca indexada corresponde apenas à entrada Index UTC correspondente e retorna apenas uma única row.
 
-In the preceding discussion, the data set stored in `tstable` happens to consist of distinct UTC values. In such cases, all index-using queries of the form shown match at most one index entry.
+Na discussão anterior, o conjunto de dados armazenado em `tstable` consiste, por acaso, em valores UTC distintos. Nesses casos, todas as Queries que utilizam Index na forma mostrada correspondem a, no máximo, uma entrada Index.
 
-If the index is not `UNIQUE`, it is possible for the table (and the index) to store multiple instances of a given UTC value. For example, the `ts` column might contain multiple instances of the UTC value `'2018-10-28 00:30:00'`. In this case, the index-using query would return each of them (converted to the MET value `'2018-10-28 02:30:00'` in the result set). It remains true that index-using queries match the converted search value to a single value in the UTC index entries, rather than matching multiple UTC values that convert to the search value in the session time zone.
+Se o Index não for `UNIQUE`, é possível que a tabela (e o Index) armazene múltiplas instâncias de um determinado valor UTC. Por exemplo, a coluna `ts` pode conter múltiplas instâncias do valor UTC `'2018-10-28 00:30:00'`. Neste caso, a Query que utiliza Index retornaria cada uma delas (convertida para o valor MET `'2018-10-28 02:30:00'` no conjunto de resultados). Continua sendo verdade que as Queries que utilizam Index comparam o valor de busca convertido a um único valor nas entradas Index UTC, em vez de comparar múltiplos valores UTC que se convertem ao valor de busca no time zone da sessão.
 
-If it is important to return all `ts` values that match in the session time zone, the workaround is to suppress use of the index with an `IGNORE INDEX` hint:
+Se for importante retornar todos os valores `ts` que correspondem no time zone da sessão, a solução (workaround) é suprimir o uso do Index com uma dica `IGNORE INDEX`:
 
 ```sql
 mysql> SELECT ts FROM tstable
@@ -108,4 +108,4 @@ mysql> SELECT ts FROM tstable
 +---------------------+
 ```
 
-The same lack of one-to-one mapping for time zone conversions in both directions occurs in other contexts as well, such as conversions performed with the `FROM_UNIXTIME()` and `UNIX_TIMESTAMP()` functions. See Section 12.7, “Date and Time Functions”.
+A mesma falta de mapeamento biunívoco (one-to-one) para conversões de time zone em ambas as direções ocorre em outros contextos também, como conversões realizadas com as funções `FROM_UNIXTIME()` e `UNIX_TIMESTAMP()`. Consulte a Seção 12.7, “Date and Time Functions”.

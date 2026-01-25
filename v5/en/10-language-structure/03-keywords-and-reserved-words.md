@@ -1,8 +1,8 @@
-## 9.3 Keywords and Reserved Words
+## 9.3 Palavras-Chave e Palavras Reservadas
 
-Keywords are words that have significance in SQL. Certain keywords, such as `SELECT`, `DELETE`, or `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), are reserved and require special treatment for use as identifiers such as table and column names. This may also be true for the names of built-in functions.
+Palavras-chave (Keywords) são palavras que têm significado em SQL. Certas palavras-chave, como `SELECT`, `DELETE` ou `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), são reservadas (reserved) e requerem tratamento especial para serem usadas como identificadores, como nomes de tabelas e colunas. Isso também pode ser verdade para nomes de funções embutidas (built-in functions).
 
-Nonreserved keywords are permitted as identifiers without quoting. Reserved words are permitted as identifiers if you quote them as described in Section 9.2, “Schema Object Names”:
+Palavras-chave não reservadas são permitidas como identificadores sem a necessidade de aspas (quoting). Palavras reservadas são permitidas como identificadores se você as incluir entre aspas, conforme descrito na Seção 9.2, “Nomes de Objetos de Schema”:
 
 ```sql
 mysql> CREATE TABLE interval (begin INT, end INT);
@@ -10,38 +10,38 @@ ERROR 1064 (42000): You have an error in your SQL syntax ...
 near 'interval (begin INT, end INT)'
 ```
 
-`BEGIN` and `END` are keywords but not reserved, so their use as identifiers does not require quoting. `INTERVAL` is a reserved keyword and must be quoted to be used as an identifier:
+`BEGIN` e `END` são palavras-chave, mas não reservadas, portanto, seu uso como identificadores não requer aspas. `INTERVAL` é uma palavra-chave reservada e deve ser colocada entre aspas para ser usada como um identificador:
 
 ```sql
 mysql> CREATE TABLE `interval` (begin INT, end INT);
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-Exception: A word that follows a period in a qualified name must be an identifier, so it need not be quoted even if it is reserved:
+Exceção: Uma palavra que segue um ponto em um nome qualificado deve ser um identificador, então não precisa ser colocada entre aspas, mesmo que seja reservada:
 
 ```sql
 mysql> CREATE TABLE mydb.interval (begin INT, end INT);
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-Names of built-in functions are permitted as identifiers but may require care to be used as such. For example, `COUNT` is acceptable as a column name. However, by default, no whitespace is permitted in function invocations between the function name and the following `(` character. This requirement enables the parser to distinguish whether the name is used in a function call or in nonfunction context. For further details on recognition of function names, see Section 9.2.5, “Function Name Parsing and Resolution”.
+Nomes de funções embutidas são permitidos como identificadores, mas podem requerer cautela para serem usados como tal. Por exemplo, `COUNT` é aceitável como nome de coluna. No entanto, por padrão, não é permitido nenhum espaço em branco em invocações de função entre o nome da função e o caractere `(` seguinte. Este requisito permite que o parser distinga se o nome está sendo usado em uma chamada de função ou em um contexto que não seja de função. Para mais detalhes sobre o reconhecimento de nomes de função, consulte a Seção 9.2.5, “Análise e Resolução de Nomes de Funções”.
 
-* MySQL 5.7 Keywords and Reserved Words
-* MySQL 5.7 New Keywords and Reserved Words
-* MySQL 5.7 Removed Keywords and Reserved Words
+* Palavras-Chave e Palavras Reservadas do MySQL 5.7
+* Novas Palavras-Chave e Palavras Reservadas do MySQL 5.7
+* Palavras-Chave e Palavras Reservadas Removidas no MySQL 5.7
 
-### MySQL 5.7 Keywords and Reserved Words
+### Palavras-Chave e Palavras Reservadas do MySQL 5.7
 
-The following list shows the keywords and reserved words in MySQL 5.7, along with changes to individual words from version to version. Reserved keywords are marked with (R). In addition, `_FILENAME` is reserved.
+A lista a seguir mostra as palavras-chave e palavras reservadas no MySQL 5.7, juntamente com as mudanças em palavras individuais de versão para versão. Palavras-chave reservadas são marcadas com (R). Além disso, `_FILENAME` é reservada.
 
-At some point, you might upgrade to a higher version, so it is a good idea to have a look at future reserved words, too. You can find these in the manuals that cover higher versions of MySQL. Most of the reserved words in the list are forbidden by standard SQL as column or table names (for example, `GROUP`). A few are reserved because MySQL needs them and uses a **yacc** parser.
+Em algum momento, você pode fazer upgrade para uma versão superior, portanto, é uma boa ideia dar uma olhada nas futuras palavras reservadas também. Você pode encontrá-las nos manuais que cobrem versões superiores do MySQL. A maioria das palavras reservadas na lista é proibida pelo padrão SQL como nomes de coluna ou tabela (por exemplo, `GROUP`). Algumas são reservadas porque o MySQL precisa delas e usa um parser **yacc**.
 
 A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
 
 A
 
 * `ACCESSIBLE` (R)
-* `ACCOUNT`; added in 5.7.6 (nonreserved)
+* `ACCOUNT`; adicionada em 5.7.6 (não reservada)
 * `ACTION`
 * `ADD` (R)
 * `AFTER`
@@ -50,7 +50,7 @@ A
 * `ALGORITHM`
 * `ALL` (R)
 * `ALTER` (R)
-* `ALWAYS`; added in 5.7.6 (nonreserved)
+* `ALWAYS`; adicionada em 5.7.6 (não reservada)
 * `ANALYSE`
 * `ANALYZE` (R)
 * `AND` (R)
@@ -95,7 +95,7 @@ C
 * `CHAIN`
 * `CHANGE` (R)
 * `CHANGED`
-* `CHANNEL`; added in 5.7.6 (nonreserved)
+* `CHANNEL`; adicionada em 5.7.6 (não reservada)
 * `CHAR` (R)
 * `CHARACTER` (R)
 * `CHARSET`
@@ -119,7 +119,7 @@ C
 * `COMPACT`
 * `COMPLETION`
 * `COMPRESSED`
-* `COMPRESSION`; added in 5.7.8 (nonreserved)
+* `COMPRESSION`; adicionada em 5.7.8 (não reservada)
 * `CONCURRENT`
 * `CONDITION` (R)
 * `CONNECTION`
@@ -194,7 +194,7 @@ E
 * `ELSEIF` (R)
 * `ENABLE`
 * `ENCLOSED` (R)
-* `ENCRYPTION`; added in 5.7.11 (nonreserved)
+* `ENCRYPTION`; adicionada em 5.7.11 (não reservada)
 * `END`
 * `ENDS`
 * `ENGINE`
@@ -226,15 +226,15 @@ F
 * `FETCH` (R)
 * `FIELDS`
 * `FILE`
-* `FILE_BLOCK_SIZE`; added in 5.7.6 (nonreserved)
-* `FILTER`; added in 5.7.3 (nonreserved)
+* `FILE_BLOCK_SIZE`; adicionada em 5.7.6 (não reservada)
+* `FILTER`; adicionada em 5.7.3 (não reservada)
 * `FIRST`
 * `FIXED`
 * `FLOAT` (R)
 * `FLOAT4` (R)
 * `FLOAT8` (R)
 * `FLUSH`
-* `FOLLOWS`; added in 5.7.2 (nonreserved)
+* `FOLLOWS`; adicionada em 5.7.2 (não reservada)
 * `FOR` (R)
 * `FORCE` (R)
 * `FOREIGN` (R)
@@ -248,7 +248,7 @@ F
 G
 
 * `GENERAL`
-* `GENERATED` (R); added in 5.7.6 (reserved)
+* `GENERATED` (R); adicionada em 5.7.6 (reservada)
 * `GEOMETRY`
 * `GEOMETRYCOLLECTION`
 * `GET` (R)
@@ -257,7 +257,7 @@ G
 * `GRANT` (R)
 * `GRANTS`
 * `GROUP` (R)
-* `GROUP_REPLICATION`; added in 5.7.6 (nonreserved)
+* `GROUP_REPLICATION`; adicionada em 5.7.6 (não reservada)
 
 H
 
@@ -291,7 +291,7 @@ I
 * `INSERT` (R)
 * `INSERT_METHOD`
 * `INSTALL`
-* `INSTANCE`; added in 5.7.11 (nonreserved)
+* `INSTANCE`; adicionada em 5.7.11 (não reservada)
 * `INT` (R)
 * `INT1` (R)
 * `INT2` (R)
@@ -315,7 +315,7 @@ I
 J
 
 * `JOIN` (R)
-* `JSON`; added in 5.7.8 (nonreserved)
+* `JSON`; adicionada em 5.7.8 (não reservada)
 
 K
 
@@ -378,7 +378,7 @@ M
 * `MASTER_SSL_CRLPATH`
 * `MASTER_SSL_KEY`
 * `MASTER_SSL_VERIFY_SERVER_CERT` (R)
-* `MASTER_TLS_VERSION`; added in 5.7.10 (nonreserved)
+* `MASTER_TLS_VERSION`; adicionada em 5.7.10 (não reservada)
 * `MASTER_USER`
 * `MATCH` (R)
 * `MAXVALUE` (R)
@@ -386,7 +386,7 @@ M
 * `MAX_QUERIES_PER_HOUR`
 * `MAX_ROWS`
 * `MAX_SIZE`
-* `MAX_STATEMENT_TIME`; added in 5.7.4 (nonreserved); removed in 5.7.8
+* `MAX_STATEMENT_TIME`; adicionada em 5.7.4 (não reservada); removida em 5.7.8
 * `MAX_UPDATES_PER_HOUR`
 * `MAX_USER_CONNECTIONS`
 * `MEDIUM`
@@ -423,12 +423,12 @@ N
 * `NCHAR`
 * `NDB`
 * `NDBCLUSTER`
-* `NEVER`; added in 5.7.4 (nonreserved)
+* `NEVER`; adicionada em 5.7.4 (não reservada)
 * `NEW`
 * `NEXT`
 * `NO`
 * `NODEGROUP`
-* `NONBLOCKING`; removed in 5.7.6
+* `NONBLOCKING`; removida em 5.7.6
 * `NONE`
 * `NOT` (R)
 * `NO_WAIT`
@@ -441,13 +441,13 @@ N
 O
 
 * `OFFSET`
-* `OLD_PASSWORD`; removed in 5.7.5
+* `OLD_PASSWORD`; removida em 5.7.5
 * `ON` (R)
 * `ONE`
 * `ONLY`
 * `OPEN`
 * `OPTIMIZE` (R)
-* `OPTIMIZER_COSTS` (R); added in 5.7.5 (reserved)
+* `OPTIMIZER_COSTS` (R); adicionada em 5.7.5 (reservada)
 * `OPTION` (R)
 * `OPTIONALLY` (R)
 * `OPTIONS`
@@ -463,7 +463,7 @@ P
 * `PACK_KEYS`
 * `PAGE`
 * `PARSER`
-* `PARSE_GCOL_EXPR`; added in 5.7.6 (reserved); became nonreserved in 5.7.8
+* `PARSE_GCOL_EXPR`; adicionada em 5.7.6 (reservada); tornou-se não reservada em 5.7.8
 * `PARTIAL`
 * `PARTITION` (R)
 * `PARTITIONING`
@@ -476,7 +476,7 @@ P
 * `POINT`
 * `POLYGON`
 * `PORT`
-* `PRECEDES`; added in 5.7.2 (nonreserved)
+* `PRECEDES`; adicionada em 5.7.2 (não reservada)
 * `PRECISION` (R)
 * `PREPARE`
 * `PRESERVE`
@@ -525,13 +525,13 @@ R
 * `REPEAT` (R)
 * `REPEATABLE`
 * `REPLACE` (R)
-* `REPLICATE_DO_DB`; added in 5.7.3 (nonreserved)
-* `REPLICATE_DO_TABLE`; added in 5.7.3 (nonreserved)
-* `REPLICATE_IGNORE_DB`; added in 5.7.3 (nonreserved)
-* `REPLICATE_IGNORE_TABLE`; added in 5.7.3 (nonreserved)
-* `REPLICATE_REWRITE_DB`; added in 5.7.3 (nonreserved)
-* `REPLICATE_WILD_DO_TABLE`; added in 5.7.3 (nonreserved)
-* `REPLICATE_WILD_IGNORE_TABLE`; added in 5.7.3 (nonreserved)
+* `REPLICATE_DO_DB`; adicionada em 5.7.3 (não reservada)
+* `REPLICATE_DO_TABLE`; adicionada em 5.7.3 (não reservada)
+* `REPLICATE_IGNORE_DB`; adicionada em 5.7.3 (não reservada)
+* `REPLICATE_IGNORE_TABLE`; adicionada em 5.7.3 (não reservada)
+* `REPLICATE_REWRITE_DB`; adicionada em 5.7.3 (não reservada)
+* `REPLICATE_WILD_DO_TABLE`; adicionada em 5.7.3 (não reservada)
+* `REPLICATE_WILD_IGNORE_TABLE`; adicionada em 5.7.3 (não reservada)
 * `REPLICATION`
 * `REQUIRE` (R)
 * `RESET`
@@ -548,7 +548,7 @@ R
 * `RLIKE` (R)
 * `ROLLBACK`
 * `ROLLUP`
-* `ROTATE`; added in 5.7.11 (nonreserved)
+* `ROTATE`; adicionada em 5.7.11 (não reservada)
 * `ROUTINE`
 * `ROW`
 * `ROWS`
@@ -624,7 +624,7 @@ S
 * `STATUS`
 * `STOP`
 * `STORAGE`
-* `STORED` (R); added in 5.7.6 (reserved)
+* `STORED` (R); adicionada em 5.7.6 (reservada)
 * `STRAIGHT_JOIN` (R)
 * `STRING`
 * `SUBCLASS_ORIGIN`
@@ -695,7 +695,7 @@ U
 
 V
 
-* `VALIDATION`; added in 5.7.5 (nonreserved)
+* `VALIDATION`; adicionada em 5.7.5 (não reservada)
 * `VALUE`
 * `VALUES` (R)
 * `VARBINARY` (R)
@@ -704,7 +704,7 @@ V
 * `VARIABLES`
 * `VARYING` (R)
 * `VIEW`
-* `VIRTUAL` (R); added in 5.7.6 (reserved)
+* `VIRTUAL` (R); adicionada em 5.7.6 (reservada)
 
 W
 
@@ -716,7 +716,7 @@ W
 * `WHERE` (R)
 * `WHILE` (R)
 * `WITH` (R)
-* `WITHOUT`; added in 5.7.5 (nonreserved)
+* `WITHOUT`; adicionada em 5.7.5 (não reservada)
 * `WORK`
 * `WRAPPER`
 * `WRITE` (R)
@@ -725,7 +725,7 @@ X
 
 * `X509`
 * `XA`
-* `XID`; added in 5.7.5 (nonreserved)
+* `XID`; adicionada em 5.7.5 (não reservada)
 * `XML`
 * `XOR` (R)
 
@@ -738,9 +738,9 @@ Z
 
 * `ZEROFILL` (R)
 
-### MySQL 5.7 New Keywords and Reserved Words
+### Novas Palavras-Chave e Palavras Reservadas do MySQL 5.7
 
-The following list shows the keywords and reserved words that are added in MySQL 5.7, compared to MySQL 5.6. Reserved keywords are marked with (R).
+A lista a seguir mostra as palavras-chave e palavras reservadas que foram adicionadas no MySQL 5.7, em comparação com o MySQL 5.6. Palavras-chave reservadas são marcadas com (R).
 
 A | C | E | F | G | I | J | M | N | O | P | R | S | V | W | X
 
@@ -823,8 +823,8 @@ X
 
 * `XID`
 
-### MySQL 5.7 Removed Keywords and Reserved Words
+### Palavras-Chave e Palavras Reservadas Removidas no MySQL 5.7
 
-The following list shows the keywords and reserved words that are removed in MySQL 5.7, compared to MySQL 5.6. Reserved keywords are marked with (R).
+A lista a seguir mostra as palavras-chave e palavras reservadas que foram removidas no MySQL 5.7, em comparação com o MySQL 5.6. Palavras-chave reservadas são marcadas com (R).
 
 * `OLD_PASSWORD`

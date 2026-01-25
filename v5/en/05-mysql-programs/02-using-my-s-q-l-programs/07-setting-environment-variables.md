@@ -1,48 +1,48 @@
-### 4.2.7 Setting Environment Variables
+### 4.2.7 Configurando Variáveis de Ambiente
 
-Environment variables can be set at the command prompt to affect the current invocation of your command processor, or set permanently to affect future invocations. To set a variable permanently, you can set it in a startup file or by using the interface provided by your system for this purpose. Consult the documentation for your command interpreter for specific details. Section 4.9, “Environment Variables”, lists all environment variables that affect MySQL program operation.
+Variáveis de ambiente podem ser definidas no **command prompt** (prompt de comando) para afetar a invocação atual do seu processador de comandos, ou definidas permanentemente para afetar invocações futuras. Para definir uma variável permanentemente, você pode configurá-la em um arquivo de inicialização (*startup file*) ou usando a interface fornecida pelo seu sistema para essa finalidade. Consulte a documentação do seu interpretador de comandos para detalhes específicos. Seção 4.9, “Environment Variables”, lista todas as variáveis de ambiente que afetam a operação dos programas MySQL.
 
-To specify a value for an environment variable, use the syntax appropriate for your command processor. For example, on Windows, you can set the `USER` variable to specify your MySQL account name. To do so, use this syntax:
+Para especificar um valor para uma variável de ambiente, utilize a sintaxe apropriada para o seu processador de comandos. Por exemplo, no Windows, você pode definir a variável `USER` para especificar o nome da sua conta MySQL. Para fazer isso, use esta sintaxe:
 
 ```sql
 SET USER=your_name
 ```
 
-The syntax on Unix depends on your shell. Suppose that you want to specify the TCP/IP port number using the `MYSQL_TCP_PORT` variable. Typical syntax (such as for **sh**, **ksh**, **bash**, **zsh**, and so on) is as follows:
+A sintaxe no Unix depende do seu **shell**. Suponha que você queira especificar o número da porta TCP/IP usando a variável `MYSQL_TCP_PORT`. A sintaxe típica (como para **sh**, **ksh**, **bash**, **zsh**, e assim por diante) é a seguinte:
 
 ```sql
 MYSQL_TCP_PORT=3306
 export MYSQL_TCP_PORT
 ```
 
-The first command sets the variable, and the `export` command exports the variable to the shell environment so that its value becomes accessible to MySQL and other processes.
+O primeiro comando define a variável, e o comando `export` exporta a variável para o ambiente do **shell** para que seu valor se torne acessível ao MySQL e a outros processos.
 
-For **csh** and **tcsh**, use **setenv** to make the shell variable available to the environment:
+Para **csh** e **tcsh**, use **setenv** para disponibilizar a variável do **shell** ao ambiente:
 
 ```sql
 setenv MYSQL_TCP_PORT 3306
 ```
 
-The commands to set environment variables can be executed at your command prompt to take effect immediately, but the settings persist only until you log out. To have the settings take effect each time you log in, use the interface provided by your system or place the appropriate command or commands in a startup file that your command interpreter reads each time it starts.
+Os comandos para definir variáveis de ambiente podem ser executados no seu **command prompt** para entrarem em vigor imediatamente, mas as configurações persistem apenas até você sair (fazer **log out**). Para que as configurações entrem em vigor toda vez que você fizer **login**, utilize a interface fornecida pelo seu sistema ou coloque o(s) comando(s) apropriado(s) em um arquivo de inicialização que seu interpretador de comandos lê toda vez que é iniciado.
 
-On Windows, you can set environment variables using the System Control Panel (under Advanced).
+No Windows, você pode definir variáveis de ambiente usando o Painel de Controle do Sistema (em Avançado).
 
-On Unix, typical shell startup files are `.bashrc` or `.bash_profile` for **bash**, or `.tcshrc` for **tcsh**.
+No Unix, os arquivos de inicialização de **shell** típicos são `.bashrc` ou `.bash_profile` para **bash**, ou `.tcshrc` para **tcsh**.
 
-Suppose that your MySQL programs are installed in `/usr/local/mysql/bin` and that you want to make it easy to invoke these programs. To do this, set the value of the `PATH` environment variable to include that directory. For example, if your shell is **bash**, add the following line to your `.bashrc` file:
+Suponha que seus programas MySQL estejam instalados em `/usr/local/mysql/bin` e que você queira facilitar a invocação desses programas. Para fazer isso, defina o valor da variável de ambiente `PATH` para incluir esse diretório. Por exemplo, se o seu **shell** for **bash**, adicione a seguinte linha ao seu arquivo `.bashrc`:
 
 ```sql
 PATH=${PATH}:/usr/local/mysql/bin
 ```
 
-**bash** uses different startup files for login and nonlogin shells, so you might want to add the setting to `.bashrc` for login shells and to `.bash_profile` for nonlogin shells to make sure that `PATH` is set regardless.
+O **bash** utiliza diferentes arquivos de inicialização para **shells** de **login** e **nonlogin** (sem login), então você pode querer adicionar a configuração ao `.bashrc` para **shells** de **login** e ao `.bash_profile` para **shells** de **nonlogin** para garantir que o `PATH` seja definido de qualquer forma.
 
-If your shell is **tcsh**, add the following line to your `.tcshrc` file:
+Se o seu **shell** for **tcsh**, adicione a seguinte linha ao seu arquivo `.tcshrc`:
 
 ```sql
 setenv PATH ${PATH}:/usr/local/mysql/bin
 ```
 
-If the appropriate startup file does not exist in your home directory, create it with a text editor.
+Se o arquivo de inicialização apropriado não existir no seu diretório *home*, crie-o com um editor de texto.
 
-After modifying your `PATH` setting, open a new console window on Windows or log in again on Unix so that the setting goes into effect.
+Após modificar sua configuração de `PATH`, abra uma nova janela de console no Windows ou faça **login** novamente no Unix para que a configuração entre em vigor.

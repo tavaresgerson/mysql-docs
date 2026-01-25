@@ -1,13 +1,13 @@
-## 8.8 Understanding the Query Execution Plan
+## 8.8 Entendendo o Plano de Execução da Query
 
-8.8.1 Optimizing Queries with EXPLAIN
+8.8.1 Otimizando Queries com EXPLAIN
 
-8.8.2 EXPLAIN Output Format
+8.8.2 Formato de Saída do EXPLAIN
 
-8.8.3 Extended EXPLAIN Output Format
+8.8.3 Formato de Saída Estendido do EXPLAIN
 
-8.8.4 Obtaining Execution Plan Information for a Named Connection
+8.8.4 Obtendo Informações do Plano de Execução para uma Conexão Nomeada
 
-8.8.5 Estimating Query Performance
+8.8.5 Estimando a Performance da Query
 
-Depending on the details of your tables, columns, indexes, and the conditions in your `WHERE` clause, the MySQL optimizer considers many techniques to efficiently perform the lookups involved in an SQL query. A query on a huge table can be performed without reading all the rows; a join involving several tables can be performed without comparing every combination of rows. The set of operations that the optimizer chooses to perform the most efficient query is called the “query execution plan”, also known as the `EXPLAIN` plan. Your goals are to recognize the aspects of the `EXPLAIN` plan that indicate a query is optimized well, and to learn the SQL syntax and indexing techniques to improve the plan if you see some inefficient operations.
+Dependendo dos detalhes de suas tables, columns, indexes e das condições em sua `WHERE` clause, o optimizer do MySQL considera diversas técnicas para realizar eficientemente as operações de busca (lookups) envolvidas em uma SQL query. Uma query em uma table grande pode ser executada sem ler todas as rows; um JOIN envolvendo diversas tables pode ser realizado sem comparar todas as combinações de rows. O conjunto de operações que o optimizer escolhe para executar a query da forma mais eficiente é chamado de "plano de execução da query", também conhecido como plano `EXPLAIN`. Seu objetivo é reconhecer os aspectos do plano `EXPLAIN` que indicam que uma query está bem otimizada, e aprender a sintaxe SQL e as técnicas de Indexing para aprimorar o plano caso observe operações ineficientes.

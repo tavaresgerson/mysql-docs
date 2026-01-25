@@ -1,30 +1,30 @@
-### 6.1.5 How to Run MySQL as a Normal User
+### 6.1.5 Como Executar o MySQL como um Usuário Normal
 
-On Windows, you can run the server as a Windows service using a normal user account.
+No Windows, você pode executar o server como um Windows Service usando uma conta de usuário normal.
 
-On Linux, for installations performed using a MySQL repository, RPM packages, or Debian packages, the MySQL server [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") should be started by the local `mysql` operating system user. Starting by another operating system user is not supported by the init scripts that are included as part of the installation.
+No Linux, para instalações realizadas usando um repositório MySQL, pacotes RPM ou pacotes Debian, o MySQL server [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") deve ser iniciado pelo usuário local do sistema operacional `mysql`. A inicialização por outro usuário do sistema operacional não é suportada pelos `init scripts` que são incluídos como parte da instalação.
 
-On Unix (or Linux for installations performed using `tar` or `tar.gz` packages) , the MySQL server [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") can be started and run by any user. However, you should avoid running the server as the Unix `root` user for security reasons. To change [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to run as a normal unprivileged Unix user *`user_name`*, you must do the following:
+No Unix (ou Linux para instalações realizadas usando pacotes `tar` ou `tar.gz`), o MySQL server [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") pode ser iniciado e executado por qualquer usuário. No entanto, você deve evitar executar o server como o usuário `root` do Unix por razões de segurança. Para alterar [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") para ser executado como um usuário Unix normal sem privilégios (*unprivileged*) *`user_name`*, você deve fazer o seguinte:
 
-1. Stop the server if it is running (use [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")).
+1. Pare o server se ele estiver em execução (use [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — Um Programa de Administração do MySQL Server")).
 
-2. Change the database directories and files so that *`user_name`* has privileges to read and write files in them (you might need to do this as the Unix `root` user):
+2. Altere os `directories` e arquivos do `database` para que *`user_name`* tenha privilégios de leitura e escrita nos arquivos (você pode precisar fazer isso como o usuário `root` do Unix):
 
    ```sql
    $> chown -R user_name /path/to/mysql/datadir
    ```
 
-   If you do not do this, the server is unable to access databases or tables when it runs as *`user_name`*.
+   Se você não fizer isso, o server não conseguirá acessar `databases` ou `tables` quando for executado como *`user_name`*.
 
-   If directories or files within the MySQL data directory are symbolic links, `chown -R` might not follow symbolic links for you. If it does not, you must also follow those links and change the directories and files they point to.
+   Se `directories` ou arquivos dentro do `data directory` do MySQL forem `symbolic links`, o `chown -R` pode não seguir os `symbolic links` automaticamente. Se isso ocorrer, você deve seguir esses `links` e alterar também os `directories` e arquivos para os quais eles apontam.
 
-3. Start the server as user *`user_name`*. Another alternative is to start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") as the Unix `root` user and use the [`--user=user_name`](server-options.html#option_mysqld_user) option. [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") starts, then switches to run as the Unix user *`user_name`* before accepting any connections.
+3. Inicie o server como o usuário *`user_name`*. Outra alternativa é iniciar [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") como o usuário `root` do Unix e usar a `option` [`--user=user_name`](server-options.html#option_mysqld_user). O [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") inicia e, em seguida, alterna para ser executado como o usuário Unix *`user_name`* antes de aceitar qualquer `connection`.
 
-4. To start the server as the given user automatically at system startup time, specify the user name by adding a `user` option to the `[mysqld]` group of the `/etc/my.cnf` option file or the `my.cnf` option file in the server's data directory. For example:
+4. Para iniciar o server como o usuário especificado automaticamente na inicialização do sistema (`system startup time`), defina o nome de usuário adicionando uma `user option` ao grupo `[mysqld]` no arquivo de `option` `/etc/my.cnf` ou no arquivo de `option` `my.cnf` localizado no `data directory` do server. Por exemplo:
 
    ```sql
    [mysqld]
    user=user_name
    ```
 
-If your Unix machine itself is not secured, you should assign passwords to the MySQL `root` account in the grant tables. Otherwise, any user with a login account on that machine can run the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client with a [`--user=root`](mysql-command-options.html#option_mysql_user) option and perform any operation. (It is a good idea to assign passwords to MySQL accounts in any case, but especially so when other login accounts exist on the server host.) See [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
+Se sua máquina Unix não estiver segura, você deve atribuir `passwords` à conta `root` do MySQL nas `grant tables`. Caso contrário, qualquer usuário com uma conta de `login` nessa máquina pode executar o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") `client` com a `option` [`--user=root`](mysql-command-options.html#option_mysql_user) e realizar qualquer operação. (É uma boa prática atribuir `passwords` às contas MySQL em qualquer caso, mas especialmente quando outras contas de `login` existem no `server host`.) Consulte [Seção 2.9.4, “Protegendo a Conta Inicial do MySQL”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").

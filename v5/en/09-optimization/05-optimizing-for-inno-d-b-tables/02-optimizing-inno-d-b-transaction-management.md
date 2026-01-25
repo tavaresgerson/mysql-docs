@@ -1,37 +1,37 @@
-### 8.5.2 Optimizing InnoDB Transaction Management
+### 8.5.2 Otimizando o Gerenciamento de Transações InnoDB
 
-To optimize `InnoDB` transaction processing, find the ideal balance between the performance overhead of transactional features and the workload of your server. For example, an application might encounter performance issues if it commits thousands of times per second, and different performance issues if it commits only every 2-3 hours.
+Para otimizar o processamento de transações `InnoDB`, encontre o equilíbrio ideal entre a sobrecarga de desempenho (performance overhead) dos recursos transacionais e a carga de trabalho (workload) do seu servidor. Por exemplo, uma aplicação pode enfrentar problemas de desempenho se realizar COMMITs milhares de vezes por segundo, e problemas de desempenho diferentes se realizar COMMITs apenas a cada 2-3 horas.
 
-* The default MySQL setting `AUTOCOMMIT=1` can impose performance limitations on a busy database server. Where practical, wrap several related data change operations into a single transaction, by issuing `SET AUTOCOMMIT=0` or a `START TRANSACTION` statement, followed by a `COMMIT` statement after making all the changes.
+* A configuração padrão do MySQL `AUTOCOMMIT=1` pode impor limitações de desempenho em um servidor de Database ocupado. Onde for prático, agrupe várias operações de alteração de dados relacionadas em uma única transação, emitindo `SET AUTOCOMMIT=0` ou uma instrução `START TRANSACTION`, seguida por uma instrução `COMMIT` após realizar todas as alterações.
 
-  `InnoDB` must flush the log to disk at each transaction commit if that transaction made modifications to the database. When each change is followed by a commit (as with the default autocommit setting), the I/O throughput of the storage device puts a cap on the number of potential operations per second.
+  O `InnoDB` deve realizar o flush do log para o disco a cada COMMIT de transação se essa transação tiver feito modificações no Database. Quando cada alteração é seguida por um COMMIT (como ocorre com a configuração autocommit padrão), a taxa de transferência de I/O do dispositivo de armazenamento limita o número de operações potenciais por segundo.
 
-* Alternatively, for transactions that consist only of a single `SELECT` statement, turning on `AUTOCOMMIT` helps `InnoDB` to recognize read-only transactions and optimize them. See Section 8.5.3, “Optimizing InnoDB Read-Only Transactions” for requirements.
+* Alternativamente, para transações que consistem apenas em uma única instrução `SELECT`, ativar `AUTOCOMMIT` ajuda o `InnoDB` a reconhecer transações somente leitura e otimizá-las. Consulte a Seção 8.5.3, “Otimizando Transações InnoDB Somente Leitura” para os requisitos.
 
-* Avoid performing rollbacks after inserting, updating, or deleting huge numbers of rows. If a big transaction is slowing down server performance, rolling it back can make the problem worse, potentially taking several times as long to perform as the original data change operations. Killing the database process does not help, because the rollback starts again on server startup.
+* Evite realizar ROLLBACKs após INSERTs, UPDATEs ou DELETEs em um grande número de linhas. Se uma transação grande estiver diminuindo o desempenho do servidor, realizar o ROLLBACK pode piorar o problema, podendo levar várias vezes o tempo das operações originais de alteração de dados. Eliminar o processo do Database não ajuda, pois o ROLLBACK é reiniciado na inicialização do servidor (server startup).
 
-  To minimize the chance of this issue occurring:
+  Para minimizar a chance de ocorrência deste problema:
 
-  + Increase the size of the buffer pool so that all the data change changes can be cached rather than immediately written to disk.
+  + Aumente o tamanho do Buffer Pool para que todas as alterações de dados possam ser armazenadas em cache, em vez de serem gravadas imediatamente no disco.
 
-  + Set `innodb_change_buffering=all` so that update and delete operations are buffered in addition to inserts.
+  + Defina `innodb_change_buffering=all` para que as operações de UPDATE e DELETE sejam armazenadas em Buffer, além dos INSERTs.
 
-  + Consider issuing `COMMIT` statements periodically during the big data change operation, possibly breaking a single delete or update into multiple statements that operate on smaller numbers of rows.
+  + Considere emitir instruções `COMMIT` periodicamente durante a grande operação de alteração de dados, possivelmente dividindo um único DELETE ou UPDATE em múltiplas instruções que operam em um número menor de linhas.
 
-  To get rid of a runaway rollback once it occurs, increase the buffer pool so that the rollback becomes CPU-bound and runs fast, or kill the server and restart with `innodb_force_recovery=3`, as explained in Section 14.19.2, “InnoDB Recovery”.
+  Para se livrar de um ROLLBACK descontrolado (runaway rollback) depois que ele ocorrer, aumente o Buffer Pool para que o ROLLBACK dependa principalmente da CPU (CPU-bound) e seja executado rapidamente, ou elimine o servidor e reinicie com `innodb_force_recovery=3`, conforme explicado na Seção 14.19.2, “Recuperação InnoDB”.
 
-  This issue is expected to be infrequent with the default setting `innodb_change_buffering=all`, which allows update and delete operations to be cached in memory, making them faster to perform in the first place, and also faster to roll back if needed. Make sure to use this parameter setting on servers that process long-running transactions with many inserts, updates, or deletes.
+  Espera-se que este problema seja incomum com a configuração padrão `innodb_change_buffering=all`, que permite que as operações de UPDATE e DELETE sejam armazenadas em cache na memória, tornando-as mais rápidas de serem executadas e também mais rápidas de terem seu ROLLBACK realizado, se necessário. Certifique-se de usar esta configuração de parâmetro em servidores que processam transações de longa duração com muitos INSERTs, UPDATEs ou DELETEs.
 
-* If you can afford the loss of some of the latest committed transactions if an unexpected exit occurs, you can set the `innodb_flush_log_at_trx_commit` parameter to 0. `InnoDB` tries to flush the log once per second anyway, although the flush is not guaranteed. Also, set the value of `innodb_support_xa` to 0, which reduces the number of disk flushes due to synchronizing on disk data and the binary log.
+* Se você puder tolerar a perda de algumas das transações com COMMIT mais recentes caso ocorra um encerramento inesperado, você pode definir o parâmetro `innodb_flush_log_at_trx_commit` como 0. O `InnoDB` tenta realizar o flush do log uma vez por segundo de qualquer forma, embora o flush não seja garantido. Além disso, defina o valor de `innodb_support_xa` como 0, o que reduz o número de flushes no disco devido à sincronização dos dados no disco e do binary log.
 
-  Note
+  Nota
 
-  `innodb_support_xa` is deprecated; expect it to be removed in a future release. As of MySQL 5.7.10, `InnoDB` support for two-phase commit in XA transactions is always enabled and disabling `innodb_support_xa` is no longer permitted.
+  `innodb_support_xa` está descontinuado (deprecated); espera-se que seja removido em uma versão futura. A partir do MySQL 5.7.10, o suporte do `InnoDB` para two-phase commit em transações XA está sempre ativado, e desabilitar `innodb_support_xa` não é mais permitido.
 
-* When rows are modified or deleted, the rows and associated undo logs are not physically removed immediately, or even immediately after the transaction commits. The old data is preserved until transactions that started earlier or concurrently are finished, so that those transactions can access the previous state of modified or deleted rows. Thus, a long-running transaction can prevent `InnoDB` from purging data that was changed by a different transaction.
+* Quando linhas são modificadas ou excluídas, as linhas e os undo logs associados não são fisicamente removidos imediatamente, ou mesmo imediatamente após o COMMIT da transação. Os dados antigos são preservados até que as transações que começaram antes ou concorrentemente terminem, para que essas transações possam acessar o estado anterior das linhas modificadas ou excluídas. Assim, uma transação de longa duração pode impedir que o `InnoDB` realize a purga de dados que foram alterados por uma transação diferente.
 
-* When rows are modified or deleted within a long-running transaction, other transactions using the `READ COMMITTED` and `REPEATABLE READ` isolation levels have to do more work to reconstruct the older data if they read those same rows.
+* Quando linhas são modificadas ou excluídas dentro de uma transação de longa duração, outras transações que utilizam os níveis de isolamento `READ COMMITTED` e `REPEATABLE READ` têm que realizar mais trabalho para reconstruir os dados mais antigos caso leiam essas mesmas linhas.
 
-* When a long-running transaction modifies a table, queries against that table from other transactions do not make use of the covering index technique. Queries that normally could retrieve all the result columns from a secondary index, instead look up the appropriate values from the table data.
+* Quando uma transação de longa duração modifica uma tabela, as Queries contra essa tabela, provenientes de outras transações, não utilizam a técnica de covering index. Queries que normalmente poderiam recuperar todas as colunas de resultado a partir de um secondary index, buscam, em vez disso, os valores apropriados nos dados da tabela.
 
-  If secondary index pages are found to have a `PAGE_MAX_TRX_ID` that is too new, or if records in the secondary index are delete-marked, `InnoDB` may need to look up records using a clustered index.
+  Se for descoberto que as páginas do secondary index possuem um `PAGE_MAX_TRX_ID` muito recente, ou se os registros no secondary index estiverem marcados para exclusão (delete-marked), o `InnoDB` poderá precisar buscar registros usando um clustered index.

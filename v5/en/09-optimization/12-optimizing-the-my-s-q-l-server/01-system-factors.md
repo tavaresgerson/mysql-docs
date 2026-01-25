@@ -1,13 +1,13 @@
-### 8.12.1 System Factors
+### 8.12.1 Fatores do Sistema
 
-Some system-level factors can affect performance in a major way:
+Alguns fatores no nível do sistema podem afetar o desempenho de maneira significativa:
 
-* If you have enough RAM, you could remove all swap devices. Some operating systems use a swap device in some contexts even if you have free memory.
+* Se você tiver RAM suficiente, você pode remover todos os dispositivos de swap. Alguns sistemas operacionais usam um dispositivo de swap em alguns contextos, mesmo que você tenha memória livre.
 
-* Avoid external locking for `MyISAM` tables. The default is for external locking to be disabled. The `--external-locking` and `--skip-external-locking` options explicitly enable and disable external locking.
+* Evite o external locking (travamento externo) para tabelas `MyISAM`. Por padrão, o external locking é desabilitado. As opções `--external-locking` e `--skip-external-locking` ativam e desativam explicitamente o external locking.
 
-  Disabling external locking does not affect MySQL's functionality as long as you run only one server. Just remember to take down the server (or lock and flush the relevant tables) before you run **myisamchk**. On some systems it is mandatory to disable external locking because it does not work, anyway.
+  Desabilitar o external locking não afeta a funcionalidade do MySQL, contanto que você execute apenas um server. Apenas lembre-se de encerrar o server (ou aplicar lock e fazer flush nas tables relevantes) antes de executar o **myisamchk**. Em alguns sistemas, é obrigatório desabilitar o external locking porque ele não funciona, de qualquer maneira.
 
-  The only case in which you cannot disable external locking is when you run multiple MySQL *servers* (not clients) on the same data, or if you run **myisamchk** to check (not repair) a table without telling the server to flush and lock the tables first. Note that using multiple MySQL servers to access the same data concurrently is generally *not* recommended, except when using NDB Cluster.
+  O único caso em que você não pode desabilitar o external locking é quando você executa múltiplos *servers* MySQL (não clients) nos mesmos dados, ou se você executa o **myisamchk** para checar (não reparar) uma table sem antes instruir o server a fazer o flush e aplicar lock nas tables. Note que usar múltiplos servers MySQL para acessar os mesmos dados concorrentemente geralmente *não* é recomendado, exceto ao usar o NDB Cluster.
 
-  The `LOCK TABLES` and `UNLOCK TABLES` statements use internal locking, so you can use them even if external locking is disabled.
+  As instruções `LOCK TABLES` e `UNLOCK TABLES` usam internal locking (travamento interno), então você pode usá-las mesmo que o external locking esteja desabilitado.

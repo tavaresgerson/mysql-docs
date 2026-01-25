@@ -1,25 +1,25 @@
-### 5.4.2 The Error Log
+### 5.4.2 O Log de Erros
 
-[5.4.2.1 Error Logging on Windows](error-log-windows.html)
+[5.4.2.1 Registro de Erros no Windows](error-log-windows.html)
 
-[5.4.2.2 Error Logging on Unix and Unix-Like Systems](error-log-unix.html)
+[5.4.2.2 Registro de Erros em Sistemas Unix e Semelhantes a Unix](error-log-unix.html)
 
-[5.4.2.3 Error Logging to the System Log](error-log-syslog.html)
+[5.4.2.3 Registro de Erros no System Log](error-log-syslog.html)
 
-[5.4.2.4 Error Log Filtering](error-log-filtering.html)
+[5.4.2.4 Filtragem do Log de Erros](error-log-filtering.html)
 
-[5.4.2.5 Error Log Output Format](error-log-format.html)
+[5.4.2.5 Formato de Saída do Log de Erros](error-log-format.html)
 
-[5.4.2.6 Error Log File Flushing and Renaming](error-log-rotation.html)
+[5.4.2.6 Limpeza (Flushing) e Renomeação do Arquivo de Log de Erros](error-log-rotation.html)
 
-This section discusses how to configure the MySQL server for logging of diagnostic messages to the error log. For information about selecting the error message character set and language, see [Section 10.6, “Error Message Character Set”](charset-errors.html "10.6 Error Message Character Set"), and [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language").
+Esta seção discute como configurar o servidor MySQL para o registro de mensagens de diagnóstico no log de erros. Para obter informações sobre como selecionar o *character set* e o idioma das mensagens de erro, consulte [Seção 10.6, “Character Set de Mensagens de Erro”](charset-errors.html "10.6 Character Set de Mensagens de Erro"), e [Seção 10.12, “Definindo o Idioma da Mensagem de Erro”](error-message-language.html "10.12 Setting the Error Message Language").
 
-The error log contains a record of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") startup and shutdown times. It also contains diagnostic messages such as errors, warnings, and notes that occur during server startup and shutdown, and while the server is running. For example, if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") notices that a table needs to be automatically checked or repaired, it writes a message to the error log.
+O log de erros contém um registro dos horários de inicialização (*startup*) e desligamento (*shutdown*) do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). Ele também contém mensagens de diagnóstico, como erros, avisos (*warnings*) e notas que ocorrem durante a inicialização e desligamento do servidor, e enquanto o servidor está em execução. Por exemplo, se o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") notar que uma *table* precisa ser automaticamente checada ou reparada, ele escreve uma mensagem no log de erros.
 
-On some operating systems, the error log contains a stack trace if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exits abnormally. The trace can be used to determine where [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exited. See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
+Em alguns sistemas operacionais, o log de erros contém um *stack trace* se o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") for encerrado de forma anormal. O *trace* pode ser usado para determinar onde o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") foi encerrado. Consulte [Seção 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
-If used to start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") may write messages to the error log. For example, when [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") notices abnormal [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exits, it restarts [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") and writes a `mysqld restarted` message to the error log.
+Se usado para iniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") pode escrever mensagens no log de erros. Por exemplo, quando o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") nota encerramentos anormais do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), ele reinicia o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") e escreve uma mensagem `mysqld restarted` no log de erros.
 
-The following sections discuss aspects of configuring error logging. In the discussion, “console” means `stderr`, the standard error output. This is your terminal or console window unless the standard error output has been redirected to a different destination.
+As seções a seguir discutem aspectos da configuração do registro de erros (*error logging*). Na discussão, "console" significa `stderr`, a saída de erro padrão (*standard error output*). Este é o seu terminal ou janela de console, a menos que a saída de erro padrão tenha sido redirecionada para um destino diferente.
 
-The server interprets options that determine where to write error messages somewhat differently for Windows and Unix systems. Be sure to configure error logging using the information appropriate to your platform.
+O servidor interpreta as opções que determinam onde escrever as mensagens de erro de maneira ligeiramente diferente para sistemas Windows e Unix. Certifique-se de configurar o *error logging* utilizando as informações apropriadas para a sua plataforma.

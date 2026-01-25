@@ -1,10 +1,10 @@
-## 10.2 Character Sets and Collations in MySQL
+## 10.2 Character Sets e Collations no MySQL
 
-10.2.1 Character Set Repertoire
+10.2.1 Repertório de Character Sets
 
-10.2.2 UTF-8 for Metadata
+10.2.2 UTF-8 para Metadata
 
-MySQL Server supports multiple character sets. To display the available character sets, use the `INFORMATION_SCHEMA` `CHARACTER_SETS` table or the `SHOW CHARACTER SET` statement. A partial listing follows. For more complete information, see Section 10.10, “Supported Character Sets and Collations”.
+O MySQL Server suporta múltiplos *character sets*. Para exibir os *character sets* disponíveis, use a tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA` ou o comando `SHOW CHARACTER SET`. Segue-se uma lista parcial. Para informações mais completas, consulte a Seção 10.10, “Character Sets e Collations Suportados”.
 
 ```sql
 mysql> SHOW CHARACTER SET;
@@ -25,7 +25,7 @@ mysql> SHOW CHARACTER SET;
 ...
 ```
 
-By default, the `SHOW CHARACTER SET` statement displays all available character sets. It takes an optional `LIKE` or `WHERE` clause that indicates which character set names to match. For example:
+Por padrão, o comando `SHOW CHARACTER SET` exibe todos os *character sets* disponíveis. Ele aceita uma cláusula opcional `LIKE` ou `WHERE` que indica quais nomes de *character set* devem ser correspondidos. Por exemplo:
 
 ```sql
 mysql> SHOW CHARACTER SET LIKE 'latin%';
@@ -39,9 +39,9 @@ mysql> SHOW CHARACTER SET LIKE 'latin%';
 +---------+-----------------------------+-------------------+--------+
 ```
 
-A given character set always has at least one collation, and most character sets have several. To list the display collations for a character set, use the `INFORMATION_SCHEMA` `COLLATIONS` table or the `SHOW COLLATION` statement.
+Um determinado *character set* sempre tem pelo menos um *collation*, e a maioria dos *character sets* tem vários. Para listar os *collations* de exibição para um *character set*, use a tabela `COLLATIONS` do `INFORMATION_SCHEMA` ou o comando `SHOW COLLATION`.
 
-By default, the `SHOW COLLATION` statement displays all available collations. It takes an optional `LIKE` or `WHERE` clause that indicates which collation names to display. For example, to see the collations for the default character set, `latin1` (cp1252 West European), use this statement:
+Por padrão, o comando `SHOW COLLATION` exibe todos os *collations* disponíveis. Ele aceita uma cláusula opcional `LIKE` ou `WHERE` que indica quais nomes de *collation* devem ser exibidos. Por exemplo, para ver os *collations* para o *character set* padrão, `latin1` (cp1252 Europa Ocidental), use este comando:
 
 ```sql
 mysql> SHOW COLLATION WHERE Charset = 'latin1';
@@ -59,15 +59,15 @@ mysql> SHOW COLLATION WHERE Charset = 'latin1';
 +-------------------+---------+----+---------+----------+---------+
 ```
 
-The `latin1` collations have the following meanings.
+Os *collations* `latin1` têm os seguintes significados.
 
-<table summary="latin1 character set collations, as described in the preceding example, and the meaning of each collation."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Collation</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>latin1_bin</code></td> <td>Binary according to <code>latin1</code> encoding</td> </tr><tr> <td><code>latin1_danish_ci</code></td> <td>Danish/Norwegian</td> </tr><tr> <td><code>latin1_general_ci</code></td> <td>Multilingual (Western European)</td> </tr><tr> <td><code>latin1_general_cs</code></td> <td>Multilingual (ISO Western European), case-sensitive</td> </tr><tr> <td><code>latin1_german1_ci</code></td> <td>German DIN-1 (dictionary order)</td> </tr><tr> <td><code>latin1_german2_ci</code></td> <td>German DIN-2 (phone book order)</td> </tr><tr> <td><code>latin1_spanish_ci</code></td> <td>Modern Spanish</td> </tr><tr> <td><code>latin1_swedish_ci</code></td> <td>Swedish/Finnish</td> </tr></tbody></table>
+<table summary="Os collations do character set latin1, conforme descritos no exemplo anterior, e o significado de cada collation."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Collation</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>latin1_bin</code></td> <td>Binário de acordo com a codificação <code>latin1</code></td> </tr><tr> <td><code>latin1_danish_ci</code></td> <td>Dinamarquês/Norueguês</td> </tr><tr> <td><code>latin1_general_ci</code></td> <td>Multilíngue (Europa Ocidental)</td> </tr><tr> <td><code>latin1_general_cs</code></td> <td>Multilíngue (ISO Europa Ocidental), case-sensitive</td> </tr><tr> <td><code>latin1_german1_ci</code></td> <td>Alemão DIN-1 (ordem de dicionário)</td> </tr><tr> <td><code>latin1_german2_ci</code></td> <td>Alemão DIN-2 (ordem de lista telefônica)</td> </tr><tr> <td><code>latin1_spanish_ci</code></td> <td>Espanhol Moderno</td> </tr><tr> <td><code>latin1_swedish_ci</code></td> <td>Sueco/Finlandês</td> </tr></tbody></table>
 
-Collations have these general characteristics:
+Collations têm estas características gerais:
 
-* Two different character sets cannot have the same collation.
-* Each character set has a *default collation*. For example, the default collations for `latin1` and `utf8` are `latin1_swedish_ci` and `utf8_general_ci`, respectively. The `INFORMATION_SCHEMA` `CHARACTER_SETS` table and the `SHOW CHARACTER SET` statement indicate the default collation for each character set. The `INFORMATION_SCHEMA` `COLLATIONS` table and the `SHOW COLLATION` statement have a column that indicates for each collation whether it is the default for its character set (`Yes` if so, empty if not).
+* Dois *character sets* diferentes não podem ter o mesmo *collation*.
+* Cada *character set* possui um *default collation*. Por exemplo, os *default collations* para `latin1` e `utf8` são `latin1_swedish_ci` e `utf8_general_ci`, respectivamente. A tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA` e o comando `SHOW CHARACTER SET` indicam o *default collation* para cada *character set*. A tabela `COLLATIONS` do `INFORMATION_SCHEMA` e o comando `SHOW COLLATION` possuem uma coluna que indica se um *collation* é o padrão para seu respectivo *character set* (`Yes` se for, vazio se não for).
 
-* Collation names start with the name of the character set with which they are associated, generally followed by one or more suffixes indicating other collation characteristics. For additional information about naming conventions, see Section 10.3.1, “Collation Naming Conventions”.
+* Os nomes dos *collations* começam com o nome do *character set* ao qual estão associados, geralmente seguidos por um ou mais sufixos que indicam outras características do *collation*. Para informações adicionais sobre convenções de nomenclatura, consulte a Seção 10.3.1, “Convenções de Nomenclatura de Collation”.
 
-When a character set has multiple collations, it might not be clear which collation is most suitable for a given application. To avoid choosing an inappropriate collation, perform some comparisons with representative data values to make sure that a given collation sorts values the way you expect.
+Quando um *character set* tem múltiplos *collations*, pode não estar claro qual *collation* é o mais adequado para uma determinada aplicação. Para evitar a escolha de um *collation* inadequado, realize algumas comparações com valores de dados representativos para garantir que um determinado *collation* ordene os valores da maneira que você espera.

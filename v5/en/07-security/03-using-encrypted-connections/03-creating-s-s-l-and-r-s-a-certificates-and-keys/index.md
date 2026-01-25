@@ -1,13 +1,13 @@
-### 6.3.3 Creating SSL and RSA Certificates and Keys
+### 6.3.3 Criação de Certificados e Chaves SSL e RSA
 
-[6.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL](creating-ssl-rsa-files-using-mysql.html)
+[6.3.3.1 Criação de Certificados e Chaves SSL e RSA usando MySQL](creating-ssl-rsa-files-using-mysql.html)
 
-[6.3.3.2 Creating SSL Certificates and Keys Using openssl](creating-ssl-files-using-openssl.html)
+[6.3.3.2 Criação de Certificados e Chaves SSL usando openssl](creating-ssl-files-using-openssl.html)
 
-[6.3.3.3 Creating RSA Keys Using openssl](creating-rsa-files-using-openssl.html)
+[6.3.3.3 Criação de Chaves RSA usando openssl](creating-rsa-files-using-openssl.html)
 
-The following discussion describes how to create the files required for SSL and RSA support in MySQL. File creation can be performed using facilities provided by MySQL itself, or by invoking the **openssl** command directly.
+A discussão a seguir descreve como criar os arquivos necessários para o suporte a SSL e RSA no MySQL. A criação de arquivos pode ser realizada usando recursos fornecidos pelo próprio MySQL ou invocando o comando **openssl** diretamente.
 
-SSL certificate and key files enable MySQL to support encrypted connections using SSL. See [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
+Arquivos de certificado e chave SSL permitem que o MySQL suporte conexões criptografadas usando SSL. Consulte [Seção 6.3.1, “Configurando o MySQL para Usar Conexões Criptografadas”](using-encrypted-connections.html "6.3.1 Configurando o MySQL para Usar Conexões Criptografadas").
 
-RSA key files enable MySQL to support secure password exchange over unencrypted connections for accounts authenticated by the `sha256_password` plugin. See [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
+Arquivos de chave RSA permitem que o MySQL suporte a troca segura de senha em conexões não criptografadas para contas autenticadas pelo plugin `sha256_password`. Consulte [Seção 6.4.1.5, “Autenticação Plugável SHA-256”](sha256-pluggable-authentication.html "6.4.1.5 Autenticação Plugável SHA-256").

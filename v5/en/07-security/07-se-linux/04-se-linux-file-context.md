@@ -1,24 +1,24 @@
-### 6.7.4 SELinux File Context
+### 6.7.4 Contexto de Arquivo SELinux
 
-The MySQL Server reads from and writes to many files. If the SELinux context is not set correctly for these files, access to the files could be denied.
+O MySQL Server lê e escreve em muitos arquivos. Se o Contexto SELinux não estiver configurado corretamente para esses arquivos, o acesso a eles poderá ser negado.
 
-The instructions that follow use the `semanage` binary to manage file context; on RHEL, it's part of the `policycoreutils-python-utils` package:
+As instruções a seguir utilizam o binário `semanage` para gerenciar o Contexto de arquivo; no RHEL, ele faz parte do pacote `policycoreutils-python-utils`:
 
 ```sql
 yum install -y policycoreutils-python-utils
 ```
 
-After installing the `semanage` binary, you can list MySQL file contexts using `semanage` with the `fcontext` option.
+Após instalar o binário `semanage`, você pode listar os contextos de arquivo do MySQL usando `semanage` com a opção `fcontext`.
 
 ```sql
 semanage fcontext -l | grep -i mysql
 ```
 
-#### Setting the MySQL Data Directory Context
+#### Configurando o Contexto do Diretório de Dados do MySQL
 
-The default data directory location is `/var/lib/mysql/`; and the SELinux context used is `mysqld_db_t`.
+O local padrão do diretório de dados é `/var/lib/mysql/`; e o Contexto SELinux usado é `mysqld_db_t`.
 
-If you edit the configuration file to use a different location for the data directory, or for any of the files normally in the data directory (such as the binary logs), you may need to set the context for the new location. For example:
+Se você editar o arquivo de configuração para usar um local diferente para o diretório de dados, ou para qualquer um dos arquivos normalmente presentes no diretório de dados (como os binary logs), pode ser necessário configurar o Contexto para o novo local. Por exemplo:
 
 ```sql
 semanage fcontext -a -t mysqld_db_t "/path/to/my/custom/datadir(/.*)?"
@@ -28,52 +28,52 @@ semanage fcontext -a -t mysqld_db_t "/path/to/my/custom/logdir(/.*)?"
 restorecon -Rv /path/to/my/custom/logdir
 ```
 
-#### Setting the MySQL Error Log File Context
+#### Configurando o Contexto do Arquivo de Error Log do MySQL
 
-The default location for RedHat RPMs is `/var/log/mysqld.log`; and the SELinux context type used is `mysqld_log_t`.
+O local padrão para os RPMs RedHat é `/var/log/mysqld.log`; e o tipo de Contexto SELinux usado é `mysqld_log_t`.
 
-If you edit the configuration file to use a different location, you may need to set the context for the new location. For example:
+Se você editar o arquivo de configuração para usar um local diferente, pode ser necessário configurar o Contexto para o novo local. Por exemplo:
 
 ```sql
 semanage fcontext -a -t mysqld_log_t "/path/to/my/custom/error.log"
 restorecon -Rv /path/to/my/custom/error.log
 ```
 
-#### Setting the PID File Context
+#### Configurando o Contexto do PID File
 
-The default location for the PID file is `/var/run/mysqld/mysqld.pid`; and the SELinux context type used is `mysqld_var_run_t`.
+O local padrão para o PID File é `/var/run/mysqld/mysqld.pid`; e o tipo de Contexto SELinux usado é `mysqld_var_run_t`.
 
-If you edit the configuration file to use a different location, you may need to set the context for the new location. For example:
+Se você editar o arquivo de configuração para usar um local diferente, pode ser necessário configurar o Contexto para o novo local. Por exemplo:
 
 ```sql
 semanage fcontext -a -t mysqld_var_run_t "/path/to/my/custom/pidfile/directory/.*?"
 restorecon -Rv /path/to/my/custom/pidfile/directory
 ```
 
-#### Setting the Unix Domain Socket Context
+#### Configurando o Contexto do Unix Domain Socket
 
-The default location for the Unix domain socket is `/var/lib/mysql/mysql.sock`; and the SELinux context type used is `mysqld_var_run_t`.
+O local padrão para o Unix domain socket é `/var/lib/mysql/mysql.sock`; e o tipo de Contexto SELinux usado é `mysqld_var_run_t`.
 
-If you edit the configuration file to use a different location, you may need to set the context for the new location. For example:
+Se você editar o arquivo de configuração para usar um local diferente, pode ser necessário configurar o Contexto para o novo local. Por exemplo:
 
 ```sql
 semanage fcontext -a -t mysqld_var_run_t "/path/to/my/custom/mysql\.sock"
 restorecon -Rv /path/to/my/custom/mysql.sock
 ```
 
-#### Setting the secure_file_priv Directory Context
+#### Configurando o Contexto do Diretório secure_file_priv
 
-For MySQL versions since 5.6.34, 5.7.16, and 8.0.11.
+Para versões do MySQL a partir de 5.6.34, 5.7.16 e 8.0.11.
 
-Installing the MySQL Server RPM creates a `/var/lib/mysql-files/` directory but does not set the SELinux context for it. The `/var/lib/mysql-files/` directory is intended to be used for operations such as `SELECT ... INTO OUTFILE`.
+A instalação do RPM do MySQL Server cria um diretório `/var/lib/mysql-files/`, mas não define o Contexto SELinux para ele. O diretório `/var/lib/mysql-files/` deve ser usado para operações como `SELECT ... INTO OUTFILE`.
 
-If you enabled the use of this directory by setting `secure_file_priv`, you may need to set the context like so:
+Se você ativou o uso deste diretório configurando `secure_file_priv`, pode ser necessário definir o Contexto da seguinte forma:
 
 ```sql
 semanage fcontext -a -t mysqld_db_t "/var/lib/mysql-files/(/.*)?"
 restorecon -Rv /var/lib/mysql-files
 ```
 
-Edit this path if you used a different location. For security purposes, this directory should never be within the data directory.
+Edite este caminho se você usou um local diferente. Por motivos de segurança, este diretório nunca deve estar dentro do data directory.
 
-For more information about this variable, see the [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) documentation.
+Para mais informações sobre essa variável, consulte a documentação de [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv).

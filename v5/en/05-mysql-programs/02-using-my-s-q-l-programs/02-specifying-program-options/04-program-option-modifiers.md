@@ -1,8 +1,8 @@
-#### 4.2.2.4 Program Option Modifiers
+#### 4.2.2.4 Modificadores de Opções de Programa
 
-Some options are “boolean” and control behavior that can be turned on or off. For example, the **mysql** client supports a `--column-names` option that determines whether or not to display a row of column names at the beginning of query results. By default, this option is enabled. However, you may want to disable it in some instances, such as when sending the output of **mysql** into another program that expects to see only data and not an initial header line.
+Algumas options são "booleanas" e controlam um comportamento que pode ser ativado ou desativado. Por exemplo, o **mysql** client suporta a option `--column-names` que determina se uma linha de nomes de coluna deve ou não ser exibida no início dos resultados de uma Query. Por padrão, esta option está ativada. No entanto, você pode querer desativá-la em algumas instâncias, como ao enviar a saída do **mysql** para outro programa que espera ver apenas dados e não uma linha de cabeçalho inicial.
 
-To disable column names, you can specify the option using any of these forms:
+Para desativar os nomes das colunas, você pode especificar a option usando qualquer uma destas formas:
 
 ```sql
 --disable-column-names
@@ -10,9 +10,9 @@ To disable column names, you can specify the option using any of these forms:
 --column-names=0
 ```
 
-The `--disable` and `--skip` prefixes and the `=0` suffix all have the same effect: They turn the option off.
+Os prefixos `--disable` e `--skip` e o sufixo `=0` têm todos o mesmo efeito: Eles desativam a option.
 
-The “enabled” form of the option may be specified in any of these ways:
+A forma "ativada" da option pode ser especificada de qualquer uma destas maneiras:
 
 ```sql
 --column-names
@@ -20,20 +20,20 @@ The “enabled” form of the option may be specified in any of these ways:
 --column-names=1
 ```
 
-The values `ON`, `TRUE`, `OFF`, and `FALSE` are also recognized for boolean options (not case-sensitive).
+Os valores `ON`, `TRUE`, `OFF` e `FALSE` também são reconhecidos para options booleanas (sem distinção entre maiúsculas e minúsculas).
 
-If an option is prefixed by `--loose`, a program does not exit with an error if it does not recognize the option, but instead issues only a warning:
+Se uma option for prefixada por `--loose`, um programa não será encerrado com um erro caso não reconheça a option, mas emitirá apenas um warning:
 
 ```sql
 $> mysql --loose-no-such-option
 mysql: WARNING: unknown option '--loose-no-such-option'
 ```
 
-The `--loose` prefix can be useful when you run programs from multiple installations of MySQL on the same machine and list options in an option file. An option that may not be recognized by all versions of a program can be given using the `--loose` prefix (or `loose` in an option file). Versions of the program that recognize the option process it normally, and versions that do not recognize it issue a warning and ignore it.
+O prefixo `--loose` pode ser útil quando você executa programas de múltiplas instalações do MySQL na mesma máquina e lista options em um arquivo de option. Uma option que pode não ser reconhecida por todas as versões de um programa pode ser fornecida usando o prefixo `--loose` (ou `loose` em um arquivo de option). As versões do programa que reconhecem a option a processam normalmente, e as versões que não a reconhecem emitem um warning e a ignoram.
 
-The `--maximum` prefix is available for **mysqld** only and permits a limit to be placed on how large client programs can set session system variables. To do this, use a `--maximum` prefix with the variable name. For example, `--maximum-max_heap_table_size=32M` prevents any client from making the heap table size limit larger than 32M.
+O prefixo `--maximum` está disponível apenas para o **mysqld** e permite que seja imposto um limite sobre o quão grandes os programas client podem definir variáveis de sistema (system variables) de sessão. Para fazer isso, use o prefixo `--maximum` com o nome da variável. Por exemplo, `--maximum-max_heap_table_size=32M` impede que qualquer client torne o limite de tamanho da heap table maior que 32M.
 
-The `--maximum` prefix is intended for use with system variables that have a session value. If applied to a system variable that has only a global value, an error occurs. For example, with `--maximum-back_log=200`, the server produces this error:
+O prefixo `--maximum` é destinado ao uso com system variables que possuem um valor de sessão. Se aplicado a uma system variable que possui apenas um valor global, ocorre um erro. Por exemplo, com `--maximum-back_log=200`, o server produz este erro:
 
 ```sql
 Maximum value of 'back_log' cannot be set

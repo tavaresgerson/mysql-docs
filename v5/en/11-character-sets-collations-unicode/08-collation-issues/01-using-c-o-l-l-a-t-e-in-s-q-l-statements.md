@@ -1,8 +1,8 @@
-### 10.8.1 Using COLLATE in SQL Statements
+### 10.8.1 Usando COLLATE em Instruções SQL
 
-With the `COLLATE` clause, you can override whatever the default collation is for a comparison. `COLLATE` may be used in various parts of SQL statements. Here are some examples:
+Com a cláusula `COLLATE`, você pode sobrescrever o collation padrão para uma comparação. `COLLATE` pode ser usado em várias partes de instruções SQL. Aqui estão alguns exemplos:
 
-* With `ORDER BY`:
+* Com `ORDER BY`:
 
   ```sql
   SELECT k
@@ -10,7 +10,7 @@ With the `COLLATE` clause, you can override whatever the default collation is fo
   ORDER BY k COLLATE latin1_german2_ci;
   ```
 
-* With `AS`:
+* Com `AS`:
 
   ```sql
   SELECT k COLLATE latin1_german2_ci AS k1
@@ -18,7 +18,7 @@ With the `COLLATE` clause, you can override whatever the default collation is fo
   ORDER BY k1;
   ```
 
-* With `GROUP BY`:
+* Com `GROUP BY`:
 
   ```sql
   SELECT k
@@ -26,21 +26,21 @@ With the `COLLATE` clause, you can override whatever the default collation is fo
   GROUP BY k COLLATE latin1_german2_ci;
   ```
 
-* With aggregate functions:
+* Com funções de agregação:
 
   ```sql
   SELECT MAX(k COLLATE latin1_german2_ci)
   FROM t1;
   ```
 
-* With `DISTINCT`:
+* Com `DISTINCT`:
 
   ```sql
   SELECT DISTINCT k COLLATE latin1_german2_ci
   FROM t1;
   ```
 
-* With `WHERE`:
+* Com `WHERE`:
 
   ```sql
        SELECT *
@@ -54,7 +54,7 @@ With the `COLLATE` clause, you can override whatever the default collation is fo
        WHERE k LIKE _latin1 'Müller' COLLATE latin1_german2_ci;
   ```
 
-* With `HAVING`:
+* Com `HAVING`:
 
   ```sql
   SELECT k

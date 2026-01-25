@@ -1,120 +1,120 @@
-### 8.14.2 Thread Command Values
+### 8.14.2 Valores de Comando de Thread
 
-A thread can have any of the following `Command` values:
+Um Thread pode ter qualquer um dos seguintes valores de `Command`:
 
 * `Binlog Dump`
 
-  This is a thread on a replication source for sending binary log contents to a replica.
+  Este é um Thread na origem da replicação, responsável por enviar o conteúdo do binary log para uma réplica.
 
 * `Change user`
 
-  The thread is executing a change user operation.
+  O Thread está executando uma operação de `change user`.
 
 * `Close stmt`
 
-  The thread is closing a prepared statement.
+  O Thread está fechando um prepared statement.
 
 * `Connect`
 
-  A replica is connected to its source.
+  Uma réplica está conectada à sua origem.
 
 * `Connect Out`
 
-  A replica is connecting to its source.
+  Uma réplica está se conectando à sua origem.
 
 * `Create DB`
 
-  The thread is executing a create database operation.
+  O Thread está executando uma operação de `create database`.
 
 * `Daemon`
 
-  This thread is internal to the server, not a thread that services a client connection.
+  Este Thread é interno ao servidor, não sendo um Thread que atende a uma conexão de cliente.
 
 * `Debug`
 
-  The thread is generating debugging information.
+  O Thread está gerando informações de debugging.
 
 * `Delayed insert`
 
-  The thread is a delayed insert handler.
+  O Thread é um manipulador de `delayed insert`.
 
 * `Drop DB`
 
-  The thread is executing a drop database operation.
+  O Thread está executando uma operação de `drop database`.
 
 * `Error`
 * `Execute`
 
-  The thread is executing a prepared statement.
+  O Thread está executando um prepared statement.
 
 * `Fetch`
 
-  The thread is fetching the results from executing a prepared statement.
+  O Thread está buscando (`fetching`) os resultados da execução de um prepared statement.
 
 * `Field List`
 
-  The thread is retrieving information for table columns.
+  O Thread está recuperando informações para as colunas da tabela.
 
 * `Init DB`
 
-  The thread is selecting a default database.
+  O Thread está selecionando um default Database.
 
 * `Kill`
 
-  The thread is killing another thread.
+  O Thread está encerrando (`killing`) outro Thread.
 
 * `Long Data`
 
-  The thread is retrieving long data in the result of executing a prepared statement.
+  O Thread está recuperando dados longos (`long data`) no resultado da execução de um prepared statement.
 
 * `Ping`
 
-  The thread is handling a server ping request.
+  O Thread está processando uma solicitação de `ping` do servidor.
 
 * `Prepare`
 
-  The thread is preparing a prepared statement.
+  O Thread está preparando um prepared statement.
 
 * `Processlist`
 
-  The thread is producing information about server threads.
+  O Thread está gerando informações sobre os Threads do servidor.
 
 * `Query`
 
-  The thread is executing a statement.
+  O Thread está executando um statement.
 
 * `Quit`
 
-  The thread is terminating.
+  O Thread está sendo encerrado (`terminating`).
 
 * `Refresh`
 
-  The thread is flushing table, logs, or caches, or resetting status variable or replication server information.
+  O Thread está limpando (flushing) tabelas, logs ou caches, ou redefinindo a variável de status ou informações do servidor de replicação.
 
 * `Register Slave`
 
-  The thread is registering a replica server.
+  O Thread está registrando um servidor de réplica.
 
 * `Reset stmt`
 
-  The thread is resetting a prepared statement.
+  O Thread está redefinindo (`resetting`) um prepared statement.
 
 * `Set option`
 
-  The thread is setting or resetting a client statement execution option.
+  O Thread está definindo ou redefinindo uma opção de execução de statement do cliente.
 
 * `Shutdown`
 
-  The thread is shutting down the server.
+  O Thread está desligando (`shutting down`) o servidor.
 
 * `Sleep`
 
-  The thread is waiting for the client to send a new statement to it.
+  O Thread está esperando que o cliente envie um novo statement.
 
 * `Statistics`
 
-  The thread is producing server status information.
+  O Thread está gerando informações de status do servidor.
 
 * `Time`
 
-  Unused.
+  Não utilizado.

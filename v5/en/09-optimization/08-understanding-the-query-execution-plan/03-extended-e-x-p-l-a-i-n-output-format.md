@@ -1,14 +1,14 @@
-### 8.8.3 Extended EXPLAIN Output Format
+### 8.8.3 Formato de Saída EXPLAIN Estendido
 
-For `SELECT` statements, the `EXPLAIN` statement produces extra (“extended”) information that is not part of `EXPLAIN` output but can be viewed by issuing a `SHOW WARNINGS` statement following `EXPLAIN`. The `Message` value in `SHOW WARNINGS` output displays how the optimizer qualifies table and column names in the `SELECT` statement, what the `SELECT` looks like after the application of rewriting and optimization rules, and possibly other notes about the optimization process.
+Para comandos `SELECT`, o comando `EXPLAIN` produz informações extras ("estendidas") que não fazem parte da saída normal do `EXPLAIN`, mas podem ser visualizadas emitindo um comando `SHOW WARNINGS` após o `EXPLAIN`. O valor `Message` na saída do `SHOW WARNINGS` exibe como o optimizer qualifica nomes de tabelas e colunas no comando `SELECT`, como o `SELECT` se parece após a aplicação das regras de reescrita e otimização, e possivelmente outras notas sobre o processo de otimização.
 
-The extended information displayable with a `SHOW WARNINGS` statement following `EXPLAIN` is produced only for `SELECT` statements. `SHOW WARNINGS` displays an empty result for other explainable statements (`DELETE`, `INSERT`, `REPLACE`, and `UPDATE`).
+A informação estendida, visualizável com um comando `SHOW WARNINGS` após o `EXPLAIN`, é produzida apenas para comandos `SELECT`. O `SHOW WARNINGS` exibe um resultado vazio para outros comandos passíveis de `EXPLAIN` (`DELETE`, `INSERT`, `REPLACE` e `UPDATE`).
 
-Note
+Nota
 
-In older MySQL releases, extended information was produced using `EXPLAIN EXTENDED`. That syntax is still recognized for backward compatibility but extended output is now enabled by default, so the `EXTENDED` keyword is superfluous and deprecated. Its use results in a warning; expect it to be removed from `EXPLAIN` syntax in a future MySQL release.
+Em versões mais antigas do MySQL, informações estendidas eram produzidas usando `EXPLAIN EXTENDED`. Essa sintaxe ainda é reconhecida para compatibilidade com versões anteriores, mas a saída estendida agora está habilitada por padrão, de modo que a palavra-chave `EXTENDED` é supérflua e deprecated (descontinuada). Seu uso resulta em um warning (aviso); espera-se que seja removida da sintaxe do `EXPLAIN` em uma futura release do MySQL.
 
-Here is an example of extended `EXPLAIN` output:
+Aqui está um exemplo da saída `EXPLAIN` estendida:
 
 ```sql
 mysql> EXPLAIN
@@ -54,64 +54,64 @@ Message: /* select#1 */ select `test`.`t1`.`a` AS `a`,
 1 row in set (0.00 sec)
 ```
 
-Because the statement displayed by `SHOW WARNINGS` may contain special markers to provide information about query rewriting or optimizer actions, the statement is not necessarily valid SQL and is not intended to be executed. The output may also include rows with `Message` values that provide additional non-SQL explanatory notes about actions taken by the optimizer.
+Como o comando exibido pelo `SHOW WARNINGS` pode conter marcadores especiais para fornecer informações sobre a reescrita da Query ou ações do optimizer, o comando não é necessariamente um SQL válido e não se destina a ser executado. A saída também pode incluir linhas com valores `Message` que fornecem notas explicativas adicionais (não-SQL) sobre ações tomadas pelo optimizer.
 
-The following list describes special markers that can appear in the extended output displayed by `SHOW WARNINGS`:
+A lista a seguir descreve marcadores especiais que podem aparecer na saída estendida exibida pelo `SHOW WARNINGS`:
 
 * `<auto_key>`
 
-  An automatically generated key for a temporary table.
+  Uma chave gerada automaticamente para uma temporary table.
 
 * `<cache>(expr)`
 
-  The expression (such as a scalar subquery) is executed once and the resulting value is saved in memory for later use. For results consisting of multiple values, a temporary table may be created and you might see `<temporary table>` instead.
+  A expression (como uma scalar subquery) é executada uma vez e o valor resultante é salvo na memória para uso posterior. Para resultados que consistem em múltiplos valores, uma temporary table pode ser criada, e você pode ver `<temporary table>` em seu lugar.
 
 * `<exists>(query fragment)`
 
-  The subquery predicate is converted to an `EXISTS` predicate and the subquery is transformed so that it can be used together with the `EXISTS` predicate.
+  O subquery predicate é convertido para um `EXISTS` predicate e a subquery é transformada para que possa ser usada juntamente com o `EXISTS` predicate.
 
 * `<in_optimizer>(query fragment)`
 
-  This is an internal optimizer object with no user significance.
+  Este é um objeto interno do optimizer sem significado para o usuário.
 
 * `<index_lookup>(query fragment)`
 
-  The query fragment is processed using an index lookup to find qualifying rows.
+  O fragmento da Query é processado usando um Index lookup para encontrar as linhas qualificadas.
 
 * `<if>(condition, expr1, expr2)`
 
-  If the condition is true, evaluate to *`expr1`*, otherwise *`expr2`*.
+  Se a condição for verdadeira, avalia para *`expr1`*, caso contrário, *`expr2`*.
 
 * `<is_not_null_test>(expr)`
 
-  A test to verify that the expression does not evaluate to `NULL`.
+  Um teste para verificar se a expression não avalia para `NULL`.
 
 * `<materialize>(query fragment)`
 
-  Subquery materialization is used.
+  A materialização da subquery é utilizada.
 
 * `` `materialized-subquery`.col_name ``
 
-  A reference to the column *`col_name`* in an internal temporary table materialized to hold the result from evaluating a subquery.
+  Uma referência à coluna *`col_name`* em uma temporary table interna materializada para armazenar o resultado da avaliação de uma subquery.
 
 * `<primary_index_lookup>(query fragment)`
 
-  The query fragment is processed using a primary key lookup to find qualifying rows.
+  O fragmento da Query é processado usando um Primary Key lookup para encontrar as linhas qualificadas.
 
 * `<ref_null_helper>(expr)`
 
-  This is an internal optimizer object with no user significance.
+  Este é um objeto interno do optimizer sem significado para o usuário.
 
 * `/* select#N */ select_stmt`
 
-  The `SELECT` is associated with the row in non-extended `EXPLAIN` output that has an `id` value of *`N`*.
+  O `SELECT` está associado à linha na saída não estendida do `EXPLAIN` que possui um valor `id` de *`N`*.
 
 * `outer_tables semi join (inner_tables)`
 
-  A semijoin operation. *`inner_tables`* shows the tables that were not pulled out. See Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”.
+  Uma operação de semijoin. *`inner_tables`* mostra as tabelas que não foram puxadas (pulled out). Veja a Seção 8.2.2.1, “Otimizando Subqueries, Derived Tables e Referências de View com Semijoin Transformations”.
 
 * `<temporary table>`
 
-  This represents an internal temporary table created to cache an intermediate result.
+  Isto representa uma temporary table interna criada para fazer cache de um resultado intermediário.
 
-When some tables are of `const` or `system` type, expressions involving columns from these tables are evaluated early by the optimizer and are not part of the displayed statement. However, with `FORMAT=JSON`, some `const` table accesses are displayed as a `ref` access that uses a const value.
+Quando algumas tabelas são do tipo `const` ou `system`, expressions envolvendo colunas dessas tabelas são avaliadas precocemente pelo optimizer e não fazem parte do comando exibido. No entanto, com `FORMAT=JSON`, alguns acessos a tabelas `const` são exibidos como um acesso `ref` que usa um valor const.

@@ -1,23 +1,23 @@
-#### 2.5.7.2 More Topics on Deploying MySQL Server with Docker
+#### 2.5.7.2 Mais Tópicos sobre Como Implantar o MySQL Server com Docker
 
-Note
+Nota
 
-Most of the sample commands below have `mysql/mysql-server` as the Docker image repository when that has to be specified (like with the **docker pull** and **docker run** commands); change that if your image is from another repository—for example, replace it with `container-registry.oracle.com/mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from the Oracle Container Registry (OCR), or `mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from [My Oracle Support](https://support.oracle.com/).
+A maioria dos comandos de exemplo abaixo usa `mysql/mysql-server` como o repositório da imagem Docker quando isso precisa ser especificado (como nos comandos **docker pull** e **docker run**); altere isso se sua imagem for de outro repositório — por exemplo, substitua por `container-registry.oracle.com/mysql/enterprise-server` para imagens do MySQL Enterprise Edition baixadas do Oracle Container Registry (OCR), ou `mysql/enterprise-server` para imagens do MySQL Enterprise Edition baixadas do [My Oracle Support](https://support.oracle.com/).
 
-* The Optimized MySQL Installation for Docker
-* Configuring the MySQL Server
-* Persisting Data and Configuration Changes
-* Running Additional Initialization Scripts
-* Connect to MySQL from an Application in Another Docker Container
-* Server Error Log
-* Known Issues
-* Docker Environment Variables
+* A Instalação Otimizada do MySQL para Docker
+* Configurando o MySQL Server
+* Persistindo Dados e Alterações de Configuração
+* Executando Scripts de Inicialização Adicionais
+* Conectando-se ao MySQL a partir de uma Aplicação em Outro Container Docker
+* Log de Erros do Server
+* Problemas Conhecidos
+* Variáveis de Ambiente Docker
 
-##### The Optimized MySQL Installation for Docker
+##### A Instalação Otimizada do MySQL para Docker
 
-Docker images for MySQL are optimized for code size, which means they only include crucial components that are expected to be relevant for the majority of users who run MySQL instances in Docker containers. A MySQL Docker installation is different from a common, non-Docker installation in the following aspects:
+As imagens Docker para MySQL são otimizadas quanto ao tamanho do código, o que significa que incluem apenas componentes cruciais que são esperados como relevantes para a maioria dos usuários que executam instâncias MySQL em containers Docker. Uma instalação MySQL Docker é diferente de uma instalação comum, não-Docker, nos seguintes aspectos:
 
-* Included binaries are limited to:
+* Os binários incluídos são limitados a:
 
   + `/usr/bin/my_print_defaults`
   + `/usr/bin/mysql`
@@ -30,23 +30,23 @@ Docker images for MySQL are optimized for code size, which means they only inclu
   + `/usr/bin/mysqldump`
   + `/usr/bin/mysqlpump`
   + `/usr/sbin/mysqld`
-* All binaries are stripped; they contain no debug information.
+* Todos os binários são "stripped" (despojados); eles não contêm informações de debug.
 
-##### Configuring the MySQL Server
+##### Configurando o MySQL Server
 
-When you start the MySQL Docker container, you can pass configuration options to the server through the **docker run** command. For example:
+Ao iniciar o container Docker do MySQL, você pode passar opções de configuração para o server através do comando **docker run**. Por exemplo:
 
 ```sql
 docker run --name mysql1 -d mysql/mysql-server:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_col
 ```
 
-The command starts your MySQL Server with `utf8mb4` as the default character set and `utf8mb4_col` as the default collation for your databases.
+O comando inicia seu MySQL Server com `utf8mb4` como o character set padrão e `utf8mb4_col` como o collation padrão para seus Databases.
 
-Another way to configure the MySQL Server is to prepare a configuration file and mount it at the location of the server configuration file inside the container. See Persisting Data and Configuration Changes for details.
+Outra maneira de configurar o MySQL Server é preparar um arquivo de configuração e montá-lo no local do arquivo de configuração do server dentro do container. Consulte Persistindo Dados e Alterações de Configuração para detalhes.
 
-##### Persisting Data and Configuration Changes
+##### Persistindo Dados e Alterações de Configuração
 
-Docker containers are in principle ephemeral, and any data or configuration are expected to be lost if the container is deleted or corrupted (see discussions [here](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)). [Docker volumes](https://docs.docker.com/engine/admin/volumes/volumes/), however, provides a mechanism to persist data created inside a Docker container. At its initialization, the MySQL Server container creates a Docker volume for the server data directory. The JSON output for running the **docker inspect** command on the container has a `Mount` key, whose value provides information on the data directory volume:
+Containers Docker são, em princípio, efêmeros, e espera-se que quaisquer dados ou configurações sejam perdidos se o container for excluído ou corrompido (veja discussões [aqui](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)). No entanto, [volumes Docker](https://docs.docker.com/engine/admin/volumes/volumes/) fornecem um mecanismo para persistir dados criados dentro de um container Docker. Em sua inicialização, o container MySQL Server cria um volume Docker para o diretório de dados do server. A saída JSON para a execução do comando **docker inspect** no container possui uma chave `Mount`, cujo valor fornece informações sobre o volume do diretório de dados:
 
 ```sql
 $> docker inspect mysql1
@@ -66,9 +66,9 @@ $> docker inspect mysql1
 ...
 ```
 
-The output shows that the source folder`/var/lib/docker/volumes/4f2d463cfc4bdd4baebcb098c97d7da3337195ed2c6572bc0b89f7e845d27652/_data`, in which data is persisted on the host, has been mounted at `/var/lib/mysql`, the server data directory inside the container.
+A saída mostra que a pasta de origem `/var/lib/docker/volumes/4f2d463cfc4bdd4baebcb098c97d7da3337195ed2c6572bc0b89f7e845d27652/_data`, na qual os dados são persistidos no host, foi montada em `/var/lib/mysql`, o diretório de dados do server dentro do container.
 
-Another way to preserve data is to [bind-mount](https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-or-volumes) a host directory using the `--mount` option when creating the container. The same technique can be used to persist the configuration of the server. The following command creates a MySQL Server container and bind-mounts both the data directory and the server configuration file:
+Outra maneira de preservar dados é [bind-mount](https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-or-volumes) um diretório do host usando a opção `--mount` ao criar o container. A mesma técnica pode ser usada para persistir a configuração do server. O comando a seguir cria um container MySQL Server e bind-mounts o diretório de dados e o arquivo de configuração do server:
 
 ```sql
 docker run --name=mysql1 \
@@ -77,22 +77,22 @@ docker run --name=mysql1 \
 -d mysql/mysql-server:tag
 ```
 
-The command mounts `path-on-host-machine/my.cnf` at `/etc/my.cnf` (the server configuration file inside the container), and `path-on-host-machine/datadir` at `/var/lib/mysql` (the data directory inside the container). The following conditions must be met for the bind-mounting to work:
+O comando monta `path-on-host-machine/my.cnf` em `/etc/my.cnf` (o arquivo de configuração do server dentro do container), e `path-on-host-machine/datadir` em `/var/lib/mysql` (o diretório de dados dentro do container). As seguintes condições devem ser atendidas para que o bind-mounting funcione:
 
-* The configuration file `path-on-host-machine/my.cnf` must already exist, and it must contain the specification for starting the server using the user `mysql`:
+* O arquivo de configuração `path-on-host-machine/my.cnf` já deve existir e deve conter a especificação para iniciar o server usando o usuário `mysql`:
 
   ```sql
   [mysqld]
   user=mysql
   ```
 
-  You can also include other server configuration options in the file.
+  Você também pode incluir outras opções de configuração do server no arquivo.
 
-* The data directory `path-on-host-machine/datadir` must already exist. For server initialization to happen, the directory must be empty. You can also mount a directory prepopulated with data and start the server with it; however, you must make sure you start the Docker container with the same configuration as the server that created the data, and any host files or directories required are mounted when starting the container.
+* O diretório de dados `path-on-host-machine/datadir` já deve existir. Para que a inicialização do server ocorra, o diretório deve estar vazio. Você também pode montar um diretório pré-preenchido com dados e iniciar o server com ele; no entanto, você deve garantir que inicie o container Docker com a mesma configuração do server que criou os dados, e que quaisquer arquivos ou diretórios do host necessários sejam montados ao iniciar o container.
 
-##### Running Additional Initialization Scripts
+##### Executando Scripts de Inicialização Adicionais
 
-If there are any `.sh` or `.sql` scripts you want to run on the database immediately after it has been created, you can put them into a host directory and then mount the directory at `/docker-entrypoint-initdb.d/` inside the container. For example:
+Se houver quaisquer scripts `.sh` ou `.sql` que você queira executar no Database imediatamente após sua criação, você pode colocá-los em um diretório do host e, em seguida, montar o diretório em `/docker-entrypoint-initdb.d/` dentro do container. Por exemplo:
 
 ```sql
 docker run --name=mysql1 \
@@ -100,15 +100,15 @@ docker run --name=mysql1 \
 -d mysql/mysql-server:tag
 ```
 
-##### Connect to MySQL from an Application in Another Docker Container
+##### Conectando-se ao MySQL a partir de uma Aplicação em Outro Container Docker
 
-By setting up a Docker network, you can allow multiple Docker containers to communicate with each other, so that a client application in another Docker container can access the MySQL Server in the server container. First, create a Docker network:
+Ao configurar uma network Docker, você pode permitir que vários containers Docker se comuniquem entre si, de modo que uma aplicação cliente em outro container Docker possa acessar o MySQL Server no container do server. Primeiro, crie uma network Docker:
 
 ```sql
 docker network create my-custom-net
 ```
 
-Then, when you are creating and starting the server and the client containers, use the `--network` option to put them on network you created. For example:
+Em seguida, ao criar e iniciar os containers do server e do cliente, use a opção `--network` para colocá-los na network que você criou. Por exemplo:
 
 ```sql
 docker run --name=mysql1 --network=my-custom-net -d mysql/mysql-server
@@ -118,66 +118,66 @@ docker run --name=mysql1 --network=my-custom-net -d mysql/mysql-server
 docker run --name=myapp1 --network=my-custom-net -d myapp
 ```
 
-The `myapp1` container can then connect to the `mysql1` container with the `mysql1` hostname and vice versa, as Docker automatically sets up a DNS for the given container names. In the following example, we run the **`mysq`l** client from inside the `myapp1` container to connect to host `mysql1` in its own container:
+O container `myapp1` pode então se conectar ao container `mysql1` com o hostname `mysql1` e vice-versa, pois o Docker configura automaticamente um DNS para os nomes de container fornecidos. No exemplo a seguir, executamos o cliente **`mysql`** de dentro do container `myapp1` para conectar-se ao host `mysql1` em seu próprio container:
 
 ```sql
 docker exec -it myapp1 mysql --host=mysql1 --user=myuser --password
 ```
 
-For other networking techniques for containers, see the [Docker container networking](https://docs.docker.com/engine/userguide/networking/) section in the Docker Documentation.
+Para outras técnicas de network para containers, consulte a seção [Docker container networking](https://docs.docker.com/engine/userguide/networking/) na Documentação do Docker.
 
-##### Server Error Log
+##### Log de Erros do Server
 
-When the MySQL Server is first started with your server container, a server error log is NOT generated if either of the following conditions is true:
+Quando o MySQL Server é iniciado pela primeira vez com seu container server, um log de erros do server NÃO é gerado se qualquer uma das seguintes condições for verdadeira:
 
-* A server configuration file from the host has been mounted, but the file does not contain the system variable `log_error` (see Persisting Data and Configuration Changes on bind-mounting a server configuration file).
+* Um arquivo de configuração do server do host foi montado, mas o arquivo não contém a variável de sistema `log_error` (consulte Persistindo Dados e Alterações de Configuração sobre bind-mounting de um arquivo de configuração do server).
 
-* A server configuration file from the host has not been mounted, but the Docker environment variable `MYSQL_LOG_CONSOLE` is `true` (the variable's default state for MySQL 5.7 server containers is `false`). The MySQL Server's error log is then redirected to `stderr`, so that the error log goes into the Docker container's log and is viewable using the **docker logs *`mysqld-container`*** command.
+* Um arquivo de configuração do server do host não foi montado, mas a variável de ambiente Docker `MYSQL_LOG_CONSOLE` é `true` (o estado padrão da variável para containers MySQL 5.7 server é `false`). O log de erros do MySQL Server é então redirecionado para `stderr`, de modo que o log de erros vá para o log do container Docker e possa ser visualizado usando o comando **docker logs *`mysqld-container`***.
 
-To make MySQL Server generate an error log when either of the two conditions is true, use the `--log-error` option to configure the server to generate the error log at a specific location inside the container. To persist the error log, mount a host file at the location of the error log inside the container as explained in Persisting Data and Configuration Changes. However, you must make sure your MySQL Server inside its container has write access to the mounted host file.
+Para fazer com que o MySQL Server gere um log de erros quando qualquer uma das duas condições for verdadeira, use a opção `--log-error` para configurar o server para gerar o log de erros em um local específico dentro do container. Para persistir o log de erros, monte um arquivo do host no local do log de erros dentro do container, conforme explicado em Persistindo Dados e Alterações de Configuração. No entanto, você deve garantir que seu MySQL Server dentro de seu container tenha acesso de escrita ao arquivo do host montado.
 
-##### Known Issues
+##### Problemas Conhecidos
 
-* When using the server system variable `audit_log_file` to configure the audit log file name, use the `loose` option modifier with it, or Docker will be unable to start the server.
+* Ao usar a variável de sistema do server `audit_log_file` para configurar o nome do arquivo de log de auditoria, use o modificador de opção `loose` com ela, ou o Docker não conseguirá iniciar o server.
 
-##### Docker Environment Variables
+##### Variáveis de Ambiente Docker
 
-When you create a MySQL Server container, you can configure the MySQL instance by using the `--env` option (`-e` in short) and specifying one or more of the following environment variables.
+Ao criar um container MySQL Server, você pode configurar a instância MySQL usando a opção `--env` (ou `-e`, abreviadamente) e especificando uma ou mais das seguintes variáveis de ambiente.
 
-Notes
+Notas
 
-* None of the variables below has any effect if the data directory you mount is not empty, as no server initialization is going to be attempted then (see Persisting Data and Configuration Changes for more details). Any pre-existing contents in the folder, including any old server settings, are not modified during the container startup.
+* Nenhuma das variáveis abaixo tem efeito se o diretório de dados que você montar não estiver vazio, pois nenhuma inicialização do server será tentada (consulte Persistindo Dados e Alterações de Configuração para mais detalhes). Quaisquer conteúdos pré-existentes na pasta, incluindo quaisquer configurações antigas do server, não são modificados durante a inicialização do container.
 
-* The boolean variables including `MYSQL_RANDOM_ROOT_PASSWORD`, `MYSQL_ONETIME_PASSWORD`, `MYSQL_ALLOW_EMPTY_PASSWORD`, and `MYSQL_LOG_CONSOLE` are made true by setting them with any strings of nonzero lengths. Therefore, setting them to, for example, “0”, “false”, or “no” does not make them false, but actually makes them true. This is a known issue of the MySQL Server containers.
+* As variáveis booleanas, incluindo `MYSQL_RANDOM_ROOT_PASSWORD`, `MYSQL_ONETIME_PASSWORD`, `MYSQL_ALLOW_EMPTY_PASSWORD` e `MYSQL_LOG_CONSOLE`, tornam-se true ao serem definidas com quaisquer strings de comprimento diferente de zero. Portanto, defini-las como, por exemplo, "0", "false" ou "no" não as torna false, mas na verdade as torna true. Este é um problema conhecido dos containers MySQL Server.
 
-* `MYSQL_RANDOM_ROOT_PASSWORD`: When this variable is true (which is its default state, unless `MYSQL_ROOT_PASSWORD` is set or `MYSQL_ALLOW_EMPTY_PASSWORD` is set to true), a random password for the server's root user is generated when the Docker container is started. The password is printed to `stdout` of the container and can be found by looking at the container’s log (see Starting a MySQL Server Instance).
+* `MYSQL_RANDOM_ROOT_PASSWORD`: Quando esta variável é true (o que é seu estado padrão, a menos que `MYSQL_ROOT_PASSWORD` seja definida ou `MYSQL_ALLOW_EMPTY_PASSWORD` seja definida como true), uma senha aleatória para o usuário root do server é gerada quando o container Docker é iniciado. A senha é impressa no `stdout` do container e pode ser encontrada examinando o log do container (consulte Starting a MySQL Server Instance).
 
-* `MYSQL_ONETIME_PASSWORD`: When the variable is true (which is its default state, unless `MYSQL_ROOT_PASSWORD` is set or `MYSQL_ALLOW_EMPTY_PASSWORD` is set to true), the root user's password is set as expired and must be changed before MySQL can be used normally.
+* `MYSQL_ONETIME_PASSWORD`: Quando a variável é true (o que é seu estado padrão, a menos que `MYSQL_ROOT_PASSWORD` seja definida ou `MYSQL_ALLOW_EMPTY_PASSWORD` seja definida como true), a senha do usuário root é definida como expirada e deve ser alterada antes que o MySQL possa ser usado normalmente.
 
-* `MYSQL_DATABASE`: This variable allows you to specify the name of a database to be created on image startup. If a user name and a password are supplied with `MYSQL_USER` and `MYSQL_PASSWORD`, the user is created and granted superuser access to this database (corresponding to `GRANT ALL`). The specified database is created by a CREATE DATABASE IF NOT EXIST statement, so that the variable has no effect if the database already exists.
+* `MYSQL_DATABASE`: Esta variável permite que você especifique o nome de um Database a ser criado na inicialização da imagem. Se um nome de usuário e uma senha forem fornecidos com `MYSQL_USER` e `MYSQL_PASSWORD`, o usuário é criado e recebe acesso de superusuário a este Database (correspondendo a `GRANT ALL`). O Database especificado é criado por uma instrução CREATE DATABASE IF NOT EXIST, de modo que a variável não tem efeito se o Database já existir.
 
-* `MYSQL_USER`, `MYSQL_PASSWORD`: These variables are used in conjunction to create a user and set that user's password, and the user is granted superuser permissions for the database specified by the `MYSQL_DATABASE` variable. Both `MYSQL_USER` and `MYSQL_PASSWORD` are required for a user to be created—if any of the two variables is not set, the other is ignored. If both variables are set but `MYSQL_DATABASE` is not, the user is created without any privileges.
+* `MYSQL_USER`, `MYSQL_PASSWORD`: Estas variáveis são usadas em conjunto para criar um usuário e definir a senha desse usuário, e o usuário recebe permissões de superusuário para o Database especificado pela variável `MYSQL_DATABASE`. Ambas `MYSQL_USER` e `MYSQL_PASSWORD` são necessárias para que um usuário seja criado — se alguma das duas variáveis não for definida, a outra é ignorada. Se ambas as variáveis forem definidas, mas `MYSQL_DATABASE` não for, o usuário é criado sem quaisquer privileges.
 
-  Note
+  Nota
 
-  There is no need to use this mechanism to create the root superuser, which is created by default with the password set by either one of the mechanisms discussed in the descriptions for `MYSQL_ROOT_PASSWORD` and `MYSQL_RANDOM_ROOT_PASSWORD`, unless `MYSQL_ALLOW_EMPTY_PASSWORD` is true.
+  Não há necessidade de usar este mecanismo para criar o superusuário root, que é criado por padrão com a senha definida por um dos mecanismos discutidos nas descrições de `MYSQL_ROOT_PASSWORD` e `MYSQL_RANDOM_ROOT_PASSWORD`, a menos que `MYSQL_ALLOW_EMPTY_PASSWORD` seja true.
 
-* `MYSQL_ROOT_HOST`: By default, MySQL creates the `'root'@'localhost'` account. This account can only be connected to from inside the container as described in Connecting to MySQL Server from within the Container. To allow root connections from other hosts, set this environment variable. For example, the value `172.17.0.1`, which is the default Docker gateway IP, allows connections from the host machine that runs the container. The option accepts only one entry, but wildcards are allowed (for example, `MYSQL_ROOT_HOST=172.*.*.*` or `MYSQL_ROOT_HOST=%`).
+* `MYSQL_ROOT_HOST`: Por padrão, o MySQL cria a conta `'root'@'localhost'`. Esta conta só pode ser conectada de dentro do container, conforme descrito em Connecting to MySQL Server from within the Container. Para permitir conexões root de outros hosts, defina esta variável de ambiente. Por exemplo, o valor `172.17.0.1`, que é o IP do default Docker gateway, permite conexões da máquina host que executa o container. A opção aceita apenas uma entrada, mas curingas são permitidos (por exemplo, `MYSQL_ROOT_HOST=172.*.*.*` ou `MYSQL_ROOT_HOST=%`).
 
-* `MYSQL_LOG_CONSOLE`: When the variable is true (the variable's default state for MySQL 5.7 server containers is `false`), the MySQL Server's error log is redirected to `stderr`, so that the error log goes into the Docker container's log and is viewable using the **docker logs *`mysqld-container`*** command.
+* `MYSQL_LOG_CONSOLE`: Quando a variável é true (o estado padrão da variável para containers MySQL 5.7 server é `false`), o log de erros do MySQL Server é redirecionado para `stderr`, de modo que o log de erros vá para o log do container Docker e possa ser visualizado usando o comando **docker logs *`mysqld-container`***.
 
-  Note
+  Nota
 
-  The variable has no effect if a server configuration file from the host has been mounted (see Persisting Data and Configuration Changes on bind-mounting a configuration file).
+  A variável não tem efeito se um arquivo de configuração do server do host tiver sido montado (consulte Persistindo Dados e Alterações de Configuração sobre bind-mounting de um arquivo de configuração).
 
-* `MYSQL_ROOT_PASSWORD`: This variable specifies a password that is set for the MySQL root account.
+* `MYSQL_ROOT_PASSWORD`: Esta variável especifica uma senha que é definida para a conta root do MySQL.
 
-  Warning
+  Aviso
 
-  Setting the MySQL root user password on the command line is insecure. As an alternative to specifying the password explicitly, you can set the variable with a container file path for a password file, and then mount a file from your host that contains the password at the container file path. This is still not very secure, as the location of the password file is still exposed. It is preferable to use the default settings of `MYSQL_RANDOM_ROOT_PASSWORD` and `MYSQL_ONETIME_PASSWORD` both being true.
+  Definir a senha do usuário root do MySQL na linha de comando é inseguro. Como alternativa para especificar a senha explicitamente, você pode definir a variável com um caminho de arquivo de container para um arquivo de senha e, em seguida, montar um arquivo do seu host que contenha a senha no caminho do arquivo de container. Isso ainda não é muito seguro, pois o local do arquivo de senha ainda é exposto. É preferível usar as configurações padrão de `MYSQL_RANDOM_ROOT_PASSWORD` e `MYSQL_ONETIME_PASSWORD` ambas sendo true.
 
-* `MYSQL_ALLOW_EMPTY_PASSWORD`. Set it to true to allow the container to be started with a blank password for the root user.
+* `MYSQL_ALLOW_EMPTY_PASSWORD`. Defina-a como true para permitir que o container seja iniciado com uma senha em branco para o usuário root.
 
-  Warning
+  Aviso
 
-  Setting this variable to true is insecure, because it is going to leave your MySQL instance completely unprotected, allowing anyone to gain complete superuser access. It is preferable to use the default settings of `MYSQL_RANDOM_ROOT_PASSWORD` and `MYSQL_ONETIME_PASSWORD` both being true.
+  Definir esta variável como true é inseguro, pois deixará sua instância MySQL completamente desprotegida, permitindo que qualquer pessoa obtenha acesso completo de superusuário. É preferível usar as configurações padrão de `MYSQL_RANDOM_ROOT_PASSWORD` e `MYSQL_ONETIME_PASSWORD` ambas sendo true.

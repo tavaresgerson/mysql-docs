@@ -1,34 +1,34 @@
-#### 7.4.5.2 Copy a Database from one Server to Another
+#### 7.4.5.2 Copiar um Database de um Server para Outro
 
-On Server 1:
+No Server 1:
 
 ```sql
 $> mysqldump --databases db1 > dump.sql
 ```
 
-Copy the dump file from Server 1 to Server 2.
+Copie o arquivo dump do Server 1 para o Server 2.
 
-On Server 2:
+No Server 2:
 
 ```sql
 $> mysql < dump.sql
 ```
 
-Use of `--databases` with the **mysqldump** command line causes the dump file to include `CREATE DATABASE` and `USE` statements that create the database if it does exist and make it the default database for the reloaded data.
+O uso de `--databases` na linha de comando do **mysqldump** faz com que o arquivo dump inclua instruções `CREATE DATABASE` e `USE` que criam o database (se ele não existir) e o definem como o database default para os dados recarregados.
 
-Alternatively, you can omit `--databases` from the **mysqldump** command. Then you need to create the database on Server 2 (if necessary) and to specify it as the default database when you reload the dump file.
+Alternativamente, você pode omitir `--databases` do comando **mysqldump**. Nesse caso, você precisará criar o database no Server 2 (se necessário) e especificá-lo como o database default ao recarregar o arquivo dump.
 
-On Server 1:
+No Server 1:
 
 ```sql
 $> mysqldump db1 > dump.sql
 ```
 
-On Server 2:
+No Server 2:
 
 ```sql
 $> mysqladmin create db1
 $> mysql db1 < dump.sql
 ```
 
-You can specify a different database name in this case, so omitting `--databases` from the **mysqldump** command enables you to dump data from one database and load it into another.
+Você pode especificar um nome de database diferente neste caso, o que significa que omitir `--databases` do comando **mysqldump** permite que você faça o dump de dados de um database e os carregue em outro.

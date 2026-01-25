@@ -1,28 +1,28 @@
-#### 6.7.5.2 Setting the TCP Port Context for MySQL Features
+#### 6.7.5.2 Configurando o Contexto da Porta TCP para Recursos do MySQL
 
-If you enable certain MySQL features, you might need to set the SELinux TCP port context for additional ports used by those features. If ports used by MySQL features do not have the correct SELinux context, the features might not function correctly.
+Se você habilitar certos recursos do MySQL, pode ser necessário configurar o contexto da porta TCP do SELinux para portas adicionais usadas por esses recursos. Se as portas usadas pelos recursos do MySQL não tiverem o contexto SELinux correto, os recursos podem não funcionar corretamente.
 
-The following sections describe how to set port contexts for MySQL features. Generally, the same method can be used to set the port context for any MySQL features. For information about ports used by MySQL features, refer to the [MySQL Port Reference](/doc/mysql-port-reference/en/).
+As seções a seguir descrevem como configurar contextos de porta para recursos do MySQL. Geralmente, o mesmo método pode ser usado para configurar o contexto da porta para quaisquer recursos do MySQL. Para obter informações sobre portas usadas pelos recursos do MySQL, consulte a [MySQL Port Reference](/doc/mysql-port-reference/en/).
 
-##### Setting the TCP Port Context for Group Replication
+##### Configurando o Contexto da Porta TCP para Group Replication
 
-If SELinux is enabled, you must set the port context for the Group Replication communication port, which is defined by the [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) variable. [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") must be able to bind to the Group Replication communication port and listen there. InnoDB Cluster relies on Group Replication so this applies equally to instances used in a cluster. To view ports currently used by MySQL, issue:
+Se o SELinux estiver habilitado, você deve configurar o contexto da porta para a porta de comunicação do Group Replication, que é definida pela variável [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address). O [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") deve ser capaz de realizar um *bind* na porta de comunicação do Group Replication e realizar o *listen* nela. O InnoDB Cluster depende do Group Replication, portanto, isso se aplica igualmente a instâncias usadas em um cluster. Para visualizar as portas atualmente usadas pelo MySQL, execute:
 
 ```sql
 semanage port -l | grep mysqld
 ```
 
-Assuming the Group Replication communication port is 33061, set the port context by issuing:
+Assumindo que a porta de comunicação do Group Replication seja 33061, configure o contexto da porta executando:
 
 ```sql
 semanage port -a -t mysqld_port_t -p tcp 33061
 ```
 
-##### Setting the TCP Port Context for Document Store
+##### Configurando o Contexto da Porta TCP para Document Store
 
-If SELinux is enabled, you must set the port context for the communication port used by X Plugin, which is defined by the [`mysqlx_port`](x-plugin-options-system-variables.html#sysvar_mysqlx_port) variable. [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") must be able to bind to the X Plugin communication port and listen there.
+Se o SELinux estiver habilitado, você deve configurar o contexto da porta para a porta de comunicação usada pelo X Plugin, que é definida pela variável [`mysqlx_port`](x-plugin-options-system-variables.html#sysvar_mysqlx_port). O [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") deve ser capaz de realizar um *bind* na porta de comunicação do X Plugin e realizar o *listen* nela.
 
-Assuming the X Plugin communication port is 33060, set the port context by issuing:
+Assumindo que a porta de comunicação do X Plugin seja 33060, configure o contexto da porta executando:
 
 ```sql
 semanage port -a -t mysqld_port_t -p tcp 33060

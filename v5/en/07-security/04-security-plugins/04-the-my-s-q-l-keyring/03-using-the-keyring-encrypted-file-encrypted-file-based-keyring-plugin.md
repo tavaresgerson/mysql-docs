@@ -1,18 +1,18 @@
-#### 6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin
+#### 6.4.4.3 Usando o Plugin Keyring Baseado em Arquivo Criptografado keyring_encrypted_file
 
-Note
+Nota
 
-The `keyring_encrypted_file` plugin is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, see <https://www.mysql.com/products/>.
+O plugin `keyring_encrypted_file` é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
-The `keyring_encrypted_file` keyring plugin stores keyring data in an encrypted, password-protected file local to the server host. A password must be specified for the file. This plugin is available as of MySQL 5.7.21.
+O plugin Keyring `keyring_encrypted_file` armazena os dados do Keyring em um File criptografado e protegido por senha local ao host do Server. Uma senha deve ser especificada para o File. Este plugin está disponível a partir do MySQL 5.7.21.
 
-Warning
+Aviso
 
-For encryption key management, the `keyring_encrypted_file` plugin is not intended as a regulatory compliance solution. Security standards such as PCI, FIPS, and others require use of key management systems to secure, manage, and protect encryption keys in key vaults or hardware security modules (HSMs).
+Para gerenciamento de chaves de criptografia, o plugin `keyring_encrypted_file` não se destina a ser uma solução de conformidade regulatória. Padrões de segurança como PCI, FIPS e outros exigem o uso de sistemas de gerenciamento de chaves para proteger, gerenciar e resguardar chaves de criptografia em *key vaults* ou módulos de segurança de hardware (HSMs).
 
-To install `keyring_encrypted_file`, use the general instructions found in [Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation"), together with the configuration information specific to `keyring_encrypted_file` found here.
+Para instalar o `keyring_encrypted_file`, use as instruções gerais encontradas em [Seção 6.4.4.1, “Instalação do Plugin Keyring”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation"), juntamente com as informações de configuração específicas do `keyring_encrypted_file` encontradas aqui.
 
-To be usable during the server startup process, `keyring_encrypted_file` must be loaded using the [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) option. To specify the password for encrypting the keyring data file, set the [`keyring_encrypted_file_password`](keyring-system-variables.html#sysvar_keyring_encrypted_file_password) system variable. (The password is mandatory; if not specified at server startup, `keyring_encrypted_file` initialization fails.) The [`keyring_encrypted_file_data`](keyring-system-variables.html#sysvar_keyring_encrypted_file_data) system variable optionally configures the location of the file used by the `keyring_encrypted_file` plugin for data storage. The default value is platform specific. To configure the file location explicitly, set the variable value at startup. For example, use these lines in the server `my.cnf` file, adjusting the `.so` suffix and file location for your platform as necessary and substituting your chosen password:
+Para ser utilizável durante o processo de startup do Server, o `keyring_encrypted_file` deve ser carregado usando a opção [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load). Para especificar a senha para criptografar o File de Data do Keyring, defina a system variable [`keyring_encrypted_file_password`](keyring-system-variables.html#sysvar_keyring_encrypted_file_password). (A senha é obrigatória; se não for especificada no startup do Server, a inicialização do `keyring_encrypted_file` falhará.) A system variable [`keyring_encrypted_file_data`](keyring-system-variables.html#sysvar_keyring_encrypted_file_data) configura opcionalmente a localização do File usado pelo plugin `keyring_encrypted_file` para armazenamento de Data. O valor default depende da plataforma. Para configurar a localização do File explicitamente, defina o valor da variável no startup. Por exemplo, use estas linhas no File `my.cnf` do Server, ajustando o sufixo `.so` e a localização do File para sua plataforma conforme necessário e substituindo pela senha escolhida:
 
 ```sql
 [mysqld]
@@ -21,25 +21,25 @@ keyring_encrypted_file_data=/usr/local/mysql/mysql-keyring/keyring-encrypted
 keyring_encrypted_file_password=password
 ```
 
-Because the `my.cnf` file stores a password when written as shown, it should have a restrictive mode and be accessible only to the account used to run the MySQL server.
+Como o File `my.cnf` armazena uma senha conforme mostrado, ele deve ter um modo restritivo e ser acessível apenas à conta usada para executar o MySQL Server.
 
-Keyring operations are transactional: The `keyring_encrypted_file` plugin uses a backup file during write operations to ensure that it can roll back to the original file if an operation fails. The backup file has the same name as the value of the [`keyring_encrypted_file_data`](keyring-system-variables.html#sysvar_keyring_encrypted_file_data) system variable with a suffix of `.backup`.
+As operações de Keyring são transacionais: O plugin `keyring_encrypted_file` usa um File de Backup durante as operações de escrita para garantir que possa reverter para o File original se uma operação falhar. O File de Backup tem o mesmo nome do valor da system variable [`keyring_encrypted_file_data`](keyring-system-variables.html#sysvar_keyring_encrypted_file_data) com um sufixo de `.backup`.
 
-For additional information about the system variables used to configure the `keyring_encrypted_file` plugin, see [Section 6.4.4.12, “Keyring System Variables”](keyring-system-variables.html "6.4.4.12 Keyring System Variables").
+Para informações adicionais sobre as system variables usadas para configurar o plugin `keyring_encrypted_file`, consulte [Seção 6.4.4.12, “System Variables do Keyring”](keyring-system-variables.html "6.4.4.12 Keyring System Variables").
 
-To ensure that keys are flushed only when the correct keyring storage file exists, `keyring_encrypted_file` stores a SHA-256 checksum of the keyring in the file. Before updating the file, the plugin verifies that it contains the expected checksum. In addition, `keyring_encrypted_file` encrypts file contents using AES before writing the file, and decrypts file contents after reading the file.
+Para garantir que as chaves sejam descarregadas (flushed) apenas quando o File de armazenamento do Keyring correto existir, o `keyring_encrypted_file` armazena um Checksum SHA-256 do Keyring no File. Antes de atualizar o File, o plugin verifica se ele contém o Checksum esperado. Além disso, o `keyring_encrypted_file` criptografa o conteúdo do File usando AES antes de escrever o File, e descriptografa o conteúdo do File após a leitura.
 
-The `keyring_encrypted_file` plugin supports the functions that comprise the standard MySQL Keyring service interface. Keyring operations performed by those functions are accessible at two levels:
+O plugin `keyring_encrypted_file` suporta as funções que compõem a interface de serviço padrão do MySQL Keyring. As operações de Keyring realizadas por essas funções são acessíveis em dois níveis:
 
-* SQL interface: In SQL statements, call the functions described in [Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
+* Interface SQL: Em comandos SQL, chame as funções descritas em [Seção 6.4.4.8, “Funções de Gerenciamento de Chaves Keyring de Propósito Geral”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
 
-* C interface: In C-language code, call the keyring service functions described in [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service").
+* Interface C: Em código C-language, chame as funções de serviço Keyring descritas em [Seção 5.5.6.2, “O Serviço Keyring”](keyring-service.html "5.5.6.2 The Keyring Service").
 
-Example (using the SQL interface):
+Exemplo (usando a interface SQL):
 
 ```sql
 SELECT keyring_key_generate('MyKey', 'AES', 32);
 SELECT keyring_key_remove('MyKey');
 ```
 
-For information about the characteristics of key values permitted by `keyring_encrypted_file`, see [Section 6.4.4.6, “Supported Keyring Key Types and Lengths”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").
+Para obter informações sobre as características dos valores de chaves permitidas pelo `keyring_encrypted_file`, consulte [Seção 6.4.4.6, “Tipos e Comprimentos de Chaves Keyring Suportados”](keyring-key-types.html "6.4.4.6 Supported Keyring Key Types and Lengths").

@@ -1,12 +1,12 @@
-#### 4.6.7.1 mysqlbinlog Hex Dump Format
+#### 4.6.7.1 Formato de Hex Dump do mysqlbinlog
 
-The `--hexdump` option causes **mysqlbinlog** to produce a hex dump of the binary log contents:
+A opção `--hexdump` faz com que o **mysqlbinlog** produza um hex dump do conteúdo do Binary Log:
 
 ```sql
 mysqlbinlog --hexdump master-bin.000001
 ```
 
-The hex output consists of comment lines beginning with `#`, so the output might look like this for the preceding command:
+A saída em hexadecimal consiste em linhas de comentário começando com `#`, de modo que a saída pode se parecer com o seguinte para o comando anterior:
 
 ```sql
 /*!40019 SET @@SESSION.max_insert_delayed_threads=0*/;
@@ -25,16 +25,16 @@ The hex output consists of comment lines beginning with `#`, so the output might
 ROLLBACK;
 ```
 
-Hex dump output currently contains the elements in the following list. This format is subject to change. For more information about binary log format, see MySQL Internals: The Binary Log.
+A saída do Hex Dump atualmente contém os elementos na lista a seguir. Este formato está sujeito a alterações. Para mais informações sobre o formato do Binary Log, consulte MySQL Internals: The Binary Log.
 
-* `Position`: The byte position within the log file.
+* `Position`: A posição do byte dentro do arquivo de log.
 
-* `Timestamp`: The event timestamp. In the example shown, `'9d fc 5c 43'` is the representation of `'051024 17:24:13'` in hexadecimal.
+* `Timestamp`: O timestamp do evento. No exemplo mostrado, `'9d fc 5c 43'` é a representação de `'051024 17:24:13'` em hexadecimal.
 
-* `Type`: The event type code.
-* `Master ID`: The server ID of the replication source server that created the event.
+* `Type`: O código do tipo de evento.
+* `Master ID`: O ID do servidor de origem de replicação que criou o evento.
 
-* `Size`: The size in bytes of the event.
-* `Master Pos`: The position of the next event in the original source log file.
+* `Size`: O tamanho em bytes do evento.
+* `Master Pos`: A Position do próximo evento no arquivo de log de origem original.
 
-* `Flags`: Event flag values.
+* `Flags`: Valores de Flag do evento.

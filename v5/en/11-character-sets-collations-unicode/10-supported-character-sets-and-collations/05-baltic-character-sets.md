@@ -1,13 +1,13 @@
-### 10.10.5 Baltic Character Sets
+### 10.10.5 Conjuntos de Caracteres Bálticos
 
-The Baltic character sets cover Estonian, Latvian, and Lithuanian languages.
+Os conjuntos de caracteres bálticos cobrem os idiomas Estoniano, Letão e Lituano.
 
-* `cp1257` (Windows Baltic) collations:
+* Collation de `cp1257` (Windows Baltic):
 
   + `cp1257_bin`
   + `cp1257_general_ci` (default)
   + `cp1257_lithuanian_ci`
-* `latin7` (ISO 8859-13 Baltic) collations:
+* Collation de `latin7` (ISO 8859-13 Baltic):
 
   + `latin7_bin`
   + `latin7_estonian_cs`

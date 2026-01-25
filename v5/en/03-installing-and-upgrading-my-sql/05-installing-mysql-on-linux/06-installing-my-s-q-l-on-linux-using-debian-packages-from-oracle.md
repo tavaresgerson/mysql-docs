@@ -1,61 +1,61 @@
-### 2.5.6 Installing MySQL on Linux Using Debian Packages from Oracle
+### 2.5.6 Instalando o MySQL no Linux Usando Pacotes Debian da Oracle
 
-Oracle provides Debian packages for installing MySQL on Debian or Debian-like Linux systems. The packages are available through two different channels:
+A Oracle fornece pacotes Debian para instalar o MySQL em sistemas Linux Debian ou semelhantes ao Debian. Os pacotes estão disponíveis por meio de dois canais diferentes:
 
-* The [MySQL APT Repository](https://dev.mysql.com/downloads/repo/apt/). This is the preferred method for installing MySQL on Debian-like systems, as it provides a simple and convenient way to install and update MySQL products. For details, see Section 2.5.3, “Installing MySQL on Linux Using the MySQL APT Repository”.
+* O [MySQL APT Repository](https://dev.mysql.com/downloads/repo/apt/). Este é o método preferido para instalar o MySQL em sistemas semelhantes ao Debian, pois fornece uma maneira simples e conveniente de instalar e atualizar produtos MySQL. Para detalhes, consulte a Seção 2.5.3, “Instalando o MySQL no Linux Usando o MySQL APT Repository”.
 
-* The [MySQL Developer Zone's Download Area](https://dev.mysql.com/downloads/). For details, see Section 2.1.3, “How to Get MySQL”. The following are some information on the Debian packages available there and the instructions for installing them:
+* A [MySQL Developer Zone's Download Area](https://dev.mysql.com/downloads/). Para detalhes, consulte a Seção 2.1.3, “Como Obter o MySQL”. A seguir, algumas informações sobre os pacotes Debian disponíveis lá e as instruções para instalá-los:
 
-  + Various Debian packages are provided in the MySQL Developer Zone for installing different components of MySQL on different Debian or Ubuntu platforms. The preferred method is to use the tarball bundle, which contains the packages needed for a basic setup of MySQL. The tarball bundles have names in the format of `mysql-server_MVER-DVER_CPU.deb-bundle.tar`. *`MVER`* is the MySQL version and *`DVER`* is the Linux distribution version. The *`CPU`* value indicates the processor type or family for which the package is built, as shown in the following table:
+  + Vários pacotes Debian são fornecidos na MySQL Developer Zone para instalar diferentes componentes do MySQL em várias plataformas Debian ou Ubuntu. O método preferido é usar o *bundle* tarball, que contém os pacotes necessários para uma configuração básica do MySQL. Os *bundles* tarball possuem nomes no formato `mysql-server_MVER-DVER_CPU.deb-bundle.tar`. *`MVER`* é a versão do MySQL e *`DVER`* é a versão da distribuição Linux. O valor *`CPU`* indica o tipo ou família de processador para o qual o pacote foi construído, conforme mostrado na tabela a seguir:
 
-    **Table 2.13 MySQL Debian and Ubuntu Installation Packages CPU Identifiers**
+    **Tabela 2.13 Identificadores de CPU de Pacotes de Instalação MySQL Debian e Ubuntu**
 
-    <table><thead><tr> <th><em><code>CPU</code></em> Value</th> <th>Intended Processor Type or Family</th> </tr></thead><tbody><tr> <td><code>i386</code></td> <td>Pentium processor or better, 32 bit</td> </tr><tr> <td><code>amd64</code></td> <td>64-bit x86 processor</td> </tr></tbody></table>
+    <table><thead><tr> <th><em><code>CPU</code></em> Valor</th> <th>Tipo ou Família de Processador Pretendida</th> </tr></thead><tbody><tr> <td><code>i386</code></td> <td>Processador Pentium ou superior, 32 bit</td> </tr><tr> <td><code>amd64</code></td> <td>Processador x86 de 64 bit</td> </tr></tbody></table>
 
-  + After downloading the tarball, unpack it with the following command:
+  + Após baixar o tarball, desempacote-o com o seguinte comando:
 
     ```sql
     $> tar -xvf mysql-server_MVER-DVER_CPU.deb-bundle.tar
     ```
 
-  + You may need to install the `libaio` library if it is not already present on your system:
+  + Você pode precisar instalar a biblioteca `libaio` se ela ainda não estiver presente em seu sistema:
 
     ```sql
     $> sudo apt-get install libaio1
     ```
 
-  + Preconfigure the MySQL server package with the following command:
+  + Pré-configure o pacote do MySQL server com o seguinte comando:
 
     ```sql
     $> sudo dpkg-preconfigure mysql-community-server_*.deb
     ```
 
-    You are asked to provide a password for the root user for your MySQL installation. You might also be asked other questions regarding the installation.
+    Será solicitado que você forneça uma senha para o usuário root de sua instalação MySQL. Outras perguntas relativas à instalação também podem ser feitas.
 
-    Important
+    **Importante**
 
-    Make sure you remember the root password you set. Users who want to set a password later can leave the password field blank in the dialogue box and just press OK; in that case, root access to the server is authenticated using the MySQL Socket Peer-Credential Authentication Plugin for connections using a Unix socket file. You can set the root password later using **mysql_secure_installation**.
+    Certifique-se de memorizar a senha de root que você definiu. Usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar OK; nesse caso, o acesso de root ao server é autenticado usando o MySQL Socket Peer-Credential Authentication Plugin para conexões que utilizam um arquivo Unix socket. Você pode definir a senha de root mais tarde usando **mysql_secure_installation**.
 
-  + For a basic installation of the MySQL server, install the database common files package, the client package, the client metapackage, the server package, and the server metapackage (in that order); you can do that with a single command:
+  + Para uma instalação básica do MySQL server, instale o pacote de arquivos comuns do Database, o pacote client, o metapacote client, o pacote server e o metapacote server (nessa ordem); você pode fazer isso com um único comando:
 
     ```sql
     $> sudo dpkg -i mysql-{common,community-client,client,community-server,server}_*.deb
     ```
 
-    If you are being warned of unmet dependencies by **dpkg**, you can fix them using **apt-get**:
+    Se você for avisado sobre dependências não resolvidas pelo **dpkg**, você pode corrigi-las usando o **apt-get**:
 
     ```sql
     sudo apt-get -f install
     ```
 
-    Here are where the files are installed on the system:
+    Veja onde os arquivos são instalados no sistema:
 
-    - All configuration files (like `my.cnf`) are under `/etc/mysql`
+    - Todos os arquivos de configuração (como `my.cnf`) estão em `/etc/mysql`
 
-    - All binaries, libraries, headers, etc., are under `/usr/bin` and `/usr/sbin`
+    - Todos os binários, libraries, headers, etc., estão em `/usr/bin` e `/usr/sbin`
 
-    - The data directory is `/var/lib/mysql`
+    - O diretório de dados é `/var/lib/mysql`
 
-Note
+**Nota**
 
-Debian distributions of MySQL are also provided by other vendors. Be aware that they may differ from those built by Oracle in features, capabilities, and conventions (including communication setup), and that the instructions in this manual do not necessarily apply to installing them. The vendor's instructions should be consulted instead.
+Distribuições Debian do MySQL também são fornecidas por outros fornecedores. Esteja ciente de que elas podem diferir daquelas construídas pela Oracle em recursos, capacidades e convenções (incluindo configuração de comunicação), e que as instruções neste manual não se aplicam necessariamente à instalação delas. As instruções do fornecedor devem ser consultadas.

@@ -1,15 +1,15 @@
-### 1.6.2 MySQL Differences from Standard SQL
+### 1.6.2 Diferenças do MySQL em Relação ao SQL Padrão
 
-1.6.2.1 SELECT INTO TABLE Differences
+1.6.2.1 Diferenças do SELECT INTO TABLE
 
-1.6.2.2 UPDATE Differences
+1.6.2.2 Diferenças do UPDATE
 
-1.6.2.3 FOREIGN KEY Constraint Differences
+1.6.2.3 Diferenças das Restrições FOREIGN KEY
 
-1.6.2.4 '--' as the Start of a Comment
+1.6.2.4 '--' como Início de um Comentário
 
-We try to make MySQL Server follow the ANSI SQL standard and the ODBC SQL standard, but MySQL Server performs operations differently in some cases:
+Tentamos fazer com que o MySQL Server siga o padrão ANSI SQL e o padrão ODBC SQL, mas o MySQL Server executa operações de maneira diferente em alguns casos:
 
-* There are several differences between the MySQL and standard SQL privilege systems. For example, in MySQL, privileges for a table are not automatically revoked when you delete a table. You must explicitly issue a `REVOKE` statement to revoke privileges for a table. For more information, see Section 13.7.1.6, “REVOKE Statement”.
+* Existem várias diferenças entre os sistemas de privilégios do MySQL e do SQL padrão. Por exemplo, no MySQL, os privilégios para uma table não são automaticamente revogados quando você exclui uma table. Você deve emitir explicitamente uma instrução `REVOKE` para revogar privilégios para uma table. Para mais informações, consulte a Seção 13.7.1.6, “Instrução REVOKE”.
 
-* The `CAST()` function does not support cast to `REAL` - FLOAT, DOUBLE") or `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). See Section 12.10, “Cast Functions and Operators”.
+* A função `CAST()` não oferece suporte a CAST para `REAL` (FLOAT, DOUBLE) ou `BIGINT` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT). Consulte a Seção 12.10, “Funções e Operadores de CAST”.

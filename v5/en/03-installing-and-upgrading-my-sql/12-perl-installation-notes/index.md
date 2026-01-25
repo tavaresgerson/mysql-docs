@@ -1,15 +1,15 @@
-## 2.12 Perl Installation Notes
+## 2.12 Notas de Instalação do Perl
 
-2.12.1 Installing Perl on Unix
+2.12.1 Instalando Perl no Unix
 
-2.12.2 Installing ActiveState Perl on Windows
+2.12.2 Instalando ActiveState Perl no Windows
 
-2.12.3 Problems Using the Perl DBI/DBD Interface
+2.12.3 Problemas ao Usar a Interface DBI/DBD do Perl
 
-The Perl `DBI` module provides a generic interface for database access. You can write a `DBI` script that works with many different database engines without change. To use `DBI`, you must install the `DBI` module, as well as a DataBase Driver (DBD) module for each type of database server you want to access. For MySQL, this driver is the `DBD::mysql` module.
+O `module` `DBI` do Perl fornece uma `interface` genérica para acesso a `database`. Você pode escrever um `script` `DBI` que funciona com muitos `database engines` diferentes sem alteração. Para usar o `DBI`, você deve instalar o `module` `DBI`, bem como um `module` de DataBase Driver (DBD) para cada tipo de `database server` que você deseja acessar. Para o MySQL, este `driver` é o `module` `DBD::mysql`.
 
-Note
+Nota
 
-Perl support is not included with MySQL distributions. You can obtain the necessary modules from <http://search.cpan.org> for Unix, or by using the ActiveState **ppm** program on Windows. The following sections describe how to do this.
+O suporte a Perl não está incluído nas distribuições do MySQL. Você pode obter os `modules` necessários em <http://search.cpan.org> para Unix, ou usando o programa **ppm** do ActiveState no Windows. As seções seguintes descrevem como fazer isso.
 
-The `DBI`/`DBD` interface requires Perl 5.6.0, and 5.6.1 or later is preferred. DBI *does not work* if you have an older version of Perl. You should use `DBD::mysql` 4.009 or higher. Although earlier versions are available, they do not support the full functionality of MySQL 5.7.
+A `interface` `DBI`/`DBD` requer Perl 5.6.0, sendo preferível a versão 5.6.1 ou posterior. O DBI *não funciona* se você tiver uma versão mais antiga do Perl. Você deve usar `DBD::mysql` 4.009 ou superior. Embora versões anteriores estejam disponíveis, elas não suportam a funcionalidade completa do MySQL 5.7.

@@ -1,22 +1,22 @@
-### 7.3.1 Establishing a Backup Policy
+### 7.3.1 Estabelecendo uma Política de Backup
 
-To be useful, backups must be scheduled regularly. A full backup (a snapshot of the data at a point in time) can be done in MySQL with several tools. For example, MySQL Enterprise Backup can perform a physical backup of an entire instance, with optimizations to minimize overhead and avoid disruption when backing up `InnoDB` data files; **mysqldump** provides online logical backup. This discussion uses **mysqldump**.
+Para serem úteis, os Backups devem ser agendados regularmente. Um full backup (um snapshot dos dados em um ponto no tempo) pode ser feito no MySQL com várias ferramentas. Por exemplo, o MySQL Enterprise Backup pode realizar um physical backup de uma instância inteira, com otimizações para minimizar a sobrecarga e evitar a interrupção ao fazer backup de arquivos de dados `InnoDB`; o **mysqldump** fornece um logical backup online. Esta discussão utiliza o **mysqldump**.
 
-Assume that we make a full backup of all our `InnoDB` tables in all databases using the following command on Sunday at 1 p.m., when load is low:
+Assuma que fazemos um full backup de todas as nossas tabelas `InnoDB` em todos os Databases usando o seguinte comando no Domingo às 13h, quando o load está baixo:
 
 ```sql
 $> mysqldump --all-databases --master-data --single-transaction > backup_sunday_1_PM.sql
 ```
 
-The resulting `.sql` file produced by **mysqldump** contains a set of SQL `INSERT` statements that can be used to reload the dumped tables at a later time.
+O arquivo `.sql` resultante produzido pelo **mysqldump** contém um conjunto de comandos SQL `INSERT` que podem ser usados para recarregar as tabelas que foram despejadas (dumped tables) posteriormente.
 
-This backup operation acquires a global read lock on all tables at the beginning of the dump (using `FLUSH TABLES WITH READ LOCK`). As soon as this lock has been acquired, the binary log coordinates are read and the lock is released. If long updating statements are running when the `FLUSH` statement is issued, the backup operation may stall until those statements finish. After that, the dump becomes lock-free and does not disturb reads and writes on the tables.
+Esta operação de backup adquire um global read lock em todas as tabelas no início do dump (usando `FLUSH TABLES WITH READ LOCK`). Assim que este Lock é adquirido, as coordenadas do binary log são lidas e o Lock é liberado. Se comandos de atualização longos estiverem sendo executados quando o comando `FLUSH` for emitido, a operação de backup pode travar (stall) até que esses comandos terminem. Depois disso, o dump fica livre de Lock e não perturba as leituras e escritas nas tabelas.
 
-It was assumed earlier that the tables to back up are `InnoDB` tables, so `--single-transaction` uses a consistent read and guarantees that data seen by **mysqldump** does not change. (Changes made by other clients to `InnoDB` tables are not seen by the **mysqldump** process.) If the backup operation includes nontransactional tables, consistency requires that they do not change during the backup. For example, for the `MyISAM` tables in the `mysql` database, there must be no administrative changes to MySQL accounts during the backup.
+Foi assumido anteriormente que as tabelas para backup são tabelas `InnoDB`, então `--single-transaction` usa um consistent read e garante que os dados vistos pelo **mysqldump** não mudem. (As alterações feitas por outros clientes nas tabelas `InnoDB` não são vistas pelo processo **mysqldump**.) Se a operação de backup incluir nontransactional tables, a consistency requer que elas não mudem durante o backup. Por exemplo, para as tabelas `MyISAM` no Database `mysql`, não deve haver alterações administrativas nas contas MySQL durante o backup.
 
-Full backups are necessary, but it is not always convenient to create them. They produce large backup files and take time to generate. They are not optimal in the sense that each successive full backup includes all data, even that part that has not changed since the previous full backup. It is more efficient to make an initial full backup, and then to make incremental backups. The incremental backups are smaller and take less time to produce. The tradeoff is that, at recovery time, you cannot restore your data just by reloading the full backup. You must also process the incremental backups to recover the incremental changes.
+Os full backups são necessários, mas nem sempre é conveniente criá-los. Eles produzem arquivos de backup grandes e levam tempo para serem gerados. Eles não são ideais no sentido de que cada full backup sucessivo inclui todos os dados, mesmo a parte que não foi alterada desde o full backup anterior. É mais eficiente fazer um full backup inicial e, em seguida, fazer incremental backups. Os incremental backups são menores e levam menos tempo para serem produzidos. O tradeoff (compromisso) é que, no momento da recovery, você não pode restaurar seus dados apenas recarregando o full backup. Você também deve processar os incremental backups para recuperar as alterações incrementais.
 
-To make incremental backups, we need to save the incremental changes. In MySQL, these changes are represented in the binary log, so the MySQL server should always be started with the `--log-bin` option to enable that log. With binary logging enabled, the server writes each data change into a file while it updates data. Looking at the data directory of a MySQL server that was started with the `--log-bin` option and that has been running for some days, we find these MySQL binary log files:
+Para fazer incremental backups, precisamos salvar as alterações incrementais. No MySQL, essas alterações são representadas no binary log, portanto, o MySQL server deve ser sempre iniciado com a opção `--log-bin` para habilitar esse log. Com o binary logging habilitado, o servidor escreve cada alteração de dados em um arquivo enquanto atualiza os dados. Observando o data directory de um MySQL server que foi iniciado com a opção `--log-bin` e que está em execução há alguns dias, encontramos estes arquivos de binary log do MySQL:
 
 ```sql
 -rw-rw---- 1 guilhem  guilhem   1277324 Nov 10 23:59 gbichot2-bin.000001
@@ -28,31 +28,31 @@ To make incremental backups, we need to save the incremental changes. In MySQL, 
 -rw-rw---- 1 guilhem  guilhem       361 Nov 14 10:07 gbichot2-bin.index
 ```
 
-Each time it restarts, the MySQL server creates a new binary log file using the next number in the sequence. While the server is running, you can also tell it to close the current binary log file and begin a new one manually by issuing a `FLUSH LOGS` SQL statement or with a **mysqladmin flush-logs** command. **mysqldump** also has an option to flush the logs. The `.index` file in the data directory contains the list of all MySQL binary logs in the directory.
+A cada reinicialização, o MySQL server cria um novo arquivo de binary log usando o próximo número na sequência. Enquanto o servidor estiver em execução, você também pode instruí-lo a fechar o arquivo de binary log atual e começar um novo manualmente emitindo um comando SQL `FLUSH LOGS` ou usando um comando **mysqladmin flush-logs**. O **mysqldump** também possui uma opção para fazer o flush dos logs. O arquivo `.index` no data directory contém a lista de todos os binary logs do MySQL no diretório.
 
-The MySQL binary logs are important for recovery because they form the set of incremental backups. If you make sure to flush the logs when you make your full backup, the binary log files created afterward contain all the data changes made since the backup. Let's modify the previous **mysqldump** command a bit so that it flushes the MySQL binary logs at the moment of the full backup, and so that the dump file contains the name of the new current binary log:
+Os binary logs do MySQL são importantes para a recovery porque formam o conjunto de incremental backups. Se você garantir que fará o flush dos logs ao realizar seu full backup, os arquivos de binary log criados posteriormente conterão todas as alterações de dados feitas desde o backup. Vamos modificar um pouco o comando **mysqldump** anterior para que ele faça o flush dos binary logs do MySQL no momento do full backup, e para que o arquivo dump contenha o nome do novo binary log atual:
 
 ```sql
 $> mysqldump --single-transaction --flush-logs --master-data=2 \
          --all-databases > backup_sunday_1_PM.sql
 ```
 
-After executing this command, the data directory contains a new binary log file, `gbichot2-bin.000007`, because the `--flush-logs` option causes the server to flush its logs. The `--master-data` option causes **mysqldump** to write binary log information to its output, so the resulting `.sql` dump file includes these lines:
+Após executar este comando, o data directory contém um novo arquivo de binary log, `gbichot2-bin.000007`, porque a opção `--flush-logs` faz com que o servidor faça o flush de seus logs. A opção `--master-data` faz com que o **mysqldump** escreva informações de binary log em sua saída, de modo que o arquivo dump `.sql` resultante inclua estas linhas:
 
 ```sql
 -- Position to start replication or point-in-time recovery from
 -- CHANGE MASTER TO MASTER_LOG_FILE='gbichot2-bin.000007',MASTER_LOG_POS=4;
 ```
 
-Because the **mysqldump** command made a full backup, those lines mean two things:
+Como o comando **mysqldump** realizou um full backup, essas linhas significam duas coisas:
 
-* The dump file contains all changes made before any changes written to the `gbichot2-bin.000007` binary log file or higher.
+* O arquivo dump contém todas as alterações feitas antes de quaisquer alterações escritas no arquivo de binary log `gbichot2-bin.000007` ou superior.
 
-* All data changes logged after the backup are not present in the dump file, but are present in the `gbichot2-bin.000007` binary log file or higher.
+* Todas as alterações de dados registradas após o backup não estão presentes no arquivo dump, mas estão presentes no arquivo de binary log `gbichot2-bin.000007` ou superior.
 
-On Monday at 1 p.m., we can create an incremental backup by flushing the logs to begin a new binary log file. For example, executing a **mysqladmin flush-logs** command creates `gbichot2-bin.000008`. All changes between the Sunday 1 p.m. full backup and Monday 1 p.m. are in the `gbichot2-bin.000007` file. This incremental backup is important, so it is a good idea to copy it to a safe place. (For example, back it up on tape or DVD, or copy it to another machine.) On Tuesday at 1 p.m., execute another **mysqladmin flush-logs** command. All changes between Monday 1 p.m. and Tuesday 1 p.m. are in the `gbichot2-bin.000008` file (which also should be copied somewhere safe).
+Na Segunda-feira às 13h, podemos criar um incremental backup fazendo o flush dos logs para iniciar um novo arquivo de binary log. Por exemplo, executar um comando **mysqladmin flush-logs** cria `gbichot2-bin.000008`. Todas as alterações entre o full backup de Domingo às 13h e Segunda-feira às 13h estão no arquivo `gbichot2-bin.000007`. Este incremental backup é importante, portanto, é uma boa ideia copiá-lo para um local seguro. (Por exemplo, faça backup em fita ou DVD, ou copie para outra máquina.) Na Terça-feira às 13h, execute outro comando **mysqladmin flush-logs**. Todas as alterações entre Segunda-feira às 13h e Terça-feira às 13h estão no arquivo `gbichot2-bin.000008` (que também deve ser copiado para um local seguro).
 
-The MySQL binary logs take up disk space. To free up space, purge them from time to time. One way to do this is by deleting the binary logs that are no longer needed, such as when we make a full backup:
+Os binary logs do MySQL ocupam espaço em disco. Para liberar espaço, faça o purge (limpeza) deles de tempos em tempos. Uma maneira de fazer isso é excluindo os binary logs que não são mais necessários, como quando fazemos um full backup:
 
 ```sql
 $> mysqldump --single-transaction --flush-logs --master-data=2 \
@@ -61,4 +61,4 @@ $> mysqldump --single-transaction --flush-logs --master-data=2 \
 
 Note
 
-Deleting the MySQL binary logs with **mysqldump --delete-master-logs** can be dangerous if your server is a replication source server, because replica servers might not yet fully have processed the contents of the binary log. The description for the `PURGE BINARY LOGS` statement explains what should be verified before deleting the MySQL binary logs. See Section 13.4.1.1, “PURGE BINARY LOGS Statement”.
+Excluir os binary logs do MySQL com **mysqldump --delete-master-logs** pode ser perigoso se o seu server for um replication source server, porque os replica servers podem não ter processado totalmente o conteúdo do binary log ainda. A descrição para o comando `PURGE BINARY LOGS` explica o que deve ser verificado antes de excluir os binary logs do MySQL. Consulte a Seção 13.4.1.1, “Comando PURGE BINARY LOGS”.

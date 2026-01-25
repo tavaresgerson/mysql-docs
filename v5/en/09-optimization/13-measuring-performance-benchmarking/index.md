@@ -1,19 +1,19 @@
-## 8.13 Measuring Performance (Benchmarking)
+## 8.13 Medindo Desempenho (Benchmarking)
 
-8.13.1 Measuring the Speed of Expressions and Functions
+8.13.1 Medindo a Velocidade de Expressões e Funções
 
-8.13.2 Using Your Own Benchmarks
+8.13.2 Usando Seus Próprios Benchmarks
 
-8.13.3 Measuring Performance with performance_schema
+8.13.3 Medindo Desempenho com performance_schema
 
-To measure performance, consider the following factors:
+Para medir o desempenho, considere os seguintes fatores:
 
-* Whether you are measuring the speed of a single operation on a quiet system, or how a set of operations (a “workload”) works over a period of time. With simple tests, you usually test how changing one aspect (a configuration setting, the set of indexes on a table, the SQL clauses in a query) affects performance. Benchmarks are typically long-running and elaborate performance tests, where the results could dictate high-level choices such as hardware and storage configuration, or how soon to upgrade to a new MySQL version.
+* Se você está medindo a velocidade de uma única operação em um sistema ocioso, ou como um conjunto de operações (um “workload”) se comporta ao longo de um período de tempo. Em testes simples, você geralmente testa como a alteração de um aspecto (uma configuração, o conjunto de indexes em uma table, as cláusulas SQL em uma query) afeta o desempenho. Benchmarks são tipicamente testes de desempenho elaborados e de longa duração, onde os resultados podem ditar escolhas de alto nível, como a configuração de hardware e armazenamento, ou em quanto tempo atualizar para uma nova versão do MySQL.
 
-* For benchmarking, sometimes you must simulate a heavy database workload to get an accurate picture.
+* Para o benchmarking, às vezes você deve simular um heavy workload de Database para obter um panorama preciso.
 
-* Performance can vary depending on so many different factors that a difference of a few percentage points might not be a decisive victory. The results might shift the opposite way when you test in a different environment.
+* O desempenho pode variar dependendo de tantos fatores diferentes que uma diferença de alguns pontos percentuais pode não ser uma vitória decisiva. Os resultados podem mudar para o caminho oposto quando você testa em um ambiente diferente.
 
-* Certain MySQL features help or do not help performance depending on the workload. For completeness, always test performance with those features turned on and turned off. The two most important features to try with each workload are the MySQL query cache, and the adaptive hash index for `InnoDB` tables.
+* Certos recursos do MySQL ajudam ou não o desempenho dependendo do workload. Para maior completude, sempre teste o desempenho com esses recursos ativados e desativados. Os dois recursos mais importantes a serem testados com cada workload são o MySQL query cache e o adaptive hash index para tables `InnoDB`.
 
-This section progresses from simple and direct measurement techniques that a single developer can do, to more complicated ones that require additional expertise to perform and interpret the results.
+Esta seção progride de técnicas de medição simples e diretas que um único desenvolvedor pode realizar, para outras mais complicadas que exigem experiência adicional para executar e interpretar os resultados.

@@ -1,117 +1,117 @@
-#### 2.3.4.8 Starting MySQL as a Windows Service
+#### 2.3.4.8 Iniciando o MySQL como um Windows Service
 
-On Windows, the recommended way to run MySQL is to install it as a Windows service, so that MySQL starts and stops automatically when Windows starts and stops. A MySQL server installed as a service can also be controlled from the command line using **NET** commands, or with the graphical **Services** utility. Generally, to install MySQL as a Windows service you should be logged in using an account that has administrator rights.
+No Windows, a maneira recomendada de executar o MySQL é instalá-lo como um Windows Service, para que o MySQL inicie e pare automaticamente quando o Windows iniciar e parar. Um servidor MySQL instalado como um Service também pode ser controlado pela Command Line usando comandos **NET**, ou com o utilitário gráfico **Services**. Geralmente, para instalar o MySQL como um Windows Service, você deve estar logado usando uma conta que tenha direitos de administrador.
 
-The **Services** utility (the Windows **Service Control Manager**) can be found in the Windows Control Panel. To avoid conflicts, it is advisable to close the **Services** utility while performing server installation or removal operations from the command line.
+O utilitário **Services** (o Windows **Service Control Manager**) pode ser encontrado no Painel de Controle do Windows. Para evitar conflitos, é aconselhável fechar o utilitário **Services** enquanto realiza operações de instalação ou remoção de servidor pela Command Line.
 
-##### Installing the service
+##### Instalando o Service
 
-Before installing MySQL as a Windows service, you should first stop the current server if it is running by using the following command:
+Antes de instalar o MySQL como um Windows Service, você deve primeiro parar o servidor atual, se ele estiver em execução, usando o seguinte comando:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqladmin"
           -u root shutdown
 ```
 
-Note
+Nota
 
-If the MySQL `root` user account has a password, you need to invoke **mysqladmin** with the `-p` option and supply the password when prompted.
+Se a conta de usuário `root` do MySQL tiver uma senha, você precisará invocar o **mysqladmin** com a opção `-p` e fornecer a senha quando solicitado.
 
-This command invokes the MySQL administrative utility **mysqladmin** to connect to the server and tell it to shut down. The command connects as the MySQL `root` user, which is the default administrative account in the MySQL grant system.
+Este comando invoca o utilitário administrativo **mysqladmin** do MySQL para conectar-se ao servidor e instruí-lo a desligar (shut down). O comando se conecta como o usuário `root` do MySQL, que é a conta administrativa padrão no grant system do MySQL.
 
-Note
+Nota
 
-Users in the MySQL grant system are wholly independent from any operating system users under Windows.
+Os usuários no grant system do MySQL são totalmente independentes de quaisquer usuários do sistema operacional no Windows.
 
-Install the server as a service using this command:
+Instale o servidor como um Service usando este comando:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld" --install
 ```
 
-The service-installation command does not start the server. Instructions for that are given later in this section.
+O comando de instalação do Service não inicia o servidor. As instruções para isso são fornecidas mais adiante nesta seção.
 
-To make it easier to invoke MySQL programs, you can add the path name of the MySQL `bin` directory to your Windows system `PATH` environment variable:
+Para facilitar a invocação de programas MySQL, você pode adicionar o nome do path do diretório `bin` do MySQL à sua variável de ambiente `PATH` do sistema Windows:
 
-* On the Windows desktop, right-click the My Computer icon, and select Properties.
+* Na área de trabalho do Windows, clique com o botão direito no ícone Meu Computador e selecione Propriedades.
 
-* Next select the Advanced tab from the System Properties menu that appears, and click the Environment Variables button.
+* Em seguida, selecione a aba Avançado no menu Propriedades do Sistema que aparece e clique no botão Variáveis de Ambiente.
 
-* Under System Variables, select Path, and then click the Edit button. The Edit System Variable dialogue should appear.
+* Em Variáveis do Sistema, selecione Path e clique no botão Editar. A caixa de diálogo Editar Variável do Sistema deve aparecer.
 
-* Place your cursor at the end of the text appearing in the space marked Variable Value. (Use the **End** key to ensure that your cursor is positioned at the very end of the text in this space.) Then enter the complete path name of your MySQL `bin` directory (for example, `C:\Program Files\MySQL\MySQL Server 5.7\bin`), and there should be a semicolon separating this path from any values present in this field. Dismiss this dialogue, and each dialogue in turn, by clicking OK until all of the dialogues that were opened have been dismissed. You should now be able to invoke any MySQL executable program by typing its name at the DOS prompt from any directory on the system, without having to supply the path. This includes the servers, the **mysql** client, and all MySQL command-line utilities such as **mysqladmin** and **mysqldump**.
+* Coloque o cursor no final do texto que aparece no espaço marcado como Valor da Variável. (Use a tecla **End** para garantir que seu cursor esteja posicionado no final absoluto do texto neste espaço.) Em seguida, insira o nome completo do path do seu diretório `bin` do MySQL (por exemplo, `C:\Program Files\MySQL\MySQL Server 5.7\bin`), e deve haver um ponto e vírgula separando este path de quaisquer valores presentes neste campo. Feche esta caixa de diálogo, e cada caixa de diálogo subsequente, clicando em OK até que todas as caixas de diálogo que foram abertas tenham sido fechadas. Agora você deve ser capaz de invocar qualquer programa executável do MySQL digitando seu nome no prompt do DOS a partir de qualquer diretório do sistema, sem ter que fornecer o path. Isso inclui os servidores, o cliente **mysql** e todos os utilitários de Command Line do MySQL, como **mysqladmin** e **mysqldump**.
 
-  You should not add the MySQL `bin` directory to your Windows `PATH` if you are running multiple MySQL servers on the same machine.
+  Você não deve adicionar o diretório `bin` do MySQL ao seu `PATH` do Windows se estiver executando múltiplos servidores MySQL na mesma máquina.
 
-Warning
+Aviso
 
-You must exercise great care when editing your system `PATH` by hand; accidental deletion or modification of any portion of the existing `PATH` value can leave you with a malfunctioning or even unusable system.
+Você deve ter muito cuidado ao editar manualmente seu `PATH` do sistema; a exclusão ou modificação acidental de qualquer parte do valor `PATH` existente pode deixar seu sistema com mau funcionamento ou até mesmo inutilizável.
 
-The following additional arguments can be used when installing the service:
+Os seguintes argumentos adicionais podem ser usados ao instalar o Service:
 
-* You can specify a service name immediately following the `--install` option. The default service name is `MySQL`.
+* Você pode especificar um nome de Service imediatamente após a opção `--install`. O nome de Service padrão é `MySQL`.
 
-* If a service name is given, it can be followed by a single option. By convention, this should be `--defaults-file=file_name` to specify the name of an option file from which the server should read options when it starts.
+* Se um nome de Service for fornecido, ele pode ser seguido por uma única opção. Por convenção, esta deve ser `--defaults-file=file_name` para especificar o nome de um option file a partir do qual o servidor deve ler as opções quando iniciar.
 
-  The use of a single option other than `--defaults-file` is possible but discouraged. `--defaults-file` is more flexible because it enables you to specify multiple startup options for the server by placing them in the named option file.
+  O uso de uma única opção diferente de `--defaults-file` é possível, mas desencorajado. `--defaults-file` é mais flexível porque permite especificar múltiplas opções de startup para o servidor, colocando-as no option file nomeado.
 
-* You can also specify a `--local-service` option following the service name. This causes the server to run using the `LocalService` Windows account that has limited system privileges. If both `--defaults-file` and `--local-service` are given following the service name, they can be in any order.
+* Você também pode especificar uma opção `--local-service` após o nome do Service. Isso faz com que o servidor seja executado usando a conta Windows `LocalService`, que possui privilégios de sistema limitados. Se `--defaults-file` e `--local-service` forem fornecidos após o nome do Service, eles podem estar em qualquer ordem.
 
-For a MySQL server that is installed as a Windows service, the following rules determine the service name and option files that the server uses:
+Para um servidor MySQL que é instalado como um Windows Service, as seguintes regras determinam o nome do Service e os option files que o servidor utiliza:
 
-* If the service-installation command specifies no service name or the default service name (`MySQL`) following the `--install` option, the server uses the service name of `MySQL` and reads options from the `[mysqld]` group in the standard option files.
+* Se o comando de instalação do Service não especificar um nome de Service ou especificar o nome de Service padrão (`MySQL`) após a opção `--install`, o servidor usa o nome de Service `MySQL` e lê as opções do grupo `[mysqld]` nos option files padrão.
 
-* If the service-installation command specifies a service name other than `MySQL` following the `--install` option, the server uses that service name. It reads options from the `[mysqld]` group and the group that has the same name as the service in the standard option files. This enables you to use the `[mysqld]` group for options that should be used by all MySQL services, and an option group with the service name for use by the server installed with that service name.
+* Se o comando de instalação do Service especificar um nome de Service diferente de `MySQL` após a opção `--install`, o servidor usa esse nome de Service. Ele lê as opções do grupo `[mysqld]` e do grupo que tem o mesmo nome do Service nos option files padrão. Isso permite que você use o grupo `[mysqld]` para opções que devem ser usadas por todos os Services MySQL, e um grupo de opções com o nome do Service para uso pelo servidor instalado com esse nome de Service.
 
-* If the service-installation command specifies a `--defaults-file` option after the service name, the server reads options the same way as described in the previous item, except that it reads options only from the named file and ignores the standard option files.
+* Se o comando de instalação do Service especificar uma opção `--defaults-file` após o nome do Service, o servidor lê as opções da mesma forma descrita no item anterior, exceto que ele lê as opções apenas do arquivo nomeado e ignora os option files padrão.
 
-As a more complex example, consider the following command:
+Como um exemplo mais complexo, considere o seguinte comando:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld"
           --install MySQL --defaults-file=C:\my-opts.cnf
 ```
 
-Here, the default service name (`MySQL`) is given after the `--install` option. If no `--defaults-file` option had been given, this command would have the effect of causing the server to read the `[mysqld]` group from the standard option files. However, because the `--defaults-file` option is present, the server reads options from the `[mysqld]` option group, and only from the named file.
+Aqui, o nome de Service padrão (`MySQL`) é fornecido após a opção `--install`. Se nenhuma opção `--defaults-file` tivesse sido fornecida, este comando teria o efeito de fazer com que o servidor lesse o grupo `[mysqld]` dos option files padrão. No entanto, como a opção `--defaults-file` está presente, o servidor lê as opções do grupo de opções `[mysqld]`, e apenas do arquivo nomeado.
 
-Note
+Nota
 
-On Windows, if the server is started with the `--defaults-file` and `--install` options, `--install` must be first. Otherwise, `mysqld.exe` attempts to start the MySQL server.
+No Windows, se o servidor for iniciado com as opções `--defaults-file` e `--install`, `--install` deve vir primeiro. Caso contrário, `mysqld.exe` tentará iniciar o servidor MySQL.
 
-You can also specify options as Start parameters in the Windows **Services** utility before you start the MySQL service.
+Você também pode especificar opções como parâmetros de Start no utilitário **Services** do Windows antes de iniciar o Service MySQL.
 
-Finally, before trying to start the MySQL service, make sure the user variables `%TEMP%` and `%TMP%` (and also `%TMPDIR%`, if it has ever been set) for the operating system user who is to run the service are pointing to a folder to which the user has write access. The default user for running the MySQL service is `LocalSystem`, and the default value for its `%TEMP%` and `%TMP%` is `C:\Windows\Temp`, a directory `LocalSystem` has write access to by default. However, if there are any changes to that default setup (for example, changes to the user who runs the service or to the mentioned user variables, or the `--tmpdir` option has been used to put the temporary directory somewhere else), the MySQL service might fail to run because write access to the temporary directory has not been granted to the proper user.
+Finalmente, antes de tentar iniciar o Service MySQL, certifique-se de que as variáveis de usuário `%TEMP%` e `%TMP%` (e também `%TMPDIR%`, se tiver sido definida) para o usuário do sistema operacional que executará o Service estejam apontando para uma pasta à qual o usuário tem acesso de escrita (write access). O usuário padrão para executar o Service MySQL é `LocalSystem`, e o valor padrão para seu `%TEMP%` e `%TMP%` é `C:\Windows\Temp`, um diretório ao qual `LocalSystem` tem acesso de escrita por padrão. No entanto, se houver quaisquer alterações nessa configuração padrão (por exemplo, alterações no usuário que executa o Service ou nas variáveis de usuário mencionadas, ou se a opção `--tmpdir` foi usada para colocar o diretório temporário em outro lugar), o Service MySQL pode falhar ao ser executado porque o acesso de escrita ao diretório temporário não foi concedido ao usuário adequado.
 
-##### Starting the service
+##### Iniciando o Service
 
-After a MySQL server instance has been installed as a service, Windows starts the service automatically whenever Windows starts. The service also can be started immediately from the **Services** utility, or by using an **sc start *`mysqld_service_name`*** or **NET START *`mysqld_service_name`*** command. **SC** and **NET** commands are not case-sensitive.
+Depois que uma instância do servidor MySQL é instalada como um Service, o Windows inicia o Service automaticamente sempre que o Windows é iniciado. O Service também pode ser iniciado imediatamente a partir do utilitário **Services**, ou usando um comando **sc start *`mysqld_service_name`*** ou **NET START *`mysqld_service_name`***. Os comandos **SC** e **NET** não diferenciam maiúsculas de minúsculas (case-sensitive).
 
-When run as a service, **mysqld** has no access to a console window, so no messages can be seen there. If **mysqld** does not start, check the error log to see whether the server wrote any messages there to indicate the cause of the problem. The error log is located in the MySQL data directory (for example, `C:\Program Files\MySQL\MySQL Server 5.7\data`). It is the file with a suffix of `.err`.
+Quando executado como um Service, o **mysqld** não tem acesso a uma janela de console, portanto, nenhuma mensagem pode ser vista lá. Se o **mysqld** não iniciar, verifique o error log para ver se o servidor escreveu alguma mensagem indicando a causa do problema. O error log está localizado no data directory do MySQL (por exemplo, `C:\Program Files\MySQL\MySQL Server 5.7\data`). É o arquivo com o sufixo `.err`.
 
-When a MySQL server has been installed as a service, and the service is running, Windows stops the service automatically when Windows shuts down. The server also can be stopped manually using the `Services` utility, the **sc stop *`mysqld_service_name`*** command, the **NET STOP *`mysqld_service_name`*** command, or the **mysqladmin shutdown** command.
+Quando um servidor MySQL foi instalado como um Service, e o Service está em execução, o Windows interrompe o Service automaticamente quando o Windows é desligado (shuts down). O servidor também pode ser parado manualmente usando o utilitário `Services`, o comando **sc stop *`mysqld_service_name`***, o comando **NET STOP *`mysqld_service_name`***, ou o comando **mysqladmin shutdown**.
 
-You also have the choice of installing the server as a manual service if you do not wish for the service to be started automatically during the boot process. To do this, use the `--install-manual` option rather than the `--install` option:
+Você também tem a opção de instalar o servidor como um Service manual se não desejar que o Service seja iniciado automaticamente durante o processo de boot. Para fazer isso, use a opção `--install-manual` em vez da opção `--install`:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld" --install-manual
 ```
 
-##### Removing the service
+##### Removendo o Service
 
-To remove a server that is installed as a service, first stop it if it is running by executing **SC STOP *`mysqld_service_name`*** or **NET STOP *`mysqld_service_name`***. Then use **SC DELETE *`mysqld_service_name`*** to remove it:
+Para remover um servidor que está instalado como um Service, primeiro pare-o se estiver em execução, executando **SC STOP *`mysqld_service_name`*** ou **NET STOP *`mysqld_service_name`***. Em seguida, use **SC DELETE *`mysqld_service_name`*** para removê-lo:
 
 ```sql
 C:\> SC DELETE mysql
 ```
 
-Alternatively, use the **mysqld** `--remove` option to remove the service.
+Alternativamente, use a opção `--remove` do **mysqld** para remover o Service.
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld" --remove
 ```
 
-If **mysqld** is not running as a service, you can start it from the command line. For instructions, see Section 2.3.4.6, “Starting MySQL from the Windows Command Line”.
+Se o **mysqld** não estiver rodando como um Service, você pode iniciá-lo pela Command Line. Para instruções, veja a Seção 2.3.4.6, “Iniciando o MySQL pela Command Line do Windows”.
 
-If you encounter difficulties during installation, see Section 2.3.5, “Troubleshooting a Microsoft Windows MySQL Server Installation”.
+Se você encontrar dificuldades durante a instalação, veja a Seção 2.3.5, “Solucionando Problemas em uma Instalação do MySQL Server no Microsoft Windows”.
 
-For more information about stopping or removing a Windows service, see Section 5.7.2.2, “Starting Multiple MySQL Instances as Windows Services”.
+Para mais informações sobre como parar ou remover um Windows Service, veja a Seção 5.7.2.2, “Iniciando Múltiplas Instâncias do MySQL como Windows Services”.

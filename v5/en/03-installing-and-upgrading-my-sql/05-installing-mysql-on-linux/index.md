@@ -1,33 +1,33 @@
-## 2.5 Installing MySQL on Linux
+## 2.5 Instalando o MySQL no Linux
 
-2.5.1 Installing MySQL on Linux Using the MySQL Yum Repository
+2.5.1 Instalando o MySQL no Linux Usando o Repositório Yum do MySQL
 
-2.5.2 Replacing a Third-Party Distribution of MySQL Using the MySQL Yum Repository
+2.5.2 Substituindo uma Distribuição de Terceiros do MySQL Usando o Repositório Yum do MySQL
 
-2.5.3 Installing MySQL on Linux Using the MySQL APT Repository
+2.5.3 Instalando o MySQL no Linux Usando o Repositório APT do MySQL
 
-2.5.4 Installing MySQL on Linux Using the MySQL SLES Repository
+2.5.4 Instalando o MySQL no Linux Usando o Repositório SLES do MySQL
 
-2.5.5 Installing MySQL on Linux Using RPM Packages from Oracle
+2.5.5 Instalando o MySQL no Linux Usando Pacotes RPM da Oracle
 
-2.5.6 Installing MySQL on Linux Using Debian Packages from Oracle
+2.5.6 Instalando o MySQL no Linux Usando Pacotes Debian da Oracle
 
-2.5.7 Deploying MySQL on Linux with Docker
+2.5.7 Implantando o MySQL no Linux com Docker
 
-2.5.8 Installing MySQL on Linux from the Native Software Repositories
+2.5.8 Instalando o MySQL no Linux a partir dos Repositórios Nativos de Software
 
-2.5.9 Installing MySQL on Linux with Juju
+2.5.9 Instalando o MySQL no Linux com Juju
 
-2.5.10 Managing MySQL Server with systemd
+2.5.10 Gerenciando o MySQL Server com systemd
 
-Linux supports a number of different solutions for installing MySQL. We recommend that you use one of the distributions from Oracle, for which several methods for installation are available:
+O Linux suporta diversas soluções diferentes para a instalação do MySQL. Recomendamos que você utilize uma das distribuições da Oracle, para as quais vários métodos de instalação estão disponíveis:
 
-**Table 2.8 Linux Installation Methods and Information**
+**Tabela 2.8 Métodos e Informações de Instalação do Linux**
 
-<table><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Type</th> <th>Setup Method</th> <th>Additional Information</th> </tr></thead><tbody><tr> <th>Apt</th> <td>Enable the MySQL Apt repository</td> <td>Documentation</td> </tr><tr> <th>Yum</th> <td>Enable the MySQL Yum repository</td> <td>Documentation</td> </tr><tr> <th>Zypper</th> <td>Enable the MySQL SLES repository</td> <td>Documentation</td> </tr><tr> <th>RPM</th> <td>Download a specific package</td> <td>Documentation</td> </tr><tr> <th>DEB</th> <td>Download a specific package</td> <td>Documentation</td> </tr><tr> <th>Generic</th> <td>Download a generic package</td> <td>Documentation</td> </tr><tr> <th>Source</th> <td>Compile from source</td> <td>Documentation</td> </tr><tr> <th>Docker</th> <td>Use the Oracle Container Registry. You can also use My Oracle Support for the MySQL Enterprise Edition.</td> <td>Documentation</td> </tr><tr> <th>Oracle Unbreakable Linux Network</th> <td>Use ULN channels</td> <td>Documentation</td> </tr></tbody></table>
+<table><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Tipo</th> <th>Método de Configuração</th> <th>Informações Adicionais</th> </tr></thead><tbody><tr> <th>Apt</th> <td>Habilite o repositório Apt do MySQL</td> <td>Documentação</td> </tr><tr> <th>Yum</th> <td>Habilite o repositório Yum do MySQL</td> <td>Documentação</td> </tr><tr> <th>Zypper</th> <td>Habilite o repositório SLES do MySQL</td> <td>Documentação</td> </tr><tr> <th>RPM</th> <td>Faça o Download de um pacote específico</td> <td>Documentação</td> </tr><tr> <th>DEB</th> <td>Faça o Download de um pacote específico</td> <td>Documentação</td> </tr><tr> <th>Generic</th> <td>Faça o Download de um pacote generic</td> <td>Documentação</td> </tr><tr> <th>Source</th> <td>Compile a partir do source</td> <td>Documentação</td> </tr><tr> <th>Docker</th> <td>Use o Oracle Container Registry. Você também pode usar o My Oracle Support para a MySQL Enterprise Edition.</td> <td>Documentação</td> </tr><tr> <th>Oracle Unbreakable Linux Network</th> <td>Use canais ULN</td> <td>Documentação</td> </tr> </tbody></table>
 
-As an alternative, you can use the package manager on your system to automatically download and install MySQL with packages from the native software repositories of your Linux distribution. These native packages are often several versions behind the currently available release. You also normally cannot install development milestone releases (DMRs), as these are not usually made available in the native repositories. For more information on using the native package installers, see Section 2.5.8, “Installing MySQL on Linux from the Native Software Repositories”.
+Como alternativa, você pode usar o package manager em seu sistema para baixar e instalar o MySQL automaticamente com pacotes dos repositórios nativos de software de sua distribuição Linux. Esses pacotes nativos geralmente estão várias versões atrás do release atualmente disponível. Normalmente, você também não pode instalar os *development milestone releases* (DMRs), pois estes geralmente não são disponibilizados nos repositórios nativos. Para mais informações sobre o uso dos instaladores de pacote nativos, consulte a Seção 2.5.8, “Instalando o MySQL no Linux a partir dos Repositórios Nativos de Software”.
 
-Note
+Nota
 
-For many Linux installations, you may want to set up MySQL to be started automatically when your machine starts. Many of the native package installations perform this operation for you, but for source, binary and RPM solutions you may need to set this up separately. The required script, **mysql.server**, can be found in the `support-files` directory under the MySQL installation directory or in a MySQL source tree. You can install it as `/etc/init.d/mysql` for automatic MySQL startup and shutdown. See Section 4.3.3, “mysql.server — MySQL Server Startup Script”.
+Em muitas instalações Linux, você pode querer configurar o MySQL para ser iniciado automaticamente quando sua máquina for ligada. Muitas das instalações de pacotes nativos realizam essa operação para você, mas para soluções de source, binárias e RPM, talvez seja necessário configurar isso separadamente. O script necessário, **mysql.server**, pode ser encontrado no diretório `support-files` sob o diretório de instalação do MySQL ou em uma árvore de source do MySQL. Você pode instalá-lo como `/etc/init.d/mysql` para o startup e shutdown automático do MySQL. Consulte a Seção 4.3.3, “mysql.server — Script de Startup do MySQL Server”.

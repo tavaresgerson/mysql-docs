@@ -1,25 +1,25 @@
-### 8.5.3 Optimizing InnoDB Read-Only Transactions
+### 8.5.3 Otimizando Transações Read-Only do InnoDB
 
-`InnoDB` can avoid the overhead associated with setting up the transaction ID (`TRX_ID` field) for transactions that are known to be read-only. A transaction ID is only needed for a transaction that might perform write operations or locking reads such as `SELECT ... FOR UPDATE`. Eliminating unnecessary transaction IDs reduces the size of internal data structures that are consulted each time a query or data change statement constructs a read view.
+O `InnoDB` pode evitar a sobrecarga associada à configuração do ID de transação (campo `TRX_ID`) para transações que são conhecidas por serem read-only. Um ID de transação é necessário apenas para uma transação que possa realizar operações de escrita ou leituras com Lock (locking reads), como `SELECT ... FOR UPDATE`. Eliminar IDs de transação desnecessários reduz o tamanho das estruturas de dados internas que são consultadas cada vez que uma Query ou instrução de alteração de dados constrói uma read view.
 
-`InnoDB` detects read-only transactions when:
+O `InnoDB` detecta transações read-only quando:
 
-* The transaction is started with the `START TRANSACTION READ ONLY` statement. In this case, attempting to make changes to the database (for `InnoDB`, `MyISAM`, or other types of tables) causes an error, and the transaction continues in read-only state:
+* A transação é iniciada com a instrução `START TRANSACTION READ ONLY`. Neste caso, tentar fazer alterações no Database (para tabelas `InnoDB`, `MyISAM` ou outros tipos) causa um erro, e a transação continua no estado read-only:
 
   ```sql
   ERROR 1792 (25006): Cannot execute statement in a READ ONLY transaction.
   ```
 
-  You can still make changes to session-specific temporary tables in a read-only transaction, or issue locking queries for them, because those changes and locks are not visible to any other transaction.
+  Você ainda pode fazer alterações em tabelas temporárias específicas da sessão em uma transação read-only, ou emitir Locking Queries para elas, porque essas alterações e Locks não são visíveis para nenhuma outra transação.
 
-* The `autocommit` setting is turned on, so that the transaction is guaranteed to be a single statement, and the single statement making up the transaction is a “non-locking” `SELECT` statement. That is, a `SELECT` that does not use a `FOR UPDATE` or `LOCK IN SHARED MODE` clause.
+* A configuração `autocommit` está ativada, de modo que a transação é garantida ser uma única instrução, e a instrução única que compõe a transação é uma instrução `SELECT` “non-locking”. Ou seja, um `SELECT` que não utiliza uma cláusula `FOR UPDATE` ou `LOCK IN SHARED MODE`.
 
-* The transaction is started without the `READ ONLY` option, but no updates or statements that explicitly lock rows have been executed yet. Until updates or explicit locks are required, a transaction stays in read-only mode.
+* A transação é iniciada sem a opção `READ ONLY`, mas nenhuma atualização ou instrução que explicitamente bloqueie linhas foi executada ainda. Até que atualizações ou Locks explícitos sejam necessários, uma transação permanece no modo read-only.
 
-Thus, for a read-intensive application such as a report generator, you can tune a sequence of `InnoDB` queries by grouping them inside `START TRANSACTION READ ONLY` and `COMMIT`, or by turning on the `autocommit` setting before running the `SELECT` statements, or simply by avoiding any data change statements interspersed with the queries.
+Assim, para um aplicativo com uso intensivo de leitura (read-intensive), como um gerador de relatórios, você pode ajustar uma sequência de Queries `InnoDB` agrupando-as dentro de `START TRANSACTION READ ONLY` e `COMMIT`, ou ativando a configuração `autocommit` antes de executar as instruções `SELECT`, ou simplesmente evitando quaisquer instruções de alteração de dados intercaladas com as Queries.
 
-For information about `START TRANSACTION` and `autocommit`, see Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”.
+Para informações sobre `START TRANSACTION` e `autocommit`, consulte a Seção 13.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”.
 
-Note
+Nota
 
-Transactions that qualify as auto-commit, non-locking, and read-only (AC-NL-RO) are kept out of certain internal `InnoDB` data structures and are therefore not listed in `SHOW ENGINE INNODB STATUS` output.
+Transações que se qualificam como auto-commit, non-locking e read-only (AC-NL-RO) são mantidas fora de certas estruturas de dados internas do `InnoDB` e, portanto, não são listadas na saída de `SHOW ENGINE INNODB STATUS`.

@@ -1,8 +1,8 @@
-#### 2.1.4.5 GPG Public Build Key for Archived Packages
+#### 2.1.4.5 Chave de Build Pública GPG para Pacotes Arquivados
 
-The following GPG public build key (keyID `5072E1F5`) can be used to verify the authenticity and integrity of MySQL 5.7.36 packages and earlier. For signature checking instructions, see Section 2.1.4.2, “Signature Checking Using GnuPG”.
+A seguinte GPG public build key (keyID `5072E1F5`) pode ser usada para verificar a autenticidade e a integridade dos packages do MySQL 5.7.36 e anteriores. Para instruções de signature checking, veja a Seção 2.1.4.2, “Signature Checking Usando GnuPG”.
 
-##### GPG Public Build Key for MySQL 5.7.36 Packages and Earlier
+##### GPG Public Build Key para Packages do MySQL 5.7.36 e Anteriores
 
 ```sql
 -----BEGIN PGP PUBLIC KEY BLOCK-----

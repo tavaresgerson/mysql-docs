@@ -1,8 +1,8 @@
-#### 3.3.4.4 Sorting Rows
+#### 3.3.4.4 Ordenando Linhas
 
-You may have noticed in the preceding examples that the result rows are displayed in no particular order. It is often easier to examine query output when the rows are sorted in some meaningful way. To sort a result, use an `ORDER BY` clause.
+Você deve ter notado nos exemplos anteriores que as linhas de resultado são exibidas sem uma ordem específica. Geralmente, é mais fácil examinar a saída da Query quando as linhas estão ordenadas de uma maneira significativa. Para ordenar um resultado, use uma cláusula `ORDER BY`.
 
-Here are animal birthdays, sorted by date:
+Aqui estão os aniversários dos animais, ordenados por data:
 
 ```sql
 mysql> SELECT name, birth FROM pet ORDER BY birth;
@@ -21,9 +21,9 @@ mysql> SELECT name, birth FROM pet ORDER BY birth;
 +----------+------------+
 ```
 
-On character type columns, sorting—like all other comparison operations—is normally performed in a case-insensitive fashion. This means that the order is undefined for columns that are identical except for their case. You can force a case-sensitive sort for a column by using [`BINARY`](cast-functions.html#operator_binary) like so: `ORDER BY BINARY col_name`.
+Em colunas do tipo caractere, a ordenação — assim como todas as outras operações de comparação — é normalmente realizada de forma case-insensitive (não sensível a maiúsculas e minúsculas). Isso significa que a ordem é indefinida para colunas que são idênticas, exceto pelo seu case (caixa). Você pode forçar uma ordenação case-sensitive (sensível a maiúsculas e minúsculas) para uma coluna usando [`BINARY`](cast-functions.html#operator_binary) da seguinte forma: `ORDER BY BINARY col_name`.
 
-The default sort order is ascending, with smallest values first. To sort in reverse (descending) order, add the `DESC` keyword to the name of the column you are sorting by:
+A ordem de ordenação padrão é ascendente (ascending), com os valores menores primeiro. Para ordenar na ordem inversa (descending), adicione a palavra-chave `DESC` ao nome da coluna pela qual você está ordenando:
 
 ```sql
 mysql> SELECT name, birth FROM pet ORDER BY birth DESC;
@@ -42,7 +42,7 @@ mysql> SELECT name, birth FROM pet ORDER BY birth DESC;
 +----------+------------+
 ```
 
-You can sort on multiple columns, and you can sort different columns in different directions. For example, to sort by type of animal in ascending order, then by birth date within animal type in descending order (youngest animals first), use the following query:
+Você pode ordenar por múltiplas colunas e pode ordenar colunas diferentes em direções diferentes. Por exemplo, para ordenar pelo tipo de animal em ordem ascendente e, em seguida, pela data de nascimento dentro do tipo de animal em ordem descendente (os animais mais jovens primeiro), use a seguinte Query:
 
 ```sql
 mysql> SELECT name, species, birth FROM pet
@@ -62,4 +62,4 @@ mysql> SELECT name, species, birth FROM pet
 +----------+---------+------------+
 ```
 
-The `DESC` keyword applies only to the column name immediately preceding it (`birth`); it does not affect the `species` column sort order.
+A palavra-chave `DESC` se aplica apenas ao nome da coluna imediatamente anterior a ela (`birth`); ela não afeta a ordem de ordenação da coluna `species`.

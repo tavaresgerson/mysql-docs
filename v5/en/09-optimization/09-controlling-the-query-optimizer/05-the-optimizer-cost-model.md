@@ -1,126 +1,100 @@
-### 8.9.5 The Optimizer Cost Model
+### 8.9.5 O Modelo de Custo do Optimizer
 
-To generate execution plans, the optimizer uses a cost model that is based on estimates of the cost of various operations that occur during query execution. The optimizer has a set of compiled-in default “cost constants” available to it to make decisions regarding execution plans.
+Para gerar planos de execução, o optimizer utiliza um modelo de custo (cost model) baseado em estimativas do custo de várias operações que ocorrem durante a execução de Querys. O optimizer possui um conjunto de "constantes de custo" (cost constants) padrão compiladas disponíveis para tomar decisões sobre os planos de execução.
 
-The optimizer also has a database of cost estimates to use during execution plan construction. These estimates are stored in the `server_cost` and `engine_cost` tables in the `mysql` system database and are configurable at any time. The intent of these tables is to make it possible to easily adjust the cost estimates that the optimizer uses when it attempts to arrive at query execution plans.
+O optimizer também possui um Database de estimativas de custo para usar durante a construção do plano de execução. Essas estimativas são armazenadas nas tabelas `server_cost` e `engine_cost` no Database de sistema `mysql` e são configuráveis a qualquer momento. O objetivo dessas tabelas é possibilitar o ajuste fácil das estimativas de custo que o optimizer usa ao tentar chegar a planos de execução de Querys.
 
-* Cost Model General Operation
-* The Cost Model Database
-* Making Changes to the Cost Model Database
+* Operação Geral do Modelo de Custo
+* O Database do Modelo de Custo
+* Fazendo Alterações no Database do Modelo de Custo
 
-#### Cost Model General Operation
+#### Operação Geral do Modelo de Custo
 
-The configurable optimizer cost model works like this:
+O modelo de custo do optimizer configurável funciona da seguinte forma:
 
-* The server reads the cost model tables into memory at startup and uses the in-memory values at runtime. Any non-`NULL` cost estimate specified in the tables takes precedence over the corresponding compiled-in default cost constant. Any `NULL` estimate indicates to the optimizer to use the compiled-in default.
+* O servidor lê as tabelas do modelo de custo para a memória na inicialização e usa os valores em memória durante o runtime. Qualquer estimativa de custo não-`NULL` especificada nas tabelas tem precedência sobre a constante de custo padrão compilada correspondente. Qualquer estimativa `NULL` indica ao optimizer para usar o padrão compilado.
 
-* At runtime, the server may re-read the cost tables. This occurs when a storage engine is dynamically loaded or when a `FLUSH OPTIMIZER_COSTS` statement is executed.
+* Durante o runtime, o servidor pode reler as tabelas de custo. Isso ocorre quando um Storage Engine é carregado dinamicamente ou quando uma instrução `FLUSH OPTIMIZER_COSTS` é executada.
 
-* Cost tables enable server administrators to easily adjust cost estimates by changing entries in the tables. It is also easy to revert to a default by setting an entry's cost to `NULL`. The optimizer uses the in-memory cost values, so changes to the tables should be followed by `FLUSH OPTIMIZER_COSTS` to take effect.
+* As tabelas de custo permitem que os administradores do servidor ajustem facilmente as estimativas de custo alterando as entradas nas tabelas. Também é fácil reverter para um padrão definindo o custo de uma entrada como `NULL`. O optimizer usa os valores de custo em memória, então as alterações nas tabelas devem ser seguidas por `FLUSH OPTIMIZER_COSTS` para entrarem em vigor.
 
-* The in-memory cost estimates that are current when a client session begins apply throughout that session until it ends. In particular, if the server re-reads the cost tables, any changed estimates apply only to subsequently started sessions. Existing sessions are unaffected.
+* As estimativas de custo em memória que estão atuais quando uma sessão de cliente começa se aplicam durante toda essa sessão até que ela termine. Em particular, se o servidor reler as tabelas de custo, quaisquer estimativas alteradas se aplicam apenas às sessões iniciadas subsequentemente. As sessões existentes não são afetadas.
 
-* Cost tables are specific to a given server instance. The server does not replicate cost table changes to replicas.
+* As tabelas de custo são específicas para uma determinada instância do servidor. O servidor não replica as alterações da tabela de custo para as réplicas.
 
-#### The Cost Model Database
+#### O Database do Modelo de Custo
 
-The optimizer cost model database consists of two tables in the `mysql` system database that contain cost estimate information for operations that occur during query execution:
+O Database do modelo de custo do optimizer consiste em duas tabelas no Database de sistema `mysql` que contêm informações de estimativa de custo para operações que ocorrem durante a execução de Querys:
 
-* `server_cost`: Optimizer cost estimates for general server operations
+* `server_cost`: Estimativas de custo do Optimizer para operações gerais do servidor.
 
-* `engine_cost`: Optimizer cost estimates for operations specific to particular storage engines
+* `engine_cost`: Estimativas de custo do Optimizer para operações específicas de Storage Engines específicos.
 
-The `server_cost` table contains these columns:
+A tabela `server_cost` contém as seguintes colunas:
 
-* `cost_name`
+| Coluna | Descrição |
+| :--- | :--- |
+| `cost_name` | O nome de uma estimativa de custo usada no modelo de custo. O nome não diferencia maiúsculas de minúsculas (case-sensitive). Se o servidor não reconhecer o nome do custo ao ler esta tabela, ele escreverá um aviso no log de erros. |
+| `cost_value` | O valor da estimativa de custo. Se o valor não for `NULL`, o servidor o usa como custo. Caso contrário, ele usa a estimativa padrão (o valor compilado). DBAs podem alterar uma estimativa de custo atualizando esta coluna. Se o servidor descobrir que o valor do custo é inválido (não positivo) ao ler esta tabela, ele escreverá um aviso no log de erros. Para substituir uma estimativa de custo padrão (para uma entrada que especifica `NULL`), defina o custo como um valor não-`NULL`. Para reverter para o padrão, defina o valor como `NULL`. Em seguida, execute `FLUSH OPTIMIZER_COSTS` para instruir o servidor a reler as tabelas de custo. |
+| `last_update` | A hora da última atualização da linha. |
+| `comment` | Um comentário descritivo associado à estimativa de custo. DBAs podem usar esta coluna para fornecer informações sobre por que uma linha de estimativa de custo armazena um determinado valor. |
 
-  The name of a cost estimate used in the cost model. The name is not case-sensitive. If the server does not recognize the cost name when it reads this table, it writes a warning to the error log.
+A Primary Key para a tabela `server_cost` é a coluna `cost_name`, portanto, não é possível criar múltiplas entradas para qualquer estimativa de custo.
 
-* `cost_value`
+O servidor reconhece estes valores de `cost_name` para a tabela `server_cost`:
 
-  The cost estimate value. If the value is non-`NULL`, the server uses it as the cost. Otherwise, it uses the default estimate (the compiled-in value). DBAs can change a cost estimate by updating this column. If the server finds that the cost value is invalid (nonpositive) when it reads this table, it writes a warning to the error log.
+* `disk_temptable_create_cost` (padrão 40.0), `disk_temptable_row_cost` (padrão 1.0)
 
-  To override a default cost estimate (for an entry that specifies `NULL`), set the cost to a non-`NULL` value. To revert to the default, set the value to `NULL`. Then execute `FLUSH OPTIMIZER_COSTS` to tell the server to re-read the cost tables.
+  As estimativas de custo para tabelas temporárias criadas internamente armazenadas em um Storage Engine baseado em disco (seja `InnoDB` ou `MyISAM`). Aumentar esses valores aumenta a estimativa de custo de usar tabelas temporárias internas e faz com que o optimizer prefira planos de Query com menos uso delas. Para obter informações sobre essas tabelas, consulte a Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL”.
 
-* `last_update`
+  Os valores padrão maiores para esses parâmetros de disco em comparação com os valores padrão para os parâmetros de memória correspondentes (`memory_temptable_create_cost`, `memory_temptable_row_cost`) refletem o custo maior do processamento de tabelas baseadas em disco.
 
-  The time of the last row update.
+* `key_compare_cost` (padrão 0.1)
 
-* `comment`
+  O custo de comparação de chaves de registro (record keys). Aumentar esse valor faz com que um plano de Query que compara muitas chaves se torne mais caro. Por exemplo, um plano de Query que executa um `filesort` torna-se relativamente mais caro em comparação com um plano de Query que evita a ordenação usando um Index.
 
-  A descriptive comment associated with the cost estimate. DBAs can use this column to provide information about why a cost estimate row stores a particular value.
+* `memory_temptable_create_cost` (padrão 2.0), `memory_temptable_row_cost` (padrão 0.2)
 
-The primary key for the `server_cost` table is the `cost_name` column, so it is not possible to create multiple entries for any cost estimate.
+  As estimativas de custo para tabelas temporárias criadas internamente armazenadas no Storage Engine `MEMORY`. Aumentar esses valores aumenta a estimativa de custo de usar tabelas temporárias internas e faz com que o optimizer prefira planos de Query com menos uso delas. Para obter informações sobre essas tabelas, consulte a Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL”.
 
-The server recognizes these `cost_name` values for the `server_cost` table:
+  Os valores padrão menores para esses parâmetros de memória em comparação com os parâmetros de disco correspondentes (`disk_temptable_create_cost`, `disk_temptable_row_cost`) refletem o custo menor do processamento de tabelas baseadas em memória.
 
-* `disk_temptable_create_cost` (default 40.0), `disk_temptable_row_cost` (default 1.0)
+* `row_evaluate_cost` (padrão 0.2)
 
-  The cost estimates for internally created temporary tables stored in a disk-based storage engine (either `InnoDB` or `MyISAM`). Increasing these values increases the cost estimate of using internal temporary tables and makes the optimizer prefer query plans with less use of them. For information about such tables, see Section 8.4.4, “Internal Temporary Table Use in MySQL”.
+  O custo de avaliação de condições de registro (record conditions). Aumentar esse valor faz com que um plano de Query que examina muitas linhas se torne mais caro em comparação com um plano de Query que examina menos linhas. Por exemplo, um table scan torna-se relativamente mais caro em comparação com um range scan que lê menos linhas.
 
-  The larger default values for these disk parameters compared to the default values for the corresponding memory parameters (`memory_temptable_create_cost`, `memory_temptable_row_cost`) reflects the greater cost of processing disk-based tables.
+A tabela `engine_cost` contém as seguintes colunas:
 
-* `key_compare_cost` (default 0.1)
+| Coluna | Descrição |
+| :--- | :--- |
+| `engine_name` | O nome do Storage Engine ao qual esta estimativa de custo se aplica. O nome não diferencia maiúsculas de minúsculas. Se o valor for `default`, ele se aplica a todos os Storage Engines que não têm uma entrada nomeada própria. Se o servidor não reconhecer o nome do Engine ao ler esta tabela, ele escreverá um aviso no log de erros. |
+| `device_type` | O tipo de dispositivo ao qual esta estimativa de custo se aplica. A coluna se destina a especificar diferentes estimativas de custo para diferentes tipos de dispositivos de Storage, como discos rígidos (hard disk drives) versus unidades de estado sólido (solid state drives). Atualmente, esta informação não é usada, e 0 é o único valor permitido. |
+| `cost_name` | O mesmo que na tabela `server_cost`. |
+| `cost_value` | O mesmo que na tabela `server_cost`. |
+| `last_update` | O mesmo que na tabela `server_cost`. |
+| `comment` | O mesmo que na tabela `server_cost`. |
 
-  The cost of comparing record keys. Increasing this value causes a query plan that compares many keys to become more expensive. For example, a query plan that performs a `filesort` becomes relatively more expensive compared to a query plan that avoids sorting by using an index.
+A Primary Key para a tabela `engine_cost` é uma tupla compreendendo as colunas (`cost_name`, `engine_name`, `device_type`), portanto, não é possível criar múltiplas entradas para qualquer combinação de valores nessas colunas.
 
-* `memory_temptable_create_cost` (default 2.0), `memory_temptable_row_cost` (default 0.2)
+O servidor reconhece estes valores de `cost_name` para a tabela `engine_cost`:
 
-  The cost estimates for internally created temporary tables stored in the `MEMORY` storage engine. Increasing these values increases the cost estimate of using internal temporary tables and makes the optimizer prefer query plans with less use of them. For information about such tables, see Section 8.4.4, “Internal Temporary Table Use in MySQL”.
+* `io_block_read_cost` (padrão 1.0)
 
-  The smaller default values for these memory parameters compared to the default values for the corresponding disk parameters (`disk_temptable_create_cost`, `disk_temptable_row_cost`) reflects the lesser cost of processing memory-based tables.
+  O custo da leitura de um Index ou bloco de dados do disco. Aumentar esse valor faz com que um plano de Query que lê muitos blocos de disco se torne mais caro em comparação com um plano de Query que lê menos blocos de disco. Por exemplo, um table scan torna-se relativamente mais caro em comparação com um range scan que lê menos blocos.
 
-* `row_evaluate_cost` (default 0.2)
+* `memory_block_read_cost` (padrão 1.0)
 
-  The cost of evaluating record conditions. Increasing this value causes a query plan that examines many rows to become more expensive compared to a query plan that examines fewer rows. For example, a table scan becomes relatively more expensive compared to a range scan that reads fewer rows.
+  Semelhante a `io_block_read_cost`, mas representa o custo de leitura de um Index ou bloco de dados de um Buffer de Database em memória.
 
-The `engine_cost` table contains these columns:
+Se os valores de `io_block_read_cost` e `memory_block_read_cost` diferirem, o plano de execução pode mudar entre duas execuções da mesma Query. Suponha que o custo para acesso à memória seja menor do que o custo para acesso ao disco. Nesse caso, na inicialização do servidor, antes que os dados tenham sido lidos no Buffer Pool, você pode obter um plano diferente do que depois que a Query foi executada, pois então os dados estão em memória.
 
-* `engine_name`
+#### Fazendo Alterações no Database do Modelo de Custo
 
-  The name of the storage engine to which this cost estimate applies. The name is not case-sensitive. If the value is `default`, it applies to all storage engines that have no named entry of their own. If the server does not recognize the engine name when it reads this table, it writes a warning to the error log.
+Para DBAs que desejam alterar os parâmetros do modelo de custo a partir de seus padrões, tente dobrar ou reduzir pela metade o valor e medir o efeito.
 
-* `device_type`
+É mais provável que alterações nos parâmetros `io_block_read_cost` e `memory_block_read_cost` gerem resultados que valham a pena. Esses valores de parâmetro permitem que os modelos de custo para métodos de acesso a dados levem em consideração os custos de leitura de informações de diferentes fontes; ou seja, o custo de leitura de informações do disco versus a leitura de informações já em um Buffer de memória. Por exemplo, mantendo todo o resto igual, definir `io_block_read_cost` para um valor maior que `memory_block_read_cost` faz com que o optimizer prefira planos de Query que leiam informações já mantidas na memória em vez de planos que precisem ler do disco.
 
-  The device type to which this cost estimate applies. The column is intended for specifying different cost estimates for different storage device types, such as hard disk drives versus solid state drives. Currently, this information is not used and 0 is the only permitted value.
-
-* `cost_name`
-
-  Same as in the `server_cost` table.
-
-* `cost_value`
-
-  Same as in the `server_cost` table.
-
-* `last_update`
-
-  Same as in the `server_cost` table.
-
-* `comment`
-
-  Same as in the `server_cost` table.
-
-The primary key for the `engine_cost` table is a tuple comprising the (`cost_name`, `engine_name`, `device_type`) columns, so it is not possible to create multiple entries for any combination of values in those columns.
-
-The server recognizes these `cost_name` values for the `engine_cost` table:
-
-* `io_block_read_cost` (default 1.0)
-
-  The cost of reading an index or data block from disk. Increasing this value causes a query plan that reads many disk blocks to become more expensive compared to a query plan that reads fewer disk blocks. For example, a table scan becomes relatively more expensive compared to a range scan that reads fewer blocks.
-
-* `memory_block_read_cost` (default 1.0)
-
-  Similar to `io_block_read_cost`, but represents the cost of reading an index or data block from an in-memory database buffer.
-
-If the `io_block_read_cost` and `memory_block_read_cost` values differ, the execution plan may change between two runs of the same query. Suppose that the cost for memory access is less than the cost for disk access. In that case, at server startup before data has been read into the buffer pool, you may get a different plan than after the query has been run because then the data is in memory.
-
-#### Making Changes to the Cost Model Database
-
-For DBAs who wish to change the cost model parameters from their defaults, try doubling or halving the value and measuring the effect.
-
-Changes to the `io_block_read_cost` and `memory_block_read_cost` parameters are most likely to yield worthwhile results. These parameter values enable cost models for data access methods to take into account the costs of reading information from different sources; that is, the cost of reading information from disk versus reading information already in a memory buffer. For example, all other things being equal, setting `io_block_read_cost` to a value larger than `memory_block_read_cost` causes the optimizer to prefer query plans that read information already held in memory to plans that must read from disk.
-
-This example shows how to change the default value for `io_block_read_cost`:
+Este exemplo mostra como alterar o valor padrão para `io_block_read_cost`:
 
 ```sql
 UPDATE mysql.engine_cost
@@ -129,7 +103,7 @@ UPDATE mysql.engine_cost
 FLUSH OPTIMIZER_COSTS;
 ```
 
-This example shows how to change the value of `io_block_read_cost` only for the `InnoDB` storage engine:
+Este exemplo mostra como alterar o valor de `io_block_read_cost` apenas para o Storage Engine `InnoDB`:
 
 ```sql
 INSERT INTO mysql.engine_cost

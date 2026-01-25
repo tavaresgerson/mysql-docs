@@ -1,30 +1,30 @@
-#### 8.2.1.17 LIMIT Query Optimization
+#### 8.2.1.17 Otimização de Query com LIMIT
 
-If you need only a specified number of rows from a result set, use a `LIMIT` clause in the query, rather than fetching the whole result set and throwing away the extra data.
+Se você precisar apenas de um número especificado de linhas de um *result set*, use uma cláusula `LIMIT` na Query, em vez de buscar o *result set* inteiro e descartar os dados extras.
 
-MySQL sometimes optimizes a query that has a `LIMIT row_count` clause and no `HAVING` clause:
+O MySQL, às vezes, otimiza uma Query que possui uma cláusula `LIMIT row_count` e nenhuma cláusula `HAVING`:
 
-* If you select only a few rows with `LIMIT`, MySQL uses indexes in some cases when normally it would prefer to do a full table scan.
+* Se você selecionar apenas algumas linhas com `LIMIT`, o MySQL usa Indexes em alguns casos em que normalmente preferiria fazer um *full table scan*.
 
-* If you combine `LIMIT row_count` with `ORDER BY`, MySQL stops sorting as soon as it has found the first *`row_count`* rows of the sorted result, rather than sorting the entire result. If ordering is done by using an index, this is very fast. If a filesort must be done, all rows that match the query without the `LIMIT` clause are selected, and most or all of them are sorted, before the first *`row_count`* are found. After the initial rows have been found, MySQL does not sort any remainder of the result set.
+* Se você combinar `LIMIT row_count` com `ORDER BY`, o MySQL para de ordenar assim que encontra as primeiras *`row_count`* linhas do resultado ordenado, em vez de ordenar o resultado inteiro. Se a ordenação for feita usando um Index, isso é muito rápido. Se um *filesort* precisar ser executado, todas as linhas que correspondem à Query sem a cláusula `LIMIT` são selecionadas, e a maioria ou todas elas são ordenadas, antes que as primeiras *`row_count`* sejam encontradas. Após as linhas iniciais terem sido encontradas, o MySQL não ordena o restante do *result set*.
 
-  One manifestation of this behavior is that an `ORDER BY` query with and without `LIMIT` may return rows in different order, as described later in this section.
+  Uma manifestação desse comportamento é que uma Query com `ORDER BY` com e sem `LIMIT` pode retornar linhas em uma ordem diferente, conforme descrito posteriormente nesta seção.
 
-* If you combine `LIMIT row_count` with `DISTINCT`, MySQL stops as soon as it finds *`row_count`* unique rows.
+* Se você combinar `LIMIT row_count` com `DISTINCT`, o MySQL para assim que encontra *`row_count`* linhas únicas.
 
-* In some cases, a `GROUP BY` can be resolved by reading the index in order (or doing a sort on the index), then calculating summaries until the index value changes. In this case, `LIMIT row_count` does not calculate any unnecessary `GROUP BY` values.
+* Em alguns casos, um `GROUP BY` pode ser resolvido lendo o Index em ordem (ou realizando uma ordenação no Index), e depois calculando resumos até que o valor do Index mude. Neste caso, `LIMIT row_count` não calcula valores `GROUP BY` desnecessários.
 
-* As soon as MySQL has sent the required number of rows to the client, it aborts the query unless you are using `SQL_CALC_FOUND_ROWS`. In that case, the number of rows can be retrieved with `SELECT FOUND_ROWS()`. See Section 12.15, “Information Functions”.
+* Assim que o MySQL envia o número necessário de linhas ao cliente, ele aborta a Query, a menos que você esteja usando `SQL_CALC_FOUND_ROWS`. Nesse caso, o número de linhas pode ser recuperado com `SELECT FOUND_ROWS()`. Consulte a Seção 12.15, “Funções de Informação”.
 
-* `LIMIT 0` quickly returns an empty set. This can be useful for checking the validity of a query. It can also be employed to obtain the types of the result columns within applications that use a MySQL API that makes result set metadata available. With the **mysql** client program, you can use the `--column-type-info` option to display result column types.
+* `LIMIT 0` retorna rapidamente um *empty set* (conjunto vazio). Isso pode ser útil para verificar a validade de uma Query. Também pode ser empregado para obter os tipos das colunas de resultado dentro de aplicações que usam uma API MySQL que disponibiliza os metadados do *result set*. Com o programa cliente **mysql**, você pode usar a opção `--column-type-info` para exibir os tipos das colunas de resultado.
 
-* If the server uses temporary tables to resolve a query, it uses the `LIMIT row_count` clause to calculate how much space is required.
+* Se o servidor usar *temporary tables* (tabelas temporárias) para resolver uma Query, ele usa a cláusula `LIMIT row_count` para calcular quanto espaço é necessário.
 
-* If an index is not used for `ORDER BY` but a `LIMIT` clause is also present, the optimizer may be able to avoid using a merge file and sort the rows in memory using an in-memory `filesort` operation.
+* Se um Index não for usado para `ORDER BY`, mas uma cláusula `LIMIT` também estiver presente, o otimizador pode ser capaz de evitar o uso de um *merge file* e ordenar as linhas na memória usando uma operação de *filesort* em memória (*in-memory filesort*).
 
-If multiple rows have identical values in the `ORDER BY` columns, the server is free to return those rows in any order, and may do so differently depending on the overall execution plan. In other words, the sort order of those rows is nondeterministic with respect to the nonordered columns.
+Se múltiplas linhas tiverem valores idênticos nas colunas `ORDER BY`, o servidor está livre para retornar essas linhas em qualquer ordem, e pode fazê-lo de forma diferente dependendo do plano de execução geral. Em outras palavras, a ordem de ordenação dessas linhas é não determinística em relação às colunas não ordenadas.
 
-One factor that affects the execution plan is `LIMIT`, so an `ORDER BY` query with and without `LIMIT` may return rows in different orders. Consider this query, which is sorted by the `category` column but nondeterministic with respect to the `id` and `rating` columns:
+Um fator que afeta o plano de execução é o `LIMIT`, portanto, uma Query com `ORDER BY` com e sem `LIMIT` pode retornar linhas em ordens diferentes. Considere esta Query, que é ordenada pela coluna `category`, mas é não determinística em relação às colunas `id` e `rating`:
 
 ```sql
 mysql> SELECT * FROM ratings ORDER BY category;
@@ -41,7 +41,7 @@ mysql> SELECT * FROM ratings ORDER BY category;
 +----+----------+--------+
 ```
 
-Including `LIMIT` may affect order of rows within each `category` value. For example, this is a valid query result:
+Incluir `LIMIT` pode afetar a ordem das linhas dentro de cada valor de `category`. Por exemplo, este é um resultado de Query válido:
 
 ```sql
 mysql> SELECT * FROM ratings ORDER BY category LIMIT 5;
@@ -56,9 +56,9 @@ mysql> SELECT * FROM ratings ORDER BY category LIMIT 5;
 +----+----------+--------+
 ```
 
-In each case, the rows are sorted by the `ORDER BY` column, which is all that is required by the SQL standard.
+Em cada caso, as linhas são ordenadas pela coluna `ORDER BY`, que é tudo o que é exigido pelo padrão SQL.
 
-If it is important to ensure the same row order with and without `LIMIT`, include additional columns in the `ORDER BY` clause to make the order deterministic. For example, if `id` values are unique, you can make rows for a given `category` value appear in `id` order by sorting like this:
+Se for importante garantir a mesma ordem de linhas com e sem `LIMIT`, inclua colunas adicionais na cláusula `ORDER BY` para tornar a ordem determinística. Por exemplo, se os valores de `id` forem únicos, você pode fazer com que as linhas para um determinado valor de `category` apareçam na ordem de `id` ordenando assim:
 
 ```sql
 mysql> SELECT * FROM ratings ORDER BY category, id;
@@ -86,9 +86,9 @@ mysql> SELECT * FROM ratings ORDER BY category, id LIMIT 5;
 +----+----------+--------+
 ```
 
-For a query with an `ORDER BY` or `GROUP BY` and a `LIMIT` clause, the optimizer tries to choose an ordered index by default when it appears doing so would speed up query execution. Prior to MySQL 5.7.33, there was no way to override this behavior, even in cases where using some other optimization might be faster. Beginning with MySQL 5.7.33, it is possible to turn off this optimization by setting the `optimizer_switch` system variable's `prefer_ordering_index` flag to `off`.
+Para uma Query com `ORDER BY` ou `GROUP BY` e uma cláusula `LIMIT`, o otimizador tenta escolher um *ordered index* por padrão quando parece que isso aceleraria a execução da Query. Antes do MySQL 5.7.33, não havia como substituir esse comportamento, mesmo em casos em que o uso de alguma outra otimização pudesse ser mais rápido. A partir do MySQL 5.7.33, é possível desativar essa otimização definindo o *flag* `prefer_ordering_index` da variável de sistema `optimizer_switch` como `off`.
 
-*Example*: First we create and populate a table `t` as shown here:
+*Exemplo*: Primeiro criamos e populamos uma tabela `t` conforme mostrado aqui:
 
 ```sql
 # Create and populate a table t:
@@ -105,7 +105,7 @@ mysql> CREATE TABLE t (
 # [Insert some rows into table t - not shown]
 ```
 
-Verify that the `prefer_ordering_index` flag is enabled:
+Verifique se o *flag* `prefer_ordering_index` está habilitado:
 
 ```sql
 mysql> SELECT @@optimizer_switch LIKE '%prefer_ordering_index=on%';
@@ -116,7 +116,7 @@ mysql> SELECT @@optimizer_switch LIKE '%prefer_ordering_index=on%';
 +------------------------------------------------------+
 ```
 
-Since the following query has a `LIMIT` clause, we expect it to use an ordered index, if possible. In this case, as we can see from the `EXPLAIN` output, it uses the table's primary key.
+Uma vez que a Query a seguir possui uma cláusula `LIMIT`, esperamos que ela use um *ordered index*, se possível. Neste caso, como podemos ver na saída do `EXPLAIN`, ela usa a *Primary Key* da tabela.
 
 ```sql
 mysql> EXPLAIN SELECT c2 FROM t
@@ -137,7 +137,7 @@ possible_keys: i
         Extra: Using where
 ```
 
-Now we disable the `prefer_ordering_index` flag, and re-run the same query; this time it uses the index `i` (which includes the `id2` column used in the `WHERE` clause), and a filesort:
+Agora desativamos o *flag* `prefer_ordering_index` e executamos novamente a mesma Query; desta vez, ela usa o Index `i` (que inclui a coluna `id2` usada na cláusula `WHERE`) e um *filesort*:
 
 ```sql
 mysql> SET optimizer_switch = "prefer_ordering_index=off";
@@ -160,4 +160,4 @@ possible_keys: i
         Extra: Using index condition; Using filesort
 ```
 
-See also Section 8.9.2, “Switchable Optimizations”.
+Consulte também a Seção 8.9.2, “Otimizações Alternáveis”.

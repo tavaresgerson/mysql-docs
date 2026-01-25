@@ -1,19 +1,19 @@
-## 4.5 Client Programs
+## 4.5 Programas Cliente
 
-4.5.1 mysql — The MySQL Command-Line Client
+4.5.1 mysql — O Cliente de Linha de Comando MySQL
 
-4.5.2 mysqladmin — A MySQL Server Administration Program
+4.5.2 mysqladmin — Um Programa de Administração de MySQL Server
 
-4.5.3 mysqlcheck — A Table Maintenance Program
+4.5.3 mysqlcheck — Um Programa de Manutenção de Tabela
 
-4.5.4 mysqldump — A Database Backup Program
+4.5.4 mysqldump — Um Programa de Backup de Database
 
-4.5.5 mysqlimport — A Data Import Program
+4.5.5 mysqlimport — Um Programa de Importação de Dados
 
-4.5.6 mysqlpump — A Database Backup Program
+4.5.6 mysqlpump — Um Programa de Backup de Database
 
-4.5.7 mysqlshow — Display Database, Table, and Column Information
+4.5.7 mysqlshow — Exibir Informações de Database, Tabela e Coluna
 
-4.5.8 mysqlslap — A Load Emulation Client
+4.5.8 mysqlslap — Um Cliente de Emulação de Carga
 
-This section describes client programs that connect to the MySQL server.
+Esta seção descreve programas cliente que se conectam ao MySQL Server.

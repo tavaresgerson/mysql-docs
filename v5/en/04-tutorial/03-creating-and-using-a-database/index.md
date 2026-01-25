@@ -1,26 +1,26 @@
-## 3.3 Creating and Using a Database
+## 3.3 Criação e Uso de um Database
 
-[3.3.1 Creating and Selecting a Database](creating-database.html)
+[3.3.1 Criando e Selecionando um Database](creating-database.html)
 
-[3.3.2 Creating a Table](creating-tables.html)
+[3.3.2 Criando uma Tabela](creating-tables.html)
 
-[3.3.3 Loading Data into a Table](loading-tables.html)
+[3.3.3 Carregando Dados em uma Tabela](loading-tables.html)
 
-[3.3.4 Retrieving Information from a Table](retrieving-data.html)
+[3.3.4 Recuperando Informações de uma Tabela](retrieving-data.html)
 
-Once you know how to enter SQL statements, you are ready to access a database.
+Assim que você souber como inserir comandos SQL (SQL statements), você estará pronto para acessar um database.
 
-Suppose that you have several pets in your home (your menagerie) and you would like to keep track of various types of information about them. You can do so by creating tables to hold your data and loading them with the desired information. Then you can answer different sorts of questions about your animals by retrieving data from the tables. This section shows you how to perform the following operations:
+Suponha que você tenha vários animais de estimação em sua casa (seu "menagerie") e gostaria de acompanhar vários tipos de informações sobre eles. Você pode fazer isso criando tabelas para armazenar seus dados (data) e carregando-as com as informações desejadas. Em seguida, você pode responder a diferentes tipos de questões sobre seus animais, recuperando dados das tabelas. Esta seção mostra como executar as seguintes operações:
 
-* Create a database
-* Create a table
-* Load data into the table
-* Retrieve data from the table in various ways
-* Use multiple tables
+* Criar um database
+* Criar uma tabela
+* Carregar dados (data) na tabela
+* Recuperar dados (data) da tabela de várias maneiras
+* Usar múltiplas tabelas
 
-The menagerie database is simple (deliberately), but it is not difficult to think of real-world situations in which a similar type of database might be used. For example, a database like this could be used by a farmer to keep track of livestock, or by a veterinarian to keep track of patient records. A menagerie distribution containing some of the queries and sample data used in the following sections can be obtained from the MySQL website. It is available in both compressed **tar** file and Zip formats at [https://dev.mysql.com/doc/](/doc/).
+O database menagerie é simples (deliberadamente), mas não é difícil pensar em situações do mundo real nas quais um tipo de database semelhante poderia ser usado. Por exemplo, um database como este poderia ser usado por um fazendeiro para monitorar o gado, ou por um veterinário para acompanhar registros de pacientes. Uma distribuição menagerie contendo algumas das Queries e dados de exemplo usados nas seções seguintes pode ser obtida no website do MySQL. Ela está disponível nos formatos compactados de arquivo **tar** e Zip em [https://dev.mysql.com/doc/](/doc/).
 
-Use the [`SHOW`](show.html "13.7.5 SHOW Statements") statement to find out what databases currently exist on the server:
+Use o comando (statement) [`SHOW`](show.html "13.7.5 SHOW Statements") para descobrir quais databases existem atualmente no server:
 
 ```sql
 mysql> SHOW DATABASES;
@@ -33,23 +33,23 @@ mysql> SHOW DATABASES;
 +----------+
 ```
 
-The `mysql` database describes user access privileges. The `test` database often is available as a workspace for users to try things out.
+O database `mysql` descreve os privilégios de acesso do usuário. O database `test` está frequentemente disponível como um workspace para os usuários testarem funcionalidades.
 
-The list of databases displayed by the statement may be different on your machine; [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") does not show databases that you have no privileges for if you do not have the [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") privilege. See [Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement").
+A lista de databases exibida pelo comando (statement) pode ser diferente em sua máquina; [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") não exibe databases para os quais você não possui privilégios, caso você não tenha o privilégio [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"). Veja [Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement").
 
-If the `test` database exists, try to access it:
+Se o database `test` existir, tente acessá-lo:
 
 ```sql
 mysql> USE test
 Database changed
 ```
 
-[`USE`](use.html "13.8.4 USE Statement"), like `QUIT`, does not require a semicolon. (You can terminate such statements with a semicolon if you like; it does no harm.) The [`USE`](use.html "13.8.4 USE Statement") statement is special in another way, too: it must be given on a single line.
+[`USE`](use.html "13.8.4 USE Statement"), assim como `QUIT`, não requer ponto e vírgula. (Você pode encerrar tais comandos (statements) com ponto e vírgula se desejar; isso não causa problemas.) O comando [`USE`](use.html "13.8.4 USE Statement") é especial de outra forma também: ele deve ser fornecido em uma única linha.
 
-You can use the `test` database (if you have access to it) for the examples that follow, but anything you create in that database can be removed by anyone else with access to it. For this reason, you should probably ask your MySQL administrator for permission to use a database of your own. Suppose that you want to call yours `menagerie`. The administrator needs to execute a statement like this:
+Você pode usar o database `test` (se tiver acesso a ele) para os exemplos a seguir, mas tudo o que você criar nesse database pode ser removido por qualquer outra pessoa com acesso a ele. Por esta razão, você provavelmente deve pedir ao seu administrador MySQL permissão para usar um database próprio. Suponha que você queira chamá-lo de `menagerie`. O administrador precisa executar um comando (statement) como este:
 
 ```sql
 mysql> GRANT ALL ON menagerie.* TO 'your_mysql_name'@'your_client_host';
 ```
 
-where `your_mysql_name` is the MySQL user name assigned to you and `your_client_host` is the host from which you connect to the server.
+onde `your_mysql_name` é o nome de usuário (user name) MySQL atribuído a você e `your_client_host` é o host a partir do qual você se conecta ao server.

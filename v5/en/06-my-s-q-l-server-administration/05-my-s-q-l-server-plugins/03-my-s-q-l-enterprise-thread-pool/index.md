@@ -1,27 +1,27 @@
-### 5.5.3 MySQL Enterprise Thread Pool
+### 5.5.3 Thread Pool do MySQL Enterprise
 
-[5.5.3.1 Thread Pool Elements](thread-pool-elements.html)
+[5.5.3.1 Elementos do Thread Pool](thread-pool-elements.html)
 
-[5.5.3.2 Thread Pool Installation](thread-pool-installation.html)
+[5.5.3.2 Instalação do Thread Pool](thread-pool-installation.html)
 
-[5.5.3.3 Thread Pool Operation](thread-pool-operation.html)
+[5.5.3.3 Operação do Thread Pool](thread-pool-operation.html)
 
-[5.5.3.4 Thread Pool Tuning](thread-pool-tuning.html)
+[5.5.3.4 Ajuste (Tuning) do Thread Pool](thread-pool-tuning.html)
 
-Note
+Nota
 
-MySQL Enterprise Thread Pool is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, <https://www.mysql.com/products/>.
+O Thread Pool do MySQL Enterprise é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, acesse <https://www.mysql.com/products/>.
 
-MySQL Enterprise Edition includes MySQL Enterprise Thread Pool, implemented using a server plugin. The default thread-handling model in MySQL Server executes statements using one thread per client connection. As more clients connect to the server and execute statements, overall performance degrades. The thread pool plugin provides an alternative thread-handling model designed to reduce overhead and improve performance. The plugin implements a thread pool that increases server performance by efficiently managing statement execution threads for large numbers of client connections.
+O MySQL Enterprise Edition inclui o Thread Pool do MySQL Enterprise, implementado usando um server plugin. O thread-handling model padrão no MySQL Server executa statements usando um Thread por client connection. À medida que mais clients se conectam ao servidor e executam statements, o desempenho geral se degrada. O thread pool plugin oferece um thread-handling model alternativo projetado para reduzir overhead e melhorar o desempenho. O plugin implementa um thread pool que aumenta o desempenho do servidor gerenciando Threads de execução de statements de forma eficiente para um grande número de client connections.
 
-The thread pool addresses several problems of the model that uses one thread per connection:
+O thread pool aborda vários problemas do modelo que usa um Thread por connection:
 
-* Too many thread stacks make CPU caches almost useless in highly parallel execution workloads. The thread pool promotes thread stack reuse to minimize the CPU cache footprint.
+*   Stacks de Threads em excesso tornam os CPU Caches quase inúteis em workloads de execução altamente paralela. O thread pool promove a reutilização de thread stack para minimizar o footprint do CPU Cache.
 
-* With too many threads executing in parallel, context switching overhead is high. This also presents a challenge to the operating system scheduler. The thread pool controls the number of active threads to keep the parallelism within the MySQL server at a level that it can handle and that is appropriate for the server host on which MySQL is executing.
+*   Com Threads em excesso executando em paralelo, o overhead de Context Switching é alto. Isso também representa um desafio para o scheduler do sistema operacional. O thread pool controla o número de Threads ativos para manter o paralelismo dentro do MySQL Server em um nível que ele possa suportar e que seja apropriado para o host do servidor no qual o MySQL está sendo executado.
 
-* Too many transactions executing in parallel increases resource contention. In [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), this increases the time spent holding central mutexes. The thread pool controls when transactions start to ensure that not too many execute in parallel.
+*   Transações em excesso executando em paralelo aumentam a resource contention. No [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), isso aumenta o tempo gasto mantendo Mutexes centrais. O thread pool controla quando as transactions começam para garantir que não haja muitas executando em paralelo.
 
-#### Additional Resources
+#### Recursos Adicionais
 
-[Section A.15, “MySQL 5.7 FAQ: MySQL Enterprise Thread Pool”](faqs-thread-pool.html "A.15 MySQL 5.7 FAQ: MySQL Enterprise Thread Pool")
+[Seção A.15, “FAQ do MySQL 5.7: Thread Pool do MySQL Enterprise”](faqs-thread-pool.html "A.15 FAQ do MySQL 5.7: Thread Pool do MySQL Enterprise")

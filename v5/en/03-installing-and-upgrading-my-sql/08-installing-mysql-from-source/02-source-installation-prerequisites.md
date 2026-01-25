@@ -1,60 +1,60 @@
-### 2.8.2 Source Installation Prerequisites
+### 2.8.2 Pré-requisitos para Instalação a Partir do Código-Fonte
 
-Installation of MySQL from source requires several development tools. Some of these tools are needed no matter whether you use a standard source distribution or a development source tree. Other tool requirements depend on which installation method you use.
+A instalação do MySQL a partir do código-fonte requer diversas ferramentas de desenvolvimento. Algumas dessas ferramentas são necessárias, independentemente de você usar uma distribuição de código-fonte padrão ou uma *development source tree* (árvore de código-fonte de desenvolvimento). Outros requisitos de ferramentas dependem do método de instalação que você utiliza.
 
-To install MySQL from source, the following system requirements must be satisfied, regardless of installation method:
+Para instalar o MySQL a partir do código-fonte, os seguintes requisitos de sistema devem ser satisfeitos, independentemente do método de instalação:
 
-* **CMake**, which is used as the build framework on all platforms. **CMake** can be downloaded from <http://www.cmake.org>.
+* **CMake**, que é usado como a estrutura de *build* (construção) em todas as plataformas. O **CMake** pode ser baixado em <http://www.cmake.org>.
 
-* A good **make** program. Although some platforms come with their own **make** implementations, it is highly recommended that you use GNU **make** 3.75 or later. It may already be available on your system as **gmake**. GNU **make** is available from <http://www.gnu.org/software/make/>.
+* Um bom programa **make**. Embora algumas plataformas venham com suas próprias implementações de **make**, é altamente recomendável que você use o GNU **make** 3.75 ou posterior. Ele pode já estar disponível em seu sistema como **gmake**. O GNU **make** está disponível em <http://www.gnu.org/software/make/>.
 
-  On Unix-like systems, including Linux, you can check your system's version of **make** like this:
+  Em sistemas tipo Unix, incluindo Linux, você pode verificar a versão do **make** do seu sistema desta forma:
 
   ```sql
   $> make --version
   GNU Make 4.2.1
   ```
 
-* A working ANSI C++ compiler. See the description of the `FORCE_UNSUPPORTED_COMPILER` option for some guidelines.
+* Um compilador ANSI C++ funcional. Consulte a descrição da opção `FORCE_UNSUPPORTED_COMPILER` para algumas diretrizes.
 
-* An SSL library is required for support of encrypted connections, entropy for random number generation, and other encryption-related operations. By default, the build uses the OpenSSL library installed on the host system. To specify the library explicitly, use the `WITH_SSL` option when you invoke **CMake**. For additional information, see Section 2.8.6, “Configuring SSL Library Support”.
+* Uma biblioteca SSL é necessária para oferecer suporte a conexões criptografadas, entropia para geração de números aleatórios e outras operações relacionadas à criptografia. Por padrão, o *build* usa a biblioteca OpenSSL instalada no sistema *host*. Para especificar a biblioteca explicitamente, use a opção `WITH_SSL` ao invocar o **CMake**. Para obter informações adicionais, consulte a Seção 2.8.6, “Configuring SSL Library Support”.
 
-* The Boost C++ libraries are required to build MySQL (but not to use it). Boost 1.59.0 must be installed. To obtain Boost and its installation instructions, visit [the official Boost web site](https://www.boost.org). After Boost is installed, tell the build system where the Boost files are placed according to the value set for the `WITH_BOOST` option when you invoke CMake. For example:
+* As bibliotecas Boost C++ são necessárias para construir o MySQL (*build*, mas não para usá-lo). O Boost 1.59.0 deve estar instalado. Para obter o Boost e suas instruções de instalação, visite [o site oficial do Boost](https://www.boost.org). Após a instalação do Boost, informe ao sistema de *build* onde os arquivos Boost estão localizados, de acordo com o valor definido para a opção `WITH_BOOST` ao invocar o CMake. Por exemplo:
 
   ```sql
   cmake . -DWITH_BOOST=/usr/local/boost_version_number
   ```
 
-  Adjust the path as necessary to match your installation.
+  Ajuste o *path* conforme necessário para corresponder à sua instalação.
 
-* The [ncurses](https://www.gnu.org/software/ncurses/ncurses.html) library.
+* A biblioteca [ncurses](https://www.gnu.org/software/ncurses/ncurses.html).
 
-* Sufficient free memory. If you encounter build errors such as internal compiler error when compiling large source files, it may be that you have too little memory. If compiling on a virtual machine, try increasing the memory allocation.
+* Memória livre suficiente. Se você encontrar erros de *build*, como *internal compiler error* ao compilar arquivos de código-fonte grandes, pode ser que você tenha pouca memória. Se estiver compilando em uma máquina virtual, tente aumentar a alocação de memória.
 
-* Perl is needed if you intend to run test scripts. Most Unix-like systems include Perl. For Windows, you can use [ActiveState Perl](https://www.activestate.com/products/perl/). or [Strawberry Perl](https://strawberryperl.com/).
+* Perl é necessário se você pretende executar *test scripts*. A maioria dos sistemas tipo Unix inclui Perl. Para Windows, você pode usar [ActiveState Perl](https://www.activestate.com/products/perl/). ou [Strawberry Perl](https://strawberryperl.com/).
 
-To install MySQL from a standard source distribution, one of the following tools is required to unpack the distribution file:
+Para instalar o MySQL a partir de uma distribuição de código-fonte padrão, uma das seguintes ferramentas é necessária para descompactar o arquivo de distribuição (*unpack*):
 
-* For a `.tar.gz` compressed **tar** file: GNU `gunzip` to uncompress the distribution and a reasonable **tar** to unpack it. If your **tar** program supports the `z` option, it can both uncompress and unpack the file.
+* Para um arquivo **tar** comprimido `.tar.gz`: GNU `gunzip` para descomprimir a distribuição e um **tar** razoável para desempacotá-lo (*unpack*). Se o seu programa **tar** suportar a opção `z`, ele pode descomprimir e desempacotar o arquivo.
 
-  GNU **tar** is known to work. The standard **tar** provided with some operating systems is not able to unpack the long file names in the MySQL distribution. You should download and install GNU **tar**, or if available, use a preinstalled version of GNU tar. Usually this is available as **gnutar**, **gtar**, or as **tar** within a GNU or Free Software directory, such as `/usr/sfw/bin` or `/usr/local/bin`. GNU **tar** is available from <https://www.gnu.org/software/tar/>.
+  Sabe-se que o GNU **tar** funciona. O **tar** padrão fornecido com alguns sistemas operacionais não é capaz de desempacotar (*unpack*) os nomes de arquivo longos na distribuição do MySQL. Você deve baixar e instalar o GNU **tar**, ou se disponível, usar uma versão pré-instalada do GNU tar. Geralmente, ele está disponível como **gnutar**, **gtar** ou como **tar** em um diretório GNU ou Free Software, como `/usr/sfw/bin` ou `/usr/local/bin`. O GNU **tar** está disponível em <https://www.gnu.org/software/tar/>.
 
-* For a `.zip` Zip archive: **WinZip** or another tool that can read `.zip` files.
+* Para um arquivo Zip (`.zip`): **WinZip** ou outra ferramenta que possa ler arquivos `.zip`.
 
-* For an `.rpm` RPM package: The **rpmbuild** program used to build the distribution unpacks it.
+* Para um pacote RPM (`.rpm`): O programa **rpmbuild** usado para construir a distribuição o desempacota (*unpacks*).
 
-To install MySQL from a development source tree, the following additional tools are required:
+Para instalar o MySQL a partir de uma *development source tree* (árvore de código-fonte de desenvolvimento), as seguintes ferramentas adicionais são necessárias:
 
-* The Git revision control system is required to obtain the development source code. [GitHub Help](https://help.github.com/) provides instructions for downloading and installing Git on different platforms.
+* O sistema de controle de revisão Git é necessário para obter o código-fonte de desenvolvimento. O [GitHub Help](https://help.github.com/) fornece instruções para baixar e instalar o Git em diferentes plataformas.
 
-* **bison** 2.1 or later, available from <http://www.gnu.org/software/bison/>. (Version 1 is no longer supported.) Use the latest version of **bison** where possible; if you experience problems, upgrade to a later version, rather than revert to an earlier one.
+* **bison** 2.1 ou posterior, disponível em <http://www.gnu.org/software/bison/>. (A Versão 1 não é mais suportada.) Use a versão mais recente do **bison** sempre que possível; se você tiver problemas, atualize para uma versão posterior, em vez de reverter para uma anterior.
 
-  **bison** is available from <http://www.gnu.org/software/bison/>. `bison` for Windows can be downloaded from <http://gnuwin32.sourceforge.net/packages/bison.htm>. Download the package labeled “Complete package, excluding sources”. On Windows, the default location for **bison** is the `C:\Program Files\GnuWin32` directory. Some utilities may fail to find **bison** because of the space in the directory name. Also, Visual Studio may simply hang if there are spaces in the path. You can resolve these problems by installing into a directory that does not contain a space (for example `C:\GnuWin32`).
+  O **bison** está disponível em <http://www.gnu.org/software/bison/>. O `bison` para Windows pode ser baixado em <http://gnuwin32.sourceforge.net/packages/bison.htm>. Baixe o pacote rotulado “Complete package, excluding sources”. No Windows, o local padrão para o **bison** é o diretório `C:\Program Files\GnuWin32`. Algumas utilidades podem falhar ao encontrar o **bison** devido ao espaço no nome do diretório. Além disso, o Visual Studio pode simplesmente travar se houver espaços no *path*. Você pode resolver esses problemas instalando em um diretório que não contenha espaço (por exemplo, `C:\GnuWin32`).
 
-* On Solaris Express, **m4** must be installed in addition to **bison**. **m4** is available from <http://www.gnu.org/software/m4/>.
+* No Solaris Express, o **m4** deve ser instalado, além do **bison**. O **m4** está disponível em <http://www.gnu.org/software/m4/>.
 
 Note
 
-If you have to install any programs, modify your `PATH` environment variable to include any directories in which the programs are located. See Section 4.2.7, “Setting Environment Variables”.
+Se você precisar instalar qualquer programa, modifique sua variável de ambiente `PATH` para incluir todos os diretórios nos quais os programas estão localizados. Consulte a Seção 4.2.7, “Setting Environment Variables”.
 
-If you run into problems and need to file a bug report, please use the instructions in Section 1.5, “How to Report Bugs or Problems”.
+Se você encontrar problemas e precisar registrar um relatório de *bug*, use as instruções na Seção 1.5, “How to Report Bugs or Problems”.

@@ -1,41 +1,41 @@
-#### 6.4.5.10 Legacy Mode Audit Log Filtering
+#### 6.4.5.10 Filtragem do Audit Log no Modo Legado
 
-Note
+Nota:
 
-This section describes legacy audit log filtering, which applies under either of these circumstances:
+Esta seção descreve a filtragem do audit log legado, que se aplica sob qualquer uma destas circunstâncias:
 
-* Before MySQL 5.7.13, that is, prior to the introduction of rule-based audit log filtering described in [Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering").
+* Antes do MySQL 5.7.13, ou seja, antes da introdução da filtragem do audit log baseada em regras descrita na [Seção 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Filtragem do Audit Log").
 
-* As of MySQL 5.7.13, if the `audit_log` plugin is installed without the accompanying audit tables and functions needed for rule-based filtering.
+* A partir do MySQL 5.7.13, se o plugin `audit_log` estiver instalado sem as tabelas de auditoria e funções necessárias para a filtragem baseada em regras.
 
-The audit log plugin can filter audited events. This enables you to control whether audited events are written to the audit log file based on the account from which events originate or event status. Status filtering occurs separately for connection events and statement events.
+O plugin audit log pode filtrar eventos auditados. Isso permite que você controle se os eventos auditados são gravados no arquivo de audit log com base na conta de origem dos eventos ou no status do evento. A filtragem por status ocorre separadamente para eventos de conexão e eventos de Statement.
 
-* [Legacy Event Filtering by Account](audit-log-legacy-filtering.html#audit-log-account-filtering "Legacy Event Filtering by Account")
-* [Legacy Event Filtering by Status](audit-log-legacy-filtering.html#audit-log-status-filtering "Legacy Event Filtering by Status")
+* [Filtragem de Eventos Legados por Conta](audit-log-legacy-filtering.html#audit-log-account-filtering "Filtragem de Eventos Legados por Conta")
+* [Filtragem de Eventos Legados por Status](audit-log-legacy-filtering.html#audit-log-status-filtering "Filtragem de Eventos Legados por Status")
 
-##### Legacy Event Filtering by Account
+##### Filtragem de Eventos Legados por Conta
 
-To filter audited events based on the originating account, set one (not both) of the following system variables at server startup or runtime. These variables apply only for legacy audit log filtering.
+Para filtrar eventos auditados com base na conta de origem, defina uma (não ambas) das seguintes variáveis de sistema na inicialização ou em runtime do servidor. Essas variáveis se aplicam apenas à filtragem de audit log legado.
 
-* [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts): The accounts to include in audit logging. If this variable is set, only these accounts are audited.
+* [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts): As contas a serem incluídas no audit logging. Se esta variável for definida, apenas estas contas são auditadas.
 
-* [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts): The accounts to exclude from audit logging. If this variable is set, all but these accounts are audited.
+* [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts): As contas a serem excluídas do audit logging. Se esta variável for definida, todas as contas, exceto estas, são auditadas.
 
-The value for either variable can be `NULL` or a string containing one or more comma-separated account names, each in `user_name@host_name` format. By default, both variables are `NULL`, in which case, no account filtering is done and auditing occurs for all accounts.
+O valor para qualquer uma das variáveis pode ser `NULL` ou uma string contendo um ou mais nomes de conta separados por vírgula, cada um no formato `user_name@host_name`. Por padrão, ambas as variáveis são `NULL`, caso em que nenhuma filtragem de conta é realizada e a auditoria ocorre para todas as contas.
 
-Modifications to [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) or [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) affect only connections created subsequent to the modification, not existing connections.
+Modificações em [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) ou [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) afetam apenas as conexões criadas subsequentemente à modificação, e não as conexões existentes.
 
-Example: To enable audit logging only for the `user1` and `user2` local host accounts, set the [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) system variable like this:
+Exemplo: Para habilitar o audit logging apenas para as contas de host local `user1` e `user2`, defina a variável de sistema [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) desta forma:
 
 ```sql
 SET GLOBAL audit_log_include_accounts = 'user1@localhost,user2@localhost';
 ```
 
-Only one of [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) or [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) can be non-`NULL` at a time:
+Apenas uma das variáveis [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) ou [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) pode ser diferente de `NULL` por vez:
 
-* If you set [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts), the server sets [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) to `NULL`.
+* Se você definir [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts), o servidor define [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts) como `NULL`.
 
-* If you attempt to set [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts), an error occurs unless [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) is `NULL`. In this case, you must first clear [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) by setting it to `NULL`.
+* Se você tentar definir [`audit_log_exclude_accounts`](audit-log-reference.html#sysvar_audit_log_exclude_accounts), ocorrerá um erro, a menos que [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts) seja `NULL`. Neste caso, você deve primeiro limpar [`audit_log_include_accounts`](audit-log-reference.html#sysvar_audit_log_include_accounts), definindo-a como `NULL`.
 
 ```sql
 -- This sets audit_log_exclude_accounts to NULL
@@ -50,7 +50,7 @@ SET GLOBAL audit_log_include_accounts = NULL;
 SET GLOBAL audit_log_exclude_accounts = value;
 ```
 
-If you inspect the value of either variable, be aware that [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") displays `NULL` as an empty string. To display `NULL` as `NULL`, use [`SELECT`](select.html "13.2.9 SELECT Statement") instead:
+Se você inspecionar o valor de qualquer uma das variáveis, esteja ciente de que [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") exibe `NULL` como uma string vazia. Para exibir `NULL` como `NULL`, utilize [`SELECT`](select.html "13.2.9 SELECT Statement") em vez disso:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'audit_log_include_accounts';
@@ -67,7 +67,7 @@ mysql> SELECT @@audit_log_include_accounts;
 +------------------------------+
 ```
 
-If a user name or host name requires quoting because it contains a comma, space, or other special character, quote it using single quotes. If the variable value itself is quoted with single quotes, double each inner single quote or escape it with a backslash. The following statements each enable audit logging for the local `root` account and are equivalent, even though the quoting styles differ:
+Se um nome de usuário ou nome de host exigir aspas (quoting) por conter uma vírgula, espaço ou outro caractere especial, utilize aspas simples para citá-lo. Se o valor da variável em si for citado com aspas simples, duplique cada aspa simples interna ou escape-a com uma barra invertida (backslash). As seguintes Statements habilitam o audit logging para a conta `root` local e são equivalentes, embora os estilos de aspas difiram:
 
 ```sql
 SET GLOBAL audit_log_include_accounts = 'root@localhost';
@@ -76,27 +76,27 @@ SET GLOBAL audit_log_include_accounts = '\'root\'@\'localhost\'';
 SET GLOBAL audit_log_include_accounts = "'root'@'localhost'";
 ```
 
-The last statement does not work if the `ANSI_QUOTES` SQL mode is enabled because in that mode double quotes signify identifier quoting, not string quoting.
+A última Statement não funciona se o modo SQL `ANSI_QUOTES` estiver habilitado, pois, nesse modo, as aspas duplas (double quotes) significam aspas de identificador (identifier quoting), e não aspas de string (string quoting).
 
-##### Legacy Event Filtering by Status
+##### Filtragem de Eventos Legados por Status
 
-To filter audited events based on status, set the following system variables at server startup or runtime. These variables apply only for legacy audit log filtering. For JSON audit log filtering, different status variables apply; see [Audit Log Options and Variables](audit-log-reference.html#audit-log-options-variables "Audit Log Options and Variables").
+Para filtrar eventos auditados com base no status, defina as seguintes variáveis de sistema na inicialização ou em runtime do servidor. Essas variáveis se aplicam apenas à filtragem de audit log legado. Para filtragem de audit log JSON, aplicam-se variáveis de status diferentes; consulte [Audit Log Options and Variables](audit-log-reference.html#audit-log-options-variables "Opções e Variáveis do Audit Log").
 
-* [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy): Logging policy for connection events
+* [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy): Policy de logging para eventos de conexão
 
-* [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy): Logging policy for statement events
+* [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy): Policy de logging para eventos de Statement
 
-Each variable takes a value of `ALL` (log all associated events; this is the default), `ERRORS` (log only failed events), or `NONE` (do not log events). For example, to log all statement events but only failed connection events, use these settings:
+Cada variável aceita um valor de `ALL` (registra todos os eventos associados; este é o padrão), `ERRORS` (registra apenas eventos que falharam) ou `NONE` (não registra eventos). Por exemplo, para registrar todos os eventos de Statement, mas apenas eventos de conexão que falharam, utilize estas configurações:
 
 ```sql
 SET GLOBAL audit_log_statement_policy = ALL;
 SET GLOBAL audit_log_connection_policy = ERRORS;
 ```
 
-Another policy system variable, [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy), is available but does not afford as much control as [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) and [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy). It can be set only at server startup. At runtime, it is a read-only variable. It takes a value of `ALL` (log all events; this is the default), `LOGINS` (log connection events), `QUERIES` (log statement events), or `NONE` (do not log events). For any of those values, the audit log plugin logs all selected events without distinction as to success or failure. Use of [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) at startup works as follows:
+Outra variável de sistema Policy, [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy), está disponível, mas não oferece tanto controle quanto [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) e [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy). Ela pode ser definida apenas na inicialização do servidor. Em runtime, é uma variável somente leitura. Ela aceita um valor de `ALL` (registra todos os eventos; este é o padrão), `LOGINS` (registra eventos de conexão), `QUERIES` (registra eventos de Statement) ou `NONE` (não registra eventos). Para qualquer um desses valores, o plugin audit log registra todos os eventos selecionados sem distinção de sucesso ou falha. O uso de [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) na inicialização funciona da seguinte forma:
 
-* If you do not set [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) or set it to its default of `ALL`, any explicit settings for [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) or [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy) apply as specified. If not specified, they default to `ALL`.
+* Se você não definir [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) ou defini-la como seu padrão de `ALL`, quaisquer configurações explícitas para [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) ou [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy) são aplicadas conforme especificadas. Se não forem especificadas, o padrão delas é `ALL`.
 
-* If you set [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) to a non-`ALL` value, that value takes precedence over and is used to set [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) and [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy), as indicated in the following table. If you also set either of those variables to a value other than their default of `ALL`, the server writes a message to the error log to indicate that their values are being overridden.
+* Se você definir [`audit_log_policy`](audit-log-reference.html#sysvar_audit_log_policy) para um valor diferente de `ALL`, esse valor terá precedência e será usado para definir [`audit_log_connection_policy`](audit-log-reference.html#sysvar_audit_log_connection_policy) e [`audit_log_statement_policy`](audit-log-reference.html#sysvar_audit_log_statement_policy), conforme indicado na tabela a seguir. Se você também definir qualquer uma dessas variáveis para um valor diferente do padrão `ALL`, o servidor escreverá uma mensagem no error log para indicar que seus valores estão sendo sobrescritos.
 
-  <table summary="How the server uses audit_log_policy to set audit_log_connection_policy and audit_log_statement_policy at startup."><col style="width: 33%"/><col style="width: 33%"/><col style="width: 33%"/><thead><tr> <th>Startup audit_log_policy Value</th> <th>Resulting audit_log_connection_policy Value</th> <th>Resulting audit_log_statement_policy Value</th> </tr></thead><tbody><tr> <th><code>LOGINS</code></th> <td><code>ALL</code></td> <td><code>NONE</code></td> </tr><tr> <th><code>QUERIES</code></th> <td><code>NONE</code></td> <td><code>ALL</code></td> </tr><tr> <th><code>NONE</code></th> <td><code>NONE</code></td> <td><code>NONE</code></td> </tr></tbody></table>
+  <table summary="Como o servidor usa audit_log_policy para definir audit_log_connection_policy e audit_log_statement_policy na inicialização."><col style="width: 33%"/><col style="width: 33%"/><col style="width: 33%"/><thead><tr> <th>Valor audit_log_policy na Inicialização</th> <th>Valor Resultante audit_log_connection_policy</th> <th>Valor Resultante audit_log_statement_policy</th> </tr></thead><tbody><tr> <th><code>LOGINS</code></th> <td><code>ALL</code></td> <td><code>NONE</code></td> </tr><tr> <th><code>QUERIES</code></th> <td><code>NONE</code></td> <td><code>ALL</code></td> </tr><tr> <th><code>NONE</code></th> <td><code>NONE</code></td> <td><code>NONE</code></td> </tr> </tbody></table>

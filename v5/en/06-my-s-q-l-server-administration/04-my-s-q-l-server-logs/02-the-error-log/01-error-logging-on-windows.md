@@ -1,18 +1,18 @@
-#### 5.4.2.1 Error Logging on Windows
+#### 5.4.2.1 Registro de Erros no Windows
 
-On Windows, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") uses the [`--log-error`](server-options.html#option_mysqld_log-error), [`--pid-file`](server-system-variables.html#sysvar_pid_file), and [`--console`](server-options.html#option_mysqld_console) options to determine whether [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to the console or a file, and, if to a file, the file name:
+No Windows, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") utiliza as opções [`--log-error`], [`--pid-file`] e [`--console`] para determinar se o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") deve gravar o error log no console ou em um arquivo e, se for em um arquivo, qual será o nome do arquivo:
 
-* If [`--console`](server-options.html#option_mysqld_console) is given, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to the console. ([`--console`](server-options.html#option_mysqld_console) takes precedence over [`--log-error`](server-options.html#option_mysqld_log-error) if both are given, and the following items regarding [`--log-error`](server-options.html#option_mysqld_log-error) do not apply. Prior to MySQL 5.7, this is reversed: [`--log-error`](server-options.html#option_mysqld_log-error) takes precedence over [`--console`](server-options.html#option_mysqld_console).)
+* Se [`--console`] for fornecido, o [**mysqld**] grava o error log no console. ([`--console`] tem precedência sobre [`--log-error`] se ambos forem fornecidos, e os itens a seguir relacionados a [`--log-error`] não se aplicam. Antes do MySQL 5.7, isso era invertido: [`--log-error`] tinha precedência sobre [`--console`].)
 
-* If [`--log-error`](server-options.html#option_mysqld_log-error) is not given, or is given without naming a file, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to a file named `host_name.err` in the data directory, unless the [`--pid-file`](server-system-variables.html#sysvar_pid_file) option is specified. In that case, the file name is the PID file base name with a suffix of `.err` in the data directory.
+* Se [`--log-error`] não for fornecido, ou se for fornecido sem especificar um arquivo, o [**mysqld**] grava o error log em um arquivo chamado `host_name.err` no `data directory`, a menos que a opção [`--pid-file`] seja especificada. Nesse caso, o nome do arquivo é o nome base do PID file com um `suffix` de `.err` no `data directory`.
 
-* If [`--log-error`](server-options.html#option_mysqld_log-error) is given to name a file, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to that file (with an `.err` suffix added if the name has no suffix). The file location is under the data directory unless an absolute path name is given to specify a different location.
+* Se [`--log-error`] for fornecido para nomear um arquivo, o [**mysqld**] grava o error log nesse arquivo (com um `suffix` `.err` adicionado se o nome não tiver um `suffix`). O local do arquivo fica sob o `data directory`, a menos que um `absolute path name` seja fornecido para especificar um local diferente.
 
-If the server writes the error log to the console, it sets the [`log_error`](server-system-variables.html#sysvar_log_error) system variable to `stderr`. Otherwise, the server writes the error log to a file and sets [`log_error`](server-system-variables.html#sysvar_log_error) to the file name.
+Se o server gravar o error log no console, ele define a variável de sistema [`log_error`] como `stderr`. Caso contrário, o server grava o error log em um arquivo e define [`log_error`] como o nome do arquivo.
 
-In addition, the server by default writes events and error messages to the Windows Event Log within the Application log:
+Além disso, por padrão, o server grava eventos e mensagens de erro no Windows Event Log, dentro do Application log:
 
-* Entries marked as `Error`, `Warning`, and `Note` are written to the Event Log, but not messages such as information statements from individual storage engines.
+* Entradas marcadas como `Error`, `Warning` e `Note` são gravadas no Event Log, mas não mensagens como declarações de informação de `storage engines` individuais.
 
-* Event Log entries have a source of `MySQL`.
-* Information written to the Event Log is controlled using the [`log_syslog`](server-system-variables.html#sysvar_log_syslog) system variable, which on Windows is enabled by default. See [Section 5.4.2.3, “Error Logging to the System Log”](error-log-syslog.html "5.4.2.3 Error Logging to the System Log").
+* As entradas do Event Log têm um `source` de `MySQL`.
+* As informações gravadas no Event Log são controladas usando a variável de sistema [`log_syslog`], que no Windows é habilitada por padrão. Veja [Seção 5.4.2.3, “Registro de Erros no Log do Sistema”](error-log-syslog.html "5.4.2.3 Error Logging to the System Log").

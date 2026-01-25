@@ -1,10 +1,10 @@
-### 8.9.3 Optimizer Hints
+### 8.9.3 Optimizer Hints
 
-One means of control over optimizer strategies is to set the `optimizer_switch` system variable (see Section 8.9.2, “Switchable Optimizations”). Changes to this variable affect execution of all subsequent queries; to affect one query differently from another, it is necessary to change `optimizer_switch` before each one.
+Uma forma de controlar as estratégias do optimizer é definir a variável de sistema `optimizer_switch` (consulte a Seção 8.9.2, “Switchable Optimizations”). Alterações nesta variável afetam a execução de todas as Queries subsequentes; para afetar uma Query de maneira diferente de outra, é necessário alterar `optimizer_switch` antes de cada uma.
 
-another way to control the optimizer is by using optimizer hints, which can be specified within individual statements. Because optimizer hints apply on a per-statement basis, they provide finer control over statement execution plans than can be achieved using `optimizer_switch`. For example, you can enable an optimization for one table in a statement and disable the optimization for a different table. Hints within a statement take precedence over `optimizer_switch` flags.
+Outra maneira de controlar o optimizer é usando *optimizer hints* (dicas do optimizer), que podem ser especificadas dentro de comandos individuais. Como os optimizer hints se aplicam por comando, eles fornecem um controle mais detalhado sobre os planos de execução de comandos do que o que pode ser alcançado usando `optimizer_switch`. Por exemplo, você pode habilitar uma otimização para uma tabela em um comando e desabilitar a otimização para uma tabela diferente. Hints dentro de um comando têm precedência sobre os sinalizadores `optimizer_switch`.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT /*+ NO_RANGE_OPTIMIZATION(t3 PRIMARY, f2_idx) */ f1
@@ -15,100 +15,100 @@ SELECT /*+ SEMIJOIN(FIRSTMATCH, LOOSESCAN) */ * FROM t1 ...;
 EXPLAIN SELECT /*+ NO_ICP(t1) */ * FROM t1 WHERE ...;
 ```
 
-Note
+Nota
 
-The **mysql** client by default strips comments from SQL statements sent to the server (including optimizer hints) until MySQL 5.7.7, when it was changed to pass optimizer hints to the server. To ensure that optimizer hints are not stripped if you are using an older version of the **mysql** client with a version of the server that understands optimizer hints, invoke **mysql** with the `--comments` option.
+O cliente **mysql** por padrão remove comentários de comandos SQL enviados ao servidor (incluindo optimizer hints) até o MySQL 5.7.7, quando foi alterado para passar os optimizer hints para o servidor. Para garantir que os optimizer hints não sejam removidos se você estiver usando uma versão antiga do cliente **mysql** com uma versão do servidor que entenda os optimizer hints, invoque **mysql** com a opção `--comments`.
 
-Optimizer hints, described here, differ from index hints, described in Section 8.9.4, “Index Hints”. Optimizer and index hints may be used separately or together.
+Os Optimizer Hints, descritos aqui, diferem dos Index Hints, descritos na Seção 8.9.4, “Index Hints”. Optimizer hints e Index hints podem ser usados separadamente ou em conjunto.
 
-* Optimizer Hint Overview
-* Optimizer Hint Syntax
-* Table-Level Optimizer Hints
-* Index-Level Optimizer Hints
-* Subquery Optimizer Hints
-* Statement Execution Time Optimizer Hints
-* Optimizer Hints for Naming Query Blocks
+* Visão Geral dos Optimizer Hints
+* Sintaxe dos Optimizer Hints
+* Optimizer Hints em Nível de Tabela (Table-Level)
+* Optimizer Hints em Nível de Index (Index-Level)
+* Optimizer Hints de Subquery
+* Optimizer Hints de Tempo de Execução do Comando
+* Optimizer Hints para Nomear Query Blocks
 
-#### Optimizer Hint Overview
+#### Visão Geral dos Optimizer Hints
 
-Optimizer hints apply at different scope levels:
+Os Optimizer Hints se aplicam em diferentes níveis de escopo:
 
-* Global: The hint affects the entire statement
-* Query block: The hint affects a particular query block within a statement
+* Global: O hint afeta o comando inteiro.
+* Query block: O hint afeta um Query Block específico dentro de um comando.
 
-* Table-level: The hint affects a particular table within a query block
+* Table-level: O hint afeta uma tabela específica dentro de um Query Block.
 
-* Index-level: The hint affects a particular index within a table
+* Index-level: O hint afeta um Index específico dentro de uma tabela.
 
-The following table summarizes the available optimizer hints, the optimizer strategies they affect, and the scope or scopes at which they apply. More details are given later.
+A tabela a seguir resume os optimizer hints disponíveis, as estratégias do optimizer que eles afetam e o escopo ou escopos nos quais eles se aplicam. Mais detalhes são fornecidos adiante.
 
-**Table 8.2 Optimizer Hints Available**
+**Tabela 8.2 Optimizer Hints Disponíveis**
 
-<table summary="Optimizer hint names, descriptions, and contexts in which they apply.">
+<table summary="Nomes, descrições e contextos dos optimizer hints em que eles se aplicam.">
   <col style="width: 30%"/>
   <col style="width: 40%"/>
   <col style="width: 30%"/>
   <thead>
     <tr>
-      <th>Hint Name</th>
-      <th>Description</th>
-      <th>Applicable Scopes</th>
+      <th>Nome do Hint</th>
+      <th>Descrição</th>
+      <th>Escopos Aplicáveis</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th><code>BKA</code>, <code>NO_BKA</code></th>
-      <td>Affects Batched Key Access join processing</td>
+      <td>Afeta o processamento de JOIN Batched Key Access</td>
       <td>Query block, table</td>
     </tr>
     <tr>
       <th><code>BNL</code>, <code>NO_BNL</code></th>
-      <td>Affects Block Nested-Loop join processing</td>
+      <td>Afeta o processamento de JOIN Block Nested-Loop</td>
       <td>Query block, table</td>
     </tr>
     <tr>
       <th><code>MAX_EXECUTION_TIME</code></th>
-      <td>Limits statement execution time</td>
+      <td>Limita o tempo de execução do comando</td>
       <td>Global</td>
     </tr>
     <tr>
       <th><code>MRR</code>, <code>NO_MRR</code></th>
-      <td>Affects Multi-Range Read optimization</td>
+      <td>Afeta a otimização Multi-Range Read</td>
       <td>Table, index</td>
     </tr>
     <tr>
       <th><code>NO_ICP</code></th>
-      <td>Affects Index Condition Pushdown optimization</td>
+      <td>Afeta a otimização Index Condition Pushdown</td>
       <td>Table, index</td>
     </tr>
     <tr>
       <th><code>NO_RANGE_OPTIMIZATION</code></th>
-      <td>Affects range optimization</td>
+      <td>Afeta a otimização de range (intervalo)</td>
       <td>Table, index</td>
     </tr>
     <tr>
       <th><code>QB_NAME</code></th>
-      <td>Assigns name to query block</td>
+      <td>Atribui nome ao Query Block</td>
       <td>Query block</td>
     </tr>
     <tr>
       <th><code>SEMIJOIN</code>, <code>NO_SEMIJOIN</code></th>
-      <td>semijoin strategies</td>
+      <td>Estratégias semijoin</td>
       <td>Query block</td>
     </tr>
     <tr>
       <th><code>SUBQUERY</code></th>
-      <td>Affects materialization, <code>IN</code>-to-<code>EXISTS</code> subquery stratgies</td>
+      <td>Afeta a materialization, estratégias de Subquery <code>IN</code>-to-<code>EXISTS</code></td>
       <td>Query block</td>
     </tr>
   </tbody>
 </table>
 
-Disabling an optimization prevents the optimizer from using it. Enabling an optimization means the optimizer is free to use the strategy if it applies to statement execution, not that the optimizer necessarily uses it.
+Desabilitar uma otimização impede que o optimizer a utilize. Habilitar uma otimização significa que o optimizer está livre para usar a estratégia se ela for aplicável à execução do comando, mas não que o optimizer necessariamente a utilize.
 
-#### Optimizer Hint Syntax
+#### Sintaxe dos Optimizer Hints
 
-MySQL supports comments in SQL statements as described in Section 9.6, “Comments”. Optimizer hints must be specified within `/*+ ... */` comments. That is, optimizer hints use a variant of `/* ... */` C-style comment syntax, with a `+` character following the `/*` comment opening sequence. Examples:
+O MySQL suporta comentários em comandos SQL, conforme descrito na Seção 9.6, “Comentários”. Os Optimizer Hints devem ser especificados dentro de comentários `/*+ ... */`. Ou seja, os optimizer hints usam uma variante da sintaxe de comentário `/* ... */` estilo C, com um caractere `+` seguindo a sequência de abertura de comentário `/*`. Exemplos:
 
 ```sql
 /*+ BKA(t1) */
@@ -117,11 +117,11 @@ MySQL supports comments in SQL statements as described in Section 9.6, “Comme
 /*+ QB_NAME(qb2) */
 ```
 
-Whitespace is permitted after the `+` character.
+Espaços em branco são permitidos após o caractere `+`.
 
-The parser recognizes optimizer hint comments after the initial keyword of `SELECT`, `UPDATE`, `INSERT`, `REPLACE`, and `DELETE` statements. Hints are permitted in these contexts:
+O parser reconhece comentários de optimizer hint após a palavra-chave inicial dos comandos `SELECT`, `UPDATE`, `INSERT`, `REPLACE` e `DELETE`. Hints são permitidos nestes contextos:
 
-* At the beginning of query and data change statements:
+* No início dos comandos de Query e de alteração de dados:
 
   ```sql
   SELECT /*+ ... */ ...
@@ -131,7 +131,7 @@ The parser recognizes optimizer hint comments after the initial keyword of `SELE
   DELETE /*+ ... */ ...
   ```
 
-* At the beginning of query blocks:
+* No início dos Query Blocks:
 
   ```sql
   (SELECT /*+ ... */ ... )
@@ -141,115 +141,115 @@ The parser recognizes optimizer hint comments after the initial keyword of `SELE
   INSERT ... SELECT /*+ ... */ ...
   ```
 
-* In hintable statements prefaced by `EXPLAIN`. For example:
+* Em comandos passíveis de hints, precedidos por `EXPLAIN`. Por exemplo:
 
   ```sql
   EXPLAIN SELECT /*+ ... */ ...
   EXPLAIN UPDATE ... WHERE x IN (SELECT /*+ ... */ ...)
   ```
 
-  The implication is that you can use `EXPLAIN` to see how optimizer hints affect execution plans. Use `SHOW WARNINGS` immediately after `EXPLAIN` to see how hints are used. The extended `EXPLAIN` output displayed by a following `SHOW WARNINGS` indicates which hints were used. Ignored hints are not displayed.
+  A implicação é que você pode usar `EXPLAIN` para ver como os optimizer hints afetam os planos de execução. Use `SHOW WARNINGS` imediatamente após `EXPLAIN` para ver como os hints são utilizados. A saída estendida do `EXPLAIN` exibida por um `SHOW WARNINGS` subsequente indica quais hints foram usados. Hints ignorados não são exibidos.
 
-A hint comment may contain multiple hints, but a query block cannot contain multiple hint comments. This is valid:
+Um comentário de hint pode conter múltiplos hints, mas um Query Block não pode conter múltiplos comentários de hint. Isto é válido:
 
 ```sql
 SELECT /*+ BNL(t1) BKA(t2) */ ...
 ```
 
-But this is invalid:
+Mas isto é inválido:
 
 ```sql
 SELECT /*+ BNL(t1) */ /* BKA(t2) */ ...
 ```
 
-When a hint comment contains multiple hints, the possibility of duplicates and conflicts exists. The following general guidelines apply. For specific hint types, additional rules may apply, as indicated in the hint descriptions.
+Quando um comentário de hint contém múltiplos hints, existe a possibilidade de duplicatas e conflitos. As seguintes diretrizes gerais se aplicam. Para tipos de hint específicos, regras adicionais podem ser aplicadas, conforme indicado nas descrições dos hints.
 
-* Duplicate hints: For a hint such as `/*+ MRR(idx1) MRR(idx1) */`, MySQL uses the first hint and issues a warning about the duplicate hint.
+* Hints duplicados: Para um hint como `/*+ MRR(idx1) MRR(idx1) */`, o MySQL usa o primeiro hint e emite um warning sobre o hint duplicado.
 
-* Conflicting hints: For a hint such as `/*+ MRR(idx1) NO_MRR(idx1) */`, MySQL uses the first hint and issues a warning about the second conflicting hint.
+* Hints conflitantes: Para um hint como `/*+ MRR(idx1) NO_MRR(idx1) */`, o MySQL usa o primeiro hint e emite um warning sobre o segundo hint conflitante.
 
-Query block names are identifiers and follow the usual rules about what names are valid and how to quote them (see Section 9.2, “Schema Object Names”).
+Os nomes dos Query Blocks são identificadores e seguem as regras usuais sobre quais nomes são válidos e como citá-los (consulte a Seção 9.2, “Schema Object Names”).
 
-Hint names, query block names, and strategy names are not case-sensitive. References to table and index names follow the usual identifier case sensitivity rules (see Section 9.2.3, “Identifier Case Sensitivity”).
+Os nomes dos hints, nomes dos Query Blocks e nomes das estratégias não diferenciam maiúsculas de minúsculas (case-sensitive). As referências aos nomes de tabelas e Indexes seguem as regras usuais de diferenciação de maiúsculas e minúsculas de identificadores (consulte a Seção 9.2.3, “Identifier Case Sensitivity”).
 
-#### Table-Level Optimizer Hints
+#### Optimizer Hints em Nível de Tabela
 
-Table-level hints affect use of the Block Nested-Loop (BNL) and Batched Key Access (BKA) join-processing algorithms (see Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”). These hint types apply to specific tables, or all tables in a query block.
+Os hints em nível de tabela afetam o uso dos algoritmos de processamento de JOIN Block Nested-Loop (BNL) e Batched Key Access (BKA) (consulte a Seção 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”). Esses tipos de hints se aplicam a tabelas específicas, ou a todas as tabelas em um Query Block.
 
-Syntax of table-level hints:
+Sintaxe dos hints em nível de tabela:
 
 ```sql
 hint_name([@query_block_name] [tbl_name [, tbl_name] ...])
 hint_name([tbl_name@query_block_name [, tbl_name@query_block_name] ...])
 ```
 
-The syntax refers to these terms:
+A sintaxe refere-se a estes termos:
 
-* *`hint_name`*: These hint names are permitted:
+* *`hint_name`*: Estes nomes de hint são permitidos:
 
-  + `BKA`, `NO_BKA`: Enable or disable BKA for the specified tables.
+  + `BKA`, `NO_BKA`: Habilita ou desabilita BKA para as tabelas especificadas.
 
-  + `BNL`, `NO_BNL`: Enable or disable BNL for the specified tables.
+  + `BNL`, `NO_BNL`: Habilita ou desabilita BNL para as tabelas especificadas.
 
-  Note
+  Nota
 
-  To use a BNL or BKA hint to enable join buffering for any inner table of an outer join, join buffering must be enabled for all inner tables of the outer join.
+  Para usar um hint BNL ou BKA para habilitar o *join buffering* para qualquer tabela interna de um Outer JOIN, o *join buffering* deve ser habilitado para todas as tabelas internas do Outer JOIN.
 
-* *`tbl_name`*: The name of a table used in the statement. The hint applies to all tables that it names. If the hint names no tables, it applies to all tables of the query block in which it occurs.
+* *`tbl_name`*: O nome de uma tabela usada no comando. O hint se aplica a todas as tabelas que ele nomeia. Se o hint não nomear nenhuma tabela, ele se aplica a todas as tabelas do Query Block em que ocorre.
 
-  If a table has an alias, hints must refer to the alias, not the table name.
+  Se uma tabela tiver um alias, os hints devem se referir ao alias, e não ao nome da tabela.
 
-  Table names in hints cannot be qualified with schema names.
+  Os nomes de tabelas nos hints não podem ser qualificados com nomes de schema.
 
-* *`query_block_name`*: The query block to which the hint applies. If the hint includes no leading `@query_block_name`, the hint applies to the query block in which it occurs. For `tbl_name@query_block_name` syntax, the hint applies to the named table in the named query block. To assign a name to a query block, see Optimizer Hints for Naming Query Blocks.
+* *`query_block_name`*: O Query Block ao qual o hint se aplica. Se o hint não incluir um `@query_block_name` principal, o hint se aplica ao Query Block em que ocorre. Para a sintaxe `tbl_name@query_block_name`, o hint se aplica à tabela nomeada no Query Block nomeado. Para atribuir um nome a um Query Block, consulte Optimizer Hints para Nomear Query Blocks.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT /*+ NO_BKA(t1, t2) */ t1.* FROM t1 INNER JOIN t2 INNER JOIN t3;
 SELECT /*+ NO_BNL() BKA(t1) */ t1.* FROM t1 INNER JOIN t2 INNER JOIN t3;
 ```
 
-A table-level hint applies to tables that receive records from previous tables, not sender tables. Consider this statement:
+Um hint em nível de tabela aplica-se a tabelas que recebem registros de tabelas anteriores, e não a tabelas remetentes (*sender tables*). Considere este comando:
 
 ```sql
 SELECT /*+ BNL(t2) */ FROM t1, t2;
 ```
 
-If the optimizer chooses to process `t1` first, it applies a Block Nested-Loop join to `t2` by buffering the rows from `t1` before starting to read from `t2`. If the optimizer instead chooses to process `t2` first, the hint has no effect because `t2` is a sender table.
+Se o optimizer escolher processar `t1` primeiro, ele aplicará um Block Nested-Loop JOIN a `t2`, armazenando em Buffer as linhas de `t1` antes de começar a ler de `t2`. Se o optimizer escolher processar `t2` primeiro, o hint não terá efeito porque `t2` é uma tabela remetente.
 
-#### Index-Level Optimizer Hints
+#### Optimizer Hints em Nível de Index
 
-Index-level hints affect which index-processing strategies the optimizer uses for particular tables or indexes. These hint types affect use of Index Condition Pushdown (ICP), Multi-Range Read (MRR), and range optimizations (see Section 8.2.1, “Optimizing SELECT Statements”).
+Os hints em nível de Index afetam quais estratégias de processamento de Index o optimizer utiliza para tabelas ou Indexes específicos. Esses tipos de hints afetam o uso de Index Condition Pushdown (ICP), Multi-Range Read (MRR) e otimizações de range (intervalo) (consulte a Seção 8.2.1, “Optimizing SELECT Statements”).
 
-Syntax of index-level hints:
+Sintaxe dos hints em nível de Index:
 
 ```sql
 hint_name([@query_block_name] tbl_name [index_name [, index_name] ...])
 hint_name(tbl_name@query_block_name [index_name [, index_name] ...])
 ```
 
-The syntax refers to these terms:
+A sintaxe refere-se a estes termos:
 
-* *`hint_name`*: These hint names are permitted:
+* *`hint_name`*: Estes nomes de hint são permitidos:
 
-  + `MRR`, `NO_MRR`: Enable or disable MRR for the specified table or indexes. MRR hints apply only to `InnoDB` and `MyISAM` tables.
+  + `MRR`, `NO_MRR`: Habilita ou desabilita MRR para a tabela ou Indexes especificados. Os hints MRR se aplicam apenas a tabelas `InnoDB` e `MyISAM`.
 
-  + `NO_ICP`: Disable ICP for the specified table or indexes. By default, ICP is a candidate optimization strategy, so there is no hint for enabling it.
+  + `NO_ICP`: Desabilita ICP para a tabela ou Indexes especificados. Por padrão, ICP é uma estratégia de otimização candidata, portanto, não há um hint para habilitá-la.
 
-  + `NO_RANGE_OPTIMIZATION`: Disable index range access for the specified table or indexes. This hint also disables Index Merge and Loose Index Scan for the table or indexes. By default, range access is a candidate optimization strategy, so there is no hint for enabling it.
+  + `NO_RANGE_OPTIMIZATION`: Desabilita o acesso ao Index por range para a tabela ou Indexes especificados. Este hint também desabilita Index Merge e Loose Index Scan para a tabela ou Indexes. Por padrão, o acesso por range é uma estratégia de otimização candidata, portanto, não há um hint para habilitá-la.
 
-    This hint may be useful when the number of ranges may be high and range optimization would require many resources.
+    Este hint pode ser útil quando o número de ranges pode ser alto e a otimização de range exigiria muitos recursos.
 
-* *`tbl_name`*: The table to which the hint applies.
+* *`tbl_name`*: A tabela à qual o hint se aplica.
 
-* *`index_name`*: The name of an index in the named table. The hint applies to all indexes that it names. If the hint names no indexes, it applies to all indexes in the table.
+* *`index_name`*: O nome de um Index na tabela nomeada. O hint se aplica a todos os Indexes que ele nomeia. Se o hint não nomear Indexes, ele se aplica a todos os Indexes da tabela.
 
-  To refer to a primary key, use the name `PRIMARY`. To see the index names for a table, use `SHOW INDEX`.
+  Para se referir a uma Primary Key, use o nome `PRIMARY`. Para ver os nomes dos Indexes de uma tabela, use `SHOW INDEX`.
 
-* *`query_block_name`*: The query block to which the hint applies. If the hint includes no leading `@query_block_name`, the hint applies to the query block in which it occurs. For `tbl_name@query_block_name` syntax, the hint applies to the named table in the named query block. To assign a name to a query block, see Optimizer Hints for Naming Query Blocks.
+* *`query_block_name`*: O Query Block ao qual o hint se aplica. Se o hint não incluir um `@query_block_name` principal, o hint se aplica ao Query Block em que ocorre. Para a sintaxe `tbl_name@query_block_name`, o hint se aplica à tabela nomeada no Query Block nomeado. Para atribuir um nome a um Query Block, consulte Optimizer Hints para Nomear Query Blocks.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT /*+ MRR(t1) */ * FROM t1 WHERE f2 <= 3 AND 3 <= f3;
@@ -261,33 +261,33 @@ INSERT INTO t3(f1, f2, f3)
    AND t1.f2 AND t2.f2 + 1 >= t1.f1 + 1);
 ```
 
-#### Subquery Optimizer Hints
+#### Optimizer Hints de Subquery
 
-Subquery hints affect whether to use semijoin transformations and which semijoin strategies to permit, and, when semijoins are not used, whether to use subquery materialization or `IN`-to-`EXISTS` transformations. For more information about these optimizations, see Section 8.2.2, “Optimizing Subqueries, Derived Tables, and View References”.
+Os hints de Subquery afetam se devem ser usadas transformações semijoin e quais estratégias semijoin devem ser permitidas e, quando semijoins não são usados, se deve ser usada a materialization de Subquery ou transformações `IN`-to-`EXISTS`. Para obter mais informações sobre essas otimizações, consulte a Seção 8.2.2, “Optimizing Subqueries, Derived Tables, and View References”.
 
-Syntax of hints that affect semijoin strategies:
+Sintaxe dos hints que afetam as estratégias semijoin:
 
 ```sql
 hint_name([@query_block_name] [strategy [, strategy] ...])
 ```
 
-The syntax refers to these terms:
+A sintaxe refere-se a estes termos:
 
-* *`hint_name`*: These hint names are permitted:
+* *`hint_name`*: Estes nomes de hint são permitidos:
 
-  + `SEMIJOIN`, `NO_SEMIJOIN`: Enable or disable the named semijoin strategies.
+  + `SEMIJOIN`, `NO_SEMIJOIN`: Habilita ou desabilita as estratégias semijoin nomeadas.
 
-* *`strategy`*: A semijoin strategy to be enabled or disabled. These strategy names are permitted: `DUPSWEEDOUT`, `FIRSTMATCH`, `LOOSESCAN`, `MATERIALIZATION`.
+* *`strategy`*: Uma estratégia semijoin a ser habilitada ou desabilitada. Estes nomes de estratégia são permitidos: `DUPSWEEDOUT`, `FIRSTMATCH`, `LOOSESCAN`, `MATERIALIZATION`.
 
-  For `SEMIJOIN` hints, if no strategies are named, semijoin is used if possible based on the strategies enabled according to the `optimizer_switch` system variable. If strategies are named but inapplicable for the statement, `DUPSWEEDOUT` is used.
+  Para hints `SEMIJOIN`, se nenhuma estratégia for nomeada, o semijoin será usado se possível com base nas estratégias habilitadas de acordo com a variável de sistema `optimizer_switch`. Se estratégias forem nomeadas, mas não forem aplicáveis ao comando, `DUPSWEEDOUT` será usado.
 
-  For `NO_SEMIJOIN` hints, if no strategies are named, semijoin is not used. If strategies are named that rule out all applicable strategies for the statement, `DUPSWEEDOUT` is used.
+  Para hints `NO_SEMIJOIN`, se nenhuma estratégia for nomeada, o semijoin não será usado. Se estratégias nomeadas excluírem todas as estratégias aplicáveis ao comando, `DUPSWEEDOUT` será usado.
 
-If one subquery is nested within another and both are merged into a semijoin of an outer query, any specification of semijoin strategies for the innermost query are ignored. `SEMIJOIN` and `NO_SEMIJOIN` hints can still be used to enable or disable semijoin transformations for such nested subqueries.
+Se uma Subquery estiver aninhada dentro de outra e ambas forem mescladas em um semijoin de uma Query externa, qualquer especificação de estratégias semijoin para a Query mais interna será ignorada. Os hints `SEMIJOIN` e `NO_SEMIJOIN` ainda podem ser usados para habilitar ou desabilitar transformações semijoin para tais subqueries aninhadas.
 
-If `DUPSWEEDOUT` is disabled, on occasion the optimizer may generate a query plan that is far from optimal. This occurs due to heuristic pruning during greedy search, which can be avoided by setting `optimizer_prune_level=0`.
+Se `DUPSWEEDOUT` for desabilitado, ocasionalmente o optimizer pode gerar um plano de Query que está longe de ser ideal. Isso ocorre devido à poda heurística durante a busca gulosa (greedy search), o que pode ser evitado definindo `optimizer_prune_level=0`.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT /*+ NO_SEMIJOIN(@subq1 FIRSTMATCH, LOOSESCAN) */ * FROM t2
@@ -296,60 +296,60 @@ SELECT /*+ SEMIJOIN(@subq1 MATERIALIZATION, DUPSWEEDOUT) */ * FROM t2
   WHERE t2.a IN (SELECT /*+ QB_NAME(subq1) */ a FROM t3);
 ```
 
-Syntax of hints that affect whether to use subquery materialization or `IN`-to-`EXISTS` transformations:
+Sintaxe dos hints que afetam se deve ser usada materialization de Subquery ou transformações `IN`-to-`EXISTS`:
 
 ```sql
 SUBQUERY([@query_block_name] strategy)
 ```
 
-The hint name is always `SUBQUERY`.
+O nome do hint é sempre `SUBQUERY`.
 
-For `SUBQUERY` hints, these *`strategy`* values are permitted: `INTOEXISTS`, `MATERIALIZATION`.
+Para hints `SUBQUERY`, estes valores de *`strategy`* são permitidos: `INTOEXISTS`, `MATERIALIZATION`.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT id, a IN (SELECT /*+ SUBQUERY(MATERIALIZATION) */ a FROM t1) FROM t2;
 SELECT * FROM t2 WHERE t2.a IN (SELECT /*+ SUBQUERY(INTOEXISTS) */ a FROM t1);
 ```
 
-For semijoin and `SUBQUERY` hints, a leading `@query_block_name` specifies the query block to which the hint applies. If the hint includes no leading `@query_block_name`, the hint applies to the query block in which it occurs. To assign a name to a query block, see Optimizer Hints for Naming Query Blocks.
+Para hints semijoin e `SUBQUERY`, um `@query_block_name` principal especifica o Query Block ao qual o hint se aplica. Se o hint não incluir um `@query_block_name` principal, o hint se aplica ao Query Block em que ocorre. Para atribuir um nome a um Query Block, consulte Optimizer Hints para Nomear Query Blocks.
 
-If a hint comment contains multiple subquery hints, the first is used. If there are other following hints of that type, they produce a warning. Following hints of other types are silently ignored.
+Se um comentário de hint contiver múltiplos hints de Subquery, o primeiro será usado. Se houver outros hints seguintes desse tipo, eles gerarão um warning. Hints seguintes de outros tipos são ignorados silenciosamente.
 
-#### Statement Execution Time Optimizer Hints
+#### Optimizer Hints de Tempo de Execução do Comando
 
-The `MAX_EXECUTION_TIME` hint is permitted only for `SELECT` statements. It places a limit *`N`* (a timeout value in milliseconds) on how long a statement is permitted to execute before the server terminates it:
+O hint `MAX_EXECUTION_TIME` é permitido apenas para comandos `SELECT`. Ele impõe um limite *`N`* (um valor de timeout em milissegundos) sobre por quanto tempo um comando tem permissão para ser executado antes que o servidor o encerre:
 
 ```sql
 MAX_EXECUTION_TIME(N)
 ```
 
-Example with a timeout of 1 second (1000 milliseconds):
+Exemplo com um timeout de 1 segundo (1000 milissegundos):
 
 ```sql
 SELECT /*+ MAX_EXECUTION_TIME(1000) */ * FROM t1 INNER JOIN t2 WHERE ...
 ```
 
-The `MAX_EXECUTION_TIME(N)` hint sets a statement execution timeout of *`N`* milliseconds. If this option is absent or *`N`* is 0, the statement timeout established by the `max_execution_time` system variable applies.
+O hint `MAX_EXECUTION_TIME(N)` define um timeout de execução de comando de *`N`* milissegundos. Se esta opção estiver ausente ou *`N`* for 0, aplica-se o timeout de comando estabelecido pela variável de sistema `max_execution_time`.
 
-The `MAX_EXECUTION_TIME` hint is applicable as follows:
+O hint `MAX_EXECUTION_TIME` é aplicável da seguinte forma:
 
-* For statements with multiple `SELECT` keywords, such as unions or statements with subqueries, `MAX_EXECUTION_TIME` applies to the entire statement and must appear after the first `SELECT`.
+* Para comandos com múltiplas palavras-chave `SELECT`, como unions ou comandos com subqueries, `MAX_EXECUTION_TIME` aplica-se ao comando inteiro e deve aparecer após o primeiro `SELECT`.
 
-* It applies to read-only `SELECT` statements. Statements that are not read only are those that invoke a stored function that modifies data as a side effect.
+* Ele se aplica a comandos `SELECT` somente leitura (*read-only*). Comandos que não são somente leitura são aqueles que invocam uma stored function que modifica dados como um efeito colateral.
 
-* It does not apply to `SELECT` statements in stored programs and is ignored.
+* Ele não se aplica a comandos `SELECT` em stored programs e é ignorado.
 
-#### Optimizer Hints for Naming Query Blocks
+#### Optimizer Hints para Nomear Query Blocks
 
-Table-level, index-level, and subquery optimizer hints permit specific query blocks to be named as part of their argument syntax. To create these names, use the `QB_NAME` hint, which assigns a name to the query block in which it occurs:
+Os optimizer hints em nível de tabela, em nível de Index e de Subquery permitem que Query Blocks específicos sejam nomeados como parte de sua sintaxe de argumento. Para criar esses nomes, use o hint `QB_NAME`, que atribui um nome ao Query Block no qual ocorre:
 
 ```sql
 QB_NAME(name)
 ```
 
-`QB_NAME` hints can be used to make explicit in a clear way which query blocks other hints apply to. They also permit all non-query block name hints to be specified within a single hint comment for easier understanding of complex statements. Consider the following statement:
+Os hints `QB_NAME` podem ser usados para tornar explícito de forma clara a quais Query Blocks outros hints se aplicam. Eles também permitem que todos os hints sem nome de Query Block sejam especificados dentro de um único comentário de hint para facilitar a compreensão de comandos complexos. Considere o seguinte comando:
 
 ```sql
 SELECT ...
@@ -357,7 +357,7 @@ SELECT ...
   FROM (SELECT ... FROM ...)) ...
 ```
 
-`QB_NAME` hints assign names to query blocks in the statement:
+Os hints `QB_NAME` atribuem nomes aos Query Blocks no comando:
 
 ```sql
 SELECT /*+ QB_NAME(qb1) */ ...
@@ -365,7 +365,7 @@ SELECT /*+ QB_NAME(qb1) */ ...
   FROM (SELECT /*+ QB_NAME(qb3) */ ... FROM ...)) ...
 ```
 
-Then other hints can use those names to refer to the appropriate query blocks:
+Então, outros hints podem usar esses nomes para se referir aos Query Blocks apropriados:
 
 ```sql
 SELECT /*+ QB_NAME(qb1) MRR(@qb1 t1) BKA(@qb2) NO_MRR(@qb3t1 idx1, id2) */ ...
@@ -373,22 +373,22 @@ SELECT /*+ QB_NAME(qb1) MRR(@qb1 t1) BKA(@qb2) NO_MRR(@qb3t1 idx1, id2) */ ...
   FROM (SELECT /*+ QB_NAME(qb3) */ ... FROM ...)) ...
 ```
 
-The resulting effect is as follows:
+O efeito resultante é o seguinte:
 
-* `MRR(@qb1 t1)` applies to table `t1` in query block `qb1`.
+* `MRR(@qb1 t1)` aplica-se à tabela `t1` no Query Block `qb1`.
 
-* `BKA(@qb2)` applies to query block `qb2`.
+* `BKA(@qb2)` aplica-se ao Query Block `qb2`.
 
-* `NO_MRR(@qb3 t1 idx1, id2)` applies to indexes `idx1` and `idx2` in table `t1` in query block `qb3`.
+* `NO_MRR(@qb3 t1 idx1, id2)` aplica-se aos Indexes `idx1` e `idx2` na tabela `t1` no Query Block `qb3`.
 
-Query block names are identifiers and follow the usual rules about what names are valid and how to quote them (see Section 9.2, “Schema Object Names”). For example, a query block name that contains spaces must be quoted, which can be done using backticks:
+Os nomes dos Query Blocks são identificadores e seguem as regras usuais sobre quais nomes são válidos e como citá-los (consulte a Seção 9.2, “Schema Object Names”). Por exemplo, um nome de Query Block que contenha espaços deve ser citado, o que pode ser feito usando crases:
 
 ```sql
 SELECT /*+ BKA(@`my hint name`) */ ...
   FROM (SELECT /*+ QB_NAME(`my hint name`) */ ...) ...
 ```
 
-If the `ANSI_QUOTES` SQL mode is enabled, it is also possible to quote query block names within double quotation marks:
+Se o modo SQL `ANSI_QUOTES` estiver habilitado, também é possível citar nomes de Query Blocks entre aspas duplas:
 
 ```sql
 SELECT /*+ BKA(@"my hint name") */ ...

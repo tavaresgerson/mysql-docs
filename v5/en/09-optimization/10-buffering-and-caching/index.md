@@ -1,11 +1,11 @@
-## 8.10 Buffering and Caching
+## 8.10 Buffering e Caching
 
-8.10.1 InnoDB Buffer Pool Optimization
+8.10.1 Otimização do Buffer Pool do InnoDB
 
-8.10.2 The MyISAM Key Cache
+8.10.2 O Key Cache do MyISAM
 
-8.10.3 The MySQL Query Cache
+8.10.3 O Query Cache do MySQL
 
-8.10.4 Caching of Prepared Statements and Stored Programs
+8.10.4 Caching de Prepared Statements e Stored Programs
 
-MySQL uses several strategies that cache information in memory buffers to increase performance.
+O MySQL utiliza diversas estratégias que armazenam informações em buffers de memória (caching) para aumentar a performance.

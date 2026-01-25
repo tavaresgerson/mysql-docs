@@ -1,39 +1,45 @@
-### 2.10.10 Upgrading MySQL with Directly-Downloaded RPM Packages
+### 2.10.10 Atualizando o MySQL com Pacotes RPM Baixados Diretamente
 
-It is preferable to use the MySQL Yum repository or [MySQL SLES Repository](https://dev.mysql.com/downloads/repo/suse/) to upgrade MySQL on RPM-based platforms. However, if you have to upgrade MySQL using the RPM packages downloaded directly from the [MySQL Developer Zone](https://dev.mysql.com/) (see Section 2.5.5, “Installing MySQL on Linux Using RPM Packages from Oracle” for information on the packages), go to the folder that contains all the downloaded packages (and, preferably, no other RPM packages with similar names), and issue the following command:
+É preferível usar o repositório Yum do MySQL ou [Repositório SLES do MySQL] para atualizar o MySQL em plataformas baseadas em RPM. No entanto, se você precisar atualizar o MySQL usando os pacotes RPM baixados diretamente da [MySQL Developer Zone] (consulte a Seção 2.5.5, “Instalando o MySQL no Linux Usando Pacotes RPM da Oracle” para obter informações sobre os pacotes), navegue até a pasta que contém todos os pacotes baixados (e, preferencialmente, nenhum outro pacote RPM com nomes semelhantes) e execute o seguinte comando:
 
 ```sql
 yum install mysql-community-{server,client,common,libs}-*
 ```
 
-Replace **yum** with **zypper** for SLES systems, and with **dnf** for dnf-enabled systems.
+Substitua **yum** por **zypper** para sistemas SLES e por **dnf** para sistemas habilitados para dnf.
 
-While it is much preferable to use a high-level package management tool like **yum** to install the packages, users who preferred direct **rpm** commands can replace the **yum install** command with the **rpm -Uvh** command; however, using **rpm -Uvh** instead makes the installation process more prone to failure, due to potential dependency issues the installation process might run into.
+Embora seja muito preferível usar uma ferramenta de gerenciamento de pacotes de alto nível como **yum** para instalar os pacotes, usuários que preferem comandos **rpm** diretos podem substituir o comando **yum install** pelo comando **rpm -Uvh**; no entanto, usar **rpm -Uvh** torna o processo de instalação mais propenso a falhas, devido a potenciais problemas de dependência que o processo de instalação pode encontrar.
 
-For an upgrade installation using RPM packages, the MySQL server is automatically restarted at the end of the installation if it was running when the upgrade installation began. If the server was not running when the upgrade installation began, you have to restart the server yourself after the upgrade installation is completed; do that with, for example, the follow command:
+Para uma instalação de atualização usando pacotes RPM, o MySQL server é reiniciado automaticamente ao final da instalação se estava em execução quando a instalação da atualização começou. Se o server não estava em execução quando a instalação da atualização começou, você deve reiniciar o server por conta própria após a conclusão da instalação da atualização; faça isso com, por exemplo, o seguinte comando:
 
 ```sql
 service mysqld start
 ```
 
-Once the server restarts, run **mysql_upgrade** to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql_upgrade** also performs other functions; see Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables” for details.
+Assim que o server reiniciar, execute **mysql\_upgrade** para verificar e possivelmente resolver quaisquer incompatibilidades entre os dados antigos e o software atualizado. O **mysql\_upgrade** também executa outras funções; consulte a Seção 4.4.7, “mysql\_upgrade — Verificar e Atualizar Tabelas MySQL” para obter detalhes.
 
-Note
+Nota
 
-Because of the dependency relationships among the RPM packages, all of the installed packages must be of the same version. Therefore, always update all your installed packages for MySQL. For example, do not just update the server without also upgrading the client, the common files for server and client libraries, and so on.
+Devido às relações de dependência entre os pacotes RPM, todos os pacotes instalados devem ser da mesma versão. Portanto, sempre atualize todos os seus pacotes instalados para MySQL. Por exemplo, não atualize apenas o server sem também atualizar o client, os arquivos comuns para bibliotecas de server e client, e assim por diante.
 
-**Migration and Upgrade from installations by older RPM packages.** Some older versions of MySQL Server RPM packages have names in the form of MySQL-\* (for example, MySQL-server-\* and MySQL-client-\*). The latest versions of RPMs, when installed using the standard package management tool (**yum**, **dnf**, or **zypper**), seamlessly upgrade those older installations, making it unnecessary to uninstall those old packages before installing the new ones. Here are some differences in behavior between the older and the current RPM packages:
+**Migração e Atualização a partir de instalações de pacotes RPM mais antigos.** Algumas versões mais antigas de pacotes RPM do MySQL Server tinham nomes no formato MySQL-\* (por exemplo, MySQL-server-\* e MySQL-client-\*). As versões mais recentes de RPMs, quando instaladas usando a ferramenta de gerenciamento de pacotes padrão (**yum**, **dnf** ou **zypper**), atualizam perfeitamente essas instalações mais antigas, tornando desnecessário desinstalar esses pacotes antigos antes de instalar os novos. Aqui estão algumas diferenças de comportamento entre os pacotes RPM mais antigos e os atuais:
 
-**Table 2.16 Differences Between the Previous and the Current RPM Packages for Installing MySQL**
+**Tabela 2.16 Diferenças Entre os Pacotes RPM Anteriores e os Atuais para Instalar o MySQL**
 
-<table frame="all" summary="The differences between the previous and current RPM Packages for installing MySQL."><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Feature</th> <th>Behavior of Previous Packages</th> <th>Behavior of Current Packages</th> </tr></thead><tbody><tr> <th>Service starts after installation is finished</th> <td>Yes</td> <td>No, unless it is an upgrade installation, and the server was running when the upgrade began.</td> </tr><tr> <th>Service name</th> <td>mysql</td> <td><p> For RHEL, Oracle Linux, CentOS, and Fedora: <span><strong>mysqld</strong></span> </p><p> For SLES: <span><strong>mysql</strong></span> </p></td> </tr><tr> <th>Error log file</th> <td>At <code>/var/lib/mysql/<em><code>hostname</code></em>.err</code></td> <td><p> For RHEL, Oracle Linux, CentOS, and Fedora: at <code>/var/log/mysqld.log</code> </p><p> For SLES: at <code>/var/log/mysql/mysqld.log</code> </p></td> </tr><tr> <th>Shipped with the <code>/etc/my.cnf</code> file</th> <td>No</td> <td>Yes</td> </tr><tr> <th>Multilib support</th> <td>No</td> <td>Yes</td> </tr></tbody></table>
+| Recurso | Comportamento de Pacotes Anteriores | Comportamento de Pacotes Atuais |
+| :--- | :--- | :--- |
+| Serviço inicia após a conclusão da instalação | Sim | Não, a menos que seja uma instalação de atualização, e o server estivesse em execução quando a atualização começou. |
+| Nome do Serviço | mysql | <p> Para RHEL, Oracle Linux, CentOS e Fedora: <span><strong>mysqld</strong></span> </p><p> Para SLES: <span><strong>mysql</strong></span> </p> |
+| Arquivo de Log de Erros | Em <code>/var/lib/mysql/<em><code>hostname</code></em>.err</code> | <p> Para RHEL, Oracle Linux, CentOS e Fedora: em <code>/var/log/mysqld.log</code> </p><p> Para SLES: em <code>/var/log/mysql/mysqld.log</code> </p> |
+| Enviado com o arquivo <code>/etc/my.cnf</code> | Não | Sim |
+| Suporte a Multilib | Não | Sim |
 
-Note
+Nota
 
-Installation of previous versions of MySQL using older packages might have created a configuration file named `/usr/my.cnf`. It is highly recommended that you examine the contents of the file and migrate the desired settings inside to the file `/etc/my.cnf` file, then remove `/usr/my.cnf`.
+A instalação de versões anteriores do MySQL usando pacotes mais antigos pode ter criado um arquivo de configuração chamado `/usr/my.cnf`. É altamente recomendável que você examine o conteúdo do arquivo e migre as configurações desejadas para o arquivo `/etc/my.cnf` e, em seguida, remova `/usr/my.cnf`.
 
-**Upgrading to MySQL Enterprise Server.** Upgrading from a community version to a commercial version of MySQL requires that you first uninstall the community version and then install the commercial version. In this case, you must restart the server manually after the upgrade.
+**Atualizando para o MySQL Enterprise Server.** A atualização de uma versão community para uma versão comercial do MySQL requer que você primeiro desinstale a versão community e depois instale a versão comercial. Neste caso, você deve reiniciar o server manualmente após a atualização.
 
-**Interoperability with operating system native MySQL packages.** Many Linux distributions ship MySQL as an integrated part of the operating system. The latest versions of RPMs from Oracle, when installed using the standard package management tool (**yum**, **dnf**, or **zypper**), seamlessly upgrades and replaces the version of MySQL that comes with the operating system, and the package manager automatically replaces system compatibility packages such as `mysql-community-libs-compat` with the relevant new versions.
+**Interoperabilidade com pacotes MySQL nativos do sistema operacional.** Muitas distribuições Linux fornecem o MySQL como uma parte integrada do sistema operacional. As versões mais recentes de RPMs da Oracle, quando instaladas usando a ferramenta de gerenciamento de pacotes padrão (**yum**, **dnf** ou **zypper**), atualizam e substituem perfeitamente a versão do MySQL que acompanha o sistema operacional, e o gerenciador de pacotes substitui automaticamente os pacotes de compatibilidade do sistema, como `mysql-community-libs-compat`, pelas novas versões relevantes.
 
-**Upgrading from non-native MySQL packages.** If you have installed MySQL with third-party packages NOT from your Linux distribution's native software repository (for example, packages directly downloaded from the vendor), you must uninstall all those packages before you can upgrade using the packages from Oracle.
+**Atualizando a partir de pacotes MySQL não nativos.** Se você instalou o MySQL com pacotes de terceiros que NÃO são do repositório de software nativo de sua distribuição Linux (por exemplo, pacotes baixados diretamente do fornecedor), você deve desinstalar todos esses pacotes antes de poder atualizar usando os pacotes da Oracle.

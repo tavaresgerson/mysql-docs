@@ -1,33 +1,33 @@
-### 2.9.5 Starting and Stopping MySQL Automatically
+### 2.9.5 Iniciando e Parando o MySQL Automaticamente
 
-This section discusses methods for starting and stopping the MySQL server.
+Esta seção discute métodos para iniciar e parar o MySQL Server.
 
-Generally, you start the **mysqld** server in one of these ways:
+Geralmente, você inicia o **mysqld** server de uma destas maneiras:
 
-* Invoke **mysqld** directly. This works on any platform.
+* Invocando o **mysqld** diretamente. Isso funciona em qualquer plataforma.
 
-* On Windows, you can set up a MySQL service that runs automatically when Windows starts. See Section 2.3.4.8, “Starting MySQL as a Windows Service”.
+* No Windows, você pode configurar um serviço MySQL que é executado automaticamente quando o Windows inicia. Consulte a Seção 2.3.4.8, “Iniciando o MySQL como um Serviço do Windows”.
 
-* On Unix and Unix-like systems, you can invoke **mysqld_safe**, which tries to determine the proper options for **mysqld** and then runs it with those options. See Section 4.3.2, “mysqld_safe — MySQL Server Startup Script”.
+* Em sistemas Unix e semelhantes ao Unix, você pode invocar o **mysqld_safe**, que tenta determinar as Options apropriadas para o **mysqld** e, em seguida, o executa com essas Options. Consulte a Seção 4.3.2, “mysqld_safe — Script de Inicialização do MySQL Server”.
 
-* On Linux systems that support systemd, you can use it to control the server. See Section 2.5.10, “Managing MySQL Server with systemd”.
+* Em sistemas Linux que suportam systemd, você pode usá-lo para controlar o Server. Consulte a Seção 2.5.10, “Gerenciando o MySQL Server com systemd”.
 
-* On systems that use System V-style run directories (that is, `/etc/init.d` and run-level specific directories), invoke **mysql.server**. This script is used primarily at system startup and shutdown. It usually is installed under the name `mysql`. The **mysql.server** script starts the server by invoking **mysqld_safe**. See Section 4.3.3, “mysql.server — MySQL Server Startup Script”.
+* Em sistemas que usam diretórios de execução no estilo System V (ou seja, `/etc/init.d` e diretórios específicos de run-level), invoque o **mysql.server**. Este script é usado principalmente na inicialização e desligamento do sistema (startup and shutdown). Ele geralmente é instalado com o nome `mysql`. O script **mysql.server** inicia o Server invocando o **mysqld_safe**. Consulte a Seção 4.3.3, “mysql.server — Script de Inicialização do MySQL Server”.
 
-* On macOS, install a launchd daemon to enable automatic MySQL startup at system startup. The daemon starts the server by invoking **mysqld_safe**. For details, see Section 2.4.3, “Installing a MySQL Launch Daemon”. A MySQL Preference Pane also provides control for starting and stopping MySQL through the System Preferences. See Section 2.4.4, “Installing and Using the MySQL Preference Pane”.
+* No macOS, instale um launchd daemon para habilitar a inicialização automática do MySQL no startup do sistema. O daemon inicia o Server invocando o **mysqld_safe**. Para detalhes, consulte a Seção 2.4.3, “Instalando um MySQL Launch Daemon”. Um MySQL Preference Pane também fornece controle para iniciar e parar o MySQL através das System Preferences. Consulte a Seção 2.4.4, “Instalando e Usando o MySQL Preference Pane”.
 
-* On Solaris, use the service management framework (SMF) system to initiate and control MySQL startup.
+* No Solaris, use a estrutura de gerenciamento de serviços (service management framework - SMF) para iniciar e controlar o startup do MySQL.
 
-systemd, the **mysqld_safe** and **mysql.server** scripts, Solaris SMF, and the macOS Startup Item (or MySQL Preference Pane) can be used to start the server manually, or automatically at system startup time. systemd, **mysql.server**, and the Startup Item also can be used to stop the server.
+O systemd, os scripts **mysqld_safe** e **mysql.server**, o SMF do Solaris e o Startup Item do macOS (ou MySQL Preference Pane) podem ser usados para iniciar o Server manualmente ou automaticamente no momento do startup do sistema. O systemd, **mysql.server** e o Startup Item também podem ser usados para parar o Server.
 
-The following table shows which option groups the server and startup scripts read from option files.
+A tabela a seguir mostra quais grupos de Options o Server e os scripts de inicialização leem dos arquivos de Option.
 
-**Table 2.15 MySQL Startup Scripts and Supported Server Option Groups**
+**Tabela 2.15 Scripts de Inicialização do MySQL e Grupos de Options do Server Suportados**
 
-<table summary="MySQL startup scripts and the server option groups they support."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Script</th> <th>Option Groups</th> </tr></thead><tbody><tr> <td><span><strong>mysqld</strong></span></td> <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld-<em><code>major_version</code></em>]</code></td> </tr><tr> <td><span><strong>mysqld_safe</strong></span></td> <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld_safe]</code></td> </tr><tr> <td><span><strong>mysql.server</strong></span></td> <td><code>[mysqld]</code>, <code>[mysql.server]</code>, <code>[server]</code></td> </tr></tbody></table>
+<table summary="Scripts de inicialização do MySQL e os grupos de Options do Server que eles suportam."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Script</th> <th>Grupos de Options</th> </tr></thead><tbody><tr> <td><span><strong>mysqld</strong></span></td> <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld-<em><code>major_version</code></em>]</code></td> </tr><tr> <td><span><strong>mysqld_safe</strong></span></td> <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld_safe]</code></td> </tr><tr> <td><span><strong>mysql.server</strong></span></td> <td><code>[mysqld]</code>, <code>[mysql.server]</code>, <code>[server]</code></td> </tr> </tbody></table>
 
-`[mysqld-major_version]` means that groups with names like `[mysqld-5.6]` and `[mysqld-5.7]` are read by servers having versions 5.6.x, 5.7.x, and so forth. This feature can be used to specify options that can be read only by servers within a given release series.
+`[mysqld-major_version]` significa que grupos com nomes como `[mysqld-5.6]` e `[mysqld-5.7]` são lidos por Servers com as versões 5.6.x, 5.7.x, e assim por diante. Este recurso pode ser usado para especificar Options que podem ser lidas apenas por Servers dentro de uma determinada série de release.
 
-For backward compatibility, **mysql.server** also reads the `[mysql_server]` group and **mysqld_safe** also reads the `[safe_mysqld]` group. To be current, you should update your option files to use the `[mysql.server]` and `[mysqld_safe]` groups instead.
+Para compatibilidade retroativa (backward compatibility), o **mysql.server** também lê o grupo `[mysql_server]` e o **mysqld_safe** também lê o grupo `[safe_mysqld]`. Para estar atualizado, você deve atualizar seus arquivos de Option para usar os grupos `[mysql.server]` e `[mysqld_safe]` em vez disso.
 
-For more information on MySQL configuration files and their structure and contents, see Section 4.2.2.2, “Using Option Files”.
+Para mais informações sobre arquivos de configuração do MySQL e sua estrutura e conteúdo, consulte a Seção 4.2.2.2, “Usando Arquivos de Option”.

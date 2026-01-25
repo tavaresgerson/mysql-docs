@@ -1,14 +1,14 @@
-## 4.7 Program Development Utilities
+## 4.7 Utilitários para Desenvolvimento de Programas
 
-4.7.1 mysql_config — Display Options for Compiling Clients
+4.7.1 mysql_config — Exibir Opções para Compilação de Clients
 
-4.7.2 my_print_defaults — Display Options from Option Files
+4.7.2 my_print_defaults — Exibir Opções de Option Files
 
-4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols
+4.7.3 resolve_stack_dump — Resolver Dump Numérico de Stack Trace para Símbolos
 
-This section describes some utilities that you may find useful when developing MySQL programs.
+Esta seção descreve alguns utilitários que podem ser úteis ao desenvolver programas MySQL.
 
-In shell scripts, you can use the **my_print_defaults** program to parse option files and see what options would be used by a given program. The following example shows the output that **my_print_defaults** might produce when asked to show the options found in the `[client]` and `[mysql]` groups:
+Em shell scripts, você pode usar o programa **my_print_defaults** para fazer o parse de option files e ver quais opções seriam usadas por um determinado programa. O exemplo a seguir mostra a saída que **my_print_defaults** pode produzir quando solicitado a mostrar as opções encontradas nos grupos `[client]` e `[mysql]` :
 
 ```sql
 $> my_print_defaults client mysql
@@ -17,6 +17,6 @@ $> my_print_defaults client mysql
 --no-auto-rehash
 ```
 
-Note for developers: Option file handling is implemented in the C client library simply by processing all options in the appropriate group or groups before any command-line arguments. This works well for programs that use the last instance of an option that is specified multiple times. If you have a C or C++ program that handles multiply specified options this way but that does not read option files, you need add only two lines to give it that capability. Check the source code of any of the standard MySQL clients to see how to do this.
+Nota para desenvolvedores: O manuseio de option files é implementado na C client library simplesmente processando todas as opções no grupo ou grupos apropriados antes de quaisquer argumentos de linha de comando. Isso funciona bem para programas que usam a última instância de uma opção que é especificada múltiplas vezes. Se você tem um programa C ou C++ que lida com opções especificadas múltiplas vezes dessa forma, mas que não lê option files, você precisa adicionar apenas duas linhas para dar a ele essa capacidade. Verifique o código-fonte de qualquer um dos clients padrão do MySQL para ver como fazer isso.
 
-Several other language interfaces to MySQL are based on the C client library, and some of them provide a way to access option file contents. These include Perl and Python. For details, see the documentation for your preferred interface.
+Várias outras interfaces de linguagem para MySQL são baseadas na C client library, e algumas delas fornecem uma maneira de acessar o conteúdo dos option files. Estes incluem Perl e Python. Para detalhes, consulte a documentação da sua interface preferida.

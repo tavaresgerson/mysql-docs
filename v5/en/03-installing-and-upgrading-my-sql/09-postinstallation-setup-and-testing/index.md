@@ -1,34 +1,34 @@
-## 2.9 Postinstallation Setup and Testing
+## 2.9 Configuração e Teste Pós-instalação
 
-2.9.1 Initializing the Data Directory
+2.9.1 Inicializando o Data Directory
 
-2.9.2 Starting the Server
+2.9.2 Iniciando o Servidor
 
-2.9.3 Testing the Server
+2.9.3 Testando o Servidor
 
-2.9.4 Securing the Initial MySQL Account
+2.9.4 Protegendo a Conta Inicial do MySQL
 
-2.9.5 Starting and Stopping MySQL Automatically
+2.9.5 Iniciando e Parando o MySQL Automaticamente
 
-This section discusses tasks that you should perform after installing MySQL:
+Esta seção aborda tarefas que você deve realizar após instalar o MySQL:
 
-* If necessary, initialize the data directory and create the MySQL grant tables. For some MySQL installation methods, data directory initialization may be done for you automatically:
+* Se necessário, inicialize o data directory e crie as grant tables do MySQL. Para alguns métodos de instalação do MySQL, a inicialização do data directory pode ser feita automaticamente:
 
-  + Windows installation operations performed by MySQL Installer.
-  + Installation on Linux using a server RPM or Debian distribution from Oracle.
+  + Operações de instalação no Windows realizadas pelo MySQL Installer.
+  + Instalação no Linux usando um RPM de servidor ou distribuição Debian da Oracle.
 
-  + Installation using the native packaging system on many platforms, including Debian Linux, Ubuntu Linux, Gentoo Linux, and others.
+  + Instalação usando o sistema de empacotamento nativo em muitas plataformas, incluindo Debian Linux, Ubuntu Linux, Gentoo Linux e outras.
 
-  + Installation on macOS using a DMG distribution.
+  + Instalação no macOS usando uma distribuição DMG.
 
-  For other platforms and installation types, you must initialize the data directory manually. These include installation from generic binary and source distributions on Unix and Unix-like system, and installation from a ZIP Archive package on Windows. For instructions, see Section 2.9.1, “Initializing the Data Directory”.
+  Para outras plataformas e tipos de instalação, você deve inicializar o data directory manualmente. Isso inclui a instalação a partir de distribuições binárias genéricas e de código-fonte em sistemas Unix e semelhantes ao Unix, e a instalação a partir de um pacote ZIP Archive no Windows. Para instruções, consulte a Seção 2.9.1, “Inicializando o Data Directory”.
 
-* Start the server and make sure that it can be accessed. For instructions, see Section 2.9.2, “Starting the Server”, and Section 2.9.3, “Testing the Server”.
+* Inicie o servidor e certifique-se de que ele possa ser acessado. Para instruções, consulte a Seção 2.9.2, “Iniciando o Servidor” e a Seção 2.9.3, “Testando o Servidor”.
 
-* Assign passwords to the initial `root` account in the grant tables, if that was not already done during data directory initialization. Passwords prevent unauthorized access to the MySQL server. For instructions, see Section 2.9.4, “Securing the Initial MySQL Account”.
+* Atribua senhas à conta inicial `root` nas grant tables, caso isso ainda não tenha sido feito durante a inicialização do data directory. Senhas impedem o acesso não autorizado ao servidor MySQL. Para instruções, consulte a Seção 2.9.4, “Protegendo a Conta Inicial do MySQL”.
 
-* Optionally, arrange for the server to start and stop automatically when your system starts and stops. For instructions, see Section 2.9.5, “Starting and Stopping MySQL Automatically”.
+* Opcionalmente, configure para que o servidor inicie e pare automaticamente quando seu sistema iniciar e parar. Para instruções, consulte a Seção 2.9.5, “Iniciando e Parando o MySQL Automaticamente”.
 
-* Optionally, populate time zone tables to enable recognition of named time zones. For instructions, see Section 5.1.13, “MySQL Server Time Zone Support”.
+* Opcionalmente, preencha as tabelas de time zone para permitir o reconhecimento de time zones nomeadas. Para instruções, consulte a Seção 5.1.13, “Suporte a Time Zone do Servidor MySQL”.
 
-When you are ready to create additional user accounts, you can find information on the MySQL access control system and account management in Section 6.2, “Access Control and Account Management”.
+Quando estiver pronto para criar contas de usuário adicionais, você pode encontrar informações sobre o sistema de controle de acesso e gerenciamento de contas do MySQL na Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”.

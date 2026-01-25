@@ -1,6 +1,6 @@
-### 10.8.4 Collation Coercibility in Expressions
+### 10.8.4 Coercibilidade de Collation em Expressões
 
-In the great majority of statements, it is obvious what collation MySQL uses to resolve a comparison operation. For example, in the following cases, it should be clear that the collation is the collation of column `x`:
+Na grande maioria das instruções, é óbvio qual collation o MySQL usa para resolver uma operação de comparação. Por exemplo, nos seguintes casos, deve ficar claro que o collation é o collation da coluna `x`:
 
 ```sql
 SELECT x FROM T ORDER BY x;
@@ -8,55 +8,59 @@ SELECT x FROM T WHERE x = x;
 SELECT DISTINCT x FROM T;
 ```
 
-However, with multiple operands, there can be ambiguity. For example, this statement performs a comparison between the column `x` and the string literal `'Y'`:
+No entanto, com múltiplos operands, pode haver ambiguidade. Por exemplo, esta instrução realiza uma comparação entre a coluna `x` e o string literal `'Y'`:
 
 ```sql
 SELECT x FROM T WHERE x = 'Y';
 ```
 
-If `x` and `'Y'` have the same collation, there is no ambiguity about the collation to use for the comparison. But if they have different collations, should the comparison use the collation of `x`, or of `'Y'`? Both `x` and `'Y'` have collations, so which collation takes precedence?
+Se `x` e `'Y'` tiverem o mesmo collation, não há ambiguidade sobre qual collation usar para a comparação. Mas se eles tiverem collations diferentes, a comparação deve usar o collation de `x` ou de `'Y'`? Ambos, `x` e `'Y'`, têm collations. Então, qual collation tem precedência?
 
-A mix of collations may also occur in contexts other than comparison. For example, a multiple-argument concatenation operation such as `CONCAT(x,'Y')` combines its arguments to produce a single string. What collation should the result have?
+Uma mistura de collations também pode ocorrer em contextos que não sejam de comparação. Por exemplo, uma operação de concatenação de múltiplos argumentos, como `CONCAT(x,'Y')`, combina seus argumentos para produzir um único string. Qual collation o resultado deve ter?
 
-To resolve questions like these, MySQL checks whether the collation of one item can be coerced to the collation of the other. MySQL assigns coercibility values as follows:
+Para resolver questões como estas, o MySQL verifica se o collation de um item pode ser coagido ao collation do outro. O MySQL atribui valores de coercibilidade da seguinte forma:
 
-* An explicit `COLLATE` clause has a coercibility of 0 (not coercible at all).
+* Uma cláusula `COLLATE` explícita tem uma coercibilidade de 0 (não coercível de forma alguma).
 
-* The concatenation of two strings with different collations has a coercibility of 1.
+* A concatenação de dois strings com collations diferentes tem uma coercibilidade de 1.
 
-* The collation of a column or a stored routine parameter or local variable has a coercibility of 2.
+* O collation de uma column ou de um parameter de rotina armazenada ou variável local tem uma coercibilidade de 2.
 
-* A “system constant” (the string returned by functions such as `USER()` or `VERSION()`) has a coercibility of 3.
+* Uma "constante de sistema" (o string retornado por funções como `USER()` ou `VERSION()`) tem uma coercibilidade de 3.
 
-* The collation of a literal has a coercibility of 4.
-* The collation of a numeric or temporal value has a coercibility of 5.
+* O collation de um literal tem uma coercibilidade de 4.
+* O collation de um valor numérico ou temporal tem uma coercibilidade de 5.
 
-* `NULL` or an expression that is derived from `NULL` has a coercibility of 6.
+* `NULL` ou uma expressão derivada de `NULL` tem uma coercibilidade de 6.
 
-MySQL uses coercibility values with the following rules to resolve ambiguities:
+O MySQL usa valores de coercibilidade com as seguintes regras para resolver ambiguidades:
 
-* Use the collation with the lowest coercibility value.
-* If both sides have the same coercibility, then:
+* Use o collation com o menor valor de coercibilidade.
+* Se ambos os lados tiverem a mesma coercibilidade, então:
 
-  + If both sides are Unicode, or both sides are not Unicode, it is an error.
+  + Se ambos os lados forem Unicode, ou se ambos os lados não forem Unicode, é um erro.
 
-  + If one of the sides has a Unicode character set, and another side has a non-Unicode character set, the side with Unicode character set wins, and automatic character set conversion is applied to the non-Unicode side. For example, the following statement does not return an error:
+  + Se um dos lados tiver um character set Unicode, e o outro lado tiver um character set não-Unicode, o lado com o character set Unicode prevalece, e a conversão automática de character set é aplicada ao lado não-Unicode. Por exemplo, a seguinte instrução não retorna um erro:
 
     ```sql
     SELECT CONCAT(utf8_column, latin1_column) FROM t1;
     ```
 
-    It returns a result that has a character set of `utf8` and the same collation as `utf8_column`. Values of `latin1_column` are automatically converted to `utf8` before concatenating.
+    Ela retorna um resultado que tem um character set `utf8` e o mesmo collation que `utf8_column`. Os valores de `latin1_column` são automaticamente convertidos para `utf8` antes da concatenação.
 
-  + For an operation with operands from the same character set but that mix a `_bin` collation and a `_ci` or `_cs` collation, the `_bin` collation is used. This is similar to how operations that mix nonbinary and binary strings evaluate the operands as binary strings, applied to collations rather than data types.
+  + Para uma operação com operands do mesmo character set, mas que misturam um collation `_bin` e um collation `_ci` ou `_cs`, o collation `_bin` é usado. Isso é semelhante a como as operações que misturam strings não binários e binários avaliam os operands como strings binários, aplicado a collations em vez de tipos de dados.
 
-Although automatic conversion is not in the SQL standard, the standard does say that every character set is (in terms of supported characters) a “subset” of Unicode. Because it is a well-known principle that “what applies to a superset can apply to a subset,” we believe that a collation for Unicode can apply for comparisons with non-Unicode strings. More generally, MySQL uses the concept of character set repertoire, which can sometimes be used to determine subset relationships among character sets and enable conversion of operands in operations that would otherwise produce an error. See Section 10.2.1, “Character Set Repertoire”.
+Embora a conversão automática não esteja no padrão SQL, o padrão afirma que todo character set é (em termos de caracteres suportados) um "subset" do Unicode. Por ser um princípio bem conhecido que "o que se aplica a um superset pode se aplicar a um subset", acreditamos que um collation para Unicode pode ser aplicado para comparações com strings não-Unicode. Mais geralmente, o MySQL usa o conceito de repertório de character set, que pode às vezes ser usado para determinar relações de subset entre character sets e habilitar a conversão de operands em operações que, de outra forma, produziriam um erro. Veja Seção 10.2.1, "Repertório de Character Set".
 
-The following table illustrates some applications of the preceding rules.
+A tabela a seguir ilustra algumas aplicações das regras precedentes.
 
-<table summary="Comparisons and the collation used for each comparison."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparison</th> <th>Collation Used</th> </tr></thead><tbody><tr> <td><code>column1 = 'A'</code></td> <td>Use collation of <code>column1</code></td> </tr><tr> <td><code>column1 = 'A' COLLATE x</code></td> <td>Use collation of <code>'A' COLLATE x</code></td> </tr><tr> <td><code>column1 COLLATE x = 'A' COLLATE y</code></td> <td>Error</td> </tr></tbody></table>
+| Comparação | Collation Usado |
+|---|---|
+| `column1 = 'A'` | Usa o collation de `column1` |
+| `column1 = 'A' COLLATE x` | Usa o collation de `'A' COLLATE x` |
+| `column1 COLLATE x = 'A' COLLATE y` | Erro |
 
-To determine the coercibility of a string expression, use the `COERCIBILITY()` function (see Section 12.15, “Information Functions”):
+Para determinar a coercibilidade de uma expressão string, use a função `COERCIBILITY()` (veja Seção 12.15, "Funções de Informação"):
 
 ```sql
 mysql> SELECT COERCIBILITY(_utf8'A' COLLATE utf8_bin);
@@ -71,4 +75,4 @@ mysql> SELECT COERCIBILITY(NULL);
         -> 6
 ```
 
-For implicit conversion of a numeric or temporal value to a string, such as occurs for the argument `1` in the expression `CONCAT(1, 'abc')`, the result is a character (nonbinary) string that has a character set and collation determined by the `character_set_connection` and `collation_connection` system variables. See Section 12.3, “Type Conversion in Expression Evaluation”.
+Para a conversão implícita de um valor numérico ou temporal para um string, como ocorre para o argumento `1` na expressão `CONCAT(1, 'abc')`, o resultado é um string de caractere (não binário) que tem um character set e collation determinados pelas variáveis de sistema `character_set_connection` e `collation_connection`. Veja Seção 12.3, "Conversão de Tipo na Avaliação de Expressão".

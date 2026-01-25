@@ -1,8 +1,8 @@
-### 3.6.5 Using User-Defined Variables
+### 3.6.5 Usando Variáveis Definidas pelo Usuário
 
-You can employ MySQL user variables to remember results without having to store them in temporary variables in the client. (See [Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").)
+Você pode empregar variáveis de usuário do MySQL para memorizar resultados sem precisar armazená-los em variáveis temporárias no client. (Veja [Seção 9.4, “Variáveis Definidas pelo Usuário”](user-variables.html "9.4 User-Defined Variables").)
 
-For example, to find the articles with the highest and lowest price you can do this:
+Por exemplo, para encontrar os artigos com o preço mais alto e o mais baixo, você pode fazer o seguinte:
 
 ```sql
 mysql> SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;
@@ -15,6 +15,6 @@ mysql> SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
 +---------+--------+-------+
 ```
 
-Note
+Nota
 
-It is also possible to store the name of a database object such as a table or a column in a user variable and then to use this variable in an SQL statement; however, this requires the use of a prepared statement. See [Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements"), for more information.
+Também é possível armazenar o nome de um objeto do Database, como uma table ou uma column, em uma variável de usuário e, em seguida, usar essa variável em uma instrução SQL; no entanto, isso requer o uso de uma prepared statement. Consulte [Seção 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements"), para mais informações.

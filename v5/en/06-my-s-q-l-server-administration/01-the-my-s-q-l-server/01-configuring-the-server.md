@@ -1,12 +1,12 @@
-### 5.1.1 Configuring the Server
+### 5.1.1 Configurando o Servidor
 
-The MySQL server, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), has many command options and system variables that can be set at startup to configure its operation. To determine the default command option and system variable values used by the server, execute this command:
+O servidor MySQL, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), possui muitas opções de comando e System Variables que podem ser definidas na inicialização para configurar sua operação. Para determinar os valores padrão das opções de comando e System Variables usadas pelo servidor, execute este comando:
 
 ```sql
 $> mysqld --verbose --help
 ```
 
-The command produces a list of all [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") options and configurable system variables. Its output includes the default option and variable values and looks something like this:
+O comando produz uma lista de todas as opções e System Variables configuráveis do [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). Sua saída inclui os valores padrão de opções e variáveis e se parece com o seguinte:
 
 ```sql
 abort-slave-event-count           0
@@ -32,62 +32,62 @@ verbose                           TRUE
 wait-timeout                      28800
 ```
 
-To see the current system variable values actually used by the server as it runs, connect to it and execute this statement:
+Para ver os valores atuais das System Variables realmente usados pelo servidor enquanto ele está em execução, conecte-se a ele e execute esta instrução:
 
 ```sql
 mysql> SHOW VARIABLES;
 ```
 
-To see some statistical and status indicators for a running server, execute this statement:
+Para ver alguns indicadores estatísticos e de Status para um servidor em execução, execute esta instrução:
 
 ```sql
 mysql> SHOW STATUS;
 ```
 
-System variable and status information also is available using the [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command:
+Informações sobre System Variable e Status também estão disponíveis usando o comando [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"):
 
 ```sql
 $> mysqladmin variables
 $> mysqladmin extended-status
 ```
 
-For a full description of all command options, system variables, and status variables, see these sections:
+Para uma descrição completa de todas as opções de comando, System Variables e Status Variables, consulte as seguintes seções:
 
-* [Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
-* [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
-* [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
+* [Seção 5.1.6, “Opções de Comando do Servidor”](server-options.html "5.1.6 Opções de Comando do Servidor")
+* [Seção 5.1.7, “System Variables do Servidor”](server-system-variables.html "5.1.7 System Variables do Servidor")
+* [Seção 5.1.9, “Status Variables do Servidor”](server-status-variables.html "5.1.9 Status Variables do Servidor")
 
-More detailed monitoring information is available from the Performance Schema; see [Chapter 25, *MySQL Performance Schema*](performance-schema.html "Chapter 25 MySQL Performance Schema"). In addition, the MySQL `sys` schema is a set of objects that provides convenient access to data collected by the Performance Schema; see [Chapter 26, *MySQL sys Schema*](sys-schema.html "Chapter 26 MySQL sys Schema").
+Informações de monitoramento mais detalhadas estão disponíveis no Performance Schema; consulte [Capítulo 25, *MySQL Performance Schema*](performance-schema.html "Chapter 25 MySQL Performance Schema"). Além disso, o `sys` schema do MySQL é um conjunto de objetos que fornece acesso conveniente aos dados coletados pelo Performance Schema; consulte [Capítulo 26, *MySQL sys Schema*](sys-schema.html "Chapter 26 MySQL sys Schema").
 
-MySQL uses algorithms that are very scalable, so you can usually run with very little memory. However, normally better performance results from giving MySQL more memory.
+O MySQL usa algoritmos muito escaláveis, de modo que geralmente é possível executá-lo com pouca memória. No entanto, o desempenho geralmente melhora ao fornecer mais memória ao MySQL.
 
-When tuning a MySQL server, the two most important variables to configure are [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) and [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache). You should first feel confident that you have these set appropriately before trying to change any other variables.
+Ao ajustar um servidor MySQL, as duas variáveis mais importantes a serem configuradas são [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) e [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache). Você deve primeiro ter certeza de que estas estão definidas adequadamente antes de tentar alterar quaisquer outras variáveis.
 
-The following examples indicate some typical variable values for different runtime configurations.
+Os exemplos a seguir indicam alguns valores típicos de variáveis para diferentes configurações de tempo de execução.
 
-* If you have at least 1-2GB of memory and many tables and want maximum performance with a moderate number of clients, use something like this:
+* Se você tiver pelo menos 1-2GB de memória e muitas tabelas, e desejar desempenho máximo com um número moderado de clientes, use algo como isto:
 
   ```sql
   $> mysqld_safe --key_buffer_size=384M --table_open_cache=4000 \
              --sort_buffer_size=4M --read_buffer_size=1M &
   ```
 
-* If you have only 256MB of memory and only a few tables, but you still do a lot of sorting, you can use something like this:
+* Se você tiver apenas 256MB de memória e apenas algumas tabelas, mas ainda realizar muitas operações de ordenação (sorting), você pode usar algo como isto:
 
   ```sql
   $> mysqld_safe --key_buffer_size=64M --sort_buffer_size=1M
   ```
 
-  If there are very many simultaneous connections, swapping problems may occur unless [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") has been configured to use very little memory for each connection. [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") performs better if you have enough memory for all connections.
+  Se houver muitas conexões simultâneas, problemas de *swapping* podem ocorrer, a menos que o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") tenha sido configurado para usar muito pouca memória para cada conexão. O [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") tem um desempenho melhor se você tiver memória suficiente para todas as conexões.
 
-* With little memory and lots of connections, use something like this:
+* Com pouca memória e muitas conexões, use algo como isto:
 
   ```sql
   $> mysqld_safe --key_buffer_size=512K --sort_buffer_size=100K \
              --read_buffer_size=100K &
   ```
 
-  Or even this:
+  Ou mesmo isto:
 
   ```sql
   $> mysqld_safe --key_buffer_size=512K --sort_buffer_size=16K \
@@ -95,6 +95,6 @@ The following examples indicate some typical variable values for different runti
              --net_buffer_length=1K &
   ```
 
-If you are performing `GROUP BY` or `ORDER BY` operations on tables that are much larger than your available memory, increase the value of [`read_rnd_buffer_size`](server-system-variables.html#sysvar_read_rnd_buffer_size) to speed up the reading of rows following sorting operations.
+Se você estiver realizando operações `GROUP BY` ou `ORDER BY` em tabelas que são muito maiores do que a sua memória disponível, aumente o valor de [`read_rnd_buffer_size`](server-system-variables.html#sysvar_read_rnd_buffer_size) para acelerar a leitura de linhas após as operações de ordenação.
 
-If you specify an option on the command line for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") or [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), it remains in effect only for that invocation of the server. To use the option every time the server runs, put it in an option file. See [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files").
+Se você especificar uma opção na linha de comando para [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") ou [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), ela permanece em vigor apenas para aquela invocação do servidor. Para usar a opção toda vez que o servidor for executado, coloque-a em um arquivo de opções (option file). Consulte [Seção 4.2.2.2, “Usando Arquivos de Opções”](option-files.html "4.2.2.2 Usando Arquivos de Opções").

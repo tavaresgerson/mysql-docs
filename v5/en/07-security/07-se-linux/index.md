@@ -1,24 +1,24 @@
 ## 6.7 SELinux
 
-[6.7.1 Check if SELinux is Enabled](selinux-checking.html)
+[6.7.1 Verificar se o SELinux está Habilitado](selinux-checking.html)
 
-[6.7.2 Changing the SELinux Mode](selinux-mode.html)
+[6.7.2 Alterando o Modo do SELinux](selinux-mode.html)
 
-[6.7.3 MySQL Server SELinux Policies](selinux-policies.html)
+[6.7.3 Policies do SELinux para o MySQL Server](selinux-policies.html)
 
-[6.7.4 SELinux File Context](selinux-file-context.html)
+[6.7.4 Context do Arquivo SELinux](selinux-file-context.html)
 
-[6.7.5 SELinux TCP Port Context](selinux-context-tcp-port.html)
+[6.7.5 Context da Porta TCP SELinux](selinux-context-tcp-port.html)
 
-[6.7.6 Troubleshooting SELinux](selinux-troubleshooting.html)
+[6.7.6 Solução de Problemas do SELinux (Troubleshooting)](selinux-troubleshooting.html)
 
-Security-Enhanced Linux (SELinux) is a mandatory access control (MAC) system that implements access rights by applying a security label referred to as an *SELinux context* to each system object. SELinux policy modules use SELinux contexts to define rules for how processes, files, ports, and other system objects interact with each other. Interaction between system objects is only permitted if a policy rule allows it.
+Security-Enhanced Linux (SELinux) é um sistema de controle de acesso obrigatório (MAC - Mandatory Access Control) que implementa direitos de acesso aplicando um rótulo de segurança, denominado *SELinux context*, a cada objeto do sistema. Os módulos de Policy do SELinux usam SELinux contexts para definir regras sobre como os Processes, arquivos, portas e outros objetos do sistema interagem entre si. A interação entre objetos do sistema é permitida apenas se uma regra de Policy o permitir.
 
-An SELinux context (the label applied to a system object) has the following fields: `user`, `role`, `type`, and `security level`. Type information rather than the entire SELinux context is used most commonly to define rules for how processes interact with other system objects. MySQL SELinux policy modules, for example, define policy rules using `type` information.
+Um SELinux context (o rótulo aplicado a um objeto do sistema) possui os seguintes campos: `user`, `role`, `type` e `security level`. A informação de Type, em vez do SELinux context completo, é usada mais comumente para definir regras sobre como os Processes interagem com outros objetos do sistema. Os módulos de Policy do SELinux para MySQL, por exemplo, definem regras de Policy usando informações de `type`.
 
-You can view SELinux contexts using operating system commands such as **ls** and **ps** with the `-Z` option. Assuming that SELinux is enabled and a MySQL Server is running, the following commands show the SELinux context for the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process and MySQL data directory:
+Você pode visualizar SELinux contexts usando comandos do sistema operacional, como **ls** e **ps**, com a opção `-Z`. Assumindo que o SELinux esteja habilitado e um MySQL Server esteja em execução, os comandos a seguir mostram o SELinux context para o Process [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") e o MySQL data directory:
 
-[**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process:
+Process [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"):
 
 ```sql
 $> ps -eZ | grep mysqld
@@ -33,18 +33,18 @@ $> ls -Z | grep mysql
 system_u:object_r:mysqld_db_t:s0 mysql
 ```
 
-where:
+onde:
 
-* `system_u` is an SELinux user identity for system processes and objects.
+* `system_u` é uma identidade de user SELinux para Processes e objetos do sistema.
 
-* `system_r` is an SELinux role used for system processes.
+* `system_r` é um role SELinux usado para Processes do sistema.
 
-* `objects_r` is an SELinux role used for system objects.
+* `objects_r` é um role SELinux usado para objetos do sistema.
 
-* `mysqld_t` is the type associated with the mysqld process.
+* `mysqld_t` é o type associado ao Process mysqld.
 
-* `mysqld_db_t` is the type associated with the MySQL data directory and its files.
+* `mysqld_db_t` é o type associado ao MySQL data directory e seus arquivos.
 
-* `s0` is the security level.
+* `s0` é o security level.
 
-For more information about interpreting SELinux contexts, refer to your distribution's SELinux documentation.
+Para obter mais informações sobre a interpretação de SELinux contexts, consulte a documentação SELinux da sua distribuição.

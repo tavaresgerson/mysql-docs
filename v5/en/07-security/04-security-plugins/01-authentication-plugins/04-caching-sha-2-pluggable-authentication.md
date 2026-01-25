@@ -1,119 +1,119 @@
-#### 6.4.1.4 Caching SHA-2 Pluggable Authentication
+#### 6.4.1.4 Autenticação Plugável SHA-2 com Caching
 
-MySQL provides two authentication plugins that implement SHA-256 hashing for user account passwords:
+O MySQL fornece dois plugins de autenticação que implementam o *hashing* SHA-256 para senhas de contas de usuário:
 
-* `sha256_password`: Implements basic SHA-256 authentication.
+* `sha256_password`: Implementa autenticação SHA-256 básica.
 
-* `caching_sha2_password`: Implements SHA-256 authentication (like `sha256_password`), but uses caching on the server side for better performance and has additional features for wider applicability. (In MySQL 5.7, `caching_sha2_password` is implemented only on the client side, as described later in this section.)
+* `caching_sha2_password`: Implementa autenticação SHA-256 (como `sha256_password`), mas utiliza *caching* no lado do Server para melhor desempenho e possui recursos adicionais para maior aplicabilidade. (No MySQL 5.7, `caching_sha2_password` é implementado apenas no lado do Client, conforme descrito posteriormente nesta seção.)
 
-This section describes the caching SHA-2 authentication plugin, available as of MySQL 5.7.23. For information about the original basic (noncaching) plugin, see [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
+Esta seção descreve o plugin de autenticação SHA-2 com caching, disponível a partir do MySQL 5.7.23. Para informações sobre o plugin básico original (sem caching), consulte [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
 
-Important
+Importante
 
-In MySQL 5.7, the default authentication plugin is `mysql_native_password`. As of MySQL 8.0, the default authentication plugin is changed to `caching_sha2_password`. To enable MySQL 5.7 clients to connect to 8.0 and higher servers using accounts that authenticate with `caching_sha2_password`, the MySQL 5.7 client library and client programs support the `caching_sha2_password` client-side authentication plugin. This improves MySQL 5.7 client connect-capability compatibility with respect to MySQL 8.0 and higher servers, despite the differences in default authentication plugin.
+No MySQL 5.7, o plugin de autenticação padrão é `mysql_native_password`. A partir do MySQL 8.0, o plugin de autenticação padrão é alterado para `caching_sha2_password`. Para permitir que Clients do MySQL 5.7 se conectem a Servers 8.0 e superiores usando contas que se autenticam com `caching_sha2_password`, a client library e os programas Client do MySQL 5.7 suportam o plugin de autenticação do lado do Client `caching_sha2_password`. Isso melhora a compatibilidade de conexão dos Clients do MySQL 5.7 com relação aos Servers MySQL 8.0 e superiores, apesar das diferenças no plugin de autenticação padrão.
 
-Limiting `caching_sha2_password` support in MySQL 5.7 to the client-side plugin in the client library has these implications compared to MySQL 8.0:
+Limitar o suporte a `caching_sha2_password` no MySQL 5.7 ao plugin do lado do Client na client library tem as seguintes implicações em comparação com o MySQL 8.0:
 
-* The `caching_sha2_password` server-side plugin is not implemented in MySQL 5.7.
+* O plugin `caching_sha2_password` do lado do Server não é implementado no MySQL 5.7.
 
-* MySQL 5.7 servers do not support creating accounts that authenticate with `caching_sha2_password`.
+* Servers MySQL 5.7 não suportam a criação de contas que se autenticam com `caching_sha2_password`.
 
-* MySQL 5.7 servers do not implement system and status variables specific to `caching_sha2_password` server-side support: [`caching_sha2_password_auto_generate_rsa_keys`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_auto_generate_rsa_keys), [`caching_sha2_password_private_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_private_key_path), [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path), [`Caching_sha2_password_rsa_public_key`](/doc/refman/8.0/en/server-status-variables.html#statvar_Caching_sha2_password_rsa_public_key).
+* Servers MySQL 5.7 não implementam variáveis de sistema e de status específicas para o suporte do `caching_sha2_password` do lado do Server: [`caching_sha2_password_auto_generate_rsa_keys`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_auto_generate_rsa_keys), [`caching_sha2_password_private_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_private_key_path), [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path), [`Caching_sha2_password_rsa_public_key`](/doc/refman/8.0/en/server-status-variables.html#statvar_Caching_sha2_password_rsa_public_key).
 
-In addition, there is no support for MySQL 5.7 replicas to connect to MySQL 8.0 replication source servers using accounts that authenticate with `caching_sha2_password`. That would involve a source replicating to a replica with a version number lower than the source version, whereas sources normally replicate to replicas having a version equal to or higher than the source version.
+Além disso, não há suporte para réplicas do MySQL 5.7 se conectarem a Servers de origem de replicação do MySQL 8.0 usando contas que se autenticam com `caching_sha2_password`. Isso envolveria uma origem replicando para uma réplica com um número de versão inferior à versão da origem, enquanto as origens normalmente replicam para réplicas com uma versão igual ou superior à versão da origem.
 
-Important
+Importante
 
-To connect to a MySQL 8.0 or higher server using an account that authenticates with the `caching_sha2_password` plugin, you must use either a secure connection or an unencrypted connection that supports password exchange using an RSA key pair, as described later in this section. Either way, the `caching_sha2_password` plugin uses MySQL's encryption capabilities. See [Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections").
+Para conectar-se a um Server MySQL 8.0 ou superior usando uma conta que se autentica com o plugin `caching_sha2_password`, você deve usar uma conexão segura ou uma conexão não criptografada que suporte troca de senha usando um par de chaves RSA, conforme descrito posteriormente nesta seção. De qualquer forma, o plugin `caching_sha2_password` utiliza os recursos de criptografia do MySQL. Consulte [Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections").
 
-Note
+Nota
 
-In the name `sha256_password`, “sha256” refers to the 256-bit digest length the plugin uses for encryption. In the name `caching_sha2_password`, “sha2” refers more generally to the SHA-2 class of encryption algorithms, of which 256-bit encryption is one instance. The latter name choice leaves room for future expansion of possible digest lengths without changing the plugin name.
+No nome `sha256_password`, “sha256” refere-se ao comprimento do *digest* de 256 bits que o plugin utiliza para criptografia. No nome `caching_sha2_password`, “sha2” refere-se de forma mais geral à classe de algoritmos de criptografia SHA-2, da qual a criptografia de 256 bits é uma instância. A escolha deste último nome abre espaço para futura expansão de possíveis comprimentos de *digest* sem alterar o nome do plugin.
 
-The `caching_sha2_password` plugin has these advantages, compared to `sha256_password`:
+O plugin `caching_sha2_password` possui estas vantagens, em comparação com `sha256_password`:
 
-* On the server side, an in-memory cache enables faster reauthentication of users who have connected previously when they connect again. (This server-side behavior is implemented only in MySQL 8.0 and higher.)
+* No lado do Server, um *cache* na memória permite reautenticação mais rápida de usuários que se conectaram anteriormente quando se conectam novamente. (Este comportamento do lado do Server é implementado apenas no MySQL 8.0 e superior.)
 
-* Support is provided for client connections that use the Unix socket-file and shared-memory protocols.
+* É fornecido suporte para conexões de Client que usam protocolos de arquivo socket Unix e shared-memory.
 
-The following table shows the plugin name on the client side.
+A tabela a seguir mostra o nome do plugin no lado do Client.
 
-**Table 6.10 Plugin and Library Names for SHA-2 Authentication**
+**Table 6.10 Nomes de Plugin e Library para Autenticação SHA-2**
 
-<table summary="Names for the plugin and library file used for SHA-2 password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Client-side plugin</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugin is built in)</td> </tr></tbody></table>
+<table summary="Nomes para o plugin e arquivo de library usados para autenticação de senha SHA-2."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do Client</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Arquivo da Library</td> <td>Nenhum (plugin é built in)</td> </tr></tbody></table>
 
-The following sections provide installation and usage information specific to caching SHA-2 pluggable authentication:
+As seções a seguir fornecem informações de instalação e uso específicas para autenticação plugável SHA-2 com caching:
 
-* [Installing SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-installation "Installing SHA-2 Pluggable Authentication")
-* [Using SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-usage "Using SHA-2 Pluggable Authentication")
-* [Cache Operation for SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-cache-operation "Cache Operation for SHA-2 Pluggable Authentication")
+* [Installing SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-installation "Installing SHA-2 Pluggable Authentication") (Instalando Autenticação Plugável SHA-2)
+* [Using SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-usage "Using SHA-2 Pluggable Authentication") (Usando Autenticação Plugável SHA-2)
+* [Cache Operation for SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-cache-operation "Cache Operation for SHA-2 Pluggable Authentication") (Operação do Cache para Autenticação Plugável SHA-2)
 
-For general information about pluggable authentication in MySQL, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
+Para informações gerais sobre autenticação plugável no MySQL, consulte [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
 
-##### Installing SHA-2 Pluggable Authentication
+##### Instalando Autenticação Plugável SHA-2
 
-In MySQL 5.7, the `caching_sha2_password` plugin exists in client form. The client-side plugin is built into the `libmysqlclient` client library and is available to any program linked against `libmysqlclient`.
+No MySQL 5.7, o plugin `caching_sha2_password` existe no formato Client. O plugin do lado do Client é *built into* a `libmysqlclient` client library e está disponível para qualquer programa linkado contra a `libmysqlclient`.
 
-##### Using SHA-2 Pluggable Authentication
+##### Usando Autenticação Plugável SHA-2
 
-In MySQL 5.7, the `caching_sha2_password` client-side plugin enables connecting to MySQL 8.0 or higher servers using accounts that authenticate with the `caching_sha2_password` server-side plugin. The discussion here assumes that an account named `'sha2user'@'localhost'` exists on the MySQL 8.0 or higher server. For example, the following statement creates such an account, where *`password`* is the desired account password:
+No MySQL 5.7, o plugin `caching_sha2_password` do lado do Client permite a conexão com Servers MySQL 8.0 ou superiores usando contas que se autenticam com o plugin `caching_sha2_password` do lado do Server. A discussão aqui pressupõe que uma conta chamada `'sha2user'@'localhost'` exista no Server MySQL 8.0 ou superior. Por exemplo, a seguinte instrução cria tal conta, onde *`password`* é a senha desejada:
 
 ```sql
 CREATE USER 'sha2user'@'localhost'
 IDENTIFIED WITH caching_sha2_password BY 'password';
 ```
 
-`caching_sha2_password` supports connections over secure transport. `caching_sha2_password` also supports encrypted password exchange using RSA over unencrypted connections if these conditions are satisfied:
+O `caching_sha2_password` suporta conexões via transporte seguro. O `caching_sha2_password` também suporta troca de senha criptografada usando RSA sobre conexões não criptografadas se as seguintes condições forem satisfeitas:
 
-* The MySQL 5.7 client library and client programs are compiled using OpenSSL, not yaSSL. `caching_sha2_password` works with distributions compiled using either package, but RSA support requires OpenSSL.
+* A client library e os programas Client do MySQL 5.7 são compilados usando OpenSSL, e não yaSSL. O `caching_sha2_password` funciona com distribuições compiladas usando qualquer pacote, mas o suporte a RSA requer OpenSSL.
 
-  Note
+  Nota
 
-  It is possible to compile MySQL using yaSSL as an alternative to OpenSSL only prior to MySQL 5.7.28. As of MySQL 5.7.28, support for yaSSL is removed and all MySQL builds use OpenSSL.
+  É possível compilar o MySQL usando yaSSL como alternativa ao OpenSSL apenas antes do MySQL 5.7.28. A partir do MySQL 5.7.28, o suporte ao yaSSL é removido e todas as *builds* do MySQL usam OpenSSL.
 
-* The MySQL 8.0 or higher server to which you wish to connect is configured to support RSA (using the RSA configuration procedure given later in this section).
+* O Server MySQL 8.0 ou superior ao qual você deseja se conectar está configurado para suportar RSA (usando o procedimento de configuração RSA fornecido posteriormente nesta seção).
 
-RSA support has these characteristics, where all aspects that pertain to the server side require a MySQL 8.0 or higher server:
+O suporte a RSA possui as seguintes características, sendo que todos os aspectos que se referem ao lado do Server exigem um Server MySQL 8.0 ou superior:
 
-* On the server side, two system variables name the RSA private and public key-pair files: [`caching_sha2_password_private_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_private_key_path) and [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path). The database administrator must set these variables at server startup if the key files to use have names that differ from the system variable default values.
+* No lado do Server, duas variáveis de sistema nomeiam os arquivos de par de chaves privada e pública RSA: [`caching_sha2_password_private_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_private_key_path) e [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path). O administrador do Database deve definir essas variáveis na inicialização do Server se os arquivos Key a serem usados tiverem nomes diferentes dos valores padrão da variável de sistema.
 
-* The server uses the [`caching_sha2_password_auto_generate_rsa_keys`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_auto_generate_rsa_keys) system variable to determine whether to automatically generate the RSA key-pair files. See [Section 6.3.3, “Creating SSL and RSA Certificates and Keys”](creating-ssl-rsa-files.html "6.3.3 Creating SSL and RSA Certificates and Keys").
+* O Server usa a variável de sistema [`caching_sha2_password_auto_generate_rsa_keys`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_auto_generate_rsa_keys) para determinar se deve gerar automaticamente os arquivos de par de chaves RSA. Consulte [Section 6.3.3, “Creating SSL and RSA Certificates and Keys”](creating-ssl-rsa-files.html "6.3.3 Creating SSL and RSA Certificates and Keys").
 
-* The [`Caching_sha2_password_rsa_public_key`](/doc/refman/8.0/en/server-status-variables.html#statvar_Caching_sha2_password_rsa_public_key) status variable displays the RSA public key value used by the `caching_sha2_password` authentication plugin.
+* A variável de status [`Caching_sha2_password_rsa_public_key`](/doc/refman/8.0/en/server-status-variables.html#statvar_Caching_sha2_password_rsa_public_key) exibe o valor da public Key RSA usado pelo plugin de autenticação `caching_sha2_password`.
 
-* Clients that are in possession of the RSA public key can perform RSA key pair-based password exchange with the server during the connection process, as described later.
+* Clients que possuem a public Key RSA podem realizar troca de senha baseada em par de chaves RSA com o Server durante o processo de conexão, conforme descrito posteriormente.
 
-* For connections by accounts that authenticate with `caching_sha2_password` and RSA key pair-based password exchange, the server does not send the RSA public key to clients by default. Clients can use a client-side copy of the required public key, or request the public key from the server.
+* Para conexões por contas que se autenticam com `caching_sha2_password` e troca de senha baseada em par de chaves RSA, o Server não envia a public Key RSA aos Clients por padrão. Os Clients podem usar uma cópia local da public Key necessária, ou solicitar a public Key ao Server.
 
-  Use of a trusted local copy of the public key enables the client to avoid a round trip in the client/server protocol, and is more secure than requesting the public key from the server. On the other hand, requesting the public key from the server is more convenient (it requires no management of a client-side file) and may be acceptable in secure network environments.
+  O uso de uma cópia local confiável da public Key permite que o Client evite um *round trip* no protocolo Client/Server, e é mais seguro do que solicitar a public Key ao Server. Por outro lado, solicitar a public Key ao Server é mais conveniente (não exige gerenciamento de um arquivo do lado do Client) e pode ser aceitável em ambientes de rede seguros.
 
-  + For command-line clients, use the [`--server-public-key-path`](mysql-command-options.html#option_mysql_server-public-key-path) option to specify the RSA public key file. Use the [`--get-server-public-key`](mysql-command-options.html#option_mysql_get-server-public-key) option to request the public key from the server. The following programs support the two options: [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files"), [**mysqlcheck**](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program"), [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), [**mysqlimport**](mysqlimport.html "4.5.5 mysqlimport — A Data Import Program"), [**mysqlpump**](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program"), [**mysqlshow**](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information"), [**mysqlslap**](mysqlslap.html "4.5.8 mysqlslap — A Load Emulation Client"), **mysqltest**.
+  + Para Clients de linha de comando, use a opção [`--server-public-key-path`](mysql-command-options.html#option_mysql_server-public-key-path) para especificar o arquivo da public Key RSA. Use a opção [`--get-server-public-key`](mysql-command-options.html#option_mysql_get-server-public-key) para solicitar a public Key ao Server. Os seguintes programas suportam as duas opções: [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files"), [**mysqlcheck**](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program"), [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), [**mysqlimport**](mysqlimport.html "4.5.5 mysqlimport — A Data Import Program"), [**mysqlpump**](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program"), [**mysqlshow**](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information"), [**mysqlslap**](mysqlslap.html "4.5.8 mysqlslap — A Load Emulation Client"), **mysqltest**.
 
-  + For programs that use the C API, call [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) to specify the RSA public key file by passing the `MYSQL_SERVER_PUBLIC_KEY` option and the name of the file, or request the public key from the server by passing the `MYSQL_OPT_GET_SERVER_PUBLIC_KEY` option.
+  + Para programas que usam a C API, chame [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) para especificar o arquivo da public Key RSA, passando a opção `MYSQL_SERVER_PUBLIC_KEY` e o nome do arquivo, ou solicite a public Key ao Server passando a opção `MYSQL_OPT_GET_SERVER_PUBLIC_KEY`.
 
-  In all cases, if the option is given to specify a valid public key file, it takes precedence over the option to request the public key from the server.
+  Em todos os casos, se a opção for fornecida para especificar um arquivo de public Key válido, ela terá precedência sobre a opção de solicitar a public Key ao Server.
 
-For clients that use the `caching_sha2_password` plugin, passwords are never exposed as cleartext when connecting to the MySQL 8.0 or higher server. How password transmission occurs depends on whether a secure connection or RSA encryption is used:
+Para Clients que usam o plugin `caching_sha2_password`, as senhas nunca são expostas como *cleartext* ao se conectar ao Server MySQL 8.0 ou superior. A forma como a transmissão da senha ocorre depende se uma conexão segura ou criptografia RSA é usada:
 
-* If the connection is secure, an RSA key pair is unnecessary and is not used. This applies to TCP connections encrypted using TLS, as well as Unix socket-file and shared-memory connections. The password is sent as cleartext but cannot be snooped because the connection is secure.
+* Se a conexão for segura, um par de chaves RSA é desnecessário e não é usado. Isso se aplica a conexões TCP criptografadas usando TLS, bem como a conexões de arquivo socket Unix e shared-memory. A senha é enviada como *cleartext*, mas não pode ser interceptada porque a conexão é segura.
 
-* If the connection is not secure, an RSA key pair is used. This applies to TCP connections not encrypted using TLS and named-pipe connections. RSA is used only for password exchange between client and server, to prevent password snooping. When the server receives the encrypted password, it decrypts it. A scramble is used in the encryption to prevent repeat attacks.
+* Se a conexão não for segura, um par de chaves RSA é usado. Isso se aplica a conexões TCP não criptografadas usando TLS e conexões *named-pipe*. O RSA é usado apenas para a troca de senha entre Client e Server, para evitar a interceptação da senha. Quando o Server recebe a senha criptografada, ele a descriptografa. Um *scramble* é usado na criptografia para evitar ataques de repetição.
 
-* If a secure connection is not used and RSA encryption is not available, the connection attempt fails because the password cannot be sent without being exposed as cleartext.
+* Se uma conexão segura não for usada e a criptografia RSA não estiver disponível, a tentativa de conexão falha porque a senha não pode ser enviada sem ser exposta como *cleartext*.
 
-As mentioned previously, RSA password encryption is available only if MySQL 5.7 was compiled using OpenSSL. The implication for clients from MySQL 5.7 distributions compiled using yaSSL is that, to use SHA-2 passwords, clients *must* use an encrypted connection to access the server. See [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
+Conforme mencionado anteriormente, a criptografia de senha RSA está disponível apenas se o MySQL 5.7 tiver sido compilado usando OpenSSL. A implicação para Clients de distribuições MySQL 5.7 compiladas usando yaSSL é que, para usar senhas SHA-2, os Clients *devem* usar uma conexão criptografada para acessar o Server. Consulte [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
 
-Assuming that MySQL 5.7 has been compiled using OpenSSL, use the following procedure to enable use of an RSA key pair for password exchange during the client connection process.
+Assumindo que o MySQL 5.7 foi compilado usando OpenSSL, use o procedimento a seguir para habilitar o uso de um par de chaves RSA para troca de senha durante o processo de conexão do Client.
 
-Important
+Importante
 
-Aspects of this procedure that pertain to server configuration must be done on the MySQL 8.0 or higher server to which you wish to connect using MySQL 5.7 clients, *not* on your MySQL 5.7 server.
+Os aspectos deste procedimento que se referem à configuração do Server devem ser feitos no Server MySQL 8.0 ou superior ao qual você deseja se conectar usando Clients MySQL 5.7, *não* no seu Server MySQL 5.7.
 
-1. Create the RSA private and public key-pair files using the instructions in [Section 6.3.3, “Creating SSL and RSA Certificates and Keys”](creating-ssl-rsa-files.html "6.3.3 Creating SSL and RSA Certificates and Keys").
+1. Crie os arquivos de par de chaves privada e pública RSA usando as instruções em [Section 6.3.3, “Creating SSL and RSA Certificates and Keys”](creating-ssl-rsa-files.html "6.3.3 Creating SSL and RSA Certificates and Keys").
 
-2. If the private and public key files are located in the data directory and are named `private_key.pem` and `public_key.pem` (the default values of the [`caching_sha2_password_private_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_private_key_path) and [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path) system variables), the server uses them automatically at startup.
+2. Se os arquivos de chaves privada e pública estiverem localizados no data directory e forem nomeados `private_key.pem` e `public_key.pem` (os valores padrão das variáveis de sistema [`caching_sha2_password_private_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_private_key_path) e [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path)), o Server os usa automaticamente na inicialização.
 
-   Otherwise, to name the key files explicitly, set the system variables to the key file names in the server option file. If the files are located in the server data directory, you need not specify their full path names:
+   Caso contrário, para nomear os arquivos Key explicitamente, defina as variáveis de sistema com os nomes dos arquivos Key no arquivo de opção do Server. Se os arquivos estiverem localizados no data directory do Server, você não precisa especificar seus nomes de caminho completo:
 
    ```sql
    [mysqld]
@@ -121,7 +121,7 @@ Aspects of this procedure that pertain to server configuration must be done on t
    caching_sha2_password_public_key_path=mypubkey.pem
    ```
 
-   If the key files are not located in the data directory, or to make their locations explicit in the system variable values, use full path names:
+   Se os arquivos Key não estiverem localizados no data directory, ou para tornar suas localizações explícitas nos valores das variáveis de sistema, use nomes de caminho completo:
 
    ```sql
    [mysqld]
@@ -129,7 +129,7 @@ Aspects of this procedure that pertain to server configuration must be done on t
    caching_sha2_password_public_key_path=/usr/local/mysql/mypubkey.pem
    ```
 
-3. Restart the server, then connect to it and check the [`Caching_sha2_password_rsa_public_key`](/doc/refman/8.0/en/server-status-variables.html#statvar_Caching_sha2_password_rsa_public_key) status variable value. The actual value differs from that shown here, but should be nonempty:
+3. Reinicie o Server e, em seguida, conecte-se a ele e verifique o valor da variável de status [`Caching_sha2_password_rsa_public_key`](/doc/refman/8.0/en/server-status-variables.html#statvar_Caching_sha2_password_rsa_public_key). O valor real difere do mostrado aqui, mas deve ser não vazio:
 
    ```sql
    mysql> SHOW STATUS LIKE 'Caching_sha2_password_rsa_public_key'\G
@@ -143,48 +143,48 @@ Aspects of this procedure that pertain to server configuration must be done on t
    -----END PUBLIC KEY-----
    ```
 
-   If the value is empty, the server found some problem with the key files. Check the error log for diagnostic information.
+   Se o valor estiver vazio, o Server encontrou algum problema com os arquivos Key. Verifique o *error log* para obter informações de diagnóstico.
 
-After the server has been configured with the RSA key files, accounts that authenticate with the `caching_sha2_password` plugin have the option of using those key files to connect to the server. As mentioned previously, such accounts can use either a secure connection (in which case RSA is not used) or an unencrypted connection that performs password exchange using RSA. Suppose that an unencrypted connection is used. For example:
+Depois que o Server for configurado com os arquivos de chaves RSA, as contas que se autenticam com o plugin `caching_sha2_password` têm a opção de usar esses arquivos Key para se conectar ao Server. Conforme mencionado anteriormente, tais contas podem usar uma conexão segura (neste caso, o RSA não é usado) ou uma conexão não criptografada que realiza a troca de senha usando RSA. Suponha que uma conexão não criptografada seja usada. Por exemplo:
 
 ```sql
 $> mysql --ssl-mode=DISABLED -u sha2user -p
 Enter password: password
 ```
 
-For this connection attempt by `sha2user`, the server determines that `caching_sha2_password` is the appropriate authentication plugin and invokes it (because that was the plugin specified at [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") time). The plugin finds that the connection is not encrypted and thus requires the password to be transmitted using RSA encryption. However, the server does not send the public key to the client, and the client provided no public key, so it cannot encrypt the password and the connection fails:
+Para esta tentativa de conexão por `sha2user`, o Server determina que `caching_sha2_password` é o plugin de autenticação apropriado e o invoca (porque foi o plugin especificado no momento do [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement")). O plugin descobre que a conexão não está criptografada e, portanto, requer que a senha seja transmitida usando criptografia RSA. No entanto, o Server não envia a public Key ao Client, e o Client não forneceu nenhuma public Key, portanto, ele não pode criptografar a senha e a conexão falha:
 
 ```sql
 ERROR 2061 (HY000): Authentication plugin 'caching_sha2_password'
 reported error: Authentication requires secure connection.
 ```
 
-To request the RSA public key from the server, specify the [`--get-server-public-key`](mysql-command-options.html#option_mysql_get-server-public-key) option:
+Para solicitar a public Key RSA ao Server, especifique a opção [`--get-server-public-key`](mysql-command-options.html#option_mysql_get-server-public-key):
 
 ```sql
 $> mysql --ssl-mode=DISABLED -u sha2user -p --get-server-public-key
 Enter password: password
 ```
 
-In this case, the server sends the RSA public key to the client, which uses it to encrypt the password and returns the result to the server. The plugin uses the RSA private key on the server side to decrypt the password and accepts or rejects the connection based on whether the password is correct.
+Neste caso, o Server envia a public Key RSA ao Client, que a usa para criptografar a senha e retorna o resultado ao Server. O plugin usa a private Key RSA no lado do Server para descriptografar a senha e aceita ou rejeita a conexão com base na correção da senha.
 
-Alternatively, if the client has a file containing a local copy of the RSA public key required by the server, it can specify the file using the [`--server-public-key-path`](mysql-command-options.html#option_mysql_server-public-key-path) option:
+Alternativamente, se o Client tiver um arquivo contendo uma cópia local da public Key RSA exigida pelo Server, ele pode especificar o arquivo usando a opção [`--server-public-key-path`](mysql-command-options.html#option_mysql_server-public-key-path):
 
 ```sql
 $> mysql --ssl-mode=DISABLED -u sha2user -p --server-public-key-path=file_name
 Enter password: password
 ```
 
-In this case, the client uses the public key to encrypt the password and returns the result to the server. The plugin uses the RSA private key on the server side to decrypt the password and accepts or rejects the connection based on whether the password is correct.
+Neste caso, o Client usa a public Key para criptografar a senha e retorna o resultado ao Server. O plugin usa a private Key RSA no lado do Server para descriptografar a senha e aceita ou rejeita a conexão com base na correção da senha.
 
-The public key value in the file named by the [`--server-public-key-path`](mysql-command-options.html#option_mysql_server-public-key-path) option should be the same as the key value in the server-side file named by the [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path) system variable. If the key file contains a valid public key value but the value is incorrect, an access-denied error occurs. If the key file does not contain a valid public key, the client program cannot use it.
+O valor da public Key no arquivo nomeado pela opção [`--server-public-key-path`](mysql-command-options.html#option_mysql_server-public-key-path) deve ser o mesmo que o valor Key no arquivo do lado do Server nomeado pela variável de sistema [`caching_sha2_password_public_key_path`](/doc/refman/8.0/en/server-system-variables.html#sysvar_caching_sha2_password_public_key_path). Se o arquivo Key contiver um valor de public Key válido, mas o valor estiver incorreto, ocorrerá um erro de acesso negado. Se o arquivo Key não contiver uma public Key válida, o programa Client não poderá usá-lo.
 
-Client users can obtain the RSA public key two ways:
+Os usuários Client podem obter a public Key RSA de duas maneiras:
 
-* The database administrator can provide a copy of the public key file.
+* O administrador do Database pode fornecer uma cópia do arquivo da public Key.
 
-* A client user who can connect to the server some other way can use a `SHOW STATUS LIKE 'Caching_sha2_password_rsa_public_key'` statement and save the returned key value in a file.
+* Um usuário Client que pode se conectar ao Server de outra forma pode usar uma instrução `SHOW STATUS LIKE 'Caching_sha2_password_rsa_public_key'` e salvar o valor Key retornado em um arquivo.
 
-##### Cache Operation for SHA-2 Pluggable Authentication
+##### Operação do Cache para Autenticação Plugável SHA-2
 
-On the server side, the `caching_sha2_password` plugin uses an in-memory cache for faster authentication of clients who have connected previously. For MySQL 5.7, which supports only the `caching_sha2_password` client-side plugin, this server-side caching thus takes place on the MySQL 8.0 or higher server to which you connect using MySQL 5.7 clients. For information about cache operation, see [Cache Operation for SHA-2 Pluggable Authentication](/doc/refman/8.0/en/caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-cache-operation), in the *MySQL 8.0 Reference Manual*.
+No lado do Server, o plugin `caching_sha2_password` usa um *cache* na memória para autenticação mais rápida de Clients que se conectaram anteriormente. Para o MySQL 5.7, que suporta apenas o plugin `caching_sha2_password` do lado do Client, esse *caching* do lado do Server ocorre, portanto, no Server MySQL 8.0 ou superior ao qual você se conecta usando Clients MySQL 5.7. Para obter informações sobre a operação do *cache*, consulte [Cache Operation for SHA-2 Pluggable Authentication](/doc/refman/8.0/en/caching-sha2-pluggable-authentication.html#caching-sha2-pluggable-authentication-cache-operation), no *Manual de Referência do MySQL 8.0*.

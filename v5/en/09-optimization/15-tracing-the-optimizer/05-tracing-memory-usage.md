@@ -1,3 +1,3 @@
-### 8.15.5 Tracing Memory Usage
+### 8.15.5 Rastreando o Uso de Memória
 
-Each stored trace is a string, which is extended (using `realloc()`) as optimization progresses by appending more data to it. The `optimizer_trace_max_mem_size` server system variable sets a limit on the total amount of memory used by all traces currently being stored. If this limit is reached, the current trace is not extended, which means the trace is incomplete; in this case the `MISSING_BYTES_BEYOND_MAX_MEM_SIZE` column shows the number of bytes missing from the trace.
+Cada *trace* armazenado é uma *string*, que é estendida (usando `realloc()`) à medida que a otimização avança, anexando mais dados a ela. A variável de sistema do servidor `optimizer_trace_max_mem_size` define um limite na quantidade total de *memory* usada por todos os *traces* que estão sendo armazenados atualmente. Se este limite for atingido, o *trace* atual não é estendido, o que significa que o *trace* está incompleto; neste caso, a coluna `MISSING_BYTES_BEYOND_MAX_MEM_SIZE` mostra o número de *bytes* faltando no *trace*.

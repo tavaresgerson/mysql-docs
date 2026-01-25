@@ -1,3 +1,3 @@
-### 8.15.6 Privilege Checking
+### 8.15.6 Verificação de Privilégios
 
-In complex scenarios where the query uses SQL SECURITY DEFINER views or stored routines, it may be that a user is denied from seeing the trace of its query because it lacks some extra privileges on those objects. In that case, the trace will be shown as empty and the INSUFFICIENT_PRIVILEGES column will show "1".
+Em cenários complexos nos quais a query utiliza views ou stored routines do tipo SQL SECURITY DEFINER, é possível que um user seja impedido de visualizar o trace de sua query por não possuir privileges adicionais sobre esses objects. Nesse caso, o trace será exibido como vazio e a column INSUFFICIENT_PRIVILEGES exibirá "1".

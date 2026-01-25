@@ -1,20 +1,20 @@
-### 4.8.1 lz4_decompress — Decompress mysqlpump LZ4-Compressed Output
+### 4.8.1 lz4_decompress — Descomprimir Saída Comprimida em LZ4 do mysqlpump
 
-The **lz4_decompress** utility decompresses **mysqlpump** output that was created using LZ4 compression. **lz4_decompress** was added in MySQL 5.7.10.
+A utilidade **lz4_decompress** descomprime a saída do **mysqlpump** que foi criada usando a compressão LZ4. **lz4_decompress** foi adicionada no MySQL 5.7.10.
 
-Invoke **lz4_decompress** like this:
+Invoque **lz4_decompress** da seguinte forma:
 
 ```sql
 lz4_decompress input_file output_file
 ```
 
-Example:
+Exemplo:
 
 ```sql
 mysqlpump --compress-output=LZ4 > dump.lz4
 lz4_decompress dump.lz4 dump.txt
 ```
 
-To see a help message, invoke **lz4_decompress** with no arguments.
+Para visualizar uma mensagem de ajuda, invoque **lz4_decompress** sem argumentos.
 
-To decompress **mysqlpump** ZLIB-compressed output, use **zlib_decompress**. See Section 4.8.5, “zlib_decompress — Decompress mysqlpump ZLIB-Compressed Output”.
+Para descomprimir a saída comprimida em ZLIB do **mysqlpump**, use **zlib_decompress**. Consulte Seção 4.8.5, “zlib_decompress — Descomprimir Saída Comprimida em ZLIB do mysqlpump”.

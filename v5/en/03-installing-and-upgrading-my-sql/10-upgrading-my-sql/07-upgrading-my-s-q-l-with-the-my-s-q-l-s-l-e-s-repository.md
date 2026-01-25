@@ -1,3 +1,3 @@
-### 2.10.7 Upgrading MySQL with the MySQL SLES Repository
+### 2.10.7 Upgrade do MySQL com o Repositório MySQL SLES
 
-On the SUSE Linux Enterprise Server (SLES) platform, to perform an in-place upgrade of MySQL and its components, use the MySQL SLES repository. See Upgrading MySQL with the MySQL SLES Repository in A Quick Guide to Using the MySQL SLES Repository.
+Na plataforma SUSE Linux Enterprise Server (SLES), para realizar um *upgrade* no local do MySQL e seus componentes, utilize o repositório MySQL SLES. Consulte Upgrade do MySQL com o Repositório MySQL SLES em Um Guia Rápido para Utilizar o Repositório MySQL SLES.

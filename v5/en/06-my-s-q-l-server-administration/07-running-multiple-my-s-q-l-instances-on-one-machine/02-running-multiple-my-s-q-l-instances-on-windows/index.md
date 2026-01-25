@@ -1,7 +1,7 @@
-### 5.7.2 Running Multiple MySQL Instances on Windows
+### 5.7.2 Executando Múltiplas MySQL Instances no Windows
 
-[5.7.2.1 Starting Multiple MySQL Instances at the Windows Command Line](multiple-windows-command-line-servers.html)
+[5.7.2.1 Iniciando Múltiplas MySQL Instances na Windows Command Line](multiple-windows-command-line-servers.html)
 
-[5.7.2.2 Starting Multiple MySQL Instances as Windows Services](multiple-windows-services.html)
+[5.7.2.2 Iniciando Múltiplas MySQL Instances como Windows Services](multiple-windows-services.html)
 
-You can run multiple servers on Windows by starting them manually from the command line, each with appropriate operating parameters, or by installing several servers as Windows services and running them that way. General instructions for running MySQL from the command line or as a service are given in [Section 2.3, “Installing MySQL on Microsoft Windows”](windows-installation.html "2.3 Installing MySQL on Microsoft Windows"). The following sections describe how to start each server with different values for those options that must be unique per server, such as the data directory. These options are listed in [Section 5.7, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "5.7 Running Multiple MySQL Instances on One Machine").
+Você pode executar múltiplos servers no Windows iniciando-os manualmente a partir da command line, cada um com parâmetros de operação apropriados, ou instalando vários servers como Windows services e executando-os dessa forma. Instruções gerais para executar o MySQL a partir da command line ou como um service são fornecidas na [Seção 2.3, “Instalando o MySQL no Microsoft Windows”](windows-installation.html "2.3 Instalando o MySQL no Microsoft Windows"). As seções a seguir descrevem como iniciar cada server com valores diferentes para aquelas options que devem ser únicas por server, como o *data directory*. Essas options estão listadas na [Seção 5.7, “Executando Múltiplas MySQL Instances em Uma Máquina”](multiple-servers.html "5.7 Executando Múltiplas MySQL Instances em Uma Máquina").

@@ -1,8 +1,8 @@
-## 3.7 Using MySQL with Apache
+## 3.7 Usando MySQL com Apache
 
-There are programs that let you authenticate your users from a MySQL database and also let you write your log files into a MySQL table.
+Existem programas que permitem autenticar seus usuários a partir de um Database MySQL e também permitem que você escreva seus `log files` em uma tabela MySQL.
 
-You can change the Apache logging format to be easily readable by MySQL by putting the following into the Apache configuration file:
+Você pode alterar o formato de `logging` do Apache para que seja facilmente legível pelo MySQL inserindo o seguinte no arquivo de configuração do Apache:
 
 ```sql
 LogFormat \
@@ -10,11 +10,11 @@ LogFormat \
         \"%U\",\"%{Referer}i\",\"%{User-Agent}i\""
 ```
 
-To load a log file in that format into MySQL, you can use a statement something like this:
+Para carregar um `log file` nesse formato no MySQL, você pode usar uma `statement` semelhante a esta:
 
 ```sql
 LOAD DATA INFILE '/local/access_log' INTO TABLE tbl_name
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\'
 ```
 
-The named table should be created to have columns that correspond to those that the `LogFormat` line writes to the log file.
+A tabela nomeada deve ser criada para ter `columns` que correspondam àquelas que a linha `LogFormat` escreve no `log file`.

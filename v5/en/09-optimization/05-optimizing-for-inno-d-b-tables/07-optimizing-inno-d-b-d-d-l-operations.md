@@ -1,9 +1,9 @@
-### 8.5.7 Optimizing InnoDB DDL Operations
+### 8.5.7 Otimizando Operações DDL do InnoDB
 
-* Many DDL operations on tables and indexes (`CREATE`, `ALTER`, and `DROP` statements) can be performed online. See Section 14.13, “InnoDB and Online DDL” for details.
+* Muitas operações DDL em Tables e Indexes (instruções `CREATE`, `ALTER` e `DROP`) podem ser executadas online. Consulte a Seção 14.13, “InnoDB e Online DDL” para detalhes.
 
-* Online DDL support for adding secondary indexes means that you can generally speed up the process of creating and loading a table and associated indexes by creating the table without secondary indexes, then adding secondary indexes after the data is loaded.
+* O suporte de Online DDL para adicionar Secondary Indexes significa que você pode geralmente acelerar o processo de criação e carregamento de uma Table e Indexes associados, criando a Table sem Secondary Indexes e, em seguida, adicionando os Secondary Indexes após o carregamento dos dados.
 
-* Use `TRUNCATE TABLE` to empty a table, not `DELETE FROM tbl_name`. Foreign key constraints can make a `TRUNCATE` statement work like a regular `DELETE` statement, in which case a sequence of commands like `DROP TABLE` and `CREATE TABLE` might be fastest.
+* Use `TRUNCATE TABLE` para esvaziar uma Table, e não `DELETE FROM tbl_name`. As restrições de Foreign Key podem fazer com que uma instrução `TRUNCATE` funcione como uma instrução `DELETE` regular, caso em que uma sequência de comandos como `DROP TABLE` e `CREATE TABLE` pode ser a mais rápida.
 
-* Because the primary key is integral to the storage layout of each `InnoDB` table, and changing the definition of the primary key involves reorganizing the whole table, always set up the primary key as part of the `CREATE TABLE` statement, and plan ahead so that you do not need to `ALTER` or `DROP` the primary key afterward.
+* Como a Primary Key é fundamental para o layout de armazenamento de cada Table `InnoDB`, e alterar a definição da Primary Key envolve reorganizar a Table inteira, sempre configure a Primary Key como parte da instrução `CREATE TABLE`, e planeje com antecedência para que você não precise fazer um `ALTER` ou `DROP` na Primary Key posteriormente.

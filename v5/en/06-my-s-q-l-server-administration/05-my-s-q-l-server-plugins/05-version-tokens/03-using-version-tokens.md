@@ -1,41 +1,41 @@
-#### 5.5.5.3 Using Version Tokens
+#### 5.5.5.3 Usando Version Tokens
 
-Before using Version Tokens, install it according to the instructions provided at [Section 5.5.5.2, “Installing or Uninstalling Version Tokens”](version-tokens-installation.html "5.5.5.2 Installing or Uninstalling Version Tokens").
+Antes de usar Version Tokens, instale-o de acordo com as instruções fornecidas em [Seção 5.5.5.2, “Instalando ou Desinstalando Version Tokens”](version-tokens-installation.html "5.5.5.2 Instalando ou Desinstalando Version Tokens").
 
-A scenario in which Version Tokens can be useful is a system that accesses a collection of MySQL servers but needs to manage them for load balancing purposes by monitoring them and adjusting server assignments according to load changes. Such a system comprises these elements:
+Um cenário no qual Version Tokens pode ser útil é um sistema que acessa uma coleção de MySQL Servers, mas precisa gerenciá-los para fins de load balancing, monitorando-os e ajustando as atribuições de Server de acordo com as mudanças de carga. Tal sistema é composto por estes elementos:
 
-* The collection of MySQL servers to be managed.
-* An administrative or management application that communicates with the servers and organizes them into high-availability groups. Groups serve different purposes, and servers within each group may have different assignments. Assignment of a server within a certain group can change at any time.
+* A coleção de MySQL Servers a serem gerenciados.
+* Um aplicativo administrativo ou de gerenciamento que se comunica com os Servers e os organiza em grupos de alta disponibilidade. Os grupos servem a propósitos diferentes, e os Servers dentro de cada grupo podem ter diferentes atribuições (assignments). A atribuição de um Server dentro de um determinado grupo pode mudar a qualquer momento.
 
-* Client applications that access the servers to retrieve and update data, choosing servers according to the purposes assigned them. For example, a client should not send an update to a read-only server.
+* Aplicativos Client que acessam os Servers para recuperar e atualizar dados, escolhendo Servers de acordo com os propósitos a eles atribuídos. Por exemplo, um Client não deve enviar uma atualização para um Server read-only.
 
-Version Tokens permit server access to be managed according to assignment without requiring clients to repeatedly query the servers about their assignments:
+Version Tokens permite que o acesso ao Server seja gerenciado de acordo com a atribuição, sem exigir que os Clients consultem repetidamente os Servers sobre suas atribuições:
 
-* The management application performs server assignments and establishes version tokens on each server to reflect its assignment. The application caches this information to provide a central access point to it.
+* O aplicativo de gerenciamento realiza as atribuições de Server e estabelece os version tokens em cada Server para refletir sua atribuição. O aplicativo armazena essas informações em Cache para fornecer um ponto de acesso central a elas.
 
-  If at some point the management application needs to change a server assignment (for example, to change it from permitting writes to read only), it changes the server's version token list and updates its cache.
+  Se em algum momento o aplicativo de gerenciamento precisar alterar uma atribuição de Server (por exemplo, para mudar de permitir Writes para read-only), ele altera a version token list do Server e atualiza seu Cache.
 
-* To improve performance, client applications obtain cache information from the management application, enabling them to avoid having to retrieve information about server assignments for each statement. Based on the type of statements it issues (for example, reads versus writes), a client selects an appropriate server and connects to it.
+* Para melhorar o desempenho, os aplicativos Client obtêm as informações de Cache do aplicativo de gerenciamento, permitindo-lhes evitar a necessidade de recuperar informações sobre as atribuições de Server para cada Statement. Com base no tipo de Statements que ele emite (por exemplo, Reads versus Writes), um Client seleciona um Server apropriado e se conecta a ele.
 
-* In addition, the client sends to the server its own client-specific version tokens to register the assignment it requires of the server. For each statement sent by the client to the server, the server compares its own token list with the client token list. If the server token list contains all tokens present in the client token list with the same values, there is a match and the server executes the statement.
+* Além disso, o Client envia ao Server seus próprios version tokens específicos do Client para registrar a atribuição que ele requer do Server. Para cada Statement enviado pelo Client ao Server, o Server compara sua própria token list com a token list do Client. Se a token list do Server contiver todos os tokens presentes na token list do Client com os mesmos valores, há uma correspondência (match) e o Server executa o Statement.
 
-  On the other hand, perhaps the management application has changed the server assignment and its version token list. In this case, the new server assignment may now be incompatible with the client requirements. A token mismatch between the server and client token lists occurs and the server returns an error in reply to the statement. This is an indication to the client to refresh its version token information from the management application cache, and to select a new server to communicate with.
+  Por outro lado, talvez o aplicativo de gerenciamento tenha alterado a atribuição do Server e sua version token list. Neste caso, a nova atribuição de Server pode ser incompatível com os requisitos do Client. Ocorre um token mismatch entre as token lists do Server e do Client, e o Server retorna um error em resposta ao Statement. Esta é uma indicação para que o Client atualize suas informações de version token a partir do Cache do aplicativo de gerenciamento e selecione um novo Server para se comunicar.
 
-The client-side logic for detecting version token errors and selecting a new server can be implemented different ways:
+A lógica do lado do Client para detectar erros de version token e selecionar um novo Server pode ser implementada de diferentes maneiras:
 
-* The client can handle all version token registration, mismatch detection, and connection switching itself.
+* O Client pode lidar com todo o registro de version token, detecção de mismatch e Connection Switching por conta própria.
 
-* The logic for those actions can be implemented in a connector that manages connections between clients and MySQL servers. Such a connector might handle mismatch error detection and statement resending itself, or it might pass the error to the application and leave it to the application to resend the statement.
+* A lógica para essas ações pode ser implementada em um Connector que gerencia Connections entre Clients e MySQL Servers. Tal Connector pode lidar com a detecção de erro de mismatch e o reenvio de Statement por conta própria, ou pode passar o error para o aplicativo e deixar que o aplicativo reenvie o Statement.
 
-The following example illustrates the preceding discussion in more concrete form.
+O exemplo a seguir ilustra a discussão precedente de forma mais concreta.
 
-When Version Tokens initializes on a given server, the server's version token list is empty. Token list maintenance is performed by calling functions. The [`SUPER`](privileges-provided.html#priv_super) privilege is required to call any of the Version Token functions, so token list modification is expected to be done by a management or administrative application that has that privilege.
+Quando Version Tokens inicializa em um determinado Server, a version token list do Server está vazia. A manutenção da Token list é realizada chamando Functions. O privilégio [`SUPER`](privileges-provided.html#priv_super) é necessário para chamar qualquer uma das Version Token Functions, portanto, a modificação da token list deve ser feita por um aplicativo de gerenciamento ou administrativo que possua esse privilégio.
 
-Suppose that a management application communicates with a set of servers that are queried by clients to access employee and product databases (named `emp` and `prod`, respectively). All servers are permitted to process data retrieval statements, but only some of them are permitted to make database updates. To handle this on a database-specific basis, the management application establishes a list of version tokens on each server. In the token list for a given server, token names represent database names and token values are `read` or `write` depending on whether the database must be used in read-only fashion or whether it can take reads and writes.
+Suponha que um aplicativo de gerenciamento se comunique com um conjunto de Servers que são consultados por Clients para acessar Databases de funcionários e produtos (nomeados `emp` e `prod`, respectivamente). Todos os Servers têm permissão para processar Statements de recuperação de dados, mas apenas alguns deles têm permissão para fazer updates de Database. Para lidar com isso em uma base específica de Database, o aplicativo de gerenciamento estabelece uma lista de version tokens em cada Server. Na token list para um determinado Server, os nomes dos tokens representam nomes de Database e os valores dos tokens são `read` ou `write`, dependendo se o Database deve ser usado no modo read-only ou se pode aceitar Reads e Writes.
 
-Client applications register a list of version tokens they require the server to match by setting a system variable. Variable setting occurs on a client-specific basis, so different clients can register different requirements. By default, the client token list is empty, which matches any server token list. When a client sets its token list to a nonempty value, matching may succeed or fail, depending on the server version token list.
+Os aplicativos Client registram uma lista de version tokens que exigem que o Server corresponda, definindo uma system variable. A definição da variável ocorre em uma base específica do Client, portanto, diferentes Clients podem registrar requisitos diferentes. Por padrão, a token list do Client está vazia, o que corresponde a qualquer token list do Server. Quando um Client define sua token list para um valor não vazio, a correspondência (matching) pode ser bem-sucedida ou falhar, dependendo da version token list do Server.
 
-To define the version token list for a server, the management application calls the [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set) function. (There are also functions for modifying and displaying the token list, described later.) For example, the application might send these statements to a group of three servers:
+Para definir a version token list de um Server, o aplicativo de gerenciamento chama a Function [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set). (Existem também Functions para modificar e exibir a token list, descritas mais adiante.) Por exemplo, o aplicativo pode enviar estes Statements para um grupo de três Servers:
 
 Server 1:
 
@@ -70,22 +70,22 @@ mysql> SELECT version_tokens_set('emp=read;prod=write');
 +-------------------------------------------+
 ```
 
-The token list in each case is specified as a semicolon-separated list of `name=value` pairs. The resulting token list values result in these server assingments:
+A token list em cada caso é especificada como uma lista de pares `name=value` separados por ponto e vírgula. Os valores resultantes da token list resultam nestas atribuições de Server:
 
-* Any server accepts reads for either database.
-* Only server 2 accepts updates for the `emp` database.
+* Qualquer Server aceita Reads para ambos os Databases.
+* Apenas o Server 2 aceita Updates para o Database `emp`.
 
-* Only server 3 accepts updates for the `prod` database.
+* Apenas o Server 3 aceita Updates para o Database `prod`.
 
-In addition to assigning each server a version token list, the management application also maintains a cache that reflects the server assignments.
+Além de atribuir a cada Server uma version token list, o aplicativo de gerenciamento também mantém um Cache que reflete as atribuições do Server.
 
-Before communicating with the servers, a client application contacts the management application and retrieves information about server assignments. Then the client selects a server based on those assignments. Suppose that a client wants to perform both reads and writes on the `emp` database. Based on the preceding assignments, only server 2 qualifies. The client connects to server 2 and registers its server requirements there by setting its [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) system variable:
+Antes de se comunicar com os Servers, um aplicativo Client entra em contato com o aplicativo de gerenciamento e recupera informações sobre as atribuições do Server. Em seguida, o Client seleciona um Server com base nessas atribuições. Suponha que um Client queira realizar Reads e Writes no Database `emp`. Com base nas atribuições anteriores, apenas o Server 2 se qualifica. O Client se conecta ao Server 2 e registra seus requisitos de Server lá, definindo sua system variable [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session):
 
 ```sql
 mysql> SET @@SESSION.version_tokens_session = 'emp=write';
 ```
 
-For subsequent statements sent by the client to server 2, the server compares its own version token list to the client list to check whether they match. If so, statements execute normally:
+Para Statements subsequentes enviados pelo Client ao Server 2, o Server compara sua própria version token list com a lista do Client para verificar se há correspondência (match). Se houver, os Statements são executados normalmente:
 
 ```sql
 mysql> UPDATE emp.employee SET salary = salary * 1.1 WHERE id = 4981;
@@ -101,13 +101,13 @@ mysql> SELECT last_name, first_name FROM emp.employee WHERE id = 4981;
 1 row in set (0.01 sec)
 ```
 
-Discrepancies between the server and client version token lists can occur two ways:
+Discrepâncias entre as version token lists do Server e do Client podem ocorrer de duas maneiras:
 
-* A token name in the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value is not present in the server token list. In this case, an [`ER_VTOKEN_PLUGIN_TOKEN_NOT_FOUND`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_not_found) error occurs.
+* Um token name no valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) não está presente na server token list. Neste caso, ocorre um error [`ER_VTOKEN_PLUGIN_TOKEN_NOT_FOUND`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_not_found).
 
-* A token value in the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value differs from the value of the corresponding token in the server token list. In this case, an [`ER_VTOKEN_PLUGIN_TOKEN_MISMATCH`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_mismatch) error occurs.
+* Um token value no valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) difere do valor do token correspondente na server token list. Neste caso, ocorre um error [`ER_VTOKEN_PLUGIN_TOKEN_MISMATCH`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_mismatch).
 
-As long as the assignment of server 2 does not change, the client continues to use it for reads and writes. But suppose that the management application wants to change server assignments so that writes for the `emp` database must be sent to server 1 instead of server 2. To do this, it uses [`version_tokens_edit()`](version-tokens-reference.html#function_version-tokens-edit) to modify the `emp` token value on the two servers (and updates its cache of server assignments):
+Enquanto a atribuição do Server 2 não mudar, o Client continua a usá-lo para Reads e Writes. Mas suponha que o aplicativo de gerenciamento queira alterar as atribuições de Server para que os Writes para o Database `emp` devam ser enviados para o Server 1 em vez do Server 2. Para fazer isso, ele usa [`version_tokens_edit()`](version-tokens-reference.html#function_version-tokens-edit) para modificar o valor do token `emp` nos dois Servers (e atualiza seu Cache de atribuições de Server):
 
 Server 1:
 
@@ -131,46 +131,43 @@ mysql> SELECT version_tokens_edit('emp=read');
 +---------------------------------+
 ```
 
-[`version_tokens_edit()`](version-tokens-reference.html#function_version-tokens-edit) modifies the named tokens in the server token list and leaves other tokens unchanged.
+A função [`version_tokens_edit()`](version-tokens-reference.html#function_version-tokens-edit) modifica os tokens nomeados na server token list e deixa outros tokens inalterados.
 
-The next time the client sends a statement to server 2, its own token list no longer matches the server token list and an error occurs:
+Na próxima vez que o Client envia um Statement para o Server 2, sua própria token list não corresponde mais à server token list, e ocorre um error:
 
 ```sql
 mysql> UPDATE emp.employee SET salary = salary * 1.1 WHERE id = 4982;
 ERROR 3136 (42000): Version token mismatch for emp. Correct value read
 ```
 
-In this case, the client should contact the management application to obtain updated information about server assignments, select a new server, and send the failed statement to the new server.
+Neste caso, o Client deve entrar em contato com o aplicativo de gerenciamento para obter informações atualizadas sobre as atribuições de Server, selecionar um novo Server e enviar o Statement que falhou para o novo Server.
 
 Note
 
-Each client must cooperate with Version Tokens by sending only statements in accordance with the token list that it registers with a given server. For example, if a client registers a token list of `'emp=read'`, there is nothing in Version Tokens to prevent the client from sending updates for the `emp` database. The client itself must refrain from doing so.
+Cada Client deve cooperar com Version Tokens enviando apenas Statements de acordo com a token list que ele registra em um determinado Server. Por exemplo, se um Client registra uma token list de `'emp=read'`, não há nada em Version Tokens para impedir que o Client envie Updates para o Database `emp`. O próprio Client deve se abster de fazê-lo.
 
-For each statement received from a client, the server implicitly uses locking, as follows:
+Para cada Statement recebido de um Client, o Server implicitamente usa Locking, da seguinte forma:
 
-* Take a shared lock for each token named in the client token list (that is, in the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value)
+* Adquire um shared lock para cada token nomeado na token list do Client (ou seja, no valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session)).
+* Realiza a comparação entre as token lists do Server e do Client.
+* Executa o Statement ou produz um error dependendo do resultado da comparação.
+* Libera os Locks.
 
-* Perform the comparison between the server and client token lists
+O Server usa shared locks para que comparações para múltiplas Sessions possam ocorrer sem Blocking, enquanto impede alterações nos tokens para qualquer Session que tente adquirir um exclusive lock antes de manipular tokens com os mesmos nomes na server token list.
 
-* Execute the statement or produce an error depending on the comparison result
+O exemplo anterior usa apenas algumas das Functions incluídas na biblioteca do Plugin Version Tokens, mas há outras. Um conjunto de Functions permite que a lista de version tokens do Server seja manipulada e inspecionada. Outro conjunto de Functions permite que os version tokens sejam bloqueados e desbloqueados (Locked e Unlocked).
 
-* Release the locks
+Estas Functions permitem que a lista de version tokens do Server seja criada, alterada, removida e inspecionada:
 
-The server uses shared locks so that comparisons for multiple sessions can occur without blocking, while preventing changes to the tokens for any session that attempts to acquire an exclusive lock before it manipulates tokens of the same names in the server token list.
+* [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set) substitui completamente a lista atual e atribui uma nova lista. O argumento é uma lista de pares `name=value` separados por ponto e vírgula.
 
-The preceding example uses only a few of the functions included in the Version Tokens plugin library, but there are others. One set of functions permits the server's list of version tokens to be manipulated and inspected. Another set of functions permits version tokens to be locked and unlocked.
+* [`version_tokens_edit()`](version-tokens-reference.html#function_version-tokens-edit) permite modificações parciais na lista atual. Pode adicionar novos tokens ou alterar os valores de tokens existentes. O argumento é uma lista de pares `name=value` separados por ponto e vírgula.
 
-These functions permit the server's list of version tokens to be created, changed, removed, and inspected:
+* [`version_tokens_delete()`](version-tokens-reference.html#function_version-tokens-delete) exclui tokens da lista atual. O argumento é uma lista de token names separados por ponto e vírgula.
 
-* [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set) completely replaces the current list and assigns a new list. The argument is a semicolon-separated list of `name=value` pairs.
+* [`version_tokens_show()`](version-tokens-reference.html#function_version-tokens-show) exibe a token list atual. Não aceita argumentos.
 
-* [`version_tokens_edit()`](version-tokens-reference.html#function_version-tokens-edit) enables partial modifications to the current list. It can add new tokens or change the values of existing tokens. The argument is a semicolon-separated list of `name=value` pairs.
-
-* [`version_tokens_delete()`](version-tokens-reference.html#function_version-tokens-delete) deletes tokens from the current list. The argument is a semicolon-separated list of token names.
-
-* [`version_tokens_show()`](version-tokens-reference.html#function_version-tokens-show) displays the current token list. It takes no argument.
-
-Each of those functions, if successful, returns a binary string indicating what action occurred. The following example establishes the server token list, modifies it by adding a new token, deletes some tokens, and displays the resulting token list:
+Cada uma dessas Functions, se bem-sucedida, retorna uma string binária indicando qual ação ocorreu. O exemplo a seguir estabelece a server token list, a modifica adicionando um novo token, exclui alguns tokens e exibe a token list resultante:
 
 ```sql
 mysql> SELECT version_tokens_set('tok1=a;tok2=b');
@@ -199,7 +196,7 @@ mysql> SELECT version_tokens_show();
 +-----------------------+
 ```
 
-Warnings occur if a token list is malformed:
+Warnings ocorrem se uma token list estiver malformada:
 
 ```sql
 mysql> SELECT version_tokens_set('tok1=a; =c');
@@ -219,7 +216,7 @@ Message: Invalid version token pair encountered. The list provided
 1 row in set (0.00 sec)
 ```
 
-As mentioned previously, version tokens are defined using a semicolon-separated list of `name=value` pairs. Consider this invocation of [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set):
+Conforme mencionado anteriormente, version tokens são definidos usando uma lista de pares `name=value` separados por ponto e vírgula. Considere esta invocação de [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set):
 
 ```sql
 mysql> SELECT version_tokens_set('tok1=b;;; tok2= a = b ; tok1 = 1\'2 3"4')
@@ -230,14 +227,14 @@ mysql> SELECT version_tokens_set('tok1=b;;; tok2= a = b ; tok1 = 1\'2 3"4')
 +---------------------------------------------------------------+
 ```
 
-Version Tokens interprets the argument as follows:
+Version Tokens interpreta o argumento da seguinte forma:
 
-* Whitespace around names and values is ignored. Whitespace within names and values is permitted. (For [`version_tokens_delete()`](version-tokens-reference.html#function_version-tokens-delete), which takes a list of names without values, whitespace around names is ignored.)
+* Whitespace (espaço em branco) ao redor de nomes e valores é ignorado. Whitespace dentro de nomes e valores é permitido. (Para [`version_tokens_delete()`](version-tokens-reference.html#function_version-tokens-delete), que aceita uma lista de nomes sem valores, o Whitespace ao redor dos nomes é ignorado.)
 
-* There is no quoting mechanism.
-* Order of tokens is not significant except that if a token list contains multiple instances of a given token name, the last value takes precedence over earlier values.
+* Não há mecanismo de Quoting (aspas).
+* A ordem dos tokens não é significativa, exceto que, se uma token list contiver múltiplas instâncias de um determinado token name, o último valor prevalece sobre os valores anteriores.
 
-Given those rules, the preceding [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set) call results in a token list with two tokens: `tok1` has the value `1'2 3"4`, and `tok2` has the value `a = b`. To verify this, call [`version_tokens_show()`](version-tokens-reference.html#function_version-tokens-show):
+Dadas essas regras, a chamada [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set) anterior resulta em uma token list com dois tokens: `tok1` tem o valor `1'2 3"4`, e `tok2` tem o valor `a = b`. Para verificar isso, chame [`version_tokens_show()`](version-tokens-reference.html#function_version-tokens-show):
 
 ```sql
 mysql> SELECT version_tokens_show();
@@ -248,25 +245,25 @@ mysql> SELECT version_tokens_show();
 +--------------------------+
 ```
 
-If the token list contains two tokens, why did [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set) return the value `3 version tokens set`? That occurred because the original token list contained two definitions for `tok1`, and the second definition replaced the first.
+Se a token list contém dois tokens, por que [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set) retornou o valor `3 version tokens set`? Isso ocorreu porque a token list original continha duas definições para `tok1`, e a segunda definição substituiu a primeira.
 
-The Version Tokens token-manipulation functions place these constraints on token names and values:
+As Version Tokens Functions de manipulação de token impõem estas restrições aos token names e valores:
 
-* Token names cannot contain `=` or `;` characters and have a maximum length of 64 characters.
+* Token names não podem conter os caracteres `=` ou `;` e têm um comprimento máximo de 64 caracteres.
 
-* Token values cannot contain `;` characters. Length of values is constrained by the value of the [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) system variable.
+* Token values não podem conter o caractere `;`. O comprimento dos valores é limitado pelo valor da system variable [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet).
 
-* Version Tokens treats token names and values as binary strings, so comparisons are case-sensitive.
+* Version Tokens trata token names e valores como strings binárias, portanto, as comparações são case-sensitive (sensíveis a maiúsculas e minúsculas).
 
-Version Tokens also includes a set of functions enabling tokens to be locked and unlocked:
+Version Tokens também inclui um conjunto de Functions que permitem que os tokens sejam Locked e Unlocked:
 
-* [`version_tokens_lock_exclusive()`](version-tokens-reference.html#function_version-tokens-lock-exclusive) acquires exclusive version token locks. It takes a list of one or more lock names and a timeout value.
+* [`version_tokens_lock_exclusive()`](version-tokens-reference.html#function_version-tokens-lock-exclusive) adquire exclusive version token locks. Aceita uma lista de um ou mais lock names e um valor de timeout.
 
-* [`version_tokens_lock_shared()`](version-tokens-reference.html#function_version-tokens-lock-shared) acquires shared version token locks. It takes a list of one or more lock names and a timeout value.
+* [`version_tokens_lock_shared()`](version-tokens-reference.html#function_version-tokens-lock-shared) adquire shared version token locks. Aceita uma lista de um ou mais lock names e um valor de timeout.
 
-* [`version_tokens_unlock()`](version-tokens-reference.html#function_version-tokens-unlock) releases version token locks (exclusive and shared). It takes no argument.
+* [`version_tokens_unlock()`](version-tokens-reference.html#function_version-tokens-unlock) libera version token locks (exclusive e shared). Não aceita argumentos.
 
-Each locking function returns nonzero for success. Otherwise, an error occurs:
+Cada função de Locking retorna um valor diferente de zero em caso de sucesso. Caso contrário, ocorre um error:
 
 ```sql
 mysql> SELECT version_tokens_lock_shared('lock1', 'lock2', 0);
@@ -280,12 +277,12 @@ mysql> SELECT version_tokens_lock_shared(NULL, 0);
 ERROR 3131 (42000): Incorrect locking service lock name '(null)'.
 ```
 
-Locking using Version Tokens locking functions is advisory; applications must agree to cooperate.
+O Locking usando as Version Tokens Locking Functions é consultivo (advisory); os aplicativos devem concordar em cooperar.
 
-It is possible to lock nonexisting token names. This does not create the tokens.
+É possível aplicar Lock em token names não existentes. Isso não cria os tokens.
 
 Note
 
-Version Tokens locking functions are based on the locking service described at [Section 5.5.6.1, “The Locking Service”](locking-service.html "5.5.6.1 The Locking Service"), and thus have the same semantics for shared and exclusive locks. (Version Tokens uses the locking service routines built into the server, not the locking service function interface, so those functions need not be installed to use Version Tokens.) Locks acquired by Version Tokens use a locking service namespace of `version_token_locks`. Locking service locks can be monitored using the Performance Schema, so this is also true for Version Tokens locks. For details, see [Locking Service Monitoring](locking-service.html#locking-service-monitoring "Locking Service Monitoring").
+As Version Tokens Locking Functions são baseadas no Locking Service descrito em [Seção 5.5.6.1, “O Locking Service”](locking-service.html "5.5.6.1 O Locking Service"), e, portanto, têm a mesma semântica para shared e exclusive locks. (Version Tokens usa as rotinas de Locking Service integradas ao Server, e não a interface de Function do Locking Service, portanto, essas Functions não precisam ser instaladas para usar Version Tokens.) Locks adquiridos por Version Tokens usam um namespace de Locking Service de `version_token_locks`. Os Locks do Locking Service podem ser monitorados usando o Performance Schema, o que também é verdade para os Version Tokens Locks. Para detalhes, consulte [Locking Service Monitoring](locking-service.html#locking-service-monitoring "Locking Service Monitoring").
 
-For the Version Tokens locking functions, token name arguments are used exactly as specified. Surrounding whitespace is not ignored and `=` and `;` characters are permitted. This is because Version Tokens simply passes the token names to be locked as is to the locking service.
+Para as Version Tokens Locking Functions, os argumentos de token name são usados exatamente conforme especificado. O Whitespace circundante não é ignorado e os caracteres `=` e `;` são permitidos. Isso ocorre porque Version Tokens simplesmente passa os token names a serem Locked como estão para o Locking Service.

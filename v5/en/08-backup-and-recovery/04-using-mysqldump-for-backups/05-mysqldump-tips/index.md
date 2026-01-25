@@ -1,19 +1,19 @@
-### 7.4.5 mysqldump Tips
+### 7.4.5 Dicas sobre mysqldump
 
-7.4.5.1 Making a Copy of a Database
+7.4.5.1 Fazendo uma Cópia de um Database
 
-7.4.5.2 Copy a Database from one Server to Another
+7.4.5.2 Copiando um Database de um Server para Outro
 
-7.4.5.3 Dumping Stored Programs
+7.4.5.3 Realizando o Dump de Stored Programs
 
-7.4.5.4 Dumping Table Definitions and Content Separately
+7.4.5.4 Realizando o Dump de Table Definitions e Conteúdo Separadamente
 
-7.4.5.5 Using mysqldump to Test for Upgrade Incompatibilities
+7.4.5.5 Usando mysqldump para Testar Incompatibilidades de Upgrade
 
-This section surveys techniques that enable you to use **mysqldump** to solve specific problems:
+Esta seção analisa técnicas que permitem que você use o **mysqldump** para resolver problemas específicos:
 
-* How to make a copy a database
-* How to copy a database from one server to another
-* How to dump stored programs (stored procedures and functions, triggers, and events)
+* Como fazer uma cópia de um database
+* Como copiar um database de um server para outro
+* Como realizar o dump de stored programs (stored procedures e functions, triggers e events)
 
-* How to dump definitions and data separately
+* Como realizar o dump de definitions e dados separadamente

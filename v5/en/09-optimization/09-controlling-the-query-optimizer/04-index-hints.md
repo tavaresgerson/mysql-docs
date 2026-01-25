@@ -1,10 +1,10 @@
-### 8.9.4 Index Hints
+### 8.9.4 Dicas de Index (Index Hints)
 
-Index hints give the optimizer information about how to choose indexes during query processing. Index hints, described here, differ from optimizer hints, described in Section 8.9.3, “Optimizer Hints”. Index and optimizer hints may be used separately or together.
+Dicas de Index (Index hints) fornecem ao Optimizer informações sobre como escolher Indexes durante o processamento de uma Query. As Index hints, descritas aqui, diferem das Optimizer hints, descritas na Seção 8.9.3, “Optimizer Hints”. Index e Optimizer hints podem ser usadas separadamente ou em conjunto.
 
-Index hints apply to `SELECT` and `UPDATE` statements. They also work with multi-table `DELETE` statements, but not with single-table `DELETE`, as shown later in this section.
+As Index hints se aplicam a comandos `SELECT` e `UPDATE`. Elas também funcionam com comandos `DELETE` de múltiplas tabelas, mas não com `DELETE` de tabela única, conforme será demonstrado mais adiante nesta seção.
 
-Index hints are specified following a table name. (For the general syntax for specifying tables in a `SELECT` statement, see Section 13.2.9.2, “JOIN Clause”.) The syntax for referring to an individual table, including index hints, looks like this:
+As Index hints são especificadas após o nome de uma tabela. (Para a sintaxe geral de especificação de tabelas em um comando `SELECT`, consulte a Seção 13.2.9.2, “JOIN Clause”.) A sintaxe para fazer referência a uma tabela individual, incluindo as Index hints, é a seguinte:
 
 ```sql
 tbl_name AS] alias] [index_hint_list]
@@ -22,15 +22,15 @@ index_list:
     index_name [, index_name] ...
 ```
 
-The `USE INDEX (index_list)` hint tells MySQL to use only one of the named indexes to find rows in the table. The alternative syntax `IGNORE INDEX (index_list)` tells MySQL to not use some particular index or indexes. These hints are useful if `EXPLAIN` shows that MySQL is using the wrong index from the list of possible indexes.
+A dica `USE INDEX (index_list)` instrui o MySQL a usar apenas um dos Indexes nomeados para encontrar linhas na tabela. A sintaxe alternativa `IGNORE INDEX (index_list)` instrui o MySQL a não usar um ou mais Indexes específicos. Essas dicas são úteis se o `EXPLAIN` mostrar que o MySQL está usando o Index errado na lista de Indexes possíveis.
 
-The `FORCE INDEX` hint acts like `USE INDEX (index_list)`, with the addition that a table scan is assumed to be *very* expensive. In other words, a table scan is used only if there is no way to use one of the named indexes to find rows in the table.
+A dica `FORCE INDEX` atua como `USE INDEX (index_list)`, com o acréscimo de que um *table scan* é presumido ser *muito* caro. Em outras palavras, um *table scan* é usado apenas se não houver como utilizar um dos Indexes nomeados para encontrar linhas na tabela.
 
-Each hint requires index names, not column names. To refer to a primary key, use the name `PRIMARY`. To see the index names for a table, use the `SHOW INDEX` statement or the Information Schema `STATISTICS` table.
+Cada dica requer nomes de Index, não nomes de coluna. Para se referir a uma Primary Key, use o nome `PRIMARY`. Para ver os nomes dos Indexes de uma tabela, utilize o comando `SHOW INDEX` ou a tabela `STATISTICS` do Information Schema.
 
-An *`index_name`* value need not be a full index name. It can be an unambiguous prefix of an index name. If a prefix is ambiguous, an error occurs.
+Um valor *`index_name`* não precisa ser o nome completo do Index. Ele pode ser um prefixo inequívoco do nome de um Index. Se um prefixo for ambíguo, ocorrerá um erro.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT * FROM table1 USE INDEX (col1_index,col2_index)
@@ -40,37 +40,37 @@ SELECT * FROM table1 IGNORE INDEX (col3_index)
   WHERE col1=1 AND col2=2 AND col3=3;
 ```
 
-The syntax for index hints has the following characteristics:
+A sintaxe para Index hints possui as seguintes características:
 
-* It is syntactically valid to omit *`index_list`* for `USE INDEX`, which means “use no indexes.” Omitting *`index_list`* for `FORCE INDEX` or `IGNORE INDEX` is a syntax error.
+* É sintaticamente válido omitir *`index_list`* para `USE INDEX`, o que significa “não usar Indexes”. Omitir *`index_list`* para `FORCE INDEX` ou `IGNORE INDEX` é um erro de sintaxe.
 
-* You can specify the scope of an index hint by adding a `FOR` clause to the hint. This provides more fine-grained control over optimizer selection of an execution plan for various phases of query processing. To affect only the indexes used when MySQL decides how to find rows in the table and how to process joins, use `FOR JOIN`. To influence index usage for sorting or grouping rows, use `FOR ORDER BY` or `FOR GROUP BY`.
+* Você pode especificar o escopo de uma Index hint adicionando uma cláusula `FOR` à dica. Isso fornece um controle mais detalhado sobre a seleção de um plano de execução pelo Optimizer para várias fases do processamento da Query. Para afetar apenas os Indexes usados quando o MySQL decide como encontrar linhas na tabela e como processar JOINs, use `FOR JOIN`. Para influenciar o uso de Index para ordenação ou agrupamento de linhas, use `FOR ORDER BY` ou `FOR GROUP BY`.
 
-* You can specify multiple index hints:
+* Você pode especificar múltiplas Index hints:
 
   ```sql
   SELECT * FROM t1 USE INDEX (i1) IGNORE INDEX FOR ORDER BY (i2) ORDER BY a;
   ```
 
-  It is not an error to name the same index in several hints (even within the same hint):
+  Não é um erro nomear o mesmo Index em diversas dicas (mesmo dentro da mesma dica):
 
   ```sql
   SELECT * FROM t1 USE INDEX (i1) USE INDEX (i1,i1);
   ```
 
-  However, it is an error to mix `USE INDEX` and `FORCE INDEX` for the same table:
+  No entanto, é um erro misturar `USE INDEX` e `FORCE INDEX` para a mesma tabela:
 
   ```sql
   SELECT * FROM t1 USE INDEX FOR JOIN (i1) FORCE INDEX FOR JOIN (i2);
   ```
 
-If an index hint includes no `FOR` clause, the scope of the hint is to apply to all parts of the statement. For example, this hint:
+Se uma Index hint não incluir uma cláusula `FOR`, o escopo da dica se aplicará a todas as partes do comando. Por exemplo, esta dica:
 
 ```sql
 IGNORE INDEX (i1)
 ```
 
-is equivalent to this combination of hints:
+é equivalente a esta combinação de dicas:
 
 ```sql
 IGNORE INDEX FOR JOIN (i1)
@@ -78,27 +78,27 @@ IGNORE INDEX FOR ORDER BY (i1)
 IGNORE INDEX FOR GROUP BY (i1)
 ```
 
-In MySQL 5.0, hint scope with no `FOR` clause was to apply only to row retrieval. To cause the server to use this older behavior when no `FOR` clause is present, enable the `old` system variable at server startup. Take care about enabling this variable in a replication setup. With statement-based binary logging, having different modes for the source and replicas might lead to replication errors.
+No MySQL 5.0, o escopo da dica sem a cláusula `FOR` se aplicava apenas à recuperação de linhas. Para fazer com que o servidor use esse comportamento antigo quando não houver uma cláusula `FOR` presente, habilite a variável de sistema `old` na inicialização do servidor. Tome cuidado ao habilitar essa variável em uma configuração de replicação. Com o *statement-based binary logging*, ter modos diferentes para a source e as replicas pode levar a erros de replicação.
 
-When index hints are processed, they are collected in a single list by type (`USE`, `FORCE`, `IGNORE`) and by scope (`FOR JOIN`, `FOR ORDER BY`, `FOR GROUP BY`). For example:
+Quando as Index hints são processadas, elas são coletadas em uma única lista por tipo (`USE`, `FORCE`, `IGNORE`) e por escopo (`FOR JOIN`, `FOR ORDER BY`, `FOR GROUP BY`). Por exemplo:
 
 ```sql
 SELECT * FROM t1
   USE INDEX () IGNORE INDEX (i2) USE INDEX (i1) USE INDEX (i2);
 ```
 
-is equivalent to:
+é equivalente a:
 
 ```sql
 SELECT * FROM t1
    USE INDEX (i1,i2) IGNORE INDEX (i2);
 ```
 
-The index hints then are applied for each scope in the following order:
+As Index hints são então aplicadas para cada escopo na seguinte ordem:
 
-1. `{USE|FORCE} INDEX` is applied if present. (If not, the optimizer-determined set of indexes is used.)
+1. `{USE|FORCE} INDEX` é aplicado, se presente. (Se não estiver, o conjunto de Indexes determinado pelo Optimizer é usado.)
 
-2. `IGNORE INDEX` is applied over the result of the previous step. For example, the following two queries are equivalent:
+2. `IGNORE INDEX` é aplicado sobre o resultado da etapa anterior. Por exemplo, as duas Queries a seguir são equivalentes:
 
    ```sql
    SELECT * FROM t1 USE INDEX (i1) IGNORE INDEX (i2) USE INDEX (i2);
@@ -106,13 +106,13 @@ The index hints then are applied for each scope in the following order:
    SELECT * FROM t1 USE INDEX (i1);
    ```
 
-For `FULLTEXT` searches, index hints work as follows:
+Para pesquisas `FULLTEXT`, as Index hints funcionam da seguinte forma:
 
-* For natural language mode searches, index hints are silently ignored. For example, `IGNORE INDEX(i1)` is ignored with no warning and the index is still used.
+* Para pesquisas em modo de linguagem natural (*natural language mode*), as Index hints são ignoradas silenciosamente. Por exemplo, `IGNORE INDEX(i1)` é ignorada sem aviso e o Index continua a ser usado.
 
-* For boolean mode searches, index hints with `FOR ORDER BY` or `FOR GROUP BY` are silently ignored. Index hints with `FOR JOIN` or no `FOR` modifier are honored. In contrast to how hints apply for non-`FULLTEXT` searches, the hint is used for all phases of query execution (finding rows and retrieval, grouping, and ordering). This is true even if the hint is given for a non-`FULLTEXT` index.
+* Para pesquisas em modo booleano (*boolean mode*), as Index hints com `FOR ORDER BY` ou `FOR GROUP BY` são ignoradas silenciosamente. As Index hints com `FOR JOIN` ou sem modificador `FOR` são respeitadas. Em contraste com a forma como as dicas se aplicam a pesquisas que não são `FULLTEXT`, a dica é usada para todas as fases da execução da Query (encontrar e recuperar linhas, agrupamento e ordenação). Isso é verdade mesmo que a dica seja fornecida para um Index que não seja `FULLTEXT`.
 
-  For example, the following two queries are equivalent:
+  Por exemplo, as duas Queries a seguir são equivalentes:
 
   ```sql
   SELECT * FROM t
@@ -126,7 +126,7 @@ For `FULLTEXT` searches, index hints work as follows:
     WHERE ... IN BOOLEAN MODE ... ;
   ```
 
-Index hints work with `DELETE` statements, but only if you use multi-table `DELETE` syntax, as shown here:
+As Index hints funcionam com comandos `DELETE`, mas apenas se você usar a sintaxe `DELETE` de múltiplas tabelas, conforme mostrado aqui:
 
 ```sql
 mysql> EXPLAIN DELETE FROM t1 USE INDEX(col2)

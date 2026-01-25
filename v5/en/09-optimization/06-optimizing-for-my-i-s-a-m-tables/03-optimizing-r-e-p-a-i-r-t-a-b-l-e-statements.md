@@ -1,25 +1,25 @@
-### 8.6.3 Optimizing REPAIR TABLE Statements
+### 8.6.3 Otimizando Declarações REPAIR TABLE
 
-`REPAIR TABLE` for `MyISAM` tables is similar to using **myisamchk** for repair operations, and some of the same performance optimizations apply:
+O comando `REPAIR TABLE` para tabelas `MyISAM` é semelhante ao uso do **myisamchk** para operações de reparo, e algumas das mesmas otimizações de performance se aplicam:
 
-* **myisamchk** has variables that control memory allocation. You may be able to its improve performance by setting these variables, as described in Section 4.6.3.6, “myisamchk Memory Usage”.
+* O **myisamchk** possui variáveis que controlam a alocação de memória. Você pode melhorar sua performance configurando essas variáveis, conforme descrito na Seção 4.6.3.6, “myisamchk Memory Usage”.
 
-* For `REPAIR TABLE`, the same principle applies, but because the repair is done by the server, you set server system variables instead of **myisamchk** variables. Also, in addition to setting memory-allocation variables, increasing the `myisam_max_sort_file_size` system variable increases the likelihood that the repair uses the faster filesort method and avoids the slower repair by key cache method. Set the variable to the maximum file size for your system, after checking to be sure that there is enough free space to hold a copy of the table files. The free space must be available in the file system containing the original table files.
+* Para `REPAIR TABLE`, o mesmo princípio se aplica, mas como o reparo é feito pelo server, você configura variáveis de sistema do server em vez de variáveis do **myisamchk**. Além disso, além de configurar variáveis de alocação de memória, aumentar a variável de sistema `myisam_max_sort_file_size` aumenta a probabilidade de que o reparo use o método `filesort`, que é mais rápido, e evite o método mais lento de reparo por `key cache`. Defina a variável para o tamanho máximo de arquivo para o seu sistema, após verificar se há espaço livre suficiente para armazenar uma cópia dos arquivos da table. O espaço livre deve estar disponível no file system que contém os arquivos de table originais.
 
-Suppose that a **myisamchk** table-repair operation is done using the following options to set its memory-allocation variables:
+Suponha que uma operação de reparo de table **myisamchk** seja executada usando as seguintes opções para configurar suas variáveis de alocação de memória:
 
 ```sql
 --key_buffer_size=128M --myisam_sort_buffer_size=256M
 --read_buffer_size=64M --write_buffer_size=64M
 ```
 
-Some of those **myisamchk** variables correspond to server system variables:
+Algumas dessas variáveis **myisamchk** correspondem a variáveis de sistema do server:
 
-<table summary="myisamchk variables and corresponding server system variables."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><span><strong>myisamchk</strong></span> Variable</th> <th>System Variable</th> </tr></thead><tbody><tr> <td><code>key_buffer_size</code></td> <td><code>key_buffer_size</code></td> </tr><tr> <td><code>myisam_sort_buffer_size</code></td> <td><code>myisam_sort_buffer_size</code></td> </tr><tr> <td><code>read_buffer_size</code></td> <td><code>read_buffer_size</code></td> </tr><tr> <td><code>write_buffer_size</code></td> <td>none</td> </tr></tbody></table>
+<table summary="myisamchk variables and corresponding server system variables."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><span><strong>Variável myisamchk</strong></span></th> <th>Variável de Sistema</th> </tr></thead><tbody><tr> <td><code>key_buffer_size</code></td> <td><code>key_buffer_size</code></td> </tr><tr> <td><code>myisam_sort_buffer_size</code></td> <td><code>myisam_sort_buffer_size</code></td> </tr><tr> <td><code>read_buffer_size</code></td> <td><code>read_buffer_size</code></td> </tr><tr> <td><code>write_buffer_size</code></td> <td>nenhuma</td> </tr></tbody></table>
 
-Each of the server system variables can be set at runtime, and some of them (`myisam_sort_buffer_size`, `read_buffer_size`) have a session value in addition to a global value. Setting a session value limits the effect of the change to your current session and does not affect other users. Changing a global-only variable (`key_buffer_size`, `myisam_max_sort_file_size`) affects other users as well. For `key_buffer_size`, you must take into account that the buffer is shared with those users. For example, if you set the **myisamchk** `key_buffer_size` variable to 128MB, you could set the corresponding `key_buffer_size` system variable larger than that (if it is not already set larger), to permit key buffer use by activity in other sessions. However, changing the global key buffer size invalidates the buffer, causing increased disk I/O and slowdown for other sessions. An alternative that avoids this problem is to use a separate key cache, assign to it the indexes from the table to be repaired, and deallocate it when the repair is complete. See Section 8.10.2.2, “Multiple Key Caches”.
+Cada uma das variáveis de sistema do server pode ser configurada em runtime, e algumas delas (`myisam_sort_buffer_size`, `read_buffer_size`) possuem um valor de session além de um valor global. Configurar um valor de session limita o efeito da alteração à sua session atual e não afeta outros usuários. Alterar uma variável apenas global (`key_buffer_size`, `myisam_max_sort_file_size`) afeta outros usuários também. Para `key_buffer_size`, você deve considerar que o Buffer é compartilhado com esses usuários. Por exemplo, se você configurar a variável **myisamchk** `key_buffer_size` para 128MB, você poderia configurar a variável de sistema `key_buffer_size` correspondente maior do que isso (se ainda não estiver configurada como maior), para permitir o uso do key Buffer pela atividade em outras sessions. No entanto, alterar o tamanho global do key Buffer invalida o Buffer, causando aumento de I/O em disco e lentidão para outras sessions. Uma alternativa que evita esse problema é usar um `key cache` separado, atribuir a ele os Indexes da table a ser reparada e desativá-lo quando o reparo estiver completo. Consulte a Seção 8.10.2.2, “Multiple Key Caches”.
 
-Based on the preceding remarks, a `REPAIR TABLE` operation can be done as follows to use settings similar to the **myisamchk** command. Here a separate 128MB key buffer is allocated and the file system is assumed to permit a file size of at least 100GB.
+Com base nas observações precedentes, uma operação `REPAIR TABLE` pode ser feita da seguinte maneira para usar configurações semelhantes ao comando **myisamchk**. Aqui, um key Buffer separado de 128MB é alocado, e presume-se que o file system permita um tamanho de arquivo de pelo menos 100GB.
 
 ```sql
 SET SESSION myisam_sort_buffer_size = 256*1024*1024;
@@ -32,7 +32,7 @@ REPAIR TABLE tbl_name ;
 SET GLOBAL repair_cache.key_buffer_size = 0;
 ```
 
-If you intend to change a global variable but want to do so only for the duration of a `REPAIR TABLE` operation to minimally affect other users, save its value in a user variable and restore it afterward. For example:
+Se você pretende alterar uma variável global, mas deseja fazê-lo apenas durante a duração de uma operação `REPAIR TABLE` para afetar minimamente outros usuários, salve seu valor em uma variável de usuário e restaure-o depois. Por exemplo:
 
 ```sql
 SET @old_myisam_sort_buffer_size = @@GLOBAL.myisam_max_sort_file_size;
@@ -41,7 +41,7 @@ REPAIR TABLE tbl_name ;
 SET GLOBAL myisam_max_sort_file_size = @old_myisam_max_sort_file_size;
 ```
 
-The system variables that affect `REPAIR TABLE` can be set globally at server startup if you want the values to be in effect by default. For example, add these lines to the server `my.cnf` file:
+As variáveis de sistema que afetam `REPAIR TABLE` podem ser configuradas globalmente na inicialização do server se você quiser que os valores estejam em vigor por padrão. Por exemplo, adicione estas linhas ao arquivo `my.cnf` do server:
 
 ```sql
 [mysqld]
@@ -50,4 +50,4 @@ key_buffer_size=1G
 myisam_max_sort_file_size=100G
 ```
 
-These settings do not include `read_buffer_size`. Setting `read_buffer_size` globally to a large value does so for all sessions and can cause performance to suffer due to excessive memory allocation for a server with many simultaneous sessions.
+Essas configurações não incluem `read_buffer_size`. Definir `read_buffer_size` globalmente para um valor grande o faz para todas as sessions e pode fazer com que a performance seja prejudicada devido à alocação excessiva de memória para um server com muitas sessions simultâneas.

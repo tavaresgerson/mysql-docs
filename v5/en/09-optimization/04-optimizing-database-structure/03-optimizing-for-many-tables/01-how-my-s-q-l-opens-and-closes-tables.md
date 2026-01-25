@@ -1,45 +1,45 @@
-#### 8.4.3.1 How MySQL Opens and Closes Tables
+#### 8.4.3.1 Como o MySQL Abre e Fecha Tabelas
 
-When you execute a **mysqladmin status** command, you should see something like this:
+Quando você executa um comando **mysqladmin status**, você deve ver algo como isto:
 
 ```sql
 Uptime: 426 Running threads: 1 Questions: 11082
 Reloads: 1 Open tables: 12
 ```
 
-The `Open tables` value of 12 can be somewhat puzzling if you have fewer than 12 tables.
+O valor de `Open tables` de 12 pode ser um tanto intrigante se você tiver menos de 12 tabelas.
 
-MySQL is multithreaded, so there may be many clients issuing queries for a given table simultaneously. To minimize the problem with multiple client sessions having different states on the same table, the table is opened independently by each concurrent session. This uses additional memory but normally increases performance. With `MyISAM` tables, one extra file descriptor is required for the data file for each client that has the table open. (By contrast, the index file descriptor is shared between all sessions.)
+O MySQL é *multithreaded*, portanto, pode haver muitos *clients* emitindo *Queries* para uma determinada tabela simultaneamente. Para minimizar o problema de múltiplas sessões de *client* terem estados diferentes na mesma tabela, a tabela é aberta independentemente por cada sessão concorrente. Isso usa memória adicional, mas normalmente aumenta o *performance*. Com tabelas `MyISAM`, é necessário um *file descriptor* extra para o arquivo de dados para cada *client* que tem a tabela aberta. (Em contraste, o *file descriptor* do *Index* é compartilhado entre todas as sessões.)
 
-The `table_open_cache` and `max_connections` system variables affect the maximum number of files the server keeps open. If you increase one or both of these values, you may run up against a limit imposed by your operating system on the per-process number of open file descriptors. Many operating systems permit you to increase the open-files limit, although the method varies widely from system to system. Consult your operating system documentation to determine whether it is possible to increase the limit and how to do so.
+As variáveis de sistema `table_open_cache` e `max_connections` afetam o número máximo de arquivos que o *server* mantém abertos. Se você aumentar um ou ambos esses valores, você pode atingir um limite imposto pelo seu sistema operacional no número de *file descriptors* abertos por processo. Muitos sistemas operacionais permitem que você aumente o limite de arquivos abertos (*open-files limit*), embora o método varie amplamente de sistema para sistema. Consulte a documentação do seu sistema operacional para determinar se é possível aumentar o limite e como fazê-lo.
 
-`table_open_cache` is related to `max_connections`. For example, for 200 concurrent running connections, specify a table cache size of at least `200 * N`, where *`N`* is the maximum number of tables per join in any of the queries which you execute. You must also reserve some extra file descriptors for temporary tables and files.
+`table_open_cache` está relacionado a `max_connections`. Por exemplo, para 200 conexões concorrentes em execução, especifique um tamanho de *table cache* de pelo menos `200 * N`, onde *`N`* é o número máximo de tabelas por *JOIN* em qualquer uma das *Queries* que você executa. Você também deve reservar alguns *file descriptors* extras para tabelas e arquivos temporários.
 
-Make sure that your operating system can handle the number of open file descriptors implied by the `table_open_cache` setting. If `table_open_cache` is set too high, MySQL may run out of file descriptors and exhibit symptoms such as refusing connections or failing to perform queries.
+Certifique-se de que seu sistema operacional pode lidar com o número de *file descriptors* abertos implícito na configuração de `table_open_cache`. Se `table_open_cache` for definido muito alto, o MySQL pode ficar sem *file descriptors* e apresentar sintomas como recusar conexões ou falhar ao executar *Queries*.
 
-Also take into account that the `MyISAM` storage engine needs two file descriptors for each unique open table. For a partitioned `MyISAM` table, two file descriptors are required for each partition of the opened table. (When `MyISAM` opens a partitioned table, it opens every partition of this table, whether or not a given partition is actually used. See MyISAM and partition file descriptor usage.) To increase the number of file descriptors available to MySQL, set the `open_files_limit` system variable. See Section B.3.2.16, “File Not Found and Similar Errors”.
+Também leve em consideração que o *storage engine* `MyISAM` precisa de dois *file descriptors* para cada tabela aberta única. Para uma tabela `MyISAM` particionada, dois *file descriptors* são necessários para cada *partition* da tabela aberta. (Quando o `MyISAM` abre uma tabela particionada, ele abre todas as *partitions* dessa tabela, independentemente de uma determinada *partition* ser realmente usada. Consulte MyISAM e uso de *file descriptors* de *partition*.) Para aumentar o número de *file descriptors* disponíveis para o MySQL, defina a variável de sistema `open_files_limit`. Consulte a Seção B.3.2.16, “File Not Found and Similar Errors” (Arquivo Não Encontrado e Erros Semelhantes).
 
-The cache of open tables is kept at a level of `table_open_cache` entries. The server autosizes the cache size at startup. To set the size explicitly, set the `table_open_cache` system variable at startup. MySQL may temporarily open more tables than this to execute queries, as described later in this section.
+O *cache* de tabelas abertas é mantido em um nível de `table_open_cache` entradas. O *server* ajusta automaticamente o tamanho do *cache* na inicialização (*startup*). Para definir o tamanho explicitamente, defina a variável de sistema `table_open_cache` no *startup*. O MySQL pode abrir temporariamente mais tabelas do que isso para executar *Queries*, conforme descrito posteriormente nesta seção.
 
-MySQL closes an unused table and removes it from the table cache under the following circumstances:
+O MySQL fecha uma tabela não utilizada e a remove do *table cache* nas seguintes circunstâncias:
 
-* When the cache is full and a thread tries to open a table that is not in the cache.
+* Quando o *cache* está cheio e um *Thread* tenta abrir uma tabela que não está no *cache*.
 
-* When the cache contains more than `table_open_cache` entries and a table in the cache is no longer being used by any threads.
+* Quando o *cache* contém mais de `table_open_cache` entradas e uma tabela no *cache* não está mais sendo usada por nenhum *Thread*.
 
-* When a table-flushing operation occurs. This happens when someone issues a `FLUSH TABLES` statement or executes a **mysqladmin flush-tables** or **mysqladmin refresh** command.
+* Quando ocorre uma operação de *table-flushing*. Isso acontece quando alguém emite uma instrução `FLUSH TABLES` ou executa um comando **mysqladmin flush-tables** ou **mysqladmin refresh**.
 
-When the table cache fills up, the server uses the following procedure to locate a cache entry to use:
+Quando o *table cache* se enche, o *server* usa o seguinte procedimento para localizar uma entrada de *cache* a ser utilizada:
 
-* Tables not currently in use are released, beginning with the table least recently used.
+* Tabelas não utilizadas no momento são liberadas, começando pela tabela usada menos recentemente.
 
-* If a new table must be opened, but the cache is full and no tables can be released, the cache is temporarily extended as necessary. When the cache is in a temporarily extended state and a table goes from a used to unused state, the table is closed and released from the cache.
+* Se uma nova tabela deve ser aberta, mas o *cache* está cheio e nenhuma tabela pode ser liberada, o *cache* é temporariamente estendido conforme necessário. Quando o *cache* está em um estado temporariamente estendido e uma tabela passa de um estado usado para não usado, a tabela é fechada e liberada do *cache*.
 
-A `MyISAM` table is opened for each concurrent access. This means the table needs to be opened twice if two threads access the same table or if a thread accesses the table twice in the same query (for example, by joining the table to itself). Each concurrent open requires an entry in the table cache. The first open of any `MyISAM` table takes two file descriptors: one for the data file and one for the index file. Each additional use of the table takes only one file descriptor for the data file. The index file descriptor is shared among all threads.
+Uma tabela `MyISAM` é aberta para cada acesso concorrente. Isso significa que a tabela precisa ser aberta duas vezes se dois *Threads* acessarem a mesma tabela ou se um *Thread* acessar a tabela duas vezes na mesma *Query* (por exemplo, ao fazer um *JOIN* da tabela consigo mesma). Cada abertura concorrente requer uma entrada no *table cache*. A primeira abertura de qualquer tabela `MyISAM` requer dois *file descriptors*: um para o arquivo de dados e um para o arquivo de *Index*. Cada uso adicional da tabela requer apenas um *file descriptor* para o arquivo de dados. O *file descriptor* do *Index* é compartilhado entre todos os *Threads*.
 
-If you are opening a table with the `HANDLER tbl_name OPEN` statement, a dedicated table object is allocated for the thread. This table object is not shared by other threads and is not closed until the thread calls `HANDLER tbl_name CLOSE` or the thread terminates. When this happens, the table is put back in the table cache (if the cache is not full). See Section 13.2.4, “HANDLER Statement”.
+Se você estiver abrindo uma tabela com a instrução `HANDLER tbl_name OPEN`, um objeto de tabela dedicado é alocado para o *Thread*. Este objeto de tabela não é compartilhado por outros *Threads* e não é fechado até que o *Thread* chame `HANDLER tbl_name CLOSE` ou o *Thread* termine. Quando isso acontece, a tabela é colocada de volta no *table cache* (se o *cache* não estiver cheio). Consulte a Seção 13.2.4, “HANDLER Statement” (Instrução HANDLER).
 
-To determine whether your table cache is too small, check the `Opened_tables` status variable, which indicates the number of table-opening operations since the server started:
+Para determinar se o seu *table cache* é muito pequeno, verifique a variável de *Status* `Opened_tables`, que indica o número de operações de abertura de tabela desde que o *server* foi iniciado:
 
 ```sql
 mysql> SHOW GLOBAL STATUS LIKE 'Opened_tables';
@@ -50,4 +50,4 @@ mysql> SHOW GLOBAL STATUS LIKE 'Opened_tables';
 +---------------+-------+
 ```
 
-If the value is very large or increases rapidly, even when you have not issued many `FLUSH TABLES` statements, increase the `table_open_cache` value at server startup.
+Se o valor for muito grande ou aumentar rapidamente, mesmo quando você não emitiu muitas instruções `FLUSH TABLES`, aumente o valor de `table_open_cache` no *server startup*.

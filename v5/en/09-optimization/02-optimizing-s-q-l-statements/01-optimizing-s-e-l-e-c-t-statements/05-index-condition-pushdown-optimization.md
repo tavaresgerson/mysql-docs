@@ -1,41 +1,41 @@
-#### 8.2.1.5 Index Condition Pushdown Optimization
+#### 8.2.1.5 Otimização de Index Condition Pushdown
 
-Index Condition Pushdown (ICP) is an optimization for the case where MySQL retrieves rows from a table using an index. Without ICP, the storage engine traverses the index to locate rows in the base table and returns them to the MySQL server which evaluates the `WHERE` condition for the rows. With ICP enabled, and if parts of the `WHERE` condition can be evaluated by using only columns from the index, the MySQL server pushes this part of the `WHERE` condition down to the storage engine. The storage engine then evaluates the pushed index condition by using the index entry and only if this is satisfied is the row read from the table. ICP can reduce the number of times the storage engine must access the base table and the number of times the MySQL server must access the storage engine.
+Index Condition Pushdown (ICP) é uma otimização para o caso em que o MySQL recupera linhas de uma table usando um Index. Sem o ICP, o Storage Engine percorre o Index para localizar linhas na tabela base e as retorna ao servidor MySQL, que avalia a condição `WHERE` para as linhas. Com o ICP ativado, e se partes da condição `WHERE` puderem ser avaliadas usando apenas colunas do Index, o servidor MySQL envia (pushes down) essa parte da condição `WHERE` para o Storage Engine. O Storage Engine então avalia a Index Condition enviada, usando a entrada do Index, e somente se esta for satisfeita, a linha é lida da table. O ICP pode reduzir o número de vezes que o Storage Engine deve acessar a tabela base e o número de vezes que o servidor MySQL deve acessar o Storage Engine.
 
-Applicability of the Index Condition Pushdown optimization is subject to these conditions:
+A aplicabilidade da otimização Index Condition Pushdown está sujeita a estas condições:
 
-* ICP is used for the `range`, `ref`, `eq_ref`, and `ref_or_null` access methods when there is a need to access full table rows.
+* O ICP é usado para os métodos de acesso `range`, `ref`, `eq_ref` e `ref_or_null` quando há necessidade de acessar linhas completas da table.
 
-* ICP can be used for `InnoDB` and `MyISAM` tables, including partitioned `InnoDB` and `MyISAM` tables.
+* O ICP pode ser usado para tables `InnoDB` e `MyISAM`, incluindo tables `InnoDB` e `MyISAM` particionadas.
 
-* For `InnoDB` tables, ICP is used only for secondary indexes. The goal of ICP is to reduce the number of full-row reads and thereby reduce I/O operations. For `InnoDB` clustered indexes, the complete record is already read into the `InnoDB` buffer. Using ICP in this case does not reduce I/O.
+* Para tables `InnoDB`, o ICP é usado apenas para Secondary Indexes. O objetivo do ICP é reduzir o número de leituras de linha completa e, consequentemente, reduzir operações de I/O. Para Clustered Indexes `InnoDB`, o registro completo já é lido para o `InnoDB Buffer Pool`. Usar ICP neste caso não reduz I/O.
 
-* ICP is not supported with secondary indexes created on virtual generated columns. `InnoDB` supports secondary indexes on virtual generated columns.
+* O ICP não é suportado com Secondary Indexes criados em colunas geradas virtuais. O `InnoDB` suporta Secondary Indexes em colunas geradas virtuais.
 
-* Conditions that refer to subqueries cannot be pushed down.
-* Conditions that refer to stored functions cannot be pushed down. Storage engines cannot invoke stored functions.
+* Conditions que se referem a Subqueries não podem ser enviadas para baixo (pushed down).
+* Conditions que se referem a stored functions não podem ser enviadas para baixo. Storage Engines não podem invocar stored functions.
 
-* Triggered conditions cannot be pushed down. (For information about triggered conditions, see Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”.)
+* Triggered conditions não podem ser enviadas para baixo. (Para informações sobre *triggered conditions*, consulte a Seção 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”.)
 
-To understand how this optimization works, first consider how an index scan proceeds when Index Condition Pushdown is not used:
+Para entender como esta otimização funciona, considere primeiro como um Index Scan prossegue quando o Index Condition Pushdown não é usado:
 
-1. Get the next row, first by reading the index tuple, and then by using the index tuple to locate and read the full table row.
+1. Obtenha a próxima linha, primeiro lendo o Index tuple, e depois usando o Index tuple para localizar e ler a linha completa da table.
 
-2. Test the part of the `WHERE` condition that applies to this table. Accept or reject the row based on the test result.
+2. Teste a parte da condição `WHERE` que se aplica a esta table. Aceite ou rejeite a linha com base no resultado do teste.
 
-Using Index Condition Pushdown, the scan proceeds like this instead:
+Usando o Index Condition Pushdown, o Scan prossegue da seguinte forma:
 
-1. Get the next row's index tuple (but not the full table row).
+1. Obtenha o Index tuple da próxima linha (mas não a linha completa da table).
 
-2. Test the part of the `WHERE` condition that applies to this table and can be checked using only index columns. If the condition is not satisfied, proceed to the index tuple for the next row.
+2. Teste a parte da condição `WHERE` que se aplica a esta table e que pode ser verificada usando apenas Index Columns. Se a Condition não for satisfeita, prossiga para o Index tuple da próxima linha.
 
-3. If the condition is satisfied, use the index tuple to locate and read the full table row.
+3. Se a Condition for satisfeita, use o Index tuple para localizar e ler a linha completa da table.
 
-4. Test the remaining part of the `WHERE` condition that applies to this table. Accept or reject the row based on the test result.
+4. Teste a parte restante da condição `WHERE` que se aplica a esta table. Aceite ou rejeite a linha com base no resultado do teste.
 
-`EXPLAIN` output shows `Using index condition` in the `Extra` column when Index Condition Pushdown is used. It does not show `Using index` because that does not apply when full table rows must be read.
+A saída do `EXPLAIN` mostra `Using index condition` na coluna `Extra` quando o Index Condition Pushdown é usado. Não mostra `Using index` porque isso não se aplica quando linhas completas da table devem ser lidas.
 
-Suppose that a table contains information about people and their addresses and that the table has an index defined as `INDEX (zipcode, lastname, firstname)`. If we know a person's `zipcode` value but are not sure about the last name, we can search like this:
+Suponha que uma table contenha informações sobre pessoas e seus endereços e que a table tenha um Index definido como `INDEX (zipcode, lastname, firstname)`. Se soubermos o valor do `zipcode` de uma pessoa, mas não tivermos certeza sobre o último nome, podemos pesquisar assim:
 
 ```sql
 SELECT * FROM people
@@ -44,15 +44,15 @@ SELECT * FROM people
   AND address LIKE '%Main Street%';
 ```
 
-MySQL can use the index to scan through people with `zipcode='95054'`. The second part (`lastname LIKE '%etrunia%'`) cannot be used to limit the number of rows that must be scanned, so without Index Condition Pushdown, this query must retrieve full table rows for all people who have `zipcode='95054'`.
+O MySQL pode usar o Index para realizar um Scan pelas pessoas com `zipcode='95054'`. A segunda parte (`lastname LIKE '%etrunia%'`) não pode ser usada para limitar o número de linhas que devem ser *scanned* (percorridas), então, sem o Index Condition Pushdown, esta Query deve recuperar linhas completas da table para todas as pessoas que têm `zipcode='95054'`.
 
-With Index Condition Pushdown, MySQL checks the `lastname LIKE '%etrunia%'` part before reading the full table row. This avoids reading full rows corresponding to index tuples that match the `zipcode` condition but not the `lastname` condition.
+Com o Index Condition Pushdown, o MySQL verifica a parte `lastname LIKE '%etrunia%'` antes de ler a linha completa da table. Isso evita a leitura de linhas completas correspondentes a Index tuples que correspondam à condição `zipcode`, mas não à condição `lastname`.
 
-Index Condition Pushdown is enabled by default. It can be controlled with the `optimizer_switch` system variable by setting the `index_condition_pushdown` flag:
+O Index Condition Pushdown é habilitado por padrão. Ele pode ser controlado com a variável de sistema `optimizer_switch` configurando o *flag* `index_condition_pushdown`:
 
 ```sql
 SET optimizer_switch = 'index_condition_pushdown=off';
 SET optimizer_switch = 'index_condition_pushdown=on';
 ```
 
-See Section 8.9.2, “Switchable Optimizations”.
+Consulte a Seção 8.9.2, “Switchable Optimizations”.

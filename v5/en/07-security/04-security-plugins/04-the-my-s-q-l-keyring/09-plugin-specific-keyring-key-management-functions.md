@@ -1,43 +1,43 @@
-#### 6.4.4.9 Plugin-Specific Keyring Key-Management Functions
+#### 6.4.4.9 Funções de Gerenciamento de Chaves do Keyring Específicas de Plugin
 
-For each keyring plugin-specific function, this section describes its purpose, calling sequence, and return value. For information about general-purpose keyring functions, see [Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
+Para cada função de keyring específica de plugin, esta seção descreve seu propósito, sequência de chamada e valor de retorno. Para informações sobre funções de keyring de propósito geral, consulte [Seção 6.4.4.8, “Funções de Gerenciamento de Chaves do Keyring de Propósito Geral”](keyring-functions-general-purpose.html "6.4.4.8 Funções de Gerenciamento de Chaves do Keyring de Propósito Geral”).
 
 * [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk)
 
-  Associated keyring plugin: `keyring_aws`
+  Plugin de keyring Associado: `keyring_aws`
 
-  [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk) rotates the customer master key (CMK). Rotation changes only the key that AWS KMS uses for subsequent data key-encryption operations. AWS KMS maintains previous CMK versions, so keys generated using previous CMKs remain decryptable after rotation.
+  [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk) rotaciona a customer master key (CMK). A rotação altera apenas a chave que o AWS KMS usa para operações subsequentes de criptografia de data key. O AWS KMS mantém versões CMK anteriores, de modo que as chaves geradas usando CMKs anteriores permaneçam descriptografáveis após a rotação.
 
-  Rotation changes the CMK value used inside AWS KMS but does not change the ID used to refer to it, so there is no need to change the [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) system variable after calling [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk).
+  A rotação altera o valor CMK usado dentro do AWS KMS, mas não altera o ID usado para se referir a ele, portanto, não há necessidade de alterar a System Variable [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) após chamar [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk).
 
-  This function requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+  Esta função requer o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  Returns 1 for success, or `NULL` and an error for failure.
+  Retorna 1 em caso de sucesso, ou `NULL` e um erro em caso de falha.
 
 * [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys)
 
-  Associated keyring plugin: `keyring_aws`
+  Plugin de keyring Associado: `keyring_aws`
 
-  [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys) rotates keys stored in the `keyring_aws` storage file named by the [`keyring_aws_data_file`](keyring-system-variables.html#sysvar_keyring_aws_data_file) system variable. Rotation sends each key stored in the file to AWS KMS for re-encryption using the value of the [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) system variable as the CMK value, and stores the new encrypted keys in the file.
+  [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys) rotaciona as chaves armazenadas no arquivo de armazenamento `keyring_aws` nomeado pela System Variable [`keyring_aws_data_file`](keyring-system-variables.html#sysvar_keyring_aws_data_file). A rotação envia cada chave armazenada no arquivo para o AWS KMS para recriptografia, usando o valor da System Variable [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) como o valor CMK, e armazena as novas chaves criptografadas no arquivo.
 
-  [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys) is useful for key re-encryption under these circumstances:
+  [`keyring_aws_rotate_keys()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-keys) é útil para a recriptografia de chaves nas seguintes circunstâncias:
 
-  + After rotating the CMK; that is, after invoking the [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk) function.
+  + Após rotacionar a CMK; ou seja, após invocar a função [`keyring_aws_rotate_cmk()`](keyring-functions-plugin-specific.html#function_keyring-aws-rotate-cmk).
 
-  + After changing the [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) system variable to a different key value.
+  + Após alterar a System Variable [`keyring_aws_cmk_id`](keyring-system-variables.html#sysvar_keyring_aws_cmk_id) para um valor de chave diferente.
 
-  This function requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+  Esta função requer o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  Returns 1 for success, or `NULL` and an error for failure.
+  Retorna 1 em caso de sucesso, ou `NULL` e um erro em caso de falha.

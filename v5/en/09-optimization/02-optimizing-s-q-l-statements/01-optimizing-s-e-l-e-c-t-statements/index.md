@@ -1,73 +1,73 @@
-### 8.2.1 Optimizing SELECT Statements
+### 8.2.1 Otimizando Instruções SELECT
 
-8.2.1.1 WHERE Clause Optimization
+8.2.1.1 Otimização da Cláusula WHERE
 
-8.2.1.2 Range Optimization
+8.2.1.2 Otimização de Range
 
-8.2.1.3 Index Merge Optimization
+8.2.1.3 Otimização de Index Merge
 
-8.2.1.4 Engine Condition Pushdown Optimization
+8.2.1.4 Otimização de Engine Condition Pushdown
 
-8.2.1.5 Index Condition Pushdown Optimization
+8.2.1.5 Otimização de Index Condition Pushdown
 
-8.2.1.6 Nested-Loop Join Algorithms
+8.2.1.6 Algoritmos de Nested-Loop Join
 
-8.2.1.7 Nested Join Optimization
+8.2.1.7 Otimização de Nested Join
 
-8.2.1.8 Outer Join Optimization
+8.2.1.8 Otimização de Outer Join
 
-8.2.1.9 Outer Join Simplification
+8.2.1.9 Simplificação de Outer Join
 
-8.2.1.10 Multi-Range Read Optimization
+8.2.1.10 Otimização de Multi-Range Read
 
-8.2.1.11 Block Nested-Loop and Batched Key Access Joins
+8.2.1.11 Joins do Tipo Block Nested-Loop e Batched Key Access
 
-8.2.1.12 Condition Filtering
+8.2.1.12 Filtragem de Condição
 
-8.2.1.13 IS NULL Optimization
+8.2.1.13 Otimização de IS NULL
 
-8.2.1.14 ORDER BY Optimization
+8.2.1.14 Otimização de ORDER BY
 
-8.2.1.15 GROUP BY Optimization
+8.2.1.15 Otimização de GROUP BY
 
-8.2.1.16 DISTINCT Optimization
+8.2.1.16 Otimização de DISTINCT
 
-8.2.1.17 LIMIT Query Optimization
+8.2.1.17 Otimização de Query LIMIT
 
-8.2.1.18 Function Call Optimization
+8.2.1.18 Otimização de Chamada de Função
 
-8.2.1.19 Row Constructor Expression Optimization
+8.2.1.19 Otimização de Expressão Row Constructor
 
-8.2.1.20 Avoiding Full Table Scans
+8.2.1.20 Evitando Full Table Scans
 
-Queries, in the form of `SELECT` statements, perform all the lookup operations in the database. Tuning these statements is a top priority, whether to achieve sub-second response times for dynamic web pages, or to chop hours off the time to generate huge overnight reports.
+Queries, na forma de instruções `SELECT`, executam todas as operações de busca (lookup operations) no Database. O Tuning dessas instruções é uma prioridade máxima, seja para alcançar tempos de resposta de sub-segundo para páginas web dinâmicas, ou para reduzir horas do tempo necessário para gerar grandes relatórios noturnos.
 
-Besides `SELECT` statements, the tuning techniques for queries also apply to constructs such as `CREATE TABLE...AS SELECT`, `INSERT INTO...SELECT`, and `WHERE` clauses in `DELETE` statements. Those statements have additional performance considerations because they combine write operations with the read-oriented query operations.
+Além das instruções `SELECT`, as técnicas de Tuning para Queries também se aplicam a construções como `CREATE TABLE...AS SELECT`, `INSERT INTO...SELECT` e cláusulas `WHERE` em instruções `DELETE`. Essas instruções possuem considerações adicionais de performance porque combinam operações de escrita com as operações de Query orientadas à leitura.
 
-NDB Cluster supports a join pushdown optimization whereby a qualifying join is sent in its entirety to NDB Cluster data nodes, where it can be distributed among them and executed in parallel. For more information about this optimization, see Conditions for NDB pushdown joins.
+O NDB Cluster suporta uma otimização de join pushdown pela qual um JOIN qualificável é enviado integralmente aos nós de dados do NDB Cluster, onde pode ser distribuído entre eles e executado em paralelo. Para mais informações sobre esta otimização, consulte Condições para NDB pushdown joins.
 
-The main considerations for optimizing queries are:
+As principais considerações para otimizar Queries são:
 
-* To make a slow `SELECT ... WHERE` query faster, the first thing to check is whether you can add an index. Set up indexes on columns used in the `WHERE` clause, to speed up evaluation, filtering, and the final retrieval of results. To avoid wasted disk space, construct a small set of indexes that speed up many related queries used in your application.
+*   Para tornar uma Query `SELECT ... WHERE` lenta mais rápida, a primeira coisa a verificar é se você pode adicionar um Index. Configure Indexes nas colunas usadas na cláusula `WHERE`, para acelerar a avaliação, a filtragem e a recuperação final dos resultados. Para evitar desperdício de espaço em disco, construa um pequeno conjunto de Indexes que acelere muitas Queries relacionadas usadas em sua aplicação.
 
-  Indexes are especially important for queries that reference different tables, using features such as joins and foreign keys. You can use the `EXPLAIN` statement to determine which indexes are used for a `SELECT`. See Section 8.3.1, “How MySQL Uses Indexes” and Section 8.8.1, “Optimizing Queries with EXPLAIN”.
+    Indexes são especialmente importantes para Queries que referenciam diferentes tabelas, usando recursos como joins e foreign keys. Você pode usar a instrução `EXPLAIN` para determinar quais Indexes são usados para um `SELECT`. Consulte a Seção 8.3.1, “Como o MySQL Usa Indexes” e a Seção 8.8.1, “Otimizando Queries com EXPLAIN”.
 
-* Isolate and tune any part of the query, such as a function call, that takes excessive time. Depending on how the query is structured, a function could be called once for every row in the result set, or even once for every row in the table, greatly magnifying any inefficiency.
+*   Isole e ajuste (tune) qualquer parte da Query que leve tempo excessivo, como uma chamada de função. Dependendo de como a Query está estruturada, uma função pode ser chamada uma vez para cada linha no conjunto de resultados, ou até mesmo uma vez para cada linha na tabela, ampliando muito qualquer ineficiência.
 
-* Minimize the number of full table scans in your queries, particularly for big tables.
+*   Minimize o número de full table scans em suas Queries, particularmente para tabelas grandes.
 
-* Keep table statistics up to date by using the `ANALYZE TABLE` statement periodically, so the optimizer has the information needed to construct an efficient execution plan.
+*   Mantenha as estatísticas da tabela atualizadas usando a instrução `ANALYZE TABLE` periodicamente, para que o optimizer tenha as informações necessárias para construir um plano de execução eficiente.
 
-* Learn the tuning techniques, indexing techniques, and configuration parameters that are specific to the storage engine for each table. Both `InnoDB` and `MyISAM` have sets of guidelines for enabling and sustaining high performance in queries. For details, see Section 8.5.6, “Optimizing InnoDB Queries” and Section 8.6.1, “Optimizing MyISAM Queries”.
+*   Aprenda as técnicas de Tuning, técnicas de Indexing e parâmetros de configuração específicos para o storage engine de cada tabela. Tanto o `InnoDB` quanto o `MyISAM` possuem conjuntos de diretrizes para habilitar e sustentar alta performance em Queries. Para detalhes, consulte a Seção 8.5.6, “Otimizando Queries do InnoDB” e a Seção 8.6.1, “Otimizando Queries do MyISAM”.
 
-* You can optimize single-query transactions for `InnoDB` tables, using the technique in Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”.
+*   Você pode otimizar transações de Query única para tabelas `InnoDB`, usando a técnica na Seção 8.5.3, “Otimizando Transações Read-Only do InnoDB”.
 
-* Avoid transforming the query in ways that make it hard to understand, especially if the optimizer does some of the same transformations automatically.
+*   Evite transformar a Query de maneiras que a tornem difícil de entender, especialmente se o optimizer fizer algumas das mesmas transformações automaticamente.
 
-* If a performance issue is not easily solved by one of the basic guidelines, investigate the internal details of the specific query by reading the `EXPLAIN` plan and adjusting your indexes, `WHERE` clauses, join clauses, and so on. (When you reach a certain level of expertise, reading the `EXPLAIN` plan might be your first step for every query.)
+*   Se um problema de performance não for facilmente resolvido por uma das diretrizes básicas, investigue os detalhes internos da Query específica lendo o plano `EXPLAIN` e ajustando seus Indexes, cláusulas `WHERE`, cláusulas de JOIN, e assim por diante. (Ao atingir um certo nível de especialização, a leitura do plano `EXPLAIN` pode ser seu primeiro passo para cada Query.)
 
-* Adjust the size and properties of the memory areas that MySQL uses for caching. With efficient use of the `InnoDB` buffer pool, `MyISAM` key cache, and the MySQL query cache, repeated queries run faster because the results are retrieved from memory the second and subsequent times.
+*   Ajuste o tamanho e as propriedades das áreas de memória que o MySQL usa para caching. Com o uso eficiente do `InnoDB buffer pool`, do `MyISAM key cache` e do MySQL `query cache`, Queries repetidas são executadas mais rapidamente porque os resultados são recuperados da memória na segunda e nas vezes subsequentes.
 
-* Even for a query that runs fast using the cache memory areas, you might still optimize further so that they require less cache memory, making your application more scalable. Scalability means that your application can handle more simultaneous users, larger requests, and so on without experiencing a big drop in performance.
+*   Mesmo para uma Query que é executada rapidamente usando as áreas de memória cache, você ainda pode otimizar ainda mais para que ela exija menos memória cache, tornando sua aplicação mais escalável (scalable). Scalability (escalabilidade) significa que sua aplicação pode lidar com mais usuários simultâneos, requisições maiores, e assim por diante, sem experimentar uma grande queda na performance.
 
-* Deal with locking issues, where the speed of your query might be affected by other sessions accessing the tables at the same time.
+*   Lide com problemas de Lock (travamento), onde a velocidade da sua Query pode ser afetada por outras sessões acessando as tabelas simultaneamente.

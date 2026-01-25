@@ -1,31 +1,31 @@
-#### 5.1.12.3 Connecting Using the IPv6 Local Host Address
+#### 5.1.12.3 Conectando Usando o Endereço IPv6 de Host Local
 
-The following procedure shows how to configure MySQL to permit IPv6 connections by clients that connect to the local server using the `::1` local host address. The instructions given here assume that your system supports IPv6.
+O procedimento a seguir mostra como configurar o MySQL para permitir conexões IPv6 por clientes que se conectam ao servidor local usando o endereço de host local `::1`. As instruções fornecidas aqui presumem que seu sistema oferece suporte a IPv6.
 
-1. Start the MySQL server with an appropriate [`bind_address`](server-system-variables.html#sysvar_bind_address) setting to permit it to accept IPv6 connections. For example, put the following lines in the server option file and restart the server:
+1. Inicie o servidor MySQL com uma configuração [`bind_address`](server-system-variables.html#sysvar_bind_address) apropriada para permitir que ele aceite conexões IPv6. Por exemplo, insira as seguintes linhas no arquivo de opções do servidor e reinicie o servidor:
 
    ```sql
    [mysqld]
    bind_address = *
    ```
 
-   Alternatively, you can bind the server to `::1`, but that makes the server more restrictive for TCP/IP connections. It accepts only IPv6 connections for that single address and rejects IPv4 connections. For more information, see the [`bind_address`](server-system-variables.html#sysvar_bind_address) description in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+   Alternativamente, você pode fazer o bind do servidor para `::1`, mas isso torna o servidor mais restritivo para conexões TCP/IP. Ele aceita apenas conexões IPv6 para esse único endereço e rejeita conexões IPv4. Para mais informações, consulte a descrição de [`bind_address`](server-system-variables.html#sysvar_bind_address) na [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-2. As an administrator, connect to the server and create an account for a local user who connects from the `::1` local IPv6 host address:
+2. Como administrador, conecte-se ao servidor e crie uma conta para um usuário local que se conecta a partir do endereço de host IPv6 local `::1`:
 
    ```sql
    mysql> CREATE USER 'ipv6user'@'::1' IDENTIFIED BY 'ipv6pass';
    ```
 
-   For the permitted syntax of IPv6 addresses in account names, see [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). In addition to the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement, you can issue [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements that give specific privileges to the account, although that is not necessary for the remaining steps in this procedure.
+   Para a sintaxe permitida de endereços IPv6 em nomes de conta, consulte [Seção 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). Além da instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), você pode emitir instruções [`GRANT`](grant.html "13.7.1.4 GRANT Statement") que concedem privilégios específicos à conta, embora isso não seja necessário para as etapas restantes deste procedimento.
 
-3. Invoke the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to connect to the server using the new account:
+3. Invoque o cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para se conectar ao servidor usando a nova conta:
 
    ```sql
    $> mysql -h ::1 -u ipv6user -pipv6pass
    ```
 
-4. Try some simple statements that show connection information:
+4. Tente algumas instruções simples que exibem informações de conexão:
 
    ```sql
    mysql> STATUS

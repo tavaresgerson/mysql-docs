@@ -1,100 +1,106 @@
-#### 2.3.3.1 MySQL Installer Initial Setup
+#### 2.3.3.1 Configuração Inicial do MySQL Installer
 
-* Choosing a Setup Type
-* Path Conflicts
-* Check Requirements
-* MySQL Installer Configuration Files
+* Escolhendo um Tipo de Setup
+* Conflitos de Path
+* Verificação de Requisitos
+* Arquivos de Configuração do MySQL Installer
 
-When you download MySQL Installer for the first time, a setup wizard guides you through the initial installation of MySQL products. As the following figure shows, the initial setup is a one-time activity in the overall process. MySQL Installer detects existing MySQL products installed on the host during its initial setup and adds them to the list of products to be managed.
+Ao baixar o MySQL Installer pela primeira vez, um assistente de Setup (setup wizard) guia você pela instalação inicial dos produtos MySQL. Como a figura a seguir mostra, o Setup inicial é uma atividade única no processo geral. O MySQL Installer detecta produtos MySQL existentes instalados no host durante seu Setup inicial e os adiciona à lista de produtos a serem gerenciados.
 
-**Figure 2.7 MySQL Installer Process Overview**
+**Figura 2.7 Visão Geral do Processo do MySQL Installer**
 
-![MySQL Installer process. Non-repeating steps: download MySQL Installer; perform the initial setup. Repeating steps: install products (download products, run .msi files, configuration, and install complete); manage products and update the MySQL Installer catalog.](images/mi-process-overview.png)
+![Processo do MySQL Installer. Etapas não repetitivas: fazer o download do MySQL Installer; realizar o Setup inicial. Etapas repetitivas: instalar produtos (baixar produtos, executar arquivos .msi, configuration, e instalação completa); gerenciar produtos e atualizar o Catalog do MySQL Installer.](images/mi-process-overview.png)
 
-MySQL Installer extracts configuration files (described later) to the hard drive of the host during the initial setup. Although MySQL Installer is a 32-bit application, it can install both 32-bit and 64-bit binaries.
+O MySQL Installer extrai arquivos de Configuration (descritos posteriormente) para o disco rígido do host durante o Setup inicial. Embora o MySQL Installer seja um aplicativo 32-bit, ele pode instalar Binaries 32-bit e 64-bit.
 
-The initial setup adds a link to the Start menu under the MySQL folder group. Click Start, MySQL, and MySQL Installer - [Community | Commercial] to open the community or commercial release of the graphical tool.
+O Setup inicial adiciona um link ao menu Start sob o grupo de pastas MySQL. Clique em Start, MySQL e MySQL Installer - [Community | Commercial] para abrir a versão community ou commercial da ferramenta gráfica.
 
-##### Choosing a Setup Type
+##### Escolhendo um Tipo de Setup
 
-During the initial setup, you are prompted to select the MySQL products to be installed on the host. One alternative is to use a predetermined setup type that matches your setup requirements. By default, both GA and pre-release products are included in the download and installation with the Client only and Full setup types. Select the Only install GA products option to restrict the product set to include GA products only when using these setup types.
+Durante o Setup inicial, você é solicitado a selecionar os produtos MySQL a serem instalados no host. Uma alternativa é usar um tipo de Setup predeterminado que corresponda aos seus requisitos de Setup. Por padrão, produtos GA (General Availability) e de pré-lançamento estão incluídos no download e na instalação com os tipos de Setup Client only (Apenas Client) e Full (Completo). Selecione a opção Only install GA products (Instalar apenas produtos GA) para restringir o conjunto de produtos a incluir apenas produtos GA ao usar esses tipos de Setup.
 
-Note
+Nota
 
-Commercial-only MySQL products, such as MySQL Enterprise Backup, are available to select and install if you are using the Commercial version of MySQL Installer (see MySQL Installer Commercial Release).
+Produtos MySQL apenas comerciais, como o MySQL Enterprise Backup, estão disponíveis para seleção e instalação se você estiver usando a versão Commercial do MySQL Installer (consulte MySQL Installer Commercial Release).
 
-Choosing one of the following setup types determines the initial installation only and does not limit your ability to install or update MySQL products for Windows later:
+A escolha de um dos seguintes tipos de Setup determina apenas a instalação inicial e não limita sua capacidade de instalar ou atualizar produtos MySQL para Windows posteriormente:
 
-* **Server only**: Only install the MySQL server. This setup type installs the general availability (GA) or development release server that you selected when you downloaded MySQL Installer. It uses the default installation and data paths.
+* **Server only** (Apenas Server): Apenas instala o MySQL server. Este tipo de Setup instala o Server de disponibilidade geral (GA) ou de release de desenvolvimento que você selecionou ao baixar o MySQL Installer. Ele usa os Paths de instalação e Data Paths padrão.
 
-* **Client only**: Only install the most recent MySQL applications (such as MySQL Shell, MySQL Router, and MySQL Workbench). This setup type excludes MySQL server or the client programs typically bundled with the server, such as **mysql** or **mysqladmin**.
+* **Client only** (Apenas Client): Apenas instala os aplicativos MySQL mais recentes (como MySQL Shell, MySQL Router e MySQL Workbench). Este tipo de Setup exclui o MySQL server ou os programas Client tipicamente incluídos com o Server, como **mysql** ou **mysqladmin**.
 
-* **Full**: Install all available MySQL products, excluding MySQL connectors.
+* **Full** (Completo): Instala todos os produtos MySQL disponíveis, excluindo os Connectors MySQL.
 
-* **Custom**: The custom setup type enables you to filter and select individual MySQL products from the MySQL Installer catalog.
+* **Custom** (Personalizado): O tipo de Setup custom permite filtrar e selecionar produtos MySQL individuais do Catalog do MySQL Installer.
 
-  Use the `Custom` setup type to install:
+  Use o tipo de Setup `Custom` para instalar:
 
-  + A product or product version that is not available from the usual download locations. The catalog contains all product releases, including the other releases between pre-release (or development) and GA.
+  + Um produto ou versão de produto que não esteja disponível nos locais de download habituais. O Catalog contém todas as releases de produtos, incluindo outras releases entre pré-lançamento (ou desenvolvimento) e GA.
 
-  + An instance of MySQL server using an alternative installation path, data path, or both. For instructions on how to adjust the paths, see Section 2.3.3.2, “Setting Alternative Server Paths with MySQL Installer”.
+  + Uma instância do MySQL server usando um Path de instalação alternativo, Data Path ou ambos. Para instruções sobre como ajustar os Paths, consulte Seção 2.3.3.2, “Definindo Paths Alternativos de Server com o MySQL Installer”.
 
-  + Two or more MySQL server versions on the same host at the same time (for example, 5.7 and 8.0).
+  + Duas ou mais versões do MySQL server no mesmo host simultaneamente (por exemplo, 5.7 e 8.0).
 
-  + A specific combination of products and features not offered as a predetermine setup type. For example, you can install a single product, such as MySQL Workbench, instead of installing all client applications for Windows.
+  + Uma combinação específica de produtos e funcionalidades não oferecida como um tipo de Setup predeterminado. Por exemplo, você pode instalar um único produto, como MySQL Workbench, em vez de instalar todos os aplicativos Client para Windows.
 
-##### Path Conflicts
+##### Conflitos de Path
 
-When the default installation or data folder (required by MySQL server) for a product to be installed already exists on the host, the wizard displays the Path Conflict step to identify each conflict and enable you to take action to avoid having files in the existing folder overwritten by the new installation. You see this step in the initial setup only when MySQL Installer detects a conflict.
+Quando a pasta de instalação ou Data folder padrão (exigida pelo MySQL server) para um produto a ser instalado já existe no host, o assistente exibe a etapa Path Conflict para identificar cada conflito e permitir que você tome medidas para evitar que arquivos na pasta existente sejam sobrescritos pela nova instalação. Você verá esta etapa no Setup inicial apenas quando o MySQL Installer detectar um conflito.
 
-To resolve the path conflict, do one of the following:
+Para resolver o conflito de Path, execute uma das seguintes ações:
 
-* Select a product from the list to display the conflict options. A warning symbol indicates which path is in conflict. Use the browse button to choose a new path and then click Next.
+* Selecione um produto na lista para exibir as opções de conflito. Um símbolo de aviso indica qual Path está em conflito. Use o botão de navegação (browse button) para escolher um novo Path e clique em Next.
 
-* Click Back to choose a different setup type or product version, if applicable. The `Custom` setup type enables you to select individual product versions.
+* Clique em Back para escolher um tipo de Setup ou versão de produto diferente, se aplicável. O tipo de Setup `Custom` permite que você selecione versões individuais de produtos.
 
-* Click Next to ignore the conflict and overwrite files in the existing folder.
+* Clique em Next para ignorar o conflito e sobrescrever arquivos na pasta existente.
 
-* Delete the existing product. Click Cancel to stop the initial setup and close MySQL Installer. Open MySQL Installer again from the Start menu and delete the installed product from the host using the Delete operation from the MySQL Installer dashboard.
+* Exclua o produto existente. Clique em Cancel para interromper o Setup inicial e fechar o MySQL Installer. Abra o MySQL Installer novamente no menu Start e exclua o produto instalado do host usando a operação Delete (Excluir) no Dashboard do MySQL Installer.
 
-##### Check Requirements
+##### Verificação de Requisitos
 
-MySQL Installer uses entries in the `package-rules.xml` file to determine whether the prerequisite software for each product is installed on the host. When the requirements check fails, MySQL Installer displays the Check Requirements step to help you update the host. Requirements are evaluated each time you download a new product (or version) for installation. The following figure identifies and describes the key areas of this step.
+O MySQL Installer usa entradas no arquivo `package-rules.xml` para determinar se o software pré-requisito para cada produto está instalado no host. Quando a verificação de requisitos falha, o MySQL Installer exibe a etapa Check Requirements para ajudar você a atualizar o host. Os requisitos são avaliados toda vez que você baixa um novo produto (ou versão) para instalação. A figura a seguir identifica e descreve as áreas principais desta etapa.
 
-**Figure 2.8 Check Requirements**
+**Figura 2.8 Verificação de Requisitos**
 
-![MySQL Installer check-requirements before any requirements are downloaded and installed.](images/mi-requirements-annotated.png)
+![Verificação de requisitos do MySQL Installer antes que quaisquer requisitos sejam baixados e instalados.](images/mi-requirements-annotated.png)
 
-###### Description of Check Requirements Elements
+###### Descrição dos Elementos de Verificação de Requisitos
 
-1. Shows the current step in the initial setup. Steps in this list may change slightly depending on the products already installed on the host, the availability of prerequisite software, and the products to be installed on the host.
+1. Mostra a etapa atual no Setup inicial. As etapas nesta lista podem mudar ligeiramente dependendo dos produtos já instalados no host, da disponibilidade do software pré-requisito e dos produtos a serem instalados no host.
 
-2. Lists all pending installation requirements by product and indicates the status as follows:
+2. Lista todos os requisitos de instalação pendentes por produto e indica o Status da seguinte forma:
 
-   * A blank space in the Status column means that MySQL Installer can attempt to download and install the required software for you.
+   * Um espaço em branco na coluna Status significa que o MySQL Installer pode tentar baixar e instalar o software necessário para você.
 
-   * The word *Manual* in the Status column means that you must satisfy the requirement manually. Select each product in the list to see its requirement details.
+   * A palavra *Manual* na coluna Status significa que você deve satisfazer o requisito manualmente. Selecione cada produto na lista para ver os detalhes do seu requisito.
 
-3. Describes the requirement in detail to assist you with each manual resolution. When possible, a download URL is provided. After you download and install the required software, click Check to verify that the requirement has been met.
+3. Descreve o requisito em detalhes para ajudar você com cada resolução manual. Quando possível, um URL de download é fornecido. Depois de baixar e instalar o software necessário, clique em Check para verificar se o requisito foi atendido.
 
-4. Provides the following set operations to proceed:
+4. Fornece o seguinte conjunto de operações para prosseguir:
 
-   * Back – Return to the previous step. This action enables you to select a different the setup type.
+   * Back – Retorna à etapa anterior. Esta ação permite que você selecione um tipo de Setup diferente.
 
-   * Execute – Have MySQL Installer attempt to download and install the required software for all items without a manual status. Manual requirements are resolved by you and verified by clicking Check.
+   * Execute – Faz com que o MySQL Installer tente baixar e instalar o software necessário para todos os itens sem um Status manual. Os requisitos manuais são resolvidos por você e verificados clicando em Check.
 
-   * Next – Do not execute the request to apply the requirements automatically and proceed to the installation without including the products that fail the check requirements step.
+   * Next – Não executa a solicitação para aplicar os requisitos automaticamente e prossegue para a instalação sem incluir os produtos que falham na etapa de verificação de requisitos.
 
-   * Cancel – Stop the installation of MySQL products. Because MySQL Installer is already installed, the initial setup begins again when you open MySQL Installer from the Start menu and click Add from the dashboard. For a description of the available management operations, see Product Catalog.
+   * Cancel – Interrompe a instalação dos produtos MySQL. Como o MySQL Installer já está instalado, o Setup inicial recomeça quando você abre o MySQL Installer no menu Start e clica em Add no Dashboard. Para uma descrição das operações de gerenciamento disponíveis, consulte Product Catalog.
 
-##### MySQL Installer Configuration Files
+##### Arquivos de Configuração do MySQL Installer
 
-All MySQL Installer files are located within the `C:\Program Files (x86)` and `C:\ProgramData` folders. The following table describes the files and folders that define MySQL Installer as a standalone application.
+Todos os arquivos do MySQL Installer estão localizados nas pastas `C:\Program Files (x86)` e `C:\ProgramData`. A tabela a seguir descreve os arquivos e pastas que definem o MySQL Installer como um aplicativo standalone.
 
-Note
+Nota
 
-Installed MySQL products are neither altered nor removed when you update or uninstall MySQL Installer.
+Os produtos MySQL instalados não são alterados nem removidos quando você atualiza ou desinstala o MySQL Installer.
 
-**Table 2.5 MySQL Installer Configuration Files**
+**Tabela 2.5 Arquivos de Configuração do MySQL Installer**
 
-<table><col style="width: 30%"/><col style="width: 40%"/><col style="width: 30%"/><thead><tr> <th>File or Folder</th> <th>Description</th> <th>Folder Hierarchy</th> </tr></thead><tbody><tr> <th><code>MySQL Installer for Windows</code></th> <td>This folder contains all of the files needed to run MySQL Installer and <span><strong>MySQLInstallerConsole.exe</strong></span>, a command-line program with similar functionality.</td> <td><code>C:\Program Files (x86)</code></td> </tr><tr> <th><code>Templates</code></th> <td>The <code>Templates</code> folder has one file for each version of MySQL server. Template files contain keys and formulas to calculate some values dynamically.</td> <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td> </tr><tr> <th><code>package-rules.xml</code></th> <td><p> This file contains the prerequisites for every product to be installed. </p></td> <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td> </tr><tr> <th><code>products.xml</code></th> <td><p> The <code>products</code> file (or product catalog) contains a list of all products available for download. </p></td> <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td> </tr><tr> <th><code>Product Cache</code></th> <td><p> The <code>Product Cache</code> folder contains all standalone <code>.msi</code> files bundled with the full package or downloaded afterward. </p></td> <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows</code></td> </tr></tbody></table>
+| Arquivo ou Pasta | Descrição | Hierarquia da Pasta |
+| :--- | :--- | :--- |
+| `MySQL Installer for Windows` | Esta pasta contém todos os arquivos necessários para executar o MySQL Installer e o **MySQLInstallerConsole.exe**, um programa Command-Line com funcionalidade semelhante. | `C:\Program Files (x86)` |
+| `Templates` | A pasta `Templates` possui um arquivo para cada versão do MySQL server. Os arquivos Template contêm chaves e fórmulas para calcular alguns valores dinamicamente. | `C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest` |
+| `package-rules.xml` | Este arquivo contém os pré-requisitos para todos os produtos a serem instalados. | `C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest` |
+| `products.xml` | O arquivo `products` (ou Product Catalog) contém uma lista de todos os produtos disponíveis para download. | `C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest` |
+| `Product Cache` | A pasta `Product Cache` contém todos os arquivos `.msi` standalone incluídos no pacote completo ou baixados posteriormente. | `C:\ProgramData\MySQL\MySQL Installer for Windows` |

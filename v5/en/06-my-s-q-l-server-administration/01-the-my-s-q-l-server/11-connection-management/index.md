@@ -1,7 +1,7 @@
-### 5.1.11 Connection Management
+### 5.1.11 Gerenciamento de Conexões
 
-[5.1.11.1 Connection Interfaces](connection-interfaces.html)
+[5.1.11.1 Interfaces de Conexão](connection-interfaces.html)
 
-[5.1.11.2 DNS Lookups and the Host Cache](host-cache.html)
+[5.1.11.2 Pesquisas DNS e o Host Cache](host-cache.html)
 
-This section describes how MySQL Server manages connections. This includes a description of the available connection interfaces, how the server uses connection handler threads, details about the administrative connection interface, and management of DNS lookups.
+Esta seção descreve como o MySQL Server gerencia conexões. Isso inclui uma descrição das interfaces de conexão disponíveis, como o Server utiliza as connection handler threads, detalhes sobre a interface de conexão administrativa e o gerenciamento de DNS lookups.

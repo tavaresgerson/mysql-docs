@@ -1,33 +1,33 @@
-## 5.6 MySQL Server Loadable Functions
+## 5.6 Funções Carregáveis do Servidor MySQL
 
-[5.6.1 Installing and Uninstalling Loadable Functions](function-loading.html)
+[5.6.1 Instalando e Desinstalando Funções Carregáveis](function-loading.html)
 
-[5.6.2 Obtaining Information About Loadable Functions](obtaining-loadable-function-information.html)
+[5.6.2 Obtendo Informações Sobre Funções Carregáveis](obtaining-loadable-function-information.html)
 
-MySQL supports loadable functions, that is, functions that are not built in but can be loaded at runtime (either during startup or later) to extend server capabilities, or unloaded to remove capabilities. For a table describing the available loadable functions, see [Section 12.2, “Loadable Function Reference”](loadable-function-reference.html "12.2 Loadable Function Reference"). Loadable functions contrast with built-in (native) functions, which are implemented as part of the server and are always available; for a table, see [Section 12.1, “Built-In Function and Operator Reference”](built-in-function-reference.html "12.1 Built-In Function and Operator Reference").
+O MySQL suporta *loadable functions* (funções carregáveis), ou seja, funções que não são nativas (*built-in*) mas que podem ser carregadas em *runtime* (seja durante a inicialização ou posteriormente) para estender as capacidades do servidor, ou descarregadas para remover capacidades. Para uma tabela que descreve as *loadable functions* disponíveis, consulte [Seção 12.2, “Referência de Funções Carregáveis”](loadable-function-reference.html "12.2 Referência de Funções Carregáveis"). As *loadable functions* contrastam com as funções nativas (*built-in*), que são implementadas como parte do servidor e estão sempre disponíveis; para uma tabela, consulte [Seção 12.1, “Referência de Funções e Operadores Nativos”](built-in-function-reference.html "12.1 Referência de Funções e Operadores Nativos").
 
-Note
+Nota
 
-Loadable functions previously were known as user-defined functions (UDFs). That terminology was something of a misnomer because “user-defined” also can apply to other types of functions, such as stored functions (a type of stored object written using SQL) and native functions added by modifying the server source code.
+As *loadable functions* eram anteriormente conhecidas como funções definidas pelo usuário (*user-defined functions* ou UDFs). Essa terminologia era um tanto inadequada (*misnomer*), pois "definida pelo usuário" também pode se aplicar a outros tipos de funções, como *stored functions* (um tipo de objeto armazenado escrito usando SQL) e funções nativas adicionadas pela modificação do código-fonte do servidor.
 
-MySQL distributions include loadable functions that implement, in whole or in part, these server capabilities:
+As distribuições MySQL incluem *loadable functions* que implementam, total ou parcialmente, estas capacidades do servidor:
 
-* MySQL Enterprise Edition includes functions that perform encryption operations based on the OpenSSL library. See [Section 6.6, “MySQL Enterprise Encryption”](enterprise-encryption.html "6.6 MySQL Enterprise Encryption").
+* O MySQL Enterprise Edition inclui funções que realizam operações de criptografia baseadas na biblioteca OpenSSL. Consulte [Seção 6.6, “Criptografia MySQL Enterprise”](enterprise-encryption.html "6.6 Criptografia MySQL Enterprise").
 
-* MySQL Enterprise Edition includes functions that provide an SQL-level API for masking and de-identification operations. See [Section 6.5.1, “MySQL Enterprise Data Masking and De-Identification Elements”](data-masking-elements.html "6.5.1 MySQL Enterprise Data Masking and De-Identification Elements").
+* O MySQL Enterprise Edition inclui funções que fornecem uma API de nível SQL para operações de mascaramento e desidentificação. Consulte [Seção 6.5.1, “Elementos de Mascaramento e Desidentificação de Dados do MySQL Enterprise”](data-masking-elements.html "6.5.1 Elementos de Mascaramento e Desidentificação de Dados do MySQL Enterprise").
 
-* MySQL Enterprise Edition includes audit logging for monitoring and logging of connection and query activity. See [Section 6.4.5, “MySQL Enterprise Audit”](audit-log.html "6.4.5 MySQL Enterprise Audit").
+* O MySQL Enterprise Edition inclui *audit logging* (registro de auditoria) para monitoramento e registro de atividade de conexão e Query. Consulte [Seção 6.4.5, “Auditoria MySQL Enterprise”](audit-log.html "6.4.5 Auditoria MySQL Enterprise").
 
-* MySQL Enterprise Edition includes a firewall capability that implements an application-level firewall to enable database administrators to permit or deny SQL statement execution based on matching against patterns for accepted statement. See [Section 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall").
+* O MySQL Enterprise Edition inclui um recurso de *firewall* que implementa um *firewall* de nível de aplicação para permitir que administradores de Database permitam ou neguem a execução de comandos SQL com base na correspondência de padrões para comandos aceitos. Consulte [Seção 6.4.6, “Firewall MySQL Enterprise”](firewall.html "6.4.6 Firewall MySQL Enterprise").
 
-* A query rewriter examines statements received by MySQL Server and possibly rewrites them before the server executes them. See [Section 5.5.4, “The Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin.html "5.5.4 The Rewriter Query Rewrite Plugin")
+* Um reescritor de Query (*query rewriter*) examina os comandos recebidos pelo MySQL Server e, possivelmente, os reescreve antes que o servidor os execute. Consulte [Seção 5.5.4, “O Plugin de Reescrever Query Rewriter”](rewriter-query-rewrite-plugin.html "5.5.4 O Plugin de Reescrever Query Rewriter")
 
-* Version Tokens enables creation of and synchronization around server tokens that applications can use to prevent accessing incorrect or out-of-date data. See [Section 5.5.5, “Version Tokens”](version-tokens.html "5.5.5 Version Tokens").
+* Version Tokens (Tokens de Versão) permite a criação e sincronização em torno de *tokens* de servidor que as aplicações podem usar para evitar o acesso a dados incorretos ou desatualizados. Consulte [Seção 5.5.5, “Version Tokens”](version-tokens.html "5.5.5 Version Tokens").
 
-* The MySQL Keyring provides secure storage for sensitive information. See [Section 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
+* O MySQL Keyring fornece armazenamento seguro para informações confidenciais. Consulte [Seção 6.4.4, “O MySQL Keyring”](keyring.html "6.4.4 O MySQL Keyring").
 
-* A locking service provides a locking interface for application use. See [Section 5.5.6.1, “The Locking Service”](locking-service.html "5.5.6.1 The Locking Service").
+* Um serviço de *locking* fornece uma interface de *locking* para uso em aplicações. Consulte [Seção 5.5.6.1, “O Serviço de Locking”](locking-service.html "5.5.6.1 O Serviço de Locking").
 
-The following sections describe how to install and uninstall loadable functions, and how to determine at runtime which loadable functions are installed and obtain information about them.
+As seções a seguir descrevem como instalar e desinstalar *loadable functions*, e como determinar em *runtime* quais *loadable functions* estão instaladas e obter informações sobre elas.
 
-For information about writing loadable functions, see [Adding Functions to MySQL](/doc/extending-mysql/5.7/en/adding-functions.html).
+Para informações sobre a escrita de *loadable functions*, consulte [Adicionando Funções ao MySQL](/doc/extending-mysql/5.7/en/adding-functions.html).

@@ -1,21 +1,21 @@
-## 2.11 Downgrading MySQL
+## 2.11 Downgrading MySQL
 
-2.11.1 Before You Begin
+2.11.1 Antes de Começar
 
-2.11.2 Downgrade Paths
+2.11.2 Caminhos de Downgrade
 
-2.11.3 Downgrade Notes
+2.11.3 Notas sobre Downgrade
 
-2.11.4 Downgrading Binary and Package-based Installations on Unix/Linux
+2.11.4 Fazendo o Downgrade de Instalações Binárias e Baseadas em Pacotes no Unix/Linux
 
-2.11.5 Downgrade Troubleshooting
+2.11.5 Solução de Problemas de Downgrade
 
-This section describes the steps to downgrade a MySQL installation.
+Esta seção descreve os passos para fazer o downgrade de uma instalação MySQL.
 
-Downgrading is a less common operation than upgrade. Downgrading is typically performed because of a compatibility or performance issue that occurs on a production system, and was not uncovered during initial upgrade verification on the test systems. As with the upgrade procedure Section 2.10, “Upgrading MySQL”), perform and verify the downgrade procedure on some test systems first, before using it on a production system.
+O Downgrade é uma operação menos comum que o upgrade. O Downgrade é tipicamente realizado devido a um problema de compatibilidade ou performance que ocorre em um sistema de produção, e que não foi descoberto durante a verificação inicial do upgrade nos sistemas de teste. Assim como no procedimento de upgrade (Seção 2.10, “Upgrading MySQL”), realize e verifique o procedimento de downgrade primeiro em alguns sistemas de teste, antes de utilizá-lo em um sistema de produção.
 
-Note
+Nota
 
-In the following discussion, MySQL commands that must be run using a MySQL account with administrative privileges include `-u root` on the command line to specify the MySQL `root` user. Commands that require a password for `root` also include a `-p` option. Because `-p` is followed by no option value, such commands prompt for the password. Type the password when prompted and press Enter.
+Na discussão a seguir, os comandos MySQL que devem ser executados usando uma conta MySQL com privilégios administrativos incluem `-u root` na linha de comando para especificar o usuário MySQL `root`. Comandos que exigem uma senha para o `root` também incluem a opção `-p`. Como `-p` não é seguido por nenhum valor de opção, tais comandos solicitam a senha. Digite a senha quando solicitado e pressione Enter.
 
-SQL statements can be executed using the **mysql** command-line client (connect as `root` to ensure that you have the necessary privileges).
+As instruções SQL podem ser executadas utilizando o cliente de linha de comando **mysql** (conecte-se como `root` para garantir que você tenha os privilégios necessários).

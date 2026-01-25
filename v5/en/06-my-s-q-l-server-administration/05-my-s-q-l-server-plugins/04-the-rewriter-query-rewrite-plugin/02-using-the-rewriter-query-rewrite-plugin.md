@@ -1,37 +1,37 @@
-#### 5.5.4.2 Using the Rewriter Query Rewrite Plugin
+#### 5.5.4.2 Utilizando o Plugin Rewriter Query Rewrite
 
-To enable or disable the plugin, enable or disable the [`rewriter_enabled`](rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled) system variable. By default, the `Rewriter` plugin is enabled when you install it (see [Section 5.5.4.1, “Installing or Uninstalling the Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin-installation.html "5.5.4.1 Installing or Uninstalling the Rewriter Query Rewrite Plugin")). To set the initial plugin state explicitly, you can set the variable at server startup. For example, to enable the plugin in an option file, use these lines:
+Para habilitar ou desabilitar o Plugin, habilite ou desabilite a system variable [`rewriter_enabled`](rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled). Por padrão, o Plugin `Rewriter` é habilitado quando você o instala (veja [Seção 5.5.4.1, “Instalando ou Desinstalando o Plugin Rewriter Query Rewrite”](rewriter-query-rewrite-plugin-installation.html "5.5.4.1 Instalando ou Desinstalando o Plugin Rewriter Query Rewrite")). Para definir explicitamente o estado inicial do Plugin, você pode definir a variável na inicialização do servidor. Por exemplo, para habilitar o Plugin em um arquivo de opção, use estas linhas:
 
 ```sql
 [mysqld]
 rewriter_enabled=ON
 ```
 
-It is also possible to enable or disable the plugin at runtime:
+Também é possível habilitar ou desabilitar o Plugin em tempo de execução (runtime):
 
 ```sql
 SET GLOBAL rewriter_enabled = ON;
 SET GLOBAL rewriter_enabled = OFF;
 ```
 
-Assuming that the `Rewriter` plugin is enabled, it examines and possibly modifies each [`SELECT`](select.html "13.2.9 SELECT Statement") statement received by the server. The plugin determines whether to rewrite statements based on its in-memory cache of rewriting rules, which are loaded from the `rewrite_rules` table in the `query_rewrite` database.
+Assumindo que o Plugin `Rewriter` esteja habilitado, ele examina e possivelmente modifica cada instrução [`SELECT`](select.html "13.2.9 SELECT Statement") recebida pelo servidor. O Plugin determina se deve reescrever (rewrite) as instruções com base em seu cache de regras de reescrita em memória, que são carregadas da tabela `rewrite_rules` no Database `query_rewrite`.
 
-* [Adding Rewrite Rules](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-adding-rewrite-rules "Adding Rewrite Rules")
-* [How Statement Matching Works](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-how-statement-matching-works "How Statement Matching Works")
-* [Rewriting Prepared Statements](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-rewriting-prepared-statements "Rewriting Prepared Statements")
-* [Rewriter Plugin Operational Information](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-operational-information "Rewriter Plugin Operational Information")
-* [Rewriter Plugin Use of Character Sets](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-use-of-character-sets "Rewriter Plugin Use of Character Sets")
+* [Adicionando Regras de Rewrite](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-adding-rewrite-rules "Adicionando Regras de Rewrite")
+* [Como Funciona a Correspondência de Instruções](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-how-statement-matching-works "Como Funciona a Correspondência de Instruções")
+* [Rewriting de Prepared Statements](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-rewriting-prepared-statements "Rewriting de Prepared Statements")
+* [Informações Operacionais do Plugin Rewriter](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-operational-information "Informações Operacionais do Plugin Rewriter")
+* [Uso de Character Sets pelo Plugin Rewriter](rewriter-query-rewrite-plugin-usage.html#rewriter-query-rewrite-plugin-use-of-character-sets "Uso de Character Sets pelo Plugin Rewriter")
 
-##### Adding Rewrite Rules
+##### Adicionando Regras de Rewrite
 
-To add rules for the `Rewriter` plugin, add rows to the `rewrite_rules` table, then invoke the `flush_rewrite_rules()` stored procedure to load the rules from the table into the plugin. The following example creates a simple rule to match statements that select a single literal value:
+Para adicionar regras ao Plugin `Rewriter`, adicione linhas à tabela `rewrite_rules` e, em seguida, invoque a stored procedure `flush_rewrite_rules()` para carregar as regras da tabela no Plugin. O exemplo a seguir cria uma regra simples para corresponder a instruções que selecionam um único valor literal:
 
 ```sql
 INSERT INTO query_rewrite.rewrite_rules (pattern, replacement)
 VALUES('SELECT ?', 'SELECT ? + 1');
 ```
 
-The resulting table contents look like this:
+O conteúdo da tabela resultante se parece com isto:
 
 ```sql
 mysql> SELECT * FROM query_rewrite.rewrite_rules\G
@@ -46,17 +46,17 @@ mysql> SELECT * FROM query_rewrite.rewrite_rules\G
 normalized_pattern: NULL
 ```
 
-The rule specifies a pattern template indicating which [`SELECT`](select.html "13.2.9 SELECT Statement") statements to match, and a replacement template indicating how to rewrite matching statements. However, adding the rule to the `rewrite_rules` table is not sufficient to cause the `Rewriter` plugin to use the rule. You must invoke `flush_rewrite_rules()` to load the table contents into the plugin in-memory cache:
+A regra especifica um *pattern template* (modelo de padrão) indicando quais instruções [`SELECT`](select.html "13.2.9 SELECT Statement") devem ser correspondidas, e um *replacement template* (modelo de substituição) indicando como reescrever as instruções correspondentes. No entanto, adicionar a regra à tabela `rewrite_rules` não é suficiente para fazer com que o Plugin `Rewriter` use a regra. Você deve invocar `flush_rewrite_rules()` para carregar o conteúdo da tabela no cache em memória do Plugin:
 
 ```sql
 mysql> CALL query_rewrite.flush_rewrite_rules();
 ```
 
-Tip
+Dica
 
-If your rewrite rules seem not to be working properly, make sure that you have reloaded the rules table by calling `flush_rewrite_rules()`.
+Se suas regras de rewrite não estiverem funcionando corretamente, certifique-se de ter recarregado a tabela de regras chamando `flush_rewrite_rules()`.
 
-When the plugin reads each rule from the rules table, it computes a normalized (statement digest) form from the pattern and a digest hash value, and uses them to update the `normalized_pattern` and `pattern_digest` columns:
+Quando o Plugin lê cada regra da tabela de regras, ele calcula uma forma normalizada (statement digest) a partir do padrão e um valor de digest hash, e os utiliza para atualizar as colunas `normalized_pattern` e `pattern_digest`:
 
 ```sql
 mysql> SELECT * FROM query_rewrite.rewrite_rules\G
@@ -71,22 +71,22 @@ mysql> SELECT * FROM query_rewrite.rewrite_rules\G
 normalized_pattern: select ?
 ```
 
-For information about statement digesting, normalized statements, and digest hash values, see [Section 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
+Para informações sobre *statement digesting*, instruções normalizadas e valores de digest hash, consulte [Seção 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
 
-If a rule cannot be loaded due to some error, calling `flush_rewrite_rules()` produces an error:
+Se uma regra não puder ser carregada devido a algum erro, chamar `flush_rewrite_rules()` produz um erro:
 
 ```sql
 mysql> CALL query_rewrite.flush_rewrite_rules();
 ERROR 1644 (45000): Loading of some rule(s) failed.
 ```
 
-When this occurs, the plugin writes an error message to the `message` column of the rule row to communicate the problem. Check the `rewrite_rules` table for rows with non-`NULL` `message` column values to see what problems exist.
+Quando isso ocorre, o Plugin grava uma mensagem de erro na coluna `message` da linha da regra para comunicar o problema. Verifique a tabela `rewrite_rules` quanto a linhas com valores `message` que não sejam `NULL` para ver quais problemas existem.
 
-Patterns use the same syntax as prepared statements (see [Section 13.5.1, “PREPARE Statement”](prepare.html "13.5.1 PREPARE Statement")). Within a pattern template, `?` characters act as parameter markers that match data values. The `?` characters should not be enclosed within quotation marks. Parameter markers can be used only where data values should appear, and they cannot be used for SQL keywords, identifiers, functions, and so on. The plugin parses a statement to identify the literal values (as defined in [Section 9.1, “Literal Values”](literals.html "9.1 Literal Values")), so you can put a parameter marker in place of any literal value.
+Os Patterns (Padrões) usam a mesma sintaxe que os prepared statements (veja [Seção 13.5.1, “PREPARE Statement”](prepare.html "13.5.1 PREPARE Statement")). Dentro de um *pattern template*, os caracteres `?` atuam como parameter markers (marcadores de parâmetro) que correspondem a data values (valores de dados). Os caracteres `?` não devem ser incluídos em aspas. Os parameter markers podem ser usados apenas onde os data values devem aparecer, e não podem ser usados para SQL keywords, identifiers, functions, e assim por diante. O Plugin analisa uma instrução para identificar os valores literais (conforme definido na [Seção 9.1, “Valores Literais”](literals.html "9.1 Valores Literais")), então você pode colocar um parameter marker no lugar de qualquer valor literal.
 
-Like the pattern, the replacement can contain `?` characters. For a statement that matches a pattern template, the plugin rewrites it, replacing `?` parameter markers in the replacement using data values matched by the corresponding markers in the pattern. The result is a complete statement string. The plugin asks the server to parse it, and returns the result to the server as the representation of the rewritten statement.
+Assim como o pattern, o replacement (substituição) pode conter caracteres `?`. Para uma instrução que corresponde a um *pattern template*, o Plugin a reescreve, substituindo os parameter markers `?` no replacement usando os data values correspondidos pelos marcadores correspondentes no pattern. O resultado é uma string de instrução completa. O Plugin solicita ao servidor que a analise e retorna o resultado ao servidor como a representação da instrução reescrita.
 
-After adding and loading the rule, check whether rewriting occurs according to whether statements match the rule pattern:
+Após adicionar e carregar a regra, verifique se o rewrite ocorre de acordo com a correspondência das instruções ao pattern da regra:
 
 ```sql
 mysql> SELECT PI();
@@ -106,7 +106,7 @@ mysql> SELECT 10;
 1 row in set, 1 warning (0.00 sec)
 ```
 
-No rewriting occurs for the first [`SELECT`](select.html "13.2.9 SELECT Statement") statement, but does for the second. The second statement illustrates that when the `Rewriter` plugin rewrites a statement, it produces a warning message. To view the message, use [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement"):
+Nenhum rewrite ocorre para a primeira instrução [`SELECT`](select.html "13.2.9 SELECT Statement"), mas ocorre para a segunda. A segunda instrução ilustra que, quando o Plugin `Rewriter` reescreve uma instrução, ele produz uma mensagem de *warning*. Para visualizar a mensagem, use [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement"):
 
 ```sql
 mysql> SHOW WARNINGS\G
@@ -116,38 +116,38 @@ mysql> SHOW WARNINGS\G
 Message: Query 'SELECT 10' rewritten to 'SELECT 10 + 1' by a query rewrite plugin
 ```
 
-To enable or disable an existing rule, modify its `enabled` column and reload the table into the plugin. To disable rule 1:
+Para habilitar ou desabilitar uma regra existente, modifique sua coluna `enabled` e recarregue a tabela no Plugin. Para desabilitar a regra 1:
 
 ```sql
 UPDATE query_rewrite.rewrite_rules SET enabled = 'NO' WHERE id = 1;
 CALL query_rewrite.flush_rewrite_rules();
 ```
 
-This enables you to deactivate a rule without removing it from the table.
+Isso permite que você desative uma regra sem removê-la da tabela.
 
-To re-enable rule 1:
+Para reabilitar a regra 1:
 
 ```sql
 UPDATE query_rewrite.rewrite_rules SET enabled = 'YES' WHERE id = 1;
 CALL query_rewrite.flush_rewrite_rules();
 ```
 
-The `rewrite_rules` table contains a `pattern_database` column that `Rewriter` uses for matching table names that are not qualified with a database name:
+A tabela `rewrite_rules` contém uma coluna `pattern_database` que o `Rewriter` usa para corresponder a nomes de tabelas que não são qualificados com um nome de Database:
 
-* Qualified table names in statements match qualified names in the pattern if corresponding database and table names are identical.
+* Nomes de tabelas qualificados em instruções correspondem a nomes qualificados no pattern se os nomes de Database e de tabela correspondentes forem idênticos.
 
-* Unqualified table names in statements match unqualified names in the pattern only if the default database is the same as `pattern_database` and the table names are identical.
+* Nomes de tabelas não qualificados em instruções correspondem a nomes não qualificados no pattern somente se o Database padrão for o mesmo que `pattern_database` e os nomes das tabelas forem idênticos.
 
-Suppose that a table named `appdb.users` has a column named `id` and that applications are expected to select rows from the table using a query of one of these forms, where the second can be used when `appdb` is the default database:
+Suponha que uma tabela chamada `appdb.users` tenha uma coluna chamada `id` e que se espera que as aplicações selecionem linhas da tabela usando uma Query de uma destas formas, onde a segunda pode ser usada quando `appdb` é o Database padrão:
 
 ```sql
 SELECT * FROM users WHERE appdb.id = id_value;
 SELECT * FROM users WHERE id = id_value;
 ```
 
-Suppose also that the `id` column is renamed to `user_id` (perhaps the table must be modified to add another type of ID and it is necessary to indicate more specifically what type of ID the `id` column represents).
+Suponha também que a coluna `id` seja renomeada para `user_id` (talvez a tabela precise ser modificada para adicionar outro tipo de ID e seja necessário indicar de forma mais específica que tipo de ID a coluna `id` representa).
 
-The change means that applications must refer to `user_id` rather than `id` in the `WHERE` clause, but old applications that cannot be updated no longer work properly. The `Rewriter` plugin can solve this problem by matching and rewriting problematic statements. To match the statement `SELECT * FROM appdb.users WHERE id = value` and rewrite it as `SELECT * FROM appdb.users WHERE user_id = value`, you can insert a row representing a replacement rule into the rewrite rules table. If you also want to match this `SELECT` using the unqualified table name, it is also necessary to add an explicit rule. Using `?` as a value placeholder, the two [`INSERT`](insert.html "13.2.5 INSERT Statement") statements needed look like this:
+A alteração significa que as aplicações devem se referir a `user_id` em vez de `id` na cláusula `WHERE`, mas aplicações antigas que não podem ser atualizadas deixam de funcionar corretamente. O Plugin `Rewriter` pode resolver esse problema correspondendo e reescrevendo instruções problemáticas. Para corresponder à instrução `SELECT * FROM appdb.users WHERE id = value` e reescrevê-la como `SELECT * FROM appdb.users WHERE user_id = value`, você pode inserir uma linha representando uma regra de replacement na tabela de regras de rewrite. Se você também quiser corresponder a este `SELECT` usando o nome da tabela não qualificado, também é necessário adicionar uma regra explícita. Usando `?` como um placeholder de valor, as duas instruções [`INSERT`](insert.html "13.2.5 INSERT Statement") necessárias se parecem com isto:
 
 ```sql
 INSERT INTO query_rewrite.rewrite_rules
@@ -163,47 +163,52 @@ INSERT INTO query_rewrite.rewrite_rules
     );
 ```
 
-After adding the two new rules, execute the following statement to cause them to take effect:
+Após adicionar as duas novas regras, execute a seguinte instrução para fazê-las entrar em vigor:
 
 ```sql
 CALL query_rewrite.flush_rewrite_rules();
 ```
 
-`Rewriter` uses the first rule to match statements that use the qualified table name, and the second to match statements that use the unqualified name. The second rule works only when `appdb` is the default database.
+O `Rewriter` usa a primeira regra para corresponder a instruções que utilizam o nome de tabela qualificado, e a segunda para corresponder a instruções que utilizam o nome não qualificado. A segunda regra funciona apenas quando `appdb` é o Database padrão.
 
-##### How Statement Matching Works
+##### Como Funciona a Correspondência de Instruções (Statement Matching)
 
-The `Rewriter` plugin uses statement digests and digest hash values to match incoming statements against rewrite rules in stages. The `max_digest_length` system variable determines the size of the buffer used for computing statement digests. Larger values enable computation of digests that distinguish longer statements. Smaller values use less memory but increase the likelihood of longer statements colliding with the same digest value.
+O Plugin `Rewriter` usa *statement digests* e valores de *digest hash* para corresponder instruções recebidas contra regras de rewrite em estágios. A system variable `max_digest_length` determina o tamanho do Buffer usado para calcular os *statement digests*. Valores maiores permitem o cálculo de digests que distinguem instruções mais longas. Valores menores usam menos memória, mas aumentam a probabilidade de instruções mais longas colidirem com o mesmo valor de digest.
 
-The plugin matches each statement to the rewrite rules as follows:
+O Plugin corresponde cada instrução às regras de rewrite da seguinte forma:
 
-1. Compute the statement digest hash value and compare it to the rule digest hash values. This is subject to false positives, but serves as a quick rejection test.
+1. Calcula o valor de statement digest hash e o compara aos valores de rule digest hash. Isso está sujeito a falsos positivos, mas serve como um teste rápido de rejeição.
 
-2. If the statement digest hash value matches any pattern digest hash values, match the normalized (statement digest) form of the statement to the normalized form of the matching rule patterns.
+2. Se o valor de statement digest hash corresponder a quaisquer valores de pattern digest hash, corresponde a forma normalizada (*statement digest*) da instrução à forma normalizada dos patterns de regra correspondentes.
 
-3. If the normalized statement matches a rule, compare the literal values in the statement and the pattern. A `?` character in the pattern matches any literal value in the statement. If the statement prepares a [`SELECT`](select.html "13.2.9 SELECT Statement") statement, `?` in the pattern also matches `?` in the statement. Otherwise, corresponding literals must be the same.
+3. Se a instrução normalizada corresponder a uma regra, compara os valores literais na instrução e no pattern. Um caractere `?` no pattern corresponde a qualquer valor literal na instrução. Se a instrução preparar uma instrução [`SELECT`](select.html "13.2.9 SELECT Statement"), `?` no pattern também corresponde a `?` na instrução. Caso contrário, os literais correspondentes devem ser os mesmos.
 
-If multiple rules match a statement, it is nondeterministic which one the plugin uses to rewrite the statement.
+Se múltiplas regras corresponderem a uma instrução, é não determinístico qual delas o Plugin usará para reescrever a instrução.
 
-If a pattern contains more markers than the replacement, the plugin discards excess data values. If a pattern contains fewer markers than the replacement, it is an error. The plugin notices this when the rules table is loaded, writes an error message to the `message` column of the rule row to communicate the problem, and sets the [`Rewriter_reload_error`](rewriter-query-rewrite-plugin-reference.html#statvar_Rewriter_reload_error) status variable to `ON`.
+Se um pattern contiver mais markers do que o replacement, o Plugin descarta os data values em excesso. Se um pattern contiver menos markers do que o replacement, isso é um erro. O Plugin percebe isso quando a tabela de regras é carregada, grava uma mensagem de erro na coluna `message` da linha da regra para comunicar o problema e define a status variable [`Rewriter_reload_error`](rewriter-query-rewrite-plugin-reference.html#statvar_Rewriter_reload_error) como `ON`.
 
-##### Rewriting Prepared Statements
+##### Rewriting de Prepared Statements
 
-Prepared statements are rewritten at parse time (that is, when they are prepared), not when they are executed later.
+Prepared statements são reescritos no momento da análise (parse time) (ou seja, quando são preparados), e não quando são executados posteriormente.
 
-Prepared statements differ from nonprepared statements in that they may contain `?` characters as parameter markers. To match a `?` in a prepared statement, a `Rewriter` pattern must contain `?` in the same location. Suppose that a rewrite rule has this pattern:
+Prepared statements diferem de instruções não preparadas, pois podem conter caracteres `?` como parameter markers. Para corresponder a um `?` em um prepared statement, um pattern do `Rewriter` deve conter `?` no mesmo local. Suponha que uma regra de rewrite tenha este pattern:
 
 ```sql
 SELECT ?, 3
 ```
 
-The following table shows several prepared [`SELECT`](select.html "13.2.9 SELECT Statement") statements and whether the rule pattern matches them.
+A tabela a seguir mostra várias instruções [`SELECT`](select.html "13.2.9 SELECT Statement") preparadas e se o pattern da regra corresponde a elas.
 
-<table summary="How the Rewriter plugin matches prepared statements against the pattern SELECT ?,3."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Prepared Statement</th> <th>Whether Pattern Matches Statement</th> </tr></thead><tbody><tr> <td><code>PREPARE s AS 'SELECT 3, 3'</code></td> <td>Yes</td> </tr><tr> <td><code>PREPARE s AS 'SELECT ?, 3'</code></td> <td>Yes</td> </tr><tr> <td><code>PREPARE s AS 'SELECT 3, ?'</code></td> <td>No</td> </tr><tr> <td><code>PREPARE s AS 'SELECT ?, ?'</code></td> <td>No</td> </tr></tbody></table>
+| Prepared Statement | Se o Pattern Corresponde à Instrução |
+| :--- | :--- |
+| `PREPARE s AS 'SELECT 3, 3'` | Sim |
+| `PREPARE s AS 'SELECT ?, 3'` | Sim |
+| `PREPARE s AS 'SELECT 3, ?'` | Não |
+| `PREPARE s AS 'SELECT ?, ?'` | Não |
 
-##### Rewriter Plugin Operational Information
+##### Informações Operacionais do Plugin Rewriter
 
-The `Rewriter` plugin makes information available about its operation by means of several status variables:
+O Plugin `Rewriter` disponibiliza informações sobre sua operação por meio de diversas status variables:
 
 ```sql
 mysql> SHOW GLOBAL STATUS LIKE 'Rewriter%';
@@ -217,9 +222,9 @@ mysql> SHOW GLOBAL STATUS LIKE 'Rewriter%';
 +-----------------------------------+-------+
 ```
 
-For descriptions of these variables, see [Section 5.5.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables "5.5.4.3.4 Rewriter Query Rewrite Plugin Status Variables").
+Para descrições dessas variáveis, consulte [Seção 5.5.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables "5.5.4.3.4 Rewriter Query Rewrite Plugin Status Variables").
 
-When you load the rules table by calling the `flush_rewrite_rules()` stored procedure, if an error occurs for some rule, the `CALL` statement produces an error, and the plugin sets the `Rewriter_reload_error` status variable to `ON`:
+Quando você carrega a tabela de regras chamando a stored procedure `flush_rewrite_rules()`, se ocorrer um erro em alguma regra, a instrução `CALL` produz um erro, e o Plugin define a status variable `Rewriter_reload_error` como `ON`:
 
 ```sql
 mysql> CALL query_rewrite.flush_rewrite_rules();
@@ -233,10 +238,10 @@ mysql> SHOW GLOBAL STATUS LIKE 'Rewriter_reload_error';
 +-----------------------+-------+
 ```
 
-In this case, check the `rewrite_rules` table for rows with non-`NULL` `message` column values to see what problems exist.
+Neste caso, verifique a tabela `rewrite_rules` quanto a linhas com valores `message` na coluna que não sejam `NULL` para ver quais problemas existem.
 
-##### Rewriter Plugin Use of Character Sets
+##### Uso de Character Sets pelo Plugin Rewriter
 
-When the `rewrite_rules` table is loaded into the `Rewriter` plugin, the plugin interprets statements using the current global value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable. If the global [`character_set_client`](server-system-variables.html#sysvar_character_set_client) value is changed subsequently, the rules table must be reloaded.
+Quando a tabela `rewrite_rules` é carregada no Plugin `Rewriter`, o Plugin interpreta as instruções usando o valor global atual da system variable [`character_set_client`](server-system-variables.html#sysvar_character_set_client). Se o valor global de [`character_set_client`](server-system-variables.html#sysvar_character_set_client) for alterado posteriormente, a tabela de regras deve ser recarregada.
 
-A client must have a session [`character_set_client`](server-system-variables.html#sysvar_character_set_client) value identical to what the global value was when the rules table was loaded or rule matching does not work for that client.
+Um client deve ter um valor de session [`character_set_client`](server-system-variables.html#sysvar_character_set_client) idêntico ao valor global no momento em que a tabela de regras foi carregada, ou a correspondência de regras não funcionará para aquele client.

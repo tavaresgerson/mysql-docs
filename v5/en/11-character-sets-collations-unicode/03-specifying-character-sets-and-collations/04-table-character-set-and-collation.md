@@ -1,6 +1,6 @@
-### 10.3.4 Table Character Set and Collation
+### 10.3.4 Character Set e Collation da Tabela
 
-Every table has a table character set and a table collation. The `CREATE TABLE` and `ALTER TABLE` statements have optional clauses for specifying the table character set and collation:
+Toda tabela possui um character set de tabela e uma collation de tabela. As instruções `CREATE TABLE` e `ALTER TABLE` possuem cláusulas opcionais para especificar o character set e a collation da tabela:
 
 ```sql
 CREATE TABLE tbl_name (column_list)
@@ -12,21 +12,21 @@ ALTER TABLE tbl_name
     [COLLATE collation_name]
 ```
 
-Example:
+Exemplo:
 
 ```sql
 CREATE TABLE t1 ( ... )
 CHARACTER SET latin1 COLLATE latin1_danish_ci;
 ```
 
-MySQL chooses the table character set and collation in the following manner:
+O MySQL escolhe o character set e a collation da tabela da seguinte maneira:
 
-* If both `CHARACTER SET charset_name` and `COLLATE collation_name` are specified, character set *`charset_name`* and collation *`collation_name`* are used.
+* Se ambos `CHARACTER SET charset_name` e `COLLATE collation_name` forem especificados, o character set *`charset_name`* e a collation *`collation_name`* são utilizados.
 
-* If `CHARACTER SET charset_name` is specified without `COLLATE`, character set *`charset_name`* and its default collation are used. To see the default collation for each character set, use the `SHOW CHARACTER SET` statement or query the `INFORMATION_SCHEMA` `CHARACTER_SETS` table.
+* Se `CHARACTER SET charset_name` for especificado sem `COLLATE`, o character set *`charset_name`* e sua collation padrão são utilizados. Para ver a collation padrão de cada character set, use a instrução `SHOW CHARACTER SET` ou faça uma Query na tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA`.
 
-* If `COLLATE collation_name` is specified without `CHARACTER SET`, the character set associated with *`collation_name`* and collation *`collation_name`* are used.
+* Se `COLLATE collation_name` for especificado sem `CHARACTER SET`, o character set associado a *`collation_name`* e a collation *`collation_name`* são utilizados.
 
-* Otherwise (neither `CHARACTER SET` nor `COLLATE` is specified), the database character set and collation are used.
+* Caso contrário (se nem `CHARACTER SET` nem `COLLATE` for especificado), o character set e a collation do Database são utilizados.
 
-The table character set and collation are used as default values for column definitions if the column character set and collation are not specified in individual column definitions. The table character set and collation are MySQL extensions; there are no such things in standard SQL.
+O character set e a collation da tabela são usados como valores padrão para as definições de Column se o character set e a collation da Column não forem especificados em definições de Column individuais. O character set e a collation da tabela são extensões do MySQL; não existem elementos como esses no SQL padrão.

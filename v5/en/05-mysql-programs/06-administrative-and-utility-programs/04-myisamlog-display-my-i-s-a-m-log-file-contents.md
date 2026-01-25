@@ -1,65 +1,65 @@
-### 4.6.4 myisamlog — Display MyISAM Log File Contents
+### 4.6.4 myisamlog — Exibir Conteúdo do Arquivo de Log MyISAM
 
-**myisamlog** processes the contents of a `MyISAM` log file. To create such a file, start the server with a `--log-isam=log_file` option.
+O **myisamlog** processa o conteúdo de um arquivo de log do `MyISAM`. Para criar tal arquivo, inicie o servidor com a opção `--log-isam=log_file`.
 
-Invoke **myisamlog** like this:
+Invoque o **myisamlog** da seguinte forma:
 
 ```sql
 myisamlog [options] [file_name [tbl_name] ...]
 ```
 
-The default operation is update (`-u`). If a recovery is done (`-r`), all writes and possibly updates and deletes are done and errors are only counted. The default log file name is `myisam.log` if no *`log_file`* argument is given. If tables are named on the command line, only those tables are updated.
+A operação padrão é update (atualização) (`-u`). Se uma recovery (recuperação) for realizada (`-r`), todas as gravações (writes) e, possivelmente, as atualizações (updates) e exclusões (deletes) são executadas, e os erros são apenas contabilizados. O nome padrão do log file é `myisam.log` se nenhum argumento *`log_file`* for fornecido. Se tabelas forem nomeadas na linha de comando, apenas essas tabelas serão updated.
 
-**myisamlog** supports the following options:
+O **myisamlog** suporta as seguintes options:
 
 * `-?`, `-I`
 
-  Display a help message and exit.
+  Exibir uma mensagem de ajuda e sair.
 
 * `-c N`
 
-  Execute only *`N`* commands.
+  Executar apenas *`N`* comandos.
 
 * `-f N`
 
-  Specify the maximum number of open files.
+  Especificar o número máximo de arquivos abertos.
 
 * `-F filepath/`
 
-  Specify the file path with a trailing slash.
+  Especificar o file path (caminho do arquivo) com uma barra final.
 
 * `-i`
 
-  Display extra information before exiting.
+  Exibir informações extras antes de sair.
 
 * `-o offset`
 
-  Specify the starting offset.
+  Especificar o offset (deslocamento) inicial.
 
 * `-p N`
 
-  Remove *`N`* components from path.
+  Remover *`N`* componentes do path (caminho).
 
 * `-r`
 
-  Perform a recovery operation.
+  Executar uma operação de recovery (recuperação).
 
 * `-R record_pos_file record_pos`
 
-  Specify record position file and record position.
+  Especificar o arquivo de posição do registro e a posição do registro.
 
 * `-u`
 
-  Perform an update operation.
+  Executar uma operação de update (atualização).
 
 * `-v`
 
-  Verbose mode. Print more output about what the program does. This option can be given multiple times to produce more and more output.
+  Modo Verbose (detalhado). Imprime mais output (saída) sobre o que o programa está fazendo. Esta option pode ser fornecida múltiplas vezes para produzir cada vez mais output.
 
 * `-w write_file`
 
-  Specify the write file.
+  Especificar o write file (arquivo de gravação).
 
 * `-V`
 
-  Display version information.
+  Exibir informações de version (versão).

@@ -1,84 +1,84 @@
-## 1.5 How to Report Bugs or Problems
+## 1.5 Como Reportar Bugs ou Problemas
 
-Before posting a bug report about a problem, please try to verify that it is a bug and that it has not been reported already:
+Antes de postar um relatório de bug sobre um problema, tente verificar se é realmente um bug e se ele já não foi reportado:
 
-* Start by searching the MySQL online manual at https://dev.mysql.com/doc/. We try to keep the manual up to date by updating it frequently with solutions to newly found problems. In addition, the release notes accompanying the manual can be particularly useful since it is quite possible that a newer version contains a solution to your problem. The release notes are available at the location just given for the manual.
+* Comece pesquisando o manual online do MySQL em https://dev.mysql.com/doc/. Tentamos manter o manual atualizado, revisando-o frequentemente com soluções para problemas recém-descobertos. Além disso, as *release notes* (notas de lançamento) que acompanham o manual podem ser particularmente úteis, pois é bem possível que uma versão mais nova contenha uma solução para o seu problema. As *release notes* estão disponíveis no local indicado para o manual.
 
-* If you get a parse error for an SQL statement, please check your syntax closely. If you cannot find something wrong with it, it is extremely likely that your current version of MySQL Server doesn't support the syntax you are using. If you are using the current version and the manual doesn't cover the syntax that you are using, MySQL Server doesn't support your statement.
+* Se você receber um *parse error* (erro de análise) para uma instrução SQL, verifique sua sintaxe atentamente. Se você não conseguir encontrar nada de errado, é extremamente provável que sua versão atual do MySQL Server não suporte a sintaxe que você está usando. Se você estiver usando a versão atual e o manual não cobrir a sintaxe que você está usando, o MySQL Server não suporta sua instrução.
 
-  If the manual covers the syntax you are using, but you have an older version of MySQL Server, you should check the MySQL change history to see when the syntax was implemented. In this case, you have the option of upgrading to a newer version of MySQL Server.
+  Se o manual cobrir a sintaxe que você está usando, mas você tiver uma versão mais antiga do MySQL Server, você deve verificar o histórico de mudanças do MySQL para ver quando a sintaxe foi implementada. Neste caso, você tem a opção de fazer um *upgrade* para uma versão mais nova do MySQL Server.
 
-* For solutions to some common problems, see Section B.3, “Problems and Common Errors”.
+* Para soluções para alguns problemas comuns, veja Seção B.3, “Problemas e Erros Comuns”.
 
-* Search the bugs database at <http://bugs.mysql.com/> to see whether the bug has been reported and fixed.
+* Pesquise no *bugs database* (banco de dados de bugs) em <http://bugs.mysql.com/> para ver se o bug foi reportado e corrigido.
 
-* You can also use <http://www.mysql.com/search/> to search all the Web pages (including the manual) that are located at the MySQL website.
+* Você também pode usar <http://www.mysql.com/search/> para pesquisar todas as páginas Web (incluindo o manual) que estão localizadas no *website* do MySQL.
 
-If you cannot find an answer in the manual, the bugs database, or the mailing list archives, check with your local MySQL expert. If you still cannot find an answer to your question, please use the following guidelines for reporting the bug.
+Se você não conseguir encontrar uma resposta no manual, no *bugs database* ou nos arquivos da lista de e-mail, consulte seu especialista local em MySQL. Se você ainda não conseguir encontrar uma resposta para sua pergunta, use as seguintes diretrizes para reportar o bug.
 
-The normal way to report bugs is to visit <http://bugs.mysql.com/>, which is the address for our bugs database. This database is public and can be browsed and searched by anyone. If you log in to the system, you can enter new reports.
+A maneira normal de reportar bugs é visitando <http://bugs.mysql.com/>, que é o endereço do nosso *bugs database*. Este Database é público e pode ser navegado e pesquisado por qualquer pessoa. Se você fizer *login* no sistema, poderá inserir novos relatórios.
 
-Bugs posted in the bugs database at <http://bugs.mysql.com/> that are corrected for a given release are noted in the release notes.
+Os bugs postados no *bugs database* em <http://bugs.mysql.com/> que são corrigidos para um determinado lançamento são observados nas *release notes*.
 
-If you find a security bug in MySQL Server, please let us know immediately by sending an email message to `<secalert_us@oracle.com>`. Exception: Support customers should report all problems, including security bugs, to Oracle Support at <http://support.oracle.com/>.
+Se você encontrar um *security bug* (bug de segurança) no MySQL Server, informe-nos imediatamente enviando um e-mail para `<secalert_us@oracle.com>`. Exceção: Clientes de Suporte devem reportar todos os problemas, incluindo *security bugs*, ao Oracle Support em <http://support.oracle.com/>.
 
-To discuss problems with other users, you can use the [MySQL Community Slack](https://mysqlcommunity.slack.com/).
+Para discutir problemas com outros usuários, você pode usar o [MySQL Community Slack](https://mysqlcommunity.slack.com/).
 
-Writing a good bug report takes patience, but doing it right the first time saves time both for us and for yourself. A good bug report, containing a full test case for the bug, makes it very likely that we will fix the bug in the next release. This section helps you write your report correctly so that you do not waste your time doing things that may not help us much or at all. Please read this section carefully and make sure that all the information described here is included in your report.
+Escrever um bom relatório de bug requer paciência, mas fazê-lo corretamente na primeira vez economiza tempo tanto para nós quanto para você. Um bom relatório de bug, contendo um *test case* completo para o bug, torna muito provável que corrigiremos o bug no próximo lançamento. Esta seção ajuda você a escrever seu relatório corretamente, para que você não perca tempo fazendo coisas que podem não nos ajudar muito ou em nada. Por favor, leia esta seção cuidadosamente e certifique-se de que todas as informações descritas aqui estejam incluídas em seu relatório.
 
-Preferably, you should test the problem using the latest production or development version of MySQL Server before posting. Anyone should be able to repeat the bug by just using `mysql test < script_file` on your test case or by running the shell or Perl script that you include in the bug report. Any bug that we are able to repeat has a high chance of being fixed in the next MySQL release.
+De preferência, você deve testar o problema usando a versão de produção ou desenvolvimento mais recente do MySQL Server antes de postar. Qualquer pessoa deve ser capaz de repetir o bug usando apenas `mysql test < script_file` no seu *test case* ou executando o *script* shell ou Perl que você incluir no relatório de bug. Qualquer bug que pudermos repetir tem uma grande chance de ser corrigido no próximo lançamento do MySQL.
 
-It is most helpful when a good description of the problem is included in the bug report. That is, give a good example of everything you did that led to the problem and describe, in exact detail, the problem itself. The best reports are those that include a full example showing how to reproduce the bug or problem. See Section 5.8, “Debugging MySQL”.
+É muito útil que uma boa descrição do problema seja incluída no relatório de bug. Ou seja, forneça um bom exemplo de tudo o que você fez que levou ao problema e descreva, em detalhes exatos, o problema em si. Os melhores relatórios são aqueles que incluem um exemplo completo mostrando como reproduzir o bug ou problema. Consulte a Seção 5.8, “Debugging MySQL”.
 
-Remember that it is possible for us to respond to a report containing too much information, but not to one containing too little. People often omit facts because they think they know the cause of a problem and assume that some details do not matter. A good principle to follow is that if you are in doubt about stating something, state it. It is faster and less troublesome to write a couple more lines in your report than to wait longer for the answer if we must ask you to provide information that was missing from the initial report.
+Lembre-se de que é possível respondermos a um relatório que contém informações demais, mas não a um que contenha informações de menos. As pessoas frequentemente omitem fatos porque pensam saber a causa de um problema e presumem que alguns detalhes não importam. Um bom princípio a seguir é que, se você tiver dúvidas sobre declarar algo, declare-o. É mais rápido e menos problemático escrever mais algumas linhas em seu relatório do que esperar mais tempo pela resposta se precisarmos solicitar que você forneça informações que estavam faltando no relatório inicial.
 
-The most common errors made in bug reports are (a) not including the version number of the MySQL distribution that you use, and (b) not fully describing the platform on which the MySQL server is installed (including the platform type and version number). These are highly relevant pieces of information, and in 99 cases out of 100, the bug report is useless without them. Very often we get questions like, “Why doesn't this work for me?” Then we find that the feature requested wasn't implemented in that MySQL version, or that a bug described in a report has been fixed in newer MySQL versions. Errors often are platform-dependent. In such cases, it is next to impossible for us to fix anything without knowing the operating system and the version number of the platform.
+Os erros mais comuns cometidos em relatórios de bug são (a) não incluir o número da versão da distribuição MySQL que você usa e (b) não descrever totalmente a *platform* na qual o MySQL Server está instalado (incluindo o tipo e o número da versão da *platform*). Estas são informações altamente relevantes e, em 99 casos em 100, o relatório de bug é inútil sem elas. Muitas vezes recebemos perguntas como: “Por que isso não funciona para mim?” Então, descobrimos que o recurso solicitado não foi implementado naquela versão do MySQL, ou que um bug descrito em um relatório foi corrigido em versões mais novas do MySQL. Os erros geralmente dependem da *platform*. Nesses casos, é quase impossível corrigirmos algo sem saber o *operating system* e o número da versão da *platform*.
 
-If you compiled MySQL from source, remember also to provide information about your compiler if it is related to the problem. Often people find bugs in compilers and think the problem is MySQL-related. Most compilers are under development all the time and become better version by version. To determine whether your problem depends on your compiler, we need to know what compiler you used. Note that every compiling problem should be regarded as a bug and reported accordingly.
+Se você compilou o MySQL a partir do *source*, lembre-se também de fornecer informações sobre o seu *compiler* se isso estiver relacionado ao problema. Frequentemente, as pessoas encontram bugs nos *compilers* e pensam que o problema está relacionado ao MySQL. A maioria dos *compilers* está em desenvolvimento o tempo todo e melhoram versão após versão. Para determinar se o seu problema depende do seu *compiler*, precisamos saber qual *compiler* você usou. Observe que todo problema de compilação deve ser considerado um bug e reportado como tal.
 
-If a program produces an error message, it is very important to include the message in your report. If we try to search for something from the archives, it is better that the error message reported exactly matches the one that the program produces. (Even the lettercase should be observed.) It is best to copy and paste the entire error message into your report. You should never try to reproduce the message from memory.
+Se um programa produzir uma *error message* (mensagem de erro), é muito importante incluir a mensagem em seu relatório. Se tentarmos pesquisar algo nos arquivos, é melhor que a *error message* reportada corresponda exatamente àquela que o programa produz. (Até mesmo o uso de maiúsculas e minúsculas deve ser observado.) É melhor copiar e colar toda a *error message* em seu relatório. Você nunca deve tentar reproduzir a mensagem de memória.
 
-If you have a problem with Connector/ODBC (MyODBC), please try to generate a trace file and send it with your report. See How to Report Connector/ODBC Problems or Bugs.
+Se você tiver um problema com o Connector/ODBC (MyODBC), tente gerar um *trace file* e envie-o com seu relatório. Consulte Como Reportar Problemas ou Bugs do Connector/ODBC.
 
-If your report includes long query output lines from test cases that you run with the **mysql** command-line tool, you can make the output more readable by using the `--vertical` option or the `\G` statement terminator. The `EXPLAIN SELECT` example later in this section demonstrates the use of `\G`.
+Se o seu relatório incluir longas linhas de saída de Query de *test cases* que você executa com a ferramenta de linha de comando **mysql**, você pode tornar a saída mais legível usando a opção `--vertical` ou o terminador de instrução `\G`. O exemplo `EXPLAIN SELECT` mais adiante nesta seção demonstra o uso de `\G`.
 
-Please include the following information in your report:
+Por favor, inclua as seguintes informações em seu relatório:
 
-* The version number of the MySQL distribution you are using (for example, MySQL 5.7.10). You can find out which version you are running by executing **mysqladmin version**. The **mysqladmin** program can be found in the `bin` directory under your MySQL installation directory.
+* O número da versão da distribuição MySQL que você está usando (por exemplo, MySQL 5.7.10). Você pode descobrir qual versão está executando ao executar **mysqladmin version**. O programa **mysqladmin** pode ser encontrado no diretório `bin` sob seu diretório de instalação do MySQL.
 
-* The manufacturer and model of the machine on which you experience the problem.
+* O fabricante e o modelo da máquina na qual você está experimentando o problema.
 
-* The operating system name and version. If you work with Windows, you can usually get the name and version number by double-clicking your My Computer icon and pulling down the “Help/About Windows” menu. For most Unix-like operating systems, you can get this information by executing the command `uname -a`.
+* O nome e a versão do *operating system*. Se você trabalha com Windows, geralmente pode obter o nome e o número da versão clicando duas vezes no ícone Meu Computador e acessando o menu “Ajuda/Sobre o Windows”. Para a maioria dos *operating systems* tipo Unix, você pode obter esta informação executando o comando `uname -a`.
 
-* Sometimes the amount of memory (real and virtual) is relevant. If in doubt, include these values.
+* Às vezes, a quantidade de *memory* (real e virtual) é relevante. Em caso de dúvida, inclua esses valores.
 
-* The contents of the `docs/INFO_BIN` file from your MySQL installation. This file contains information about how MySQL was configured and compiled.
+* O conteúdo do arquivo `docs/INFO_BIN` da sua instalação do MySQL. Este arquivo contém informações sobre como o MySQL foi configurado e compilado.
 
-* If you are using a source distribution of the MySQL software, include the name and version number of the compiler that you used. If you have a binary distribution, include the distribution name.
+* Se você estiver usando uma distribuição *source* do software MySQL, inclua o nome e o número da versão do *compiler* que você usou. Se você tiver uma distribuição *binary*, inclua o nome da distribuição.
 
-* If the problem occurs during compilation, include the exact error messages and also a few lines of context around the offending code in the file where the error occurs.
+* Se o problema ocorrer durante a compilação, inclua as *error messages* exatas e também algumas linhas de contexto ao redor do código problemático no arquivo onde o erro ocorre.
 
-* If **mysqld** died, you should also report the statement that caused **mysqld** to unexpectedly exit. You can usually get this information by running **mysqld** with query logging enabled, and then looking in the log after **mysqld** exits. See Section 5.8, “Debugging MySQL”.
+* Se o **mysqld** falhou (*died*), você também deve reportar a instrução que fez com que o **mysqld** fosse encerrado inesperadamente. Você geralmente pode obter esta informação executando o **mysqld** com o *query logging* ativado e, em seguida, verificando o *log* após o encerramento do **mysqld**. Consulte a Seção 5.8, “Debugging MySQL”.
 
-* If a database table is related to the problem, include the output from the `SHOW CREATE TABLE db_name.tbl_name` statement in the bug report. This is a very easy way to get the definition of any table in a database. The information helps us create a situation matching the one that you have experienced.
+* Se uma *Database Table* estiver relacionada ao problema, inclua a saída da instrução `SHOW CREATE TABLE db_name.tbl_name` no relatório de bug. Esta é uma maneira muito fácil de obter a definição de qualquer *table* em um *Database*. A informação nos ajuda a criar uma situação correspondente à que você experimentou.
 
-* The SQL mode in effect when the problem occurred can be significant, so please report the value of the `sql_mode` system variable. For stored procedure, stored function, and trigger objects, the relevant `sql_mode` value is the one in effect when the object was created. For a stored procedure or function, the `SHOW CREATE PROCEDURE` or `SHOW CREATE FUNCTION` statement shows the relevant SQL mode, or you can query `INFORMATION_SCHEMA` for the information:
+* O *SQL mode* em vigor quando o problema ocorreu pode ser significativo, portanto, reporte o valor da variável de sistema `sql_mode`. Para objetos de *stored procedure*, *stored function* e *trigger*, o valor `sql_mode` relevante é aquele em vigor quando o objeto foi criado. Para uma *stored procedure* ou *function*, a instrução `SHOW CREATE PROCEDURE` ou `SHOW CREATE FUNCTION` mostra o *SQL mode* relevante, ou você pode consultar o `INFORMATION_SCHEMA` para obter a informação:
 
   ```sql
   SELECT ROUTINE_SCHEMA, ROUTINE_NAME, SQL_MODE
   FROM INFORMATION_SCHEMA.ROUTINES;
   ```
 
-  For triggers, you can use this statement:
+  Para *triggers*, você pode usar esta instrução:
 
   ```sql
   SELECT EVENT_OBJECT_SCHEMA, EVENT_OBJECT_TABLE, TRIGGER_NAME, SQL_MODE
   FROM INFORMATION_SCHEMA.TRIGGERS;
   ```
 
-* For performance-related bugs or problems with `SELECT` statements, you should always include the output of `EXPLAIN SELECT ...`, and at least the number of rows that the `SELECT` statement produces. You should also include the output from `SHOW CREATE TABLE tbl_name` for each table that is involved. The more information you provide about your situation, the more likely it is that someone can help you.
+* Para bugs relacionados a *performance* ou problemas com instruções `SELECT`, você deve sempre incluir a saída de `EXPLAIN SELECT ...`, e pelo menos o número de linhas que a instrução `SELECT` produz. Você também deve incluir a saída de `SHOW CREATE TABLE tbl_name` para cada *table* envolvida. Quanto mais informações você fornecer sobre sua situação, maior a probabilidade de que alguém possa ajudá-lo.
 
-  The following is an example of a very good bug report. The statements are run using the **mysql** command-line tool. Note the use of the `\G` statement terminator for statements that would otherwise provide very long output lines that are difficult to read.
+  O seguinte é um exemplo de um relatório de bug muito bom. As instruções são executadas usando a ferramenta de linha de comando **mysql**. Observe o uso do terminador de instrução `\G` para instruções que, de outra forma, forneceriam linhas de saída muito longas e difíceis de ler.
 
   ```sql
   mysql> SHOW VARIABLES;
@@ -94,36 +94,36 @@ Please include the following information in your report:
          <output from SHOW STATUS>
   ```
 
-* If a bug or problem occurs while running **mysqld**, try to provide an input script that reproduces the anomaly. This script should include any necessary source files. The more closely the script can reproduce your situation, the better. If you can make a reproducible test case, you should upload it to be attached to the bug report.
+* Se um bug ou problema ocorrer enquanto o **mysqld** estiver sendo executado, tente fornecer um *input script* que reproduza a anomalia. Este *script* deve incluir quaisquer arquivos *source* necessários. Quanto mais de perto o *script* puder reproduzir sua situação, melhor. Se você puder criar um *test case* reproduzível, você deve fazer o *upload* dele para ser anexado ao relatório de bug.
 
-  If you cannot provide a script, you should at least include the output from **mysqladmin variables extended-status processlist** in your report to provide some information on how your system is performing.
+  Se você não puder fornecer um *script*, você deve incluir pelo menos a saída de **mysqladmin variables extended-status processlist** em seu relatório para fornecer algumas informações sobre como seu sistema está performando.
 
-* If you cannot produce a test case with only a few rows, or if the test table is too big to be included in the bug report (more than 10 rows), you should dump your tables using **mysqldump** and create a `README` file that describes your problem. Create a compressed archive of your files using **tar** and **gzip** or **zip**. After you initiate a bug report for our bugs database at <http://bugs.mysql.com/>, click the Files tab in the bug report for instructions on uploading the archive to the bugs database.
+* Se você não puder produzir um *test case* com apenas algumas linhas, ou se a *test table* for muito grande para ser incluída no relatório de bug (mais de 10 linhas), você deve fazer um *dump* de suas *tables* usando **mysqldump** e criar um arquivo `README` que descreva seu problema. Crie um arquivo compactado de seus arquivos usando **tar** e **gzip** ou **zip**. Depois de iniciar um relatório de bug para o nosso *bugs database* em <http://bugs.mysql.com/>, clique na aba Files no relatório de bug para obter instruções sobre como fazer o *upload* do arquivo para o *bugs database*.
 
-* If you believe that the MySQL server produces a strange result from a statement, include not only the result, but also your opinion of what the result should be, and an explanation describing the basis for your opinion.
+* Se você acredita que o MySQL Server produz um resultado estranho a partir de uma instrução, inclua não apenas o resultado, mas também sua opinião sobre qual deveria ser o resultado, e uma explicação descrevendo a base para sua opinião.
 
-* When you provide an example of the problem, it is better to use the table names, variable names, and so forth that exist in your actual situation than to come up with new names. The problem could be related to the name of a table or variable. These cases are rare, perhaps, but it is better to be safe than sorry. After all, it should be easier for you to provide an example that uses your actual situation, and it is by all means better for us. If you have data that you do not want to be visible to others in the bug report, you can upload it using the Files tab as previously described. If the information is really top secret and you do not want to show it even to us, go ahead and provide an example using other names, but please regard this as the last choice.
+* Ao fornecer um exemplo do problema, é melhor usar os *table names*, *variable names* e assim por diante que existem em sua situação real, em vez de criar novos nomes. O problema pode estar relacionado ao nome de uma *table* ou *variable*. Estes casos são raros, talvez, mas é melhor prevenir do que remediar. Afinal, deve ser mais fácil para você fornecer um exemplo que use sua situação real, e é, sem dúvida, melhor para nós. Se você tiver *data* que não deseja que seja visível para outros no relatório de bug, você pode fazer o *upload* usando a aba Files, conforme descrito anteriormente. Se a informação for realmente ultrassecreta e você não quiser mostrá-la nem mesmo para nós, siga em frente e forneça um exemplo usando outros nomes, mas por favor, considere esta como a última opção.
 
-* Include all the options given to the relevant programs, if possible. For example, indicate the options that you use when you start the **mysqld** server, as well as the options that you use to run any MySQL client programs. The options to programs such as **mysqld** and **mysql**, and to the **configure** script, are often key to resolving problems and are very relevant. It is never a bad idea to include them. If your problem involves a program written in a language such as Perl or PHP, please include the language processor's version number, as well as the version for any modules that the program uses. For example, if you have a Perl script that uses the `DBI` and `DBD::mysql` modules, include the version numbers for Perl, `DBI`, and `DBD::mysql`.
+* Inclua todas as opções fornecidas aos programas relevantes, se possível. Por exemplo, indique as opções que você usa ao iniciar o servidor **mysqld**, bem como as opções que você usa para executar quaisquer programas *client* MySQL. As opções para programas como **mysqld** e **mysql**, e para o *script* **configure**, são frequentemente a chave para resolver problemas e são muito relevantes. Nunca é uma má ideia incluí-las. Se o seu problema envolver um programa escrito em uma linguagem como Perl ou PHP, inclua o número da versão do processador da linguagem, bem como a versão de quaisquer *modules* que o programa utilize. Por exemplo, se você tem um *script* Perl que usa os *modules* `DBI` e `DBD::mysql`, inclua os números de versão para Perl, `DBI` e `DBD::mysql`.
 
-* If your question is related to the privilege system, please include the output of **mysqladmin reload**, and all the error messages you get when trying to connect. When you test your privileges, you should execute **mysqladmin reload version** and try to connect with the program that gives you trouble.
+* Se sua pergunta estiver relacionada ao *privilege system* (sistema de privilégios), inclua a saída de **mysqladmin reload** e todas as *error messages* que você obtiver ao tentar se conectar. Ao testar seus privilégios, você deve executar **mysqladmin reload version** e tentar se conectar com o programa que está lhe causando problemas.
 
-* If you have a patch for a bug, do include it. But do not assume that the patch is all we need, or that we can use it, if you do not provide some necessary information such as test cases showing the bug that your patch fixes. We might find problems with your patch or we might not understand it at all. If so, we cannot use it.
+* Se você tiver um *patch* para um bug, inclua-o. Mas não presuma que o *patch* é tudo de que precisamos, ou que podemos usá-lo, se você não fornecer algumas informações necessárias, como *test cases* mostrando o bug que seu *patch* corrige. Podemos encontrar problemas com o seu *patch* ou podemos não entendê-lo de forma alguma. Se for esse o caso, não poderemos usá-lo.
 
-  If we cannot verify the exact purpose of the patch, we will not use it. Test cases help us here. Show that the patch handles all the situations that may occur. If we find a borderline case (even a rare one) where the patch will not work, it may be useless.
+  Se não pudermos verificar o propósito exato do *patch*, não o usaremos. Os *test cases* nos ajudam nisso. Mostre que o *patch* lida com todas as situações que podem ocorrer. Se encontrarmos um caso limite (mesmo que raro) em que o *patch* não funcionará, ele pode ser inútil.
 
-* Guesses about what the bug is, why it occurs, or what it depends on are usually wrong. Even the MySQL team cannot guess such things without first using a debugger to determine the real cause of a bug.
+* Palpites sobre o que é o bug, por que ele ocorre ou do que ele depende geralmente estão errados. Mesmo a equipe MySQL não consegue adivinhar tais coisas sem primeiro usar um *debugger* para determinar a causa real de um bug.
 
-* Indicate in your bug report that you have checked the reference manual and mail archive so that others know you have tried to solve the problem yourself.
+* Indique em seu relatório de bug que você verificou o manual de referência e o arquivo de e-mail para que outros saibam que você tentou resolver o problema por conta própria.
 
-* If your data appears corrupt or you get errors when you access a particular table, first check your tables with `CHECK TABLE`. If that statement reports any errors:
+* Se seus *data* parecerem corrompidos ou você receber *errors* ao acessar uma *table* específica, primeiro verifique suas *tables* com `CHECK TABLE`. Se esta instrução reportar quaisquer *errors*:
 
-  + The `InnoDB` crash recovery mechanism handles cleanup when the server is restarted after being killed, so in typical operation there is no need to “repair” tables. If you encounter an error with `InnoDB` tables, restart the server and see whether the problem persists, or whether the error affected only cached data in memory. If data is corrupted on disk, consider restarting with the `innodb_force_recovery` option enabled so that you can dump the affected tables.
+  + O mecanismo de *crash recovery* do `InnoDB` lida com a limpeza quando o *server* é reiniciado após ser encerrado, portanto, na operação típica, não há necessidade de "reparar" *tables*. Se você encontrar um *error* com *tables* `InnoDB`, reinicie o *server* e veja se o problema persiste ou se o *error* afetou apenas *data* em *memory* armazenados em *cache*. Se os *data* estiverem corrompidos no disco, considere reiniciar com a opção `innodb_force_recovery` ativada para que você possa fazer o *dump* das *tables* afetadas.
 
-  + For non-transactional tables, try to repair them with `REPAIR TABLE` or with **myisamchk**. See Chapter 5, *MySQL Server Administration*.
+  + Para *tables* não transacionais, tente repará-las com `REPAIR TABLE` ou com **myisamchk**. Consulte o Capítulo 5, *MySQL Server Administration*.
 
-  If you are running Windows, please verify the value of `lower_case_table_names` using the `SHOW VARIABLES LIKE 'lower_case_table_names'` statement. This variable affects how the server handles lettercase of database and table names. Its effect for a given value should be as described in Section 9.2.3, “Identifier Case Sensitivity”.
+  Se você estiver executando Windows, verifique o valor de `lower_case_table_names` usando a instrução `SHOW VARIABLES LIKE 'lower_case_table_names'`. Esta *variable* afeta como o *server* lida com o uso de maiúsculas e minúsculas em nomes de *Database* e *table*. Seu efeito para um determinado valor deve ser conforme descrito na Seção 9.2.3, “Identifier Case Sensitivity”.
 
-* If you often get corrupted tables, you should try to find out when and why this happens. In this case, the error log in the MySQL data directory may contain some information about what happened. (This is the file with the `.err` suffix in the name.) See Section 5.4.2, “The Error Log”. Please include any relevant information from this file in your bug report. Normally **mysqld** should *never* corrupt a table if nothing killed it in the middle of an update. If you can find the cause of **mysqld** dying, it is much easier for us to provide you with a fix for the problem. See Section B.3.1, “How to Determine What Is Causing a Problem”.
+* Se você frequentemente obtém *tables* corrompidas, você deve tentar descobrir quando e por que isso acontece. Neste caso, o *error log* no diretório de *data* do MySQL pode conter algumas informações sobre o que aconteceu. (Este é o arquivo com o sufixo `.err` no nome.) Consulte a Seção 5.4.2, “The Error Log”. Por favor, inclua qualquer informação relevante deste arquivo em seu relatório de bug. Normalmente, o **mysqld** *nunca* deve corromper uma *table* se nada o tiver encerrado no meio de um *update*. Se você puder encontrar a causa da falha do **mysqld**, é muito mais fácil para nós fornecer uma correção para o problema. Consulte a Seção B.3.1, “How to Determine What Is Causing a Problem”.
 
-* If possible, download and install the most recent version of MySQL Server and check whether it solves your problem. All versions of the MySQL software are thoroughly tested and should work without problems. We believe in making everything as backward-compatible as possible, and you should be able to switch MySQL versions without difficulty. See Section 2.1.2, “Which MySQL Version and Distribution to Install”.
+* Se possível, faça o *download* e instale a versão mais recente do MySQL Server e verifique se ela resolve seu problema. Todas as versões do software MySQL são testadas exaustivamente e devem funcionar sem problemas. Acreditamos em tornar tudo o mais *backward-compatible* possível, e você deve ser capaz de alternar as versões do MySQL sem dificuldade. Consulte a Seção 2.1.2, “Which MySQL Version and Distribution to Install”.

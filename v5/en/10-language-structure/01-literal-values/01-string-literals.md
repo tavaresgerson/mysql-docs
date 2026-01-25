@@ -1,36 +1,36 @@
-### 9.1.1 String Literals
+### 9.1.1 Literais de String
 
-A string is a sequence of bytes or characters, enclosed within either single quote (`'`) or double quote (`"`) characters. Examples:
+Uma String é uma sequência de bytes ou caracteres, delimitada por aspas simples (`'`) ou aspas duplas (`"`). Exemplos:
 
 ```sql
 'a string'
 "another string"
 ```
 
-Quoted strings placed next to each other are concatenated to a single string. The following lines are equivalent:
+Strings entre aspas colocadas lado a lado são concatenadas em uma única String. As seguintes linhas são equivalentes:
 
 ```sql
 'a string'
 'a' ' ' 'string'
 ```
 
-If the `ANSI_QUOTES` SQL mode is enabled, string literals can be quoted only within single quotation marks because a string quoted within double quotation marks is interpreted as an identifier.
+Se o SQL mode `ANSI_QUOTES` estiver ativado, literais de String podem ser delimitados apenas por aspas simples, pois uma String delimitada por aspas duplas é interpretada como um identifier.
 
-A binary string is a string of bytes. Every binary string has a character set and collation named `binary`. A nonbinary string is a string of characters. It has a character set other than `binary` and a collation that is compatible with the character set.
+Uma String binária é uma String de bytes. Toda String binária tem um character set e collation nomeados `binary`. Uma String não binária é uma String de caracteres. Ela tem um character set diferente de `binary` e um collation que é compatível com o character set.
 
-For both types of strings, comparisons are based on the numeric values of the string unit. For binary strings, the unit is the byte; comparisons use numeric byte values. For nonbinary strings, the unit is the character and some character sets support multibyte characters; comparisons use numeric character code values. Character code ordering is a function of the string collation. (For more information, see Section 10.8.5, “The binary Collation Compared to _bin Collations”.)
+Para ambos os tipos de Strings, as comparações são baseadas nos valores numéricos da unidade da String. Para Strings binárias, a unidade é o byte; as comparações usam valores numéricos de byte. Para Strings não binárias, a unidade é o caractere, e alguns character sets suportam caracteres multibyte; as comparações usam valores de código de caractere numérico. A ordenação do código de caractere é uma função do string collation. (Para mais informações, consulte a Seção 10.8.5, “A Collation binary Comparada às Collations _bin”).
 
-Note
+Nota
 
-Within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+Dentro do cliente **mysql**, Strings binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O Cliente de Linha de Comando MySQL”.
 
-A character string literal may have an optional character set introducer and `COLLATE` clause, to designate it as a string that uses a particular character set and collation:
+Um literal de String de caractere pode ter um *character set introducer* opcional e uma cláusula `COLLATE`, para designá-lo como uma String que usa um character set e collation específicos:
 
 ```sql
 [_charset_name]'string' [COLLATE collation_name]
 ```
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT _latin1'string';
@@ -38,7 +38,7 @@ SELECT _binary'string';
 SELECT _utf8'string' COLLATE utf8_danish_ci;
 ```
 
-You can use `N'literal'` (or `n'literal'`) to create a string in the national character set. These statements are equivalent:
+Você pode usar `N'literal'` (ou `n'literal'`) para criar uma String no *national character set*. Estas instruções são equivalentes:
 
 ```sql
 SELECT N'some text';
@@ -46,29 +46,26 @@ SELECT n'some text';
 SELECT _utf8'some text';
 ```
 
-For information about these forms of string syntax, see Section 10.3.7, “The National Character Set”, and Section 10.3.8, “Character Set Introducers”.
+Para obter informações sobre essas formas de sintaxe de String, consulte a Seção 10.3.7, “O National Character Set”, e a Seção 10.3.8, “Character Set Introducers”.
 
-Within a string, certain sequences have special meaning unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. Each of these sequences begins with a backslash (`\`), known as the *escape character*. MySQL recognizes the escape sequences shown in Table 9.1, “Special Character Escape Sequences”. For all other escape sequences, backslash is ignored. That is, the escaped character is interpreted as if it was not escaped. For example, `\x` is just `x`. These sequences are case-sensitive. For example, `\b` is interpreted as a backspace, but `\B` is interpreted as `B`. Escape processing is done according to the character set indicated by the `character_set_connection` system variable. This is true even for strings that are preceded by an introducer that indicates a different character set, as discussed in Section 10.3.6, “Character String Literal Character Set and Collation”.
+Dentro de uma String, certas sequências têm um significado especial, a menos que o SQL mode `NO_BACKSLASH_ESCAPES` esteja ativado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como o *escape character*. O MySQL reconhece as escape sequences mostradas na Tabela 9.1, “Escape Sequences de Caracteres Especiais”. Para todas as outras escape sequences, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências diferenciam maiúsculas de minúsculas (*case-sensitive*). Por exemplo, `\b` é interpretado como um *backspace*, mas `\B` é interpretado como `B`. O processamento de escape é realizado de acordo com o character set indicado pela variável de sistema `character_set_connection`. Isso é verdade mesmo para Strings que são precedidas por um *introducer* que indica um character set diferente, conforme discutido na Seção 10.3.6, “Character Set e Collation de Literal de String de Caractere”.
 
-**Table 9.1 Special Character Escape Sequences**
+**Tabela 9.1 Escape Sequences de Caracteres Especiais**
 
-<table summary="Escape sequences and the characters they represent."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Character Represented by Sequence</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>An ASCII NUL (<code>X'00'</code>) character</td> </tr><tr> <td><code>\'</code></td> <td>A single quote (<code>'</code>) character</td> </tr><tr> <td><code>\"</code></td> <td>A double quote (<code>"</code>) character</td> </tr><tr> <td><code>\b</code></td> <td>A backspace character</td> </tr><tr> <td><code>\n</code></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code>\r</code></td> <td>A carriage return character</td> </tr><tr> <td><code>\t</code></td> <td>A tab character</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Control+Z); see note following the table</td> </tr><tr> <td><code>\\</code></td> <td>A backslash (<code>\</code>) character</td> </tr><tr> <td><code>\%</code></td> <td>A <code>%</code> character; see note following the table</td> </tr><tr> <td><code>_</code></td> <td>A <code>_</code> character; see note following the table</td> </tr></tbody></table>
+<table summary="Sequências de escape e os caracteres que elas representam."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Caractere Representado pela Sequência</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>Um caractere ASCII NUL (<code>X'00'</code>)</td> </tr><tr> <td><code>\'</code></td> <td>Um caractere de aspa simples (<code>'</code>)</td> </tr><tr> <td><code>\"</code></td> <td>Um caractere de aspa dupla (<code>"</code>)</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere backspace</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere newline (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere carriage return</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere tab</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Control+Z); veja a nota após a tabela</td> </tr><tr> <td><code>\\</code></td> <td>Um caractere de barra invertida (<code>\</code>)</td> </tr><tr> <td><code>\%</code></td> <td>Um caractere <code>%</code>; veja a nota após a tabela</td> </tr><tr> <td><code>\_</code></td> <td>Um caractere <code>_</code>; veja a nota após a tabela</td> </tr></tbody></table>
 
-The ASCII 26 character can be encoded as `\Z` to enable you to work around the problem that ASCII 26 stands for END-OF-FILE on Windows. ASCII 26 within a file causes problems if you try to use `mysql db_name < file_name`.
+O caractere ASCII 26 pode ser codificado como `\Z` para contornar o problema de que o ASCII 26 representa END-OF-FILE no Windows. O ASCII 26 dentro de um arquivo causa problemas se você tentar usar `mysql db_name < file_name`.
 
-The `\%` and `_` sequences are used to search for literal instances of `%` and `_` in pattern-matching contexts where they would otherwise be interpreted as wildcard characters. See the description of the `LIKE` operator in Section 12.8.1, “String Comparison Functions and Operators”. If you use `\%` or `_` outside of pattern-matching contexts, they evaluate to the strings `\%` and `_`, not to `%` and `_`.
+As sequências `\%` e `\_` são usadas para buscar instâncias literais de `%` e `_` em contextos de *pattern-matching* onde, de outra forma, seriam interpretadas como *wildcard characters*. Consulte a descrição do operator `LIKE` na Seção 12.8.1, “Funções e Operators de Comparação de String”. Se você usar `\%` ou `\_` fora dos contextos de *pattern-matching*, eles serão avaliados como as Strings `\%` e `\_`, e não como `%` e `_`.
 
-There are several ways to include quote characters within a string:
+Existem várias maneiras de incluir caracteres de aspas dentro de uma String:
 
-* A `'` inside a string quoted with `'` may be written as `''`.
+* Uma `'` dentro de uma String delimitada por `'` pode ser escrita como `''`.
+* Uma `"` dentro de uma String delimitada por `"` pode ser escrita como `""`.
+* Preceder o caractere de aspas por um escape character (`\`).
+* Uma `'` dentro de uma String delimitada por `"` não requer tratamento especial e não precisa ser dobrada ou escapada. Da mesma forma, uma `"` dentro de uma String delimitada por `'` não requer tratamento especial.
 
-* A `"` inside a string quoted with `"` may be written as `""`.
-
-* Precede the quote character by an escape character (`\`).
-
-* A `'` inside a string quoted with `"` needs no special treatment and need not be doubled or escaped. In the same way, `"` inside a string quoted with `'` needs no special treatment.
-
-The following `SELECT` statements demonstrate how quoting and escaping work:
+As seguintes instruções `SELECT` demonstram como funcionam a delimitação por aspas (*quoting*) e o *escaping*:
 
 ```sql
 mysql> SELECT 'hello', '"hello"', '""hello""', 'hel''lo', '\'hello';
@@ -95,10 +92,9 @@ mysql> SELECT 'disappearing\ backslash';
 +------------------------+
 ```
 
-To insert binary data into a string column (such as a `BLOB` column), you should represent certain characters by escape sequences. Backslash (`\`) and the quote character used to quote the string must be escaped. In certain client environments, it may also be necessary to escape `NUL` or Control+Z. The **mysql** client truncates quoted strings containing `NUL` characters if they are not escaped, and Control+Z may be taken for END-OF-FILE on Windows if not escaped. For the escape sequences that represent each of these characters, see Table 9.1, “Special Character Escape Sequences”.
+Para inserir dados binários em uma coluna de String (como uma coluna `BLOB`), você deve representar certos caracteres por escape sequences. A barra invertida (`\`) e o caractere de aspas usado para delimitar a String devem ser escapados. Em certos ambientes client, pode ser necessário também escapar `NUL` ou Control+Z. O client **mysql** trunca Strings delimitadas que contêm caracteres `NUL` se eles não forem escapados, e Control+Z pode ser interpretado como END-OF-FILE no Windows se não for escapado. Para as escape sequences que representam cada um desses caracteres, consulte a Tabela 9.1, “Escape Sequences de Caracteres Especiais”.
 
-When writing application programs, any string that might contain any of these special characters must be properly escaped before the string is used as a data value in an SQL statement that is sent to the MySQL server. You can do this in two ways:
+Ao escrever programas de aplicação, qualquer String que possa conter qualquer um desses caracteres especiais deve ser devidamente escapada antes que a String seja usada como um valor de dado em uma instrução SQL que é enviada ao MySQL server. Você pode fazer isso de duas maneiras:
 
-* Process the string with a function that escapes the special characters. In a C program, you can use the `mysql_real_escape_string_quote()` C API function to escape characters. See mysql_real_escape_string_quote(). Within SQL statements that construct other SQL statements, you can use the `QUOTE()` function. The Perl DBI interface provides a `quote` method to convert special characters to the proper escape sequences. See Section 27.9, “MySQL Perl API”. Other language interfaces may provide a similar capability.
-
-* As an alternative to explicitly escaping special characters, many MySQL APIs provide a placeholder capability that enables you to insert special markers into a statement string, and then bind data values to them when you issue the statement. In this case, the API takes care of escaping special characters in the values for you.
+* Processar a String com uma função que escapa os caracteres especiais. Em um C program, você pode usar a função C API `mysql_real_escape_string_quote()` para escapar caracteres. Consulte mysql_real_escape_string_quote(). Dentro de instruções SQL que constroem outras instruções SQL, você pode usar a função `QUOTE()`. A interface Perl DBI fornece um método `quote` para converter caracteres especiais nas escape sequences apropriadas. Consulte a Seção 27.9, “API Perl MySQL”. Outras interfaces de linguagem podem fornecer uma capacidade semelhante.
+* Como alternativa ao escape explícito de caracteres especiais, muitas APIs MySQL fornecem um recurso de *placeholder* (marcador de posição) que permite inserir marcadores especiais em uma String de instrução e, em seguida, vincular valores de dados a eles ao emitir a instrução. Neste caso, a API se encarrega de escapar os caracteres especiais nos valores por você.

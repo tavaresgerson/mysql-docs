@@ -1,31 +1,31 @@
-### 2.4.1 General Notes on Installing MySQL on macOS
+### 2.4.1 Notas Gerais sobre a Instalação do MySQL no macOS
 
-You should keep the following issues and notes in mind:
+Você deve ter em mente os seguintes pontos e observações:
 
-* As of macOS 10.14 (Majave), the macOS MySQL 5.7 Installer application requires permission to control *System Events* so it can display a generated (temporary) MySQL root password. Choosing "Don't Allow" means this password won't be visible for use.
+*   A partir do macOS 10.14 (Majave), o aplicativo *macOS MySQL 5.7 Installer* requer permissão para controlar *System Events* para que possa exibir uma senha root (temporária) gerada do MySQL. Escolher "Don't Allow" (Não Permitir) significa que essa senha não estará visível para uso.
 
-  If previously disallowed, the fix is enabling *System Events.app* for *Installer.app* under the *Security & Privacy* | *Automation* | *Privacy* tab.
+    Se desautorizado anteriormente, a solução é habilitar *System Events.app* para *Installer.app* em *Security & Privacy* | *Automation* | aba *Privacy*.
 
-* A launchd daemon is installed, and it includes MySQL configuration options. Consider editing it if needed, see the documentation below for additional information. Also, macOS 10.10 removed startup item support in favor of launchd daemons. The optional MySQL preference pane under macOS System Preferences uses the launchd daemon.
+*   Um *launchd daemon* é instalado e inclui opções de configuração do MySQL. Considere editá-lo se necessário; consulte a documentação abaixo para obter informações adicionais. Além disso, o macOS 10.10 removeu o suporte a itens de inicialização em favor de *launchd daemons*. O painel de preferências opcional do MySQL em *macOS System Preferences* utiliza o *launchd daemon*.
 
-* You may need (or want) to create a specific `mysql` user to own the MySQL directory and data. You can do this through the **Directory Utility**, and the `mysql` user should already exist. For use in single user mode, an entry for `_mysql` (note the underscore prefix) should already exist within the system `/etc/passwd` file.
+*   Você pode precisar (ou querer) criar um usuário `mysql` específico para ser proprietário do diretório e dos dados do MySQL. Você pode fazer isso através do **Directory Utility**, e o usuário `mysql` já deve existir. Para uso no modo de usuário único (*single user mode*), uma entrada para `_mysql` (observe o prefixo underscore) já deve existir dentro do arquivo de sistema `/etc/passwd`.
 
-* Because the MySQL package installer installs the MySQL contents into a version and platform specific directory, you can use this to upgrade and migrate your database between versions. You need either to copy the `data` directory from the old version to the new version, or to specify an alternative `datadir` value to set location of the data directory. By default, the MySQL directories are installed under `/usr/local/`.
+*   Como o *package installer* do MySQL instala o conteúdo do MySQL em um diretório específico de versão e plataforma, você pode usar isso para fazer upgrade e migrar seu *Database* entre versões. Você precisa copiar o diretório `data` da versão antiga para a nova versão, ou especificar um valor `datadir` alternativo para definir a localização do *data directory*. Por padrão, os diretórios do MySQL são instalados em `/usr/local/`.
 
-* You might want to add aliases to your shell's resource file to make it easier to access commonly used programs such as **mysql** and **mysqladmin** from the command line. The syntax for **bash** is:
+*   Você pode querer adicionar *aliases* ao arquivo de recurso do seu *shell* para facilitar o acesso a programas comumente usados, como **mysql** e **mysqladmin**, a partir da linha de comando. A sintaxe para **bash** é:
 
-  ```sql
+    ```sql
   alias mysql=/usr/local/mysql/bin/mysql
   alias mysqladmin=/usr/local/mysql/bin/mysqladmin
   ```
 
-  For **tcsh**, use:
+    Para **tcsh**, use:
 
-  ```sql
+    ```sql
   alias mysql /usr/local/mysql/bin/mysql
   alias mysqladmin /usr/local/mysql/bin/mysqladmin
   ```
 
-  Even better, add `/usr/local/mysql/bin` to your `PATH` environment variable. You can do this by modifying the appropriate startup file for your shell. For more information, see Section 4.2.1, “Invoking MySQL Programs”.
+    Melhor ainda, adicione `/usr/local/mysql/bin` à sua variável de ambiente `PATH`. Você pode fazer isso modificando o arquivo de inicialização apropriado para o seu *shell*. Para mais informações, consulte Seção 4.2.1, "Invocando Programas MySQL".
 
-* After you have copied over the MySQL database files from the previous installation and have successfully started the new server, you should consider removing the old installation files to save disk space. Additionally, you should also remove older versions of the Package Receipt directories located in `/Library/Receipts/mysql-VERSION.pkg`.
+*   Depois de ter copiado os arquivos do *Database* MySQL da instalação anterior e iniciado o novo *server* com sucesso, você deve considerar remover os arquivos de instalação antigos para economizar espaço em disco. Além disso, você também deve remover as versões mais antigas dos diretórios *Package Receipt* localizados em `/Library/Receipts/mysql-VERSION.pkg`.

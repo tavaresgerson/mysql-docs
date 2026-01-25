@@ -1,130 +1,122 @@
-## 5.3 The mysql System Database
+## 5.3 O Database de Sistema mysql
 
-The `mysql` database is the system database. It contains tables that store information required by the MySQL server as it runs.
+O `mysql` database é o database de sistema. Ele contém tabelas que armazenam informações necessárias pelo MySQL server durante sua execução.
 
-Tables in the `mysql` database fall into these categories:
+As tabelas no `mysql` database se enquadram nestas categorias:
 
-* [Grant System Tables](system-schema.html#system-schema-grant-tables "Grant System Tables")
-* [Object Information System Tables](system-schema.html#system-schema-object-tables "Object Information System Tables")
-* [Log System Tables](system-schema.html#system-schema-log-tables "Log System Tables")
-* [Server-Side Help System Tables](system-schema.html#system-schema-help-tables "Server-Side Help System Tables")
-* [Time Zone System Tables](system-schema.html#system-schema-time-zone-tables "Time Zone System Tables")
-* [Replication System Tables](system-schema.html#system-schema-replication-tables "Replication System Tables")
-* [Optimizer System Tables](system-schema.html#system-schema-optimizer-tables "Optimizer System Tables")
-* [Miscellaneous System Tables](system-schema.html#system-schema-miscellaneous-tables "Miscellaneous System Tables")
+* [Tabelas de Sistema de Concessão (Grant System Tables)](system-schema.html#system-schema-grant-tables "Grant System Tables")
+* [Tabelas de Sistema de Informações de Objeto (Object Information System Tables)](system-schema.html#system-schema-object-tables "Object Information System Tables")
+* [Tabelas de Sistema de Log (Log System Tables)](system-schema.html#system-schema-log-tables "Log System Tables")
+* [Tabelas de Sistema de Ajuda (Help System Tables) do Lado do Server](system-schema.html#system-schema-help-tables "Server-Side Help System Tables")
+* [Tabelas de Sistema de Fuso Horário (Time Zone System Tables)](system-schema.html#system-schema-time-zone-tables "Time Zone System Tables")
+* [Tabelas de Sistema de Replicação (Replication System Tables)](system-schema.html#system-schema-replication-tables "Replication System Tables")
+* [Tabelas de Sistema do Optimizer (Optimizer System Tables)](system-schema.html#system-schema-optimizer-tables "Optimizer System Tables")
+* [Outras Tabelas de Sistema (Miscellaneous System Tables)](system-schema.html#system-schema-miscellaneous-tables "Miscellaneous System Tables")
 
-The remainder of this section enumerates the tables in each category, with cross references for additional information. System tables use the `MyISAM` storage engine unless otherwise indicated.
+O restante desta seção enumera as tabelas em cada categoria, com referências cruzadas para informações adicionais. As tabelas de sistema usam o `MyISAM` storage engine, a menos que indicado de outra forma.
 
-Warning
+Aviso
 
-Do *not* convert MySQL system tables in the `mysql` database from `MyISAM` to `InnoDB` tables. This is an unsupported operation. If you do this, MySQL does not restart until you restore the old system tables from a backup or regenerate them by reinitializing the data directory (see [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")).
+*Não* converta as tabelas de sistema do MySQL no `mysql` database de `MyISAM` para tabelas `InnoDB`. Esta é uma operação não suportada. Se você fizer isso, o MySQL não será reiniciado até que você restaure as tabelas de sistema antigas a partir de um backup ou as regenere reinicializando o data directory (consulte [Seção 2.9.1, “Inicializando o Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")).
 
-### Grant System Tables
+### Tabelas de Sistema de Concessão (Grant System Tables)
 
-These system tables contain grant information about user accounts and the privileges held by them:
+Estas tabelas de sistema contêm informações de concessão (grant information) sobre user accounts e os privileges mantidos por elas:
 
-* `user`: User accounts, global privileges, and other nonprivilege columns.
+* `user`: User accounts, global privileges e outras colunas que não são de privilege.
+* `db`: Privileges no nível do Database.
+* `tables_priv`: Privileges no nível da Table.
+* `columns_priv`: Privileges no nível da Column.
+* `procs_priv`: Privileges de Stored Procedure e Function.
+* `proxies_priv`: Privileges de Proxy-user.
 
-* `db`: Database-level privileges.
-* `tables_priv`: Table-level privileges.
-* `columns_priv`: Column-level privileges.
-* `procs_priv`: Stored procedure and function privileges.
+Para mais informações sobre a estrutura, conteúdo e propósito das grant tables, consulte [Seção 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables").
 
-* `proxies_priv`: Proxy-user privileges.
+### Tabelas de Sistema de Informações de Objeto
 
-For more information about the structure, contents, and purpose of the grant tables, see [Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables").
+Estas tabelas de sistema contêm informações sobre stored programs, loadable functions e server-side plugins:
 
-### Object Information System Tables
+* `event`: O registro para eventos do Event Scheduler instalados usando [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement"). Se o server for iniciado com a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables), o event scheduler é desativado e os eventos registrados na tabela não são executados. Consulte [Seção 23.4.2, “Configuração do Event Scheduler”](events-configuration.html "23.4.2 Event Scheduler Configuration").
 
-These system tables contain information about stored programs, loadable functions, and server-side plugins:
+* `func`: O registro para loadable functions instaladas usando [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). Durante a sequência normal de startup, o server carrega functions registradas nesta tabela. Se o server for iniciado com a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables), functions registradas na tabela não são carregadas e ficam indisponíveis. Consulte [Seção 5.6.1, “Instalando e Desinstalando Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions").
 
-* `event`: The registry for Event Scheduler events installed using [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement"). If the server is started with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option, the event scheduler is disabled and events registered in the table do not run. See [Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration").
+* `plugin`: O registro para server-side plugins instalados usando [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"). Durante a sequência normal de startup, o server carrega plugins registrados nesta tabela. Se o server for iniciado com a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables), plugins registrados na tabela não são carregados e ficam indisponíveis. Consulte [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
 
-* `func`: The registry for loadable functions installed using [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). During the normal startup sequence, the server loads functions registered in this table. If the server is started with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option, functions registered in the table are not loaded and are unavailable. See [Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions").
+  A tabela `plugin` usa o `InnoDB` storage engine a partir do MySQL 5.7.6, e `MyISAM` antes disso.
 
-* `plugin`: The registry for server-side plugins installed using [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"). During the normal startup sequence, the server loads plugins registered in this table. If the server is started with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option, plugins registered in the table are not loaded and are unavailable. See [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+* `proc`: Informações sobre stored procedures e functions. Consulte [Seção 23.2, “Usando Stored Routines”](stored-routines.html "23.2 Using Stored Routines").
 
-  The `plugin` table uses the `InnoDB` storage engine as of MySQL 5.7.6, `MyISAM` before that.
+### Tabelas de Sistema de Log
 
-* `proc`: Information about stored procedures and functions. See [Section 23.2, “Using Stored Routines”](stored-routines.html "23.2 Using Stored Routines").
+O server usa estas tabelas de sistema para logging:
 
-### Log System Tables
+* `general_log`: A tabela de general query log.
+* `slow_log`: A tabela de slow query log.
 
-The server uses these system tables for logging:
+As tabelas de Log usam o `CSV` storage engine.
 
-* `general_log`: The general query log table.
-* `slow_log`: The slow query log table.
+Para mais informações, consulte [Seção 5.4, “Logs do MySQL Server”](server-logs.html "5.4 MySQL Server Logs").
 
-Log tables use the `CSV` storage engine.
+### Tabelas de Sistema de Ajuda (Help System Tables) do Lado do Server
 
-For more information, see [Section 5.4, “MySQL Server Logs”](server-logs.html "5.4 MySQL Server Logs").
+Estas tabelas de sistema contêm informações de ajuda do lado do server:
 
-### Server-Side Help System Tables
+* `help_category`: Informações sobre as categorias de ajuda.
+* `help_keyword`: Keywords associadas aos tópicos de ajuda.
+* `help_relation`: Mapeamentos entre help keywords e tópicos.
+* `help_topic`: Conteúdo dos tópicos de ajuda.
 
-These system tables contain server-side help information:
+Estas tabelas usam o `InnoDB` storage engine a partir do MySQL 5.7.5, e `MyISAM` antes disso.
 
-* `help_category`: Information about help categories.
+Para mais informações, consulte [Seção 5.1.14, “Suporte de Ajuda do Lado do Server”](server-side-help-support.html "5.1.14 Server-Side Help Support").
 
-* `help_keyword`: Keywords associated with help topics.
+### Tabelas de Sistema de Fuso Horário
 
-* `help_relation`: Mappings between help keywords and topics.
+Estas tabelas de sistema contêm informações de fuso horário:
 
-* `help_topic`: Help topic contents.
+* `time_zone`: IDs de fuso horário e se usam leap seconds (segundos bissextos).
+* `time_zone_leap_second`: Quando ocorrem os leap seconds.
+* `time_zone_name`: Mapeamentos entre IDs e nomes de fuso horário.
+* `time_zone_transition`, `time_zone_transition_type`: Descrições de fuso horário.
 
-These tables use the `InnoDB` storage engine as of MySQL 5.7.5, `MyISAM` before that.
+Estas tabelas usam o `InnoDB` storage engine a partir do MySQL 5.7.5, e `MyISAM` antes disso.
 
-For more information, see [Section 5.1.14, “Server-Side Help Support”](server-side-help-support.html "5.1.14 Server-Side Help Support").
+Para mais informações, consulte [Seção 5.1.13, “Suporte a Fuso Horário no MySQL Server”](time-zone-support.html "5.1.13 MySQL Server Time Zone Support").
 
-### Time Zone System Tables
+### Tabelas de Sistema de Replicação
 
-These system tables contain time zone information:
+O server usa estas tabelas de sistema para suportar replication:
 
-* `time_zone`: Time zone IDs and whether they use leap seconds.
+* `gtid_executed`: Tabela para armazenar valores GTID. Consulte [Tabela mysql.gtid_executed](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table").
 
-* `time_zone_leap_second`: When leap seconds occur.
+  A tabela `gtid_executed` usa o `InnoDB` storage engine.
 
-* `time_zone_name`: Mappings between time zone IDs and names.
+* `ndb_binlog_index`: Informações de Binary Log para NDB Cluster replication. Consulte [Seção 21.7.4, “Schema e Tabelas de Replicação do NDB Cluster”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables").
 
-* `time_zone_transition`, `time_zone_transition_type`: Time zone descriptions.
+  Antes do NDB 7.5.2, esta tabela empregava o `MyISAM` storage engine. No NDB 7.5.2 e posterior, ela usa `InnoDB`. Se você está planejando um upgrade de uma versão anterior do NDB Cluster para o NDB 7.5.2 ou posterior, consulte [Seção 21.3.7, “Upgrade e Downgrade do NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster"), para obter informações importantes relacionadas a esta mudança.
 
-These tables use the `InnoDB` storage engine as of MySQL 5.7.5, `MyISAM` before that.
+* `slave_master_info`, `slave_relay_log_info`, `slave_worker_info`: Usadas para armazenar informações de replication em replica servers. Consulte [Seção 16.2.4, “Relay Log e Repositórios de Metadados de Replicação”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories").
 
-For more information, see [Section 5.1.13, “MySQL Server Time Zone Support”](time-zone-support.html "5.1.13 MySQL Server Time Zone Support").
+  Todas as três tabelas usam o `InnoDB` storage engine.
 
-### Replication System Tables
+### Tabelas de Sistema do Optimizer
 
-The server uses these system tables to support replication:
+Estas tabelas de sistema são para uso pelo optimizer:
 
-* `gtid_executed`: Table for storing GTID values. See [mysql.gtid_executed Table](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table").
+* `innodb_index_stats`, `innodb_table_stats`: Usadas para estatísticas persistentes do optimizer do `InnoDB`. Consulte [Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas Persistentes do Optimizer”](innodb-persistent-stats.html "14.8.11.1 Configuring Persistent Optimizer Statistics Parameters").
 
-  The `gtid_executed` table uses the `InnoDB` storage engine.
+* `server_cost`, `engine_cost`: O cost model do optimizer usa tabelas que contêm informações de estimativa de custo sobre operações que ocorrem durante a execução de Query. `server_cost` contém estimativas de custo do optimizer para operações gerais do server. `engine_cost` contém estimativas para operações específicas de storage engines específicos. Consulte [Seção 8.9.5, “O Cost Model do Optimizer”](cost-model.html "8.9.5 The Optimizer Cost Model").
 
-* `ndb_binlog_index`: Binary log information for NDB Cluster replication. See [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables").
+Estas tabelas usam o `InnoDB` storage engine.
 
-  Prior to NDB 7.5.2, this table employed the [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") storage engine. In NDB 7.5.2 and later, it uses [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). If you are planning an upgrade from a NDB Cluster previous release to NDB 7.5.2 or later, see [Section 21.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster"), for important information relating to this change.
+### Outras Tabelas de Sistema (Miscellaneous System Tables)
 
-* `slave_master_info`, `slave_relay_log_info`, `slave_worker_info`: Used to store replication information on replica servers. See [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories").
+Outras tabelas de sistema que não se enquadram nas categorias anteriores:
 
-  All three of these tables use the `InnoDB` storage engine.
+* `audit_log_filter`, `audit_log_user`: Se o MySQL Enterprise Audit estiver instalado, estas tabelas fornecem armazenamento persistente de definições de filtro de log de auditoria e user accounts. Consulte [Tabelas de Audit Log](audit-log-reference.html#audit-log-tables "Audit Log Tables").
 
-### Optimizer System Tables
+* `firewall_users`, `firewall_whitelist`: Se o MySQL Enterprise Firewall estiver instalado, estas tabelas fornecem armazenamento persistente para informações usadas pelo firewall. Consulte [Seção 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall").
 
-These system tables are for use by the optimizer:
+* `servers`: Usada pelo `FEDERATED` storage engine. Consulte [Seção 15.8.2.2, “Criando uma Tabela FEDERATED Usando CREATE SERVER”](federated-create-server.html "15.8.2.2 Creating a FEDERATED Table Using CREATE SERVER").
 
-* `innodb_index_stats`, `innodb_table_stats`: Used for `InnoDB` persistent optimizer statistics. See [Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”](innodb-persistent-stats.html "14.8.11.1 Configuring Persistent Optimizer Statistics Parameters").
-
-* `server_cost`, `engine_cost`: The optimizer cost model uses tables that contain cost estimate information about operations that occur during query execution. `server_cost` contains optimizer cost estimates for general server operations. `engine_cost` contains estimates for operations specific to particular storage engines. See [Section 8.9.5, “The Optimizer Cost Model”](cost-model.html "8.9.5 The Optimizer Cost Model").
-
-These tables use the `InnoDB` storage engine.
-
-### Miscellaneous System Tables
-
-Other system tables do not fall into the preceding categories:
-
-* `audit_log_filter`, `audit_log_user`: If MySQL Enterprise Audit is installed, these tables provide persistent storage of audit log filter definitions and user accounts. See [Audit Log Tables](audit-log-reference.html#audit-log-tables "Audit Log Tables").
-
-* `firewall_users`, `firewall_whitelist`: If MySQL Enterprise Firewall is installed, these tables provide persistent storage for information used by the firewall. See [Section 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall").
-
-* `servers`: Used by the `FEDERATED` storage engine. See [Section 15.8.2.2, “Creating a FEDERATED Table Using CREATE SERVER”](federated-create-server.html "15.8.2.2 Creating a FEDERATED Table Using CREATE SERVER").
-
-  The `servers` table uses the `InnoDB` storage engine as of MySQL 5.7.6, `MyISAM` before that.
+  A tabela `servers` usa o `InnoDB` storage engine a partir do MySQL 5.7.6, e `MyISAM` antes disso.

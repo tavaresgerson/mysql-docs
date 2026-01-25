@@ -1,23 +1,23 @@
-## 7.3 Example Backup and Recovery Strategy
+## 7.3 Exemplo de Estratégia de Backup e Recovery
 
-7.3.1 Establishing a Backup Policy
+7.3.1 Estabelecendo uma Política de Backup
 
-7.3.2 Using Backups for Recovery
+7.3.2 Usando Backups para Recovery
 
-7.3.3 Backup Strategy Summary
+7.3.3 Resumo da Estratégia de Backup
 
-This section discusses a procedure for performing backups that enables you to recover data after several types of crashes:
+Esta seção discute um procedimento para realizar backups que permite recuperar dados após vários tipos de crashes:
 
-* Operating system crash
-* Power failure
-* File system crash
-* Hardware problem (hard drive, motherboard, and so forth)
+* Crash do Operating system
+* Falha de energia
+* Crash do File system
+* Problema de Hardware (hard drive, motherboard e assim por diante)
 
-The example commands do not include options such as `--user` and `--password` for the **mysqldump** and **mysql** client programs. You should include such options as necessary to enable client programs to connect to the MySQL server.
+Os comandos de exemplo não incluem opções como `--user` e `--password` para os programas cliente **mysqldump** e **mysql**. Você deve incluir tais opções conforme necessário para permitir que os programas cliente se conectem ao MySQL server.
 
-Assume that data is stored in the `InnoDB` storage engine, which has support for transactions and automatic crash recovery. Assume also that the MySQL server is under load at the time of the crash. If it were not, no recovery would ever be needed.
+Presuma que os dados estão armazenados no storage engine `InnoDB`, que oferece suporte a transactions e automatic crash recovery. Presuma também que o MySQL server está sob load no momento do crash. Se não estivesse, nenhum recovery seria necessário.
 
-For cases of operating system crashes or power failures, we can assume that MySQL's disk data is available after a restart. The `InnoDB` data files might not contain consistent data due to the crash, but `InnoDB` reads its logs and finds in them the list of pending committed and noncommitted transactions that have not been flushed to the data files. `InnoDB` automatically rolls back those transactions that were not committed, and flushes to its data files those that were committed. Information about this recovery process is conveyed to the user through the MySQL error log. The following is an example log excerpt:
+Para casos de crashes do Operating system ou falhas de energia, podemos assumir que os dados em disco do MySQL estão disponíveis após um restart. Os data files do `InnoDB` podem não conter dados consistentes devido ao crash, mas o `InnoDB` lê seus logs e encontra neles a lista de transactions pendentes, committed e não committed, que ainda não foram flushed para os data files. O `InnoDB` automaticamente rolls back as transactions que não foram committed, e flushes para seus data files aquelas que foram committed. As informações sobre esse processo de recovery são transmitidas ao usuário por meio do error log do MySQL. O seguinte é um exemplo de trecho do log:
 
 ```sql
 InnoDB: Database was not shut down normally.
@@ -43,4 +43,4 @@ InnoDB: Started
 mysqld: ready for connections
 ```
 
-For the cases of file system crashes or hardware problems, we can assume that the MySQL disk data is *not* available after a restart. This means that MySQL fails to start successfully because some blocks of disk data are no longer readable. In this case, it is necessary to reformat the disk, install a new one, or otherwise correct the underlying problem. Then it is necessary to recover our MySQL data from backups, which means that backups must already have been made. To make sure that is the case, design and implement a backup policy.
+Para os casos de crashes do File system ou problemas de Hardware, podemos assumir que os dados em disco do MySQL *não* estão disponíveis após um restart. Isso significa que o MySQL falha ao iniciar com sucesso porque alguns blocos de dados em disco não são mais legíveis. Nesses casos, é necessário reformatar o disco, instalar um novo, ou corrigir o problema subjacente de outra forma. Em seguida, é necessário recuperar nossos dados do MySQL a partir de backups, o que significa que os backups já devem ter sido feitos. Para garantir que este seja o caso, projete e implemente uma política de backup.

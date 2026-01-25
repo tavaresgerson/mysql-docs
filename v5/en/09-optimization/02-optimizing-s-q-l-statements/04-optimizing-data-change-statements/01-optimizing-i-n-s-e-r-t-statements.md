@@ -1,28 +1,28 @@
-#### 8.2.4.1 Optimizing INSERT Statements
+#### 8.2.4.1 Otimizando Instruções INSERT
 
-To optimize insert speed, combine many small operations into a single large operation. Ideally, you make a single connection, send the data for many new rows at once, and delay all index updates and consistency checking until the very end.
+Para otimizar a velocidade de `INSERT`, combine muitas operações pequenas em uma única operação grande. O ideal é fazer uma única `connection`, enviar os dados para muitas novas linhas de uma só vez e adiar todas as atualizações de `Index` e verificações de consistência para o final.
 
-The time required for inserting a row is determined by the following factors, where the numbers indicate approximate proportions:
+O tempo necessário para inserir uma linha é determinado pelos seguintes fatores, onde os números indicam proporções aproximadas:
 
-* Connecting: (3)
-* Sending query to server: (2)
-* Parsing query: (2)
-* Inserting row: (1 × size of row)
-* Inserting indexes: (1 × number of indexes)
-* Closing: (1)
+* Conectando: (3)
+* Enviando a `Query` para o `server`: (2)
+* Fazendo o Parse da `Query`: (2)
+* Inserindo a linha: (1 × tamanho da linha)
+* Inserindo `Indexes`: (1 × número de `Indexes`)
+* Fechando: (1)
 
-This does not take into consideration the initial overhead to open tables, which is done once for each concurrently running query.
+Isso não leva em consideração o overhead inicial para abrir tabelas, que é feito uma vez para cada `Query` executada concorrentemente.
 
-The size of the table slows down the insertion of indexes by log *`N`*, assuming B-tree indexes.
+O tamanho da tabela diminui a inserção de `Indexes` por log *`N`*, assumindo `Indexes` B-tree.
 
-You can use the following methods to speed up inserts:
+Você pode usar os seguintes métodos para acelerar as operações de `INSERT`:
 
-* If you are inserting many rows from the same client at the same time, use `INSERT` statements with multiple `VALUES` lists to insert several rows at a time. This is considerably faster (many times faster in some cases) than using separate single-row `INSERT` statements. If you are adding data to a nonempty table, you can tune the `bulk_insert_buffer_size` variable to make data insertion even faster. See Section 5.1.7, “Server System Variables”.
+* Se você estiver inserindo muitas linhas do mesmo cliente ao mesmo tempo, use instruções `INSERT` com múltiplas listas `VALUES` para inserir várias linhas de uma vez. Isso é consideravelmente mais rápido (muitas vezes mais rápido em alguns casos) do que usar instruções `INSERT` separadas de linha única. Se você estiver adicionando dados a uma tabela não vazia, você pode ajustar a variável `bulk_insert_buffer_size` para tornar a inserção de dados ainda mais rápida. Consulte a Seção 5.1.7, “Variáveis de Sistema do Servidor”.
 
-* When loading a table from a text file, use `LOAD DATA`. This is usually 20 times faster than using `INSERT` statements. See Section 13.2.6, “LOAD DATA Statement”.
+* Ao carregar uma tabela a partir de um arquivo de texto, use `LOAD DATA`. Isso é geralmente 20 vezes mais rápido do que usar instruções `INSERT`. Consulte a Seção 13.2.6, “Instrução LOAD DATA”.
 
-* Take advantage of the fact that columns have default values. Insert values explicitly only when the value to be inserted differs from the default. This reduces the parsing that MySQL must do and improves the insert speed.
+* Aproveite o fato de que as colunas têm valores `default`. Insira valores explicitamente apenas quando o valor a ser inserido for diferente do `default`. Isso reduz o *parsing* que o MySQL deve fazer e melhora a velocidade de `INSERT`.
 
-* See Section 8.5.5, “Bulk Data Loading for InnoDB Tables” for tips specific to `InnoDB` tables.
+* Consulte a Seção 8.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB” para dicas específicas para tabelas `InnoDB`.
 
-* See Section 8.6.2, “Bulk Data Loading for MyISAM Tables” for tips specific to `MyISAM` tables.
+* Consulte a Seção 8.6.2, “Carregamento de Dados em Massa para Tabelas MyISAM” para dicas específicas para tabelas `MyISAM`.

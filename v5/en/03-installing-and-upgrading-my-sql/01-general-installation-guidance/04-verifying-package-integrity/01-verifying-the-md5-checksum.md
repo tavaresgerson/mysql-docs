@@ -1,10 +1,10 @@
-#### 2.1.4.1 Verifying the MD5 Checksum
+#### 2.1.4.1 Verificando o MD5 Checksum
 
-After you have downloaded a MySQL package, you should make sure that its MD5 checksum matches the one provided on the MySQL download pages. Each package has an individual checksum that you can verify against the package that you downloaded. The correct MD5 checksum is listed on the downloads page for each MySQL product; compare it against the MD5 checksum of the file (product) that you download.
+Após baixar um pacote MySQL, você deve garantir que seu MD5 checksum corresponda ao fornecido nas páginas de download do MySQL. Cada pacote possui um checksum individual que você pode verificar em relação ao pacote que baixou. O MD5 checksum correto está listado na página de downloads de cada produto MySQL; compare-o com o MD5 checksum do arquivo (produto) que você está baixando.
 
-Each operating system and setup offers its own version of tools for checking the MD5 checksum. Typically the command is named **md5sum**, or it may be named **md5**, and some operating systems do not ship it at all. On Linux, it is part of the **GNU Text Utilities** package, which is available for a wide range of platforms. You can also download the source code from <http://www.gnu.org/software/textutils/>. If you have OpenSSL installed, you can use the command **openssl md5 *`package_name`*** instead. A Windows implementation of the **md5** command line utility is available from <http://www.fourmilab.ch/md5/>. **winMd5Sum** is a graphical MD5 checking tool that can be obtained from <http://www.nullriver.com/index/products/winmd5sum>. Our Microsoft Windows examples assume the name **md5.exe**.
+Cada sistema operacional e configuração oferece sua própria versão de ferramentas para verificar o MD5 checksum. Normalmente, o comando é chamado de **md5sum**, ou pode ser chamado de **md5**, e alguns sistemas operacionais nem o incluem. No Linux, ele faz parte do pacote **GNU Text Utilities**, que está disponível para uma ampla variedade de plataformas. Você também pode baixar o código fonte em <http://www.gnu.org/software/textutils/>. Se você tiver o OpenSSL instalado, poderá usar o comando **openssl md5 *`package_name`*** como alternativa. Uma implementação para Windows do utilitário de linha de comando **md5** está disponível em <http://www.fourmilab.ch/md5/>. O **winMd5Sum** é uma ferramenta gráfica de verificação de MD5 que pode ser obtida em <http://www.nullriver.com/index/products/winmd5sum>. Nossos exemplos para Microsoft Windows assumem o nome **md5.exe**.
 
-Linux and Microsoft Windows examples:
+Exemplos para Linux e Microsoft Windows:
 
 ```sql
 $> md5sum mysql-standard-5.7.44-linux-i686.tar.gz
@@ -16,8 +16,8 @@ $> md5.exe mysql-installer-community-5.7.44.msi
 aaab65abbec64d5e907dcd41b8699945  mysql-installer-community-5.7.44.msi
 ```
 
-You should verify that the resulting checksum (the string of hexadecimal digits) matches the one displayed on the download page immediately below the respective package.
+Você deve verificar se o checksum resultante (a string de dígitos hexadecimais) corresponde ao exibido na página de download, imediatamente abaixo do respectivo pacote.
 
-Note
+**Nota**
 
-Make sure to verify the checksum of the *archive file* (for example, the `.zip`, `.tar.gz`, or `.msi` file) and not of the files that are contained inside of the archive. In other words, verify the file before extracting its contents.
+Certifique-se de verificar o checksum do *arquivo de Archive* (por exemplo, o arquivo `.zip`, `.tar.gz` ou `.msi`) e não dos arquivos que estão contidos dentro do Archive. Em outras palavras, verifique o arquivo antes de extrair seu conteúdo.

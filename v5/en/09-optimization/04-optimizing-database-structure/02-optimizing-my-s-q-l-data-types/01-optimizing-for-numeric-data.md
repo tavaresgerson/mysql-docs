@@ -1,5 +1,5 @@
-#### 8.4.2.1 Optimizing for Numeric Data
+#### 8.4.2.1 Otimizando Dados Numéricos
 
-* For unique IDs or other values that can be represented as either strings or numbers, prefer numeric columns to string columns. Since large numeric values can be stored in fewer bytes than the corresponding strings, it is faster and takes less memory to transfer and compare them.
+* Para IDs únicos ou outros valores que podem ser representados tanto como strings quanto como números, prefira colunas numéricas a colunas de string. Como grandes valores numéricos podem ser armazenados em menos bytes do que as strings correspondentes, é mais rápido e consome menos memória para transferi-los e compará-los.
 
-* If you are using numeric data, it is faster in many cases to access information from a database (using a live connection) than to access a text file. Information in the database is likely to be stored in a more compact format than in the text file, so accessing it involves fewer disk accesses. You also save code in your application because you can avoid parsing the text file to find line and column boundaries.
+* Se você estiver usando dados numéricos, em muitos casos, é mais rápido acessar informações de um Database (usando uma conexão ativa) do que acessar um arquivo de texto. É provável que as informações no Database sejam armazenadas em um formato mais compacto do que no arquivo de texto, de modo que o acesso a elas envolve menos acessos ao disco. Você também economiza código em sua aplicação porque pode evitar fazer o parsing do arquivo de texto para encontrar os limites de linha e coluna.

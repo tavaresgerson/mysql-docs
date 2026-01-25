@@ -1,5 +1,5 @@
-#### 6.4.5.3 MySQL Enterprise Audit Security Considerations
+#### 6.4.5.3 Considerações de Segurança do MySQL Enterprise Audit
 
-By default, contents of audit log files produced by the audit log plugin are not encrypted and may contain sensitive information, such as the text of SQL statements. For security reasons, audit log files should be written to a directory accessible only to the MySQL server and to users with a legitimate reason to view the log. The default file name is `audit.log` in the data directory. This can be changed by setting the [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) system variable at server startup. Other audit log files may exist due to log rotation.
+Por padrão, o conteúdo dos arquivos de *audit log* produzidos pelo *audit log plugin* não é criptografado e pode conter informações sensíveis, como o texto de *SQL statements*. Por motivos de segurança, os arquivos de *audit log* devem ser gravados em um diretório acessível apenas ao *MySQL server* e a usuários com motivos legítimos para visualizar o log. O nome de arquivo padrão é `audit.log` no diretório de dados. Isso pode ser alterado configurando a variável de sistema [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) durante a inicialização do *server*. Outros arquivos de *audit log* podem existir devido à rotação de log.
 
-For additional security, enable audit log file encryption. See [Encrypting Audit Log Files](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
+Para segurança adicional, habilite a criptografia de arquivos de *audit log*. Consulte [Criptografando Arquivos de Audit Log](audit-log-logging-configuration.html#audit-log-file-encryption "Criptografando Arquivos de Audit Log").

@@ -1,10 +1,10 @@
-#### 8.10.3.4 Query Cache Status and Maintenance
+#### 8.10.3.4 Status e Manutenção do Query Cache
 
-Note
+Nota
 
-The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0.
+O Query Cache foi descontinuado (deprecated) a partir do MySQL 5.7.20 e foi removido no MySQL 8.0.
 
-To check whether the query cache is present in your MySQL server, use the following statement:
+Para verificar se o Query Cache está presente no seu servidor MySQL, use a seguinte instrução:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'have_query_cache';
@@ -15,11 +15,11 @@ mysql> SHOW VARIABLES LIKE 'have_query_cache';
 +------------------+-------+
 ```
 
-You can defragment the query cache to better utilize its memory with the `FLUSH QUERY CACHE` statement. The statement does not remove any queries from the cache.
+Você pode desfragmentar o Query Cache para melhor utilizar sua memória com a instrução `FLUSH QUERY CACHE`. A instrução não remove nenhuma Query do Cache.
 
-The `RESET QUERY CACHE` statement removes all query results from the query cache. The `FLUSH TABLES` statement also does this.
+A instrução `RESET QUERY CACHE` remove todos os resultados de Query do Query Cache. A instrução `FLUSH TABLES` também faz isso.
 
-To monitor query cache performance, use `SHOW STATUS` to view the cache status variables:
+Para monitorar o desempenho do Query Cache, use `SHOW STATUS` para visualizar as variáveis de Status do Cache:
 
 ```sql
 mysql> SHOW STATUS LIKE 'Qcache%';
@@ -37,9 +37,9 @@ mysql> SHOW STATUS LIKE 'Qcache%';
 +-------------------------+--------+
 ```
 
-Descriptions of each of these variables are given in Section 5.1.9, “Server Status Variables”. Some uses for them are described here.
+As descrições de cada uma dessas variáveis são fornecidas na Seção 5.1.9, “Server Status Variables”. Alguns usos delas são descritos aqui.
 
-The total number of `SELECT` queries is given by this formula:
+O número total de Queries `SELECT` é dado por esta fórmula:
 
 ```sql
   Com_select
@@ -47,7 +47,7 @@ The total number of `SELECT` queries is given by this formula:
 + queries with errors found by parser
 ```
 
-The `Com_select` value is given by this formula:
+O valor de `Com_select` é dado por esta fórmula:
 
 ```sql
   Qcache_inserts
@@ -55,8 +55,8 @@ The `Com_select` value is given by this formula:
 + queries with errors found during the column-privileges check
 ```
 
-The query cache uses variable-length blocks, so `Qcache_total_blocks` and `Qcache_free_blocks` may indicate query cache memory fragmentation. After `FLUSH QUERY CACHE`, only a single free block remains.
+O Query Cache utiliza blocos de comprimento variável, portanto, `Qcache_total_blocks` e `Qcache_free_blocks` podem indicar fragmentação da memória do Query Cache. Após o `FLUSH QUERY CACHE`, resta apenas um único bloco livre.
 
-Every cached query requires a minimum of two blocks (one for the query text and one or more for the query results). Also, every table that is used by a query requires one block. However, if two or more queries use the same table, only one table block needs to be allocated.
+Cada Query em Cache requer um mínimo de dois blocos (um para o texto da Query e um ou mais para os resultados da Query). Além disso, cada Table usada por uma Query requer um bloco. No entanto, se duas ou mais Queries usarem a mesma Table, apenas um bloco de Table precisa ser alocado.
 
-The information provided by the `Qcache_lowmem_prunes` status variable can help you tune the query cache size. It counts the number of queries that have been removed from the cache to free up memory for caching new queries. The query cache uses a least recently used (LRU) strategy to decide which queries to remove from the cache. Tuning information is given in Section 8.10.3.3, “Query Cache Configuration”.
+As informações fornecidas pela variável de Status `Qcache_lowmem_prunes` podem ajudar você a ajustar (tune) o tamanho do Query Cache. Ela contabiliza o número de Queries que foram removidas do Cache para liberar memória para o Cache de novas Queries. O Query Cache utiliza uma estratégia de least recently used (LRU) para decidir quais Queries remover do Cache. Informações de ajuste (tuning) são fornecidas na Seção 8.10.3.3, “Query Cache Configuration”.

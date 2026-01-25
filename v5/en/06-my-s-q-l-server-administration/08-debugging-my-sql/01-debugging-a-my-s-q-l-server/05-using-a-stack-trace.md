@@ -1,8 +1,8 @@
-#### 5.8.1.5 Using a Stack Trace
+#### 5.8.1.5 Usando um Stack Trace
 
-On some operating systems, the error log contains a stack trace if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") dies unexpectedly. You can use this to find out where (and maybe why) [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") died. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log"). To get a stack trace, you must not compile [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the `-fomit-frame-pointer` option to gcc. See [Section 5.8.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "5.8.1.1 Compiling MySQL for Debugging").
+Em alguns sistemas operacionais, o error log contém um stack trace se o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") for encerrado inesperadamente. Você pode usar isso para descobrir onde (e talvez por que) o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") foi encerrado. Consulte [Seção 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log"). Para obter um stack trace, você não deve compilar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a opção `-fomit-frame-pointer` do gcc. Consulte [Seção 5.8.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "5.8.1.1 Compiling MySQL for Debugging").
 
-A stack trace in the error log looks something like this:
+Um stack trace no error log se parece com o seguinte:
 
 ```sql
 mysqld got signal 11;
@@ -25,7 +25,7 @@ mysqld(_Z10do_commandP3THD+0x24d)[0x6811b6]
 mysqld(handle_one_connection+0x11c)[0x66e05e]
 ```
 
-If resolution of function names for the trace fails, the trace contains less information:
+Se a resolução dos nomes das function para o trace falhar, o trace conterá menos informações:
 
 ```sql
 mysqld got signal 11;
@@ -48,9 +48,9 @@ stack_bottom = 0x41fd0110 thread_stack 0x40000
 [0x66e05e]
 ```
 
-In the latter case, you can use the [**resolve_stack_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") utility to determine where [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") died by using the following procedure:
+Neste último caso, você pode usar a utility [**resolve_stack_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") para determinar onde o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") foi encerrado, seguindo o procedimento abaixo:
 
-1. Copy the numbers from the stack trace to a file, for example `mysqld.stack`. The numbers should not include the surrounding square brackets:
+1. Copie os números do stack trace para um arquivo, por exemplo, `mysqld.stack`. Os números não devem incluir os colchetes circundantes:
 
    ```sql
    0x9da402
@@ -67,43 +67,43 @@ In the latter case, you can use the [**resolve_stack_dump**](resolve-stack-dump.
    0x66e05e
    ```
 
-2. Make a symbol file for the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server:
+2. Crie um symbol file para o servidor [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"):
 
    ```sql
    $> nm -n libexec/mysqld > /tmp/mysqld.sym
    ```
 
-   If [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is not linked statically, use the following command instead:
+   Se o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") não estiver ligado estaticamente, use o seguinte comando:
 
    ```sql
    $> nm -D -n libexec/mysqld > /tmp/mysqld.sym
    ```
 
-   If you want to decode C++ symbols, use the `--demangle`, if available, to **nm**. If your version of **nm** does not have this option, you must use the **c++filt** command after the stack dump has been produced to demangle the C++ names.
+   Se você quiser decodificar symbols C++, use a opção `--demangle`, se disponível, para o **nm**. Se a sua versão do **nm** não tiver esta option, você deve usar o comando **c++filt** depois que o stack dump for produzido para fazer o demangle dos nomes C++.
 
-3. Execute the following command:
+3. Execute o seguinte comando:
 
    ```sql
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack
    ```
 
-   If you were not able to include demangled C++ names in your symbol file, process the [**resolve_stack_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") output using **c++filt**:
+   Se você não conseguiu incluir nomes C++ com demangle no seu symbol file, processe a saída do [**resolve_stack_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") usando **c++filt**:
 
    ```sql
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack | c++filt
    ```
 
-   This prints out where [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") died. If that does not help you find out why [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") died, you should create a bug report and include the output from the preceding command with the bug report.
+   Isso exibe onde o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") foi encerrado. Se isso não ajudar você a descobrir por que o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") foi encerrado, você deve criar um relatório de bug e incluir a saída do comando anterior no relatório.
 
-   However, in most cases it does not help us to have just a stack trace to find the reason for the problem. To be able to locate the bug or provide a workaround, in most cases we need to know the statement that killed [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") and preferably a test case so that we can repeat the problem! See [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").
+   No entanto, na maioria dos casos, ter apenas um stack trace não nos ajuda a encontrar a razão do problema. Para podermos localizar o bug ou fornecer uma solução alternativa (workaround), na maioria dos casos, precisamos saber o statement que encerrou o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") e, de preferência, um caso de teste para que possamos repetir o problema! Consulte [Seção 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").
 
-Newer versions of `glibc` stack trace functions also print the address as relative to the object. On `glibc`-based systems (Linux), the trace for an unexpected exit within a plugin looks something like:
+Versões mais recentes das function de stack trace do `glibc` também imprimem o address como relativo ao objeto. Em sistemas baseados em `glibc` (Linux), o trace para um encerramento inesperado dentro de um plugin se parece com:
 
 ```sql
 plugin/auth/auth_test_plugin.so(+0x9a6)[0x7ff4d11c29a6]
 ```
 
-To translate the relative address (`+0x9a6`) into a file name and line number, use this command:
+Para traduzir o relative address (`+0x9a6`) para um file name e line number, use este comando:
 
 ```sql
 $> addr2line -fie auth_test_plugin.so 0x9a6
@@ -111,22 +111,22 @@ auth_test_plugin
 mysql-trunk/plugin/auth/test_plugin.c:65
 ```
 
-The **addr2line** utility is part of the `binutils` package on Linux.
+A utility **addr2line** faz parte do pacote `binutils` no Linux.
 
-On Solaris, the procedure is similar. The Solaris `printstack()` already prints relative addresses:
+No Solaris, o procedimento é semelhante. O `printstack()` do Solaris já imprime relative addresses:
 
 ```sql
 plugin/auth/auth_test_plugin.so:0x1510
 ```
 
-To translate, use this command:
+Para traduzir, use este comando:
 
 ```sql
 $> gaddr2line -fie auth_test_plugin.so 0x1510
 mysql-trunk/plugin/auth/test_plugin.c:88
 ```
 
-Windows already prints the address, function name and line:
+O Windows já imprime o address, function name e line:
 
 ```sql
 000007FEF07E10A4 auth_test_plugin.dll!auth_test_plugin()[test_plugin.c:72]

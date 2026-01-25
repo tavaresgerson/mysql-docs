@@ -1,35 +1,35 @@
-### 3.3.1 Creating and Selecting a Database
+### 3.3.1 Criando e Selecionando um Database
 
-If the administrator creates your database for you when setting up your permissions, you can begin using it. Otherwise, you need to create it yourself:
+Se o administrador criar o seu Database para você ao configurar suas permissões, você pode começar a usá-lo. Caso contrário, você precisa criá-lo você mesmo:
 
 ```sql
 mysql> CREATE DATABASE menagerie;
 ```
 
-Under Unix, database names are case-sensitive (unlike SQL keywords), so you must always refer to your database as `menagerie`, not as `Menagerie`, `MENAGERIE`, or some other variant. This is also true for table names. (Under Windows, this restriction does not apply, although you must refer to databases and tables using the same lettercase throughout a given query. However, for a variety of reasons, the recommended best practice is always to use the same lettercase that was used when the database was created.)
+No Unix, nomes de Database são *case-sensitive* (diferentes das palavras-chave SQL), então você deve sempre se referir ao seu Database como `menagerie`, e não como `Menagerie`, `MENAGERIE`, ou alguma outra variante. Isso também se aplica a nomes de table. (No Windows, essa restrição não se aplica, embora você deva se referir a Databases e tables usando o mesmo padrão de maiúsculas/minúsculas ao longo de uma dada Query. No entanto, por uma variedade de razões, a melhor prática recomendada é sempre usar o mesmo padrão de maiúsculas/minúsculas que foi usado quando o Database foi criado.)
 
 Note
 
-If you get an error such as ERROR 1044 (42000): Access denied for user 'micah'@'localhost' to database 'menagerie' when attempting to create a database, this means that your user account does not have the necessary privileges to do so. Discuss this with the administrator or see [Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management").
+Se você receber um erro como ERROR 1044 (42000): Access denied for user 'micah'@'localhost' to database 'menagerie' ao tentar criar um Database, isso significa que sua conta de usuário não possui os privilégios necessários para fazê-lo. Discuta isso com o administrador ou consulte [Seção 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management").
 
-Creating a database does not select it for use; you must do that explicitly. To make `menagerie` the current database, use this statement:
+Criar um Database não o seleciona para uso; você deve fazer isso explicitamente. Para tornar `menagerie` o Database atual, use esta statement:
 
 ```sql
 mysql> USE menagerie
 Database changed
 ```
 
-Your database needs to be created only once, but you must select it for use each time you begin a [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") session. You can do this by issuing a [`USE`](use.html "13.8.4 USE Statement") statement as shown in the example. Alternatively, you can select the database on the command line when you invoke [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"). Just specify its name after any connection parameters that you might need to provide. For example:
+Seu Database precisa ser criado apenas uma vez, mas você deve selecioná-lo para uso toda vez que iniciar uma [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") session. Você pode fazer isso emitindo uma [`USE`](use.html "13.8.4 USE Statement") statement, conforme mostrado no exemplo. Alternativamente, você pode selecionar o Database na linha de comando ao invocar o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"). Basta especificar o nome após quaisquer parâmetros de conexão que você possa precisar fornecer. Por exemplo:
 
 ```sql
 $> mysql -h host -u user -p menagerie
 Enter password: ********
 ```
 
-Important
+Importante
 
-`menagerie` in the command just shown is **not** your password. If you want to supply your password on the command line after the `-p` option, you must do so with no intervening space (for example, as `-ppassword`, not as `-p password`). However, putting your password on the command line is not recommended, because doing so exposes it to snooping by other users logged in on your machine.
+`menagerie` no comando mostrado **não** é sua *password*. Se você quiser fornecer sua *password* na linha de comando após a opção `-p`, você deve fazê-lo sem espaço intermediário (por exemplo, como `-ppassword`, e não como `-p password`). No entanto, inserir sua *password* na linha de comando não é recomendado, pois isso a expõe à espionagem de outros usuários logados em sua máquina.
 
 Note
 
-You can see at any time which database is currently selected using [`SELECT`](select.html "13.2.9 SELECT Statement") [`DATABASE()`](information-functions.html#function_database).
+Você pode ver a qualquer momento qual Database está atualmente selecionado usando [`SELECT`](select.html "13.2.9 SELECT Statement") [`DATABASE()`](information-functions.html#function_database).

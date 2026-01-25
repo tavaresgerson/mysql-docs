@@ -1,23 +1,23 @@
-### 5.5.4 The Rewriter Query Rewrite Plugin
+### 5.5.4 O Plugin de Reescrita de Query Rewriter
 
-[5.5.4.1 Installing or Uninstalling the Rewriter Query Rewrite Plugin](rewriter-query-rewrite-plugin-installation.html)
+[5.5.4.1 Instalando ou Desinstalando o Plugin de Reescrita de Query Rewriter](rewriter-query-rewrite-plugin-installation.html)
 
-[5.5.4.2 Using the Rewriter Query Rewrite Plugin](rewriter-query-rewrite-plugin-usage.html)
+[5.5.4.2 Usando o Plugin de Reescrita de Query Rewriter](rewriter-query-rewrite-plugin-usage.html)
 
-[5.5.4.3 Rewriter Query Rewrite Plugin Reference](rewriter-query-rewrite-plugin-reference.html)
+[5.5.4.3 Referência do Plugin de Reescrita de Query Rewriter](rewriter-query-rewrite-plugin-reference.html)
 
-MySQL supports query rewrite plugins that can examine and possibly modify SQL statements received by the server before the server executes them. See [Query Rewrite Plugins](/doc/extending-mysql/5.7/en/plugin-types.html#query-rewrite-plugin-type).
+O MySQL suporta *query rewrite plugins* (plugins de reescrita de Query) que podem examinar e possivelmente modificar instruções SQL recebidas pelo *server* antes que o *server* as execute. Consulte [Query Rewrite Plugins](/doc/extending-mysql/5.7/en/plugin-types.html#query-rewrite-plugin-type).
 
-MySQL distributions include a postparse query rewrite plugin named `Rewriter` and scripts for installing the plugin and its associated elements. These elements work together to provide [`SELECT`](select.html "13.2.9 SELECT Statement") rewriting capability:
+As distribuições MySQL incluem um *postparse query rewrite plugin* (plugin de reescrita de Query pós-parse) chamado `Rewriter` e scripts para instalar o *plugin* e seus elementos associados. Esses elementos trabalham em conjunto para fornecer a capacidade de reescrita de [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
-* A server-side plugin named `Rewriter` examines [`SELECT`](select.html "13.2.9 SELECT Statement") statements and may rewrite them, based on its in-memory cache of rewrite rules. Standalone [`SELECT`](select.html "13.2.9 SELECT Statement") statements and [`SELECT`](select.html "13.2.9 SELECT Statement") statements in prepared statements are subject to rewriting. [`SELECT`](select.html "13.2.9 SELECT Statement") statements occurring within view definitions or stored programs are not subject to rewriting.
+*   Um *plugin server-side* chamado `Rewriter` examina instruções [`SELECT`](select.html "13.2.9 SELECT Statement") e pode reescrevê-las, com base no seu *cache in-memory* de regras de reescrita. Instruções [`SELECT`](select.html "13.2.9 SELECT Statement") autônomas e instruções [`SELECT`](select.html "13.2.9 SELECT Statement") em *prepared statements* estão sujeitas à reescrita. Instruções [`SELECT`](select.html "13.2.9 SELECT Statement") que ocorrem dentro de definições de *view* ou *stored programs* não estão sujeitas à reescrita.
 
-* The `Rewriter` plugin uses a database named `query_rewrite` containing a table named `rewrite_rules`. The table provides persistent storage for the rules that the plugin uses to decide whether to rewrite statements. Users communicate with the plugin by modifying the set of rules stored in this table. The plugin communicates with users by setting the `message` column of table rows.
+*   O *plugin* `Rewriter` usa um *Database* chamado `query_rewrite` que contém uma *table* chamada `rewrite_rules`. A *table* fornece armazenamento persistente para as regras que o *plugin* utiliza para decidir se deve reescrever as instruções. Os usuários se comunicam com o *plugin* modificando o conjunto de regras armazenadas nesta *table*. O *plugin* se comunica com os usuários definindo a coluna `message` das linhas da *table*.
 
-* The `query_rewrite` database contains a stored procedure named `flush_rewrite_rules()` that loads the contents of the rules table into the plugin.
+*   O *Database* `query_rewrite` contém uma *Stored Procedure* chamada `flush_rewrite_rules()` que carrega o conteúdo da *table* de regras no *plugin*.
 
-* A loadable function named [`load_rewrite_rules()`](rewriter-query-rewrite-plugin-reference.html#function_load-rewrite-rules) is used by the `flush_rewrite_rules()` stored procedure.
+*   Uma função carregável chamada [`load_rewrite_rules()`](rewriter-query-rewrite-plugin-reference.html#function_load-rewrite-rules) é usada pela *Stored Procedure* `flush_rewrite_rules()`.
 
-* The `Rewriter` plugin exposes system variables that enable plugin configuration and status variables that provide runtime operational information.
+*   O *plugin* `Rewriter` expõe *System Variables* que permitem a configuração do *plugin* e *Status Variables* que fornecem informações operacionais em tempo de execução (*runtime*).
 
-The following sections describe how to install and use the `Rewriter` plugin, and provide reference information for its associated elements.
+As seções a seguir descrevem como instalar e usar o *plugin* `Rewriter` e fornecem informações de referência para seus elementos associados.

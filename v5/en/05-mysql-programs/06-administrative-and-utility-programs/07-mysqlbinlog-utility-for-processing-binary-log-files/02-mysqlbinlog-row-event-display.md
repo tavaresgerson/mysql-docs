@@ -1,8 +1,8 @@
-#### 4.6.7.2 mysqlbinlog Row Event Display
+#### 4.6.7.2 Exibição de Row Event pelo mysqlbinlog
 
-The following examples illustrate how **mysqlbinlog** displays row events that specify data modifications. These correspond to events with the `WRITE_ROWS_EVENT`, `UPDATE_ROWS_EVENT`, and `DELETE_ROWS_EVENT` type codes. The `--base64-output=DECODE-ROWS` and `--verbose` options may be used to affect row event output.
+Os exemplos a seguir ilustram como o **mysqlbinlog** exibe os row events que especificam modificações de dados. Estes correspondem a eventos com os códigos de tipo `WRITE_ROWS_EVENT`, `UPDATE_ROWS_EVENT` e `DELETE_ROWS_EVENT`. As opções `--base64-output=DECODE-ROWS` e `--verbose` podem ser usadas para afetar a saída de row event.
 
-Suppose that the server is using row-based binary logging and that you execute the following sequence of statements:
+Suponha que o server esteja usando logging binário baseado em Row e que você execute a seguinte sequência de statements:
 
 ```sql
 CREATE TABLE t
@@ -19,7 +19,7 @@ DELETE FROM t WHERE id = 1;
 COMMIT;
 ```
 
-By default, **mysqlbinlog** displays row events encoded as base-64 strings using `BINLOG` statements. Omitting extraneous lines, the output for the row events produced by the preceding statement sequence looks like this:
+Por padrão, o **mysqlbinlog** exibe os row events codificados como strings base-64 usando statements `BINLOG`. Omitindo linhas irrelevantes, a saída para os row events produzidos pela sequência de statements precedente é a seguinte:
 
 ```sql
 $> mysqlbinlog log_file
@@ -49,7 +49,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 '/*!*/;
 ```
 
-To see the row events as comments in the form of “pseudo-SQL” statements, run **mysqlbinlog** with the `--verbose` or `-v` option. The output contains lines beginning with `###`:
+Para visualizar os row events como comentários na forma de statements “pseudo-SQL”, execute o **mysqlbinlog** com a opção `--verbose` ou `-v`. A saída contém linhas que começam com `###`:
 
 ```sql
 $> mysqlbinlog -v log_file
@@ -98,7 +98,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 ###   @3='2009:01:01'
 ```
 
-Specify `--verbose` or `-v` twice to also display data types and some metadata for each column. The output contains an additional comment following each column change:
+Especifique `--verbose` ou `-v` duas vezes para também exibir os data types e alguns metadados para cada column. A saída contém um comentário adicional seguindo cada alteração de column:
 
 ```sql
 $> mysqlbinlog -vv log_file
@@ -147,7 +147,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 ###   @3='2009:01:01' /* DATE meta=0 nullable=1 is_null=0 */
 ```
 
-You can tell **mysqlbinlog** to suppress the `BINLOG` statements for row events by using the `--base64-output=DECODE-ROWS` option. This is similar to `--base64-output=NEVER` but does not exit with an error if a row event is found. The combination of `--base64-output=DECODE-ROWS` and `--verbose` provides a convenient way to see row events only as SQL statements:
+Você pode instruir o **mysqlbinlog** a suprimir os statements `BINLOG` para row events usando a opção `--base64-output=DECODE-ROWS`. Isso é similar a `--base64-output=NEVER`, mas não encerra com um error caso um row event seja encontrado. A combinação de `--base64-output=DECODE-ROWS` e `--verbose` fornece uma maneira conveniente de ver os row events apenas como statements SQL:
 
 ```sql
 $> mysqlbinlog -v --base64-output=DECODE-ROWS log_file
@@ -181,27 +181,27 @@ $> mysqlbinlog -v --base64-output=DECODE-ROWS log_file
 ###   @3='2009:01:01'
 ```
 
-Note
+Nota
 
-You should not suppress `BINLOG` statements if you intend to re-execute **mysqlbinlog** output.
+Você não deve suprimir os statements `BINLOG` se pretender re-executar a saída do **mysqlbinlog**.
 
-The SQL statements produced by `--verbose` for row events are much more readable than the corresponding `BINLOG` statements. However, they do not correspond exactly to the original SQL statements that generated the events. The following limitations apply:
+Os statements SQL produzidos por `--verbose` para row events são muito mais legíveis do que os statements `BINLOG` correspondentes. No entanto, eles não correspondem exatamente aos statements SQL originais que geraram os events. As seguintes limitações se aplicam:
 
-* The original column names are lost and replaced by `@N`, where *`N`* is a column number.
+* Os nomes de column originais são perdidos e substituídos por `@N`, onde *`N`* é um número de column.
 
-* Character set information is not available in the binary log, which affects string column display:
+* A informação de Character Set não está disponível no log binário, o que afeta a exibição de string column:
 
-  + There is no distinction made between corresponding binary and nonbinary string types (`BINARY` and `CHAR`, `VARBINARY` and `VARCHAR`, `BLOB` and `TEXT`). The output uses a data type of `STRING` for fixed-length strings and `VARSTRING` for variable-length strings.
+  + Não há distinção feita entre os tipos de string binários e não binários correspondentes (`BINARY` e `CHAR`, `VARBINARY` e `VARCHAR`, `BLOB` e `TEXT`). A saída usa um data type de `STRING` para strings de tamanho fixo e `VARSTRING` para strings de tamanho variável.
 
-  + For multibyte character sets, the maximum number of bytes per character is not present in the binary log, so the length for string types is displayed in bytes rather than in characters. For example, `STRING(4)` is used as the data type for values from either of these column types:
+  + Para Character Sets multibyte, o número máximo de bytes por caractere não está presente no log binário, portanto, o length (comprimento) para os tipos de string é exibido em bytes em vez de em caracteres. Por exemplo, `STRING(4)` é usado como o data type para valores de qualquer um destes tipos de column:
 
     ```sql
     CHAR(4) CHARACTER SET latin1
     CHAR(2) CHARACTER SET ucs2
     ```
 
-  + Due to the storage format for events of type `UPDATE_ROWS_EVENT`, `UPDATE` statements are displayed with the `WHERE` clause preceding the `SET` clause.
+  + Devido ao formato de armazenamento para events do tipo `UPDATE_ROWS_EVENT`, os statements `UPDATE` são exibidos com a cláusula `WHERE` precedendo a cláusula `SET`.
 
-Proper interpretation of row events requires the information from the format description event at the beginning of the binary log. Because **mysqlbinlog** does not know in advance whether the rest of the log contains row events, by default it displays the format description event using a `BINLOG` statement in the initial part of the output.
+A interpretação adequada dos row events exige as informações do *format description event* no início do log binário. Como o **mysqlbinlog** não sabe antecipadamente se o restante do log contém row events, por padrão, ele exibe o *format description event* usando um statement `BINLOG` na parte inicial da saída.
 
-If the binary log is known not to contain any events requiring a `BINLOG` statement (that is, no row events), the `--base64-output=NEVER` option can be used to prevent this header from being written.
+Se for conhecido que o log binário não contém nenhum event que exija um statement `BINLOG` (ou seja, nenhum row event), a opção `--base64-output=NEVER` pode ser usada para evitar que este cabeçalho seja escrito.

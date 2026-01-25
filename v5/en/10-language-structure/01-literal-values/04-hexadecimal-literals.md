@@ -1,8 +1,8 @@
-### 9.1.4 Hexadecimal Literals
+### 9.1.4 Literais Hexadecimais
 
-Hexadecimal literal values are written using `X'val'` or `0xval` notation, where *`val`* contains hexadecimal digits (`0..9`, `A..F`). Lettercase of the digits and of any leading `X` does not matter. A leading `0x` is case-sensitive and cannot be written as `0X`.
+Valores de literais hexadecimais são escritos usando a notação `X'val'` ou `0xval`, onde *`val`* contém dígitos hexadecimais (`0..9`, `A..F`). A caixa das letras dos dígitos e de qualquer `X` inicial não importa. Um `0x` inicial diferencia maiúsculas de minúsculas (case-sensitive) e não pode ser escrito como `0X`.
 
-Legal hexadecimal literals:
+Literais hexadecimais válidos:
 
 ```sql
 X'01AF'
@@ -13,14 +13,14 @@ x'01af'
 0x01af
 ```
 
-Illegal hexadecimal literals:
+Literais hexadecimais inválidos:
 
 ```sql
 X'0G'   (G is not a hexadecimal digit)
 0X01AF  (0X must be written as 0x)
 ```
 
-Values written using `X'val'` notation must contain an even number of digits or a syntax error occurs. To correct the problem, pad the value with a leading zero:
+Valores escritos usando a notação `X'val'` devem conter um número par de dígitos, caso contrário, ocorre um erro de sintaxe. Para corrigir o problema, preencha o valor com um zero à esquerda:
 
 ```sql
 mysql> SET @s = X'FFF';
@@ -32,9 +32,9 @@ mysql> SET @s = X'0FFF';
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-Values written using `0xval` notation that contain an odd number of digits are treated as having an extra leading `0`. For example, `0xaaa` is interpreted as `0x0aaa`.
+Valores escritos usando a notação `0xval` que contenham um número ímpar de dígitos são tratados como se tivessem um `0` extra à esquerda. Por exemplo, `0xaaa` é interpretado como `0x0aaa`.
 
-By default, a hexadecimal literal is a binary string, where each pair of hexadecimal digits represents a character:
+Por padrão, um literal hexadecimal é uma binary string, onde cada par de dígitos hexadecimais representa um caractere:
 
 ```sql
 mysql> SELECT X'4D7953514C', CHARSET(X'4D7953514C');
@@ -51,22 +51,22 @@ mysql> SELECT 0x5461626c65, CHARSET(0x5461626c65);
 +--------------+-----------------------+
 ```
 
-A hexadecimal literal may have an optional character set introducer and `COLLATE` clause, to designate it as a string that uses a particular character set and collation:
+Um literal hexadecimal pode ter um character set introducer opcional e uma cláusula `COLLATE`, para designá-lo como uma string que utiliza um conjunto de caracteres e collation específicos:
 
 ```sql
 [_charset_name] X'val' [COLLATE collation_name]
 ```
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT _latin1 X'4D7953514C';
 SELECT _utf8 0x4D7953514C COLLATE utf8_danish_ci;
 ```
 
-The examples use `X'val'` notation, but `0xval` notation permits introducers as well. For information about introducers, see Section 10.3.8, “Character Set Introducers”.
+Os exemplos usam a notação `X'val'`, mas a notação `0xval` também permite introducers. Para obter informações sobre introducers, consulte a Seção 10.3.8, “Character Set Introducers”.
 
-In numeric contexts, MySQL treats a hexadecimal literal like a `BIGINT UNSIGNED` (64-bit unsigned integer). To ensure numeric treatment of a hexadecimal literal, use it in numeric context. Ways to do this include adding 0 or using `CAST(... AS UNSIGNED)`. For example, a hexadecimal literal assigned to a user-defined variable is a binary string by default. To assign the value as a number, use it in numeric context:
+Em contextos numéricos, o MySQL trata um literal hexadecimal como um `BIGINT UNSIGNED` (inteiro não assinado de 64 bits). Para garantir o tratamento numérico de um literal hexadecimal, use-o em um contexto numérico. Maneiras de fazer isso incluem adicionar 0 ou usar `CAST(... AS UNSIGNED)`. Por exemplo, um literal hexadecimal atribuído a uma variável definida pelo usuário é uma binary string por padrão. Para atribuir o valor como um número, use-o em um contexto numérico:
 
 ```sql
 mysql> SET @v1 = X'41';
@@ -80,7 +80,7 @@ mysql> SELECT @v1, @v2, @v3;
 +------+------+------+
 ```
 
-An empty hexadecimal value (`X''`) evaluates to a zero-length binary string. Converted to a number, it produces 0:
+Um valor hexadecimal vazio (`X''`) é avaliado como uma binary string de comprimento zero. Convertido para um número, ele produz 0:
 
 ```sql
 mysql> SELECT CHARSET(X''), LENGTH(X'');
@@ -97,9 +97,9 @@ mysql> SELECT X''+0;
 +-------+
 ```
 
-The `X'val'` notation is based on standard SQL. The `0x` notation is based on ODBC, for which hexadecimal strings are often used to supply values for `BLOB` columns.
+A notação `X'val'` é baseada no SQL padrão. A notação `0x` é baseada no ODBC, para o qual strings hexadecimais são frequentemente usadas para fornecer valores para colunas `BLOB`.
 
-To convert a string or a number to a string in hexadecimal format, use the `HEX()` function:
+Para converter uma string ou um número para uma string em formato hexadecimal, use a função `HEX()`:
 
 ```sql
 mysql> SELECT HEX('cat');

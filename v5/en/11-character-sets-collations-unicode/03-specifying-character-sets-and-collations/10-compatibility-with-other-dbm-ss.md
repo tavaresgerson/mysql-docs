@@ -1,6 +1,6 @@
-### 10.3.10 Compatibility with Other DBMSs
+### 10.3.10 Compatibilidade com Outros DBMSs
 
-For MaxDB compatibility these two statements are the same:
+Para compatibilidade com MaxDB, estas duas instruções são as mesmas:
 
 ```sql
 CREATE TABLE t1 (f1 CHAR(N) UNICODE);

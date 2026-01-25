@@ -1,12 +1,12 @@
-### 3.6.6 Using Foreign Keys
+### 3.6.6 Usando Foreign Keys
 
-MySQL supports foreign keys, which permit cross-referencing related data across tables, and foreign key constraints, which help keep the related data consistent.
+O MySQL oferece suporte a *foreign keys*, que permitem referenciar dados relacionados entre tabelas, e a *foreign key constraints* (restrições de chave estrangeira), que ajudam a manter a consistência dos dados relacionados.
 
-A foreign key relationship involves a parent table that holds the initial column values, and a child table with column values that reference the parent column values. A foreign key constraint is defined on the child table.
+Um relacionamento de *foreign key* envolve uma *parent table* (tabela pai) que contém os valores iniciais da coluna, e uma *child table* (tabela filha) com valores de coluna que referenciam os valores da coluna pai. Uma *foreign key constraint* é definida na *child table*.
 
-This following example relates `parent` and `child` tables through a single-column foreign key and shows how a foreign key constraint enforces referential integrity.
+O exemplo a seguir relaciona as tabelas `parent` e `child` por meio de uma *foreign key* de coluna única e mostra como uma *foreign key constraint* impõe a integridade referencial.
 
-Create the parent and child tables using the following SQL statements:
+Crie as tabelas *parent* e *child* usando as seguintes instruções SQL:
 
 ```sql
 CREATE TABLE parent (
@@ -24,13 +24,13 @@ CREATE TABLE child (
 ) ENGINE=INNODB;
 ```
 
-Insert a row into the parent table, like this:
+Insira uma linha na tabela *parent*, assim:
 
 ```sql
 mysql> INSERT INTO parent (id) VALUES (1);
 ```
 
-Verify that the data was inserted. You can do this simply by selecting all rows from `parent`, as shown here:
+Verifique se os dados foram inseridos. Você pode fazer isso simplesmente selecionando todas as linhas da tabela `parent`, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM parent;
@@ -41,15 +41,15 @@ mysql> SELECT * FROM parent;
 +----+
 ```
 
-Insert a row into the child table using the following SQL statement:
+Insira uma linha na tabela *child* usando a seguinte instrução SQL:
 
 ```sql
 mysql> INSERT INTO child (id,parent_id) VALUES (1,1);
 ```
 
-The insert operation is successful because `parent_id` 1 is present in the parent table.
+A operação de inserção é bem-sucedida porque `parent_id` 1 está presente na tabela *parent*.
 
-Insertion of a row into the child table with a `parent_id` value that is not present in the parent table is rejected with an error, as you can see here:
+A inserção de uma linha na tabela *child* com um valor de `parent_id` que não está presente na tabela *parent* é rejeitada com um erro, como você pode ver aqui:
 
 ```sql
 mysql> INSERT INTO child (id,parent_id) VALUES(2,2);
@@ -58,9 +58,9 @@ ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint f
 REFERENCES `parent` (`id`))
 ```
 
-The operation fails because the specified `parent_id` value does not exist in the parent table.
+A operação falha porque o valor de `parent_id` especificado não existe na tabela *parent*.
 
-Trying to delete the previously inserted row from the parent table also fails, as shown here:
+A tentativa de excluir a linha previamente inserida da tabela *parent* também falha, conforme mostrado aqui:
 
 ```sql
 mysql> DELETE FROM parent WHERE id = 1;
@@ -69,11 +69,11 @@ ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constrai
 REFERENCES `parent` (`id`))
 ```
 
-This operation fails because the record in the child table contains the referenced id (`parent_id`) value.
+Esta operação falha porque o registro na tabela *child* contém o valor do id referenciado (`parent_id`).
 
-When an operation affects a key value in the parent table that has matching rows in the child table, the result depends on the referential action specified by `ON UPDATE` and `ON DELETE` subclauses of the `FOREIGN KEY` clause. Omitting `ON DELETE` and `ON UPDATE` clauses (as in the current child table definition) is the same as specifying the `RESTRICT` option, which rejects operations that affect a key value in the parent table that has matching rows in the parent table.
+Quando uma operação afeta um valor de *key* na tabela *parent* que possui linhas correspondentes na tabela *child*, o resultado depende da ação referencial especificada pelas subcláusulas `ON UPDATE` e `ON DELETE` da cláusula `FOREIGN KEY`. Omitir as cláusulas `ON DELETE` e `ON UPDATE` (como na definição atual da tabela *child*) é o mesmo que especificar a opção `RESTRICT`, que rejeita operações que afetam um valor de *key* na tabela *parent* que possui linhas correspondentes na tabela *parent*.
 
-To demonstrate `ON DELETE` and `ON UPDATE` referential actions, drop the child table and recreate it to include `ON UPDATE` and `ON DELETE` subclauses with the `CASCADE` option. The `CASCADE` option automatically deletes or updates matching rows in the child table when deleting or updating rows in the parent table.
+Para demonstrar as ações referenciais `ON DELETE` e `ON UPDATE`, elimine (DROP) a tabela *child* e recrie-a para incluir as subcláusulas `ON UPDATE` e `ON DELETE` com a opção `CASCADE`. A opção `CASCADE` automaticamente deleta ou atualiza as linhas correspondentes na tabela *child* ao deletar ou atualizar linhas na tabela *parent*.
 
 ```sql
 DROP TABLE child;
@@ -89,13 +89,13 @@ CREATE TABLE child (
 ) ENGINE=INNODB;
 ```
 
-Insert some rows into the child table using the statement shown here:
+Insira algumas linhas na tabela *child* usando a instrução mostrada aqui:
 
 ```sql
 mysql> INSERT INTO child (id,parent_id) VALUES(1,1),(2,1),(3,1);
 ```
 
-Verify that the data was inserted, like this:
+Verifique se os dados foram inseridos, assim:
 
 ```sql
 mysql> SELECT * FROM child;
@@ -108,13 +108,13 @@ mysql> SELECT * FROM child;
 +------+-----------+
 ```
 
-Update the ID in the parent table, changing it from 1 to 2, using the SQL statement shown here:
+Atualize o ID na tabela *parent*, alterando-o de 1 para 2, usando a instrução SQL mostrada aqui:
 
 ```sql
 mysql> UPDATE parent SET id = 2 WHERE id = 1;
 ```
 
-Verify that the update was successful by selecting all rows from the parent table, as shown here:
+Verifique se o *update* foi bem-sucedido, selecionando todas as linhas da tabela *parent*, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM parent;
@@ -125,7 +125,7 @@ mysql> SELECT * FROM parent;
 +----+
 ```
 
-Verify that the `ON UPDATE CASCADE` referential action updated the child table, like this:
+Verifique se a ação referencial `ON UPDATE CASCADE` atualizou a tabela *child*, assim:
 
 ```sql
 mysql> SELECT * FROM child;
@@ -138,17 +138,17 @@ mysql> SELECT * FROM child;
 +------+-----------+
 ```
 
-To demonstrate the `ON DELETE CASCADE` referential action, delete records from the parent table where `parent_id = 2`; this deletes all records in the parent table.
+Para demonstrar a ação referencial `ON DELETE CASCADE`, delete registros da tabela *parent* onde `parent_id = 2`; isso deleta todos os registros na tabela *parent*.
 
 ```sql
 mysql> DELETE FROM parent WHERE id = 2;
 ```
 
-Because all records in the child table are associated with `parent_id = 2`, the `ON DELETE CASCADE` referential action removes all records from the child table, as shown here:
+Como todos os registros na tabela *child* estão associados a `parent_id = 2`, a ação referencial `ON DELETE CASCADE` remove todos os registros da tabela *child*, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM child;
 Empty set (0.00 sec)
 ```
 
-For more information about foreign key constraints, see [Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints").
+Para obter mais informações sobre *foreign key constraints*, consulte [Seção 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints").

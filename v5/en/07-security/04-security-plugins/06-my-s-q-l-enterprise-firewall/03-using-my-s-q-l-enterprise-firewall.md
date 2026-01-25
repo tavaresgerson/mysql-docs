@@ -1,83 +1,83 @@
-#### 6.4.6.3 Using MySQL Enterprise Firewall
+#### 6.4.6.3 Utilizando o MySQL Enterprise Firewall
 
-Before using MySQL Enterprise Firewall, install it according to the instructions provided in [Section 6.4.6.2, “Installing or Uninstalling MySQL Enterprise Firewall”](firewall-installation.html "6.4.6.2 Installing or Uninstalling MySQL Enterprise Firewall"). Also, MySQL Enterprise Firewall does not work together with the query cache; disable the query cache if it is enabled (see [Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")).
+Antes de utilizar o MySQL Enterprise Firewall, instale-o de acordo com as instruções fornecidas na [Seção 6.4.6.2, “Instalando ou Desinstalando o MySQL Enterprise Firewall”](firewall-installation.html "6.4.6.2 Instalando ou Desinstalando o MySQL Enterprise Firewall”). Além disso, o MySQL Enterprise Firewall não funciona em conjunto com o *query cache*; desative o *query cache* se ele estiver ativado (consulte a [Seção 8.10.3.3, “Configuração do Query Cache”](query-cache-configuration.html "8.10.3.3 Configuração do Query Cache")).
 
-This section describes how to configure MySQL Enterprise Firewall using SQL statements. Alternatively, MySQL Workbench 6.3.4 or higher provides a graphical interface for firewall control. See [MySQL Enterprise Firewall Interface](/doc/workbench/en/wb-mysql-firewall.html).
+Esta seção descreve como configurar o MySQL Enterprise Firewall utilizando instruções SQL. Alternativamente, o MySQL Workbench 6.3.4 ou superior fornece uma interface gráfica para controle do *firewall*. Consulte [Interface do MySQL Enterprise Firewall](/doc/workbench/en/wb-mysql-firewall.html).
 
-* [Enabling or Disabling the Firewall](firewall-usage.html#firewall-enabling-disabling "Enabling or Disabling the Firewall")
-* [Assigning Firewall Privileges](firewall-usage.html#firewall-privileges "Assigning Firewall Privileges")
-* [Firewall Concepts](firewall-usage.html#firewall-concepts "Firewall Concepts")
-* [Registering Firewall Account Profiles](firewall-usage.html#firewall-account-profiles "Registering Firewall Account Profiles")
-* [Monitoring the Firewall](firewall-usage.html#firewall-monitoring "Monitoring the Firewall")
+* [Ativando ou Desativando o Firewall](firewall-usage.html#firewall-enabling-disabling "Enabling or Disabling the Firewall")
+* [Atribuindo Privilégios do Firewall](firewall-usage.html#firewall-privileges "Assigning Firewall Privileges")
+* [Conceitos do Firewall](firewall-usage.html#firewall-concepts "Firewall Concepts")
+* [Registrando Profiles de Contas do Firewall](firewall-usage.html#firewall-account-profiles "Registering Firewall Account Profiles")
+* [Monitorando o Firewall](firewall-usage.html#firewall-monitoring "Monitoring the Firewall")
 
-##### Enabling or Disabling the Firewall
+##### Ativando ou Desativando o Firewall
 
-To enable or disable the firewall, set the [`mysql_firewall_mode`](firewall-reference.html#sysvar_mysql_firewall_mode) system variable. By default, this variable is enabled when the firewall is installed. To control the initial firewall state explicitly, you can set the variable at server startup. For example, to enable the firewall in an option file, use these lines:
+Para ativar ou desativar o *firewall*, defina a variável de sistema [`mysql_firewall_mode`](firewall-reference.html#sysvar_mysql_firewall_mode). Por padrão, esta variável é ativada quando o *firewall* é instalado. Para controlar explicitamente o estado inicial do *firewall*, você pode definir a variável na inicialização do servidor. Por exemplo, para ativar o *firewall* em um arquivo de opções, use estas linhas:
 
 ```sql
 [mysqld]
 mysql_firewall_mode=ON
 ```
 
-After modifying `my.cnf`, restart the server to cause the new setting to take effect.
+Após modificar `my.cnf`, reinicie o servidor para que a nova configuração entre em vigor.
 
-It is also possible to disable or enable the firewall at runtime:
+Também é possível desativar ou ativar o *firewall* em tempo de execução (*runtime*):
 
 ```sql
 SET GLOBAL mysql_firewall_mode = OFF;
 SET GLOBAL mysql_firewall_mode = ON;
 ```
 
-##### Assigning Firewall Privileges
+##### Atribuindo Privilégios do Firewall
 
-With the firewall installed, grant the appropriate privileges to the MySQL account or accounts to be used for administering it:
+Com o *firewall* instalado, conceda os privilégios apropriados à conta ou contas MySQL a serem utilizadas para administrá-lo:
 
-* Grant the [`EXECUTE`](privileges-provided.html#priv_execute) privilege for the firewall stored procedures in the `mysql` system database. These may invoke administrative functions, so stored procedure access also requires the privileges needed for those functions.
+* Conceda o privilégio [`EXECUTE`](privileges-provided.html#priv_execute) para os *stored procedures* do *firewall* no `mysql` system Database. Eles podem invocar funções administrativas, portanto, o acesso ao *stored procedure* também requer os privilégios necessários para essas funções.
 
-* Grant the [`SUPER`](privileges-provided.html#priv_super) privilege so that the firewall administrative functions can be executed.
+* Conceda o privilégio [`SUPER`](privileges-provided.html#priv_super) para que as funções administrativas do *firewall* possam ser executadas.
 
-##### Firewall Concepts
+##### Conceitos do Firewall
 
-The MySQL server permits clients to connect and receives from them SQL statements to be executed. If the firewall is enabled, the server passes to it each incoming statement that does not immediately fail with a syntax error. Based on whether the firewall accepts the statement, the server executes it or returns an error to the client. This section describes how the firewall accomplishes the task of accepting or rejecting statements.
+O servidor MySQL permite que os clientes se conectem e recebe deles instruções SQL para serem executadas. Se o *firewall* estiver ativado, o servidor passa para ele cada instrução de entrada que não falhe imediatamente com um erro de sintaxe. Com base no fato de o *firewall* aceitar a instrução, o servidor a executa ou retorna um erro ao cliente. Esta seção descreve como o *firewall* realiza a tarefa de aceitar ou rejeitar instruções.
 
-* [Firewall Profiles](firewall-usage.html#firewall-profiles "Firewall Profiles")
-* [Firewall Statement Matching](firewall-usage.html#firewall-statement-matching "Firewall Statement Matching")
-* [Profile Operational Modes](firewall-usage.html#firewall-profile-modes "Profile Operational Modes")
+* [Profiles do Firewall](firewall-usage.html#firewall-profiles "Firewall Profiles")
+* [Correspondência de Instruções do Firewall](firewall-usage.html#firewall-statement-matching "Firewall Statement Matching")
+* [Modos Operacionais de Profile](firewall-usage.html#firewall-profile-modes "Profile Operational Modes")
 
-###### Firewall Profiles
+###### Profiles do Firewall
 
-The firewall uses a registry of profiles that determine whether to permit statement execution. Profiles have these attributes:
+O *firewall* utiliza um registro de *profiles* que determinam se a execução da instrução deve ser permitida. Os *profiles* possuem estes atributos:
 
-* An allowlist. The allowlist is the set of rules that defines which statements are acceptable to the profile.
+* Um *allowlist*. O *allowlist* é o conjunto de regras que define quais instruções são aceitáveis para o *profile*.
 
-* A current operational mode. The mode enables the profile to be used in different ways. For example: the profile can be placed in training mode to establish the allowlist; the allowlist can be used for restricting statement execution or intrusion detection; the profile can be disabled entirely.
+* Um modo operacional atual. O modo permite que o *profile* seja utilizado de diferentes maneiras. Por exemplo: o *profile* pode ser colocado no modo de treinamento para estabelecer o *allowlist*; o *allowlist* pode ser usado para restringir a execução de instruções ou detecção de intrusão; o *profile* pode ser desativado por completo.
 
-* A scope of applicability. The scope indicates which client connections the profile applies to.
+* Um escopo de aplicabilidade. O escopo indica a quais conexões de cliente o *profile* se aplica.
 
-  The firewall supports account-based profiles such that each profile matches a particular client account (client user name and host name combination). For example, you can register one account profile for which the allowlist applies to connections originating from `admin@localhost` and another account profile for which the allowlist applies to connections originating from `myapp@apphost.example.com`.
+  O *firewall* suporta *profiles* baseados em conta, de modo que cada *profile* corresponda a uma conta de cliente específica (combinação de nome de usuário e nome de *host* do cliente). Por exemplo, você pode registrar um *profile* de conta cujo *allowlist* se aplique a conexões originadas de `admin@localhost` e outro *profile* de conta cujo *allowlist* se aplique a conexões originadas de `myapp@apphost.example.com`.
 
-Initially, no profiles exist, so by default, the firewall accepts all statements and has no effect on which statements MySQL accounts can execute. To apply firewall protective capabilities, explicit action is required:
+Inicialmente, não existem *profiles*, portanto, por padrão, o *firewall* aceita todas as instruções e não tem efeito sobre quais instruções as contas MySQL podem executar. Para aplicar os recursos de proteção do *firewall*, é necessária uma ação explícita:
 
-* Register one or more profiles with the firewall.
-* Train the firewall by establishing the allowlist for each profile; that is, the types of statements the profile permits clients to execute.
+* Registre um ou mais *profiles* no *firewall*.
+* Treine o *firewall* estabelecendo o *allowlist* para cada *profile*; ou seja, os tipos de instruções que o *profile* permite que os clientes executem.
 
-* Place the trained profiles in protecting mode to harden MySQL against unauthorized statement execution:
+* Coloque os *profiles* treinados no modo de proteção para reforçar o MySQL contra a execução não autorizada de instruções:
 
-  + MySQL associates each client session with a specific user name and host name combination. This combination is the *session account*.
+  + O MySQL associa cada sessão de cliente a uma combinação específica de nome de usuário e nome de *host*. Essa combinação é a *session account* (conta de sessão).
 
-  + For each client connection, the firewall uses the session account to determine which profile applies to handling incoming statements from the client.
+  + Para cada conexão de cliente, o *firewall* usa a *session account* para determinar qual *profile* se aplica ao tratamento de instruções de entrada do cliente.
 
-    The firewall accepts only statements permitted by the applicable profile allowlist.
+    O *firewall* aceita apenas instruções permitidas pelo *allowlist* do *profile* aplicável.
 
-The profile-based protection afforded by the firewall enables implementation of strategies such as these:
+A proteção baseada em *profile* oferecida pelo *firewall* permite a implementação de estratégias como estas:
 
-* If an application has unique protection requirements, configure it to use an account not used for any other purpose and set up a profile for that account.
+* Se um aplicativo tiver requisitos de proteção exclusivos, configure-o para usar uma conta não utilizada para qualquer outra finalidade e configure um *profile* para essa conta.
 
-* If related applications share protection requirements, configure them all to use the same account (and thus the same account profile).
+* Se aplicativos relacionados compartilharem requisitos de proteção, configure todos eles para usar a mesma conta (e, portanto, o mesmo *profile* de conta).
 
-###### Firewall Statement Matching
+###### Correspondência de Instruções do Firewall
 
-Statement matching performed by the firewall does not use SQL statements as received from clients. Instead, the server converts incoming statements to normalized digest form and firewall operation uses these digests. The benefit of statement normalization is that it enables similar statements to be grouped and recognized using a single pattern. For example, these statements are distinct from each other:
+A correspondência de instruções (*statement matching*) realizada pelo *firewall* não utiliza as instruções SQL conforme recebidas dos clientes. Em vez disso, o servidor converte as instruções de entrada para a forma de *digest* normalizado e a operação do *firewall* utiliza estes *digests*. O benefício da normalização de instruções é que ela permite que instruções semelhantes sejam agrupadas e reconhecidas usando um único padrão. Por exemplo, estas instruções são distintas umas das outras:
 
 ```sql
 SELECT first_name, last_name FROM customer WHERE customer_id = 1;
@@ -85,98 +85,98 @@ select first_name, last_name from customer where customer_id = 99;
 SELECT first_name, last_name FROM customer WHERE customer_id = 143;
 ```
 
-But all of them have the same normalized digest form:
+Mas todas elas têm a mesma forma de *digest* normalizado:
 
 ```sql
 SELECT `first_name` , `last_name` FROM `customer` WHERE `customer_id` = ?
 ```
 
-By using normalization, firewall allowlists can store digests that each match many different statements received from clients. For more information about normalization and digests, see [Section 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
+Ao usar a normalização, os *allowlists* do *firewall* podem armazenar *digests* que correspondem a muitas instruções diferentes recebidas dos clientes. Para obter mais informações sobre normalização e *digests*, consulte a [Seção 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").
 
-Warning
+Aviso
 
-Setting the [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) system variable to zero disables digest production, which also disables server functionality that requires digests, such as MySQL Enterprise Firewall.
+Definir a variável de sistema [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) como zero desativa a produção de *digest*, o que também desativa a funcionalidade do servidor que requer *digests*, como o MySQL Enterprise Firewall.
 
-###### Profile Operational Modes
+###### Modos Operacionais de Profile
 
-Each profile registered with the firewall has its own operational mode, chosen from these values:
+Cada *profile* registrado no *firewall* possui seu próprio modo operacional, escolhido a partir destes valores:
 
-* `OFF`: This mode disables the profile. The firewall considers it inactive and ignores it.
+* `OFF`: Este modo desativa o *profile*. O *firewall* o considera inativo e o ignora.
 
-* `RECORDING`: This is the firewall training mode. Incoming statements received from a client that matches the profile are considered acceptable for the profile and become part of its “fingerprint.” The firewall records the normalized digest form of each statement to learn the acceptable statement patterns for the profile. Each pattern is a rule, and the union of the rules is the profile allowlist.
+* `RECORDING`: Este é o modo de treinamento do *firewall*. As instruções de entrada recebidas de um cliente que corresponde ao *profile* são consideradas aceitáveis para o *profile* e se tornam parte de sua "impressão digital" (*fingerprint*). O *firewall* registra a forma de *digest* normalizado de cada instrução para aprender os padrões de instrução aceitáveis para o *profile*. Cada padrão é uma regra, e a união das regras é o *allowlist* do *profile*.
 
-* `PROTECTING`: In this mode, the profile allows or prevents statement execution. The firewall matches incoming statements against the profile allowlist, accepting only statements that match and rejecting those that do not. After training a profile in `RECORDING` mode, switch it to `PROTECTING` mode to harden MySQL against access by statements that deviate from the allowlist. If the [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) system variable is enabled, the firewall also writes rejected statements to the error log.
+* `PROTECTING`: Neste modo, o *profile* permite ou impede a execução da instrução. O *firewall* compara as instruções de entrada com o *allowlist* do *profile*, aceitando apenas instruções que correspondam e rejeitando aquelas que não correspondam. Após treinar um *profile* no modo `RECORDING`, altere-o para o modo `PROTECTING` para reforçar o MySQL contra o acesso por instruções que se desviem do *allowlist*. Se a variável de sistema [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) estiver ativada, o *firewall* também registra as instruções rejeitadas no *error log*.
 
-* `DETECTING`: This mode detects but not does not block intrusions (statements that are suspicious because they match nothing in the profile allowlist). In `DETECTING` mode, the firewall writes suspicious statements to the error log but accepts them without denying access.
+* `DETECTING`: Este modo detecta, mas não bloqueia intrusões (instruções que são suspeitas porque não correspondem a nada no *allowlist* do *profile*). No modo `DETECTING`, o *firewall* registra instruções suspeitas no *error log*, mas as aceita sem negar o acesso.
 
-When a profile is assigned any of the preceding mode values, the firewall stores the mode in the profile. Firewall mode-setting operations also permit a mode value of `RESET`, but this value is not stored: setting a profile to `RESET` mode causes the firewall to delete all rules for the profile and set its mode to `OFF`.
+Quando um *profile* recebe qualquer um dos valores de modo precedentes, o *firewall* armazena o modo no *profile*. As operações de definição de modo do *firewall* também permitem um valor de modo `RESET`, mas este valor não é armazenado: definir um *profile* para o modo `RESET` faz com que o *firewall* exclua todas as regras para o *profile* e defina seu modo para `OFF`.
 
 Note
 
-Messages written to the error log in `DETECTING` mode or because [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) is enabled are written as Notes, which are information messages. To ensure that such messages appear in the error log and are not discarded, set the [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) system variable to a value of 3.
+As mensagens registradas no *error log* no modo `DETECTING` ou porque [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) está ativado são escritas como Notas (*Notes*), que são mensagens de informação. Para garantir que tais mensagens apareçam no *error log* e não sejam descartadas, defina a variável de sistema [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) para um valor de 3.
 
-As previously mentioned, MySQL associates each client session with a specific user name and host name combination known as the *session account*. The firewall matches the session account against registered profiles to determine which profile applies to handling incoming statements from the session:
+Conforme mencionado anteriormente, o MySQL associa cada sessão de cliente a uma combinação específica de nome de usuário e nome de *host* conhecida como *session account* (conta de sessão). O *firewall* compara a *session account* com os *profiles* registrados para determinar qual *profile* se aplica ao tratamento de instruções de entrada da sessão:
 
-* The firewall ignores inactive profiles (profiles with a mode of `OFF`).
+* O *firewall* ignora *profiles* inativos (*profiles* com modo `OFF`).
 
-* The session account matches an active account profile having the same user and host, if there is one. There is at most one such account profile.
+* A *session account* corresponde a um *profile* de conta ativo que tenha o mesmo usuário e *host*, se houver. Há no máximo um *profile* de conta assim.
 
-After matching the session account to registered profiles, the firewall handles each incoming statement as follows:
+Após corresponder a *session account* aos *profiles* registrados, o *firewall* trata cada instrução de entrada da seguinte forma:
 
-* If there is no applicable profile, the firewall imposes no restrictions and accepts the statement.
+* Se não houver *profile* aplicável, o *firewall* não impõe restrições e aceita a instrução.
 
-* If there is an applicable profile, its mode determines statement handling:
+* Se houver um *profile* aplicável, seu modo determina o tratamento da instrução:
 
-  + In `RECORDING` mode, the firewall adds the statement to the profile allowlist rules and accepts it.
+  + No modo `RECORDING`, o *firewall* adiciona a instrução às regras do *allowlist* do *profile* e a aceita.
 
-  + In `PROTECTING` mode, the firewall compares the statement to the rules in the profile allowlist. The firewall accepts the statement if there is a match, and rejects it otherwise. If the [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) system variable is enabled, the firewall also writes rejected statements to the error log.
+  + No modo `PROTECTING`, o *firewall* compara a instrução com as regras no *allowlist* do *profile*. O *firewall* aceita a instrução se houver correspondência e a rejeita caso contrário. Se a variável de sistema [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) estiver ativada, o *firewall* também registra as instruções rejeitadas no *error log*.
 
-  + In `DETECTING` mode, the firewall detects instrusions without denying access. The firewall accepts the statement, but also matches it to the profile allowlist, as in `PROTECTING` mode. If the statement is suspicious (nonmatching), the firewall writes it to the error log.
+  + No modo `DETECTING`, o *firewall* detecta intrusões sem negar acesso. O *firewall* aceita a instrução, mas também a compara com o *allowlist* do *profile*, como no modo `PROTECTING`. Se a instrução for suspeita (sem correspondência), o *firewall* a registra no *error log*.
 
-##### Registering Firewall Account Profiles
+##### Registrando Profiles de Contas do Firewall
 
-MySQL Enterprise Firewall enables profiles to be registered that correspond to individual accounts. To use a firewall account profile to protect MySQL against incoming statements from a given account, follow these steps:
+O MySQL Enterprise Firewall permite que *profiles* sejam registrados correspondendo a contas individuais. Para usar um *profile* de conta do *firewall* para proteger o MySQL contra instruções de entrada de uma determinada conta, siga estas etapas:
 
-1. Register the account profile and put it in `RECORDING` mode.
+1. Registre o *profile* da conta e coloque-o no modo `RECORDING` (treinamento).
 
-2. Connect to the MySQL server using the account and execute statements to be learned. This trains the account profile and establishes the rules that form the profile allowlist.
+2. Conecte-se ao servidor MySQL usando a conta e execute instruções a serem aprendidas. Isso treina o *profile* da conta e estabelece as regras que formam o *allowlist* do *profile*.
 
-3. Switch the account profile to `PROTECTING` mode. When a client connects to the server using the account, the account profile allowlist restricts statement execution.
+3. Mude o *profile* da conta para o modo `PROTECTING`. Quando um cliente se conecta ao servidor usando a conta, o *allowlist* do *profile* de conta restringe a execução da instrução.
 
-4. Should additional training be necessary, switch the account profile to `RECORDING` mode again, update its allowlist with new statement patterns, then switch it back to `PROTECTING` mode.
+4. Caso seja necessário um treinamento adicional, mude o *profile* da conta para o modo `RECORDING` novamente, atualize seu *allowlist* com novos padrões de instrução e, em seguida, mude-o de volta para o modo `PROTECTING`.
 
-Observe these guidelines for firewall-related account references:
+Observe estas diretrizes para referências de contas relacionadas ao *firewall*:
 
-* Take note of the context in which account references occur. To name an account for firewall operations, specify it as a single quoted string (`'user_name@host_name'`). This differs from the usual MySQL convention for statements such as [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") and [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), for which you quote the user and host parts of an account name separately (`'user_name'@'host_name'`).
+* Preste atenção ao contexto em que as referências de conta ocorrem. Para nomear uma conta para operações de *firewall*, especifique-a como uma única string entre aspas (`'user_name@host_name'`). Isso difere da convenção usual do MySQL para instruções como [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") e [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), para as quais você coloca as partes do usuário e do *host* de um nome de conta entre aspas separadamente (`'user_name'@'host_name'`).
 
-  The requirement for naming accounts as a single quoted string for firewall operations means that you cannot use accounts that have embedded `@` characters in the user name.
+  O requisito de nomear contas como uma única *string* entre aspas para operações de *firewall* significa que você não pode usar contas que tenham o caractere `@` embutido no nome de usuário.
 
-* The firewall assesses statements against accounts represented by actual user and host names as authenticated by the server. When registering accounts in profiles, do not use wildcard characters or netmasks:
+* O *firewall* avalia as instruções em relação às contas representadas pelos nomes reais de usuário e *host* conforme autenticados pelo servidor. Ao registrar contas em *profiles*, não use caracteres curinga (*wildcard*) ou *netmasks*:
 
-  + Suppose that an account named `me@%.example.org` exists and a client uses it to connect to the server from the host `abc.example.org`.
+  + Suponha que exista uma conta chamada `me@%.example.org` e um cliente a use para se conectar ao servidor a partir do *host* `abc.example.org`.
 
-  + The account name contains a `%` wildcard character, but the server authenticates the client as having a user name of `me` and host name of `abc.example.com`, and that is what the firewall sees.
+  + O nome da conta contém um caractere curinga `%`, mas o servidor autentica o cliente como tendo um nome de usuário `me` e nome de *host* `abc.example.com`, e é isso que o *firewall* vê.
 
-  + Consequently, the account name to use for firewall operations is `me@abc.example.org` rather than `me@%.example.org`.
+  + Consequentemente, o nome da conta a ser usado para operações de *firewall* é `me@abc.example.org` em vez de `me@%.example.org`.
 
-The following procedure shows how to register an account profile with the firewall, train the firewall to know the acceptable statements for that profile (its allowlist), and use the profile to protect MySQL against execution of unacceptable statements by the account. The example account, `fwuser@localhost`, is presumed for use by an application that accesses tables in the `sakila` database (available at [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html)).
+O procedimento a seguir mostra como registrar um *profile* de conta no *firewall*, treinar o *firewall* para conhecer as instruções aceitáveis para esse *profile* (seu *allowlist*) e usar o *profile* para proteger o MySQL contra a execução de instruções inaceitáveis pela conta. A conta de exemplo, `fwuser@localhost`, é presumida para uso por um aplicativo que acessa tabelas no Database `sakila` (disponível em [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html)).
 
-Use an administrative MySQL account to perform the steps in this procedure, except those steps designated for execution by the `fwuser@localhost` account that corresponds to the account profile registered with the firewall. For statements executed using this account, the default database should be `sakila`. (You can use a different database by adjusting the instructions accordingly.)
+Use uma conta administrativa do MySQL para executar as etapas neste procedimento, exceto aquelas etapas designadas para execução pela conta `fwuser@localhost` que corresponde ao *profile* de conta registrado no *firewall*. Para instruções executadas usando esta conta, o *database* padrão deve ser `sakila`. (Você pode usar um *database* diferente ajustando as instruções de acordo.)
 
-1. If necessary, create the account to use for executing statements (choose an appropriate password) and grant it privileges for the `sakila` database:
+1. Se necessário, crie a conta para usar na execução de instruções (escolha uma senha apropriada) e conceda-lhe privilégios para o Database `sakila`:
 
    ```sql
    CREATE USER 'fwuser'@'localhost' IDENTIFIED BY 'password';
    GRANT ALL ON sakila.* TO 'fwuser'@'localhost';
    ```
 
-2. Use the `sp_set_firewall_mode()` stored procedure to register the account profile with the firewall and place the profile in `RECORDING` (training) mode:
+2. Use o *stored procedure* `sp_set_firewall_mode()` para registrar o *profile* de conta no *firewall* e colocar o *profile* no modo `RECORDING` (treinamento):
 
    ```sql
    CALL mysql.sp_set_firewall_mode('fwuser@localhost', 'RECORDING');
    ```
 
-3. To train the registered account profile, connect to the server as `fwuser` from the server host so that the firewall sees a session account of `fwuser@localhost`. Then use the account to execute some statements to be considered legitimate for the profile. For example:
+3. Para treinar o *profile* de conta registrado, conecte-se ao servidor como `fwuser` a partir do *host* do servidor para que o *firewall* veja uma *session account* de `fwuser@localhost`. Em seguida, use a conta para executar algumas instruções a serem consideradas legítimas para o *profile*. Por exemplo:
 
    ```sql
    SELECT first_name, last_name FROM customer WHERE customer_id = 1;
@@ -184,17 +184,17 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
    SELECT get_customer_balance(1, NOW());
    ```
 
-   Because the profile is in `RECORDING` mode, the firewall records the normalized digest form of the statements as rules in the profile allowlist.
+   Como o *profile* está no modo `RECORDING`, o *firewall* registra a forma de *digest* normalizado das instruções como regras no *allowlist* do *profile*.
 
    Note
 
-   Until the `fwuser@localhost` account profile receives statements in `RECORDING` mode, its allowlist is empty, which is equivalent to “deny all.” No statement can match an empty allowlist, which has these implications:
+   Até que o *profile* da conta `fwuser@localhost` receba instruções no modo `RECORDING`, seu *allowlist* está vazio, o que é equivalente a "negar tudo" (*deny all*). Nenhuma instrução pode corresponder a um *allowlist* vazio, o que tem estas implicações:
 
-   * The account profile cannot be switched to `PROTECTING` mode. It would reject every statement, effectively prohibiting the account from executing any statement.
+   * O *profile* da conta não pode ser mudado para o modo `PROTECTING`. Ele rejeitaria todas as instruções, efetivamente proibindo a conta de executar qualquer instrução.
 
-   * The account profile can be switched to `DETECTING` mode. In this case, the profile accepts every statement but logs it as suspicious.
+   * O *profile* da conta pode ser mudado para o modo `DETECTING`. Neste caso, o *profile* aceita todas as instruções, mas as registra como suspeitas.
 
-4. At this point, the account profile information is cached. To see this information, query the `INFORMATION_SCHEMA` firewall tables:
+4. Neste ponto, as informações do *profile* da conta são armazenadas em *cache*. Para ver essas informações, consulte as tabelas de *firewall* do `INFORMATION_SCHEMA`:
 
    ```sql
    mysql> SELECT MODE FROM INFORMATION_SCHEMA.MYSQL_FIREWALL_USERS
@@ -218,25 +218,25 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
 
    Note
 
-   The `@@version_comment` rule comes from a statement sent automatically by the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client when you connect to the server.
+   A regra `@@version_comment` vem de uma instrução enviada automaticamente pelo cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") quando você se conecta ao servidor.
 
-   Important
+   Importante
 
-   Train the firewall under conditions matching application use. For example, to determine server characteristics and capabilities, a given MySQL connector might send statements to the server at the beginning of each session. If an application normally is used through that connector, train the firewall using the connector, too. That enables those initial statements to become part of the allowlist for the account profile associated with the application.
+   Treine o *firewall* sob condições que correspondam ao uso do aplicativo. Por exemplo, para determinar as características e capacidades do servidor, um determinado *connector* MySQL pode enviar instruções ao servidor no início de cada sessão. Se um aplicativo for normalmente usado por meio desse *connector*, treine o *firewall* usando o *connector* também. Isso permite que essas instruções iniciais se tornem parte do *allowlist* para o *profile* de conta associado ao aplicativo.
 
-5. Invoke `sp_set_firewall_mode()` again, this time switching the account profile to `PROTECTING` mode:
+5. Invoque `sp_set_firewall_mode()` novamente, desta vez mudando o *profile* da conta para o modo `PROTECTING`:
 
    ```sql
    CALL mysql.sp_set_firewall_mode('fwuser@localhost', 'PROTECTING');
    ```
 
-   Important
+   Importante
 
-   Switching the account profile out of `RECORDING` mode synchronizes its cached data to the `mysql` system database tables that provide persistent underlying storage. If you do not switch the mode for a profile that is being recorded, the cached data is not written to persistent storage and is lost when the server is restarted.
+   Mudar o *profile* da conta para fora do modo `RECORDING` sincroniza seus dados em *cache* com as tabelas do `mysql` system Database que fornecem o armazenamento subjacente persistente. Se você não mudar o modo de um *profile* que está sendo gravado, os dados em *cache* não são gravados no armazenamento persistente e são perdidos quando o servidor é reiniciado.
 
-6. Test the account profile by using the account to execute some acceptable and unacceptable statements. The firewall matches each statement from the account against the profile allowlist and accepts or rejects it:
+6. Teste o *profile* da conta usando a conta para executar algumas instruções aceitáveis e inaceitáveis. O *firewall* compara cada instrução da conta com o *allowlist* do *profile* e a aceita ou rejeita:
 
-   * This statement is not identical to a training statement but produces the same normalized statement as one of them, so the firewall accepts it:
+   * Esta instrução não é idêntica a uma instrução de treinamento, mas produz a mesma instrução normalizada que uma delas, então o *firewall* a aceita:
 
      ```sql
      mysql> SELECT first_name, last_name FROM customer WHERE customer_id = '48';
@@ -247,7 +247,7 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
      +------------+-----------+
      ```
 
-   * These statements match nothing in the allowlist, so the firewall rejects each with an error:
+   * Estas instruções não correspondem a nada no *allowlist*, então o *firewall* rejeita cada uma com um erro:
 
      ```sql
      mysql> SELECT first_name, last_name FROM customer WHERE customer_id = 1 OR TRUE;
@@ -258,7 +258,7 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
      ERROR 1045 (28000): Statement was blocked by Firewall
      ```
 
-   * If the [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) system variable is enabled, the firewall also writes rejected statements to the error log. For example:
+   * Se a variável de sistema [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) estiver ativada, o *firewall* também registra as instruções rejeitadas no *error log*. Por exemplo:
 
      ```sql
      [Note] Plugin MYSQL_FIREWALL reported:
@@ -266,17 +266,17 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
      Statement: TRUNCATE TABLE `mysql` . `slow_log` '
      ```
 
-     These log messages may be helpful in identifying the source of attacks, should that be necessary.
+     Essas mensagens de *log* podem ser úteis para identificar a origem de ataques, caso seja necessário.
 
-The firewall account profile now is trained for the `fwuser@localhost` account. When clients connect using that account and attempt to execute statements, the profile protects MySQL against statements not matched by the profile allowlist.
+O *profile* de conta do *firewall* agora está treinado para a conta `fwuser@localhost`. Quando os clientes se conectam usando essa conta e tentam executar instruções, o *profile* protege o MySQL contra instruções que não correspondam ao *allowlist* do *profile*.
 
-It is possible to detect intrusions by logging nonmatching statements as suspicious without denying access. First, put the account profile in `DETECTING` mode:
+É possível detectar intrusões registrando instruções não correspondentes como suspeitas sem negar acesso. Primeiro, coloque o *profile* da conta no modo `DETECTING`:
 
 ```sql
 CALL mysql.sp_set_firewall_mode('fwuser@localhost', 'DETECTING');
 ```
 
-Then, using the account, execute a statement that does not match the account profile allowlist. In `DETECTING` mode, the firewall permits the nonmatching statement to execute:
+Em seguida, usando a conta, execute uma instrução que não corresponda ao *allowlist* do *profile* da conta. No modo `DETECTING`, o *firewall* permite que a instrução não correspondente seja executada:
 
 ```sql
 mysql> SHOW TABLES LIKE 'customer%';
@@ -288,7 +288,7 @@ mysql> SHOW TABLES LIKE 'customer%';
 +------------------------------+
 ```
 
-In addition, the firewall writes a message to the error log:
+Além disso, o *firewall* registra uma mensagem no *error log*:
 
 ```sql
 [Note] Plugin MYSQL_FIREWALL reported:
@@ -296,23 +296,23 @@ In addition, the firewall writes a message to the error log:
 Statement: SHOW TABLES LIKE ? '
 ```
 
-To disable an account profile, change its mode to `OFF`:
+Para desativar um *profile* de conta, altere seu modo para `OFF`:
 
 ```sql
 CALL mysql.sp_set_firewall_mode(user, 'OFF');
 ```
 
-To forget all training for a profile and disable it, reset it:
+Para esquecer todo o treinamento de um *profile* e desativá-lo, reinicie-o (*reset*):
 
 ```sql
 CALL mysql.sp_set_firewall_mode(user, 'RESET');
 ```
 
-The reset operation causes the firewall to delete all rules for the profile and set its mode to `OFF`.
+A operação de *reset* faz com que o *firewall* exclua todas as regras para o *profile* e defina seu modo para `OFF`.
 
-##### Monitoring the Firewall
+##### Monitorando o Firewall
 
-To assess firewall activity, examine its status variables. For example, after performing the procedure shown earlier to train and protect the `fwuser@localhost` account, the variables look like this:
+Para avaliar a atividade do *firewall*, examine suas variáveis de *status*. Por exemplo, após executar o procedimento mostrado anteriormente para treinar e proteger a conta `fwuser@localhost`, as variáveis se parecem com isto:
 
 ```sql
 mysql> SHOW GLOBAL STATUS LIKE 'Firewall%';
@@ -326,4 +326,4 @@ mysql> SHOW GLOBAL STATUS LIKE 'Firewall%';
 +----------------------------+-------+
 ```
 
-The variables indicate the number of statements rejected, accepted, logged as suspicious, and added to the cache, respectively. The [`Firewall_access_granted`](firewall-reference.html#statvar_Firewall_access_granted) count is 4 because of the `@@version_comment` statement sent by the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client each of the three times you connected using the registered account, plus the [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") statement that was not blocked in `DETECTING` mode.
+As variáveis indicam o número de instruções rejeitadas, aceitas, registradas como suspeitas e adicionadas ao *cache*, respectivamente. A contagem [`Firewall_access_granted`](firewall-reference.html#statvar_Firewall_access_granted) é 4 devido à instrução `@@version_comment` enviada pelo cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") em cada uma das três vezes que você se conectou usando a conta registrada, mais a instrução [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") que não foi bloqueada no modo `DETECTING`.

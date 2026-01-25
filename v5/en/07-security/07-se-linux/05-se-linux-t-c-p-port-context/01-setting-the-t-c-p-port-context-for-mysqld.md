@@ -1,14 +1,14 @@
-#### 6.7.5.1 Setting the TCP Port Context for mysqld
+#### 6.7.5.1 Configurando o Contexto da TCP Port para o mysqld
 
-The default TCP port for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is `3306`; and the SELinux context type used is `mysqld_port_t`.
+A TCP Port padrão para o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") é `3306`; e o tipo de contexto SELinux usado é `mysqld_port_t`.
 
-If you configure [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to use a different TCP [`port`](server-system-variables.html#sysvar_port), you may need to set the context for the new port. For example to define the SELinux context for a non-default port such as port 3307:
+Se você configurar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") para usar uma [`port`](server-system-variables.html#sysvar_port) TCP diferente, pode ser necessário definir o contexto para a nova port. Por exemplo, para definir o contexto SELinux para uma port não-padrão, como a port 3307:
 
 ```sql
 semanage port -a -t mysqld_port_t -p tcp 3307
 ```
 
-To confirm that the port is added:
+Para confirmar que a port foi adicionada:
 
 ```sql
 $> semanage port -l | grep mysqld

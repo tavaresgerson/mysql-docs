@@ -1,16 +1,16 @@
-#### 5.7.2.2 Starting Multiple MySQL Instances as Windows Services
+#### 5.7.2.2 Iniciando Múltiplas Instâncias MySQL como Windows Services
 
-On Windows, a MySQL server can run as a Windows service. The procedures for installing, controlling, and removing a single MySQL service are described in [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").
+No Windows, um MySQL server pode rodar como um Windows service. Os procedimentos para instalar, controlar e remover um único MySQL service estão descritos na [Seção 2.3.4.8, “Iniciando o MySQL como um Windows Service”](windows-start-service.html "2.3.4.8 Iniciando o MySQL como um Windows Service").
 
-To set up multiple MySQL services, you must make sure that each instance uses a different service name in addition to the other parameters that must be unique per instance.
+Para configurar múltiplos MySQL services, você deve garantir que cada instance utilize um service name diferente, além dos outros parâmetros que devem ser únicos por instance.
 
-For the following instructions, suppose that you want to run the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server from two different versions of MySQL that are installed at `C:\mysql-5.7.9` and `C:\mysql-5.7.44`, respectively. (This might be the case if you are running 5.7.9 as your production server, but also want to conduct tests using 5.7.44.)
+Para as instruções a seguir, suponha que você queira rodar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server a partir de duas versões diferentes do MySQL que estão instaladas em `C:\mysql-5.7.9` e `C:\mysql-5.7.44`, respectivamente. (Este pode ser o caso se você estiver rodando a versão 5.7.9 como seu production server, mas também desejar conduzir testes usando a 5.7.44.)
 
-To install MySQL as a Windows service, use the `--install` or `--install-manual` option. For information about these options, see [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").
+Para instalar o MySQL como um Windows service, use as opções `--install` ou `--install-manual`. Para informações sobre estas options, consulte a [Seção 2.3.4.8, “Iniciando o MySQL como um Windows Service”](windows-start-service.html "2.3.4.8 Iniciando o MySQL como um Windows Service").
 
-Based on the preceding information, you have several ways to set up multiple services. The following instructions describe some examples. Before trying any of them, shut down and remove any existing MySQL services.
+Com base nas informações precedentes, você tem várias maneiras de configurar múltiplos services. As instruções a seguir descrevem alguns exemplos. Antes de tentar qualquer um deles, desligue e remova quaisquer MySQL services existentes.
 
-* **Approach 1:** Specify the options for all services in one of the standard option files. To do this, use a different service name for each server. Suppose that you want to run the 5.7.9 [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") using the service name of `mysqld1` and the 5.7.44 [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") using the service name `mysqld2`. In this case, you can use the `[mysqld1]` group for 5.7.9 and the `[mysqld2]` group for 5.7.44. For example, you can set up `C:\my.cnf` like this:
+* **Abordagem 1:** Especifique as options para todos os services em um dos option files padrão. Para fazer isso, use um service name diferente para cada server. Suponha que você queira rodar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") 5.7.9 usando o service name `mysqld1` e o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") 5.7.44 usando o service name `mysqld2`. Neste caso, você pode usar o group `[mysqld1]` para o 5.7.9 e o group `[mysqld2]` para o 5.7.44. Por exemplo, você pode configurar o `C:\my.cnf` desta forma:
 
   ```sql
   # options for mysqld1 service
@@ -28,30 +28,30 @@ Based on the preceding information, you have several ways to set up multiple ser
   socket = mypipe2
   ```
 
-  Install the services as follows, using the full server path names to ensure that Windows registers the correct executable program for each service:
+  Instale os services da seguinte forma, usando os path names completos do server para garantir que o Windows registre o programa executável correto para cada service:
 
   ```sql
   C:\> C:\mysql-5.7.9\bin\mysqld --install mysqld1
   C:\> C:\mysql-5.7.44\bin\mysqld --install mysqld2
   ```
 
-  To start the services, use the services manager, or **NET START** or **SC START** with the appropriate service names:
+  Para iniciar os services, use o gerenciador de services, ou **NET START** ou **SC START** com os service names apropriados:
 
   ```sql
   C:\> SC START mysqld1
   C:\> SC START mysqld2
   ```
 
-  To stop the services, use the services manager, or use **NET STOP** or **SC STOP** with the appropriate service names:
+  Para parar os services, use o gerenciador de services, ou use **NET STOP** ou **SC STOP** com os service names apropriados:
 
   ```sql
   C:\> SC STOP mysqld1
   C:\> SC STOP mysqld2
   ```
 
-* **Approach 2:** Specify options for each server in separate files and use [`--defaults-file`](option-file-options.html#option_general_defaults-file) when you install the services to tell each server what file to use. In this case, each file should list options using a `[mysqld]` group.
+* **Abordagem 2:** Especifique options para cada server em files separados e use [`--defaults-file`](option-file-options.html#option_general_defaults-file) ao instalar os services para informar a cada server qual file usar. Neste caso, cada file deve listar as options usando um group `[mysqld]`.
 
-  With this approach, to specify options for the 5.7.9 [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), create a file `C:\my-opts1.cnf` that looks like this:
+  Com esta abordagem, para especificar options para o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") 5.7.9, crie um file `C:\my-opts1.cnf` com a seguinte aparência:
 
   ```sql
   [mysqld]
@@ -61,7 +61,7 @@ Based on the preceding information, you have several ways to set up multiple ser
   socket = mypipe1
   ```
 
-  For the 5.7.44 [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), create a file `C:\my-opts2.cnf` that looks like this:
+  Para o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") 5.7.44, crie um file `C:\my-opts2.cnf` com a seguinte aparência:
 
   ```sql
   [mysqld]
@@ -71,7 +71,7 @@ Based on the preceding information, you have several ways to set up multiple ser
   socket = mypipe2
   ```
 
-  Install the services as follows (enter each command on a single line):
+  Instale os services da seguinte forma (digite cada comando em uma única linha):
 
   ```sql
   C:\> C:\mysql-5.7.9\bin\mysqld --install mysqld1
@@ -80,8 +80,8 @@ Based on the preceding information, you have several ways to set up multiple ser
              --defaults-file=C:\my-opts2.cnf
   ```
 
-  When you install a MySQL server as a service and use a [`--defaults-file`](option-file-options.html#option_general_defaults-file) option, the service name must precede the option.
+  Quando você instala um MySQL server como um service e usa a option [`--defaults-file`](option-file-options.html#option_general_defaults-file), o service name deve preceder a option.
 
-  After installing the services, start and stop them the same way as in the preceding example.
+  Após instalar os services, inicie e pare-os da mesma forma que no exemplo precedente.
 
-To remove multiple services, use **SC DELETE *`mysqld_service_name`*** for each one. Alternatively, use [**mysqld --remove**](mysqld.html "4.3.1 mysqld — The MySQL Server") for each one, specifying a service name following the [`--remove`](server-options.html#option_mysqld_remove) option. If the service name is the default (`MySQL`), you can omit it when using [**mysqld --remove**](mysqld.html "4.3.1 mysqld — The MySQL Server").
+Para remover múltiplos services, use **SC DELETE *`mysqld_service_name`*** para cada um. Alternativamente, use [**mysqld --remove**](mysqld.html "4.3.1 mysqld — The MySQL Server") para cada um, especificando um service name após a option [`--remove`](server-options.html#option_mysqld_remove). Se o service name for o padrão (`MySQL`), você pode omiti-lo ao usar [**mysqld --remove**](mysqld.html "4.3.1 mysqld — The MySQL Server").

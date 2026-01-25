@@ -1,10 +1,10 @@
-## 10.15 Character Set Configuration
+## 10.15 Configuração de Character Set
 
-The MySQL server has a compiled-in default character set and collation. To change these defaults, use the `--character-set-server` and `--collation-server` options when you start the server. See Section 5.1.6, “Server Command Options”. The collation must be a legal collation for the default character set. To determine which collations are available for each character set, use the `SHOW COLLATION` statement or query the `INFORMATION_SCHEMA` `COLLATIONS` table.
+O Server MySQL possui um Character Set e um Collation padrão embutidos na compilação. Para alterar esses padrões, use as opções `--character-set-server` e `--collation-server` ao iniciar o Server. Consulte a Seção 5.1.6, "Opções de Comando do Server". O Collation deve ser um Collation válido para o Character Set padrão. Para determinar quais Collations estão disponíveis para cada Character Set, use a instrução `SHOW COLLATION` ou execute uma Query na tabela `COLLATIONS` do `INFORMATION_SCHEMA`.
 
-If you try to use a character set that is not compiled into your binary, you might run into the following problems:
+Se você tentar usar um Character Set que não está compilado em seu binário, poderá encontrar os seguintes problemas:
 
-* If your program uses an incorrect path to determine where the character sets are stored (which is typically the `share/mysql/charsets` or `share/charsets` directory under the MySQL installation directory), this can be fixed by using the `--character-sets-dir` option when you run the program. For example, to specify a directory to be used by MySQL client programs, list it in the `[client]` group of your option file. The examples given here show what the setting might look like for Unix or Windows, respectively:
+* Se o seu programa usar um caminho incorreto para determinar onde os Character Sets estão armazenados (que geralmente é o diretório `share/mysql/charsets` ou `share/charsets` sob o diretório de instalação do MySQL), isso pode ser corrigido usando a opção `--character-sets-dir` ao executar o programa. Por exemplo, para especificar um diretório a ser usado pelos programas Client do MySQL, liste-o no grupo `[client]` do seu arquivo de opções. Os exemplos fornecidos aqui mostram como a configuração pode parecer para Unix ou Windows, respectivamente:
 
   ```sql
   [client]
@@ -14,26 +14,26 @@ If you try to use a character set that is not compiled into your binary, you mig
   character-sets-dir="C:/Program Files/MySQL/MySQL Server 5.7/share/charsets"
   ```
 
-* If the character set is a complex character set that cannot be loaded dynamically, you must recompile the program with support for the character set.
+* Se o Character Set for um Character Set complexo que não pode ser carregado dinamicamente, você deve recompilar o programa com suporte para esse Character Set.
 
-  For Unicode character sets, you can define collations without recompiling by using LDML notation. See Section 10.14.4, “Adding a UCA Collation to a Unicode Character Set”.
+  Para Character Sets Unicode, você pode definir Collations sem recompilar, usando a notação LDML. Consulte a Seção 10.14.4, “Adicionar um UCA Collation a um Unicode Character Set”.
 
-* If the character set is a dynamic character set, but you do not have a configuration file for it, you should install the configuration file for the character set from a new MySQL distribution.
+* Se o Character Set for um Character Set dinâmico, mas você não tiver um arquivo de configuração para ele, você deve instalar o arquivo de configuração do Character Set a partir de uma nova distribuição MySQL.
 
-* If your character set index file (`Index.xml`) does not contain the name for the character set, your program displays an error message:
+* Se o seu arquivo de Index de Character Set (`Index.xml`) não contiver o nome do Character Set, seu programa exibirá uma mensagem de erro:
 
   ```sql
   Character set 'charset_name' is not a compiled character set and is not
   specified in the '/usr/share/mysql/charsets/Index.xml' file
   ```
 
-  To solve this problem, you should either get a new index file or manually add the name of any missing character sets to the current file.
+  Para resolver este problema, você deve obter um novo arquivo de Index ou adicionar manualmente o nome de quaisquer Character Sets ausentes ao arquivo atual.
 
-You can force client programs to use specific character set as follows:
+Você pode forçar programas Client a usar Character Sets específicos da seguinte forma:
 
 ```sql
 [client]
 default-character-set=charset_name
 ```
 
-This is normally unnecessary. However, when `character_set_system` differs from `character_set_server` or `character_set_client`, and you input characters manually (as database object identifiers, column values, or both), these may be displayed incorrectly in output from the client or the output itself may be formatted incorrectly. In such cases, starting the mysql client with `--default-character-set=system_character_set`—that is, setting the client character set to match the system character set—should fix the problem.
+Isso geralmente é desnecessário. No entanto, quando `character_set_system` difere de `character_set_server` ou `character_set_client`, e você insere caracteres manualmente (como identificadores de objeto de Database, valores de coluna ou ambos), eles podem ser exibidos incorretamente na saída do Client, ou a própria saída pode ser formatada incorretamente. Nesses casos, iniciar o Client mysql com `--default-character-set=system_character_set` — isto é, configurando o Character Set do Client para corresponder ao Character Set do sistema — deve corrigir o problema.

@@ -1,8 +1,8 @@
-### 6.6.1 MySQL Enterprise Encryption Installation
+### 6.6.1 Instalação do MySQL Enterprise Encryption
 
-MySQL Enterprise Encryption functions are located in a loadable function library file installed in the plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). The function library base name is `openssl_udf` and the suffix is platform dependent. For example, the file name on Linux or Windows is `openssl_udf.so` or `openssl_udf.dll`, respectively.
+As funções do MySQL Enterprise Encryption estão localizadas em um arquivo de biblioteca de funções carregável instalado no *plugin directory* (o diretório nomeado pela *system variable* [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). O nome base da biblioteca de funções é `openssl_udf` e o sufixo depende da plataforma. Por exemplo, o nome do arquivo no Linux ou Windows é `openssl_udf.so` ou `openssl_udf.dll`, respectivamente.
 
-To install functions from the library file, use the [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") statement. To load all functions from the library, use this set of statements, adjusting the file name suffix as necessary:
+Para instalar funções a partir do arquivo de biblioteca, use a instrução [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). Para carregar todas as funções da biblioteca, use este conjunto de instruções, ajustando o sufixo do nome do arquivo conforme necessário:
 
 ```sql
 CREATE FUNCTION asymmetric_decrypt RETURNS STRING
@@ -25,7 +25,7 @@ CREATE FUNCTION create_digest RETURNS STRING
   SONAME 'openssl_udf.so';
 ```
 
-Once installed, the functions remain installed across server restarts. To unload the functions, use the [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") statement:
+Uma vez instaladas, as funções permanecem instaladas mesmo após reinicializações do servidor. Para descarregar as funções, use a instrução [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"):
 
 ```sql
 DROP FUNCTION asymmetric_decrypt;
@@ -39,6 +39,6 @@ DROP FUNCTION create_dh_parameters;
 DROP FUNCTION create_digest;
 ```
 
-In the [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") and [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") statements, the function names must be specified in lowercase. This differs from their use at function invocation time, for which you can use any lettercase.
+Nas instruções [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") e [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"), os nomes das funções devem ser especificados em minúsculas. Isso difere do seu uso no momento da invocação da função, para o qual você pode usar qualquer caixa de letra.
 
-The [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") and [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") statements require the [`INSERT`](privileges-provided.html#priv_insert) and [`DROP`](privileges-provided.html#priv_drop) privilege, respectively, for the `mysql` database.
+As instruções [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") e [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") exigem o *privilege* [`INSERT`](privileges-provided.html#priv_insert) e [`DROP`](privileges-provided.html#priv_drop), respectivamente, para o *database* `mysql`.

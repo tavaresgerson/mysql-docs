@@ -1,18 +1,18 @@
-### 8.12.3 Using Symbolic Links
+### 8.12.3 Usando Links Simbólicos
 
-8.12.3.1 Using Symbolic Links for Databases on Unix
+8.12.3.1 Usando Links Simbólicos para Databases no Unix
 
-8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix
+8.12.3.2 Usando Links Simbólicos para Tabelas MyISAM no Unix
 
-8.12.3.3 Using Symbolic Links for Databases on Windows
+8.12.3.3 Usando Links Simbólicos para Databases no Windows
 
-You can move databases or tables from the database directory to other locations and replace them with symbolic links to the new locations. You might want to do this, for example, to move a database to a file system with more free space or increase the speed of your system by spreading your tables to different disks.
+Você pode mover databases ou tabelas do diretório de database para outros locais e substituí-los por links simbólicos que apontam para os novos locais. Você pode querer fazer isso, por exemplo, para mover um database para um sistema de arquivos com mais espaço livre ou para aumentar a velocidade do seu sistema distribuindo suas tabelas em discos diferentes.
 
-For `InnoDB` tables, use the `DATA DIRECTORY` clause of the `CREATE TABLE` statement instead of symbolic links, as explained in Section 14.6.1.2, “Creating Tables Externally”. This new feature is a supported, cross-platform technique.
+Para tabelas `InnoDB`, utilize a cláusula `DATA DIRECTORY` do comando `CREATE TABLE` em vez de links simbólicos, conforme explicado na Seção 14.6.1.2, “Criando Tabelas Externamente”. Este novo recurso é uma técnica suportada e multiplataforma (cross-platform).
 
-The recommended way to do this is to symlink entire database directories to a different disk. Symlink `MyISAM` tables only as a last resort.
+A maneira recomendada de fazer isso é criar links simbólicos (symlink) para diretórios de databases inteiros em um disco diferente. Crie links simbólicos para tabelas `MyISAM` apenas como último recurso.
 
-To determine the location of your data directory, use this statement:
+Para determinar a localização do seu diretório de dados (data directory), utilize este comando:
 
 ```sql
 SHOW VARIABLES LIKE 'datadir';

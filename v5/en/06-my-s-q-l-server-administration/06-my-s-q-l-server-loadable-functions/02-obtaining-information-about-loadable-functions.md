@@ -1,25 +1,25 @@
-### 5.6.2 Obtaining Information About Loadable Functions
+### 5.6.2 Obtendo Informações Sobre Funções Carregáveis
 
-The `mysql.func` system table shows which loadable functions have been registered using [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement"):
+A tabela de sistema `mysql.func` mostra quais funções carregáveis foram registradas usando o comando [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement"):
 
 ```sql
 SELECT * FROM mysql.func;
 ```
 
-The `func` table has these columns:
+A tabela `func` possui estas colunas:
 
 * `name`
 
-  The function name as referred to in SQL statements.
+  O nome da FUNCTION conforme referenciado nos comandos SQL.
 
 * `ret`
 
-  The function return value type. Permitted values are 0 (`STRING`), 1 (`REAL`), 2 (`INTEGER`), 3 (`ROW`), or 4 (`DECIMAL`).
+  O tipo do valor de retorno da FUNCTION. Os valores permitidos são 0 (`STRING`), 1 (`REAL`), 2 (`INTEGER`), 3 (`ROW`) ou 4 (`DECIMAL`).
 
 * `dl`
 
-  The name of the function library file containing the executable function code. The file is located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+  O nome do arquivo da biblioteca da FUNCTION contendo o código executável da FUNCTION. O arquivo está localizado no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir).
 
 * `type`
 
-  The function type, either `function` (scalar) or `aggregate`.
+  O tipo da FUNCTION, sendo `function` (escalar) ou `aggregate`.

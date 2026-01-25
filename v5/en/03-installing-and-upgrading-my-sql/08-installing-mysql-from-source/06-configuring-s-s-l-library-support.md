@@ -1,34 +1,34 @@
-### 2.8.6 Configuring SSL Library Support
+### 2.8.6 Configurando o Suporte à Biblioteca SSL
 
-An SSL library is required for support of encrypted connections, entropy for random number generation, and other encryption-related operations. Your system must support either OpenSSL or yaSSL:
+Uma biblioteca SSL é necessária para o suporte a conexões criptografadas, entropia para geração de números aleatórios e outras operações relacionadas à criptografia. Seu sistema deve suportar OpenSSL ou yaSSL:
 
-* All MySQL Enterprise Edition binary distributions are compiled using OpenSSL. It is not possible to use yaSSL with MySQL Enterprise Edition.
+* Todas as distribuições binárias do MySQL Enterprise Edition são compiladas usando OpenSSL. Não é possível usar yaSSL com o MySQL Enterprise Edition.
 
-* Prior to MySQL 5.7.28, MySQL Community Edition binary distributions are compiled using yaSSL. As of MySQL 5.7.28, support for yaSSL is removed and all MySQL builds use OpenSSL.
+* Antes do MySQL 5.7.28, as distribuições binárias do MySQL Community Edition eram compiladas usando yaSSL. A partir do MySQL 5.7.28, o suporte ao yaSSL foi removido e todas as *builds* do MySQL usam OpenSSL.
 
-* Prior to MySQL 5.7.28, MySQL Community Edition source distributions can be compiled using either OpenSSL or yaSSL. As of MySQL 5.7.28, support for yaSSL is removed.
+* Antes do MySQL 5.7.28, as distribuições de código-fonte do MySQL Community Edition podiam ser compiladas usando OpenSSL ou yaSSL. A partir do MySQL 5.7.28, o suporte ao yaSSL foi removido.
 
-If you compile MySQL from a source distribution, **CMake** configures the distribution to use the installed OpenSSL library by default.
+Se você compilar o MySQL a partir de uma distribuição de código-fonte, o **CMake** configura a distribuição para usar a biblioteca OpenSSL instalada por padrão.
 
-To compile using OpenSSL, use this procedure:
+Para compilar usando OpenSSL, utilize este procedimento:
 
-1. Ensure that OpenSSL 1.0.1 or newer is installed on your system. If the installed OpenSSL version is older than 1.0.1, **CMake** produces an error at MySQL configuration time. If it is necessary to obtain OpenSSL, visit <http://www.openssl.org>.
+1. Certifique-se de que o OpenSSL 1.0.1 ou mais recente esteja instalado no seu sistema. Se a versão do OpenSSL instalada for anterior a 1.0.1, o **CMake** produzirá um erro no momento da configuração do MySQL. Se for necessário obter o OpenSSL, visite <http://www.openssl.org>.
 
-2. The `WITH_SSL` **CMake** option determines which SSL library to use for compiling MySQL (see Section 2.8.7, “MySQL Source-Configuration Options”). The default is `-DWITH_SSL=system`, which uses OpenSSL. To make this explicit, specify that option. For example:
+2. A opção `WITH_SSL` do **CMake** determina qual biblioteca SSL usar para compilar o MySQL (consulte a Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”). O padrão é `-DWITH_SSL=system`, que usa OpenSSL. Para tornar isso explícito, especifique essa opção. Por exemplo:
 
    ```sql
    cmake . -DWITH_SSL=system
    ```
 
-   That command configures the distribution to use the installed OpenSSL library. Alternatively, to explicitly specify the path name to the OpenSSL installation, use the following syntax. This can be useful if you have multiple versions of OpenSSL installed, to prevent **CMake** from choosing the wrong one:
+   Esse comando configura a distribuição para usar a biblioteca OpenSSL instalada. Alternativamente, para especificar explicitamente o nome do *path* (caminho) para a instalação do OpenSSL, use a seguinte sintaxe. Isso pode ser útil se você tiver várias versões do OpenSSL instaladas, para evitar que o **CMake** escolha a errada:
 
    ```sql
    cmake . -DWITH_SSL=path_name
    ```
 
-3. Compile and install the distribution.
+3. Compile e instale a distribuição.
 
-To check whether a **mysqld** server supports encrypted connections, examine the value of the `have_ssl` system variable:
+Para verificar se um servidor **mysqld** suporta conexões criptografadas, examine o valor da variável de sistema `have_ssl`:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'have_ssl';
@@ -39,6 +39,6 @@ mysql> SHOW VARIABLES LIKE 'have_ssl';
 +---------------+-------+
 ```
 
-If the value is `YES`, the server supports encrypted connections. If the value is `DISABLED`, the server is capable of supporting encrypted connections but was not started with the appropriate `--ssl-xxx` options to enable encrypted connections to be used; see Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”.
+Se o valor for `YES`, o servidor suporta conexões criptografadas. Se o valor for `DISABLED`, o servidor é capaz de suportar conexões criptografadas, mas não foi iniciado com as opções `--ssl-xxx` apropriadas para permitir que conexões criptografadas sejam utilizadas; consulte a Seção 6.3.1, “Configurando o MySQL para Usar Conexões Criptografadas”.
 
-To determine whether a server was compiled using OpenSSL or yaSSL, check the existence of any of the system or status variables that are present only for OpenSSL. See Section 6.3.4, “SSL Library-Dependent Capabilities”.
+Para determinar se um servidor foi compilado usando OpenSSL ou yaSSL, verifique a existência de qualquer uma das variáveis de sistema ou de *status* que estão presentes apenas para OpenSSL. Consulte a Seção 6.3.4, “Capacidades Dependentes da Biblioteca SSL”.

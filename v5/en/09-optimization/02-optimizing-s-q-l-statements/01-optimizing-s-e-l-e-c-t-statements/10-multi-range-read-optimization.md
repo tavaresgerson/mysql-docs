@@ -1,39 +1,39 @@
-#### 8.2.1.10 Multi-Range Read Optimization
+#### 8.2.1.10 Otimização Multi-Range Read
 
-Reading rows using a range scan on a secondary index can result in many random disk accesses to the base table when the table is large and not stored in the storage engine's cache. With the Disk-Sweep Multi-Range Read (MRR) optimization, MySQL tries to reduce the number of random disk access for range scans by first scanning the index only and collecting the keys for the relevant rows. Then the keys are sorted and finally the rows are retrieved from the base table using the order of the primary key. The motivation for Disk-sweep MRR is to reduce the number of random disk accesses and instead achieve a more sequential scan of the base table data.
+A leitura de linhas usando um *range scan* em um *secondary index* pode resultar em muitos *disk accesses* aleatórios à *base table* quando a tabela é grande e não está armazenada no *cache* do *storage engine*. Com a otimização *Disk-Sweep Multi-Range Read* (MRR), o MySQL tenta reduzir o número de *disk accesses* aleatórios para *range scans*, primeiro escaneando apenas o *index* e coletando as *keys* para as linhas relevantes. Em seguida, as *keys* são ordenadas e, finalmente, as linhas são recuperadas da *base table* usando a ordem da *primary key*. A motivação para o *Disk-sweep* MRR é reduzir o número de *disk accesses* aleatórios e, em vez disso, alcançar um *scan* mais sequencial dos dados da *base table*.
 
-The Multi-Range Read optimization provides these benefits:
+A otimização *Multi-Range Read* oferece os seguintes benefícios:
 
-* MRR enables data rows to be accessed sequentially rather than in random order, based on index tuples. The server obtains a set of index tuples that satisfy the query conditions, sorts them according to data row ID order, and uses the sorted tuples to retrieve data rows in order. This makes data access more efficient and less expensive.
+*   O MRR permite que as linhas de dados sejam acessadas sequencialmente, em vez de em ordem aleatória, com base em *index tuples*. O servidor obtém um conjunto de *index tuples* que satisfazem as condições da *Query*, classifica-os de acordo com a ordem do ID da linha de dados e usa os *tuples* classificados para recuperar as linhas de dados em ordem. Isso torna o acesso aos dados mais eficiente e menos custoso.
 
-* MRR enables batch processing of requests for key access for operations that require access to data rows through index tuples, such as range index scans and equi-joins that use an index for the join attribute. MRR iterates over a sequence of index ranges to obtain qualifying index tuples. As these results accumulate, they are used to access the corresponding data rows. It is not necessary to acquire all index tuples before starting to read data rows.
+*   O MRR permite o processamento em lote de solicitações para acesso por *key* em operações que exigem acesso a linhas de dados por meio de *index tuples*, como *range index scans* e *equi-joins* que usam um *index* para o atributo de *join*. O MRR itera sobre uma sequência de *index ranges* para obter *index tuples* qualificados. À medida que esses resultados se acumulam, eles são usados para acessar as linhas de dados correspondentes. Não é necessário adquirir todos os *index tuples* antes de começar a ler as linhas de dados.
 
-The MRR optimization is not supported with secondary indexes created on virtual generated columns. `InnoDB` supports secondary indexes on virtual generated columns.
+A otimização MRR não é suportada com *secondary indexes* criados em colunas geradas virtuais. O `InnoDB` suporta *secondary indexes* em colunas geradas virtuais.
 
-The following scenarios illustrate when MRR optimization can be advantageous:
+Os seguintes cenários ilustram quando a otimização MRR pode ser vantajosa:
 
-Scenario A: MRR can be used for `InnoDB` and `MyISAM` tables for index range scans and equi-join operations.
+Cenário A: O MRR pode ser usado para tabelas `InnoDB` e `MyISAM` para *index range scans* e operações *equi-join*.
 
-1. A portion of the index tuples are accumulated in a buffer.
-2. The tuples in the buffer are sorted by their data row ID.
-3. Data rows are accessed according to the sorted index tuple sequence.
+1. Uma parte dos *index tuples* é acumulada em um *buffer*.
+2. Os *tuples* no *buffer* são classificados pelo ID da linha de dados.
+3. As linhas de dados são acessadas de acordo com a sequência de *index tuples* classificados.
 
-Scenario B: MRR can be used for `NDB` tables for multiple-range index scans or when performing an equi-join by an attribute.
+Cenário B: O MRR pode ser usado para tabelas `NDB` para *multiple-range index scans* ou ao executar um *equi-join* por um atributo.
 
-1. A portion of ranges, possibly single-key ranges, is accumulated in a buffer on the central node where the query is submitted.
+1. Uma parte dos *ranges*, possivelmente *single-key ranges*, é acumulada em um *buffer* no nó central onde a *Query* é submetida.
 
-2. The ranges are sent to the execution nodes that access data rows.
+2. Os *ranges* são enviados aos nós de execução que acessam as linhas de dados.
 
-3. The accessed rows are packed into packages and sent back to the central node.
+3. As linhas acessadas são empacotadas em pacotes e enviadas de volta ao nó central.
 
-4. The received packages with data rows are placed in a buffer.
+4. Os pacotes recebidos com linhas de dados são colocados em um *buffer*.
 
-5. Data rows are read from the buffer.
+5. As linhas de dados são lidas do *buffer*.
 
-When MRR is used, the `Extra` column in `EXPLAIN` output shows `Using MRR`.
+Quando o MRR é usado, a coluna `Extra` na saída do `EXPLAIN` mostra `Using MRR`.
 
-`InnoDB` and `MyISAM` do not use MRR if full table rows need not be accessed to produce the query result. This is the case if results can be produced entirely on the basis on information in the index tuples (through a covering index); MRR provides no benefit.
+O `InnoDB` e o `MyISAM` não usam o MRR se as linhas completas da tabela não precisarem ser acessadas para produzir o resultado da *Query*. Este é o caso se os resultados puderem ser produzidos inteiramente com base nas informações nos *index tuples* (por meio de um *covering index*); o MRR não oferece benefício.
 
-Two `optimizer_switch` system variable flags provide an interface to the use of MRR optimization. The `mrr` flag controls whether MRR is enabled. If `mrr` is enabled (`on`), the `mrr_cost_based` flag controls whether the optimizer attempts to make a cost-based choice between using and not using MRR (`on`) or uses MRR whenever possible (`off`). By default, `mrr` is `on` and `mrr_cost_based` is `on`. See Section 8.9.2, “Switchable Optimizations”.
+Duas *flags* da *system variable* `optimizer_switch` fornecem uma interface para o uso da otimização MRR. A *flag* `mrr` controla se o MRR está habilitado. Se `mrr` estiver habilitada (`on`), a *flag* `mrr_cost_based` controla se o *optimizer* tenta fazer uma escolha baseada em custo entre usar ou não o MRR (`on`) ou usa o MRR sempre que possível (`off`). Por padrão, `mrr` é `on` e `mrr_cost_based` é `on`. Consulte a Seção 8.9.2, “Otimizações Alternáveis”.
 
-For MRR, a storage engine uses the value of the `read_rnd_buffer_size` system variable as a guideline for how much memory it can allocate for its buffer. The engine uses up to `read_rnd_buffer_size` bytes and determines the number of ranges to process in a single pass.
+Para o MRR, um *storage engine* usa o valor da *system variable* `read_rnd_buffer_size` como uma diretriz para a quantidade de memória que pode alocar para seu *buffer*. O *engine* usa até `read_rnd_buffer_size` bytes e determina o número de *ranges* a serem processados em uma única passagem.

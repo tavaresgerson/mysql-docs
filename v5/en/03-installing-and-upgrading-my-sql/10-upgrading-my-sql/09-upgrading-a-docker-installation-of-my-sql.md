@@ -1,3 +1,3 @@
-### 2.10.9 Upgrading a Docker Installation of MySQL
+### 2.10.9 Atualizando uma Instalação Docker do MySQL
 
-To upgrade a Docker installation of MySQL, refer to Upgrading a MySQL Server Container.
+Para atualizar uma instalação Docker do MySQL, consulte Atualizando um Container de Servidor MySQL.

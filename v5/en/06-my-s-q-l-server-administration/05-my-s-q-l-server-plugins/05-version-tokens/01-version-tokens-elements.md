@@ -1,9 +1,9 @@
-#### 5.5.5.1 Version Tokens Elements
+#### 5.5.5.1 Elementos de Version Tokens
 
-Version Tokens is based on a plugin library that implements these elements:
+Version Tokens é baseado em uma biblioteca de plugin que implementa estes elementos:
 
-* A server-side plugin named `version_tokens` holds the list of version tokens associated with the server and subscribes to notifications for statement execution events. The `version_tokens` plugin uses the [audit plugin API](/doc/extending-mysql/5.7/en/plugin-types.html#audit-plugin-type) to monitor incoming statements from clients and matches each client's session-specific version token list against the server version token list. If there is a match, the plugin lets the statement through and the server continues to process it. Otherwise, the plugin returns an error to the client and the statement fails.
+*   Um plugin do lado do server chamado `version_tokens` mantém a lista de version tokens associada ao server e se inscreve para notificações de eventos de execução de statement. O plugin `version_tokens` usa a [audit plugin API](/doc/extending-mysql/5.7/en/plugin-types.html#audit-plugin-type) para monitorar statements de entrada de clients e compara a lista de version tokens específica da session de cada client com a lista de version tokens do server. Se houver uma correspondência, o plugin permite a passagem do statement e o server continua a processá-lo. Caso contrário, o plugin retorna um erro ao client e o statement falha.
 
-* A set of loadable functions provides an SQL-level API for manipulating and inspecting the list of server version tokens maintained by the plugin. The [`SUPER`](privileges-provided.html#priv_super) privilege is required to call any of the Version Token functions.
+*   Um conjunto de funções carregáveis fornece uma API em nível SQL para manipular e inspecionar a lista de version tokens do server mantida pelo plugin. O privilege [`SUPER`](privileges-provided.html#priv_super) é exigido para chamar qualquer uma das funções de Version Token.
 
-* A system variable enables clients to specify the list of version tokens that register the required server state. If the server has a different state when a client sends a statement, the client receives an error.
+*   Uma variável de sistema permite que os clients especifiquem a lista de version tokens que registram o estado de server exigido. Se o server estiver em um estado diferente quando um client envia um statement, o client recebe um erro.

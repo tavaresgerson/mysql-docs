@@ -1,45 +1,45 @@
-## 5.5 MySQL Server Plugins
+## 5.5 Plugins do MySQL Server
 
-[5.5.1 Installing and Uninstalling Plugins](plugin-loading.html)
+[5.5.1 Instalando e Desinstalando Plugins](plugin-loading.html)
 
-[5.5.2 Obtaining Server Plugin Information](obtaining-plugin-information.html)
+[5.5.2 Obtendo Informações de Plugins do Server](obtaining-plugin-information.html)
 
-[5.5.3 MySQL Enterprise Thread Pool](thread-pool.html)
+[5.5.3 Thread Pool do MySQL Enterprise](thread-pool.html)
 
-[5.5.4 The Rewriter Query Rewrite Plugin](rewriter-query-rewrite-plugin.html)
+[5.5.4 O Plugin de Reescrita de Query Rewriter](rewriter-query-rewrite-plugin.html)
 
 [5.5.5 Version Tokens](version-tokens.html)
 
-[5.5.6 MySQL Plugin Services](plugin-services.html)
+[5.5.6 Serviços de Plugin do MySQL](plugin-services.html)
 
-MySQL supports an plugin API that enables creation of server plugins. Plugins can be loaded at server startup, or loaded and unloaded at runtime without restarting the server. The plugins supported by this interface include, but are not limited to, storage engines, `INFORMATION_SCHEMA` tables, full-text parser plugins, partitioning support, and server extensions.
+O MySQL suporta uma API de plugin que permite a criação de plugins do Server. Os Plugins podem ser carregados na inicialização do Server, ou carregados e descarregados em tempo de execução (runtime) sem reiniciar o Server. Os plugins suportados por esta interface incluem, mas não se limitam a, storage engines, tabelas `INFORMATION_SCHEMA`, plugins de parser full-text, suporte a particionamento e extensões do Server.
 
-MySQL distributions include several plugins that implement server extensions:
+As distribuições do MySQL incluem vários plugins que implementam extensões do Server:
 
-* Plugins for authenticating attempts by clients to connect to MySQL Server. Plugins are available for several authentication protocols. See [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
+* Plugins para autenticar tentativas de Clients de se conectarem ao MySQL Server. Plugins estão disponíveis para diversos protocolos de autenticação. Consulte [Seção 6.2.13, “Autenticação Pluggable”](pluggable-authentication.html "6.2.13 Autenticação Pluggable").
 
-* A connection control plugin that enables administrators to introduce an increasing delay after a certain number of consecutive failed client connection attempts. See [Section 6.4.2, “Connection Control Plugins”](connection-control-plugin.html "6.4.2 Connection Control Plugins").
+* Um plugin de connection control que permite aos administradores introduzir um atraso crescente após um certo número de tentativas consecutivas falhas de conexão de Client. Consulte [Seção 6.4.2, “Plugins de Connection Control”](connection-control-plugin.html "6.4.2 Plugins de Connection Control").
 
-* A password-validation plugin implements password strength policies and assesses the strength of potential passwords. See [Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin").
+* Um plugin de validação de senha (password-validation plugin) implementa políticas de força de senha e avalia a força de senhas potenciais. Consulte [Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html "6.4.3 O Plugin de Validação de Senha").
 
-* Semisynchronous replication plugins implement an interface to replication capabilities that permit the source to proceed as long as at least one replica has responded to each transaction. See [Section 16.3.9, “Semisynchronous Replication”](replication-semisync.html "16.3.9 Semisynchronous Replication").
+* Plugins de Semisynchronous Replication implementam uma interface para recursos de Replication que permitem que a source prossiga desde que pelo menos uma réplica tenha respondido a cada transaction. Consulte [Seção 16.3.9, “Semisynchronous Replication”](replication-semisync.html "16.3.9 Semisynchronous Replication").
 
-* Group Replication enables you to create a highly available distributed MySQL service across a group of MySQL server instances, with data consistency, conflict detection and resolution, and group membership services all built-in. See [Chapter 17, *Group Replication*](group-replication.html "Chapter 17 Group Replication").
+* O Group Replication permite criar um serviço MySQL distribuído de alta disponibilidade em um grupo de instâncias do MySQL Server, com consistência de dados, detecção e resolução de conflitos, e serviços de associação de grupo (group membership) todos integrados. Consulte [Capítulo 17, *Group Replication*](group-replication.html "Capítulo 17 Group Replication").
 
-* MySQL Enterprise Edition includes a thread pool plugin that manages connection threads to increase server performance by efficiently managing statement execution threads for large numbers of client connections. See [Section 5.5.3, “MySQL Enterprise Thread Pool”](thread-pool.html "5.5.3 MySQL Enterprise Thread Pool").
+* O MySQL Enterprise Edition inclui um plugin de Thread Pool que gerencia connection threads para aumentar a performance do Server, gerenciando eficientemente os statement execution threads para um grande número de conexões de Client. Consulte [Seção 5.5.3, “Thread Pool do MySQL Enterprise”](thread-pool.html "5.5.3 Thread Pool do MySQL Enterprise").
 
-* MySQL Enterprise Edition includes an audit plugin for monitoring and logging of connection and query activity. See [Section 6.4.5, “MySQL Enterprise Audit”](audit-log.html "6.4.5 MySQL Enterprise Audit").
+* O MySQL Enterprise Edition inclui um plugin de audit para monitoramento e logging de atividades de conexão e Query. Consulte [Seção 6.4.5, “MySQL Enterprise Audit”](audit-log.html "6.4.5 MySQL Enterprise Audit").
 
-* MySQL Enterprise Edition includes a firewall plugin that implements an application-level firewall to enable database administrators to permit or deny SQL statement execution based on matching against allowlists of accepted statement patterns. See [Section 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall").
+* O MySQL Enterprise Edition inclui um plugin de firewall que implementa um firewall de nível de aplicação para permitir que administradores de Database permitam ou neguem a execução de SQL statements com base na correspondência contra allowlists (listas de permissão) de padrões de statement aceitos. Consulte [Seção 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall").
 
-* A query rewrite plugin examines statements received by MySQL Server and possibly rewrites them before the server executes them. See [Section 5.5.4, “The Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin.html "5.5.4 The Rewriter Query Rewrite Plugin").
+* Um plugin de Query Rewrite examina statements recebidos pelo MySQL Server e possivelmente os reescreve antes que o Server os execute. Consulte [Seção 5.5.4, “O Plugin de Reescrita de Query Rewriter”](rewriter-query-rewrite-plugin.html "5.5.4 O Plugin de Reescrita de Query Rewriter").
 
-* Version Tokens enables creation of and synchronization around server tokens that applications can use to prevent accessing incorrect or out-of-date data. Version Tokens is based on a plugin library that implements a `version_tokens` plugin and a set of loadable functions. See [Section 5.5.5, “Version Tokens”](version-tokens.html "5.5.5 Version Tokens").
+* Version Tokens permite a criação e sincronização em torno de server tokens que as aplicações podem usar para prevenir o acesso a dados incorretos ou desatualizados. Version Tokens é baseado em uma plugin library que implementa um plugin `version_tokens` e um conjunto de funções carregáveis. Consulte [Seção 5.5.5, “Version Tokens”](version-tokens.html "5.5.5 Version Tokens").
 
-* Keyring plugins provide secure storage for sensitive information. See [Section 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
+* Plugins Keyring fornecem armazenamento seguro para informações sensíveis. Consulte [Seção 6.4.4, “O Keyring do MySQL”](keyring.html "6.4.4 O Keyring do MySQL").
 
-* X Plugin extends MySQL Server to be able to function as a document store. Running X Plugin enables MySQL Server to communicate with clients using the X Protocol, which is designed to expose the ACID compliant storage abilities of MySQL as a document store. See [Section 19.4, “X Plugin”](x-plugin.html "19.4 X Plugin").
+* O X Plugin estende o MySQL Server para que ele possa funcionar como um document store. A execução do X Plugin permite que o MySQL Server se comunique com Clients usando o X Protocol, que é projetado para expor as capacidades de armazenamento compatíveis com ACID do MySQL como um document store. Consulte [Seção 19.4, “X Plugin”](x-plugin.html "19.4 X Plugin").
 
-* Test framework plugins test server services. For information about these plugins, see the Plugins for Testing Plugin Services section of the MySQL Server Doxygen documentation, available at [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html).
+* Plugins de test framework testam os serviços do Server. Para obter informações sobre esses plugins, consulte a seção Plugins for Testing Plugin Services da documentação Doxygen do MySQL Server, disponível em [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html).
 
-The following sections describe how to install and uninstall plugins, and how to determine at runtime which plugins are installed and obtain information about them. For information about writing plugins, see [The MySQL Plugin API](/doc/extending-mysql/5.7/en/plugin-api.html).
+As seções a seguir descrevem como instalar e desinstalar plugins, e como determinar em tempo de execução (runtime) quais plugins estão instalados e obter informações sobre eles. Para obter informações sobre a escrita de plugins, consulte [A API de Plugin do MySQL](/doc/extending-mysql/5.7/en/plugin-api.html).

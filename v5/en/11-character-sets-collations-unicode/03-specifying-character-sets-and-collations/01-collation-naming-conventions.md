@@ -1,25 +1,25 @@
-### 10.3.1 Collation Naming Conventions
+### 10.3.1 Convenções de Nomenclatura de Collation
 
-MySQL collation names follow these conventions:
+Os nomes de Collation do MySQL seguem estas convenções:
 
-* A collation name starts with the name of the character set with which it is associated, generally followed by one or more suffixes indicating other collation characteristics. For example, `utf8_general_ci` and `latin1_swedish_ci` are collations for the `utf8` and `latin1` character sets, respectively. The `binary` character set has a single collation, also named `binary`, with no suffixes.
+* Um nome de Collation começa com o nome do Conjunto de Caracteres ao qual está associado, geralmente seguido por um ou mais sufixos que indicam outras características da Collation. Por exemplo, `utf8_general_ci` e `latin1_swedish_ci` são Collations para os Conjuntos de Caracteres `utf8` e `latin1`, respectivamente. O Conjunto de Caracteres `binary` possui uma única Collation, também chamada `binary`, sem sufixos.
 
-* A language-specific collation includes a language name. For example, `utf8_turkish_ci` and `utf8_hungarian_ci` sort characters for the `utf8` character set using the rules of Turkish and Hungarian, respectively.
+* Uma Collation específica de idioma inclui o nome de um idioma. Por exemplo, `utf8_turkish_ci` e `utf8_hungarian_ci` ordenam caracteres para o Conjunto de Caracteres `utf8` usando as regras do Turco e Húngaro, respectivamente.
 
-* Collation suffixes indicate whether a collation is case-sensitive, accent-sensitive, or kana-sensitive (or some combination thereof), or binary. The following table shows the suffixes used to indicate these characteristics.
+* Os sufixos de Collation indicam se uma Collation é sensível a maiúsculas/minúsculas (case-sensitive), sensível a acentos (accent-sensitive) ou sensível a kana (kana-sensitive) (ou alguma combinação disso), ou binária. A tabela a seguir mostra os sufixos usados para indicar essas características.
 
-  **Table 10.1 Collation Suffix Meanings**
+  **Tabela 10.1 Significados dos Sufixos de Collation**
 
-  <table summary="Collation suffixes that indicate lettercase sensitivity, accent sensitivity, binary."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Suffix</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>_ai</code></td> <td>Accent-insensitive</td> </tr><tr> <td><code>_as</code></td> <td>Accent-sensitive</td> </tr><tr> <td><code>_ci</code></td> <td>Case-insensitive</td> </tr><tr> <td><code>_cs</code></td> <td>Case-sensitive</td> </tr><tr> <td><code>_bin</code></td> <td>Binary</td> </tr></tbody></table>
+  <table summary="Sufixos de Collation que indicam sensibilidade a maiúsculas/minúsculas, sensibilidade a acentos, binário."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Sufixo</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>_ai</code></td> <td>Insensível a acentos (Accent-insensitive)</td> </tr><tr> <td><code>_as</code></td> <td>Sensível a acentos (Accent-sensitive)</td> </tr><tr> <td><code>_ci</code></td> <td>Insensível a maiúsculas/minúsculas (Case-insensitive)</td> </tr><tr> <td><code>_cs</code></td> <td>Sensível a maiúsculas/minúsculas (Case-sensitive)</td> </tr><tr> <td><code>_bin</code></td> <td>Binário (Binary)</td> </tr></tbody></table>
 
-  For nonbinary collation names that do not specify accent sensitivity, it is determined by case sensitivity. If a collation name does not contain `_ai` or `_as`, `_ci` in the name implies `_ai` and `_cs` in the name implies `_as`. For example, `latin1_general_ci` is explicitly case-insensitive and implicitly accent-insensitive, and `latin1_general_cs` is explicitly case-sensitive and implicitly accent-sensitive.
+  Para nomes de Collations não binárias que não especificam sensibilidade a acentos, esta é determinada pela sensibilidade a maiúsculas/minúsculas. Se um nome de Collation não contiver `_ai` ou `_as`, `_ci` no nome implica `_ai`, e `_cs` no nome implica `_as`. Por exemplo, `latin1_general_ci` é explicitamente insensível a maiúsculas/minúsculas e implicitamente insensível a acentos, e `latin1_general_cs` é explicitamente sensível a maiúsculas/minúsculas e implicitamente sensível a acentos.
 
-  For the `binary` collation of the `binary` character set, comparisons are based on numeric byte values. For the `_bin` collation of a nonbinary character set, comparisons are based on numeric character code values, which differ from byte values for multibyte characters. For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see Section 10.8.5, “The binary Collation Compared to _bin Collations”.
+  Para a Collation `binary` do Conjunto de Caracteres `binary`, as comparações são baseadas em valores numéricos de byte. Para a Collation `_bin` de um Conjunto de Caracteres não binário, as comparações são baseadas em valores numéricos de código de caractere, que diferem dos valores de byte para caracteres multibyte. Para informações sobre as diferenças entre a Collation `binary` do Conjunto de Caracteres `binary` e as Collations `_bin` de Conjuntos de Caracteres não binários, consulte a Seção 10.8.5, “A Collation binary Comparada às Collations _bin”.
 
-* Collation names for Unicode character sets may include a version number to indicate the version of the Unicode Collation Algorithm (UCA) on which the collation is based. UCA-based collations without a version number in the name use the version-4.0.0 UCA weight keys. For example:
+* Os nomes de Collation para Conjuntos de Caracteres Unicode podem incluir um número de versão para indicar a versão do Unicode Collation Algorithm (UCA) na qual a Collation se baseia. Collations baseadas em UCA sem um número de versão no nome usam as chaves de peso UCA da versão 4.0.0. Por exemplo:
 
-  + `utf8_unicode_520_ci` is based on UCA 5.2.0 weight keys (<http://www.unicode.org/Public/UCA/5.2.0/allkeys.txt>).
+  + `utf8_unicode_520_ci` é baseada nas chaves de peso UCA 5.2.0 (<http://www.unicode.org/Public/UCA/5.2.0/allkeys.txt>).
 
-  + `utf8_unicode_ci` (with no version named) is based on UCA 4.0.0 weight keys (<http://www.unicode.org/Public/UCA/4.0.0/allkeys-4.0.0.txt>).
+  + `utf8_unicode_ci` (sem versão nomeada) é baseada nas chaves de peso UCA 4.0.0 (<http://www.unicode.org/Public/UCA/4.0.0/allkeys-4.0.0.txt>).
 
-* For Unicode character sets, the `xxx_general_mysql500_ci` collations preserve the pre-5.1.24 ordering of the original `xxx_general_ci` collations and permit upgrades for tables created before MySQL 5.1.24 (Bug #27877).
+* Para Conjuntos de Caracteres Unicode, as Collations `xxx_general_mysql500_ci` preservam a ordenação pré-5.1.24 das Collations `xxx_general_ci` originais e permitem upgrades para tabelas criadas antes do MySQL 5.1.24 (Bug #27877).

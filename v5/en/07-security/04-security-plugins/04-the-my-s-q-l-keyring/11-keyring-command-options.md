@@ -1,59 +1,59 @@
-#### 6.4.4.11 Keyring Command Options
+#### 6.4.4.11 Opções de Comando do Keyring
 
-MySQL supports the following keyring-related command-line options:
+O MySQL suporta as seguintes opções de linha de comando relacionadas ao Keyring:
 
 * [`--keyring-migration-destination=plugin`](keyring-options.html#option_mysqld_keyring-migration-destination)
 
-  <table frame="box" rules="all" summary="Properties for keyring-migration-destination"><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-destination=plugin_name</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-destination"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--keyring-migration-destination=plugin_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  The destination keyring plugin for key migration. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores"). The format and interpretation of the option value is the same as described for the [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source) option.
+  O Plugin Keyring de destino para a migração de chaves. Consulte [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores"). O formato e a interpretação do valor da opção são os mesmos descritos para a opção [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source).
 
-  Note
+  Nota
 
-  [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source) and [`--keyring-migration-destination`](keyring-options.html#option_mysqld_keyring-migration-destination) are mandatory for all keyring migration operations. The source and destination plugins must differ, and the migration server must support both plugins.
+  [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source) e [`--keyring-migration-destination`](keyring-options.html#option_mysqld_keyring-migration-destination) são obrigatórios para todas as operações de migração de Keyring. Os plugins de origem e destino devem ser diferentes, e o servidor de migração deve suportar ambos os plugins.
 
 * [`--keyring-migration-host=host_name`](keyring-options.html#option_mysqld_keyring-migration-host)
 
-  <table frame="box" rules="all" summary="Properties for keyring-migration-host"><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-host=host_name</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-host"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--keyring-migration-host=host_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
-  The host location of the running server that is currently using one of the key migration keystores. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores"). Migration always occurs on the local host, so the option always specifies a value for connecting to a local server, such as `localhost`, `127.0.0.1`, `::1`, or the local host IP address or host name.
+  A localização do Host do servidor em execução que está usando atualmente um dos Keystores de migração de chaves. Consulte [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores"). A migração sempre ocorre no Host local, portanto, a opção sempre especifica um valor para conexão a um servidor local, como `localhost`, `127.0.0.1`, `::1`, ou o endereço IP ou nome do Host local.
 
 * [`--keyring-migration-password[=password]`](keyring-options.html#option_mysqld_keyring-migration-password)
 
-  <table frame="box" rules="all" summary="Properties for keyring-migration-password"><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-password[=password]</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-password"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--keyring-migration-password[=password]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the running server that is currently using one of the key migration keystores. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
+  A password da conta MySQL usada para conectar-se ao servidor em execução que está usando atualmente um dos Keystores de migração de chaves. Consulte [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
 
-  The password value is optional. If not given, the server prompts for one. If given, there must be *no space* between [`--keyring-migration-password=`](keyring-options.html#option_mysqld_keyring-migration-password) and the password following it. If no password option is specified, the default is to send no password.
+  O valor da password é opcional. Se não for fornecido, o servidor solicitará um. Se fornecido, não deve haver *espaço* entre [`--keyring-migration-password=`](keyring-options.html#option_mysqld_keyring-migration-password) e a password que o segue. Se nenhuma opção de password for especificada, o padrão é não enviar password.
 
-  Specifying a password on the command line should be considered insecure. See [Section 6.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "6.1.2.1 End-User Guidelines for Password Security"). You can use an option file to avoid giving the password on the command line. In this case, the file should have a restrictive mode and be accessible only to the account used to run the migration server.
+  Especificar uma password na linha de comando deve ser considerado inseguro. Consulte [Section 6.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "6.1.2.1 End-User Guidelines for Password Security"). Você pode usar um arquivo de opção para evitar fornecer a password na linha de comando. Neste caso, o arquivo deve ter um modo restritivo e ser acessível apenas pela conta usada para executar o servidor de migração.
 
 * [`--keyring-migration-port=port_num`](keyring-options.html#option_mysqld_keyring-migration-port)
 
-  <table frame="box" rules="all" summary="Properties for keyring-migration-port"><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-port=port_num</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-port"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--keyring-migration-port=port_num</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Tipo</th> <td>Numeric</td> </tr><tr><th>Valor Padrão</th> <td><code>3306</code></td> </tr></tbody></table>
 
-  For TCP/IP connections, the port number for connecting to the running server that is currently using one of the key migration keystores. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
+  Para conexões TCP/IP, o número da Port para conectar-se ao servidor em execução que está usando atualmente um dos Keystores de migração de chaves. Consulte [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
 
 * [`--keyring-migration-socket=path`](keyring-options.html#option_mysqld_keyring-migration-socket)
 
-  <table frame="box" rules="all" summary="Properties for keyring-migration-socket"><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-socket={file_name|pipe_name}</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-socket"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--keyring-migration-socket={file_name|pipe_name}</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  For Unix socket file or Windows named pipe connections, the socket file or named pipe for connecting to the running server that is currently using one of the key migration keystores. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
+  Para arquivos Socket Unix ou conexões de Named Pipe do Windows, o arquivo Socket ou Named Pipe para conectar-se ao servidor em execução que está usando atualmente um dos Keystores de migração de chaves. Consulte [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
 
 * [`--keyring-migration-source=plugin`](keyring-options.html#option_mysqld_keyring-migration-source)
 
-  <table frame="box" rules="all" summary="Properties for keyring-migration-source"><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-source=plugin_name</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-source"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--keyring-migration-source=plugin_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  The source keyring plugin for key migration. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
+  O Plugin Keyring de origem para a migração de chaves. Consulte [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
 
-  The option value is similar to that for [`--plugin-load`](server-options.html#option_mysqld_plugin-load), except that only one plugin library can be specified. The value is given as *`plugin_library`* or *`name`*`=`*`plugin_library`*, where *`plugin_library`* is the name of a library file that contains plugin code, and *`name`* is the name of a plugin to load. If a plugin library is named without any preceding plugin name, the server loads all plugins in the library. With a preceding plugin name, the server loads only the named plugin from the libary. The server looks for plugin library files in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+  O valor da opção é semelhante ao de [`--plugin-load`](server-options.html#option_mysqld_plugin-load), exceto que apenas uma biblioteca de Plugin pode ser especificada. O valor é fornecido como *`plugin_library`* ou *`name`*`=`*`plugin_library`*, onde *`plugin_library`* é o nome de um arquivo de biblioteca que contém código de Plugin, e *`name`* é o nome de um Plugin a ser carregado. Se uma biblioteca de Plugin for nomeada sem nenhum nome de Plugin precedente, o servidor carregará todos os Plugins na biblioteca. Com um nome de Plugin precedente, o servidor carrega apenas o Plugin nomeado da biblioteca. O servidor procura por arquivos de biblioteca de Plugin no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir).
 
-  Note
+  Nota
 
-  [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source) and [`--keyring-migration-destination`](keyring-options.html#option_mysqld_keyring-migration-destination) are mandatory for all keyring migration operations. The source and destination plugins must differ, and the migration server must support both plugins.
+  [`--keyring-migration-source`](keyring-options.html#option_mysqld_keyring-migration-source) e [`--keyring-migration-destination`](keyring-options.html#option_mysqld_keyring-migration-destination) são obrigatórios para todas as operações de migração de Keyring. Os plugins de origem e destino devem ser diferentes, e o servidor de migração deve suportar ambos os plugins.
 
 * [`--keyring-migration-user=user_name`](keyring-options.html#option_mysqld_keyring-migration-user)
 
-  <table frame="box" rules="all" summary="Properties for keyring-migration-user"><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-user=user_name</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-user"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--keyring-migration-user=user_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  The user name of the MySQL account used for connecting to the running server that is currently using one of the key migration keystores. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
+  O nome de usuário da conta MySQL usada para conectar-se ao servidor em execução que está usando atualmente um dos Keystores de migração de chaves. Consulte [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").

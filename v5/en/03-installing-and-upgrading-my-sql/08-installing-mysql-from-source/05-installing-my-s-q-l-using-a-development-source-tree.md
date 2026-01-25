@@ -1,21 +1,21 @@
-### 2.8.5 Installing MySQL Using a Development Source Tree
+### 2.8.5 Instalando MySQL Usando uma Árvore de Código-Fonte de Desenvolvimento
 
-This section describes how to install MySQL from the latest development source code, which is hosted on [GitHub](https://github.com/). To obtain the MySQL Server source code from this repository hosting service, you can set up a local MySQL Git repository.
+Esta seção descreve como instalar o MySQL a partir do código-fonte de desenvolvimento mais recente, que está hospedado no [GitHub](https://github.com/). Para obter o código-fonte do MySQL Server a partir deste serviço de hospedagem de repositório, você pode configurar um repositório Git local do MySQL.
 
-On [GitHub](https://github.com/), MySQL Server and other MySQL projects are found on the [MySQL](https://github.com/mysql) page. The MySQL Server project is a single repository that contains branches for several MySQL series.
+No [GitHub](https://github.com/), o MySQL Server e outros projetos MySQL são encontrados na página [MySQL](https://github.com/mysql). O projeto MySQL Server é um único repositório que contém *branches* para diversas séries do MySQL.
 
-* Prerequisites for Installing from Development Source
-* Setting Up a MySQL Git Repository
+* Pré-requisitos para Instalação a partir do Código-Fonte de Desenvolvimento
+* Configurando um Repositório Git do MySQL
 
-#### Prerequisites for Installing from Development Source
+#### Pré-requisitos para Instalação a partir do Código-Fonte de Desenvolvimento
 
-To install MySQL from a development source tree, your system must satisfy the tool requirements listed at Section 2.8.2, “Source Installation Prerequisites”.
+Para instalar o MySQL a partir de uma árvore de código-fonte de desenvolvimento, seu sistema deve satisfazer os requisitos de ferramentas listados na Seção 2.8.2, “Pré-requisitos de Instalação a Partir do Código-Fonte”.
 
-#### Setting Up a MySQL Git Repository
+#### Configurando um Repositório Git do MySQL
 
-To set up a MySQL Git repository on your machine:
+Para configurar um repositório Git do MySQL em sua máquina:
 
-1. Clone the MySQL Git repository to your machine. The following command clones the MySQL Git repository to a directory named `mysql-server`. The initial download may take some time to complete, depending on the speed of your connection.
+1. Clone o repositório Git do MySQL para sua máquina. O comando a seguir clona o repositório Git do MySQL para um diretório chamado `mysql-server`. O *download* inicial pode levar algum tempo para ser concluído, dependendo da velocidade da sua conexão.
 
    ```sql
    $> git clone https://github.com/mysql/mysql-server.git
@@ -28,7 +28,7 @@ To set up a MySQL Git repository on your machine:
    Checking out files: 100% (25510/25510), done.
    ```
 
-2. When the clone operation completes, the contents of your local MySQL Git repository appear similar to the following:
+2. Quando a operação de *clone* for concluída, o conteúdo do seu repositório Git local do MySQL será semelhante ao seguinte:
 
    ```sql
    ~> cd mysql-server
@@ -45,7 +45,7 @@ To set up a MySQL Git repository on your machine:
    doxygen_resources  mysql-test           sql-common
    ```
 
-3. Use the **git branch -r** command to view the remote tracking branches for the MySQL repository.
+3. Use o comando **git branch -r** para visualizar os *remote tracking branches* (branches de rastreamento remoto) para o repositório MySQL.
 
    ```sql
    ~/mysql-server> git branch -r
@@ -58,14 +58,14 @@ To set up a MySQL Git repository on your machine:
      origin/trunk
    ```
 
-4. To view the branch that is checked out in your local repository, issue the **git branch** command. When you clone the MySQL Git repository, the latest MySQL branch is checked out automatically. The asterisk identifies the active branch.
+4. Para visualizar o *branch* que está em *checkout* no seu repositório local, execute o comando **git branch**. Ao clonar o repositório Git do MySQL, o *branch* mais recente do MySQL é feito *checkout* automaticamente. O asterisco identifica o *branch* ativo.
 
    ```sql
    ~/mysql-server$ git branch
    * trunk
    ```
 
-5. To check out an earlier MySQL branch, run the **git checkout** command, specifying the branch name. For example, to check out the MySQL 5.7 branch:
+5. Para fazer o *checkout* de um *branch* anterior do MySQL, execute o comando **git checkout**, especificando o nome do *branch*. Por exemplo, para fazer o *checkout* do *branch* MySQL 5.7:
 
    ```sql
    ~/mysql-server$ git checkout 5.7
@@ -74,25 +74,25 @@ To set up a MySQL Git repository on your machine:
    Switched to a new branch '5.7'
    ```
 
-6. To obtain changes made after your initial setup of the MySQL Git repository, switch to the branch you want to update and issue the **git pull** command:
+6. Para obter alterações feitas após sua configuração inicial do repositório Git do MySQL, mude para o *branch* que você deseja atualizar e execute o comando **git pull**:
 
    ```sql
    ~/mysql-server$ git checkout 8.0
    ~/mysql-server$ git pull
    ```
 
-   To examine the commit history, use the **git log** command:
+   Para examinar o *commit history* (histórico de *commits*), use o comando **git log**:
 
    ```sql
    ~/mysql-server$ git log
    ```
 
-   You can also browse commit history and source code on the GitHub [MySQL](https://github.com/mysql) site.
+   Você também pode navegar pelo histórico de *commits* e pelo código-fonte no site [MySQL](https://github.com/mysql) do GitHub.
 
-   If you see changes or code that you have a question about, ask on [MySQL Community Slack](https://mysqlcommunity.slack.com/).
+   Se você vir alterações ou código sobre os quais tenha dúvidas, pergunte no [MySQL Community Slack](https://mysqlcommunity.slack.com/).
 
-7. After you have cloned the MySQL Git repository and have checked out the branch you want to build, you can build MySQL Server from the source code. Instructions are provided in Section 2.8.4, “Installing MySQL Using a Standard Source Distribution”, except that you skip the part about obtaining and unpacking the distribution.
+7. Depois de clonar o repositório Git do MySQL e ter feito o *checkout* do *branch* que deseja *buildar* (compilar), você pode *buildar* o MySQL Server a partir do código-fonte. As instruções são fornecidas na Seção 2.8.4, “Instalando MySQL Usando uma Distribuição de Código-Fonte Padrão”, exceto pela parte sobre a obtenção e descompactação da distribuição, que deve ser ignorada.
 
-   Be careful about installing a build from a distribution source tree on a production machine. The installation command may overwrite your live release installation. If you already have MySQL installed and do not want to overwrite it, run **CMake** with values for the `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, and `MYSQL_UNIX_ADDR` options different from those used by your production server. For additional information about preventing multiple servers from interfering with each other, see Section 5.7, “Running Multiple MySQL Instances on One Machine”.
+   Tenha cuidado ao instalar um *build* de uma árvore de código-fonte de distribuição em uma máquina de produção. O comando de instalação pode sobrescrever sua instalação de *release* ativa. Se você já tem o MySQL instalado e não deseja sobrescrevê-lo, execute o **CMake** com valores para as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT` e `MYSQL_UNIX_ADDR` diferentes daqueles usados pelo seu servidor de produção. Para obter informações adicionais sobre como evitar que vários servidores interfiram uns nos outros, consulte a Seção 5.7, “Executando Múltiplas Instâncias MySQL em Uma Máquina”.
 
-   Play hard with your new installation. For example, try to make new features crash. Start by running **make test**. See The MySQL Test Suite.
+   Teste sua nova instalação de forma rigorosa. Por exemplo, tente fazer com que novos recursos *crashem*. Comece executando **make test**. Consulte The MySQL Test Suite.

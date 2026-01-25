@@ -1,51 +1,51 @@
-### 4.5.1 mysql — The MySQL Command-Line Client
+### 4.5.1 mysql — O Cliente de Linha de Comando do MySQL
 
-4.5.1.1 mysql Client Options
+4.5.1.1 Opções do Cliente mysql
 
-4.5.1.2 mysql Client Commands
+4.5.1.2 Comandos do Cliente mysql
 
-4.5.1.3 mysql Client Logging
+4.5.1.3 Registro (Logging) do Cliente mysql
 
-4.5.1.4 mysql Client Server-Side Help
+4.5.1.4 Ajuda do Lado do Servidor (Server-Side Help) do Cliente mysql
 
-4.5.1.5 Executing SQL Statements from a Text File
+4.5.1.5 Executando Instruções SQL a partir de um Arquivo de Texto
 
-4.5.1.6 mysql Client Tips
+4.5.1.6 Dicas do Cliente mysql
 
-**mysql** is a simple SQL shell with input line editing capabilities. It supports interactive and noninteractive use. When used interactively, query results are presented in an ASCII-table format. When used noninteractively (for example, as a filter), the result is presented in tab-separated format. The output format can be changed using command options.
+**mysql** é um simples SQL shell com capacidades de edição de linha de entrada. Ele suporta uso interativo e não interativo. Quando usado interativamente, os resultados da Query são apresentados em formato de tabela ASCII. Quando usado de forma não interativa (por exemplo, como um filtro), o resultado é apresentado em formato separado por tabulação (tab-separated format). O formato de saída pode ser alterado usando opções de comando.
 
-If you have problems due to insufficient memory for large result sets, use the `--quick` option. This forces **mysql** to retrieve results from the server a row at a time rather than retrieving the entire result set and buffering it in memory before displaying it. This is done by returning the result set using the `mysql_use_result()` C API function in the client/server library rather than `mysql_store_result()`.
+Se você tiver problemas devido à memória insuficiente para grandes conjuntos de resultados (result sets), utilize a opção `--quick`. Isso força o **mysql** a recuperar os resultados do server linha por linha, em vez de recuperar o conjunto de resultados inteiro e armazená-lo em um Buffer na memória antes de exibi-lo. Isso é feito retornando o result set utilizando a função `mysql_use_result()` da C API na biblioteca client/server, em vez de `mysql_store_result()`.
 
-Note
+Nota
 
-Alternatively, MySQL Shell offers access to the X DevAPI. For details, see MySQL Shell 8.0.
+Alternativamente, o MySQL Shell oferece acesso ao X DevAPI. Para detalhes, consulte MySQL Shell 8.0.
 
-Using **mysql** is very easy. Invoke it from the prompt of your command interpreter as follows:
+Usar o **mysql** é muito fácil. Invoque-o a partir do prompt do seu interpretador de comandos da seguinte forma:
 
 ```sql
 mysql db_name
 ```
 
-Or:
+Ou:
 
 ```sql
 mysql --user=user_name --password db_name
 ```
 
-In this case, you'll need to enter your password in response to the prompt that **mysql** displays:
+Neste caso, você precisará digitar sua senha em resposta ao prompt que o **mysql** exibe:
 
 ```sql
 Enter password: your_password
 ```
 
-Then type an SQL statement, end it with `;`, `\g`, or `\G` and press Enter.
+Em seguida, digite uma instrução SQL, finalize-a com `;`, `\g` ou `\G` e pressione Enter.
 
-Typing **Control+C** interrupts the current statement if there is one, or cancels any partial input line otherwise.
+Digitar **Control+C** interrompe a instrução atual, se houver, ou cancela qualquer linha de entrada parcial, caso contrário.
 
-You can execute SQL statements in a script file (batch file) like this:
+Você pode executar instruções SQL em um arquivo de script (arquivo batch) assim:
 
 ```sql
 mysql db_name < script.sql > output.tab
 ```
 
-On Unix, the **mysql** client logs statements executed interactively to a history file. See Section 4.5.1.3, “mysql Client Logging”.
+Em sistemas Unix, o cliente **mysql** registra (logs) as instruções executadas interativamente em um arquivo de histórico. Consulte Seção 4.5.1.3, “Registro (Logging) do Cliente mysql”.

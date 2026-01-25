@@ -1,3 +1,3 @@
-### 8.13.3 Measuring Performance with performance_schema
+### 8.13.3 Medindo Performance com performance_schema
 
-You can query the tables in the `performance_schema` database to see real-time information about the performance characteristics of your server and the applications it is running. See Chapter 25, *MySQL Performance Schema* for details.
+Você pode consultar as tabelas no banco de dados `performance_schema` para ver informações em tempo real sobre as características de performance do seu servidor e das aplicações que ele está executando. Veja o Capítulo 25, *MySQL Performance Schema*, para detalhes.

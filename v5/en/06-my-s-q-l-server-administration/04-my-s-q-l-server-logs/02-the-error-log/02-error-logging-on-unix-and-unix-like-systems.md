@@ -1,17 +1,17 @@
-#### 5.4.2.2 Error Logging on Unix and Unix-Like Systems
+#### 5.4.2.2 Log de Erros em Sistemas Unix e Semelhantes a Unix
 
-On Unix and Unix-like systems, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") uses the [`--log-error`](server-options.html#option_mysqld_log-error) option to determine whether [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to the console or a file, and, if to a file, the file name:
+Em sistemas Unix e semelhantes a Unix, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") usa a opção [`--log-error`](server-options.html#option_mysqld_log-error) para determinar se o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") grava o error log no console ou em um arquivo e, se for em um arquivo, qual é o nome desse arquivo:
 
-* If [`--log-error`](server-options.html#option_mysqld_log-error) is not given, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to the console.
+* Se [`--log-error`](server-options.html#option_mysqld_log-error) não for fornecida, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") grava o error log no console.
 
-* If [`--log-error`](server-options.html#option_mysqld_log-error) is given without naming a file, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to a file named `host_name.err` in the data directory.
+* Se [`--log-error`](server-options.html#option_mysqld_log-error) for fornecida sem nomear um arquivo, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") grava o error log em um arquivo chamado `host_name.err` no data directory.
 
-* If [`--log-error`](server-options.html#option_mysqld_log-error) is given to name a file, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to that file (with an `.err` suffix added if the name has no suffix). The file location is under the data directory unless an absolute path name is given to specify a different location.
+* Se [`--log-error`](server-options.html#option_mysqld_log-error) for fornecida para nomear um arquivo, o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") grava o error log nesse arquivo (com um sufixo `.err` adicionado se o nome não tiver sufixo). O local do arquivo fica sob o data directory, a menos que seja fornecido um nome de path absoluto para especificar um local diferente.
 
-* If [`--log-error`](server-options.html#option_mysqld_log-error) is given in an option file in a `[mysqld]`, `[server]`, or `[mysqld_safe]` section, on systems that use [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") to start the server, [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") finds and uses the option, and passes it to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
+* Se [`--log-error`](server-options.html#option_mysqld_log-error) for fornecida em um arquivo de opção nas seções `[mysqld]`, `[server]` ou `[mysqld_safe]`, em sistemas que usam o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") para iniciar o server, o [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") localiza e usa a opção, e a passa para o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-Note
+Nota
 
-It is common for Yum or APT package installations to configure an error log file location under `/var/log` with an option like `log-error=/var/log/mysqld.log` in a server configuration file. Removing the path name from the option causes the `host_name.err` file in the data directory to be used.
+É comum que instalações de pacotes Yum ou APT configurem um local de arquivo de error log sob `/var/log` com uma opção como `log-error=/var/log/mysqld.log` em um arquivo de configuração do server. Remover o nome do path da opção faz com que o arquivo `host_name.err` no data directory seja usado.
 
-If the server writes the error log to the console, it sets the [`log_error`](server-system-variables.html#sysvar_log_error) system variable to `stderr`. Otherwise, the server writes the error log to a file and sets [`log_error`](server-system-variables.html#sysvar_log_error) to the file name.
+Se o server gravar o error log no console, ele define a variável de sistema [`log_error`](server-system-variables.html#sysvar_log_error) como `stderr`. Caso contrário, o server grava o error log em um arquivo e define [`log_error`](server-system-variables.html#sysvar_log_error) como o nome do arquivo.

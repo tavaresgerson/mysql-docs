@@ -1,38 +1,38 @@
-### 2.5.2 Replacing a Third-Party Distribution of MySQL Using the MySQL Yum Repository
+### 2.5.2 Substituindo uma Distribution de Terceiros do MySQL Usando o MySQL Yum Repository
 
-For supported Yum-based platforms (see Section 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository”, for a list), you can replace a third-party distribution of MySQL with the latest GA release (from the MySQL 5.7 series currently) from the MySQL Yum repository. According to how your third-party distribution of MySQL was installed, there are different steps to follow:
+Para plataformas suportadas baseadas em Yum (consulte a Seção 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository”, para uma lista), você pode substituir uma Distribution de terceiros do MySQL pela GA release mais recente (atualmente da série MySQL 5.7) do MySQL Yum Repository. Dependendo de como sua Distribution de terceiros do MySQL foi instalada, há diferentes passos a seguir:
 
-#### Replacing a Native Third-Party Distribution of MySQL
+#### Substituindo uma Distribution Nativa de Terceiros do MySQL
 
-If you have installed a third-party distribution of MySQL from a native software repository (that is, a software repository provided by your own Linux distribution), follow these steps:
+Se você instalou uma Distribution de terceiros do MySQL a partir de um software repository nativo (ou seja, um software repository fornecido pela sua própria Distribution Linux), siga estes passos:
 
-1. #### Backing Up Your Database
+1. #### Fazendo Backup do Seu Database
 
-   To avoid loss of data, always back up your database before trying to replace your MySQL installation using the MySQL Yum repository. See Chapter 7, *Backup and Recovery*, on how to back up your database.
+   Para evitar perda de dados, sempre faça Backup do seu Database antes de tentar substituir sua instalação MySQL usando o MySQL Yum Repository. Consulte o Capítulo 7, *Backup and Recovery*, sobre como fazer Backup do seu Database.
 
-2. #### Adding the MySQL Yum Repository
+2. #### Adicionando o MySQL Yum Repository
 
-   Add the MySQL Yum repository to your system's repository list by following the instructions given in Adding the MySQL Yum Repository.
+   Adicione o MySQL Yum Repository à lista de Repositories do seu sistema seguindo as instruções fornecidas em Adicionando o MySQL Yum Repository.
 
-3. #### Replacing the Native Third-Party Distribution by a Yum Update or a DNF Upgrade
+3. #### Substituindo a Distribution Nativa de Terceiros por um Yum Update ou um DNF Upgrade
 
-   By design, the MySQL Yum repository replaces your native third-party MySQL with the latest GA release (from the MySQL 5.7 series currently) from the MySQL Yum repository when you perform a **yum update** command on the system, or a **yum update mysql-server**.
+   Por design, o MySQL Yum Repository substitui seu MySQL nativo de terceiros pela GA release mais recente (atualmente da série MySQL 5.7) do MySQL Yum Repository quando você executa um comando **yum update** no sistema, ou um **yum update mysql-server**.
 
-After updating MySQL using the Yum repository, applications compiled with older versions of the shared client libraries should continue to work. However, *if you want to recompile applications and dynamically link them with the updated libraries*, see Upgrading the Shared Client Libraries, for some special considerations.
+Após atualizar o MySQL usando o Yum Repository, as aplicações compiladas com versões mais antigas das shared client libraries devem continuar a funcionar. No entanto, *se você deseja recompilar aplicações e vinculá-las dinamicamente com as libraries atualizadas*, consulte Upgrading the Shared Client Libraries, para algumas considerações especiais.
 
-#### Replacing a Nonnative Third-Party Distribution of MySQL
+#### Substituindo uma Distribution Não Nativa de Terceiros do MySQL
 
-If you have installed a third-party distribution of MySQL from a nonnative software repository (that is, a software repository not provided by your own Linux distribution), follow these steps:
+Se você instalou uma Distribution de terceiros do MySQL a partir de um software repository não nativo (ou seja, um software repository não fornecido pela sua própria Distribution Linux), siga estes passos:
 
-1. #### Backing Up Your Database
+1. #### Fazendo Backup do Seu Database
 
-   To avoid loss of data, always back up your database before trying to replace your MySQL installation using the MySQL Yum repository. See Chapter 7, *Backup and Recovery*, on how to back up your database.
+   Para evitar perda de dados, sempre faça Backup do seu Database antes de tentar substituir sua instalação MySQL usando o MySQL Yum Repository. Consulte o Capítulo 7, *Backup and Recovery*, sobre como fazer Backup do seu Database.
 
-2. #### Stopping Yum from Receiving MySQL Packages from Third-Party, Nonnative Repositories
+2. #### Impedindo que o Yum Receba Pacotes MySQL de Repositories Não Nativos de Terceiros
 
-   Before you can use the MySQL Yum repository for installing MySQL, you must stop your system from receiving MySQL packages from any third-party, nonnative Yum repositories.
+   Antes de poder usar o MySQL Yum Repository para instalar o MySQL, você deve impedir que seu sistema receba pacotes MySQL de quaisquer Yum Repositories não nativos de terceiros.
 
-   For example, if you have installed MariaDB using their own software repository, get a list of the installed MariaDB packages using the following command:
+   Por exemplo, se você instalou o MariaDB usando o seu próprio software repository, obtenha uma lista dos pacotes MariaDB instalados usando o seguinte comando:
 
    ```sql
    $> yum list installed mariadb\*
@@ -41,9 +41,9 @@ If you have installed a third-party distribution of MySQL from a nonnative softw
    MariaDB-server.i686                      10.0.4-1                       @mariadb
    ```
 
-   From the command output, we can identify the installed packages (`MariaDB-common`, `MariaDB-compat`, and `MariaDB-server`) and the source of them (a nonnative software repository named `mariadb`).
+   Da saída do comando, podemos identificar os pacotes instalados (`MariaDB-common`, `MariaDB-compat` e `MariaDB-server`) e sua origem (um software repository não nativo chamado `mariadb`).
 
-   As another example, if you have installed Percona using their own software repository, get a list of the installed Percona packages using the following command:
+   Como outro exemplo, se você instalou o Percona usando o seu próprio software repository, obtenha uma lista dos pacotes Percona instalados usando o seguinte comando:
 
    ```sql
    $> yum list installed Percona\*
@@ -53,27 +53,27 @@ If you have installed a third-party distribution of MySQL from a nonnative softw
    percona-release.noarch            0.1-3                       @/percona-release-0.1-3.noarch
    ```
 
-   From the command output, we can identify the installed packages (`Percona-Server-client`, `Percona-Server-server`, `Percona-Server-shared`, and `percona-release.noarch`) and the source of them (a nonnative software repository named `percona-release`).
+   Da saída do comando, podemos identificar os pacotes instalados (`Percona-Server-client`, `Percona-Server-server`, `Percona-Server-shared` e `percona-release.noarch`) e sua origem (um software repository não nativo chamado `percona-release`).
 
-   If you are not sure which third-party MySQL fork you have installed, this command should reveal it and list the RPM packages installed for it, as well as the third-party repository that supplies the packages:
+   Se você não tiver certeza de qual fork de MySQL de terceiros você instalou, este comando deve revelá-lo e listar os pacotes RPM instalados para ele, bem como o third-party Repository que fornece os pacotes:
 
    ```sql
    $> yum --disablerepo=\* provides mysql\*
    ```
 
-   The next step is to stop Yum from receiving packages from the nonnative repository. If the **yum-config-manager** utility is supported on your platform, you can, for example, use this command for stopping delivery from MariaDB:
+   O próximo passo é impedir que o Yum receba pacotes do Repository não nativo. Se o utilitário **yum-config-manager** for suportado em sua plataforma, você pode, por exemplo, usar este comando para interromper a entrega do MariaDB:
 
    ```sql
    $> sudo yum-config-manager --disable mariadb
    ```
 
-   Use this command for stopping delivery from Percona:
+   Use este comando para interromper a entrega do Percona:
 
    ```sql
    $> sudo yum-config-manager --disable percona-release
    ```
 
-   You can perform the same task by removing the entry for the software repository existing in one of the repository files under the `/etc/yum.repos.d/` directory. This is how the entry typically looks for MariaDB:
+   Você pode realizar a mesma tarefa removendo a entrada para o software repository existente em um dos arquivos de Repository sob o diretório `/etc/yum.repos.d/`. É assim que a entrada geralmente se parece para o MariaDB:
 
    ```sql
    [mariadb] name = MariaDB
@@ -82,33 +82,33 @@ If you have installed a third-party distribution of MySQL from a nonnative softw
     gpgcheck =1
    ```
 
-   The entry is usually found in the file `/etc/yum.repos.d/MariaDB.repo` for MariaDB—delete the file, or remove entry from it (or from the file in which you find the entry).
+   A entrada é geralmente encontrada no arquivo `/etc/yum.repos.d/MariaDB.repo` para MariaDB — exclua o arquivo, ou remova a entrada dele (ou do arquivo em que você a encontrar).
 
    Note
 
-   This step is not necessary for an installation that was configured with a Yum repository release package (like Percona) if you are going to remove the release package (`percona-release.noarch` for Percona), as shown in the uninstall command for Percona in Step 3 below.
+   Este passo não é necessário para uma instalação que foi configurada com um pacote de release do Yum Repository (como o Percona), se você for remover o pacote de release (`percona-release.noarch` para Percona), conforme mostrado no comando de desinstalação para Percona no Passo 3 abaixo.
 
-3. #### Uninstalling the Nonnative Third-Party MySQL Distribution of MySQL
+3. #### Desinstalando a Distribution Não Nativa de Terceiros do MySQL
 
-   The nonnative third-party MySQL distribution must first be uninstalled before you can use the MySQL Yum repository to install MySQL. For the MariaDB packages found in Step 2 above, uninstall them with the following command:
+   A Distribution de MySQL não nativa de terceiros deve primeiro ser desinstalada antes que você possa usar o MySQL Yum Repository para instalar o MySQL. Para os pacotes MariaDB encontrados no Passo 2 acima, desinstale-os com o seguinte comando:
 
    ```sql
    $> sudo yum remove MariaDB-common MariaDB-compat MariaDB-server
    ```
 
-   For the Percona packages we found in Step 2 above:
+   Para os pacotes Percona que encontramos no Passo 2 acima:
 
    ```sql
    $> sudo yum remove Percona-Server-client-55 Percona-Server-server-55 \
      Percona-Server-shared-55.i686 percona-release
    ```
 
-4. #### Installing MySQL with the MySQL Yum Repository
+4. #### Instalando o MySQL com o MySQL Yum Repository
 
-   Then, install MySQL with the MySQL Yum repository by following the instructions given in Section 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository”: .
+   Em seguida, instale o MySQL com o MySQL Yum Repository seguindo as instruções fornecidas na Seção 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository”: .
 
-   Important
+   Importante
 
-   If you have chosen to replace your third-party MySQL distribution with a newer version of MySQL from the MySQL Yum repository, remember to run **mysql_upgrade** after the server starts, to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql_upgrade** also performs other functions; see Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables” for details.
+   Se você optou por substituir sua Distribution de MySQL de terceiros por uma versão mais recente do MySQL do MySQL Yum Repository, lembre-se de executar **mysql_upgrade** após o Server iniciar, para verificar e possivelmente resolver quaisquer incompatibilidades entre os dados antigos e o software atualizado. O **mysql_upgrade** também executa outras funções; consulte a Seção 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables” para obter detalhes.
 
-   *For EL7-based platforms:* See Compatibility Information for EL7-based platforms.
+   *Para plataformas baseadas em EL7:* Consulte Compatibility Information for EL7-based platforms.

@@ -1,16 +1,16 @@
-#### 8.12.4.3 Enabling Large Page Support
+#### 8.12.4.3 Habilitando o Suporte a Large Pages
 
-Some hardware and operating system architectures support memory pages greater than the default (usually 4KB). The actual implementation of this support depends on the underlying hardware and operating system. Applications that perform a lot of memory accesses may obtain performance improvements by using large pages due to reduced Translation Lookaside Buffer (TLB) misses.
+Algumas arquiteturas de hardware e sistema operacional suportam páginas de memória maiores do que o padrão (geralmente 4KB). A implementação real desse suporte depende do hardware e sistema operacional subjacentes. Aplicações que realizam muitos acessos à memória podem obter melhorias de performance ao usar *large pages* devido à redução de *Translation Lookaside Buffer* (TLB) misses.
 
-In MySQL, large pages can be used by `InnoDB`, to allocate memory for its buffer pool and additional memory pool.
+No MySQL, *large pages* podem ser usadas pelo `InnoDB` para alocar memória para seu *buffer pool* e *additional memory pool*.
 
-Standard use of large pages in MySQL attempts to use the largest size supported, up to 4MB. Under Solaris, a “super large pages” feature enables uses of pages up to 256MB. This feature is available for recent SPARC platforms. It can be enabled or disabled by using the `--super-large-pages` or `--skip-super-large-pages` option.
+O uso padrão de *large pages* no MySQL tenta utilizar o maior tamanho suportado, até 4MB. Sob o Solaris, um recurso de “super large pages” permite o uso de páginas de até 256MB. Este recurso está disponível para plataformas SPARC recentes. Ele pode ser habilitado ou desabilitado usando as opções `--super-large-pages` ou `--skip-super-large-pages`.
 
-MySQL also supports the Linux implementation of large page support (which is called HugeTLB in Linux).
+O MySQL também suporta a implementação Linux de suporte a *large pages* (que é chamada de HugeTLB no Linux).
 
-Before large pages can be used on Linux, the kernel must be enabled to support them and it is necessary to configure the HugeTLB memory pool. For reference, the HugeTBL API is documented in the `Documentation/vm/hugetlbpage.txt` file of your Linux sources.
+Antes que *large pages* possam ser usadas no Linux, o kernel deve ser habilitado para suportá-las e é necessário configurar o *memory pool* HugeTLB. Para referência, a API HugeTBL está documentada no arquivo `Documentation/vm/hugetlbpage.txt` das suas fontes do Linux.
 
-The kernels for some recent systems such as Red Hat Enterprise Linux may have the large pages feature enabled by default. To check whether this is true for your kernel, use the following command and look for output lines containing “huge”:
+Os kernels de alguns sistemas recentes, como o Red Hat Enterprise Linux, podem ter o recurso *large pages* habilitado por padrão. Para verificar se isso é verdade para o seu kernel, use o seguinte comando e procure por linhas de saída contendo “huge”:
 
 ```sql
 $> grep -i huge /proc/meminfo
@@ -24,39 +24,39 @@ Hugepagesize:       2048 kB
 Hugetlb:               0 kB
 ```
 
-The nonempty command output indicates that large page support is present, but the zero values indicate that no pages are configured for use.
+A saída do comando não vazia indica que o suporte a *large pages* está presente, mas os valores zero indicam que nenhuma página está configurada para uso.
 
-If your kernel needs to be reconfigured to support large pages, consult the `hugetlbpage.txt` file for instructions.
+Se o seu kernel precisar ser reconfigurado para suportar *large pages*, consulte o arquivo `hugetlbpage.txt` para obter instruções.
 
-Assuming that your Linux kernel has large page support enabled, configure it for use by MySQL using the following steps:
+Assumindo que o suporte a *large pages* esteja habilitado no seu kernel Linux, configure-o para uso pelo MySQL seguindo os seguintes passos:
 
-1. Determine the number of large pages needed. This is the size of the InnoDB buffer pool divided by the large page size, which we can calculate as `innodb_buffer_pool_size` / `Hugepagesize`. Assuming the default value for the `innodb_buffer_pool_size` (128MB) and using the `Hugepagesize` value obtained from `/proc/meminfo` (2MB), this is 128MB / 2MB, or 64 Huge Pages. We call this value *`P`*.
+1. Determine o número de *large pages* necessárias. Este é o tamanho do *InnoDB buffer pool* dividido pelo tamanho da *large page*, que podemos calcular como `innodb_buffer_pool_size` / `Hugepagesize`. Assumindo o valor padrão para o `innodb_buffer_pool_size` (128MB) e usando o valor `Hugepagesize` obtido de `/proc/meminfo` (2MB), o resultado é 128MB / 2MB, ou 64 Huge Pages. Chamamos este valor de *`P`*.
 
-2. As system root, open the file `/etc/sysctl.conf` in a text editor, and add the line shown here, where *`P`* is the number of large pages obtained in the previous step:
+2. Como *system root*, abra o arquivo `/etc/sysctl.conf` em um editor de texto e adicione a linha mostrada aqui, onde *`P`* é o número de *large pages* obtido na etapa anterior:
 
    ```sql
    vm.nr_hugepages=P
    ```
 
-   Using the actual value obtained previously, the additional line should look like this:
+   Usando o valor real obtido anteriormente, a linha adicional deve ser parecida com esta:
 
    ```sql
    vm.nr_hugepages=66
    ```
 
-   Save the updated file.
+   Salve o arquivo atualizado.
 
-3. As system root, run the following command:
+3. Como *system root*, execute o seguinte comando:
 
    ```sql
    $> sudo sysctl -p
    ```
 
-   Note
+   Nota
 
-   On some systems the large pages file may be named slightly differently; for example, some distributions call it `nr_hugepages`. In the event **sysctl** returns an error relating to the file name, check the name of the corresponding file in `/proc/sys/vm` and use that instead.
+   Em alguns sistemas, o arquivo de *large pages* pode ter um nome ligeiramente diferente; por exemplo, algumas distribuições o chamam de `nr_hugepages`. Caso o **sysctl** retorne um erro relacionado ao nome do arquivo, verifique o nome do arquivo correspondente em `/proc/sys/vm` e use-o em seu lugar.
 
-   To verify the large page configuration, check `/proc/meminfo` again as described previously. Now you should see some additional nonzero values in the output, similar to this:
+   Para verificar a configuração de *large pages*, verifique `/proc/meminfo` novamente conforme descrito anteriormente. Agora você deve ver alguns valores não zero adicionais na saída, semelhante a isto:
 
    ```sql
    $> grep -i huge /proc/meminfo
@@ -70,7 +70,7 @@ Assuming that your Linux kernel has large page support enabled, configure it for
    Hugetlb:          477184 kB
    ```
 
-4. Optionally, you may wish to compact the Linux VM. You can do this using a sequence of commands, possibly in a script file, similar to what is shown here:
+4. Opcionalmente, você pode querer compactar o VM do Linux. Você pode fazer isso usando uma sequência de comandos, possivelmente em um arquivo *script*, semelhante ao que é mostrado aqui:
 
    ```sql
    sync
@@ -80,19 +80,19 @@ Assuming that your Linux kernel has large page support enabled, configure it for
    echo 1 > /proc/sys/vm/compact_memory
    ```
 
-   See your operating platform documentation for more information about how to do this.
+   Consulte a documentação da sua plataforma operacional para obter mais informações sobre como fazer isso.
 
-5. Check any configuration files such as `my.cnf` used by the server, and make sure that `innodb_buffer_pool_chunk_size` is set larger than the huge page size. The default for this variable is 128M.
+5. Verifique quaisquer arquivos de configuração, como `my.cnf`, usados pelo servidor e certifique-se de que `innodb_buffer_pool_chunk_size` esteja configurado para ser maior do que o tamanho da *huge page*. O valor padrão para esta variável é 128M.
 
-6. Large page support in the MySQL server is disabled by default. To enable it, start the server with `--large-pages`. You can also do so by adding the following line to the `[mysqld]` section of the server `my.cnf` file:
+6. O suporte a *large pages* no servidor MySQL é desabilitado por padrão. Para habilitá-lo, inicie o servidor com `--large-pages`. Você também pode fazer isso adicionando a seguinte linha à seção `[mysqld]` do arquivo `my.cnf` do servidor:
 
    ```sql
    large-pages=ON
    ```
 
-   With this option enabled, `InnoDB` uses large pages automatically for its buffer pool and additional memory pool. If `InnoDB` cannot do this, it falls back to use of traditional memory and writes a warning to the error log: Warning: Using conventional memory pool.
+   Com esta opção habilitada, o `InnoDB` usa *large pages* automaticamente para seu *buffer pool* e *additional memory pool*. Se o `InnoDB` não puder fazer isso, ele recorre ao uso de memória tradicional e escreve um aviso no *error log*: Warning: Using conventional memory pool.
 
-You can verify that MySQL is now using large pages by checking `/proc/meminfo` again after restarting **mysqld**, like this:
+Você pode verificar se o MySQL está usando *large pages* verificando `/proc/meminfo` novamente após reiniciar o **mysqld**, assim:
 
 ```sql
 $> grep -i huge /proc/meminfo

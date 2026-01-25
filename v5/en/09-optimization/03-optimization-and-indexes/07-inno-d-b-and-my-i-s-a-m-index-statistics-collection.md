@@ -1,53 +1,53 @@
-### 8.3.7 InnoDB and MyISAM Index Statistics Collection
+### 8.3.7 Coleta de Estatísticas de Index de InnoDB e MyISAM
 
-Storage engines collect statistics about tables for use by the optimizer. Table statistics are based on value groups, where a value group is a set of rows with the same key prefix value. For optimizer purposes, an important statistic is the average value group size.
+Storage engines coletam estatísticas sobre tabelas para uso pelo optimizer. As estatísticas de tabela são baseadas em grupos de valores (*value groups*), onde um grupo de valores é um conjunto de linhas com o mesmo prefixo de chave (*key prefix*) de valor. Para fins do optimizer, uma estatística importante é o tamanho médio do grupo de valores.
 
-MySQL uses the average value group size in the following ways:
+O MySQL usa o tamanho médio do grupo de valores das seguintes maneiras:
 
-* To estimate how many rows must be read for each `ref` access
+* Para estimar quantas linhas devem ser lidas para cada acesso `ref`
 
-* To estimate how many rows a partial join produces; that is, the number of rows that an operation of this form produces:
+* Para estimar quantas linhas um JOIN parcial produz; ou seja, o número de linhas que uma operação deste formato produz:
 
   ```sql
   (...) JOIN tbl_name ON tbl_name.key = expr
   ```
 
-As the average value group size for an index increases, the index is less useful for those two purposes because the average number of rows per lookup increases: For the index to be good for optimization purposes, it is best that each index value target a small number of rows in the table. When a given index value yields a large number of rows, the index is less useful and MySQL is less likely to use it.
+À medida que o tamanho médio do grupo de valores para um Index aumenta, o Index se torna menos útil para esses dois propósitos, pois o número médio de linhas por pesquisa (*lookup*) aumenta: Para que o Index seja bom para fins de otimização, é melhor que cada valor do Index vise um pequeno número de linhas na tabela. Quando um determinado valor de Index resulta em um grande número de linhas, o Index é menos útil e o MySQL tem menos probabilidade de usá-lo.
 
-The average value group size is related to table cardinality, which is the number of value groups. The `SHOW INDEX` statement displays a cardinality value based on *`N/S`*, where *`N`* is the number of rows in the table and *`S`* is the average value group size. That ratio yields an approximate number of value groups in the table.
+O tamanho médio do grupo de valores está relacionado à *cardinality* da tabela, que é o número de grupos de valores. A instrução `SHOW INDEX` exibe um valor de *cardinality* baseado em *`N/S`*, onde *`N`* é o número de linhas na tabela e *`S`* é o tamanho médio do grupo de valores. Essa razão fornece um número aproximado de grupos de valores na tabela.
 
-For a join based on the `<=>` comparison operator, `NULL` is not treated differently from any other value: `NULL <=> NULL`, just as `N <=> N` for any other *`N`*.
+Para um JOIN baseado no operador de comparação `<=>`, `NULL` não é tratado de forma diferente de qualquer outro valor: `NULL <=> NULL`, assim como `N <=> N` para qualquer outro *`N`*.
 
-However, for a join based on the `=` operator, `NULL` is different from non-`NULL` values: `expr1 = expr2` is not true when *`expr1`* or *`expr2`* (or both) are `NULL`. This affects `ref` accesses for comparisons of the form `tbl_name.key = expr`: MySQL does not access the table if the current value of *`expr`* is `NULL`, because the comparison cannot be true.
+No entanto, para um JOIN baseado no operador `=`, `NULL` é diferente de valores não-`NULL`: `expr1 = expr2` não é verdadeiro quando *`expr1`* ou *`expr2`* (ou ambos) são `NULL`. Isso afeta os acessos `ref` para comparações do formato `tbl_name.key = expr`: O MySQL não acessa a tabela se o valor atual de *`expr`* for `NULL`, porque a comparação não pode ser verdadeira.
 
-For `=` comparisons, it does not matter how many `NULL` values are in the table. For optimization purposes, the relevant value is the average size of the non-`NULL` value groups. However, MySQL does not currently enable that average size to be collected or used.
+Para comparações de `=`, não importa quantos valores `NULL` existam na tabela. Para fins de otimização, o valor relevante é o tamanho médio dos grupos de valores não-`NULL`. No entanto, o MySQL atualmente não permite que esse tamanho médio seja coletado ou usado.
 
-For `InnoDB` and `MyISAM` tables, you have some control over collection of table statistics by means of the `innodb_stats_method` and `myisam_stats_method` system variables, respectively. These variables have three possible values, which differ as follows:
+Para tabelas `InnoDB` e `MyISAM`, você tem algum controle sobre a coleta de estatísticas da tabela por meio das variáveis de sistema `innodb_stats_method` e `myisam_stats_method`, respectivamente. Essas variáveis têm três valores possíveis, que diferem da seguinte forma:
 
-* When the variable is set to `nulls_equal`, all `NULL` values are treated as identical (that is, they all form a single value group).
+* Quando a variável é definida como `nulls_equal`, todos os valores `NULL` são tratados como idênticos (ou seja, todos formam um único grupo de valores).
 
-  If the `NULL` value group size is much higher than the average non-`NULL` value group size, this method skews the average value group size upward. This makes index appear to the optimizer to be less useful than it really is for joins that look for non-`NULL` values. Consequently, the `nulls_equal` method may cause the optimizer not to use the index for `ref` accesses when it should.
+  Se o tamanho do grupo de valores `NULL` for muito maior do que o tamanho médio do grupo de valores não-`NULL`, este método distorce o tamanho médio do grupo de valores para cima. Isso faz com que o Index pareça ser menos útil para o optimizer do que realmente é para JOINs que procuram valores não-`NULL`. Consequentemente, o método `nulls_equal` pode fazer com que o optimizer não use o Index para acessos `ref` quando deveria.
 
-* When the variable is set to `nulls_unequal`, `NULL` values are not considered the same. Instead, each `NULL` value forms a separate value group of size 1.
+* Quando a variável é definida como `nulls_unequal`, os valores `NULL` não são considerados iguais. Em vez disso, cada valor `NULL` forma um grupo de valores separado de tamanho 1.
 
-  If you have many `NULL` values, this method skews the average value group size downward. If the average non-`NULL` value group size is large, counting `NULL` values each as a group of size 1 causes the optimizer to overestimate the value of the index for joins that look for non-`NULL` values. Consequently, the `nulls_unequal` method may cause the optimizer to use this index for `ref` lookups when other methods may be better.
+  Se houver muitos valores `NULL`, este método distorce o tamanho médio do grupo de valores para baixo. Se o tamanho médio do grupo de valores não-`NULL` for grande, contar cada valor `NULL` como um grupo de tamanho 1 faz com que o optimizer superestime o valor do Index para JOINs que procuram valores não-`NULL`. Consequentemente, o método `nulls_unequal` pode fazer com que o optimizer use este Index para pesquisas `ref` quando outros métodos podem ser melhores.
 
-* When the variable is set to `nulls_ignored`, `NULL` values are ignored.
+* Quando a variável é definida como `nulls_ignored`, os valores `NULL` são ignorados.
 
-If you tend to use many joins that use `<=>` rather than `=`, `NULL` values are not special in comparisons and one `NULL` is equal to another. In this case, `nulls_equal` is the appropriate statistics method.
+Se você tende a usar muitos JOINs que utilizam `<=>` em vez de `=`, os valores `NULL` não são especiais nas comparações e um `NULL` é igual ao outro. Neste caso, `nulls_equal` é o método de estatística apropriado.
 
-The `innodb_stats_method` system variable has a global value; the `myisam_stats_method` system variable has both global and session values. Setting the global value affects statistics collection for tables from the corresponding storage engine. Setting the session value affects statistics collection only for the current client connection. This means that you can force a table's statistics to be regenerated with a given method without affecting other clients by setting the session value of `myisam_stats_method`.
+A variável de sistema `innodb_stats_method` tem um valor global; a variável de sistema `myisam_stats_method` tem valores globais e de sessão. Definir o valor global afeta a coleta de estatísticas para tabelas do storage engine correspondente. Definir o valor da sessão afeta a coleta de estatísticas apenas para a conexão cliente atual. Isso significa que você pode forçar a regeneração das estatísticas de uma tabela com um determinado método sem afetar outros clientes, definindo o valor de sessão de `myisam_stats_method`.
 
-To regenerate `MyISAM` table statistics, you can use any of the following methods:
+Para regenerar as estatísticas da tabela `MyISAM`, você pode usar qualquer um dos seguintes métodos:
 
 * Execute **myisamchk --stats_method=*`method_name`* --analyze**
 
-* Change the table to cause its statistics to go out of date (for example, insert a row and then delete it), and then set `myisam_stats_method` and issue an `ANALYZE TABLE` statement
+* Altere a tabela para que suas estatísticas se tornem desatualizadas (por exemplo, insira uma linha e depois a exclua) e, em seguida, defina `myisam_stats_method` e emita uma instrução `ANALYZE TABLE`
 
-Some caveats regarding the use of `innodb_stats_method` and `myisam_stats_method`:
+Alguns alertas (*caveats*) sobre o uso de `innodb_stats_method` e `myisam_stats_method`:
 
-* You can force table statistics to be collected explicitly, as just described. However, MySQL may also collect statistics automatically. For example, if during the course of executing statements for a table, some of those statements modify the table, MySQL may collect statistics. (This may occur for bulk inserts or deletes, or some `ALTER TABLE` statements, for example.) If this happens, the statistics are collected using whatever value `innodb_stats_method` or `myisam_stats_method` has at the time. Thus, if you collect statistics using one method, but the system variable is set to the other method when a table's statistics are collected automatically later, the other method is used.
+* Você pode forçar a coleta explícita de estatísticas da tabela, conforme descrito. No entanto, o MySQL também pode coletar estatísticas automaticamente. Por exemplo, se durante a execução de instruções para uma tabela, algumas dessas instruções modificarem a tabela, o MySQL pode coletar estatísticas. (Isso pode ocorrer, por exemplo, para inserções ou exclusões em massa, ou algumas instruções `ALTER TABLE`.) Se isso acontecer, as estatísticas serão coletadas usando o valor que `innodb_stats_method` ou `myisam_stats_method` tiver naquele momento. Portanto, se você coletar estatísticas usando um método, mas a variável de sistema estiver definida para o outro método quando as estatísticas da tabela forem coletadas automaticamente mais tarde, o outro método será usado.
 
-* There is no way to tell which method was used to generate statistics for a given table.
+* Não há como saber qual método foi usado para gerar estatísticas para uma determinada tabela.
 
-* These variables apply only to `InnoDB` and `MyISAM` tables. Other storage engines have only one method for collecting table statistics. Usually it is closer to the `nulls_equal` method.
+* Essas variáveis se aplicam apenas a tabelas `InnoDB` e `MyISAM`. Outros storage engines têm apenas um método para coletar estatísticas de tabela. Geralmente, ele é mais próximo do método `nulls_equal`.

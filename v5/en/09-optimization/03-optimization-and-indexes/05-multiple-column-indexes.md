@@ -1,14 +1,14 @@
-### 8.3.5 Multiple-Column Indexes
+### 8.3.5 Índices de Múltiplas Colunas
 
-MySQL can create composite indexes (that is, indexes on multiple columns). An index may consist of up to 16 columns. For certain data types, you can index a prefix of the column (see Section 8.3.4, “Column Indexes”).
+O MySQL pode criar índices compostos (isto é, Indexes em múltiplas colunas). Um Index pode consistir em até 16 colunas. Para certos tipos de dados, você pode indexar um prefixo da coluna (veja Seção 8.3.4, “Índices de Coluna”).
 
-MySQL can use multiple-column indexes for queries that test all the columns in the index, or queries that test just the first column, the first two columns, the first three columns, and so on. If you specify the columns in the right order in the index definition, a single composite index can speed up several kinds of queries on the same table.
+O MySQL pode usar Indexes de múltiplas colunas para Queries que testam todas as colunas no Index, ou Queries que testam apenas a primeira coluna, as duas primeiras colunas, as três primeiras colunas, e assim por diante. Se você especificar as colunas na ordem correta na definição do Index, um único índice composto pode acelerar vários tipos de Queries na mesma tabela.
 
-A multiple-column index can be considered a sorted array, the rows of which contain values that are created by concatenating the values of the indexed columns.
+Um índice de múltiplas colunas pode ser considerado um *array* ordenado, cujas linhas contêm valores criados pela concatenação dos valores das colunas indexadas.
 
-Note
+Nota
 
-As an alternative to a composite index, you can introduce a column that is “hashed” based on information from other columns. If this column is short, reasonably unique, and indexed, it might be faster than a “wide” index on many columns. In MySQL, it is very easy to use this extra column:
+Como alternativa a um índice composto, você pode introduzir uma coluna que é “hasheada” com base em informações de outras colunas. Se esta coluna for curta, razoavelmente única e indexada, ela pode ser mais rápida do que um Index “amplo” em muitas colunas. No MySQL, é muito fácil usar esta coluna extra:
 
 ```sql
 SELECT * FROM tbl_name
@@ -16,7 +16,7 @@ SELECT * FROM tbl_name
   AND col1=val1 AND col2=val2;
 ```
 
-Suppose that a table has the following specification:
+Suponha que uma tabela tenha a seguinte especificação:
 
 ```sql
 CREATE TABLE test (
@@ -28,7 +28,7 @@ CREATE TABLE test (
 );
 ```
 
-The `name` index is an index over the `last_name` and `first_name` columns. The index can be used for lookups in queries that specify values in a known range for combinations of `last_name` and `first_name` values. It can also be used for queries that specify just a `last_name` value because that column is a leftmost prefix of the index (as described later in this section). Therefore, the `name` index is used for lookups in the following queries:
+O Index `name` é um Index sobre as colunas `last_name` e `first_name`. O Index pode ser usado para *lookups* em Queries que especificam valores em um intervalo conhecido para combinações de valores de `last_name` e `first_name`. Ele também pode ser usado para Queries que especificam apenas um valor de `last_name` porque essa coluna é um prefixo mais à esquerda do Index (conforme descrito mais adiante nesta seção). Portanto, o Index `name` é usado para *lookups* nas seguintes Queries:
 
 ```sql
 SELECT * FROM test WHERE last_name='Jones';
@@ -45,7 +45,7 @@ SELECT * FROM test
   AND first_name >='M' AND first_name < 'N';
 ```
 
-However, the `name` index is *not* used for lookups in the following queries:
+No entanto, o Index `name` *não* é usado para *lookups* nas seguintes Queries:
 
 ```sql
 SELECT * FROM test WHERE first_name='John';
@@ -54,18 +54,18 @@ SELECT * FROM test
   WHERE last_name='Jones' OR first_name='John';
 ```
 
-Suppose that you issue the following `SELECT` statement:
+Suponha que você execute a seguinte instrução `SELECT`:
 
 ```sql
 SELECT * FROM tbl_name
   WHERE col1=val1 AND col2=val2;
 ```
 
-If a multiple-column index exists on `col1` and `col2`, the appropriate rows can be fetched directly. If separate single-column indexes exist on `col1` and `col2`, the optimizer attempts to use the Index Merge optimization (see Section 8.2.1.3, “Index Merge Optimization”), or attempts to find the most restrictive index by deciding which index excludes more rows and using that index to fetch the rows.
+Se um Index de múltiplas colunas existir em `col1` e `col2`, as linhas apropriadas podem ser buscadas diretamente. Se Indexes separados de coluna única existirem em `col1` e `col2`, o otimizador tenta usar a otimização Index Merge (veja Seção 8.2.1.3, “Index Merge Optimization”), ou tenta encontrar o Index mais restritivo decidindo qual Index exclui mais linhas e usando esse Index para buscar as linhas.
 
-If the table has a multiple-column index, any leftmost prefix of the index can be used by the optimizer to look up rows. For example, if you have a three-column index on `(col1, col2, col3)`, you have indexed search capabilities on `(col1)`, `(col1, col2)`, and `(col1, col2, col3)`.
+Se a tabela tiver um Index de múltiplas colunas, qualquer prefixo mais à esquerda do Index pode ser usado pelo otimizador para realizar *lookups* de linhas. Por exemplo, se você tiver um Index de três colunas em `(col1, col2, col3)`, você tem capacidades de busca indexada em `(col1)`, `(col1, col2)` e `(col1, col2, col3)`.
 
-MySQL cannot use the index to perform lookups if the columns do not form a leftmost prefix of the index. Suppose that you have the `SELECT` statements shown here:
+O MySQL não pode usar o Index para realizar *lookups* se as colunas não formarem um prefixo mais à esquerda do Index. Suponha que você tenha as instruções `SELECT` mostradas aqui:
 
 ```sql
 SELECT * FROM tbl_name WHERE col1=val1;
@@ -75,4 +75,4 @@ SELECT * FROM tbl_name WHERE col2=val2;
 SELECT * FROM tbl_name WHERE col2=val2 AND col3=val3;
 ```
 
-If an index exists on `(col1, col2, col3)`, only the first two queries use the index. The third and fourth queries do involve indexed columns, but do not use an index to perform lookups because `(col2)` and `(col2, col3)` are not leftmost prefixes of `(col1, col2, col3)`.
+Se um Index existir em `(col1, col2, col3)`, apenas as duas primeiras Queries usam o Index. A terceira e a quarta Queries envolvem colunas indexadas, mas não usam um Index para realizar *lookups* porque `(col2)` e `(col2, col3)` não são prefixos mais à esquerda de `(col1, col2, col3)`.

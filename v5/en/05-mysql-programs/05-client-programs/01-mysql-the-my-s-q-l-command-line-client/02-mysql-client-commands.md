@@ -1,6 +1,6 @@
-#### 4.5.1.2 mysql Client Commands
+#### 4.5.1.2 Comandos do Client mysql
 
-**mysql** sends each SQL statement that you issue to the server to be executed. There is also a set of commands that **mysql** itself interprets. For a list of these commands, type `help` or `\h` at the `mysql>` prompt:
+O **mysql** envia cada instrução SQL que você emite para o server para ser executada. Há também um conjunto de comandos que o próprio **mysql** interpreta. Para uma lista desses comandos, digite `help` ou `\h` no prompt `mysql>`:
 
 ```sql
 mysql> help
@@ -38,105 +38,105 @@ resetconnection(\x) Clean session context.
 For server side help, type 'help contents'
 ```
 
-If **mysql** is invoked with the `--binary-mode` option, all **mysql** commands are disabled except `charset` and `delimiter` in noninteractive mode (for input piped to **mysql** or loaded using the `source` command).
+Se o **mysql** for invocado com a opção `--binary-mode`, todos os comandos do **mysql** são desativados, exceto `charset` e `delimiter` no modo não interativo (para input canalizado para o **mysql** ou carregado usando o comando `source`).
 
-Each command has both a long and short form. The long form is not case-sensitive; the short form is. The long form can be followed by an optional semicolon terminator, but the short form should not.
+Cada comando tem formas longas e curtas. A forma longa não diferencia maiúsculas de minúsculas; a forma curta diferencia. A forma longa pode ser seguida por um ponto e vírgula (`semicolon`) terminador opcional, mas a forma curta não deve ser.
 
-The use of short-form commands within multiple-line `/* ... */` comments is not supported. Short-form commands do work within single-line `/*! ... */` version comments, as do `/*+ ... */` optimizer-hint comments, which are stored in object definitions. If there is a concern that optimizer-hint comments may be stored in object definitions so that dump files when reloaded with `mysql` would result in execution of such commands, either invoke **mysql** with the `--binary-mode` option or use a reload client other than **mysql**.
+O uso de comandos de forma curta dentro de comentários de múltiplas linhas `/* ... */` não é suportado. Comandos de forma curta funcionam dentro de comentários de versão de linha única `/*! ... */`, assim como em comentários de `optimizer-hint` `/*+ ... */`, que são armazenados em definições de objeto. Se houver a preocupação de que comentários de `optimizer-hint` possam ser armazenados em definições de objeto, de modo que os `dump files` recarregados com **mysql** resultem na execução desses comandos, invoque o **mysql** com a opção `--binary-mode` ou use um `reload client` diferente do **mysql**.
 
 * `help [arg]`, `\h [arg]`, `\? [arg]`, `? [arg]`
 
-  Display a help message listing the available **mysql** commands.
+  Exibe uma mensagem de ajuda listando os comandos **mysql** disponíveis.
 
-  If you provide an argument to the `help` command, **mysql** uses it as a search string to access server-side help from the contents of the MySQL Reference Manual. For more information, see Section 4.5.1.4, “mysql Client Server-Side Help”.
+  Se você fornecer um argumento para o comando `help`, o **mysql** o utiliza como uma string de busca para acessar a ajuda do lado do server (*server-side help*) a partir do conteúdo do Manual de Referência do MySQL. Para mais informações, consulte a Seção 4.5.1.4, “Ajuda do Lado do Server do Client mysql”.
 
 * `charset charset_name`, `\C charset_name`
 
-  Change the default character set and issue a `SET NAMES` statement. This enables the character set to remain synchronized on the client and server if **mysql** is run with auto-reconnect enabled (which is not recommended), because the specified character set is used for reconnects.
+  Altera o `character set` padrão e emite uma instrução `SET NAMES`. Isso permite que o `character set` permaneça sincronizado no client e no server se o **mysql** for executado com o `auto-reconnect` ativado (o que não é recomendado), porque o `character set` especificado é usado para reconexões.
 
 * `clear`, `\c`
 
-  Clear the current input. Use this if you change your mind about executing the statement that you are entering.
+  Limpa o input atual. Use isso se você mudar de ideia sobre executar a instrução que está digitando.
 
 * `connect [db_name [host_name`, `\r [db_name [host_name`
 
-  Reconnect to the server. The optional database name and host name arguments may be given to specify the default database or the host where the server is running. If omitted, the current values are used.
+  Reconecta ao server. Os argumentos opcionais de nome de Database e nome de host podem ser fornecidos para especificar a Database padrão ou o host onde o server está sendo executado. Se omitidos, os valores atuais são usados.
 
 * `delimiter str`, `\d str`
 
-  Change the string that **mysql** interprets as the separator between SQL statements. The default is the semicolon character (`;`).
+  Altera a string que o **mysql** interpreta como o separador entre as instruções SQL. O padrão é o caractere ponto e vírgula (`;`).
 
-  The delimiter string can be specified as an unquoted or quoted argument on the `delimiter` command line. Quoting can be done with either single quote (`'`), double quote (`"`), or backtick (`` ` ``) characters. To include a quote within a quoted string, either quote the string with a different quote character or escape the quote with a backslash (`\`) character. Backslash should be avoided outside of quoted strings because it is the escape character for MySQL. For an unquoted argument, the delimiter is read up to the first space or end of line. For a quoted argument, the delimiter is read up to the matching quote on the line.
+  A string do `delimiter` pode ser especificada como um argumento sem aspas ou entre aspas na linha de comando `delimiter`. A citação pode ser feita com aspas simples (`'`), aspas duplas (`"`) ou caracteres *backtick* (`` ` ``). Para incluir uma aspa dentro de uma string entre aspas, coloque a string entre aspas usando um caractere de aspa diferente ou escape a aspa com um caractere *backslash* (`\`). O *backslash* deve ser evitado fora das strings entre aspas, pois é o caractere de escape para MySQL. Para um argumento sem aspas, o `delimiter` é lido até o primeiro espaço ou fim de linha. Para um argumento entre aspas, o `delimiter` é lido até as aspas correspondentes na linha.
 
-  **mysql** interprets instances of the delimiter string as a statement delimiter anywhere it occurs, except within quoted strings. Be careful about defining a delimiter that might occur within other words. For example, if you define the delimiter as `X`, it is not possible to use the word `INDEX` in statements. **mysql** interprets this as `INDE` followed by the delimiter `X`.
+  O **mysql** interpreta instâncias da string de `delimiter` como um delimitador de instrução em qualquer lugar que ocorra, exceto dentro de strings entre aspas. Tenha cuidado ao definir um `delimiter` que possa ocorrer dentro de outras palavras. Por exemplo, se você definir o `delimiter` como `X`, não será possível usar a palavra `INDEX` nas instruções. O **mysql** interpreta isso como `INDE` seguido pelo `delimiter` `X`.
 
-  When the delimiter recognized by **mysql** is set to something other than the default of `;`, instances of that character are sent to the server without interpretation. However, the server itself still interprets `;` as a statement delimiter and processes statements accordingly. This behavior on the server side comes into play for multiple-statement execution (see Multiple Statement Execution Support), and for parsing the body of stored procedures and functions, triggers, and events (see Section 23.1, “Defining Stored Programs”).
+  Quando o `delimiter` reconhecido pelo **mysql** é definido como algo diferente do padrão `;`, as instâncias desse caractere são enviadas ao server sem interpretação. No entanto, o próprio server ainda interpreta `;` como um delimitador de instrução e processa as instruções de acordo. Este comportamento do lado do server entra em jogo para a execução de múltiplas instruções (consulte Suporte à Execução de Múltiplas Instruções) e para a análise do corpo de `stored procedures` e funções, `triggers` e `events` (consulte a Seção 23.1, “Definindo Programas Armazenados”).
 
 * `edit`, `\e`
 
-  Edit the current input statement. **mysql** checks the values of the `EDITOR` and `VISUAL` environment variables to determine which editor to use. The default editor is **vi** if neither variable is set.
+  Edita a instrução de input atual. O **mysql** verifica os valores das `Environment Variables` `EDITOR` e `VISUAL` para determinar qual editor usar. O editor padrão é **vi** se nenhuma das variáveis estiver definida.
 
-  The `edit` command works only in Unix.
+  O comando `edit` funciona apenas no Unix.
 
 * `ego`, `\G`
 
-  Send the current statement to the server to be executed and display the result using vertical format.
+  Envia a instrução atual para o server para ser executada e exibe o resultado usando o formato vertical.
 
 * `exit`, `\q`
 
-  Exit **mysql**.
+  Sai do **mysql**.
 
 * `go`, `\g`
 
-  Send the current statement to the server to be executed.
+  Envia a instrução atual para o server para ser executada.
 
 * `nopager`, `\n`
 
-  Disable output paging. See the description for `pager`.
+  Desativa a paginação de output. Consulte a descrição de `pager`.
 
-  The `nopager` command works only in Unix.
+  O comando `nopager` funciona apenas no Unix.
 
 * `notee`, `\t`
 
-  Disable output copying to the tee file. See the description for `tee`.
+  Desativa a cópia de output para o arquivo `tee`. Consulte a descrição de `tee`.
 
 * `nowarning`, `\w`
 
-  Disable display of warnings after each statement.
+  Desativa a exibição de *warnings* após cada instrução.
 
 * `pager [command]`, `\P [command]`
 
-  Enable output paging. By using the `--pager` option when you invoke **mysql**, it is possible to browse or search query results in interactive mode with Unix programs such as **less**, **more**, or any other similar program. If you specify no value for the option, **mysql** checks the value of the `PAGER` environment variable and sets the pager to that. Pager functionality works only in interactive mode.
+  Ativa a paginação de output. Ao usar a opção `--pager` ao invocar o **mysql**, é possível navegar ou buscar resultados de Query no modo interativo com programas Unix como **less**, **more** ou qualquer outro programa similar. Se você não especificar nenhum valor para a opção, o **mysql** verifica o valor da `Environment Variable` `PAGER` e define o `pager` para esse valor. A funcionalidade de `pager` funciona apenas no modo interativo.
 
-  Output paging can be enabled interactively with the `pager` command and disabled with `nopager`. The command takes an optional argument; if given, the paging program is set to that. With no argument, the pager is set to the pager that was set on the command line, or `stdout` if no pager was specified.
+  A paginação de output pode ser ativada interativamente com o comando `pager` e desativada com `nopager`. O comando aceita um argumento opcional; se fornecido, o programa de paginação é definido para isso. Sem argumento, o `pager` é definido para o `pager` que foi configurado na linha de comando, ou `stdout` se nenhum `pager` tiver sido especificado.
 
-  Output paging works only in Unix because it uses the `popen()` function, which does not exist on Windows. For Windows, the `tee` option can be used instead to save query output, although it is not as convenient as `pager` for browsing output in some situations.
+  A paginação de output funciona apenas no Unix porque usa a função `popen()`, que não existe no Windows. Para Windows, a opção `tee` pode ser usada em vez disso para salvar o output da Query, embora não seja tão conveniente quanto o `pager` para navegar pelo output em algumas situações.
 
 * `print`, `\p`
 
-  Print the current input statement without executing it.
+  Imprime a instrução de input atual sem executá-la.
 
 * `prompt [str]`, `\R [str]`
 
-  Reconfigure the **mysql** prompt to the given string. The special character sequences that can be used in the prompt are described later in this section.
+  Reconfigura o prompt do **mysql** para a string fornecida. As sequências de caracteres especiais que podem ser usadas no prompt são descritas posteriormente nesta seção.
 
-  If you specify the `prompt` command with no argument, **mysql** resets the prompt to the default of `mysql>`.
+  Se você especificar o comando `prompt` sem argumento, o **mysql** redefine o prompt para o padrão `mysql>`.
 
 * `quit`, `\q`
 
-  Exit **mysql**.
+  Sai do **mysql**.
 
 * `rehash`, `\#`
 
-  Rebuild the completion hash that enables database, table, and column name completion while you are entering statements. (See the description for the `--auto-rehash` option.)
+  Reconstrói o *completion hash* que permite a conclusão de nomes de Database, tabela e coluna enquanto você insere instruções. (Consulte a descrição da opção `--auto-rehash`.)
 
 * `resetconnection`, `\x`
 
-  Reset the connection to clear the session state.
+  Reseta a connection para limpar o estado da `session`.
 
-  Resetting a connection has effects similar to `mysql_change_user()` or an auto-reconnect except that the connection is not closed and reopened, and re-authentication is not done. See mysql_change_user(), and Automatic Reconnection Control.
+  Resetar uma connection tem efeitos semelhantes a `mysql_change_user()` ou um `auto-reconnect`, exceto que a connection não é fechada e reaberta, e a reautenticação não é realizada. Consulte mysql_change_user() e Controle Automático de Reconexão.
 
-  This example shows how `resetconnection` clears a value maintained in the session state:
+  Este exemplo mostra como `resetconnection` limpa um valor mantido no estado da `session`:
 
   ```sql
   mysql> SELECT LAST_INSERT_ID(3);
@@ -165,105 +165,105 @@ The use of short-form commands within multiple-line `/* ... */` comments is not 
 
 * `source file_name`, `\. file_name`
 
-  Read the named file and executes the statements contained therein. On Windows, specify path name separators as `/` or `\\`.
+  Lê o arquivo nomeado e executa as instruções contidas nele. No Windows, especifique os separadores de nome de caminho como `/` ou `\\`.
 
-  Quote characters are taken as part of the file name itself. For best results, the name should not include space characters.
+  Os caracteres de aspas são considerados parte do próprio nome do arquivo. Para melhores resultados, o nome não deve incluir caracteres de espaço.
 
 * `status`, `\s`
 
-  Provide status information about the connection and the server you are using. If you are running with `--safe-updates` enabled, `status` also prints the values for the **mysql** variables that affect your queries.
+  Fornece informações de status sobre a connection e o server que você está usando. Se você estiver executando com `--safe-updates` ativado, `status` também imprime os valores para as variáveis **mysql** que afetam seus Queries.
 
 * `system command`, `\! command`
 
-  Execute the given command using your default command interpreter.
+  Executa o comando fornecido usando seu interpretador de comandos padrão.
 
-  The `system` command works only in Unix.
+  O comando `system` funciona apenas no Unix.
 
 * `tee [file_name]`, `\T [file_name]`
 
-  By using the `--tee` option when you invoke **mysql**, you can log statements and their output. All the data displayed on the screen is appended into a given file. This can be very useful for debugging purposes also. **mysql** flushes results to the file after each statement, just before it prints its next prompt. Tee functionality works only in interactive mode.
+  Ao usar a opção `--tee` ao invocar o **mysql**, você pode logar instruções e seus outputs. Todos os dados exibidos na tela são anexados a um arquivo fornecido. Isso também pode ser muito útil para fins de debugging. O **mysql** envia os resultados para o arquivo após cada instrução, pouco antes de imprimir seu próximo prompt. A funcionalidade `Tee` funciona apenas no modo interativo.
 
-  You can enable this feature interactively with the `tee` command. Without a parameter, the previous file is used. The `tee` file can be disabled with the `notee` command. Executing `tee` again re-enables logging.
+  Você pode ativar este recurso interativamente com o comando `tee`. Sem um parâmetro, o arquivo anterior é usado. O arquivo `tee` pode ser desativado com o comando `notee`. Executar `tee` novamente reativa o logging.
 
 * `use db_name`, `\u db_name`
 
-  Use *`db_name`* as the default database.
+  Usa *`db_name`* como a Database padrão.
 
 * `warnings`, `\W`
 
-  Enable display of warnings after each statement (if there are any).
+  Ativa a exibição de *warnings* após cada instrução (se houver alguma).
 
-Here are a few tips about the `pager` command:
+Aqui estão algumas dicas sobre o comando `pager`:
 
-* You can use it to write to a file and the results go only to the file:
+* Você pode usá-lo para escrever em um arquivo e os resultados vão apenas para o arquivo:
 
   ```sql
   mysql> pager cat > /tmp/log.txt
   ```
 
-  You can also pass any options for the program that you want to use as your pager:
+  Você também pode passar quaisquer opções para o programa que deseja usar como seu `pager`:
 
   ```sql
   mysql> pager less -n -i -S
   ```
 
-* In the preceding example, note the `-S` option. You may find it very useful for browsing wide query results. Sometimes a very wide result set is difficult to read on the screen. The `-S` option to **less** can make the result set much more readable because you can scroll it horizontally using the left-arrow and right-arrow keys. You can also use `-S` interactively within **less** to switch the horizontal-browse mode on and off. For more information, read the **less** manual page:
+* No exemplo anterior, observe a opção `-S`. Você pode achá-la muito útil para navegar por resultados de Query amplos. Às vezes, um conjunto de resultados muito amplo é difícil de ler na tela. A opção `-S` para **less** pode tornar o conjunto de resultados muito mais legível porque você pode rolá-lo horizontalmente usando as teclas de seta para a esquerda e para a direita. Você também pode usar `-S` interativamente dentro do **less** para ligar e desligar o modo de navegação horizontal. Para mais informações, leia a página do manual do **less**:
 
   ```sql
   man less
   ```
 
-* The `-F` and `-X` options may be used with **less** to cause it to exit if output fits on one screen, which is convenient when no scrolling is necessary:
+* As opções `-F` e `-X` podem ser usadas com **less** para fazer com que ele saia se o output couber em uma tela, o que é conveniente quando nenhuma rolagem é necessária:
 
   ```sql
   mysql> pager less -n -i -S -F -X
   ```
 
-* You can specify very complex pager commands for handling query output:
+* Você pode especificar comandos `pager` muito complexos para manipular o output de Query:
 
   ```sql
   mysql> pager cat | tee /dr1/tmp/res.txt \
             | tee /dr2/tmp/res2.txt | less -n -i -S
   ```
 
-  In this example, the command would send query results to two files in two different directories on two different file systems mounted on `/dr1` and `/dr2`, yet still display the results onscreen using **less**.
+  Neste exemplo, o comando enviaria os resultados da Query para dois arquivos em dois diretórios diferentes em dois `file systems` diferentes montados em `/dr1` e `/dr2`, e ainda assim exibiria os resultados na tela usando **less**.
 
-You can also combine the `tee` and `pager` functions. Have a `tee` file enabled and `pager` set to **less**, and you are able to browse the results using the **less** program and still have everything appended into a file the same time. The difference between the Unix `tee` used with the `pager` command and the **mysql** built-in `tee` command is that the built-in `tee` works even if you do not have the Unix **tee** available. The built-in `tee` also logs everything that is printed on the screen, whereas the Unix **tee** used with `pager` does not log quite that much. Additionally, `tee` file logging can be turned on and off interactively from within **mysql**. This is useful when you want to log some queries to a file, but not others.
+Você também pode combinar as funções `tee` e `pager`. Mantenha um arquivo `tee` ativado e o `pager` configurado como **less**, e você poderá navegar pelos resultados usando o programa **less** e ainda ter tudo anexado a um arquivo ao mesmo tempo. A diferença entre o `tee` do Unix usado com o comando `pager` e o comando `tee` integrado do **mysql** é que o `tee` integrado funciona mesmo se você não tiver o `tee` do Unix disponível. O `tee` integrado também registra tudo o que é impresso na tela, enquanto o `tee` do Unix usado com o `pager` não registra tanto. Além disso, o logging do arquivo `tee` pode ser ativado e desativado interativamente dentro do **mysql**. Isso é útil quando você deseja logar algumas Queries em um arquivo, mas não outras.
 
-The `prompt` command reconfigures the default `mysql>` prompt. The string for defining the prompt can contain the following special sequences.
+O comando `prompt` reconfigura o prompt padrão `mysql>`. A string para definir o prompt pode conter as seguintes sequências especiais.
 
-<table><thead><tr> <th>Option</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>\C</code></td> <td>The current connection identifier</td> </tr><tr> <td><code>\c</code></td> <td>A counter that increments for each statement you issue</td> </tr><tr> <td><code>\D</code></td> <td>The full current date</td> </tr><tr> <td><code>\d</code></td> <td>The default database</td> </tr><tr> <td><code>\h</code></td> <td>The server host</td> </tr><tr> <td><code>\l</code></td> <td>The current delimiter</td> </tr><tr> <td><code>\m</code></td> <td>Minutes of the current time</td> </tr><tr> <td><code>\n</code></td> <td>A newline character</td> </tr><tr> <td><code>\O</code></td> <td>The current month in three-letter format (Jan, Feb, …)</td> </tr><tr> <td><code>\o</code></td> <td>The current month in numeric format</td> </tr><tr> <td><code>\P</code></td> <td>am/pm</td> </tr><tr> <td><code>\p</code></td> <td>The current TCP/IP port or socket file</td> </tr><tr> <td><code>\R</code></td> <td>The current time, in 24-hour military time (0–23)</td> </tr><tr> <td><code>\r</code></td> <td>The current time, standard 12-hour time (1–12)</td> </tr><tr> <td><code>\S</code></td> <td>Semicolon</td> </tr><tr> <td><code>\s</code></td> <td>Seconds of the current time</td> </tr><tr> <td><code>\t</code></td> <td>A tab character</td> </tr><tr> <td><code>\U</code></td> <td><p> Your full <code><em><code>user_name</code></em>@<em><code>host_name</code></em></code> account name </p></td> </tr><tr> <td><code>\u</code></td> <td>Your user name</td> </tr><tr> <td><code>\v</code></td> <td>The server version</td> </tr><tr> <td><code>\w</code></td> <td>The current day of the week in three-letter format (Mon, Tue, …)</td> </tr><tr> <td><code>\Y</code></td> <td>The current year, four digits</td> </tr><tr> <td><code>\y</code></td> <td>The current year, two digits</td> </tr><tr> <td><code>_</code></td> <td>A space</td> </tr><tr> <td><code>\ </code></td> <td>A space (a space follows the backslash)</td> </tr><tr> <td><code>\'</code></td> <td>Single quote</td> </tr><tr> <td><code>\"</code></td> <td>Double quote</td> </tr><tr> <td><code>\\</code></td> <td>A literal <code>\</code> backslash character</td> </tr><tr> <td><code>\<em><code>x</code></em></code></td> <td><p> <em><code>x</code></em>, for any <span class="quote">“<span class="quote"><em><code>x</code></em></span>”</span> not listed above </p></td> </tr></tbody></table>
+<table><thead><tr> <th>Opção</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>\C</code></td> <td>O identificador de connection atual</td> </tr><tr> <td><code>\c</code></td> <td>Um contador que incrementa para cada instrução que você emite</td> </tr><tr> <td><code>\D</code></td> <td>A data atual completa</td> </tr><tr> <td><code>\d</code></td> <td>A Database padrão</td> </tr><tr> <td><code>\h</code></td> <td>O host do server</td> </tr><tr> <td><code>\l</code></td> <td>O <code>delimiter</code> atual</td> </tr><tr> <td><code>\m</code></td> <td>Minutos da hora atual</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (<code>newline character</code>)</td> </tr><tr> <td><code>\O</code></td> <td>O mês atual no formato de três letras (Jan, Fev, …)</td> </tr><tr> <td><code>\o</code></td> <td>O mês atual no formato numérico</td> </tr><tr> <td><code>\P</code></td> <td>am/pm</td> </tr><tr> <td><code>\p</code></td> <td>A porta TCP/IP ou arquivo socket atual</td> </tr><tr> <td><code>\R</code></td> <td>A hora atual, no formato militar de 24 horas (0–23)</td> </tr><tr> <td><code>\r</code></td> <td>A hora atual, no formato padrão de 12 horas (1–12)</td> </tr><tr> <td><code>\S</code></td> <td>Ponto e vírgula (<code>Semicolon</code>)</td> </tr><tr> <td><code>\s</code></td> <td>Segundos da hora atual</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere tab (<code>tab character</code>)</td> </tr><tr> <td><code>\U</code></td> <td><p> O seu nome de conta completo <code><em><code>user_name</code></em>@<em><code>host_name</code></em></code> </p></td> </tr><tr> <td><code>\u</code></td> <td>Seu nome de usuário</td> </tr><tr> <td><code>\v</code></td> <td>A versão do server</td> </tr><tr> <td><code>\w</code></td> <td>O dia atual da semana no formato de três letras (Seg, Ter, …)</td> </tr><tr> <td><code>\Y</code></td> <td>O ano atual, quatro dígitos</td> </tr><tr> <td><code>\y</code></td> <td>O ano atual, dois dígitos</td> </tr><tr> <td><code>_</code></td> <td>Um espaço</td> </tr><tr> <td><code>\ </code></td> <td>Um espaço (um espaço segue o backslash)</td> </tr><tr> <td><code>\'</code></td> <td>Aspa simples</td> </tr><tr> <td><code>\"</code></td> <td>Aspa dupla</td> </tr><tr> <td><code>\\</code></td> <td>Um caractere <code>\</code> literal (<em>backslash</em>)</td> </tr><tr> <td><code>\<em><code>x</code></em></code></td> <td><p> <em><code>x</code></em>, para qualquer <em><code>x</code></em> não listado acima </p></td> </tr></tbody></table>
 
-You can set the prompt in several ways:
+Você pode configurar o prompt de várias maneiras:
 
-* *Use an environment variable.* You can set the `MYSQL_PS1` environment variable to a prompt string. For example:
+* *Use uma Environment Variable.* Você pode definir a `Environment Variable` `MYSQL_PS1` para uma string de prompt. Por exemplo:
 
   ```sql
   export MYSQL_PS1="(\u@\h) [\d]> "
   ```
 
-* *Use a command-line option.* You can set the `--prompt` option on the command line to **mysql**. For example:
+* *Use uma opção de linha de comando.* Você pode definir a opção `--prompt` na linha de comando para **mysql**. Por exemplo:
 
   ```sql
   $> mysql --prompt="(\u@\h) [\d]> "
   (user@host) [database]>
   ```
 
-* *Use an option file.* You can set the `prompt` option in the `[mysql]` group of any MySQL option file, such as `/etc/my.cnf` or the `.my.cnf` file in your home directory. For example:
+* *Use um arquivo de opção.* Você pode definir a opção `prompt` no grupo `[mysql]` de qualquer arquivo de opção MySQL, como `/etc/my.cnf` ou o arquivo `.my.cnf` no seu diretório `home`. Por exemplo:
 
   ```sql
   [mysql]
   prompt=(\\u@\\h) [\\d]>_
   ```
 
-  In this example, note that the backslashes are doubled. If you set the prompt using the `prompt` option in an option file, it is advisable to double the backslashes when using the special prompt options. There is some overlap in the set of permissible prompt options and the set of special escape sequences that are recognized in option files. (The rules for escape sequences in option files are listed in Section 4.2.2.2, “Using Option Files”.) The overlap may cause you problems if you use single backslashes. For example, `\s` is interpreted as a space rather than as the current seconds value. The following example shows how to define a prompt within an option file to include the current time in `hh:mm:ss>` format:
+  Neste exemplo, observe que os *backslashes* são duplicados. Se você definir o prompt usando a opção `prompt` em um arquivo de opção, é aconselhável duplicar os *backslashes* ao usar as opções de prompt especiais. Existe alguma sobreposição no conjunto de opções de prompt permitidas e no conjunto de sequências de escape especiais que são reconhecidas em arquivos de opção. (As regras para sequências de escape em arquivos de opção estão listadas na Seção 4.2.2.2, “Usando Arquivos de Opção”.) A sobreposição pode causar problemas se você usar *backslashes* únicos. Por exemplo, `\s` é interpretado como um espaço em vez do valor dos segundos atuais. O exemplo a seguir mostra como definir um prompt dentro de um arquivo de opção para incluir a hora atual no formato `hh:mm:ss>`:
 
   ```sql
   [mysql]
   prompt="\\r:\\m:\\s> "
   ```
 
-* *Set the prompt interactively.* You can change your prompt interactively by using the `prompt` (or `\R`) command. For example:
+* *Defina o prompt interativamente.* Você pode alterar seu prompt interativamente usando o comando `prompt` (ou `\R`). Por exemplo:
 
   ```sql
   mysql> prompt (\u@\h) [\d]>_

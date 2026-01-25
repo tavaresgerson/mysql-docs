@@ -1,19 +1,19 @@
-#### 5.5.5.4 Version Tokens Reference
+#### 5.5.5.4 Referência de Version Tokens
 
-The following discussion serves as a reference to these Version Tokens elements:
+A discussão a seguir serve como referência para estes elementos de Version Tokens:
 
-* [Version Tokens Functions](version-tokens-reference.html#version-tokens-routines "Version Tokens Functions")
-* [Version Tokens System Variables](version-tokens-reference.html#version-tokens-system-variables "Version Tokens System Variables")
+* [Funções de Version Tokens](version-tokens-reference.html#version-tokens-routines "Version Tokens Functions")
+* [Variáveis de Sistema de Version Tokens](version-tokens-reference.html#version-tokens-system-variables "Version Tokens System Variables")
 
-##### Version Tokens Functions
+##### Funções de Version Tokens
 
-The Version Tokens plugin library includes several functions. One set of functions permits the server's list of version tokens to be manipulated and inspected. Another set of functions permits version tokens to be locked and unlocked. The [`SUPER`](privileges-provided.html#priv_super) privilege is required to invoke any Version Tokens function.
+A biblioteca do Plugin Version Tokens inclui várias funções. Um conjunto de funções permite que a lista de version tokens do servidor seja manipulada e inspecionada. Outro conjunto de funções permite que os version tokens sejam Locked e Unlocked. O privilégio [`SUPER`](privileges-provided.html#priv_super) é exigido para invocar qualquer função de Version Tokens.
 
-The following functions permit the server's list of version tokens to be created, changed, removed, and inspected. Interpretation of *`name_list`* and *`token_list`* arguments (including whitespace handling) occurs as described in [Section 5.5.5.3, “Using Version Tokens”](version-tokens-usage.html "5.5.5.3 Using Version Tokens"), which provides details about the syntax for specifying tokens, as well as additional examples.
+As funções a seguir permitem que a lista de version tokens do servidor seja criada, alterada, removida e inspecionada. A interpretação dos argumentos *`name_list`* e *`token_list`* (incluindo o tratamento de espaços em branco) ocorre conforme descrito na [Seção 5.5.5.3, “Usando Version Tokens”](version-tokens-usage.html "5.5.5.3 Usando Version Tokens"), que fornece detalhes sobre a sintaxe para especificação de tokens, bem como exemplos adicionais.
 
 * [`version_tokens_delete(name_list)`](version-tokens-reference.html#function_version-tokens-delete)
 
-  Deletes tokens from the server's list of version tokens using the *`name_list`* argument and returns a binary string that indicates the outcome of the operation. *`name_list`* is a semicolon-separated list of version token names to delete.
+  Exclui tokens da lista de version tokens do servidor usando o argumento *`name_list`* e retorna uma string binária que indica o resultado da operação. *`name_list`* é uma lista de nomes de version tokens separados por ponto e vírgula a serem excluídos.
 
   ```sql
   mysql> SELECT version_tokens_delete('tok1;tok3');
@@ -24,9 +24,9 @@ The following functions permit the server's list of version tokens to be created
   +------------------------------------+
   ```
 
-  An argument of `NULL` is treated as an empty string, which has no effect on the token list.
+  Um argumento `NULL` é tratado como uma string vazia, o que não tem efeito na lista de tokens.
 
-  [`version_tokens_delete()`](version-tokens-reference.html#function_version-tokens-delete) deletes the tokens named in its argument, if they exist. (It is not an error to delete nonexisting tokens.) To clear the token list entirely without knowing which tokens are in the list, pass `NULL` or a string containing no tokens to [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set):
+  [`version_tokens_delete()`](version-tokens-reference.html#function_version-tokens-delete) exclui os tokens nomeados em seu argumento, se existirem. (Não é um erro excluir tokens não existentes.) Para limpar a lista de tokens inteiramente sem saber quais tokens estão na lista, passe `NULL` ou uma string que não contenha tokens para [`version_tokens_set()`](version-tokens-reference.html#function_version-tokens-set):
 
   ```sql
   mysql> SELECT version_tokens_set(NULL);
@@ -45,7 +45,7 @@ The following functions permit the server's list of version tokens to be created
 
 * [`version_tokens_edit(token_list)`](version-tokens-reference.html#function_version-tokens-edit)
 
-  Modifies the server's list of version tokens using the *`token_list`* argument and returns a binary string that indicates the outcome of the operation. *`token_list`* is a semicolon-separated list of `name=value` pairs specifying the name of each token to be defined and its value. If a token exists, its value is updated with the given value. If a token does not exist, it is created with the given value. If the argument is `NULL` or a string containing no tokens, the token list remains unchanged.
+  Modifica a lista de version tokens do servidor usando o argumento *`token_list`* e retorna uma string binária que indica o resultado da operação. *`token_list`* é uma lista de pares `name=value` separados por ponto e vírgula, especificando o nome de cada token a ser definido e seu valor. Se um token existir, seu valor é atualizado com o valor fornecido. Se um token não existir, ele é criado com o valor fornecido. Se o argumento for `NULL` ou uma string sem tokens, a lista de tokens permanece inalterada.
 
   ```sql
   mysql> SELECT version_tokens_set('tok1=value1;tok2=value2');
@@ -64,7 +64,7 @@ The following functions permit the server's list of version tokens to be created
 
 * [`version_tokens_set(token_list)`](version-tokens-reference.html#function_version-tokens-set)
 
-  Replaces the server's list of version tokens with the tokens defined in the *`token_list`* argument and returns a binary string that indicates the outcome of the operation. *`token_list`* is a semicolon-separated list of `name=value` pairs specifying the name of each token to be defined and its value. If the argument is `NULL` or a string containing no tokens, the token list is cleared.
+  Substitui a lista de version tokens do servidor pelos tokens definidos no argumento *`token_list`* e retorna uma string binária que indica o resultado da operação. *`token_list`* é uma lista de pares `name=value` separados por ponto e vírgula, especificando o nome de cada token a ser definido e seu valor. Se o argumento for `NULL` ou uma string sem tokens, a lista de tokens é limpa.
 
   ```sql
   mysql> SELECT version_tokens_set('tok1=value1;tok2=value2');
@@ -77,7 +77,7 @@ The following functions permit the server's list of version tokens to be created
 
 * [`version_tokens_show()`](version-tokens-reference.html#function_version-tokens-show)
 
-  Returns the server's list of version tokens as a binary string containing a semicolon-separated list of `name=value` pairs.
+  Retorna a lista de version tokens do servidor como uma string binária contendo uma lista de pares `name=value` separados por ponto e vírgula.
 
   ```sql
   mysql> SELECT version_tokens_show();
@@ -88,11 +88,11 @@ The following functions permit the server's list of version tokens to be created
   +--------------------------+
   ```
 
-The following functions permit version tokens to be locked and unlocked:
+As funções a seguir permitem que os version tokens sejam Locked e Unlocked:
 
 * [`version_tokens_lock_exclusive(token_name[, token_name] ..., timeout)`](version-tokens-reference.html#function_version-tokens-lock-exclusive)
 
-  Acquires exclusive locks on one or more version tokens, specified by name as strings, timing out with an error if the locks are not acquired within the given timeout value.
+  Adquire Exclusive Locks em um ou mais version tokens, especificados pelo nome como strings, gerando um timeout com erro se os Locks não forem adquiridos dentro do valor de timeout fornecido.
 
   ```sql
   mysql> SELECT version_tokens_lock_exclusive('lock1', 'lock2', 10);
@@ -105,7 +105,7 @@ The following functions permit version tokens to be locked and unlocked:
 
 * [`version_tokens_lock_shared(token_name[, token_name] ..., timeout)`](version-tokens-reference.html#function_version-tokens-lock-shared)
 
-  Acquires shared locks on one or more version tokens, specified by name as strings, timing out with an error if the locks are not acquired within the given timeout value.
+  Adquire Shared Locks em um ou mais version tokens, especificados pelo nome como strings, gerando um timeout com erro se os Locks não forem adquiridos dentro do valor de timeout fornecido.
 
   ```sql
   mysql> SELECT version_tokens_lock_shared('lock1', 'lock2', 10);
@@ -118,7 +118,7 @@ The following functions permit version tokens to be locked and unlocked:
 
 * [`version_tokens_unlock()`](version-tokens-reference.html#function_version-tokens-unlock)
 
-  Releases all locks that were acquired within the current session using [`version_tokens_lock_exclusive()`](version-tokens-reference.html#function_version-tokens-lock-exclusive) and [`version_tokens_lock_shared()`](version-tokens-reference.html#function_version-tokens-lock-shared).
+  Libera todos os Locks que foram adquiridos na Session atual usando [`version_tokens_lock_exclusive()`](version-tokens-reference.html#function_version-tokens-lock-exclusive) e [`version_tokens_lock_shared()`](version-tokens-reference.html#function_version-tokens-lock-shared).
 
   ```sql
   mysql> SELECT version_tokens_unlock();
@@ -129,42 +129,42 @@ The following functions permit version tokens to be locked and unlocked:
   +-------------------------+
   ```
 
-The locking functions share these characteristics:
+As funções de Locking compartilham estas características:
 
-* The return value is nonzero for success. Otherwise, an error occurs.
+* O valor de retorno é diferente de zero para sucesso. Caso contrário, ocorre um erro.
 
-* Token names are strings.
-* In contrast to argument handling for the functions that manipulate the server token list, whitespace surrounding token name arguments is not ignored and `=` and `;` characters are permitted.
+* Nomes de tokens são strings.
+* Em contraste com o tratamento de argumentos para as funções que manipulam a lista de tokens do servidor, espaços em branco ao redor dos argumentos de nome de token não são ignorados e os caracteres `=` e `;` são permitidos.
 
-* It is possible to lock nonexisting token names. This does not create the tokens.
+* É possível dar Lock em nomes de tokens não existentes. Isso não cria os tokens.
 
-* Timeout values are nonnegative integers representing the time in seconds to wait to acquire locks before timing out with an error. If the timeout is 0, there is no waiting and the function produces an error if locks cannot be acquired immediately.
+* Os valores de Timeout são inteiros não negativos que representam o tempo em segundos de espera para adquirir Locks antes de atingir o timeout com um erro. Se o timeout for 0, não haverá espera e a função produzirá um erro se os Locks não puderem ser adquiridos imediatamente.
 
-* Version Tokens locking functions are based on the locking service described at [Section 5.5.6.1, “The Locking Service”](locking-service.html "5.5.6.1 The Locking Service").
+* As funções de Locking do Version Tokens são baseadas no Locking Service descrito na [Seção 5.5.6.1, “O Locking Service”](locking-service.html "5.5.6.1 The Locking Service").
 
-##### Version Tokens System Variables
+##### Variáveis de Sistema de Version Tokens
 
-Version Tokens supports the following system variables. These variables are unavailable unless the Version Tokens plugin is installed (see [Section 5.5.5.2, “Installing or Uninstalling Version Tokens”](version-tokens-installation.html "5.5.5.2 Installing or Uninstalling Version Tokens")).
+O Version Tokens suporta as seguintes variáveis de sistema. Essas variáveis não estão disponíveis a menos que o Plugin Version Tokens esteja instalado (consulte [Seção 5.5.5.2, “Instalando ou Desinstalando Version Tokens”](version-tokens-installation.html "5.5.5.2 Installing or Uninstalling Version Tokens")).
 
-System variables:
+Variáveis de sistema:
 
 * [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session)
 
-  <table frame="box" rules="all" summary="Properties for version_tokens_session"><tbody><tr><th>Command-Line Format</th> <td><code>--version-tokens-session=value</code></td> </tr><tr><th>System Variable</th> <td><code>version_tokens_session</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version_tokens_session"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--version-tokens-session=value</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>version_tokens_session</code></td> </tr><tr><th>Escopo</th> <td>Global, Session</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr> </tbody></table>
 
-  The session value of this variable specifies the client version token list and indicates the tokens that the client session requires the server version token list to have.
+  O valor de Session desta variável especifica a lista de version tokens do cliente e indica os tokens que a Session do cliente exige que a lista de version tokens do servidor possua.
 
-  If the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) variable is `NULL` (the default) or has an empty value, any server version token list matches. (In effect, an empty value disables matching requirements.)
+  Se a variável [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) for `NULL` (o padrão) ou tiver um valor vazio, qualquer lista de version tokens do servidor corresponderá. (Na prática, um valor vazio desativa os requisitos de correspondência.)
 
-  If the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) variable has a nonempty value, any mismatch between its value and the server version token list results in an error for any statement the session sends to the server. A mismatch occurs under these conditions:
+  Se a variável [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) tiver um valor não vazio, qualquer incompatibilidade (mismatch) entre seu valor e a lista de version tokens do servidor resultará em um erro para qualquer Statement que a Session envie ao servidor. Uma incompatibilidade ocorre sob estas condições:
 
-  + A token name in the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value is not present in the server token list. In this case, an [`ER_VTOKEN_PLUGIN_TOKEN_NOT_FOUND`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_not_found) error occurs.
+  + Um nome de token no valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) não está presente na lista de tokens do servidor. Neste caso, ocorre um erro [`ER_VTOKEN_PLUGIN_TOKEN_NOT_FOUND`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_not_found).
 
-  + A token value in the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value differs from the value of the corresponding token in the server token list. In this case, an [`ER_VTOKEN_PLUGIN_TOKEN_MISMATCH`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_mismatch) error occurs.
+  + Um valor de token no valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) difere do valor do token correspondente na lista de tokens do servidor. Neste caso, ocorre um erro [`ER_VTOKEN_PLUGIN_TOKEN_MISMATCH`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_vtoken_plugin_token_mismatch).
 
-  It is not a mismatch for the server version token list to include a token not named in the [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value.
+  Não é considerada uma incompatibilidade se a lista de version tokens do servidor incluir um token não nomeado no valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session).
 
-  Suppose that a management application has set the server token list as follows:
+  Suponha que uma aplicação de gerenciamento tenha definido a lista de tokens do servidor da seguinte forma:
 
   ```sql
   mysql> SELECT version_tokens_set('tok1=a;tok2=b;tok3=c');
@@ -175,7 +175,7 @@ System variables:
   +--------------------------------------------+
   ```
 
-  A client registers the tokens it requires the server to match by setting its [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value. Then, for each subsequent statement sent by the client, the server checks its token list against the client [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value and produces an error if there is a mismatch:
+  Um cliente registra os tokens que ele exige que o servidor corresponda definindo seu valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session). Em seguida, para cada Statement subsequente enviado pelo cliente, o servidor verifica sua lista de tokens em relação ao valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) do cliente e produz um erro se houver uma incompatibilidade:
 
   ```sql
   mysql> SET @@SESSION.version_tokens_session = 'tok1=a;tok2=b';
@@ -191,9 +191,9 @@ System variables:
   ERROR 3136 (42000): Version token mismatch for tok1. Correct value a
   ```
 
-  The first [`SELECT`](select.html "13.2.9 SELECT Statement") succeeds because the client tokens `tok1` and `tok2` are present in the server token list and each token has the same value in the server list. The second [`SELECT`](select.html "13.2.9 SELECT Statement") fails because, although `tok1` is present in the server token list, it has a different value than specified by the client.
+  O primeiro [`SELECT`](select.html "13.2.9 SELECT Statement") é bem-sucedido porque os tokens do cliente `tok1` e `tok2` estão presentes na lista de tokens do servidor e cada token tem o mesmo valor na lista do servidor. O segundo [`SELECT`](select.html "13.2.9 SELECT Statement") falha porque, embora `tok1` esteja presente na lista de tokens do servidor, ele tem um valor diferente do especificado pelo cliente.
 
-  At this point, any statement sent by the client fails, unless the server token list changes such that it matches again. Suppose that the management application changes the server token list as follows:
+  Neste ponto, qualquer Statement enviado pelo cliente falha, a menos que a lista de tokens do servidor mude de forma que corresponda novamente. Suponha que a aplicação de gerenciamento altere a lista de tokens do servidor da seguinte forma:
 
   ```sql
   mysql> SELECT version_tokens_edit('tok1=b');
@@ -210,7 +210,7 @@ System variables:
   +-----------------------+
   ```
 
-  Now the client [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) value matches the server token list and the client can once again successfully execute statements:
+  Agora o valor de [`version_tokens_session`](version-tokens-reference.html#sysvar_version_tokens_session) do cliente corresponde à lista de tokens do servidor e o cliente pode novamente executar Statements com sucesso:
 
   ```sql
   mysql> SELECT 1;
@@ -223,6 +223,6 @@ System variables:
 
 * [`version_tokens_session_number`](version-tokens-reference.html#sysvar_version_tokens_session_number)
 
-  <table frame="box" rules="all" summary="Properties for version_tokens_session_number"><tbody><tr><th>Command-Line Format</th> <td><code>--version-tokens-session-number=#</code></td> </tr><tr><th>System Variable</th> <td><code>version_tokens_session_number</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version_tokens_session_number"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--version-tokens-session-number=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>version_tokens_session_number</code></td> </tr><tr><th>Escopo</th> <td>Global, Session</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr> </tbody></table>
 
-  This variable is for internal use.
+  Esta variável destina-se a uso interno.

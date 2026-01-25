@@ -1,15 +1,15 @@
-### 2.11.1 Before You Begin
+### 2.11.1 Antes de Começar
 
-Review the information in this section before downgrading. Perform any recommended actions.
+Revise as informações nesta seção antes de realizar o downgrade. Execute quaisquer ações recomendadas.
 
-* Protect your data by taking a backup. The backup should include the `mysql` database, which contains the MySQL system tables. See Section 7.2, “Database Backup Methods”.
+* Proteja seus dados realizando um backup. O backup deve incluir o database `mysql`, que contém as tabelas de sistema do MySQL. Consulte a Seção 7.2, “Métodos de Backup de Database”.
 
-* Review Section 2.11.2, “Downgrade Paths” to ensure that your intended downgrade path is supported.
+* Revise a Seção 2.11.2, “Caminhos de Downgrade” para garantir que o caminho de downgrade pretendido seja suportado.
 
-* Review Section 2.11.3, “Downgrade Notes” for items that may require action before downgrading.
+* Revise a Seção 2.11.3, “Notas de Downgrade” para itens que possam exigir ação antes do downgrade.
 
-  Note
+  Nota
 
-  The downgrade procedures described in the following sections assume you are downgrading with data files created or modified by the newer MySQL version. However, if you did not modify your data after upgrading, downgrading using backups taken *before* upgrading to the new MySQL version is recommended. Many of the changes described in Section 2.11.3, “Downgrade Notes” that require action are not applicable when downgrading using backups taken *before* upgrading to the new MySQL version.
+  Os procedimentos de downgrade descritos nas seções a seguir presumem que você está realizando o downgrade com arquivos de dados criados ou modificados pela versão mais recente do MySQL. No entanto, se você não modificou seus dados após o upgrade, recomenda-se realizar o downgrade usando backups feitos *antes* do upgrade para a nova versão do MySQL. Muitas das alterações descritas na Seção 2.11.3, “Notas de Downgrade” que exigem ação não são aplicáveis ao realizar o downgrade usando backups feitos *antes* do upgrade para a nova versão do MySQL.
 
-* Use of new features, new configuration options, or new configuration option values that are not supported by a previous release may cause downgrade errors or failures. Before downgrading, reverse changes resulting from the use of new features and remove configuration settings that are not supported by the release you are downgrading to.
+* O uso de novos recursos, novas opções de configuração ou novos valores de opções de configuração que não são suportados por uma versão anterior pode causar erros ou falhas no downgrade. Antes de fazer o downgrade, reverta as alterações resultantes do uso de novos recursos e remova as configurações que não são suportadas pela versão para a qual você está fazendo o downgrade.

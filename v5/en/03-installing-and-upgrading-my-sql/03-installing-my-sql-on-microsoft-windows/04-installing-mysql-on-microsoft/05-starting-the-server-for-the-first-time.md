@@ -1,30 +1,30 @@
-#### 2.3.4.5 Starting the Server for the First Time
+#### 2.3.4.5 Iniciando o Server pela Primeira Vez
 
-This section gives a general overview of starting the MySQL server. The following sections provide more specific information for starting the MySQL server from the command line or as a Windows service.
+Esta seção fornece uma visão geral sobre como iniciar o MySQL Server. As seções seguintes oferecem informações mais específicas para iniciar o MySQL Server a partir da linha de comando ou como um serviço Windows.
 
-The information here applies primarily if you installed MySQL using the `noinstall` version, or if you wish to configure and test MySQL manually rather than with the GUI tools.
+As informações aqui se aplicam principalmente se você instalou o MySQL usando a versão `noinstall`, ou se você deseja configurar e testar o MySQL manualmente em vez de usar as ferramentas GUI.
 
-The examples in these sections assume that MySQL is installed under the default location of `C:\Program Files\MySQL\MySQL Server 5.7`. Adjust the path names shown in the examples if you have MySQL installed in a different location.
+Os exemplos nestas seções assumem que o MySQL está instalado no local padrão `C:\Program Files\MySQL\MySQL Server 5.7`. Ajuste os nomes de caminho mostrados nos exemplos caso você tenha instalado o MySQL em um local diferente.
 
-Clients have two options. They can use TCP/IP, or they can use a named pipe if the server supports named-pipe connections.
+Os Clients têm duas opções. Eles podem usar TCP/IP, ou podem usar um *named pipe* (canal nomeado) se o Server suportar conexões por *named pipe*.
 
-MySQL for Windows also supports shared-memory connections if the server is started with the `shared_memory` system variable enabled. Clients can connect through shared memory by using the `--protocol=MEMORY` option.
+O MySQL para Windows também suporta conexões de *shared-memory* (memória compartilhada) se o Server for iniciado com a variável de sistema `shared_memory` habilitada. Os Clients podem se conectar através de *shared memory* usando a opção `--protocol=MEMORY`.
 
-For information about which server binary to run, see Section 2.3.4.3, “Selecting a MySQL Server Type”.
+Para obter informações sobre qual binário do Server executar, consulte a Seção 2.3.4.3, “Selecionando um Tipo de MySQL Server”.
 
-Testing is best done from a command prompt in a console window (or “DOS window”). In this way you can have the server display status messages in the window where they are easy to see. If something is wrong with your configuration, these messages make it easier for you to identify and fix any problems.
+O teste é melhor executado a partir de um *command prompt* em uma janela *console* (ou “janela DOS”). Dessa forma, você pode fazer com que o Server exiba mensagens de status na janela onde são fáceis de visualizar. Se algo estiver errado com sua configuração, essas mensagens facilitam a identificação e a correção de quaisquer problemas.
 
 Note
 
-The database must be initialized before MySQL can be started. For additional information about the initialization process, see Section 2.9.1, “Initializing the Data Directory”.
+O Database deve ser inicializado antes que o MySQL possa ser iniciado. Para obter informações adicionais sobre o processo de inicialização, consulte a Seção 2.9.1, “Inicializando o Data Directory”.
 
-To start the server, enter this command:
+Para iniciar o Server, digite este comando:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld" --console
 ```
 
-For a server that includes `InnoDB` support, you should see the messages similar to those following as it starts (the path names and sizes may differ):
+Para um Server que inclui suporte a `InnoDB`, você deve ver mensagens semelhantes às seguintes durante a inicialização (os nomes de caminho e tamanhos podem diferir):
 
 ```sql
 InnoDB: The first specified datafile c:\ibdata\ibdata1 did not exist:
@@ -44,17 +44,17 @@ InnoDB: foreign key constraint system tables created
 011024 10:58:25  InnoDB: Started
 ```
 
-When the server finishes its startup sequence, you should see something like this, which indicates that the server is ready to service client connections:
+Quando o Server concluir sua sequência de inicialização (*startup sequence*), você deve ver algo assim, o que indica que o Server está pronto para atender conexões de Clients:
 
 ```sql
 mysqld: ready for connections
 Version: '5.7.44'  socket: ''  port: 3306
 ```
 
-The server continues to write to the console any further diagnostic output it produces. You can open a new console window in which to run client programs.
+O Server continua a escrever no *console* qualquer outra saída de diagnóstico que produza. Você pode abrir uma nova janela *console* na qual executar programas *client*.
 
-If you omit the `--console` option, the server writes diagnostic output to the error log in the data directory (`C:\Program Files\MySQL\MySQL Server 5.7\data` by default). The error log is the file with the `.err` extension, and may be set using the `--log-error` option.
+Se você omitir a opção `--console`, o Server escreve a saída de diagnóstico no *error log* (log de erro) no *data directory* (`C:\Program Files\MySQL\MySQL Server 5.7\data` por padrão). O *error log* é o arquivo com a extensão `.err` e pode ser definido usando a opção `--log-error`.
 
 Note
 
-The initial `root` account in the MySQL grant tables has no password. After starting the server, you should set up a password for it using the instructions in Section 2.9.4, “Securing the Initial MySQL Account”.
+A conta `root` inicial nas *grant tables* do MySQL não tem senha. Após iniciar o Server, você deve configurar uma senha para ela usando as instruções na Seção 2.9.4, “Protegendo a Conta Inicial do MySQL”.

@@ -1,19 +1,19 @@
-### 4.3.1 mysqld — The MySQL Server
+### 4.3.1 mysqld — O Servidor MySQL
 
-**mysqld**, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation. It does not spawn additional processes. MySQL Server manages access to the MySQL data directory that contains databases and tables. The data directory is also the default location for other information such as log files and status files.
+**mysqld**, também conhecido como MySQL Server, é um único programa multithreaded que executa a maior parte do trabalho em uma instalação MySQL. Ele não gera processos adicionais. O MySQL Server gerencia o acesso ao diretório de dados do MySQL que contém Databases e tables. O diretório de dados é também o local padrão para outras informações, como log files e status files.
 
-Note
+Nota
 
-Some installation packages contain a debugging version of the server named **mysqld-debug**. Invoke this version instead of **mysqld** for debugging support, memory allocation checking, and trace file support (see Section 5.8.1.2, “Creating Trace Files”).
+Alguns pacotes de instalação contêm uma versão de debugging do server chamada **mysqld-debug**. Invoque esta versão em vez de **mysqld** para suporte a debugging, verificação de alocação de memória (memory allocation checking) e suporte a trace files (consulte a Seção 5.8.1.2, “Creating Trace Files”).
 
-When MySQL server starts, it listens for network connections from client programs and manages access to databases on behalf of those clients.
+Quando o MySQL Server inicia, ele escuta por network connections de programas client e gerencia o acesso aos Databases em nome desses clients.
 
-The **mysqld** program has many options that can be specified at startup. For a complete list of options, run this command:
+O programa **mysqld** possui muitas options que podem ser especificadas na inicialização (startup). Para uma lista completa de options, execute este comando:
 
 ```sql
 mysqld --verbose --help
 ```
 
-MySQL Server also has a set of system variables that affect its operation as it runs. System variables can be set at server startup, and many of them can be changed at runtime to effect dynamic server reconfiguration. MySQL Server also has a set of status variables that provide information about its operation. You can monitor these status variables to access runtime performance characteristics.
+O MySQL Server também possui um conjunto de system variables que afetam sua operação enquanto está em execução. As System variables podem ser definidas na inicialização do server (server startup), e muitas delas podem ser alteradas em runtime para efetuar a reconfiguração dinâmica do server. O MySQL Server também possui um conjunto de status variables que fornecem informações sobre sua operação. Você pode monitorar estas status variables para acessar as características de performance (performance characteristics) em runtime.
 
-For a full description of MySQL Server command options, system variables, and status variables, see Section 5.1, “The MySQL Server”. For information about installing MySQL and setting up the initial configuration, see Chapter 2, *Installing and Upgrading MySQL*.
+Para uma descrição completa das options de comando, system variables e status variables do MySQL Server, consulte a Seção 5.1, “The MySQL Server”. Para obter informações sobre a instalação do MySQL e a configuração inicial, consulte o Capítulo 2, *Installing and Upgrading MySQL*.

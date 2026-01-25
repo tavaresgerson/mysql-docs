@@ -1,6 +1,6 @@
-### 10.8.3 Character Set and Collation Compatibility
+### 10.8.3 Compatibilidade de Character Set e Collation
 
-Each character set has one or more collations, but each collation is associated with one and only one character set. Therefore, the following statement causes an error message because the `latin2_bin` collation is not legal with the `latin1` character set:
+Cada Character Set possui um ou mais Collations, mas cada Collation está associado a um e apenas um Character Set. Portanto, a seguinte instrução causa uma mensagem de erro porque a Collation `latin2_bin` não é válida com o Character Set `latin1`:
 
 ```sql
 mysql> SELECT _latin1 'x' COLLATE latin2_bin;

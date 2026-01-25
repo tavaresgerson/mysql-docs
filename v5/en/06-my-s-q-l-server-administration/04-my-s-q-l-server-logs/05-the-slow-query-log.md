@@ -1,76 +1,76 @@
-### 5.4.5 The Slow Query Log
+### 5.4.5 O Slow Query Log
 
-The slow query log consists of SQL statements that take more than [`long_query_time`](server-system-variables.html#sysvar_long_query_time) seconds to execute and require at least [`min_examined_row_limit`](server-system-variables.html#sysvar_min_examined_row_limit) rows to be examined. The slow query log can be used to find queries that take a long time to execute and are therefore candidates for optimization. However, examining a long slow query log can be a time-consuming task. To make this easier, you can use the [**mysqldumpslow**](mysqldumpslow.html "4.6.8 mysqldumpslow — Summarize Slow Query Log Files") command to process a slow query log file and summarize its contents. See [Section 4.6.8, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "4.6.8 mysqldumpslow — Summarize Slow Query Log Files").
+O slow query log consiste em SQL Statements que levam mais de [`long_query_time`] segundos para serem executados e que exigem que pelo menos [`min_examined_row_limit`] linhas sejam examinadas. O slow query log pode ser usado para encontrar Queries que demoram muito tempo para serem executadas e que, portanto, são candidatas à otimização. No entanto, examinar um slow query log extenso pode ser uma tarefa demorada. Para facilitar isso, você pode usar o comando [**mysqldumpslow**] para processar um arquivo de slow query log e resumir seu conteúdo. Consulte [Seção 4.6.8, “mysqldumpslow — Summarize Slow Query Log Files”].
 
-The time to acquire the initial locks is not counted as execution time. [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes a statement to the slow query log after it has been executed and after all locks have been released, so log order might differ from execution order.
+O tempo para adquirir os Locks iniciais não é contado como tempo de execução. O [**mysqld**] escreve um Statement no slow query log após ele ter sido executado e após todos os Locks terem sido liberados, portanto, a ordem do Log pode diferir da ordem de execução.
 
-* [Slow Query Log Parameters](slow-query-log.html#slow-query-log-parameters "Slow Query Log Parameters")
-* [Slow Query Log Contents](slow-query-log.html#slow-query-log-contents "Slow Query Log Contents")
+* [Parâmetros do Slow Query Log]
+* [Conteúdo do Slow Query Log]
 
-#### Slow Query Log Parameters
+#### Parâmetros do Slow Query Log
 
-The minimum and default values of [`long_query_time`](server-system-variables.html#sysvar_long_query_time) are 0 and 10, respectively. The value can be specified to a resolution of microseconds.
+Os valores mínimo e padrão de [`long_query_time`] são 0 e 10, respectivamente. O valor pode ser especificado com uma resolução de microssegundos.
 
-By default, administrative statements are not logged, nor are queries that do not use indexes for lookups. This behavior can be changed using [`log_slow_admin_statements`](server-system-variables.html#sysvar_log_slow_admin_statements) and [`log_queries_not_using_indexes`](server-system-variables.html#sysvar_log_queries_not_using_indexes), as described later.
+Por padrão, os Statements administrativos não são registrados (logged), nem as Queries que não usam Indexes para lookups. Este comportamento pode ser alterado usando [`log_slow_admin_statements`] e [`log_queries_not_using_indexes`], conforme descrito adiante.
 
-By default, the slow query log is disabled. To specify the initial slow query log state explicitly, use [`--slow_query_log[={0|1}]`](server-system-variables.html#sysvar_slow_query_log). With no argument or an argument of 1, [`--slow_query_log`](server-system-variables.html#sysvar_slow_query_log) enables the log. With an argument of 0, this option disables the log. To specify a log file name, use [`--slow_query_log_file=file_name`](server-system-variables.html#sysvar_slow_query_log_file). To specify the log destination, use the [`log_output`](server-system-variables.html#sysvar_log_output) system variable (as described in [Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")).
+Por padrão, o slow query log está desabilitado. Para especificar o estado inicial do slow query log explicitamente, use [`--slow_query_log[={0|1}]`]. Sem argumento ou com um argumento de 1, [`--slow_query_log`] habilita o Log. Com um argumento de 0, esta opção desabilita o Log. Para especificar um nome de arquivo de Log, use [`--slow_query_log_file=file_name`]. Para especificar o destino do Log, use a variável de sistema [`log_output`] (conforme descrito na [Seção 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”]).
 
-Note
+Nota
 
-If you specify the `TABLE` log destination, see [Log Tables and “Too many open files” Errors](log-destinations.html#log-destinations-tables-open-files "Log Tables and “Too many open files” Errors").
+Se você especificar o destino de Log `TABLE`, consulte [Tabelas de Log e Erros de “Too many open files”].
 
-If you specify no name for the slow query log file, the default name is `host_name-slow.log`. The server creates the file in the data directory unless an absolute path name is given to specify a different directory.
+Se você não especificar um nome para o arquivo do slow query log, o nome padrão é `host_name-slow.log`. O Server cria o arquivo no data directory, a menos que um path absoluto seja fornecido para especificar um diretório diferente.
 
-To disable or enable the slow query log or change the log file name at runtime, use the global [`slow_query_log`](server-system-variables.html#sysvar_slow_query_log) and [`slow_query_log_file`](server-system-variables.html#sysvar_slow_query_log_file) system variables. Set [`slow_query_log`](server-system-variables.html#sysvar_slow_query_log) to 0 to disable the log or to 1 to enable it. Set [`slow_query_log_file`](server-system-variables.html#sysvar_slow_query_log_file) to specify the name of the log file. If a log file already is open, it is closed and the new file is opened.
+Para desabilitar ou habilitar o slow query log ou alterar o nome do arquivo de Log em tempo de execução (runtime), use as variáveis de sistema globais [`slow_query_log`] e [`slow_query_log_file`]. Defina [`slow_query_log`] como 0 para desabilitar o Log ou como 1 para habilitá-lo. Defina [`slow_query_log_file`] para especificar o nome do arquivo de Log. Se um arquivo de Log já estiver aberto, ele será fechado e o novo arquivo será aberto.
 
-The server writes less information to the slow query log if you use the [`--log-short-format`](server-options.html#option_mysqld_log-short-format) option.
+O Server escreve menos informações no slow query log se você usar a opção [`--log-short-format`].
 
-To include slow administrative statements in the slow query log, enable the [`log_slow_admin_statements`](server-system-variables.html#sysvar_log_slow_admin_statements) system variable. Administrative statements include [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement"), [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement"), [`DROP INDEX`](drop-index.html "13.1.25 DROP INDEX Statement"), [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"), and [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement").
+Para incluir Statements administrativos lentos no slow query log, habilite a variável de sistema [`log_slow_admin_statements`]. Os Statements administrativos incluem [`ALTER TABLE`], [`ANALYZE TABLE`], [`CHECK TABLE`], [`CREATE INDEX`], [`DROP INDEX`], [`OPTIMIZE TABLE`], e [`REPAIR TABLE`].
 
-To include queries that do not use indexes for row lookups in the statements written to the slow query log, enable the [`log_queries_not_using_indexes`](server-system-variables.html#sysvar_log_queries_not_using_indexes) system variable. (Even with that variable enabled, the server does not log queries that would not benefit from the presence of an index due to the table having fewer than two rows.)
+Para incluir Queries que não usam Indexes para lookups de linha nos Statements escritos no slow query log, habilite a variável de sistema [`log_queries_not_using_indexes`]. (Mesmo com essa variável habilitada, o Server não registra Queries que não se beneficiariam da presença de um Index devido a tabela ter menos de duas linhas.)
 
-When queries that do not use an index are logged, the slow query log may grow quickly. It is possible to put a rate limit on these queries by setting the [`log_throttle_queries_not_using_indexes`](server-system-variables.html#sysvar_log_throttle_queries_not_using_indexes) system variable. By default, this variable is 0, which means there is no limit. Positive values impose a per-minute limit on logging of queries that do not use indexes. The first such query opens a 60-second window within which the server logs queries up to the given limit, then suppresses additional queries. If there are suppressed queries when the window ends, the server logs a summary that indicates how many there were and the aggregate time spent in them. The next 60-second window begins when the server logs the next query that does not use indexes.
+Quando Queries que não usam um Index são registradas, o slow query log pode crescer rapidamente. É possível impor um limite de taxa (rate limit) a essas Queries definindo a variável de sistema [`log_throttle_queries_not_using_indexes`]. Por padrão, essa variável é 0, o que significa que não há limite. Valores positivos impõem um limite por minuto no logging de Queries que não usam Indexes. A primeira Query desse tipo abre uma janela de 60 segundos, dentro da qual o Server registra Queries até o limite fornecido, e então suprime Queries adicionais. Se houver Queries suprimidas quando a janela terminar, o Server registra um resumo que indica quantas foram e o tempo total gasto nelas. A próxima janela de 60 segundos começa quando o Server registra a próxima Query que não usa Indexes.
 
-The server uses the controlling parameters in the following order to determine whether to write a query to the slow query log:
+O Server usa os parâmetros de controle na seguinte ordem para determinar se deve escrever uma Query no slow query log:
 
-1. The query must either not be an administrative statement, or [`log_slow_admin_statements`](server-system-variables.html#sysvar_log_slow_admin_statements) must be enabled.
+1. A Query não deve ser um Statement administrativo, ou [`log_slow_admin_statements`] deve estar habilitado.
 
-2. The query must have taken at least [`long_query_time`](server-system-variables.html#sysvar_long_query_time) seconds, or [`log_queries_not_using_indexes`](server-system-variables.html#sysvar_log_queries_not_using_indexes) must be enabled and the query used no indexes for row lookups.
+2. A Query deve ter levado pelo menos [`long_query_time`] segundos, ou [`log_queries_not_using_indexes`] deve estar habilitado e a Query não usou Indexes para lookups de linha.
 
-3. The query must have examined at least [`min_examined_row_limit`](server-system-variables.html#sysvar_min_examined_row_limit) rows.
+3. A Query deve ter examinado pelo menos [`min_examined_row_limit`] linhas.
 
-4. The query must not be suppressed according to the [`log_throttle_queries_not_using_indexes`](server-system-variables.html#sysvar_log_throttle_queries_not_using_indexes) setting.
+4. A Query não deve ser suprimida de acordo com a configuração de [`log_throttle_queries_not_using_indexes`].
 
-The [`log_timestamps`](server-system-variables.html#sysvar_log_timestamps) system variable controls the time zone of timestamps in messages written to the slow query log file (as well as to the general query log file and the error log). It does not affect the time zone of general query log and slow query log messages written to log tables, but rows retrieved from those tables can be converted from the local system time zone to any desired time zone with [`CONVERT_TZ()`](date-and-time-functions.html#function_convert-tz) or by setting the session [`time_zone`](server-system-variables.html#sysvar_time_zone) system variable.
+A variável de sistema [`log_timestamps`] controla o fuso horário dos timestamps nas mensagens escritas no arquivo do slow query log (assim como no arquivo do general query log e no error log). Ela não afeta o fuso horário das mensagens do general query log e slow query log escritas nas tabelas de Log, mas as linhas recuperadas dessas tabelas podem ser convertidas do fuso horário do sistema local para qualquer fuso horário desejado com [`CONVERT_TZ()`] ou configurando a variável de sistema de sessão [`time_zone`].
 
-The server does not log queries handled by the query cache.
+O Server não registra Queries tratadas pela Query Cache.
 
-By default, a replica does not write replicated queries to the slow query log. To change this, enable the [`log_slow_slave_statements`](replication-options-replica.html#sysvar_log_slow_slave_statements) system variable. Note that if row-based replication is in use ([`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format)), [`log_slow_slave_statements`](replication-options-replica.html#sysvar_log_slow_slave_statements) has no effect. Queries are only added to the replica's slow query log when they are logged in statement format in the binary log, that is, when [`binlog_format=STATEMENT`](replication-options-binary-log.html#sysvar_binlog_format) is set, or when [`binlog_format=MIXED`](replication-options-binary-log.html#sysvar_binlog_format) is set and the statement is logged in statement format. Slow queries that are logged in row format when [`binlog_format=MIXED`](replication-options-binary-log.html#sysvar_binlog_format) is set, or that are logged when [`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format) is set, are not added to the replica's slow query log, even if [`log_slow_slave_statements`](replication-options-replica.html#sysvar_log_slow_slave_statements) is enabled.
+Por padrão, uma Replica não escreve Queries replicadas no slow query log. Para mudar isso, habilite a variável de sistema [`log_slow_slave_statements`]. Note que se a Replication baseada em linha (row-based) estiver em uso ([`binlog_format=ROW`]), [`log_slow_slave_statements`] não tem efeito. Queries são adicionadas ao slow query log da Replica apenas quando são registradas no formato Statement no Binary Log, ou seja, quando [`binlog_format=STATEMENT`] está definido, ou quando [`binlog_format=MIXED`] está definido e o Statement é registrado no formato Statement. Queries lentas que são registradas no formato row quando [`binlog_format=MIXED`] está definido, ou que são registradas quando [`binlog_format=ROW`] está definido, não são adicionadas ao slow query log da Replica, mesmo que [`log_slow_slave_statements`] esteja habilitado.
 
-#### Slow Query Log Contents
+#### Conteúdo do Slow Query Log
 
-When the slow query log is enabled, the server writes output to any destinations specified by the [`log_output`](server-system-variables.html#sysvar_log_output) system variable. If you enable the log, the server opens the log file and writes startup messages to it. However, further logging of queries to the file does not occur unless the `FILE` log destination is selected. If the destination is `NONE`, the server writes no queries even if the slow query log is enabled. Setting the log file name has no effect on logging if `FILE` is not selected as an output destination.
+Quando o slow query log está habilitado, o Server escreve a saída para quaisquer destinos especificados pela variável de sistema [`log_output`]. Se você habilitar o Log, o Server abre o arquivo de Log e escreve mensagens de inicialização nele. No entanto, o registro posterior de Queries no arquivo não ocorre a menos que o destino de Log `FILE` seja selecionado. Se o destino for `NONE`, o Server não escreve Queries, mesmo que o slow query log esteja habilitado. Definir o nome do arquivo de Log não tem efeito no logging se `FILE` não for selecionado como destino de saída.
 
-If the slow query log is enabled and `FILE` is selected as an output destination, each statement written to the log is preceded by a line that begins with a `#` character and has these fields (with all fields on a single line):
+Se o slow query log estiver habilitado e `FILE` for selecionado como destino de saída, cada Statement escrito no Log é precedido por uma linha que começa com o caractere `#` e possui estes campos (com todos os campos em uma única linha):
 
 * `Query_time: duration`
 
-  The statement execution time in seconds.
+  O tempo de execução do Statement em segundos.
 
 * `Lock_time: duration`
 
-  The time to acquire locks in seconds.
+  O tempo para adquirir Locks em segundos.
 
 * `Rows_sent: N`
 
-  The number of rows sent to the client.
+  O número de linhas enviadas ao cliente.
 
 * `Rows_examined:`
 
-  The number of rows examined by the server layer (not counting any processing internal to storage engines).
+  O número de linhas examinadas pela camada do Server (sem contar qualquer processamento interno aos storage engines).
 
-Each statement written to the slow query log file is preceded by a [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement that includes a timestamp indicating when the slow statement was logged (which occurs after the statement finishes executing).
+Cada Statement escrito no arquivo do slow query log é precedido por um Statement [`SET`] que inclui um timestamp indicando quando o Statement lento foi registrado (o que ocorre após o Statement terminar a execução).
 
-Passwords in statements written to the slow query log are rewritten by the server not to occur literally in plain text. See [Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging").
+Senhas em Statements escritos no slow query log são reescritas pelo Server para que não apareçam literalmente como texto puro (plain text). Consulte [Seção 6.1.2.3, “Passwords and Logging”].
 
-From MySQL 5.7.38, statements that cannot be parsed (due, for example, to syntax errors) are not written to the slow query log.
+A partir do MySQL 5.7.38, Statements que não podem ser parseados (devido, por exemplo, a erros de sintaxe) não são escritos no slow query log.

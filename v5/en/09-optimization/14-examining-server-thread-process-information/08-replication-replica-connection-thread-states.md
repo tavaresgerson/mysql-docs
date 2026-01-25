@@ -1,23 +1,23 @@
-### 8.14.8 Replication Replica Connection Thread States
+### 8.14.8 Estados de Thread de Conexão da Réplica de Replicação
 
-These thread states occur on a replica server but are associated with connection threads, not with the I/O or SQL threads.
+Esses estados de thread ocorrem em um servidor réplica, mas estão associados a threads de conexão, e não aos threads de I/O ou SQL.
 
 * `Changing master`
 
-  The thread is processing a `CHANGE MASTER TO` statement.
+  O thread está processando uma instrução `CHANGE MASTER TO`.
 
 * `Killing slave`
 
-  The thread is processing a `STOP SLAVE` statement.
+  O thread está processando uma instrução `STOP SLAVE`.
 
 * `Opening master dump table`
 
-  This state occurs after `Creating table from master dump`.
+  Este estado ocorre após `Creating table from master dump`.
 
 * `Reading master dump table data`
 
-  This state occurs after `Opening master dump table`.
+  Este estado ocorre após `Opening master dump table`.
 
 * `Rebuilding the index on master dump table`
 
-  This state occurs after `Reading master dump table data`.
+  Este estado ocorre após `Reading master dump table data`.

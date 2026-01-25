@@ -1,8 +1,8 @@
-## 3.2 Entering Queries
+## 3.2 Inserindo Queries
 
-Make sure that you are connected to the server, as discussed in the previous section. Doing so does not in itself select any database to work with, but that is okay. At this point, it is more important to find out a little about how to issue queries than to jump right in creating tables, loading data into them, and retrieving data from them. This section describes the basic principles of entering queries, using several queries you can try out to familiarize yourself with how **mysql** works.
+Certifique-se de estar conectado ao servidor, conforme discutido na seção anterior. Isso, por si só, não seleciona nenhum Database para trabalhar, mas não há problema. Neste ponto, é mais importante aprender um pouco sobre como emitir queries do que começar imediatamente a criar tabelas, carregar dados nelas e recuperá-los. Esta seção descreve os princípios básicos de inserção de queries, usando vários exemplos que você pode experimentar para se familiarizar com o funcionamento do **mysql**.
 
-Here is a simple query that asks the server to tell you its version number and the current date. Type it in as shown here following the `mysql>` prompt and press Enter:
+Aqui está uma Query simples que solicita ao servidor que informe seu número de versão e a data atual. Digite-a conforme mostrado, seguindo o prompt `mysql>`, e pressione Enter:
 
 ```sql
 mysql> SELECT VERSION(), CURRENT_DATE;
@@ -15,17 +15,17 @@ mysql> SELECT VERSION(), CURRENT_DATE;
 mysql>
 ```
 
-This query illustrates several things about **mysql**:
+Esta Query ilustra várias coisas sobre o **mysql**:
 
-* A query normally consists of an SQL statement followed by a semicolon. (There are some exceptions where a semicolon may be omitted. `QUIT`, mentioned earlier, is one of them. We'll get to others later.)
+* Uma Query normalmente consiste em uma declaração SQL seguida por um ponto e vírgula. (Há algumas exceções onde um ponto e vírgula pode ser omitido. `QUIT`, mencionado anteriormente, é uma delas. Abordaremos outras mais tarde.)
 
-* When you issue a query, **mysql** sends it to the server for execution and displays the results, then prints another `mysql>` prompt to indicate that it is ready for another query.
+* Quando você emite uma Query, o **mysql** a envia ao servidor para execução e exibe os resultados, e então imprime outro prompt `mysql>` para indicar que está pronto para uma nova Query.
 
-* **mysql** displays query output in tabular form (rows and columns). The first row contains labels for the columns. The rows following are the query results. Normally, column labels are the names of the columns you fetch from database tables. If you're retrieving the value of an expression rather than a table column (as in the example just shown), **mysql** labels the column using the expression itself.
+* O **mysql** exibe a saída da Query em formato tabular (linhas e colunas). A primeira linha contém rótulos para as colunas. As linhas seguintes são os resultados da Query. Normalmente, os rótulos das colunas são os nomes das colunas que você busca nas tabelas do Database. Se você estiver recuperando o valor de uma expressão em vez de uma coluna de tabela (como no exemplo acima), o **mysql** rotula a coluna usando a própria expressão.
 
-* **mysql** shows how many rows were returned and how long the query took to execute, which gives you a rough idea of server performance. These values are imprecise because they represent wall clock time (not CPU or machine time), and because they are affected by factors such as server load and network latency. (For brevity, the “rows in set” line is sometimes not shown in the remaining examples in this chapter.)
+* O **mysql** mostra quantas linhas foram retornadas e quanto tempo a Query levou para ser executada, o que lhe dá uma ideia aproximada do desempenho do servidor. Esses valores são imprecisos porque representam tempo de relógio de parede (*wall clock time*) (não tempo de CPU ou máquina), e porque são afetados por fatores como carga do servidor e latência de rede. (Para simplificar, a linha “rows in set” às vezes não é mostrada nos exemplos restantes deste capítulo.)
 
-Keywords may be entered in any lettercase. The following queries are equivalent:
+As palavras-chave podem ser inseridas em qualquer caso de letra. As seguintes queries são equivalentes:
 
 ```sql
 mysql> SELECT VERSION(), CURRENT_DATE;
@@ -33,7 +33,7 @@ mysql> select version(), current_date;
 mysql> SeLeCt vErSiOn(), current_DATE;
 ```
 
-Here is another query. It demonstrates that you can use **mysql** as a simple calculator:
+Aqui está outra Query. Ela demonstra que você pode usar o **mysql** como uma calculadora simples:
 
 ```sql
 mysql> SELECT SIN(PI()/4), (4+1)*5;
@@ -45,7 +45,7 @@ mysql> SELECT SIN(PI()/4), (4+1)*5;
 1 row in set (0.02 sec)
 ```
 
-The queries shown thus far have been relatively short, single-line statements. You can even enter multiple statements on a single line. Just end each one with a semicolon:
+As queries mostradas até agora foram declarações relativamente curtas, de linha única. Você pode até inserir múltiplas declarações em uma única linha. Basta terminar cada uma com um ponto e vírgula:
 
 ```sql
 mysql> SELECT VERSION(); SELECT NOW();
@@ -64,9 +64,9 @@ mysql> SELECT VERSION(); SELECT NOW();
 1 row in set (0.00 sec)
 ```
 
-A query need not be given all on a single line, so lengthy queries that require several lines are not a problem. **mysql** determines where your statement ends by looking for the terminating semicolon, not by looking for the end of the input line. (In other words, **mysql** accepts free-format input: it collects input lines but does not execute them until it sees the semicolon.)
+Não é necessário que uma Query seja fornecida inteiramente em uma única linha, então queries longas que exigem várias linhas não são um problema. O **mysql** determina onde sua declaração termina procurando pelo ponto e vírgula de terminação, e não pelo fim da linha de entrada. (Em outras palavras, o **mysql** aceita entrada de formato livre: ele coleta linhas de entrada, mas não as executa até ver o ponto e vírgula.)
 
-Here is a simple multiple-line statement:
+Aqui está uma declaração simples de múltiplas linhas:
 
 ```sql
 mysql> SELECT
@@ -80,9 +80,9 @@ mysql> SELECT
 +---------------+--------------+
 ```
 
-In this example, notice how the prompt changes from `mysql>` to `->` after you enter the first line of a multiple-line query. This is how **mysql** indicates that it has not yet seen a complete statement and is waiting for the rest. The prompt is your friend, because it provides valuable feedback. If you use that feedback, you can always be aware of what **mysql** is waiting for.
+Neste exemplo, observe como o prompt muda de `mysql>` para `->` após você inserir a primeira linha de uma Query de múltiplas linhas. É assim que o **mysql** indica que ainda não viu uma declaração completa e está esperando pelo restante. O prompt é seu amigo, pois fornece feedback valioso. Se você usar esse feedback, poderá estar sempre ciente do que o **mysql** está esperando.
 
-If you decide you do not want to execute a query that you are in the process of entering, cancel it by typing `\c`:
+Se você decidir que não deseja executar uma Query que está no processo de inserção, cancele-a digitando `\c`:
 
 ```sql
 mysql> SELECT
@@ -91,20 +91,20 @@ mysql> SELECT
 mysql>
 ```
 
-Here, too, notice the prompt. It switches back to `mysql>` after you type `\c`, providing feedback to indicate that **mysql** is ready for a new query.
+Aqui também, observe o prompt. Ele volta para `mysql>` depois que você digita `\c`, fornecendo feedback para indicar que o **mysql** está pronto para uma nova Query.
 
-The following table shows each of the prompts you may see and summarizes what they mean about the state that **mysql** is in.
+A tabela a seguir mostra cada um dos prompts que você pode ver e resume o que eles significam sobre o estado em que o **mysql** se encontra.
 
-<table summary="MySQL prompts and the meaning of each prompt."><col style="width: 10%"/><col style="width: 80%"/><thead><tr> <th>Prompt</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>mysql&gt;</code></td> <td>Ready for new query</td> </tr><tr> <td><code>-&gt;</code></td> <td>Waiting for next line of multiple-line query</td> </tr><tr> <td><code>'&gt;</code></td> <td>Waiting for next line, waiting for completion of a string that began with a single quote (<code>'</code>)</td> </tr><tr> <td><code>"&gt;</code></td> <td>Waiting for next line, waiting for completion of a string that began with a double quote (<code>"</code>)</td> </tr><tr> <td><code>`&gt;</code></td> <td>Waiting for next line, waiting for completion of an identifier that began with a backtick (<code>`</code>)</td> </tr><tr> <td><code>/*&gt;</code></td> <td>Waiting for next line, waiting for completion of a comment that began with <code>/*</code></td> </tr></tbody></table>
+<table summary="Prompts do MySQL e o significado de cada prompt."><col style="width: 10%"/><col style="width: 80%"/><thead><tr> <th>Prompt</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>mysql&gt;</code></td> <td>Pronto para uma nova Query</td> </tr><tr> <td><code>-&gt;</code></td> <td>Esperando pela próxima linha de uma Query de múltiplas linhas</td> </tr><tr> <td><code>'&gt;</code></td> <td>Esperando pela próxima linha, aguardando a conclusão de uma string que começou com aspas simples (<code>'</code>)</td> </tr><tr> <td><code>"&gt;</code></td> <td>Esperando pela próxima linha, aguardando a conclusão de uma string que começou com aspas duplas (<code>"</code>)</td> </tr><tr> <td><code>`&gt;</code></td> <td>Esperando pela próxima linha, aguardando a conclusão de um identifier que começou com um backtick (<code>`</code>)</td> </tr><tr> <td><code>/*&gt;</code></td> <td>Esperando pela próxima linha, aguardando a conclusão de um comentário que começou com <code>/*</code></td> </tr></tbody></table>
 
-Multiple-line statements commonly occur by accident when you intend to issue a query on a single line, but forget the terminating semicolon. In this case, **mysql** waits for more input:
+Declarações de múltiplas linhas ocorrem frequentemente por acidente quando você pretende emitir uma Query em uma única linha, mas esquece o ponto e vírgula de terminação. Neste caso, o **mysql** aguarda mais entrada:
 
 ```sql
 mysql> SELECT USER()
     ->
 ```
 
-If this happens to you (you think you've entered a statement but the only response is a `->` prompt), most likely **mysql** is waiting for the semicolon. If you don't notice what the prompt is telling you, you might sit there for a while before realizing what you need to do. Enter a semicolon to complete the statement, and **mysql** executes it:
+Se isso acontecer com você (você acha que inseriu uma declaração, mas a única resposta é um prompt `->`), é muito provável que o **mysql** esteja esperando pelo ponto e vírgula. Se você não notar o que o prompt está lhe dizendo, poderá ficar esperando por um tempo antes de perceber o que precisa fazer. Insira um ponto e vírgula para completar a declaração, e o **mysql** a executa:
 
 ```sql
 mysql> SELECT USER()
@@ -116,16 +116,16 @@ mysql> SELECT USER()
 +---------------+
 ```
 
-The `'>` and `">` prompts occur during string collection (another way of saying that MySQL is waiting for completion of a string). In MySQL, you can write strings surrounded by either `'` or `"` characters (for example, `'hello'` or `"goodbye"`), and **mysql** lets you enter strings that span multiple lines. When you see a `'>` or `">` prompt, it means that you have entered a line containing a string that begins with a `'` or `"` quote character, but have not yet entered the matching quote that terminates the string. This often indicates that you have inadvertently left out a quote character. For example:
+Os prompts `'>` e `">` ocorrem durante a coleta de string (outra forma de dizer que o MySQL está aguardando a conclusão de uma string). No MySQL, você pode escrever strings cercadas por caracteres `'` ou `"` (por exemplo, `'hello'` ou `"goodbye"`), e o **mysql** permite que você insira strings que abrangem múltiplas linhas. Quando você vê um prompt `'>` ou `">`, significa que você inseriu uma linha contendo uma string que começa com um caractere de aspas `'` ou `"`, mas ainda não inseriu as aspas correspondentes que terminam a string. Isso geralmente indica que você omitiu inadvertidamente um caractere de aspas. Por exemplo:
 
 ```sql
 mysql> SELECT * FROM my_table WHERE name = 'Smith AND age < 30;
     '>
 ```
 
-If you enter this `SELECT` statement, then press **Enter** and wait for the result, nothing happens. Instead of wondering why this query takes so long, notice the clue provided by the `'>` prompt. It tells you that **mysql** expects to see the rest of an unterminated string. (Do you see the error in the statement? The string `'Smith` is missing the second single quotation mark.)
+Se você inserir esta declaração `SELECT`, pressionar **Enter** e esperar pelo resultado, nada acontece. Em vez de se perguntar por que esta Query está demorando tanto, observe a pista fornecida pelo prompt `'>`. Ele informa que o **mysql** espera ver o restante de uma string não terminada. (Você consegue ver o erro na declaração? A string `'Smith` está faltando a segunda aspa simples.)
 
-At this point, what do you do? The simplest thing is to cancel the query. However, you cannot just type `\c` in this case, because **mysql** interprets it as part of the string that it is collecting. Instead, enter the closing quote character (so **mysql** knows you've finished the string), then type `\c`:
+Neste ponto, o que você faz? O mais simples é cancelar a Query. No entanto, você não pode simplesmente digitar `\c` neste caso, porque o **mysql** o interpreta como parte da string que está sendo coletada. Em vez disso, insira o caractere de aspas de fechamento (para que o **mysql** saiba que você terminou a string), e depois digite `\c`:
 
 ```sql
 mysql> SELECT * FROM my_table WHERE name = 'Smith AND age < 30;
@@ -133,12 +133,12 @@ mysql> SELECT * FROM my_table WHERE name = 'Smith AND age < 30;
 mysql>
 ```
 
-The prompt changes back to `mysql>`, indicating that **mysql** is ready for a new query.
+O prompt muda de volta para `mysql>`, indicando que o **mysql** está pronto para uma nova Query.
 
-The `` `> `` prompt is similar to the `'>` and `">` prompts, but indicates that you have begun but not completed a backtick-quoted identifier.
+O prompt `` `> `` é semelhante aos prompts `'>` e `">`, mas indica que você iniciou, mas não completou, um identifier entre aspas backtick.
 
-It is important to know what the `'>`, `">`, and `` `> `` prompts signify, because if you mistakenly enter an unterminated string, any further lines you type appear to be ignored by **mysql**—including a line containing `QUIT`. This can be quite confusing, especially if you do not know that you need to supply the terminating quote before you can cancel the current query.
+É importante saber o que os prompts `'>`, `">` e `` `> `` significam, pois se você inserir erroneamente uma string não terminada, quaisquer linhas adicionais que você digitar parecerão ser ignoradas pelo **mysql**—incluindo uma linha contendo `QUIT`. Isso pode ser bastante confuso, especialmente se você não souber que precisa fornecer as aspas de terminação antes de poder cancelar a Query atual.
 
-Note
+Nota
 
-Multiline statements from this point on are written without the secondary (`->` or other) prompts, to make it easier to copy and paste the statements to try for yourself.
+As declarações de múltiplas linhas a partir deste ponto serão escritas sem os prompts secundários (`->` ou outros), para facilitar a cópia e colagem das declarações para que você possa experimentá-las.

@@ -1,24 +1,24 @@
-#### 8.2.1.9 Outer Join Simplification
+#### 8.2.1.9 Simplificação de Outer Join
 
-Table expressions in the `FROM` clause of a query are simplified in many cases.
+Expressões de tabela na cláusula `FROM` de uma Query são simplificadas em muitos casos.
 
-At the parser stage, queries with right outer join operations are converted to equivalent queries containing only left join operations. In the general case, the conversion is performed such that this right join:
+Na fase de *parser*, Queries com operações de *right outer join* são convertidas para Queries equivalentes contendo apenas operações de *left join*. No caso geral, a conversão é realizada de forma que este *right join*:
 
 ```sql
 (T1, ...) RIGHT JOIN (T2, ...) ON P(T1, ..., T2, ...)
 ```
 
-Becomes this equivalent left join:
+Torna-se este *left join* equivalente:
 
 ```sql
 (T2, ...) LEFT JOIN (T1, ...) ON P(T1, ..., T2, ...)
 ```
 
-All inner join expressions of the form `T1 INNER JOIN T2 ON P(T1,T2)` are replaced by the list `T1,T2`, `P(T1,T2)` being joined as a conjunct to the `WHERE` condition (or to the join condition of the embedding join, if there is any).
+Todas as expressões de *inner join* do formato `T1 INNER JOIN T2 ON P(T1,T2)` são substituídas pela lista `T1,T2`, sendo `P(T1,T2)` unido como uma conjunção à `WHERE condition` (ou à *join condition* do *join* incorporador, se houver).
 
-When the optimizer evaluates plans for outer join operations, it takes into consideration only plans where, for each such operation, the outer tables are accessed before the inner tables. The optimizer choices are limited because only such plans enable outer joins to be executed using the nested-loop algorithm.
+Quando o *optimizer* avalia planos para operações de *outer join*, ele leva em consideração apenas planos onde, para cada operação, as tabelas *outer* são acessadas antes das tabelas *inner*. As escolhas do *optimizer* são limitadas porque apenas tais planos permitem que *outer joins* sejam executados usando o algoritmo *nested-loop*.
 
-Consider a query of this form, where `R(T2)` greatly narrows the number of matching rows from table `T2`:
+Considere uma Query deste formato, onde `R(T2)` restringe bastante o número de linhas correspondentes da tabela `T2`:
 
 ```sql
 SELECT * T1 FROM T1
@@ -26,17 +26,17 @@ SELECT * T1 FROM T1
   WHERE P(T1,T2) AND R(T2)
 ```
 
-If the query is executed as written, the optimizer has no choice but to access the less-restricted table `T1` before the more-restricted table `T2`, which may produce a very inefficient execution plan.
+Se a Query for executada conforme escrita, o *optimizer* não tem escolha a não ser acessar a tabela menos restrita `T1` antes da tabela mais restrita `T2`, o que pode produzir um plano de execução muito ineficiente.
 
-Instead, MySQL converts the query to a query with no outer join operation if the `WHERE` condition is null-rejected. (That is, it converts the outer join to an inner join.) A condition is said to be null-rejected for an outer join operation if it evaluates to `FALSE` or `UNKNOWN` for any `NULL`-complemented row generated for the operation.
+Em vez disso, o MySQL converte a Query para uma Query sem operação de *outer join* se a `WHERE condition` for *null-rejected*. (Ou seja, ele converte o *outer join* para um *inner join*.) Uma *condition* é dita *null-rejected* para uma operação de *outer join* se ela avaliar para `FALSE` ou `UNKNOWN` para qualquer linha complementada por `NULL` gerada para a operação.
 
-Thus, for this outer join:
+Assim, para este *outer join*:
 
 ```sql
 T1 LEFT JOIN T2 ON T1.A=T2.A
 ```
 
-Conditions such as these are null-rejected because they cannot be true for any `NULL`-complemented row (with `T2` columns set to `NULL`):
+*Conditions* como estas são *null-rejected* porque não podem ser verdadeiras para nenhuma linha complementada por `NULL` (com as colunas de `T2` definidas como `NULL`):
 
 ```sql
 T2.B IS NOT NULL
@@ -45,7 +45,7 @@ T2.C <= T1.C
 T2.B < 2 OR T2.C > 1
 ```
 
-Conditions such as these are not null-rejected because they might be true for a `NULL`-complemented row:
+*Conditions* como estas não são *null-rejected* porque podem ser verdadeiras para uma linha complementada por `NULL`:
 
 ```sql
 T2.B IS NULL
@@ -53,17 +53,17 @@ T1.B < 3 OR T2.B IS NOT NULL
 T1.B < 3 OR T2.B > 3
 ```
 
-The general rules for checking whether a condition is null-rejected for an outer join operation are simple:
+As regras gerais para verificar se uma *condition* é *null-rejected* para uma operação de *outer join* são simples:
 
-* It is of the form `A IS NOT NULL`, where `A` is an attribute of any of the inner tables
+* Ela é do formato `A IS NOT NULL`, onde `A` é um atributo de qualquer uma das tabelas *inner*
 
-* It is a predicate containing a reference to an inner table that evaluates to `UNKNOWN` when one of its arguments is `NULL`
+* É um *predicate* contendo uma referência a uma tabela *inner* que avalia para `UNKNOWN` quando um de seus argumentos é `NULL`
 
-* It is a conjunction containing a null-rejected condition as a conjunct
+* É uma conjunção contendo uma *null-rejected condition* como uma conjunção
 
-* It is a disjunction of null-rejected conditions
+* É uma disjunção de *null-rejected conditions*
 
-A condition can be null-rejected for one outer join operation in a query and not null-rejected for another. In this query, the `WHERE` condition is null-rejected for the second outer join operation but is not null-rejected for the first one:
+Uma *condition* pode ser *null-rejected* para uma operação de *outer join* em uma Query e não *null-rejected* para outra. Nesta Query, a `WHERE condition` é *null-rejected* para a segunda operação de *outer join*, mas não é *null-rejected* para a primeira:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
@@ -71,9 +71,9 @@ SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
   WHERE T3.C > 0
 ```
 
-If the `WHERE` condition is null-rejected for an outer join operation in a query, the outer join operation is replaced by an inner join operation.
+Se a `WHERE condition` for *null-rejected* para uma operação de *outer join* em uma Query, a operação de *outer join* é substituída por uma operação de *inner join*.
 
-For example, in the preceding query, the second outer join is null-rejected and can be replaced by an inner join:
+Por exemplo, na Query anterior, o segundo *outer join* é *null-rejected* e pode ser substituído por um *inner join*:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
@@ -81,9 +81,9 @@ SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
   WHERE T3.C > 0
 ```
 
-For the original query, the optimizer evaluates only plans compatible with the single table-access order `T1,T2,T3`. For the rewritten query, it additionally considers the access order `T3,T1,T2`.
+Para a Query original, o *optimizer* avalia apenas planos compatíveis com a única ordem de acesso à tabela `T1,T2,T3`. Para a Query reescrita, ele considera adicionalmente a ordem de acesso `T3,T1,T2`.
 
-A conversion of one outer join operation may trigger a conversion of another. Thus, the query:
+Uma conversão de uma operação de *outer join* pode desencadear uma conversão de outra. Assim, a Query:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
@@ -91,7 +91,7 @@ SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
   WHERE T3.C > 0
 ```
 
-Is first converted to the query:
+É primeiro convertida para a Query:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
@@ -99,21 +99,21 @@ SELECT * FROM T1 LEFT JOIN T2 ON T2.A=T1.A
   WHERE T3.C > 0
 ```
 
-Which is equivalent to the query:
+O que é equivalente à Query:
 
 ```sql
 SELECT * FROM (T1 LEFT JOIN T2 ON T2.A=T1.A), T3
   WHERE T3.C > 0 AND T3.B=T2.B
 ```
 
-The remaining outer join operation can also be replaced by an inner join because the condition `T3.B=T2.B` is null-rejected. This results in a query with no outer joins at all:
+A operação de *outer join* restante também pode ser substituída por um *inner join* porque a *condition* `T3.B=T2.B` é *null-rejected*. Isso resulta em uma Query sem *outer joins* de forma alguma:
 
 ```sql
 SELECT * FROM (T1 INNER JOIN T2 ON T2.A=T1.A), T3
   WHERE T3.C > 0 AND T3.B=T2.B
 ```
 
-Sometimes the optimizer succeeds in replacing an embedded outer join operation, but cannot convert the embedding outer join. The following query:
+Às vezes, o *optimizer* consegue substituir uma operação de *outer join* incorporada, mas não pode converter o *outer join* incorporador. A seguinte Query:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN
@@ -122,7 +122,7 @@ SELECT * FROM T1 LEFT JOIN
   WHERE T3.C > 0
 ```
 
-Is converted to:
+É convertida para:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN
@@ -131,7 +131,7 @@ SELECT * FROM T1 LEFT JOIN
   WHERE T3.C > 0
 ```
 
-That can be rewritten only to the form still containing the embedding outer join operation:
+Que pode ser reescrita apenas para o formato que ainda contém a operação de *outer join* incorporadora:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN
@@ -140,7 +140,7 @@ SELECT * FROM T1 LEFT JOIN
   WHERE T3.C > 0
 ```
 
-Any attempt to convert an embedded outer join operation in a query must take into account the join condition for the embedding outer join together with the `WHERE` condition. In this query, the `WHERE` condition is not null-rejected for the embedded outer join, but the join condition of the embedding outer join `T2.A=T1.A AND T3.C=T1.C` is null-rejected:
+Qualquer tentativa de converter uma operação de *outer join* incorporada em uma Query deve levar em consideração a *join condition* para o *outer join* incorporador juntamente com a `WHERE condition`. Nesta Query, a `WHERE condition` não é *null-rejected* para o *outer join* incorporado, mas a *join condition* do *outer join* incorporador `T2.A=T1.A AND T3.C=T1.C` é *null-rejected*:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN
@@ -149,7 +149,7 @@ SELECT * FROM T1 LEFT JOIN
   WHERE T3.D > 0 OR T1.D > 0
 ```
 
-Consequently, the query can be converted to:
+Consequentemente, a Query pode ser convertida para:
 
 ```sql
 SELECT * FROM T1 LEFT JOIN

@@ -1,49 +1,49 @@
-## 10.7 Column Character Set Conversion
+## 10.7 Conversão do Character Set de Colunas
 
-To convert a binary or nonbinary string column to use a particular character set, use `ALTER TABLE`. For successful conversion to occur, one of the following conditions must apply:
+Para converter uma coluna de string binária ou não binária para usar um determinado character set, utilize `ALTER TABLE`. Para que a conversão seja bem-sucedida, uma das seguintes condições deve ser aplicada:
 
-* If the column has a binary data type (`BINARY`, `VARBINARY`, `BLOB`), all the values that it contains must be encoded using a single character set (the character set you're converting the column to). If you use a binary column to store information in multiple character sets, MySQL has no way to know which values use which character set and cannot convert the data properly.
+* Se a coluna tiver um data type binário (`BINARY`, `VARBINARY`, `BLOB`), todos os valores que ela contém devem ser codificados usando um único character set (o character set para o qual você está convertendo a coluna). Se você usar uma coluna binária para armazenar informações em múltiplos character sets, o MySQL não tem como saber quais valores usam qual character set e não pode converter os dados corretamente.
 
-* If the column has a nonbinary data type (`CHAR`, `VARCHAR`, `TEXT`), its contents should be encoded in the column character set, not some other character set. If the contents are encoded in a different character set, you can convert the column to use a binary data type first, and then to a nonbinary column with the desired character set.
+* Se a coluna tiver um data type não binário (`CHAR`, `VARCHAR`, `TEXT`), seu conteúdo deve ser codificado no character set da coluna, e não em outro character set qualquer. Se o conteúdo estiver codificado em um character set diferente, você pode converter a coluna para usar um data type binário primeiro e, em seguida, convertê-la para uma coluna não binária com o character set desejado.
 
-Suppose that a table `t` has a binary column named `col1` defined as `VARBINARY(50)`. Assuming that the information in the column is encoded using a single character set, you can convert it to a nonbinary column that has that character set. For example, if `col1` contains binary data representing characters in the `greek` character set, you can convert it as follows:
+Suponha que uma tabela `t` tenha uma coluna binária chamada `col1` definida como `VARBINARY(50)`. Assumindo que a informação na coluna esteja codificada usando um único character set, você pode convertê-la para uma coluna não binária que tenha esse character set. Por exemplo, se `col1` contém dados binários representando caracteres no character set `greek`, você pode convertê-la da seguinte forma:
 
 ```sql
 ALTER TABLE t MODIFY col1 VARCHAR(50) CHARACTER SET greek;
 ```
 
-If your original column has a type of `BINARY(50)`, you could convert it to `CHAR(50)`, but the resulting values are padded with `0x00` bytes at the end, which may be undesirable. To remove these bytes, use the `TRIM()` function:
+Se sua coluna original tem o tipo `BINARY(50)`, você poderia convertê-la para `CHAR(50)`, mas os valores resultantes são preenchidos (padded) com bytes `0x00` no final, o que pode ser indesejável. Para remover esses bytes, use a função `TRIM()`:
 
 ```sql
 UPDATE t SET col1 = TRIM(TRAILING 0x00 FROM col1);
 ```
 
-Suppose that table `t` has a nonbinary column named `col1` defined as `CHAR(50) CHARACTER SET latin1` but you want to convert it to use `utf8` so that you can store values from many languages. The following statement accomplishes this:
+Suponha que a tabela `t` tenha uma coluna não binária chamada `col1` definida como `CHAR(50) CHARACTER SET latin1`, mas você deseja convertê-la para usar `utf8` para que possa armazenar valores de muitos idiomas. A seguinte instrução realiza isso:
 
 ```sql
 ALTER TABLE t MODIFY col1 CHAR(50) CHARACTER SET utf8;
 ```
 
-Conversion may be lossy if the column contains characters that are not in both character sets.
+A conversão pode resultar em perda de dados (lossy) se a coluna contiver caracteres que não estão presentes em ambos os character sets.
 
-A special case occurs if you have old tables from before MySQL 4.1 where a nonbinary column contains values that actually are encoded in a character set different from the server's default character set. For example, an application might have stored `sjis` values in a column, even though MySQL's default character set was different. It is possible to convert the column to use the proper character set but an additional step is required. Suppose that the server's default character set was `latin1` and `col1` is defined as `CHAR(50)` but its contents are `sjis` values. The first step is to convert the column to a binary data type, which removes the existing character set information without performing any character conversion:
+Um caso especial ocorre se você tiver tabelas antigas, anteriores ao MySQL 4.1, onde uma coluna não binária contém valores que estão, na verdade, codificados em um character set diferente do character set default do servidor. Por exemplo, um aplicativo pode ter armazenado valores `sjis` em uma coluna, mesmo que o character set default do MySQL fosse diferente. É possível converter a coluna para usar o character set apropriado, mas uma etapa adicional é necessária. Suponha que o character set default do servidor fosse `latin1` e `col1` seja definida como `CHAR(50)`, mas seu conteúdo sejam valores `sjis`. O primeiro passo é converter a coluna para um data type binário, o que remove as informações de character set existentes sem realizar qualquer conversão de caracteres:
 
 ```sql
 ALTER TABLE t MODIFY col1 BLOB;
 ```
 
-The next step is to convert the column to a nonbinary data type with the proper character set:
+O próximo passo é converter a coluna para um data type não binário com o character set apropriado:
 
 ```sql
 ALTER TABLE t MODIFY col1 CHAR(50) CHARACTER SET sjis;
 ```
 
-This procedure requires that the table not have been modified already with statements such as `INSERT` or `UPDATE` after an upgrade to MySQL 4.1 or higher. In that case, MySQL stores new values in the column using `latin1`, and the column contains a mix of `sjis` and `latin1` values and cannot be converted properly.
+Este procedimento requer que a tabela não tenha sido modificada por instruções como `INSERT` ou `UPDATE` após uma atualização para o MySQL 4.1 ou superior. Nesse caso, o MySQL armazena novos valores na coluna usando `latin1`, e a coluna contém uma mistura de valores `sjis` e `latin1` e não pode ser convertida corretamente.
 
-If you specified attributes when creating a column initially, you should also specify them when altering the table with `ALTER TABLE`. For example, if you specified `NOT NULL` and an explicit `DEFAULT` value, you should also provide them in the `ALTER TABLE` statement. Otherwise, the resulting column definition does not include those attributes.
+Se você especificou atributos ao criar uma coluna inicialmente, você também deve especificá-los ao alterar a tabela com `ALTER TABLE`. Por exemplo, se você especificou `NOT NULL` e um valor `DEFAULT` explícito, você também deve fornecê-los na instrução `ALTER TABLE`. Caso contrário, a definição de coluna resultante não incluirá esses atributos.
 
-To convert all character columns in a table, the `ALTER TABLE ... CONVERT TO CHARACTER SET charset` statement may be useful. See Section 13.1.8, “ALTER TABLE Statement”.
+Para converter todas as colunas de caracteres em uma tabela, a instrução `ALTER TABLE ... CONVERT TO CHARACTER SET charset` pode ser útil. Consulte a Seção 13.1.8, “Instrução ALTER TABLE”.
 
-Note
+Nota
 
-`ALTER TABLE` statements which make changes in table or column character sets or collations must be performed using `ALGORITHM=COPY`. For more information, see Section 14.13.1, “Online DDL Operations”.
+Instruções `ALTER TABLE` que realizam alterações em character sets ou collations de tabelas ou colunas devem ser executadas usando `ALGORITHM=COPY`. Para mais informações, consulte a Seção 14.13.1, “Online DDL Operations”.

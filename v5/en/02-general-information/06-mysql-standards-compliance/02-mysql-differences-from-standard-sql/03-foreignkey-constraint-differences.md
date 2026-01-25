@@ -1,38 +1,38 @@
-#### 1.6.2.3 FOREIGN KEY Constraint Differences
+#### 1.6.2.3 Diferenças nas Constraints FOREIGN KEY
 
-The MySQL implementation of foreign key constraints differs from the SQL standard in the following key respects:
+A implementação MySQL das constraints `FOREIGN KEY` difere do `SQL standard` nos seguintes aspectos principais:
 
-* If there are several rows in the parent table with the same referenced key value, `InnoDB` performs a foreign key check as if the other parent rows with the same key value do not exist. For example, if you define a `RESTRICT` type constraint, and there is a child row with several parent rows, `InnoDB` does not permit the deletion of any of the parent rows.
+*   Se houver várias rows na tabela *parent* (pai) com o mesmo valor de chave referenciada, o `InnoDB` executa uma verificação de `FOREIGN KEY` como se as outras rows *parent* com o mesmo valor de chave não existissem. Por exemplo, se você definir uma `constraint` do tipo `RESTRICT`, e houver uma row *child* (filha) com várias rows *parent*, o `InnoDB` não permite a exclusão de nenhuma das rows *parent*.
 
-* If `ON UPDATE CASCADE` or `ON UPDATE SET NULL` recurses to update the *same table* it has previously updated during the same cascade, it acts like `RESTRICT`. This means that you cannot use self-referential `ON UPDATE CASCADE` or `ON UPDATE SET NULL` operations. This is to prevent infinite loops resulting from cascaded updates. A self-referential `ON DELETE SET NULL`, on the other hand, is possible, as is a self-referential `ON DELETE CASCADE`. Cascading operations may not be nested more than 15 levels deep.
+*   Se `ON UPDATE CASCADE` ou `ON UPDATE SET NULL` recursar para atualizar a *mesma tabela* que atualizou anteriormente durante o mesmo *cascade*, ele age como `RESTRICT`. Isso significa que você não pode usar operações autorreferenciais `ON UPDATE CASCADE` ou `ON UPDATE SET NULL`. Isso serve para evitar loops infinitos resultantes de atualizações em cascata. Por outro lado, um `ON DELETE SET NULL` autorreferencial é possível, assim como um `ON DELETE CASCADE` autorreferencial. Operações em cascata não podem ser aninhadas em mais de 15 níveis de profundidade.
 
-* In an SQL statement that inserts, deletes, or updates many rows, foreign key constraints (like unique constraints) are checked row-by-row. When performing foreign key checks, `InnoDB` sets shared row-level locks on child or parent records that it must examine. MySQL checks foreign key constraints immediately; the check is not deferred to transaction commit. According to the SQL standard, the default behavior should be deferred checking. That is, constraints are only checked after the *entire SQL statement* has been processed. This means that it is not possible to delete a row that refers to itself using a foreign key.
+*   Em uma instrução SQL que insere, deleta ou atualiza muitas rows, as constraints `FOREIGN KEY` (assim como as `UNIQUE constraints`) são verificadas row por row. Ao realizar verificações de `FOREIGN KEY`, o `InnoDB` define `shared row-level locks` em registros *child* ou *parent* que ele deve examinar. O MySQL verifica as constraints `FOREIGN KEY` imediatamente; a verificação não é adiada para o `transaction commit`. De acordo com o `SQL standard`, o comportamento padrão deve ser a verificação adiada (`deferred checking`). Ou seja, as constraints são verificadas somente após o processamento da *instrução SQL inteira*. Isso significa que não é possível deletar uma row que se refere a si mesma usando uma `FOREIGN KEY`.
 
-* No storage engine, including `InnoDB`, recognizes or enforces the `MATCH` clause used in referential-integrity constraint definitions. Use of an explicit `MATCH` clause does not have the specified effect, and it causes `ON DELETE` and `ON UPDATE` clauses to be ignored. Specifying the `MATCH` should be avoided.
+*   Nenhum `storage engine`, incluindo o `InnoDB`, reconhece ou impõe a cláusula `MATCH` usada em definições de `constraint` de integridade referencial. O uso de uma cláusula `MATCH` explícita não tem o efeito especificado e faz com que as cláusulas `ON DELETE` e `ON UPDATE` sejam ignoradas. Deve-se evitar a especificação do `MATCH`.
 
-  The `MATCH` clause in the SQL standard controls how `NULL` values in a composite (multiple-column) foreign key are handled when comparing to a primary key in the referenced table. MySQL essentially implements the semantics defined by `MATCH SIMPLE`, which permits a foreign key to be all or partially `NULL`. In that case, a (child table) row containing such a foreign key can be inserted even though it does not match any row in the referenced (parent) table. (It is possible to implement other semantics using triggers.)
+    A cláusula `MATCH` no `SQL standard` controla como os valores `NULL` em uma `FOREIGN KEY` composta (múltiplas colunas) são tratados ao comparar com uma `Primary Key` na tabela referenciada. O MySQL implementa essencialmente a semântica definida por `MATCH SIMPLE`, que permite que uma `FOREIGN KEY` seja totalmente ou parcialmente `NULL`. Nesse caso, uma row (tabela *child*) contendo tal `FOREIGN KEY` pode ser inserida mesmo que não corresponda a nenhuma row na tabela referenciada (*parent*). (É possível implementar outras semânticas usando `triggers`.)
 
-* MySQL requires that the referenced columns be indexed for performance reasons. However, MySQL does not enforce a requirement that the referenced columns be `UNIQUE` or be declared `NOT NULL`.
+*   O MySQL exige que as colunas referenciadas sejam indexadas por motivos de performance. No entanto, o MySQL não impõe que as colunas referenciadas sejam `UNIQUE` ou sejam declaradas `NOT NULL`.
 
-  A `FOREIGN KEY` constraint that references a non-`UNIQUE` key is not standard SQL but rather an `InnoDB` extension. The `NDB` storage engine, on the other hand, requires an explicit unique key (or primary key) on any column referenced as a foreign key.
+    Uma `FOREIGN KEY constraint` que referencia uma chave não-`UNIQUE` não é `SQL standard`, mas sim uma extensão do `InnoDB`. O `storage engine NDB`, por outro lado, exige uma chave `UNIQUE` explícita (ou `Primary Key`) em qualquer coluna referenciada como `FOREIGN KEY`.
 
-  The handling of foreign key references to nonunique keys or keys that contain `NULL` values is not well defined for operations such as `UPDATE` or `DELETE CASCADE`. You are advised to use foreign keys that reference only `UNIQUE` (including `PRIMARY`) and `NOT NULL` keys.
+    O tratamento de referências de `FOREIGN KEY` para chaves não-`UNIQUE` ou chaves que contêm valores `NULL` não é bem definido para operações como `UPDATE` ou `DELETE CASCADE`. É aconselhável usar `FOREIGN KEYs` que referenciem apenas chaves `UNIQUE` (incluindo `PRIMARY`) e `NOT NULL`.
 
-* For storage engines that do not support foreign keys (such as `MyISAM`), MySQL Server parses and ignores foreign key specifications.
+*   Para `storage engines` que não suportam `FOREIGN KEYs` (como o `MyISAM`), o MySQL Server analisa e ignora as especificações de `FOREIGN KEY`.
 
-* MySQL parses but ignores “inline `REFERENCES` specifications” (as defined in the SQL standard) where the references are defined as part of the column specification. MySQL accepts `REFERENCES` clauses only when specified as part of a separate `FOREIGN KEY` specification.
+*   O MySQL analisa, mas ignora, as “especificações `REFERENCES` *inline*” (conforme definido no `SQL standard`), onde as referências são definidas como parte da especificação da coluna. O MySQL aceita cláusulas `REFERENCES` apenas quando especificadas como parte de uma especificação `FOREIGN KEY` separada.
 
-  Defining a column to use a `REFERENCES tbl_name(col_name)` clause has no actual effect and *serves only as a memo or comment to you that the column which you are currently defining is intended to refer to a column in another table*. It is important to realize when using this syntax that:
+    Definir uma coluna para usar uma cláusula `REFERENCES tbl_name(col_name)` não tem efeito real e *serve apenas como um lembrete ou comentário para você de que a coluna que está definindo atualmente se destina a referenciar uma coluna em outra tabela*. É importante notar, ao usar esta sintaxe, que:
 
-  + MySQL does not perform any sort of check to make sure that *`col_name`* actually exists in *`tbl_name`* (or even that *`tbl_name`* itself exists).
+    + O MySQL não executa nenhum tipo de verificação para garantir que *`col_name`* realmente exista em *`tbl_name`* (ou mesmo que *`tbl_name`* exista).
 
-  + MySQL does not perform any sort of action on *`tbl_name`* such as deleting rows in response to actions taken on rows in the table which you are defining; in other words, this syntax induces no `ON DELETE` or `ON UPDATE` behavior whatsoever. (Although you can write an `ON DELETE` or `ON UPDATE` clause as part of the `REFERENCES` clause, it is also ignored.)
+    + O MySQL não executa nenhum tipo de ação em *`tbl_name`*, como deletar rows em resposta a ações realizadas em rows na tabela que você está definindo; em outras palavras, esta sintaxe não induz nenhum comportamento `ON DELETE` ou `ON UPDATE`. (Embora você possa escrever uma cláusula `ON DELETE` ou `ON UPDATE` como parte da cláusula `REFERENCES`, ela também é ignorada.)
 
-  + This syntax creates a *column*; it does **not** create any sort of index or key.
+    + Esta sintaxe cria uma *coluna*; ela **não** cria nenhum tipo de `Index` ou chave.
 
-  You can use a column so created as a join column, as shown here:
+    Você pode usar uma coluna criada dessa forma como uma coluna de `JOIN`, conforme mostrado aqui:
 
-  ```sql
+    ```sql
   CREATE TABLE person (
       id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
       name CHAR(60) NOT NULL,
@@ -102,9 +102,9 @@ The MySQL implementation of foreign key constraints differs from the SQL standar
   +----+-------+--------+-------+
   ```
 
-  When used in this fashion, the `REFERENCES` clause is not displayed in the output of `SHOW CREATE TABLE` or `DESCRIBE`:
+    Quando usada dessa maneira, a cláusula `REFERENCES` não é exibida na saída de `SHOW CREATE TABLE` ou `DESCRIBE`:
 
-  ```sql
+    ```sql
   SHOW CREATE TABLE shirt\G
   *************************** 1. row ***************************
   Table: shirt
@@ -117,4 +117,4 @@ The MySQL implementation of foreign key constraints differs from the SQL standar
   ) ENGINE=MyISAM DEFAULT CHARSET=latin1
   ```
 
-For information about foreign key constraints, see Section 13.1.18.5, “FOREIGN KEY Constraints”.
+Para informações sobre constraints `FOREIGN KEY`, consulte a Seção 13.1.18.5, “FOREIGN KEY Constraints”.

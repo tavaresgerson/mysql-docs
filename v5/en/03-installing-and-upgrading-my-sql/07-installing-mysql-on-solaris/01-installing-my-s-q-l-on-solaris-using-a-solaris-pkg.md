@@ -1,18 +1,18 @@
-### 2.7.1 Installing MySQL on Solaris Using a Solaris PKG
+### 2.7.1 Instalando MySQL no Solaris Usando um PKG do Solaris
 
-You can install MySQL on Solaris using a binary package of the native Solaris PKG format instead of the binary tarball distribution.
+Você pode instalar o MySQL no Solaris usando um pacote `binary` no formato nativo PKG do Solaris, em vez da distribuição `binary tarball`.
 
-Important
+Importante
 
-The installation package has a dependency on the Oracle Developer Studio 12.5 Runtime Libraries, which must be installed before you run the MySQL installation package. See the download options for Oracle Developer Studio here. The installation package enables you to install the runtime libraries only instead of the full Oracle Developer Studio; see instructions in [Installing Only the Runtime Libraries on Oracle Solaris 11](https://docs.oracle.com/cd/E60778_01/html/E60743/gozsu.html).
+O pacote de instalação tem uma `dependency` nas `Runtime Libraries` do Oracle Developer Studio 12.5, que devem ser instaladas antes de executar o pacote de instalação do MySQL. Veja as opções de `download` para o Oracle Developer Studio [aqui]. O pacote de instalação permite que você instale apenas as `runtime libraries`, em vez do Oracle Developer Studio completo; consulte as instruções em [Instalando Apenas as Runtime Libraries no Oracle Solaris 11](https://docs.oracle.com/cd/E60778_01/html/E60743/gozsu.html).
 
-To use this package, download the corresponding `mysql-VERSION-solaris11-PLATFORM.pkg.gz` file, then uncompress it. For example:
+Para usar este pacote, baixe o arquivo correspondente `mysql-VERSION-solaris11-PLATFORM.pkg.gz` e, em seguida, descompacte-o. Por exemplo:
 
 ```sql
 $> gunzip mysql-5.7.44-solaris11-x86_64.pkg.gz
 ```
 
-To install a new package, use **pkgadd** and follow the onscreen prompts. You must have root privileges to perform this operation:
+Para instalar um novo pacote, use **pkgadd** e siga os `prompts` na tela. Você deve ter privilégios de `root` para executar esta operação:
 
 ```sql
 $> pkgadd -d mysql-5.7.44-solaris11-x86_64.pkg
@@ -25,20 +25,20 @@ Select package(s) you wish to process (or 'all' to process
 all packages). (default: all) [?,??,q]:
 ```
 
-The PKG installer installs all of the files and tools needed, and then initializes your database if one does not exist. To complete the installation, you should set the root password for MySQL as provided in the instructions at the end of the installation. Alternatively, you can run the **mysql_secure_installation** script that comes with the installation.
+O `installer` PKG instala todos os arquivos e `tools` necessários e, em seguida, inicializa seu `database` se um não existir. Para completar a instalação, você deve definir a senha do `root` para o MySQL conforme fornecido nas instruções no final da instalação. Alternativamente, você pode executar o `script` **mysql_secure_installation** que acompanha a instalação.
 
-By default, the PKG package installs MySQL under the root path `/opt/mysql`. You can change only the installation root path when using **pkgadd**, which can be used to install MySQL in a different Solaris zone. If you need to install in a specific directory, use a binary **tar** file distribution.
+Por padrão, o pacote PKG instala o MySQL sob o `root path` `/opt/mysql`. Você pode alterar apenas o `root path` de instalação ao usar **pkgadd**, que pode ser usado para instalar o MySQL em uma `zone` diferente do Solaris. Se você precisar instalar em um diretório específico, use uma distribuição de arquivo **tar** `binary`.
 
-The `pkg` installer copies a suitable startup script for MySQL into `/etc/init.d/mysql`. To enable MySQL to startup and shutdown automatically, you should create a link between this file and the init script directories. For example, to ensure safe startup and shutdown of MySQL you could use the following commands to add the right links:
+O `installer` `pkg` copia um `script` de `startup` adequado para o MySQL em `/etc/init.d/mysql`. Para permitir que o MySQL inicie (`startup`) e desligue (`shutdown`) automaticamente, você deve criar um `link` entre este arquivo e os diretórios do `init script`. Por exemplo, para garantir o `startup` e `shutdown` seguros do MySQL, você pode usar os seguintes comandos para adicionar os `links` corretos:
 
 ```sql
 $> ln /etc/init.d/mysql /etc/rc3.d/S91mysql
 $> ln /etc/init.d/mysql /etc/rc0.d/K02mysql
 ```
 
-To remove MySQL, the installed package name is `mysql`. You can use this in combination with the **pkgrm** command to remove the installation.
+Para remover o MySQL, o nome do pacote instalado é `mysql`. Você pode usar isso em combinação com o comando **pkgrm** para remover a instalação.
 
-To upgrade when using the Solaris package file format, you must remove the existing installation before installing the updated package. Removal of the package does not delete the existing database information, only the server, binaries and support files. The typical upgrade sequence is therefore:
+Para fazer o `upgrade` ao usar o formato de arquivo de pacote do Solaris, você deve remover a instalação existente antes de instalar o pacote atualizado. A remoção do pacote não exclui as informações do `database` existente, apenas o `server`, `binaries` e arquivos de suporte. A sequência de `upgrade` típica é, portanto:
 
 ```sql
 $> mysqladmin shutdown
@@ -48,4 +48,4 @@ $> mysqld_safe &
 $> mysql_upgrade
 ```
 
-You should check the notes in Section 2.10, “Upgrading MySQL” before performing any upgrade.
+Você deve verificar as notas na Seção 2.10, “Upgrading MySQL” antes de realizar qualquer `upgrade`.

@@ -1,19 +1,19 @@
-#### 5.5.3.2 Thread Pool Installation
+#### 5.5.3.2 Instalação do Thread Pool
 
-This section describes how to install MySQL Enterprise Thread Pool. For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Esta seção descreve como instalar o MySQL Enterprise Thread Pool. Para informações gerais sobre a instalação de Plugins, consulte [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo Server, o arquivo da biblioteca do Plugin deve estar localizado no diretório de Plugins do MySQL (o diretório nomeado pela System Variable [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do diretório de Plugins definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do Server.
 
-The plugin library file base name is `thread_pool`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
+O nome base do arquivo da biblioteca do Plugin é `thread_pool`. O sufixo do nome do arquivo difere por plataforma (por exemplo, `.so` para sistemas Unix e semelhantes a Unix, `.dll` para Windows).
 
-To enable thread pool capability, load the plugins to be used by starting the server with the [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option. For example, if you name only the plugin library file, the server loads all plugins that it contains (that is, the thread pool plugin and all the `INFORMATION_SCHEMA` tables). To do this, put these lines in the server `my.cnf` file, adjusting the `.so` suffix for your platform as necessary:
+Para habilitar a capacidade de Thread Pool, carregue os Plugins a serem usados iniciando o Server com a opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add). Por exemplo, se você nomear apenas o arquivo da biblioteca do Plugin, o Server carrega todos os Plugins que ele contém (ou seja, o Plugin do Thread Pool e todas as tabelas `INFORMATION_SCHEMA`). Para fazer isso, insira estas linhas no arquivo `my.cnf` do Server, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
 plugin-load-add=thread_pool.so
 ```
 
-That is equivalent to loading all thread pool plugins by naming them individually:
+Isso é equivalente a carregar todos os Plugins do Thread Pool nomeando-os individualmente:
 
 ```sql
 [mysqld]
@@ -23,14 +23,14 @@ plugin-load-add=tp_thread_group_state=thread_pool.so
 plugin-load-add=tp_thread_group_stats=thread_pool.so
 ```
 
-If desired, you can load individual plugins from the library file. To load the thread pool plugin but not the `INFORMATION_SCHEMA` tables, use an option like this:
+Se desejar, você pode carregar Plugins individuais do arquivo da biblioteca. Para carregar o Plugin do Thread Pool, mas não as tabelas `INFORMATION_SCHEMA`, use uma opção como esta:
 
 ```sql
 [mysqld]
 plugin-load-add=thread_pool=thread_pool.so
 ```
 
-To load the thread pool plugin and only the [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table") `INFORMATION_SCHEMA` table, use options like this:
+Para carregar o Plugin do Thread Pool e apenas a tabela `INFORMATION_SCHEMA` [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table"), use opções como esta:
 
 ```sql
 [mysqld]
@@ -38,11 +38,11 @@ plugin-load-add=thread_pool=thread_pool.so
 plugin-load-add=tp_thread_state=thread_pool.so
 ```
 
-Note
+Nota
 
-If you do not load all the `INFORMATION_SCHEMA` tables, some or all MySQL Enterprise Monitor thread pool graphs are empty.
+Se você não carregar todas as tabelas `INFORMATION_SCHEMA`, alguns ou todos os gráficos de Thread Pool do MySQL Enterprise Monitor estarão vazios.
 
-To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Para verificar a instalação do Plugin, examine a tabela `INFORMATION_SCHEMA` [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") ou use a instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -58,6 +58,6 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +-----------------------+---------------+
 ```
 
-If the server loads the thread pool plugin successfully, it sets the `thread_handling` system variable to `loaded-dynamically`.
+Se o Server carregar o Plugin do Thread Pool com sucesso, ele define a System Variable `thread_handling` como `loaded-dynamically`.
 
-If a plugin fails to initialize, check the server error log for diagnostic messages.
+Se um Plugin falhar ao inicializar, verifique o log de erros do Server em busca de mensagens de diagnóstico.

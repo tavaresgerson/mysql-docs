@@ -1,5 +1,5 @@
-### 10.13.3 Multi-Byte Character Support for Complex Character Sets
+### 10.13.3 Suporte a Caracteres Multi-Byte para Character Sets Complexos
 
-If you want to add support for a new character set named *`MYSET`* that includes multibyte characters, you must use multibyte character functions in the `ctype-MYSET.c` source file in the `strings` directory.
+Se você deseja adicionar suporte para um novo *Character Set* chamado *`MYSET`* que inclua caracteres *multibyte*, você deve usar funções de caracteres *multibyte* no *source file* `ctype-MYSET.c` no *directory* `strings`.
 
-The existing character sets provide the best documentation and examples to show how these functions are implemented. Look at the `ctype-*.c` files in the `strings` directory, such as the files for the `euc_kr`, `gb2312`, `gbk`, `sjis`, and `ujis` character sets. Take a look at the `MY_CHARSET_HANDLER` structures to see how they are used. See also the `CHARSET_INFO.txt` file in the `strings` directory for additional information.
+Os *Character Sets* existentes fornecem a melhor documentação e exemplos para mostrar como essas funções são implementadas. Consulte os arquivos `ctype-*.c` no *directory* `strings`, como os arquivos para os *Character Sets* `euc_kr`, `gb2312`, `gbk`, `sjis` e `ujis`. Dê uma olhada nas estruturas `MY_CHARSET_HANDLER` para ver como elas são usadas. Consulte também o arquivo `CHARSET_INFO.txt` no *directory* `strings` para obter informações adicionais.

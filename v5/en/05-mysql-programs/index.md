@@ -1,95 +1,95 @@
-# Chapter 4 MySQL Programs
+# Capítulo 4 Programas MySQL
 
-**Table of Contents**
+**Sumário**
 
-4.1 Overview of MySQL Programs
+4.1 Visão Geral dos Programas MySQL
 
-4.2 Using MySQL Programs :   4.2.1 Invoking MySQL Programs
+4.2 Usando Programas MySQL :   4.2.1 Invocando Programas MySQL
 
-    4.2.2 Specifying Program Options
+    4.2.2 Especificando Opções de Programa
 
-    4.2.3 Command Options for Connecting to the Server
+    4.2.3 Opções de Comando para Conexão ao Server
 
-    4.2.4 Connecting to the MySQL Server Using Command Options
+    4.2.4 Conectando ao MySQL Server Usando Opções de Comando
 
-    4.2.5 Connection Transport Protocols
+    4.2.5 Protocolos de Transporte de Conexão
 
-    4.2.6 Connection Compression Control
+    4.2.6 Controle de Compressão de Conexão
 
-    4.2.7 Setting Environment Variables
+    4.2.7 Configurando Variáveis de Ambiente
 
-4.3 Server and Server-Startup Programs :   4.3.1 mysqld — The MySQL Server
+4.3 Programas de Server e de Inicialização do Server :   4.3.1 mysqld — O MySQL Server
 
-    4.3.2 mysqld_safe — MySQL Server Startup Script
+    4.3.2 mysqld_safe — Script de Inicialização do MySQL Server
 
-    4.3.3 mysql.server — MySQL Server Startup Script
+    4.3.3 mysql.server — Script de Inicialização do MySQL Server
 
-    4.3.4 mysqld_multi — Manage Multiple MySQL Servers
+    4.3.4 mysqld_multi — Gerenciar Múltiplos MySQL Servers
 
-4.4 Installation-Related Programs :   4.4.1 comp_err — Compile MySQL Error Message File
+4.4 Programas Relacionados à Instalação :   4.4.1 comp_err — Compilar Arquivo de Mensagens de Erro MySQL
 
-    4.4.2 mysql_install_db — Initialize MySQL Data Directory
+    4.4.2 mysql_install_db — Inicializar Diretório de Dados MySQL
 
-    4.4.3 mysql_plugin — Configure MySQL Server Plugins
+    4.4.3 mysql_plugin — Configurar Plugins do MySQL Server
 
-    4.4.4 mysql_secure_installation — Improve MySQL Installation Security
+    4.4.4 mysql_secure_installation — Melhorar a Segurança da Instalação MySQL
 
-    4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files
+    4.4.5 mysql_ssl_rsa_setup — Criar Arquivos SSL/RSA
 
-    4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables
+    4.4.6 mysql_tzinfo_to_sql — Carregar as Tabelas de Fuso Horário
 
-    4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables
+    4.4.7 mysql_upgrade — Checar e Fazer Upgrade de Tabelas MySQL
 
-4.5 Client Programs :   4.5.1 mysql — The MySQL Command-Line Client
+4.5 Programas Client :   4.5.1 mysql — O Client de Linha de Comando MySQL
 
-    4.5.2 mysqladmin — A MySQL Server Administration Program
+    4.5.2 mysqladmin — Um Programa de Administração do MySQL Server
 
-    4.5.3 mysqlcheck — A Table Maintenance Program
+    4.5.3 mysqlcheck — Um Programa de Manutenção de Tabela
 
-    4.5.4 mysqldump — A Database Backup Program
+    4.5.4 mysqldump — Um Programa de Backup de Database
 
-    4.5.5 mysqlimport — A Data Import Program
+    4.5.5 mysqlimport — Um Programa de Importação de Dados
 
-    4.5.6 mysqlpump — A Database Backup Program
+    4.5.6 mysqlpump — Um Programa de Backup de Database
 
-    4.5.7 mysqlshow — Display Database, Table, and Column Information
+    4.5.7 mysqlshow — Exibir Informações de Database, Tabela e Coluna
 
-    4.5.8 mysqlslap — A Load Emulation Client
+    4.5.8 mysqlslap — Um Client de Emulação de Carga (Load)
 
-4.6 Administrative and Utility Programs :   4.6.1 innochecksum — Offline InnoDB File Checksum Utility
+4.6 Programas Administrativos e de Utilidade :   4.6.1 innochecksum — Utilidade de Checksum de Arquivo InnoDB Offline
 
-    4.6.2 myisam_ftdump — Display Full-Text Index information
+    4.6.2 myisam_ftdump — Exibir Informações de Full-Text Index
 
-    4.6.3 myisamchk — MyISAM Table-Maintenance Utility
+    4.6.3 myisamchk — Utilidade de Manutenção de Tabela MyISAM
 
-    4.6.4 myisamlog — Display MyISAM Log File Contents
+    4.6.4 myisamlog — Exibir Conteúdo do Arquivo Log MyISAM
 
-    4.6.5 myisampack — Generate Compressed, Read-Only MyISAM Tables
+    4.6.5 myisampack — Gerar Tabelas MyISAM Comprimidas e Somente Leitura
 
-    4.6.6 mysql_config_editor — MySQL Configuration Utility
+    4.6.6 mysql_config_editor — Utilidade de Configuração MySQL
 
-    4.6.7 mysqlbinlog — Utility for Processing Binary Log Files
+    4.6.7 mysqlbinlog — Utilidade para Processar Arquivos Binary Log
 
-    4.6.8 mysqldumpslow — Summarize Slow Query Log Files
+    4.6.8 mysqldumpslow — Resumir Arquivos Slow Query Log
 
-4.7 Program Development Utilities :   4.7.1 mysql_config — Display Options for Compiling Clients
+4.7 Utilidades de Desenvolvimento de Programas :   4.7.1 mysql_config — Exibir Opções para Compilar Clients
 
-    4.7.2 my_print_defaults — Display Options from Option Files
+    4.7.2 my_print_defaults — Exibir Opções de Arquivos de Opções
 
-    4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols
+    4.7.3 resolve_stack_dump — Resolver Dump de Stack Trace Numérico para Símbolos
 
-4.8 Miscellaneous Programs :   4.8.1 lz4_decompress — Decompress mysqlpump LZ4-Compressed Output
+4.8 Programas Diversos :   4.8.1 lz4_decompress — Descomprimir Saída Comprimida LZ4 do mysqlpump
 
-    4.8.2 perror — Display MySQL Error Message Information
+    4.8.2 perror — Exibir Informações de Mensagens de Erro MySQL
 
-    4.8.3 replace — A String-Replacement Utility
+    4.8.3 replace — Uma Utilidade de Substituição de String
 
-    4.8.4 resolveip — Resolve Host name to IP Address or Vice Versa
+    4.8.4 resolveip — Resolver Nome de Host para Endereço IP ou Vice-Versa
 
-    4.8.5 zlib_decompress — Decompress mysqlpump ZLIB-Compressed Output
+    4.8.5 zlib_decompress — Descomprimir Saída Comprimida ZLIB do mysqlpump
 
-4.9 Environment Variables
+4.9 Variáveis de Ambiente
 
-4.10 Unix Signal Handling in MySQL
+4.10 Tratamento de Sinal Unix no MySQL
 
-This chapter provides a brief overview of the MySQL command-line programs provided by Oracle Corporation. It also discusses the general syntax for specifying options when you run these programs. Most programs have options that are specific to their own operation, but the option syntax is similar for all of them. Finally, the chapter provides more detailed descriptions of individual programs, including which options they recognize.
+Este capítulo fornece uma breve visão geral dos programas de linha de comando MySQL fornecidos pela Oracle Corporation. Ele também discute a sintaxe geral para especificar opções ao executar esses programas. A maioria dos programas possui opções específicas para sua própria operação, mas a sintaxe de opção é semelhante para todos eles. Finalmente, o capítulo fornece descrições mais detalhadas de programas individuais, incluindo quais opções eles reconhecem.

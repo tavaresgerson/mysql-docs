@@ -1,62 +1,62 @@
-#### 5.1.12.5 Obtaining an IPv6 Address from a Broker
+#### 5.1.12.5 Obtendo um Endereço IPv6 de um Broker
 
-If you do not have a public IPv6 address that enables your system to communicate over IPv6 outside your local network, you can obtain one from an IPv6 broker. The [Wikipedia IPv6 Tunnel Broker page](http://en.wikipedia.org/wiki/List_of_IPv6_tunnel_brokers) lists several brokers and their features, such as whether they provide static addresses and the supported routing protocols.
+Se você não possui um endereço IPv6 público que permita que seu sistema se comunique via IPv6 fora da sua rede local, você pode obter um de um IPv6 *broker*. A [página de IPv6 Tunnel Broker na Wikipedia](http://en.wikipedia.org/wiki/List_of_IPv6_tunnel_brokers) lista diversos *brokers* e suas funcionalidades, como se eles fornecem endereços estáticos e os protocolos de roteamento suportados.
 
-After configuring your server host to use a broker-supplied IPv6 address, start the MySQL server with an appropriate [`bind_address`](server-system-variables.html#sysvar_bind_address) setting to permit the server to accept IPv6 connections. For example, put the following lines in the server option file and restart the server:
+Após configurar o seu *host* do *server* para usar um endereço IPv6 fornecido pelo *broker*, inicie o MySQL *server* com uma configuração apropriada de [`bind_address`](server-system-variables.html#sysvar_bind_address) para permitir que o *server* aceite conexões IPv6. Por exemplo, insira as seguintes linhas no arquivo de opções do *server* e reinicie o *server*:
 
 ```sql
 [mysqld]
 bind_address = *
 ```
 
-Alternatively, you can bind the server to the specific IPv6 address provided by the broker, but that makes the server more restrictive for TCP/IP connections. It accepts only IPv6 connections for that single address and rejects IPv4 connections. For more information, see the [`bind_address`](server-system-variables.html#sysvar_bind_address) description in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"). In addition, if the broker allocates dynamic addresses, the address provided for your system might change the next time you connect to the broker. If so, any accounts you create that name the original address become invalid. To bind to a specific address but avoid this change-of-address problem, you may be able to arrange with the broker for a static IPv6 address.
+Alternativamente, você pode vincular (bind) o *server* ao endereço IPv6 específico fornecido pelo *broker*, mas isso torna o *server* mais restritivo para conexões *TCP/IP*. Ele aceita apenas conexões IPv6 para aquele único endereço e rejeita conexões IPv4. Para mais informações, consulte a descrição de [`bind_address`](server-system-variables.html#sysvar_bind_address) na [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"). Além disso, se o *broker* alocar endereços dinâmicos, o endereço fornecido para o seu sistema pode mudar na próxima vez que você se conectar ao *broker*. Nesse caso, quaisquer contas que você criar que nomeiem o endereço original se tornam inválidas. Para vincular a um endereço específico, mas evitar esse problema de mudança de endereço, você pode tentar negociar com o *broker* por um endereço IPv6 estático.
 
-The following example shows how to use Freenet6 as the broker and the **gogoc** IPv6 client package on Gentoo Linux.
+O exemplo a seguir mostra como usar o Freenet6 como o *broker* e o pacote **gogoc** *client* IPv6 no Gentoo Linux.
 
-1. Create an account at Freenet6 by visiting this URL and signing up:
+1. Crie uma conta no Freenet6 visitando este URL e se inscrevendo:
 
    ```sql
    http://gogonet.gogo6.com
    ```
 
-2. After creating the account, go to this URL, sign in, and create a user ID and password for the IPv6 broker:
+2. Após criar a conta, vá para este URL, faça *login* e crie um ID de usuário e senha para o IPv6 *broker*:
 
    ```sql
    http://gogonet.gogo6.com/page/freenet6-registration
    ```
 
-3. As `root`, install **gogoc**:
+3. Como `root`, instale o **gogoc**:
 
    ```sql
    $> emerge gogoc
    ```
 
-4. Edit `/etc/gogoc/gogoc.conf` to set the `userid` and `password` values. For example:
+4. Edite `/etc/gogoc/gogoc.conf` para definir os valores de `userid` e `password`. Por exemplo:
 
    ```sql
    userid=gogouser
    passwd=gogopass
    ```
 
-5. Start **gogoc**:
+5. Inicie o **gogoc**:
 
    ```sql
    $> /etc/init.d/gogoc start
    ```
 
-   To start **gogoc** each time your system boots, execute this command:
+   Para iniciar o **gogoc** toda vez que o seu sistema inicializar (boot), execute este comando:
 
    ```sql
    $> rc-update add gogoc default
    ```
 
-6. Use **ping6** to try to ping a host:
+6. Use **ping6** para tentar fazer *ping* em um *host*:
 
    ```sql
    $> ping6 ipv6.google.com
    ```
 
-7. To see your IPv6 address:
+7. Para ver o seu endereço IPv6:
 
    ```sql
    $> ifconfig tun

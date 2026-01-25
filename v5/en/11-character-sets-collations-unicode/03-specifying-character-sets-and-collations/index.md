@@ -1,33 +1,33 @@
-## 10.3 Specifying Character Sets and Collations
+## 10.3 Especificando Character Sets e Collations
 
-10.3.1 Collation Naming Conventions
+10.3.1 Convenções de Nomenclatura de Collation
 
-10.3.2 Server Character Set and Collation
+10.3.2 Character Set e Collation do Server
 
-10.3.3 Database Character Set and Collation
+10.3.3 Character Set e Collation do Database
 
-10.3.4 Table Character Set and Collation
+10.3.4 Character Set e Collation da Tabela
 
-10.3.5 Column Character Set and Collation
+10.3.5 Character Set e Collation da Coluna
 
-10.3.6 Character String Literal Character Set and Collation
+10.3.6 Character Set e Collation de String Literal de Caracteres
 
-10.3.7 The National Character Set
+10.3.7 O Character Set Nacional
 
-10.3.8 Character Set Introducers
+10.3.8 Introducers de Character Set
 
-10.3.9 Examples of Character Set and Collation Assignment
+10.3.9 Exemplos de Atribuição de Character Set e Collation
 
-10.3.10 Compatibility with Other DBMSs
+10.3.10 Compatibilidade com Outros DBMSs
 
-There are default settings for character sets and collations at four levels: server, database, table, and column. The description in the following sections may appear complex, but it has been found in practice that multiple-level defaulting leads to natural and obvious results.
+Existem configurações default para *character sets* e *collations* em quatro níveis: *server*, *database*, tabela e coluna. A descrição nas seções seguintes pode parecer complexa, mas na prática, foi descoberto que o defaulting em múltiplos níveis leva a resultados naturais e óbvios.
 
-`CHARACTER SET` is used in clauses that specify a character set. `CHARSET` can be used as a synonym for `CHARACTER SET`.
+`CHARACTER SET` é usado em cláusulas que especificam um *character set*. `CHARSET` pode ser usado como um sinônimo para `CHARACTER SET`.
 
-Character set issues affect not only data storage, but also communication between client programs and the MySQL server. If you want the client program to communicate with the server using a character set different from the default, you'll need to indicate which one. For example, to use the `utf8` Unicode character set, issue this statement after connecting to the server:
+Questões de *character set* afetam não apenas o armazenamento de dados, mas também a comunicação entre programas *client* e o *MySQL server*. Se você deseja que o programa *client* se comunique com o *server* usando um *character set* diferente do *default*, você precisará indicar qual. Por exemplo, para usar o *character set* Unicode `utf8`, execute esta instrução após se conectar ao *server*:
 
 ```sql
 SET NAMES 'utf8';
 ```
 
-For more information about character set-related issues in client/server communication, see Section 10.4, “Connection Character Sets and Collations”.
+Para mais informações sobre questões relacionadas a *character sets* na comunicação *client/server*, consulte a Seção 10.4, “Connection Character Sets and Collations”.

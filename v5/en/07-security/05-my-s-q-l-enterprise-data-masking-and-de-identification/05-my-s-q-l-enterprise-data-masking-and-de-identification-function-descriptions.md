@@ -1,47 +1,47 @@
-### 6.5.5 MySQL Enterprise Data Masking and De-Identification Function Descriptions
+### 6.5.5 Descrições das Funções de MySQL Enterprise Data Masking and De-Identification
 
-The MySQL Enterprise Data Masking and De-Identification plugin library includes several functions, which may be grouped into these categories:
+A library de plugin MySQL Enterprise Data Masking and De-Identification inclui várias funções, que podem ser agrupadas nestas categorias:
 
-* [Data Masking Functions](data-masking-functions.html#data-masking-masking-functions "Data Masking Functions")
-* [Random Data Generation Functions](data-masking-functions.html#data-masking-generation-functions "Random Data Generation Functions")
-* [Random Data Dictionary-Based Functions](data-masking-functions.html#data-masking-dictionary-functions "Random Data Dictionary-Based Functions")
+* [Funções de Data Masking](data-masking-functions.html#data-masking-masking-functions "Funções de Data Masking")
+* [Funções de Geração de Dados Aleatórios](data-masking-functions.html#data-masking-generation-functions "Funções de Geração de Dados Aleatórios")
+* [Funções Baseadas em Dicionário de Dados Aleatórios](data-masking-functions.html#data-masking-dictionary-functions "Funções Baseadas em Dicionário de Dados Aleatórios")
 
-These functions treat string arguments as binary strings (which means they do not distinguish lettercase), and string return values are binary strings. If a string return value should be in a different character set, convert it. The following example shows how to convert the result of [`gen_rnd_email()`](data-masking-functions.html#function_gen-rnd-email) to the `utf8mb4` character set:
+Essas funções tratam argumentos string como strings binárias (o que significa que não diferenciam maiúsculas de minúsculas), e os valores de retorno string são strings binárias. Se um valor de retorno string precisar estar em um conjunto de caracteres diferente, converta-o. O exemplo a seguir mostra como converter o resultado de [`gen_rnd_email()`](data-masking-functions.html#function_gen-rnd-email) para o conjunto de caracteres `utf8mb4`:
 
 ```sql
 SET @email = CONVERT(gen_rnd_email() USING utf8mb4);
 ```
 
-It may also be necessary to convert string arguments, as illustrated in [Using Masked Data for Customer Identification](data-masking-usage.html#data-masking-usage-customer-identification "Using Masked Data for Customer Identification").
+Também pode ser necessário converter argumentos string, conforme ilustrado em [Usando Dados Mascarados para Identificação de Cliente](data-masking-usage.html#data-masking-usage-customer-identification "Usando Dados Mascarados para Identificação de Cliente").
 
-If a MySQL Enterprise Data Masking and De-Identification function is invoked from within the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, binary string results display using hexadecimal notation, depending on the value of the [`--binary-as-hex`](mysql-command-options.html#option_mysql_binary-as-hex). For more information about that option, see [Section 4.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
+Se uma função MySQL Enterprise Data Masking and De-Identification for invocada a partir do cliente [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), os resultados de strings binárias serão exibidos usando notação hexadecimal, dependendo do valor da opção [`--binary-as-hex`](mysql-command-options.html#option_mysql_binary-as-hex). Para mais informações sobre essa opção, consulte [Seção 4.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
 
-#### Data Masking Functions
+#### Funções de Data Masking
 
-Each function in this section performs a masking operation on its string argument and returns the masked result.
+Cada função nesta seção executa uma operação de masking (mascaramento) no seu argumento string e retorna o resultado mascarado.
 
 * [`mask_inner(str, margin1, margin2 [, mask_char])`](data-masking-functions.html#function_mask-inner)
 
-  Masks the interior part of a string, leaving the ends untouched, and returns the result. An optional masking character can be specified.
+  Mascarara a parte interior de uma string, deixando as extremidades intocadas, e retorna o resultado. Um caractere de masking opcional pode ser especificado.
 
-  Arguments:
+  Argumentos:
 
-  + *`str`*: The string to mask.
-  + *`margin1`*: A nonnegative integer that specifies the number of characters on the left end of the string to remain unmasked. If the value is 0, no left end characters remain unmasked.
+  + *`str`*: A string a ser mascarada.
+  + *`margin1`*: Um inteiro não negativo que especifica o número de caracteres na extremidade esquerda da string que devem permanecer sem masking. Se o valor for 0, nenhum caractere da extremidade esquerda permanece sem masking.
 
-  + *`margin2`*: A nonnegative integer that specifies the number of characters on the right end of the string to remain unmasked. If the value is 0, no right end characters remain unmasked.
+  + *`margin2`*: Um inteiro não negativo que especifica o número de caracteres na extremidade direita da string que devem permanecer sem masking. Se o valor for 0, nenhum caractere da extremidade direita permanece sem masking.
 
-  + *`mask_char`*: (Optional) The single character to use for masking. The default is `'X'` if *`mask_char`* is not given.
+  + *`mask_char`*: (Opcional) O caractere único a ser usado para o masking. O padrão é `'X'` se *`mask_char`* não for fornecido.
 
-    The masking character must be a single-byte character. Attempts to use a multibyte character produce an error.
+    O caractere de masking deve ser um caractere de byte único (single-byte). Tentativas de usar um caractere multibyte produzirão um erro.
 
-  Return value:
+  Valor de retorno:
 
-  The masked string, or `NULL` if either margin is negative.
+  A string mascarada, ou `NULL` se qualquer uma das margens for negativa.
 
-  If the sum of the margin values is larger than the argument length, no masking occurs and the argument is returned unchanged.
+  Se a soma dos valores das margens for maior que o comprimento do argumento, nenhum masking ocorrerá e o argumento será retornado inalterado.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT mask_inner('abcdef', 1, 2), mask_inner('abcdef',0, 5);
@@ -60,26 +60,26 @@ Each function in this section performs a masking operation on its string argumen
 
 * [`mask_outer(str, margin1, margin2 [, mask_char])`](data-masking-functions.html#function_mask-outer)
 
-  Masks the left and right ends of a string, leaving the interior unmasked, and returns the result. An optional masking character can be specified.
+  Mascarara as extremidades esquerda e direita de uma string, deixando o interior sem masking, e retorna o resultado. Um caractere de masking opcional pode ser especificado.
 
-  Arguments:
+  Argumentos:
 
-  + *`str`*: The string to mask.
-  + *`margin1`*: A nonnegative integer that specifies the number of characters on the left end of the string to mask. If the value is 0, no left end characters are masked.
+  + *`str`*: A string a ser mascarada.
+  + *`margin1`*: Um inteiro não negativo que especifica o número de caracteres na extremidade esquerda da string a serem mascarados. Se o valor for 0, nenhum caractere da extremidade esquerda é mascarado.
 
-  + *`margin2`*: A nonnegative integer that specifies the number of characters on the right end of the string to mask. If the value is 0, no right end characters are masked.
+  + *`margin2`*: Um inteiro não negativo que especifica o número de caracteres na extremidade direita da string a serem mascarados. Se o valor for 0, nenhum caractere da extremidade direita é mascarado.
 
-  + *`mask_char`*: (Optional) The single character to use for masking. The default is `'X'` if *`mask_char`* is not given.
+  + *`mask_char`*: (Opcional) O caractere único a ser usado para o masking. O padrão é `'X'` se *`mask_char`* não for fornecido.
 
-    The masking character must be a single-byte character. Attempts to use a multibyte character produce an error.
+    O caractere de masking deve ser um caractere de byte único (single-byte). Tentativas de usar um caractere multibyte produzirão um erro.
 
-  Return value:
+  Valor de retorno:
 
-  The masked string, or `NULL` if either margin is negative.
+  A string mascarada, ou `NULL` se qualquer uma das margens for negativa.
 
-  If the sum of the margin values is larger than the argument length, the entire argument is masked.
+  Se a soma dos valores das margens for maior que o comprimento do argumento, o argumento inteiro é mascarado.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT mask_outer('abcdef', 1, 2), mask_outer('abcdef',0, 5);
@@ -98,17 +98,17 @@ Each function in this section performs a masking operation on its string argumen
 
 * [`mask_pan(str)`](data-masking-functions.html#function_mask-pan)
 
-  Masks a payment card Primary Account Number and returns the number with all but the last four digits replaced by `'X'` characters.
+  Mascarara um Primary Account Number (PAN) de cartão de pagamento e retorna o número com todos, exceto os últimos quatro dígitos, substituídos por caracteres `'X'`.
 
-  Arguments:
+  Argumentos:
 
-  + *`str`*: The string to mask. The string must be a suitable length for the Primary Account Number, but is not otherwise checked.
+  + *`str`*: A string a ser mascarada. A string deve ter um comprimento adequado para o Primary Account Number, mas não é verificada de outra forma.
 
-  Return value:
+  Valor de retorno:
 
-  The masked payment number as a string. If the argument is shorter than required, it is returned unchanged.
+  O número de pagamento mascarado como uma string. Se o argumento for mais curto do que o necessário, ele é retornado inalterado.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT mask_pan(gen_rnd_pan());
@@ -133,17 +133,17 @@ Each function in this section performs a masking operation on its string argumen
 
 * [`mask_pan_relaxed(str)`](data-masking-functions.html#function_mask-pan-relaxed)
 
-  Masks a payment card Primary Account Number and returns the number with all but the first six and last four digits replaced by `'X'` characters. The first six digits indicate the payment card issuer.
+  Mascarara um Primary Account Number (PAN) de cartão de pagamento e retorna o número com todos, exceto os primeiros seis e os últimos quatro dígitos, substituídos por caracteres `'X'`. Os primeiros seis dígitos indicam o emissor do cartão de pagamento.
 
-  Arguments:
+  Argumentos:
 
-  + *`str`*: The string to mask. The string must be a suitable length for the Primary Account Number, but is not otherwise checked.
+  + *`str`*: A string a ser mascarada. A string deve ter um comprimento adequado para o Primary Account Number, mas não é verificada de outra forma.
 
-  Return value:
+  Valor de retorno:
 
-  The masked payment number as a string. If the argument is shorter than required, it is returned unchanged.
+  O número de pagamento mascarado como uma string. Se o argumento for mais curto do que o necessário, ele é retornado inalterado.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT mask_pan_relaxed(gen_rnd_pan());
@@ -168,17 +168,17 @@ Each function in this section performs a masking operation on its string argumen
 
 * [`mask_ssn(str)`](data-masking-functions.html#function_mask-ssn)
 
-  Masks a US Social Security number and returns the number with all but the last four digits replaced by `'X'` characters.
+  Mascarara um número de Social Security (SSN) dos EUA e retorna o número com todos, exceto os últimos quatro dígitos, substituídos por caracteres `'X'`.
 
-  Arguments:
+  Argumentos:
 
-  + *`str`*: The string to mask. The string must be 11 characters long, but is not otherwise checked.
+  + *`str`*: A string a ser mascarada. A string deve ter 11 caracteres de comprimento, mas não é verificada de outra forma.
 
-  Return value:
+  Valor de retorno:
 
-  The masked Social Security number as a string, or `NULL` if the argument is not the correct length.
+  O número de Social Security mascarado como uma string, ou `NULL` se o argumento não tiver o comprimento correto.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT mask_ssn('909-63-6922'), mask_ssn('abcdefghijk');
@@ -195,25 +195,25 @@ Each function in this section performs a masking operation on its string argumen
   +-----------------+
   ```
 
-#### Random Data Generation Functions
+#### Funções de Geração de Dados Aleatórios
 
-The functions in this section generate random values for different types of data. When possible, generated values have characteristics reserved for demonstration or test values, to avoid having them mistaken for legitimate data. For example, [`gen_rnd_us_phone()`](data-masking-functions.html#function_gen-rnd-us-phone) returns a US phone number that uses the 555 area code, which is not assigned to phone numbers in actual use. Individual function descriptions describe any exceptions to this principle.
+As funções nesta seção geram valores aleatórios para diferentes tipos de dados. Sempre que possível, os valores gerados têm características reservadas para demonstração ou valores de teste, para evitar que sejam confundidos com dados legítimos. Por exemplo, [`gen_rnd_us_phone()`](data-masking-functions.html#function_gen-rnd-us-phone) retorna um número de telefone dos EUA que usa o código de área 555, que não é atribuído a números de telefone em uso real. As descrições individuais das funções descrevem quaisquer exceções a este princípio.
 
 * [`gen_range(lower, upper)`](data-masking-functions.html#function_gen-range)
 
-  Generates a random number chosen from a specified range.
+  Gera um número aleatório escolhido a partir de um intervalo especificado.
 
-  Arguments:
+  Argumentos:
 
-  + *`lower`*: An integer that specifies the lower boundary of the range.
+  + *`lower`*: Um inteiro que especifica o limite inferior do range (intervalo).
 
-  + *`upper`*: An integer that specifies the upper boundary of the range, which must not be less than the lower boundary.
+  + *`upper`*: Um inteiro que especifica o limite superior do range, que não deve ser menor que o limite inferior.
 
-  Return value:
+  Valor de retorno:
 
-  A random integer in the range from *`lower`* to *`upper`*, inclusive, or `NULL` if the *`upper`* argument is less than *`lower`*.
+  Um inteiro aleatório no range de *`lower`* a *`upper`*, inclusive, ou `NULL` se o argumento *`upper`* for menor que *`lower`*.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_range(100, 200), gen_range(-1000, -800);
@@ -232,17 +232,17 @@ The functions in this section generate random values for different types of data
 
 * [`gen_rnd_email()`](data-masking-functions.html#function_gen-rnd-email)
 
-  Generates a random email address in the `example.com` domain.
+  Gera um endereço de email aleatório no domínio `example.com`.
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  A random email address as a string.
+  Um endereço de email aleatório como uma string.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_rnd_email();
@@ -255,21 +255,21 @@ The functions in this section generate random values for different types of data
 
 * [`gen_rnd_pan([size])`](data-masking-functions.html#function_gen-rnd-pan)
 
-  Generates a random payment card Primary Account Number. The number passes the Luhn check (an algorithm that performs a checksum verification against a check digit).
+  Gera um Primary Account Number (PAN) de cartão de pagamento aleatório. O número passa na Luhn check (um algoritmo que realiza uma verificação de checksum contra um dígito de verificação).
 
-  Warning
+  Aviso
 
-  Values returned from [`gen_rnd_pan()`](data-masking-functions.html#function_gen-rnd-pan) should be used only for test purposes, and are not suitable for publication. There is no way to guarantee that a given return value is not assigned to a legitimate payment account. Should it be necessary to publish a [`gen_rnd_pan()`](data-masking-functions.html#function_gen-rnd-pan) result, consider masking it with [`mask_pan()`](data-masking-functions.html#function_mask-pan) or [`mask_pan_relaxed()`](data-masking-functions.html#function_mask-pan-relaxed).
+  Os valores retornados de [`gen_rnd_pan()`](data-masking-functions.html#function_gen-rnd-pan) devem ser usados apenas para fins de teste e não são adequados para publicação. Não há como garantir que um determinado valor de retorno não esteja atribuído a uma conta de pagamento legítima. Caso seja necessário publicar um resultado de [`gen_rnd_pan()`](data-masking-functions.html#function_gen-rnd-pan), considere mascará-lo com [`mask_pan()`](data-masking-functions.html#function_mask-pan) ou [`mask_pan_relaxed()`](data-masking-functions.html#function_mask-pan-relaxed).
 
-  Arguments:
+  Argumentos:
 
-  + *`size`*: (Optional) An integer that specifies the size of the result. The default is 16 if *`size`* is not given. If given, *`size`* must be an integer in the range from 12 to 19.
+  + *`size`*: (Opcional) Um inteiro que especifica o tamanho do resultado. O padrão é 16 se *`size`* não for fornecido. Se fornecido, *`size`* deve ser um inteiro no range de 12 a 19.
 
-  Return value:
+  Valor de retorno:
 
-  A random payment number as a string, or `NULL` if a *`size`* argument outside the permitted range is given.
+  Um número de pagamento aleatório como uma string, ou `NULL` se for fornecido um argumento *`size`* fora do range permitido.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT mask_pan(gen_rnd_pan());
@@ -306,17 +306,17 @@ The functions in this section generate random values for different types of data
 
 * [`gen_rnd_ssn()`](data-masking-functions.html#function_gen-rnd-ssn)
 
-  Generates a random US Social Security number in `AAA-BB-CCCC` format. The *`AAA`* part is greater than 900 and the *`BB`* part is less than 70; these values are outside the ranges used for legitimate Social Security numbers.
+  Gera um número de Social Security (SSN) dos EUA aleatório no formato `AAA-BB-CCCC`. A parte *`AAA`* é maior que 900 e a parte *`BB`* é menor que 70; esses valores estão fora dos ranges usados para números de Social Security legítimos.
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  A random Social Security number as a string.
+  Um número de Social Security aleatório como uma string.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_rnd_ssn();
@@ -329,17 +329,17 @@ The functions in this section generate random values for different types of data
 
 * [`gen_rnd_us_phone()`](data-masking-functions.html#function_gen-rnd-us-phone)
 
-  Generates a random US phone number in `1-555-AAA-BBBB` format. The 555 area code is not used for legitimate phone numbers.
+  Gera um número de telefone dos EUA aleatório no formato `1-555-AAA-BBBB`. O código de área 555 não é usado para números de telefone legítimos.
 
-  Arguments:
+  Argumentos:
 
-  None.
+  Nenhum.
 
-  Return value:
+  Valor de retorno:
 
-  A random US phone number as a string.
+  Um número de telefone dos EUA aleatório como uma string.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_rnd_us_phone();
@@ -350,31 +350,31 @@ The functions in this section generate random values for different types of data
   +--------------------+
   ```
 
-#### Random Data Dictionary-Based Functions
+#### Funções Baseadas em Dicionário de Dados Aleatórios
 
-The functions in this section manipulate dictionaries of terms and perform generation and masking operations based on them. Some of these functions require the [`SUPER`](privileges-provided.html#priv_super) privilege.
+As funções nesta seção manipulam dicionários de termos e executam operações de geração e masking baseadas neles. Algumas dessas funções exigem o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-When a dictionary is loaded, it becomes part of the dictionary registry and is assigned a name to be used by other dictionary functions. Dictionaries are loaded from plain text files containing one term per line. Empty lines are ignored. To be valid, a dictionary file must contain at least one nonempty line.
+Quando um dicionário é carregado, ele se torna parte do registry de dicionários e recebe um nome a ser usado por outras funções de dicionário. Os dicionários são carregados a partir de arquivos de texto simples contendo um termo por linha. Linhas vazias são ignoradas. Para ser válido, um arquivo de dicionário deve conter pelo menos uma linha não vazia.
 
 * [`gen_blacklist(str, dictionary_name, replacement_dictionary_name)`](data-masking-functions.html#function_gen-blacklist)
 
-  Replaces a term present in one dictionary with a term from a second dictionary and returns the replacement term. This masks the original term by substitution.
+  Substitui um termo presente em um dicionário por um termo de um segundo dicionário e retorna o termo de substituição. Isso mascara o termo original por substituição.
 
-  Arguments:
+  Argumentos:
 
-  + *`str`*: A string that indicates the term to replace.
+  + *`str`*: Uma string que indica o termo a ser substituído.
 
-  + *`dictionary_name`*: A string that names the dictionary containing the term to replace.
+  + *`dictionary_name`*: Uma string que nomeia o dicionário que contém o termo a ser substituído.
 
-  + *`replacement_dictionary_name`*: A string that names the dictionary from which to choose the replacement term.
+  + *`replacement_dictionary_name`*: Uma string que nomeia o dicionário do qual escolher o termo de substituição.
 
-  Return value:
+  Valor de retorno:
 
-  A string randomly chosen from *`replacement_dictionary_name`* as a replacement for *`str`*, or *`str`* if it does not appear in *`dictionary_name`*, or `NULL` if either dictionary name is not in the dictionary registry.
+  Uma string escolhida aleatoriamente de *`replacement_dictionary_name`* como substituição para *`str`*, ou *`str`* se ele não aparecer em *`dictionary_name`*, ou `NULL` se qualquer um dos nomes de dicionário não estiver no registry de dicionários.
 
-  If the term to replace appears in both dictionaries, it is possible for the return value to be the same term.
+  Se o termo a ser substituído aparecer em ambos os dicionários, é possível que o valor de retorno seja o mesmo termo.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_blacklist('Berlin', 'DE_Cities', 'US_Cities');
@@ -387,17 +387,17 @@ When a dictionary is loaded, it becomes part of the dictionary registry and is a
 
 * [`gen_dictionary(dictionary_name)`](data-masking-functions.html#function_gen-dictionary)
 
-  Returns a random term from a dictionary.
+  Retorna um termo aleatório de um dicionário.
 
-  Arguments:
+  Argumentos:
 
-  + *`dictionary_name`*: A string that names the dictionary from which to choose the term.
+  + *`dictionary_name`*: Uma string que nomeia o dicionário do qual escolher o termo.
 
-  Return value:
+  Valor de retorno:
 
-  A random term from the dictionary as a string, or `NULL` if the dictionary name is not in the dictionary registry.
+  Um termo aleatório do dicionário como uma string, ou `NULL` se o nome do dicionário não estiver no registry de dicionários.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_dictionary('mydict');
@@ -416,19 +416,19 @@ When a dictionary is loaded, it becomes part of the dictionary registry and is a
 
 * [`gen_dictionary_drop(dictionary_name)`](data-masking-functions.html#function_gen-dictionary-drop)
 
-  Removes a dictionary from the dictionary registry.
+  Remove um dicionário do registry de dicionários.
 
-  This function requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+  Esta função requer o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-  Arguments:
+  Argumentos:
 
-  + *`dictionary_name`*: A string that names the dictionary to remove from the dictionary registry.
+  + *`dictionary_name`*: Uma string que nomeia o dicionário a ser removido do registry de dicionários.
 
-  Return value:
+  Valor de retorno:
 
-  A string that indicates whether the drop operation succeeded. `Dictionary removed` indicates success. `Dictionary removal error` indicates failure.
+  Uma string que indica se a operação de drop (remoção) foi bem-sucedida. `Dictionary removed` indica sucesso. `Dictionary removal error` indica falha.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_dictionary_drop('mydict');
@@ -447,32 +447,32 @@ When a dictionary is loaded, it becomes part of the dictionary registry and is a
 
 * [`gen_dictionary_load(dictionary_path, dictionary_name)`](data-masking-functions.html#function_gen-dictionary-load)
 
-  Loads a file into the dictionary registry and assigns the dictionary a name to be used with other functions that require a dictionary name argument.
+  Carrega um arquivo no registry de dicionários e atribui ao dicionário um nome a ser usado com outras funções que requerem um argumento de nome de dicionário.
 
-  This function requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
+  Esta função requer o privilégio [`SUPER`](privileges-provided.html#priv_super).
 
-  Important
+  Importante
 
-  Dictionaries are not persistent. Any dictionary used by applications must be loaded for each server startup.
+  Dicionários não são persistentes. Qualquer dicionário usado por aplicações deve ser carregado a cada inicialização do servidor.
 
-  Once loaded into the registry, a dictionary is used as is, even if the underlying dictionary file changes. To reload a dictionary, first drop it with [`gen_dictionary_drop()`](data-masking-functions.html#function_gen-dictionary-drop), then load it again with [`gen_dictionary_load()`](data-masking-functions.html#function_gen-dictionary-load).
+  Uma vez carregado no registry, um dicionário é usado como está, mesmo que o arquivo de dicionário subjacente mude. Para recarregar um dicionário, primeiro remova-o com [`gen_dictionary_drop()`](data-masking-functions.html#function_gen-dictionary-drop) e, em seguida, carregue-o novamente com [`gen_dictionary_load()`](data-masking-functions.html#function_gen-dictionary-load).
 
-  Arguments:
+  Argumentos:
 
-  + *`dictionary_path`*: A string that specifies the path name of the dictionary file.
+  + *`dictionary_path`*: Uma string que especifica o path name (caminho) do arquivo de dicionário.
 
-  + *`dictionary_name`*: A string that provides a name for the dictionary.
+  + *`dictionary_name`*: Uma string que fornece um nome para o dicionário.
 
-  Return value:
+  Valor de retorno:
 
-  A string that indicates whether the load operation succeeded. `Dictionary load success` indicates success. `Dictionary load error` indicates failure. Dictionary load failure can occur for several reasons, including:
+  Uma string que indica se a operação de load (carregamento) foi bem-sucedida. `Dictionary load success` indica sucesso. `Dictionary load error` indica falha. A falha no carregamento do dicionário pode ocorrer por várias razões, incluindo:
 
-  + A dictionary with the given name is already loaded.
-  + The dictionary file is not found.
-  + The dictionary file contains no terms.
-  + The [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) system variable is set and the dictionary file is not located in the directory named by the variable.
+  + Um dicionário com o nome fornecido já está carregado.
+  + O arquivo de dicionário não foi encontrado.
+  + O arquivo de dicionário não contém termos.
+  + A variável de sistema [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) está definida e o arquivo de dicionário não está localizado no diretório nomeado pela variável.
 
-  Example:
+  Exemplo:
 
   ```sql
   mysql> SELECT gen_dictionary_load('/usr/local/mysql/mysql-files/mydict','mydict');

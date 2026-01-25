@@ -1,24 +1,24 @@
-### 2.12.3 Problems Using the Perl DBI/DBD Interface
+### 2.12.3 Problemas ao Usar a Interface Perl DBI/DBD
 
-If Perl reports that it cannot find the `../mysql/mysql.so` module, the problem is probably that Perl cannot locate the `libmysqlclient.so` shared library. You should be able to fix this problem by one of the following methods:
+Se o Perl relatar que não consegue encontrar o módulo `../mysql/mysql.so`, o problema é provavelmente que o Perl não consegue localizar a shared library `libmysqlclient.so`. Você deve conseguir corrigir este problema por meio de um dos seguintes métodos:
 
-* Copy `libmysqlclient.so` to the directory where your other shared libraries are located (probably `/usr/lib` or `/lib`).
+* Copie `libmysqlclient.so` para o diretório onde suas outras shared libraries estão localizadas (provavelmente `/usr/lib` ou `/lib`).
 
-* Modify the `-L` options used to compile `DBD::mysql` to reflect the actual location of `libmysqlclient.so`.
+* Modifique as opções `-L` usadas para compilar `DBD::mysql` para refletir a localização real de `libmysqlclient.so`.
 
-* On Linux, you can add the path name of the directory where `libmysqlclient.so` is located to the `/etc/ld.so.conf` file.
+* No Linux, você pode adicionar o nome do caminho (path name) do diretório onde `libmysqlclient.so` está localizado ao arquivo `/etc/ld.so.conf`.
 
-* Add the path name of the directory where `libmysqlclient.so` is located to the `LD_RUN_PATH` environment variable. Some systems use `LD_LIBRARY_PATH` instead.
+* Adicione o nome do caminho (path name) do diretório onde `libmysqlclient.so` está localizado à variável de ambiente `LD_RUN_PATH`. Alguns sistemas usam `LD_LIBRARY_PATH` em vez disso.
 
-Note that you may also need to modify the `-L` options if there are other libraries that the linker fails to find. For example, if the linker cannot find `libc` because it is in `/lib` and the link command specifies `-L/usr/lib`, change the `-L` option to `-L/lib` or add `-L/lib` to the existing link command.
+Observe que você também pode precisar modificar as opções `-L` se houver outras libraries que o linker não consiga encontrar. Por exemplo, se o linker não conseguir encontrar `libc` porque está em `/lib` e o comando link especifica `-L/usr/lib`, altere a opção `-L` para `-L/lib` ou adicione `-L/lib` ao comando link existente.
 
-If you get the following errors from `DBD::mysql`, you are probably using **gcc** (or using an old binary compiled with **gcc**):
+Se você receber os seguintes erros do `DBD::mysql`, você provavelmente está usando **gcc** (ou usando um binário antigo compilado com **gcc**):
 
 ```sql
 /usr/bin/perl: can't resolve symbol '__moddi3'
 /usr/bin/perl: can't resolve symbol '__divdi3'
 ```
 
-Add `-L/usr/lib/gcc-lib/... -lgcc` to the link command when the `mysql.so` library gets built (check the output from **make** for `mysql.so` when you compile the Perl client). The `-L` option should specify the path name of the directory where `libgcc.a` is located on your system.
+Adicione `-L/usr/lib/gcc-lib/... -lgcc` ao comando link quando a library `mysql.so` for construída (verifique a saída do **make** para `mysql.so` ao compilar o cliente Perl). A opção `-L` deve especificar o nome do caminho (path name) do diretório onde `libgcc.a` está localizado no seu sistema.
 
-Another cause of this problem may be that Perl and MySQL are not both compiled with **gcc**. In this case, you can solve the mismatch by compiling both with **gcc**.
+Outra causa deste problema pode ser que o Perl e o MySQL não foram ambos compilados com **gcc**. Neste caso, você pode resolver a incompatibilidade compilando ambos com **gcc**.

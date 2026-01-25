@@ -1,6 +1,6 @@
-### 10.3.7 The National Character Set
+### 10.3.7 O Conjunto de Caracteres Nacional
 
-Standard SQL defines `NCHAR` or `NATIONAL CHAR` as a way to indicate that a `CHAR` column should use some predefined character set. MySQL uses `utf8` as this predefined character set. For example, these data type declarations are equivalent:
+O SQL Padrão define `NCHAR` ou `NATIONAL CHAR` como uma forma de indicar que uma coluna `CHAR` deve usar algum conjunto de caracteres predefinido. O MySQL usa `utf8` como esse conjunto de caracteres predefinido. Por exemplo, estas declarações de tipo de dado são equivalentes:
 
 ```sql
 CHAR(10) CHARACTER SET utf8
@@ -8,7 +8,7 @@ NATIONAL CHARACTER(10)
 NCHAR(10)
 ```
 
-As are these:
+Assim como estas:
 
 ```sql
 VARCHAR(10) CHARACTER SET utf8
@@ -19,7 +19,7 @@ NATIONAL CHARACTER VARYING(10)
 NATIONAL CHAR VARYING(10)
 ```
 
-You can use `N'literal'` (or `n'literal'`) to create a string in the national character set. These statements are equivalent:
+Você pode usar `N'literal'` (ou `n'literal'`) para criar uma string no conjunto de caracteres nacional. Estas instruções são equivalentes:
 
 ```sql
 SELECT N'some text';

@@ -1,100 +1,100 @@
-#### 6.4.1.7 PAM Pluggable Authentication
+#### 6.4.1.7 Autenticação Pluggable PAM
 
-Note
+Observação
 
-PAM pluggable authentication is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, see <https://www.mysql.com/products/>.
+A autenticação pluggable PAM é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
-MySQL Enterprise Edition supports an authentication method that enables MySQL Server to use PAM (Pluggable Authentication Modules) to authenticate MySQL users. PAM enables a system to use a standard interface to access various kinds of authentication methods, such as traditional Unix passwords or an LDAP directory.
+O MySQL Enterprise Edition oferece suporte a um método de Authentication que permite ao MySQL Server usar o PAM (Pluggable Authentication Modules) para autenticar usuários MySQL. O PAM permite que um sistema utilize uma interface padrão para acessar vários tipos de métodos de Authentication, como senhas Unix tradicionais ou um diretório LDAP.
 
-PAM pluggable authentication provides these capabilities:
+A autenticação pluggable PAM oferece os seguintes recursos:
 
-* External authentication: PAM authentication enables MySQL Server to accept connections from users defined outside the MySQL grant tables and that authenticate using methods supported by PAM.
+* Authentication Externa: A Authentication PAM permite que o MySQL Server aceite conexões de Users definidos fora das `grant tables` do MySQL e que se autentiquem usando métodos suportados pelo PAM.
 
-* Proxy user support: PAM authentication can return to MySQL a user name different from the external user name passed by the client program, based on the PAM groups the external user is a member of and the authentication string provided. This means that the plugin can return the MySQL user that defines the privileges the external PAM-authenticated user should have. For example, an operating sytem user named `joe` can connect and have the privileges of a MySQL user named `developer`.
+* Suporte a Proxy User: A Authentication PAM pode retornar ao MySQL um nome de usuário diferente do nome de usuário externo passado pelo programa Client, com base nos grupos PAM aos quais o User externo pertence e na string de Authentication fornecida. Isso significa que o Plugin pode retornar o User MySQL que define os Privileges que o User externo autenticado pelo PAM deve ter. Por exemplo, um User de sistema operacional chamado `joe` pode se conectar e ter os Privileges de um User MySQL chamado `developer`.
 
-PAM pluggable authentication has been tested on Linux and macOS.
+A autenticação pluggable PAM foi testada no Linux e macOS.
 
-The following table shows the plugin and library file names. The file name suffix might differ on your system. The file must be located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable. For installation information, see [Installing PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-installation "Installing PAM Pluggable Authentication").
+A tabela a seguir mostra os nomes do Plugin e do arquivo de Library. O sufixo do nome do arquivo pode ser diferente no seu sistema. O arquivo deve estar localizado no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir). Para informações de instalação, consulte [Installing PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-installation "Installing PAM Pluggable Authentication").
 
-**Table 6.13 Plugin and Library Names for PAM Authentication**
+**Tabela 6.13 Nomes de Plugin e Library para Authentication PAM**
 
-<table summary="Names for the plugins and library file used for PAM password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>authentication_pam</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_pam.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for PAM password authentication."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do Server</td> <td><code>authentication_pam</code></td> </tr><tr> <td>Plugin do lado do Client</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Arquivo de Library</td> <td><code>authentication_pam.so</code></td> </tr></tbody></table>
 
-The client-side `mysql_clear_password` cleartext plugin that communicates with the server-side PAM plugin is built into the `libmysqlclient` client library and is included in all distributions, including community distributions. Inclusion of the client-side cleartext plugin in all MySQL distributions enables clients from any distribution to connect to a server that has the server-side PAM plugin loaded.
+O Plugin `mysql_clear_password` de texto claro do lado do Client que se comunica com o Plugin PAM do lado do Server é integrado à Library Client `libmysqlclient` e está incluído em todas as distribuições, inclusive as Community. A inclusão do Plugin de texto claro do lado do Client em todas as distribuições MySQL permite que Clients de qualquer distribuição se conectem a um Server que tenha o Plugin PAM do lado do Server carregado.
 
-The following sections provide installation and usage information specific to PAM pluggable authentication:
+As seções a seguir fornecem informações de instalação e uso específicas para a autenticação pluggable PAM:
 
-* [How PAM Authentication of MySQL Users Works](pam-pluggable-authentication.html#pam-pluggable-authentication-process "How PAM Authentication of MySQL Users Works")
-* [Installing PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-installation "Installing PAM Pluggable Authentication")
-* [Uninstalling PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-uninstallation "Uninstalling PAM Pluggable Authentication")
-* [Using PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-usage "Using PAM Pluggable Authentication")
-* [PAM Unix Password Authentication without Proxy Users](pam-pluggable-authentication.html#pam-authentication-unix-without-proxy "PAM Unix Password Authentication without Proxy Users")
-* [PAM LDAP Authentication without Proxy Users](pam-pluggable-authentication.html#pam-authentication-ldap-without-proxy "PAM LDAP Authentication without Proxy Users")
-* [PAM Unix Password Authentication with Proxy Users and Group Mapping](pam-pluggable-authentication.html#pam-authentication-unix-with-proxy "PAM Unix Password Authentication with Proxy Users and Group Mapping")
-* [PAM Authentication Access to Unix Password Store](pam-pluggable-authentication.html#pam-authentication-unix-password-store "PAM Authentication Access to Unix Password Store")
-* [PAM Authentication Debugging](pam-pluggable-authentication.html#pam-pluggable-authentication-debugging "PAM Authentication Debugging")
+* [Como Funciona a Authentication PAM de Usuários MySQL](pam-pluggable-authentication.html#pam-pluggable-authentication-process "How PAM Authentication of MySQL Users Works")
+* [Instalando a Authentication Pluggable PAM](pam-pluggable-authentication.html#pam-pluggable-authentication-installation "Installing PAM Pluggable Authentication")
+* [Desinstalando a Authentication Pluggable PAM](pam-pluggable-authentication.html#pam-pluggable-authentication-uninstallation "Uninstalling PAM Pluggable Authentication")
+* [Usando a Authentication Pluggable PAM](pam-pluggable-authentication.html#pam-pluggable-authentication-usage "Using PAM Pluggable Authentication")
+* [Authentication PAM de Senha Unix sem Proxy Users](pam-pluggable-authentication.html#pam-authentication-unix-without-proxy "PAM Unix Password Authentication without Proxy Users")
+* [Authentication PAM LDAP sem Proxy Users](pam-pluggable-authentication.html#pam-authentication-ldap-without-proxy "PAM LDAP Authentication without Proxy Users")
+* [Authentication PAM de Senha Unix com Proxy Users e Mapeamento de Grupo](pam-pluggable-authentication.html#pam-authentication-unix-with-proxy "PAM Unix Password Authentication with Proxy Users and Group Mapping")
+* [Acesso da Authentication PAM ao Armazenamento de Senha Unix](pam-pluggable-authentication.html#pam-authentication-unix-password-store "PAM Authentication Access to Unix Password Store")
+* [Debugging da Authentication PAM](pam-pluggable-authentication.html#pam-pluggable-authentication-debugging "PAM Authentication Debugging")
 
-For general information about pluggable authentication in MySQL, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). For information about the `mysql_clear_password` plugin, see [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication"). For proxy user information, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+Para informações gerais sobre autenticação pluggable no MySQL, consulte [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). Para informações sobre o Plugin `mysql_clear_password`, consulte [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication"). Para informações sobre Proxy User, consulte [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
-##### How PAM Authentication of MySQL Users Works
+##### Como Funciona a Authentication PAM de Usuários MySQL
 
-This section provides an overview of how MySQL and PAM work together to authenticate MySQL users. For examples showing how to set up MySQL accounts to use specific PAM services, see [Using PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-usage "Using PAM Pluggable Authentication").
+Esta seção fornece uma visão geral de como o MySQL e o PAM trabalham juntos para autenticar usuários MySQL. Para exemplos que mostram como configurar contas MySQL para usar serviços PAM específicos, consulte [Using PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-usage "Using PAM Pluggable Authentication").
 
-1. The client program and the server communicate, with the client sending to the server the client user name (the operating system user name by default) and password:
+1. O programa Client e o Server se comunicam, com o Client enviando ao Server o nome de usuário do Client (o nome de usuário do sistema operacional por padrão) e a senha:
 
-   * The client user name is the external user name.
-   * For accounts that use the PAM server-side authentication plugin, the corresponding client-side plugin is `mysql_clear_password`. This client-side plugin performs no password hashing, with the result that the client sends the password to the server as cleartext.
+   * O nome de usuário do Client é o nome de usuário externo.
+   * Para Accounts que usam o Plugin de Authentication PAM do lado do Server, o Plugin do lado do Client correspondente é o `mysql_clear_password`. Este Plugin do lado do Client não realiza hashing da senha, o que resulta no envio da senha para o Server como texto claro (cleartext).
 
-2. The server finds a matching MySQL account based on the external user name and the host from which the client connects. The PAM plugin uses the information passed to it by MySQL Server (such as user name, host name, password, and authentication string). When you define a MySQL account that authenticates using PAM, the authentication string contains:
+2. O Server encontra uma conta MySQL correspondente com base no nome de usuário externo e no host do qual o Client se conecta. O Plugin PAM usa as informações passadas a ele pelo MySQL Server (como nome de usuário, nome do host, senha e string de Authentication). Ao definir uma conta MySQL que autentica usando PAM, a string de Authentication contém:
 
-   * A PAM service name, which is a name that the system administrator can use to refer to an authentication method for a particular application. There can be multiple applications associated with a single database server instance, so the choice of service name is left to the SQL application developer.
+   * Um nome de serviço PAM, que é um nome que o administrador do sistema pode usar para se referir a um método de Authentication para uma aplicação específica. Pode haver várias aplicações associadas a uma única instância do Database Server, portanto, a escolha do nome do serviço é deixada para o desenvolvedor da aplicação SQL.
 
-   * Optionally, if proxying is to be used, a mapping from PAM groups to MySQL user names.
+   * Opcionalmente, se o proxying for usado, um mapeamento de grupos PAM para nomes de usuários MySQL.
 
-3. The plugin uses the PAM service named in the authentication string to check the user credentials and returns `'Authentication succeeded, Username is user_name'` or `'Authentication failed'`. The password must be appropriate for the password store used by the PAM service. Examples:
+3. O Plugin usa o serviço PAM nomeado na string de Authentication para verificar as credenciais do User e retorna `'Authentication succeeded, Username is user_name'` ou `'Authentication failed'`. A senha deve ser apropriada para o armazenamento de senhas usado pelo serviço PAM. Exemplos:
 
-   * For traditional Unix passwords, the service looks up passwords stored in the `/etc/shadow` file.
+   * Para senhas Unix tradicionais, o serviço procura as senhas armazenadas no arquivo `/etc/shadow`.
 
-   * For LDAP, the service looks up passwords stored in an LDAP directory.
+   * Para LDAP, o serviço procura as senhas armazenadas em um diretório LDAP.
 
-   If the credentials check fails, the server refuses the connection.
+   Se a verificação de credenciais falhar, o Server recusa a conexão.
 
-4. Otherwise, the authentication string indicates whether proxying occurs. If the string contains no PAM group mapping, proxying does not occur. In this case, the MySQL user name is the same as the external user name.
+4. Caso contrário, a string de Authentication indica se ocorre proxying. Se a string não contiver mapeamento de grupo PAM, o proxying não ocorre. Neste caso, o nome de usuário MySQL é o mesmo que o nome de usuário externo.
 
-5. Otherwise, proxying is indicated based on the PAM group mapping, with the MySQL user name determined based on the first matching group in the mapping list. The meaning of “PAM group” depends on the PAM service. Examples:
+5. Caso contrário, o proxying é indicado com base no mapeamento de grupo PAM, com o nome de usuário MySQL determinado com base no primeiro grupo correspondente na lista de mapeamento. O significado de "grupo PAM" depende do serviço PAM. Exemplos:
 
-   * For traditional Unix passwords, groups are Unix groups defined in the `/etc/group` file, possibly supplemented with additional PAM information in a file such as `/etc/security/group.conf`.
+   * Para senhas Unix tradicionais, os grupos são grupos Unix definidos no arquivo `/etc/group`, possivelmente suplementados com informações PAM adicionais em um arquivo como `/etc/security/group.conf`.
 
-   * For LDAP, groups are LDAP groups defined in an LDAP directory.
+   * Para LDAP, os grupos são grupos LDAP definidos em um diretório LDAP.
 
-   If the proxy user (the external user) has the [`PROXY`](privileges-provided.html#priv_proxy) privilege for the proxied MySQL user name, proxying occurs, with the proxy user assuming the privileges of the proxied user.
+   Se o Proxy User (o User externo) tiver o Privilege [`PROXY`](privileges-provided.html#priv_proxy) para o nome de usuário MySQL proxyied (intermediado), o proxying ocorre, com o Proxy User assumindo os Privileges do User proxyied.
 
-##### Installing PAM Pluggable Authentication
+##### Instalando a Authentication Pluggable PAM
 
-This section describes how to install the server-side PAM authentication plugin. For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Esta seção descreve como instalar o Plugin de Authentication PAM do lado do Server. Para informações gerais sobre a instalação de Plugins, consulte [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo Server, o arquivo de Library do Plugin deve estar localizado no diretório de Plugins do MySQL (o diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure o local do diretório de Plugins definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do Server.
 
-The plugin library file base name is `authentication_pam`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
+O nome base do arquivo de Library do Plugin é `authentication_pam`. O sufixo do nome do arquivo difere por plataforma (por exemplo, `.so` para sistemas Unix e semelhantes a Unix, `.dll` para Windows).
 
-To load the plugin at server startup, use the [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option to name the library file that contains it. With this plugin-loading method, the option must be given each time the server starts. For example, put these lines in the server `my.cnf` file, adjusting the `.so` suffix for your platform as necessary:
+Para carregar o Plugin na inicialização do Server, use a opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) para nomear o arquivo de Library que o contém. Com este método de carregamento de Plugin, a opção deve ser fornecida toda vez que o Server iniciar. Por exemplo, coloque estas linhas no arquivo `my.cnf` do Server, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
 plugin-load-add=authentication_pam.so
 ```
 
-After modifying `my.cnf`, restart the server to cause the new settings to take effect.
+Após modificar `my.cnf`, reinicie o Server para que as novas configurações entrem em vigor.
 
-Alternatively, to load the plugin at runtime, use this statement, adjusting the `.so` suffix for your platform as necessary:
+Alternativamente, para carregar o Plugin em runtime, use esta instrução, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 INSTALL PLUGIN authentication_pam SONAME 'authentication_pam.so';
 ```
 
-[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") loads the plugin immediately, and also registers it in the `mysql.plugins` system table to cause the server to load it for each subsequent normal startup without the need for [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
+[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") carrega o Plugin imediatamente e também o registra na tabela de sistema `mysql.plugins` para fazer com que o Server o carregue para cada inicialização normal subsequente sem a necessidade de [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
 
-To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Para verificar a instalação do Plugin, examine a tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") do Information Schema ou use a instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -107,27 +107,27 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +--------------------+---------------+
 ```
 
-If the plugin fails to initialize, check the server error log for diagnostic messages.
+Se o Plugin falhar ao inicializar, verifique o Log de erro do Server em busca de mensagens de diagnóstico.
 
-To associate MySQL accounts with the PAM plugin, see [Using PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-usage "Using PAM Pluggable Authentication").
+Para associar contas MySQL ao Plugin PAM, consulte [Using PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-usage "Using PAM Pluggable Authentication").
 
-##### Uninstalling PAM Pluggable Authentication
+##### Desinstalando a Authentication Pluggable PAM
 
-The method used to uninstall the PAM authentication plugin depends on how you installed it:
+O método usado para desinstalar o Plugin de Authentication PAM depende de como você o instalou:
 
-* If you installed the plugin at server startup using a [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option, restart the server without the option.
+* Se você instalou o Plugin na inicialização do Server usando uma opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), reinicie o Server sem a opção.
 
-* If you installed the plugin at runtime using an [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement, it remains installed across server restarts. To uninstall it, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
+* Se você instalou o Plugin em runtime usando uma instrução [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), ele permanece instalado nas reinicializações do Server. Para desinstalá-lo, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
 
   ```sql
   UNINSTALL PLUGIN authentication_pam;
   ```
 
-##### Using PAM Pluggable Authentication
+##### Usando a Authentication Pluggable PAM
 
-This section describes in general terms how to use the PAM authentication plugin to connect from MySQL client programs to the server. The following sections provide instructions for using PAM authentication in specific ways. It is assumed that the server is running with the server-side PAM plugin enabled, as described in [Installing PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-installation "Installing PAM Pluggable Authentication").
+Esta seção descreve em termos gerais como usar o Plugin de Authentication PAM para se conectar de programas Client MySQL ao Server. As seções a seguir fornecem instruções para usar a Authentication PAM de maneiras específicas. Assume-se que o Server está em execução com o Plugin PAM do lado do Server habilitado, conforme descrito em [Installing PAM Pluggable Authentication](pam-pluggable-authentication.html#pam-pluggable-authentication-installation "Installing PAM Pluggable Authentication").
 
-To refer to the PAM authentication plugin in the `IDENTIFIED WITH` clause of a [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement, use the name `authentication_pam`. For example:
+Para se referir ao Plugin de Authentication PAM na cláusula `IDENTIFIED WITH` de uma instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), use o nome `authentication_pam`. Por exemplo:
 
 ```sql
 CREATE USER user
@@ -135,13 +135,13 @@ CREATE USER user
   AS 'auth_string';
 ```
 
-The authentication string specifies the following types of information:
+A string de Authentication especifica os seguintes tipos de informação:
 
-* The PAM service name (see [How PAM Authentication of MySQL Users Works](pam-pluggable-authentication.html#pam-pluggable-authentication-process "How PAM Authentication of MySQL Users Works")). Examples in the following discussion use a service name of `mysql-unix` for authentication using traditional Unix passwords, and `mysql-ldap` for authentication using LDAP.
+* O nome do serviço PAM (consulte [How PAM Authentication of MySQL Users Works](pam-pluggable-authentication.html#pam-pluggable-authentication-process "How PAM Authentication of MySQL Users Works")). Os exemplos na discussão a seguir usam um nome de serviço `mysql-unix` para Authentication usando senhas Unix tradicionais e `mysql-ldap` para Authentication usando LDAP.
 
-* For proxy support, PAM provides a way for a PAM module to return to the server a MySQL user name other than the external user name passed by the client program when it connects to the server. Use the authentication string to control the mapping from external user names to MySQL user names. If you want to take advantage of proxy user capabilities, the authentication string must include this kind of mapping.
+* Para suporte a Proxy, o PAM oferece uma maneira de um módulo PAM retornar ao Server um nome de usuário MySQL diferente do nome de usuário externo passado pelo programa Client ao se conectar ao Server. Use a string de Authentication para controlar o mapeamento de nomes de usuários externos para nomes de usuários MySQL. Se você deseja aproveitar os recursos de Proxy User, a string de Authentication deve incluir este tipo de mapeamento.
 
-For example, if an account uses the `mysql-unix` PAM service name and should map operating system users in the `root` and `users` PAM groups to the `developer` and `data_entry` MySQL users, respectively, use a statement like this:
+Por exemplo, se uma conta usa o nome de serviço PAM `mysql-unix` e deve mapear usuários do sistema operacional nos grupos PAM `root` e `users` para os usuários MySQL `developer` e `data_entry`, respectivamente, use uma instrução como esta:
 
 ```sql
 CREATE USER user
@@ -149,65 +149,65 @@ CREATE USER user
   AS 'mysql-unix, root=developer, users=data_entry';
 ```
 
-Authentication string syntax for the PAM authentication plugin follows these rules:
+A sintaxe da string de Authentication para o Plugin de Authentication PAM segue estas regras:
 
-* The string consists of a PAM service name, optionally followed by a PAM group mapping list consisting of one or more keyword/value pairs each specifying a PAM group name and a MySQL user name:
+* A string consiste em um nome de serviço PAM, opcionalmente seguido por uma lista de mapeamento de grupo PAM consistindo em um ou mais pares de palavra-chave/valor, cada um especificando um nome de grupo PAM e um nome de usuário MySQL:
 
   ```sql
   pam_service_name[,pam_group_name=mysql_user_name]...
   ```
 
-  The plugin parses the authentication string for each connection attempt that uses the account. To minimize overhead, keep the string as short as possible.
+  O Plugin analisa a string de Authentication para cada tentativa de conexão que usa a conta. Para minimizar a sobrecarga, mantenha a string o mais curta possível.
 
-* Each `pam_group_name=mysql_user_name` pair must be preceded by a comma.
+* Cada par `pam_group_name=mysql_user_name` deve ser precedido por uma vírgula.
 
-* Leading and trailing spaces not inside double quotation marks are ignored.
+* Espaços iniciais e finais não dentro de aspas duplas são ignorados.
 
-* Unquoted *`pam_service_name`*, *`pam_group_name`*, and *`mysql_user_name`* values can contain anything except equal sign, comma, or space.
+* Os valores *`pam_service_name`*, *`pam_group_name`* e *`mysql_user_name`* sem aspas podem conter qualquer coisa, exceto sinal de igual, vírgula ou espaço.
 
-* If a *`pam_service_name`*, *`pam_group_name`*, or *`mysql_user_name`* value is quoted with double quotation marks, everything between the quotation marks is part of the value. This is necessary, for example, if the value contains space characters. All characters are legal except double quotation mark and backslash (`\`). To include either character, escape it with a backslash.
+* Se um valor *`pam_service_name`*, *`pam_group_name`* ou *`mysql_user_name`* estiver entre aspas duplas, tudo entre as aspas faz parte do valor. Isso é necessário, por exemplo, se o valor contiver caracteres de espaço. Todos os caracteres são legais, exceto aspas duplas e barra invertida (`\`). Para incluir qualquer um dos caracteres, escape-o com uma barra invertida.
 
-If the plugin successfully authenticates the external user name (the name passed by the client), it looks for a PAM group mapping list in the authentication string and, if present, uses it to return a different MySQL user name to the MySQL server based on which PAM groups the external user is a member of:
+Se o Plugin autenticar com sucesso o nome de usuário externo (o nome passado pelo Client), ele procura uma lista de mapeamento de grupo PAM na string de Authentication e, se presente, a usa para retornar um nome de usuário MySQL diferente para o MySQL Server com base em quais grupos PAM o User externo é membro:
 
-* If the authentication string contains no PAM group mapping list, the plugin returns the external name.
+* Se a string de Authentication não contiver uma lista de mapeamento de grupo PAM, o Plugin retorna o nome externo.
 
-* If the authentication string does contain a PAM group mapping list, the plugin examines each `pam_group_name=mysql_user_name` pair in the list from left to right and tries to find a match for the *`pam_group_name`* value in a non-MySQL directory of the groups assigned to the authenticated user and returns *`mysql_user_name`* for the first match it finds. If the plugin finds no match for any PAM group, it returns the external name. If the plugin is not capable of looking up a group in a directory, it ignores the PAM group mapping list and returns the external name.
+* Se a string de Authentication contiver uma lista de mapeamento de grupo PAM, o Plugin examina cada par `pam_group_name=mysql_user_name` na lista da esquerda para a direita e tenta encontrar uma correspondência para o valor *`pam_group_name`* em um diretório não-MySQL dos grupos atribuídos ao User autenticado e retorna *`mysql_user_name`* para a primeira correspondência que encontra. Se o Plugin não encontrar correspondência para nenhum grupo PAM, ele retorna o nome externo. Se o Plugin não for capaz de procurar um grupo em um diretório, ele ignora a lista de mapeamento de grupo PAM e retorna o nome externo.
 
-The following sections describe how to set up several authentication scenarios that use the PAM authentication plugin:
+As seções a seguir descrevem como configurar vários cenários de Authentication que usam o Plugin de Authentication PAM:
 
-* No proxy users. This uses PAM only to check login names and passwords. Every external user permitted to connect to MySQL Server should have a matching MySQL account that is defined to use PAM authentication. (For a MySQL account of `'user_name'@'host_name'` to match the external user, *`user_name`* must be the external user name and *`host_name`* must match the host from which the client connects.) Authentication can be performed by various PAM-supported methods. Later discussion shows how to authenticate client credentials using traditional Unix passwords, and passwords in LDAP.
+* Sem Proxy Users. Isso usa o PAM apenas para verificar nomes de Login e senhas. Cada User externo autorizado a se conectar ao MySQL Server deve ter uma conta MySQL correspondente que seja definida para usar a Authentication PAM. (Para que uma conta MySQL de `'user_name'@'host_name'` corresponda ao User externo, *`user_name`* deve ser o nome de usuário externo e *`host_name`* deve corresponder ao host do qual o Client se conecta.) A Authentication pode ser realizada por vários métodos suportados pelo PAM. A discussão posterior mostra como autenticar credenciais de Client usando senhas Unix tradicionais e senhas em LDAP.
 
-  PAM authentication, when not done through proxy users or PAM groups, requires the MySQL user name to be same as the operating system user name. MySQL user names are limited to 32 characters (see [Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")), which limits PAM nonproxy authentication to Unix accounts with names of at most 32 characters.
+  A Authentication PAM, quando não realizada por meio de Proxy Users ou grupos PAM, exige que o nome de usuário MySQL seja o mesmo que o nome de usuário do sistema operacional. Os nomes de usuário MySQL são limitados a 32 caracteres (consulte [Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")), o que limita a Authentication PAM sem Proxy a contas Unix com nomes de no máximo 32 caracteres.
 
-* Proxy users only, with PAM group mapping. For this scenario, create one or more MySQL accounts that define different sets of privileges. (Ideally, nobody should connect using those accounts directly.) Then define a default user authenticating through PAM that uses some mapping scheme (usually based on the external PAM groups the users are members of) to map all the external user names to the few MySQL accounts holding the privilege sets. Any client who connects and specifies an external user name as the client user name is mapped to one of the MySQL accounts and uses its privileges. The discussion shows how to set this up using traditional Unix passwords, but other PAM methods such as LDAP could be used instead.
+* Apenas Proxy Users, com mapeamento de grupo PAM. Para este cenário, crie uma ou mais contas MySQL que definam diferentes conjuntos de Privileges. (Idealmente, ninguém deve se conectar usando essas contas diretamente.) Em seguida, defina um User padrão que autentica por meio do PAM que usa algum esquema de mapeamento (geralmente baseado nos grupos PAM externos dos quais os Users são membros) para mapear todos os nomes de usuários externos para as poucas contas MySQL que contêm os conjuntos de Privileges. Qualquer Client que se conectar e especificar um nome de usuário externo como o nome de usuário do Client é mapeado para uma das contas MySQL e usa seus Privileges. A discussão mostra como configurar isso usando senhas Unix tradicionais, mas outros métodos PAM, como LDAP, poderiam ser usados.
 
-Variations on these scenarios are possible:
+Variações nesses cenários são possíveis:
 
-* You can permit some users to log in directly (without proxying) but require others to connect through proxy accounts.
+* Você pode permitir que alguns Users façam Login diretamente (sem proxying), mas exigir que outros se conectem por meio de contas Proxy.
 
-* You can use one PAM authentication method for some users, and another method for other users, by using differing PAM service names among your PAM-authenticated accounts. For example, you can use the `mysql-unix` PAM service for some users, and `mysql-ldap` for others.
+* Você pode usar um método de Authentication PAM para alguns Users e outro método para outros Users, usando diferentes nomes de serviço PAM entre suas contas autenticadas por PAM. Por exemplo, você pode usar o serviço PAM `mysql-unix` para alguns Users e `mysql-ldap` para outros.
 
-The examples make the following assumptions. You might need to make some adjustments if your system is set up differently.
+Os exemplos fazem as seguintes suposições. Talvez você precise fazer alguns ajustes se o seu sistema estiver configurado de maneira diferente.
 
-* The login name and password are `antonio` and *`antonio_password`*, respectively. Change these to correspond to the user you want to authenticate.
+* O nome de Login e a senha são `antonio` e *`antonio_password`*, respectivamente. Mude-os para corresponder ao User que você deseja autenticar.
 
-* The PAM configuration directory is `/etc/pam.d`.
+* O diretório de configuração do PAM é `/etc/pam.d`.
 
-* The PAM service name corresponds to the authentication method (`mysql-unix` or `mysql-ldap` in this discussion). To use a given PAM service, you must set up a PAM file with the same name in the PAM configuration directory (creating the file if it does not exist). In addition, you must name the PAM service in the authentication string of the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement for any account that authenticates using that PAM service.
+* O nome do serviço PAM corresponde ao método de Authentication (`mysql-unix` ou `mysql-ldap` nesta discussão). Para usar um determinado serviço PAM, você deve configurar um arquivo PAM com o mesmo nome no diretório de configuração PAM (criando o arquivo se ele não existir). Além disso, você deve nomear o serviço PAM na string de Authentication da instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") para qualquer conta que autentique usando esse serviço PAM.
 
-The PAM authentication plugin checks at initialization time whether the `AUTHENTICATION_PAM_LOG` environment value is set in the server's startup environment. If so, the plugin enables logging of diagnostic messages to the standard output. Depending on how your server is started, the message might appear on the console or in the error log. These messages can be helpful for debugging PAM-related issues that occur when the plugin performs authentication. For more information, see [PAM Authentication Debugging](pam-pluggable-authentication.html#pam-pluggable-authentication-debugging "PAM Authentication Debugging").
+O Plugin de Authentication PAM verifica no momento da inicialização se o valor do ambiente `AUTHENTICATION_PAM_LOG` está definido no ambiente de inicialização do Server. Em caso afirmativo, o Plugin habilita o Log de mensagens de diagnóstico para a saída padrão. Dependendo de como o seu Server é iniciado, a mensagem pode aparecer no console ou no Log de erros. Essas mensagens podem ser úteis para o Debugging de problemas relacionados ao PAM que ocorrem quando o Plugin realiza a Authentication. Para mais informações, consulte [PAM Authentication Debugging](pam-pluggable-authentication.html#pam-pluggable-authentication-debugging "PAM Authentication Debugging").
 
-##### PAM Unix Password Authentication without Proxy Users
+##### Authentication PAM de Senha Unix sem Proxy Users
 
-This authentication scenario uses PAM to check external users defined in terms of operating system user names and Unix passwords, without proxying. Every such external user permitted to connect to MySQL Server should have a matching MySQL account that is defined to use PAM authentication through traditional Unix password store.
+Este cenário de Authentication usa o PAM para verificar Users externos definidos em termos de nomes de Users do sistema operacional e senhas Unix, sem proxying. Cada User externo autorizado a se conectar ao MySQL Server deve ter uma conta MySQL correspondente que seja definida para usar a Authentication PAM por meio do armazenamento de senhas Unix tradicional.
 
-Note
+Observação
 
-Traditional Unix passwords are checked using the `/etc/shadow` file. For information regarding possible issues related to this file, see [PAM Authentication Access to Unix Password Store](pam-pluggable-authentication.html#pam-authentication-unix-password-store "PAM Authentication Access to Unix Password Store").
+As senhas Unix tradicionais são verificadas usando o arquivo `/etc/shadow`. Para obter informações sobre possíveis problemas relacionados a este arquivo, consulte [PAM Authentication Access to Unix Password Store](pam-pluggable-authentication.html#pam-authentication-unix-password-store "PAM Authentication Access to Unix Password Store").
 
-1. Verify that Unix authentication permits logins to the operating system with the user name `antonio` and password *`antonio_password`*.
+1. Verifique se a Authentication Unix permite Logins no sistema operacional com o nome de usuário `antonio` e a senha *`antonio_password`*.
 
-2. Set up PAM to authenticate MySQL connections using traditional Unix passwords by creating a `mysql-unix` PAM service file named `/etc/pam.d/mysql-unix`. The file contents are system dependent, so check existing login-related files in the `/etc/pam.d` directory to see what they look like. On Linux, the `mysql-unix` file might look like this:
+2. Configure o PAM para autenticar conexões MySQL usando senhas Unix tradicionais, criando um arquivo de serviço PAM `mysql-unix` chamado `/etc/pam.d/mysql-unix`. O conteúdo do arquivo depende do sistema, portanto, verifique os arquivos existentes relacionados ao Login no diretório `/etc/pam.d` para ver como eles são. No Linux, o arquivo `mysql-unix` pode se parecer com isto:
 
    ```sql
    #%PAM-1.0
@@ -215,9 +215,9 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    account         include         password-auth
    ```
 
-   For macOS, use `login` rather than `password-auth`.
+   Para macOS, use `login` em vez de `password-auth`.
 
-   The PAM file format might differ on some systems. For example, on Ubuntu and other Debian-based systems, use these file contents instead:
+   O formato do arquivo PAM pode diferir em alguns sistemas. Por exemplo, no Ubuntu e em outros sistemas baseados em Debian, use este conteúdo de arquivo:
 
    ```sql
    @include common-auth
@@ -225,7 +225,7 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    @include common-session-noninteractive
    ```
 
-3. Create a MySQL account with the same user name as the operating system user name and define it to authenticate using the PAM plugin and the `mysql-unix` PAM service:
+3. Crie uma conta MySQL com o mesmo nome de usuário do sistema operacional e defina-a para autenticar usando o Plugin PAM e o serviço PAM `mysql-unix`:
 
    ```sql
    CREATE USER 'antonio'@'localhost'
@@ -236,16 +236,16 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
      TO 'antonio'@'localhost';
    ```
 
-   Here, the authentication string contains only the PAM service name, `mysql-unix`, which authenticates Unix passwords.
+   Aqui, a string de Authentication contém apenas o nome do serviço PAM, `mysql-unix`, que autentica senhas Unix.
 
-4. Use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") command-line client to connect to the MySQL server as `antonio`. For example:
+4. Use o Client de linha de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para se conectar ao MySQL Server como `antonio`. Por exemplo:
 
    ```sql
    $> mysql --user=antonio --password --enable-cleartext-plugin
    Enter password: antonio_password
    ```
 
-   The server should permit the connection and the following query returns output as shown:
+   O Server deve permitir a conexão e a seguinte Query retorna a saída conforme mostrado:
 
    ```sql
    mysql> SELECT USER(), CURRENT_USER(), @@proxy_user;
@@ -256,35 +256,35 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    +-------------------+-------------------+--------------+
    ```
 
-   This demonstrates that the `antonio` operating system user is authenticated to have the privileges granted to the `antonio` MySQL user, and that no proxying has occurred.
+   Isso demonstra que o User do sistema operacional `antonio` está autenticado para ter os Privileges concedidos ao User MySQL `antonio`, e que nenhum proxying ocorreu.
 
-Note
+Observação
 
-The client-side `mysql_clear_password` authentication plugin leaves the password untouched, so client programs send it to the MySQL server as cleartext. This enables the password to be passed as is to PAM. A cleartext password is necessary to use the server-side PAM library, but may be a security problem in some configurations. These measures minimize the risk:
+O Plugin de Authentication `mysql_clear_password` do lado do Client deixa a senha intocada, então os programas Client a enviam para o MySQL Server como texto claro (cleartext). Isso permite que a senha seja passada como está para o PAM. Uma senha em texto claro é necessária para usar a Library PAM do lado do Server, mas pode ser um problema de segurança em algumas configurações. Estas medidas minimizam o risco:
 
-* To make inadvertent use of the `mysql_clear_password` plugin less likely, MySQL clients must explicitly enable it (for example, with the `--enable-cleartext-plugin` option). See [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
+* Para tornar o uso inadvertido do Plugin `mysql_clear_password` menos provável, os Clients MySQL devem habilitá-lo explicitamente (por exemplo, com a opção `--enable-cleartext-plugin`). Consulte [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
 
-* To avoid password exposure with the `mysql_clear_password` plugin enabled, MySQL clients should connect to the MySQL server using an encrypted connection. See [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
+* Para evitar a exposição da senha com o Plugin `mysql_clear_password` habilitado, os Clients MySQL devem se conectar ao MySQL Server usando uma conexão criptografada. Consulte [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
 
-##### PAM LDAP Authentication without Proxy Users
+##### Authentication PAM LDAP sem Proxy Users
 
-This authentication scenario uses PAM to check external users defined in terms of operating system user names and LDAP passwords, without proxying. Every such external user permitted to connect to MySQL Server should have a matching MySQL account that is defined to use PAM authentication through LDAP.
+Este cenário de Authentication usa o PAM para verificar Users externos definidos em termos de nomes de Users do sistema operacional e senhas LDAP, sem proxying. Cada User externo autorizado a se conectar ao MySQL Server deve ter uma conta MySQL correspondente que seja definida para usar a Authentication PAM por meio de LDAP.
 
-To use PAM LDAP pluggable authentication for MySQL, these prerequisites must be satisfied:
+Para usar a Authentication pluggable PAM LDAP para MySQL, os seguintes pré-requisitos devem ser satisfeitos:
 
-* An LDAP server must be available for the PAM LDAP service to communicate with.
+* Um Server LDAP deve estar disponível para que o serviço PAM LDAP se comunique.
 
-* Each LDAP user to be authenticated by MySQL must be present in the directory managed by the LDAP server.
+* Cada User LDAP a ser autenticado pelo MySQL deve estar presente no diretório gerenciado pelo Server LDAP.
 
-Note
+Observação
 
-Another way to use LDAP for MySQL user authentication is to use the LDAP-specific authentication plugins. See [Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication").
+Outra forma de usar o LDAP para Authentication de Users MySQL é usar os Plugins de Authentication específicos para LDAP. Consulte [Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication").
 
-Configure MySQL for PAM LDAP authentication as follows:
+Configure o MySQL para Authentication PAM LDAP da seguinte forma:
 
-1. Verify that Unix authentication permits logins to the operating system with the user name `antonio` and password *`antonio_password`*.
+1. Verifique se a Authentication Unix permite Logins no sistema operacional com o nome de usuário `antonio` e a senha *`antonio_password`*.
 
-2. Set up PAM to authenticate MySQL connections using LDAP by creating a `mysql-ldap` PAM service file named `/etc/pam.d/mysql-ldap`. The file contents are system dependent, so check existing login-related files in the `/etc/pam.d` directory to see what they look like. On Linux, the `mysql-ldap` file might look like this:
+2. Configure o PAM para autenticar conexões MySQL usando LDAP, criando um arquivo de serviço PAM `mysql-ldap` chamado `/etc/pam.d/mysql-ldap`. O conteúdo do arquivo depende do sistema, portanto, verifique os arquivos existentes relacionados ao Login no diretório `/etc/pam.d` para ver como eles são. No Linux, o arquivo `mysql-ldap` pode se parecer com isto:
 
    ```sql
    #%PAM-1.0
@@ -292,11 +292,11 @@ Configure MySQL for PAM LDAP authentication as follows:
    account     required    pam_ldap.so
    ```
 
-   If PAM object files have a suffix different from `.so` on your system, substitute the correct suffix.
+   Se os arquivos de objeto PAM tiverem um sufixo diferente de `.so` em seu sistema, substitua pelo sufixo correto.
 
-   The PAM file format might differ on some systems.
+   O formato do arquivo PAM pode diferir em alguns sistemas.
 
-3. Create a MySQL account with the same user name as the operating system user name and define it to authenticate using the PAM plugin and the `mysql-ldap` PAM service:
+3. Crie uma conta MySQL com o mesmo nome de usuário do sistema operacional e defina-a para autenticar usando o Plugin PAM e o serviço PAM `mysql-ldap`:
 
    ```sql
    CREATE USER 'antonio'@'localhost'
@@ -307,25 +307,25 @@ Configure MySQL for PAM LDAP authentication as follows:
      TO 'antonio'@'localhost';
    ```
 
-   Here, the authentication string contains only the PAM service name, `mysql-ldap`, which authenticates using LDAP.
+   Aqui, a string de Authentication contém apenas o nome do serviço PAM, `mysql-ldap`, que autentica usando LDAP.
 
-4. Connecting to the server is the same as described in [PAM Unix Password Authentication without Proxy Users](pam-pluggable-authentication.html#pam-authentication-unix-without-proxy "PAM Unix Password Authentication without Proxy Users").
+4. A conexão com o Server é a mesma descrita em [PAM Unix Password Authentication without Proxy Users](pam-pluggable-authentication.html#pam-authentication-unix-without-proxy "PAM Unix Password Authentication without Proxy Users").
 
-##### PAM Unix Password Authentication with Proxy Users and Group Mapping
+##### Authentication PAM de Senha Unix com Proxy Users e Mapeamento de Grupo
 
-The authentication scheme described here uses proxying and PAM group mapping to map connecting MySQL users who authenticate using PAM onto other MySQL accounts that define different sets of privileges. Users do not connect directly through the accounts that define the privileges. Instead, they connect through a default proxy account authenticated using PAM, such that all the external users are mapped to the MySQL accounts that hold the privileges. Any user who connects using the proxy account is mapped to one of those MySQL accounts, the privileges for which determine the database operations permitted to the external user.
+O esquema de Authentication descrito aqui usa proxying e mapeamento de grupo PAM para mapear Users MySQL que se conectam e autenticam usando PAM para outras contas MySQL que definem diferentes conjuntos de Privileges. Os Users não se conectam diretamente através das contas que definem os Privileges. Em vez disso, eles se conectam através de uma conta Proxy padrão autenticada usando PAM, de modo que todos os Users externos são mapeados para as contas MySQL que contêm os conjuntos de Privileges. Qualquer User que se conectar usando a conta Proxy é mapeado para uma dessas contas MySQL, cujos Privileges determinam as operações de Database permitidas ao User externo.
 
-The procedure shown here uses Unix password authentication. To use LDAP instead, see the early steps of [PAM LDAP Authentication without Proxy Users](pam-pluggable-authentication.html#pam-authentication-ldap-without-proxy "PAM LDAP Authentication without Proxy Users").
+O procedimento mostrado aqui usa a Authentication de senha Unix. Para usar LDAP, consulte as primeiras etapas de [PAM LDAP Authentication without Proxy Users](pam-pluggable-authentication.html#pam-authentication-ldap-without-proxy "PAM LDAP Authentication without Proxy Users").
 
-Note
+Observação
 
-Traditional Unix passwords are checked using the `/etc/shadow` file. For information regarding possible issues related to this file, see [PAM Authentication Access to Unix Password Store](pam-pluggable-authentication.html#pam-authentication-unix-password-store "PAM Authentication Access to Unix Password Store").
+As senhas Unix tradicionais são verificadas usando o arquivo `/etc/shadow`. Para obter informações sobre possíveis problemas relacionados a este arquivo, consulte [PAM Authentication Access to Unix Password Store](pam-pluggable-authentication.html#pam-authentication-unix-password-store "PAM Authentication Access to Unix Password Store").
 
-1. Verify that Unix authentication permits logins to the operating system with the user name `antonio` and password *`antonio_password`*.
+1. Verifique se a Authentication Unix permite Logins no sistema operacional com o nome de usuário `antonio` e a senha *`antonio_password`*.
 
-2. Verify that `antonio` is a member of the `root` or `users` PAM group.
+2. Verifique se `antonio` é membro do grupo PAM `root` ou `users`.
 
-3. Set up PAM to authenticate the `mysql-unix` PAM service through operating system users by creating a file named `/etc/pam.d/mysql-unix`. The file contents are system dependent, so check existing login-related files in the `/etc/pam.d` directory to see what they look like. On Linux, the `mysql-unix` file might look like this:
+3. Configure o PAM para autenticar o serviço PAM `mysql-unix` através de Users do sistema operacional, criando um arquivo chamado `/etc/pam.d/mysql-unix`. O conteúdo do arquivo depende do sistema, portanto, verifique os arquivos existentes relacionados ao Login no diretório `/etc/pam.d` para ver como eles são. No Linux, o arquivo `mysql-unix` pode se parecer com isto:
 
    ```sql
    #%PAM-1.0
@@ -333,9 +333,9 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    account         include         password-auth
    ```
 
-   For macOS, use `login` rather than `password-auth`.
+   Para macOS, use `login` em vez de `password-auth`.
 
-   The PAM file format might differ on some systems. For example, on Ubuntu and other Debian-based systems, use these file contents instead:
+   O formato do arquivo PAM pode diferir em alguns sistemas. Por exemplo, no Ubuntu e em outros sistemas baseados em Debian, use este conteúdo de arquivo:
 
    ```sql
    @include common-auth
@@ -343,7 +343,7 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    @include common-session-noninteractive
    ```
 
-4. Create a default proxy user (`''@''`) that maps external PAM users to the proxied accounts:
+4. Crie um Proxy User padrão (`''@''`) que mapeie Users PAM externos para as contas proxyied:
 
    ```sql
    CREATE USER ''@''
@@ -351,15 +351,15 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
      AS 'mysql-unix, root=developer, users=data_entry';
    ```
 
-   Here, the authentication string contains the PAM service name, `mysql-unix`, which authenticates Unix passwords. The authentication string also maps external users in the `root` and `users` PAM groups to the `developer` and `data_entry` MySQL user names, respectively.
+   Aqui, a string de Authentication contém o nome do serviço PAM, `mysql-unix`, que autentica senhas Unix. A string de Authentication também mapeia Users externos nos grupos PAM `root` e `users` para os nomes de usuários MySQL `developer` e `data_entry`, respectivamente.
 
-   The PAM group mapping list following the PAM service name is required when you set up proxy users. Otherwise, the plugin cannot tell how to perform mapping from external user names to the proper proxied MySQL user names.
+   A lista de mapeamento de grupo PAM após o nome do serviço PAM é obrigatória ao configurar Proxy Users. Caso contrário, o Plugin não consegue saber como realizar o mapeamento de nomes de usuários externos para os nomes de usuários MySQL proxyied apropriados.
 
-   Note
+   Observação
 
-   If your MySQL installation has anonymous users, they might conflict with the default proxy user. For more information about this issue, and ways of dealing with it, see [Default Proxy User and Anonymous User Conflicts](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts").
+   Se sua instalação MySQL tiver Users anônimos, eles podem entrar em conflito com o Proxy User padrão. Para mais informações sobre este problema e formas de resolvê-lo, consulte [Default Proxy User and Anonymous User Conflicts](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts").
 
-5. Create the proxied accounts and grant to each one the privileges it should have:
+5. Crie as contas proxyied e conceda a cada uma os Privileges que ela deve ter:
 
    ```sql
    CREATE USER 'developer'@'localhost'
@@ -375,9 +375,9 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
      TO 'data_entry'@'localhost';
    ```
 
-   The proxied accounts use the `mysql_no_login` authentication plugin to prevent clients from using the accounts to log in directly to the MySQL server. Instead, it is expected that users who authenticate using PAM use the `developer` or `data_entry` account by proxy based on their PAM group. (This assumes that the plugin is installed. For instructions, see [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").) For alternative methods of protecting proxied accounts against direct use, see [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
+   As contas proxyied usam o Plugin de Authentication `mysql_no_login` para impedir que os Clients usem as contas para fazer Login diretamente no MySQL Server. Em vez disso, espera-se que os Users que autenticam usando PAM usem a conta `developer` ou `data_entry` por Proxy com base no seu grupo PAM. (Isso pressupõe que o Plugin esteja instalado. Para obter instruções, consulte [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").) Para métodos alternativos de proteção de contas proxyied contra uso direto, consulte [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
 
-6. Grant to the proxy account the [`PROXY`](privileges-provided.html#priv_proxy) privilege for each proxied account:
+6. Conceda à conta Proxy o Privilege [`PROXY`](privileges-provided.html#priv_proxy) para cada conta proxyied:
 
    ```sql
    GRANT PROXY
@@ -388,14 +388,14 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
      TO ''@'';
    ```
 
-7. Use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") command-line client to connect to the MySQL server as `antonio`.
+7. Use o Client de linha de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") para se conectar ao MySQL Server como `antonio`.
 
    ```sql
    $> mysql --user=antonio --password --enable-cleartext-plugin
    Enter password: antonio_password
    ```
 
-   The server authenticates the connection using the default `''@''` proxy account. The resulting privileges for `antonio` depend on which PAM groups `antonio` is a member of. If `antonio` is a member of the `root` PAM group, the PAM plugin maps `root` to the `developer` MySQL user name and returns that name to the server. The server verifies that `''@''` has the [`PROXY`](privileges-provided.html#priv_proxy) privilege for `developer` and permits the connection. The following query returns output as shown:
+   O Server autentica a conexão usando a conta Proxy padrão `''@''`. Os Privileges resultantes para `antonio` dependem de quais grupos PAM `antonio` é membro. Se `antonio` for membro do grupo PAM `root`, o Plugin PAM mapeia `root` para o nome de usuário MySQL `developer` e retorna esse nome para o Server. O Server verifica se `''@''` tem o Privilege [`PROXY`](privileges-provided.html#priv_proxy) para `developer` e permite a conexão. A seguinte Query retorna a saída conforme mostrado:
 
    ```sql
    mysql> SELECT USER(), CURRENT_USER(), @@proxy_user;
@@ -406,9 +406,9 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    +-------------------+---------------------+--------------+
    ```
 
-   This demonstrates that the `antonio` operating system user is authenticated to have the privileges granted to the `developer` MySQL user, and that proxying occurs through the default proxy account.
+   Isso demonstra que o User do sistema operacional `antonio` está autenticado para ter os Privileges concedidos ao User MySQL `developer`, e que o proxying ocorre através da conta Proxy padrão.
 
-   If `antonio` is not a member of the `root` PAM group but is a member of the `users` PAM group, a similar process occurs, but the plugin maps `user` PAM group membership to the `data_entry` MySQL user name and returns that name to the server:
+   Se `antonio` não for membro do grupo PAM `root`, mas for membro do grupo PAM `users`, um processo semelhante ocorre, mas o Plugin mapeia a associação ao grupo PAM `user` para o nome de usuário MySQL `data_entry` e retorna esse nome para o Server:
 
    ```sql
    mysql> SELECT USER(), CURRENT_USER(), @@proxy_user;
@@ -419,54 +419,54 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    +-------------------+----------------------+--------------+
    ```
 
-   This demonstrates that the `antonio` operating system user is authenticated to have the privileges of the `data_entry` MySQL user, and that proxying occurs through the default proxy account.
+   Isso demonstra que o User do sistema operacional `antonio` está autenticado para ter os Privileges do User MySQL `data_entry`, e que o proxying ocorre através da conta Proxy padrão.
 
-Note
+Observação
 
-The client-side `mysql_clear_password` authentication plugin leaves the password untouched, so client programs send it to the MySQL server as cleartext. This enables the password to be passed as is to PAM. A cleartext password is necessary to use the server-side PAM library, but may be a security problem in some configurations. These measures minimize the risk:
+O Plugin de Authentication `mysql_clear_password` do lado do Client deixa a senha intocada, então os programas Client a enviam para o MySQL Server como texto claro (cleartext). Isso permite que a senha seja passada como está para o PAM. Uma senha em texto claro é necessária para usar a Library PAM do lado do Server, mas pode ser um problema de segurança em algumas configurações. Estas medidas minimizam o risco:
 
-* To make inadvertent use of the `mysql_clear_password` plugin less likely, MySQL clients must explicitly enable it (for example, with the `--enable-cleartext-plugin` option). See [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
+* Para tornar o uso inadvertido do Plugin `mysql_clear_password` menos provável, os Clients MySQL devem habilitá-lo explicitamente (por exemplo, com a opção `--enable-cleartext-plugin`). Consulte [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
 
-* To avoid password exposure with the `mysql_clear_password` plugin enabled, MySQL clients should connect to the MySQL server using an encrypted connection. See [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
+* Para evitar a exposição da senha com o Plugin `mysql_clear_password` habilitado, os Clients MySQL devem se conectar ao MySQL Server usando uma conexão criptografada. Consulte [Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections").
 
-##### PAM Authentication Access to Unix Password Store
+##### Acesso da Authentication PAM ao Armazenamento de Senha Unix
 
-On some systems, Unix authentication uses a password store such as `/etc/shadow`, a file that typically has restricted access permissions. This can cause MySQL PAM-based authentication to fail. Unfortunately, the PAM implementation does not permit distinguishing “password could not be checked” (due, for example, to inability to read `/etc/shadow`) from “password does not match.” If you are using Unix password store for PAM authentication, you may be able to enable access to it from MySQL using one of the following methods:
+Em alguns sistemas, a Authentication Unix usa um armazenamento de senhas como `/etc/shadow`, um arquivo que geralmente tem permissões de acesso restritas. Isso pode fazer com que a Authentication baseada em PAM do MySQL falhe. Infelizmente, a implementação do PAM não permite distinguir "a senha não pôde ser verificada" (devido, por exemplo, à incapacidade de ler `/etc/shadow`) de "a senha não corresponde". Se você estiver usando o armazenamento de senhas Unix para Authentication PAM, poderá habilitar o acesso a ele a partir do MySQL usando um dos seguintes métodos:
 
-* Assuming that the MySQL server is run from the `mysql` operating system account, put that account in the `shadow` group that has `/etc/shadow` access:
+* Assumindo que o MySQL Server é executado a partir da conta de sistema operacional `mysql`, coloque essa conta no grupo `shadow` que tem acesso a `/etc/shadow`:
 
-  1. Create a `shadow` group in `/etc/group`.
+  1. Crie um grupo `shadow` em `/etc/group`.
 
-  2. Add the `mysql` operating system user to the `shadow` group in `/etc/group`.
+  2. Adicione o User do sistema operacional `mysql` ao grupo `shadow` em `/etc/group`.
 
-  3. Assign `/etc/group` to the `shadow` group and enable the group read permission:
+  3. Atribua `/etc/group` ao grupo `shadow` e habilite a permissão de leitura do grupo:
 
      ```sql
      chgrp shadow /etc/shadow
      chmod g+r /etc/shadow
      ```
 
-  4. Restart the MySQL server.
-* If you are using the `pam_unix` module and the **unix_chkpwd** utility, enable password store access as follows:
+  4. Reinicie o MySQL Server.
+* Se você estiver usando o módulo `pam_unix` e o utilitário **unix_chkpwd**, habilite o acesso ao armazenamento de senhas da seguinte forma:
 
   ```sql
   chmod u-s /usr/sbin/unix_chkpwd
   setcap cap_dac_read_search+ep /usr/sbin/unix_chkpwd
   ```
 
-  Adjust the path to **unix_chkpwd** as necessary for your platform.
+  Ajuste o path para **unix_chkpwd** conforme necessário para sua plataforma.
 
-##### PAM Authentication Debugging
+##### Debugging da Authentication PAM
 
-The PAM authentication plugin checks at initialization time whether the `AUTHENTICATION_PAM_LOG` environment value is set. In MySQL 5.7, and in MySQL NDB Cluster rrior to NDB 7.5.33 and NDB 7.6.29, the value does not matter. The plugin enables logging of diagnostic messages to the standard output, including passwords. These messages may be helpful for debugging PAM-related issues that occur when the plugin performs authentication.
+O Plugin de Authentication PAM verifica no momento da inicialização se o valor do ambiente `AUTHENTICATION_PAM_LOG` está definido. No MySQL 5.7, e no MySQL NDB Cluster anterior a NDB 7.5.33 e NDB 7.6.29, o valor não importa. O Plugin habilita o Log de mensagens de diagnóstico para a saída padrão, incluindo senhas. Essas mensagens podem ser úteis para o Debugging de problemas relacionados ao PAM que ocorrem quando o Plugin realiza a Authentication.
 
-In MySQL NDB Cluster, beginning with versions 7.5.33 and 7.6.29, passwords are *not* included if you set `AUTHENTICATION_PAM_LOG=1` (or some other arbitrary value); you can enable logging of debugging messages, passwords included, by setting `AUTHENTICATION_PAM_LOG=PAM_LOG_WITH_SECRET_INFO`.
+No MySQL NDB Cluster, a partir das versões 7.5.33 e 7.6.29, as senhas *não* são incluídas se você definir `AUTHENTICATION_PAM_LOG=1` (ou algum outro valor arbitrário); você pode habilitar o Log de mensagens de Debugging, incluindo senhas, definindo `AUTHENTICATION_PAM_LOG=PAM_LOG_WITH_SECRET_INFO`.
 
-Some messages include reference to PAM plugin source files and line numbers, which enables plugin actions to be tied more closely to the location in the code where they occur.
+Algumas mensagens incluem referência a arquivos de origem e números de linha do Plugin PAM, o que permite que as ações do Plugin sejam vinculadas mais de perto ao local no código onde ocorrem.
 
-Another technique for debugging connection failures and determining what is happening during connection attempts is to configure PAM authentication to permit all connections, then check the system log files. This technique should be used only on a *temporary* basis, and not on a production server.
+Outra técnica para Debugging de falhas de conexão e determinação do que está acontecendo durante as tentativas de conexão é configurar a Authentication PAM para permitir todas as conexões e, em seguida, verificar os arquivos de Log do sistema. Esta técnica deve ser usada apenas *temporariamente* e não em um Server de produção.
 
-Configure a PAM service file named `/etc/pam.d/mysql-any-password` with these contents (the format may differ on some systems):
+Configure um arquivo de serviço PAM chamado `/etc/pam.d/mysql-any-password` com este conteúdo (o formato pode diferir em alguns sistemas):
 
 ```sql
 #%PAM-1.0
@@ -474,7 +474,7 @@ auth        required    pam_permit.so
 account     required    pam_permit.so
 ```
 
-Create an account that uses the PAM plugin and names the `mysql-any-password` PAM service:
+Crie uma conta que use o Plugin PAM e nomeie o serviço PAM `mysql-any-password`:
 
 ```sql
 CREATE USER 'testuser'@'localhost'
@@ -482,6 +482,6 @@ CREATE USER 'testuser'@'localhost'
   AS 'mysql-any-password';
 ```
 
-The `mysql-any-password` service file causes any authentication attempt to return true, even for incorrect passwords. If an authentication attempt fails, that tells you the configuration problem is on the MySQL side. Otherwise, the problem is on the operating system/PAM side. To see what might be happening, check system log files such as `/var/log/secure`, `/var/log/audit.log`, `/var/log/syslog`, or `/var/log/messages`.
+O arquivo de serviço `mysql-any-password` faz com que qualquer tentativa de Authentication retorne true, mesmo para senhas incorretas. Se uma tentativa de Authentication falhar, isso indica que o problema de configuração está do lado do MySQL. Caso contrário, o problema está do lado do sistema operacional/PAM. Para ver o que pode estar acontecendo, verifique os arquivos de Log do sistema, como `/var/log/secure`, `/var/log/audit.log`, `/var/log/syslog` ou `/var/log/messages`.
 
-After determining what the problem is, remove the `mysql-any-password` PAM service file to disable any-password access.
+Após determinar qual é o problema, remova o arquivo de serviço PAM `mysql-any-password` para desabilitar o acesso com qualquer senha.

@@ -1,28 +1,28 @@
-### 6.4.3 The Password Validation Plugin
+### 6.4.3 O Plugin de Validação de Senha
 
-[6.4.3.1 Password Validation Plugin Installation](validate-password-installation.html)
+[6.4.3.1 Instalação do Plugin de Validação de Senha](validate-password-installation.html)
 
-[6.4.3.2 Password Validation Plugin Options and Variables](validate-password-options-variables.html)
+[6.4.3.2 Opções e Variáveis do Plugin de Validação de Senha](validate-password-options-variables.html)
 
-The `validate_password` plugin serves to improve security by requiring account passwords and enabling strength testing of potential passwords. This plugin exposes a set of system variables that enable you to configure password policy.
+O plugin `validate_password` serve para melhorar a segurança exigindo senhas de contas e permitindo o teste de força de senhas potenciais. Este plugin expõe um conjunto de System Variables que permitem configurar a política de senha.
 
-The `validate_password` plugin implements these capabilities:
+O plugin `validate_password` implementa estas capacidades:
 
-* For SQL statements that assign a password supplied as a cleartext value, `validate_password` checks the password against the current password policy and rejects the password if it is weak (the statement returns an [`ER_NOT_VALID_PASSWORD`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_not_valid_password) error). This applies to the [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), and [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") statements, and passwords given as arguments to the [`PASSWORD()`](encryption-functions.html#function_password) function.
+* Para instruções SQL que atribuem uma senha fornecida como um valor em *cleartext*, o `validate_password` verifica a senha em relação à política de senha atual e rejeita a senha se ela for fraca (a instrução retorna um erro [`ER_NOT_VALID_PASSWORD`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_not_valid_password)). Isso se aplica às instruções [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), e [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement"), e senhas fornecidas como argumentos para a função [`PASSWORD()`](encryption-functions.html#function_password).
 
-* For [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statements, `validate_password` requires that a password be given, and that it satisfies the password policy. This is true even if an account is locked initially because otherwise unlocking the account later would cause it to become accessible without a password that satisfies the policy.
+* Para instruções [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), o `validate_password` exige que uma senha seja fornecida, e que ela satisfaça a política de senha. Isso é verdade mesmo que uma conta seja inicialmente bloqueada, pois, caso contrário, o desbloqueio posterior da conta faria com que ela se tornasse acessível sem uma senha que satisfaça a política.
 
-* `validate_password` implements a [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength) SQL function that assesses the strength of potential passwords. This function takes a password argument and returns an integer from 0 (weak) to 100 (strong).
+* O `validate_password` implementa uma função SQL [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength) que avalia a força de senhas potenciais. Esta função recebe um argumento de senha e retorna um inteiro de 0 (fraca) a 100 (forte).
 
 Note
 
-For statements that assign, modify, or generate account passwords ([`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), and [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement"); statements that use [`PASSWORD()`](encryption-functions.html#function_password), the `validate_password` capabilities described here apply only to accounts that use an authentication plugin that stores credentials internally to MySQL. For accounts that use plugins that perform authentication against a credentials system external to MySQL, password management must be handled externally against that system as well. For more information about internal credentials storage, see [Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
+Para instruções que atribuem, modificam ou geram senhas de contas ([`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"), [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), e [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement"); instruções que usam [`PASSWORD()`](encryption-functions.html#function_password)), as capacidades do `validate_password` descritas aqui aplicam-se apenas a contas que usam um Authentication Plugin que armazena credenciais internamente no MySQL. Para contas que usam Plugins que realizam autenticação em relação a um sistema de credenciais externo ao MySQL, o gerenciamento de senhas também deve ser tratado externamente contra esse sistema. Para obter mais informações sobre o armazenamento interno de credenciais, consulte [Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
 
-The preceding restriction does not apply to use of the [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength) function because it does not affect accounts directly.
+A restrição anterior não se aplica ao uso da função [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength) porque ela não afeta as contas diretamente.
 
-Examples:
+Exemplos:
 
-* `validate_password` checks the cleartext password in the following statement. Under the default password policy, which requires passwords to be at least 8 characters long, the password is weak and the statement produces an error:
+* O `validate_password` verifica a senha em *cleartext* na instrução a seguir. Sob a política de senha padrão, que exige que as senhas tenham pelo menos 8 caracteres, a senha é fraca e a instrução produz um erro:
 
   ```sql
   mysql> ALTER USER USER() IDENTIFIED BY 'abc';
@@ -30,7 +30,7 @@ Examples:
   policy requirements
   ```
 
-* Passwords specified as hashed values are not checked because the original password value is not available for checking:
+* Senhas especificadas como valores *hashed* (com *hash*) não são verificadas porque o valor original da senha não está disponível para verificação:
 
   ```sql
   mysql> ALTER USER 'jeffrey'@'localhost'
@@ -39,7 +39,7 @@ Examples:
   Query OK, 0 rows affected (0.01 sec)
   ```
 
-* This account-creation statement fails, even though the account is locked initially, because it does not include a password that satisfies the current password policy:
+* Esta instrução de criação de conta falha, embora a conta seja inicialmente bloqueada, porque não inclui uma senha que satisfaça a política de senha atual:
 
   ```sql
   mysql> CREATE USER 'juanita'@'localhost' ACCOUNT LOCK;
@@ -47,7 +47,7 @@ Examples:
   policy requirements
   ```
 
-* To check a password, use the [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength) function:
+* Para verificar uma senha, use a função [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength):
 
   ```sql
   mysql> SELECT VALIDATE_PASSWORD_STRENGTH('weak');
@@ -70,16 +70,16 @@ Examples:
   +----------------------------------------------+
   ```
 
-To configure password checking, modify the system variables having names of the form `validate_password_xxx`; these are the parameters that control password policy. See [Section 6.4.3.2, “Password Validation Plugin Options and Variables”](validate-password-options-variables.html "6.4.3.2 Password Validation Plugin Options and Variables").
+Para configurar a verificação de senha, modifique as System Variables que possuem nomes no formato `validate_password_xxx`; estes são os parâmetros que controlam a política de senha. Consulte [Section 6.4.3.2, “Password Validation Plugin Options and Variables”](validate-password-options-variables.html "6.4.3.2 Password Validation Plugin Options and Variables").
 
-If `validate_password` is not installed, the `validate_password_xxx` system variables are not available, passwords in statements are not checked, and the [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength) function always returns 0. For example, without the plugin installed, accounts can be assigned passwords shorter than 8 characters, or no password at all.
+Se o `validate_password` não estiver instalado, as System Variables `validate_password_xxx` não estarão disponíveis, as senhas nas instruções não serão verificadas e a função [`VALIDATE_PASSWORD_STRENGTH()`](encryption-functions.html#function_validate-password-strength) sempre retornará 0. Por exemplo, sem o Plugin instalado, as contas podem ter senhas atribuídas com menos de 8 caracteres, ou nenhuma senha.
 
-Assuming that `validate_password` is installed, it implements three levels of password checking: `LOW`, `MEDIUM`, and `STRONG`. The default is `MEDIUM`; to change this, modify the value of [`validate_password_policy`](validate-password-options-variables.html#sysvar_validate_password_policy). The policies implement increasingly strict password tests. The following descriptions refer to default parameter values, which can be modified by changing the appropriate system variables.
+Assumindo que o `validate_password` esteja instalado, ele implementa três níveis de verificação de senha: `LOW`, `MEDIUM` e `STRONG`. O padrão é `MEDIUM`; para alterar isso, modifique o valor de [`validate_password_policy`](validate-password-options-variables.html#sysvar_validate_password_policy). As políticas implementam testes de senha progressivamente mais rigorosos. As seguintes descrições referem-se aos valores padrão dos parâmetros, que podem ser modificados alterando as System Variables apropriadas.
 
-* `LOW` policy tests password length only. Passwords must be at least 8 characters long. To change this length, modify [`validate_password_length`](validate-password-options-variables.html#sysvar_validate_password_length).
+* A política `LOW` testa apenas o comprimento da senha (*length*). As senhas devem ter pelo menos 8 caracteres de comprimento. Para alterar esse comprimento, modifique [`validate_password_length`](validate-password-options-variables.html#sysvar_validate_password_length).
 
-* `MEDIUM` policy adds the conditions that passwords must contain at least 1 numeric character, 1 lowercase character, 1 uppercase character, and 1 special (nonalphanumeric) character. To change these values, modify [`validate_password_number_count`](validate-password-options-variables.html#sysvar_validate_password_number_count), [`validate_password_mixed_case_count`](validate-password-options-variables.html#sysvar_validate_password_mixed_case_count), and [`validate_password_special_char_count`](validate-password-options-variables.html#sysvar_validate_password_special_char_count).
+* A política `MEDIUM` adiciona as condições de que as senhas devem conter pelo menos 1 caractere numérico, 1 caractere minúsculo (*lowercase*), 1 caractere maiúsculo (*uppercase*) e 1 caractere especial (não alfanumérico). Para alterar esses valores, modifique [`validate_password_number_count`](validate-password-options-variables.html#sysvar_validate_password_number_count), [`validate_password_mixed_case_count`](validate-password-options-variables.html#sysvar_validate_password_mixed_case_count) e [`validate_password_special_char_count`](validate-password-options-variables.html#sysvar_validate_password_special_char_count).
 
-* `STRONG` policy adds the condition that password substrings of length 4 or longer must not match words in the dictionary file, if one has been specified. To specify the dictionary file, modify [`validate_password_dictionary_file`](validate-password-options-variables.html#sysvar_validate_password_dictionary_file).
+* A política `STRONG` adiciona a condição de que substrings de senha de 4 ou mais caracteres não devem corresponder a palavras no arquivo de dicionário, se um tiver sido especificado. Para especificar o arquivo de dicionário, modifique [`validate_password_dictionary_file`](validate-password-options-variables.html#sysvar_validate_password_dictionary_file).
 
-In addition, as of MySQL 5.7.15, `validate_password` supports the capability of rejecting passwords that match the user name part of the effective user account for the current session, either forward or in reverse. To provide control over this capability, `validate_password` exposes a [`validate_password_check_user_name`](validate-password-options-variables.html#sysvar_validate_password_check_user_name) system variable, which is enabled by default.
+Além disso, a partir do MySQL 5.7.15, o `validate_password` suporta a capacidade de rejeitar senhas que correspondam à parte do nome de usuário (*user name*) da conta de usuário efetiva para a sessão atual, seja de frente ou invertida. Para fornecer controle sobre essa capacidade, o `validate_password` expõe uma System Variable [`validate_password_check_user_name`](validate-password-options-variables.html#sysvar_validate_password_check_user_name), que está habilitada por padrão.

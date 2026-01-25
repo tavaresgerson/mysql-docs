@@ -1,73 +1,73 @@
-#### 6.4.6.2 Installing or Uninstalling MySQL Enterprise Firewall
+#### 6.4.6.2 Instalação ou Desinstalação do MySQL Enterprise Firewall
 
-MySQL Enterprise Firewall installation is a one-time operation that installs the elements described in [Section 6.4.6.1, “Elements of MySQL Enterprise Firewall”](firewall-elements.html "6.4.6.1 Elements of MySQL Enterprise Firewall"). Installation can be performed using a graphical interface or manually:
+A instalação do MySQL Enterprise Firewall é uma operação única que instala os elementos descritos em [Section 6.4.6.1, “Elements of MySQL Enterprise Firewall”](firewall-elements.html "6.4.6.1 Elements of MySQL Enterprise Firewall"). A instalação pode ser realizada usando uma interface gráfica ou manualmente:
 
-* On Windows, MySQL Installer includes an option to enable MySQL Enterprise Firewall for you.
+* No Windows, o MySQL Installer inclui uma opção para habilitar o MySQL Enterprise Firewall.
 
-* MySQL Workbench 6.3.4 or higher can install MySQL Enterprise Firewall, enable or disable an installed firewall, or uninstall the firewall.
+* O MySQL Workbench 6.3.4 ou superior pode instalar o MySQL Enterprise Firewall, habilitar ou desabilitar um firewall instalado ou desinstalar o firewall.
 
-* Manual MySQL Enterprise Firewall installation involves running a script located in the `share` directory of your MySQL installation.
+* A instalação manual do MySQL Enterprise Firewall envolve a execução de um script localizado no diretório `share` da sua instalação do MySQL.
 
-Important
+Importante
 
-Read this entire section before following its instructions. Parts of the procedure differ depending on your environment.
+Leia toda esta seção antes de seguir suas instruções. Partes do procedimento diferem dependendo do seu ambiente.
 
-Note
+Nota
 
-If installed, MySQL Enterprise Firewall involves some minimal overhead even when disabled. To avoid this overhead, do not install the firewall unless you plan to use it.
+Se instalado, o MySQL Enterprise Firewall envolve alguma sobrecarga mínima (minimal overhead) mesmo quando desabilitado. Para evitar essa sobrecarga, não instale o firewall a menos que você planeje usá-lo.
 
-Note
+Nota
 
-MySQL Enterprise Firewall does not work together with the query cache. If the query cache is enabled, disable it before installing the firewall (see [Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")).
+O MySQL Enterprise Firewall não funciona em conjunto com o query cache. Se o query cache estiver habilitado, desabilite-o antes de instalar o firewall (consulte [Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")).
 
-For usage instructions, see [Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall"). For reference information, see [Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference").
+Para instruções de uso, consulte [Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall"). Para informações de referência, consulte [Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference").
 
-* [Installing MySQL Enterprise Firewall](firewall-installation.html#firewall-install "Installing MySQL Enterprise Firewall")
-* [Uninstalling MySQL Enterprise Firewall](firewall-installation.html#firewall-uninstall "Uninstalling MySQL Enterprise Firewall")
+* [Instalando o MySQL Enterprise Firewall](firewall-installation.html#firewall-install "Instalando o MySQL Enterprise Firewall")
+* [Desinstalando o MySQL Enterprise Firewall](firewall-installation.html#firewall-uninstall "Desinstalando o MySQL Enterprise Firewall")
 
-##### Installing MySQL Enterprise Firewall
+##### Instalando o MySQL Enterprise Firewall
 
-If MySQL Enterprise Firewall is already installed from an older version of MySQL, uninstall it using the instructions given later in this section and then restart your server before installing the current version. In this case, it is also necessary to register your configuration again.
+Se o MySQL Enterprise Firewall já estiver instalado a partir de uma versão mais antiga do MySQL, desinstale-o usando as instruções fornecidas posteriormente nesta seção e, em seguida, reinicie o seu server antes de instalar a versão atual. Neste caso, também é necessário registrar sua configuração novamente.
 
-On Windows, you can use MySQL Installer to install MySQL Enterprise Firewall, as shown in [Figure 6.2, “MySQL Enterprise Firewall Installation on Windows”](firewall-installation.html#firewall-installation-windows-installer "Figure 6.2 MySQL Enterprise Firewall Installation on Windows"). Check the Enable MySQL Enterprise Firewall check box. (Open Firewall port for network access has a different purpose. It refers to Windows Firewall and controls whether Windows blocks the TCP/IP port on which the MySQL server listens for client connections.)
+No Windows, você pode usar o MySQL Installer para instalar o MySQL Enterprise Firewall, conforme mostrado na [Figure 6.2, “Instalação do MySQL Enterprise Firewall no Windows”](firewall-installation.html#firewall-installation-windows-installer "Figure 6.2 MySQL Enterprise Firewall Installation on Windows"). Marque a caixa de seleção Enable MySQL Enterprise Firewall. (A opção Open Firewall port for network access tem um propósito diferente. Ela se refere ao Windows Firewall e controla se o Windows bloqueia a porta TCP/IP na qual o MySQL server escuta por conexões de cliente.)
 
-**Figure 6.2 MySQL Enterprise Firewall Installation on Windows**
+**Figure 6.2 Instalação do MySQL Enterprise Firewall no Windows**
 
 ![Content is described in the surrounding text.](images/firewall-windows-installer-option.png)
 
-To install MySQL Enterprise Firewall using MySQL Workbench 6.3.4 or higher, see [MySQL Enterprise Firewall Interface](/doc/workbench/en/wb-mysql-firewall.html).
+Para instalar o MySQL Enterprise Firewall usando o MySQL Workbench 6.3.4 ou superior, consulte [MySQL Enterprise Firewall Interface](/doc/workbench/en/wb-mysql-firewall.html).
 
-To install MySQL Enterprise Firewall manually, look in the `share` directory of your MySQL installation and choose the script that is appropriate for your platform. The available scripts differ in the suffix used to refer to the plugin library file:
+Para instalar o MySQL Enterprise Firewall manualmente, procure no diretório `share` da sua instalação do MySQL e escolha o script apropriado para sua plataforma. Os scripts disponíveis diferem no sufixo usado para se referir ao arquivo da library do plugin:
 
-* `win_install_firewall.sql`: Choose this script for Windows systems that use `.dll` as the file name suffix.
+* `win_install_firewall.sql`: Escolha este script para sistemas Windows que usam `.dll` como sufixo de nome de arquivo.
 
-* `linux_install_firewall.sql`: Choose this script for Linux and similar systems that use `.so` as the file name suffix.
+* `linux_install_firewall.sql`: Escolha este script para Linux e sistemas semelhantes que usam `.so` como sufixo de nome de arquivo.
 
-The installation script creates stored procedures in the default database, `mysql`. Run the script as follows on the command line. The example here uses the Linux installation script. Make the appropriate substitutions for your system.
+O script de instalação cria Stored Procedures no Database padrão, `mysql`. Execute o script da seguinte forma na linha de comando. O exemplo aqui usa o script de instalação para Linux. Faça as substituições apropriadas para o seu sistema.
 
 ```sql
 $> mysql -u root -p < linux_install_firewall.sql
 Enter password: (enter root password here)
 ```
 
-Note
+Nota
 
-As of MySQL 5.7.21, for a new installation of MySQL Enterprise Firewall, `InnoDB` is used instead of `MyISAM` for the firewall tables. For upgrades to 5.7.21 or higher of an installation for which MySQL Enterprise Firewall is already installed, it is recommended that you alter the firewall tables to use `InnoDB`:
+A partir do MySQL 5.7.21, para uma nova instalação do MySQL Enterprise Firewall, `InnoDB` é usado em vez de `MyISAM` para as tabelas do firewall. Para upgrades para 5.7.21 ou superior de uma instalação onde o MySQL Enterprise Firewall já está instalado, é recomendado que você altere as tabelas do firewall para usar `InnoDB`:
 
 ```sql
 ALTER TABLE mysql.firewall_users ENGINE=InnoDB;
 ALTER TABLE mysql.firewall_whitelist ENGINE=InnoDB;
 ```
 
-Note
+Nota
 
-To use MySQL Enterprise Firewall in the context of source/replica replication, Group Replication, or InnoDB Cluster, you must use MySQL 5.7.21 or higher, and ensure that the firewall tables use `InnoDB` as just described. Then you must prepare the replica nodes prior to running the installation script on the source node. This is necessary because the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statements in the script are not replicated.
+Para usar o MySQL Enterprise Firewall no contexto de Replication source/replica, Group Replication ou InnoDB Cluster, você deve usar o MySQL 5.7.21 ou superior e garantir que as tabelas do firewall usem `InnoDB`, conforme descrito acima. Então você deve preparar os nós replica antes de executar o script de instalação no nó source. Isto é necessário porque as declarações [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") no script não são replicadas.
 
-1. On each replica node, extract the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statements from the installation script and execute them manually.
+1. Em cada nó replica, extraia as declarações [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") do script de instalação e execute-as manualmente.
 
-2. On the source node, run the installation script as described previously.
+2. No nó source, execute o script de instalação conforme descrito anteriormente.
 
-Installing MySQL Enterprise Firewall either using a graphical interface or manually should enable the firewall. To verify that, connect to the server and execute this statement:
+A instalação do MySQL Enterprise Firewall, seja usando uma interface gráfica ou manualmente, deve habilitar o firewall. Para verificar isso, conecte-se ao server e execute esta declaração:
 
 ```sql
 mysql> SHOW GLOBAL VARIABLES LIKE 'mysql_firewall_mode';
@@ -78,15 +78,15 @@ mysql> SHOW GLOBAL VARIABLES LIKE 'mysql_firewall_mode';
 +---------------------+-------+
 ```
 
-If the plugin fails to initialize, check the server error log for diagnostic messages.
+Se o plugin falhar ao inicializar, verifique o error log do server em busca de mensagens de diagnóstico.
 
-##### Uninstalling MySQL Enterprise Firewall
+##### Desinstalando o MySQL Enterprise Firewall
 
-MySQL Enterprise Firewall can be uninstalled using MySQL Workbench or manually.
+O MySQL Enterprise Firewall pode ser desinstalado usando o MySQL Workbench ou manualmente.
 
-To uninstall MySQL Enterprise Firewall using MySQL Workbench 6.3.4 or higher, see [MySQL Enterprise Firewall Interface](/doc/workbench/en/wb-mysql-firewall.html), in [Chapter 29, *MySQL Workbench*](workbench.html "Chapter 29 MySQL Workbench").
+Para desinstalar o MySQL Enterprise Firewall usando o MySQL Workbench 6.3.4 ou superior, consulte [MySQL Enterprise Firewall Interface](/doc/workbench/en/wb-mysql-firewall.html), em [Chapter 29, *MySQL Workbench*](workbench.html "Chapter 29 MySQL Workbench").
 
-To uninstall MySQL Enterprise Firewall manually, execute the following statements. Statements use `IF EXISTS` because, depending on the previously installed firewall version, some objects might not exist.
+Para desinstalar o MySQL Enterprise Firewall manualmente, execute as seguintes declarações. As declarações usam `IF EXISTS` porque, dependendo da versão do firewall instalada anteriormente, alguns objetos podem não existir.
 
 ```sql
 DROP TABLE IF EXISTS mysql.firewall_users;

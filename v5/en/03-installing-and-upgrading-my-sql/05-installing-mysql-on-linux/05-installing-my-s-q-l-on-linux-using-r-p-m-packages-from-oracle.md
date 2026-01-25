@@ -1,137 +1,137 @@
-### 2.5.5 Installing MySQL on Linux Using RPM Packages from Oracle
+### 2.5.5 Instalando o MySQL no Linux Usando Pacotes RPM da Oracle
 
-The recommended way to install MySQL on RPM-based Linux distributions is by using the RPM packages provided by Oracle. There are two sources for obtaining them, for the Community Edition of MySQL:
+A maneira recomendada de instalar o MySQL em distribuições Linux baseadas em RPM é usando os pacotes RPM fornecidos pela Oracle. Existem duas fontes para obtê-los, para a Community Edition do MySQL:
 
-* From the MySQL software repositories:
+* Dos repositórios de software MySQL:
 
-  + The MySQL Yum repository (see Section 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository” for details).
+  + O repositório MySQL Yum (consulte a Seção 2.5.1, “Instalando o MySQL no Linux Usando o Repositório MySQL Yum” para obter detalhes).
 
-  + The MySQL SLES repository (see Section 2.5.4, “Installing MySQL on Linux Using the MySQL SLES Repository” for details).
+  + O repositório MySQL SLES (consulte a Seção 2.5.4, “Instalando o MySQL no Linux Usando o Repositório MySQL SLES” para obter detalhes).
 
-* From the  [Download MySQL Community Server](https://dev.mysql.com/downloads/mysql/) page in the [MySQL Developer Zone](https://dev.mysql.com/).
+* Na página [Download MySQL Community Server](https://dev.mysql.com/downloads/mysql/) na [MySQL Developer Zone](https://dev.mysql.com/).
 
 Note
 
-RPM distributions of MySQL are also provided by other vendors. Be aware that they may differ from those built by Oracle in features, capabilities, and conventions (including communication setup), and that the installation instructions in this manual do not necessarily apply to them. The vendor's instructions should be consulted instead.
+Distribuições RPM do MySQL também são fornecidas por outros fornecedores. Esteja ciente de que elas podem diferir daquelas criadas pela Oracle em recursos, capacidades e convenções (incluindo configuração de comunicação), e que as instruções de instalação neste manual não se aplicam necessariamente a elas. As instruções do fornecedor devem ser consultadas.
 
-If you have such a third-party distribution of MySQL running on your system and now want to migrate to Oracle's distribution using the RPM packages downloaded from the MySQL Developer Zone, see Compatibility with RPM Packages from Other Vendors below. The preferred method of migration, however, is to use the MySQL Yum repository or MySQL SLES repository.
+Se você tiver uma distribuição de MySQL de terceiros rodando em seu sistema e agora deseja migrar para a distribuição da Oracle usando os pacotes RPM baixados da MySQL Developer Zone, consulte Compatibilidade com Pacotes RPM de Outros Fornecedores abaixo. O método preferencial de migração, no entanto, é usar o repositório MySQL Yum ou o repositório MySQL SLES.
 
-RPM packages for MySQL are listed in the following tables:
+Os pacotes RPM para MySQL estão listados nas seguintes tabelas:
 
-**Table 2.9 RPM Packages for MySQL Community Edition**
+**Tabela 2.9 Pacotes RPM para MySQL Community Edition**
 
-<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Package Name</th> <th>Summary</th> </tr></thead><tbody><tr> <td><code>mysql-community-server</code></td> <td>Database server and related tools</td> </tr><tr> <td><code>mysql-community-client</code></td> <td>MySQL client applications and tools</td> </tr><tr> <td><code>mysql-community-common</code></td> <td>Common files for server and client libraries</td> </tr><tr> <td><code>mysql-community-devel</code></td> <td>Development header files and libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-community-libs</code></td> <td>Shared libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-community-libs-compat</code></td> <td>Shared compatibility libraries for previous MySQL installations</td> </tr><tr> <td><code>mysql-community-embedded</code></td> <td>MySQL embedded library</td> </tr><tr> <td><code>mysql-community-embedded-devel</code></td> <td>Development header files and libraries for MySQL as an embeddable library</td> </tr><tr> <td><code>mysql-community-test</code></td> <td>Test suite for the MySQL server</td> </tr></tbody></table>
+<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Nome do Package</th> <th>Resumo</th> </tr></thead><tbody><tr> <td><code>mysql-community-server</code></td> <td>Database server e ferramentas relacionadas</td> </tr><tr> <td><code>mysql-community-client</code></td> <td>Aplicações Client MySQL e ferramentas</td> </tr><tr> <td><code>mysql-community-common</code></td> <td>Arquivos comuns para Server e bibliotecas Client</td> </tr><tr> <td><code>mysql-community-devel</code></td> <td>Arquivos header de Development e bibliotecas para aplicações client de Database MySQL</td> </tr><tr> <td><code>mysql-community-libs</code></td> <td>Bibliotecas compartilhadas para aplicações client de Database MySQL</td> </tr><tr> <td><code>mysql-community-libs-compat</code></td> <td>Bibliotecas de compatibilidade compartilhadas para instalações MySQL anteriores</td> </tr><tr> <td><code>mysql-community-embedded</code></td> <td>Biblioteca embedded MySQL</td> </tr><tr> <td><code>mysql-community-embedded-devel</code></td> <td>Arquivos header de Development e bibliotecas para MySQL como uma biblioteca embeddable</td> </tr><tr> <td><code>mysql-community-test</code></td> <td>Suite de Teste para o MySQL Server</td> </tr></tbody></table>
 
-**Table 2.10 RPM Packages for the MySQL Enterprise Edition**
+**Tabela 2.10 Pacotes RPM para MySQL Enterprise Edition**
 
-<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Package Name</th> <th>Summary</th> </tr></thead><tbody><tr> <td><code>mysql-commercial-server</code></td> <td>Database server and related tools</td> </tr><tr> <td><code>mysql-commercial-client</code></td> <td>MySQL client applications and tools</td> </tr><tr> <td><code>mysql-commercial-common</code></td> <td>Common files for server and client libraries</td> </tr><tr> <td><code>mysql-commercial-devel</code></td> <td>Development header files and libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-commercial-libs</code></td> <td>Shared libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-commercial-libs-compat</code></td> <td>Shared compatibility libraries for previous MySQL installations</td> </tr><tr> <td><code>mysql-commercial-embedded</code></td> <td>MySQL embedded library</td> </tr><tr> <td><code>mysql-commercial-embedded-devel</code></td> <td>Development header files and libraries for MySQL as an embeddable library</td> </tr><tr> <td><code>mysql-commercial-test</code></td> <td>Test suite for the MySQL server</td> </tr></tbody></table>
+<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Nome do Package</th> <th>Resumo</th> </tr></thead><tbody><tr> <td><code>mysql-commercial-server</code></td> <td>Database server e ferramentas relacionadas</td> </tr><tr> <td><code>mysql-commercial-client</code></td> <td>Aplicações Client MySQL e ferramentas</td> </tr><tr> <td><code>mysql-commercial-common</code></td> <td>Arquivos comuns para Server e bibliotecas Client</td> </tr><tr> <td><code>mysql-commercial-devel</code></td> <td>Arquivos header de Development e bibliotecas para aplicações client de Database MySQL</td> </tr><tr> <td><code>mysql-commercial-libs</code></td> <td>Bibliotecas compartilhadas para aplicações client de Database MySQL</td> </tr><tr> <td><code>mysql-commercial-libs-compat</code></td> <td>Bibliotecas de compatibilidade compartilhadas para instalações MySQL anteriores</td> </tr><tr> <td><code>mysql-commercial-embedded</code></td> <td>Biblioteca embedded MySQL</td> </tr><tr> <td><code>mysql-commercial-embedded-devel</code></td> <td>Arquivos header de Development e bibliotecas para MySQL como uma biblioteca embeddable</td> </tr><tr> <td><code>mysql-commercial-test</code></td> <td>Suite de Teste para o MySQL Server</td> </tr></tbody></table>
 
-The full names for the RPMs have the following syntax:
+Os nomes completos dos RPMs têm a seguinte sintaxe:
 
 ```sql
 packagename-version-distribution-arch.rpm
 ```
 
-The *`distribution`* and *`arch`* values indicate the Linux distribution and the processor type for which the package was built. See the table below for lists of the distribution identifiers:
+Os valores *`distribution`* e *`arch`* indicam a distribuição Linux e o tipo de processador para o qual o Package foi construído. Veja a tabela abaixo para listas de identificadores de distribuição:
 
-**Table 2.11 MySQL Linux RPM Package Distribution Identifiers**
+**Tabela 2.11 Identificadores de Distribuição de Pacotes RPM do MySQL para Linux**
 
-<table><thead><tr> <th>distribution Value</th> <th>Intended Use</th> </tr></thead><tbody><tr> <td>el<em><code>{version}</code></em> where <em><code>{version}</code></em> is the major Enterprise Linux version, such as <code>el8</code></td> <td>EL6 (8.0), EL7, EL8, EL9, and EL10-based platforms (for example, the corresponding versions of Oracle Linux, Red Hat Enterprise Linux, and CentOS)</td> </tr><tr> <td><code>sles12</code></td> <td>SUSE Linux Enterprise Server 12</td> </tr></tbody></table>
+<table><thead><tr> <th>Valor distribution</th> <th>Uso Pretendido</th> </tr></thead><tbody><tr> <td>el<em><code>{version}</code></em> onde <em><code>{version}</code></em> é a principal versão do Enterprise Linux, como <code>el8</code></td> <td>Plataformas baseadas em EL6 (8.0), EL7, EL8, EL9 e EL10 (por exemplo, as versões correspondentes do Oracle Linux, Red Hat Enterprise Linux e CentOS)</td> </tr><tr> <td><code>sles12</code></td> <td>SUSE Linux Enterprise Server 12</td> </tr></tbody></table>
 
-To see all files in an RPM package (for example, `mysql-community-server`), use the following command:
+Para ver todos os arquivos em um Package RPM (por exemplo, `mysql-community-server`), use o seguinte comando:
 
 ```sql
 $> rpm -qpl mysql-community-server-version-distribution-arch.rpm
 ```
 
-*The discussion in the rest of this section applies only to an installation process using the RPM packages directly downloaded from Oracle, instead of through a MySQL repository.*
+*A discussão no restante desta seção se aplica apenas a um processo de instalação que utiliza os pacotes RPM baixados diretamente da Oracle, em vez de um repositório MySQL.*
 
-Dependency relationships exist among some of the packages. If you plan to install many of the packages, you may wish to download the RPM bundle **tar** file instead, which contains all the RPM packages listed above, so that you need not download them separately.
+Relações de dependência existem entre alguns dos packages. Se você planeja instalar muitos dos packages, pode ser preferível baixar o arquivo **tar** do *bundle* RPM, que contém todos os pacotes RPM listados acima, para que você não precise baixá-los separadamente.
 
-In most cases, you need to install the `mysql-community-server`, `mysql-community-client`, `mysql-community-libs`, `mysql-community-common`, and `mysql-community-libs-compat` packages to get a functional, standard MySQL installation. To perform such a standard, basic installation, go to the folder that contains all those packages (and, preferably, no other RPM packages with similar names), and issue the following command for platforms *other than* Red Hat Enterprise Linux/Oracle Linux/CentOS:
+Na maioria dos casos, você precisará instalar os packages `mysql-community-server`, `mysql-community-client`, `mysql-community-libs`, `mysql-community-common` e `mysql-community-libs-compat` para obter uma instalação MySQL funcional e padrão. Para realizar uma instalação básica e padrão, vá para a pasta que contém todos esses packages (e, de preferência, nenhum outro pacote RPM com nomes semelhantes) e emita o seguinte comando para plataformas *diferentes* de Red Hat Enterprise Linux/Oracle Linux/CentOS:
 
 ```sql
 $> sudo yum install mysql-community-{server,client,common,libs}-*
 ```
 
-Replace **yum** with **zypper** for SLES.
+Substitua **yum** por **zypper** para SLES.
 
-For Red Hat Enterprise Linux/Oracle Linux/CentOS systems:
+Para sistemas Red Hat Enterprise Linux/Oracle Linux/CentOS:
 
 ```sql
 $> sudo yum install mysql-community-{server,client,common,libs}-* mysql-5.*­
 ```
 
-While it is much preferable to use a high-level package management tool like **yum** to install the packages, users who prefer direct **rpm** commands can replace the **yum install** command with the **rpm -Uvh** command; however, using **rpm -Uvh** instead makes the installation process more prone to failure, due to potential dependency issues the installation process might run into.
+Embora seja muito preferível usar uma ferramenta de gerenciamento de package de alto nível como **yum** para instalar os packages, usuários que preferem comandos **rpm** diretos podem substituir o comando **yum install** pelo comando **rpm -Uvh**; no entanto, o uso de **rpm -Uvh** torna o processo de instalação mais propenso a falhas, devido a possíveis problemas de dependência que o processo de instalação possa encontrar.
 
-To install only the client programs, you can skip `mysql-community-server` in your list of packages to install; issue the following command for platforms *other than* Red Hat Enterprise Linux/Oracle Linux/CentOS:
+Para instalar apenas os programas client, você pode pular `mysql-community-server` em sua lista de packages a instalar; emita o seguinte comando para plataformas *diferentes* de Red Hat Enterprise Linux/Oracle Linux/CentOS:
 
 ```sql
 $> sudo yum install mysql-community-{client,common,libs}-*
 ```
 
-Replace **yum** with **zypper** for SLES.
+Substitua **yum** por **zypper** para SLES.
 
-For Red Hat Enterprise Linux/Oracle Linux/CentOS systems:
+Para sistemas Red Hat Enterprise Linux/Oracle Linux/CentOS:
 
 ```sql
 $> sudo yum install mysql-community-{client,common,libs}-* mysql-5.*
 ```
 
-A standard installation of MySQL using the RPM packages result in files and resources created under the system directories, shown in the following table.
+Uma instalação padrão do MySQL usando os pacotes RPM resulta em arquivos e recursos criados nos diretórios do sistema, conforme mostrado na tabela a seguir.
 
-**Table 2.12 MySQL Installation Layout for Linux RPM Packages from the MySQL Developer Zone**
+**Tabela 2.12 Layout de Instalação do MySQL para Pacotes RPM do Linux da MySQL Developer Zone**
 
-<table><col style="width: 55%"/><col style="width: 45%"/><thead><tr> <th>Files or Resources</th> <th>Location</th> </tr></thead><tbody><tr> <td>Client programs and scripts</td> <td><code>/usr/bin</code></td> </tr><tr> <td><span><strong>mysqld</strong></span> server</td> <td><code>/usr/sbin</code></td> </tr><tr> <td>Configuration file</td> <td><code>/etc/my.cnf</code></td> </tr><tr> <td>Data directory</td> <td><code>/var/lib/mysql</code></td> </tr><tr> <td>Error log file</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/var/log/mysqld.log</code> </p><p> For SLES: <code>/var/log/mysql/mysqld.log</code> </p></td> </tr><tr> <td>Value of <code>secure_file_priv</code></td> <td><code>/var/lib/mysql-files</code></td> </tr><tr> <td>System V init script</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/etc/init.d/mysqld</code> </p><p> For SLES: <code>/etc/init.d/mysql</code> </p></td> </tr><tr> <td>Systemd service</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>mysqld</code> </p><p> For SLES: <code>mysql</code> </p></td> </tr><tr> <td>Pid file</td> <td><code> /var/run/mysql/mysqld.pid</code></td> </tr><tr> <td>Socket</td> <td><code>/var/lib/mysql/mysql.sock</code></td> </tr><tr> <td>Keyring directory</td> <td><code>/var/lib/mysql-keyring</code></td> </tr><tr> <td>Unix manual pages</td> <td><code>/usr/share/man</code></td> </tr><tr> <td>Include (header) files</td> <td><code>/usr/include/mysql</code></td> </tr><tr> <td>Libraries</td> <td><code>/usr/lib/mysql</code></td> </tr><tr> <td>Miscellaneous support files (for example, error messages, and character set files)</td> <td><code>/usr/share/mysql</code></td> </tr></tbody></table>
+<table><col style="width: 55%"/><col style="width: 45%"/><thead><tr> <th>Arquivos ou Recursos</th> <th>Localização</th> </tr></thead><tbody><tr> <td>Programas Client e scripts</td> <td><code>/usr/bin</code></td> </tr><tr> <td>Server <span><strong>mysqld</strong></span></td> <td><code>/usr/sbin</code></td> </tr><tr> <td>Arquivo de Configuration</td> <td><code>/etc/my.cnf</code></td> </tr><tr> <td>Diretório de Data</td> <td><code>/var/lib/mysql</code></td> </tr><tr> <td>Arquivo de log de Error</td> <td><p> Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>/var/log/mysqld.log</code> </p><p> Para SLES: <code>/var/log/mysql/mysqld.log</code> </p></td> </tr><tr> <td>Valor de <code>secure_file_priv</code></td> <td><code>/var/lib/mysql-files</code></td> </tr><tr> <td>Script de init do System V</td> <td><p> Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>/etc/init.d/mysqld</code> </p><p> Para SLES: <code>/etc/init.d/mysql</code> </p></td> </tr><tr> <td>Serviço Systemd</td> <td><p> Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>mysqld</code> </p><p> Para SLES: <code>mysql</code> </p></td> </tr><tr> <td>Arquivo Pid</td> <td><code> /var/run/mysql/mysqld.pid</code></td> </tr><tr> <td>Socket</td> <td><code>/var/lib/mysql/mysql.sock</code></td> </tr><tr> <td>Diretório Keyring</td> <td><code>/var/lib/mysql-keyring</code></td> </tr><tr> <td>Man pages Unix</td> <td><code>/usr/share/man</code></td> </tr><tr> <td>Arquivos Include (header)</td> <td><code>/usr/include/mysql</code></td> </tr><tr> <td>Bibliotecas</td> <td><code>/usr/lib/mysql</code></td> </tr><tr> <td>Arquivos de suporte diversos (por exemplo, mensagens de error e arquivos de character set)</td> <td><code>/usr/share/mysql</code></td> </tr></tbody></table>
 
-The installation also creates a user named `mysql` and a group named `mysql` on the system.
+A instalação também cria um user chamado `mysql` e um grupo chamado `mysql` no sistema.
 
 Notes
 
-* The `mysql` user is created using the `-r` and `-s /bin/false` options of the `useradd` command, so that it does not have login permissions to your server host (see Creating the mysql User and Group for details). To switch to the `mysql` user on your OS, use the `--shell=/bin/bash` option for the `su` command:
+* O user `mysql` é criado usando as opções `-r` e `-s /bin/false` do comando `useradd`, de modo que ele não tenha permissões de login para o host do seu Server (consulte Creating the mysql User and Group para obter detalhes). Para mudar para o user `mysql` no seu OS, use a opção `--shell=/bin/bash` para o comando `su`:
 
   ```sql
   su - mysql --shell=/bin/bash
   ```
 
-* Installation of previous versions of MySQL using older packages might have created a configuration file named `/usr/my.cnf`. It is highly recommended that you examine the contents of the file and migrate the desired settings inside to the file `/etc/my.cnf` file, then remove `/usr/my.cnf`.
+* A instalação de versões anteriores do MySQL usando pacotes mais antigos pode ter criado um arquivo de configuration chamado `/usr/my.cnf`. É altamente recomendável que você examine o conteúdo do arquivo, migre as configurações desejadas para o arquivo `/etc/my.cnf` e, em seguida, remova `/usr/my.cnf`.
 
-MySQL is not automatically started at the end of the installation process. For Red Hat Enterprise Linux, Oracle Linux, CentOS, and Fedora systems, use the following command to start MySQL:
+O MySQL não é iniciado automaticamente ao final do processo de instalação. Para sistemas Red Hat Enterprise Linux, Oracle Linux, CentOS e Fedora, use o seguinte comando para iniciar o MySQL:
 
 ```sql
 $> sudo service mysqld start
 ```
 
-For SLES systems, the command is the same, but the service name is different:
+Para sistemas SLES, o comando é o mesmo, mas o nome do Service é diferente:
 
 ```sql
 $> sudo service mysql start
 ```
 
-If the operating system is systemd enabled, standard **service** commands such as **stop**, **start**, **status** and **restart** should be used to manage the MySQL server service. The `mysqld` service is enabled by default, and it starts at system reboot. Notice that certain things might work differently on systemd platforms: for example, changing the location of the data directory might cause issues. See Section 2.5.10, “Managing MySQL Server with systemd” for additional information.
+Se o sistema operacional tiver o systemd habilitado, os comandos **service** padrão, como **stop**, **start**, **status** e **restart**, devem ser usados para gerenciar o service do MySQL Server. O service `mysqld` é habilitado por padrão e inicia na reinicialização do sistema. Note que certas coisas podem funcionar de forma diferente em plataformas systemd: por exemplo, mudar a localização do diretório de data pode causar problemas. Consulte a Seção 2.5.10, “Gerenciando o MySQL Server com systemd” para obter informações adicionais.
 
-During an upgrade installation using RPM and DEB packages, if the MySQL server is running when the upgrade occurs then the MySQL server is stopped, the upgrade occurs, and the MySQL server is restarted. One exception: if the edition also changes during an upgrade (such as community to commercial, or vice-versa), then MySQL server is not restarted.
+Durante uma instalação de upgrade usando pacotes RPM e DEB, se o MySQL Server estiver em execução quando o upgrade ocorrer, o MySQL Server é interrompido, o upgrade é realizado e o MySQL Server é reiniciado. Uma exceção: se a edição também mudar durante um upgrade (como de community para commercial, ou vice-versa), o MySQL Server não é reiniciado.
 
-At the initial start up of the server, the following happens, given that the data directory of the server is empty:
+Na inicialização do Server, o seguinte acontece, dado que o diretório de data do Server está vazio:
 
-* The server is initialized.
-* An SSL certificate and key files are generated in the data directory.
+* O Server é inicializado.
+* Um certificado SSL e arquivos key são gerados no diretório de data.
 
-* `validate_password` is installed and enabled.
+* `validate_password` é instalado e habilitado.
 
-* A superuser account `'root'@'localhost'` is created. A password for the superuser is set and stored in the error log file. To reveal it, use the following command for RHEL, Oracle Linux, CentOS, and Fedora systems:
+* Uma conta de superuser `'root'@'localhost'` é criada. Uma password para o superuser é definida e armazenada no arquivo de log de error. Para revelá-la, use o seguinte comando para sistemas RHEL, Oracle Linux, CentOS e Fedora:
 
   ```sql
   $> sudo grep 'temporary password' /var/log/mysqld.log
   ```
 
-  Use the following command for SLES systems:
+  Use o seguinte comando para sistemas SLES:
 
   ```sql
   $> sudo grep 'temporary password' /var/log/mysql/mysqld.log
   ```
 
-  The next step is to log in with the generated, temporary password and set a custom password for the superuser account:
+  O próximo passo é logar com a password temporária gerada e definir uma password customizada para a conta do superuser:
 
 ```sql
 $> mysql -uroot -p
@@ -143,30 +143,30 @@ mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';
 
 Note
 
-`validate_password` is installed by default. The default password policy implemented by `validate_password` requires that passwords contain at least one uppercase letter, one lowercase letter, one digit, and one special character, and that the total password length is at least 8 characters.
+`validate_password` é instalado por padrão. A política de password padrão implementada por `validate_password` exige que as passwords contenham pelo menos uma letra maiúscula, uma letra minúscula, um dígito e um caractere especial, e que o comprimento total da password seja de pelo menos 8 caracteres.
 
-If something goes wrong during installation, you might find debug information in the error log file `/var/log/mysqld.log`.
+Se algo der errado durante a instalação, você poderá encontrar informações de debug no arquivo de log de error `/var/log/mysqld.log`.
 
-For some Linux distributions, it might be necessary to increase the limit on number of file descriptors available to **mysqld**. See Section B.3.2.16, “File Not Found and Similar Errors”
+Para algumas distribuições Linux, pode ser necessário aumentar o limite no número de file descriptors disponíveis para **mysqld**. Consulte a Seção B.3.2.16, “File Not Found and Similar Errors”.
 
-**Compatibility with RPM Packages from Other Vendors.** If you have installed packages for MySQL from your Linux distribution's local software repository, it is much preferable to install the new, directly-downloaded packages from Oracle using the package management system of your platform (**yum**, **dnf**, or **zypper**), as described above. The command replaces old packages with new ones to ensure compatibility of old applications with the new installation; for example, the old `mysql-libs` package is replaced with the `mysql-community-libs-compat` package, which provides a replacement-compatible client library for applications that were using your older MySQL installation. If there was an older version of `mysql-community-libs-compat` on the system, it also gets replaced.
+**Compatibilidade com Pacotes RPM de Outros Fornecedores.** Se você instalou packages para MySQL a partir do repositório de software local da sua distribuição Linux, é muito preferível instalar os novos pacotes baixados diretamente da Oracle usando o sistema de gerenciamento de package da sua plataforma (**yum**, **dnf** ou **zypper**), conforme descrito acima. O comando substitui os packages antigos por novos para garantir a compatibilidade de aplicações antigas com a nova instalação; por exemplo, o package antigo `mysql-libs` é substituído pelo package `mysql-community-libs-compat`, que fornece uma biblioteca client de substituição compatível para aplicações que estavam usando sua instalação MySQL anterior. Se houver uma versão mais antiga de `mysql-community-libs-compat` no sistema, ela também será substituída.
 
-If you have installed third-party packages for MySQL that are NOT from your Linux distribution's local software repository (for example, packages directly downloaded from a vendor other than Oracle), you should uninstall all those packages before installing the new, directly-downloaded packages from Oracle. This is because conflicts may arise between those vendor's RPM packages and Oracle's: for example, a vendor's convention about which files belong with the server and which belong with the client library may differ from that used for Oracle packages. Attempts to install an Oracle RPM may then result in messages saying that files in the RPM to be installed conflict with files from an installed package.
+Se você instalou packages de terceiros para MySQL que NÃO são do repositório de software local da sua distribuição Linux (por exemplo, packages baixados diretamente de um fornecedor que não seja a Oracle), você deve desinstalar todos esses packages antes de instalar os novos pacotes baixados diretamente da Oracle. Isso ocorre porque podem surgir conflitos entre os pacotes RPM desses fornecedores e os da Oracle: por exemplo, a convenção de um fornecedor sobre quais arquivos pertencem ao Server e quais pertencem à biblioteca client pode diferir daquela usada para os packages da Oracle. Tentativas de instalar um RPM da Oracle podem então resultar em mensagens dizendo que os arquivos no RPM a ser instalado conflitam com arquivos de um package já instalado.
 
-**Installing Client Libraries from Multiple MySQL Versions.** It is possible to install multiple client library versions, such as for the case that you want to maintain compatibility with older applications linked against previous libraries. To install an older client library, use the `--oldpackage` option with **rpm**. For example, to install `mysql-community-libs-5.5` on an EL6 system that has `libmysqlclient.20` from MySQL 5.7, use a command like this:
+**Instalando Bibliotecas Client de Múltiplas Versões do MySQL.** É possível instalar múltiplas versões de biblioteca client, por exemplo, no caso de você querer manter a compatibilidade com aplicações mais antigas vinculadas a bibliotecas anteriores. Para instalar uma biblioteca client mais antiga, use a opção `--oldpackage` com **rpm**. Por exemplo, para instalar `mysql-community-libs-5.5` em um sistema EL6 que possui `libmysqlclient.20` do MySQL 5.7, use um comando como este:
 
 ```sql
 $> rpm --oldpackage -ivh mysql-community-libs-5.5.50-2.el6.x86_64.rpm
 ```
 
-**Debug Package.** A special variant of MySQL Server compiled with the debug package has been included in the server RPM packages. It performs debugging and memory allocation checks and produces a trace file when the server is running. To use that debug version, start MySQL with `/usr/sbin/mysqld-debug`, instead of starting it as a service or with `/usr/sbin/mysqld`. See Section 5.8.3, “The DBUG Package” for the debug options you can use.
+**Package Debug.** Uma variante especial do MySQL Server compilada com o package debug foi incluída nos pacotes RPM do Server. Ele realiza verificações de debugging e alocação de memória e produz um arquivo trace quando o Server está em execução. Para usar essa versão debug, inicie o MySQL com `/usr/sbin/mysqld-debug`, em vez de iniciá-lo como um service ou com `/usr/sbin/mysqld`. Consulte a Seção 5.8.3, “O Package DBUG” para as opções debug que você pode usar.
 
 Note
 
-The default plugin directory for debug builds changed from `/usr/lib64/mysql/plugin` to `/usr/lib64/mysql/plugin/debug` in 5.7.21. Previously, it was necessary to change `plugin_dir` to `/usr/lib64/mysql/plugin/debug` for debug builds.
+O diretório de plugin padrão para builds debug mudou de `/usr/lib64/mysql/plugin` para `/usr/lib64/mysql/plugin/debug` no 5.7.21. Anteriormente, era necessário alterar `plugin_dir` para `/usr/lib64/mysql/plugin/debug` para builds debug.
 
-**Rebuilding RPMs from source SRPMs.** Source code SRPM packages for MySQL are available for download. They can be used as-is to rebuild the MySQL RPMs with the standard **rpmbuild** tool chain.
+**Reconstruindo RPMs a partir de SRPMs source.** Pacotes SRPM de código source para MySQL estão disponíveis para download. Eles podem ser usados como estão para reconstruir os RPMs do MySQL com a cadeia de ferramentas **rpmbuild** padrão.
 
-**`root` passwords for pre-GA releases.**
+**Passwords `root` para releases pré-GA.**
 
-For MySQL 5.7.4 and 5.7.5, the initial random `root` password is written to the `.mysql_secret` file in the directory named by the `HOME` environment variable. When trying to access the file, bear in mind that depending on operating system, using a command such as **sudo** may cause the value of `HOME` to refer to the home directory of the `root` system user . `.mysql_secret` is created with mode 600 to be accessible only to the system user for whom it is created. Before MySQL 5.7.4, the accounts (including `root`) created in the MySQL grant tables for an RPM installation initially have no passwords; after starting the server, you should assign passwords to them using the instructions in Section 2.9, “Postinstallation Setup and Testing”."
+Para MySQL 5.7.4 e 5.7.5, a password `root` inicial aleatória é escrita no arquivo `.mysql_secret` no diretório nomeado pela variável de ambiente `HOME`. Ao tentar acessar o arquivo, lembre-se de que, dependendo do sistema operacional, usar um comando como **sudo** pode fazer com que o valor de `HOME` se refira ao diretório home do user de sistema `root`. O arquivo `.mysql_secret` é criado com o modo 600 para ser acessível apenas ao user de sistema para o qual foi criado. Antes do MySQL 5.7.4, as contas (incluindo `root`) criadas nas grant tables do MySQL para uma instalação RPM inicialmente não tinham passwords; depois de iniciar o Server, você deve atribuir passwords a elas usando as instruções na Seção 2.9, “Postinstallation Setup and Testing”.

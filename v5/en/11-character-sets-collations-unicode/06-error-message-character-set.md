@@ -1,40 +1,40 @@
-## 10.6 Error Message Character Set
+## 10.6 Conjunto de Caracteres de Mensagens de Erro
 
-This section describes how the MySQL server uses character sets for constructing error messages. For information about the language of error messages (rather than the character set), see Section 10.12, “Setting the Error Message Language”. For general information about configuring error logging, see Section 5.4.2, “The Error Log”.
+Esta seção descreve como o MySQL server usa conjuntos de caracteres para construir mensagens de erro. Para informações sobre o idioma das mensagens de erro (em vez do conjunto de caracteres), consulte a Seção 10.12, “Configurando o Idioma das Mensagens de Erro”. Para informações gerais sobre a configuração do log de erros, consulte a Seção 5.4.2, “O Log de Erro”.
 
-* Character Set for Error Message Construction
-* Character Set for Error Message Disposition
+* Conjunto de Caracteres para Construção de Mensagens de Erro
+* Conjunto de Caracteres para Disposição de Mensagens de Erro
 
-### Character Set for Error Message Construction
+### Conjunto de Caracteres para Construção de Mensagens de Erro
 
-The server constructs error messages as follows:
+O server constrói mensagens de erro da seguinte forma:
 
-* The message template uses UTF-8 (`utf8mb3`).
+* O template da mensagem usa UTF-8 (`utf8mb3`).
 
-* Parameters in the message template are replaced with values that apply to a specific error occurrence:
+* Parâmetros no template da mensagem são substituídos por valores que se aplicam a uma ocorrência de erro específica:
 
-  + Identifiers such as table or column names use UTF-8 internally so they are copied as is.
+  + Identificadores, como nomes de tabela ou coluna, usam UTF-8 internamente, então eles são copiados como estão (*as is*).
 
-  + Character (nonbinary) string values are converted from their character set to UTF-8.
+  + Valores de string de caractere (não-binary) são convertidos de seu conjunto de caracteres para UTF-8.
 
-  + Binary string values are copied as is for bytes in the range `0x20` to `0x7E`, and using `\x` hexadecimal encoding for bytes outside that range. For example, if a duplicate-key error occurs for an attempt to insert `0x41CF9F` into a `VARBINARY` unique column, the resulting error message uses UTF-8 with some bytes hexadecimal encoded:
+  + Valores de string Binary são copiados como estão (*as is*) para bytes no range de `0x20` a `0x7E`, e usando codificação hexadecimal `\x` para bytes fora desse range. Por exemplo, se ocorrer um erro de duplicate-key em uma tentativa de inserir `0x41CF9F` em uma coluna unique `VARBINARY`, a mensagem de erro resultante usa UTF-8 com alguns bytes codificados em hexadecimal:
 
     ```sql
     Duplicate entry 'A\xCF\x9F' for key 1
     ```
 
-### Character Set for Error Message Disposition
+### Conjunto de Caracteres para Disposição de Mensagens de Erro
 
-An error message, once constructed, can be written by the server to the error log or sent to clients:
+Uma mensagem de erro, uma vez construída, pode ser escrita pelo server no log de erro ou enviada a clientes:
 
-* If the server writes the error message to the error log, it writes it in UTF-8, as constructed, without conversion to another character set.
+* Se o server escrever a mensagem de erro no log de erro, ele a escreve em UTF-8, conforme construída, sem conversão para outro conjunto de caracteres.
 
-* If the server sends the error message to a client program, the server converts it from UTF-8 to the character set specified by the `character_set_results` system variable. If `character_set_results` has a value of `NULL` or `binary`, no conversion occurs. No conversion occurs if the variable value is `utf8mb3` or `utf8mb4`, either, because those character sets have a repertoire that includes all UTF-8 characters used in message construction.
+* Se o server enviar a mensagem de erro a um programa cliente, o server a converte de UTF-8 para o conjunto de caracteres especificado pela variável de sistema `character_set_results`. Se `character_set_results` tiver um valor `NULL` ou `binary`, nenhuma conversão ocorre. Nenhuma conversão também ocorre se o valor da variável for `utf8mb3` ou `utf8mb4`, pois esses conjuntos de caracteres possuem um repertório que inclui todos os caracteres UTF-8 usados na construção da mensagem.
 
-  If characters cannot be represented in `character_set_results`, some encoding may occur during the conversion. The encoding uses Unicode code point values:
+  Se os caracteres não puderem ser representados em `character_set_results`, alguma codificação pode ocorrer durante a conversão. A codificação usa valores de code point Unicode:
 
-  + Characters in the Basic Multilingual Plane (BMP) range (`0x0000` to `0xFFFF`) are written using `\nnnn` notation.
+  + Caracteres no range do Basic Multilingual Plane (BMP) (`0x0000` a `0xFFFF`) são escritos usando a notação `\nnnn`.
 
-  + Characters outside the BMP range (`0x10000` to `0x10FFFF`) are written using `\+nnnnnn` notation.
+  + Caracteres fora do range do BMP (`0x10000` a `0x10FFFF`) são escritos usando a notação `\+nnnnnn`.
 
-  Clients can set `character_set_results` to control the character set in which they receive error messages. The variable can be set directly, or indirectly by means such as `SET NAMES`. For more information about `character_set_results`, see Section 10.4, “Connection Character Sets and Collations”.
+  Clientes podem definir `character_set_results` para controlar o conjunto de caracteres no qual recebem mensagens de erro. A variável pode ser definida diretamente ou indiretamente por meios como `SET NAMES`. Para mais informações sobre `character_set_results`, consulte a Seção 10.4, “Conjuntos de Caracteres e Collations de Conexão”.

@@ -1,24 +1,24 @@
-#### 2.3.3.5 MySQL Installer Console Reference
+#### 2.3.3.5 Referência do Console do MySQL Installer
 
-**MySQLInstallerConsole.exe** provides command-line functionality that is similar to MySQL Installer. This reference includes:
+**MySQLInstallerConsole.exe** fornece funcionalidade de linha de comando semelhante ao MySQL Installer. Esta referência inclui:
 
-* MySQL Product Names
-* Command Syntax
-* Command Actions
+* Nomes de Produtos MySQL
+* Sintaxe de Comando
+* Ações de Comando
 
-The console is installed when MySQL Installer is initially executed and then available within the `MySQL Installer for Windows` directory. By default, the directory location is `C:\Program Files (x86)\MySQL\MySQL Installer for Windows`. You must run the console as administrator.
+O console é instalado quando o MySQL Installer é executado inicialmente e fica disponível no diretório `MySQL Installer for Windows`. Por padrão, a localização do diretório é `C:\Program Files (x86)\MySQL\MySQL Installer for Windows`. Você deve executar o console como administrador.
 
-To use the console:
+Para usar o console:
 
-1. Open a command prompt with administrative privileges by selecting Windows System from Start, then right-click Command Prompt, select More, and select Run as administrator.
+1. Abra um prompt de comando com privilégios administrativos selecionando "Sistema Windows" (Windows System) no Menu Iniciar, clique com o botão direito em "Prompt de Comando" (Command Prompt), selecione "Mais" (More) e selecione "Executar como administrador" (Run as administrator).
 
-2. From the command line, optionally change the directory to where the **MySQLInstallerConsole.exe** command is located. For example, to use the default installation location:
+2. Na linha de comando, opcionalmente, altere o diretório para onde o comando **MySQLInstallerConsole.exe** está localizado. Por exemplo, para usar o local de instalação padrão:
 
    ```sql
    cd Program Files (x86)\MySQL\MySQL Installer for Windows
    ```
 
-3. Type `MySQLInstallerConsole.exe` (or `mysqlinstallerconsole`) followed by a command action to perform a task. For example, to show the console's help:
+3. Digite `MySQLInstallerConsole.exe` (ou `mysqlinstallerconsole`) seguido por uma ação de comando para executar uma tarefa. Por exemplo, para mostrar a ajuda do console:
 
    ```sql
    MySQLInstallerConsole.exe --help
@@ -57,67 +57,67 @@ To use the console:
    ...
    ```
 
-##### MySQL Product Names
+##### Nomes de Produtos MySQL
 
-Many of the **MySQLInstallerConsole** command actions accept one or more abbreviated phrases that can match a MySQL product (or products) in the catalog. The current set of valid short phrases for use with commands is shown in the following table.
+Muitas das ações de comando do **MySQLInstallerConsole** aceitam uma ou mais frases abreviadas que podem corresponder a um produto MySQL (ou produtos) no catálogo. O conjunto atual de frases curtas válidas para uso com comandos é mostrado na tabela a seguir.
 
-Note
+Nota
 
-Starting with MySQL Installer 1.6.7 (8.0.34), the `install`, `list`, and `upgrade` command options no longer apply to MySQL for Visual Studio (now EOL), MySQL Connector/NET, MySQL Connector/ODBC, MySQL Connector/C++, MySQL Connector/Python, and MySQL Connector/J. To install newer MySQL connectors, visit https://dev.mysql.com/downloads/.
+A partir do MySQL Installer 1.6.7 (8.0.34), as opções de comando `install`, `list` e `upgrade` não se aplicam mais ao MySQL for Visual Studio (agora EOL), MySQL Connector/NET, MySQL Connector/ODBC, MySQL Connector/C++, MySQL Connector/Python e MySQL Connector/J. Para instalar Conectores MySQL mais novos, visite https://dev.mysql.com/downloads/.
 
-**Table 2.6 MySQL Product Phrases for use with the MySQLInstallerConsole.exe command**
+**Tabela 2.6 Frases de Produtos MySQL para uso com o comando MySQLInstallerConsole.exe**
 
-<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Phrase</th> <th>MySQL Product</th> </tr></thead><tr> <td><code>server</code></td> <td>MySQL Server</td> </tr><tr> <td><code>workbench</code></td> <td>MySQL Workbench</td> </tr><tr> <td><code>shell</code></td> <td>MySQL Shell</td> </tr><tr> <td><code>visual</code></td> <td>MySQL for Visual Studio</td> </tr><tr> <td><code>router</code></td> <td>MySQL Router</td> </tr><tr> <td><code>backup</code></td> <td>MySQL Enterprise Backup (requires the commercial release)</td> </tr><tr> <td><code>net</code></td> <td>MySQL Connector/NET</td> </tr><tr> <td><code>odbc</code></td> <td>MySQL Connector/ODBC</td> </tr><tr> <td><code>c++</code></td> <td>MySQL Connector/C++</td> </tr><tr> <td><code>python</code></td> <td>MySQL Connector/Python</td> </tr><tr> <td><code>j</code></td> <td>MySQL Connector/J</td> </tr><tr> <td><code>documentation</code></td> <td>MySQL Server Documentation</td> </tr><tr> <td><code>samples</code></td> <td>MySQL Samples (sakila and world databases)</td> </tr></table>
+<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Frase</th> <th>Produto MySQL</th> </tr></thead><tr> <td><code>server</code></td> <td>MySQL Server</td> </tr><tr> <td><code>workbench</code></td> <td>MySQL Workbench</td> </tr><tr> <td><code>shell</code></td> <td>MySQL Shell</td> </tr><tr> <td><code>visual</code></td> <td>MySQL for Visual Studio</td> </tr><tr> <td><code>router</code></td> <td>MySQL Router</td> </tr><tr> <td><code>backup</code></td> <td>MySQL Enterprise Backup (requer a versão comercial)</td> </tr><tr> <td><code>net</code></td> <td>MySQL Connector/NET</td> </tr><tr> <td><code>odbc</code></td> <td>MySQL Connector/ODBC</td> </tr><tr> <td><code>c++</code></td> <td>MySQL Connector/C++</td> </tr><tr> <td><code>python</code></td> <td>MySQL Connector/Python</td> </tr><tr> <td><code>j</code></td> <td>MySQL Connector/J</td> </tr><tr> <td><code>documentation</code></td> <td>Documentação do MySQL Server</td> </tr><tr> <td><code>samples</code></td> <td>Exemplos MySQL (databases sakila e world)</td> </tr></table>
 
-##### Command Syntax
+##### Sintaxe de Comando
 
-The **MySQLInstallerConsole.exe** command can be issued with or without the file extension (`.exe`) and the command is not case-sensitive.
+O comando **MySQLInstallerConsole.exe** pode ser emitido com ou sem a extensão de arquivo (`.exe`) e o comando não diferencia maiúsculas de minúsculas (case-sensitive).
 
 `mysqlinstallerconsole`[`.exe`] [`--`]*`action`*] [*`action_blocks_list`*] [*`options_list`*
 
-Description:
+Descrição:
 
-`action` :   One of the permitted operational actions. If omitted, the default action is equivalent to the `--status` action. Using the `--` prefix is optional for all actions.
+`action` : Uma das ações operacionais permitidas. Se omitida, a ação padrão é equivalente à ação `--status`. O uso do prefixo `--` é opcional para todas as ações.
 
-    Possible actions are: [--]`configure`, [--]`help`, [--]`install`, [--]`list`, [--]`modify`, [--]`remove`, [--]`set`, [--]`status`, [--]`update`, and [--]`upgrade`.
+    As ações possíveis são: [--]`configure`, [--]`help`, [--]`install`, [--]`list`, [--]`modify`, [--]`remove`, [--]`set`, [--]`status`, [--]`update` e [--]`upgrade`.
 
-`action_blocks_list` :   A list of blocks in which each represents a different item depending on the selected action. Blocks are separated by commas.
+`action_blocks_list` : Uma lista de blocos nos quais cada um representa um item diferente, dependendo da ação selecionada. Os blocos são separados por vírgulas.
 
-    The `--remove` and `--upgrade` actions permit specifying an asterisk character (`*`) to indicate all products. If the `*` character is detected at the start of this block, it is assumed all products are to be processed and the remainder of the block is ignored.
+    As ações `--remove` e `--upgrade` permitem especificar um asterisco (`*`) para indicar todos os produtos. Se o caractere `*` for detectado no início deste bloco, presume-se que todos os produtos devem ser processados e o restante do bloco é ignorado.
 
-    Syntax: `*|action_block[,action_block][,action_block]...`
+    Sintaxe: `*|action_block[,action_block][,action_block]...`
 
-    *`action_block`*: Contains a product selector followed by an indefinite number of argument blocks that behave differently depending on the selected action (see Command Actions).
+    *`action_block`*: Contém um seletor de produto seguido por um número indefinido de blocos de argumento que se comportam de maneira diferente dependendo da ação selecionada (veja Ações de Comando).
 
-`options_list` :   Zero or more options with possible values separated by spaces. See Command Actions to identify the options permitted for the corresponding action.
+`options_list` : Zero ou mais opções com possíveis valores separados por espaços. Veja Ações de Comando para identificar as opções permitidas para a ação correspondente.
 
-    Syntax: `option_value_pair[ option_value_pair][ option_value_pair]...`
+    Sintaxe: `option_value_pair[ option_value_pair][ option_value_pair]...`
 
-    *`option_value_pair`*: A single option (for example, `--silent`) or a tuple of a key and a corresponding value with an options prefix. The key-value pair is in the form of `--key[=value]`.
+    *`option_value_pair`*: Uma única opção (por exemplo, `--silent`) ou uma tupla de uma chave e um valor correspondente com um prefixo de opções. O par chave-valor está no formato de `--key[=value]`.
 
-##### Command Actions
+##### Ações de Comando
 
-**MySQLInstallerConsole.exe** supports the following command actions:
+**MySQLInstallerConsole.exe** suporta as seguintes ações de comando:
 
-Note
+Nota
 
-Configuration block (or arguments_block) values that contain a colon character (`:`) must be wrapped in quotation marks. For example, `install_dir="C:\MySQL\MySQL Server 8.0"`.
+Os valores do bloco de configuração (ou arguments_block) que contêm o caractere de dois pontos (`:`) devem ser envolvidos por aspas. Por exemplo, `install_dir="C:\MySQL\MySQL Server 8.0"`.
 
 * `[--]configure [product1]:[configuration_argument]=[value], [product2]:[configuration_argument]=[value], [...]`
 
-  Configures one or more MySQL products on your system. Multiple *`configuration_argument`*=*`value`* pairs can be configured for each product.
+  Configura um ou mais produtos MySQL no seu sistema. Múltiplos pares *`configuration_argument`*=*`value`* podem ser configurados para cada produto.
 
-  Options:
+  Opções:
 
-  `--continue` :   Continues processing the next product when an error is caught while processing the action blocks containing arguments for each product. If not specified the whole operation is aborted in case of an error.
+  `--continue` : Continua processando o próximo produto quando um erro é capturado durante o processamento dos blocos de ação que contêm argumentos para cada produto. Se não for especificado, toda a operação é abortada em caso de erro.
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  `--show-settings` :   Displays the available options for the selected product by passing in the product name after `--show-settings`.
+  `--show-settings` : Exibe as opções disponíveis para o produto selecionado, passando o nome do produto após `--show-settings`.
 
-  `--silent` :   Disables confirmation prompts.
+  `--silent` : Desabilita prompts de confirmação.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLInstallerConsole --configure --show-settings server
@@ -129,17 +129,17 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]help`
 
-  Displays a help message with usage examples and then exits. Pass in an additional command action to receive help specific to that action.
+  Exibe uma mensagem de ajuda com exemplos de uso e, em seguida, sai. Passe uma ação de comando adicional para receber ajuda específica sobre essa ação.
 
-  Options:
+  Opções:
 
-  `--action=[action]` :   Shows the help for a specific action. Same as using the `--help` option with an action.
+  `--action=[action]` : Mostra a ajuda para uma ação específica. É o mesmo que usar a opção `--help` com uma ação.
 
-      Permitted values are: `all`, `configure`, `help` (default), `install`, `list`, `modify`, `remove`, `status`, `update`, `upgrade`, and `set`.
+      Os valores permitidos são: `all`, `configure`, `help` (padrão), `install`, `list`, `modify`, `remove`, `status`, `update`, `upgrade` e `set`.
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLInstallerConsole help
@@ -151,55 +151,55 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]install [product1]:[features]:[config block]:[config block], [product2]:[config block], [...]`
 
-  Installs one or more MySQL products on your system. If pre-release products are available, both GA and pre-release products are installed when the value of the `--type` option value is `Client` or `Full`. Use the `--only_ga_products` option to restrict the product set to GA products only when using these setup types.
+  Instala um ou mais produtos MySQL no seu sistema. Se produtos de pré-lançamento (pre-release) estiverem disponíveis, produtos GA e de pré-lançamento são instalados quando o valor da opção `--type` for `Client` ou `Full`. Use a opção `--only_ga_products` para restringir o conjunto de produtos apenas aos produtos GA ao usar esses tipos de setup.
 
-  Description:
+  Descrição:
 
-  `[product]` :   Each product can be specified by a product phrase with or without a semicolon-separated version qualifier. Passing in a product keyword alone selects the latest version of the product. If multiple architectures are available for that version of the product, the command returns the first one in the manifest list for interactive confirmation. Alternatively, you can pass in the exact version and architecture `(x86` or `x64`) after the product keyword using the `--silent` option.
+  `[product]` : Cada produto pode ser especificado por uma frase de produto com ou sem um qualificador de versão separado por ponto e vírgula. Passar uma palavra-chave de produto sozinha seleciona a versão mais recente do produto. Se múltiplas architectures estiverem disponíveis para essa versão do produto, o comando retorna a primeira na lista de manifestos para confirmação interativa. Alternativamente, você pode passar a versão e a architecture exatas (`x86` ou `x64`) após a palavra-chave do produto usando a opção `--silent`.
 
-  `[features]` :   All features associated with a MySQL product are installed by default. The feature block is a semicolon-separated list of features or an asterisk character (`*`) that selects all features. To remove a feature, use the `modify` command.
+  `[features]` : Todos os features associados a um produto MySQL são instalados por padrão. O bloco de features é uma lista de features separada por ponto e vírgula ou um asterisco (`*`) que seleciona todos os features. Para remover um feature, use o comando `modify`.
 
-  `[config block]` :   One or more configuration blocks can be specified. Each configuration block is a semicolon-separated list of key-value pairs. A block can include either a `config` or `user` type key; `config` is the default type if one is not defined.
+  `[config block]` : Um ou mais blocos de configuração podem ser especificados. Cada bloco de configuração é uma lista de pares chave-valor separada por ponto e vírgula. Um bloco pode incluir uma chave do tipo `config` ou `user`; `config` é o tipo padrão se um não for definido.
 
-      Configuration block values that contain a colon character (`:`) must be wrapped in quotation marks. For example, `installdir="C:\MySQL\MySQL Server 8.0"`. Only one configuration type block can be defined for each product. A user block should be defined for each user to be created during the product installation.
+      Os valores do bloco de configuração que contêm o caractere de dois pontos (`:`) devem ser envolvidos por aspas. Por exemplo, `installdir="C:\MySQL\MySQL Server 8.0"`. Apenas um bloco de tipo de configuração pode ser definido para cada produto. Um bloco `user` deve ser definido para cada usuário a ser criado durante a instalação do produto.
 
-      Note
+      Nota
 
-      The `user` type key is not supported when a product is being reconfigured.
+      A chave do tipo `user` não é suportada quando um produto está sendo reconfigurado.
 
-  Options:
+  Opções:
 
-  `--auto-handle-prereqs` :   If present, MySQL Installer attempts to download and install some software prerequisites, not currently present. that can be resolved with minimal intervention. If the `--silent` option is not present, you are presented with installation pages for each prerequisite. If the `--auto-handle-prereqs` options is omitted, packages with missing prerequisites are not installed.
+  `--auto-handle-prereqs` : Se presente, o MySQL Installer tenta baixar e instalar alguns pré-requisitos de software, não presentes atualmente, que podem ser resolvidos com intervenção mínima. Se a opção `--silent` não estiver presente, serão apresentadas páginas de instalação para cada pré-requisito. Se a opção `--auto-handle-prereqs` for omitida, pacotes com pré-requisitos ausentes não serão instalados.
 
-  `--continue` :   Continues processing the next product when an error is caught while processing the action blocks containing arguments for each product. If not specified the whole operation is aborted in case of an error.
+  `--continue` : Continua processando o próximo produto quando um erro é capturado durante o processamento dos blocos de ação que contêm argumentos para cada produto. Se não for especificado, toda a operação é abortada em caso de erro.
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  `--mos-password=password` :   Sets the My Oracle Support (MOS) user's password for commercial versions of the MySQL Installer.
+  `--mos-password=password` : Define a senha do usuário My Oracle Support (MOS) para versões comerciais do MySQL Installer.
 
-  `--mos-user=user_name` :   Specifies the My Oracle Support (MOS) user name for access to the commercial version of MySQL Installer. If not present, only the products in the bundle, if any, are available to be installed.
+  `--mos-user=user_name` : Especifica o nome de usuário My Oracle Support (MOS) para acesso à versão comercial do MySQL Installer. Se não estiver presente, apenas os produtos no bundle, se houver, estarão disponíveis para instalação.
 
-  `--only-ga-products` :   Restricts the product set to include GA products only.
+  `--only-ga-products` : Restringe o conjunto de produtos para incluir apenas produtos GA.
 
-  `--setup-type=setup_type` :   Installs a predefined set of software. The setup type can be one of the following:
+  `--setup-type=setup_type` : Instala um conjunto predefinido de software. O tipo de setup pode ser um dos seguintes:
 
-      + `Server`: Installs a single MySQL server
+      + `Server`: Instala um único MySQL Server
 
-      + `Client`: Installs client programs and libraries (excludes MySQL connectors)
+      + `Client`: Instala programas client e bibliotecas (exclui MySQL Connectors)
 
-      + `Full`: Installs everything (excludes MySQL connectors)
+      + `Full`: Instala tudo (exclui MySQL Connectors)
 
-      + `Custom`: Installs user-selected products. This is the default option.
+      + `Custom`: Instala produtos selecionados pelo usuário. Esta é a opção padrão.
 
-      Note
+      Nota
 
-      Non-custom setup types are valid only when no other MySQL products are installed.
+      Tipos de setup não-customizados são válidos apenas quando nenhum outro produto MySQL está instalado.
 
-  `--show-settings` :   Displays the available options for the selected product, by passing in the product name after `-showsettings`.
+  `--show-settings` : Exibe as opções disponíveis para o produto selecionado, passando o nome do produto após `--show-settings`.
 
-  `--silent` :   Disable confirmation prompts.
+  `--silent` : Desabilita prompts de confirmação.
 
-  Examples:
+  Exemplos:
 
   ```sql
   mysqlinstallerconsole.exe --install j;8.0.29, net;8.0.28 --silent
@@ -209,7 +209,7 @@ Configuration block (or arguments_block) values that contain a colon character (
   MySQLInstallerConsole install server;8.0.30:*:port=3307;server_id=2:type=user;user=foo
   ```
 
-  An example that passes in additional configuration blocks, separated by `^` to fit:
+  Um exemplo que passa blocos de configuração adicionais, separados por `^` para caber:
 
   ```sql
   MySQLInstallerConsole --install server;8.0.30;x64:*:type=config;open_win_firewall=true; ^
@@ -219,21 +219,21 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]list`
 
-  When this action is used without options, it activates an interactive list from which all of the available MySQL products can be searched. Enter `MySQLInstallerConsole --list` and specify a substring to search.
+  Quando esta ação é usada sem opções, ela ativa uma lista interativa a partir da qual todos os produtos MySQL disponíveis podem ser pesquisados. Digite `MySQLInstallerConsole --list` e especifique uma substring para pesquisar.
 
-  Options:
+  Opções:
 
-  `--all` :   Lists all available products. If this option is used, all other options are ignored.
+  `--all` : Lista todos os produtos disponíveis. Se esta opção for usada, todas as outras opções são ignoradas.
 
-  `--arch=architecture` :   Lists that contain the specified architecture. Permitted values are: `x86`, `x64`, and `any` (default). This option can be combined with the `--name` and `--version` options.
+  `--arch=architecture` : Lista que contém a architecture especificada. Os valores permitidos são: `x86`, `x64` e `any` (padrão). Esta opção pode ser combinada com as opções `--name` e `--version`.
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  `--name=package_name` :   Lists products that contain the specified name (see product phrase), This option can be combined with the `--version` and `--arch` options.
+  `--name=package_name` : Lista produtos que contêm o nome especificado (veja frase do produto). Esta opção pode ser combinada com as opções `--version` e `--arch`.
 
-  `--version=version` :   Lists products that contain the specified version, such as 8.0 or 5.7. This option can be combined with the `--name` and `--arch` options.
+  `--version=version` : Lista produtos que contêm a versão especificada, como 8.0 ou 5.7. Esta opção pode ser combinada com as opções `--name` e `--arch`.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLInstallerConsole --list --name=net --version=8.0
@@ -241,19 +241,19 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]modify [product1:-removelist|+addlist], [product2:-removelist|+addlist] [...]`
 
-  Modifies or displays features of a previously installed MySQL product. To display the features of a product, append the product keyword to the command, for example:
+  Modifica ou exibe os features de um produto MySQL instalado anteriormente. Para exibir os features de um produto, anexe a palavra-chave do produto ao comando, por exemplo:
 
   ```sql
   MySQLInstallerConsole --modify server
   ```
 
-  Options:
+  Opções:
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  `--silent` :   Disable confirmation prompts.
+  `--silent` : Desabilita prompts de confirmação.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLInstallerConsole --modify server:+documentation
@@ -265,19 +265,19 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]remove [product1], [product2] [...]`
 
-  Removes one ore more products from your system. An asterisk character (`*`) can be passed in to remove all MySQL products with one command.
+  Remove um ou mais produtos do seu sistema. Um asterisco (`*`) pode ser passado para remover todos os produtos MySQL com um único comando.
 
-  Options:
+  Opções:
 
-  `--continue` :   Continue the operation even if an error occurs.
+  `--continue` : Continua a operação mesmo que ocorra um erro.
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  `--keep-datadir` :   Skips the removal of the data directory when removing MySQL Server products.
+  `--keep-datadir` : Ignora a remoção do data directory ao remover produtos MySQL Server.
 
-  `--silent` :   Disable confirmation prompts.
+  `--silent` : Desabilita prompts de confirmação.
 
-  Examples:
+  Exemplos:
 
   ```sql
   mysqlinstallerconsole.exe remove *
@@ -289,43 +289,43 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]set`
 
-  Sets one or more configurable options that affect how the MySQL Installer program connects to the internet and whether the automatic products-catalog updates feature is activated.
+  Define uma ou mais opções configuráveis que afetam como o programa MySQL Installer se conecta à internet e se o recurso de atualizações automáticas do catálogo de produtos está ativado.
 
-  Options:
+  Opções:
 
-  `--catalog-update=bool_value` :   Enables (`true`, default) or disables (`false`) the automatic products catalog update. This option requires an active connection to the internet.
+  `--catalog-update=bool_value` : Habilita (`true`, padrão) ou desabilita (`false`) a atualização automática do catálogo de produtos. Esta opção requer uma conexão ativa com a internet.
 
-  `--catalog-update-days=int_value` :   Accepts an integer between 1 (default) and 365 to indicate the number of days between checks for a new catalog update when MySQL Installer is started. If `--catalog-update` is `false`, this option is ignored.
+  `--catalog-update-days=int_value` : Aceita um inteiro entre 1 (padrão) e 365 para indicar o número de dias entre as verificações de uma nova atualização de catálogo quando o MySQL Installer é iniciado. Se `--catalog-update` for `false`, esta opção é ignorada.
 
-  `--connection-validation=validation_type` :   Sets how MySQL Installer performs the check for an internet connection. Permitted values are `automatic` (default) and `manual`.
+  `--connection-validation=validation_type` : Define como o MySQL Installer executa a verificação de uma conexão com a internet. Os valores permitidos são `automatic` (padrão) e `manual`.
 
-  `--connection-validation-urls=url_list` :   A double-quote enclosed and comma-separated string that defines the list of URLs to use for checking the internet connection when `--connection-validation` is set to `manual`. Checks are made in the same order provided. If the first URL fails, the next URL in the list is used and so on.
+  `--connection-validation-urls=url_list` : Uma string entre aspas duplas e separada por vírgulas que define a lista de URLs a serem usadas para verificar a conexão com a internet quando `--connection-validation` é definido como `manual`. As verificações são feitas na mesma ordem fornecida. Se a primeira URL falhar, a próxima URL na lista é usada e assim por diante.
 
-  `--offline-mode=bool_value` :   Enables MySQL Installer to run with or without internet capabilities. Valid modes are:
+  `--offline-mode=bool_value` : Permite que o MySQL Installer seja executado com ou sem recursos de internet. Os modos válidos são:
 
-      + `True` to enable offline mode (run without an internet connection).
+      + `True` para habilitar o modo offline (executar sem conexão com a internet).
 
-      + `False` (default) to disable offline mode (run with an internet connection). Set this mode before downloading the product catalog or any products to install.
+      + `False` (padrão) para desabilitar o modo offline (executar com conexão com a internet). Defina este modo antes de baixar o catálogo de produtos ou quaisquer produtos a serem instalados.
 
-  `--proxy-mode` :   Specifies the proxy mode. Valid modes are:
+  `--proxy-mode` : Especifica o modo proxy. Os modos válidos são:
 
-      + `Automatic` to automatically identify the proxy based on the system settings.
+      + `Automatic` para identificar automaticamente o proxy com base nas configurações do sistema.
 
-      + `None` to ensure that no proxy is configured.
+      + `None` para garantir que nenhum proxy esteja configurado.
 
-      + `Manual` to set the proxy details manually (`--proxy-server`, `--proxy-port`, `--proxy-username`, `--proxy-password`).
+      + `Manual` para definir os detalhes do proxy manualmente (`--proxy-server`, `--proxy-port`, `--proxy-username`, `--proxy-password`).
 
-  `--proxy-password` :   The password used to authenticate to the proxy server.
+  `--proxy-password` : A password usada para autenticar no proxy server.
 
-  `--proxy-port` :   The port used for the proxy server.
+  `--proxy-port` : A port usada para o proxy server.
 
-  `--proxy-server` :   The URL that point to the proxy server.
+  `--proxy-server` : A URL que aponta para o proxy server.
 
-  `--proxy-username` :   The user name used to authenticate to the proxy server.
+  `--proxy-username` : O user name usado para autenticar no proxy server.
 
-  `--reset-defaults` :   Resets the MySQL Installer options associated with the `--set` action to the default values.
+  `--reset-defaults` : Redefine as opções do MySQL Installer associadas à ação `--set` para os valores padrão.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLIntallerConsole.exe set --reset-defaults
@@ -346,13 +346,13 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]status`
 
-  Provides a quick overview of the MySQL products that are installed on the system. Information includes product name and version, architecture, date installed, and install location.
+  Fornece uma visão geral rápida dos produtos MySQL instalados no sistema. As informações incluem nome e versão do produto, architecture, data de instalação e local de instalação (install location).
 
-  Options:
+  Opções:
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLInstallerConsole status
@@ -360,15 +360,15 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]update`
 
-  Downloads the latest MySQL product catalog to your system. On success, the catalog is applied the next time either `MySQLInstaller` or **MySQLInstallerConsole.exe** is executed.
+  Baixa o catálogo de produtos MySQL mais recente para o seu sistema. Em caso de sucesso, o catálogo é aplicado na próxima vez que o `MySQLInstaller` ou **MySQLInstallerConsole.exe** for executado.
 
-  MySQL Installer automatically checks for product catalog updates when it is started if *`n`* days have passed since the last check. Starting with MySQL Installer 1.6.4, the default value is 1 day. Previously, the default value was 7 days.
+  O MySQL Installer verifica automaticamente se há atualizações do catálogo de produtos quando é iniciado, caso *n* dias tenham se passado desde a última verificação. A partir do MySQL Installer 1.6.4, o valor padrão é 1 dia. Anteriormente, o valor padrão era 7 dias.
 
-  Options:
+  Opções:
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLInstallerConsole update
@@ -376,25 +376,25 @@ Configuration block (or arguments_block) values that contain a colon character (
 
 * `[--]upgrade [product1:version], [product2:version] [...]`
 
-  Upgrades one or more products on your system. The following characters are permitted for this action:
+  Atualiza um ou mais produtos no seu sistema. Os seguintes caracteres são permitidos para esta ação:
 
-  `*` :   Pass in `*` to upgrade all products to the latest version, or pass in specific products.
+  `*` : Passe `*` para atualizar todos os produtos para a versão mais recente, ou passe produtos específicos.
 
-  `!` :   Pass in `!` as a version number to upgrade the MySQL product to its latest version.
+  `!` : Passe `!` como um número de versão para atualizar o produto MySQL para sua versão mais recente.
 
-  Options:
+  Opções:
 
-  `--continue` :   Continue the operation even if an error occurs.
+  `--continue` : Continua a operação mesmo que ocorra um erro.
 
-  `--help` :   Shows the options and available arguments for the corresponding action. If present the action is not executed, only the help is shown, so other action-related options are ignored as well.
+  `--help` : Mostra as opções e argumentos disponíveis para a ação correspondente. Se presente, a ação não é executada, apenas a ajuda é mostrada, de modo que outras opções relacionadas à ação também são ignoradas.
 
-  `--mos-password=password` :   Sets the My Oracle Support (MOS) user's password for commercial versions of the MySQL Installer.
+  `--mos-password=password` : Define a password do usuário My Oracle Support (MOS) para versões comerciais do MySQL Installer.
 
-  `--mos-user=user_name` :   Specifies the My Oracle Support (MOS) user name for access to the commercial version of MySQL Installer. If not present, only the products in the bundle, if any, are available to be installed.
+  `--mos-user=user_name` : Especifica o user name My Oracle Support (MOS) para acesso à versão comercial do MySQL Installer. Se não estiver presente, apenas os produtos no bundle, se houver, estarão disponíveis para instalação.
 
-  `--silent` :   Disable confirmation prompts.
+  `--silent` : Desabilita prompts de confirmação.
 
-  Examples:
+  Exemplos:
 
   ```sql
   MySQLInstallerConsole upgrade *

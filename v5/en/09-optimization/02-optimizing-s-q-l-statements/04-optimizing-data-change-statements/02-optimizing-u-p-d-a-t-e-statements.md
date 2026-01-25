@@ -1,7 +1,7 @@
-#### 8.2.4.2 Optimizing UPDATE Statements
+#### 8.2.4.2 Otimizando Comandos UPDATE
 
-An update statement is optimized like a `SELECT` query with the additional overhead of a write. The speed of the write depends on the amount of data being updated and the number of indexes that are updated. Indexes that are not changed do not get updated.
+Um comando `UPDATE` é otimizado como uma `SELECT Query` com a sobrecarga adicional de uma operação de escrita (`write`). A velocidade da operação de escrita (`write`) depende da quantidade de dados sendo atualizados e do número de `Indexes` que são atualizados. `Indexes` que não são alterados não são atualizados.
 
-Another way to get fast updates is to delay updates and then do many updates in a row later. Performing multiple updates together is much quicker than doing one at a time if you lock the table.
+Outra forma de obter `updates` rápidos é atrasar as atualizações e, em seguida, executar muitos `updates` em sequência posteriormente. Executar múltiplos `updates` em conjunto é muito mais rápido do que fazer um de cada vez se você fizer o `Lock` da tabela.
 
-For a `MyISAM` table that uses dynamic row format, updating a row to a longer total length may split the row. If you do this often, it is very important to use `OPTIMIZE TABLE` occasionally. See Section 13.7.2.4, “OPTIMIZE TABLE Statement”.
+Para uma tabela `MyISAM` que usa o formato de linha dinâmico, a atualização de uma linha para um comprimento total maior pode dividir a linha. Se você fizer isso com frequência, é muito importante usar `OPTIMIZE TABLE` ocasionalmente. Consulte a Seção 13.7.2.4, “`OPTIMIZE TABLE` Statement”.

@@ -1,15 +1,15 @@
-## 3.1 Connecting to and Disconnecting from the Server
+## 3.1 Conectando-se e Desconectando-se do Servidor
 
-To connect to the server, you usually need to provide a MySQL user name when you invoke [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") and, most likely, a password. If the server runs on a machine other than the one where you log in, you also need to specify a host name. Contact your administrator to find out what connection parameters you should use to connect (that is, what host, user name, and password to use). Once you know the proper parameters, you should be able to connect like this:
+Para conectar-se ao servidor, geralmente você precisa fornecer um *user name* MySQL ao invocar [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") e, muito provavelmente, uma *password*. Se o servidor estiver rodando em uma máquina diferente daquela em que você está logado, você também precisará especificar um *host name*. Entre em contato com seu administrador para descobrir quais parâmetros de conexão você deve usar (ou seja, qual *host*, *user name* e *password* usar). Depois de saber os parâmetros corretos, você deve ser capaz de se conectar assim:
 
 ```sql
 $> mysql -h host -u user -p
 Enter password: ********
 ```
 
-*`host`* and *`user`* represent the host name where your MySQL server is running and the user name of your MySQL account. Substitute appropriate values for your setup. The `********` represents your password; enter it when [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") displays the `Enter password:` prompt.
+*`host`* e *`user`* representam o *host name* onde seu servidor MySQL está rodando e o *user name* de sua conta MySQL. Substitua valores apropriados para sua configuração. O `********` representa sua *password*; digite-a quando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") exibir o *prompt* `Enter password:`.
 
-If that works, you should see some introductory information followed by a `mysql>` prompt:
+Se isso funcionar, você deverá ver algumas informações introdutórias seguidas por um *prompt* `mysql>`:
 
 ```sql
 $> mysql -h host -u user -p
@@ -22,31 +22,31 @@ Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
 mysql>
 ```
 
-The `mysql>` prompt tells you that [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") is ready for you to enter SQL statements.
+O *prompt* `mysql>` informa que [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") está pronto para você inserir *SQL statements*.
 
-If you are logging in on the same machine that MySQL is running on, you can omit the host, and simply use the following:
+Se você estiver fazendo *login* na mesma máquina em que o MySQL está rodando, você pode omitir o *host* e simplesmente usar o seguinte:
 
 ```sql
 $> mysql -u user -p
 ```
 
-If, when you attempt to log in, you get an error message such as ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2), it means that the MySQL server daemon (Unix) or service (Windows) is not running. Consult the administrator or see the section of [Chapter 2, *Installing and Upgrading MySQL*](installing.html "Chapter 2 Installing and Upgrading MySQL") that is appropriate to your operating system.
+Se, ao tentar fazer *login*, você receber uma mensagem de erro como ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2), isso significa que o *daemon* do servidor MySQL (Unix) ou *service* (Windows) não está em execução. Consulte o administrador ou veja a seção apropriada ao seu sistema operacional no [Chapter 2, *Installing and Upgrading MySQL*](installing.html "Chapter 2 Installing and Upgrading MySQL").
 
-For help with other problems often encountered when trying to log in, see [Section B.3.2, “Common Errors When Using MySQL Programs”](common-errors.html "B.3.2 Common Errors When Using MySQL Programs").
+Para obter ajuda com outros problemas frequentemente encontrados ao tentar fazer *login*, consulte [Section B.3.2, “Common Errors When Using MySQL Programs”](common-errors.html "B.3.2 Common Errors When Using MySQL Programs”).
 
-Some MySQL installations permit users to connect as the anonymous (unnamed) user to the server running on the local host. If this is the case on your machine, you should be able to connect to that server by invoking [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") without any options:
+Algumas instalações MySQL permitem que os usuários se conectem como o usuário *anonymous* (sem nome) ao servidor rodando no *local host*. Se for esse o caso em sua máquina, você deverá conseguir se conectar a esse servidor invocando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") sem nenhuma opção:
 
 ```sql
 $> mysql
 ```
 
-After you have connected successfully, you can disconnect any time by typing `QUIT` (or `\q`) at the `mysql>` prompt:
+Após se conectar com sucesso, você pode se desconectar a qualquer momento digitando `QUIT` (ou `\q`) no *prompt* `mysql>`:
 
 ```sql
 mysql> QUIT
 Bye
 ```
 
-On Unix, you can also disconnect by pressing Control+D.
+No Unix, você também pode se desconectar pressionando Control+D.
 
-Most examples in the following sections assume that you are connected to the server. They indicate this by the `mysql>` prompt.
+A maioria dos exemplos nas seções seguintes pressupõe que você esteja conectado ao servidor. Eles indicam isso através do *prompt* `mysql>`.

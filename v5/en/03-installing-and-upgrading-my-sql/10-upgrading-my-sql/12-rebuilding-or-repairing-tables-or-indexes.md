@@ -1,67 +1,67 @@
-### 2.10.12 Rebuilding or Repairing Tables or Indexes
+### 2.10.12 Reconstruindo ou Reparando Tables ou Indexes
 
-This section describes how to rebuild or repair tables or indexes, which may be necessitated by:
+Esta seção descreve como reconstruir ou reparar tables ou indexes, o que pode ser necessário devido a:
 
-* Changes to how MySQL handles data types or character sets. For example, an error in a collation might have been corrected, necessitating a table rebuild to update the indexes for character columns that use the collation.
+* Alterações na forma como o MySQL lida com *data types* (tipos de dados) ou *character sets* (conjuntos de caracteres). Por exemplo, um erro em uma *collation* (agrupamento) pode ter sido corrigido, exigindo uma reconstrução da table para atualizar os indexes para colunas de caracteres que usam essa *collation*.
 
-* Required table repairs or upgrades reported by `CHECK TABLE`, **mysqlcheck**, or **mysql_upgrade**.
+* Reparos ou *upgrades* de table exigidos e relatados por `CHECK TABLE`, **mysqlcheck** ou **mysql_upgrade**.
 
-Methods for rebuilding a table include:
+Os métodos para reconstruir uma table incluem:
 
-* Dump and Reload Method
-* ALTER TABLE Method
-* REPAIR TABLE Method
+* Método Dump e Reload
+* Método ALTER TABLE
+* Método REPAIR TABLE
 
-#### Dump and Reload Method
+#### Método Dump e Reload
 
-If you are rebuilding tables because a different version of MySQL cannot handle them after a binary (in-place) upgrade or downgrade, you must use the dump-and-reload method. Dump the tables *before* upgrading or downgrading using your original version of MySQL. Then reload the tables *after* upgrading or downgrading.
+Se você estiver reconstruindo tables porque uma versão diferente do MySQL não consegue lidar com elas após um *upgrade* ou *downgrade* binário (*in-place*), você deve usar o método *dump*-e-*reload*. Faça o *dump* das tables *antes* de realizar o *upgrade* ou *downgrade*, usando sua versão original do MySQL. Em seguida, faça o *reload* das tables *após* o *upgrade* ou *downgrade*.
 
-If you use the dump-and-reload method of rebuilding tables only for the purpose of rebuilding indexes, you can perform the dump either before or after upgrading or downgrading. Reloading still must be done afterward.
+Se você usar o método *dump*-e-*reload* para reconstruir tables apenas com o objetivo de reconstruir indexes, você pode realizar o *dump* antes ou depois do *upgrade* ou *downgrade*. O *reloading* (recarregamento) ainda deve ser feito posteriormente.
 
-If you need to rebuild an `InnoDB` table because a `CHECK TABLE` operation indicates that a table upgrade is required, use **mysqldump** to create a dump file and **mysql** to reload the file. If the `CHECK TABLE` operation indicates that there is a corruption or causes `InnoDB` to fail, refer to Section 14.22.2, “Forcing InnoDB Recovery” for information about using the `innodb_force_recovery` option to restart `InnoDB`. To understand the type of problem that `CHECK TABLE` may be encountering, refer to the `InnoDB` notes in Section 13.7.2.2, “CHECK TABLE Statement”.
+Se você precisar reconstruir uma table `InnoDB` porque uma operação `CHECK TABLE` indica que um *upgrade* da table é necessário, use **mysqldump** para criar um arquivo de *dump* e **mysql** para recarregar o arquivo (*reload*). Se a operação `CHECK TABLE` indicar que há uma *corruption* (corrupção) ou fizer com que o `InnoDB` falhe, consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB” para obter informações sobre o uso da opção `innodb_force_recovery` para reiniciar o `InnoDB`. Para entender o tipo de problema que `CHECK TABLE` pode estar encontrando, consulte as notas do `InnoDB` na Seção 13.7.2.2, “CHECK TABLE Statement”.
 
-To rebuild a table by dumping and reloading it, use **mysqldump** to create a dump file and **mysql** to reload the file:
+Para reconstruir uma table fazendo seu *dump* e *reload*, use **mysqldump** para criar um arquivo de *dump* e **mysql** para recarregar o arquivo:
 
 ```sql
 mysqldump db_name t1 > dump.sql
 mysql db_name < dump.sql
 ```
 
-To rebuild all the tables in a single database, specify the database name without any following table name:
+Para reconstruir todas as tables em um único Database, especifique o nome do Database sem nenhum nome de table subsequente:
 
 ```sql
 mysqldump db_name > dump.sql
 mysql db_name < dump.sql
 ```
 
-To rebuild all tables in all databases, use the `--all-databases` option:
+Para reconstruir todas as tables em todos os Databases, use a opção `--all-databases`:
 
 ```sql
 mysqldump --all-databases > dump.sql
 mysql < dump.sql
 ```
 
-#### ALTER TABLE Method
+#### Método ALTER TABLE
 
-To rebuild a table with `ALTER TABLE`, use a “null” alteration; that is, an `ALTER TABLE` statement that “changes” the table to use the storage engine that it already has. For example, if `t1` is an `InnoDB` table, use this statement:
+Para reconstruir uma table com `ALTER TABLE`, use uma alteração “nula”; ou seja, uma instrução `ALTER TABLE` que “muda” a table para usar o *storage engine* que ela já possui. Por exemplo, se `t1` for uma table `InnoDB`, use esta instrução:
 
 ```sql
 ALTER TABLE t1 ENGINE = InnoDB;
 ```
 
-If you are not sure which storage engine to specify in the `ALTER TABLE` statement, use `SHOW CREATE TABLE` to display the table definition.
+Se você não tiver certeza de qual *storage engine* especificar na instrução `ALTER TABLE`, use `SHOW CREATE TABLE` para exibir a definição da table.
 
-#### REPAIR TABLE Method
+#### Método REPAIR TABLE
 
-The `REPAIR TABLE` method is only applicable to `MyISAM`, `ARCHIVE`, and `CSV` tables.
+O método `REPAIR TABLE` é aplicável apenas a tables `MyISAM`, `ARCHIVE` e `CSV`.
 
-You can use `REPAIR TABLE` if the table checking operation indicates that there is a corruption or that an upgrade is required. For example, to repair a `MyISAM` table, use this statement:
+Você pode usar `REPAIR TABLE` se a operação de checagem da table indicar que há uma *corruption* (corrupção) ou que um *upgrade* é necessário. Por exemplo, para reparar uma table `MyISAM`, use esta instrução:
 
 ```sql
 REPAIR TABLE t1;
 ```
 
-**mysqlcheck --repair** provides command-line access to the `REPAIR TABLE` statement. This can be a more convenient means of repairing tables because you can use the `--databases` or `--all-databases` option to repair all tables in specific databases or all databases, respectively:
+**mysqlcheck --repair** fornece acesso via linha de comando à instrução `REPAIR TABLE`. Este pode ser um meio mais conveniente de reparar tables, pois você pode usar a opção `--databases` ou `--all-databases` para reparar todas as tables em Databases específicos ou em todos os Databases, respectivamente:
 
 ```sql
 mysqlcheck --repair --databases db_name ...

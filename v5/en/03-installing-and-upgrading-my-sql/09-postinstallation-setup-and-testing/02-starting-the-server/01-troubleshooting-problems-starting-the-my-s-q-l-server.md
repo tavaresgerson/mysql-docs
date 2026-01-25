@@ -1,86 +1,86 @@
-#### 2.9.2.1 Troubleshooting Problems Starting the MySQL Server
+#### 2.9.2.1 Solução de Problemas ao Iniciar o MySQL Server
 
-This section provides troubleshooting suggestions for problems starting the server. For additional suggestions for Windows systems, see Section 2.3.5, “Troubleshooting a Microsoft Windows MySQL Server Installation”.
+Esta seção fornece sugestões de solução de problemas para problemas ao iniciar o Server. Para sugestões adicionais para sistemas Windows, consulte a Seção 2.3.5, “Solução de Problemas na Instalação do MySQL Server no Microsoft Windows”.
 
-If you have problems starting the server, here are some things to try:
+Se você tiver problemas ao iniciar o Server, aqui estão algumas coisas que você pode tentar:
 
-* Check the error log to see why the server does not start. Log files are located in the data directory (typically `C:\Program Files\MySQL\MySQL Server 5.7\data` on Windows, `/usr/local/mysql/data` for a Unix/Linux binary distribution, and `/usr/local/var` for a Unix/Linux source distribution). Look in the data directory for files with names of the form `host_name.err` and `host_name.log`, where *`host_name`* is the name of your server host. Then examine the last few lines of these files. Use `tail` to display them:
+* Verifique o Error Log para descobrir por que o Server não está iniciando. Os arquivos de Log estão localizados no Data Directory (normalmente `C:\Program Files\MySQL\MySQL Server 5.7\data` no Windows, `/usr/local/mysql/data` para uma distribuição binária Unix/Linux e `/usr/local/var` para uma distribuição de código-fonte Unix/Linux). Procure no Data Directory por arquivos com nomes no formato `host_name.err` e `host_name.log`, onde *`host_name`* é o nome do host do seu Server. Em seguida, examine as últimas linhas desses arquivos. Use `tail` para exibi-los:
 
   ```sql
   $> tail host_name.err
   $> tail host_name.log
   ```
 
-* Specify any special options needed by the storage engines you are using. You can create a `my.cnf` file and specify startup options for the engines that you plan to use. If you are going to use storage engines that support transactional tables (`InnoDB`, `NDB`), be sure that you have them configured the way you want before starting the server. If you are using `InnoDB` tables, see Section 14.8, “InnoDB Configuration” for guidelines and Section 14.15, “InnoDB Startup Options and System Variables” for option syntax.
+* Especifique quaisquer opções especiais necessárias pelas Storage Engines que você está utilizando. Você pode criar um arquivo `my.cnf` e especificar opções de startup para os Engines que planeja usar. Se você for usar Storage Engines que suportam tabelas transacionais (`InnoDB`, `NDB`), certifique-se de configurá-las da maneira desejada antes de iniciar o Server. Se você estiver usando tabelas `InnoDB`, consulte a Seção 14.8, “InnoDB Configuration” para diretrizes e a Seção 14.15, “InnoDB Startup Options and System Variables” para a sintaxe das opções.
 
-  Although storage engines use default values for options that you omit, Oracle recommends that you review the available options and specify explicit values for any options whose defaults are not appropriate for your installation.
+  Embora as Storage Engines usem valores padrão para as opções que você omitir, a Oracle recomenda que você revise as opções disponíveis e especifique valores explícitos para quaisquer opções cujos defaults não sejam apropriados para sua instalação.
 
-* Make sure that the server knows where to find the data directory. The **mysqld** server uses this directory as its current directory. This is where it expects to find databases and where it expects to write log files. The server also writes the pid (process ID) file in the data directory.
+* Certifique-se de que o Server saiba onde encontrar o Data Directory. O **mysqld** Server usa este diretório como seu diretório atual. É aqui que ele espera encontrar Databases e onde espera escrever arquivos de Log. O Server também escreve o arquivo PID (Process ID) no Data Directory.
 
-  The default data directory location is hardcoded when the server is compiled. To determine what the default path settings are, invoke **mysqld** with the `--verbose` and `--help` options. If the data directory is located somewhere else on your system, specify that location with the `--datadir` option to **mysqld** or **mysqld_safe**, on the command line or in an option file. Otherwise, the server does not work properly. As an alternative to the `--datadir` option, you can specify **mysqld** the location of the base directory under which MySQL is installed with the `--basedir`, and **mysqld** looks for the `data` directory there.
+  A localização padrão do Data Directory é hardcoded quando o Server é compilado. Para determinar quais são as configurações de path padrão, invoque o **mysqld** com as opções `--verbose` e `--help`. Se o Data Directory estiver localizado em outro lugar no seu sistema, especifique esse local com a opção `--datadir` para **mysqld** ou **mysqld_safe**, na Command Line ou em um arquivo de opção. Caso contrário, o Server não funcionará corretamente. Como alternativa à opção `--datadir`, você pode especificar para o **mysqld** o local do diretório base sob o qual o MySQL está instalado com `--basedir`, e o **mysqld** procurará o diretório `data` ali.
 
-  To check the effect of specifying path options, invoke **mysqld** with those options followed by the `--verbose` and `--help` options. For example, if you change location to the directory where **mysqld** is installed and then run the following command, it shows the effect of starting the server with a base directory of `/usr/local`:
+  Para verificar o efeito da especificação das opções de path, invoque o **mysqld** com essas opções seguidas pelas opções `--verbose` e `--help`. Por exemplo, se você mudar a localização para o diretório onde o **mysqld** está instalado e depois executar o seguinte comando, ele mostrará o efeito de iniciar o Server com um diretório base de `/usr/local:`
 
   ```sql
   $> ./mysqld --basedir=/usr/local --verbose --help
   ```
 
-  You can specify other options such as `--datadir` as well, but `--verbose` and `--help` must be the last options.
+  Você pode especificar outras opções como `--datadir` também, mas `--verbose` e `--help` devem ser as últimas opções.
 
-  Once you determine the path settings you want, start the server without `--verbose` and `--help`.
+  Assim que você determinar as configurações de path desejadas, inicie o Server sem `--verbose` e `--help`.
 
-  If **mysqld** is currently running, you can find out what path settings it is using by executing this command:
+  Se o **mysqld** estiver em execução, você pode descobrir quais configurações de path ele está usando, executando este comando:
 
   ```sql
   $> mysqladmin variables
   ```
 
-  Or:
+  Ou:
 
   ```sql
   $> mysqladmin -h host_name variables
   ```
 
-  *`host_name`* is the name of the MySQL server host.
+  *`host_name`* é o nome do host do MySQL Server.
 
-* Make sure that the server can access the data directory. The ownership and permissions of the data directory and its contents must allow the server to read and modify them.
+* Certifique-se de que o Server possa acessar o Data Directory. A propriedade (`ownership`) e as permissões do Data Directory e seu conteúdo devem permitir que o Server os leia e modifique.
 
-  If you get `Errcode 13` (which means `Permission denied`) when starting **mysqld**, this means that the privileges of the data directory or its contents do not permit server access. In this case, you change the permissions for the involved files and directories so that the server has the right to use them. You can also start the server as `root`, but this raises security issues and should be avoided.
+  Se você receber `Errcode 13` (que significa `Permission denied` ou "Permissão negada") ao iniciar o **mysqld**, isso significa que os privilégios do Data Directory ou de seu conteúdo não permitem o acesso do Server. Neste caso, você deve alterar as permissões para os arquivos e diretórios envolvidos para que o Server tenha o direito de usá-los. Você também pode iniciar o Server como `root`, mas isso levanta problemas de segurança e deve ser evitado.
 
-  Change location to the data directory and check the ownership of the data directory and its contents to make sure the server has access. For example, if the data directory is `/usr/local/mysql/var`, use this command:
+  Mude a localização para o Data Directory e verifique a `ownership` do Data Directory e seu conteúdo para garantir que o Server tenha acesso. Por exemplo, se o Data Directory for `/usr/local/mysql/var`, use este comando:
 
   ```sql
   $> ls -la /usr/local/mysql/var
   ```
 
-  If the data directory or its files or subdirectories are not owned by the login account that you use for running the server, change their ownership to that account. If the account is named `mysql`, use these commands:
+  Se o Data Directory, seus arquivos ou subdiretórios não pertencerem à conta de login que você usa para executar o Server, altere a propriedade (`ownership`) deles para essa conta. Se a conta for chamada `mysql`, use estes comandos:
 
   ```sql
   $> chown -R mysql /usr/local/mysql/var
   $> chgrp -R mysql /usr/local/mysql/var
   ```
 
-  Even with correct ownership, MySQL might fail to start up if there is other security software running on your system that manages application access to various parts of the file system. In this case, reconfigure that software to enable **mysqld** to access the directories it uses during normal operation.
+  Mesmo com a `ownership` correta, o MySQL pode falhar ao iniciar se houver outro software de segurança em execução no seu sistema que gerencie o acesso de aplicativos a várias partes do sistema de arquivos. Neste caso, reconfigure esse software para permitir que o **mysqld** acesse os diretórios que ele usa durante a operação normal.
 
-* Verify that the network interfaces the server wants to use are available.
+* Verifique se as interfaces de rede que o Server deseja usar estão disponíveis.
 
-  If either of the following errors occur, it means that some other program (perhaps another **mysqld** server) is using the TCP/IP port or Unix socket file that **mysqld** is trying to use:
+  Se ocorrer qualquer um dos erros a seguir, isso significa que algum outro programa (talvez outro **mysqld** Server) está usando a porta TCP/IP ou o arquivo Unix socket que o **mysqld** está tentando utilizar:
 
   ```sql
   Can't start server: Bind on TCP/IP port: Address already in use
   Can't start server: Bind on unix socket...
   ```
 
-  Use **ps** to determine whether you have another **mysqld** server running. If so, shut down the server before starting **mysqld** again. (If another server is running, and you really want to run multiple servers, you can find information about how to do so in Section 5.7, “Running Multiple MySQL Instances on One Machine”.)
+  Use **ps** para determinar se há outro **mysqld** Server em execução. Se houver, desligue o Server antes de iniciar o **mysqld** novamente. (Se outro Server estiver em execução, e você realmente deseja executar múltiplos Servers, você pode encontrar informações sobre como fazer isso na Seção 5.7, “Running Multiple MySQL Instances on One Machine”).
 
-  If no other server is running, execute the command `telnet your_host_name tcp_ip_port_number`. (The default MySQL port number is 3306.) Then press Enter a couple of times. If you do not get an error message like `telnet: Unable to connect to remote host: Connection refused`, some other program is using the TCP/IP port that **mysqld** is trying to use. Track down what program this is and disable it, or tell **mysqld** to listen to a different port with the `--port` option. In this case, specify the same non-default port number for client programs when connecting to the server using TCP/IP.
+  Se nenhum outro Server estiver em execução, execute o comando `telnet your_host_name tcp_ip_port_number`. (O número de porta padrão do MySQL é 3306.) Em seguida, pressione Enter algumas vezes. Se você não receber uma mensagem de erro como `telnet: Unable to connect to remote host: Connection refused`, algum outro programa está usando a porta TCP/IP que o **mysqld** está tentando usar. Descubra que programa é esse e desabilite-o, ou diga ao **mysqld** para escutar uma porta diferente com a opção `--port`. Neste caso, especifique o mesmo número de porta não padrão para os programas `client` ao se conectar ao Server usando TCP/IP.
 
-  Another reason the port might be inaccessible is that you have a firewall running that blocks connections to it. If so, modify the firewall settings to permit access to the port.
+  Outra razão pela qual a porta pode estar inacessível é se você tiver um Firewall em execução que bloqueia conexões com ela. Se for o caso, modifique as configurações do Firewall para permitir o acesso à porta.
 
-  If the server starts but you cannot connect to it, make sure that you have an entry in `/etc/hosts` that looks like this:
+  Se o Server iniciar, mas você não conseguir se conectar a ele, certifique-se de ter uma entrada em `/etc/hosts` que se pareça com isto:
 
   ```sql
   127.0.0.1       localhost
   ```
 
-* If you cannot get **mysqld** to start, try to make a trace file to find the problem by using the `--debug` option. See Section 5.8.3, “The DBUG Package”.
+* Se você não conseguir iniciar o **mysqld**, tente criar um trace file para encontrar o problema usando a opção `--debug`. Consulte a Seção 5.8.3, “The DBUG Package”.

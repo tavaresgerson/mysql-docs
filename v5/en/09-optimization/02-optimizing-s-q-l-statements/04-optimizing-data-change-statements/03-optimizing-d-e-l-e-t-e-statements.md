@@ -1,5 +1,5 @@
-#### 8.2.4.3 Optimizing DELETE Statements
+#### 8.2.4.3 Otimizando Instruções DELETE
 
-The time required to delete individual rows in a `MyISAM` table is exactly proportional to the number of indexes. To delete rows more quickly, you can increase the size of the key cache by increasing the `key_buffer_size` system variable. See Section 5.1.1, “Configuring the Server”.
+O tempo necessário para excluir linhas individuais em uma tabela `MyISAM` é exatamente proporcional ao número de `Indexes`. Para excluir linhas mais rapidamente, você pode aumentar o tamanho do `key cache` elevando a `system variable` `key_buffer_size`. Consulte a Seção 5.1.1, “Configurando o Servidor”.
 
-To delete all rows from a `MyISAM` table, `TRUNCATE TABLE tbl_name` is faster than `DELETE FROM tbl_name`. Truncate operations are not transaction-safe; an error occurs when attempting one in the course of an active transaction or active table lock. See Section 13.1.34, “TRUNCATE TABLE Statement”.
+Para excluir todas as linhas de uma tabela `MyISAM`, `TRUNCATE TABLE tbl_name` é mais rápido do que `DELETE FROM tbl_name`. As operações de Truncate não são `transaction-safe`; um erro ocorre ao tentar realizar uma durante o curso de uma `transaction` ativa ou um `table lock` ativo. Consulte a Seção 13.1.34, “Instrução TRUNCATE TABLE”.

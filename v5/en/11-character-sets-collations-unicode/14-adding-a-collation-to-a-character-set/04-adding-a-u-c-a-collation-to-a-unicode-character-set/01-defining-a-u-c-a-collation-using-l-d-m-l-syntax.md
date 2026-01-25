@@ -1,8 +1,8 @@
-#### 10.14.4.1 Defining a UCA Collation Using LDML Syntax
+#### 10.14.4.1 Definindo um Collation UCA Usando Sintaxe LDML
 
-To add a UCA collation for a Unicode character set without recompiling MySQL, use the following procedure. If you are unfamiliar with the LDML rules used to describe the collation's sort characteristics, see Section 10.14.4.2, “LDML Syntax Supported in MySQL”.
+Para adicionar um collation UCA para um character set Unicode sem recompilar o MySQL, use o procedimento a seguir. Se você não estiver familiarizado com as regras LDML usadas para descrever as características de ordenação (sort) do collation, consulte a Seção 10.14.4.2, “Sintaxe LDML Suportada no MySQL”.
 
-The example adds a collation named `utf8_phone_ci` to the `utf8` character set. The collation is designed for a scenario involving a Web application for which users post their names and phone numbers. Phone numbers can be given in very different formats:
+O exemplo adiciona um collation chamado `utf8_phone_ci` ao character set `utf8`. O collation é projetado para um cenário envolvendo uma aplicação Web na qual usuários postam seus nomes e números de telefone. Os números de telefone podem ser fornecidos em formatos muito diferentes:
 
 ```sql
 +7-12345-67
@@ -12,11 +12,11 @@ The example adds a collation named `utf8_phone_ci` to the `utf8` character set. 
 +71234567
 ```
 
-The problem raised by dealing with these kinds of values is that the varying permissible formats make searching for a specific phone number very difficult. The solution is to define a new collation that reorders punctuation characters, making them ignorable.
+O problema levantado ao lidar com esses tipos de valores é que os variados formatos permitidos tornam a busca por um número de telefone específico muito difícil. A solução é definir um novo collation que reordena caracteres de pontuação, tornando-os ignoráveis.
 
-1. Choose a collation ID, as shown in Section 10.14.2, “Choosing a Collation ID”. The following steps use an ID of 1029.
+1. Escolha um Collation ID, conforme mostrado na Seção 10.14.2, “Escolhendo um Collation ID”. As etapas a seguir usam o ID 1029.
 
-2. To modify the `Index.xml` configuration file. This file is located in the directory named by the `character_sets_dir` system variable. You can check the variable value as follows, although the path name might be different on your system:
+2. Para modificar o arquivo de configuração `Index.xml`. Este arquivo está localizado no diretório nomeado pela variável de sistema `character_sets_dir`. Você pode verificar o valor da variável da seguinte forma, embora o nome do caminho possa ser diferente no seu sistema:
 
    ```sql
    mysql> SHOW VARIABLES LIKE 'character_sets_dir';
@@ -27,7 +27,7 @@ The problem raised by dealing with these kinds of values is that the varying per
    +--------------------+-----------------------------------------+
    ```
 
-3. Choose a name for the collation and list it in the `Index.xml` file. In addition, you'll need to provide the collation ordering rules. Find the `<charset>` element for the character set to which the collation is being added, and add a `<collation>` element that indicates the collation name and ID, to associate the name with the ID. Within the `<collation>` element, provide a `<rules>` element containing the ordering rules:
+3. Escolha um nome para o collation e liste-o no arquivo `Index.xml`. Além disso, você precisará fornecer as regras de ordenação do collation. Encontre o elemento `<charset>` para o character set ao qual o collation está sendo adicionado e adicione um elemento `<collation>` que indica o nome e o ID do collation, para associar o nome ao ID. Dentro do elemento `<collation>`, forneça um elemento `<rules>` contendo as regras de ordenação:
 
    ```sql
    <charset name="utf8">
@@ -46,9 +46,9 @@ The problem raised by dealing with these kinds of values is that the varying per
    </charset>
    ```
 
-4. If you want a similar collation for other Unicode character sets, add other `<collation>` elements. For example, to define `ucs2_phone_ci`, add a `<collation>` element to the `<charset name="ucs2">` element. Remember that each collation must have its own unique ID.
+4. Se você quiser um collation semelhante para outros character sets Unicode, adicione outros elementos `<collation>`. Por exemplo, para definir `ucs2_phone_ci`, adicione um elemento `<collation>` ao elemento `<charset name="ucs2">`. Lembre-se de que cada collation deve ter seu próprio ID exclusivo.
 
-5. Restart the server and use this statement to verify that the collation is present:
+5. Reinicie o server e use esta instrução para verificar se o collation está presente:
 
    ```sql
    mysql> SHOW COLLATION WHERE Collation = 'utf8_phone_ci';
@@ -59,9 +59,9 @@ The problem raised by dealing with these kinds of values is that the varying per
    +---------------+---------+------+---------+----------+---------+
    ```
 
-Now test the collation to make sure that it has the desired properties.
+Agora teste o collation para garantir que ele tenha as propriedades desejadas.
 
-Create a table containing some sample phone numbers using the new collation:
+Crie uma table contendo alguns números de telefone de exemplo usando o novo collation:
 
 ```sql
 mysql> CREATE TABLE phonebook (
@@ -86,7 +86,7 @@ mysql> INSERT INTO phonebook VALUES ('Sanja','+380 (912) 8008005');
 Query OK, 1 row affected (0.00 sec)
 ```
 
-Run some queries to see whether the ignored punctuation characters are in fact ignored for comparison and sorting:
+Execute algumas Queries para verificar se os caracteres de pontuação ignorados são de fato ignorados para comparação e ordenação (sorting):
 
 ```sql
 mysql> SELECT * FROM phonebook ORDER BY phone;

@@ -1,30 +1,30 @@
-#### 4.5.1.3 mysql Client Logging
+#### 4.5.1.3 Logging do Client mysql
 
-The **mysql** client can do these types of logging for statements executed interactively:
+O **mysql** client pode realizar estes tipos de *logging* para *statements* executados interativamente:
 
-* On Unix, **mysql** writes the statements to a history file. By default, this file is named `.mysql_history` in your home directory. To specify a different file, set the value of the `MYSQL_HISTFILE` environment variable.
+* No Unix, o **mysql** grava os *statements* em um *history file*. Por padrão, este arquivo é nomeado `.mysql_history` no seu diretório *home*. Para especificar um arquivo diferente, defina o valor da *environment variable* `MYSQL_HISTFILE`.
 
-* On all platforms, if the `--syslog` option is given, **mysql** writes the statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
+* Em todas as plataformas, se a opção `--syslog` for fornecida, o **mysql** grava os *statements* no recurso de *system logging*. No Unix, este é o `syslog`; no Windows, é o Windows Event Log. O destino onde as mensagens registradas aparecem depende do sistema. No Linux, o destino é geralmente o arquivo `/var/log/messages`.
 
-The following discussion describes characteristics that apply to all logging types and provides information specific to each logging type.
+A discussão a seguir descreve as características que se aplicam a todos os tipos de *logging* e fornece informações específicas para cada tipo de *logging*.
 
-* How Logging Occurs
-* Controlling the History File
-* syslog Logging Characteristics
+* Como o Logging Ocorre
+* Controlando o History File
+* Características do Logging com syslog
 
-##### How Logging Occurs
+##### Como o Logging Ocorre
 
-For each enabled logging destination, statement logging occurs as follows:
+Para cada destino de *logging* habilitado, o *statement logging* ocorre da seguinte forma:
 
-* Statements are logged only when executed interactively. Statements are noninteractive, for example, when read from a file or a pipe. It is also possible to suppress statement logging by using the `--batch` or `--execute` option.
+* Os *statements* são registrados (logged) apenas quando executados interativamente. Os *statements* são não interativos, por exemplo, quando lidos de um arquivo ou de um *pipe*. Também é possível suprimir o *statement logging* usando as opções `--batch` ou `--execute`.
 
-* Statements are ignored and not logged if they match any pattern in the “ignore” list. This list is described later.
+* Os *statements* são ignorados e não registrados se corresponderem a qualquer *pattern* na lista de “ignorar” (*ignore* list). Esta lista é descrita posteriormente.
 
-* **mysql** logs each nonignored, nonempty statement line individually.
+* O **mysql** registra cada linha de *statement* individualmente, desde que não esteja vazia e não seja ignorada.
 
-* If a nonignored statement spans multiple lines (not including the terminating delimiter), **mysql** concatenates the lines to form the complete statement, maps newlines to spaces, and logs the result, plus a delimiter.
+* Se um *statement* não ignorado abranger múltiplas linhas (sem incluir o *delimiter* de terminação), o **mysql** concatena as linhas para formar o *statement* completo, mapeia as quebras de linha (*newlines*) para espaços e registra o resultado, mais um *delimiter*.
 
-Consequently, an input statement that spans multiple lines can be logged twice. Consider this input:
+Consequentemente, um *statement* de entrada que abrange múltiplas linhas pode ser registrado duas vezes. Considere esta entrada:
 
 ```sql
 mysql> SELECT
@@ -34,7 +34,7 @@ mysql> SELECT
     -> ;
 ```
 
-In this case, **mysql** logs the “SELECT”, “'Today is'”, “,”, “CURDATE()”, and “;” lines as it reads them. It also logs the complete statement, after mapping `SELECT\n'Today is'\n,\nCURDATE()` to `SELECT 'Today is' , CURDATE()`, plus a delimiter. Thus, these lines appear in logged output:
+Neste caso, o **mysql** registra as linhas “SELECT”, “'Today is'”, “,”, “CURDATE()” e “;” conforme as lê. Ele também registra o *statement* completo, após mapear `SELECT\n'Today is'\n,\nCURDATE()` para `SELECT 'Today is' , CURDATE()`, mais um *delimiter*. Assim, estas linhas aparecem na saída de *logging*:
 
 ```sql
 SELECT
@@ -45,68 +45,68 @@ CURDATE()
 SELECT 'Today is' , CURDATE();
 ```
 
-**mysql** ignores for logging purposes statements that match any pattern in the “ignore” list. By default, the pattern list is `"*IDENTIFIED*:*PASSWORD*"`, to ignore statements that refer to passwords. Pattern matching is not case-sensitive. Within patterns, two characters are special:
+Para fins de *logging*, o **mysql** ignora *statements* que correspondam a qualquer *pattern* na lista de “ignorar” (*ignore* list). Por padrão, a lista de *patterns* é `"*IDENTIFIED*:*PASSWORD*"`, para ignorar *statements* que se refiram a senhas. A correspondência de *patterns* (*Pattern matching*) não diferencia maiúsculas de minúsculas (*case-sensitive*). Dentro dos *patterns*, dois caracteres são especiais:
 
-* `?` matches any single character.
-* `*` matches any sequence of zero or more characters.
+* `?` corresponde a qualquer caractere único.
+* `*` corresponde a qualquer sequência de zero ou mais caracteres.
 
-To specify additional patterns, use the `--histignore` option or set the `MYSQL_HISTIGNORE` environment variable. (If both are specified, the option value takes precedence.) The value should be a list of one or more colon-separated patterns, which are appended to the default pattern list.
+Para especificar *patterns* adicionais, use a opção `--histignore` ou defina a *environment variable* `MYSQL_HISTIGNORE`. (Se ambos forem especificados, o valor da opção tem precedência.) O valor deve ser uma lista de um ou mais *patterns* separados por dois-pontos, que são anexados à lista de *patterns* padrão.
 
-Patterns specified on the command line might need to be quoted or escaped to prevent your command interpreter from treating them specially. For example, to suppress logging for `UPDATE` and `DELETE` statements in addition to statements that refer to passwords, invoke **mysql** like this:
+Pode ser necessário colocar os *patterns* especificados na linha de comando entre aspas (*quoted*) ou usar caracteres de escape (*escaped*) para evitar que seu interpretador de comandos os trate de forma especial. Por exemplo, para suprimir o *logging* de *statements* `UPDATE` e `DELETE`, além dos *statements* que se referem a senhas, invoque o **mysql** desta forma:
 
 ```sql
 mysql --histignore="*UPDATE*:*DELETE*"
 ```
 
-##### Controlling the History File
+##### Controlando o History File
 
-The `.mysql_history` file should be protected with a restrictive access mode because sensitive information might be written to it, such as the text of SQL statements that contain passwords. See Section 6.1.2.1, “End-User Guidelines for Password Security”. Statements in the file are accessible from the **mysql** client when the **up-arrow** key is used to recall the history. See Disabling Interactive History.
+O arquivo `.mysql_history` deve ser protegido com um modo de acesso restritivo, pois informações confidenciais podem ser gravadas nele, como o texto de *SQL statements* que contêm senhas. Consulte a Seção 6.1.2.1, “End-User Guidelines for Password Security” (Diretrizes para o Usuário Final sobre Segurança de Senha). Os *statements* no arquivo são acessíveis a partir do **mysql** client quando a tecla **seta para cima** é usada para recuperar o histórico. Consulte Disabling Interactive History (Desabilitando o Histórico Interativo).
 
-If you do not want to maintain a history file, first remove `.mysql_history` if it exists. Then use either of the following techniques to prevent it from being created again:
+Se você não deseja manter um *history file*, primeiro remova `.mysql_history` se ele existir. Em seguida, use qualquer uma das técnicas a seguir para evitar que ele seja criado novamente:
 
-* Set the `MYSQL_HISTFILE` environment variable to `/dev/null`. To cause this setting to take effect each time you log in, put it in one of your shell's startup files.
+* Defina a *environment variable* `MYSQL_HISTFILE` como `/dev/null`. Para que essa configuração tenha efeito sempre que você fizer login, coloque-a em um dos arquivos de inicialização do seu *shell*.
 
-* Create `.mysql_history` as a symbolic link to `/dev/null`; this need be done only once:
+* Crie `.mysql_history` como um *symbolic link* para `/dev/null`; isso só precisa ser feito uma vez:
 
   ```sql
   ln -s /dev/null $HOME/.mysql_history
   ```
 
-##### syslog Logging Characteristics
+##### Características do Logging com syslog
 
-If the `--syslog` option is given, **mysql** writes interactive statements to the system logging facility. Message logging has the following characteristics.
+Se a opção `--syslog` for fornecida, o **mysql** grava *statements* interativos no recurso de *system logging*. O *logging* de mensagens possui as seguintes características.
 
-Logging occurs at the “information” level. This corresponds to the `LOG_INFO` priority for `syslog` on Unix/Linux `syslog` capability and to `EVENTLOG_INFORMATION_TYPE` for the Windows Event Log. Consult your system documentation for configuration of your logging capability.
+O *logging* ocorre no nível de “informação” (*information*). Isso corresponde à prioridade `LOG_INFO` para o recurso `syslog` no Unix/Linux e a `EVENTLOG_INFORMATION_TYPE` para o Windows Event Log. Consulte a documentação do seu sistema para a configuração do seu recurso de *logging*.
 
-Message size is limited to 1024 bytes.
+O tamanho da mensagem é limitado a 1024 *bytes*.
 
-Messages consist of the identifier `MysqlClient` followed by these values:
+As mensagens consistem no identificador `MysqlClient` seguido por estes valores:
 
 * `SYSTEM_USER`
 
-  The operating system user name (login name) or `--` if the user is unknown.
+  O nome de usuário do sistema operacional (*operating system user name* ou *login name*) ou `--` se o usuário for desconhecido.
 
 * `MYSQL_USER`
 
-  The MySQL user name (specified with the `--user` option) or `--` if the user is unknown.
+  O nome de usuário do MySQL (especificado com a opção `--user`) ou `--` se o usuário for desconhecido.
 
 * `CONNECTION_ID`:
 
-  The client connection identifier. This is the same as the `CONNECTION_ID()` function value within the session.
+  O identificador da conexão do *client*. Este é o mesmo valor da função `CONNECTION_ID()` dentro da sessão.
 
 * `DB_SERVER`
 
-  The server host or `--` if the host is unknown.
+  O *host* do *server* ou `--` se o *host* for desconhecido.
 
 * `DB`
 
-  The default database or `--` if no database has been selected.
+  O *database* padrão ou `--` se nenhum *database* tiver sido selecionado.
 
 * `QUERY`
 
-  The text of the logged statement.
+  O texto do *statement* registrado (*logged*).
 
-Here is a sample of output generated on Linux by using `--syslog`. This output is formatted for readability; each logged message actually takes a single line.
+Aqui está um exemplo de saída gerada no Linux usando `--syslog`. Esta saída é formatada para legibilidade; cada mensagem registrada ocupa, na verdade, uma única linha.
 
 ```sql
 Mar  7 12:39:25 myhost MysqlClient[20824]:

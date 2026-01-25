@@ -1,3 +1,3 @@
-### 8.15.11 Trace General Structure
+### 8.15.11 Estrutura Geral do Trace
 
-A trace follows the actual execution path very closely; for each join, there is a join preparation object, a join optimization object, and a join execution object. Query transformations (`IN` to `EXISTS`, outer join to inner join, and so on), simplifications (elimination of clauses), and equality propagation are shown in subobjects. Calls to the range optimizer, cost evaluations, reasons why an access path is chosen over another one, or why a sorting method is chosen over another one, are shown as well.
+Um trace segue o caminho de execução real muito de perto; para cada JOIN, há um objeto de preparação do JOIN, um objeto de otimização do JOIN e um objeto de execução do JOIN. Transformações de Query (`IN` para `EXISTS`, outer join para inner join, e assim por diante), simplificações (eliminação de cláusulas) e propagação de igualdade são mostradas em subobjetos. Chamadas ao otimizador de range, avaliações de custo, razões pelas quais um caminho de acesso é escolhido em detrimento de outro, ou por que um método de ordenação é escolhido em detrimento de outro, também são mostradas.

@@ -1,64 +1,63 @@
-### 6.2.5 Access Control, Stage 1: Connection Verification
+### 6.2.5 Controle de Acesso, Estágio 1: Verificação de Conexão
 
-When you attempt to connect to a MySQL server, the server accepts or rejects the connection based on these conditions:
+Quando você tenta se conectar a um MySQL Server, o Server aceita ou rejeita a conexão com base nestas condições:
 
-* Your identity and whether you can verify it by supplying the proper credentials.
+* Sua identidade e se você pode verificá-la fornecendo as credentials (credenciais) apropriadas.
+* Se sua conta está bloqueada (locked) ou desbloqueada (unlocked).
 
-* Whether your account is locked or unlocked.
+O Server verifica as credentials primeiro e, em seguida, o estado de locking da conta. Uma falha em qualquer etapa faz com que o Server negue completamente o acesso. Caso contrário, o Server aceita a conexão e, em seguida, entra no Estágio 2 e aguarda por requests (solicitações).
 
-The server checks credentials first, then account locking state. A failure at either step causes the server to deny access to you completely. Otherwise, the server accepts the connection, and then enters Stage 2 and waits for requests.
+O Server realiza a verificação de identidade e credentials usando colunas na Table `user`, aceitando a conexão apenas se estas condições forem satisfeitas:
 
-The server performs identity and credentials checking using columns in the `user` table, accepting the connection only if these conditions are satisfied:
+* O nome do Host e o nome do User do Client correspondem às colunas `Host` e `User` em alguma linha da Table `user`. Para as regras que regem os valores permissíveis de `Host` e `User`, consulte [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names").
 
-* The client host name and user name match the `Host` and `User` columns in some `user` table row. For the rules governing permissible `Host` and `User` values, see [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names").
+* O Client fornece as credentials especificadas na linha (por exemplo, uma password), conforme indicado pela coluna `authentication_string`. As credentials são interpretadas usando o authentication plugin nomeado na coluna `plugin`.
 
-* The client supplies the credentials specified in the row (for example, a password), as indicated by the `authentication_string` column. Credentials are interpreted using the authentication plugin named in the `plugin` column.
+* A linha indica que a conta está unlocked. O estado de locking é registrado na coluna `account_locked`, que deve ter o valor de `'N'`. O account locking pode ser definido ou alterado com as instruções [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") ou [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement").
 
-* The row indicates that the account is unlocked. Locking state is recorded in the `account_locked` column, which must have a value of `'N'`. Account locking can be set or changed with the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") or [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement.
+Sua identidade é baseada em duas informações:
 
-Your identity is based on two pieces of information:
+* Seu nome de MySQL User.
+* O Host do Client a partir do qual você se conecta.
 
-* Your MySQL user name.
-* The client host from which you connect.
+Se o valor da coluna `User` não estiver em branco, o nome do User em uma conexão de entrada deve corresponder exatamente. Se o valor de `User` estiver em branco, ele corresponderá a qualquer nome de User. Se a linha da Table `user` que corresponde a uma conexão de entrada tiver um nome de User em branco, o User será considerado um anonymous user (usuário anônimo), sem nome, e não um User com o nome que o Client realmente especificou. Isso significa que um nome de User em branco é usado para todas as verificações de acesso futuras durante a conexão (ou seja, durante o Estágio 2).
 
-If the `User` column value is nonblank, the user name in an incoming connection must match exactly. If the `User` value is blank, it matches any user name. If the `user` table row that matches an incoming connection has a blank user name, the user is considered to be an anonymous user with no name, not a user with the name that the client actually specified. This means that a blank user name is used for all further access checking for the duration of the connection (that is, during Stage 2).
+A coluna `authentication_string` pode estar em branco. Isso não é um wildcard e não significa que qualquer password corresponde. Significa que o User deve se conectar sem especificar uma password. O método de authentication implementado pelo Plugin que autentica o Client pode ou não usar a password na coluna `authentication_string`. Nesse caso, é possível que uma password externa também seja usada para autenticar no MySQL Server.
 
-The `authentication_string` column can be blank. This is not a wildcard and does not mean that any password matches. It means that the user must connect without specifying a password. The authentication method implemented by the plugin that authenticates the client may or may not use the password in the `authentication_string` column. In this case, it is possible that an external password is also used to authenticate to the MySQL server.
+Valores de password não em branco armazenados na coluna `authentication_string` da Table `user` são encrypted (criptografados). O MySQL não armazena passwords como cleartext para que qualquer pessoa possa vê-las. Em vez disso, a password fornecida por um User que está tentando se conectar é encrypted (usando o método de password hashing implementado pelo account authentication plugin). A password encrypted é então usada durante o processo de conexão ao verificar se a password está correta. Isso é feito sem que a password encrypted nunca trafegue pela conexão. Consulte [Section 6.2.1, “Account User Names and Passwords”](user-names.html "6.2.1 Account User Names and Passwords").
 
-Nonblank password values stored in the `authentication_string` column of the `user` table are encrypted. MySQL does not store passwords as cleartext for anyone to see. Rather, the password supplied by a user who is attempting to connect is encrypted (using the password hashing method implemented by the account authentication plugin). The encrypted password then is used during the connection process when checking whether the password is correct. This is done without the encrypted password ever traveling over the connection. See [Section 6.2.1, “Account User Names and Passwords”](user-names.html "6.2.1 Account User Names and Passwords").
+Do ponto de vista do MySQL Server, a password encrypted é a password *real*, então você nunca deve dar acesso a ela a ninguém. Em particular, *não dê a Users não administrativos acesso de leitura a Tables no system Database `mysql`*.
 
-From the MySQL server's point of view, the encrypted password is the *real* password, so you should never give anyone access to it. In particular, *do not give nonadministrative users read access to tables in the `mysql` system database*.
+A tabela a seguir mostra como várias combinações de valores de `User` e `Host` na Table `user` se aplicam a conexões de entrada.
 
-The following table shows how various combinations of `User` and `Host` values in the `user` table apply to incoming connections.
+<table summary="Como várias combinações de valores de User e Host na Table user se aplicam a conexões de entrada para um MySQL Server."><col style="width: 15%"/><col style="width: 35%"/><col style="width: 50%"/><thead><tr> <th><code>Valor de User</code></th> <th><code>Valor de Host</code></th> <th>Conexões Permitidas</th> </tr></thead><tbody><tr> <th><code>'fred'</code></th> <td><code>'h1.example.net'</code></td> <td><code>fred</code>, conectando-se de <code>h1.example.net</code></td> </tr><tr> <th><code>''</code></th> <td><code>'h1.example.net'</code></td> <td>Qualquer User, conectando-se de <code>h1.example.net</code></td> </tr><tr> <th><code>'fred'</code></th> <td><code>'%'</code></td> <td><code>fred</code>, conectando-se de qualquer Host</td> </tr><tr> <th><code>''</code></th> <td><code>'%'</code></td> <td>Qualquer User, conectando-se de qualquer Host</td> </tr><tr> <th><code>'fred'</code></th> <td><code>'%.example.net'</code></td> <td><code>fred</code>, conectando-se de qualquer Host no domain <code>example.net</code></td> </tr><tr> <th><code>'fred'</code></th> <td><code>'x.example.%'</code></td> <td><code>fred</code>, conectando-se de <code>x.example.net</code>, <code>x.example.com</code>, <code>x.example.edu</code>, e assim por diante; isso provavelmente não é útil</td> </tr><tr> <th><code>'fred'</code></th> <td><code>'198.51.100.177'</code></td> <td><code>fred</code>, conectando-se do Host com IP address <code>198.51.100.177</code></td> </tr><tr> <th><code>'fred'</code></th> <td><code>'198.51.100.%'</code></td> <td><code>fred</code>, conectando-se de qualquer Host no Subnet de classe C <code>198.51.100</code></td> </tr><tr> <th><code>'fred'</code></th> <td><code>'198.51.100.0/255.255.255.0'</code></td> <td>O mesmo que o exemplo anterior</td> </tr> </tbody></table>
 
-<table summary="How various combinations of User and Host values in the user table apply to incoming connections to a MySQL server."><col style="width: 15%"/><col style="width: 35%"/><col style="width: 50%"/><thead><tr> <th><code>User</code> Value</th> <th><code>Host</code> Value</th> <th>Permissible Connections</th> </tr></thead><tbody><tr> <th><code>'fred'</code></th> <td><code>'h1.example.net'</code></td> <td><code>fred</code>, connecting from <code>h1.example.net</code></td> </tr><tr> <th><code>''</code></th> <td><code>'h1.example.net'</code></td> <td>Any user, connecting from <code>h1.example.net</code></td> </tr><tr> <th><code>'fred'</code></th> <td><code>'%'</code></td> <td><code>fred</code>, connecting from any host</td> </tr><tr> <th><code>''</code></th> <td><code>'%'</code></td> <td>Any user, connecting from any host</td> </tr><tr> <th><code>'fred'</code></th> <td><code>'%.example.net'</code></td> <td><code>fred</code>, connecting from any host in the <code>example.net</code> domain</td> </tr><tr> <th><code>'fred'</code></th> <td><code>'x.example.%'</code></td> <td><code>fred</code>, connecting from <code>x.example.net</code>, <code>x.example.com</code>, <code>x.example.edu</code>, and so on; this is probably not useful</td> </tr><tr> <th><code>'fred'</code></th> <td><code>'198.51.100.177'</code></td> <td><code>fred</code>, connecting from the host with IP address <code>198.51.100.177</code></td> </tr><tr> <th><code>'fred'</code></th> <td><code>'198.51.100.%'</code></td> <td><code>fred</code>, connecting from any host in the <code>198.51.100</code> class C subnet</td> </tr><tr> <th><code>'fred'</code></th> <td><code>'198.51.100.0/255.255.255.0'</code></td> <td>Same as previous example</td> </tr></tbody></table>
+É possível que o nome do Host e o nome do User do Client de uma conexão de entrada correspondam a mais de uma linha na Table `user`. O conjunto de exemplos anterior demonstra isso: Várias das entradas mostradas correspondem a uma conexão de `h1.example.net` por `fred`.
 
-It is possible for the client host name and user name of an incoming connection to match more than one row in the `user` table. The preceding set of examples demonstrates this: Several of the entries shown match a connection from `h1.example.net` by `fred`.
+Quando são possíveis múltiplas correspondências, o Server deve determinar qual delas usar. Ele resolve essa questão da seguinte forma:
 
-When multiple matches are possible, the server must determine which of them to use. It resolves this issue as follows:
+* Sempre que o Server lê a Table `user` para a memória, ele ordena as linhas.
 
-* Whenever the server reads the `user` table into memory, it sorts the rows.
+* Quando um Client tenta se conectar, o Server examina as linhas na ordem classificada.
 
-* When a client attempts to connect, the server looks through the rows in sorted order.
+* O Server usa a primeira linha que corresponde ao nome do Host e ao nome do User do Client.
 
-* The server uses the first row that matches the client host name and user name.
+O Server usa regras de ordenação que classificam as linhas com os valores de `Host` mais específicos primeiro:
 
-The server uses sorting rules that order rows with the most-specific `Host` values first:
+* IP Addresses literais e nomes de Host são os mais específicos.
+* A especificidade de um IP Address literal não é afetada pelo fato de ter ou não um Netmask, portanto `198.51.100.13` e `198.51.100.0/255.255.255.0` são considerados igualmente específicos.
 
-* Literal IP addresses and host names are the most specific.
-* The specificity of a literal IP address is not affected by whether it has a netmask, so `198.51.100.13` and `198.51.100.0/255.255.255.0` are considered equally specific.
+* O padrão `'%'` significa “qualquer Host” e é o menos específico.
 
-* The pattern `'%'` means “any host” and is least specific.
+* A string vazia `''` também significa “qualquer Host”, mas é classificada após `'%'`.
 
-* The empty string `''` also means “any host” but sorts after `'%'`.
+Conexões Non-TCP (socket file, named pipe e shared memory) são tratadas como conexões locais e correspondem a uma parte do Host de `localhost` se houver alguma conta desse tipo, ou a partes do Host com wildcards que correspondam a `localhost`, caso contrário (por exemplo, `local%`, `l%`, `%`).
 
-Non-TCP (socket file, named pipe, and shared memory) connections are treated as local connections and match a host part of `localhost` if there are any such accounts, or host parts with wildcards that match `localhost` otherwise (for example, `local%`, `l%`, `%`).
+Linhas com o mesmo valor de `Host` são ordenadas com os valores de `User` mais específicos primeiro. Um valor de `User` em branco significa “qualquer User” e é o menos específico, portanto, para linhas com o mesmo valor de `Host`, nonanonymous users (Users não anônimos) são classificados antes dos anonymous users.
 
-Rows with the same `Host` value are ordered with the most-specific `User` values first. A blank `User` value means “any user” and is least specific, so for rows with the same `Host` value, nonanonymous users sort before anonymous users.
+Para linhas com valores de `Host` e `User` igualmente específicos, a ordem é não determinística.
 
-For rows with equally-specific `Host` and `User` values, the order is nondeterministic.
-
-To see how this works, suppose that the `user` table looks like this:
+Para ver como isso funciona, suponha que a Table `user` se pareça com isto:
 
 ```sql
 +-----------+----------+-
@@ -71,7 +70,7 @@ To see how this works, suppose that the `user` table looks like this:
 +-----------+----------+-
 ```
 
-When the server reads the table into memory, it sorts the rows using the rules just described. The result after sorting looks like this:
+Quando o Server lê a Table para a memória, ele ordena as linhas usando as regras que acabamos de descrever. O resultado após a ordenação é o seguinte:
 
 ```sql
 +-----------+----------+-
@@ -84,9 +83,9 @@ When the server reads the table into memory, it sorts the rows using the rules j
 +-----------+----------+-
 ```
 
-When a client attempts to connect, the server looks through the sorted rows and uses the first match found. For a connection from `localhost` by `jeffrey`, two of the rows from the table match: the one with `Host` and `User` values of `'localhost'` and `''`, and the one with values of `'%'` and `'jeffrey'`. The `'localhost'` row appears first in sorted order, so that is the one the server uses.
+Quando um Client tenta se conectar, o Server examina as linhas ordenadas e usa a primeira correspondência encontrada. Para uma conexão de `localhost` por `jeffrey`, duas das linhas da Table correspondem: a com valores de `Host` e `User` de `'localhost'` e `''`, e a com valores de `'%'` e `'jeffrey'`. A linha `'localhost'` aparece primeiro na ordem classificada, então é essa que o Server usa.
 
-Here is another example. Suppose that the `user` table looks like this:
+Aqui está outro exemplo. Suponha que a Table `user` se pareça com isto:
 
 ```sql
 +----------------+----------+-
@@ -97,7 +96,7 @@ Here is another example. Suppose that the `user` table looks like this:
 +----------------+----------+-
 ```
 
-The sorted table looks like this:
+A Table ordenada é a seguinte:
 
 ```sql
 +----------------+----------+-
@@ -108,13 +107,13 @@ The sorted table looks like this:
 +----------------+----------+-
 ```
 
-The first row matches a connection by any user from `h1.example.net`, whereas the second row matches a connection by `jeffrey` from any host.
+A primeira linha corresponde a uma conexão de qualquer User de `h1.example.net`, enquanto a segunda linha corresponde a uma conexão de `jeffrey` de qualquer Host.
 
-Note
+Nota
 
-It is a common misconception to think that, for a given user name, all rows that explicitly name that user are used first when the server attempts to find a match for the connection. This is not true. The preceding example illustrates this, where a connection from `h1.example.net` by `jeffrey` is first matched not by the row containing `'jeffrey'` as the `User` column value, but by the row with no user name. As a result, `jeffrey` is authenticated as an anonymous user, even though he specified a user name when connecting.
+É um erro comum de percepção pensar que, para um determinado nome de User, todas as linhas que explicitamente nomeiam esse User são usadas primeiro quando o Server tenta encontrar uma correspondência para a conexão. Isso não é verdade. O exemplo anterior ilustra isso, onde uma conexão de `h1.example.net` por `jeffrey` é correspondida primeiro não pela linha que contém `'jeffrey'` como valor da coluna `User`, mas pela linha sem nome de User. Como resultado, `jeffrey` é authenticated (autenticado) como um anonymous user, mesmo que ele tenha especificado um nome de User ao se conectar.
 
-If you are able to connect to the server, but your privileges are not what you expect, you probably are being authenticated as some other account. To find out what account the server used to authenticate you, use the [`CURRENT_USER()`](information-functions.html#function_current-user) function. (See [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions").) It returns a value in `user_name@host_name` format that indicates the `User` and `Host` values from the matching `user` table row. Suppose that `jeffrey` connects and issues the following query:
+Se você conseguir se conectar ao Server, mas seus privileges (privilégios) não forem o que você espera, você provavelmente está sendo authenticated como alguma outra conta. Para descobrir qual conta o Server usou para autenticá-lo, use a função [`CURRENT_USER()`](information-functions.html#function_current-user). (Consulte [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions").) Ela retorna um valor no formato `user_name@host_name` que indica os valores de `User` e `Host` da linha correspondente da Table `user`. Suponha que `jeffrey` se conecte e execute a seguinte Query:
 
 ```sql
 mysql> SELECT CURRENT_USER();
@@ -125,6 +124,6 @@ mysql> SELECT CURRENT_USER();
 +----------------+
 ```
 
-The result shown here indicates that the matching `user` table row had a blank `User` column value. In other words, the server is treating `jeffrey` as an anonymous user.
+O resultado mostrado aqui indica que a linha correspondente da Table `user` tinha um valor de coluna `User` em branco. Em outras palavras, o Server está tratando `jeffrey` como um anonymous user.
 
-Another way to diagnose authentication problems is to print out the `user` table and sort it by hand to see where the first match is being made.
+Outra forma de diagnosticar problemas de authentication é imprimir a Table `user` e ordená-la manualmente para ver onde a primeira correspondência está sendo feita.

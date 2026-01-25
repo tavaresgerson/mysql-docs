@@ -1,15 +1,15 @@
-## 10.11 Restrictions on Character Sets
+## 10.11 Restrições em Conjuntos de Caracteres (Character Sets)
 
-* Identifiers are stored in `mysql` database tables (`user`, `db`, and so forth) using `utf8`, but identifiers can contain only characters in the Basic Multilingual Plane (BMP). Supplementary characters are not permitted in identifiers.
+* Identificadores são armazenados nas tabelas do Database `mysql` (`user`, `db`, e assim por diante) usando `utf8`, mas os identificadores podem conter apenas caracteres do Basic Multilingual Plane (BMP). Caracteres suplementares não são permitidos em identificadores.
 
-* The `ucs2`, `utf16`, `utf16le`, and `utf32` character sets have the following restrictions:
+* Os character sets `ucs2`, `utf16`, `utf16le` e `utf32` possuem as seguintes restrições:
 
-  + None of them can be used as the client character set. See Impermissible Client Character Sets.
+  + Nenhum deles pode ser usado como o client character set. Consulte Character Sets de Cliente Não Permitidos.
 
-  + It is currently not possible to use `LOAD DATA` to load data files that use these character sets.
+  + Atualmente não é possível usar `LOAD DATA` para carregar arquivos de dados que utilizam estes character sets.
 
-  + `FULLTEXT` indexes cannot be created on a column that uses any of these character sets. However, you can perform `IN BOOLEAN MODE` searches on the column without an index.
+  + Indexes `FULLTEXT` não podem ser criados em uma coluna que utilize qualquer um destes character sets. No entanto, você pode realizar buscas `IN BOOLEAN MODE` na coluna sem um Index.
 
-  + The use of `ENCRYPT()` with these character sets is not recommended because the underlying system call expects a string terminated by a zero byte.
+  + O uso de `ENCRYPT()` com estes character sets não é recomendado porque a chamada de sistema subjacente espera uma string terminada por um zero byte.
 
-* The `REGEXP` and `RLIKE` operators work in byte-wise fashion, so they are not multibyte safe and may produce unexpected results with multibyte character sets. In addition, these operators compare characters by their byte values and accented characters may not compare as equal even if a given collation treats them as equal.
+* Os operators `REGEXP` e `RLIKE` funcionam em nível de byte (byte-wise fashion), portanto, eles não são multibyte safe e podem produzir resultados inesperados com multibyte character sets. Além disso, estes operators comparam caracteres pelos seus valores de byte, e caracteres acentuados podem não ser comparados como iguais, mesmo que uma determinada collation os trate como iguais.

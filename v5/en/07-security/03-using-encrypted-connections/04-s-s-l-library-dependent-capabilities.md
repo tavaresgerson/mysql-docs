@@ -1,42 +1,42 @@
-### 6.3.4 SSL Library-Dependent Capabilities
+### 6.3.4 Capacidades Dependentes da Biblioteca SSL
 
-MySQL can be compiled using OpenSSL or yaSSL, both of which enable encrypted connections based on the OpenSSL API:
+O MySQL pode ser compilado usando OpenSSL ou yaSSL, ambos habilitando conexões criptografadas baseadas na API OpenSSL:
 
-* MySQL Enterprise Edition binary distributions are compiled using OpenSSL. It is not possible to use yaSSL with MySQL Enterprise Edition.
+* As distribuições binárias do MySQL Enterprise Edition são compiladas usando OpenSSL. Não é possível usar yaSSL com o MySQL Enterprise Edition.
 
-* MySQL Community Edition binary distributions are compiled using yaSSL.
+* As distribuições binárias do MySQL Community Edition são compiladas usando yaSSL.
 
-* MySQL Community Edition source distributions can be compiled using either OpenSSL or yaSSL (see [Section 2.8.6, “Configuring SSL Library Support”](source-ssl-library-configuration.html "2.8.6 Configuring SSL Library Support")).
+* As distribuições de código-fonte do MySQL Community Edition podem ser compiladas usando OpenSSL ou yaSSL (consulte [Seção 2.8.6, “Configurando Suporte à Biblioteca SSL”](source-ssl-library-configuration.html "2.8.6 Configurando Suporte à Biblioteca SSL")).
 
-Note
+Nota
 
-It is possible to compile MySQL using yaSSL as an alternative to OpenSSL only prior to MySQL 5.7.28. As of MySQL 5.7.28, support for yaSSL is removed and all MySQL builds use OpenSSL.
+É possível compilar o MySQL usando yaSSL como alternativa ao OpenSSL somente antes do MySQL 5.7.28. A partir do MySQL 5.7.28, o suporte ao yaSSL é removido e todas as builds do MySQL utilizam OpenSSL.
 
-OpenSSL and yaSSL offer the same basic functionality, but MySQL distributions compiled using OpenSSL have additional features:
+OpenSSL e yaSSL oferecem a mesma funcionalidade básica, mas as distribuições do MySQL compiladas usando OpenSSL possuem recursos adicionais:
 
-* OpenSSL supports TLSv1, TLSv1.1, and TLSv1.2 protocols. yaSSL supports only TLSv1 and TLSv1.1 protocols.
+* OpenSSL oferece suporte aos protocolos TLSv1, TLSv1.1 e TLSv1.2. yaSSL suporta apenas os protocolos TLSv1 e TLSv1.1.
 
-* OpenSSL supports a more flexible syntax for specifying ciphers (for the [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher) system variable and [`--ssl-cipher`](connection-options.html#option_general_ssl-cipher) client option), and supports a wider range of encryption ciphers from which to choose. See [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"), and [Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers").
+* OpenSSL suporta uma sintaxe mais flexível para especificar ciphers (para a variável de sistema [`ssl_cipher`] e a opção de cliente [`--ssl-cipher`]), e suporta uma gama mais ampla de ciphers de criptografia para escolha. Consulte [Opções de Comando para Conexões Criptografadas](connection-options.html#encrypted-connection-options "Opções de Comando para Conexões Criptografadas") e [Seção 6.3.2, “Protocolos e Ciphers TLS de Conexão Criptografada”](encrypted-connection-protocols-ciphers.html "6.3.2 Protocolos e Ciphers TLS de Conexão Criptografada").
 
-* OpenSSL supports the [`ssl_capath`](server-system-variables.html#sysvar_ssl_capath) system variable and [`--ssl-capath`](connection-options.html#option_general_ssl-capath) client option. MySQL distributions compiled using yaSSL do not because yaSSL does not look in any directory and do not follow a chained certificate tree. yaSSL requires that all components of the CA certificate tree be contained within a single CA certificate tree and that each certificate in the file has a unique SubjectName value. To work around this limitation, concatenate the individual certificate files comprising the certificate tree into a new file and specify that file as the value of the [`ssl_ca`](server-system-variables.html#sysvar_ssl_ca) system variable and [`--ssl-ca`](connection-options.html#option_general_ssl-ca) option.
+* OpenSSL suporta a variável de sistema [`ssl_capath`] e a opção de cliente [`--ssl-capath`]. As distribuições do MySQL compiladas usando yaSSL não suportam, pois yaSSL não busca em nenhum diretório nem segue uma árvore de certificados em cadeia (chained certificate tree). yaSSL exige que todos os componentes da árvore de certificados CA estejam contidos em uma única árvore de certificados CA e que cada certificado no arquivo tenha um valor SubjectName exclusivo. Para contornar essa limitação, concatene os arquivos de certificados individuais que compõem a árvore de certificados em um novo arquivo e especifique esse arquivo como o valor da variável de sistema [`ssl_ca`] e da opção [`--ssl-ca`].
 
-* OpenSSL supports certificate revocation-list capability (for the [`ssl_crl`](server-system-variables.html#sysvar_ssl_crl) and [`ssl_crlpath`](server-system-variables.html#sysvar_ssl_crlpath) system variables and [`--ssl-crl`](connection-options.html#option_general_ssl-crl) and [`--ssl-crlpath`](connection-options.html#option_general_ssl-crlpath) client options). Distributions compiled using yaSSL do not because revocation lists do not work with yaSSL. (yaSSL accepts these options but silently ignores them.)
+* OpenSSL suporta a capacidade de lista de revogação de certificados (certificate revocation-list capability) (para as variáveis de sistema [`ssl_crl`] e [`ssl_crlpath`] e as opções de cliente [`--ssl-crl`] e [`--ssl-crlpath`]). Distribuições compiladas usando yaSSL não suportam porque as listas de revogação não funcionam com yaSSL. (yaSSL aceita essas opções, mas as ignora silenciosamente.)
 
-* Accounts that authenticate using the `sha256_password` plugin can use RSA key files for secure password exchange over unencrypted connections. See [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
+* Contas que se autenticam usando o plugin `sha256_password` podem usar arquivos de chave RSA para troca segura de senhas em conexões não criptografadas. Consulte [Seção 6.4.1.5, “Autenticação Pluggable SHA-256”](sha256-pluggable-authentication.html "6.4.1.5 Autenticação Pluggable SHA-256").
 
-* The server can automatically generate missing SSL and RSA certificate and key files at startup. See [Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL").
+* O server pode gerar automaticamente certificados SSL e RSA e arquivos de chave ausentes na inicialização. Consulte [Seção 6.3.3.1, “Criação de Certificados e Chaves SSL e RSA usando MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Criação de Certificados e Chaves SSL e RSA usando MySQL").
 
-* OpenSSL supports more encryption modes for the [`AES_ENCRYPT()`](encryption-functions.html#function_aes-encrypt) and [`AES_DECRYPT()`](encryption-functions.html#function_aes-decrypt) functions. See [Section 12.13, “Encryption and Compression Functions”](encryption-functions.html "12.13 Encryption and Compression Functions")
+* OpenSSL suporta mais modos de criptografia para as funções [`AES_ENCRYPT()`](encryption-functions.html#function_aes-encrypt) e [`AES_DECRYPT()`](encryption-functions.html#function_aes-decrypt). Consulte [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html "12.13 Funções de Criptografia e Compressão").
 
-Certain OpenSSL-related system and status variables are present only if MySQL was compiled using OpenSSL:
+Certas variáveis de sistema e status relacionadas ao OpenSSL estão presentes apenas se o MySQL foi compilado usando OpenSSL:
 
-* [`auto_generate_certs`](server-system-variables.html#sysvar_auto_generate_certs)
-* [`sha256_password_auto_generate_rsa_keys`](server-system-variables.html#sysvar_sha256_password_auto_generate_rsa_keys)
-* [`sha256_password_private_key_path`](server-system-variables.html#sysvar_sha256_password_private_key_path)
-* [`sha256_password_public_key_path`](server-system-variables.html#sysvar_sha256_password_public_key_path)
-* [`Rsa_public_key`](server-status-variables.html#statvar_Rsa_public_key)
+* [`auto_generate_certs`]
+* [`sha256_password_auto_generate_rsa_keys`]
+* [`sha256_password_private_key_path`]
+* [`sha256_password_public_key_path`]
+* [`Rsa_public_key`]
 
-To determine whether a server was compiled using OpenSSL, test the existence of any of those variables. For example, this statement returns a row if OpenSSL was used and an empty result if yaSSL was used:
+Para determinar se um server foi compilado usando OpenSSL, teste a existência de qualquer uma dessas variáveis. Por exemplo, esta instrução retorna uma linha se OpenSSL foi usado e um resultado vazio se yaSSL foi usado:
 
 ```sql
 SHOW STATUS LIKE 'Rsa_public_key';

@@ -1,52 +1,52 @@
-#### 4.5.1.1 mysql Client Options
+#### 4.5.1.1 Opções do Cliente mysql
 
-**mysql** supports the following options, which can be specified on the command line or in the `[mysql]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see Section 4.2.2.2, “Using Option Files”.
+O **mysql** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte Seção 4.2.2.2, “Usando Arquivos de Opções”.
 
-**Table 4.13 mysql Client Options**
+**Tabela 4.13 Opções do Cliente mysql**
 
-<table frame="box" rules="all" summary="Command-line options available for the mysql client."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Introduced</th> <th>Deprecated</th> </tr></thead><tbody><tr><th>--auto-rehash</th> <td>Enable automatic rehashing</td> <td></td> <td></td> </tr><tr><th>--auto-vertical-output</th> <td>Enable automatic vertical result set display</td> <td></td> <td></td> </tr><tr><th>--batch</th> <td>Do not use history file</td> <td></td> <td></td> </tr><tr><th>--binary-as-hex</th> <td>Display binary values in hexadecimal notation</td> <td>5.7.19</td> <td></td> </tr><tr><th>--binary-mode</th> <td>Disable \r\n - to - \n translation and treatment of \0 as end-of-query</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Use specified network interface to connect to MySQL Server</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Directory where character sets are installed</td> <td></td> <td></td> </tr><tr><th>--column-names</th> <td>Write column names in results</td> <td></td> <td></td> </tr><tr><th>--column-type-info</th> <td>Display result set metadata</td> <td></td> <td></td> </tr><tr><th>--commands</th> <td>Enable or disable processing of local mysql client commands</td> <td>5.7.44-ndb-7.6.35</td> <td></td> </tr><tr><th>--comments</th> <td>Whether to retain or strip comments in statements sent to the server</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compress all information sent between client and server</td> <td></td> <td></td> </tr><tr><th>--connect-expired-password</th> <td>Indicate to server that client can handle expired-password sandbox mode</td> <td></td> <td></td> </tr><tr><th>--connect-timeout</th> <td>Number of seconds before connection timeout</td> <td></td> <td></td> </tr><tr><th>--database</th> <td>The database to use</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Write debugging log; supported only if MySQL was built with debugging support</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Print debugging information when program exits</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Authentication plugin to use</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Specify default character set</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Read named option file in addition to usual option files</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Read only named option file</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Option group suffix value</td> <td></td> <td></td> </tr><tr><th>--delimiter</th> <td>Set the statement delimiter</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Enable cleartext authentication plugin</td> <td></td> <td></td> </tr><tr><th>--execute</th> <td>Execute the statement and quit</td> <td></td> <td></td> </tr><tr><th>--force</th> <td>Continue even if an SQL error occurs</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Request RSA public key from server</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Display help message and exit</td> <td></td> <td></td> </tr><tr><th>--histignore</th> <td>Patterns specifying which statements to ignore for logging</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Host on which MySQL server is located</td> <td></td> <td></td> </tr><tr><th>--html</th> <td>Produce HTML output</td> <td></td> <td></td> </tr><tr><th>--ignore-spaces</th> <td>Ignore spaces after function names</td> <td></td> <td></td> </tr><tr><th>--init-command</th> <td>SQL statement to execute after connecting</td> <td></td> <td></td> </tr><tr><th>--line-numbers</th> <td>Write line numbers for errors</td> <td></td> <td></td> </tr><tr><th>--local-infile</th> <td>Enable or disable for LOCAL capability for LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Read login path options from .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--max-allowed-packet</th> <td>Maximum packet length to send to or receive from server</td> <td></td> <td></td> </tr><tr><th>--max-join-size</th> <td>The automatic limit for rows in a join when using --safe-updates</td> <td></td> <td></td> </tr><tr><th>--named-commands</th> <td>Enable named mysql commands</td> <td></td> <td></td> </tr><tr><th>--net-buffer-length</th> <td>Buffer size for TCP/IP and socket communication</td> <td></td> <td></td> </tr><tr><th>--no-auto-rehash</th> <td>Disable automatic rehashing</td> <td></td> <td></td> </tr><tr><th>--no-beep</th> <td>Do not beep when errors occur</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Read no option files</td> <td></td> <td></td> </tr><tr><th>--one-database</th> <td>Ignore statements except those for the default database named on the command line</td> <td></td> <td></td> </tr><tr><th>--pager</th> <td>Use the given command for paging query output</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Password to use when connecting to server</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Connect to server using named pipe (Windows only)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Directory where plugins are installed</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>TCP/IP port number for connection</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Print default options</td> <td></td> <td></td> </tr><tr><th>--prompt</th> <td>Set the prompt to the specified format</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Transport protocol to use</td> <td></td> <td></td> </tr><tr><th>--quick</th> <td>Do not cache each query result</td> <td></td> <td></td> </tr><tr><th>--raw</th> <td>Write column values without escape conversion</td> <td></td> <td></td> </tr><tr><th>--reconnect</th> <td>If the connection to the server is lost, automatically try to reconnect</td> <td></td> <td></td> </tr><tr><th>--safe-updates, --i-am-a-dummy</th> <td>Allow only UPDATE and DELETE statements that specify key values</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td></td> <td>Yes</td> </tr><tr><th>--select-limit</th> <td>The automatic limit for SELECT statements when using --safe-updates</td> <td></td> <td></td> </tr><tr><th>--server-public-key-path</th> <td>Path name to file containing RSA public key</td> <td></td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> <td></td> </tr><tr><th>--show-warnings</th> <td>Show warnings after each statement if there are any</td> <td></td> <td></td> </tr><tr><th>--sigint-ignore</th> <td>Ignore SIGINT signals (typically the result of typing Control+C)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Silent mode</td> <td></td> <td></td> </tr><tr><th>--skip-auto-rehash</th> <td>Disable automatic rehashing</td> <td></td> <td></td> </tr><tr><th>--skip-column-names</th> <td>Do not write column names in results</td> <td></td> <td></td> </tr><tr><th>--skip-line-numbers</th> <td>Skip line numbers for errors</td> <td></td> <td></td> </tr><tr><th>--skip-named-commands</th> <td>Disable named mysql commands</td> <td></td> <td></td> </tr><tr><th>--skip-pager</th> <td>Disable paging</td> <td></td> <td></td> </tr><tr><th>--skip-reconnect</th> <td>Disable reconnecting</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Unix socket file or Windows named pipe to use</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Enable connection encryption</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>File that contains X.509 certificate</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Permissible ciphers for connection encryption</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>File that contains certificate revocation lists</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Directory that contains certificate revocation-list files</td> <td></td> <td></td> </tr><tr><th>--ssl-key</th> <td>File that contains X.509 key</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Desired security state of connection to server</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verify host name against server certificate Common Name identity</td> <td></td> <td></td> </tr><tr><th>--syslog</th> <td>Log interactive statements to syslog</td> <td></td> <td></td> </tr><tr><th>--table</th> <td>Display output in tabular format</td> <td></td> <td></td> </tr><tr><th>--tee</th> <td>Append a copy of output to named file</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> <td></td> </tr><tr><th>--unbuffered</th> <td>Flush the buffer after each query</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>MySQL user name to use when connecting to server</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Verbose mode</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Display version information and exit</td> <td></td> <td></td> </tr><tr><th>--vertical</th> <td>Print query output rows vertically (one line per column value)</td> <td></td> <td></td> </tr><tr><th>--wait</th> <td>If the connection cannot be established, wait and retry instead of aborting</td> <td></td> <td></td> </tr><tr><th>--xml</th> <td>Produce XML output</td> <td></td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para o cliente mysql."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzida</th> <th>Descontinuada</th> </tr></thead><tbody><tr><th>--auto-rehash</th> <td>Habilita o rehashing automático</td> <td></td> <td></td> </tr><tr><th>--auto-vertical-output</th> <td>Habilita a exibição automática vertical de result sets</td> <td></td> <td></td> </tr><tr><th>--batch</th> <td>Não usa arquivo de histórico</td> <td></td> <td></td> </tr><tr><th>--binary-as-hex</th> <td>Exibe valores binários em notação hexadecimal</td> <td>5.7.19</td> <td></td> </tr><tr><th>--binary-mode</th> <td>Desabilita a tradução de \r\n para \n e o tratamento de \0 como fim-de-Query</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Usa a interface de rede especificada para conectar ao MySQL Server</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os character sets estão instalados</td> <td></td> <td></td> </tr><tr><th>--column-names</th> <td>Escreve nomes de colunas nos resultados</td> <td></td> <td></td> </tr><tr><th>--column-type-info</th> <td>Exibe metadados do result set</td> <td></td> <td></td> </tr><tr><th>--commands</th> <td>Habilita ou desabilita o processamento de comandos locais do cliente mysql</td> <td>5.7.44-ndb-7.6.35</td> <td></td> </tr><tr><th>--comments</th> <td>Se deve reter ou remover comentários em statements enviados ao servidor</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compacta todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--connect-expired-password</th> <td>Indica ao servidor que o cliente pode lidar com o modo sandbox de password expirada</td> <td></td> <td></td> </tr><tr><th>--connect-timeout</th> <td>Número de segundos antes do timeout da conexão</td> <td></td> <td></td> </tr><tr><th>--database</th> <td>O Database a ser usado</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreve log de debugging; suportado apenas se o MySQL foi construído com suporte a debugging</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprime informações de debugging quando o programa é encerrado</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprime informações de debugging, memória e estatísticas de CPU quando o programa é encerrado</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de Authentication a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especifica o character set padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Lê o arquivo de opções nomeado além dos arquivos de opções usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Lê apenas o arquivo de opções nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--delimiter</th> <td>Define o statement delimiter</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilita o plugin de Authentication cleartext</td> <td></td> <td></td> </tr><tr><th>--execute</th> <td>Executa o statement e sai</td> <td></td> <td></td> </tr><tr><th>--force</th> <td>Continua mesmo se ocorrer um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicita a public key RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibe mensagem de ajuda e sai</td> <td></td> <td></td> </tr><tr><th>--histignore</th> <td>Padrões especificando quais statements ignorar para logging</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Host onde o MySQL server está localizado</td> <td></td> <td></td> </tr><tr><th>--html</th> <td>Produz saída HTML</td> <td></td> <td></td> </tr><tr><th>--ignore-spaces</th> <td>Ignora espaços após nomes de funções</td> <td></td> <td></td> </tr><tr><th>--init-command</th> <td>Statement SQL para executar após a conexão</td> <td></td> <td></td> </tr><tr><th>--line-numbers</th> <td>Escreve números de linha para erros</td> <td></td> <td></td> </tr><tr><th>--local-infile</th> <td>Habilita ou desabilita a capacidade LOCAL para LOAD DATA</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Lê opções de login path de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--max-allowed-packet</th> <td>Comprimento máximo do packet para enviar ou receber do servidor</td> <td></td> <td></td> </tr><tr><th>--max-join-size</th> <td>O limite automático para linhas em um JOIN ao usar --safe-updates</td> <td></td> <td></td> </tr><tr><th>--named-commands</th> <td>Habilita comandos mysql nomeados</td> <td></td> <td></td> </tr><tr><th>--net-buffer-length</th> <td>Tamanho do Buffer para comunicação TCP/IP e socket</td> <td></td> <td></td> </tr><tr><th>--no-auto-rehash</th> <td>Desabilita rehashing automático</td> <td></td> <td></td> </tr><tr><th>--no-beep</th> <td>Não emite bipe quando ocorrem erros</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não lê arquivos de opções</td> <td></td> <td></td> </tr><tr><th>--one-database</th> <td>Ignora statements, exceto aqueles para o Database padrão nomeado na linha de comando</td> <td></td> <td></td> </tr><tr><th>--pager</th> <td>Usa o comando fornecido para paginação da saída de Query</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Password para usar ao conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecta ao servidor usando named pipe (somente Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins estão instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número da porta TCP/IP para conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Imprime opções padrão</td> <td></td> <td></td> </tr><tr><th>--prompt</th> <td>Define o prompt para o formato especificado</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser usado</td> <td></td> <td></td> </tr><tr><th>--quick</th> <td>Não faz cache de cada resultado de Query</td> <td></td> <td></td> </tr><tr><th>--raw</th> <td>Escreve valores de coluna sem conversão de escape</td> <td></td> <td></td> </tr><tr><th>--reconnect</th> <td>Se a conexão com o servidor for perdida, tenta reconectar automaticamente</td> <td></td> <td></td> </tr><tr><th>--safe-updates, --i-am-a-dummy</th> <td>Permite apenas statements UPDATE e DELETE que especificam valores de chave</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envia passwords para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--select-limit</th> <td>O limite automático para statements SELECT ao usar --safe-updates</td> <td></td> <td></td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo contendo a public key RSA</td> <td></td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome da shared-memory para conexões de shared-memory (somente Windows)</td> <td></td> <td></td> </tr><tr><th>--show-warnings</th> <td>Mostra warnings após cada statement, se houver</td> <td></td> <td></td> </tr><tr><th>--sigint-ignore</th> <td>Ignora sinais SIGINT (geralmente resultado de digitar Control+C)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--skip-auto-rehash</th> <td>Desabilita rehashing automático</td> <td></td> <td></td> </tr><tr><th>--skip-column-names</th> <td>Não escreve nomes de colunas nos resultados</td> <td></td> <td></td> </tr><tr><th>--skip-line-numbers</th> <td>Ignora números de linha para erros</td> <td></td> <td></td> </tr><tr><th>--skip-named-commands</th> <td>Desabilita comandos mysql nomeados</td> <td></td> <td></td> </tr><tr><th>--skip-pager</th> <td>Desabilita paginação</td> <td></td> <td></td> </tr><tr><th>--skip-reconnect</th> <td>Desabilita a reconexão</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo socket Unix ou named pipe Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Habilita a criptografia da conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Certificate Authorities SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificado de Certificate Authority SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Ciphers permitidos para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificado</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificado</td> <td></td> <td></td> </tr><tr><th>--ssl-key</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifica o nome do host em relação à identidade Common Name do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--syslog</th> <td>Registra statements interativos no syslog</td> <td></td> <td></td> </tr><tr><th>--table</th> <td>Exibe a saída em formato de tabela</td> <td></td> <td></td> </tr><tr><th>--tee</th> <td>Anexa uma cópia da saída ao arquivo nomeado</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--unbuffered</th> <td>Limpa o Buffer após cada Query</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome de usuário MySQL a ser usado ao conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbose</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibe informações de versão e sai</td> <td></td> <td></td> </tr><tr><th>--vertical</th> <td>Imprime linhas de saída de Query verticalmente (uma linha por valor de coluna)</td> <td></td> <td></td> </tr><tr><th>--wait</th> <td>Se a conexão não puder ser estabelecida, espera e tenta novamente em vez de abortar</td> <td></td> <td></td> </tr><tr><th>--xml</th> <td>Produz saída XML</td> <td></td> <td></td> </tr> </tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--auto-rehash`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Enable automatic rehashing. This option is on by default, which enables database, table, and column name completion. Use `--disable-auto-rehash` to disable rehashing. That causes **mysql** to start faster, but you must issue the `rehash` command or its `\#` shortcut if you want to use name completion.
+  Habilita rehashing automático. Esta opção está ativada por padrão, o que permite o preenchimento automático de nomes de Databases, tabelas e colunas. Use `--disable-auto-rehash` para desabilitar o rehashing. Isso faz com que o **mysql** inicie mais rapidamente, mas você deve emitir o comando `rehash` ou seu atalho `\#` se quiser usar o preenchimento automático de nomes.
 
-  To complete a name, enter the first part and press Tab. If the name is unambiguous, **mysql** completes it. Otherwise, you can press Tab again to see the possible names that begin with what you have typed so far. Completion does not occur if there is no default database.
+  Para preencher um nome, digite a primeira parte e pressione Tab. Se o nome for inequívoco, o **mysql** o preenche. Caso contrário, você pode pressionar Tab novamente para ver os nomes possíveis que começam com o que você digitou até agora. O preenchimento automático não ocorre se não houver um Database padrão.
 
-  Note
+  Nota
 
-  This feature requires a MySQL client that is compiled with the **readline** library. Typically, the **readline** library is not available on Windows.
+  Este recurso requer um cliente MySQL compilado com a biblioteca **readline**. Tipicamente, a biblioteca **readline** não está disponível no Windows.
 
 * `--auto-vertical-output`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  Cause result sets to be displayed vertically if they are too wide for the current window, and using normal tabular format otherwise. (This applies to statements terminated by `;` or `\G`.)
+  Faz com que os result sets sejam exibidos verticalmente se forem muito largos para a janela atual, e usem o formato tabular normal caso contrário. (Isso se aplica a statements terminados por `;` ou `\G`.)
 
 * `--batch`, `-B`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  Print results using tab as the column separator, with each row on a new line. With this option, **mysql** does not use the history file.
+  Imprime resultados usando tabulação como separador de colunas, com cada linha em uma nova linha. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
-  Batch mode results in nontabular output format and escaping of special characters. Escaping may be disabled by using raw mode; see the description for the `--raw` option.
+  O modo Batch resulta em formato de saída não tabular e escape de caracteres especiais. O escape pode ser desabilitado usando o modo raw; consulte a descrição para a opção `--raw`.
 
 * `--binary-as-hex`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  When this option is given, **mysql** displays binary data using hexadecimal notation (`0xvalue`). This occurs whether the overall output display format is tabular, vertical, HTML, or XML.
+  Quando esta opção é fornecida, o **mysql** exibe dados binários usando notação hexadecimal (`0xvalue`). Isso ocorre independentemente de o formato de exibição da saída geral ser tabular, vertical, HTML ou XML.
 
-  `--binary-as-hex` when enabled affects display of all binary strings, including those returned by functions such as `CHAR()` and `UNHEX()`. The following example demonstrates this using the ASCII code for `A` (65 decimal, 41 hexadecimal):
+  O `--binary-as-hex` quando ativado afeta a exibição de todas as strings binárias, incluindo aquelas retornadas por funções como `CHAR()` e `UNHEX()`. O exemplo a seguir demonstra isso usando o código ASCII para `A` (65 decimal, 41 hexadecimal):
 
-  + `--binary-as-hex` disabled:
+  + `--binary-as-hex` desativado:
 
     ```sql
     mysql> SELECT CHAR(0x41), UNHEX('41');
@@ -57,7 +57,7 @@
     +------------+-------------+
     ```
 
-  + `--binary-as-hex` enabled:
+  + `--binary-as-hex` ativado:
 
     ```sql
     mysql> SELECT CHAR(0x41), UNHEX('41');
@@ -68,9 +68,9 @@
     +------------------------+--------------------------+
     ```
 
-  To write a binary string expression so that it displays as a character string regardless of whether `--binary-as-hex` is enabled, use these techniques:
+  Para escrever uma expressão de string binária de modo que ela seja exibida como uma string de caracteres, independentemente de `--binary-as-hex` estar ativado, use estas técnicas:
 
-  + The `CHAR()` function has a `USING charset` clause:
+  + A função `CHAR()` tem uma cláusula `USING charset`:
 
     ```sql
     mysql> SELECT CHAR(0x41 USING utf8mb4);
@@ -81,7 +81,7 @@
     +--------------------------+
     ```
 
-  + More generally, use `CONVERT()` to convert an expression to a given character set:
+  + De forma mais geral, use `CONVERT()` para converter uma expressão para um determinado character set:
 
     ```sql
     mysql> SELECT CONVERT(UNHEX('41') USING utf8mb4);
@@ -92,49 +92,49 @@
     +------------------------------------+
     ```
 
-  This option was added in MySQL 5.7.19.
+  Esta opção foi adicionada no MySQL 5.7.19.
 
 * `--binary-mode`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  This option helps when processing **mysqlbinlog** output that may contain `BLOB` values. By default, **mysql** translates `\r\n` in statement strings to `\n` and interprets `\0` as the statement terminator. `--binary-mode` disables both features. It also disables all **mysql** commands except `charset` and `delimiter` in noninteractive mode (for input piped to **mysql** or loaded using the `source` command).
+  Esta opção ajuda ao processar a saída do **mysqlbinlog** que pode conter valores `BLOB`. Por padrão, o **mysql** traduz `\r\n` em statement strings para `\n` e interpreta `\0` como o terminador de statement. O `--binary-mode` desabilita ambas as funcionalidades. Ele também desabilita todos os comandos **mysql**, exceto `charset` e `delimiter` em modo não interativo (para input canalizado para o **mysql** ou carregado usando o comando `source`).
 
-  (*NDB Cluster 7.6.35 and later:*) `--binary-mode`, when enabled, causes the server to disregard any setting for `--commands` .
+  (*NDB Cluster 7.6.35 e posterior:*) O `--binary-mode`, quando ativado, faz com que o servidor desconsidere qualquer configuração para `--commands`.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
+  Em um computador com múltiplas interfaces de rede, use esta opção para selecionar qual interface usar para conectar ao MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory where character sets are installed. See Section 10.15, “Character Set Configuration”.
+  O diretório onde os character sets estão instalados. Consulte Seção 10.15, “Configuração de Character Set”.
 
 * `--column-names`
 
-  <table frame="box" rules="all" summary="Properties for column-names"><tbody><tr><th>Command-Line Format</th> <td><code>--column-names</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para column-names"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--column-names</code></td> </tr></tbody></table>
 
-  Write column names in results.
+  Escreve nomes de colunas nos resultados.
 
 * `--column-type-info`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Display result set metadata. This information corresponds to the contents of C API `MYSQL_FIELD` data structures. See C API Basic Data Structures.
+  Exibe metadados do result set. Esta informação corresponde ao conteúdo das estruturas de dados `MYSQL_FIELD` da C API. Consulte Estruturas Básicas de Dados da C API.
 
 * `--commands`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Whether to enable or disable processing of local **mysql** client commands. Setting this option to `FALSE` disables such processing, and has the effects listed here:
+  Se deve habilitar ou desabilitar o processamento de comandos locais do cliente **mysql**. Definir esta opção como `FALSE` desabilita tal processamento e tem os efeitos listados aqui:
 
-  + The following **mysql** client commands are disabled:
+  + Os seguintes comandos do cliente **mysql** são desabilitados:
 
-    - `charset` (`/C` remains enabled)
+    - `charset` (`/C` permanece habilitado)
 
     - `clear`
     - `connect`
@@ -158,268 +158,268 @@
     - `status`
     - `system`
     - `tee`
-    - `\u` (`use` is passed to the server)
+    - `\u` (`use` é passado para o servidor)
 
     - `warnings`
-  + The `\C` and `delimiter` commands remain enabled.
+  + Os comandos `\C` e `delimiter` permanecem habilitados.
 
-  + The `--system-command` option is ignored, and has no effect.
+  + A opção `--system-command` é ignorada e não tem efeito.
 
-  This option has no effect when `--binary-mode` is enabled.
+  Esta opção não tem efeito quando `--binary-mode` está ativado.
 
-  When `--commands` is enabled, it is possible to disable (only) the system command using the `--system-command` option.
+  Quando `--commands` está ativado, é possível desabilitar (somente) o comando `system` usando a opção `--system-command`.
 
-  This option was added in NDB Cluster 7.6.35.
+  Esta opção foi adicionada no NDB Cluster 7.6.35.
 
 * `--comments`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Whether to strip or preserve comments in statements sent to the server. The default is `--skip-comments` (strip comments), enable with `--comments` (preserve comments).
+  Se deve remover ou preservar comentários em statements enviados ao servidor. O padrão é `--skip-comments` (remover comentários), habilite com `--comments` (preservar comentários).
 
-  Note
+  Nota
 
-  In MySQL 5.7, the **mysql** client always passes optimizer hints to the server, regardless of whether this option is given. To ensure that optimizer hints are not stripped if you are using an older version of the **mysql** client with a version of the server that understands optimizer hints, invoke **mysql** with the `--comments` option.
+  No MySQL 5.7, o cliente **mysql** sempre passa optimizer hints para o servidor, independentemente de esta opção ser fornecida. Para garantir que os optimizer hints não sejam removidos se você estiver usando uma versão mais antiga do cliente **mysql** com uma versão do servidor que entenda optimizer hints, invoque o **mysql** com a opção `--comments`.
 
-  Comment stripping is deprecated as of MySQL 5.7.20. You should expect this feature and the options to control it to be removed in a future MySQL release.
+  A remoção de comentários está descontinuada a partir do MySQL 5.7.20. Você deve esperar que este recurso e as opções para controlá-lo sejam removidos em uma futura release do MySQL.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Compress all information sent between the client and the server if possible. See Section 4.2.6, “Connection Compression Control”.
+  Compacta todas as informações enviadas entre o cliente e o servidor, se possível. Consulte Seção 4.2.6, “Controle de Compressão de Conexão”.
 
 * `--connect-expired-password`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Indicate to the server that the client can handle sandbox mode if the account used to connect has an expired password. This can be useful for noninteractive invocations of **mysql** because normally the server disconnects noninteractive clients that attempt to connect using an account with an expired password. (See Section 6.2.12, “Server Handling of Expired Passwords”.)
+  Indica ao servidor que o cliente pode lidar com o modo sandbox se a conta usada para conectar tiver um password expirado. Isso pode ser útil para invocações não interativas do **mysql** porque, normalmente, o servidor desconecta clientes não interativos que tentam conectar usando uma conta com um password expirado. (Consulte Seção 6.2.12, “Tratamento de Passwords Expirados pelo Servidor”.)
 
 * `--connect-timeout=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The number of seconds before connection timeout. (Default value is `0`.)
+  O número de segundos antes do timeout da conexão. (O valor padrão é `0`.)
 
 * `--database=db_name`, `-D db_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  The database to use. This is useful primarily in an option file.
+  O Database a ser usado. Isso é útil principalmente em um arquivo de opções.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysql.trace`.
+  Escreve um log de debugging. Uma string *`debug_options`* típica é `d:t:o,file_name`. O padrão é `d:t:o,/tmp/mysql.trace`.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Os binários de release do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Print some debugging information when the program exits.
+  Imprime algumas informações de debugging quando o programa é encerrado.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Os binários de release do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Print debugging information and memory and CPU usage statistics when the program exits.
+  Imprime informações de debugging e estatísticas de uso de memória e CPU quando o programa é encerrado.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Os binários de release do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  A hint about which client-side authentication plugin to use. See Section 6.2.13, “Pluggable Authentication”.
+  Uma dica sobre qual plugin de Authentication do lado do cliente usar. Consulte Seção 6.2.13, “Authentication Pluggable”.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Use *`charset_name`* as the default character set for the client and connection.
+  Usa *`charset_name`* como o character set padrão para o cliente e a conexão.
 
-  This option can be useful if the operating system uses one character set and the **mysql** client by default uses another. In this case, output may be formatted incorrectly. You can usually fix such issues by using this option to force the client to use the system character set instead.
+  Esta opção pode ser útil se o sistema operacional usar um character set e o cliente **mysql** usar outro por padrão. Neste caso, a saída pode ser formatada incorretamente. Você geralmente pode corrigir tais problemas usando esta opção para forçar o cliente a usar o character set do sistema.
 
-  For more information, see Section 10.4, “Connection Character Sets and Collations”, and Section 10.15, “Character Set Configuration”.
+  Para mais informações, consulte Seção 10.4, “Character Sets e Collations de Conexão”, e Seção 10.15, “Configuração de Character Set”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Lê este arquivo de opções após o arquivo de opções global, mas (no Unix) antes do arquivo de opções do usuário. Se o arquivo não existir ou estiver inacessível, ocorre um erro. Se *`file_name`* não for um nome de caminho absoluto, ele é interpretado em relação ao diretório atual.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Manuseio de Arquivos de Opções”.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Usa apenas o arquivo de opções fornecido. Se o arquivo não existir ou estiver inacessível, ocorre um erro. Se *`file_name`* não for um nome de caminho absoluto, ele é interpretado em relação ao diretório atual.
 
-  Exception: Even with `--defaults-file`, client programs read `.mylogin.cnf`.
+  Exceção: Mesmo com `--defaults-file`, programas cliente leem `.mylogin.cnf`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Manuseio de Arquivos de Opções”.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql** normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
+  Lê não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, o **mysql** normalmente lê os grupos `[client]` e `[mysql]`. Se esta opção for dada como `--defaults-group-suffix=_other`, o **mysql** também lê os grupos `[client_other]` e `[mysql_other]`.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Manuseio de Arquivos de Opções”.
 
 * `--delimiter=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Set the statement delimiter. The default is the semicolon character (`;`).
+  Define o statement delimiter. O padrão é o caractere ponto e vírgula (`;`).
 
 * `--disable-named-commands`
 
-  Disable named commands. Use the `\*` form only, or use named commands only at the beginning of a line ending with a semicolon (`;`). **mysql** starts with this option *enabled* by default. However, even with this option, long-format commands still work from the first line. See Section 4.5.1.2, “mysql Client Commands”.
+  Desabilita comandos nomeados. Use a forma `\*` apenas, ou use comandos nomeados apenas no início de uma linha que termina com ponto e vírgula (`;`). O **mysql** inicia com esta opção *ativada* por padrão. No entanto, mesmo com esta opção, comandos de formato longo ainda funcionam a partir da primeira linha. Consulte Seção 4.5.1.2, “Comandos do Cliente mysql”.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”.)
+  Habilita o plugin de Authentication cleartext `mysql_clear_password`. (Consulte Seção 6.4.1.6, “Authentication Pluggable Cleartext do Lado do Cliente”.)
 
 * `--execute=statement`, `-e statement`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Execute the statement and quit. The default output format is like that produced with `--batch`. See Section 4.2.2.1, “Using Options on the Command Line”, for some examples. With this option, **mysql** does not use the history file.
+  Executa o statement e sai. O formato de saída padrão é como o produzido com `--batch`. Consulte Seção 4.2.2.1, “Usando Opções na Linha de Comando”, para alguns exemplos. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Continue even if an SQL error occurs.
+  Continua mesmo se ocorrer um erro SQL.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Solicita do servidor a public key necessária para a troca de password baseada em par de chaves RSA. Esta opção se aplica a clientes que autenticam com o plugin de Authentication `caching_sha2_password`. Para esse plugin, o servidor não envia a public key, a menos que seja solicitada. Esta opção é ignorada para contas que não autenticam com esse plugin. Também é ignorada se a troca de password baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
-  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
+  Se `--server-public-key-path=file_name` for fornecido e especificar um arquivo de public key válido, ele terá precedência sobre `--get-server-public-key`.
 
-  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  Para informações sobre o plugin `caching_sha2_password`, consulte Seção 6.4.1.4, “Authentication Pluggable Caching SHA-2”.
 
-  The `--get-server-public-key` option was added in MySQL 5.7.23.
+  A opção `--get-server-public-key` foi adicionada no MySQL 5.7.23.
 
 * `--histignore`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  A list of one or more colon-separated patterns specifying statements to ignore for logging purposes. These patterns are added to the default pattern list (`"*IDENTIFIED*:*PASSWORD*"`). The value specified for this option affects logging of statements written to the history file, and to `syslog` if the `--syslog` option is given. For more information, see Section 4.5.1.3, “mysql Client Logging”.
+  Uma lista de um ou mais padrões separados por dois pontos especificando statements a serem ignorados para fins de logging. Esses padrões são adicionados à lista de padrões padrão (`"*IDENTIFIED*:*PASSWORD*"`). O valor especificado para esta opção afeta o logging de statements escritos no arquivo de histórico, e no `syslog` se a opção `--syslog` for fornecida. Para mais informações, consulte Seção 4.5.1.3, “Logging do Cliente mysql”.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  Connect to the MySQL server on the given host.
+  Conecta ao MySQL server no host fornecido.
 
 * `--html`, `-H`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  Produce HTML output.
+  Produz saída HTML.
 
 * `--ignore-spaces`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  Ignore spaces after function names. The effect of this is described in the discussion for the `IGNORE_SPACE` SQL mode (see Section 5.1.10, “Server SQL Modes”).
+  Ignora espaços após nomes de funções. O efeito disso é descrito na discussão para o modo SQL `IGNORE_SPACE` (consulte Seção 5.1.10, “Modos SQL do Servidor”).
 
 * `--init-command=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  SQL statement to execute after connecting to the server. If auto-reconnect is enabled, the statement is executed again after reconnection occurs.
+  Statement SQL para executar após conectar ao servidor. Se a reconexão automática estiver ativada, o statement é executado novamente após a reconexão.
 
 * `--line-numbers`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  Write line numbers for errors. Disable this with `--skip-line-numbers`.
+  Escreve números de linha para erros. Desabilite isso com `--skip-line-numbers`.
 
 * `--local-infile[={0|1}]`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  By default, `LOCAL` capability for `LOAD DATA` is determined by the default compiled into the MySQL client library. To enable or disable `LOCAL` data loading explicitly, use the `--local-infile` option. When given with no value, the option enables `LOCAL` data loading. When given as `--local-infile=0` or `--local-infile=1`, the option disables or enables `LOCAL` data loading.
+  Por padrão, a capacidade `LOCAL` para `LOAD DATA` é determinada pelo padrão compilado na biblioteca cliente MySQL. Para habilitar ou desabilitar explicitamente o carregamento de dados `LOCAL`, use a opção `--local-infile`. Quando fornecida sem valor, a opção habilita o carregamento de dados `LOCAL`. Quando fornecida como `--local-infile=0` ou `--local-infile=1`, a opção desabilita ou habilita o carregamento de dados `LOCAL`.
 
-  Successful use of `LOCAL` load operations within **mysql** also requires that the server permits local loading; see Section 6.1.6, “Security Considerations for LOAD DATA LOCAL”
+  O uso bem-sucedido de operações de carregamento `LOCAL` dentro do **mysql** também requer que o servidor permita o carregamento local; consulte Seção 6.1.6, “Considerações de Segurança para LOAD DATA LOCAL”.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  Lê opções do login path nomeado no arquivo de login path `.mylogin.cnf`. Um “login path” é um grupo de opções contendo opções que especificam a qual MySQL server conectar e com qual conta autenticar. Para criar ou modificar um arquivo de login path, use a utility **mysql_config_editor**. Consulte Seção 4.6.6, “mysql_config_editor — Utility de Configuração MySQL”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Manuseio de Arquivos de Opções”.
 
 * `--max-allowed-packet=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  The maximum size of the buffer for client/server communication. The default is 16MB, the maximum is 1GB.
+  O tamanho máximo do Buffer para comunicação cliente/servidor. O padrão é 16MB, o máximo é 1GB.
 
 * `--max-join-size=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
-  The automatic limit for rows in a join when using `--safe-updates`. (Default value is 1,000,000.)
+  O limite automático para linhas em um JOIN ao usar `--safe-updates`. (O valor padrão é 1.000.000.)
 
 * `--named-commands`, `-G`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  Enable named **mysql** commands. Long-format commands are permitted, not just short-format commands. For example, `quit` and `\q` both are recognized. Use `--skip-named-commands` to disable named commands. See Section 4.5.1.2, “mysql Client Commands”.
+  Habilita comandos **mysql** nomeados. Comandos de formato longo são permitidos, não apenas comandos de formato curto. Por exemplo, `quit` e `\q` são reconhecidos. Use `--skip-named-commands` para desabilitar comandos nomeados. Consulte Seção 4.5.1.2, “Comandos do Cliente mysql”.
 
 * `--net-buffer-length=value`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  The buffer size for TCP/IP and socket communication. (Default value is 16KB.)
+  O tamanho do Buffer para comunicação TCP/IP e socket. (O valor padrão é 16KB.)
 
 * `--no-auto-rehash`, `-A`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  This has the same effect as `--skip-auto-rehash`. See the description for `--auto-rehash`.
+  Isso tem o mesmo efeito que `--skip-auto-rehash`. Consulte a descrição para `--auto-rehash`.
 
 * `--no-beep`, `-b`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  Do not beep when errors occur.
+  Não emite bipe quando ocorrem erros.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
+  Não lê nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que sejam lidos.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que passwords sejam especificados de forma mais segura do que na linha de comando, mesmo quando `--no-defaults` é usado. Para criar `.mylogin.cnf`, use a utility **mysql_config_editor**. Consulte Seção 4.6.6, “mysql_config_editor — Utility de Configuração MySQL”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Manuseio de Arquivos de Opções”.
 
 * `--one-database`, `-o`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  Ignore statements except those that occur while the default database is the one named on the command line. This option is rudimentary and should be used with care. Statement filtering is based only on `USE` statements.
+  Ignora statements, exceto aqueles que ocorrem enquanto o Database padrão é o nomeado na linha de comando. Esta opção é rudimentar e deve ser usada com cautela. A filtragem de statement é baseada apenas em statements `USE`.
 
-  Initially, **mysql** executes statements in the input because specifying a database *`db_name`* on the command line is equivalent to inserting `USE db_name` at the beginning of the input. Then, for each `USE` statement encountered, **mysql** accepts or rejects following statements depending on whether the database named is the one on the command line. The content of the statements is immaterial.
+  Inicialmente, o **mysql** executa statements na entrada porque especificar um Database *`db_name`* na linha de comando é equivalente a inserir `USE db_name` no início da entrada. Em seguida, para cada statement `USE` encontrado, o **mysql** aceita ou rejeita os statements seguintes, dependendo se o Database nomeado é o da linha de comando. O conteúdo dos statements é imaterial.
 
-  Suppose that **mysql** is invoked to process this set of statements:
+  Suponha que o **mysql** seja invocado para processar este conjunto de statements:
 
   ```sql
   DELETE FROM db2.t2;
@@ -431,75 +431,75 @@
   CREATE TABLE db2.t1 (j INT);
   ```
 
-  If the command line is **mysql --force --one-database db1**, **mysql** handles the input as follows:
+  Se a linha de comando for **mysql --force --one-database db1**, o **mysql** lida com a entrada da seguinte forma:
 
-  + The `DELETE` statement is executed because the default database is `db1`, even though the statement names a table in a different database.
+  + O statement `DELETE` é executado porque o Database padrão é `db1`, embora o statement nomeie uma tabela em um Database diferente.
 
-  + The `DROP TABLE` and `CREATE TABLE` statements are not executed because the default database is not `db1`, even though the statements name a table in `db1`.
+  + Os statements `DROP TABLE` e `CREATE TABLE` não são executados porque o Database padrão não é `db1`, embora os statements nomeiem uma tabela em `db1`.
 
-  + The `INSERT` and `CREATE TABLE` statements are executed because the default database is `db1`, even though the `CREATE TABLE` statement names a table in a different database.
+  + Os statements `INSERT` e `CREATE TABLE` são executados porque o Database padrão é `db1`, embora o statement `CREATE TABLE` nomeie uma tabela em um Database diferente.
 
 * `--pager[=command]`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  Use the given command for paging query output. If the command is omitted, the default pager is the value of your `PAGER` environment variable. Valid pagers are **less**, **more**, **cat [> filename]**, and so forth. This option works only on Unix and only in interactive mode. To disable paging, use `--skip-pager`. Section 4.5.1.2, “mysql Client Commands”, discusses output paging further.
+  Usa o comando fornecido para paginação da saída de Query. Se o comando for omitido, o pager padrão é o valor de sua variável de ambiente `PAGER`. Pagers válidos são **less**, **more**, **cat [> filename]**, e assim por diante. Esta opção funciona apenas no Unix e somente em modo interativo. Para desabilitar a paginação, use `--skip-pager`. A Seção 4.5.1.2, “Comandos do Cliente mysql”, discute a paginação de saída em mais detalhes.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysql** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  O password da conta MySQL usada para conectar ao servidor. O valor do password é opcional. Se não for fornecido, o **mysql** solicitará um. Se fornecido, não deve haver *espaço* entre `--password=` ou `-p` e o password que o segue. Se nenhuma opção de password for especificada, o padrão é não enviar password.
 
-  Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 6.1.2.1, “End-User Guidelines for Password Security”.
+  Especificar um password na linha de comando deve ser considerado inseguro. Para evitar fornecer o password na linha de comando, use um arquivo de opções. Consulte Seção 6.1.2.1, “Diretrizes do Usuário Final para Segurança de Password”.
 
-  To explicitly specify that there is no password and that **mysql** should not prompt for one, use the `--skip-password` option.
+  Para especificar explicitamente que não há password e que o **mysql** não deve solicitá-lo, use a opção `--skip-password`.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
+  No Windows, conecta ao servidor usando um named pipe. Esta opção se aplica apenas se o servidor foi iniciado com a variável de sistema `named_pipe` ativada para suportar conexões de named pipe. Além disso, o usuário que faz a conexão deve ser membro do grupo Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysql** does not find it. See Section 6.2.13, “Pluggable Authentication”.
+  O diretório onde procurar plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de Authentication, mas o **mysql** não o encontrar. Consulte Seção 6.2.13, “Authentication Pluggable”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  For TCP/IP connections, the port number to use.
+  Para conexões TCP/IP, o número da porta a ser usado.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Print the program name and all options that it gets from option files.
+  Imprime o nome do programa e todas as opções que ele obtém dos arquivos de opções.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte Seção 4.2.2.3, “Opções de Linha de Comando que Afetam o Manuseio de Arquivos de Opções”.
 
 * `--prompt=format_str`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Set the prompt to the specified format. The default is `mysql>`. The special sequences that the prompt can contain are described in Section 4.5.1.2, “mysql Client Commands”.
+  Define o prompt para o formato especificado. O padrão é `mysql>`. As sequências especiais que o prompt pode conter estão descritas na Seção 4.5.1.2, “Comandos do Cliente mysql”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 4.2.5, “Connection Transport Protocols”.
+  O protocolo de transporte a ser usado para conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente daquele que você deseja. Para detalhes sobre os valores permitidos, consulte Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 * `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Do not cache each query result, print each row as it is received. This may slow down the server if the output is suspended. With this option, **mysql** does not use the history file.
+  Não armazena em cache (cache) o resultado de cada Query, imprime cada linha à medida que é recebida. Isso pode atrasar o servidor se a saída for suspensa. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
-  By default, **mysql** fetches all result rows before producing any output; while storing these, it calculates a running maximum column length from the actual value of each column in succession. When printing the output, it uses this maximum to format it. When `--quick` is specified, **mysql** does not have the rows for which to calculate the length before starting, and so uses the maximum length. In the following example, table `t1` has a single column of type `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and containing 4 rows. The default output is 9 characters wide; this width is equal the maximum number of characters in any of the column values in the rows returned (5), plus 2 characters each for the spaces used as padding and the `|` characters used as column delimiters). The output when using the `--quick` option is 25 characters wide; this is equal to the number of characters needed to represent `-9223372036854775808`, which is the longest possible value that can be stored in a (signed) `BIGINT` column, or 19 characters, plus the 4 characters used for padding and column delimiters. The difference can be seen here:
+  Por padrão, o **mysql** busca todas as linhas de resultado antes de produzir qualquer saída; enquanto as armazena, ele calcula um comprimento máximo de coluna contínuo a partir do valor real de cada coluna em sucessão. Ao imprimir a saída, ele usa este máximo para formatá-la. Quando `--quick` é especificado, o **mysql** não tem as linhas para as quais calcular o comprimento antes de começar e, portanto, usa o comprimento máximo. No exemplo a seguir, a tabela `t1` tem uma única coluna do tipo `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e contém 4 linhas. A saída padrão tem 9 caracteres de largura; esta largura é igual ao número máximo de caracteres em qualquer um dos valores de coluna nas linhas retornadas (5), mais 2 caracteres para os espaços usados como padding e os caracteres `|` usados como delimitadores de coluna. A saída ao usar a opção `--quick` tem 25 caracteres de largura; isso é igual ao número de caracteres necessários para representar `-9223372036854775808`, que é o maior valor possível que pode ser armazenado em uma coluna `BIGINT` (assinada), ou 19 caracteres, mais os 4 caracteres usados para padding e delimitadores de coluna. A diferença pode ser vista aqui:
 
   ```sql
   $> mysql -t test -e "SELECT * FROM t1"
@@ -525,11 +525,11 @@
 
 * `--raw`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  For tabular output, the “boxing” around columns enables one column value to be distinguished from another. For nontabular output (such as is produced in batch mode or when the `--batch` or `--silent` option is given), special characters are escaped in the output so they can be identified easily. Newline, tab, `NUL`, and backslash are written as `\n`, `\t`, `\0`, and `\\`. The `--raw` option disables this character escaping.
+  Para saída tabular, o “enquadramento” em torno das colunas permite que um valor de coluna seja distinguido de outro. Para saída não tabular (como a produzida no modo batch ou quando a opção `--batch` ou `--silent` é fornecida), caracteres especiais são escapados na saída para que possam ser facilmente identificados. Nova linha, tabulação, `NUL` e barra invertida são escritos como `\n`, `\t`, `\0` e `\\`. A opção `--raw` desabilita este escape de caracteres.
 
-  The following example demonstrates tabular versus nontabular output and the use of raw mode to disable escaping:
+  O exemplo a seguir demonstra a saída tabular versus não tabular e o uso do modo raw para desabilitar o escape:
 
   ```sql
   % mysql
@@ -553,81 +553,81 @@
 
 * `--reconnect`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  If the connection to the server is lost, automatically try to reconnect. A single reconnect attempt is made each time the connection is lost. To suppress reconnection behavior, use `--skip-reconnect`.
+  Se a conexão com o servidor for perdida, tenta reconectar automaticamente. Uma única tentativa de reconexão é feita cada vez que a conexão é perdida. Para suprimir o comportamento de reconexão, use `--skip-reconnect`.
 
 * `--safe-updates`, `--i-am-a-dummy`, `-U`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  If this option is enabled, `UPDATE` and `DELETE` statements that do not use a key in the `WHERE` clause or a `LIMIT` clause produce an error. In addition, restrictions are placed on `SELECT` statements that produce (or are estimated to produce) very large result sets. If you have set this option in an option file, you can use `--skip-safe-updates` on the command line to override it. For more information about this option, see Using Safe-Updates Mode (--safe-updates)").
+  Se esta opção estiver ativada, statements `UPDATE` e `DELETE` que não usam uma chave na cláusula `WHERE` ou uma cláusula `LIMIT` produzem um erro. Além disso, restrições são impostas a statements `SELECT` que produzem (ou são estimados a produzir) result sets muito grandes. Se você definiu esta opção em um arquivo de opções, você pode usar `--skip-safe-updates` na linha de comando para anulá-la. Para mais informações sobre esta opção, consulte Usando o Modo Safe-Updates (--safe-updates)").
 
 * `--secure-auth`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Do not send passwords to the server in old (pre-4.1) format. This prevents connections except for servers that use the newer password format.
+  Não envia passwords para o servidor no formato antigo (pré-4.1). Isso impede conexões, exceto para servidores que usam o formato de password mais recente.
 
-  As of MySQL 5.7.5, this option is deprecated; expect it to be removed in a future MySQL release. It is always enabled and attempting to disable it (`--skip-secure-auth`, `--secure-auth=0`) produces an error. Before MySQL 5.7.5, this option is enabled by default but can be disabled.
+  A partir do MySQL 5.7.5, esta opção está descontinuada; espere que ela seja removida em uma futura release do MySQL. Ela está sempre ativada e tentar desativá-la (`--skip-secure-auth`, `--secure-auth=0`) produz um erro. Antes do MySQL 5.7.5, esta opção é ativada por padrão, mas pode ser desativada.
 
-  Note
+  Nota
 
-  Passwords that use the pre-4.1 hashing method are less secure than passwords that use the native password hashing method and should be avoided. Pre-4.1 passwords are deprecated and support for them was removed in MySQL 5.7.5. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
+  Passwords que usam o método de hashing pré-4.1 são menos seguras do que passwords que usam o método nativo de hashing de password e devem ser evitadas. Passwords pré-4.1 estão descontinuadas e o suporte a elas foi removido no MySQL 5.7.5. Para instruções de upgrade de conta, consulte Seção 6.4.1.3, “Migrando de Hashing de Password Pré-4.1 e do Plugin mysql_old_password”.
 
 * `--select-limit=value`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduzida</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The automatic limit for `SELECT` statements when using `--safe-updates`. (Default value is 1,000.)
+  O limite automático para statements `SELECT` ao usar `--safe-updates`. (O valor padrão é 1.000.)
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  O nome do caminho para um arquivo no formato PEM contendo uma cópia do lado do cliente da public key exigida pelo servidor para troca de password baseada em par de chaves RSA. Esta opção se aplica a clientes que autenticam com o plugin de Authentication `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não autenticam com um desses plugins. Também é ignorada se a troca de password baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
-  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
+  Se `--server-public-key-path=file_name` for fornecido e especificar um arquivo de public key válido, ele terá precedência sobre `--get-server-public-key`.
 
-  For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
+  Para `sha256_password`, esta opção se aplica apenas se o MySQL foi construído usando OpenSSL.
 
-  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  Para informações sobre os plugins `sha256_password` e `caching_sha2_password`, consulte Seção 6.4.1.5, “Authentication Pluggable SHA-256”, e Seção 6.4.1.4, “Authentication Pluggable Caching SHA-2”.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
+  No Windows, o nome da shared-memory a ser usado para conexões feitas usando shared memory para um servidor local. O valor padrão é `MYSQL`. O nome da shared-memory diferencia maiúsculas de minúsculas.
 
-  This option applies only if the server was started with the `shared_memory` system variable enabled to support shared-memory connections.
+  Esta opção aplica-se apenas se o servidor foi iniciado com a variável de sistema `shared_memory` ativada para suportar conexões de shared-memory.
 
 * `--show-warnings`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  Cause warnings to be shown after each statement if there are any. This option applies to interactive and batch mode.
+  Faz com que warnings sejam exibidos após cada statement, se houver. Esta opção se aplica ao modo interativo e batch.
 
 * `--sigint-ignore`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  Ignore `SIGINT` signals (typically the result of typing **Control+C**).
+  Ignora sinais `SIGINT` (geralmente resultado de digitar **Control+C**).
 
-  Without this option, typing **Control+C** interrupts the current statement if there is one, or cancels any partial input line otherwise.
+  Sem esta opção, digitar **Control+C** interrompe o statement atual, se houver, ou cancela qualquer linha de entrada parcial, caso contrário.
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  Silent mode. Produce less output. This option can be given multiple times to produce less and less output.
+  Modo silencioso. Produz menos saída. Esta opção pode ser fornecida múltiplas vezes para produzir cada vez menos saída.
 
-  This option results in nontabular output format and escaping of special characters. Escaping may be disabled by using raw mode; see the description for the `--raw` option.
+  Esta opção resulta em formato de saída não tabular e escape de caracteres especiais. O escape pode ser desabilitado usando o modo raw; consulte a descrição para a opção `--raw`.
 
 * `--skip-column-names`, `-N`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  Do not write column names in results. Use of this option causes the output to be right-aligned, as shown here:
+  Não escreve nomes de colunas nos resultados. O uso desta opção faz com que a saída seja alinhada à direita, como mostrado aqui:
 
   ```sql
   $> echo "SELECT * FROM t1" | mysql -t test
@@ -646,29 +646,29 @@
 
 * `--skip-line-numbers`, `-L`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  Do not write line numbers for errors. Useful when you want to compare result files that include error messages.
+  Não escreve números de linha para erros. Útil quando você deseja comparar arquivos de resultado que incluem mensagens de erro.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
+  Para conexões a `localhost`, o arquivo socket Unix a ser usado ou, no Windows, o nome do named pipe a ser usado.
 
-  On Windows, this option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
+  No Windows, esta opção se aplica apenas se o servidor foi iniciado com a variável de sistema `named_pipe` ativada para suportar conexões de named pipe. Além disso, o usuário que faz a conexão deve ser membro do grupo Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--ssl*`
 
-  Options that begin with `--ssl` specify whether to connect to the server using encryption and indicate where to find SSL keys and certificates. See Command Options for Encrypted Connections.
+  Opções que começam com `--ssl` especificam se deve conectar ao servidor usando criptografia e indicam onde encontrar chaves e certificados SSL. Consulte Opções de Comando para Conexões Criptografadas.
 
 * `--syslog`, `-j`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  This option causes **mysql** to send interactive statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
+  Esta opção faz com que o **mysql** envie statements interativos para a facilidade de logging do sistema. No Unix, este é o `syslog`; no Windows, é o Log de Eventos do Windows. O destino onde as mensagens registradas aparecem depende do sistema. No Linux, o destino é frequentemente o arquivo `/var/log/messages`.
 
-  Here is a sample of output generated on Linux by using `--syslog`. This output is formatted for readability; each logged message actually takes a single line.
+  Aqui está uma amostra da saída gerada no Linux usando `--syslog`. Esta saída é formatada para legibilidade; cada mensagem registrada na verdade ocupa uma única linha.
 
   ```sql
   Mar  7 12:39:25 myhost MysqlClient[20824]:
@@ -679,77 +679,77 @@
     DB_SERVER:'127.0.0.1', DB:'test', QUERY:'SHOW TABLES;'
   ```
 
-  For more information, see Section 4.5.1.3, “mysql Client Logging”.
+  Para mais informações, consulte Seção 4.5.1.3, “Logging do Cliente mysql”.
 
 * `--table`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binary-mode"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  Display output in table format. This is the default for interactive use, but can be used to produce table output in batch mode.
+  Exibe a saída em formato de tabela. Este é o padrão para uso interativo, mas pode ser usado para produzir saída em tabela no modo batch.
 
 * `--tee=file_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Append a copy of output to the given file. This option works only in interactive mode. Section 4.5.1.2, “mysql Client Commands”, discusses tee files further.
+  Anexa uma cópia da saída ao arquivo fornecido. Esta opção funciona apenas em modo interativo. A Seção 4.5.1.2, “Comandos do Cliente mysql”, discute arquivos tee em mais detalhes.
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
+  Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolo separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte Seção 6.3.2, “Protocolos e Ciphers TLS de Conexão Criptografada”.
 
-  This option was added in MySQL 5.7.10.
+  Esta opção foi adicionada no MySQL 5.7.10.
 
 * `--unbuffered`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Flush the buffer after each query.
+  Limpa o Buffer após cada Query.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  The user name of the MySQL account to use for connecting to the server.
+  O nome de usuário da conta MySQL a ser usado para conectar ao servidor.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Verbose mode. Produce more output about what the program does. This option can be given multiple times to produce more and more output. (For example, `-v -v -v` produces table output format even in batch mode.)
+  Modo verbose. Produz mais saída sobre o que o programa faz. Esta opção pode ser fornecida múltiplas vezes para produzir cada vez mais saída. (Por exemplo, `-v -v -v` produz formato de saída em tabela mesmo no modo batch.)
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Display version information and exit.
+  Exibe informações de versão e sai.
 
 * `--vertical`, `-E`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Print query output rows vertically (one line per column value). Without this option, you can specify vertical output for individual statements by terminating them with `\G`.
+  Imprime linhas de saída de Query verticalmente (uma linha por valor de coluna). Sem esta opção, você pode especificar a saída vertical para statements individuais, terminando-os com `\G`.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  If the connection cannot be established, wait and retry instead of aborting.
+  Se a conexão não puder ser estabelecida, espera e tenta novamente em vez de abortar.
 
 * `--xml`, `-X`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Produce XML output.
+  Produz saída XML.
 
   ```sql
   <field name="column_name">NULL</field>
   ```
 
-  The output when `--xml` is used with **mysql** matches that of **mysqldump** `--xml`. See Section 4.5.4, “mysqldump — A Database Backup Program”, for details.
+  A saída quando `--xml` é usado com **mysql** corresponde à do **mysqldump --xml**. Consulte Seção 4.5.4, “mysqldump — Um Programa de Backup de Database”, para detalhes.
 
-  The XML output also uses an XML namespace, as shown here:
+  A saída XML também usa um namespace XML, como mostrado aqui:
 
   ```sql
   $> mysql --xml -uroot -e "SHOW VARIABLES LIKE 'version%'"

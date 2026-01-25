@@ -1,8 +1,8 @@
-### 10.8.7 Using Collation in INFORMATION_SCHEMA Searches
+### 10.8.7 Usando Collation em Buscas no INFORMATION_SCHEMA
 
-String columns in `INFORMATION_SCHEMA` tables have a collation of `utf8_general_ci`, which is case-insensitive. However, for values that correspond to objects that are represented in the file system, such as databases and tables, searches in `INFORMATION_SCHEMA` string columns can be case-sensitive or case-insensitive, depending on the characteristics of the underlying file system and the value of the `lower_case_table_names` system variable. For example, searches may be case-sensitive if the file system is case-sensitive. This section describes this behavior and how to modify it if necessary; see also Bug #34921.
+Colunas String nas tabelas `INFORMATION_SCHEMA` possuem uma Collation de `utf8_general_ci`, que não diferencia maiúsculas de minúsculas (case-insensitive). No entanto, para valores que correspondem a objetos representados no File System, como Databases e tables, as buscas em colunas String do `INFORMATION_SCHEMA` podem diferenciar ou não maiúsculas de minúsculas (case-sensitive ou case-insensitive), dependendo das características do File System subjacente e do valor da System Variable `lower_case_table_names`. Por exemplo, as buscas podem ser case-sensitive se o File System for case-sensitive. Esta seção descreve este comportamento e como modificá-lo, se necessário; veja também Bug #34921.
 
-Suppose that a query searches the `SCHEMATA.SCHEMA_NAME` column for the `test` database. On Linux, file systems are case-sensitive, so comparisons of `SCHEMATA.SCHEMA_NAME` with `'test'` match, but comparisons with `'TEST'` do not:
+Suponha que uma Query pesquise a coluna `SCHEMATA.SCHEMA_NAME` pelo Database `test`. No Linux, os File Systems diferenciam maiúsculas de minúsculas (case-sensitive), portanto, as comparações de `SCHEMATA.SCHEMA_NAME` com `'test'` correspondem (match), mas as comparações com `'TEST'` não:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
@@ -18,9 +18,9 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
 Empty set (0.00 sec)
 ```
 
-These results occur with the `lower_case_table_names` system variable set to 0. Changing the value of `lower_case_table_names` to 1 or 2 causes the second query to return the same (nonempty) result as the first query.
+Estes resultados ocorrem com a System Variable `lower_case_table_names` definida como 0. Alterar o valor de `lower_case_table_names` para 1 ou 2 faz com que a segunda Query retorne o mesmo resultado (não vazio) que a primeira Query.
 
-On Windows or macOS, file systems are not case-sensitive, so comparisons match both `'test'` and `'TEST'`:
+No Windows ou macOS, os File Systems não diferenciam maiúsculas de minúsculas (não são case-sensitive), portanto, as comparações correspondem tanto a `'test'` quanto a `'TEST'`:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
@@ -40,11 +40,11 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
 +-------------+
 ```
 
-The value of `lower_case_table_names` makes no difference in this context.
+O valor de `lower_case_table_names` não faz diferença neste contexto.
 
-The preceding behavior occurs because the `utf8_general_ci` collation is not used for `INFORMATION_SCHEMA` queries when searching for values that correspond to objects represented in the file system. It is a result of file system-scanning optimizations implemented for `INFORMATION_SCHEMA` searches. For information about these optimizations, see Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
+O comportamento anterior ocorre porque a Collation `utf8_general_ci` não é usada para Queries no `INFORMATION_SCHEMA` ao buscar valores que correspondem a objetos representados no File System. Isso é resultado de otimizações de varredura do File System implementadas para buscas no `INFORMATION_SCHEMA`. Para obter informações sobre essas otimizações, consulte a Seção 8.2.3, “Otimizando Queries do INFORMATION_SCHEMA”.
 
-If the result of a string operation on an `INFORMATION_SCHEMA` column differs from expectations, a workaround is to use an explicit `COLLATE` clause to force a suitable collation (see Section 10.8.1, “Using COLLATE in SQL Statements”). For example, to perform a case-insensitive search, use `COLLATE` with the `INFORMATION_SCHEMA` column name:
+Se o resultado de uma operação String em uma coluna do `INFORMATION_SCHEMA` diferir das expectativas, uma solução alternativa (workaround) é usar uma cláusula `COLLATE` explícita para forçar uma Collation adequada (consulte a Seção 10.8.1, “Usando COLLATE em SQL Statements”). Por exemplo, para realizar uma busca case-insensitive, use `COLLATE` com o nome da coluna do `INFORMATION_SCHEMA`:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
@@ -64,16 +64,16 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
 +-------------+
 ```
 
-In the preceding queries, it is important to apply the `COLLATE` clause to the `INFORMATION_SCHEMA` column name. Applying `COLLATE` to the comparison value has no effect.
+Nas Queries anteriores, é importante aplicar a cláusula `COLLATE` ao nome da coluna do `INFORMATION_SCHEMA`. Aplicar `COLLATE` ao valor de comparação não tem efeito.
 
-You can also use the `UPPER()` or `LOWER()` function:
+Você também pode usar a função `UPPER()` ou `LOWER()`:
 
 ```sql
 WHERE UPPER(SCHEMA_NAME) = 'TEST'
 WHERE LOWER(SCHEMA_NAME) = 'test'
 ```
 
-Although a case-insensitive comparison can be performed even on platforms with case-sensitive file systems, as just shown, it is not necessarily always the right thing to do. On such platforms, it is possible to have multiple objects with names that differ only in lettercase. For example, tables named `city`, `CITY`, and `City` can all exist simultaneously. Consider whether a search should match all such names or just one and write queries accordingly. The first of the following comparisons (with `utf8_bin`) is case-sensitive; the others are not:
+Embora uma comparação case-insensitive possa ser realizada mesmo em plataformas com File Systems case-sensitive, como acabamos de mostrar, isso não é necessariamente sempre o mais correto a fazer. Em tais plataformas, é possível ter múltiplos objetos com nomes que diferem apenas em maiúsculas/minúsculas (lettercase). Por exemplo, tables chamadas `city`, `CITY` e `City` podem coexistir simultaneamente. Considere se uma busca deve corresponder a todos esses nomes ou apenas a um, e escreva as Queries de acordo. A primeira das seguintes comparações (com `utf8_bin`) é case-sensitive; as outras não são:
 
 ```sql
 WHERE TABLE_NAME COLLATE utf8_bin = 'City'
@@ -82,7 +82,7 @@ WHERE UPPER(TABLE_NAME) = 'CITY'
 WHERE LOWER(TABLE_NAME) = 'city'
 ```
 
-Searches in `INFORMATION_SCHEMA` string columns for values that refer to `INFORMATION_SCHEMA` itself do use the `utf8_general_ci` collation because `INFORMATION_SCHEMA` is a “virtual” database not represented in the file system. For example, comparisons with `SCHEMATA.SCHEMA_NAME` match `'information_schema'` or `'INFORMATION_SCHEMA'` regardless of platform:
+Buscas em colunas String do `INFORMATION_SCHEMA` por valores que se referem ao próprio `INFORMATION_SCHEMA` usam a Collation `utf8_general_ci`, porque `INFORMATION_SCHEMA` é um Database “virtual” não representado no File System. Por exemplo, comparações com `SCHEMATA.SCHEMA_NAME` correspondem a `'information_schema'` ou `'INFORMATION_SCHEMA'` independentemente da plataforma:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA

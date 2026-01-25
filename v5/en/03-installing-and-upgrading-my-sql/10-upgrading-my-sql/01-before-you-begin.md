@@ -1,39 +1,38 @@
-### 2.10.1 Before You Begin
+### 2.10.1 Antes de Começar
 
-Review the information in this section before upgrading. Perform any recommended actions.
+Revise as informações nesta seção antes de realizar o upgrade (atualização). Execute quaisquer ações recomendadas.
 
-* Protect your data by creating a backup. The backup should include the `mysql` system database, which contains the MySQL system tables. See Section 7.2, “Database Backup Methods”.
+* Proteja seus dados criando um backup. O backup deve incluir a `mysql` system **database**, que contém as tabelas de sistema do MySQL. Consulte a Seção 7.2, “Database Backup Methods”.
 
-* Review Section 2.10.2, “Upgrade Paths” to ensure that your intended upgrade path is supported.
+* Revise a Seção 2.10.2, “Upgrade Paths” para garantir que o caminho de **upgrade** pretendido seja suportado.
 
-* Review Section 2.10.3, “Changes in MySQL 5.7” for changes that you should be aware of before upgrading. Some changes may require action.
+* Revise a Seção 2.10.3, “Changes in MySQL 5.7” para alterações das quais você deve estar ciente antes de realizar o **upgrade**. Algumas alterações podem exigir ação.
 
-* Review Section 1.3, “What Is New in MySQL 5.7” for deprecated and removed features. An upgrade may require changes with respect to those features if you use any of them.
+* Revise a Seção 1.3, “What Is New in MySQL 5.7” para recursos descontinuados e removidos. Um **upgrade** pode exigir alterações em relação a esses recursos se você utilizar algum deles.
 
-* Review Section 1.4, “Server and Status Variables and Options Added, Deprecated, or Removed in MySQL 5.7”. If you use deprecated or removed variables, an upgrade may require configuration changes.
+* Revise a Seção 1.4, “Server and Status Variables and Options Added, Deprecated, or Removed in MySQL 5.7”. Se você usar variáveis descontinuadas ou removidas, um **upgrade** pode exigir alterações de configuração.
 
-* Review the Release Notes for information about fixes, changes, and new features.
+* Revise as Notas de Lançamento (**Release Notes**) para obter informações sobre correções, alterações e novos recursos.
 
-* If you use replication, review Section 16.4.3, “Upgrading a Replication Topology”.
+* Se você usa **replication**, revise a Seção 16.4.3, “Upgrading a Replication Topology”.
 
-* Upgrade procedures vary by platform and how the initial installation was performed. Use the procedure that applies to your current MySQL installation:
+* Os procedimentos de **upgrade** variam conforme a plataforma e a forma como a instalação inicial foi realizada. Use o procedimento que se aplica à sua instalação atual do MySQL:
 
-  + For binary and package-based installations on non-Windows platforms, refer to Section 2.10.4, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”.
+  + Para instalações baseadas em binário e pacote em plataformas que não são Windows, consulte a Seção 2.10.4, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”.
 
-    Note
+    > **Note**
+    > Para distribuições Linux suportadas, o método preferido para fazer **upgrade** de instalações baseadas em pacote é usar os repositórios de software MySQL (MySQL Yum Repository, MySQL APT Repository e MySQL SLES Repository).
 
-    For supported Linux distributions, the preferred method for upgrading package-based installations is to use the MySQL software repositories (MySQL Yum Repository, MySQL APT Repository, and MySQL SLES Repository).
+  + Para instalações em uma plataforma Enterprise Linux ou Fedora usando o MySQL Yum Repository, consulte a Seção 2.10.5, “Upgrading MySQL with the MySQL Yum Repository”.
 
-  + For installations on an Enterprise Linux platform or Fedora using the MySQL Yum Repository, refer to Section 2.10.5, “Upgrading MySQL with the MySQL Yum Repository”.
+  + Para instalações no Ubuntu usando o MySQL APT Repository, consulte a Seção 2.10.6, “Upgrading MySQL with the MySQL APT Repository”.
 
-  + For installations on Ubuntu using the MySQL APT repository, refer to Section 2.10.6, “Upgrading MySQL with the MySQL APT Repository”.
+  + Para instalações no SLES usando o MySQL SLES Repository, consulte a Seção 2.10.7, “Upgrading MySQL with the MySQL SLES Repository”.
 
-  + For installations on SLES using the MySQL SLES repository, refer to Section 2.10.7, “Upgrading MySQL with the MySQL SLES Repository”.
+  + Para instalações realizadas usando o Docker, consulte a Seção 2.10.9, “Upgrading a Docker Installation of MySQL”.
 
-  + For installations performed using Docker, refer to Section 2.10.9, “Upgrading a Docker Installation of MySQL”.
+  + Para instalações no Windows, consulte a Seção 2.10.8, “Upgrading MySQL on Windows”.
 
-  + For installations on Windows, refer to Section 2.10.8, “Upgrading MySQL on Windows”.
+* Se sua instalação MySQL contiver uma grande quantidade de dados que possa levar muito tempo para ser convertida após um **upgrade** *in-place*, pode ser útil criar uma instância de teste para avaliar as conversões necessárias e o trabalho envolvido para realizá-las. Para criar uma instância de teste, faça uma cópia de sua instância MySQL que contenha a **database** `mysql` e outras **databases** sem os dados. Execute o procedimento de **upgrade** na instância de teste para avaliar o trabalho envolvido na realização da conversão de dados real.
 
-* If your MySQL installation contains a large amount of data that might take a long time to convert after an in-place upgrade, it may be useful to create a test instance for assessing the conversions that are required and the work involved to perform them. To create a test instance, make a copy of your MySQL instance that contains the `mysql` database and other databases without the data. Run the upgrade procedure on the test instance to assess the work involved to perform the actual data conversion.
-
-* Rebuilding and reinstalling MySQL language interfaces is recommended when you install or upgrade to a new release of MySQL. This applies to MySQL interfaces such as PHP `mysql` extensions and the Perl `DBD::mysql` module.
+* Reconstruir e reinstalar as interfaces de linguagem MySQL é recomendado ao instalar ou fazer **upgrade** para um novo lançamento do MySQL. Isso se aplica a interfaces MySQL como extensões PHP `mysql` e o módulo Perl `DBD::mysql`.

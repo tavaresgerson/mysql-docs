@@ -1,38 +1,35 @@
-### 10.9.8 Converting Between 3-Byte and 4-Byte Unicode Character Sets
+### 10.9.8 Conversão Entre Conjuntos de Caracteres Unicode de 3 e 4 Bytes
 
-This section describes issues that you may face when converting character data between the `utf8mb3` and `utf8mb4` character sets.
+Esta seção descreve problemas que você pode enfrentar ao converter dados de caracteres entre os conjuntos de caracteres `utf8mb3` e `utf8mb4`.
 
-Note
+Nota
 
-This discussion focuses primarily on converting between `utf8mb3` and `utf8mb4`, but similar principles apply to converting between the `ucs2` character set and character sets such as `utf16` or `utf32`.
+Esta discussão se concentra principalmente na conversão entre `utf8mb3` e `utf8mb4`, mas princípios semelhantes se aplicam à conversão entre o conjunto de caracteres `ucs2` e conjuntos de caracteres como `utf16` ou `utf32`.
 
-The `utf8mb3` and `utf8mb4` character sets differ as follows:
+Os conjuntos de caracteres `utf8mb3` e `utf8mb4` diferem da seguinte forma:
 
-* `utf8mb3` supports only characters in the Basic Multilingual Plane (BMP). `utf8mb4` additionally supports supplementary characters that lie outside the BMP.
+* `utf8mb3` suporta apenas caracteres no Basic Multilingual Plane (BMP). `utf8mb4` suporta adicionalmente caracteres suplementares que se encontram fora do BMP.
+* `utf8mb3` usa um máximo de três bytes por caractere. `utf8mb4` usa um máximo de quatro bytes por caractere.
 
-* `utf8mb3` uses a maximum of three bytes per character. `utf8mb4` uses a maximum of four bytes per character.
+Nota
 
-Note
+Esta discussão se refere aos nomes dos conjuntos de caracteres `utf8mb3` e `utf8mb4` para ser explícita sobre a referência a dados de conjuntos de caracteres UTF-8 de 3 e 4 bytes. A exceção é que, em definições de tabela, `utf8` é usado porque o MySQL converte instâncias de `utf8mb3` especificadas nessas definições para `utf8`, que é um alias para `utf8mb3`.
 
-This discussion refers to the `utf8mb3` and `utf8mb4` character set names to be explicit about referring to 3-byte and 4-byte UTF-8 character set data. The exception is that in table definitions, `utf8` is used because MySQL converts instances of `utf8mb3` specified in such definitions to `utf8`, which is an alias for `utf8mb3`.
+Uma vantagem de converter de `utf8mb3` para `utf8mb4` é que isso permite que aplicações usem caracteres suplementares. Uma desvantagem (tradeoff) é que isso pode aumentar os requisitos de espaço de armazenamento de dados.
 
-One advantage of converting from `utf8mb3` to `utf8mb4` is that this enables applications to use supplementary characters. One tradeoff is that this may increase data storage space requirements.
+Em termos de conteúdo da tabela, a conversão de `utf8mb3` para `utf8mb4` não apresenta problemas:
 
-In terms of table content, conversion from `utf8mb3` to `utf8mb4` presents no problems:
+* Para um caractere BMP, `utf8mb4` e `utf8mb3` têm características de armazenamento idênticas: mesmos valores de código, mesma codificação, mesmo comprimento.
+* Para um caractere suplementar, `utf8mb4` requer quatro bytes para armazená-lo, enquanto `utf8mb3` não pode armazenar o caractere. Ao converter colunas `utf8mb3` para `utf8mb4`, você não precisa se preocupar em converter caracteres suplementares porque não existem.
 
-* For a BMP character, `utf8mb4` and `utf8mb3` have identical storage characteristics: same code values, same encoding, same length.
+Em termos de estrutura da tabela, estas são as principais incompatibilidades potenciais:
 
-* For a supplementary character, `utf8mb4` requires four bytes to store it, whereas `utf8mb3` cannot store the character at all. When converting `utf8mb3` columns to `utf8mb4`, you need not worry about converting supplementary characters because there are none.
+* Para os tipos de dados de caracteres de comprimento variável (`VARCHAR` e os tipos `TEXT`), o comprimento máximo permitido em caracteres é menor para colunas `utf8mb4` do que para colunas `utf8mb3`.
+* Para todos os tipos de dados de caracteres (`CHAR`, `VARCHAR` e os tipos `TEXT`), o número máximo de caracteres que podem ser indexados é menor para colunas `utf8mb4` do que para colunas `utf8mb3`.
 
-In terms of table structure, these are the primary potential incompatibilities:
+Consequentemente, para converter tabelas de `utf8mb3` para `utf8mb4`, pode ser necessário alterar algumas definições de coluna ou Index.
 
-* For the variable-length character data types (`VARCHAR` and the `TEXT` types), the maximum permitted length in characters is less for `utf8mb4` columns than for `utf8mb3` columns.
-
-* For all character data types (`CHAR`, `VARCHAR`, and the `TEXT` types), the maximum number of characters that can be indexed is less for `utf8mb4` columns than for `utf8mb3` columns.
-
-Consequently, to convert tables from `utf8mb3` to `utf8mb4`, it may be necessary to change some column or index definitions.
-
-Tables can be converted from `utf8mb3` to `utf8mb4` by using `ALTER TABLE`. Suppose that a table has this definition:
+As tabelas podem ser convertidas de `utf8mb3` para `utf8mb4` usando `ALTER TABLE`. Suponha que uma tabela tenha esta definição:
 
 ```sql
 CREATE TABLE t1 (
@@ -41,7 +38,7 @@ CREATE TABLE t1 (
 ) CHARACTER SET utf8;
 ```
 
-The following statement converts `t1` to use `utf8mb4`:
+A seguinte instrução converte `t1` para usar `utf8mb4`:
 
 ```sql
 ALTER TABLE t1
@@ -52,52 +49,51 @@ ALTER TABLE t1
     CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;
 ```
 
-The catch when converting from `utf8mb3` to `utf8mb4` is that the maximum length of a column or index key is unchanged in terms of *bytes*. Therefore, it is smaller in terms of *characters* because the maximum length of a character is four bytes instead of three. For the `CHAR`, `VARCHAR`, and `TEXT` data types, watch for these issues when converting your MySQL tables:
+O problema ao converter de `utf8mb3` para `utf8mb4` é que o comprimento máximo de uma coluna ou chave de Index permanece inalterado em termos de *bytes*. Portanto, é menor em termos de *caracteres*, pois o comprimento máximo de um caractere é de quatro bytes em vez de três. Para os tipos de dados `CHAR`, `VARCHAR` e `TEXT`, preste atenção a estes problemas ao converter suas tabelas MySQL:
 
-* Check all definitions of `utf8mb3` columns and make sure they do not exceed the maximum length for the storage engine.
+* Verifique todas as definições de colunas `utf8mb3` e certifique-se de que não excedam o comprimento máximo para o storage engine.
+* Verifique todos os Indexes em colunas `utf8mb3` e certifique-se de que não excedam o comprimento máximo para o storage engine. Às vezes, o máximo pode mudar devido a aprimoramentos no storage engine.
 
-* Check all indexes on `utf8mb3` columns and make sure they do not exceed the maximum length for the storage engine. Sometimes the maximum can change due to storage engine enhancements.
+Se as condições precedentes se aplicarem, você deve reduzir o comprimento definido das colunas ou Indexes, ou continuar a usar `utf8mb3` em vez de `utf8mb4`.
 
-If the preceding conditions apply, you must either reduce the defined length of columns or indexes, or continue to use `utf8mb3` rather than `utf8mb4`.
+Aqui estão alguns exemplos onde mudanças estruturais podem ser necessárias:
 
-Here are some examples where structural changes may be needed:
+* Uma coluna `TINYTEXT` pode conter até 255 bytes, portanto, pode conter até 85 caracteres de 3 bytes ou 63 caracteres de 4 bytes. Suponha que você tenha uma coluna `TINYTEXT` que use `utf8mb3`, mas que precise ser capaz de conter mais de 63 caracteres. Você não pode convertê-la para `utf8mb4`, a menos que também altere o tipo de dado para um tipo mais longo, como `TEXT`.
 
-* A `TINYTEXT` column can hold up to 255 bytes, so it can hold up to 85 3-byte or 63 4-byte characters. Suppose that you have a `TINYTEXT` column that uses `utf8mb3` but must be able to contain more than 63 characters. You cannot convert it to `utf8mb4` unless you also change the data type to a longer type such as `TEXT`.
+  Similarmente, uma coluna `VARCHAR` muito longa pode precisar ser alterada para um dos tipos `TEXT` mais longos se você quiser convertê-la de `utf8mb3` para `utf8mb4`.
 
-  Similarly, a very long `VARCHAR` column may need to be changed to one of the longer `TEXT` types if you want to convert it from `utf8mb3` to `utf8mb4`.
+* `InnoDB` tem um comprimento máximo de Index de 767 bytes para tabelas que usam o formato de linha `COMPACT` ou `REDUNDANT`, então para colunas `utf8mb3` ou `utf8mb4`, você pode indexar um máximo de 255 ou 191 caracteres, respectivamente. Se você atualmente tem colunas `utf8mb3` com Indexes maiores que 191 caracteres, você deve indexar um número menor de caracteres.
 
-* `InnoDB` has a maximum index length of 767 bytes for tables that use `COMPACT` or `REDUNDANT` row format, so for `utf8mb3` or `utf8mb4` columns, you can index a maximum of 255 or 191 characters, respectively. If you currently have `utf8mb3` columns with indexes longer than 191 characters, you must index a smaller number of characters.
-
-  In an `InnoDB` table that uses `COMPACT` or `REDUNDANT` row format, these column and index definitions are legal:
+  Em uma tabela `InnoDB` que usa o formato de linha `COMPACT` ou `REDUNDANT`, estas definições de coluna e Index são legais:
 
   ```sql
   col1 VARCHAR(500) CHARACTER SET utf8, INDEX (col1(255))
   ```
 
-  To use `utf8mb4` instead, the index must be smaller:
+  Para usar `utf8mb4` em vez disso, o Index deve ser menor:
 
   ```sql
   col1 VARCHAR(500) CHARACTER SET utf8mb4, INDEX (col1(191))
   ```
 
-  Note
+  Nota
 
-  For `InnoDB` tables that use `COMPRESSED` or `DYNAMIC` row format, you can enable the `innodb_large_prefix` option to permit index key prefixes longer than 767 bytes (up to 3072 bytes). Creating such tables also requires the option values `innodb_file_format=barracuda` and `innodb_file_per_table=true`.) In this case, enabling the `innodb_large_prefix` option enables you to index a maximum of 1024 or 768 characters for `utf8mb3` or `utf8mb4` columns, respectively. For related information, see Section 14.23, “InnoDB Limits”.
+  Para tabelas `InnoDB` que usam o formato de linha `COMPRESSED` ou `DYNAMIC`, você pode habilitar a opção `innodb_large_prefix` para permitir prefixos de chave de Index maiores que 767 bytes (até 3072 bytes). A criação de tais tabelas também requer os valores de opção `innodb_file_format=barracuda` e `innodb_file_per_table=true`.) Neste caso, habilitar a opção `innodb_large_prefix` permite indexar um máximo de 1024 ou 768 caracteres para colunas `utf8mb3` ou `utf8mb4`, respectivamente. Para informações relacionadas, consulte a Seção 14.23, “Limites do InnoDB”.
 
-The preceding types of changes are most likely to be required only if you have very long columns or indexes. Otherwise, you should be able to convert your tables from `utf8mb3` to `utf8mb4` without problems, using `ALTER TABLE` as described previously.
+Os tipos de alterações precedentes são mais propensos a serem necessários apenas se você tiver colunas ou Indexes muito longos. Caso contrário, você deve ser capaz de converter suas tabelas de `utf8mb3` para `utf8mb4` sem problemas, usando `ALTER TABLE` conforme descrito anteriormente.
 
-The following items summarize other potential incompatibilities:
+Os seguintes itens resumem outras incompatibilidades potenciais:
 
-* `SET NAMES 'utf8mb4'` causes use of the 4-byte character set for connection character sets. As long as no 4-byte characters are sent from the server, there should be no problems. Otherwise, applications that expect to receive a maximum of three bytes per character may have problems. Conversely, applications that expect to send 4-byte characters must ensure that the server understands them.
+* `SET NAMES 'utf8mb4'` causa o uso do conjunto de caracteres de 4 bytes para conjuntos de caracteres de conexão. Enquanto nenhum caractere de 4 bytes for enviado do server, não deverá haver problemas. Caso contrário, aplicações que esperam receber um máximo de três bytes por caractere podem ter problemas. Inversamente, aplicações que esperam enviar caracteres de 4 bytes devem garantir que o server os entenda.
 
-* For replication, if character sets that support supplementary characters are to be used on the source, all replicas must understand them as well.
+* Para Replication, se conjuntos de caracteres que suportam caracteres suplementares forem usados na source, todas as replicas também devem entendê-los.
 
-  Also, keep in mind the general principle that if a table has different definitions on the source and replica, this can lead to unexpected results. For example, the differences in maximum index key length make it risky to use `utf8mb3` on the source and `utf8mb4` on the replica.
+  Além disso, tenha em mente o princípio geral de que, se uma tabela tiver definições diferentes na source e na replica, isso pode levar a resultados inesperados. Por exemplo, as diferenças no comprimento máximo da chave de Index tornam arriscado usar `utf8mb3` na source e `utf8mb4` na replica.
 
-If you have converted to `utf8mb4`, `utf16`, `utf16le`, or `utf32`, and then decide to convert back to `utf8mb3` or `ucs2` (for example, to downgrade to an older version of MySQL), these considerations apply:
+Se você converteu para `utf8mb4`, `utf16`, `utf16le` ou `utf32`, e então decidir converter de volta para `utf8mb3` ou `ucs2` (por exemplo, para fazer o downgrade para uma versão mais antiga do MySQL), estas considerações se aplicam:
 
-* `utf8mb3` and `ucs2` data should present no problems.
+* Dados `utf8mb3` e `ucs2` não devem apresentar problemas.
 
-* The server must be recent enough to recognize definitions referring to the character set from which you are converting.
+* O server deve ser recente o suficiente para reconhecer definições referentes ao conjunto de caracteres do qual você está convertendo.
 
-* For object definitions that refer to the `utf8mb4` character set, you can dump them with **mysqldump** prior to downgrading, edit the dump file to change instances of `utf8mb4` to `utf8`, and reload the file in the older server, as long as there are no 4-byte characters in the data. The older server sees `utf8` in the dump file object definitions and creates new objects that use the (3-byte) `utf8` character set.
+* Para definições de objeto que se referem ao conjunto de caracteres `utf8mb4`, você pode despejá-los com **mysqldump** antes do downgrade, editar o arquivo dump para alterar instâncias de `utf8mb4` para `utf8`, e recarregar o arquivo no server mais antigo, desde que não haja caracteres de 4 bytes nos dados. O server mais antigo vê `utf8` nas definições de objeto do arquivo dump e cria novos objetos que usam o conjunto de caracteres `utf8` (de 3 bytes).

@@ -1,49 +1,49 @@
-### 8.11.4 Metadata Locking
+### 8.11.4 Metadata Locking
 
-MySQL uses metadata locking to manage concurrent access to database objects and to ensure data consistency. Metadata locking applies not just to tables, but also to schemas, stored programs (procedures, functions, triggers, scheduled events), tablespaces, user locks acquired with the `GET_LOCK()` function (see Section 12.14, “Locking Functions”), and locks acquired with the locking service described in Section 5.5.6.1, “The Locking Service”.
+O MySQL usa *metadata locking* para gerenciar o acesso concorrente a objetos do Database e garantir a consistência dos dados. O *metadata locking* se aplica não apenas a Tables, mas também a Schemas, programas armazenados (*procedures*, *functions*, *triggers*, *scheduled events*), *tablespaces*, User Locks adquiridos com a função `GET_LOCK()` (consulte a Seção 12.14, “Locking Functions”), e Locks adquiridos com o serviço de *locking* descrito na Seção 5.5.6.1, “The Locking Service”.
 
-The Performance Schema `metadata_locks` table exposes metadata lock information, which can be useful for seeing which sessions hold locks, are blocked waiting for locks, and so forth. For details, see Section 25.12.12.1, “The metadata_locks Table”.
+A Table `metadata_locks` do Performance Schema expõe informações sobre *metadata locks*, o que pode ser útil para ver quais Sessions detêm Locks, estão bloqueadas esperando por Locks, e assim por diante. Para detalhes, consulte a Seção 25.12.12.1, “The metadata_locks Table”.
 
-Metadata locking does involve some overhead, which increases as query volume increases. Metadata contention increases the more that multiple queries attempt to access the same objects.
+O *metadata locking* envolve alguma sobrecarga (*overhead*), que aumenta à medida que o volume de Queries cresce. A contenção de Metadata aumenta quanto mais múltiplas Queries tentam acessar os mesmos objetos.
 
-Metadata locking is not a replacement for the table definition cache, and its mutexes and locks differ from the `LOCK_open` mutex. The following discussion provides some information about how metadata locking works.
+O *metadata locking* não é um substituto para o *table definition cache*, e seus *mutexes* e Locks diferem do *mutex* `LOCK_open`. A discussão a seguir fornece algumas informações sobre como o *metadata locking* funciona.
 
-* Metadata Lock Acquisition
-* Metadata Lock Release
+* Aquisição de Metadata Lock
+* Liberação de Metadata Lock
 
-#### Metadata Lock Acquisition
+#### Aquisição de Metadata Lock
 
-If there are multiple waiters for a given lock, the highest-priority lock request is satisfied first, with an exception related to the `max_write_lock_count` system variable. Write lock requests have higher priority than read lock requests. However, if `max_write_lock_count` is set to some low value (say, 10), read lock requests may be preferred over pending write lock requests if the read lock requests have already been passed over in favor of 10 write lock requests. Normally this behavior does not occur because `max_write_lock_count` by default has a very large value.
+Se houver múltiplos *waiters* para um determinado Lock, a solicitação de Lock de maior prioridade é satisfeita primeiro, com uma exceção relacionada à variável de sistema `max_write_lock_count`. As solicitações de Write Lock têm prioridade maior do que as solicitações de Read Lock. No entanto, se `max_write_lock_count` for definido para um valor baixo (por exemplo, 10), as solicitações de Read Lock podem ser preferidas em relação às solicitações de Write Lock pendentes se as solicitações de Read Lock já tiverem sido ignoradas em favor de 10 solicitações de Write Lock. Normalmente, esse comportamento não ocorre porque `max_write_lock_count` por padrão tem um valor muito grande.
 
-Statements acquire metadata locks one by one, not simultaneously, and perform deadlock detection in the process.
+As Statements adquirem *metadata locks* um por um, não simultaneamente, e realizam detecção de Deadlock no processo.
 
-DML statements normally acquire locks in the order in which tables are mentioned in the statement.
+Statements DML normalmente adquirem Locks na ordem em que as Tables são mencionadas na Statement.
 
-DDL statements, `LOCK TABLES`, and other similar statements try to reduce the number of possible deadlocks between concurrent DDL statements by acquiring locks on explicitly named tables in name order. Locks might be acquired in a different order for implicitly used tables (such as tables in foreign key relationships that also must be locked).
+Statements DDL, `LOCK TABLES`, e outras Statements semelhantes tentam reduzir o número de Deadlocks possíveis entre Statements DDL concorrentes adquirindo Locks em Tables explicitamente nomeadas na ordem alfabética do nome. Locks podem ser adquiridos em uma ordem diferente para Tables usadas implicitamente (como Tables em relacionamentos de Foreign Key que também devem ser bloqueadas).
 
-For example, `RENAME TABLE` is a DDL statement that acquires locks in name order:
+Por exemplo, `RENAME TABLE` é uma Statement DDL que adquire Locks na ordem do nome:
 
-* This `RENAME TABLE` statement renames `tbla` to something else, and renames `tblc` to `tbla`:
+* Esta Statement `RENAME TABLE` renomeia `tbla` para outra coisa, e renomeia `tblc` para `tbla`:
 
   ```sql
   RENAME TABLE tbla TO tbld, tblc TO tbla;
   ```
 
-  The statement acquires metadata locks, in order, on `tbla`, `tblc`, and `tbld` (because `tbld` follows `tblc` in name order):
+  A Statement adquire *metadata locks*, em ordem, em `tbla`, `tblc` e `tbld` (porque `tbld` segue `tblc` na ordem do nome):
 
-* This slightly different statement also renames `tbla` to something else, and renames `tblc` to `tbla`:
+* Esta Statement ligeiramente diferente também renomeia `tbla` para outra coisa, e renomeia `tblc` para `tbla`:
 
   ```sql
   RENAME TABLE tbla TO tblb, tblc TO tbla;
   ```
 
-  In this case, the statement acquires metadata locks, in order, on `tbla`, `tblb`, and `tblc` (because `tblb` precedes `tblc` in name order):
+  Neste caso, a Statement adquire *metadata locks*, em ordem, em `tbla`, `tblb` e `tblc` (porque `tblb` precede `tblc` na ordem do nome):
 
-Both statements acquire locks on `tbla` and `tblc`, in that order, but differ in whether the lock on the remaining table name is acquired before or after `tblc`.
+Ambas as Statements adquirem Locks em `tbla` e `tblc`, nessa ordem, mas diferem se o Lock no nome da Table restante é adquirido antes ou depois de `tblc`.
 
-Metadata lock acquisition order can make a difference in operation outcome when multiple transactions execute concurrently, as the following example illustrates.
+A ordem de aquisição de *metadata lock* pode fazer diferença no resultado da operação quando múltiplas Transactions são executadas concorrentemente, como ilustra o exemplo a seguir.
 
-Begin with two tables `x` and `x_new` that have identical structure. Three clients issue statements that involve these tables:
+Comece com duas Tables `x` e `x_new` que têm estrutura idêntica. Três Clients emitem Statements que envolvem estas Tables:
 
 Client 1:
 
@@ -51,7 +51,7 @@ Client 1:
 LOCK TABLE x WRITE, x_new WRITE;
 ```
 
-The statement requests and acquires write locks in name order on `x` and `x_new`.
+A Statement solicita e adquire Write Locks na ordem do nome em `x` e `x_new`.
 
 Client 2:
 
@@ -59,7 +59,7 @@ Client 2:
 INSERT INTO x VALUES(1);
 ```
 
-The statement requests and blocks waiting for a write lock on `x`.
+A Statement solicita e bloqueia esperando por um Write Lock em `x`.
 
 Client 3:
 
@@ -67,7 +67,7 @@ Client 3:
 RENAME TABLE x TO x_old, x_new TO x;
 ```
 
-The statement requests exclusive locks in name order on `x`, `x_new`, and `x_old`, but blocks waiting for the lock on `x`.
+A Statement solicita Exclusive Locks na ordem do nome em `x`, `x_new` e `x_old`, mas bloqueia esperando pelo Lock em `x`.
 
 Client 1:
 
@@ -75,9 +75,9 @@ Client 1:
 UNLOCK TABLES;
 ```
 
-The statement releases the write locks on `x` and `x_new`. The exclusive lock request for `x` by Client 3 has higher priority than the write lock request by Client 2, so Client 3 acquires its lock on `x`, then also on `x_new` and `x_old`, performs the renaming, and releases its locks. Client 2 then acquires its lock on `x`, performs the insert, and releases its lock.
+A Statement libera os Write Locks em `x` e `x_new`. A solicitação de Exclusive Lock para `x` pelo Client 3 tem prioridade mais alta do que a solicitação de Write Lock pelo Client 2, então o Client 3 adquire seu Lock em `x`, depois também em `x_new` e `x_old`, executa a renomeação, e libera seus Locks. O Client 2 então adquire seu Lock em `x`, executa o Insert, e libera seu Lock.
 
-Lock acquisition order results in the `RENAME TABLE` executing before the `INSERT`. The `x` into which the insert occurs is the table that was named `x_new` when Client 2 issued the insert and was renamed to `x` by Client 3:
+A ordem de aquisição de Lock resulta na execução do `RENAME TABLE` antes do `INSERT`. O `x` no qual o Insert ocorre é a Table que foi nomeada `x_new` quando o Client 2 emitiu o Insert e foi renomeada para `x` pelo Client 3:
 
 ```sql
 mysql> SELECT * FROM x;
@@ -91,7 +91,7 @@ mysql> SELECT * FROM x_old;
 Empty set (0.01 sec)
 ```
 
-Now begin instead with tables named `x` and `new_x` that have identical structure. Again, three clients issue statements that involve these tables:
+Agora, comece em vez disso com Tables nomeadas `x` e `new_x` que têm estrutura idêntica. Novamente, três Clients emitem Statements que envolvem estas Tables:
 
 Client 1:
 
@@ -99,7 +99,7 @@ Client 1:
 LOCK TABLE x WRITE, new_x WRITE;
 ```
 
-The statement requests and acquires write locks in name order on `new_x` and `x`.
+A Statement solicita e adquire Write Locks na ordem do nome em `new_x` e `x`.
 
 Client 2:
 
@@ -107,7 +107,7 @@ Client 2:
 INSERT INTO x VALUES(1);
 ```
 
-The statement requests and blocks waiting for a write lock on `x`.
+A Statement solicita e bloqueia esperando por um Write Lock em `x`.
 
 Client 3:
 
@@ -115,7 +115,7 @@ Client 3:
 RENAME TABLE x TO old_x, new_x TO x;
 ```
 
-The statement requests exclusive locks in name order on `new_x`, `old_x`, and `x`, but blocks waiting for the lock on `new_x`.
+A Statement solicita Exclusive Locks na ordem do nome em `new_x`, `old_x` e `x`, mas bloqueia esperando pelo Lock em `new_x`.
 
 Client 1:
 
@@ -123,9 +123,9 @@ Client 1:
 UNLOCK TABLES;
 ```
 
-The statement releases the write locks on `x` and `new_x`. For `x`, the only pending request is by Client 2, so Client 2 acquires its lock, performs the insert, and releases the lock. For `new_x`, the only pending request is by Client 3, which is permitted to acquire that lock (and also the lock on `old_x`). The rename operation still blocks for the lock on `x` until the Client 2 insert finishes and releases its lock. Then Client 3 acquires the lock on `x`, performs the rename, and releases its lock.
+A Statement libera os Write Locks em `x` e `new_x`. Para `x`, a única solicitação pendente é a do Client 2, então o Client 2 adquire seu Lock, executa o Insert e libera o Lock. Para `new_x`, a única solicitação pendente é a do Client 3, que tem permissão para adquirir esse Lock (e também o Lock em `old_x`). A operação de renomeação ainda bloqueia para o Lock em `x` até que o Insert do Client 2 termine e libere seu Lock. Então o Client 3 adquire o Lock em `x`, executa a renomeação e libera seu Lock.
 
-In this case, lock acquisition order results in the `INSERT` executing before the `RENAME TABLE`. The `x` into which the insert occurs is the original `x`, now renamed to `old_x` by the rename operation:
+Neste caso, a ordem de aquisição de Lock resulta na execução do `INSERT` antes do `RENAME TABLE`. O `x` no qual o Insert ocorre é o `x` original, agora renomeado para `old_x` pela operação de renomeação:
 
 ```sql
 mysql> SELECT * FROM x;
@@ -139,13 +139,13 @@ mysql> SELECT * FROM old_x;
 +------+
 ```
 
-If order of lock acquisition in concurrent statements makes a difference to an application in operation outcome, as in the preceding example, you may be able to adjust the table names to affect the order of lock acquisition.
+Se a ordem de aquisição de Lock em Statements concorrentes fizer diferença no resultado da operação para uma aplicação, como no exemplo anterior, você pode ser capaz de ajustar os nomes das Tables para afetar a ordem de aquisição de Lock.
 
-#### Metadata Lock Release
+#### Liberação de Metadata Lock
 
-To ensure transaction serializability, the server must not permit one session to perform a data definition language (DDL) statement on a table that is used in an uncompleted explicitly or implicitly started transaction in another session. The server achieves this by acquiring metadata locks on tables used within a transaction and deferring release of those locks until the transaction ends. A metadata lock on a table prevents changes to the table's structure. This locking approach has the implication that a table that is being used by a transaction within one session cannot be used in DDL statements by other sessions until the transaction ends.
+Para garantir a serializabilidade da Transaction, o Server não deve permitir que uma Session execute uma Statement DDL (Data Definition Language) em uma Table que esteja sendo usada em uma Transaction iniciada explicitamente ou implicitamente, mas ainda não concluída, em outra Session. O Server alcança isso adquirindo *metadata locks* nas Tables usadas dentro de uma Transaction e adiando a liberação desses Locks até que a Transaction termine. Um *metadata lock* em uma Table impede alterações na estrutura da Table. Essa abordagem de *locking* implica que uma Table que está sendo usada por uma Transaction dentro de uma Session não pode ser usada em Statements DDL por outras Sessions até que a Transaction termine.
 
-This principle applies not only to transactional tables, but also to nontransactional tables. Suppose that a session begins a transaction that uses transactional table `t` and nontransactional table `nt` as follows:
+Este princípio se aplica não apenas a Tables transacionais, mas também a Tables não transacionais. Suponha que uma Session comece uma Transaction que usa a Table transacional `t` e a Table não transacional `nt` da seguinte forma:
 
 ```sql
 START TRANSACTION;
@@ -153,7 +153,7 @@ SELECT * FROM t;
 SELECT * FROM nt;
 ```
 
-The server holds metadata locks on both `t` and `nt` until the transaction ends. If another session attempts a DDL or write lock operation on either table, it blocks until metadata lock release at transaction end. For example, a second session blocks if it attempts any of these operations:
+O Server retém *metadata locks* em ambas, `t` e `nt`, até que a Transaction termine. Se outra Session tentar uma Statement DDL ou uma operação de Write Lock em qualquer uma das Tables, ela será bloqueada até a liberação do *metadata lock* no final da Transaction. Por exemplo, uma segunda Session bloqueia se tentar qualquer uma destas operações:
 
 ```sql
 DROP TABLE t;
@@ -163,10 +163,10 @@ ALTER TABLE nt ...;
 LOCK TABLE t ... WRITE;
 ```
 
-The same behavior applies for The `LOCK TABLES ... READ`. That is, explicitly or implicitly started transactions that update any table (transactional or nontransactional) block and are blocked by `LOCK TABLES ... READ` for that table.
+O mesmo comportamento se aplica ao `LOCK TABLES ... READ`. Ou seja, Transactions iniciadas explicitamente ou implicitamente que atualizam qualquer Table (transacional ou não transacional) bloqueiam e são bloqueadas por `LOCK TABLES ... READ` para essa Table.
 
-If the server acquires metadata locks for a statement that is syntactically valid but fails during execution, it does not release the locks early. Lock release is still deferred to the end of the transaction because the failed statement is written to the binary log and the locks protect log consistency.
+Se o Server adquirir *metadata locks* para uma Statement que é sintaticamente válida, mas falha durante a execução, ele não libera os Locks precocemente. A liberação do Lock ainda é adiada para o final da Transaction porque a Statement com falha é escrita no Binary Log e os Locks protegem a consistência do Log.
 
-In autocommit mode, each statement is in effect a complete transaction, so metadata locks acquired for the statement are held only to the end of the statement.
+No modo Autocommit, cada Statement é, de fato, uma Transaction completa, então os *metadata locks* adquiridos para a Statement são mantidos apenas até o fim da Statement.
 
-Metadata locks acquired during a `PREPARE` statement are released once the statement has been prepared, even if preparation occurs within a multiple-statement transaction.
+Os *metadata locks* adquiridos durante uma Statement `PREPARE` são liberados assim que a Statement é preparada, mesmo que a preparação ocorra dentro de uma Transaction de múltiplas Statements.

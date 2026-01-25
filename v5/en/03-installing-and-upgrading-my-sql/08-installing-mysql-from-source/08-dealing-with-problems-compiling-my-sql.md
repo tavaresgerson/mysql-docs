@@ -1,86 +1,86 @@
-### 2.8.8 Dealing with Problems Compiling MySQL
+### 2.8.8 Lidando com Problemas na Compilação do MySQL
 
-The solution to many problems involves reconfiguring. If you do reconfigure, take note of the following:
+A solução para muitos problemas envolve a reconfiguração. Se você reconfigurar, observe o seguinte:
 
-* If **CMake** is run after it has previously been run, it may use information that was gathered during its previous invocation. This information is stored in `CMakeCache.txt`. When **CMake** starts, it looks for that file and reads its contents if it exists, on the assumption that the information is still correct. That assumption is invalid when you reconfigure.
+*   Se o **CMake** for executado após ter sido executado anteriormente, ele pode usar informações que foram coletadas durante sua invocação anterior. Essa informação é armazenada em `CMakeCache.txt`. Quando o **CMake** inicia, ele procura por esse arquivo e lê seu conteúdo, se existir, sob a suposição de que a informação ainda está correta. Essa suposição é inválida quando você reconfigura.
 
-* Each time you run **CMake**, you must run **make** again to recompile. However, you may want to remove old object files from previous builds first because they were compiled using different configuration options.
+*   Toda vez que você executa o **CMake**, você deve executar o **make** novamente para recompile. No entanto, você pode querer remover object files antigos de builds anteriores primeiro, porque eles foram compilados usando opções de configuration diferentes.
 
-To prevent old object files or configuration information from being used, run the following commands before re-running **CMake**:
+Para evitar que object files antigos ou informações de configuration sejam usados, execute os seguintes comandos antes de re-executar o **CMake**:
 
-On Unix:
+No Unix:
 
 ```sql
 $> make clean
 $> rm CMakeCache.txt
 ```
 
-On Windows:
+No Windows:
 
 ```sql
 $> devenv MySQL.sln /clean
 $> del CMakeCache.txt
 ```
 
-If you build outside of the source tree, remove and recreate your build directory before re-running **CMake**. For instructions on building outside of the source tree, see How to Build MySQL Server with CMake.
+Se você fizer o build fora da source tree (árvore de código-fonte), remova e recrie seu build directory (diretório de build) antes de re-executar o **CMake**. Para instruções sobre como fazer o build fora da source tree, consulte Como Fazer o Build do MySQL Server com CMake.
 
-On some systems, warnings may occur due to differences in system include files. The following list describes other problems that have been found to occur most often when compiling MySQL:
+Em alguns sistemas, warnings (avisos) podem ocorrer devido a diferenças nos arquivos include do sistema. A lista a seguir descreve outros problemas que foram encontrados com mais frequência ao compilar o MySQL:
 
-* To define which C and C++ compilers to use, you can define the `CC` and `CXX` environment variables. For example:
+*   Para definir quais C e C++ compilers usar, você pode definir as variáveis de ambiente `CC` e `CXX`. Por exemplo:
 
-  ```sql
+    ```sql
   $> CC=gcc
   $> CXX=g++
   $> export CC CXX
   ```
 
-  While this can be done on the command line, as just shown, you may prefer to define these values in a build script, in which case the **export** command is not needed.
+    Embora isso possa ser feito na linha de comando, como mostrado, você pode preferir definir esses valores em um script de build, caso em que o comando **export** não é necessário.
 
-  To specify your own C and C++ compiler flags, use the `CMAKE_C_FLAGS` and `CMAKE_CXX_FLAGS` CMake options. See Compiler Flags.
+    Para especificar suas próprias C e C++ compiler flags, use as opções do CMake `CMAKE_C_FLAGS` e `CMAKE_CXX_FLAGS`. Consulte Compiler Flags.
 
-  To see what flags you might need to specify, invoke **mysql_config** with the `--cflags` and `--cxxflags` options.
+    Para ver quais flags você pode precisar especificar, invoque o **mysql_config** com as opções `--cflags` e `--cxxflags`.
 
-* To see what commands are executed during the compile stage, after using **CMake** to configure MySQL, run **make VERBOSE=1** rather than just **make**.
+*   Para ver quais comandos são executados durante o estágio de compile, após usar o **CMake** para configurar o MySQL, execute **make VERBOSE=1** em vez de apenas **make**.
 
-* If compilation fails, check whether the `MYSQL_MAINTAINER_MODE` option is enabled. This mode causes compiler warnings to become errors, so disabling it may enable compilation to proceed.
+*   Se a compilation falhar, verifique se a opção `MYSQL_MAINTAINER_MODE` está habilitada. Este mode faz com que os compiler warnings se tornem errors, portanto, desabilitá-lo pode permitir que a compilation prossiga.
 
-* If your compile fails with errors such as any of the following, you must upgrade your version of **make** to GNU **make**:
+*   Se a sua compile falhar com errors como qualquer um dos seguintes, você deve atualizar sua versão do **make** para o GNU **make**:
 
-  ```sql
+    ```sql
   make: Fatal error in reader: Makefile, line 18:
   Badly formed macro assignment
   ```
 
-  Or:
+    Ou:
 
-  ```sql
+    ```sql
   make: file `Makefile' line 18: Must be a separator (:
   ```
 
-  Or:
+    Ou:
 
-  ```sql
+    ```sql
   pthread.h: No such file or directory
   ```
 
-  Solaris and FreeBSD are known to have troublesome **make** programs.
+    Solaris e FreeBSD são conhecidos por terem programas **make** problemáticos.
 
-  GNU **make** 3.75 is known to work.
+    O GNU **make** 3.75 é conhecido por funcionar.
 
-* The `sql_yacc.cc` file is generated from `sql_yacc.yy`. Normally, the build process does not need to create `sql_yacc.cc` because MySQL comes with a pregenerated copy. However, if you do need to re-create it, you might encounter this error:
+*   O arquivo `sql_yacc.cc` é gerado a partir de `sql_yacc.yy`. Normalmente, o processo de build não precisa criar `sql_yacc.cc` porque o MySQL vem com uma cópia pré-gerada. No entanto, se você precisar recriá-lo, poderá encontrar este error:
 
-  ```sql
+    ```sql
   "sql_yacc.yy", line xxx fatal: default action causes potential...
   ```
 
-  This is a sign that your version of **yacc** is deficient. You probably need to install a recent version of **bison** (the GNU version of **yacc**) and use that instead.
+    Este é um sinal de que sua versão do **yacc** é deficiente. Você provavelmente precisa instalar uma versão recente do **bison** (a versão GNU do **yacc**) e usar essa em vez disso.
 
-  Versions of **bison** older than 1.75 may report this error:
+    Versões do **bison** anteriores a 1.75 podem relatar este error:
 
-  ```sql
+    ```sql
   sql_yacc.yy:#####: fatal error: maximum table size (32767) exceeded
   ```
 
-  The maximum table size is not actually exceeded; the error is caused by bugs in older versions of **bison**.
+    O tamanho máximo da tabela não é realmente excedido; o error é causado por bugs em versões mais antigas do **bison**.
 
-For information about acquiring or updating tools, see the system requirements in Section 2.8, “Installing MySQL from Source”.
+Para informações sobre a aquisição ou atualização de ferramentas, consulte os requisitos de sistema na Seção 2.8, “Instalando MySQL a Partir do Código-Fonte (Source)”.

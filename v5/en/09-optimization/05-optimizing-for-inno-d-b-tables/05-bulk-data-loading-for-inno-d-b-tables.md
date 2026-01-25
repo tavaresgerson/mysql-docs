@@ -1,8 +1,8 @@
-### 8.5.5 Bulk Data Loading for InnoDB Tables
+### 8.5.5 Carregamento em Massa de Dados para Tabelas InnoDB
 
-These performance tips supplement the general guidelines for fast inserts in Section 8.2.4.1, “Optimizing INSERT Statements”.
+Estas dicas de performance complementam as diretrizes gerais para `INSERT`s rápidos na Seção 8.2.4.1, “Otimizando Declarações INSERT”.
 
-* When importing data into `InnoDB`, turn off autocommit mode, because it performs a log flush to disk for every insert. To disable autocommit during your import operation, surround it with `SET autocommit` and `COMMIT` statements:
+* Ao importar dados para o `InnoDB`, desative o modo `autocommit`, pois ele executa um log flush para o disco a cada `INSERT`. Para desativar o `autocommit` durante a operação de importação, envolva-a com as declarações `SET autocommit` e `COMMIT`:
 
   ```sql
   SET autocommit=0;
@@ -10,9 +10,9 @@ These performance tips supplement the general guidelines for fast inserts in Sec
   COMMIT;
   ```
 
-  The **mysqldump** option `--opt` creates dump files that are fast to import into an `InnoDB` table, even without wrapping them with the `SET autocommit` and `COMMIT` statements.
+  A opção `--opt` do **mysqldump** cria arquivos dump que são rápidos de importar para uma tabela `InnoDB`, mesmo sem envolvê-los com as declarações `SET autocommit` e `COMMIT`.
 
-* If you have `UNIQUE` constraints on secondary keys, you can speed up table imports by temporarily turning off the uniqueness checks during the import session:
+* Se você tiver `UNIQUE` constraints em secondary keys, pode acelerar a importação de tabelas desativando temporariamente as verificações de unicidade durante a sessão de importação:
 
   ```sql
   SET unique_checks=0;
@@ -20,9 +20,9 @@ These performance tips supplement the general guidelines for fast inserts in Sec
   SET unique_checks=1;
   ```
 
-  For big tables, this saves a lot of disk I/O because `InnoDB` can use its change buffer to write secondary index records in a batch. Be certain that the data contains no duplicate keys.
+  Para tabelas grandes, isso economiza muito I/O de disco porque o `InnoDB` pode usar seu change buffer para escrever secondary index records em lote. Certifique-se de que os dados não contêm chaves duplicadas.
 
-* If you have `FOREIGN KEY` constraints in your tables, you can speed up table imports by turning off the foreign key checks for the duration of the import session:
+* Se você tiver `FOREIGN KEY` constraints em suas tabelas, pode acelerar a importação de tabelas desativando as verificações de foreign key durante a duração da sessão de importação:
 
   ```sql
   SET foreign_key_checks=0;
@@ -30,23 +30,23 @@ These performance tips supplement the general guidelines for fast inserts in Sec
   SET foreign_key_checks=1;
   ```
 
-  For big tables, this can save a lot of disk I/O.
+  Para tabelas grandes, isso pode economizar muito I/O de disco.
 
-* Use the multiple-row `INSERT` syntax to reduce communication overhead between the client and the server if you need to insert many rows:
+* Use a sintaxe de `INSERT` de múltiplas linhas para reduzir a sobrecarga de comunicação entre o client e o server se você precisar inserir muitas linhas:
 
   ```sql
   INSERT INTO yourtable VALUES (1,2), (5,5), ...;
   ```
 
-  This tip is valid for inserts into any table, not just `InnoDB` tables.
+  Esta dica é válida para `INSERT`s em qualquer tabela, não apenas em tabelas `InnoDB`.
 
-* When doing bulk inserts into tables with auto-increment columns, set `innodb_autoinc_lock_mode` to 2 instead of the default value 1. See Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB” for details.
+* Ao realizar bulk inserts em tabelas com colunas auto-increment, defina `innodb_autoinc_lock_mode` como 2 em vez do valor padrão 1. Consulte a Seção 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB” para detalhes.
 
-* When performing bulk inserts, it is faster to insert rows in `PRIMARY KEY` order. `InnoDB` tables use a clustered index, which makes it relatively fast to use data in the order of the `PRIMARY KEY`. Performing bulk inserts in `PRIMARY KEY` order is particularly important for tables that do not fit entirely within the buffer pool.
+* Ao executar bulk inserts, é mais rápido inserir linhas na ordem da `PRIMARY KEY`. As tabelas `InnoDB` usam um clustered index, o que torna relativamente rápido usar os dados na ordem da `PRIMARY KEY`. A realização de bulk inserts na ordem da `PRIMARY KEY` é particularmente importante para tabelas que não cabem inteiramente no buffer pool.
 
-* For optimal performance when loading data into an `InnoDB` `FULLTEXT` index, follow this set of steps:
+* Para performance ideal ao carregar dados em um `FULLTEXT` index do `InnoDB`, siga este conjunto de passos:
 
-  1. Define a column `FTS_DOC_ID` at table creation time, of type `BIGINT UNSIGNED NOT NULL`, with a unique index named `FTS_DOC_ID_INDEX`. For example:
+  1. Defina uma coluna `FTS_DOC_ID` no momento da criação da tabela, do tipo `BIGINT UNSIGNED NOT NULL`, com um unique index chamado `FTS_DOC_ID_INDEX`. Por exemplo:
 
      ```sql
      CREATE TABLE t1 (
@@ -58,9 +58,9 @@ These performance tips supplement the general guidelines for fast inserts in Sec
      CREATE UNIQUE INDEX FTS_DOC_ID_INDEX on t1(FTS_DOC_ID);
      ```
 
-  2. Load the data into the table.
-  3. Create the `FULLTEXT` index after the data is loaded.
+  2. Carregue os dados na tabela.
+  3. Crie o `FULLTEXT` index depois que os dados forem carregados.
 
-  Note
+  Nota
 
-  When adding `FTS_DOC_ID` column at table creation time, ensure that the `FTS_DOC_ID` column is updated when the `FULLTEXT` indexed column is updated, as the `FTS_DOC_ID` must increase monotonically with each `INSERT` or `UPDATE`. If you choose not to add the `FTS_DOC_ID` at table creation time and have `InnoDB` manage DOC IDs for you, `InnoDB` adds the `FTS_DOC_ID` as a hidden column with the next `CREATE FULLTEXT INDEX` call. This approach, however, requires a table rebuild which can impact performance.
+  Ao adicionar a coluna `FTS_DOC_ID` no momento da criação da tabela, certifique-se de que a coluna `FTS_DOC_ID` seja atualizada quando a coluna indexada `FULLTEXT` for atualizada, pois o `FTS_DOC_ID` deve aumentar monotonicamente a cada `INSERT` ou `UPDATE`. Se você optar por não adicionar o `FTS_DOC_ID` no momento da criação da tabela e permitir que o `InnoDB` gerencie os DOC IDs para você, o `InnoDB` adicionará o `FTS_DOC_ID` como uma coluna oculta na próxima chamada `CREATE FULLTEXT INDEX`. No entanto, esta abordagem requer um table rebuild que pode impactar a performance.

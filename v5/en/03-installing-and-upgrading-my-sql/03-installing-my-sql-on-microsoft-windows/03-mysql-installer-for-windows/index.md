@@ -1,77 +1,77 @@
-### 2.3.3 MySQL Installer for Windows
+### 2.3.3 MySQL Installer para Windows
 
-2.3.3.1 MySQL Installer Initial Setup
+2.3.3.1 Configuração Inicial do MySQL Installer
 
-2.3.3.2 Setting Alternative Server Paths with MySQL Installer
+2.3.3.2 Definindo Caminhos de Server Alternativos com o MySQL Installer
 
-2.3.3.3 Installation Workflows with MySQL Installer
+2.3.3.3 Fluxos de Trabalho de Instalação com o MySQL Installer
 
-2.3.3.4 MySQL Installer Product Catalog and Dashboard
+2.3.3.4 Catálogo de Produtos e Dashboard do MySQL Installer
 
-2.3.3.5 MySQL Installer Console Reference
+2.3.3.5 Referência do Console do MySQL Installer
 
-MySQL Installer is a standalone application designed to ease the complexity of installing and configuring MySQL products that run on Microsoft Windows. It is downloaded with and supports the following MySQL products:
+O MySQL Installer é uma aplicação *standalone* (autônoma) projetada para facilitar a complexidade de instalação e configuração de produtos MySQL executados no Microsoft Windows. Ele é baixado com e suporta os seguintes produtos MySQL:
 
-* MySQL Servers
+*   MySQL Servers
 
-  MySQL Installer can install and manage multiple, separate MySQL server instances on the same host at the same time. For example, MySQL Installer can install, configure, and upgrade separate instances of MySQL 5.7 and MySQL 8.0 on the same host. MySQL Installer does not permit server upgrades between major and minor version numbers, but does permit upgrades within a release series (such as 8.0.36 to 8.0.37).
+    O MySQL Installer pode instalar e gerenciar múltiplas e separadas instâncias de MySQL Server no mesmo *host* simultaneamente. Por exemplo, o MySQL Installer pode instalar, configurar e fazer *upgrade* de instâncias separadas do MySQL 5.7 e MySQL 8.0 no mesmo *host*. O MySQL Installer não permite *upgrades* de *server* entre números de versão maiores e menores, mas permite *upgrades* dentro de uma série de lançamento (como de 8.0.36 para 8.0.37).
 
-  Note
+    Nota
 
-  MySQL Installer cannot install both *Community* and *Commercial* releases of MySQL server on the same host. If you require both releases on the same host, consider using the ZIP archive distribution to install one of the releases.
+    O MySQL Installer não pode instalar as edições (*releases*) *Community* e *Commercial* do MySQL Server no mesmo *host*. Se você precisar de ambas as edições no mesmo *host*, considere usar a distribuição de arquivo ZIP para instalar uma delas.
 
-* MySQL Applications
+*   Aplicações MySQL
 
-  MySQL Workbench, MySQL Shell, and MySQL Router.
+    MySQL Workbench, MySQL Shell e MySQL Router.
 
-* MySQL Connectors
+*   Connectors MySQL
 
-  These are not supported, instead install from <https://dev.mysql.com/downloads/>. These connectors include MySQL Connector/NET, MySQL Connector/Python, MySQL Connector/ODBC, MySQL Connector/J, MySQL Connector/Node.js, and MySQL Connector/C++.
+    Estes não são suportados; em vez disso, instale a partir de <https://dev.mysql.com/downloads/>. Esses *connectors* incluem MySQL Connector/NET, MySQL Connector/Python, MySQL Connector/ODBC, MySQL Connector/J, MySQL Connector/Node.js e MySQL Connector/C++.
 
-  Note
+    Nota
 
-  The connectors were bundled before MySQL Installer 1.6.7 (MySQL Server 8.0.34), and MySQL Installer could install each connector up to version 8.0.33 until MySQL Installer 1.6.11 (MySQL Server 8.0.37). MySQL Installer now only detects these old connector versions to uninstall them.
+    Os *connectors* eram empacotados antes do MySQL Installer 1.6.7 (MySQL Server 8.0.34), e o MySQL Installer podia instalar cada *connector* até a versão 8.0.33, até o MySQL Installer 1.6.11 (MySQL Server 8.0.37). O MySQL Installer agora apenas detecta essas versões antigas de *connectors* para desinstalá-las.
 
-#### Installation Requirements
+#### Requisitos de Instalação
 
-MySQL Installer requires Microsoft .NET Framework 4.5.2 or later. If this version is not installed on the host computer, you can download it by visiting the [Microsoft website](https://www.microsoft.com/en-us/download/details.aspx?id=42643).
+O MySQL Installer requer o Microsoft .NET Framework 4.5.2 ou posterior. Se esta versão não estiver instalada no computador *host*, você pode baixá-la visitando o [site da Microsoft](https://www.microsoft.com/en-us/download/details.aspx?id=42643).
 
-To invoke MySQL Installer after a successful installation:
+Para invocar o MySQL Installer após uma instalação bem-sucedida:
 
-1. Right-click Windows Start, select Run, and then click Browse. Navigate to `Program Files (x86) > MySQL > MySQL Installer for Windows` to open the program folder.
+1.  Clique com o botão direito em Iniciar do Windows, selecione Executar (Run) e clique em Procurar (Browse). Navegue até `Program Files (x86) > MySQL > MySQL Installer for Windows` para abrir a pasta do programa.
 
-2. Select one of the following files:
+2.  Selecione um dos seguintes arquivos:
 
-   * `MySQLInstaller.exe` to open the graphical application.
+    *   `MySQLInstaller.exe` para abrir a aplicação gráfica.
 
-   * `MySQLInstallerConsole.exe` to open the command-line application.
+    *   `MySQLInstallerConsole.exe` para abrir a aplicação de linha de comando.
 
-3. Click Open and then click OK in the Run window. If you are prompted to allow the application to make changes to the device, select `Yes`.
+3.  Clique em Abrir (Open) e, em seguida, clique em OK na janela Executar (Run). Se for solicitado que você permita que a aplicação faça alterações no dispositivo, selecione `Sim` (Yes).
 
-Each time you invoke MySQL Installer, the initialization process looks for the presence of an internet connection and prompts you to enable offline mode if it finds no internet access (and offline mode is disabled). Select `Yes` to run MySQL Installer without internet-connection capabilities. MySQL product availability is limited to only those products currently in the product cache when you enable offline mode. To download MySQL products, click the offline mode Disable quick action shown on the dashboard.
+Toda vez que você invoca o MySQL Installer, o processo de inicialização verifica a presença de uma conexão com a internet e solicita que você habilite o modo *offline* se não encontrar acesso à internet (e se o modo *offline* estiver desativado). Selecione `Sim` para executar o MySQL Installer sem recursos de conexão à internet. A disponibilidade de produtos MySQL fica limitada apenas àqueles produtos que estão atualmente no *cache* de produto quando você habilita o modo *offline*. Para baixar produtos MySQL, clique na ação rápida "Desabilitar" o modo *offline* exibida no *dashboard*.
 
-An internet connection is required to download a manifest containing metadata for the latest MySQL products that are not part of a full bundle. MySQL Installer attempts to download the manifest when you start the application for the first time and then periodically in configurable intervals (see MySQL Installer options). Alternatively, you can retrieve an updated manifest manually by clicking Catalog in the MySQL Installer dashboard.
+É necessária uma conexão com a internet para baixar um *manifest* contendo metadados para os produtos MySQL mais recentes que não fazem parte de um pacote completo (*full bundle*). O MySQL Installer tenta baixar o *manifest* quando você inicia a aplicação pela primeira vez e, em seguida, periodicamente em intervalos configuráveis (consulte Opções do MySQL Installer). Alternativamente, você pode recuperar um *manifest* atualizado manualmente clicando em Catálogo (Catalog) no *dashboard* do MySQL Installer.
 
-Note
+Nota
 
-If the first-time or subsequent manifest download is unsuccessful, an error is logged and you may have limited access to MySQL products during your session. MySQL Installer attempts to download the manifest with each startup until the initial manifest structure is updated. For help finding a product, see Locating Products to Install.
+Se o primeiro *download* ou os subsequentes *downloads* do *manifest* não forem bem-sucedidos, um erro será registrado e você poderá ter acesso limitado aos produtos MySQL durante sua sessão. O MySQL Installer tenta baixar o *manifest* a cada inicialização até que a estrutura inicial do *manifest* seja atualizada. Para obter ajuda na localização de um produto, consulte Localizando Produtos para Instalação.
 
-#### MySQL Installer Community Release
+#### Edição Community do MySQL Installer
 
-Download software from <https://dev.mysql.com/downloads/installer/> to install the Community release of all MySQL products for Windows. Select one of the following MySQL Installer package options:
+Baixe o software em <https://dev.mysql.com/downloads/installer/> para instalar a edição Community de todos os produtos MySQL para Windows. Selecione uma das seguintes opções de pacote do MySQL Installer:
 
-* *Web*: Contains MySQL Installer and configuration files only. The web package option downloads only the MySQL products you select to install, but it requires an internet connection for each download. The size of this file is approximately 2 MB. The file name has the form `mysql-installer-community-web-VERSION.N.msi` in which *`VERSION`* is the MySQL server version number such as 8.0 and `N` is the package number, which begins at 0.
+*   *Web*: Contém apenas o MySQL Installer e os arquivos de configuração. A opção de pacote *web* baixa somente os produtos MySQL que você selecionar para instalar, mas requer uma conexão com a internet para cada *download*. O tamanho deste arquivo é de aproximadamente 2 MB. O nome do arquivo tem o formato `mysql-installer-community-web-VERSION.N.msi`, onde *`VERSION`* é o número da versão do MySQL Server, como 8.0, e `N` é o número do pacote, que começa em 0.
 
-* *Full or Current Bundle*: Bundles all of the MySQL products for Windows (including the MySQL server). The file size is over 300 MB, and the name has the form `mysql-installer-community-VERSION.N.msi` in which *`VERSION`* is the MySQL Server version number such as 8.0 and `N` is the package number, which begins at 0.
+*   *Pacote Completo (Full) ou Atual (Current Bundle)*: Empacota todos os produtos MySQL para Windows (incluindo o MySQL Server). O tamanho do arquivo é superior a 300 MB, e o nome tem o formato `mysql-installer-community-VERSION.N.msi`, onde *`VERSION`* é o número da versão do MySQL Server, como 8.0, e `N` é o número do pacote, que começa em 0.
 
-#### MySQL Installer Commercial Release
+#### Edição Commercial do MySQL Installer
 
-Download software from <https://edelivery.oracle.com/> to install the Commercial release (Standard or Enterprise Edition) of MySQL products for Windows. If you are logged in to your My Oracle Support (MOS) account, the Commercial release includes all of the current and previous GA versions available in the Community release, but it excludes development-milestone versions. When you are not logged in, you see only the list of bundled products that you downloaded already.
+Baixe o software em <https://edelivery.oracle.com/> para instalar a edição Commercial (Standard ou Enterprise Edition) de produtos MySQL para Windows. Se você estiver logado em sua conta do My Oracle Support (MOS), a edição Commercial inclui todas as versões GA (General Availability) atuais e anteriores disponíveis na edição Community, mas exclui as versões de marco de desenvolvimento (*development-milestone*). Quando você não está logado, você vê apenas a lista de produtos empacotados que você já baixou.
 
-The Commercial release also includes the following products:
+A edição Commercial também inclui os seguintes produtos:
 
-* Workbench SE/EE
-* MySQL Enterprise Backup
-* MySQL Enterprise Firewall
+*   Workbench SE/EE
+*   MySQL Enterprise Backup
+*   MySQL Enterprise Firewall
 
-The Commercial release integrates with your MOS account. For knowledge-base content and patches, see [My Oracle Support](https://support.oracle.com/).
+A edição Commercial se integra à sua conta MOS. Para conteúdo de base de conhecimento e *patches*, consulte [My Oracle Support](https://support.oracle.com/).

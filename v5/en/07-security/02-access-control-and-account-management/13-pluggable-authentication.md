@@ -1,116 +1,113 @@
-### 6.2.13 Pluggable Authentication
+### 6.2.13 Autenticação Pluggable
 
-When a client connects to the MySQL server, the server uses the user name provided by the client and the client host to select the appropriate account row from the `mysql.user` system table. The server then authenticates the client, determining from the account row which authentication plugin applies to the client:
+Quando um Client se conecta ao MySQL Server, o Server utiliza o nome de usuário fornecido pelo Client e o host do Client para selecionar a linha de Account apropriada na tabela de sistema `mysql.user`. O Server então autentica o Client, determinando, a partir da linha de Account, qual authentication plugin se aplica ao Client:
 
-* If the server cannot find the plugin, an error occurs and the connection attempt is rejected.
+* Se o Server não conseguir encontrar o plugin, ocorre um erro e a tentativa de conexão é rejeitada.
 
-* Otherwise, the server invokes that plugin to authenticate the user, and the plugin returns a status to the server indicating whether the user provided the correct password and is permitted to connect.
+* Caso contrário, o Server invoca esse plugin para autenticar o usuário, e o plugin retorna um status ao Server indicando se o usuário forneceu a senha correta e se tem permissão para conectar.
 
-Pluggable authentication enables these important capabilities:
+A autenticação pluggable permite estas capacidades importantes:
 
-* **Choice of authentication methods.** Pluggable authentication makes it easy for DBAs to choose and change the authentication method used for individual MySQL accounts.
+* **Escolha de métodos de autenticação.** A autenticação pluggable torna fácil para os DBAs escolher e mudar o método de autenticação usado para contas MySQL individuais (Accounts).
 
-* **External authentication.** Pluggable authentication makes it possible for clients to connect to the MySQL server with credentials appropriate for authentication methods that store credentials elsewhere than in the `mysql.user` system table. For example, plugins can be created to use external authentication methods such as PAM, Windows login IDs, LDAP, or Kerberos.
+* **Autenticação externa.** A autenticação pluggable possibilita que Clients se conectem ao MySQL Server com credenciais apropriadas para métodos de autenticação que armazenam credenciais em outro lugar que não na tabela de sistema `mysql.user`. Por exemplo, plugins podem ser criados para usar métodos de autenticação externos como PAM, IDs de login do Windows, LDAP ou Kerberos.
 
-* **Proxy users:** If a user is permitted to connect, an authentication plugin can return to the server a user name different from the name of the connecting user, to indicate that the connecting user is a proxy for another user (the proxied user). While the connection lasts, the proxy user is treated, for purposes of access control, as having the privileges of the proxied user. In effect, one user impersonates another. For more information, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+* **Proxy users:** Se um usuário tiver permissão para conectar, um authentication plugin pode retornar ao Server um nome de usuário diferente do nome do usuário de conexão, para indicar que o usuário de conexão é um *proxy* para outro usuário (o usuário *proxied*). Enquanto a conexão durar, o *proxy user* é tratado, para fins de controle de acesso, como possuindo os Privileges do usuário *proxied*. Na prática, um usuário se passa por outro. Para mais informações, consulte [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
-Note
+Nota
 
-If you start the server with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option, authentication plugins are not used even if loaded because the server performs no client authentication and permits any client to connect. Because this is insecure, you might want to use [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) in conjunction with enabling the [`skip_networking`](server-system-variables.html#sysvar_skip_networking) system variable to prevent remote clients from connecting.
+Se você iniciar o Server com a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables), os authentication plugins não são usados, mesmo se carregados, porque o Server não executa nenhuma autenticação de Client e permite que qualquer Client se conecte. Como isso é inseguro, você pode querer usar [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) em conjunto com a ativação da variável de sistema [`skip_networking`](server-system-variables.html#sysvar_skip_networking) para evitar que Clients remotos se conectem.
 
-* [Available Authentication Plugins](pluggable-authentication.html#pluggable-authentication-available-plugins "Available Authentication Plugins")
-* [Authentication Plugin Usage](pluggable-authentication.html#pluggable-authentication-usage "Authentication Plugin Usage")
-* [Restrictions on Pluggable Authentication](pluggable-authentication.html#pluggable-authentication-restrictions "Restrictions on Pluggable Authentication")
+* [Authentication Plugins Disponíveis](pluggable-authentication.html#pluggable-authentication-available-plugins "Available Authentication Plugins")
+* [Uso de Authentication Plugin](pluggable-authentication.html#pluggable-authentication-usage "Authentication Plugin Usage")
+* [Restrições à Autenticação Pluggable](pluggable-authentication.html#pluggable-authentication-restrictions "Restrictions on Pluggable Authentication")
 
-#### Available Authentication Plugins
+#### Authentication Plugins Disponíveis
 
-MySQL 5.7 provides these authentication plugins:
+O MySQL 5.7 fornece estes authentication plugins:
 
-* Plugins that perform native authentication; that is, authentication based on the password hashing methods in use from before the introduction of pluggable authentication in MySQL. The `mysql_native_password` plugin implements authentication based on the native password hashing method. The `mysql_old_password` plugin implements native authentication based on the older (pre-4.1) password hashing method (and is deprecated and removed in MySQL 5.7.5). See [Section 6.4.1.1, “Native Pluggable Authentication”](native-pluggable-authentication.html "6.4.1.1 Native Pluggable Authentication"), and [Section 6.4.1.2, “Old Native Pluggable Authentication”](old-native-pluggable-authentication.html "6.4.1.2 Old Native Pluggable Authentication").
+* Plugins que executam a native authentication; ou seja, autenticação baseada nos métodos de *hashing* de senha em uso antes da introdução da autenticação pluggable no MySQL. O plugin `mysql_native_password` implementa a autenticação baseada no método de *hashing* de senha nativo. O plugin `mysql_old_password` implementa a native authentication baseada no método de *hashing* de senha mais antigo (pré-4.1) (e está depreciado e foi removido no MySQL 5.7.5). Consulte [Section 6.4.1.1, “Native Pluggable Authentication”](native-pluggable-authentication.html "6.4.1.1 Native Pluggable Authentication") e [Section 6.4.1.2, “Old Native Pluggable Authentication”](old-native-pluggable-authentication.html "6.4.1.2 Old Native Pluggable Authentication").
 
-* Plugins that perform authentication using SHA-256 password hashing. This is stronger encryption than that available with native authentication. See [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication"), and [Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "6.4.1.4 Caching SHA-2 Pluggable Authentication").
+* Plugins que executam a autenticação usando SHA-256 password hashing. Esta é uma *encryption* mais forte do que a disponível com a native authentication. Consulte [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication") e [Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "6.4.1.4 Caching SHA-2 Pluggable Authentication").
 
-* A client-side plugin that sends the password to the server without hashing or encryption. This plugin is used in conjunction with server-side plugins that require access to the password exactly as provided by the client user. See [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
+* Um plugin *client-side* que envia a senha para o Server sem *hashing* ou *encryption*. Este plugin é usado em conjunto com plugins *server-side* que requerem acesso à senha exatamente como fornecida pelo usuário Client. Consulte [Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication").
 
-* A plugin that performs external authentication using PAM (Pluggable Authentication Modules), enabling MySQL Server to use PAM to authenticate MySQL users. This plugin supports proxy users as well. See [Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication").
+* Um plugin que executa a autenticação externa usando PAM (Pluggable Authentication Modules), permitindo que o MySQL Server use PAM para autenticar usuários MySQL. Este plugin também suporta *proxy users*. Consulte [Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication").
 
-* A plugin that performs external authentication on Windows, enabling MySQL Server to use native Windows services to authenticate client connections. Users who have logged in to Windows can connect from MySQL client programs to the server based on the information in their environment without specifying an additional password. This plugin supports proxy users as well. See [Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication").
+* Um plugin que executa a autenticação externa no Windows, permitindo que o MySQL Server use serviços nativos do Windows para autenticar as conexões de Client. Usuários que fizeram login no Windows podem se conectar de programas Client MySQL ao Server com base nas informações em seu ambiente sem especificar uma senha adicional. Este plugin também suporta *proxy users*. Consulte [Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication").
 
-* Plugins that perform authentication using LDAP (Lightweight Directory Access Protocol) to authenticate MySQL users by accessing directory services such as X.500. These plugins support proxy users as well. See [Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication").
+* Plugins que executam a autenticação usando LDAP (Lightweight Directory Access Protocol) para autenticar usuários MySQL acessando serviços de diretório, como X.500. Estes plugins também suportam *proxy users*. Consulte [Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication").
 
-* A plugin that prevents all client connections to any account that uses it. Use cases for this plugin include proxied accounts that should never permit direct login but are accessed only through proxy accounts and accounts that must be able to execute stored programs and views with elevated privileges without exposing those privileges to ordinary users. See [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").
+* Um plugin que impede todas as conexões de Client a qualquer Account que o utilize. Os casos de uso para este plugin incluem Accounts *proxied* que nunca devem permitir login direto, mas são acessados apenas através de *proxy accounts*, e Accounts que devem ser capazes de executar stored programs e views com privileges elevados sem expor esses privileges a usuários comuns. Consulte [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").
 
-* A plugin that authenticates clients that connect from the local host through the Unix socket file. See [Section 6.4.1.11, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "6.4.1.11 Socket Peer-Credential Pluggable Authentication").
+* Um plugin que autentica Clients que se conectam a partir do host local através do Unix socket file. Consulte [Section 6.4.1.11, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "6.4.1.11 Socket Peer-Credential Pluggable Authentication").
 
-* A test plugin that checks account credentials and logs success or failure to the server error log. This plugin is intended for testing and development purposes, and as an example of how to write an authentication plugin. See [Section 6.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "6.4.1.12 Test Pluggable Authentication").
+* Um plugin de teste que verifica as credenciais de Account e registra sucesso ou falha no error log do Server. Este plugin é destinado a fins de teste e desenvolvimento, e como um exemplo de como escrever um authentication plugin. Consulte [Section 6.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "6.4.1.12 Test Pluggable Authentication").
 
-Note
+Nota
 
-For information about current restrictions on the use of pluggable authentication, including which connectors support which plugins, see [Restrictions on Pluggable Authentication](pluggable-authentication.html#pluggable-authentication-restrictions "Restrictions on Pluggable Authentication").
+Para obter informações sobre as restrições atuais ao uso da autenticação pluggable, incluindo quais *connectors* suportam quais plugins, consulte [Restrictions on Pluggable Authentication](pluggable-authentication.html#pluggable-authentication-restrictions "Restrictions on Pluggable Authentication").
 
-Third-party connector developers should read that section to determine the extent to which a connector can take advantage of pluggable authentication capabilities and what steps to take to become more compliant.
+Desenvolvedores de *connectors* de terceiros devem ler essa seção para determinar em que medida um *connector* pode tirar proveito dos recursos de autenticação pluggable e quais passos tomar para se tornar mais compatível (*compliant*).
 
-If you are interested in writing your own authentication plugins, see [Writing Authentication Plugins](/doc/extending-mysql/5.7/en/writing-authentication-plugins.html).
+Se você estiver interessado em escrever seus próprios authentication plugins, consulte [Writing Authentication Plugins](/doc/extending-mysql/5.7/en/writing-authentication-plugins.html).
 
-#### Authentication Plugin Usage
+#### Uso de Authentication Plugin
 
-This section provides general instructions for installing and using authentication plugins. For instructions specific to a given plugin, see the section that describes that plugin under [Section 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins").
+Esta seção fornece instruções gerais para instalação e uso de authentication plugins. Para instruções específicas a um determinado plugin, consulte a seção que descreve esse plugin em [Section 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins").
 
-In general, pluggable authentication uses a pair of corresponding plugins on the server and client sides, so you use a given authentication method like this:
+Em geral, a autenticação pluggable usa um par de plugins correspondentes nos lados do Server e do Client, portanto, você usa um determinado método de autenticação da seguinte forma:
 
-* If necessary, install the plugin library or libraries containing the appropriate plugins. On the server host, install the library containing the server-side plugin, so that the server can use it to authenticate client connections. Similarly, on each client host, install the library containing the client-side plugin for use by client programs. Authentication plugins that are built in need not be installed.
+* Se necessário, instale a *library* do plugin ou *libraries* contendo os plugins apropriados. No host do Server, instale a *library* contendo o plugin *server-side*, para que o Server possa usá-lo para autenticar as conexões de Client. Da mesma forma, em cada host Client, instale a *library* contendo o plugin *client-side* para uso por programas Client. Authentication plugins que são *built in* não precisam ser instalados.
 
-* For each MySQL account that you create, specify the appropriate server-side plugin to use for authentication. If the account is to use the default authentication plugin, the account-creation statement need not specify the plugin explicitly. The [`default_authentication_plugin`](server-system-variables.html#sysvar_default_authentication_plugin) system variable configures the default authentication plugin.
+* Para cada Account MySQL que você criar, especifique o plugin *server-side* apropriado a ser usado para autenticação. Se a Account for usar o authentication plugin padrão, a instrução de criação da Account não precisa especificar o plugin explicitamente. A variável de sistema [`default_authentication_plugin`](server-system-variables.html#sysvar_default_authentication_plugin) configura o authentication plugin padrão.
 
-* When a client connects, the server-side plugin tells the client program which client-side plugin to use for authentication.
+* Quando um Client se conecta, o plugin *server-side* informa ao programa Client qual plugin *client-side* usar para autenticação.
 
-In the case that an account uses an authentication method that is the default for both the server and the client program, the server need not communicate to the client which client-side plugin to use, and a round trip in client/server negotiation can be avoided. This is true for accounts that use native MySQL authentication.
+Caso uma Account use um método de autenticação que seja o padrão tanto para o Server quanto para o programa Client, o Server não precisa comunicar ao Client qual plugin *client-side* usar, e um *round trip* na negociação Client/Server pode ser evitado. Isso é verdadeiro para Accounts que usam a native MySQL authentication.
 
-For standard MySQL clients such as [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") and [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), the [`--default-auth=plugin_name`](mysql-command-options.html#option_mysql_default-auth) option can be specified on the command line as a hint about which client-side plugin the program can expect to use, although the server overrides this if the server-side plugin associated with the user account requires a different client-side plugin.
+Para Clients MySQL padrão, como [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") e [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), a opção [`--default-auth=plugin_name`](mysql-command-options.html#option_mysql_default-auth) pode ser especificada na linha de comando como uma dica sobre qual plugin *client-side* o programa pode esperar usar, embora o Server se sobreponha a isso se o plugin *server-side* associado à Account de usuário exigir um plugin *client-side* diferente.
 
-If the client program does not find the client-side plugin library file, specify a [`--plugin-dir=dir_name`](mysql-command-options.html#option_mysql_plugin-dir) option to indicate the plugin library directory location.
+Se o programa Client não encontrar o arquivo da *library* do plugin *client-side*, especifique uma opção [`--plugin-dir=dir_name`](mysql-command-options.html#option_mysql_plugin-dir) para indicar a localização do diretório da *library* do plugin.
 
-#### Restrictions on Pluggable Authentication
+#### Restrições à Autenticação Pluggable
 
-The first part of this section describes general restrictions on the applicability of the pluggable authentication framework described at [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). The second part describes how third-party connector developers can determine the extent to which a connector can take advantage of pluggable authentication capabilities and what steps to take to become more compliant.
+A primeira parte desta seção descreve restrições gerais sobre a aplicabilidade da estrutura de autenticação pluggable descrita em [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). A segunda parte descreve como os desenvolvedores de *connectors* de terceiros podem determinar a extensão em que um *connector* pode tirar proveito dos recursos de autenticação pluggable e quais passos tomar para se tornar mais compatível (*compliant*).
 
-The term “native authentication” used here refers to authentication against passwords stored in the `mysql.user` system table. This is the same authentication method provided by older MySQL servers, before pluggable authentication was implemented. “Windows native authentication” refers to authentication using the credentials of a user who has already logged in to Windows, as implemented by the Windows Native Authentication plugin (“Windows plugin” for short).
+O termo “native authentication” usado aqui se refere à autenticação contra senhas armazenadas na tabela de sistema `mysql.user`. Este é o mesmo método de autenticação fornecido por Servers MySQL mais antigos, antes que a autenticação pluggable fosse implementada. “Windows native authentication” refere-se à autenticação usando as credenciais de um usuário que já fez login no Windows, conforme implementado pelo Windows Native Authentication plugin (abreviado como “Windows plugin”).
 
-* [General Pluggable Authentication Restrictions](pluggable-authentication.html#pluggable-authentication-restrictions-general "General Pluggable Authentication Restrictions")
-* [Pluggable Authentication and Third-Party Connectors](pluggable-authentication.html#pluggable-authentication-restrictions-third-party-connectors "Pluggable Authentication and Third-Party Connectors")
+##### Restrições Gerais à Autenticação Pluggable
 
-##### General Pluggable Authentication Restrictions
+* **Connector/C++:** Clients que usam este *connector* podem se conectar ao Server apenas por meio de Accounts que usam native authentication.
 
-* **Connector/C++:** Clients that use this connector can connect to the server only through accounts that use native authentication.
+  Exceção: Um *connector* suporta autenticação pluggable se ele foi construído para fazer *link* com `libmysqlclient` dinamicamente (em vez de estaticamente) e ele carrega a versão atual de `libmysqlclient` se essa versão estiver instalada, ou se o *connector* for recompilado a partir do código-fonte para fazer *link* com a `libmysqlclient` atual.
 
-  Exception: A connector supports pluggable authentication if it was built to link to `libmysqlclient` dynamically (rather than statically) and it loads the current version of `libmysqlclient` if that version is installed, or if the connector is recompiled from source to link against the current `libmysqlclient`.
+* **Connector/NET:** Clients que usam o Connector/NET podem se conectar ao Server através de Accounts que usam native authentication ou Windows native authentication.
 
-* **Connector/NET:** Clients that use Connector/NET can connect to the server through accounts that use native authentication or Windows native authentication.
+* **Connector/PHP:** Clients que usam este *connector* podem se conectar ao Server apenas por meio de Accounts que usam native authentication, quando compilados usando o MySQL native driver para PHP (`mysqlnd`).
 
-* **Connector/PHP:** Clients that use this connector can connect to the server only through accounts that use native authentication, when compiled using the MySQL native driver for PHP (`mysqlnd`).
+* **Windows native authentication:** Conectar-se através de uma Account que usa o Windows plugin requer a configuração de um Windows Domain. Sem isso, a autenticação NTLM é usada e, nesse caso, apenas conexões locais são possíveis; ou seja, o Client e o Server devem rodar no mesmo computador.
 
-* **Windows native authentication:** Connecting through an account that uses the Windows plugin requires Windows Domain setup. Without it, NTLM authentication is used and then only local connections are possible; that is, the client and server must run on the same computer.
+* **Proxy users:** O suporte a *proxy user* está disponível na medida em que Clients podem se conectar através de Accounts autenticadas com plugins que implementam a capacidade de *proxy user* (ou seja, plugins que podem retornar um nome de usuário diferente daquele do usuário de conexão). Por exemplo, os plugins PAM e Windows suportam *proxy users*. Os authentication plugins `mysql_native_password` e `sha256_password` não suportam *proxy users* por padrão, mas podem ser configurados para fazê-lo; consulte [Server Support for Proxy User Mapping](proxy-users.html#proxy-users-server-user-mapping "Server Support for Proxy User Mapping").
 
-* **Proxy users:** Proxy user support is available to the extent that clients can connect through accounts authenticated with plugins that implement proxy user capability (that is, plugins that can return a user name different from that of the connecting user). For example, the PAM and Windows plugins support proxy users. The `mysql_native_password` and `sha256_password` authentication plugins do not support proxy users by default, but can be configured to do so; see [Server Support for Proxy User Mapping](proxy-users.html#proxy-users-server-user-mapping "Server Support for Proxy User Mapping").
+* **Replication**: Réplicas podem empregar não apenas source accounts que usam native authentication, mas também podem se conectar através de source accounts que usam autenticação não nativa se o plugin *client-side* necessário estiver disponível. Se o plugin estiver *built into* `libmysqlclient`, ele está disponível por padrão. Caso contrário, o plugin deve ser instalado no lado da réplica no diretório nomeado pela variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) da réplica.
 
-* **Replication**: Replicas can employ not only source accounts using native authentication, but can also connect through source accounts that use nonnative authentication if the required client-side plugin is available. If the plugin is built into `libmysqlclient`, it is available by default. Otherwise, the plugin must be installed on the replica side in the directory named by the replica [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+* **Tabelas [`FEDERATED`](federated-storage-engine.html "15.8 The FEDERATED Storage Engine"):** Uma tabela [`FEDERATED`](federated-storage-engine.html "15.8 The FEDERATED Storage Engine") pode acessar a tabela remota apenas por meio de Accounts no Server remoto que usam native authentication.
 
-* **[`FEDERATED`](federated-storage-engine.html "15.8 The FEDERATED Storage Engine") tables:** A [`FEDERATED`](federated-storage-engine.html "15.8 The FEDERATED Storage Engine") table can access the remote table only through accounts on the remote server that use native authentication.
+##### Autenticação Pluggable e Connectors de Terceiros
 
-##### Pluggable Authentication and Third-Party Connectors
+Desenvolvedores de *connectors* de terceiros podem usar as seguintes diretrizes para determinar a prontidão de um *connector* para tirar proveito dos recursos de autenticação pluggable e quais passos tomar para se tornar mais compatível:
 
-Third-party connector developers can use the following guidelines to determine readiness of a connector to take advantage of pluggable authentication capabilities and what steps to take to become more compliant:
+* Um *connector* existente, no qual nenhuma alteração foi feita, usa native authentication e Clients que usam o *connector* podem se conectar ao Server apenas por meio de Accounts que usam native authentication. *No entanto, você deve testar o connector em relação a uma versão recente do Server para verificar se tais conexões ainda funcionam sem problemas.*
 
-* An existing connector to which no changes have been made uses native authentication and clients that use the connector can connect to the server only through accounts that use native authentication. *However, you should test the connector against a recent version of the server to verify that such connections still work without problem.*
+  Exceção: Um *connector* pode funcionar com autenticação pluggable sem quaisquer alterações se ele fizer *link* com `libmysqlclient` dinamicamente (em vez de estaticamente) e carregar a versão atual de `libmysqlclient` se essa versão estiver instalada.
 
-  Exception: A connector might work with pluggable authentication without any changes if it links to `libmysqlclient` dynamically (rather than statically) and it loads the current version of `libmysqlclient` if that version is installed.
+* Para tirar proveito dos recursos de autenticação pluggable, um *connector* baseado em `libmysqlclient` deve ser *relinked* contra a versão atual de `libmysqlclient`. Isso permite que o *connector* suporte conexões através de Accounts que exigem plugins *client-side* agora *built into* `libmysqlclient` (como o plugin *cleartext* necessário para a autenticação PAM e o plugin Windows necessário para a Windows native authentication). Fazer *link* com uma `libmysqlclient` atual também permite que o *connector* acesse plugins *client-side* instalados no diretório de plugin MySQL padrão (tipicamente o diretório nomeado pelo valor padrão da variável de sistema [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) do Server local).
 
-* To take advantage of pluggable authentication capabilities, a connector that is `libmysqlclient`-based should be relinked against the current version of `libmysqlclient`. This enables the connector to support connections though accounts that require client-side plugins now built into `libmysqlclient` (such as the cleartext plugin needed for PAM authentication and the Windows plugin needed for Windows native authentication). Linking with a current `libmysqlclient` also enables the connector to access client-side plugins installed in the default MySQL plugin directory (typically the directory named by the default value of the local server's [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable).
+  Se um *connector* faz *link* com `libmysqlclient` dinamicamente, deve-se garantir que a versão mais recente de `libmysqlclient` esteja instalada no host Client e que o *connector* a carregue em tempo de execução.
 
-  If a connector links to `libmysqlclient` dynamically, it must be ensured that the newer version of `libmysqlclient` is installed on the client host and that the connector loads it at runtime.
+* Outra maneira de um *connector* suportar um determinado método de autenticação é implementá-lo diretamente no protocolo Client/Server. O Connector/NET usa essa abordagem para fornecer suporte à Windows native authentication.
 
-* Another way for a connector to support a given authentication method is to implement it directly in the client/server protocol. Connector/NET uses this approach to provide support for Windows native authentication.
+* Se um *connector* deve ser capaz de carregar plugins *client-side* de um diretório diferente do diretório de plugin padrão, ele deve implementar algum meio para os usuários Client especificarem o diretório. As possibilidades para isso incluem uma opção de linha de comando ou variável de ambiente a partir da qual o *connector* pode obter o nome do diretório. Programas Client MySQL padrão, como [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") e [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), implementam a opção `--plugin-dir`. Consulte também [C API Client Plugin Interface](/doc/c-api/5.7/en/c-api-plugin-interface.html).
 
-* If a connector should be able to load client-side plugins from a directory different from the default plugin directory, it must implement some means for client users to specify the directory. Possibilities for this include a command-line option or environment variable from which the connector can obtain the directory name. Standard MySQL client programs such as [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") and [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") implement a `--plugin-dir` option. See also [C API Client Plugin Interface](/doc/c-api/5.7/en/c-api-plugin-interface.html).
-
-* Proxy user support by a connector depends, as described earlier in this section, on whether the authentication methods that it supports permit proxy users.
+* O suporte a *proxy user* por um *connector* depende, conforme descrito anteriormente nesta seção, se os métodos de autenticação que ele suporta permitem *proxy users*.

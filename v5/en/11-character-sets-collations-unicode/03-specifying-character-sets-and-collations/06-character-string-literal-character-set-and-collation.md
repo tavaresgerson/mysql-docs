@@ -1,18 +1,18 @@
-### 10.3.6 Character String Literal Character Set and Collation
+### 10.3.6 Character Set e Collation de String Literal de Caracteres
 
-Every character string literal has a character set and a collation.
+Todo literal de string de caracteres tem um Character Set e uma Collation.
 
-For the simple statement `SELECT 'string'`, the string has the connection default character set and collation defined by the `character_set_connection` and `collation_connection` system variables.
+Para a instrução simples `SELECT 'string'`, a string tem o Character Set padrão da conexão e a Collation definidos pelas System Variables `character_set_connection` e `collation_connection`.
 
-A character string literal may have an optional character set introducer and `COLLATE` clause, to designate it as a string that uses a particular character set and collation:
+Um literal de string de caracteres pode ter um *introducer* opcional de Character Set e uma cláusula `COLLATE`, para designá-lo como uma string que utiliza um Character Set e uma Collation específicos:
 
 ```sql
 [_charset_name]'string' [COLLATE collation_name]
 ```
 
-The `_charset_name` expression is formally called an *introducer*. It tells the parser, “the string that follows uses character set *`charset_name`*.” An introducer does not change the string to the introducer character set like `CONVERT()` would do. It does not change the string value, although padding may occur. The introducer is just a signal. See Section 10.3.8, “Character Set Introducers”.
+A expressão `_charset_name` é formalmente chamada de *introducer*. Ele informa ao Parser: “a string que segue usa o Character Set *`charset_name`*.” Um introducer não altera a string para o Character Set do introducer como faria a função `CONVERT()`. Ele não altera o valor da string, embora possa ocorrer padding. O introducer é apenas um sinal. Veja a Seção 10.3.8, “Character Set Introducers”.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT 'abc';
@@ -21,55 +21,55 @@ SELECT _binary'abc';
 SELECT _utf8'abc' COLLATE utf8_danish_ci;
 ```
 
-Character set introducers and the `COLLATE` clause are implemented according to standard SQL specifications.
+Os *introducers* de Character Set e a cláusula `COLLATE` são implementados de acordo com as especificações SQL padrão.
 
-MySQL determines the character set and collation of a character string literal in the following manner:
+O MySQL determina o Character Set e a Collation de um literal de string de caracteres da seguinte maneira:
 
-* If both *`_charset_name`* and `COLLATE collation_name` are specified, character set *`charset_name`* and collation *`collation_name`* are used. *`collation_name`* must be a permitted collation for *`charset_name`*.
+* Se ambos *`_charset_name`* e `COLLATE collation_name` forem especificados, o Character Set *`charset_name`* e a Collation *`collation_name`* são usados. *`collation_name`* deve ser uma Collation permitida para *`charset_name`*.
 
-* If *`_charset_name`* is specified but `COLLATE` is not specified, character set *`charset_name`* and its default collation are used. To see the default collation for each character set, use the `SHOW CHARACTER SET` statement or query the `INFORMATION_SCHEMA` `CHARACTER_SETS` table.
+* Se *`_charset_name`* for especificado, mas `COLLATE` não for especificado, o Character Set *`charset_name`* e sua Collation padrão são usados. Para ver a Collation padrão para cada Character Set, use a instrução `SHOW CHARACTER SET` ou faça uma Query na tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA`.
 
-* If *`_charset_name`* is not specified but `COLLATE collation_name` is specified, the connection default character set given by the `character_set_connection` system variable and collation *`collation_name`* are used. *`collation_name`* must be a permitted collation for the connection default character set.
+* Se *`_charset_name`* não for especificado, mas `COLLATE collation_name` for especificado, são usados o Character Set padrão da conexão fornecido pela System Variable `character_set_connection` e a Collation *`collation_name`*. *`collation_name`* deve ser uma Collation permitida para o Character Set padrão da conexão.
 
-* Otherwise (neither *`_charset_name`* nor `COLLATE collation_name` is specified), the connection default character set and collation given by the `character_set_connection` and `collation_connection` system variables are used.
+* Caso contrário (nem *`_charset_name`* nem `COLLATE collation_name` é especificado), o Character Set e a Collation padrão da conexão fornecidos pelas System Variables `character_set_connection` e `collation_connection` são usados.
 
-Examples:
+Exemplos:
 
-* A nonbinary string with `latin1` character set and `latin1_german1_ci` collation:
+* Uma string não binária com Character Set `latin1` e Collation `latin1_german1_ci`:
 
   ```sql
   SELECT _latin1'Müller' COLLATE latin1_german1_ci;
   ```
 
-* A nonbinary string with `utf8` character set and its default collation (that is, `utf8_general_ci`):
+* Uma string não binária com Character Set `utf8` e sua Collation padrão (ou seja, `utf8_general_ci`):
 
   ```sql
   SELECT _utf8'Müller';
   ```
 
-* A binary string with `binary` character set and its default collation (that is, `binary`):
+* Uma string binária com Character Set `binary` e sua Collation padrão (ou seja, `binary`):
 
   ```sql
   SELECT _binary'Müller';
   ```
 
-* A nonbinary string with the connection default character set and `utf8_general_ci` collation (fails if the connection character set is not `utf8`):
+* Uma string não binária com o Character Set padrão da conexão e Collation `utf8_general_ci` (falha se o Character Set da conexão não for `utf8`):
 
   ```sql
   SELECT 'Müller' COLLATE utf8_general_ci;
   ```
 
-* A string with the connection default character set and collation:
+* Uma string com o Character Set e a Collation padrão da conexão:
 
   ```sql
   SELECT 'Müller';
   ```
 
-An introducer indicates the character set for the following string, but does not change how the parser performs escape processing within the string. Escapes are always interpreted by the parser according to the character set given by `character_set_connection`.
+Um introducer indica o Character Set para a string seguinte, mas não altera a forma como o Parser executa o *escape processing* dentro da string. Os escapes são sempre interpretados pelo Parser de acordo com o Character Set fornecido por `character_set_connection`.
 
-The following examples show that escape processing occurs using `character_set_connection` even in the presence of an introducer. The examples use `SET NAMES` (which changes `character_set_connection`, as discussed in Section 10.4, “Connection Character Sets and Collations”), and display the resulting strings using the `HEX()` function so that the exact string contents can be seen.
+Os exemplos a seguir mostram que o *escape processing* ocorre usando `character_set_connection` mesmo na presença de um introducer. Os exemplos usam `SET NAMES` (que altera `character_set_connection`, conforme discutido na Seção 10.4, “Character Sets e Collations de Conexão”), e exibem as strings resultantes usando a função `HEX()` para que o conteúdo exato da string possa ser visto.
 
-Example 1:
+Exemplo 1:
 
 ```sql
 mysql> SET NAMES latin1;
@@ -81,9 +81,9 @@ mysql> SELECT HEX('à\n'), HEX(_sjis'à\n');
 +------------+-----------------+
 ```
 
-Here, `à` (hexadecimal value `E0`) is followed by `\n`, the escape sequence for newline. The escape sequence is interpreted using the `character_set_connection` value of `latin1` to produce a literal newline (hexadecimal value `0A`). This happens even for the second string. That is, the `_sjis` introducer does not affect the parser's escape processing.
+Aqui, `à` (valor hexadecimal `E0`) é seguido por `\n`, a sequência de escape para nova linha (newline). A sequência de escape é interpretada usando o valor `latin1` de `character_set_connection` para produzir uma nova linha literal (valor hexadecimal `0A`). Isso acontece mesmo para a segunda string. Ou seja, o introducer `_sjis` não afeta o *escape processing* do Parser.
 
-Example 2:
+Exemplo 2:
 
 ```sql
 mysql> SET NAMES sjis;
@@ -95,4 +95,4 @@ mysql> SELECT HEX('à\n'), HEX(_latin1'à\n');
 +------------+-------------------+
 ```
 
-Here, `character_set_connection` is `sjis`, a character set in which the sequence of `à` followed by `\` (hexadecimal values `05` and `5C`) is a valid multibyte character. Hence, the first two bytes of the string are interpreted as a single `sjis` character, and the `\` is not interpreted as an escape character. The following `n` (hexadecimal value `6E`) is not interpreted as part of an escape sequence. This is true even for the second string; the `_latin1` introducer does not affect escape processing.
+Aqui, `character_set_connection` é `sjis`, um Character Set no qual a sequência de `à` seguida por `\` (valores hexadecimais `05` e `5C`) é um caractere multibyte válido. Portanto, os primeiros dois bytes da string são interpretados como um único caractere `sjis`, e o `\` não é interpretado como um caractere de escape. O `n` seguinte (valor hexadecimal `6E`) não é interpretado como parte de uma sequência de escape. Isso é verdade mesmo para a segunda string; o introducer `_latin1` não afeta o *escape processing*.

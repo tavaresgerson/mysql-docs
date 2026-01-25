@@ -1,22 +1,22 @@
-### 6.2.18 SQL-Based Account Activity Auditing
+### 6.2.18 Auditoria de Atividade de Conta Baseada em SQL
 
-Applications can use the following guidelines to perform SQL-based auditing that ties database activity to MySQL accounts.
+Aplicações podem usar as seguintes diretrizes para realizar auditoria baseada em SQL que vincula a atividade do Database a Accounts MySQL.
 
-MySQL accounts correspond to rows in the `mysql.user` system table. When a client connects successfully, the server authenticates the client to a particular row in this table. The `User` and `Host` column values in this row uniquely identify the account and correspond to the `'user_name'@'host_name'` format in which account names are written in SQL statements.
+Accounts MySQL correspondem a linhas na tabela de sistema `mysql.user`. Quando um cliente se conecta com sucesso, o servidor autentica o cliente a uma linha específica nesta tabela. Os valores das colunas `User` e `Host` nesta linha identificam unicamente o Account e correspondem ao formato `'user_name'@'host_name'` no qual os nomes de Accounts são escritos em instruções SQL.
 
-The account used to authenticate a client determines which privileges the client has. Normally, the [`CURRENT_USER()`](information-functions.html#function_current-user) function can be invoked to determine which account this is for the client user. Its value is constructed from the `User` and `Host` columns of the `user` table row for the account.
+O Account usado para autenticar um cliente determina quais privileges o cliente possui. Normalmente, a função [`CURRENT_USER()`](information-functions.html#function_current-user) pode ser invocada para determinar qual Account é este para o usuário cliente. Seu valor é construído a partir das colunas `User` e `Host` da linha da tabela `user` para o Account.
 
-However, there are circumstances under which the [`CURRENT_USER()`](information-functions.html#function_current-user) value corresponds not to the client user but to a different account. This occurs in contexts when privilege checking is not based the client's account:
+No entanto, há circunstâncias sob as quais o valor de [`CURRENT_USER()`](information-functions.html#function_current-user) corresponde não ao usuário cliente, mas a um Account diferente. Isso ocorre em contextos onde a verificação de privileges não é baseada no Account do cliente:
 
-* Stored routines (procedures and functions) defined with the `SQL SECURITY DEFINER` characteristic
+* Stored routines (procedures e functions) definidas com a característica `SQL SECURITY DEFINER`
 
-* Views defined with the `SQL SECURITY DEFINER` characteristic
+* Views definidas com a característica `SQL SECURITY DEFINER`
 
-* Triggers and events
+* Triggers e events
 
-In those contexts, privilege checking is done against the `DEFINER` account and [`CURRENT_USER()`](information-functions.html#function_current-user) refers to that account, not to the account for the client who invoked the stored routine or view or who caused the trigger to activate. To determine the invoking user, you can call the [`USER()`](information-functions.html#function_user) function, which returns a value indicating the actual user name provided by the client and the host from which the client connected. However, this value does not necessarily correspond directly to an account in the `user` table, because the [`USER()`](information-functions.html#function_user) value never contains wildcards, whereas account values (as returned by [`CURRENT_USER()`](information-functions.html#function_current-user)) may contain user name and host name wildcards.
+Nesses contextos, a verificação de privileges é feita contra o Account `DEFINER`, e [`CURRENT_USER()`](information-functions.html#function_current-user) refere-se a esse Account, não ao Account do cliente que invocou a stored routine ou view ou que causou a ativação do Trigger. Para determinar o usuário que invocou, você pode chamar a função [`USER()`](information-functions.html#function_user), que retorna um valor indicando o nome de usuário real fornecido pelo cliente e o Host do qual o cliente se conectou. No entanto, este valor não corresponde necessariamente a um Account na tabela `user`, porque o valor de [`USER()`](information-functions.html#function_user) nunca contém *wildcards*, enquanto os valores de Account (retornados por [`CURRENT_USER()`](information-functions.html#function_current-user)) podem conter *wildcards* no nome de usuário e no nome do Host.
 
-For example, a blank user name matches any user, so an account of `''@'localhost'` enables clients to connect as an anonymous user from the local host with any user name. In this case, if a client connects as `user1` from the local host, [`USER()`](information-functions.html#function_user) and [`CURRENT_USER()`](information-functions.html#function_current-user) return different values:
+Por exemplo, um nome de usuário em branco corresponde a qualquer usuário, então um Account de `''@'localhost'` permite que clientes se conectem como um usuário anônimo a partir do Host local com qualquer nome de usuário. Neste caso, se um cliente se conecta como `user1` a partir do Host local, [`USER()`](information-functions.html#function_user) e [`CURRENT_USER()`](information-functions.html#function_current-user) retornam valores diferentes:
 
 ```sql
 mysql> SELECT USER(), CURRENT_USER();
@@ -27,7 +27,7 @@ mysql> SELECT USER(), CURRENT_USER();
 +-----------------+----------------+
 ```
 
-The host name part of an account can contain wildcards, too. If the host name contains a `'%'` or `'_'` pattern character or uses netmask notation, the account can be used for clients connecting from multiple hosts and the [`CURRENT_USER()`](information-functions.html#function_current-user) value does not indicate which one. For example, the account `'user2'@'%.example.com'` can be used by `user2` to connect from any host in the `example.com` domain. If `user2` connects from `remote.example.com`, [`USER()`](information-functions.html#function_user) and [`CURRENT_USER()`](information-functions.html#function_current-user) return different values:
+A parte do nome do Host de um Account também pode conter *wildcards*. Se o nome do Host contém um caractere de padrão `'%'` ou `'_'` ou usa notação de *netmask*, o Account pode ser usado para clientes que se conectam a partir de múltiplos Hosts e o valor de [`CURRENT_USER()`](information-functions.html#function_current-user) não indica qual deles. Por exemplo, o Account `'user2'@'%.example.com'` pode ser usado por `user2` para se conectar de qualquer Host no domínio `example.com`. Se `user2` se conecta a partir de `remote.example.com`, [`USER()`](information-functions.html#function_user) e [`CURRENT_USER()`](information-functions.html#function_current-user) retornam valores diferentes:
 
 ```sql
 mysql> SELECT USER(), CURRENT_USER();
@@ -38,18 +38,18 @@ mysql> SELECT USER(), CURRENT_USER();
 +--------------------------+---------------------+
 ```
 
-If an application must invoke [`USER()`](information-functions.html#function_user) for user auditing (for example, if it does auditing from within triggers) but must also be able to associate the [`USER()`](information-functions.html#function_user) value with an account in the `user` table, it is necessary to avoid accounts that contain wildcards in the `User` or `Host` column. Specifically, do not permit `User` to be empty (which creates an anonymous-user account), and do not permit pattern characters or netmask notation in `Host` values. All accounts must have a nonempty `User` value and literal `Host` value.
+Se uma aplicação precisa invocar [`USER()`](information-functions.html#function_user) para auditoria de usuário (por exemplo, se ela realiza auditoria de dentro de *triggers*) mas também precisa ser capaz de associar o valor de [`USER()`](information-functions.html#function_user) a um Account na tabela `user`, é necessário evitar Accounts que contenham *wildcards* nas colunas `User` ou `Host`. Especificamente, não permita que `User` seja vazio (o que cria um Account de usuário anônimo) e não permita caracteres de padrão ou notação de *netmask* nos valores de `Host`. Todos os Accounts devem ter um valor `User` não vazio e um valor `Host` literal.
 
-With respect to the previous examples, the `''@'localhost'` and `'user2'@'%.example.com'` accounts should be changed not to use wildcards:
+Com relação aos exemplos anteriores, os Accounts `''@'localhost'` e `'user2'@'%.example.com'` devem ser alterados para não usar *wildcards*:
 
 ```sql
 RENAME USER ''@'localhost' TO 'user1'@'localhost';
 RENAME USER 'user2'@'%.example.com' TO 'user2'@'remote.example.com';
 ```
 
-If `user2` must be able to connect from several hosts in the `example.com` domain, there should be a separate account for each host.
+Se `user2` deve ser capaz de se conectar de vários Hosts no domínio `example.com`, deve haver um Account separado para cada Host.
 
-To extract the user name or host name part from a [`CURRENT_USER()`](information-functions.html#function_current-user) or [`USER()`](information-functions.html#function_user) value, use the [`SUBSTRING_INDEX()`](string-functions.html#function_substring-index) function:
+Para extrair o nome de usuário ou a parte do nome do Host de um valor [`CURRENT_USER()`](information-functions.html#function_current-user) ou [`USER()`](information-functions.html#function_user), use a função [`SUBSTRING_INDEX()`](string-functions.html#function_substring-index):
 
 ```sql
 mysql> SELECT SUBSTRING_INDEX(CURRENT_USER(),'@',1);

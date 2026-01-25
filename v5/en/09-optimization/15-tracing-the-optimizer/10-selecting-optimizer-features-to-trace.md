@@ -1,19 +1,19 @@
-### 8.15.10 Selecting Optimizer Features to Trace
+### 8.15.10 Selecionando Recursos do Optimizer para Rastreamento
 
-Some features in the optimizer can be invoked many times during statement optimization and execution, and thus can make the trace grow beyond reason. They are:
+Alguns recursos no Optimizer podem ser invocados várias vezes durante a otimização e execução de comandos, e, portanto, podem fazer com que o *trace* (rastreamento) cresça excessivamente. Eles são:
 
-* *Greedy search*: With an *`N`*-table join, this could explore factorial(*`N`*) plans.
+*   *Greedy search* (Busca Gulosa): Com um *JOIN* de *`N`* tabelas, isso pode explorar planos no número fatorial de (*`N`*).
 
-* *Range optimizer*
-* *Dynamic range optimization*: Shown as `range checked for each record` in `EXPLAIN` output; each outer row causes a re-run of the range optimizer.
+*   *Range optimizer*
+*   *Dynamic range optimization* (Otimização Dinâmica de Range): Mostrado como `range checked for each record` na saída do `EXPLAIN`; cada linha externa causa uma nova execução do *range optimizer*.
 
-* *Subqueries*: A subquery in which the `WHERE` clause may be executed once per row.
+*   *Subqueries*: Uma *subquery* na qual a *WHERE clause* pode ser executada uma vez por linha.
 
-Those features can be excluded from tracing by setting one or more switches of the `optimizer_trace_features` system variable to `OFF`. These switches are listed here:
+Esses recursos podem ser excluídos do rastreamento (tracing) definindo um ou mais *switches* da variável de sistema `optimizer_trace_features` para `OFF`. Esses *switches* estão listados aqui:
 
-* `greedy_search`: Greedy search is not traced.
-* `range_optimizer`: The range optimizer is not traced.
+*   `greedy_search`: O *greedy search* não é rastreado.
+*   `range_optimizer`: O *range optimizer* não é rastreado.
 
-* `dynamic_range`: Only the first call to the range optimizer on this `JOIN_TAB::SQL_SELECT` is traced.
+*   `dynamic_range`: Apenas a primeira chamada ao *range optimizer* neste `JOIN_TAB::SQL_SELECT` é rastreada.
 
-* `repeated_subselect`: Only the first execution of this `Item_subselect` is traced.
+*   `repeated_subselect`: Apenas a primeira execução deste `Item_subselect` é rastreada.

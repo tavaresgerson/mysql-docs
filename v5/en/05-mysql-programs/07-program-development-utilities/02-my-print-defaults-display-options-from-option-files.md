@@ -1,6 +1,6 @@
-### 4.7.2 my_print_defaults — Display Options from Option Files
+### 4.7.2 my_print_defaults — Exibir Opções de Arquivos de Opções
 
-**my_print_defaults** displays the options that are present in option groups of option files. The output indicates what options are used by programs that read the specified option groups. For example, the **mysqlcheck** program reads the `[mysqlcheck]` and `[client]` option groups. To see what options are present in those groups in the standard option files, invoke **my_print_defaults** like this:
+O **my_print_defaults** exibe as opções presentes em grupos de opções de arquivos de opções. A saída indica quais opções são usadas por programas que leem os grupos de opções especificados. Por exemplo, o programa **mysqlcheck** lê os grupos de opções `[mysqlcheck]` e `[client]`. Para ver quais opções estão presentes nesses grupos nos arquivos de opções padrão, invoque o **my_print_defaults** assim:
 
 ```sql
 $> my_print_defaults mysqlcheck client
@@ -9,54 +9,54 @@ $> my_print_defaults mysqlcheck client
 --host=localhost
 ```
 
-The output consists of options, one per line, in the form that they would be specified on the command line.
+A saída consiste em opções, uma por linha, no formato em que seriam especificadas na command line.
 
-**my_print_defaults** supports the following options.
+O **my_print_defaults** suporta as seguintes opções.
 
 * `--help`, `-?`
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--config-file=file_name`, `--defaults-file=file_name`, `-c file_name`
 
-  Read only the given option file.
+  Lê apenas o arquivo de opções fornecido.
 
 * `--debug=debug_options`, `-# debug_options`
 
-  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/my_print_defaults.trace`.
+  Grava um log de debugging. Uma string *`debug_options`* típica é `d:t:o,file_name`. O default é `d:t:o,/tmp/my_print_defaults.trace`.
 
 * `--defaults-extra-file=file_name`, `--extra-file=file_name`, `-e file_name`
 
-  Read this option file after the global option file but (on Unix) before the user option file.
+  Lê este arquivo de opções após o arquivo de opções global, mas (no Unix) antes do arquivo de opções do usuário.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Command Line que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--defaults-group-suffix=suffix`, `-g suffix`
 
-  In addition to the groups named on the command line, read groups that have the given suffix.
+  Além dos grupos nomeados na command line, lê grupos que possuem o sufixo fornecido.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Command Line que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--login-path=name`, `-l name`
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  Lê opções do login path nomeado no arquivo de login path `.mylogin.cnf`. Um “login path” é um grupo de opções que contém opções que especificam a qual servidor MySQL conectar e com qual conta autenticar. Para criar ou modificar um arquivo de login path, use o utilitário **mysql_config_editor**. Consulte a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Command Line que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--no-defaults`, `-n`
 
-  Return an empty string.
+  Retorna uma string vazia.
 
-  For additional information about this and other option-file options, see Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+  Para informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 4.2.2.3, “Opções de Command Line que Afetam o Tratamento de Arquivos de Opções”.
 
 * `--show`, `-s`
 
-  As of MySQL 5.7.8, **my_print_defaults** masks passwords by default. Use this option to display passwords in cleartext.
+  A partir do MySQL 5.7.8, o **my_print_defaults** mascara senhas por default. Use esta opção para exibir senhas em cleartext.
 
 * `--verbose`, `-v`
 
-  Verbose mode. Print more information about what the program does.
+  Modo Verbose. Imprime mais informações sobre o que o programa faz.
 
 * `--version`, `-V`
 
-  Display version information and exit.
+  Exibe informações de versão e sai.

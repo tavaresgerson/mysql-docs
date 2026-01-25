@@ -1,45 +1,45 @@
-## 8.1 Optimization Overview
+## 8.1 Visão Geral da Otimização
 
-Database performance depends on several factors at the database level, such as tables, queries, and configuration settings. These software constructs result in CPU and I/O operations at the hardware level, which you must minimize and make as efficient as possible. As you work on database performance, you start by learning the high-level rules and guidelines for the software side, and measuring performance using wall-clock time. As you become an expert, you learn more about what happens internally, and start measuring things such as CPU cycles and I/O operations.
+O desempenho do Database depende de vários fatores no nível do Database, como Tables, Queries e configurações. Essas construções de software resultam em operações de CPU e I/O no nível do hardware, as quais você deve minimizar e tornar o mais eficientes possível. Ao trabalhar no desempenho do Database, você começa aprendendo as regras e diretrizes de alto nível para o lado do software e medindo o desempenho usando o tempo de relógio (wall-clock time). À medida que você se torna um especialista, aprende mais sobre o que acontece internamente e começa a medir itens como ciclos de CPU e operações de I/O.
 
-Typical users aim to get the best database performance out of their existing software and hardware configurations. Advanced users look for opportunities to improve the MySQL software itself, or develop their own storage engines and hardware appliances to expand the MySQL ecosystem.
+Usuários típicos buscam obter o melhor desempenho do Database com suas configurações existentes de software e hardware. Usuários avançados procuram oportunidades para melhorar o próprio software MySQL ou desenvolver seus próprios Storage Engines e appliances de hardware para expandir o ecossistema MySQL.
 
-* Optimizing at the Database Level
-* Optimizing at the Hardware Level
-* Balancing Portability and Performance
+* Otimizando no Nível do Database
+* Otimizando no Nível do Hardware
+* Equilibrando Portabilidade e Desempenho
 
-### Optimizing at the Database Level
+### Otimizando no Nível do Database
 
-The most important factor in making a database application fast is its basic design:
+O fator mais importante para tornar um aplicativo de Database rápido é seu design básico:
 
-* Are the tables structured properly? In particular, do the columns have the right data types, and does each table have the appropriate columns for the type of work? For example, applications that perform frequent updates often have many tables with few columns, while applications that analyze large amounts of data often have few tables with many columns.
+* As Tables estão estruturadas corretamente? Em particular, as Columns têm os tipos de dados (data types) certos, e cada Table tem as Columns apropriadas para o tipo de trabalho? Por exemplo, aplicações que realizam atualizações frequentes geralmente têm muitas Tables com poucas Columns, enquanto aplicações que analisam grandes quantidades de dados geralmente têm poucas Tables com muitas Columns.
 
-* Are the right indexes in place to make queries efficient?
+* Os Indexes corretos estão implementados para tornar as Queries eficientes?
 
-* Are you using the appropriate storage engine for each table, and taking advantage of the strengths and features of each storage engine you use? In particular, the choice of a transactional storage engine such as `InnoDB` or a nontransactional one such as `MyISAM` can be very important for performance and scalability.
+* Você está usando o Storage Engine apropriado para cada Table e aproveitando os pontos fortes e recursos de cada Storage Engine que utiliza? Em particular, a escolha de um Storage Engine transacional como `InnoDB` ou de um não transacional como `MyISAM` pode ser muito importante para o desempenho e a escalabilidade.
 
-  Note
+  Nota
 
-  `InnoDB` is the default storage engine for new tables. In practice, the advanced `InnoDB` performance features mean that `InnoDB` tables often outperform the simpler `MyISAM` tables, especially for a busy database.
+  `InnoDB` é o Storage Engine padrão para novas Tables. Na prática, os recursos avançados de desempenho do `InnoDB` significam que as Tables `InnoDB` frequentemente superam o desempenho das Tables `MyISAM` mais simples, especialmente para um Database movimentado.
 
-* Does each table use an appropriate row format? This choice also depends on the storage engine used for the table. In particular, compressed tables use less disk space and so require less disk I/O to read and write the data. Compression is available for all kinds of workloads with `InnoDB` tables, and for read-only `MyISAM` tables.
+* Cada Table utiliza um formato de linha (row format) apropriado? Essa escolha também depende do Storage Engine usado para a Table. Em particular, Tables compactadas usam menos espaço em disco e, portanto, exigem menos I/O de disco para ler e gravar os dados. A compactação está disponível para todos os tipos de cargas de trabalho (workloads) com Tables `InnoDB`, e para Tables `MyISAM` somente leitura.
 
-* Does the application use an appropriate locking strategy? For example, by allowing shared access when possible so that database operations can run concurrently, and requesting exclusive access when appropriate so that critical operations get top priority. Again, the choice of storage engine is significant. The `InnoDB` storage engine handles most locking issues without involvement from you, allowing for better concurrency in the database and reducing the amount of experimentation and tuning for your code.
+* A aplicação usa uma estratégia de Locking apropriada? Por exemplo, permitindo acesso compartilhado sempre que possível para que as operações do Database possam ser executadas simultaneamente (concurrently), e solicitando acesso exclusivo quando apropriado para que operações críticas recebam prioridade máxima. Novamente, a escolha do Storage Engine é significativa. O Storage Engine `InnoDB` lida com a maioria dos problemas de Locking sem sua intervenção, permitindo melhor concorrência no Database e reduzindo a quantidade de experimentação e Tuning para o seu código.
 
-* Are all memory areas used for caching sized correctly? That is, large enough to hold frequently accessed data, but not so large that they overload physical memory and cause paging. The main memory areas to configure are the `InnoDB` buffer pool, the `MyISAM` key cache, and the MySQL query cache.
+* Todas as áreas de memória usadas para caching estão dimensionadas corretamente? Ou seja, grandes o suficiente para conter dados acessados frequentemente, mas não tão grandes a ponto de sobrecarregar a memória física e causar paginação (paging). As principais áreas de memória a serem configuradas são o `InnoDB Buffer Pool`, o `MyISAM Key Cache` e o `MySQL Query Cache`.
 
-### Optimizing at the Hardware Level
+### Otimizando no Nível do Hardware
 
-Any database application eventually hits hardware limits as the database becomes more and more busy. A DBA must evaluate whether it is possible to tune the application or reconfigure the server to avoid these bottlenecks, or whether more hardware resources are required. System bottlenecks typically arise from these sources:
+Qualquer aplicação de Database eventualmente atinge os limites do hardware à medida que o Database se torna cada vez mais movimentado. Um DBA deve avaliar se é possível realizar o Tuning da aplicação ou reconfigurar o servidor para evitar esses gargalos, ou se são necessários mais recursos de hardware. Os gargalos do sistema tipicamente surgem destas fontes:
 
-* Disk seeks. It takes time for the disk to find a piece of data. With modern disks, the mean time for this is usually lower than 10ms, so we can in theory do about 100 seeks a second. This time improves slowly with new disks and is very hard to optimize for a single table. The way to optimize seek time is to distribute the data onto more than one disk.
+* Buscas (Seeks) em disco. O disco leva tempo para encontrar um pedaço de dado. Com discos modernos, o tempo médio para isso é geralmente inferior a 10ms, então podemos, em teoria, fazer cerca de 100 buscas por segundo. Esse tempo melhora lentamente com novos discos e é muito difícil de otimizar para uma única Table. A maneira de otimizar o tempo de busca (seek time) é distribuir os dados em mais de um disco.
 
-* Disk reading and writing. When the disk is at the correct position, we need to read or write the data. With modern disks, one disk delivers at least 10–20MB/s throughput. This is easier to optimize than seeks because you can read in parallel from multiple disks.
+* Leitura e escrita em disco. Quando o disco está na posição correta, precisamos ler ou gravar os dados. Com discos modernos, um disco oferece pelo menos 10–20MB/s de throughput. Isso é mais fácil de otimizar do que as buscas (seeks) porque você pode ler em paralelo a partir de vários discos.
 
-* CPU cycles. When the data is in main memory, we must process it to get our result. Having large tables compared to the amount of memory is the most common limiting factor. But with small tables, speed is usually not the problem.
+* Ciclos de CPU. Quando os dados estão na memória principal, devemos processá-los para obter nosso resultado. Ter Tables grandes em comparação com a quantidade de memória é o fator limitante mais comum. Mas com Tables pequenas, a velocidade geralmente não é o problema.
 
-* Memory bandwidth. When the CPU needs more data than can fit in the CPU cache, main memory bandwidth becomes a bottleneck. This is an uncommon bottleneck for most systems, but one to be aware of.
+* Largura de banda (bandwidth) da memória. Quando a CPU precisa de mais dados do que pode caber no cache da CPU, a largura de banda da memória principal se torna um gargalo. Este é um gargalo incomum para a maioria dos sistemas, mas deve ser levado em consideração.
 
-### Balancing Portability and Performance
+### Equilibrando Portabilidade e Desempenho
 
-To use performance-oriented SQL extensions in a portable MySQL program, you can wrap MySQL-specific keywords in a statement within `/*! */` comment delimiters. Other SQL servers ignore the commented keywords. For information about writing comments, see Section 9.6, “Comments”.
+Para usar extensões SQL orientadas a desempenho em um programa MySQL portátil, você pode envolver palavras-chave específicas do MySQL em uma declaração dentro dos delimitadores de comentário `/*! */`. Outros servidores SQL ignoram as palavras-chave comentadas. Para obter informações sobre como escrever comentários, consulte a Seção 9.6, “Comentários”.

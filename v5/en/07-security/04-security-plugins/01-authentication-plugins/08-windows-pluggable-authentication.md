@@ -2,60 +2,60 @@
 
 Note
 
-Windows pluggable authentication is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, see <https://www.mysql.com/products/>.
+O Windows pluggable authentication é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
-MySQL Enterprise Edition for Windows supports an authentication method that performs external authentication on Windows, enabling MySQL Server to use native Windows services to authenticate client connections. Users who have logged in to Windows can connect from MySQL client programs to the server based on the information in their environment without specifying an additional password.
+O MySQL Enterprise Edition para Windows suporta um método de Authentication que realiza Authentication externa no Windows, permitindo que o MySQL Server use serviços nativos do Windows para autenticar Client connections. Users que fizeram login no Windows podem se conectar de programas Client MySQL ao Server com base nas informações em seu ambiente, sem especificar uma senha adicional.
 
-The client and server exchange data packets in the authentication handshake. As a result of this exchange, the server creates a security context object that represents the identity of the client in the Windows OS. This identity includes the name of the client account. Windows pluggable authentication uses the identity of the client to check whether it is a given account or a member of a group. By default, negotiation uses Kerberos to authenticate, then NTLM if Kerberos is unavailable.
+O Client e o Server trocam data packets no authentication handshake. Como resultado dessa troca, o Server cria um security context object que representa a identidade do Client no Windows OS. Essa identidade inclui o nome da conta do Client. O Windows pluggable authentication usa a identidade do Client para verificar se é uma determinada conta ou um membro de um group. Por padrão, a negociação usa Kerberos para autenticar, e depois NTLM se o Kerberos não estiver disponível.
 
-Windows pluggable authentication provides these capabilities:
+O Windows pluggable authentication fornece os seguintes recursos:
 
-* External authentication: Windows authentication enables MySQL Server to accept connections from users defined outside the MySQL grant tables who have logged in to Windows.
+* Authentication Externa: A Windows Authentication permite que o MySQL Server aceite connections de users definidos fora das MySQL grant tables que fizeram login no Windows.
 
-* Proxy user support: Windows authentication can return to MySQL a user name different from the external user name passed by the client program. This means that the plugin can return the MySQL user that defines the privileges the external Windows-authenticated user should have. For example, a Windows user named `joe` can connect and have the privileges of a MySQL user named `developer`.
+* Suporte a Proxy User: A Windows Authentication pode retornar ao MySQL um user name diferente do user name externo passado pelo Client program. Isso significa que o plugin pode retornar o MySQL user que define os privileges que o user autenticado externamente pelo Windows deve ter. Por exemplo, um user Windows chamado `joe` pode se conectar e ter os privileges de um MySQL user chamado `developer`.
 
-The following table shows the plugin and library file names. The file must be located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+A tabela a seguir mostra os nomes de plugin e de arquivo de library. O arquivo deve estar localizado no directory nomeado pela system variable [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir).
 
-**Table 6.14 Plugin and Library Names for Windows Authentication**
+**Tabela 6.14 Nomes de Plugin e Library para Windows Authentication**
 
-<table summary="Names for the plugins and library file used for Windows password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>authentication_windows</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>authentication_windows_client</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_windows.dll</code></td> </tr></tbody></table>
+<table summary="Nomes para os Plugins e o arquivo de Library usados para a Windows password Authentication."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do Server</td> <td><code>authentication_windows</code></td> </tr><tr> <td>Plugin do lado do Client</td> <td><code>authentication_windows_client</code></td> </tr><tr> <td>Arquivo de Library</td> <td><code>authentication_windows.dll</code></td> </tr> </tbody></table>
 
-The library file includes only the server-side plugin. The client-side plugin is built into the `libmysqlclient` client library.
+O arquivo de library inclui apenas o plugin do lado do Server. O plugin do lado do Client é integrado à Client library `libmysqlclient`.
 
-The server-side Windows authentication plugin is included only in MySQL Enterprise Edition. It is not included in MySQL community distributions. The client-side plugin is included in all distributions, including community distributions. This enables clients from any distribution to connect to a server that has the server-side plugin loaded.
+O plugin de Windows Authentication do lado do Server está incluído apenas no MySQL Enterprise Edition. Ele não está incluído nas distribuições da comunidade MySQL. O plugin do lado do Client está incluído em todas as distribuições, incluindo as da comunidade. Isso permite que Clients de qualquer distribuição se conectem a um Server que tenha o plugin do lado do Server carregado.
 
-The following sections provide installation and usage information specific to Windows pluggable authentication:
+As seções a seguir fornecem informações de instalação e uso específicas para o Windows pluggable authentication:
 
-* [Installing Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-installation "Installing Windows Pluggable Authentication")
-* [Uninstalling Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-uninstallation "Uninstalling Windows Pluggable Authentication")
-* [Using Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-usage "Using Windows Pluggable Authentication")
+* [Instalando o Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-installation "Instalando o Windows Pluggable Authentication")
+* [Desinstalando o Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-uninstallation "Desinstalando o Windows Pluggable Authentication")
+* [Usando o Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-usage "Usando o Windows Pluggable Authentication")
 
-For general information about pluggable authentication in MySQL, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). For proxy user information, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+Para obter informações gerais sobre pluggable authentication no MySQL, consulte [Seção 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). Para obter informações sobre proxy user, consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
-##### Installing Windows Pluggable Authentication
+##### Instalando o Windows Pluggable Authentication
 
-This section describes how to install the server-side Windows authentication plugin. For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
+Esta seção descreve como instalar o plugin de Windows Authentication do lado do Server. Para obter informações gerais sobre como instalar Plugins, consulte [Seção 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
 
-To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+Para ser utilizável pelo Server, o arquivo de plugin library deve estar localizado no MySQL plugin directory (o directory nomeado pela system variable [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)). Se necessário, configure a localização do plugin directory definindo o valor de [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) na inicialização do Server.
 
-To load the plugin at server startup, use the [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option to name the library file that contains it. With this plugin-loading method, the option must be given each time the server starts. For example, put these lines in the server `my.cnf` file:
+Para carregar o plugin na inicialização do Server, use a opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) para nomear o arquivo de library que o contém. Com este método de carregamento de plugin, a opção deve ser fornecida toda vez que o Server é iniciado. Por exemplo, coloque estas linhas no arquivo `my.cnf` do Server:
 
 ```sql
 [mysqld]
 plugin-load-add=authentication_windows.dll
 ```
 
-After modifying `my.cnf`, restart the server to cause the new settings to take effect.
+Após modificar o `my.cnf`, reinicie o Server para que as novas configurações entrem em vigor.
 
-Alternatively, to load the plugin at runtime, use this statement:
+Como alternativa, para carregar o plugin em tempo de execução, use esta instrução:
 
 ```sql
 INSTALL PLUGIN authentication_windows SONAME 'authentication_windows.dll';
 ```
 
-[`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") loads the plugin immediately, and also registers it in the `mysql.plugins` system table to cause the server to load it for each subsequent normal startup without the need for [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
+O [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") carrega o plugin imediatamente e também o registra na system table `mysql.plugins` para fazer com que o Server o carregue para cada inicialização normal subsequente sem a necessidade de [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add).
 
-To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
+Para verificar a instalação do plugin, examine a tabela [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") do Information Schema ou use a instrução [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") (consulte [Seção 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). Por exemplo:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -68,29 +68,29 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +------------------------+---------------+
 ```
 
-If the plugin fails to initialize, check the server error log for diagnostic messages.
+Se o plugin falhar ao inicializar, verifique o server error log para mensagens de diagnóstico.
 
-To associate MySQL accounts with the Windows authentication plugin, see [Using Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-usage "Using Windows Pluggable Authentication"). Additional plugin control is provided by the [`authentication_windows_use_principal_name`](server-system-variables.html#sysvar_authentication_windows_use_principal_name) and [`authentication_windows_log_level`](server-system-variables.html#sysvar_authentication_windows_log_level) system variables. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
+Para associar MySQL accounts ao plugin de Windows Authentication, consulte [Usando o Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-usage "Usando o Windows Pluggable Authentication"). O controle adicional do plugin é fornecido pelas system variables [`authentication_windows_use_principal_name`](server-system-variables.html#sysvar_authentication_windows_use_principal_name) e [`authentication_windows_log_level`](server-system-variables.html#sysvar_authentication_windows_log_level). Consulte [Seção 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-##### Uninstalling Windows Pluggable Authentication
+##### Desinstalando o Windows Pluggable Authentication
 
-The method used to uninstall the Windows authentication plugin depends on how you installed it:
+O método usado para desinstalar o plugin de Windows Authentication depende de como você o instalou:
 
-* If you installed the plugin at server startup using a [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option, restart the server without the option.
+* Se você instalou o plugin na inicialização do Server usando uma opção [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add), reinicie o Server sem a opção.
 
-* If you installed the plugin at runtime using an [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement, it remains installed across server restarts. To uninstall it, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
+* Se você instalou o plugin em tempo de execução usando uma instrução [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), ele permanece instalado após as reinicializações do Server. Para desinstalá-lo, use [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"):
 
   ```sql
   UNINSTALL PLUGIN authentication_windows;
   ```
 
-In addition, remove any startup options that set Windows plugin-related system variables.
+Além disso, remova quaisquer opções de inicialização que definam system variables relacionadas ao plugin Windows.
 
-##### Using Windows Pluggable Authentication
+##### Usando o Windows Pluggable Authentication
 
-The Windows authentication plugin supports the use of MySQL accounts such that users who have logged in to Windows can connect to the MySQL server without having to specify an additional password. It is assumed that the server is running with the server-side plugin enabled, as described in [Installing Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-installation "Installing Windows Pluggable Authentication"). Once the DBA has enabled the server-side plugin and set up accounts to use it, clients can connect using those accounts with no other setup required on their part.
+O plugin de Windows Authentication suporta o uso de MySQL accounts de tal forma que os users que fizeram login no Windows podem se conectar ao MySQL Server sem ter que especificar uma senha adicional. Assume-se que o Server está sendo executado com o plugin do lado do Server habilitado, conforme descrito em [Instalando o Windows Pluggable Authentication](windows-pluggable-authentication.html#windows-pluggable-authentication-installation "Instalando o Windows Pluggable Authentication"). Uma vez que o DBA tenha habilitado o plugin do lado do Server e configurado as contas para usá-lo, os Clients podem se conectar usando essas contas sem nenhuma outra configuração exigida de sua parte.
 
-To refer to the Windows authentication plugin in the `IDENTIFIED WITH` clause of a [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement, use the name `authentication_windows`. Suppose that the Windows users `Rafal` and `Tasha` should be permitted to connect to MySQL, as well as any users in the `Administrators` or `Power Users` group. To set this up, create a MySQL account named `sql_admin` that uses the Windows plugin for authentication:
+Para se referir ao plugin de Windows Authentication na cláusula `IDENTIFIED WITH` de uma instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), use o nome `authentication_windows`. Suponha que os users Windows `Rafal` e `Tasha` devem ter permissão para se conectar ao MySQL, bem como quaisquer users nos groups `Administrators` ou `Power Users`. Para configurar isso, crie um MySQL account chamado `sql_admin` que usa o plugin Windows para Authentication:
 
 ```sql
 CREATE USER sql_admin
@@ -98,28 +98,28 @@ CREATE USER sql_admin
   AS 'Rafal, Tasha, Administrators, "Power Users"';
 ```
 
-The plugin name is `authentication_windows`. The string following the `AS` keyword is the authentication string. It specifies that the Windows users named `Rafal` or `Tasha` are permitted to authenticate to the server as the MySQL user `sql_admin`, as are any Windows users in the `Administrators` or `Power Users` group. The latter group name contains a space, so it must be quoted with double quote characters.
+O nome do plugin é `authentication_windows`. A string que segue a keyword `AS` é a authentication string. Ela especifica que os users Windows chamados `Rafal` ou `Tasha` têm permissão para autenticar no Server como o MySQL user `sql_admin`, assim como quaisquer users Windows nos groups `Administrators` ou `Power Users`. O nome do último group contém um espaço, portanto, deve ser citado com aspas duplas.
 
-After you create the `sql_admin` account, a user who has logged in to Windows can attempt to connect to the server using that account:
+Depois de criar a conta `sql_admin`, um user que fez login no Windows pode tentar se conectar ao Server usando essa conta:
 
 ```sql
 C:\> mysql --user=sql_admin
 ```
 
-No password is required here. The `authentication_windows` plugin uses the Windows security API to check which Windows user is connecting. If that user is named `Rafal` or `Tasha`, or is a member of the `Administrators` or `Power Users` group, the server grants access and the client is authenticated as `sql_admin` and has whatever privileges are granted to the `sql_admin` account. Otherwise, the server denies access.
+Nenhuma senha é necessária aqui. O plugin `authentication_windows` usa a Windows security API para verificar qual user Windows está se conectando. Se esse user for chamado `Rafal` ou `Tasha`, ou for um membro do group `Administrators` ou `Power Users`, o Server concede acesso e o Client é autenticado como `sql_admin` e possui todos os privileges concedidos à conta `sql_admin`. Caso contrário, o Server nega o acesso.
 
-Authentication string syntax for the Windows authentication plugin follows these rules:
+A sintaxe da Authentication string para o plugin de Windows Authentication segue estas regras:
 
-* The string consists of one or more user mappings separated by commas.
+* A string consiste em um ou mais mapeamentos de user separados por vírgulas.
 
-* Each user mapping associates a Windows user or group name with a MySQL user name:
+* Cada mapeamento de user associa um user ou group name Windows a um MySQL user name:
 
   ```sql
   win_user_or_group_name=mysql_user_name
   win_user_or_group_name
   ```
 
-  For the latter syntax, with no *`mysql_user_name`* value given, the implicit value is the MySQL user created by the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement. Thus, these statements are equivalent:
+  Para a última sintaxe, sem um valor *`mysql_user_name`* fornecido, o valor implícito é o MySQL user criado pela instrução [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"). Assim, estas instruções são equivalentes:
 
   ```sql
   CREATE USER sql_admin
@@ -132,15 +132,15 @@ Authentication string syntax for the Windows authentication plugin follows these
         "Power Users"=sql_admin';
   ```
 
-* Each backslash character (`\`) in a value must be doubled because backslash is the escape character in MySQL strings.
+* Cada caractere de barra invertida (`\`) em um valor deve ser duplicado porque a barra invertida é o caractere de escape em strings MySQL.
 
-* Leading and trailing spaces not inside double quotation marks are ignored.
+* Espaços iniciais e finais não contidos em aspas duplas são ignorados.
 
-* Unquoted *`win_user_or_group_name`* and *`mysql_user_name`* values can contain anything except equal sign, comma, or space.
+* Valores *`win_user_or_group_name`* e *`mysql_user_name`* não citados podem conter qualquer coisa, exceto sinal de igual, vírgula ou espaço.
 
-* If a *`win_user_or_group_name`* and or *`mysql_user_name`* value is quoted with double quotation marks, everything between the quotation marks is part of the value. This is necessary, for example, if the name contains space characters. All characters within double quotes are legal except double quotation mark and backslash. To include either character, escape it with a backslash.
+* Se um valor *`win_user_or_group_name`* e/ou *`mysql_user_name`* for citado com aspas duplas, tudo entre aspas duplas fará parte do valor. Isso é necessário, por exemplo, se o nome contiver caracteres de espaço. Todos os caracteres dentro de aspas duplas são legais, exceto aspas duplas e barra invertida. Para incluir qualquer um dos caracteres, use escape com uma barra invertida.
 
-* *`win_user_or_group_name`* values use conventional syntax for Windows principals, either local or in a domain. Examples (note the doubling of backslashes):
+* Os valores *`win_user_or_group_name`* usam sintaxe convencional para Windows principals, sejam locais ou em um domain. Exemplos (observe a duplicação das barras invertidas):
 
   ```sql
   domain\\user
@@ -150,17 +150,17 @@ Authentication string syntax for the Windows authentication plugin follows these
   BUILTIN\\WellKnownGroup
   ```
 
-When invoked by the server to authenticate a client, the plugin scans the authentication string left to right for a user or group match to the Windows user. If there is a match, the plugin returns the corresponding *`mysql_user_name`* to the MySQL server. If there is no match, authentication fails.
+Quando invocado pelo Server para autenticar um Client, o plugin analisa a authentication string da esquerda para a direita em busca de uma correspondência de user ou group para o user Windows. Se houver uma correspondência, o plugin retorna o *`mysql_user_name`* correspondente ao MySQL Server. Se não houver correspondência, a Authentication falha.
 
-A user name match takes preference over a group name match. Suppose that the Windows user named `win_user` is a member of `win_group` and the authentication string looks like this:
+Uma correspondência de user name tem preferência sobre uma correspondência de group name. Suponha que o user Windows chamado `win_user` seja membro de `win_group` e a authentication string se pareça com isto:
 
 ```sql
 'win_group = sql_user1, win_user = sql_user2'
 ```
 
-When `win_user` connects to the MySQL server, there is a match both to `win_group` and to `win_user`. The plugin authenticates the user as `sql_user2` because the more-specific user match takes precedence over the group match, even though the group is listed first in the authentication string.
+Quando `win_user` se conecta ao MySQL Server, há uma correspondência tanto com `win_group` quanto com `win_user`. O plugin autentica o user como `sql_user2` porque a correspondência de user mais específica tem precedência sobre a correspondência de group, mesmo que o group esteja listado primeiro na authentication string.
 
-Windows authentication always works for connections from the same computer on which the server is running. For cross-computer connections, both computers must be registered with Microsoft Active Directory. If they are in the same Windows domain, it is unnecessary to specify a domain name. It is also possible to permit connections from a different domain, as in this example:
+A Windows Authentication sempre funciona para connections do mesmo computador em que o Server está sendo executado. Para cross-computer connections, ambos os computadores devem estar registrados no Microsoft Active Directory. Se eles estiverem no mesmo Windows domain, não é necessário especificar um domain name. Também é possível permitir connections de um domain diferente, como neste exemplo:
 
 ```sql
 CREATE USER sql_accounting
@@ -168,19 +168,19 @@ CREATE USER sql_accounting
   AS 'SomeDomain\\Accounting';
 ```
 
-Here `SomeDomain` is the name of the other domain. The backslash character is doubled because it is the MySQL escape character within strings.
+Aqui `SomeDomain` é o nome do outro domain. O caractere de barra invertida é duplicado porque é o caractere de escape do MySQL dentro de strings.
 
-MySQL supports the concept of proxy users whereby a client can connect and authenticate to the MySQL server using one account but while connected has the privileges of another account (see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). Suppose that you want Windows users to connect using a single user name but be mapped based on their Windows user and group names onto specific MySQL accounts as follows:
+O MySQL suporta o conceito de proxy users, onde um Client pode se conectar e autenticar no MySQL Server usando uma conta, mas enquanto conectado tem os privileges de outra conta (consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")). Suponha que você queira que os users Windows se conectem usando um único user name, mas sejam mapeados com base em seus user names e group names Windows para MySQL accounts específicos, conforme segue:
 
-* The `local_user` and `MyDomain\domain_user` local and domain Windows users should map to the `local_wlad` MySQL account.
+* Os users Windows locais e de domain `local_user` e `MyDomain\domain_user` devem mapear para o MySQL account `local_wlad`.
 
-* Users in the `MyDomain\Developers` domain group should map to the `local_dev` MySQL account.
+* Users no domain group `MyDomain\Developers` devem mapear para o MySQL account `local_dev`.
 
-* Local machine administrators should map to the `local_admin` MySQL account.
+* Administradores da máquina local devem mapear para o MySQL account `local_admin`.
 
-To set this up, create a proxy account for Windows users to connect to, and configure this account so that users and groups map to the appropriate MySQL accounts (`local_wlad`, `local_dev`, `local_admin`). In addition, grant the MySQL accounts the privileges appropriate to the operations they need to perform. The following instructions use `win_proxy` as the proxy account, and `local_wlad`, `local_dev`, and `local_admin` as the proxied accounts.
+Para configurar isso, crie um proxy account para os users Windows se conectarem e configure esta conta para que users e groups mapeiem para os MySQL accounts apropriados (`local_wlad`, `local_dev`, `local_admin`). Além disso, conceda aos MySQL accounts os privileges apropriados para as operações que eles precisam realizar. As seguintes instruções usam `win_proxy` como o proxy account, e `local_wlad`, `local_dev` e `local_admin` como as contas proxy.
 
-1. Create the proxy MySQL account:
+1. Crie o MySQL proxy account:
 
    ```sql
    CREATE USER win_proxy
@@ -191,7 +191,7 @@ To set this up, create a proxy account for Windows users to connect to, and conf
          BUILTIN\\Administrators = local_admin';
    ```
 
-2. For proxying to work, the proxied accounts must exist, so create them:
+2. Para que o proxying funcione, as contas proxy devem existir, então crie-as:
 
    ```sql
    CREATE USER local_wlad
@@ -202,11 +202,11 @@ To set this up, create a proxy account for Windows users to connect to, and conf
      IDENTIFIED WITH mysql_no_login;
    ```
 
-   The proxied accounts use the `mysql_no_login` authentication plugin to prevent clients from using the accounts to log in directly to the MySQL server. Instead, it is expected that users who authenticate using Windows use the `win_proxy` proxy account. (This assumes that the plugin is installed. For instructions, see [Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication").) For alternative methods of protecting proxied accounts against direct use, see [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
+   As contas proxy usam o plugin de Authentication `mysql_no_login` para impedir que Clients usem as contas para fazer login diretamente no MySQL Server. Em vez disso, espera-se que os users que autenticam usando Windows usem o proxy account `win_proxy`. (Isso assume que o plugin está instalado. Para instruções, consulte [Seção 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication")). Para métodos alternativos de proteção de contas proxy contra uso direto, consulte [Preventing Direct Login to Proxied Accounts](proxy-users.html#preventing-proxied-account-direct-login "Preventing Direct Login to Proxied Accounts").
 
-   You should also execute [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements (not shown) that grant each proxied account the privileges required for MySQL access.
+   Você também deve executar instruções [`GRANT`](grant.html "13.7.1.4 GRANT Statement") (não mostradas) que concedem a cada conta proxy os privileges necessários para o MySQL access.
 
-3. Grant to the proxy account the [`PROXY`](privileges-provided.html#priv_proxy) privilege for each proxied account:
+3. Conceda ao proxy account o privilege [`PROXY`](privileges-provided.html#priv_proxy) para cada conta proxy:
 
    ```sql
    GRANT PROXY ON local_wlad TO win_proxy;
@@ -214,12 +214,12 @@ To set this up, create a proxy account for Windows users to connect to, and conf
    GRANT PROXY ON local_admin TO win_proxy;
    ```
 
-Now the Windows users `local_user` and `MyDomain\domain_user` can connect to the MySQL server as `win_proxy` and when authenticated have the privileges of the account given in the authentication string (in this case, `local_wlad`). A user in the `MyDomain\Developers` group who connects as `win_proxy` has the privileges of the `local_dev` account. A user in the `BUILTIN\Administrators` group has the privileges of the `local_admin` account.
+Agora, os users Windows `local_user` e `MyDomain\domain_user` podem se conectar ao MySQL Server como `win_proxy` e, quando autenticados, têm os privileges da conta fornecida na authentication string (neste caso, `local_wlad`). Um user no group `MyDomain\Developers` que se conecta como `win_proxy` tem os privileges da conta `local_dev`. Um user no group `BUILTIN\Administrators` tem os privileges da conta `local_admin`.
 
-To configure authentication so that all Windows users who do not have their own MySQL account go through a proxy account, substitute the default proxy account (`''@''`) for `win_proxy` in the preceding instructions. For information about default proxy accounts, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
+Para configurar a Authentication para que todos os users Windows que não têm seu próprio MySQL account passem por um proxy account, substitua o default proxy account (`''@''`) por `win_proxy` nas instruções anteriores. Para obter informações sobre default proxy accounts, consulte [Seção 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
 Note
 
-If your MySQL installation has anonymous users, they might conflict with the default proxy user. For more information about this issue, and ways of dealing with it, see [Default Proxy User and Anonymous User Conflicts](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts").
+Se sua instalação MySQL tiver anonymous users, eles podem entrar em conflito com o default proxy user. Para obter mais informações sobre esse problema e maneiras de lidar com ele, consulte [Default Proxy User and Anonymous User Conflicts](proxy-users.html#proxy-users-conflicts "Default Proxy User and Anonymous User Conflicts").
 
-To use the Windows authentication plugin with Connector/NET connection strings in Connector/NET 8.0 and higher, see [Connector/NET Authentication](/doc/connector-net/en/connector-net-authentication.html).
+Para usar o plugin de Windows Authentication com Connector/NET connection strings no Connector/NET 8.0 e superior, consulte [Connector/NET Authentication](/doc/connector-net/en/connector-net-authentication.html).

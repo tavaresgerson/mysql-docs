@@ -1,63 +1,63 @@
-#### 4.6.3.2 myisamchk Check Options
+#### 4.6.3.2 Opções de Verificação do myisamchk
 
-**myisamchk** supports the following options for table checking operations:
+O **myisamchk** suporta as seguintes opções para operações de verificação de tabela:
 
 * `--check`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for check"><tbody><tr><th>Command-Line Format</th> <td><code>--check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para check"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--check</code></td> </tr></tbody></table>
 
-  Check the table for errors. This is the default operation if you specify no option that selects an operation type explicitly.
+  Verifica a tabela em busca de erros. Esta é a operação padrão se você não especificar nenhuma opção que selecione explicitamente um tipo de operação.
 
 * `--check-only-changed`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for check-only-changed"><tbody><tr><th>Command-Line Format</th> <td><code>--check-only-changed</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para check-only-changed"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--check-only-changed</code></td> </tr></tbody></table>
 
-  Check only tables that have changed since the last check.
+  Verifica apenas as tabelas que foram alteradas desde a última verificação.
 
 * `--extend-check`, `-e`
 
-  <table frame="box" rules="all" summary="Properties for extend-check"><tbody><tr><th>Command-Line Format</th> <td><code>--extend-check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para extend-check"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--extend-check</code></td> </tr></tbody></table>
 
-  Check the table very thoroughly. This is quite slow if the table has many indexes. This option should only be used in extreme cases. Normally, **myisamchk** or **myisamchk --medium-check** should be able to determine whether there are any errors in the table.
+  Verifica a tabela minuciosamente. Isso é consideravelmente lento se a tabela tiver muitos Indexes. Esta opção deve ser usada apenas em casos extremos. Normalmente, o **myisamchk** ou **myisamchk --medium-check** deve ser capaz de determinar se há erros na tabela.
 
-  If you are using `--extend-check` and have plenty of memory, setting the `key_buffer_size` variable to a large value helps the repair operation run faster.
+  Se você estiver usando o `--extend-check` e tiver bastante memória, definir a variável `key_buffer_size` para um valor grande ajuda a operação de reparo a ser executada mais rapidamente.
 
-  See also the description of this option under table repair options.
+  Consulte também a descrição desta opção nas opções de reparo de tabela.
 
-  For a description of the output format, see Section 4.6.3.5, “Obtaining Table Information with myisamchk”.
+  Para uma descrição do formato de saída, consulte a Seção 4.6.3.5, “Obtendo Informações da Tabela com myisamchk”.
 
 * `--fast`, `-F`
 
-  <table frame="box" rules="all" summary="Properties for fast"><tbody><tr><th>Command-Line Format</th> <td><code>--fast</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para fast"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--fast</code></td> </tr></tbody></table>
 
-  Check only tables that haven't been closed properly.
+  Verifica apenas as tabelas que não foram fechadas corretamente.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for force"><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para force"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--force</code></td> </tr></tbody></table>
 
-  Do a repair operation automatically if **myisamchk** finds any errors in the table. The repair type is the same as that specified with the `--recover` or `-r` option.
+  Executa uma operação de reparo automaticamente se o **myisamchk** encontrar quaisquer erros na tabela. O tipo de reparo é o mesmo especificado com a opção `--recover` ou `-r`.
 
 * `--information`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for information"><tbody><tr><th>Command-Line Format</th> <td><code>--information</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para information"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--information</code></td> </tr></tbody></table>
 
-  Print informational statistics about the table that is checked.
+  Imprime estatísticas informativas sobre a tabela que está sendo verificada.
 
 * `--medium-check`, `-m`
 
-  <table frame="box" rules="all" summary="Properties for medium-check"><tbody><tr><th>Command-Line Format</th> <td><code>--medium-check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para medium-check"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--medium-check</code></td> </tr></tbody></table>
 
-  Do a check that is faster than an `--extend-check` operation. This finds only 99.99% of all errors, which should be good enough in most cases.
+  Executa uma verificação que é mais rápida do que a operação `--extend-check`. Isso encontra apenas 99,99% de todos os erros, o que deve ser suficiente na maioria dos casos.
 
 * `--read-only`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for read-only"><tbody><tr><th>Command-Line Format</th> <td><code>--read-only</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para read-only"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--read-only</code></td> </tr></tbody></table>
 
-  Do not mark the table as checked. This is useful if you use **myisamchk** to check a table that is in use by some other application that does not use locking, such as **mysqld** when run with external locking disabled.
+  Não marca a tabela como verificada. Isso é útil se você usar o **myisamchk** para verificar uma tabela que está em uso por alguma outra aplicação que não utiliza Locking, como o **mysqld** quando executado com external locking desabilitado.
 
 * `--update-state`, `-U`
 
-  <table frame="box" rules="all" summary="Properties for update-state"><tbody><tr><th>Command-Line Format</th> <td><code>--update-state</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para update-state"><tbody><tr><th>Formato da Linha de Comando</th> <td><code>--update-state</code></td> </tr></tbody></table>
 
-  Store information in the `.MYI` file to indicate when the table was checked and whether the table crashed. This should be used to get full benefit of the `--check-only-changed` option, but you shouldn't use this option if the **mysqld** server is using the table and you are running it with external locking disabled.
+  Armazena informações no arquivo `.MYI` para indicar quando a tabela foi verificada e se ela crashou. Isso deve ser usado para obter o benefício total da opção `--check-only-changed`, mas você não deve usar esta opção se o servidor **mysqld** estiver usando a tabela e você o estiver executando com external locking desabilitado.

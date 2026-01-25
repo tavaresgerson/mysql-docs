@@ -1,22 +1,22 @@
-### 5.8.2 Debugging a MySQL Client
+### 5.8.2 Debugging de um MySQL Client
 
-To be able to debug a MySQL client with the integrated debug package, you should configure MySQL with [`-DWITH_DEBUG=1`](source-configuration-options.html#option_cmake_with_debug). See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
+Para ser capaz de realizar o Debugging de um MySQL Client com o pacote de debug integrado, você deve configurar o MySQL com [`-DWITH_DEBUG=1`](source-configuration-options.html#option_cmake_with_debug). Consulte a [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html "2.8.7 Opções de Configuração de Fonte do MySQL").
 
-Before running a client, you should set the `MYSQL_DEBUG` environment variable:
+Antes de executar um Client, você deve definir a variável de ambiente `MYSQL_DEBUG`:
 
 ```sql
 $> MYSQL_DEBUG=d:t:O,/tmp/client.trace
 $> export MYSQL_DEBUG
 ```
 
-This causes clients to generate a trace file in `/tmp/client.trace`.
+Isso faz com que os Clients gerem um arquivo trace em `/tmp/client.trace`.
 
-If you have problems with your own client code, you should attempt to connect to the server and run your query using a client that is known to work. Do this by running [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") in debugging mode (assuming that you have compiled MySQL with debugging on):
+Se você tiver problemas com seu próprio código Client, você deve tentar conectar-se ao Server e executar sua Query usando um Client que se sabe que funciona. Faça isso executando o [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") no modo debugging (assumindo que você tenha compilado o MySQL com o debugging ativado):
 
 ```sql
 $> mysql --debug=d:t:O,/tmp/client.trace
 ```
 
-This provides useful information in case you mail a bug report. See [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").
+Isso fornece informações úteis caso você envie um bug report por email. Consulte a [Seção 1.5, “Como Relatar Bugs ou Problemas”](bug-reports.html "1.5 Como Relatar Bugs ou Problemas").
 
-If your client crashes at some 'legal' looking code, you should check that your `mysql.h` include file matches your MySQL library file. A very common mistake is to use an old `mysql.h` file from an old MySQL installation with new MySQL library.
+Se o seu Client travar em algum código que pareça 'legal' (legítimo), você deve verificar se o seu arquivo include `mysql.h` corresponde ao seu arquivo de library MySQL. Um erro muito comum é usar um arquivo `mysql.h` antigo de uma instalação MySQL antiga com uma library MySQL nova.

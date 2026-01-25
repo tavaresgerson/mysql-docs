@@ -1,34 +1,34 @@
-## 3.6 Examples of Common Queries
+## 3.6 Exemplos de Consultas Comuns
 
-[3.6.1 The Maximum Value for a Column](example-maximum-column.html)
+[3.6.1 O Valor Máximo para uma Coluna](example-maximum-column.html)
 
-[3.6.2 The Row Holding the Maximum of a Certain Column](example-maximum-row.html)
+[3.6.2 A Linha que Contém o Máximo de uma Determinada Coluna](example-maximum-row.html)
 
-[3.6.3 Maximum of Column per Group](example-maximum-column-group.html)
+[3.6.3 Máximo de Coluna por Grupo](example-maximum-column-group.html)
 
-[3.6.4 The Rows Holding the Group-wise Maximum of a Certain Column](example-maximum-column-group-row.html)
+[3.6.4 As Linhas que Contêm o Máximo Agrupado de uma Determinada Coluna](example-maximum-column-group-row.html)
 
-[3.6.5 Using User-Defined Variables](example-user-variables.html)
+[3.6.5 Usando Variáveis Definidas pelo Usuário](example-user-variables.html)
 
-[3.6.6 Using Foreign Keys](example-foreign-keys.html)
+[3.6.6 Usando Foreign Keys](example-foreign-keys.html)
 
-[3.6.7 Searching on Two Keys](searching-on-two-keys.html)
+[3.6.7 Buscando em Duas Keys](searching-on-two-keys.html)
 
-[3.6.8 Calculating Visits Per Day](calculating-days.html)
+[3.6.8 Calculando Visitas Por Dia](calculating-days.html)
 
-[3.6.9 Using AUTO_INCREMENT](example-auto-increment.html)
+[3.6.9 Usando AUTO_INCREMENT](example-auto-increment.html)
 
-Here are examples of how to solve some common problems with MySQL.
+Aqui estão exemplos de como resolver alguns problemas comuns com o MySQL.
 
-Some of the examples use the table `shop` to hold the price of each article (item number) for certain traders (dealers). Supposing that each trader has a single fixed price per article, then (`article`, `dealer`) is a primary key for the records.
+Alguns dos exemplos usam a tabela `shop` para armazenar o preço de cada artigo (número do item) para certos comerciantes (dealers). Supondo que cada comerciante tenha um único preço fixo por artigo, então (`article`, `dealer`) é uma Primary Key para os registros.
 
-Start the command-line tool [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") and select a database:
+Inicie a ferramenta de linha de comando [**mysql**](mysql.html "4.5.1 mysql — O Cliente de Linha de Comando do MySQL") e selecione um Database:
 
 ```sql
 $> mysql your-database-name
 ```
 
-To create and populate the example table, use these statements:
+Para criar e popular a tabela de exemplo, use estas instruções:
 
 ```sql
 CREATE TABLE shop (
@@ -41,7 +41,7 @@ INSERT INTO shop VALUES
     (3,'C',1.69),(3,'D',1.25),(4,'D',19.95);
 ```
 
-After issuing the statements, the table should have the following contents:
+Após executar as instruções, a tabela deve ter o seguinte conteúdo:
 
 ```sql
 SELECT * FROM shop ORDER BY article;

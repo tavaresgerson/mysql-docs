@@ -1,78 +1,78 @@
-### 2.3.7 Windows Platform Restrictions
+### 2.3.7 Restrições da Plataforma Windows
 
-The following restrictions apply to use of MySQL on the Windows platform:
+As seguintes restrições se aplicam ao uso do MySQL na plataforma Windows:
 
-* **Process memory**
+* **Memória do Processo**
 
-  On Windows 32-bit platforms, it is not possible by default to use more than 2GB of RAM within a single process, including MySQL. This is because the physical address limit on Windows 32-bit is 4GB and the default setting within Windows is to split the virtual address space between kernel (2GB) and user/applications (2GB).
+  Em plataformas Windows de 32 bits, não é possível por padrão usar mais de 2GB de RAM dentro de um único processo, incluindo o MySQL. Isso ocorre porque o limite de endereço físico no Windows de 32 bits é de 4GB e a configuração padrão no Windows é dividir o espaço de endereço virtual entre o kernel (2GB) e o usuário/aplicações (2GB).
 
-  Some versions of Windows have a boot time setting to enable larger applications by reducing the kernel application. Alternatively, to use more than 2GB, use a 64-bit version of Windows.
+  Algumas versões do Windows possuem uma configuração no tempo de boot para habilitar aplicações maiores, reduzindo a aplicação kernel. Alternativamente, para usar mais de 2GB, use uma versão 64-bit do Windows.
 
-* **File system aliases**
+* **Aliases do Sistema de Arquivos**
 
-  When using `MyISAM` tables, you cannot use aliases within Windows link to the data files on another volume and then link back to the main MySQL `datadir` location.
+  Ao usar tabelas `MyISAM`, você não pode usar aliases dentro do Windows para vincular (link) a arquivos de dados em outro volume e, em seguida, vincular de volta (link back) ao local principal do `datadir` do MySQL.
 
-  This facility is often used to move the data and index files to a RAID or other fast solution, while retaining the main `.frm` files in the default data directory configured with the `datadir` option.
+  Esse recurso é frequentemente usado para mover os arquivos de dados e de Index para uma solução RAID ou outra solução rápida, mantendo os principais arquivos `.frm` no diretório de dados padrão configurado com a opção `datadir`.
 
-* **Limited number of ports**
+* **Número Limitado de Ports**
 
-  Windows systems have about 4,000 ports available for client connections, and after a connection on a port closes, it takes two to four minutes before the port can be reused. In situations where clients connect to and disconnect from the server at a high rate, it is possible for all available ports to be used up before closed ports become available again. If this happens, the MySQL server appears to be unresponsive even though it is running. Ports may be used by other applications running on the machine as well, in which case the number of ports available to MySQL is lower.
+  Sistemas Windows têm cerca de 4.000 ports disponíveis para conexões de cliente e, após o fechamento de uma conexão em um port, leva de dois a quatro minutos antes que o port possa ser reutilizado. Em situações em que os clientes se conectam e se desconectam do server em alta taxa, é possível que todos os ports disponíveis sejam esgotados antes que os ports fechados se tornem disponíveis novamente. Se isso acontecer, o MySQL server parecerá não responsivo, embora esteja em execução. Os ports também podem ser usados por outras aplicações em execução na máquina, caso em que o número de ports disponíveis para o MySQL é menor.
 
-  For more information about this problem, see <https://support.microsoft.com/kb/196271>.
+  Para mais informações sobre este problema, consulte <https://support.microsoft.com/kb/196271>.
 
-* **`DATA DIRECTORY` and `INDEX DIRECTORY`**
+* **`DATA DIRECTORY` e `INDEX DIRECTORY`**
 
-  The `DATA DIRECTORY` clause of the `CREATE TABLE` statement is supported on Windows for `InnoDB` tables only, as described in Section 14.6.1.2, “Creating Tables Externally”. For `MyISAM` and other storage engines, the `DATA DIRECTORY` and `INDEX DIRECTORY` clauses for `CREATE TABLE` are ignored on Windows and any other platforms with a nonfunctional `realpath()` call.
+  A cláusula `DATA DIRECTORY` da instrução `CREATE TABLE` é suportada no Windows apenas para tabelas `InnoDB`, conforme descrito na Seção 14.6.1.2, “Creating Tables Externally”. Para `MyISAM` e outros storage engines, as cláusulas `DATA DIRECTORY` e `INDEX DIRECTORY` para `CREATE TABLE` são ignoradas no Windows e em quaisquer outras plataformas com uma chamada `realpath()` não funcional.
 
 * **`DROP DATABASE`**
 
-  You cannot drop a database that is in use by another session.
+  Você não pode executar um `DROP DATABASE` em um Database que esteja sendo usado por outra session.
 
-* **Case-insensitive names**
+* **Nomes não sensíveis a maiúsculas/minúsculas (Case-insensitive)**
 
-  File names are not case-sensitive on Windows, so MySQL database and table names are also not case-sensitive on Windows. The only restriction is that database and table names must be specified using the same case throughout a given statement. See Section 9.2.3, “Identifier Case Sensitivity”.
+  Nomes de arquivos não são sensíveis a maiúsculas/minúsculas (case-sensitive) no Windows, portanto, os nomes de Database e de tabela do MySQL também não são case-sensitive no Windows. A única restrição é que os nomes de Database e de tabela devem ser especificados usando a mesma capitalização em toda uma determinada instrução. Consulte a Seção 9.2.3, “Identifier Case Sensitivity”.
 
-* **Directory and file names**
+* **Nomes de Diretórios e Arquivos**
 
-  On Windows, MySQL Server supports only directory and file names that are compatible with the current ANSI code pages. For example, the following Japanese directory name does not work in the Western locale (code page 1252):
+  No Windows, o MySQL Server suporta apenas nomes de diretório e arquivo que são compatíveis com as code pages ANSI atuais. Por exemplo, o seguinte nome de diretório em japonês não funciona na localidade Ocidental (code page 1252):
 
   ```sql
   datadir="C:/私たちのプロジェクトのデータ"
   ```
 
-  The same limitation applies to directory and file names referred to in SQL statements, such as the data file path name in `LOAD DATA`.
+  A mesma limitação se aplica a nomes de diretório e arquivo referenciados em instruções SQL, como o path name do arquivo de dados em `LOAD DATA`.
 
-* **The `\` path name separator character**
+* **O Caractere Separador de Path Name `\`**
 
-  Path name components in Windows are separated by the `\` character, which is also the escape character in MySQL. If you are using `LOAD DATA` or `SELECT ... INTO OUTFILE`, use Unix-style file names with `/` characters:
+  Os componentes de path name no Windows são separados pelo caractere `\`, que também é o caractere de escape no MySQL. Se você estiver usando `LOAD DATA` ou `SELECT ... INTO OUTFILE`, use nomes de arquivo no estilo Unix com caracteres `/`:
 
   ```sql
   mysql> LOAD DATA INFILE 'C:/tmp/skr.txt' INTO TABLE skr;
   mysql> SELECT * INTO OUTFILE 'C:/tmp/skr.txt' FROM skr;
   ```
 
-  Alternatively, you must double the `\` character:
+  Alternativamente, você deve duplicar o caractere `\`:
 
   ```sql
   mysql> LOAD DATA INFILE 'C:\\tmp\\skr.txt' INTO TABLE skr;
   mysql> SELECT * INTO OUTFILE 'C:\\tmp\\skr.txt' FROM skr;
   ```
 
-* **Problems with pipes**
+* **Problemas com Pipes**
 
-  Pipes do not work reliably from the Windows command-line prompt. If the pipe includes the character `^Z` / `CHAR(24)`, Windows thinks that it has encountered end-of-file and aborts the program.
+  Pipes não funcionam de forma confiável a partir do prompt de linha de comando do Windows. Se o pipe incluir o caractere `^Z` / `CHAR(24)`, o Windows entenderá que encontrou o fim do arquivo (end-of-file) e abortará o programa.
 
-  This is mainly a problem when you try to apply a binary log as follows:
+  Isso é principalmente um problema quando você tenta aplicar um binary log da seguinte forma:
 
   ```sql
   C:\> mysqlbinlog binary_log_file | mysql --user=root
   ```
 
-  If you have a problem applying the log and suspect that it is because of a `^Z` / `CHAR(24)` character, you can use the following workaround:
+  Se você tiver um problema ao aplicar o log e suspeitar que seja devido a um caractere `^Z` / `CHAR(24)`, você pode usar a seguinte solução alternativa (workaround):
 
   ```sql
   C:\> mysqlbinlog binary_log_file --result-file=/tmp/bin.sql
   C:\> mysql --user=root --execute "source /tmp/bin.sql"
   ```
 
-  The latter command also can be used to reliably read any SQL file that may contain binary data.
+  O último comando também pode ser usado para ler de forma confiável qualquer arquivo SQL que possa conter dados binários.

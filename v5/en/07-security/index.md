@@ -1,123 +1,123 @@
-# Chapter 6 Security
+# Capítulo 6 Segurança
 
-**Table of Contents**
+**Índice**
 
-[6.1 General Security Issues](general-security-issues.html) :   [6.1.1 Security Guidelines](security-guidelines.html)
+[6.1 Problemas Gerais de Segurança](general-security-issues.html) :   [6.1.1 Diretrizes de Segurança](security-guidelines.html)
 
-    [6.1.2 Keeping Passwords Secure](password-security.html)
+    [6.1.2 Mantendo Senhas Seguras](password-security.html)
 
-    [6.1.3 Making MySQL Secure Against Attackers](security-against-attack.html)
+    [6.1.3 Tornando o MySQL Seguro Contra Atacantes](security-against-attack.html)
 
-    [6.1.4 Security-Related mysqld Options and Variables](security-options.html)
+    [6.1.4 Opções e Variáveis do mysqld Relacionadas à Segurança](security-options.html)
 
-    [6.1.5 How to Run MySQL as a Normal User](changing-mysql-user.html)
+    [6.1.5 Como Executar o MySQL como um Usuário Normal](changing-mysql-user.html)
 
-    [6.1.6 Security Considerations for LOAD DATA LOCAL](load-data-local-security.html)
+    [6.1.6 Considerações de Segurança para LOAD DATA LOCAL](load-data-local-security.html)
 
-    [6.1.7 Client Programming Security Guidelines](secure-client-programming.html)
+    [6.1.7 Diretrizes de Segurança para Programação de Clientes](secure-client-programming.html)
 
-[6.2 Access Control and Account Management](access-control.html) :   [6.2.1 Account User Names and Passwords](user-names.html)
+[6.2 Controle de Acesso e Gerenciamento de Contas](access-control.html) :   [6.2.1 Nomes de Usuário e Senhas de Contas](user-names.html)
 
-    [6.2.2 Privileges Provided by MySQL](privileges-provided.html)
+    [6.2.2 Privilégios Fornecidos pelo MySQL](privileges-provided.html)
 
     [6.2.3 Grant Tables](grant-tables.html)
 
-    [6.2.4 Specifying Account Names](account-names.html)
+    [6.2.4 Especificando Nomes de Contas](account-names.html)
 
-    [6.2.5 Access Control, Stage 1: Connection Verification](connection-access.html)
+    [6.2.5 Controle de Acesso, Estágio 1: Verificação de Conexão](connection-access.html)
 
-    [6.2.6 Access Control, Stage 2: Request Verification](request-access.html)
+    [6.2.6 Controle de Acesso, Estágio 2: Verificação de Request](request-access.html)
 
-    [6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts](creating-accounts.html)
+    [6.2.7 Adicionando Contas, Atribuindo Privilégios e Removendo Contas](creating-accounts.html)
 
-    [6.2.8 Reserved Accounts](reserved-accounts.html)
+    [6.2.8 Contas Reservadas](reserved-accounts.html)
 
-    [6.2.9 When Privilege Changes Take Effect](privilege-changes.html)
+    [6.2.9 Quando as Mudanças de Privilégio Entram em Vigor](privilege-changes.html)
 
-    [6.2.10 Assigning Account Passwords](assigning-passwords.html)
+    [6.2.10 Atribuindo Senhas de Contas](assigning-passwords.html)
 
-    [6.2.11 Password Management](password-management.html)
+    [6.2.11 Gerenciamento de Senhas](password-management.html)
 
-    [6.2.12 Server Handling of Expired Passwords](expired-password-handling.html)
+    [6.2.12 Tratamento de Senhas Expiradas pelo Servidor](expired-password-handling.html)
 
-    [6.2.13 Pluggable Authentication](pluggable-authentication.html)
+    [6.2.13 Autenticação Pluggable](pluggable-authentication.html)
 
-    [6.2.14 Proxy Users](proxy-users.html)
+    [6.2.14 Usuários Proxy](proxy-users.html)
 
-    [6.2.15 Account Locking](account-locking.html)
+    [6.2.15 Bloqueio de Contas (Account Locking)](account-locking.html)
 
-    [6.2.16 Setting Account Resource Limits](user-resources.html)
+    [6.2.16 Configurando Limites de Recurso de Conta](user-resources.html)
 
-    [6.2.17 Troubleshooting Problems Connecting to MySQL](problems-connecting.html)
+    [6.2.17 Solucionando Problemas de Conexão ao MySQL](problems-connecting.html)
 
-    [6.2.18 SQL-Based Account Activity Auditing](account-activity-auditing.html)
+    [6.2.18 Auditoria de Atividade de Conta Baseada em SQL](account-activity-auditing.html)
 
-[6.3 Using Encrypted Connections](encrypted-connections.html) :   [6.3.1 Configuring MySQL to Use Encrypted Connections](using-encrypted-connections.html)
+[6.3 Usando Conexões Criptografadas](encrypted-connections.html) :   [6.3.1 Configurando o MySQL para Usar Conexões Criptografadas](using-encrypted-connections.html)
 
-    [6.3.2 Encrypted Connection TLS Protocols and Ciphers](encrypted-connection-protocols-ciphers.html)
+    [6.3.2 Protocolos TLS e Ciphers de Conexão Criptografada](encrypted-connection-protocols-ciphers.html)
 
-    [6.3.3 Creating SSL and RSA Certificates and Keys](creating-ssl-rsa-files.html)
+    [6.3.3 Criando Certificados e Chaves SSL e RSA](creating-ssl-rsa-files.html)
 
-    [6.3.4 SSL Library-Dependent Capabilities](ssl-libraries.html)
+    [6.3.4 Capacidades Dependentes da Biblioteca SSL](ssl-libraries.html)
 
-    [6.3.5 Connecting to MySQL Remotely from Windows with SSH](windows-and-ssh.html)
+    [6.3.5 Conectando-se ao MySQL Remotamente a partir do Windows com SSH](windows-and-ssh.html)
 
-[6.4 Security Plugins](security-plugins.html) :   [6.4.1 Authentication Plugins](authentication-plugins.html)
+[6.4 Plugins de Segurança](security-plugins.html) :   [6.4.1 Plugins de Autenticação](authentication-plugins.html)
 
-    [6.4.2 Connection Control Plugins](connection-control-plugin.html)
+    [6.4.2 Plugins de Controle de Conexão](connection-control-plugin.html)
 
-    [6.4.3 The Password Validation Plugin](validate-password.html)
+    [6.4.3 O Plugin de Validação de Senha](validate-password.html)
 
-    [6.4.4 The MySQL Keyring](keyring.html)
+    [6.4.4 O Keyring do MySQL](keyring.html)
 
     [6.4.5 MySQL Enterprise Audit](audit-log.html)
 
     [6.4.6 MySQL Enterprise Firewall](firewall.html)
 
-[6.5 MySQL Enterprise Data Masking and De-Identification](data-masking.html) :   [6.5.1 MySQL Enterprise Data Masking and De-Identification Elements](data-masking-elements.html)
+[6.5 Mascaramento e Desidentificação de Dados do MySQL Enterprise](data-masking.html) :   [6.5.1 Elementos de Mascaramento e Desidentificação de Dados do MySQL Enterprise](data-masking-elements.html)
 
-    [6.5.2 Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification](data-masking-installation.html)
+    [6.5.2 Instalando ou Desinstalando o Mascaramento e Desidentificação de Dados do MySQL Enterprise](data-masking-installation.html)
 
-    [6.5.3 Using MySQL Enterprise Data Masking and De-Identification](data-masking-usage.html)
+    [6.5.3 Usando o Mascaramento e Desidentificação de Dados do MySQL Enterprise](data-masking-usage.html)
 
-    [6.5.4 MySQL Enterprise Data Masking and De-Identification Function Reference](data-masking-function-reference.html)
+    [6.5.4 Referência de Função de Mascaramento e Desidentificação de Dados do MySQL Enterprise](data-masking-function-reference.html)
 
-    [6.5.5 MySQL Enterprise Data Masking and De-Identification Function Descriptions](data-masking-functions.html)
+    [6.5.5 Descrições de Função de Mascaramento e Desidentificação de Dados do MySQL Enterprise](data-masking-functions.html)
 
-[6.6 MySQL Enterprise Encryption](enterprise-encryption.html) :   [6.6.1 MySQL Enterprise Encryption Installation](enterprise-encryption-installation.html)
+[6.6 Criptografia do MySQL Enterprise (Enterprise Encryption)](enterprise-encryption.html) :   [6.6.1 Instalação da Criptografia do MySQL Enterprise](enterprise-encryption-installation.html)
 
-    [6.6.2 MySQL Enterprise Encryption Usage and Examples](enterprise-encryption-usage.html)
+    [6.6.2 Uso e Exemplos da Criptografia do MySQL Enterprise](enterprise-encryption-usage.html)
 
-    [6.6.3 MySQL Enterprise Encryption Function Reference](enterprise-encryption-function-reference.html)
+    [6.6.3 Referência de Função da Criptografia do MySQL Enterprise](enterprise-encryption-function-reference.html)
 
-    [6.6.4 MySQL Enterprise Encryption Function Descriptions](enterprise-encryption-functions.html)
+    [6.6.4 Descrições de Função da Criptografia do MySQL Enterprise](enterprise-encryption-functions.html)
 
-[6.7 SELinux](selinux.html) :   [6.7.1 Check if SELinux is Enabled](selinux-checking.html)
+[6.7 SELinux](selinux.html) :   [6.7.1 Verificando se o SELinux Está Ativado](selinux-checking.html)
 
-    [6.7.2 Changing the SELinux Mode](selinux-mode.html)
+    [6.7.2 Alterando o Modo SELinux](selinux-mode.html)
 
-    [6.7.3 MySQL Server SELinux Policies](selinux-policies.html)
+    [6.7.3 Políticas SELinux do MySQL Server](selinux-policies.html)
 
-    [6.7.4 SELinux File Context](selinux-file-context.html)
+    [6.7.4 Contexto de Arquivo SELinux](selinux-file-context.html)
 
-    [6.7.5 SELinux TCP Port Context](selinux-context-tcp-port.html)
+    [6.7.5 Contexto de Porta TCP SELinux](selinux-context-tcp-port.html)
 
-    [6.7.6 Troubleshooting SELinux](selinux-troubleshooting.html)
+    [6.7.6 Solução de Problemas do SELinux](selinux-troubleshooting.html)
 
-When thinking about security within a MySQL installation, you should consider a wide range of possible topics and how they affect the security of your MySQL server and related applications:
+Ao pensar sobre segurança em uma instalação MySQL, você deve considerar uma ampla gama de tópicos possíveis e como eles afetam a segurança do seu MySQL Server e aplicações relacionadas:
 
-* General factors that affect security. These include choosing good passwords, not granting unnecessary privileges to users, ensuring application security by preventing SQL injections and data corruption, and others. See [Section 6.1, “General Security Issues”](general-security-issues.html "6.1 General Security Issues").
+* Fatores gerais que afetam a segurança. Estes incluem a escolha de boas senhas, não conceder Privileges desnecessários aos usuários, garantir a segurança da aplicação prevenindo SQL injections e corrupção de dados, entre outros. Consulte [Seção 6.1, “Problemas Gerais de Segurança”](general-security-issues.html "6.1 Problemas Gerais de Segurança").
 
-* Security of the installation itself. The data files, log files, and the all the application files of your installation should be protected to ensure that they are not readable or writable by unauthorized parties. For more information, see [Section 2.9, “Postinstallation Setup and Testing”](postinstallation.html "2.9 Postinstallation Setup and Testing").
+* Segurança da própria instalação. Os arquivos de dados, arquivos de log e todos os arquivos de aplicação da sua instalação devem ser protegidos para garantir que não possam ser lidos ou escritos por partes não autorizadas. Para mais informações, consulte [Seção 2.9, “Configuração e Teste Pós-instalação”](postinstallation.html "2.9 Configuração e Teste Pós-instalação").
 
-* Access control and security within the database system itself, including the users and databases granted with access to the databases, views and stored programs in use within the database. For more information, see [Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management").
+* Controle de acesso e segurança dentro do próprio sistema Database, incluindo os usuários e Databases com acesso concedido aos Databases, views e stored programs em uso. Para mais informações, consulte [Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html "6.2 Controle de Acesso e Gerenciamento de Contas").
 
-* The features offered by security-related plugins. See [Section 6.4, “Security Plugins”](security-plugins.html "6.4 Security Plugins").
+* Os recursos oferecidos pelos plugins relacionados à segurança. Consulte [Seção 6.4, “Plugins de Segurança”](security-plugins.html "6.4 Plugins de Segurança").
 
-* Network security of MySQL and your system. The security is related to the grants for individual users, but you may also wish to restrict MySQL so that it is available only locally on the MySQL server host, or to a limited set of other hosts.
+* Segurança de rede do MySQL e do seu sistema. A segurança está relacionada aos grants para usuários individuais, mas você também pode desejar restringir o MySQL para que ele esteja disponível apenas localmente no host do MySQL Server, ou para um conjunto limitado de outros hosts.
 
-* Ensure that you have adequate and appropriate backups of your database files, configuration and log files. Also be sure that you have a recovery solution in place and test that you are able to successfully recover the information from your backups. See [Chapter 7, *Backup and Recovery*](backup-and-recovery.html "Chapter 7 Backup and Recovery").
+* Certifique-se de ter backups adequados e apropriados dos seus arquivos Database, de configuração e log files. Certifique-se também de ter uma solução de recuperação em vigor e teste se você é capaz de recuperar com sucesso as informações de seus backups. Consulte [Capítulo 7, *Backup and Recovery*](backup-and-recovery.html "Capítulo 7 Backup and Recovery").
 
-Note
+**Nota**
 
-Several topics in this chapter are also addressed in the [Secure Deployment Guide](/doc/mysql-secure-deployment-guide/5.7/en/), which provides procedures for deploying a generic binary distribution of MySQL Enterprise Edition Server with features for managing the security of your MySQL installation.
+Vários tópicos neste capítulo também são abordados no [Secure Deployment Guide](/doc/mysql-secure-deployment-guide/5.7/en/), que fornece procedimentos para deploy de uma distribuição binária genérica do MySQL Enterprise Edition Server com recursos para gerenciar a segurança da sua instalação MySQL.

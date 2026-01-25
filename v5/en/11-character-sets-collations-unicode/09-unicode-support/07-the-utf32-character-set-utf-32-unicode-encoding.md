@@ -1,12 +1,10 @@
-### 10.9.7 The utf32 Character Set (UTF-32 Unicode Encoding)
+### 10.9.7 O Character Set utf32 (Codificação Unicode UTF-32)
 
-The `utf32` character set is fixed length (like `ucs2` and unlike `utf16`). `utf32` uses 32 bits for every character, unlike `ucs2` (which uses 16 bits for every character), and unlike `utf16` (which uses 16 bits for some characters and 32 bits for others).
+O Character Set `utf32` tem comprimento fixo (como `ucs2` e diferente de `utf16`). `utf32` usa 32 bits para cada caractere, diferentemente de `ucs2` (que usa 16 bits para cada caractere), e diferentemente de `utf16` (que usa 16 bits para alguns caracteres e 32 bits para outros).
 
-`utf32` takes twice as much space as `ucs2` and more space than `utf16`, but `utf32` has the same advantage as `ucs2` that it is predictable for storage: The required number of bytes for `utf32` equals the number of characters times
+`utf32` ocupa o dobro do espaço de `ucs2` e mais espaço que `utf16`, mas `utf32` possui a mesma vantagem que `ucs2`: é previsível para armazenamento. O número necessário de bytes para `utf32` é igual ao número de caracteres multiplicado por 4. Além disso, diferentemente de `utf16`, não há "truques" (tricks) para codificação em `utf32`, então o valor armazenado é igual ao Code Value.
 
-4. Also, unlike `utf16`, there are no tricks for encoding in `utf32`, so the stored value equals the code value.
-
-To demonstrate how the latter advantage is useful, here is an example that shows how to determine a `utf8mb4` value given the `utf32` code value:
+Para demonstrar como esta última vantagem é útil, aqui está um exemplo que mostra como determinar um valor `utf8mb4` dado o Code Value `utf32`:
 
 ```sql
 /* Assume code value = 100cc LINEAR B WHEELED CHARIOT */
@@ -17,7 +15,7 @@ UPDATE tmp SET utf8mb4_col = utf32_col;
 SELECT HEX(utf32_col),HEX(utf8mb4_col) FROM tmp;
 ```
 
-MySQL is very forgiving about additions of unassigned Unicode characters or private-use-area characters. There is in fact only one validity check for `utf32`: No code value may be greater than `0x10ffff`. For example, this is illegal:
+O MySQL é bastante tolerante em relação à adição de caracteres Unicode não atribuídos ou caracteres da área de uso privado (`private-use-area characters`). Na verdade, existe apenas uma verificação de validade para `utf32`: Nenhum Code Value pode ser maior que `0x10ffff`. Por exemplo, isto é ilegal:
 
 ```sql
 INSERT INTO t (utf32_column) VALUES (0x110000); /* illegal */

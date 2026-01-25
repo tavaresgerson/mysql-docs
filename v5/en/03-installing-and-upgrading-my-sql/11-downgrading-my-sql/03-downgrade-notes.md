@@ -1,15 +1,15 @@
-### 2.11.3 Downgrade Notes
+### 2.11.3 Notas de Downgrade
 
-Before downgrading from MySQL 5.7, review the information in this section. Some items may require action before downgrading.
+Antes de fazer o downgrade a partir do MySQL 5.7, revise as informações nesta seção. Alguns itens podem exigir ações antes de realizar o downgrade.
 
-* System Table Changes
-* InnoDB Changes
-* Logging Changes
-* SQL Changes
+* Alterações nas Tabelas de Sistema
+* Alterações do InnoDB
+* Alterações de Log
+* Alterações de SQL
 
-#### System Table Changes
+#### Alterações nas Tabelas de Sistema
 
-* In MySQL 5.7.13, system table columns that store user@host string values were increased in length. Before downgrading to a previous release, ensure that there are no user@host values that exceed the previous 77 character length limit, and perform the following `mysql` system table alterations:
+* No MySQL 5.7.13, colunas de tabela de sistema que armazenam valores de string `user@host` tiveram seu comprimento aumentado. Antes de fazer o downgrade para uma versão anterior, garanta que não haja valores `user@host` que excedam o limite anterior de 77 caracteres e realize as seguintes alterações nas tabelas de sistema `mysql`:
 
   ```sql
   ALTER TABLE mysql.proc MODIFY definer char(77) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '';
@@ -18,7 +18,7 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
   ALTER TABLE mysql.procs_priv MODIFY Grantor char(77) COLLATE utf8_bin NOT NULL DEFAULT '';
   ```
 
-* The maximum length of MySQL user names was increased from 16 characters to 32 characters in MySQL 5.7.8. Before downgrading to a previous release, ensure that there are no user names greater than 16 characters in length, and perform the following `mysql` system table alterations:
+* O comprimento máximo dos nomes de usuário MySQL foi aumentado de 16 caracteres para 32 caracteres no MySQL 5.7.8. Antes de fazer o downgrade para uma versão anterior, garanta que não haja nomes de usuário com mais de 16 caracteres e realize as seguintes alterações nas tabelas de sistema `mysql`:
 
   ```sql
   ALTER TABLE mysql.tables_priv MODIFY User char(16) NOT NULL default '';
@@ -28,7 +28,7 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
   ALTER TABLE mysql.procs_priv MODIFY User char(16) binary DEFAULT '' NOT NULL;
   ```
 
-* The `Password` column of the `mysql.user` system table was removed in MySQL 5.7.6. All credentials are stored in the `authentication_string` column, including those formerly stored in the `Password` column. To make the `mysql.user` table compatible with previous releases, perform the following alterations before downgrading:
+* A coluna `Password` da tabela de sistema `mysql.user` foi removida no MySQL 5.7.6. Todas as credenciais são armazenadas na coluna `authentication_string`, incluindo aquelas anteriormente armazenadas na coluna `Password`. Para tornar a tabela `mysql.user` compatível com versões anteriores, realize as seguintes alterações antes de fazer o downgrade:
 
   ```sql
   ALTER TABLE mysql.user ADD Password char(41) character set latin1
@@ -39,7 +39,7 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
     LENGTH(authentication_string) = 41 AND plugin = 'mysql_native_password';
   ```
 
-* The `help_*` and `time_zone*` system tables changed from `MyISAM` to `InnoDB` in MySQL 5.7.5. Before downgrading to a previous release, change each affected table back to `MyISAM` by running the following statements:
+* As tabelas de sistema `help_*` e `time_zone*` mudaram de `MyISAM` para `InnoDB` no MySQL 5.7.5. Antes de fazer o downgrade para uma versão anterior, altere cada tabela afetada de volta para `MyISAM` executando as seguintes instruções:
 
   ```sql
   ALTER TABLE mysql.help_category ENGINE='MyISAM' STATS_PERSISTENT=DEFAULT;
@@ -53,52 +53,51 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
   ALTER TABLE mysql.time_zone_transition_type ENGINE='MyISAM' STATS_PERSISTENT=DEFAULT;
   ```
 
-* The `mysql.plugin` and `mysql.servers` system tables changed from `MyISAM` to `InnoDB` in MySQL 5.7.6. Before downgrading to a previous release, change each affected table back to `MyISAM` by running the following statements:
+* As tabelas de sistema `mysql.plugin` e `mysql.servers` mudaram de `MyISAM` para `InnoDB` no MySQL 5.7.6. Antes de fazer o downgrade para uma versão anterior, altere cada tabela afetada de volta para `MyISAM` executando as seguintes instruções:
 
   ```sql
   ALTER TABLE mysql.plugin ENGINE='MyISAM' STATS_PERSISTENT=DEFAULT;
   ALTER TABLE mysql.servers ENGINE='MyISAM' STATS_PERSISTENT=DEFAULT;
   ```
 
-* The definition of the `plugin` column in the `mysql.user` system table differs in MySQL 5.7. Before downgrading to a MySQL 5.6 server for versions 5.6.23 and higher, alter the `plugin` column definition using this statement:
+* A definição da coluna `plugin` na tabela de sistema `mysql.user` difere no MySQL 5.7. Antes de fazer o downgrade para um servidor MySQL 5.6 para as versões 5.6.23 e superiores, altere a definição da coluna `plugin` usando esta instrução:
 
   ```sql
   ALTER TABLE mysql.user MODIFY plugin CHAR(64) COLLATE utf8_bin
     DEFAULT 'mysql_native_password';
   ```
 
-  Before downgrading to a MySQL 5.6.22 server or older, alter the `plugin` column definition using this statement:
+  Antes de fazer o downgrade para um servidor MySQL 5.6.22 ou mais antigo, altere a definição da coluna `plugin` usando esta instrução:
 
   ```sql
   ALTER TABLE mysql.user MODIFY plugin CHAR(64) COLLATE utf8_bin DEFAULT '';
   ```
 
-* As of MySQL 5.7.7, the `sys` schema is installed by default during data directory installation. Before downgrading to a previous version, it is recommended that you drop the `sys` schema:
+* A partir do MySQL 5.7.7, o schema `sys` é instalado por padrão durante a instalação do diretório de dados. Antes de fazer o downgrade para uma versão anterior, é recomendado que você descarte o schema `sys`:
 
   ```sql
   DROP DATABASE sys;
   ```
 
-  If you are downgrading to a release that includes the `sys` schema, **mysql_upgrade** recreates the `sys` schema in a compatible form. The `sys` schema is not included in MySQL 5.6.
+  Se você estiver fazendo o downgrade para uma versão que inclui o schema `sys`, o **mysql_upgrade** recria o schema `sys` em um formato compatível. O schema `sys` não está incluído no MySQL 5.6.
 
-#### InnoDB Changes
+#### Alterações do InnoDB
 
-* As of MySQL 5.7.5, the `FIL_PAGE_FLUSH_LSN` field, written to the first page of each `InnoDB` system tablespace file and to `InnoDB` undo tablespace files, is only written to the first file of the `InnoDB` system tablespace (page number 0:0). As a result, if you have a multiple-file system tablespace and decide to downgrade from MySQL 5.7 to MySQL 5.6, you may encounter an invalid message on MySQL 5.6 startup stating that the log sequence numbers *`x`* and *`y`* in ibdata files do not match the log sequence number *`y`* in the ib_logfiles. If you encounter this message, restart MySQL 5.6. The invalid message should no longer appear.
+* A partir do MySQL 5.7.5, o campo `FIL_PAGE_FLUSH_LSN`, escrito na primeira página de cada arquivo de tablespace de sistema `InnoDB` e nos arquivos de tablespace de undo `InnoDB`, é escrito apenas no primeiro arquivo do tablespace de sistema `InnoDB` (número de página 0:0). Como resultado, se você tiver um tablespace de sistema com múltiplos arquivos e decidir fazer o downgrade do MySQL 5.7 para o MySQL 5.6, você poderá encontrar uma mensagem inválida na inicialização do MySQL 5.6 indicando que os Log Sequence Numbers *`x`* e *`y`* nos arquivos ibdata não correspondem ao Log Sequence Number *`y`* nos arquivos ib_logfiles. Se você encontrar esta mensagem, reinicie o MySQL 5.6. A mensagem inválida não deverá mais aparecer.
 
-* To simplify `InnoDB` tablespace discovery during crash recovery, new redo log record types were introduced in MySQL 5.7.5. This enhancement changes the redo log format. Before performing an in-place downgrade from MySQL 5.7.5 or later, perform a clean shutdown using an `innodb_fast_shutdown` setting of `0` or `1`. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Downgrade.
+* Para simplificar a descoberta de tablespace do `InnoDB` durante a recuperação de falhas (crash recovery), novos tipos de registro de redo log foram introduzidos no MySQL 5.7.5. Este aprimoramento altera o formato do redo log. Antes de realizar um Downgrade In-Place a partir do MySQL 5.7.5 ou posterior, realize um shutdown limpo utilizando uma configuração de `innodb_fast_shutdown` de `0` ou `1`. Um slow shutdown (desligamento lento) utilizando `innodb_fast_shutdown=0` é uma etapa recomendada no Downgrade In-Place.
 
-* MySQL 5.7.8 and 5.7.9 undo logs could contain insufficient information about spatial columns (Bug #21508582). Before performing an in-place downgrade from MySQL 5.7.10 or higher to MySQL 5.7.9 or earlier, perform a slow shutdown using `innodb_fast_shutdown=0` to clear the undo logs. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Downgrade.
+* Os undo logs do MySQL 5.7.8 e 5.7.9 poderiam conter informações insuficientes sobre colunas espaciais (Bug #21508582). Antes de realizar um Downgrade In-Place do MySQL 5.7.10 ou superior para o MySQL 5.7.9 ou anterior, realize um slow shutdown utilizando `innodb_fast_shutdown=0` para limpar os undo logs. Um slow shutdown utilizando `innodb_fast_shutdown=0` é uma etapa recomendada no Downgrade In-Place.
 
-* MySQL 5.7.8 undo logs could contain insufficient information about virtual columns and virtual column indexes (Bug
-  #21869656). Before performing an in-place downgrade from MySQL 5.7.9 or later to MySQL 5.7.8 or earlier, perform a slow shutdown using `innodb_fast_shutdown=0` to clear the undo logs. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Downgrade.
+* Os undo logs do MySQL 5.7.8 poderiam conter informações insuficientes sobre colunas virtuais e Index de colunas virtuais (Bug #21869656). Antes de realizar um Downgrade In-Place do MySQL 5.7.9 ou posterior para o MySQL 5.7.8 ou anterior, realize um slow shutdown utilizando `innodb_fast_shutdown=0` para limpar os undo logs. Um slow shutdown utilizando `innodb_fast_shutdown=0` é uma etapa recomendada no Downgrade In-Place.
 
-* As of MySQL 5.7.9, the redo log header of the first redo log file (`ib_logfile0`) includes a format version identifier and a text string that identifies the MySQL version that created the redo log files. This enhancement changes the redo log format. To prevent older versions of MySQL from starting on redo log files created in MySQL 5.7.9 or later, the checksum for redo log checkpoint pages was changed. As a result, you must perform a slow shutdown of MySQL (using innodb_fast_shutdown=0) and remove the redo log files (the `ib_logfile*` files) before performing an in-place downgrade. A slow shutdown using `innodb_fast_shutdown=0` and removing the redo log files are recommended steps in In-Place Downgrade.
+* A partir do MySQL 5.7.9, o cabeçalho do redo log do primeiro arquivo de redo log (`ib_logfile0`) inclui um identificador da versão do formato e uma string de texto que identifica a versão do MySQL que criou os arquivos de redo log. Este aprimoramento altera o formato do redo log. Para evitar que versões mais antigas do MySQL iniciem em arquivos de redo log criados no MySQL 5.7.9 ou posterior, o checksum para páginas de checkpoint do redo log foi alterado. Como resultado, você deve realizar um slow shutdown do MySQL (utilizando `innodb_fast_shutdown=0`) e remover os arquivos de redo log (os arquivos `ib_logfile*`) antes de realizar um Downgrade In-Place. Um slow shutdown utilizando `innodb_fast_shutdown=0` e a remoção dos arquivos de redo log são etapas recomendadas no Downgrade In-Place.
 
-* A new compression version used by the `InnoDB` page compression feature was added in MySQL 5.7.32. The new compression version is not compatible with earlier MySQL releases. Creating a page compressed table in MySQL 5.7.32 or higher and accessing the table after downgrading to a release earlier than MySQL 5.7.32 causes a failure. As a workaround, uncompress such tables before downgrading. To uncompress a table, run `ALTER TABLE tbl_name COMPRESSION='None'` and `OPTIMIZE TABLE`. For information about the `InnoDB` page compression feature, see Section 14.9.2, “InnoDB Page Compression”.
+* Uma nova versão de compressão usada pelo recurso de compressão de página do `InnoDB` foi adicionada no MySQL 5.7.32. A nova versão de compressão não é compatível com versões anteriores do MySQL. Criar uma tabela com compressão de página no MySQL 5.7.32 ou superior e acessar a tabela após o downgrade para uma versão anterior ao MySQL 5.7.32 causa uma falha. Como solução alternativa, descomprima essas tabelas antes de fazer o downgrade. Para descomprimir uma tabela, execute `ALTER TABLE tbl_name COMPRESSION='None'` e `OPTIMIZE TABLE`. Para obter informações sobre o recurso de compressão de página do `InnoDB`, consulte a Seção 14.9.2, “InnoDB Page Compression”.
 
-#### Logging Changes
+#### Alterações de Log
 
-* Support for sending the server error log to `syslog` in MySQL 5.7.5 and up differs from older versions. If you use `syslog` and downgrade to a version older than 5.7.5, you must stop using the relevant **mysqld** system variables and use the corresponding **mysqld_safe** command options instead. Suppose that you use `syslog` by setting these system variables in the `[mysqld]` group of an option file:
+* O suporte para enviar o log de erro do servidor para o `syslog` no MySQL 5.7.5 e superior difere das versões mais antigas. Se você usa `syslog` e faz o downgrade para uma versão anterior a 5.7.5, você deve parar de usar as variáveis de sistema **mysqld** relevantes e, em vez disso, usar as opções de comando **mysqld_safe** correspondentes. Suponha que você use `syslog` definindo estas variáveis de sistema no grupo `[mysqld]` de um arquivo de opções:
 
   ```sql
   [mysqld]
@@ -106,7 +105,7 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
   log_syslog_tag=mytag
   ```
 
-  To downgrade, remove those settings and add option settings in the `[mysqld_safe]` option file group:
+  Para fazer o downgrade, remova essas configurações e adicione configurações de opções no grupo de arquivo de opções `[mysqld_safe]`:
 
   ```sql
   [mysqld_safe]
@@ -114,21 +113,21 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
   syslog-tag=mytag
   ```
 
-  `syslog`-related system variables that have no corresponding **mysqld_safe** option cannot be used after a downgrade.
+  Variáveis de sistema relacionadas ao `syslog` que não possuem uma opção **mysqld_safe** correspondente não podem ser usadas após um downgrade.
 
-#### SQL Changes
+#### Alterações de SQL
 
-* A trigger can have triggers for different combinations of trigger event (`INSERT`, `UPDATE`, `DELETE`) and action time (`BEFORE`, `AFTER`), but before MySQL 5.7.2 cannot have multiple triggers that have the same trigger event and action time. MySQL 5.7.2 lifts this limitation and multiple triggers are permitted. This change has implications for downgrades.
+* Um trigger pode ter triggers para diferentes combinações de evento de trigger (`INSERT`, `UPDATE`, `DELETE`) e tempo de ação (`BEFORE`, `AFTER`), mas antes do MySQL 5.7.2 não pode ter múltiplos triggers com o mesmo evento de trigger e tempo de ação. O MySQL 5.7.2 remove essa limitação e múltiplos triggers são permitidos. Essa mudança tem implicações para downgrades.
 
-  If you downgrade a server that supports multiple triggers to an older version that does not, the downgrade has these effects:
+  Se você fizer o downgrade de um servidor que suporta múltiplos triggers para uma versão mais antiga que não suporta, o downgrade terá estes efeitos:
 
-  + For each table that has triggers, all trigger definitions remain in the `.TRG` file for the table. However, if there are multiple triggers with the same trigger event and action time, the server executes only one of them when the trigger event occurs. For information about `.TRG` files, see Table Trigger Storage.
+  + Para cada tabela que tem triggers, todas as definições de trigger permanecem no arquivo `.TRG` para a tabela. No entanto, se houver múltiplos triggers com o mesmo evento de trigger e tempo de ação, o servidor executa apenas um deles quando o evento de trigger ocorre. Para obter informações sobre arquivos `.TRG`, consulte Table Trigger Storage.
 
-  + If triggers for the table are added or dropped subsequent to the downgrade, the server rewrites the table's `.TRG` file. The rewritten file retains only one trigger per combination of trigger event and action time; the others are lost.
+  + Se triggers para a tabela forem adicionados ou descartados subsequentemente ao downgrade, o servidor reescreve o arquivo `.TRG` da tabela. O arquivo reescrito retém apenas um trigger por combinação de evento de trigger e tempo de ação; os outros são perdidos.
 
-  To avoid these problems, modify your triggers before downgrading. For each table that has multiple triggers per combination of trigger event and action time, convert each such set of triggers to a single trigger as follows:
+  Para evitar esses problemas, modifique seus triggers antes de fazer o downgrade. Para cada tabela que tem múltiplos triggers por combinação de evento de trigger e tempo de ação, converta cada conjunto de triggers em um único trigger da seguinte forma:
 
-  1. For each trigger, create a stored routine that contains all the code in the trigger. Values accessed using `NEW` and `OLD` can be passed to the routine using parameters. If the trigger needs a single result value from the code, you can put the code in a stored function and have the function return the value. If the trigger needs multiple result values from the code, you can put the code in a stored procedure and return the values using `OUT` parameters.
+  1. Para cada trigger, crie uma stored routine (rotina armazenada) que contenha todo o código do trigger. Valores acessados usando `NEW` e `OLD` podem ser passados para a rotina usando parâmetros. Se o trigger precisar de um único valor de resultado do código, você pode colocar o código em uma stored function (função armazenada) e fazer com que a função retorne o valor. Se o trigger precisar de múltiplos valores de resultado do código, você pode colocar o código em uma stored procedure (procedimento armazenado) e retornar os valores usando parâmetros `OUT`.
 
-  2. Drop all triggers for the table.
-  3. Create one new trigger for the table that invokes the stored routines just created. The effect for this trigger is thus the same as the multiple triggers it replaces.
+  2. Descarte todos os triggers para a tabela.
+  3. Crie um novo trigger para a tabela que invoque as stored routines recém-criadas. O efeito para este trigger é, portanto, o mesmo que o dos múltiplos triggers que ele substitui.

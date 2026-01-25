@@ -1,27 +1,27 @@
-## 6.4 Security Plugins
+## 6.4 Plugins de Segurança
 
-[6.4.1 Authentication Plugins](authentication-plugins.html)
+[6.4.1 Plugins de Autenticação](authentication-plugins.html)
 
-[6.4.2 Connection Control Plugins](connection-control-plugin.html)
+[6.4.2 Plugins de Controle de Conexão](connection-control-plugin.html)
 
-[6.4.3 The Password Validation Plugin](validate-password.html)
+[6.4.3 O Plugin de Validação de Senha](validate-password.html)
 
-[6.4.4 The MySQL Keyring](keyring.html)
+[6.4.4 O Keyring do MySQL](keyring.html)
 
 [6.4.5 MySQL Enterprise Audit](audit-log.html)
 
 [6.4.6 MySQL Enterprise Firewall](firewall.html)
 
-MySQL includes several plugins that implement security features:
+O MySQL inclui vários plugins que implementam recursos de segurança:
 
-* Plugins for authenticating attempts by clients to connect to MySQL Server. Plugins are available for several authentication protocols. For general discussion of the authentication process, see [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication"). For characteristics of specific authentication plugins, see [Section 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins").
+* Plugins para autenticar tentativas de clientes de se conectar ao MySQL Server. Plugins estão disponíveis para vários protocolos de autenticação. Para uma discussão geral sobre o processo de autenticação, consulte [Seção 6.2.13, “Autenticação Plugável”](pluggable-authentication.html "6.2.13 Autenticação Plugável"). Para características de plugins de autenticação específicos, consulte [Seção 6.4.1, “Plugins de Autenticação”](authentication-plugins.html "6.4.1 Plugins de Autenticação").
 
-* A password-validation plugin for implementing password strength policies and assessing the strength of potential passwords. See [Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin").
+* Um plugin de validação de senha para implementar políticas de força de senha e avaliar a força de senhas potenciais. Consulte [Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html "6.4.3 O Plugin de Validação de Senha").
 
-* Keyring plugins that provide secure storage for sensitive information. See [Section 6.4.4, “The MySQL Keyring”](keyring.html "6.4.4 The MySQL Keyring").
+* Plugins de Keyring que fornecem armazenamento seguro para informações confidenciais. Consulte [Seção 6.4.4, “O Keyring do MySQL”](keyring.html "6.4.4 O Keyring do MySQL").
 
-* (MySQL Enterprise Edition only) MySQL Enterprise Audit, implemented using a server plugin, uses the open MySQL Audit API to enable standard, policy-based monitoring and logging of connection and query activity executed on specific MySQL servers. Designed to meet the Oracle audit specification, MySQL Enterprise Audit provides an out of box, easy to use auditing and compliance solution for applications that are governed by both internal and external regulatory guidelines. See [Section 6.4.5, “MySQL Enterprise Audit”](audit-log.html "6.4.5 MySQL Enterprise Audit").
+* (Apenas MySQL Enterprise Edition) O MySQL Enterprise Audit, implementado usando um plugin de server, utiliza a MySQL Audit API aberta para permitir o monitoramento padrão baseado em política e o logging da atividade de conexão e Query executada em servers MySQL específicos. Projetado para atender à especificação de auditoria da Oracle, o MySQL Enterprise Audit fornece uma solução de auditoria e conformidade pronta para uso (out of box) e fácil de usar para aplicações que são regidas por diretrizes regulatórias internas e externas. Consulte [Seção 6.4.5, “MySQL Enterprise Audit”](audit-log.html "6.4.5 MySQL Enterprise Audit").
 
-* (MySQL Enterprise Edition only) MySQL Enterprise Firewall, an application-level firewall that enables database administrators to permit or deny SQL statement execution based on matching against lists of accepted statement patterns. This helps harden MySQL Server against attacks such as SQL injection or attempts to exploit applications by using them outside of their legitimate query workload characteristics. See [Section 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall").
+* (Apenas MySQL Enterprise Edition) O MySQL Enterprise Firewall, um firewall de nível de aplicação que permite aos administradores de Database permitir ou negar a execução de SQL statement com base na correspondência com listas de padrões de statement aceitos. Isso ajuda a proteger (harden) o MySQL Server contra ataques como SQL injection ou tentativas de explorar aplicações usando-as fora das características legítimas de sua carga de trabalho de Query. Consulte [Seção 6.4.6, “MySQL Enterprise Firewall”](firewall.html "6.4.6 MySQL Enterprise Firewall").
 
-* (MySQL Enterprise Edition only) MySQL Enterprise Data Masking and De-Identification, implemented as a plugin library containing a plugin and a set of functions. Data masking hides sensitive information by replacing real values with substitutes. MySQL Enterprise Data Masking and De-Identification functions enable masking existing data using several methods such as obfuscation (removing identifying characteristics), generation of formatted random data, and data replacement or substitution. See [Section 6.5, “MySQL Enterprise Data Masking and De-Identification”](data-masking.html "6.5 MySQL Enterprise Data Masking and De-Identification").
+* (Apenas MySQL Enterprise Edition) MySQL Enterprise Data Masking and De-Identification, implementado como uma biblioteca de plugins contendo um plugin e um conjunto de funções. O Data masking oculta informações confidenciais substituindo valores reais por substitutos. As funções do MySQL Enterprise Data Masking and De-Identification permitem mascarar dados existentes usando vários métodos, como ofuscação (remoção de características de identificação), geração de dados aleatórios formatados e substituição ou troca de dados. Consulte [Seção 6.5, “MySQL Enterprise Data Masking and De-Identification”](data-masking.html "6.5 MySQL Enterprise Data Masking and De-Identification").

@@ -1,66 +1,66 @@
-#### 8.12.4.1 How MySQL Uses Memory
+#### 8.12.4.1 Como o MySQL Usa Memória
 
-MySQL allocates buffers and caches to improve performance of database operations. The default configuration is designed to permit a MySQL server to start on a virtual machine that has approximately 512MB of RAM. You can improve MySQL performance by increasing the values of certain cache and buffer-related system variables. You can also modify the default configuration to run MySQL on systems with limited memory.
+O MySQL aloca buffers e caches para melhorar o desempenho das operações de Database. A configuração padrão é projetada para permitir que um servidor MySQL inicie em uma máquina virtual que possua aproximadamente 512MB de RAM. Você pode melhorar o desempenho do MySQL aumentando os valores de certas system variables relacionadas a cache e buffer. Você também pode modificar a configuração padrão para executar o MySQL em sistemas com memória limitada.
 
-The following list describes some of the ways that MySQL uses memory. Where applicable, relevant system variables are referenced. Some items are storage engine or feature specific.
+A lista a seguir descreve algumas das formas como o MySQL usa memória. Onde aplicável, system variables relevantes são referenciadas. Alguns itens são específicos de Storage Engine ou recurso.
 
-* The `InnoDB` buffer pool is a memory area that holds cached `InnoDB` data for tables, indexes, and other auxiliary buffers. For efficiency of high-volume read operations, the buffer pool is divided into pages that can potentially hold multiple rows. For efficiency of cache management, the buffer pool is implemented as a linked list of pages; data that is rarely used is aged out of the cache, using a variation of the LRU algorithm. For more information, see Section 14.5.1, “Buffer Pool”.
+* O `InnoDB` Buffer Pool é uma área de memória que armazena dados `InnoDB` em cache para tabelas, Indexes e outros buffers auxiliares. Para eficiência de operações de leitura de alto volume, o Buffer Pool é dividido em pages que podem potencialmente armazenar múltiplas linhas. Para eficiência do gerenciamento de cache, o Buffer Pool é implementado como uma lista encadeada (linked list) de pages; dados que são raramente usados são removidos do cache (aged out), utilizando uma variação do algoritmo LRU. Para mais informações, veja a Seção 14.5.1, “Buffer Pool”.
 
-  The size of the buffer pool is important for system performance:
+  O tamanho do Buffer Pool é importante para o desempenho do sistema:
 
-  + `InnoDB` allocates memory for the entire buffer pool at server startup, using `malloc()` operations. The `innodb_buffer_pool_size` system variable defines the buffer pool size. Typically, a recommended `innodb_buffer_pool_size` value is 50 to 75 percent of system memory. `innodb_buffer_pool_size` can be configured dynamically, while the server is running. For more information, see Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size”.
+  + O `InnoDB` aloca memória para todo o Buffer Pool na inicialização do servidor, utilizando operações `malloc()`. A system variable `innodb_buffer_pool_size` define o tamanho do Buffer Pool. Tipicamente, um valor recomendado para `innodb_buffer_pool_size` é de 50 a 75 por cento da memória do sistema. `innodb_buffer_pool_size` pode ser configurado dinamicamente, enquanto o servidor está em execução. Para mais informações, veja a Seção 14.8.3.1, “Configuring InnoDB Buffer Pool Size”.
 
-  + On systems with a large amount of memory, you can improve concurrency by dividing the buffer pool into multiple buffer pool instances. The `innodb_buffer_pool_instances` system variable defines the number of buffer pool instances.
+  + Em sistemas com uma grande quantidade de memória, você pode melhorar a concorrência dividindo o Buffer Pool em múltiplas instâncias de Buffer Pool. A system variable `innodb_buffer_pool_instances` define o número de instâncias de Buffer Pool.
 
-  + A buffer pool that is too small may cause excessive churning as pages are flushed from the buffer pool only to be required again a short time later.
+  + Um Buffer Pool que é muito pequeno pode causar excessiva instabilidade (churning) à medida que as pages são liberadas (flushed) do Buffer Pool apenas para serem necessárias novamente pouco tempo depois.
 
-  + A buffer pool that is too large may cause swapping due to competition for memory.
+  + Um Buffer Pool que é muito grande pode causar swapping devido à competição por memória.
 
-* All threads share the `MyISAM` key buffer. The `key_buffer_size` system variable determines its size.
+* Todos os Threads compartilham o key buffer do `MyISAM`. A system variable `key_buffer_size` determina seu tamanho.
 
-  For each `MyISAM` table the server opens, the index file is opened once; the data file is opened once for each concurrently running thread that accesses the table. For each concurrent thread, a table structure, column structures for each column, and a buffer of size `3 * N` are allocated (where *`N`* is the maximum row length, not counting `BLOB` columns). A `BLOB` column requires five to eight bytes plus the length of the `BLOB` data. The `MyISAM` storage engine maintains one extra row buffer for internal use.
+  Para cada tabela `MyISAM` que o servidor abre, o arquivo de Index é aberto uma vez; o arquivo de dados é aberto uma vez para cada Thread executando concorrentemente que acessa a tabela. Para cada Thread concorrente, uma estrutura de tabela, estruturas de coluna para cada coluna e um buffer de tamanho `3 * N` são alocados (onde *`N`* é o comprimento máximo da linha, sem contar as colunas `BLOB`). Uma coluna `BLOB` requer de cinco a oito bytes mais o comprimento dos dados `BLOB`. O Storage Engine `MyISAM` mantém um buffer de linha extra para uso interno.
 
-* The `myisam_use_mmap` system variable can be set to 1 to enable memory-mapping for all `MyISAM` tables.
+* A system variable `myisam_use_mmap` pode ser definida como 1 para habilitar memory-mapping para todas as tabelas `MyISAM`.
 
-* If an internal in-memory temporary table becomes too large (as determined using the `tmp_table_size` and `max_heap_table_size` system variables), MySQL automatically converts the table from in-memory to on-disk format. On-disk temporary tables use the storage engine defined by the `internal_tmp_disk_storage_engine` system variable. You can increase the permissible temporary table size as described in Section 8.4.4, “Internal Temporary Table Use in MySQL”.
+* Se uma tabela temporária interna in-memory se tornar muito grande (conforme determinado pelas system variables `tmp_table_size` e `max_heap_table_size`), o MySQL converte automaticamente a tabela do formato in-memory para o formato em disco (on-disk). As tabelas temporárias em disco usam o Storage Engine definido pela system variable `internal_tmp_disk_storage_engine`. Você pode aumentar o tamanho permissível da tabela temporária conforme descrito na Seção 8.4.4, “Internal Temporary Table Use in MySQL”.
 
-  For `MEMORY` tables explicitly created with `CREATE TABLE`, only the `max_heap_table_size` system variable determines how large a table can grow, and there is no conversion to on-disk format.
+  Para tabelas `MEMORY` criadas explicitamente com `CREATE TABLE`, apenas a system variable `max_heap_table_size` determina o quão grande uma tabela pode crescer, e não há conversão para formato em disco.
 
-* The MySQL Performance Schema is a feature for monitoring MySQL server execution at a low level. The Performance Schema dynamically allocates memory incrementally, scaling its memory use to actual server load, instead of allocating required memory during server startup. Once memory is allocated, it is not freed until the server is restarted. For more information, see Section 25.17, “The Performance Schema Memory-Allocation Model”.
+* O Performance Schema do MySQL é um recurso para monitorar a execução do servidor MySQL em um nível baixo. O Performance Schema aloca memória dinamicamente de forma incremental, escalando seu uso de memória de acordo com a carga real do servidor, em vez de alocar a memória necessária durante a inicialização do servidor. Uma vez alocada, a memória não é liberada até que o servidor seja reiniciado. Para mais informações, veja a Seção 25.17, “The Performance Schema Memory-Allocation Model”.
 
-* Each thread that the server uses to manage client connections requires some thread-specific space. The following list indicates these and which system variables control their size:
+* Cada Thread que o servidor usa para gerenciar conexões de clientes requer algum espaço específico do Thread. A lista a seguir indica esses espaços e quais system variables controlam seu tamanho:
 
-  + A stack (`thread_stack`)
+  + Uma stack (`thread_stack`)
 
-  + A connection buffer (`net_buffer_length`)
+  + Um connection buffer (`net_buffer_length`)
 
-  + A result buffer (`net_buffer_length`)
+  + Um result buffer (`net_buffer_length`)
 
-  The connection buffer and result buffer each begin with a size equal to `net_buffer_length` bytes, but are dynamically enlarged up to `max_allowed_packet` bytes as needed. The result buffer shrinks to `net_buffer_length` bytes after each SQL statement. While a statement is running, a copy of the current statement string is also allocated.
+  O connection buffer e o result buffer começam cada um com um tamanho igual a `net_buffer_length` bytes, mas são dinamicamente aumentados até `max_allowed_packet` bytes conforme necessário. O result buffer diminui para `net_buffer_length` bytes após cada instrução SQL. Enquanto uma instrução está em execução, uma cópia da string da instrução atual também é alocada.
 
-  Each connection thread uses memory for computing statement digests. The server allocates `max_digest_length` bytes per session. See Section 25.10, “Performance Schema Statement Digests”.
+  Cada Thread de conexão usa memória para o cálculo de statement digests. O servidor aloca `max_digest_length` bytes por sessão. Veja a Seção 25.10, “Performance Schema Statement Digests”.
 
-* All threads share the same base memory.
-* When a thread is no longer needed, the memory allocated to it is released and returned to the system unless the thread goes back into the thread cache. In that case, the memory remains allocated.
+* Todos os Threads compartilham a mesma memória base.
+* Quando um Thread não é mais necessário, a memória alocada a ele é liberada e retornada ao sistema, a menos que o Thread volte para o thread cache. Nesse caso, a memória permanece alocada.
 
-* Each request that performs a sequential scan of a table allocates a read buffer. The `read_buffer_size` system variable determines the buffer size.
+* Cada requisição que executa um sequential scan de uma tabela aloca um read buffer. A system variable `read_buffer_size` determina o tamanho do buffer.
 
-* When reading rows in an arbitrary sequence (for example, following a sort), a random-read buffer may be allocated to avoid disk seeks. The `read_rnd_buffer_size` system variable determines the buffer size.
+* Ao ler linhas em uma sequência arbitrária (por exemplo, após um sort), um random-read buffer pode ser alocado para evitar disk seeks. A system variable `read_rnd_buffer_size` determina o tamanho do buffer.
 
-* All joins are executed in a single pass, and most joins can be done without even using a temporary table. Most temporary tables are memory-based hash tables. Temporary tables with a large row length (calculated as the sum of all column lengths) or that contain `BLOB` columns are stored on disk.
+* Todos os Joins são executados em uma única passagem, e a maioria dos Joins pode ser feita sem sequer usar uma tabela temporária. A maioria das tabelas temporárias são hash tables baseadas em memória. Tabelas temporárias com um grande comprimento de linha (calculado como a soma de todos os comprimentos de coluna) ou que contêm colunas `BLOB` são armazenadas em disco.
 
-* Most requests that perform a sort allocate a sort buffer and zero to two temporary files depending on the result set size. See Section B.3.3.5, “Where MySQL Stores Temporary Files”.
+* A maioria das requisições que executam um sort alocam um sort buffer e zero a dois arquivos temporários, dependendo do tamanho do result set. Veja a Seção B.3.3.5, “Where MySQL Stores Temporary Files”.
 
-* Almost all parsing and calculating is done in thread-local and reusable memory pools. No memory overhead is needed for small items, thus avoiding the normal slow memory allocation and freeing. Memory is allocated only for unexpectedly large strings.
+* Quase todo o parsing e cálculo é feito em memory pools locais ao Thread e reutilizáveis. Nenhuma sobrecarga de memória é necessária para itens pequenos, evitando assim a lenta alocação e liberação de memória normal. A memória é alocada apenas para strings inesperadamente grandes.
 
-* For each table having `BLOB` columns, a buffer is enlarged dynamically to read in larger `BLOB` values. If you scan a table, the buffer grows as large as the largest `BLOB` value.
+* Para cada tabela que possui colunas `BLOB`, um buffer é dinamicamente aumentado para ler valores `BLOB` maiores. Se você fizer um scan de uma tabela, o buffer cresce até o tamanho do maior valor `BLOB`.
 
-* MySQL requires memory and descriptors for the table cache. Handler structures for all in-use tables are saved in the table cache and managed as “First In, First Out” (FIFO). The `table_open_cache` system variable defines the initial table cache size; see Section 8.4.3.1, “How MySQL Opens and Closes Tables”.
+* O MySQL requer memória e descritores para o table cache. Estruturas de Handler para todas as tabelas em uso são salvas no table cache e gerenciadas como “First In, First Out” (FIFO). A system variable `table_open_cache` define o tamanho inicial do table cache; veja a Seção 8.4.3.1, “How MySQL Opens and Closes Tables”.
 
-  MySQL also requires memory for the table definition cache. The `table_definition_cache` system variable defines the number of table definitions (from `.frm` files) that can be stored in the table definition cache. If you use a large number of tables, you can create a large table definition cache to speed up the opening of tables. The table definition cache takes less space and does not use file descriptors, unlike the table cache.
+  O MySQL também requer memória para o table definition cache. A system variable `table_definition_cache` define o número de definições de tabela (a partir de arquivos `.frm`) que podem ser armazenadas no table definition cache. Se você usar um grande número de tabelas, poderá criar um table definition cache grande para acelerar a abertura de tabelas. O table definition cache ocupa menos espaço e não usa descritores de arquivo, ao contrário do table cache.
 
-* A `FLUSH TABLES` statement or **mysqladmin flush-tables** command closes all tables that are not in use at once and marks all in-use tables to be closed when the currently executing thread finishes. This effectively frees most in-use memory. `FLUSH TABLES` does not return until all tables have been closed.
+* Um comando `FLUSH TABLES` ou **mysqladmin flush-tables** fecha todas as tabelas que não estão em uso imediatamente e marca todas as tabelas em uso para serem fechadas quando o Thread em execução atual terminar. Isso libera efetivamente a maior parte da memória em uso. `FLUSH TABLES` não retorna até que todas as tabelas tenham sido fechadas.
 
-* The server caches information in memory as a result of `GRANT`, `CREATE USER`, `CREATE SERVER`, and `INSTALL PLUGIN` statements. This memory is not released by the corresponding `REVOKE`, `DROP USER`, `DROP SERVER`, and `UNINSTALL PLUGIN` statements, so for a server that executes many instances of the statements that cause caching, cached memory use is very likely to increase unless it is freed with `FLUSH PRIVILEGES`.
+* O servidor armazena informações em cache na memória como resultado dos comandos `GRANT`, `CREATE USER`, `CREATE SERVER` e `INSTALL PLUGIN`. Essa memória não é liberada pelos comandos correspondentes `REVOKE`, `DROP USER`, `DROP SERVER` e `UNINSTALL PLUGIN`, portanto, para um servidor que executa muitas instâncias dos comandos que causam caching, é muito provável que o uso de memória em cache aumente, a menos que seja liberado com `FLUSH PRIVILEGES`.
 
-**ps** and other system status programs may report that **mysqld** uses a lot of memory. This may be caused by thread stacks on different memory addresses. For example, the Solaris version of **ps** counts the unused memory between stacks as used memory. To verify this, check available swap with `swap -s`. We test **mysqld** with several memory-leakage detectors (both commercial and Open Source), so there should be no memory leaks.
+**ps** e outros programas de status do sistema podem relatar que **mysqld** usa muita memória. Isso pode ser causado por thread stacks em diferentes endereços de memória. Por exemplo, a versão Solaris do **ps** conta a memória não utilizada entre stacks como memória utilizada. Para verificar isso, confira o swap disponível com `swap -s`. Testamos **mysqld** com vários detectores de memory-leakage (tanto comerciais quanto Open Source), portanto, não deve haver memory leaks.

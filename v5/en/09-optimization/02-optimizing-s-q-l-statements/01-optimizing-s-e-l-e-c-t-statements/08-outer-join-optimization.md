@@ -1,35 +1,35 @@
-#### 8.2.1.8 Outer Join Optimization
+#### 8.2.1.8 Otimização de Outer Join
 
-Outer joins include `LEFT JOIN` and `RIGHT JOIN`.
+Outer joins incluem `LEFT JOIN` e `RIGHT JOIN`.
 
-MySQL implements an `A LEFT JOIN B join_specification` as follows:
+O MySQL implementa um `A LEFT JOIN B join_specification` da seguinte forma:
 
-* Table *`B`* is set to depend on table *`A`* and all tables on which *`A`* depends.
+* A tabela *`B`* é configurada para depender da tabela *`A`* e de todas as tabelas das quais *`A`* depende.
 
-* Table *`A`* is set to depend on all tables (except *`B`*) that are used in the `LEFT JOIN` condition.
+* A tabela *`A`* é configurada para depender de todas as tabelas (exceto *`B`*) que são usadas na condição do `LEFT JOIN`.
 
-* The `LEFT JOIN` condition is used to decide how to retrieve rows from table *`B`*. (In other words, any condition in the `WHERE` clause is not used.)
+* A condição do `LEFT JOIN` é usada para decidir como recuperar linhas da tabela *`B`*. (Em outras palavras, nenhuma condição na cláusula `WHERE` é utilizada.)
 
-* All standard join optimizations are performed, with the exception that a table is always read after all tables on which it depends. If there is a circular dependency, an error occurs.
+* Todas as otimizações de JOIN padrão são realizadas, com a exceção de que uma tabela é sempre lida após todas as tabelas das quais ela depende. Se houver uma dependência circular, ocorre um erro.
 
-* All standard `WHERE` optimizations are performed.
+* Todas as otimizações `WHERE` padrão são realizadas.
 
-* If there is a row in *`A`* that matches the `WHERE` clause, but there is no row in *`B`* that matches the `ON` condition, an extra *`B`* row is generated with all columns set to `NULL`.
+* Se houver uma linha em *`A`* que corresponda à cláusula `WHERE`, mas não houver uma linha em *`B`* que corresponda à condição `ON`, uma linha extra de *`B`* é gerada com todas as colunas definidas como `NULL`.
 
-* If you use `LEFT JOIN` to find rows that do not exist in some table and you have the following test: `col_name IS NULL` in the `WHERE` part, where *`col_name`* is a column that is declared as `NOT NULL`, MySQL stops searching for more rows (for a particular key combination) after it has found one row that matches the `LEFT JOIN` condition.
+* Se você usa `LEFT JOIN` para encontrar linhas que não existem em alguma tabela e tem o seguinte teste: `col_name IS NULL` na parte `WHERE`, onde *`col_name`* é uma coluna declarada como `NOT NULL`, o MySQL para de procurar por mais linhas (para uma combinação de chave específica) depois de encontrar uma linha que corresponda à condição do `LEFT JOIN`.
 
-The `RIGHT JOIN` implementation is analogous to that of `LEFT JOIN` with the table roles reversed. Right joins are converted to equivalent left joins, as described in Section 8.2.1.9, “Outer Join Simplification”.
+A implementação do `RIGHT JOIN` é análoga à do `LEFT JOIN` com os papéis das tabelas invertidos. Right joins são convertidos em left joins equivalentes, conforme descrito na Seção 8.2.1.9, “Simplificação de Outer Join”.
 
-For a `LEFT JOIN`, if the `WHERE` condition is always false for the generated `NULL` row, the `LEFT JOIN` is changed to an inner join. For example, the `WHERE` clause would be false in the following query if `t2.column1` were `NULL`:
+Para um `LEFT JOIN`, se a condição `WHERE` for sempre falsa para a linha `NULL` gerada, o `LEFT JOIN` é alterado para um inner join. Por exemplo, a cláusula `WHERE` seria falsa na seguinte Query se `t2.column1` fosse `NULL`:
 
 ```sql
 SELECT * FROM t1 LEFT JOIN t2 ON (column1) WHERE t2.column2=5;
 ```
 
-Therefore, it is safe to convert the query to an inner join:
+Portanto, é seguro converter a Query para um inner join:
 
 ```sql
 SELECT * FROM t1, t2 WHERE t2.column2=5 AND t1.column1=t2.column1;
 ```
 
-Now the optimizer can use table `t2` before table `t1` if doing so would result in a better query plan. To provide a hint about the table join order, use `STRAIGHT_JOIN`; see Section 13.2.9, “SELECT Statement”. However, `STRAIGHT_JOIN` may prevent indexes from being used because it disables semijoin transformations; see Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”.
+Agora o otimizador pode usar a tabela `t2` antes da tabela `t1` se isso resultar em um plano de Query melhor. Para fornecer uma dica sobre a ordem de JOIN das tabelas, use `STRAIGHT_JOIN`; veja a Seção 13.2.9, “SELECT Statement”. No entanto, `STRAIGHT_JOIN` pode impedir que Indexes sejam usados porque desabilita transformações de semijoin; veja a Seção 8.2.2.1, “Otimizando Subqueries, Derived Tables e Referências de View com Transformações de Semijoin”.

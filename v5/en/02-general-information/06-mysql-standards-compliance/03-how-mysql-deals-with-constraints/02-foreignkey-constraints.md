@@ -1,16 +1,16 @@
-#### 1.6.3.2 FOREIGN KEY Constraints
+#### 1.6.3.2 FOREIGN KEY Constraints
 
-Foreign keys let you cross-reference related data across tables, and foreign key constraints help keep this spread-out data consistent.
+Foreign keys permitem fazer referência cruzada a dados relacionados entre tables, e as foreign key constraints ajudam a manter esses dados distribuídos consistentes.
 
-MySQL supports `ON UPDATE` and `ON DELETE` foreign key references in `CREATE TABLE` and `ALTER TABLE` statements. The available referential actions are `RESTRICT` (the default), `CASCADE`, `SET NULL`, and `NO ACTION`.
+O MySQL suporta referências de foreign key `ON UPDATE` e `ON DELETE` nas instruções `CREATE TABLE` e `ALTER TABLE`. As ações referenciais disponíveis são `RESTRICT` (o padrão), `CASCADE`, `SET NULL` e `NO ACTION`.
 
-`SET DEFAULT` is also supported by the MySQL Server but is currently rejected as invalid by `InnoDB`. Since MySQL does not support deferred constraint checking, `NO ACTION` is treated as `RESTRICT`. For the exact syntax supported by MySQL for foreign keys, see Section 13.1.18.5, “FOREIGN KEY Constraints”.
+`SET DEFAULT` também é suportado pelo MySQL Server, mas atualmente é rejeitado como inválido pelo `InnoDB`. Como o MySQL não oferece suporte à verificação de constraint diferida (deferred constraint checking), `NO ACTION` é tratado como `RESTRICT`. Para a sintaxe exata suportada pelo MySQL para foreign keys, consulte a Seção 13.1.18.5, “FOREIGN KEY Constraints”.
 
-`MATCH FULL`, `MATCH PARTIAL`, and `MATCH SIMPLE` are allowed, but their use should be avoided, as they cause the MySQL Server to ignore any `ON DELETE` or `ON UPDATE` clause used in the same statement. `MATCH` options do not have any other effect in MySQL, which in effect enforces `MATCH SIMPLE` semantics full-time.
+`MATCH FULL`, `MATCH PARTIAL` e `MATCH SIMPLE` são permitidos, mas seu uso deve ser evitado, pois fazem com que o MySQL Server ignore qualquer cláusula `ON DELETE` ou `ON UPDATE` usada na mesma instrução. As opções `MATCH` não têm nenhum outro efeito no MySQL, que, na prática, aplica a semântica `MATCH SIMPLE` em tempo integral.
 
-MySQL requires that foreign key columns be indexed; if you create a table with a foreign key constraint but no index on a given column, an index is created.
+O MySQL exige que as colunas de foreign key sejam indexadas; se você criar uma table com uma foreign key constraint, mas sem um Index na coluna específica, um Index será criado.
 
-You can obtain information about foreign keys from the Information Schema `KEY_COLUMN_USAGE` table. An example of a query against this table is shown here:
+Você pode obter informações sobre foreign keys a partir da table `KEY_COLUMN_USAGE` do Information Schema. Um exemplo de uma Query nesta table é mostrado aqui:
 
 ```sql
 mysql> SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME
@@ -26,6 +26,6 @@ mysql> SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME
 3 rows in set (0.01 sec)
 ```
 
-Information about foreign keys on `InnoDB` tables can also be found in the `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables, in the `INFORMATION_SCHEMA` database.
+Informações sobre foreign keys em tables `InnoDB` também podem ser encontradas nas tables `INNODB_SYS_FOREIGN` e `INNODB_SYS_FOREIGN_COLS`, no Database `INFORMATION_SCHEMA`.
 
-`InnoDB` and `NDB` tables support foreign keys.
+Tables `InnoDB` e `NDB` suportam foreign keys.

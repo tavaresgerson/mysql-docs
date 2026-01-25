@@ -1,9 +1,9 @@
-### 7.3.3 Backup Strategy Summary
+### 7.3.3 Resumo da Estratégia de Backup
 
-In case of an operating system crash or power failure, `InnoDB` itself does all the job of recovering data. But to make sure that you can sleep well, observe the following guidelines:
+Em caso de falha do sistema operacional ou falta de energia, o próprio `InnoDB` realiza todo o trabalho de recuperação de dados. Mas para garantir que você possa dormir tranquilo, observe as seguintes diretrizes:
 
-* Always run the MySQL server with the `--log-bin` option, or even `--log-bin=log_name`, where the log file name is located on some safe media different from the drive on which the data directory is located. If you have such safe media, this technique can also be good for disk load balancing (which results in a performance improvement).
+*   Sempre execute o `MySQL server` com a opção `--log-bin`, ou até mesmo `--log-bin=log_name`, onde o nome do `log file` esteja localizado em alguma mídia segura diferente do `drive` onde o `data directory` está. Se você tiver essa mídia segura, esta técnica também pode ser boa para o `disk load balancing` (o que resulta em um `performance improvement`).
 
-* Make periodic full backups, using the **mysqldump** command shown earlier in Section 7.3.1, “Establishing a Backup Policy”, that makes an online, nonblocking backup.
+*   Faça `full backups` periódicos, usando o comando **mysqldump** mostrado anteriormente na Seção 7.3.1, “Estabelecendo uma Política de Backup”, que faz um `backup online` e `nonblocking` (sem bloqueio).
 
-* Make periodic incremental backups by flushing the logs with `FLUSH LOGS` or **mysqladmin flush-logs**.
+*   Faça `incremental backups` periódicos fazendo o `flushing dos logs` com `FLUSH LOGS` ou `mysqladmin flush-logs`.

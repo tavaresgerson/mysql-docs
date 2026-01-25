@@ -1,9 +1,9 @@
-### 9.1.7 NULL Values
+### 9.1.7 Valores NULL
 
-The `NULL` value means “no data.” `NULL` can be written in any lettercase. A synonym is `\N` (case-sensitive). Treatment of `\N` as a synonym for `NULL` in SQL statements is deprecated as of MySQL 5.7.18 and is removed in MySQL 8.0; use `NULL` instead.
+O valor `NULL` significa “nenhum dado”. `NULL` pode ser escrito em qualquer caixa. Um sinônimo é `\N` (sensível a maiúsculas/minúsculas). O tratamento de `\N` como sinônimo para `NULL` em instruções SQL está obsoleto (deprecated) a partir do MySQL 5.7.18 e foi removido no MySQL 8.0; use `NULL` em seu lugar.
 
-Be aware that the `NULL` value is different from values such as `0` for numeric types or the empty string for string types. For more information, see Section B.3.4.3, “Problems with NULL Values”.
+Esteja ciente de que o valor `NULL` é diferente de valores como `0` para tipos numéricos ou a string vazia para tipos de string. Para mais informações, consulte a Seção B.3.4.3, “Problemas com Valores NULL”.
 
-For text file import or export operations performed with `LOAD DATA` or `SELECT ... INTO OUTFILE`, `NULL` is represented by the `\N` sequence. See Section 13.2.6, “LOAD DATA Statement”. Use of `\N` in text files is unaffected by the deprecation of `\N` in SQL statements.
+Para operações de importação ou exportação de arquivos de texto realizadas com `LOAD DATA` ou `SELECT ... INTO OUTFILE`, `NULL` é representado pela sequência `\N`. Consulte a Seção 13.2.6, “Instrução LOAD DATA”. O uso de `\N` em arquivos de texto não é afetado pela obsolescência (deprecation) de `\N` em instruções SQL.
 
-For sorting with `ORDER BY`, `NULL` values sort before other values for ascending sorts, after other values for descending sorts.
+Para ordenação com `ORDER BY`, valores `NULL` são classificados antes de outros valores em ordenações ascendentes, e depois de outros valores em ordenações descendentes.

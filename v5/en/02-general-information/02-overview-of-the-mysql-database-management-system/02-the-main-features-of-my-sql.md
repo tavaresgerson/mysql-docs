@@ -1,45 +1,37 @@
-### 1.2.2 The Main Features of MySQL
+### 1.2.2 As Principais Funcionalidades do MySQL
 
-This section describes some of the important characteristics of the MySQL Database Software. In most respects, the roadmap applies to all versions of MySQL. For information about features as they are introduced into MySQL on a series-specific basis, see the “In a Nutshell” section of the appropriate Manual:
+Esta seção descreve algumas das características importantes do Software de Database MySQL. Na maioria dos aspectos, o roteiro se aplica a todas as versões do MySQL. Para obter informações sobre funcionalidades introduzidas no MySQL em séries específicas, consulte a seção “Em Resumo” (*In a Nutshell*) do Manual apropriado:
 
-* MySQL 8.4: What Is New in MySQL 8.4 since MySQL 8.0
-* MySQL 8.0: What Is New in MySQL 8.0
-* MySQL 5.7: Section 1.3, “What Is New in MySQL 5.7”
+* MySQL 8.4: O Que Há de Novo no MySQL 8.4 desde o MySQL 8.0
+* MySQL 8.0: O Que Há de Novo no MySQL 8.0
+* MySQL 5.7: Seção 1.3, “O Que Há de Novo no MySQL 5.7”
 
-#### Internals and Portability
+#### Componentes Internos e Portabilidade
 
-* Written in C and C++.
-* Tested with a broad range of different compilers.
-* Works on many different platforms. See <https://www.mysql.com/support/supportedplatforms/database.html>.
+* Escrito em C e C++.
+* Testado com uma ampla gama de compiladores diferentes.
+* Funciona em muitas plataformas diferentes. Veja <https://www.mysql.com/support/supportedplatforms/database.html>.
+* Para portabilidade, configurado usando **CMake**.
+* Testado com Purify (um detector comercial de *memory leakage*) e também com Valgrind, uma ferramenta GPL (<https://valgrind.org/>).
+* Utiliza um design de server em múltiplas camadas com módulos independentes.
+* Projetado para ser totalmente *multithreaded* usando *kernel threads*, para utilizar facilmente múltiplos CPUs, se disponíveis.
+* Oferece *storage engines* transacionais e não transacionais.
+* Utiliza B-tree *disk tables* (`MyISAM`) muito rápidas com compressão de Index.
+* Projetado para ser relativamente fácil adicionar outros *storage engines*. Isso é útil se você deseja fornecer uma interface SQL para um Database interno (*in-house*).
+* Utiliza um sistema de alocação de memória baseado em *Thread* muito rápido.
+* Executa *joins* muito rápidos usando um *nested-loop join* otimizado.
+* Implementa *hash tables* em memória, que são usadas como tabelas temporárias.
+* Implementa funções SQL usando uma *class library* altamente otimizada, projetada para ser o mais rápida possível. Geralmente, não há alocação de memória após a inicialização da Query.
+* Fornece o server como um programa separado para uso em um ambiente de rede *client/server*.
 
-* For portability, configured using **CMake**.
-* Tested with Purify (a commercial memory leakage detector) as well as with Valgrind, a GPL tool (<https://valgrind.org/>).
+#### Tipos de Dados
 
-* Uses multi-layered server design with independent modules.
-* Designed to be fully multithreaded using kernel threads, to easily use multiple CPUs if they are available.
+* Muitos Tipos de Dados: inteiros assinados (*signed*) e não assinados (*unsigned*) de 1, 2, 3, 4 e 8 bytes de comprimento, `FLOAT` (FLOAT, DOUBLE"), `DOUBLE` (FLOAT, DOUBLE"), `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `TEXT`, `BLOB`, `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, `YEAR`, `SET`, `ENUM` e tipos espaciais OpenGIS. Consulte o Capítulo 11, *Tipos de Dados*.
+* Tipos de *string* de comprimento fixo e comprimento variável.
 
-* Provides transactional and nontransactional storage engines.
-* Uses very fast B-tree disk tables (`MyISAM`) with index compression.
+#### Statements e Funções
 
-* Designed to make it relatively easy to add other storage engines. This is useful if you want to provide an SQL interface for an in-house database.
-
-* Uses a very fast thread-based memory allocation system.
-* Executes very fast joins using an optimized nested-loop join.
-* Implements in-memory hash tables, which are used as temporary tables.
-
-* Implements SQL functions using a highly optimized class library that should be as fast as possible. Usually there is no memory allocation at all after query initialization.
-
-* Provides the server as a separate program for use in a client/server networked environment.
-
-#### Data Types
-
-* Many data types: signed/unsigned integers 1, 2, 3, 4, and 8 bytes long, `FLOAT` - FLOAT, DOUBLE"), `DOUBLE` - FLOAT, DOUBLE"), `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `TEXT`, `BLOB`, `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, `YEAR`, `SET`, `ENUM`, and OpenGIS spatial types. See Chapter 11, *Data Types*.
-
-* Fixed-length and variable-length string types.
-
-#### Statements and Functions
-
-* Full operator and function support in the `SELECT` list and `WHERE` clause of queries. For example:
+* Suporte completo a operadores e funções na lista `SELECT` e na cláusula `WHERE` das *queries*. Por exemplo:
 
   ```sql
   mysql> SELECT CONCAT(first_name, ' ', last_name)
@@ -47,68 +39,53 @@ This section describes some of the important characteristics of the MySQL Databa
       -> WHERE income/dependents > 10000 AND age > 30;
   ```
 
-* Full support for SQL `GROUP BY` and `ORDER BY` clauses. Support for group functions (`COUNT()`, `AVG()`, `STD()`, `SUM()`, `MAX()`, `MIN()`, and `GROUP_CONCAT()`).
+* Suporte completo para as cláusulas SQL `GROUP BY` e `ORDER BY`. Suporte para funções de grupo (`COUNT()`, `AVG()`, `STD()`, `SUM()`, `MAX()`, `MIN()` e `GROUP_CONCAT()`).
+* Suporte para `LEFT OUTER JOIN` e `RIGHT OUTER JOIN` com sintaxe SQL padrão e ODBC.
+* Suporte para *aliases* em tabelas e colunas, conforme exigido pelo SQL padrão.
+* Suporte para `DELETE`, `INSERT`, `REPLACE` e `UPDATE` para retornar o número de linhas que foram alteradas (afetadas), ou para retornar o número de linhas correspondentes em vez disso, definindo um *flag* ao conectar-se ao server.
+* Suporte para *statements* `SHOW` específicos do MySQL que recuperam informações sobre Databases, *storage engines*, tabelas e Indexes. Suporte para o Database `INFORMATION_SCHEMA`, implementado de acordo com o SQL padrão.
+* Um *statement* `EXPLAIN` para mostrar como o *optimizer* resolve uma Query.
+* Independência de nomes de função em relação a nomes de tabelas ou colunas. Por exemplo, `ABS` é um nome de coluna válido. A única restrição é que, para uma chamada de função, não são permitidos espaços entre o nome da função e o “`(`” que a segue. Consulte a Seção 9.3, “Palavras-Chave e Palavras Reservadas”.
+* É possível fazer referência a tabelas de Databases diferentes no mesmo *statement*.
 
-* Support for `LEFT OUTER JOIN` and `RIGHT OUTER JOIN` with both standard SQL and ODBC syntax.
+#### Segurança
 
-* Support for aliases on tables and columns as required by standard SQL.
+* Um sistema de privilégios e senhas muito flexível e seguro, que permite verificação baseada em *host*.
+* Segurança de senha por meio de criptografia de todo o tráfego de senhas ao conectar-se a um server.
 
-* Support for `DELETE`, `INSERT`, `REPLACE`, and `UPDATE` to return the number of rows that were changed (affected), or to return the number of rows matched instead by setting a flag when connecting to the server.
+#### Escalabilidade e Limites
 
-* Support for MySQL-specific `SHOW` statements that retrieve information about databases, storage engines, tables, and indexes. Support for the `INFORMATION_SCHEMA` database, implemented according to standard SQL.
+* Suporte para Databases grandes. Utilizamos o MySQL Server com Databases que contêm 50 milhões de registros. Também temos conhecimento de usuários que utilizam o MySQL Server com 200.000 tabelas e cerca de 5.000.000.000 de linhas.
+* Suporte para até 64 Indexes por tabela. Cada Index pode consistir de 1 a 16 colunas ou partes de colunas. A largura máxima do Index para tabelas `InnoDB` é de 767 bytes ou 3072 bytes. Consulte a Seção 14.23, “Limites do InnoDB”. A largura máxima do Index para tabelas `MyISAM` é de 1000 bytes. Consulte a Seção 15.2, “O Storage Engine MyISAM”. Um Index pode usar um prefixo de coluna para os tipos de coluna `CHAR`, `VARCHAR`, `BLOB` ou `TEXT`.
 
-* An `EXPLAIN` statement to show how the optimizer resolves a query.
+#### Conectividade
 
-* Independence of function names from table or column names. For example, `ABS` is a valid column name. The only restriction is that for a function call, no spaces are permitted between the function name and the “`(`” that follows it. See Section 9.3, “Keywords and Reserved Words”.
+* Clientes podem se conectar ao MySQL Server usando diversos protocolos:
 
-* You can refer to tables from different databases in the same statement.
+  + Clientes podem se conectar usando *TCP/IP sockets* em qualquer plataforma.
+  + Em sistemas Windows, os clientes podem se conectar usando *named pipes* se o server for iniciado com a variável de sistema `named_pipe` habilitada. Servidores Windows também suportam conexões de *shared-memory* se iniciados com a variável de sistema `shared_memory` habilitada. Os clientes podem se conectar através de *shared memory* usando a opção `--protocol=memory`.
+  + Em sistemas Unix, os clientes podem se conectar usando arquivos *Unix domain socket*.
 
-#### Security
+* Programas cliente MySQL podem ser escritos em muitas linguagens. Uma *client library* escrita em C está disponível para clientes escritos em C ou C++, ou para qualquer linguagem que forneça *C bindings*.
 
-* A privilege and password system that is very flexible and secure, and that enables host-based verification.
+* APIs para C, C++, Eiffel, Java, Perl, PHP, Python, Ruby e Tcl estão disponíveis, permitindo que clientes MySQL sejam escritos em muitas linguagens. Consulte o Capítulo 27, *Connectors e APIs*.
 
-* Password security by encryption of all password traffic when you connect to a server.
+* A interface Connector/ODBC (MyODBC) fornece suporte MySQL para programas cliente que usam conexões ODBC (*Open Database Connectivity*). Por exemplo, você pode usar o MS Access para se conectar ao seu MySQL server. Clientes podem ser executados no Windows ou Unix. O código-fonte do Connector/ODBC está disponível. Todas as funções ODBC 2.5 são suportadas, assim como muitas outras. Consulte o Guia do Desenvolvedor do MySQL Connector/ODBC.
 
-#### Scalability and Limits
+* A interface Connector/J fornece suporte MySQL para programas cliente Java que usam conexões JDBC. Clientes podem ser executados no Windows ou Unix. O código-fonte do Connector/J está disponível. Consulte o Guia do Desenvolvedor do MySQL Connector/J.
 
-* Support for large databases. We use MySQL Server with databases that contain 50 million records. We also know of users who use MySQL Server with 200,000 tables and about 5,000,000,000 rows.
+* O MySQL Connector/NET permite que desenvolvedores criem facilmente aplicações .NET que exigem conectividade de dados segura e de alto desempenho com o MySQL. Ele implementa as interfaces ADO.NET necessárias e se integra a ferramentas compatíveis com ADO.NET. Os desenvolvedores podem criar aplicações usando a linguagem .NET de sua escolha. O MySQL Connector/NET é um *driver* ADO.NET totalmente gerenciado, escrito 100% em C# puro. Consulte o Guia do Desenvolvedor do MySQL Connector/NET.
 
-* Support for up to 64 indexes per table. Each index may consist of 1 to 16 columns or parts of columns. The maximum index width for `InnoDB` tables is either 767 bytes or 3072 bytes. See Section 14.23, “InnoDB Limits”. The maximum index width for `MyISAM` tables is 1000 bytes. See Section 15.2, “The MyISAM Storage Engine”. An index may use a prefix of a column for `CHAR`, `VARCHAR`, `BLOB`, or `TEXT` column types.
+#### Localização
 
-#### Connectivity
+* O server pode fornecer mensagens de erro aos clientes em vários idiomas. Consulte a Seção 10.12, “Configurando o Idioma das Mensagens de Erro”.
+* Suporte completo para vários *character sets* diferentes, incluindo `latin1` (cp1252), `german`, `big5`, `ujis`, vários *character sets* Unicode e mais. Por exemplo, os caracteres escandinavos “`å`”, “`ä`” e “`ö`” são permitidos em nomes de tabelas e colunas.
+* Todos os dados são salvos no *character set* escolhido.
+* A classificação (*sorting*) e as comparações são feitas de acordo com o *character set* e *collation* padrão. É possível alterar isso quando o MySQL server é iniciado (consulte a Seção 10.3.2, “Character Set e Collation do Server”). Para ver um exemplo de classificação muito avançada, consulte o código de classificação tcheco. O MySQL Server suporta muitos *character sets* diferentes que podem ser especificados em tempo de compilação e *runtime*.
+* O *time zone* do server pode ser alterado dinamicamente, e clientes individuais podem especificar seu próprio *time zone*. Consulte a Seção 5.1.13, “Suporte a Time Zone do MySQL Server”.
 
-* Clients can connect to MySQL Server using several protocols:
+#### Clientes e Ferramentas
 
-  + Clients can connect using TCP/IP sockets on any platform.
-  + On Windows systems, clients can connect using named pipes if the server is started with the `named_pipe` system variable enabled. Windows servers also support shared-memory connections if started with the `shared_memory` system variable enabled. Clients can connect through shared memory by using the `--protocol=memory` option.
-
-  + On Unix systems, clients can connect using Unix domain socket files.
-
-* MySQL client programs can be written in many languages. A client library written in C is available for clients written in C or C++, or for any language that provides C bindings.
-
-* APIs for C, C++, Eiffel, Java, Perl, PHP, Python, Ruby, and Tcl are available, enabling MySQL clients to be written in many languages. See Chapter 27, *Connectors and APIs*.
-
-* The Connector/ODBC (MyODBC) interface provides MySQL support for client programs that use ODBC (Open Database Connectivity) connections. For example, you can use MS Access to connect to your MySQL server. Clients can be run on Windows or Unix. Connector/ODBC source is available. All ODBC 2.5 functions are supported, as are many others. See MySQL Connector/ODBC Developer Guide.
-
-* The Connector/J interface provides MySQL support for Java client programs that use JDBC connections. Clients can be run on Windows or Unix. Connector/J source is available. See MySQL Connector/J Developer Guide.
-
-* MySQL Connector/NET enables developers to easily create .NET applications that require secure, high-performance data connectivity with MySQL. It implements the required ADO.NET interfaces and integrates into ADO.NET aware tools. Developers can build applications using their choice of .NET languages. MySQL Connector/NET is a fully managed ADO.NET driver written in 100% pure C#. See MySQL Connector/NET Developer Guide.
-
-#### Localization
-
-* The server can provide error messages to clients in many languages. See Section 10.12, “Setting the Error Message Language”.
-
-* Full support for several different character sets, including `latin1` (cp1252), `german`, `big5`, `ujis`, several Unicode character sets, and more. For example, the Scandinavian characters “`å`”, “`ä`” and “`ö`” are permitted in table and column names.
-
-* All data is saved in the chosen character set.
-* Sorting and comparisons are done according to the default character set and collation. It is possible to change this when the MySQL server is started (see Section 10.3.2, “Server Character Set and Collation”). To see an example of very advanced sorting, look at the Czech sorting code. MySQL Server supports many different character sets that can be specified at compile time and runtime.
-
-* The server time zone can be changed dynamically, and individual clients can specify their own time zone. See Section 5.1.13, “MySQL Server Time Zone Support”.
-
-#### Clients and Tools
-
-* MySQL includes several client and utility programs. These include both command-line programs such as **mysqldump** and **mysqladmin**, and graphical programs such as MySQL Workbench.
-
-* MySQL Server has built-in support for SQL statements to check, optimize, and repair tables. These statements are available from the command line through the **mysqlcheck** client. MySQL also includes **myisamchk**, a very fast command-line utility for performing these operations on `MyISAM` tables. See Chapter 4, *MySQL Programs*.
-
-* MySQL programs can be invoked with the `--help` or `-?` option to obtain online assistance.
+* O MySQL inclui vários programas cliente e de utilidade. Isso inclui tanto programas de linha de comando, como **mysqldump** e **mysqladmin**, quanto programas gráficos, como o MySQL Workbench.
+* O MySQL Server tem suporte nativo (*built-in*) para *statements* SQL para verificar, otimizar e reparar tabelas. Esses *statements* estão disponíveis a partir da linha de comando através do cliente **mysqlcheck**. O MySQL também inclui o **myisamchk**, um utilitário de linha de comando muito rápido para realizar essas operações em tabelas `MyISAM`. Consulte o Capítulo 4, *Programas MySQL*.
+* Programas MySQL podem ser invocados com a opção `--help` ou `-?` para obter assistência online.

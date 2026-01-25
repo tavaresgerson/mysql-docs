@@ -1,28 +1,28 @@
-#### 1.6.2.4 '--' as the Start of a Comment
+#### 1.6.2.4 '--' como o Início de um Comentário
 
-Standard SQL uses the C syntax `/* this is a comment */` for comments, and MySQL Server supports this syntax as well. MySQL also support extensions to this syntax that enable MySQL-specific SQL to be embedded in the comment; see Section 9.6, “Comments”.
+O SQL Padrão usa a sintaxe C `/* this is a comment */` para comentários, e o MySQL Server também suporta essa sintaxe. O MySQL também suporta extensões a essa sintaxe que permitem que SQL específico do MySQL seja incorporado no comentário; veja Seção 9.6, “Comentários”.
 
-MySQL Server also uses `#` as the start comment character. This is nonstandard.
+O MySQL Server também usa `#` como o caractere de início de Comment. Isso não é padrão.
 
-Standard SQL also uses “`--`” as a start-comment sequence. MySQL Server supports a variant of the `--` comment style; the `--` start-comment sequence is accepted as such, but must be followed by a whitespace character such as a space or newline. The space is intended to prevent problems with generated SQL queries that use constructs such as the following, which updates the balance to reflect a charge:
+O SQL Padrão também usa “`--`” como uma sequência de início de Comment. O MySQL Server suporta uma variante do estilo de Comment `--`; a sequência de início de Comment `--` é aceita como tal, mas deve ser seguida por um caractere de espaço em branco (whitespace character), como um espaço ou uma quebra de linha (newline). O espaço visa prevenir problemas com Queries SQL geradas que utilizam construções como a seguinte, que atualiza o `balance` para refletir um `charge`:
 
 ```sql
 UPDATE account SET balance=balance-charge
 WHERE account_id=user_id
 ```
 
-Consider what happens when `charge` has a negative value such as `-1`, which might be the case when an amount is credited to the account. In this case, the generated statement looks like this:
+Considere o que acontece quando `charge` tem um valor negativo, como `-1`, o que pode ser o caso quando um valor é creditado na conta. Neste caso, o Statement gerado se parece com isto:
 
 ```sql
 UPDATE account SET balance=balance--1
 WHERE account_id=5752;
 ```
 
-`balance--1` is valid standard SQL, but `--` is interpreted as the start of a comment, and part of the expression is discarded. The result is a statement that has a completely different meaning than intended:
+`balance--1` é SQL Padrão válido, mas `--` é interpretado como o início de um Comment, e parte da Expression é descartada. O resultado é um Statement que tem um significado completamente diferente do pretendido:
 
 ```sql
 UPDATE account SET balance=balance
 WHERE account_id=5752;
 ```
 
-This statement produces no change in value at all. To keep this from happening, MySQL requires a whitespace character following the `--` for it to be recognized as a start-comment sequence in MySQL Server, so that an expression such as `balance--1` is always safe to use.
+Este Statement não produz alteração alguma no valor. Para evitar que isso aconteça, o MySQL exige um caractere de espaço em branco (whitespace character) após o `--` para que seja reconhecido como uma sequência de início de Comment no MySQL Server, garantindo que uma Expression como `balance--1` seja sempre segura de usar.

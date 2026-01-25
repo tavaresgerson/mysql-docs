@@ -1,7 +1,7 @@
-### 8.15.9 The end_markers_in_json System Variable
+### 8.15.9 A Variável de Sistema end_markers_in_json
 
-When reading a very large JSON document, it can be difficult to pair its closing bracket and opening brackets; setting `end_markers_in_json=ON` repeats the structure's key, if it has one, near the closing bracket. This variable affects both optimizer traces and the output of `EXPLAIN FORMAT=JSON`.
+Ao ler um documento JSON muito grande, pode ser difícil parear seu colchete de fechamento com os colchetes de abertura; definir `end_markers_in_json=ON` repete a chave da estrutura, se houver uma, perto do colchete de fechamento. Esta variável afeta tanto os *traces* do otimizador quanto a saída de `EXPLAIN FORMAT=JSON`.
 
-Note
+Nota
 
-If `end_markers_in_json` is enabled, the repetition of the key means the result is not a valid JSON document, and causes JSON parsers to throw an error.
+Se `end_markers_in_json` estiver habilitada, a repetição da chave significa que o resultado não é um documento JSON válido e faz com que os *parsers* JSON lancem um erro.

@@ -1,79 +1,78 @@
-#### 8.2.1.11 Block Nested-Loop and Batched Key Access Joins
+#### 8.2.1.11 Block Nested-Loop e Batched Key Access Joins
 
-In MySQL, a Batched Key Access (BKA) Join algorithm is available that uses both index access to the joined table and a join buffer. The BKA algorithm supports inner join, outer join, and semijoin operations, including nested outer joins. Benefits of BKA include improved join performance due to more efficient table scanning. Also, the Block Nested-Loop (BNL) Join algorithm previously used only for inner joins is extended and can be employed for outer join and semijoin operations, including nested outer joins.
+Em MySQL, está disponível um algoritmo de JOIN chamado Batched Key Access (BKA), que utiliza tanto o acesso por Index à tabela unida quanto um join buffer. O algoritmo BKA suporta operações de inner join, outer join e semijoin, incluindo nested outer joins. Os benefícios do BKA incluem melhor desempenho de JOIN devido a uma varredura de tabela mais eficiente. Além disso, o algoritmo Block Nested-Loop (BNL) Join, que era usado anteriormente apenas para inner joins, foi estendido e pode ser empregado para operações de outer join e semijoin, incluindo nested outer joins.
 
-The following sections discuss the join buffer management that underlies the extension of the original BNL algorithm, the extended BNL algorithm, and the BKA algorithm. For information about semijoin strategies, see Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”
+As seções a seguir discutem o gerenciamento do join buffer que sustenta a extensão do algoritmo BNL original, o algoritmo BNL estendido e o algoritmo BKA. Para obter informações sobre estratégias de semijoin, consulte a Seção 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”.
 
-* Join Buffer Management for Block Nested-Loop and Batched Key Access Algorithms
-
-* Block Nested-Loop Algorithm for Outer Joins and Semijoins
+* Gerenciamento de Join Buffer para Algoritmos Block Nested-Loop e Batched Key Access
+* Algoritmo Block Nested-Loop para Outer Joins e Semijoins
 * Batched Key Access Joins
-* Optimizer Hints for Block Nested-Loop and Batched Key Access Algorithms
+* Optimizer Hints para Algoritmos Block Nested-Loop e Batched Key Access
 
-##### Join Buffer Management for Block Nested-Loop and Batched Key Access Algorithms
+##### Gerenciamento de Join Buffer para Algoritmos Block Nested-Loop e Batched Key Access
 
-MySQL can employ join buffers to execute not only inner joins without index access to the inner table, but also outer joins and semijoins that appear after subquery flattening. Moreover, a join buffer can be effectively used when there is an index access to the inner table.
+O MySQL pode empregar join buffers para executar não apenas inner joins sem acesso por Index à tabela interna, mas também outer joins e semijoins que aparecem após o *flattening* (achatamento) da subquery. Além disso, um join buffer pode ser usado de forma eficaz quando há um acesso por Index à tabela interna.
 
-The join buffer management code slightly more efficiently utilizes join buffer space when storing the values of the interesting row columns: No additional bytes are allocated in buffers for a row column if its value is `NULL`, and the minimum number of bytes is allocated for any value of the `VARCHAR` type.
+O código de gerenciamento do join buffer utiliza o espaço do join buffer de forma ligeiramente mais eficiente ao armazenar os valores das colunas de linhas relevantes: Nenhum byte adicional é alocado no buffer para uma coluna de linha se seu valor for `NULL`, e o número mínimo de bytes é alocado para qualquer valor do tipo `VARCHAR`.
 
-The code supports two types of buffers, regular and incremental. Suppose that join buffer `B1` is employed to join tables `t1` and `t2` and the result of this operation is joined with table `t3` using join buffer `B2`:
+O código suporta dois tipos de buffers: regular e incremental. Suponha que o join buffer `B1` seja empregado para unir as tabelas `t1` e `t2`, e o resultado desta operação seja unido à tabela `t3` usando o join buffer `B2`:
 
-* A regular join buffer contains columns from each join operand. If `B2` is a regular join buffer, each row *`r`* put into `B2` is composed of the columns of a row *`r1`* from `B1` and the interesting columns of a matching row *`r2`* from table `t3`.
+* Um join buffer regular contém colunas de cada operando do JOIN. Se `B2` for um join buffer regular, cada linha *`r`* inserida em `B2` é composta pelas colunas de uma linha *`r1`* de `B1` e pelas colunas relevantes de uma linha correspondente *`r2`* da tabela `t3`.
 
-* An incremental join buffer contains only columns from rows of the table produced by the second join operand. That is, it is incremental to a row from the first operand buffer. If `B2` is an incremental join buffer, it contains the interesting columns of the row *`r2`* together with a link to the row *`r1`* from `B1`.
+* Um join buffer incremental contém apenas colunas de linhas produzidas pelo segundo operando do JOIN. Ou seja, ele é incremental em relação a uma linha do buffer do primeiro operando. Se `B2` for um join buffer incremental, ele contém as colunas relevantes da linha *`r2`* juntamente com um link para a linha *`r1`* de `B1`.
 
-Incremental join buffers are always incremental relative to a join buffer from an earlier join operation, so the buffer from the first join operation is always a regular buffer. In the example just given, the buffer `B1` used to join tables `t1` and `t2` must be a regular buffer.
+Buffers incrementais são sempre incrementais em relação a um join buffer de uma operação de JOIN anterior, portanto, o buffer da primeira operação de JOIN é sempre um buffer regular. No exemplo dado, o buffer `B1` usado para unir as tabelas `t1` e `t2` deve ser um buffer regular.
 
-Each row of the incremental buffer used for a join operation contains only the interesting columns of a row from the table to be joined. These columns are augmented with a reference to the interesting columns of the matched row from the table produced by the first join operand. Several rows in the incremental buffer can refer to the same row *`r`* whose columns are stored in the previous join buffers insofar as all these rows match row *`r`*.
+Cada linha do buffer incremental usada para uma operação de JOIN contém apenas as colunas relevantes de uma linha da tabela a ser unida. Essas colunas são complementadas com uma referência às colunas relevantes da linha correspondente do resultado da primeira operação de JOIN. Várias linhas no buffer incremental podem se referir à mesma linha *`r`* cujas colunas estão armazenadas nos buffers anteriores na medida em que todas essas linhas correspondem à linha *`r`*.
 
-Incremental buffers enable less frequent copying of columns from buffers used for previous join operations. This provides a savings in buffer space because in the general case a row produced by the first join operand can be matched by several rows produced by the second join operand. It is unnecessary to make several copies of a row from the first operand. Incremental buffers also provide a savings in processing time due to the reduction in copying time.
+Buffers incrementais permitem uma cópia menos frequente de colunas dos buffers usados para operações de JOIN anteriores. Isso proporciona economia de espaço no buffer porque, no caso geral, uma linha produzida pelo primeiro operando do JOIN pode ser correspondida por várias linhas produzidas pelo segundo operando do JOIN. Não é necessário fazer várias cópias de uma linha do primeiro operando. Buffers incrementais também proporcionam economia no tempo de processamento devido à redução no tempo de cópia.
 
-The `block_nested_loop` and `batched_key_access` flags of the `optimizer_switch` system variable control how the optimizer uses the Block Nested-Loop and Batched Key Access join algorithms. By default, `block_nested_loop` is `on` and `batched_key_access` is `off`. See Section 8.9.2, “Switchable Optimizations”. Optimizer hints may also be applied; see Optimizer Hints for Block Nested-Loop and Batched Key Access Algorithms.
+As flags `block_nested_loop` e `batched_key_access` da variável de sistema `optimizer_switch` controlam como o otimizador usa os algoritmos Block Nested-Loop e Batched Key Access Join. Por padrão, `block_nested_loop` está `on` e `batched_key_access` está `off`. Consulte a Seção 8.9.2, “Switchable Optimizations”. Optimizer hints também podem ser aplicados; consulte Optimizer Hints para Algoritmos Block Nested-Loop e Batched Key Access.
 
-For information about semijoin strategies, see Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”
+Para obter informações sobre estratégias de semijoin, consulte a Seção 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”.
 
-##### Block Nested-Loop Algorithm for Outer Joins and Semijoins
+##### Algoritmo Block Nested-Loop para Outer Joins e Semijoins
 
-The original implementation of the MySQL BNL algorithm is extended to support outer join and semijoin operations.
+A implementação original do algoritmo BNL do MySQL foi estendida para suportar operações de outer join e semijoin.
 
-When these operations are executed with a join buffer, each row put into the buffer is supplied with a match flag.
+Quando estas operações são executadas com um join buffer, cada linha inserida no buffer é fornecida com uma flag de correspondência (*match flag*).
 
-If an outer join operation is executed using a join buffer, each row of the table produced by the second operand is checked for a match against each row in the join buffer. When a match is found, a new extended row is formed (the original row plus columns from the second operand) and sent for further extensions by the remaining join operations. In addition, the match flag of the matched row in the buffer is enabled. After all rows of the table to be joined have been examined, the join buffer is scanned. Each row from the buffer that does not have its match flag enabled is extended by `NULL` complements (`NULL` values for each column in the second operand) and sent for further extensions by the remaining join operations.
+Se uma operação de outer join for executada usando um join buffer, cada linha da tabela produzida pelo segundo operando é verificada quanto à correspondência em relação a cada linha no join buffer. Quando uma correspondência é encontrada, uma nova linha estendida é formada (a linha original mais as colunas do segundo operando) e enviada para extensões adicionais pelas operações de JOIN restantes. Além disso, a *match flag* da linha correspondida no buffer é habilitada. Depois que todas as linhas da tabela a ser unida tiverem sido examinadas, o join buffer é varrido. Cada linha do buffer que não tem sua *match flag* habilitada é estendida com complementos `NULL` (valores `NULL` para cada coluna no segundo operando) e enviada para extensões adicionais pelas operações de JOIN restantes.
 
-The `block_nested_loop` flag of the `optimizer_switch` system variable controls how the optimizer uses the Block Nested-Loop algorithm. By default, `block_nested_loop` is `on`. See Section 8.9.2, “Switchable Optimizations”. Optimizer hints may also be applied; see Optimizer Hints for Block Nested-Loop and Batched Key Access Algorithms.
+A flag `block_nested_loop` da variável de sistema `optimizer_switch` controla como o otimizador usa o algoritmo Block Nested-Loop. Por padrão, `block_nested_loop` está `on`. Consulte a Seção 8.9.2, “Switchable Optimizations”. Optimizer hints também podem ser aplicados; consulte Optimizer Hints para Algoritmos Block Nested-Loop e Batched Key Access.
 
-In `EXPLAIN` output, use of BNL for a table is signified when the `Extra` value contains `Using join buffer (Block Nested Loop)` and the `type` value is `ALL`, `index`, or `range`.
+Na saída do `EXPLAIN`, o uso de BNL para uma tabela é sinalizado quando o valor `Extra` contém `Using join buffer (Block Nested Loop)` e o valor `type` é `ALL`, `index` ou `range`.
 
-Some cases involving the combination of one or more subqueries with one or more left joins, particularly those returning many rows, may use BNL even though it is not ideal in such instances. This is a known issue which is fixed in MySQL 8.0. If upgrading MySQL is not immediately feasible for you, you may wish to disable BNL in the meantime by setting `optimizer_switch='block_nested_loop=off'` or employing the `NO_BNL` optimizer hint to let the optimizer choose a better plan, using one or more index hints (see Section 8.9.4, “Index Hints”), or some combination of these, to improve the performance of such queries.
+Alguns casos envolvendo a combinação de uma ou mais subqueries com um ou mais left joins, particularmente aqueles que retornam muitas linhas, podem usar BNL mesmo que não seja o ideal nessas instâncias. Este é um problema conhecido que foi corrigido no MySQL 8.0. Se a atualização do MySQL não for imediatamente viável para você, pode ser útil desabilitar o BNL temporariamente, definindo `optimizer_switch='block_nested_loop=off'` ou empregando o optimizer hint `NO_BNL` para permitir que o otimizador escolha um plano melhor, usando uma ou mais *index hints* (consulte a Seção 8.9.4, “Index Hints”), ou alguma combinação destes, para melhorar o desempenho dessas Queries.
 
-For information about semijoin strategies, see Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”
+Para obter informações sobre estratégias de semijoin, consulte a Seção 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”.
 
 ##### Batched Key Access Joins
 
-MySQL implements a method of joining tables called the Batched Key Access (BKA) join algorithm. BKA can be applied when there is an index access to the table produced by the second join operand. Like the BNL join algorithm, the BKA join algorithm employs a join buffer to accumulate the interesting columns of the rows produced by the first operand of the join operation. Then the BKA algorithm builds keys to access the table to be joined for all rows in the buffer and submits these keys in a batch to the database engine for index lookups. The keys are submitted to the engine through the Multi-Range Read (MRR) interface (see Section 8.2.1.10, “Multi-Range Read Optimization”). After submission of the keys, the MRR engine functions perform lookups in the index in an optimal way, fetching the rows of the joined table found by these keys, and starts feeding the BKA join algorithm with matching rows. Each matching row is coupled with a reference to a row in the join buffer.
+O MySQL implementa um método de união de tabelas chamado algoritmo Batched Key Access (BKA) join. O BKA pode ser aplicado quando há um acesso por Index à tabela produzida pelo segundo operando do JOIN. Assim como o algoritmo BNL join, o algoritmo BKA join emprega um join buffer para acumular as colunas relevantes das linhas produzidas pelo primeiro operando da operação de JOIN. Em seguida, o algoritmo BKA constrói Keys para acessar a tabela a ser unida para todas as linhas no buffer e submete essas Keys em um *batch* ao Database Engine para *index lookups* (buscas de Index). As Keys são submetidas ao Engine por meio da interface Multi-Range Read (MRR) (consulte a Seção 8.2.1.10, “Multi-Range Read Optimization”). Após a submissão das Keys, as funções MRR do Engine executam *lookups* no Index de maneira ideal, buscando as linhas da tabela unida encontradas por essas Keys, e começam a alimentar o algoritmo BKA join com as linhas correspondentes. Cada linha correspondente é acoplada a uma referência a uma linha no join buffer.
 
-When BKA is used, the value of `join_buffer_size` defines how large the batch of keys is in each request to the storage engine. The larger the buffer, the more sequential access is made to the right hand table of a join operation, which can significantly improve performance.
+Quando o BKA é usado, o valor de `join_buffer_size` define o tamanho do *batch* de Keys em cada solicitação ao Storage Engine. Quanto maior o buffer, mais acesso sequencial é feito à tabela da direita de uma operação de JOIN, o que pode melhorar significativamente o desempenho.
 
-For BKA to be used, the `batched_key_access` flag of the `optimizer_switch` system variable must be set to `on`. BKA uses MRR, so the `mrr` flag must also be `on`. Currently, the cost estimation for MRR is too pessimistic. Hence, it is also necessary for `mrr_cost_based` to be `off` for BKA to be used. The following setting enables BKA:
+Para que o BKA seja usado, a flag `batched_key_access` da variável de sistema `optimizer_switch` deve ser definida como `on`. O BKA usa MRR, portanto, a flag `mrr` também deve estar `on`. Atualmente, a estimativa de custo para MRR é muito pessimista. Portanto, também é necessário que `mrr_cost_based` esteja `off` para que o BKA seja usado. A seguinte configuração habilita o BKA:
 
 ```sql
 mysql> SET optimizer_switch='mrr=on,mrr_cost_based=off,batched_key_access=on';
 ```
 
-There are two scenarios by which MRR functions execute:
+Existem dois cenários pelos quais as funções MRR são executadas:
 
-* The first scenario is used for conventional disk-based storage engines such as `InnoDB` and `MyISAM`. For these engines, usually the keys for all rows from the join buffer are submitted to the MRR interface at once. Engine-specific MRR functions perform index lookups for the submitted keys, get row IDs (or primary keys) from them, and then fetch rows for all these selected row IDs one by one by request from BKA algorithm. Every row is returned with an association reference that enables access to the matched row in the join buffer. The rows are fetched by the MRR functions in an optimal way: They are fetched in the row ID (primary key) order. This improves performance because reads are in disk order rather than random order.
+* O primeiro cenário é usado para Storage Engines convencionais baseados em disco, como `InnoDB` e `MyISAM`. Para esses Engines, geralmente as Keys para todas as linhas do join buffer são submetidas à interface MRR de uma vez. As funções MRR específicas do Engine realizam *index lookups* para as Keys submetidas, obtêm IDs de linha (ou Primary Keys) a partir delas e, em seguida, buscam as linhas para todos esses IDs de linha selecionados, um por um, por solicitação do algoritmo BKA. Cada linha é retornada com uma referência de associação que permite o acesso à linha correspondente no join buffer. As linhas são buscadas pelas funções MRR de maneira ideal: Elas são buscadas na ordem do ID da linha (Primary Key). Isso melhora o desempenho porque as leituras estão na ordem do disco, em vez de em ordem aleatória.
 
-* The second scenario is used for remote storage engines such as `NDB`. A package of keys for a portion of rows from the join buffer, together with their associations, is sent by a MySQL Server (SQL node) to NDB Cluster data nodes. In return, the SQL node receives a package (or several packages) of matching rows coupled with corresponding associations. The BKA join algorithm takes these rows and builds new joined rows. Then a new set of keys is sent to the data nodes and the rows from the returned packages are used to build new joined rows. The process continues until the last keys from the join buffer are sent to the data nodes, and the SQL node has received and joined all rows matching these keys. This improves performance because fewer key-bearing packages sent by the SQL node to the data nodes means fewer round trips between it and the data nodes to perform the join operation.
+* O segundo cenário é usado para Storage Engines remotos, como `NDB`. Um pacote de Keys para uma porção de linhas do join buffer, juntamente com suas associações, é enviado por um MySQL Server (SQL node) para os Data Nodes do NDB Cluster. Em troca, o SQL node recebe um pacote (ou vários pacotes) de linhas correspondentes acopladas às associações correspondentes. O algoritmo BKA join pega essas linhas e constrói novas linhas unidas. Em seguida, um novo conjunto de Keys é enviado aos Data Nodes e as linhas dos pacotes retornados são usadas para construir novas linhas unidas. O processo continua até que as últimas Keys do join buffer sejam enviadas aos Data Nodes, e o SQL node tenha recebido e unido todas as linhas que correspondem a essas Keys. Isso melhora o desempenho porque menos pacotes contendo Keys enviados pelo SQL node aos Data Nodes significam menos *round trips* entre ele e os Data Nodes para realizar a operação de JOIN.
 
-With the first scenario, a portion of the join buffer is reserved to store row IDs (primary keys) selected by index lookups and passed as a parameter to the MRR functions.
+Com o primeiro cenário, uma parte do join buffer é reservada para armazenar IDs de linha (Primary Keys) selecionadas por *index lookups* e passadas como parâmetro para as funções MRR.
 
-There is no special buffer to store keys built for rows from the join buffer. Instead, a function that builds the key for the next row in the buffer is passed as a parameter to the MRR functions.
+Não há um buffer especial para armazenar Keys construídas para linhas do join buffer. Em vez disso, uma função que constrói a Key para a próxima linha no buffer é passada como parâmetro para as funções MRR.
 
-In `EXPLAIN` output, use of BKA for a table is signified when the `Extra` value contains `Using join buffer (Batched Key Access)` and the `type` value is `ref` or `eq_ref`.
+Na saída do `EXPLAIN`, o uso de BKA para uma tabela é sinalizado quando o valor `Extra` contém `Using join buffer (Batched Key Access)` e o valor `type` é `ref` ou `eq_ref`.
 
-##### Optimizer Hints for Block Nested-Loop and Batched Key Access Algorithms
+##### Optimizer Hints para Algoritmos Block Nested-Loop e Batched Key Access
 
-In addition to using the `optimizer_switch` system variable to control optimizer use of the BNL and BKA algorithms session-wide, MySQL supports optimizer hints to influence the optimizer on a per-statement basis. See Section 8.9.3, “Optimizer Hints”.
+Além de usar a variável de sistema `optimizer_switch` para controlar o uso dos algoritmos BNL e BKA pelo otimizador em nível de sessão, o MySQL suporta *optimizer hints* para influenciar o otimizador por instrução. Consulte a Seção 8.9.3, “Optimizer Hints”.
 
-To use a BNL or BKA hint to enable join buffering for any inner table of an outer join, join buffering must be enabled for all inner tables of the outer join.
+Para usar um hint BNL ou BKA para habilitar o *join buffering* para qualquer tabela interna de um outer join, o *join buffering* deve ser habilitado para todas as tabelas internas do outer join.

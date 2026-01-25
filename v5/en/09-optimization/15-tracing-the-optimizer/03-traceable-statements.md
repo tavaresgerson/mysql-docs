@@ -1,24 +1,24 @@
-### 8.15.3 Traceable Statements
+### 8.15.3 Instruções Rastreáveis
 
-Statements which are traceable are listed here:
+As instruções que podem ser rastreadas estão listadas aqui:
 
 * `SELECT`
 * `INSERT`
 * `REPLACE`
 * `UPDATE`
 * `DELETE`
-* `EXPLAIN` with any of the preceding statements
+* `EXPLAIN` com qualquer uma das instruções precedentes
 
 * `SET`
 * `DO`
-* `DECLARE`, `CASE`, `IF`, and `RETURN` as used in stored routines
+* `DECLARE`, `CASE`, `IF` e `RETURN` conforme usadas em rotinas armazenadas
 
 * `CALL`
 
-Tracing is supported for both `INSERT` and `REPLACE` statements using `VALUES`, `VALUES ROW`, or `SELECT`.
+O rastreamento (Tracing) é suportado para as instruções `INSERT` e `REPLACE` que utilizam `VALUES`, `VALUES ROW` ou `SELECT`.
 
-Traces of multi-table `UPDATE` and `DELETE` statements are supported.
+Rastros (Traces) de instruções `UPDATE` e `DELETE` de múltiplas tabelas são suportados.
 
-Tracing of `SET optimizer_trace` is not supported.
+O rastreamento de `SET optimizer_trace` não é suportado.
 
-For statements which are prepared and executed in separate steps, preparation and execution are traced separately.
+Para instruções que são preparadas e executadas em etapas separadas, a preparação e a execução são rastreadas separadamente.

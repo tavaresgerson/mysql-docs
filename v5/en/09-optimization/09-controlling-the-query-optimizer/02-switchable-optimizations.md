@@ -1,8 +1,8 @@
-### 8.9.2 Switchable Optimizations
+### 8.9.2 Otimizações Configuráveis
 
-The `optimizer_switch` system variable enables control over optimizer behavior. Its value is a set of flags, each of which has a value of `on` or `off` to indicate whether the corresponding optimizer behavior is enabled or disabled. This variable has global and session values and can be changed at runtime. The global default can be set at server startup.
+A variável de sistema `optimizer_switch` permite controlar o comportamento do optimizer. Seu valor é um conjunto de *flags*, cada uma com um valor `on` ou `off` para indicar se o comportamento correspondente do optimizer está habilitado ou desabilitado. Essa variável possui valores globais e de sessão e pode ser alterada em tempo de execução (*runtime*). O padrão global pode ser definido na inicialização do servidor (*server startup*).
 
-To see the current set of optimizer flags, select the variable value:
+Para ver o conjunto atual de *flags* do optimizer, selecione o valor da variável:
 
 ```sql
 mysql> SELECT @@optimizer_switch\G
@@ -22,165 +22,165 @@ mysql> SELECT @@optimizer_switch\G
                     prefer_ordering_index=on
 ```
 
-To change the value of `optimizer_switch`, assign a value consisting of a comma-separated list of one or more commands:
+Para alterar o valor de `optimizer_switch`, atribua um valor que consiste em uma lista de um ou mais comandos, separados por vírgulas:
 
 ```sql
 SET [GLOBAL|SESSION] optimizer_switch='command[,command]...';
 ```
 
-Each *`command`* value should have one of the forms shown in the following table.
+Cada valor de *`command`* deve ter uma das formas mostradas na tabela a seguir.
 
-<table summary="The syntax of the command value for SET optimizer_switch commands."><thead><tr> <th>Command Syntax</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>default</code></td> <td>Reset every optimization to its default value</td> </tr><tr> <td><code><em><code>opt_name</code></em>=default</code></td> <td>Set the named optimization to its default value</td> </tr><tr> <td><code><em><code>opt_name</code></em>=off</code></td> <td>Disable the named optimization</td> </tr><tr> <td><code><em><code>opt_name</code></em>=on</code></td> <td>Enable the named optimization</td> </tr></tbody></table>
+<table summary="A sintaxe do valor de comando para comandos SET optimizer_switch."><thead><tr> <th>Sintaxe do Comando</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>default</code></td> <td>Redefine todas as otimizações para seu valor padrão</td> </tr><tr> <td><code><em><code>opt_name</code></em>=default</code></td> <td>Define a otimização nomeada para seu valor padrão</td> </tr><tr> <td><code><em><code>opt_name</code></em>=off</code></td> <td>Desabilita a otimização nomeada</td> </tr><tr> <td><code><em><code>opt_name</code></em>=on</code></td> <td>Habilita a otimização nomeada</td> </tr></tbody></table>
 
-The order of the commands in the value does not matter, although the `default` command is executed first if present. Setting an *`opt_name`* flag to `default` sets it to whichever of `on` or `off` is its default value. Specifying any given *`opt_name`* more than once in the value is not permitted and causes an error. Any errors in the value cause the assignment to fail with an error, leaving the value of `optimizer_switch` unchanged.
+A ordem dos comandos no valor não importa, embora o comando `default` seja executado primeiro, se estiver presente. Definir um *flag* *`opt_name`* como `default` o define para o valor padrão, seja ele `on` ou `off`. Não é permitido especificar o mesmo *`opt_name`* mais de uma vez no valor, o que causará um erro. Quaisquer erros no valor fazem com que a atribuição falhe com um erro, deixando o valor de `optimizer_switch` inalterado.
 
-The following list describes the permissible *`opt_name`* flag names, grouped by optimization strategy:
+A lista a seguir descreve os nomes de *flags* *`opt_name`* permitidos, agrupados por estratégia de otimização:
 
-* Batched Key Access Flags
+* Flags de Batched Key Access
 
-  + `batched_key_access` (default `off`)
+  + `batched_key_access` (padrão `off`)
 
-    Controls use of BKA join algorithm.
+    Controla o uso do algoritmo de JOIN BKA.
 
-  For `batched_key_access` to have any effect when set to `on`, the `mrr` flag must also be `on`. Currently, the cost estimation for MRR is too pessimistic. Hence, it is also necessary for `mrr_cost_based` to be `off` for BKA to be used.
+  Para que `batched_key_access` tenha algum efeito quando definido como `on`, o *flag* `mrr` também deve ser `on`. Atualmente, a estimativa de custo para MRR é muito pessimista. Portanto, também é necessário que `mrr_cost_based` esteja em `off` para que o BKA seja utilizado.
 
-  For more information, see Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”.
+  Para mais informações, consulte a Seção 8.2.1.11, "Block Nested-Loop and Batched Key Access Joins".
 
-* Block Nested-Loop Flags
+* Flags de Block Nested-Loop
 
-  + `block_nested_loop` (default `on`)
+  + `block_nested_loop` (padrão `on`)
 
-    Controls use of BNL join algorithm.
+    Controla o uso do algoritmo de JOIN BNL.
 
-  For more information, see Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”.
+  Para mais informações, consulte a Seção 8.2.1.11, "Block Nested-Loop and Batched Key Access Joins".
 
-* Condition Filtering Flags
+* Flags de Filtragem de Condição
 
-  + `condition_fanout_filter` (default `on`)
+  + `condition_fanout_filter` (padrão `on`)
 
-    Controls use of condition filtering.
+    Controla o uso de filtragem de condição.
 
-  For more information, see Section 8.2.1.12, “Condition Filtering”.
+  Para mais informações, consulte a Seção 8.2.1.12, "Condition Filtering".
 
-* Derived Table Merging Flags
+* Flags de Mesclagem de Derived Table
 
-  + `derived_merge` (default `on`)
+  + `derived_merge` (padrão `on`)
 
-    Controls merging of derived tables and views into outer query block.
+    Controla a mesclagem de derived tables e views no bloco de Query externo.
 
-  The `derived_merge` flag controls whether the optimizer attempts to merge derived tables and view references into the outer query block, assuming that no other rule prevents merging; for example, an `ALGORITHM` directive for a view takes precedence over the `derived_merge` setting. By default, the flag is `on` to enable merging.
+  O *flag* `derived_merge` controla se o optimizer tenta mesclar *derived tables* e referências a *views* no bloco de Query externo, assumindo que nenhuma outra regra impeça a mesclagem; por exemplo, uma diretiva `ALGORITHM` para uma *view* tem precedência sobre a configuração `derived_merge`. Por padrão, o *flag* está `on` para habilitar a mesclagem.
 
-  For more information, see Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”.
+  Para mais informações, consulte a Seção 8.2.2.4, "Optimizing Derived Tables and View References with Merging or Materialization".
 
-* Engine Condition Pushdown Flags
+* Flags de Engine Condition Pushdown
 
-  + `engine_condition_pushdown` (default `on`)
+  + `engine_condition_pushdown` (padrão `on`)
 
-    Controls engine condition pushdown.
+    Controla o Engine Condition Pushdown.
 
-  For more information, see Section 8.2.1.4, “Engine Condition Pushdown Optimization”.
+  Para mais informações, consulte a Seção 8.2.1.4, "Engine Condition Pushdown Optimization".
 
-* Index Condition Pushdown Flags
+* Flags de Index Condition Pushdown
 
-  + `index_condition_pushdown` (default `on`)
+  + `index_condition_pushdown` (padrão `on`)
 
-    Controls index condition pushdown.
+    Controla o Index Condition Pushdown.
 
-  For more information, see Section 8.2.1.5, “Index Condition Pushdown Optimization”.
+  Para mais informações, consulte a Seção 8.2.1.5, "Index Condition Pushdown Optimization".
 
-* Index Extensions Flags
+* Flags de Index Extensions
 
-  + `use_index_extensions` (default `on`)
+  + `use_index_extensions` (padrão `on`)
 
-    Controls use of index extensions.
+    Controla o uso de Index Extensions.
 
-  For more information, see Section 8.3.9, “Use of Index Extensions”.
+  Para mais informações, consulte a Seção 8.3.9, "Use of Index Extensions".
 
-* Index Merge Flags
+* Flags de Index Merge
 
-  + `index_merge` (default `on`)
+  + `index_merge` (padrão `on`)
 
-    Controls all Index Merge optimizations.
+    Controla todas as otimizações de Index Merge.
 
-  + `index_merge_intersection` (default `on`)
+  + `index_merge_intersection` (padrão `on`)
 
-    Controls the Index Merge Intersection Access optimization.
+    Controla a otimização de acesso Index Merge Intersection.
 
-  + `index_merge_sort_union` (default `on`)
+  + `index_merge_sort_union` (padrão `on`)
 
-    Controls the Index Merge Sort-Union Access optimization.
+    Controla a otimização de acesso Index Merge Sort-Union.
 
-  + `index_merge_union` (default `on`)
+  + `index_merge_union` (padrão `on`)
 
-    Controls the Index Merge Union Access optimization.
+    Controla a otimização de acesso Index Merge Union.
 
-  For more information, see Section 8.2.1.3, “Index Merge Optimization”.
+  Para mais informações, consulte a Seção 8.2.1.3, "Index Merge Optimization".
 
-* Limit Optimization Flags
+* Flags de Otimização de LIMIT
 
-  + `prefer_ordering_index` (default `on`)
+  + `prefer_ordering_index` (padrão `on`)
 
-    Controls whether, in the case of a query having an `ORDER BY` or `GROUP BY` with a `LIMIT` clause, the optimizer tries to use an ordered index instead of an unordered index, a filesort, or some other optimization. This optimzation is performed by default whenever the optimizer determines that using it would allow for faster execution of the query.
+    Controla se, no caso de uma Query que contenha um `ORDER BY` ou `GROUP BY` com uma cláusula `LIMIT`, o optimizer tenta usar um Index ordenado em vez de um Index não ordenado, um filesort ou alguma outra otimização. Esta otimização é realizada por padrão sempre que o optimizer determina que usá-la permitiria uma execução mais rápida da Query.
 
-    Because the algorithm that makes this determination cannot handle every conceivable case (due in part to the assumption that the distribution of data is always more or less uniform), there are cases in which this optimization may not be desirable. Prior to MySQL 5.7.33, it ws not possible to disable this optimization, but in MySQL 5.7.33 and later, while it remains the default behavior, it can be disabled by setting the `prefer_ordering_index` flag to `off`.
+    Como o algoritmo que faz essa determinação não consegue lidar com todos os casos concebíveis (devido em parte à suposição de que a distribuição dos dados é sempre mais ou menos uniforme), há casos em que essa otimização pode não ser desejável. Antes do MySQL 5.7.33, não era possível desabilitar essa otimização, mas no MySQL 5.7.33 e versões posteriores, embora continue sendo o comportamento padrão, ela pode ser desabilitada definindo o *flag* `prefer_ordering_index` como `off`.
 
-  For more information and examples, see Section 8.2.1.17, “LIMIT Query Optimization”.
+  Para mais informações e exemplos, consulte a Seção 8.2.1.17, "LIMIT Query Optimization".
 
-* Multi-Range Read Flags
+* Flags de Multi-Range Read
 
-  + `mrr` (default `on`)
+  + `mrr` (padrão `on`)
 
-    Controls the Multi-Range Read strategy.
+    Controla a estratégia Multi-Range Read.
 
-  + `mrr_cost_based` (default `on`)
+  + `mrr_cost_based` (padrão `on`)
 
-    Controls use of cost-based MRR if `mrr=on`.
+    Controla o uso de MRR baseado em custo se `mrr=on`.
 
-  For more information, see Section 8.2.1.10, “Multi-Range Read Optimization”.
+  Para mais informações, consulte a Seção 8.2.1.10, "Multi-Range Read Optimization".
 
-* Semijoin Flags
+* Flags de Semijoin
 
-  + `duplicateweedout` (default `on`)
+  + `duplicateweedout` (padrão `on`)
 
-    Controls the semijoin Duplicate Weedout strategy.
+    Controla a estratégia Semijoin Duplicate Weedout.
 
-  + `firstmatch` (default `on`)
+  + `firstmatch` (padrão `on`)
 
-    Controls the semijoin FirstMatch strategy.
+    Controla a estratégia Semijoin FirstMatch.
 
-  + `loosescan` (default `on`)
+  + `loosescan` (padrão `on`)
 
-    Controls the semijoin LooseScan strategy (not to be confused with Loose Index Scan for `GROUP BY`).
+    Controla a estratégia Semijoin LooseScan (não confundir com Loose Index Scan para `GROUP BY`).
 
-  + `semijoin` (default `on`)
+  + `semijoin` (padrão `on`)
 
-    Controls all semijoin strategies.
+    Controla todas as estratégias de Semijoin.
 
-  The `semijoin`, `firstmatch`, `loosescan`, and `duplicateweedout` flags enable control over semijoin strategies. The `semijoin` flag controls whether semijoins are used. If it is set to `on`, the `firstmatch` and `loosescan` flags enable finer control over the permitted semijoin strategies.
+  Os *flags* `semijoin`, `firstmatch`, `loosescan` e `duplicateweedout` permitem controlar as estratégias de Semijoin. O *flag* `semijoin` controla se os Semijoins são usados. Se estiver definido como `on`, os *flags* `firstmatch` e `loosescan` permitem um controle mais refinado sobre as estratégias de Semijoin permitidas.
 
-  If the `duplicateweedout` semijoin strategy is disabled, it is not used unless all other applicable strategies are also disabled.
+  Se a estratégia Semijoin `duplicateweedout` for desabilitada, ela não será usada a menos que todas as outras estratégias aplicáveis também sejam desabilitadas.
 
-  If `semijoin` and `materialization` are both `on`, semijoins also use materialization where applicable. These flags are `on` by default.
+  Se `semijoin` e `materialization` estiverem ambos em `on`, os Semijoins também usam Materialization quando aplicável. Esses *flags* estão `on` por padrão.
 
-  For more information, see Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”.
+  Para mais informações, consulte a Seção 8.2.2.1, "Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations".
 
-* Subquery Materialization Flags
+* Flags de Materialization de Subquery
 
-  + `materialization` (default `on`)
+  + `materialization` (padrão `on`)
 
-    Controls materialization (including semijoin materialization).
+    Controla o Materialization (incluindo Materialization de Semijoin).
 
-  + `subquery_materialization_cost_based` (default `on`)
+  + `subquery_materialization_cost_based` (padrão `on`)
 
-    Use cost-based materialization choice.
+    Usa escolha de Materialization baseada em custo.
 
-  The `materialization` flag controls whether subquery materialization is used. If `semijoin` and `materialization` are both `on`, semijoins also use materialization where applicable. These flags are `on` by default.
+  O *flag* `materialization` controla se o Materialization de Subquery é usado. Se `semijoin` e `materialization` estiverem ambos em `on`, os Semijoins também usam Materialization quando aplicável. Esses *flags* estão `on` por padrão.
 
-  The `subquery_materialization_cost_based` flag enables control over the choice between subquery materialization and `IN`-to-`EXISTS` subquery transformation. If the flag is `on` (the default), the optimizer performs a cost-based choice between subquery materialization and `IN`-to-`EXISTS` subquery transformation if either method could be used. If the flag is `off`, the optimizer chooses subquery materialization over `IN`-to-`EXISTS` subquery transformation.
+  O *flag* `subquery_materialization_cost_based` permite controlar a escolha entre Materialization de Subquery e a transformação de Subquery `IN`-para-`EXISTS`. Se o *flag* estiver `on` (o padrão), o optimizer executa uma escolha baseada em custo entre Materialization de Subquery e a transformação de Subquery `IN`-para-`EXISTS` se qualquer um dos métodos puder ser usado. Se o *flag* estiver `off`, o optimizer escolhe Materialization de Subquery em vez da transformação de Subquery `IN`-para-`EXISTS`.
 
-  For more information, see Section 8.2.2, “Optimizing Subqueries, Derived Tables, and View References”.
+  Para mais informações, consulte a Seção 8.2.2, "Optimizing Subqueries, Derived Tables, and View References".
 
-When you assign a value to `optimizer_switch`, flags that are not mentioned keep their current values. This makes it possible to enable or disable specific optimizer behaviors in a single statement without affecting other behaviors. The statement does not depend on what other optimizer flags exist and what their values are. Suppose that all Index Merge optimizations are enabled:
+Ao atribuir um valor a `optimizer_switch`, os *flags* que não são mencionados mantêm seus valores atuais. Isso torna possível habilitar ou desabilitar comportamentos específicos do optimizer em uma única instrução sem afetar outros comportamentos. A instrução não depende de quais outros *flags* do optimizer existem ou quais são seus valores. Suponha que todas as otimizações Index Merge estejam habilitadas:
 
 ```sql
 mysql> SELECT @@optimizer_switch\G
@@ -200,7 +200,7 @@ mysql> SELECT @@optimizer_switch\G
                     prefer_ordering_index=on
 ```
 
-If the server is using the Index Merge Union or Index Merge Sort-Union access methods for certain queries and you want to check whether the optimizer performs better without them, set the variable value like this:
+Se o servidor estiver usando os métodos de acesso Index Merge Union ou Index Merge Sort-Union para certas Queries e você quiser verificar se o optimizer tem um desempenho melhor sem eles, defina o valor da variável desta forma:
 
 ```sql
 mysql> SET optimizer_switch='index_merge_union=off,index_merge_sort_union=off';

@@ -1,20 +1,20 @@
-#### 4.2.2.6 Option Defaults, Options Expecting Values, and the = Sign
+#### 4.2.2.6 Valores Padrão de Opções, Opções que Esperam Valores e o Sinal =
 
-By convention, long forms of options that assign a value are written with an equals (`=`) sign, like this:
+Por convenção, as formas longas das opções que atribuem um valor são escritas com um sinal de igualdade (`=`), assim:
 
 ```sql
 mysql --host=tonfisk --user=jon
 ```
 
-For options that require a value (that is, not having a default value), the equal sign is not required, and so the following is also valid:
+Para opções que exigem um valor (ou seja, que não possuem um valor padrão), o sinal de igual não é obrigatório, e, portanto, o seguinte também é válido:
 
 ```sql
 mysql --host tonfisk --user jon
 ```
 
-In both cases, the **mysql** client attempts to connect to a MySQL server running on the host named “tonfisk” using an account with the user name “jon”.
+Em ambos os casos, o cliente **mysql** tenta se conectar a um MySQL server em execução no host denominado “tonfisk”, usando uma conta com o nome de user “jon”.
 
-Due to this behavior, problems can occasionally arise when no value is provided for an option that expects one. Consider the following example, where a user connects to a MySQL server running on host `tonfisk` as user `jon`:
+Devido a esse comportamento, problemas podem surgir ocasionalmente quando nenhum valor é fornecido para uma opção que espera um. Considere o exemplo a seguir, onde um user se conecta a um MySQL server em execução no host `tonfisk` como user `jon`:
 
 ```sql
 $> mysql --host 85.224.35.45 --user jon
@@ -33,23 +33,23 @@ mysql> SELECT CURRENT_USER();
 1 row in set (0.00 sec)
 ```
 
-Omitting the required value for one of these option yields an error, such as the one shown here:
+Omitir o valor obrigatório para uma dessas opções gera um error, como o mostrado aqui:
 
 ```sql
 $> mysql --host 85.224.35.45 --user
 mysql: option '--user' requires an argument
 ```
 
-In this case, **mysql** was unable to find a value following the `--user` option because nothing came after it on the command line. However, if you omit the value for an option that is *not* the last option to be used, you obtain a different error that you may not be expecting:
+Neste caso, o **mysql** não conseguiu encontrar um valor após a opção `--user` porque nada a seguia na command line. No entanto, se você omitir o valor para uma opção que *não* é a última opção a ser usada, você obterá um error diferente que talvez não esteja esperando:
 
 ```sql
 $> mysql --host --user jon
 ERROR 2005 (HY000): Unknown MySQL server host '--user' (1)
 ```
 
-Because **mysql** assumes that any string following `--host` on the command line is a host name, `--host` `--user` is interpreted as `--host=--user`, and the client attempts to connect to a MySQL server running on a host named “--user”.
+Como o **mysql** assume que qualquer string que siga `--host` na command line é um nome de host, `--host --user` é interpretado como `--host=--user`, e o client tenta se conectar a um MySQL server em execução em um host chamado “--user”.
 
-Options having default values always require an equal sign when assigning a value; failing to do so causes an error. For example, the MySQL server `--log-error` option has the default value `host_name.err`, where *`host_name`* is the name of the host on which MySQL is running. Assume that you are running MySQL on a computer whose host name is “tonfisk”, and consider the following invocation of **mysqld_safe**:
+Opções que possuem valores padrão sempre exigem um sinal de igual ao atribuir um valor; não fazer isso causa um error. Por exemplo, a opção `--log-error` do MySQL server tem o valor padrão `host_name.err`, onde *`host_name`* é o nome do host no qual o MySQL está em execução. Suponha que você esteja executando o MySQL em um computador cujo nome de host é “tonfisk”, e considere a seguinte invocação de **mysqld_safe**:
 
 ```sql
 $> mysqld_safe &
@@ -59,7 +59,7 @@ $> 080112 12:53:40 mysqld_safe Logging to '/usr/local/mysql/var/tonfisk.err'.
 $>
 ```
 
-After shutting down the server, restart it as follows:
+Após desligar o server, reinicie-o da seguinte forma:
 
 ```sql
 $> mysqld_safe --log-error &
@@ -69,7 +69,7 @@ $> 080112 12:53:40 mysqld_safe Logging to '/usr/local/mysql/var/tonfisk.err'.
 $>
 ```
 
-The result is the same, since `--log-error` is not followed by anything else on the command line, and it supplies its own default value. (The `&` character tells the operating system to run MySQL in the background; it is ignored by MySQL itself.) Now suppose that you wish to log errors to a file named `my-errors.err`. You might try starting the server with `--log-error my-errors`, but this does not have the intended effect, as shown here:
+O resultado é o mesmo, visto que `--log-error` não é seguido por mais nada na command line e fornece seu próprio valor padrão. (O caractere `&` informa ao sistema operacional para executar o MySQL em background; ele é ignorado pelo próprio MySQL.) Agora suponha que você deseja registrar errors em um file chamado `my-errors.err`. Você pode tentar iniciar o server com `--log-error my-errors`, mas isso não tem o efeito pretendido, como mostrado aqui:
 
 ```sql
 $> mysqld_safe --log-error my-errors &
@@ -81,7 +81,7 @@ $> 080111 22:53:31 mysqld_safe Logging to '/usr/local/mysql/var/tonfisk.err'.
 [1]+  Done                    ./mysqld_safe --log-error my-errors
 ```
 
-The server attempted to start using `/usr/local/mysql/var/tonfisk.err` as the error log, but then shut down. Examining the last few lines of this file shows the reason:
+O server tentou iniciar usando `/usr/local/mysql/var/tonfisk.err` como o log de error, mas depois foi desligado. Examinar as últimas linhas deste file mostra o motivo:
 
 ```sql
 $> tail /usr/local/mysql/var/tonfisk.err
@@ -93,7 +93,7 @@ $> tail /usr/local/mysql/var/tonfisk.err
 2013-09-24T15:36:23.780134Z 0 [Note] mysqld: Shutdown complete
 ```
 
-Because the `--log-error` option supplies a default value, you must use an equal sign to assign a different value to it, as shown here:
+Como a opção `--log-error` fornece um valor padrão, você deve usar um sinal de igual para atribuir um valor diferente a ela, conforme mostrado aqui:
 
 ```sql
 $> mysqld_safe --log-error=my-errors &
@@ -104,9 +104,9 @@ $> 080111 22:54:15 mysqld_safe Logging to '/usr/local/mysql/var/my-errors.err'.
 $>
 ```
 
-Now the server has been started successfully, and is logging errors to the file `/usr/local/mysql/var/my-errors.err`.
+Agora o server foi iniciado com sucesso e está registrando errors no file `/usr/local/mysql/var/my-errors.err`.
 
-Similar issues can arise when specifying option values in option files. For example, consider a `my.cnf` file that contains the following:
+Problemas semelhantes podem surgir ao especificar valores de opções em option files. Por exemplo, considere um file `my.cnf` que contém o seguinte:
 
 ```sql
 [mysql]
@@ -115,14 +115,14 @@ host
 user
 ```
 
-When the **mysql** client reads this file, these entries are parsed as `--host` `--user` or `--host=--user`, with the result shown here:
+Quando o client **mysql** lê este file, essas entradas são analisadas como `--host --user` ou `--host=--user`, com o resultado mostrado aqui:
 
 ```sql
 $> mysql
 ERROR 2005 (HY000): Unknown MySQL server host '--user' (1)
 ```
 
-However, in option files, an equal sign is not assumed. Suppose the `my.cnf` file is as shown here:
+No entanto, em option files, um sinal de igual não é assumido. Suponha que o file `my.cnf` seja conforme mostrado aqui:
 
 ```sql
 [mysql]
@@ -130,14 +130,14 @@ However, in option files, an equal sign is not assumed. Suppose the `my.cnf` fil
 user jon
 ```
 
-Trying to start **mysql** in this case causes a different error:
+Tentar iniciar o **mysql** neste caso causa um error diferente:
 
 ```sql
 $> mysql
 mysql: unknown option '--user jon'
 ```
 
-A similar error would occur if you were to write `host tonfisk` in the option file rather than `host=tonfisk`. Instead, you must use the equal sign:
+Um error semelhante ocorreria se você escrevesse `host tonfisk` no option file em vez de `host=tonfisk`. Em vez disso, você deve usar o sinal de igual:
 
 ```sql
 [mysql]
@@ -145,7 +145,7 @@ A similar error would occur if you were to write `host tonfisk` in the option fi
 user=jon
 ```
 
-Now the login attempt succeeds:
+Agora a tentativa de login é bem-sucedida:
 
 ```sql
 $> mysql
@@ -164,7 +164,7 @@ mysql> SELECT USER();
 1 row in set (0.00 sec)
 ```
 
-This is not the same behavior as with the command line, where the equal sign is not required:
+Este não é o mesmo comportamento que ocorre na command line, onde o sinal de igual não é obrigatório:
 
 ```sql
 $> mysql --user jon --host tonfisk
@@ -183,4 +183,4 @@ mysql> SELECT USER();
 1 row in set (0.00 sec)
 ```
 
-Specifying an option requiring a value without a value in an option file causes the server to abort with an error.
+Especificar uma opção que exige um valor sem fornecê-lo em um option file faz com que o server aborte com um error.

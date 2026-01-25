@@ -1,54 +1,54 @@
-#### 6.4.5.6 Reading Audit Log Files
+#### 6.4.5.6 Lendo Arquivos de Audit Log
 
-The audit log plugin supports functions that provide an SQL interface for reading JSON-format audit log files. (This capability does not apply to log files written in other formats.)
+O plugin de audit log suporta funções que fornecem uma interface SQL para leitura de arquivos de audit log em formato JSON. (Essa capacidade não se aplica a arquivos log escritos em outros formatos.)
 
-When the audit log plugin initializes and is configured for JSON logging, it uses the directory containing the current audit log file as the location to search for readable audit log files. The plugin determines the file location, base name, and suffix from the value of the [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) system variable, then looks for files with names that match the following pattern, where `[...]` indicates optional file name parts:
+Quando o plugin de audit log inicializa e está configurado para logging JSON, ele usa o diretório que contém o arquivo de audit log atual como o local para pesquisar arquivos de audit log legíveis. O plugin determina o local do arquivo, o nome base (base name) e o sufixo a partir do valor da System Variable [`audit_log_file`](audit-log-reference.html#sysvar_audit_log_file) e, em seguida, procura arquivos com nomes que correspondam ao seguinte padrão, onde `[...]` indica partes opcionais do nome do arquivo:
 
 ```sql
 basename[.timestamp].suffix[.gz][.enc]
 ```
 
-If a file name ends with `.enc`, the file is encrypted and reading its unencrypted contents requires a decryption password obtained from the keyring. For more information about encrypted audit log files, see [Encrypting Audit Log Files](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
+Se um nome de arquivo terminar com `.enc`, o arquivo está criptografado e a leitura de seu conteúdo não criptografado requer uma senha de decriptografia obtida do keyring. Para mais informações sobre arquivos de audit log criptografados, veja [Encrypting Audit Log Files](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
 
-The plugin ignores files that have been renamed manually and do not match the pattern, and files that were encrypted with a password no longer available in the keyring. The plugin opens each remaining candidate file, verifies that the file actually contains [`JSON`](json.html "11.5 The JSON Data Type") audit events, and sorts the files using the timestamps from the first event of each file. The result is a sequence of files that are subject to access using the log-reading functions:
+O plugin ignora arquivos que foram renomeados manualmente e não correspondem ao padrão, e arquivos que foram criptografados com uma senha que não está mais disponível no keyring. O plugin abre cada arquivo candidato restante, verifica se o arquivo realmente contém audit events em [`JSON`](json.html "11.5 The JSON Data Type") e classifica os arquivos usando os timestamps do primeiro event de cada arquivo. O resultado é uma sequência de arquivos sujeitos a acesso usando as funções de leitura de log:
 
-* [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) reads events from the audit log or closes the reading process.
+* [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) lê events do audit log ou encerra o processo de leitura.
 
-* [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark) returns a bookmark for the most recently written audit log event. This bookmark is suitable for passing to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) to indicate where to begin reading.
+* [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark) retorna um bookmark para o audit log event escrito mais recentemente. Este bookmark é adequado para ser passado a [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) para indicar onde começar a leitura.
 
-[`audit_log_read()`](audit-log-reference.html#function_audit-log-read) takes an optional [`JSON`](json.html "11.5 The JSON Data Type") string argument, and the result returned from a successful call to either function is a [`JSON`](json.html "11.5 The JSON Data Type") string.
+A função [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) aceita um argumento opcional de string [`JSON`](json.html "11.5 The JSON Data Type"), e o resultado retornado de uma chamada bem-sucedida a qualquer uma das funções é uma string [`JSON`](json.html "11.5 The JSON Data Type").
 
-To use the functions to read the audit log, follow these principles:
+Para usar as funções para ler o audit log, siga estes princípios:
 
-* Call [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) to read events beginning from a given position or the current position, or to close reading:
+* Chame [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) para ler events começando de uma determinada posição ou da posição atual, ou para fechar a leitura:
 
-  + To initialize an audit log read sequence, pass an argument that indicates the position at which to begin. One way to do so is to pass the bookmark returned by [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark):
+  + Para inicializar uma sequência de leitura do audit log, passe um argumento que indique a posição na qual começar. Uma maneira de fazer isso é passar o bookmark retornado por [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark):
 
     ```sql
     SELECT audit_log_read(audit_log_read_bookmark());
     ```
 
-  + To continue reading from the current position in the sequence, call [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) with no position specified:
+  + Para continuar lendo a partir da posição atual na sequência, chame [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) sem especificar a posição:
 
     ```sql
     SELECT audit_log_read();
     ```
 
-  + To explicitly close the read sequence, pass a [`JSON`](json.html "11.5 The JSON Data Type") `null` argument:
+  + Para fechar explicitamente a sequência de leitura, passe um argumento `null` em [`JSON`](json.html "11.5 The JSON Data Type"):
 
     ```sql
     SELECT audit_log_read('null');
     ```
 
-    It is unnecessary to close reading explicitly. Reading is closed implicitly when the session ends or a new read sequence is initialized by calling [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) with an argument that indicates the position at which to begin.
+    Não é necessário fechar a leitura explicitamente. A leitura é fechada implicitamente quando a session termina ou uma nova sequência de leitura é inicializada chamando [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) com um argumento que indica a posição na qual começar.
 
-* A successful call to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) to read events returns a [`JSON`](json.html "11.5 The JSON Data Type") string containing an array of audit events:
+* Uma chamada bem-sucedida a [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) para ler events retorna uma string [`JSON`](json.html "11.5 The JSON Data Type") contendo um array de audit events:
 
-  + If the final value of the returned array is not a [`JSON`](json.html "11.5 The JSON Data Type") `null` value, there are more events following those just read and [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) can be called again to read more of them.
+  + Se o valor final do array retornado não for um valor `null` em [`JSON`](json.html "11.5 The JSON Data Type"), há mais events seguindo aqueles que acabaram de ser lidos e [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) pode ser chamado novamente para ler mais deles.
 
-  + If the final value of the returned array is a [`JSON`](json.html "11.5 The JSON Data Type") `null` value, there are no more events left to be read in the current read sequence.
+  + Se o valor final do array retornado for um valor `null` em [`JSON`](json.html "11.5 The JSON Data Type"), não há mais events restantes para serem lidos na sequência de leitura atual.
 
-  Each non-`null` array element is an event represented as a [`JSON`](json.html "11.5 The JSON Data Type") hash. For example:
+  Cada elemento non-`null` do array é um event representado como um hash [`JSON`](json.html "11.5 The JSON Data Type"). Por exemplo:
 
   ```sql
   [
@@ -71,19 +71,19 @@ To use the functions to read the audit log, follow these principles:
   ]
   ```
 
-  For more information about the content of JSON-format audit events, see [JSON Audit Log File Format](audit-log-file-formats.html#audit-log-file-json-format "JSON Audit Log File Format").
+  Para mais informações sobre o conteúdo dos audit events em formato JSON, veja [JSON Audit Log File Format](audit-log-file-formats.html#audit-log-file-json-format "JSON Audit Log File Format").
 
-* An [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) call to read events that does not specify a position produces an error under any of these conditions:
+* Uma chamada a [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) para ler events que não especifica uma posição produz um erro sob qualquer uma destas condições:
 
-  + A read sequence has not yet been initialized by passing a position to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read).
+  + Uma sequência de leitura ainda não foi inicializada passando uma posição para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read).
 
-  + There are no more events left to be read in the current read sequence; that is, [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) previously returned an array ending with a [`JSON`](json.html "11.5 The JSON Data Type") `null` value.
+  + Não há mais events restantes para serem lidos na sequência de leitura atual; ou seja, [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) retornou anteriormente um array terminando com um valor `null` em [`JSON`](json.html "11.5 The JSON Data Type").
 
-  + The most recent read sequence has been closed by passing a [`JSON`](json.html "11.5 The JSON Data Type") `null` value to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read).
+  + A sequência de leitura mais recente foi fechada passando um valor `null` em [`JSON`](json.html "11.5 The JSON Data Type") para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read).
 
-  To read events under those conditions, it is necessary to first initialize a read sequence by calling [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) with an argument that specifies a position.
+  Para ler events sob essas condições, é necessário primeiro inicializar uma sequência de leitura chamando [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) com um argumento que especifique uma posição.
 
-To specify a position to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read), pass a bookmark, which is a [`JSON`](json.html "11.5 The JSON Data Type") hash containing `timestamp` and `id` elements that uniquely identify a particular event. Here is an example bookmark, obtained by calling the [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark) function:
+Para especificar uma posição para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read), passe um bookmark, que é um hash [`JSON`](json.html "11.5 The JSON Data Type") contendo elementos `timestamp` e `id` que identificam unicamente um event específico. Aqui está um exemplo de bookmark, obtido chamando a função [`audit_log_read_bookmark()`](audit-log-reference.html#function_audit-log-read-bookmark):
 
 ```sql
 mysql> SELECT audit_log_read_bookmark();
@@ -94,7 +94,7 @@ mysql> SELECT audit_log_read_bookmark();
 +-------------------------------------------------+
 ```
 
-Passing the current bookmark to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) initializes event reading beginning at the bookmark position:
+Passar o bookmark atual para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) inicializa a leitura de events começando na posição do bookmark:
 
 ```sql
 mysql> SELECT audit_log_read(audit_log_read_bookmark());
@@ -105,47 +105,47 @@ mysql> SELECT audit_log_read(audit_log_read_bookmark());
 +-----------------------------------------------------------------------+
 ```
 
-The argument to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) is optional. If present, it can be a [`JSON`](json.html "11.5 The JSON Data Type") `null` value to close the read sequence, or a [`JSON`](json.html "11.5 The JSON Data Type") hash.
+O argumento para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) é opcional. Se presente, pode ser um valor `null` em [`JSON`](json.html "11.5 The JSON Data Type") para fechar a sequência de leitura, ou um hash [`JSON`](json.html "11.5 The JSON Data Type").
 
-Within a hash argument to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read), items are optional and control aspects of the read operation such as the position at which to begin reading or how many events to read. The following items are significant (other items are ignored):
+Dentro de um argumento hash para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read), os itens são opcionais e controlam aspectos da operação de leitura, como a posição na qual começar a ler ou quantos events ler. Os seguintes itens são significativos (outros itens são ignorados):
 
-* `timestamp`, `id`: The position within the audit log of the first event to read. If the position is omitted from the argument, reading continues from the current position. The `timestamp` and `id` items together comprise a bookmark that uniquely identify a particular event. If an [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) argument includes either item, it must include both to completely specify a position or an error occurs.
+* `timestamp`, `id`: A posição dentro do audit log do primeiro event a ser lido. Se a posição for omitida do argumento, a leitura continua a partir da posição atual. Os itens `timestamp` e `id` juntos compreendem um bookmark que identifica unicamente um event específico. Se um argumento para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) incluir um dos itens, ele deve incluir ambos para especificar completamente uma posição, ou um erro ocorrerá.
 
-* `max_array_length`: The maximum number of events to read from the log. If this item is omitted, the default is to read to the end of the log or until the read buffer is full, whichever comes first.
+* `max_array_length`: O número máximo de events a serem lidos do log. Se este item for omitido, o default é ler até o final do log ou até que o read buffer esteja cheio, o que ocorrer primeiro.
 
-Example arguments accepted by [`audit_log_read()`](audit-log-reference.html#function_audit-log-read):
+Exemplos de argumentos aceitos por [`audit_log_read()`](audit-log-reference.html#function_audit-log-read):
 
-* Read events starting with the event that has the exact timestamp and event ID:
+* Ler events começando com o event que tem o timestamp e ID de event exatos:
 
   ```sql
   audit_log_read('{ "timestamp": "2020-05-24 12:30:00", "id": 0 }')
   ```
 
-* Like the previous example, but read at most 3 events:
+* Como no exemplo anterior, mas ler no máximo 3 events:
 
   ```sql
   audit_log_read('{ "timestamp": "2020-05-24 12:30:00", "id": 0, "max_array_length": 3 }')
   ```
 
-* Read events from the current position in the read sequence:
+* Ler events a partir da posição atual na sequência de leitura:
 
   ```sql
   audit_log_read()
   ```
 
-* Read at most 5 events beginning at the current position in the read sequence:
+* Ler no máximo 5 events começando na posição atual na sequência de leitura:
 
   ```sql
   audit_log_read('{ "max_array_length": 5 }')
   ```
 
-* Close the current read sequence:
+* Fechar a sequência de leitura atual:
 
   ```sql
   audit_log_read('null')
   ```
 
-To use the binary [`JSON`](json.html "11.5 The JSON Data Type") string with functions that require a nonbinary string (such as functions that manipulate [`JSON`](json.html "11.5 The JSON Data Type") values), perform a conversion to `utf8mb4`. Suppose that a call to obtain a bookmark produces this value:
+Para usar a string [`JSON`](json.html "11.5 The JSON Data Type") binária com funções que exigem uma string não binária (como funções que manipulam valores [`JSON`](json.html "11.5 The JSON Data Type")), execute uma conversão para `utf8mb4`. Suponha que uma chamada para obter um bookmark produza este valor:
 
 ```sql
 mysql> SET @mark := audit_log_read_bookmark();
@@ -157,7 +157,7 @@ mysql> SELECT @mark;
 +-------------------------------------------------+
 ```
 
-Calling [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) with that argument can return multiple events. To limit [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) to reading at most *`N`* events, convert the string to `utf8mb4`, then add to it a `max_array_length` item with that value. For example, to read a single event, modify the string as follows:
+Chamar [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) com esse argumento pode retornar múltiplos events. Para limitar [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) à leitura de no máximo *`N`* events, converta a string para `utf8mb4` e, em seguida, adicione a ela um item `max_array_length` com esse valor. Por exemplo, para ler um único event, modifique a string da seguinte forma:
 
 ```sql
 mysql> SET @mark = CONVERT(@mark USING utf8mb4);
@@ -170,14 +170,14 @@ mysql> SELECT @mark;
 +----------------------------------------------------------------------+
 ```
 
-The modified string, when passed to [`audit_log_read()`](audit-log-reference.html#function_audit-log-read), produces a result containing at most one event, no matter how many are available.
+A string modificada, quando passada para [`audit_log_read()`](audit-log-reference.html#function_audit-log-read), produz um resultado contendo no máximo um event, independentemente de quantos estejam disponíveis.
 
-To read a specific number of events beginning at the current position, pass a [`JSON`](json.html "11.5 The JSON Data Type") hash that includes a `max_array_length` value but no position. This statement invoked repeatedly returns five events each time until no more events are available:
+Para ler um número específico de events começando na posição atual, passe um hash [`JSON`](json.html "11.5 The JSON Data Type") que inclua um valor `max_array_length`, mas sem posição. Esta instrução invocada repetidamente retorna cinco events a cada vez até que não haja mais events disponíveis:
 
 ```sql
 SELECT audit_log_read('{"max_array_length": 5}');
 ```
 
-To set a limit on the number of bytes that [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) reads, set the [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) system variable. As of MySQL 5.7.23, this variable has a default of 32KB and can be set at runtime. Each client should set its session value of [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) appropriately for its use of [`audit_log_read()`](audit-log-reference.html#function_audit-log-read). Prior to MySQL 5.7.23, [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) has a default of 1MB, affects all clients, and can be changed only at server startup.
+Para definir um limite no número de bytes que [`audit_log_read()`](audit-log-reference.html#function_audit-log-read) lê, defina a System Variable [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size). A partir do MySQL 5.7.23, esta variável tem um default de 32KB e pode ser definida em tempo de execução (runtime). Cada client deve definir seu valor de session de [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) de forma apropriada para seu uso de [`audit_log_read()`](audit-log-reference.html#function_audit-log-read). Antes do MySQL 5.7.23, [`audit_log_read_buffer_size`](audit-log-reference.html#sysvar_audit_log_read_buffer_size) tinha um default de 1MB, afetava todos os clients e só podia ser alterado na inicialização do server (server startup).
 
-For additional information about audit log-reading functions, see [Audit Log Functions](audit-log-reference.html#audit-log-routines "Audit Log Functions").
+Para informações adicionais sobre as funções de leitura do audit log, veja [Audit Log Functions](audit-log-reference.html#audit-log-routines "Audit Log Functions").

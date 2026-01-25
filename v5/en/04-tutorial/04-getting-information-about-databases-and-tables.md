@@ -1,8 +1,8 @@
-## 3.4 Getting Information About Databases and Tables
+## 3.4 Obtendo Informações Sobre Databases e Tabelas
 
-What if you forget the name of a database or table, or what the structure of a given table is (for example, what its columns are called)? MySQL addresses this problem through several statements that provide information about the databases and tables it supports.
+E se você esquecer o nome de um Database ou Tabela, ou qual é a estrutura de uma determinada tabela (por exemplo, como suas colunas são chamadas)? O MySQL aborda esse problema através de várias *statements* que fornecem informações sobre os Databases e tabelas que ele suporta.
 
-You have previously seen [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"), which lists the databases managed by the server. To find out which database is currently selected, use the [`DATABASE()`](information-functions.html#function_database) function:
+Você já viu anteriormente [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"), que lista os Databases gerenciados pelo servidor. Para descobrir qual Database está atualmente selecionado, use a função [`DATABASE()`](information-functions.html#function_database):
 
 ```sql
 mysql> SELECT DATABASE();
@@ -13,9 +13,9 @@ mysql> SELECT DATABASE();
 +------------+
 ```
 
-If you have not yet selected any database, the result is `NULL`.
+Se você ainda não selecionou nenhum Database, o resultado será `NULL`.
 
-To find out what tables the default database contains (for example, when you are not sure about the name of a table), use this statement:
+Para descobrir quais tabelas o Database padrão contém (por exemplo, quando você não tem certeza sobre o nome de uma tabela), use esta *statement*:
 
 ```sql
 mysql> SHOW TABLES;
@@ -27,9 +27,9 @@ mysql> SHOW TABLES;
 +---------------------+
 ```
 
-The name of the column in the output produced by this statement is always `Tables_in_db_name`, where *`db_name`* is the name of the database. See [Section 13.7.5.37, “SHOW TABLES Statement”](show-tables.html "13.7.5.37 SHOW TABLES Statement"), for more information.
+O nome da coluna na saída produzida por esta *statement* é sempre `Tables_in_db_name`, onde *`db_name`* é o nome do Database. Consulte [Section 13.7.5.37, “SHOW TABLES Statement”](show-tables.html "13.7.5.37 SHOW TABLES Statement"), para mais informações.
 
-If you want to find out about the structure of a table, the [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") statement is useful; it displays information about each of a table's columns:
+Se você deseja saber sobre a estrutura de uma tabela, a *statement* [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") é útil; ela exibe informações sobre cada uma das colunas de uma tabela:
 
 ```sql
 mysql> DESCRIBE pet;
@@ -45,10 +45,10 @@ mysql> DESCRIBE pet;
 +---------+-------------+------+-----+---------+-------+
 ```
 
-`Field` indicates the column name, `Type` is the data type for the column, `NULL` indicates whether the column can contain `NULL` values, `Key` indicates whether the column is indexed, and `Default` specifies the column's default value. `Extra` displays special information about columns: If a column was created with the `AUTO_INCREMENT` option, the value is `auto_increment` rather than empty.
+`Field` indica o nome da coluna, `Type` é o tipo de dado para a coluna, `NULL` indica se a coluna pode conter valores `NULL`, `Key` indica se a coluna é um Index, e `Default` especifica o valor padrão da coluna. `Extra` exibe informações especiais sobre colunas: Se uma coluna foi criada com a opção `AUTO_INCREMENT`, o valor é `auto_increment` em vez de vazio.
 
-`DESC` is a short form of [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement"). See [Section 13.8.1, “DESCRIBE Statement”](describe.html "13.8.1 DESCRIBE Statement"), for more information.
+`DESC` é uma forma abreviada de [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement"). Consulte [Section 13.8.1, “DESCRIBE Statement”](describe.html "13.8.1 DESCRIBE Statement"), para mais informações.
 
-You can obtain the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement necessary to create an existing table using the [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") statement. See [Section 13.7.5.10, “SHOW CREATE TABLE Statement”](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement").
+Você pode obter a *statement* [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") necessária para criar uma tabela existente usando a *statement* [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"). Consulte [Section 13.7.5.10, “SHOW CREATE TABLE Statement”](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement").
 
-If you have indexes on a table, `SHOW INDEX FROM tbl_name` produces information about them. See [Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement"), for more about this statement.
+Se você tiver Indexes em uma tabela, `SHOW INDEX FROM tbl_name` produz informações sobre eles. Consulte [Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement"), para mais detalhes sobre esta *statement*.

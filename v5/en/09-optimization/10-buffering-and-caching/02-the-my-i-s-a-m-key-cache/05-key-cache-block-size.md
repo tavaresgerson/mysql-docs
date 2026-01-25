@@ -1,7 +1,7 @@
-#### 8.10.2.5 Key Cache Block Size
+#### 8.10.2.5 Tamanho do Bloco do Key Cache
 
-It is possible to specify the size of the block buffers for an individual key cache using the `key_cache_block_size` variable. This permits tuning of the performance of I/O operations for index files.
+É possível especificar o tamanho dos *block buffers* para um *key cache* individual usando a variável `key_cache_block_size`. Isso permite o ajuste do desempenho das operações de I/O para arquivos de *index*.
 
-The best performance for I/O operations is achieved when the size of read buffers is equal to the size of the native operating system I/O buffers. But setting the size of key nodes equal to the size of the I/O buffer does not always ensure the best overall performance. When reading the big leaf nodes, the server pulls in a lot of unnecessary data, effectively preventing reading other leaf nodes.
+O melhor desempenho para operações de I/O é alcançado quando o tamanho dos *read buffers* é igual ao tamanho dos *buffers* de I/O nativos do sistema operacional. Contudo, definir o tamanho dos nós de *key* (key nodes) igual ao tamanho do *I/O buffer* nem sempre garante o melhor desempenho geral. Ao ler os *leaf nodes* grandes, o *server* carrega muitos dados desnecessários, impedindo efetivamente a leitura de outros *leaf nodes*.
 
-To control the size of blocks in the `.MYI` index file of `MyISAM` tables, use the `--myisam-block-size` option at server startup.
+Para controlar o tamanho dos blocos no arquivo de *index* `.MYI` das tabelas *MyISAM*, utilize a *option* `--myisam-block-size` durante a inicialização do *server*.

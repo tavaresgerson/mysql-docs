@@ -1,46 +1,46 @@
-### 6.2.6 Access Control, Stage 2: Request Verification
+### 6.2.6 Controle de Acesso, Estágio 2: Verificação de Request
 
-After the server accepts a connection, it enters Stage 2 of access control. For each request that you issue through the connection, the server determines what operation you want to perform, then checks whether your privileges are sufficient. This is where the privilege columns in the grant tables come into play. These privileges can come from any of the `user`, `db`, `tables_priv`, `columns_priv`, or `procs_priv` tables. (You may find it helpful to refer to [Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables"), which lists the columns present in each grant table.)
+Após o servidor aceitar uma conexão, ele entra no Estágio 2 do controle de acesso. Para cada *request* que você emite através da conexão, o servidor determina qual operação você deseja executar e, em seguida, verifica se seus *privileges* são suficientes. É aqui que as colunas de *privilege* nas *grant tables* entram em jogo. Esses *privileges* podem vir de qualquer uma das tabelas `user`, `db`, `tables_priv`, `columns_priv` ou `procs_priv`. (Pode ser útil consultar [Seção 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables"), que lista as colunas presentes em cada *grant table*.)
 
-The `user` table grants global privileges. The `user` table row for an account indicates the account privileges that apply on a global basis no matter what the default database is. For example, if the `user` table grants you the [`DELETE`](privileges-provided.html#priv_delete) privilege, you can delete rows from any table in any database on the server host. It is wise to grant privileges in the `user` table only to people who need them, such as database administrators. For other users, leave all privileges in the `user` table set to `'N'` and grant privileges at more specific levels only (for particular databases, tables, columns, or routines).
+A tabela `user` concede *global privileges* (privilégios globais). A linha da tabela `user` para uma conta indica os *account privileges* que se aplicam em uma base global, independentemente de qual seja o *default database*. Por exemplo, se a tabela `user` lhe conceder o *privilege* [`DELETE`](privileges-provided.html#priv_delete), você poderá excluir linhas de qualquer *table* em qualquer *database* no *host* do servidor. É prudente conceder *privileges* na tabela `user` apenas para pessoas que deles necessitam, como administradores de *database*. Para outros *users*, deixe todos os *privileges* na tabela `user` definidos como `'N'` e conceda *privileges* apenas em níveis mais específicos (para *databases*, *tables*, *columns* ou *routines* particulares).
 
-The `db` table grants database-specific privileges. Values in the scope columns of this table can take the following forms:
+A tabela `db` concede *database-specific privileges* (privilégios específicos de *database*). Os valores nas colunas de escopo desta tabela podem assumir as seguintes formas:
 
-* A blank `User` value matches the anonymous user. A nonblank value matches literally; there are no wildcards in user names.
+* Um valor `User` em branco corresponde ao *user* anônimo. Um valor não branco corresponde literalmente; não há *wildcards* em nomes de *user*.
 
-* The wildcard characters `%` and `_` can be used in the `Host` and `Db` columns. These have the same meaning as for pattern-matching operations performed with the [`LIKE`](string-comparison-functions.html#operator_like) operator. If you want to use either character literally when granting privileges, you must escape it with a backslash. For example, to include the underscore character (`_`) as part of a database name, specify it as `_` in the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement.
+* Os caracteres *wildcard* `%` e `_` podem ser usados nas colunas `Host` e `Db`. Eles têm o mesmo significado que para operações de comparação de padrões realizadas com o operador [`LIKE`](string-comparison-functions.html#operator_like). Se você quiser usar qualquer um dos caracteres literalmente ao conceder *privileges*, você deve escapá-lo com uma barra invertida (*backslash*). Por exemplo, para incluir o caractere *underscore* (`_`) como parte de um nome de *database*, especifique-o como `\_` na instrução [`GRANT`](grant.html "13.7.1.4 GRANT Statement").
 
-* A `'%'` or blank `Host` value means “any host.”
+* Um valor `Host` `'%'` ou em branco significa "qualquer *host*".
 
-* A `'%'` or blank `Db` value means “any database.”
+* Um valor `Db` `'%'` ou em branco significa "qualquer *database*".
 
-The server reads the `db` table into memory and sorts it at the same time that it reads the `user` table. The server sorts the `db` table based on the `Host`, `Db`, and `User` scope columns. As with the `user` table, sorting puts the most-specific values first and least-specific values last, and when the server looks for matching rows, it uses the first match that it finds.
+O servidor lê a tabela `db` para a memória e a ordena ao mesmo tempo em que lê a tabela `user`. O servidor ordena a tabela `db` com base nas colunas de escopo `Host`, `Db` e `User`. Assim como na tabela `user`, a ordenação coloca os valores mais específicos primeiro e os valores menos específicos por último, e quando o servidor procura por linhas correspondentes, ele usa a primeira correspondência que encontra.
 
-The `tables_priv`, `columns_priv`, and `procs_priv` tables grant table-specific, column-specific, and routine-specific privileges. Values in the scope columns of these tables can take the following forms:
+As tabelas `tables_priv`, `columns_priv` e `procs_priv` concedem *privileges* específicos de *table*, específicos de *column* e específicos de *routine*. Os valores nas colunas de escopo dessas tabelas podem assumir as seguintes formas:
 
-* The wildcard characters `%` and `_` can be used in the `Host` column. These have the same meaning as for pattern-matching operations performed with the [`LIKE`](string-comparison-functions.html#operator_like) operator.
+* Os caracteres *wildcard* `%` e `_` podem ser usados na coluna `Host`. Eles têm o mesmo significado que para operações de comparação de padrões realizadas com o operador [`LIKE`](string-comparison-functions.html#operator_like).
 
-* A `'%'` or blank `Host` value means “any host.”
+* Um valor `Host` `'%'` ou em branco significa "qualquer *host*".
 
-* The `Db`, `Table_name`, `Column_name`, and `Routine_name` columns cannot contain wildcards or be blank.
+* As colunas `Db`, `Table_name`, `Column_name` e `Routine_name` não podem conter *wildcards* ou estar em branco.
 
-The server sorts the `tables_priv`, `columns_priv`, and `procs_priv` tables based on the `Host`, `Db`, and `User` columns. This is similar to `db` table sorting, but simpler because only the `Host` column can contain wildcards.
+O servidor ordena as tabelas `tables_priv`, `columns_priv` e `procs_priv` com base nas colunas `Host`, `Db` e `User`. Isso é semelhante à ordenação da tabela `db`, mas mais simples porque apenas a coluna `Host` pode conter *wildcards*.
 
-The server uses the sorted tables to verify each request that it receives. For requests that require administrative privileges such as [`SHUTDOWN`](privileges-provided.html#priv_shutdown) or [`RELOAD`](privileges-provided.html#priv_reload), the server checks only the `user` table row because that is the only table that specifies administrative privileges. The server grants access if the row permits the requested operation and denies access otherwise. For example, if you want to execute [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") but your `user` table row does not grant the [`SHUTDOWN`](privileges-provided.html#priv_shutdown) privilege to you, the server denies access without even checking the `db` table. (The latter table contains no `Shutdown_priv` column, so there is no need to check it.)
+O servidor usa as tabelas ordenadas para verificar cada *request* que recebe. Para *requests* que exigem *administrative privileges*, como [`SHUTDOWN`](privileges-provided.html#priv_shutdown) ou [`RELOAD`](privileges-provided.html#priv_reload), o servidor verifica apenas a linha da tabela `user`, pois esta é a única tabela que especifica *administrative privileges*. O servidor concede o acesso se a linha permitir a operação solicitada e nega o acesso caso contrário. Por exemplo, se você quiser executar [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") mas sua linha da tabela `user` não lhe conceder o *privilege* [`SHUTDOWN`](privileges-provided.html#priv_shutdown), o servidor nega o acesso sem sequer verificar a tabela `db`. (Esta última tabela não contém a coluna `Shutdown_priv`, portanto, não há necessidade de verificá-la.)
 
-For database-related requests ([`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), and so on), the server first checks the user's global privileges in the `user` table row. If the row permits the requested operation, access is granted. If the global privileges in the `user` table are insufficient, the server determines the user's database-specific privileges from the `db` table:
+Para *requests* relacionados a *database* ([`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), e assim por diante), o servidor primeiro verifica os *global privileges* do *user* na linha da tabela `user`. Se a linha permitir a operação solicitada, o acesso é concedido. Se os *global privileges* na tabela `user` forem insuficientes, o servidor determina os *database-specific privileges* do *user* a partir da tabela `db`:
 
-* The server looks in the `db` table for a match on the `Host`, `Db`, and `User` columns.
+* O servidor procura na tabela `db` por uma correspondência nas colunas `Host`, `Db` e `User`.
 
-* The `Host` and `User` columns are matched to the connecting user's host name and MySQL user name.
+* As colunas `Host` e `User` são comparadas com o nome do *host* e o nome de *user* MySQL do *user* que está se conectando.
 
-* The `Db` column is matched to the database that the user wants to access.
+* A coluna `Db` é comparada com o *database* que o *user* deseja acessar.
 
-* If there is no row for the `Host` and `User`, access is denied.
+* Se não houver linha para o `Host` e o `User`, o acesso é negado.
 
-After determining the database-specific privileges granted by the `db` table rows, the server adds them to the global privileges granted by the `user` table. If the result permits the requested operation, access is granted. Otherwise, the server successively checks the user's table and column privileges in the `tables_priv` and `columns_priv` tables, adds those to the user's privileges, and permits or denies access based on the result. For stored-routine operations, the server uses the `procs_priv` table rather than `tables_priv` and `columns_priv`.
+Após determinar os *database-specific privileges* concedidos pelas linhas da tabela `db`, o servidor os adiciona aos *global privileges* concedidos pela tabela `user`. Se o resultado permitir a operação solicitada, o acesso é concedido. Caso contrário, o servidor verifica sucessivamente os *table* e *column privileges* do *user* nas tabelas `tables_priv` e `columns_priv`, adiciona-os aos *privileges* do *user* e permite ou nega o acesso com base no resultado. Para operações de *stored routine*, o servidor usa a tabela `procs_priv` em vez de `tables_priv` e `columns_priv`.
 
-Expressed in boolean terms, the preceding description of how a user's privileges are calculated may be summarized like this:
+Expressa em termos booleanos, a descrição anterior de como os *privileges* de um *user* são calculados pode ser resumida assim:
 
 ```sql
 global privileges
@@ -50,4 +50,4 @@ OR column privileges
 OR routine privileges
 ```
 
-It may not be apparent why, if the global privileges are initially found to be insufficient for the requested operation, the server adds those privileges to the database, table, and column privileges later. The reason is that a request might require more than one type of privilege. For example, if you execute an [`INSERT INTO ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statement, you need both the [`INSERT`](privileges-provided.html#priv_insert) and the [`SELECT`](privileges-provided.html#priv_select) privileges. Your privileges might be such that the `user` table row grants one privilege global and the `db` table row grants the other specifically for the relevant database. In this case, you have the necessary privileges to perform the request, but the server cannot tell that from either your global or database privileges alone. It must make an access-control decision based on the combined privileges.
+Pode não ser óbvio por que, se os *global privileges* forem inicialmente considerados insuficientes para a operação solicitada, o servidor adiciona esses *privileges* aos *database*, *table* e *column privileges* posteriormente. A razão é que um *request* pode exigir mais de um tipo de *privilege*. Por exemplo, se você executar uma instrução [`INSERT INTO ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement"), você precisa dos *privileges* [`INSERT`](privileges-provided.html#priv_insert) e [`SELECT`](privileges-provided.html#priv_select). Seus *privileges* podem ser tais que a linha da tabela `user` concede um *privilege* global e a linha da tabela `db` concede o outro especificamente para o *database* relevante. Neste caso, você tem os *privileges* necessários para executar o *request*, mas o servidor não consegue identificar isso apenas a partir de seus *global privileges* ou *database privileges*. Ele deve tomar uma decisão de controle de acesso com base nos *privileges* combinados.

@@ -1,11 +1,11 @@
-## 4.3 Server and Server-Startup Programs
+## 4.3 Servidor e Programas de Inicialização do Servidor
 
-4.3.1 mysqld — The MySQL Server
+4.3.1 mysqld — O Servidor MySQL
 
-4.3.2 mysqld_safe — MySQL Server Startup Script
+4.3.2 mysqld_safe — Script de Inicialização do Servidor MySQL
 
-4.3.3 mysql.server — MySQL Server Startup Script
+4.3.3 mysql.server — Script de Inicialização do Servidor MySQL
 
-4.3.4 mysqld_multi — Manage Multiple MySQL Servers
+4.3.4 mysqld_multi — Gerenciar Múltiplos Servidores MySQL
 
-This section describes **mysqld**, the MySQL server, and several programs that are used to start the server.
+Esta seção descreve **mysqld**, o Servidor MySQL, e diversos programas que são usados para iniciar o Servidor.

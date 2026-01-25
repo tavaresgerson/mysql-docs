@@ -1,62 +1,62 @@
-### 7.4.3 Dumping Data in Delimited-Text Format with mysqldump
+### 7.4.3 Realizando Dump de Dados em Formato de Texto Delimitado com mysqldump
 
-This section describes how to use **mysqldump** to create delimited-text dump files. For information about reloading such dump files, see Section 7.4.4, “Reloading Delimited-Text Format Backups”.
+Esta seção descreve como usar o **mysqldump** para criar arquivos de dump em formato de texto delimitado. Para informações sobre como recarregar (reloading) tais arquivos de dump, consulte a Seção 7.4.4, “Recarregando Backups em Formato de Texto Delimitado”.
 
-If you invoke **mysqldump** with the `--tab=dir_name` option, it uses *`dir_name`* as the output directory and dumps tables individually in that directory using two files for each table. The table name is the base name for these files. For a table named `t1`, the files are named `t1.sql` and `t1.txt`. The `.sql` file contains a `CREATE TABLE` statement for the table. The `.txt` file contains the table data, one line per table row.
+Se você invocar o **mysqldump** com a opção `--tab=dir_name`, ele usará *`dir_name`* como o diretório de saída e fará o dump de tabelas individualmente nesse diretório, utilizando dois arquivos para cada tabela. O nome da tabela é o nome base para esses arquivos. Para uma tabela chamada `t1`, os arquivos serão nomeados `t1.sql` e `t1.txt`. O arquivo `.sql` contém uma instrução `CREATE TABLE` para a tabela. O arquivo `.txt` contém os dados da tabela, uma linha por row da tabela.
 
-The following command dumps the contents of the `db1` database to files in the `/tmp` database:
+O seguinte comando faz o dump do conteúdo do Database `db1` para arquivos no diretório `/tmp`:
 
 ```sql
 $> mysqldump --tab=/tmp db1
 ```
 
-The `.txt` files containing table data are written by the server, so they are owned by the system account used for running the server. The server uses `SELECT ... INTO OUTFILE` to write the files, so you must have the `FILE` privilege to perform this operation, and an error occurs if a given `.txt` file already exists.
+Os arquivos `.txt` contendo os dados da tabela são escritos pelo Server, portanto, pertencem à conta de sistema usada para executar o Server. O Server usa `SELECT ... INTO OUTFILE` para escrever os arquivos, de modo que você deve ter o privilégio `FILE` para realizar esta operação, e um erro ocorrerá se um determinado arquivo `.txt` já existir.
 
-The server sends the `CREATE` definitions for dumped tables to **mysqldump**, which writes them to `.sql` files. These files therefore are owned by the user who executes **mysqldump**.
+O Server envia as definições `CREATE` para as tabelas que sofreram dump ao **mysqldump**, que as escreve nos arquivos `.sql`. Portanto, esses arquivos pertencem ao usuário que executa o **mysqldump**.
 
-It is best that `--tab` be used only for dumping a local server. If you use it with a remote server, the `--tab` directory must exist on both the local and remote hosts, and the `.txt` files are written by the server in the remote directory (on the server host), whereas the `.sql` files are written by **mysqldump** in the local directory (on the client host).
+É melhor que `--tab` seja usado apenas para fazer dump em um Server local. Se você o usar com um Server remoto, o diretório `--tab` deve existir tanto nos Hosts local quanto remoto, e os arquivos `.txt` são escritos pelo Server no diretório remoto (no Host do Server), enquanto os arquivos `.sql` são escritos pelo **mysqldump** no diretório local (no Host do Client).
 
-For **mysqldump --tab**, the server by default writes table data to `.txt` files one line per row with tabs between column values, no quotation marks around column values, and newline as the line terminator. (These are the same defaults as for `SELECT ... INTO OUTFILE`.)
+Para **mysqldump --tab**, o Server por padrão escreve os dados da tabela em arquivos `.txt` com uma linha por row, tabulações entre os valores das colunas, sem aspas ao redor dos valores das colunas e newline (nova linha) como terminador de linha. (Estes são os mesmos padrões de `SELECT ... INTO OUTFILE`.)
 
-To enable data files to be written using a different format, **mysqldump** supports these options:
+Para permitir que os arquivos de dados sejam escritos usando um formato diferente, o **mysqldump** suporta estas opções:
 
-* `--fields-terminated-by=str`
+*   `--fields-terminated-by=str`
 
-  The string for separating column values (default: tab).
+    A string para separar os valores das colunas (padrão: tabulação).
 
-* `--fields-enclosed-by=char`
+*   `--fields-enclosed-by=char`
 
-  The character within which to enclose column values (default: no character).
+    O caractere dentro do qual delimitar os valores das colunas (padrão: nenhum caractere).
 
-* `--fields-optionally-enclosed-by=char`
+*   `--fields-optionally-enclosed-by=char`
 
-  The character within which to enclose non-numeric column values (default: no character).
+    O caractere dentro do qual delimitar opcionalmente valores de colunas não numéricos (padrão: nenhum caractere).
 
-* `--fields-escaped-by=char`
+*   `--fields-escaped-by=char`
 
-  The character for escaping special characters (default: no escaping).
+    O caractere para escapar caracteres especiais (padrão: sem escape).
 
-* `--lines-terminated-by=str`
+*   `--lines-terminated-by=str`
 
-  The line-termination string (default: newline).
+    A string de terminação de linha (padrão: newline).
 
-Depending on the value you specify for any of these options, it might be necessary on the command line to quote or escape the value appropriately for your command interpreter. Alternatively, specify the value using hex notation. Suppose that you want **mysqldump** to quote column values within double quotation marks. To do so, specify double quote as the value for the `--fields-enclosed-by` option. But this character is often special to command interpreters and must be treated specially. For example, on Unix, you can quote the double quote like this:
+Dependendo do valor que você especificar para qualquer uma dessas opções, pode ser necessário, na linha de comando, citar (quote) ou escapar o valor apropriadamente para o seu interpretador de comandos. Alternativamente, especifique o valor usando a notação hexadecimal. Suponha que você queira que o **mysqldump** cite os valores das colunas entre aspas duplas. Para fazer isso, especifique aspas duplas como valor para a opção `--fields-enclosed-by`. No entanto, este caractere é frequentemente especial para interpretadores de comandos e deve ser tratado de forma especial. Por exemplo, no Unix, você pode citar as aspas duplas desta forma:
 
 ```sql
 --fields-enclosed-by='"'
 ```
 
-On any platform, you can specify the value in hex:
+Em qualquer plataforma, você pode especificar o valor em hexadecimal:
 
 ```sql
 --fields-enclosed-by=0x22
 ```
 
-It is common to use several of the data-formatting options together. For example, to dump tables in comma-separated values format with lines terminated by carriage-return/newline pairs (`\r\n`), use this command (enter it on a single line):
+É comum usar várias das opções de formatação de dados em conjunto. Por exemplo, para fazer o dump de tabelas no formato de valores separados por vírgulas (comma-separated values) com linhas terminadas por pares carriage-return/newline (`\r\n`), use este comando (digite-o em uma única linha):
 
 ```sql
 $> mysqldump --tab=/tmp --fields-terminated-by=,
          --fields-enclosed-by='"' --lines-terminated-by=0x0d0a db1
 ```
 
-Should you use any of the data-formatting options to dump table data, you must specify the same format when you reload data files later, to ensure proper interpretation of the file contents.
+Caso você use qualquer uma das opções de formatação de dados para fazer o dump de dados da tabela, você deve especificar o mesmo formato ao recarregar (reload) os arquivos de dados posteriormente, para garantir a interpretação adequada do conteúdo do arquivo.

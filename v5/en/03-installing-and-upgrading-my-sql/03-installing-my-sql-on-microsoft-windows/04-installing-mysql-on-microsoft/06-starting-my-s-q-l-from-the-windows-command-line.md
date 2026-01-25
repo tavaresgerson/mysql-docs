@@ -1,33 +1,33 @@
-#### 2.3.4.6 Starting MySQL from the Windows Command Line
+#### 2.3.4.6 Iniciando o MySQL a partir da Linha de Comando do Windows
 
-The MySQL server can be started manually from the command line. This can be done on any version of Windows.
+O servidor MySQL pode ser iniciado manualmente a partir da linha de comando. Isso pode ser feito em qualquer versão do Windows.
 
-To start the **mysqld** server from the command line, you should start a console window (or “DOS window”) and enter this command:
+Para iniciar o servidor **mysqld** a partir da linha de comando, você deve iniciar uma janela de **console** (ou “janela DOS”) e inserir este comando:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld"
 ```
 
-The path to **mysqld** may vary depending on the install location of MySQL on your system.
+O caminho para o **mysqld** pode variar dependendo do local de instalação do MySQL no seu sistema.
 
-You can stop the MySQL server by executing this command:
+Você pode parar o servidor MySQL executando este comando:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqladmin" -u root shutdown
 ```
 
-Note
+Nota
 
-If the MySQL `root` user account has a password, you need to invoke **mysqladmin** with the `-p` option and supply the password when prompted.
+Se a conta de usuário `root` do MySQL tiver uma senha, você precisará invocar o **mysqladmin** com a opção `-p` e fornecer a senha quando solicitado.
 
-This command invokes the MySQL administrative utility **mysqladmin** to connect to the server and tell it to shut down. The command connects as the MySQL `root` user, which is the default administrative account in the MySQL grant system.
+Este comando invoca o utilitário administrativo do MySQL, **mysqladmin**, para se conectar ao servidor e instruí-lo a desligar. O comando se conecta como o usuário `root` do MySQL, que é a conta administrativa padrão no **grant system** do MySQL.
 
-Note
+Nota
 
-Users in the MySQL grant system are wholly independent from any operating system users under Microsoft Windows.
+Os usuários no **grant system** do MySQL são totalmente independentes de quaisquer usuários do sistema operacional sob o Microsoft Windows.
 
-If **mysqld** does not start, check the error log to see whether the server wrote any messages there to indicate the cause of the problem. By default, the error log is located in the `C:\Program Files\MySQL\MySQL Server 5.7\data` directory. It is the file with a suffix of `.err`, or may be specified by passing in the `--log-error` option. Alternatively, you can try to start the server with the `--console` option; in this case, the server may display some useful information on the screen to help solve the problem.
+Se o **mysqld** não iniciar, verifique o **error log** para ver se o servidor escreveu alguma mensagem indicando a causa do problema. Por padrão, o **error log** está localizado no diretório `C:\Program Files\MySQL\MySQL Server 5.7\data`. É o arquivo com o sufixo `.err`, ou pode ser especificado passando a opção `--log-error`. Alternativamente, você pode tentar iniciar o servidor com a opção `--console`; neste caso, o servidor pode exibir algumas informações úteis na tela para ajudar a resolver o problema.
 
-The last option is to start **mysqld** with the `--standalone` and `--debug` options. In this case, **mysqld** writes a log file `C:\mysqld.trace` that should contain the reason why **mysqld** doesn't start. See Section 5.8.3, “The DBUG Package”.
+A última opção é iniciar o **mysqld** com as opções `--standalone` e `--debug`. Neste caso, o **mysqld** escreve um arquivo de **log** `C:\mysqld.trace` que deve conter a razão pela qual o **mysqld** não está iniciando. Veja Seção 5.8.3, “The DBUG Package”.
 
-Use **mysqld --verbose --help** to display all the options that **mysqld** supports.
+Use **mysqld --verbose --help** para exibir todas as opções que o **mysqld** suporta.

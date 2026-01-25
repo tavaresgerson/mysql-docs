@@ -1,88 +1,88 @@
-### 2.9.4 Securing the Initial MySQL Account
+### 2.9.4 Protegendo a Conta Inicial do MySQL
 
-The MySQL installation process involves initializing the data directory, including the grant tables in the `mysql` system database that define MySQL accounts. For details, see Section 2.9.1, “Initializing the Data Directory”.
+O processo de instalação do MySQL envolve a inicialização do data directory, incluindo as grant tables no database de sistema `mysql` que definem as contas do MySQL. Para detalhes, consulte a Seção 2.9.1, “Inicializando o Data Directory”.
 
-This section describes how to assign a password to the initial `root` account created during the MySQL installation procedure, if you have not already done so.
+Esta seção descreve como atribuir uma senha à conta `root` inicial criada durante o procedimento de instalação do MySQL, caso você ainda não o tenha feito.
 
-Note
+Nota
 
-Alternative means for performing the process described in this section:
+Meios alternativos para executar o processo descrito nesta seção:
 
-* On Windows, you can perform the process during installation with MySQL Installer (see Section 2.3.3, “MySQL Installer for Windows”).
+*   No Windows, você pode executar o processo durante a instalação com o MySQL Installer (consulte a Seção 2.3.3, “MySQL Installer for Windows”).
 
-* On all platforms, the MySQL distribution includes **mysql_secure_installation**, a command-line utility that automates much of the process of securing a MySQL installation.
+*   Em todas as plataformas, a distribuição do MySQL inclui o **mysql_secure_installation**, um utilitário de linha de comando que automatiza grande parte do processo de proteção de uma instalação do MySQL.
 
-* On all platforms, MySQL Workbench is available and offers the ability to manage user accounts (see Chapter 29, *MySQL Workbench* ).
+*   Em todas as plataformas, o MySQL Workbench está disponível e oferece a capacidade de gerenciar user accounts (consulte o Capítulo 29, *MySQL Workbench* ).
 
-A password may already be assigned to the initial account under these circumstances:
+Uma senha já pode estar atribuída à conta inicial sob estas circunstâncias:
 
-* On Windows, installations performed using MySQL Installer give you the option of assigning a password.
+*   No Windows, instalações realizadas usando o MySQL Installer oferecem a opção de atribuição de senha.
 
-* Installation using the macOS installer generates an initial random password, which the installer displays to the user in a dialog box.
+*   Instalações usando o instalador do macOS geram uma senha aleatória inicial, que o instalador exibe para o usuário em uma caixa de diálogo.
 
-* Installation using RPM packages generates an initial random password, which is written to the server error log.
+*   Instalações usando pacotes RPM geram uma senha aleatória inicial, que é escrita no error log do server.
 
-* Installations using Debian packages give you the option of assigning a password.
+*   Instalações usando pacotes Debian oferecem a opção de atribuição de senha.
 
-* For data directory initialization performed manually using **mysqld --initialize**, **mysqld** generates an initial random password, marks it expired, and writes it to the server error log. See Section 2.9.1, “Initializing the Data Directory”.
+*   Para a inicialização do data directory realizada manualmente usando **mysqld --initialize**, o **mysqld** gera uma senha aleatória inicial, a marca como expirada e a escreve no error log do server. Consulte a Seção 2.9.1, “Inicializando o Data Directory”.
 
-The `mysql.user` grant table defines the initial MySQL user account and its access privileges. Installation of MySQL creates only a `'root'@'localhost'` superuser account that has all privileges and can do anything. If the `root` account has an empty password, your MySQL installation is unprotected: Anyone can connect to the MySQL server as `root` *without a password* and be granted all privileges.
+A grant table `mysql.user` define a user account inicial do MySQL e seus privilégios de acesso. A instalação do MySQL cria apenas uma conta superuser `'root'@'localhost'` que possui todos os privilégios e pode fazer qualquer coisa. Se a conta `root` tiver uma senha vazia, sua instalação do MySQL fica desprotegida: Qualquer pessoa pode se conectar ao MySQL server como `root` *sem uma senha* e receber todos os privilégios.
 
-The `'root'@'localhost'` account also has a row in the `mysql.proxies_priv` table that enables granting the `PROXY` privilege for `''@''`, that is, for all users and all hosts. This enables `root` to set up proxy users, as well as to delegate to other accounts the authority to set up proxy users. See Section 6.2.14, “Proxy Users”.
+A conta `'root'@'localhost'` também possui uma linha na tabela `mysql.proxies_priv` que permite conceder o privilégio `PROXY` para `''@''`, ou seja, para todos os users e todos os hosts. Isso permite que o `root` configure proxy users, bem como delegue a outras accounts a autoridade para configurar proxy users. Consulte a Seção 6.2.14, “Proxy Users”.
 
-To assign a password for the initial MySQL `root` account, use the following procedure. Replace *`root-password`* in the examples with the password that you want to use.
+Para atribuir uma senha para a conta `root` inicial do MySQL, use o procedimento a seguir. Substitua *`root-password`* nos exemplos pela senha que você deseja usar.
 
-Start the server if it is not running. For instructions, see Section 2.9.2, “Starting the Server”.
+Inicie o server se ele não estiver em execução. Para instruções, consulte a Seção 2.9.2, “Iniciando o Server”.
 
-The initial `root` account may or may not have a password. Choose whichever of the following procedures applies:
+A conta `root` inicial pode ou não ter uma senha. Escolha qual dos seguintes procedimentos se aplica:
 
-* If the `root` account exists with an initial random password that has been expired, connect to the server as `root` using that password, then choose a new password. This is the case if the data directory was initialized using **mysqld --initialize**, either manually or using an installer that does not give you the option of specifying a password during the install operation. Because the password exists, you must use it to connect to the server. But because the password is expired, you cannot use the account for any purpose other than to choose a new password, until you do choose one.
+*   Se a conta `root` existir com uma senha aleatória inicial que tenha sido expirada, conecte-se ao server como `root` usando essa senha e, em seguida, escolha uma nova senha. Este é o caso se o data directory foi inicializado usando **mysqld --initialize**, seja manualmente ou usando um instalador que não oferece a opção de especificar uma senha durante a operação de instalação. Como a senha existe, você deve usá-la para se conectar ao server. Mas como a senha está expirada, você não pode usar a conta para nenhum outro propósito além de escolher uma nova senha, até que você escolha uma.
 
-  1. If you do not know the initial random password, look in the server error log.
+    1.  Se você não souber a senha aleatória inicial, procure no error log do server.
 
-  2. Connect to the server as `root` using the password:
+    2.  Conecte-se ao server como `root` usando a senha:
 
-     ```sql
+        ```sql
      $> mysql -u root -p
      Enter password: (enter the random root password here)
      ```
 
-  3. Choose a new password to replace the random password:
+    3.  Escolha uma nova senha para substituir a senha aleatória:
 
-     ```sql
+        ```sql
      mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'root-password';
      ```
 
-* If the `root` account exists but has no password, connect to the server as `root` using no password, then assign a password. This is the case if you initialized the data directory using **mysqld --initialize-insecure**.
+*   Se a conta `root` existir, mas não tiver senha, conecte-se ao server como `root` sem usar senha e, em seguida, atribua uma senha. Este é o caso se você inicializou o data directory usando **mysqld --initialize-insecure**.
 
-  1. Connect to the server as `root` using no password:
+    1.  Conecte-se ao server como `root` sem usar senha:
 
-     ```sql
+        ```sql
      $> mysql -u root --skip-password
      ```
 
-  2. Assign a password:
+    2.  Atribua uma senha:
 
-     ```sql
+        ```sql
      mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'root-password';
      ```
 
-After assigning the `root` account a password, you must supply that password whenever you connect to the server using the account. For example, to connect to the server using the **mysql** client, use this command:
+Após atribuir uma senha à conta `root`, você deve fornecê-la sempre que se conectar ao server usando a conta. Por exemplo, para se conectar ao server usando o **mysql** client, use este comando:
 
 ```sql
 $> mysql -u root -p
 Enter password: (enter root password here)
 ```
 
-To shut down the server with **mysqladmin**, use this command:
+Para desligar o server com **mysqladmin**, use este comando:
 
 ```sql
 $> mysqladmin -u root -p shutdown
 Enter password: (enter root password here)
 ```
 
-Note
+Nota
 
-For additional information about setting passwords, see Section 6.2.10, “Assigning Account Passwords”. If you forget your `root` password after setting it, see Section B.3.3.2, “How to Reset the Root Password”.
+Para informações adicionais sobre como definir senhas, consulte a Seção 6.2.10, “Atribuindo Senhas de Conta”. Se você esquecer sua senha `root` depois de configurá-la, consulte a Seção B.3.3.2, “Como Resetar a Senha Root”.
 
-To set up additional accounts, see Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”.
+Para configurar accounts adicionais, consulte a Seção 6.2.7, “Adicionando Contas, Atribuindo Privilégios e Removendo Contas”.

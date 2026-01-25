@@ -1,108 +1,108 @@
-### 4.6.5 myisampack — Generate Compressed, Read-Only MyISAM Tables
+### 4.6.5 myisampack — Gerar Tabelas MyISAM Compactadas e Somente Leitura
 
-The **myisampack** utility compresses `MyISAM` tables. **myisampack** works by compressing each column in the table separately. Usually, **myisampack** packs the data file 40% to 70%.
+O utilitário **myisampack** comprime tabelas `MyISAM`. **myisampack** funciona comprimindo cada coluna na tabela separadamente. Normalmente, o **myisampack** compacta o Data File de 40% a 70%.
 
-When the table is used later, the server reads into memory the information needed to decompress columns. This results in much better performance when accessing individual rows, because you only have to uncompress exactly one row.
+Quando a tabela é usada posteriormente, o servidor lê para a memória as informações necessárias para descompactar as colunas. Isso resulta em um desempenho muito melhor ao acessar linhas individuais, pois você precisa descompactar exatamente apenas uma linha.
 
-MySQL uses `mmap()` when possible to perform memory mapping on compressed tables. If `mmap()` does not work, MySQL falls back to normal read/write file operations.
+O MySQL usa `mmap()` quando possível para realizar mapeamento de memória em tabelas compactadas. Se `mmap()` não funcionar, o MySQL recorre a operações normais de arquivo de leitura/escrita.
 
-Please note the following:
+Observe o seguinte:
 
-* If the **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process. It is safest to compress tables with the server stopped.
+* Se o servidor **mysqld** foi invocado com o external locking desativado, não é uma boa ideia invocar o **myisampack** se a tabela puder ser atualizada pelo servidor durante o processo de compactação. É mais seguro compactar tabelas com o servidor parado.
 
-* After packing a table, it becomes read only. This is generally intended (such as when accessing packed tables on a CD).
+* Após compactar uma tabela, ela se torna somente leitura (read only). Isso geralmente é intencional (como ao acessar tabelas compactadas em um CD).
 
-* **myisampack** does not support partitioned tables.
+* **myisampack** não suporta partitioned tables.
 
-Invoke **myisampack** like this:
+Invoque **myisampack** da seguinte forma:
 
 ```sql
 myisampack [options] file_name ...
 ```
 
-Each file name argument should be the name of an index (`.MYI`) file. If you are not in the database directory, you should specify the path name to the file. It is permissible to omit the `.MYI` extension.
+Cada argumento de nome de arquivo deve ser o nome de um arquivo Index (`.MYI`). Se você não estiver no diretório do Database, você deve especificar o caminho para o arquivo. É permitido omitir a extensão `.MYI`.
 
-After you compress a table with **myisampack**, use **myisamchk -rq** to rebuild its indexes. Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”.
+Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para reconstruir seus Indexes. Seção 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”.
 
-**myisampack** supports the following options. It also reads option files and supports the options for processing them described at Section 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+**myisampack** suporta as seguintes opções. Ele também lê arquivos de opção e suporta as opções para processá-los descritas na Seção 4.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para help"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></thead><tbody></tbody></table>
 
-  Display a help message and exit.
+  Exibe uma mensagem de ajuda e sai.
 
 * `--backup`, `-b`
 
-  <table frame="box" rules="all" summary="Properties for backup"><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--backup</code></td> </tr></thead><tbody></tbody></table>
 
-  Make a backup of each table's data file using the name `tbl_name.OLD`.
+  Cria um backup do Data File de cada tabela usando o nome `tbl_name.OLD`.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do Diretório</td> </tr></thead><tbody></tbody></table>
 
-  The directory where character sets are installed. See Section 10.15, “Character Set Configuration”.
+  O diretório onde os character sets estão instalados. Consulte a Seção 10.15, “Character Set Configuration”.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>d:t:o</code></td> </tr></thead><tbody></tbody></table>
 
-  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o`.
+  Escreve um log de depuração. Uma *`debug_options`* string típica é `d:t:o,file_name`. O padrão é `d:t:o`.
 
-  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
+  Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DEBUG`. Binários de lançamento do MySQL fornecidos pela Oracle *não* são construídos usando esta opção.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for force"><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para force"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--force</code></td> </tr></thead><tbody></tbody></table>
 
-  Produce a packed table even if it becomes larger than the original or if the intermediate file from an earlier invocation of **myisampack** exists. (**myisampack** creates an intermediate file named `tbl_name.TMD` in the database directory while it compresses the table. If you kill **myisampack**, the `.TMD` file might not be deleted.) Normally, **myisampack** exits with an error if it finds that `tbl_name.TMD` exists. With `--force`, **myisampack** packs the table anyway.
+  Produz uma tabela compactada mesmo que ela fique maior do que a original ou se o arquivo intermediário de uma invocação anterior do **myisampack** existir. (**myisampack** cria um arquivo intermediário chamado `tbl_name.TMD` no diretório do Database enquanto comprime a tabela. Se você encerrar o **myisampack**, o arquivo `.TMD` pode não ser excluído.) Normalmente, o **myisampack** é encerrado com um erro se encontrar que `tbl_name.TMD` existe. Com `--force`, **myisampack** compacta a tabela de qualquer maneira.
 
 * `--join=big_tbl_name`, `-j big_tbl_name`
 
-  <table frame="box" rules="all" summary="Properties for join"><tbody><tr><th>Command-Line Format</th> <td><code>--join=big_tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para join"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--join=big_tbl_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></thead><tbody></tbody></table>
 
-  Join all tables named on the command line into a single packed table *`big_tbl_name`*. All tables that are to be combined *must* have identical structure (same column names and types, same indexes, and so forth).
+  Une todas as tabelas nomeadas na linha de comando em uma única tabela compactada *`big_tbl_name`*. Todas as tabelas a serem combinadas *devem* ter uma estrutura idêntica (mesmos nomes de coluna e tipos, mesmos Indexes, e assim por diante).
 
-  *`big_tbl_name`* must not exist prior to the join operation. All source tables named on the command line to be merged into *`big_tbl_name`* must exist. The source tables are read for the join operation but not modified.
+  *`big_tbl_name`* não deve existir antes da operação de JOIN. Todas as tabelas de origem nomeadas na linha de comando para serem mescladas em *`big_tbl_name`* devem existir. As tabelas de origem são lidas para a operação de JOIN, mas não são modificadas.
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for silent"><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para silent"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--silent</code></td> </tr></thead><tbody></tbody></table>
 
-  Silent mode. Write output only when errors occur.
+  Modo silencioso. Escreve a saída somente quando ocorrem erros.
 
 * `--test`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for test"><tbody><tr><th>Command-Line Format</th> <td><code>--test</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para test"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--test</code></td> </tr></thead><tbody></tbody></table>
 
-  Do not actually pack the table, just test packing it.
+  Não compacta a tabela de fato, apenas testa a compactação.
 
 * `--tmpdir=dir_name`, `-T dir_name`
 
-  <table frame="box" rules="all" summary="Properties for tmpdir"><tbody><tr><th>Command-Line Format</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para tmpdir"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do Diretório</td> </tr></thead><tbody></tbody></table>
 
-  Use the named directory as the location where **myisampack** creates temporary files.
+  Usa o diretório nomeado como o local onde **myisampack** cria arquivos temporários.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--verbose</code></td> </tr></thead><tbody></tbody></table>
 
-  Verbose mode. Write information about the progress of the packing operation and its result.
+  Modo verboso. Escreve informações sobre o progresso da operação de compactação e seu resultado.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for backup"><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--backup</code></td> </tr></thead><tbody></tbody></table>
 
-  Display version information and exit.
+  Exibe informações de versão e sai.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for backup"><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup"><thead><tr><th>Formato de Linha de Comando</th> <td><code>--backup</code></td> </tr></thead><tbody></tbody></table>
 
-  Wait and retry if the table is in use. If the **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process.
+  Aguarda e tenta novamente se a tabela estiver em uso. Se o servidor **mysqld** foi invocado com o external locking desativado, não é uma boa ideia invocar o **myisampack** se a tabela puder ser atualizada pelo servidor durante o processo de compactação.
 
-The following sequence of commands illustrates a typical table compression session:
+A sequência de comandos a seguir ilustra uma sessão típica de compressão de tabela:
 
 ```sql
 $> ls -l station.*
@@ -290,100 +290,100 @@ Field Start Length Type                         Huff tree  Bits
 57    831   4      no zeros, zerofill(1)                2     9
 ```
 
-**myisampack** displays the following kinds of information:
+**myisampack** exibe os seguintes tipos de informação:
 
 * `normal`
 
-  The number of columns for which no extra packing is used.
+  O número de colunas para as quais nenhuma compactação extra é usada.
 
 * `empty-space`
 
-  The number of columns containing values that are only spaces. These occupy one bit.
+  O número de colunas contendo valores que são apenas espaços. Estes ocupam um bit.
 
 * `empty-zero`
 
-  The number of columns containing values that are only binary zeros. These occupy one bit.
+  O número de colunas contendo valores que são apenas zeros binários. Estes ocupam um bit.
 
 * `empty-fill`
 
-  The number of integer columns that do not occupy the full byte range of their type. These are changed to a smaller type. For example, a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column (eight bytes) can be stored as a `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column (one byte) if all its values are in the range from `-128` to `127`.
+  O número de colunas inteiras que não ocupam o intervalo de bytes completo de seu tipo. Estes são alterados para um tipo menor. Por exemplo, uma coluna `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (oito bytes) pode ser armazenada como uma coluna `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (um byte) se todos os seus valores estiverem no intervalo de `-128` a `127`.
 
 * `pre-space`
 
-  The number of decimal columns that are stored with leading spaces. In this case, each value contains a count for the number of leading spaces.
+  O número de colunas decimais que são armazenadas com espaços iniciais (leading spaces). Neste caso, cada valor contém uma contagem para o número de espaços iniciais.
 
 * `end-space`
 
-  The number of columns that have a lot of trailing spaces. In this case, each value contains a count for the number of trailing spaces.
+  O número de colunas que têm muitos espaços finais (trailing spaces). Neste caso, cada valor contém uma contagem para o número de espaços finais.
 
 * `table-lookup`
 
-  The column had only a small number of different values, which were converted to an `ENUM` before Huffman compression.
+  A coluna tinha apenas um pequeno número de valores diferentes, que foram convertidos para um `ENUM` antes da compressão Huffman.
 
 * `zero`
 
-  The number of columns for which all values are zero.
+  O número de colunas para as quais todos os valores são zero.
 
 * `Original trees`
 
-  The initial number of Huffman trees.
+  O número inicial de árvores Huffman.
 
 * `After join`
 
-  The number of distinct Huffman trees left after joining trees to save some header space.
+  O número de árvores Huffman distintas restantes após o JOIN de árvores para economizar algum espaço de cabeçalho.
 
-After a table has been compressed, the `Field` lines displayed by **myisamchk -dvv** include additional information about each column:
+Depois que uma tabela é compactada, as linhas `Field` exibidas por **myisamchk -dvv** incluem informações adicionais sobre cada coluna:
 
 * `Type`
 
-  The data type. The value may contain any of the following descriptors:
+  O Data Type. O valor pode conter qualquer um dos seguintes descritores:
 
   + `constant`
 
-    All rows have the same value.
+    Todas as linhas têm o mesmo valor.
 
   + `no endspace`
 
-    Do not store endspace.
+    Não armazena endspace.
 
   + `no endspace, not_always`
 
-    Do not store endspace and do not do endspace compression for all values.
+    Não armazena endspace e não faz compressão de endspace para todos os valores.
 
   + `no endspace, no empty`
 
-    Do not store endspace. Do not store empty values.
+    Não armazena endspace. Não armazena valores vazios.
 
   + `table-lookup`
 
-    The column was converted to an `ENUM`.
+    A coluna foi convertida para um `ENUM`.
 
   + `zerofill(N)`
 
-    The most significant *`N`* bytes in the value are always 0 and are not stored.
+    Os *`N`* bytes mais significativos no valor são sempre 0 e não são armazenados.
 
   + `no zeros`
 
-    Do not store zeros.
+    Não armazena zeros.
 
   + `always zero`
 
-    Zero values are stored using one bit.
+    Valores zero são armazenados usando um bit.
 
 * `Huff tree`
 
-  The number of the Huffman tree associated with the column.
+  O número da árvore Huffman associada à coluna.
 
 * `Bits`
 
-  The number of bits used in the Huffman tree.
+  O número de bits usados na árvore Huffman.
 
-After you run **myisampack**, use **myisamchk** to re-create any indexes. At this time, you can also sort the index blocks and create statistics needed for the MySQL optimizer to work more efficiently:
+Depois de executar o **myisampack**, use **myisamchk** para recriar quaisquer Indexes. Neste momento, você também pode ordenar os blocos Index e criar estatísticas necessárias para que o otimizador do MySQL funcione de forma mais eficiente:
 
 ```sql
 myisamchk -rq --sort-index --analyze tbl_name.MYI
 ```
 
-After you have installed the packed table into the MySQL database directory, you should execute **mysqladmin flush-tables** to force **mysqld** to start using the new table.
+Depois de instalar a tabela compactada no diretório do MySQL Database, você deve executar **mysqladmin flush-tables** para forçar o **mysqld** a começar a usar a nova tabela.
 
-To unpack a packed table, use the `--unpack` option to **myisamchk**.
+Para descompactar uma tabela compactada, use a opção `--unpack` para **myisamchk**.

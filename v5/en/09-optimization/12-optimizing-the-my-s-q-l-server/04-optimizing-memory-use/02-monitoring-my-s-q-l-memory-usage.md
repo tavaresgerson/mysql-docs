@@ -1,17 +1,17 @@
-#### 8.12.4.2 Monitoring MySQL Memory Usage
+#### 8.12.4.2 Monitorando o Uso de Memória do MySQL
 
-The following example demonstrates how to use Performance Schema and sys schema to monitor MySQL memory usage.
+O exemplo a seguir demonstra como usar o Performance Schema e o sys schema para monitorar o uso de memória do MySQL.
 
-Most Performance Schema memory instrumentation is disabled by default. Instruments can be enabled by updating the `ENABLED` column of the Performance Schema `setup_instruments` table. Memory instruments have names in the form of `memory/code_area/instrument_name`, where *`code_area`* is a value such as `sql` or `innodb`, and *`instrument_name`* is the instrument detail.
+A maioria da instrumentação de memória do Performance Schema está desabilitada por padrão. Os Instruments podem ser habilitados atualizando a coluna `ENABLED` da tabela `setup_instruments` do Performance Schema. Os instruments de memória têm nomes no formato `memory/code_area/instrument_name`, onde *`code_area`* é um valor como `sql` ou `innodb`, e *`instrument_name`* é o detalhe do instrument.
 
-1. To view available MySQL memory instruments, query the Performance Schema `setup_instruments` table. The following query returns hundreds of memory instruments for all code areas.
+1. Para visualizar os instruments de memória do MySQL disponíveis, execute uma Query na tabela `setup_instruments` do Performance Schema. A seguinte Query retorna centenas de instruments de memória para todas as áreas de código.
 
    ```sql
    mysql> SELECT * FROM performance_schema.setup_instruments
           WHERE NAME LIKE '%memory%';
    ```
 
-   You can narrow results by specifying a code area. For example, you can limit results to `InnoDB` memory instruments by specifying `innodb` as the code area.
+   Você pode restringir os resultados especificando uma área de código. Por exemplo, você pode limitar os resultados aos instruments de memória do `InnoDB` especificando `innodb` como a área de código.
 
    ```sql
    mysql> SELECT * FROM performance_schema.setup_instruments
@@ -32,19 +32,19 @@ Most Performance Schema memory instrumentation is disabled by default. Instrumen
    ...
    ```
 
-   Depending on your MySQL installation, code areas may include `performance_schema`, `sql`, `client`, `innodb`, `myisam`, `csv`, `memory`, `blackhole`, `archive`, `partition`, and others.
+   Dependendo da sua instalação MySQL, as áreas de código podem incluir `performance_schema`, `sql`, `client`, `innodb`, `myisam`, `csv`, `memory`, `blackhole`, `archive`, `partition` e outras.
 
-2. To enable memory instruments, add a `performance-schema-instrument` rule to your MySQL configuration file. For example, to enable all memory instruments, add this rule to your configuration file and restart the server:
+2. Para habilitar os instruments de memória, adicione uma regra `performance-schema-instrument` ao seu arquivo de configuração do MySQL. Por exemplo, para habilitar todos os instruments de memória, adicione esta regra ao seu arquivo de configuração e reinicie o server:
 
    ```sql
    performance-schema-instrument='memory/%=COUNTED'
    ```
 
-   Note
+   Nota
 
-   Enabling memory instruments at startup ensures that memory allocations that occur at startup are counted.
+   Habilitar os instruments de memória na inicialização garante que as alocações de memória que ocorrem na inicialização sejam contabilizadas.
 
-   After restarting the server, the `ENABLED` column of the Performance Schema `setup_instruments` table should report `YES` for memory instruments that you enabled. The `TIMED` column in the `setup_instruments` table is ignored for memory instruments because memory operations are not timed.
+   Após reiniciar o server, a coluna `ENABLED` da tabela `setup_instruments` do Performance Schema deve reportar `YES` para os instruments de memória que você habilitou. A coluna `TIMED` na tabela `setup_instruments` é ignorada para instruments de memória porque as operações de memória não são cronometradas (timed).
 
    ```sql
    mysql> SELECT * FROM performance_schema.setup_instruments
@@ -65,9 +65,9 @@ Most Performance Schema memory instrumentation is disabled by default. Instrumen
    ...
    ```
 
-3. Query memory instrument data. In this example, memory instrument data is queried in the Performance Schema `memory_summary_global_by_event_name` table, which summarizes data by `EVENT_NAME`. The `EVENT_NAME` is the name of the instrument.
+3. Execute uma Query nos dados do instrument de memória. Neste exemplo, os dados do instrument de memória são consultados na tabela `memory_summary_global_by_event_name` do Performance Schema, que resume os dados por `EVENT_NAME`. O `EVENT_NAME` é o nome do instrument.
 
-   The following query returns memory data for the `InnoDB` buffer pool. For column descriptions, see Section 25.12.15.9, “Memory Summary Tables”.
+   A Query a seguir retorna dados de memória para o Buffer Pool do `InnoDB`. Para descrições das colunas, consulte a Seção 25.12.15.9, "Memory Summary Tables".
 
    ```sql
    mysql> SELECT * FROM performance_schema.memory_summary_global_by_event_name
@@ -85,7 +85,7 @@ Most Performance Schema memory instrumentation is disabled by default. Instrumen
       HIGH_NUMBER_OF_BYTES_USED: 137428992
    ```
 
-   The same underlying data can be queried using the `sys` schema `memory_global_by_current_bytes` table, which shows current memory usage within the server globally, broken down by allocation type.
+   Os mesmos dados subjacentes podem ser consultados usando a tabela `memory_global_by_current_bytes` do `sys` schema, que mostra o uso atual de memória dentro do server globalmente, detalhado por tipo de alocação.
 
    ```sql
    mysql> SELECT * FROM sys.memory_global_by_current_bytes
@@ -100,7 +100,7 @@ Most Performance Schema memory instrumentation is disabled by default. Instrumen
       high_avg_alloc: 131.06 MiB
    ```
 
-   This `sys` schema query aggregates currently allocated memory (`current_alloc`) by code area:
+   Esta Query do `sys` schema agrega a memória atualmente alocada (`current_alloc`) por área de código:
 
    ```sql
    mysql> SELECT SUBSTRING_INDEX(event_name,'/',2) AS
@@ -125,4 +125,4 @@ Most Performance Schema memory instrumentation is disabled by default. Instrumen
    +---------------------------+---------------+
    ```
 
-   For more information about `sys` schema, see Chapter 26, *MySQL sys Schema*.
+   Para mais informações sobre o `sys` schema, consulte o Capítulo 26, *MySQL sys Schema*.

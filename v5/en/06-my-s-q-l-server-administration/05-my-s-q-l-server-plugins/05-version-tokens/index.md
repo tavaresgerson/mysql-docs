@@ -1,21 +1,21 @@
-### 5.5.5 Version Tokens
+### 5.5.5 Tokens de Versão
 
-[5.5.5.1 Version Tokens Elements](version-tokens-elements.html)
+[5.5.5.1 Elementos dos Tokens de Versão](version-tokens-elements.html)
 
-[5.5.5.2 Installing or Uninstalling Version Tokens](version-tokens-installation.html)
+[5.5.5.2 Instalação e Desinstalação de Tokens de Versão](version-tokens-installation.html)
 
-[5.5.5.3 Using Version Tokens](version-tokens-usage.html)
+[5.5.5.3 Utilizando Tokens de Versão](version-tokens-usage.html)
 
-[5.5.5.4 Version Tokens Reference](version-tokens-reference.html)
+[5.5.5.4 Referência de Tokens de Versão](version-tokens-reference.html)
 
-MySQL includes Version Tokens, a feature that enables creation of and synchronization around server tokens that applications can use to prevent accessing incorrect or out-of-date data.
+O MySQL inclui Tokens de Versão, um recurso que permite a criação e a sincronização em torno de tokens do server que as aplicações podem usar para prevenir o acesso a dados incorretos ou desatualizados.
 
-The Version Tokens interface has these characteristics:
+A interface de Tokens de Versão possui estas características:
 
-* Version tokens are pairs consisting of a name that serves as a key or identifier, plus a value.
+* Tokens de versão são pares que consistem em um nome que serve como uma key ou identificador, mais um valor.
 
-* Version tokens can be locked. An application can use token locks to indicate to other cooperating applications that tokens are in use and should not be modified.
+* Tokens de versão podem ser bloqueados (locked). Uma aplicação pode usar locks de token para indicar a outras aplicações cooperantes que os tokens estão em uso e não devem ser modificados.
 
-* Version token lists are established per server (for example, to specify the server assignment or operational state). In addition, an application that communicates with a server can register its own list of tokens that indicate the state it requires the server to be in. An SQL statement sent by the application to a server not in the required state produces an error. This is a signal to the application that it should seek a different server in the required state to receive the SQL statement.
+* Listas de tokens de versão são estabelecidas por server (por exemplo, para especificar a atribuição do server ou o estado operacional). Além disso, uma aplicação que se comunica com um server pode registrar sua própria lista de tokens que indica o estado em que ela exige que o server esteja. Uma instrução SQL enviada pela aplicação a um server que não esteja no estado requerido produz um error. Este é um sinal para a aplicação de que ela deve buscar um server diferente no estado requerido para receber a instrução SQL.
 
-The following sections describe the elements of Version Tokens, discuss how to install and use it, and provide reference information for its elements.
+As seções a seguir descrevem os elementos dos Tokens de Versão, discutem como instalá-lo e usá-lo, e fornecem informações de referência para seus elementos.

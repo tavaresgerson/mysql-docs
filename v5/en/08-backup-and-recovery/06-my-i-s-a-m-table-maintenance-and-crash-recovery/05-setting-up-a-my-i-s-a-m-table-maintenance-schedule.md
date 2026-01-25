@@ -1,22 +1,22 @@
-### 7.6.5 Setting Up a MyISAM Table Maintenance Schedule
+### 7.6.5 Configurando um Cronograma de Manutenção de Tables MyISAM
 
-It is a good idea to perform table checks on a regular basis rather than waiting for problems to occur. One way to check and repair `MyISAM` tables is with the `CHECK TABLE` and `REPAIR TABLE` statements. See Section 13.7.2, “Table Maintenance Statements”.
+É uma boa prática realizar *checks* (verificações) nas *tables* regularmente, em vez de esperar que os problemas ocorram. Uma maneira de verificar (*check*) e reparar (*repair*) *tables* `MyISAM` é usando os *statements* `CHECK TABLE` e `REPAIR TABLE`. Consulte a Seção 13.7.2, “Table Maintenance Statements”.
 
-Another way to check tables is to use **myisamchk**. For maintenance purposes, you can use **myisamchk -s**. The `-s` option (short for `--silent`) causes **myisamchk** to run in silent mode, printing messages only when errors occur.
+Outra maneira de verificar (*check*) as *tables* é usar o **myisamchk**. Para fins de manutenção, você pode usar **myisamchk -s**. A opção `-s` (abreviação de `--silent`) faz com que o **myisamchk** execute em modo silencioso, imprimindo mensagens apenas quando erros ocorrem.
 
-It is also a good idea to enable automatic `MyISAM` table checking. For example, whenever the machine has done a restart in the middle of an update, you usually need to check each table that could have been affected before it is used further. (These are “expected crashed tables.”) To cause the server to check `MyISAM` tables automatically, start it with the `myisam_recover_options` system variable set. See Section 5.1.7, “Server System Variables”.
+Também é uma boa ideia habilitar a verificação (*checking*) automática de *tables* `MyISAM`. Por exemplo, sempre que a máquina tiver feito um *restart* no meio de um *update*, você geralmente precisa verificar (*check*) cada *table* que pode ter sido afetada antes de ser usada novamente. (Estas são "expected crashed tables" – *tables* corrompidas esperadas). Para fazer com que o *server* verifique *tables* `MyISAM` automaticamente, inicie-o com a variável de sistema `myisam_recover_options` configurada. Consulte a Seção 5.1.7, “Server System Variables”.
 
-You should also check your tables regularly during normal system operation. For example, you can run a **cron** job to check important tables once a week, using a line like this in a `crontab` file:
+Você também deve verificar (*check*) suas *tables* regularmente durante a operação normal do sistema. Por exemplo, você pode executar um *cron job* para verificar *tables* importantes uma vez por semana, usando uma linha como esta em um arquivo `crontab`:
 
 ```sql
 35 0 * * 0 /path/to/myisamchk --fast --silent /path/to/datadir/*/*.MYI
 ```
 
-This prints out information about crashed tables so that you can examine and repair them as necessary.
+Isso imprime informações sobre *crashed tables* (tables corrompidas) para que você possa examiná-las e repará-las (*repair*) conforme necessário.
 
-To start with, execute **myisamchk -s** each night on all tables that have been updated during the last 24 hours. As you see that problems occur infrequently, you can back off the checking frequency to once a week or so.
+Para começar, execute **myisamchk -s** todas as noites em todas as *tables* que foram atualizadas (*updated*) durante as últimas 24 horas. À medida que você perceber que os problemas ocorrem com pouca frequência, você pode reduzir a frequência de verificação (*checking*) para uma vez por semana ou algo assim.
 
-Normally, MySQL tables need little maintenance. If you are performing many updates to `MyISAM` tables with dynamic-sized rows (tables with `VARCHAR`, `BLOB`, or `TEXT` columns) or have tables with many deleted rows you may want to defragment/reclaim space from the tables from time to time. You can do this by using `OPTIMIZE TABLE` on the tables in question. Alternatively, if you can stop the **mysqld** server for a while, change location into the data directory and use this command while the server is stopped:
+Normalmente, as *tables* MySQL precisam de pouca manutenção. Se você estiver realizando muitos *updates* em *tables* `MyISAM` com linhas de tamanho dinâmico (*tables* com colunas `VARCHAR`, `BLOB` ou `TEXT`) ou tiver *tables* com muitas linhas deletadas, você pode querer desfragmentar/reivindicar espaço das *tables* de tempos em tempos. Você pode fazer isso usando `OPTIMIZE TABLE` nas *tables* em questão. Alternativamente, se você puder parar o *server* **mysqld** por um tempo, mude para o diretório de dados (*data directory*) e use este comando enquanto o *server* estiver parado:
 
 ```sql
 $> myisamchk -r -s --sort-index --myisam_sort_buffer_size=16M */*.MYI

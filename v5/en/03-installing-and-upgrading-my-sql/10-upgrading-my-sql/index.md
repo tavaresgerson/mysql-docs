@@ -1,37 +1,37 @@
-## 2.10 Upgrading MySQL
+## 2.10 Atualizando o MySQL
 
-2.10.1 Before You Begin
+2.10.1 Antes de Começar
 
-2.10.2 Upgrade Paths
+2.10.2 Caminhos de Upgrade
 
-2.10.3 Changes in MySQL 5.7
+2.10.3 Alterações no MySQL 5.7
 
-2.10.4 Upgrading MySQL Binary or Package-based Installations on Unix/Linux
+2.10.4 Atualizando Instalações do MySQL Baseadas em Binários ou Pacotes no Unix/Linux
 
-2.10.5 Upgrading MySQL with the MySQL Yum Repository
+2.10.5 Atualizando o MySQL com o Repositório Yum do MySQL
 
-2.10.6 Upgrading MySQL with the MySQL APT Repository
+2.10.6 Atualizando o MySQL com o Repositório APT do MySQL
 
-2.10.7 Upgrading MySQL with the MySQL SLES Repository
+2.10.7 Atualizando o MySQL com o Repositório SLES do MySQL
 
-2.10.8 Upgrading MySQL on Windows
+2.10.8 Atualizando o MySQL no Windows
 
-2.10.9 Upgrading a Docker Installation of MySQL
+2.10.9 Atualizando uma Instalação Docker do MySQL
 
-2.10.10 Upgrading MySQL with Directly-Downloaded RPM Packages
+2.10.10 Atualizando o MySQL com Pacotes RPM Baixados Diretamente
 
-2.10.11 Upgrade Troubleshooting
+2.10.11 Solução de Problemas de Upgrade
 
-2.10.12 Rebuilding or Repairing Tables or Indexes
+2.10.12 Reconstruindo ou Reparando Tables ou Indexes
 
-2.10.13 Copying MySQL Databases to Another Machine
+2.10.13 Copiando Databases MySQL para Outra Máquina
 
-This section describes the steps to upgrade a MySQL installation.
+Esta seção descreve os passos para atualizar uma instalação do MySQL.
 
-Upgrading is a common procedure, as you pick up bug fixes within the same MySQL release series or significant features between major MySQL releases. You perform this procedure first on some test systems to make sure everything works smoothly, and then on the production systems.
+O Upgrade é um procedimento comum, pois permite obter correções de bugs dentro da mesma série de lançamento do MySQL ou recursos significativos entre lançamentos principais do MySQL. Você deve realizar este procedimento primeiro em alguns sistemas de teste para garantir que tudo funcione sem problemas, e depois nos sistemas de produção.
 
-Note
+Nota
 
-In the following discussion, MySQL commands that must be run using a MySQL account with administrative privileges include `-u root` on the command line to specify the MySQL `root` user. Commands that require a password for `root` also include a `-p` option. Because `-p` is followed by no option value, such commands prompt for the password. Type the password when prompted and press Enter.
+Na discussão a seguir, os comandos MySQL que devem ser executados usando uma conta MySQL com privilégios administrativos incluem `-u root` na linha de comando para especificar o usuário `root` do MySQL. Comandos que exigem uma senha para `root` também incluem a opção `-p`. Como `-p` não é seguido por um valor de opção, esses comandos solicitam a senha. Digite a senha quando solicitado e pressione Enter.
 
-SQL statements can be executed using the **mysql** command-line client (connect as `root` to ensure that you have the necessary privileges).
+As instruções SQL podem ser executadas usando o cliente de linha de comando **mysql** (conecte-se como `root` para garantir que você tenha os privilégios necessários).

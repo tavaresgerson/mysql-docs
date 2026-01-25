@@ -1,14 +1,14 @@
-## 9.5 Expressions
+## 9.5 Expressões
 
-This section lists the grammar rules that expressions must follow in MySQL and provides additional information about the types of terms that may appear in expressions.
+Esta seção lista as regras gramaticais que as expressões devem seguir no MySQL e fornece informações adicionais sobre os tipos de termos que podem aparecer nas expressões.
 
-* Expression Syntax
-* Expression Term Notes
-* Temporal Intervals
+* Sintaxe de Expressões
+* Notas sobre Termos de Expressões
+* Intervalos Temporais
 
-### Expression Syntax
+### Sintaxe de Expressões
 
-The following grammar rules define expression syntax in MySQL. The grammar shown here is based on that given in the `sql/sql_yacc.yy` file of MySQL source distributions. For additional information about some of the expression terms, see Expression Term Notes.
+As seguintes regras gramaticais definem a sintaxe de expressões no MySQL. A gramática mostrada aqui é baseada naquela fornecida no arquivo `sql/sql_yacc.yy` das distribuições do código-fonte do MySQL. Para informações adicionais sobre alguns dos termos das expressões, veja Notas sobre Termos de Expressões.
 
 ```sql
 expr:
@@ -80,59 +80,80 @@ simple_expr:
   | interval_expr
 ```
 
-For operator precedence, see Section 12.4.1, “Operator Precedence”. The precedence and meaning of some operators depends on the SQL mode:
+Para precedência de operadores, veja Seção 12.4.1, “Operator Precedence”. A precedência e o significado de alguns operadores dependem do modo SQL:
 
-* By default, `||` is a logical `OR` operator. With `PIPES_AS_CONCAT` enabled, `||` is string concatenation, with a precedence between `^` and the unary operators.
+* Por padrão, `||` é um operador lógico `OR`. Com `PIPES_AS_CONCAT` habilitado, `||` é concatenação de strings, com uma precedência entre `^` e os operadores unários.
 
-* By default, `!` has a higher precedence than `NOT`. With `HIGH_NOT_PRECEDENCE` enabled, `!` and `NOT` have the same precedence.
+* Por padrão, `!` tem uma precedência maior que `NOT`. Com `HIGH_NOT_PRECEDENCE` habilitado, `!` e `NOT` têm a mesma precedência.
 
-See Section 5.1.10, “Server SQL Modes”.
+Veja Seção 5.1.10, “Server SQL Modes”.
 
-### Expression Term Notes
+### Notas sobre Termos de Expressões
 
-For literal value syntax, see Section 9.1, “Literal Values”.
+Para sintaxe de valores literais, veja Seção 9.1, “Literal Values”.
 
-For identifier syntax, see Section 9.2, “Schema Object Names”.
+Para sintaxe de identificadores, veja Seção 9.2, “Schema Object Names”.
 
-Variables can be user variables, system variables, or stored program local variables or parameters:
+Variáveis podem ser variáveis de usuário, variáveis de sistema ou variáveis locais ou parâmetros de programas armazenados (stored programs):
 
-* User variables: Section 9.4, “User-Defined Variables”
-* System variables: Section 5.1.8, “Using System Variables”
-* Stored program local variables: Section 13.6.4.1, “Local Variable DECLARE Statement”
+* Variáveis de usuário: Seção 9.4, “User-Defined Variables”
+* Variáveis de sistema: Seção 5.1.8, “Using System Variables”
+* Variáveis locais de programas armazenados: Seção 13.6.4.1, “Local Variable DECLARE Statement”
 
-* Stored program parameters: Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”
+* Parâmetros de programas armazenados: Seção 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”
 
-*`param_marker`* is `?` as used in prepared statements for placeholders. See Section 13.5.1, “PREPARE Statement”.
+*`param_marker`* é `?` conforme usado em prepared statements para placeholders. Veja Seção 13.5.1, “PREPARE Statement”.
 
-`(subquery)` indicates a subquery that returns a single value; that is, a scalar subquery. See Section 13.2.10.1, “The Subquery as Scalar Operand”.
+`(subquery)` indica uma subquery que retorna um único valor; ou seja, uma scalar subquery. Veja Seção 13.2.10.1, “The Subquery as Scalar Operand”.
 
-`{identifier expr}` is ODBC escape syntax and is accepted for ODBC compatibility. The value is *`expr`*. The `{` and `}` curly braces in the syntax should be written literally; they are not metasyntax as used elsewhere in syntax descriptions.
+`{identifier expr}` é sintaxe de escape ODBC e é aceita para compatibilidade ODBC. O valor é *`expr`*. As chaves `{` e `}` na sintaxe devem ser escritas literalmente; elas não são metassintaxe como usado em outras partes das descrições de sintaxe.
 
-*`match_expr`* indicates a `MATCH` expression. See Section 12.9, “Full-Text Search Functions”.
+*`match_expr`* indica uma expressão `MATCH`. Veja Seção 12.9, “Full-Text Search Functions”.
 
-*`case_expr`* indicates a `CASE` expression. See Section 12.5, “Flow Control Functions”.
+*`case_expr`* indica uma expressão `CASE`. Veja Seção 12.5, “Flow Control Functions”.
 
-*`interval_expr`* represents a temporal interval. See Temporal Intervals.
+*`interval_expr`* representa um intervalo temporal. Veja Intervalos Temporais.
 
-### Temporal Intervals
+### Intervalos Temporais
 
-*`interval_expr`* in expressions represents a temporal interval. Intervals have this syntax:
+*`interval_expr`* em expressões representa um intervalo temporal. Os INTERVALs têm esta sintaxe:
 
 ```sql
 INTERVAL expr unit
 ```
 
-*`expr`* represents a quantity. *`unit`* represents the unit for interpreting the quantity; it is a specifier such as `HOUR`, `DAY`, or `WEEK`. The `INTERVAL` keyword and the *`unit`* specifier are not case-sensitive.
+*`expr`* representa uma quantidade. *`unit`* representa a unidade para interpretar a quantidade; é um especificador como `HOUR`, `DAY` ou `WEEK`. A palavra-chave `INTERVAL` e o especificador *`unit`* não diferenciam maiúsculas de minúsculas (case-sensitive).
 
-The following table shows the expected form of the *`expr`* argument for each *`unit`* value.
+A tabela a seguir mostra o formato esperado do argumento *`expr`* para cada valor de *`unit`*.
 
-**Table 9.2 Temporal Interval Expression and Unit Arguments**
+**Tabela 9.2 Argumentos de Unidade e Expressão de Intervalo Temporal**
 
-<table summary="unit values and the expected expr argument for each unit value."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><em><code>unit</code></em> Value</th> <th>Expected <em><code>expr</code></em> Format</th> </tr></thead><tbody><tr> <td><code>MICROSECOND</code></td> <td><code>MICROSECONDS</code></td> </tr><tr> <td><code>SECOND</code></td> <td><code>SECONDS</code></td> </tr><tr> <td><code>MINUTE</code></td> <td><code>MINUTES</code></td> </tr><tr> <td><code>HOUR</code></td> <td><code>HOURS</code></td> </tr><tr> <td><code>DAY</code></td> <td><code>DAYS</code></td> </tr><tr> <td><code>WEEK</code></td> <td><code>WEEKS</code></td> </tr><tr> <td><code>MONTH</code></td> <td><code>MONTHS</code></td> </tr><tr> <td><code>QUARTER</code></td> <td><code>QUARTERS</code></td> </tr><tr> <td><code>YEAR</code></td> <td><code>YEARS</code></td> </tr><tr> <td><code>SECOND_MICROSECOND</code></td> <td><code>'SECONDS.MICROSECONDS'</code></td> </tr><tr> <td><code>MINUTE_MICROSECOND</code></td> <td><code>'MINUTES:SECONDS.MICROSECONDS'</code></td> </tr><tr> <td><code>MINUTE_SECOND</code></td> <td><code>'MINUTES:SECONDS'</code></td> </tr><tr> <td><code>HOUR_MICROSECOND</code></td> <td><code>'HOURS:MINUTES:SECONDS.MICROSECONDS'</code></td> </tr><tr> <td><code>HOUR_SECOND</code></td> <td><code>'HOURS:MINUTES:SECONDS'</code></td> </tr><tr> <td><code>HOUR_MINUTE</code></td> <td><code>'HOURS:MINUTES'</code></td> </tr><tr> <td><code>DAY_MICROSECOND</code></td> <td><code>'DAYS HOURS:MINUTES:SECONDS.MICROSECONDS'</code></td> </tr><tr> <td><code>DAY_SECOND</code></td> <td><code>'DAYS HOURS:MINUTES:SECONDS'</code></td> </tr><tr> <td><code>DAY_MINUTE</code></td> <td><code>'DAYS HOURS:MINUTES'</code></td> </tr><tr> <td><code>DAY_HOUR</code></td> <td><code>'DAYS HOURS'</code></td> </tr><tr> <td><code>YEAR_MONTH</code></td> <td><code>'YEARS-MONTHS'</code></td> </tr></tbody></table>
+| Valor de *`unit`* | Formato esperado de *`expr`* |
+|---|---|
+| `MICROSECOND` | `MICROSECONDS` |
+| `SECOND` | `SECONDS` |
+| `MINUTE` | `MINUTES` |
+| `HOUR` | `HOURS` |
+| `DAY` | `DAYS` |
+| `WEEK` | `WEEKS` |
+| `MONTH` | `MONTHS` |
+| `QUARTER` | `QUARTERS` |
+| `YEAR` | `YEARS` |
+| `SECOND_MICROSECOND` | `'SECONDS.MICROSECONDS'` |
+| `MINUTE_MICROSECOND` | `'MINUTES:SECONDS.MICROSECONDS'` |
+| `MINUTE_SECOND` | `'MINUTES:SECONDS'` |
+| `HOUR_MICROSECOND` | `'HOURS:MINUTES:SECONDS.MICROSECONDS'` |
+| `HOUR_SECOND` | `'HOURS:MINUTES:SECONDS'` |
+| `HOUR_MINUTE` | `'HOURS:MINUTES'` |
+| `DAY_MICROSECOND` | `'DAYS HOURS:MINUTES:SECONDS.MICROSECONDS'` |
+| `DAY_SECOND` | `'DAYS HOURS:MINUTES:SECONDS'` |
+| `DAY_MINUTE` | `'DAYS HOURS:MINUTES'` |
+| `DAY_HOUR` | `'DAYS HOURS'` |
+| `YEAR_MONTH` | `'YEARS-MONTHS'` |
 
-MySQL permits any punctuation delimiter in the *`expr`* format. Those shown in the table are the suggested delimiters.
+O MySQL permite qualquer delimitador de pontuação no formato *`expr`*. Aqueles mostrados na tabela são os delimitadores sugeridos.
 
-Temporal intervals are used for certain functions, such as `DATE_ADD()` and `DATE_SUB()`:
+Intervalos temporais são usados para certas funções, como `DATE_ADD()` e `DATE_SUB()`:
 
 ```sql
 mysql> SELECT DATE_ADD('2018-05-01',INTERVAL 1 DAY);
@@ -161,14 +182,14 @@ mysql> SELECT DATE_ADD('1992-12-31 23:59:59.000002',
         -> '1993-01-01 00:00:01.000001'
 ```
 
-Temporal arithmetic also can be performed in expressions using `INTERVAL` together with the `+` or `-` operator:
+Aritmética temporal também pode ser realizada em expressões usando `INTERVAL` juntamente com o operador `+` ou `-`:
 
 ```sql
 date + INTERVAL expr unit
 date - INTERVAL expr unit
 ```
 
-`INTERVAL expr unit` is permitted on either side of the `+` operator if the expression on the other side is a date or datetime value. For the `-` operator, `INTERVAL expr unit` is permitted only on the right side, because it makes no sense to subtract a date or datetime value from an interval.
+`INTERVAL expr unit` é permitido em ambos os lados do operador `+` se a expressão do outro lado for um valor de date ou datetime. Para o operador `-`, `INTERVAL expr unit` é permitido apenas no lado direito, porque não faz sentido subtrair um valor de date ou datetime de um intervalo.
 
 ```sql
 mysql> SELECT '2018-12-31 23:59:59' + INTERVAL 1 SECOND;
@@ -179,7 +200,7 @@ mysql> SELECT '2025-01-01' - INTERVAL 1 SECOND;
         -> '2024-12-31 23:59:59'
 ```
 
-The `EXTRACT()` function uses the same kinds of *`unit`* specifiers as `DATE_ADD()` or `DATE_SUB()`, but extracts parts from the date rather than performing date arithmetic:
+A função `EXTRACT()` usa os mesmos tipos de especificadores *`unit`* que `DATE_ADD()` ou `DATE_SUB()`, mas extrai partes da data em vez de realizar aritmética de data:
 
 ```sql
 mysql> SELECT EXTRACT(YEAR FROM '2019-07-02');
@@ -188,7 +209,7 @@ mysql> SELECT EXTRACT(YEAR_MONTH FROM '2019-07-02 01:02:03');
         -> 201907
 ```
 
-Temporal intervals can be used in `CREATE EVENT` statements:
+Intervalos temporais podem ser usados em comandos `CREATE EVENT`:
 
 ```sql
 CREATE EVENT myevent
@@ -197,9 +218,9 @@ CREATE EVENT myevent
       UPDATE myschema.mytable SET mycol = mycol + 1;
 ```
 
-If you specify an interval value that is too short (does not include all the interval parts that would be expected from the *`unit`* keyword), MySQL assumes that you have left out the leftmost parts of the interval value. For example, if you specify a *`unit`* of `DAY_SECOND`, the value of *`expr`* is expected to have days, hours, minutes, and seconds parts. If you specify a value like `'1:10'`, MySQL assumes that the days and hours parts are missing and the value represents minutes and seconds. In other words, `'1:10' DAY_SECOND` is interpreted in such a way that it is equivalent to `'1:10' MINUTE_SECOND`. This is analogous to the way that MySQL interprets `TIME` values as representing elapsed time rather than as a time of day.
+Se você especificar um valor de intervalo que é muito curto (não inclui todas as partes do intervalo que seriam esperadas da palavra-chave *`unit`*), o MySQL assume que você omitiu as partes mais à esquerda do valor do intervalo. Por exemplo, se você especificar um *`unit`* de `DAY_SECOND`, espera-se que o valor de *`expr`* tenha partes de dias, horas, minutos e segundos. Se você especificar um valor como `'1:10'`, o MySQL assume que as partes de dias e horas estão faltando e o valor representa minutos e segundos. Em outras palavras, `'1:10' DAY_SECOND` é interpretado de forma que seja equivalente a `'1:10' MINUTE_SECOND`. Isso é análogo à maneira como o MySQL interpreta valores `TIME` como representando tempo decorrido, e não como uma hora do dia.
 
-*`expr`* is treated as a string, so be careful if you specify a nonstring value with `INTERVAL`. For example, with an interval specifier of `HOUR_MINUTE`, '6/4' is treated as 6 hours, four minutes, whereas `6/4` evaluates to `1.5000` and is treated as 1 hour, 5000 minutes:
+*`expr`* é tratado como uma string, então tenha cuidado se você especificar um valor que não seja string com `INTERVAL`. Por exemplo, com um especificador de intervalo `HOUR_MINUTE`, '6/4' é tratado como 6 horas, quatro minutos, enquanto `6/4` é avaliado como `1.5000` e é tratado como 1 hora, 5000 minutos:
 
 ```sql
 mysql> SELECT '6/4', 6/4;
@@ -210,7 +231,7 @@ mysql> SELECT DATE_ADD('2019-01-01', INTERVAL 6/4 HOUR_MINUTE);
         -> '2019-01-04 12:20:00'
 ```
 
-To ensure interpretation of the interval value as you expect, a `CAST()` operation may be used. To treat `6/4` as 1 hour, 5 minutes, cast it to a `DECIMAL` - DECIMAL, NUMERIC") value with a single fractional digit:
+Para garantir que a interpretação do valor do intervalo seja a que você espera, uma operação `CAST()` pode ser usada. Para tratar `6/4` como 1 hora, 5 minutos, converta-o (cast) para um valor `DECIMAL` com um único dígito fracionário:
 
 ```sql
 mysql> SELECT CAST(6/4 AS DECIMAL(3,1));
@@ -220,7 +241,7 @@ mysql> SELECT DATE_ADD('1970-01-01 12:00:00',
         -> '1970-01-01 13:05:00'
 ```
 
-If you add to or subtract from a date value something that contains a time part, the result is automatically converted to a datetime value:
+Se você adicionar ou subtrair de um valor de data algo que contenha uma parte de tempo, o resultado é automaticamente convertido em um valor datetime:
 
 ```sql
 mysql> SELECT DATE_ADD('2023-01-01', INTERVAL 1 DAY);
@@ -229,14 +250,14 @@ mysql> SELECT DATE_ADD('2023-01-01', INTERVAL 1 HOUR);
         -> '2023-01-01 01:00:00'
 ```
 
-If you add `MONTH`, `YEAR_MONTH`, or `YEAR` and the resulting date has a day that is larger than the maximum day for the new month, the day is adjusted to the maximum days in the new month:
+Se você adicionar `MONTH`, `YEAR_MONTH` ou `YEAR` e a data resultante tiver um dia maior que o dia máximo para o novo mês, o dia é ajustado para o máximo de dias no novo mês:
 
 ```sql
 mysql> SELECT DATE_ADD('2019-01-30', INTERVAL 1 MONTH);
         -> '2019-02-28'
 ```
 
-Date arithmetic operations require complete dates and do not work with incomplete dates such as `'2016-07-00'` or badly malformed dates:
+Operações de aritmética de data requerem datas completas e não funcionam com datas incompletas, como `'2016-07-00'` ou datas malformadas:
 
 ```sql
 mysql> SELECT DATE_ADD('2016-07-00', INTERVAL 1 DAY);

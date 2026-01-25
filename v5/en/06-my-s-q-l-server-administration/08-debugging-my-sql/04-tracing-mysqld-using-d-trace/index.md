@@ -1,32 +1,30 @@
-### 5.8.4 Tracing mysqld Using DTrace
+### 5.8.4 Rastreando mysqld Usando DTrace
 
-[5.8.4.1 mysqld DTrace Probe Reference](dba-dtrace-mysqld-ref.html)
+[5.8.4.1 Referência de Probe do DTrace do mysqld](dba-dtrace-mysqld-ref.html)
 
-Support for DTrace is deprecated in MySQL 5.7 and is removed in MySQL 8.0.
+O suporte para DTrace está obsoleto (deprecated) no MySQL 5.7 e foi removido no MySQL 8.0.
 
-The DTrace probes in the MySQL server are designed to provide information about the execution of queries within MySQL and the different areas of the system being utilized during that process. The organization and triggering of the probes means that the execution of an entire query can be monitored with one level of probes (`query-start` and `query-done`) but by monitoring other probes you can get successively more detailed information about the execution of the query in terms of the locks used, sort methods and even row-by-row and storage-engine level execution information.
+As Probes DTrace no servidor MySQL são projetadas para fornecer informações sobre a execução de Queries dentro do MySQL e as diferentes áreas do sistema que estão sendo utilizadas durante esse processo. A organização e o acionamento das Probes significam que a execução de uma Query inteira pode ser monitorada com um nível de Probes (`query-start` e `query-done`), mas ao monitorar outras Probes, você pode obter informações sucessivamente mais detalhadas sobre a execução da Query em termos dos Locks utilizados, métodos de classificação e até mesmo informações de execução linha a linha (row-by-row) e de nível de Storage Engine.
 
-The DTrace probes are organized so that you can follow the entire query process, from the point of connection from a client, through the query execution, row-level operations, and back out again. You can think of the probes as being fired within a specific sequence during a typical client connect/execute/disconnect sequence, as shown in the following figure.
+As Probes DTrace são organizadas de modo que você possa acompanhar todo o processo da Query, desde o ponto de conexão de um cliente, passando pela execução da Query, operações de nível de linha (row-level) e o retorno. Você pode considerar que as Probes são acionadas em uma sequência específica durante uma sequência típica de conexão/execução/desconexão do cliente, conforme mostrado na figura a seguir.
 
-**Figure 5.1 DTrace Probe Sequence**
+**Figura 5.1 Sequência de Probes DTrace**
 
-![Example of a DTrace probe sequence during a typical client connect, execute, disconnect sequence.](images/dtrace-groups.png)
+![Exemplo de uma sequência de Probe DTrace durante uma sequência típica de conexão, execução e desconexão do cliente.](images/dtrace-groups.png)
 
-Global information is provided in the arguments to the DTrace probes at various levels. Global information, that is, the connection ID and user/host and where relevant the query string, is provided at key levels (`connection-start`, `command-start`, `query-start`, and `query-exec-start`). As you go deeper into the probes, it is assumed either you are only interested in the individual executions (row-level probes provide information on the database and table name only), or that you intend to combine the row-level probes with the notional parent probes to provide the information about a specific query. Examples of this are given as the format and arguments of each probe are provided.
+Informações globais são fornecidas nos argumentos das Probes DTrace em vários níveis. Informações globais, ou seja, o ID de conexão, usuário/host e, onde relevante, a Query string, são fornecidas em níveis chave (`connection-start`, `command-start`, `query-start` e `query-exec-start`). À medida que você se aprofunda nas Probes, presume-se que você está interessado apenas nas execuções individuais (Probes de nível de linha fornecem informações apenas sobre o Database e nome da Table), ou que você pretende combinar as Probes de nível de linha com as Probes parentais nocionais para fornecer as informações sobre uma Query específica. Exemplos disso são fornecidos conforme o formato e os argumentos de cada Probe são detalhados.
 
-MySQL includes support for DTrace probes on these platforms:
+O MySQL inclui suporte para Probes DTrace nestas plataformas:
 
-* Solaris 10 Update 5 (Solaris 5/08) on SPARC, x86 and x86_64 platforms
+* Solaris 10 Update 5 (Solaris 5/08) nas plataformas SPARC, x86 e x86_64
+* OS X / macOS 10.4 e superior
+* Oracle Linux 6 e superior com kernel UEK (a partir do MySQL 5.7.5)
 
-* OS X / macOS 10.4 and higher
-* Oracle Linux 6 and higher with UEK kernel (as of MySQL 5.7.5)
+A habilitação das Probes deve ser automática nessas plataformas. Para habilitar ou desabilitar explicitamente as Probes durante a compilação (building), use a opção [`-DENABLE_DTRACE=1`](source-configuration-options.html#option_cmake_enable_dtrace) ou [`-DENABLE_DTRACE=0`](source-configuration-options.html#option_cmake_enable_dtrace) para o **CMake**.
 
-Enabling the probes should be automatic on these platforms. To explicitly enable or disable the probes during building, use the [`-DENABLE_DTRACE=1`](source-configuration-options.html#option_cmake_enable_dtrace) or [`-DENABLE_DTRACE=0`](source-configuration-options.html#option_cmake_enable_dtrace) option to **CMake**.
+Se uma plataforma que não seja Solaris incluir suporte DTrace, a compilação (building) do [**mysqld**](mysqld.html "4.3.1 mysqld — O Servidor MySQL") nessa plataforma incluirá suporte DTrace.
 
-If a non-Solaris platform includes DTrace support, building [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") on that platform includes DTrace support.
+#### Recursos Adicionais
 
-#### Additional Resources
-
-* For more information on DTrace and writing DTrace scripts, read the [DTrace User Guide](http://docs.oracle.com/cd/E19253-01/819-5488/).
-
-* For an introduction to DTrace, see the MySQL Dev Zone article [Getting started with DTracing MySQL](http://dev.mysql.com/tech-resources/articles/mysql-cluster-7.2.html).
+* Para mais informações sobre DTrace e a escrita de scripts DTrace, leia o [DTrace User Guide](http://docs.oracle.com/cd/E19253-01/819-5488/).
+* Para uma introdução ao DTrace, consulte o artigo do MySQL Dev Zone [Getting started with DTracing MySQL](http://dev.mysql.com/tech-resources/articles/mysql-cluster-7.2.html).

@@ -1,8 +1,8 @@
-### 6.2.17 Troubleshooting Problems Connecting to MySQL
+### 6.2.17 Solução de Problemas de Conexão com o MySQL
 
-If you encounter problems when you try to connect to the MySQL server, the following items describe some courses of action you can take to correct the problem.
+Se você encontrar problemas ao tentar conectar-se ao MySQL server, os seguintes itens descrevem algumas ações que você pode tomar para corrigir o problema.
 
-* Make sure that the server is running. If it is not, clients cannot connect to it. For example, if an attempt to connect to the server fails with a message such as one of those following, one cause might be that the server is not running:
+* Certifique-se de que o server está em execução. Se não estiver, os clients não podem se conectar a ele. Por exemplo, se uma tentativa de conexão com o server falhar com uma mensagem como uma das seguintes, uma causa pode ser que o server não está em execução:
 
   ```sql
   $> mysql
@@ -12,39 +12,39 @@ If you encounter problems when you try to connect to the MySQL server, the follo
   '/tmp/mysql.sock' (111)
   ```
 
-* It might be that the server is running, but you are trying to connect using a TCP/IP port, named pipe, or Unix socket file different from the one on which the server is listening. To correct this when you invoke a client program, specify a [`--port`](connection-options.html#option_general_port) option to indicate the proper port number, or a [`--socket`](connection-options.html#option_general_socket) option to indicate the proper named pipe or Unix socket file. To find out where the socket file is, you can use this command:
+* Pode ser que o server esteja em execução, mas você está tentando se conectar usando um port TCP/IP, named pipe ou Unix socket file diferente daquele no qual o server está escutando. Para corrigir isso ao invocar um programa client, especifique uma opção [`--port`](connection-options.html#option_general_port) para indicar o número de port correto, ou uma opção [`--socket`](connection-options.html#option_general_socket) para indicar o named pipe ou Unix socket file correto. Para descobrir onde está o socket file, você pode usar este comando:
 
   ```sql
   $> netstat -ln | grep mysql
   ```
 
-* Make sure that the server has not been configured to ignore network connections or (if you are attempting to connect remotely) that it has not been configured to listen only locally on its network interfaces. If the server was started with the [`skip_networking`](server-system-variables.html#sysvar_skip_networking) system variable enabled, it does not accept TCP/IP connections at all. If the server was started with the [`bind_address`](server-system-variables.html#sysvar_bind_address) system variable set to `127.0.0.1`, it listens for TCP/IP connections only locally on the loopback interface and does not accept remote connections.
+* Certifique-se de que o server não foi configurado para ignorar conexões de rede ou (se você estiver tentando conectar remotamente) que ele não foi configurado para escutar apenas localmente em suas interfaces de rede. Se o server foi iniciado com a variável de sistema [`skip_networking`](server-system-variables.html#sysvar_skip_networking) habilitada, ele não aceita conexões TCP/IP. Se o server foi iniciado com a variável de sistema [`bind_address`](server-system-variables.html#sysvar_bind_address) definida como `127.0.0.1`, ele escuta conexões TCP/IP apenas localmente na interface de loopback e não aceita conexões remotas.
 
-* Check to make sure that there is no firewall blocking access to MySQL. Your firewall may be configured on the basis of the application being executed, or the port number used by MySQL for communication (3306 by default). Under Linux or Unix, check your IP tables (or similar) configuration to ensure that the port has not been blocked. Under Windows, applications such as ZoneAlarm or Windows Firewall may need to be configured not to block the MySQL port.
+* Verifique se não há um firewall bloqueando o acesso ao MySQL. Seu firewall pode ser configurado com base na aplicação sendo executada, ou no número de port usado pelo MySQL para comunicação (3306 por padrão). No Linux ou Unix, verifique sua configuração de IP tables (ou similar) para garantir que o port não foi bloqueado. No Windows, aplicações como ZoneAlarm ou Windows Firewall podem precisar ser configuradas para não bloquear o port do MySQL.
 
-* The grant tables must be properly set up so that the server can use them for access control. For some distribution types (such as binary distributions on Windows, or RPM and DEB distributions on Linux), the installation process initializes the MySQL data directory, including the `mysql` system database containing the grant tables. For distributions that do not do this, you must initialize the data directory manually. For details, see [Section 2.9, “Postinstallation Setup and Testing”](postinstallation.html "2.9 Postinstallation Setup and Testing").
+* As grant tables devem ser configuradas corretamente para que o server possa usá-las para controle de acesso. Para alguns tipos de distribuição (como distribuições binárias no Windows, ou distribuições RPM e DEB no Linux), o processo de instalação inicializa o diretório de dados do MySQL, incluindo a database de sistema `mysql` que contém as grant tables. Para distribuições que não fazem isso, você deve inicializar o diretório de dados manualmente. Para detalhes, consulte [Section 2.9, “Postinstallation Setup and Testing”](postinstallation.html "2.9 Postinstallation Setup and Testing").
 
-  To determine whether you need to initialize the grant tables, look for a `mysql` directory under the data directory. (The data directory normally is named `data` or `var` and is located under your MySQL installation directory.) Make sure that you have a file named `user.MYD` in the `mysql` database directory. If not, [initialize the data directory](data-directory-initialization.html "2.9.1 Initializing the Data Directory"). After doing so and starting the server, you should be able to connect to the server.
+  Para determinar se você precisa inicializar as grant tables, procure por um diretório `mysql` sob o diretório de dados. (O diretório de dados é normalmente nomeado `data` ou `var` e está localizado sob o seu diretório de instalação do MySQL.) Certifique-se de ter um arquivo chamado `user.MYD` no diretório da database `mysql`. Caso contrário, [inicialize o diretório de dados](data-directory-initialization.html "2.9.1 Initializing the Data Directory"). Depois de fazer isso e iniciar o server, você deverá conseguir se conectar ao server.
 
-* After a fresh installation, if you try to log on to the server as `root` without using a password, you might get the following error message.
+* Após uma nova instalação, se você tentar fazer login no server como `root` sem usar um password, você pode receber a seguinte mensagem de erro.
 
   ```sql
   $> mysql -u root
   ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
   ```
 
-  It means a root password has already been assigned during installation and it has to be supplied. See [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account") on the different ways the password could have been assigned and, in some cases, how to find it. If you need to reset the root password, see instructions in [Section B.3.3.2, “How to Reset the Root Password”](resetting-permissions.html "B.3.3.2 How to Reset the Root Password"). After you have found or reset your password, log on again as `root` using the [`--password`](connection-options.html#option_general_password) (or [`-p`](connection-options.html#option_general_password)) option:
+  Isso significa que um password de `root` já foi atribuído durante a instalação e precisa ser fornecido. Consulte [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account") sobre as diferentes maneiras pelas quais o password pode ter sido atribuído e, em alguns casos, como encontrá-lo. Se você precisar redefinir o password de `root`, consulte as instruções em [Section B.3.3.2, “How to Reset the Root Password”](resetting-permissions.html "B.3.3.2 How to Reset the Root Password"). Depois de encontrar ou redefinir seu password, faça login novamente como `root` usando a opção [`--password`](connection-options.html#option_general_password) (ou [`-p`](connection-options.html#option_general_password)):
 
   ```sql
   $> mysql -u root -p
   Enter password:
   ```
 
-  However, the server is going to let you connect as `root` without using a password if you have initialized MySQL using [**mysqld --initialize-insecure**](mysqld.html "4.3.1 mysqld — The MySQL Server") (see [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory") for details). That is a security risk, so you should set a password for the `root` account; see [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account") for instructions.
+  No entanto, o server permitirá que você se conecte como `root` sem usar um password se você tiver inicializado o MySQL usando [**mysqld --initialize-insecure**](mysqld.html "4.3.1 mysqld — The MySQL Server") (consulte [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory") para detalhes). Isso é um risco de segurança, portanto, você deve definir um password para a conta `root`; consulte [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account") para obter instruções.
 
-* If you have updated an existing MySQL installation to a newer version, did you perform the MySQL upgrade procedure? If not, do so. The structure of the grant tables changes occasionally when new capabilities are added, so after an upgrade you should always make sure that your tables have the current structure. For instructions, see [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
+* Se você atualizou uma instalação existente do MySQL para uma versão mais recente, você executou o procedimento de upgrade do MySQL? Caso contrário, faça-o. A estrutura das grant tables muda ocasionalmente quando novos recursos são adicionados, portanto, após um upgrade, você deve sempre garantir que suas tables tenham a estrutura atual. Para obter instruções, consulte [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
 
-* If a client program receives the following error message when it tries to connect, it means that the server expects passwords in a newer format than the client is capable of generating:
+* Se um programa client receber a seguinte mensagem de erro ao tentar se conectar, isso significa que o server espera passwords em um formato mais novo do que o client é capaz de gerar:
 
   ```sql
   $> mysql
@@ -52,105 +52,100 @@ If you encounter problems when you try to connect to the MySQL server, the follo
   by server; consider upgrading MySQL client
   ```
 
-  For information on how to deal with this, see [Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”](account-upgrades.html "6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin").
+  Para obter informações sobre como lidar com isso, consulte [Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”](account-upgrades.html "6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin").
 
-* Remember that client programs use connection parameters specified in option files or environment variables. If a client program seems to be sending incorrect default connection parameters when you have not specified them on the command line, check any applicable option files and your environment. For example, if you get `Access denied` when you run a client without any options, make sure that you have not specified an old password in any of your option files!
+* Lembre-se de que os programas client usam parâmetros de conexão especificados em option files ou environment variables. Se um programa client parecer estar enviando parâmetros de conexão default incorretos quando você não os especificou na command line, verifique quaisquer option files aplicáveis e seu ambiente. Por exemplo, se você receber `Access denied` ao executar um client sem opções, certifique-se de não ter especificado um old password em nenhum dos seus option files!
 
-  You can suppress the use of option files by a client program by invoking it with the [`--no-defaults`](option-file-options.html#option_general_no-defaults) option. For example:
+  Você pode suprimir o uso de option files por um programa client, invocando-o com a opção [`--no-defaults`](option-file-options.html#option_general_no-defaults). Por exemplo:
 
   ```sql
   $> mysqladmin --no-defaults -u root version
   ```
 
-  The option files that clients use are listed in [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files"). Environment variables are listed in [Section 4.9, “Environment Variables”](environment-variables.html "4.9 Environment Variables").
+  Os option files que os clients usam estão listados em [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files"). As environment variables estão listadas em [Section 4.9, “Environment Variables”](environment-variables.html "4.9 Environment Variables").
 
-* If you get the following error, it means that you are using an incorrect `root` password:
+* Se você receber o seguinte erro, significa que você está usando um password de `root` incorreto:
 
   ```sql
   $> mysqladmin -u root -pxxxx ver
   Access denied for user 'root'@'localhost' (using password: YES)
   ```
 
-  If the preceding error occurs even when you have not specified a password, it means that you have an incorrect password listed in some option file. Try the [`--no-defaults`](option-file-options.html#option_general_no-defaults) option as described in the previous item.
+  Se o erro anterior ocorrer mesmo quando você não especificou um password, significa que você tem um password incorreto listado em algum option file. Tente a opção [`--no-defaults`](option-file-options.html#option_general_no-defaults), conforme descrito no item anterior.
 
-  For information on changing passwords, see [Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords").
+  Para obter informações sobre como alterar passwords, consulte [Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords").
 
-  If you have lost or forgotten the `root` password, see [Section B.3.3.2, “How to Reset the Root Password”](resetting-permissions.html "B.3.3.2 How to Reset the Root Password").
+  Se você perdeu ou esqueceu o password de `root`, consulte [Section B.3.3.2, “How to Reset the Root Password”](resetting-permissions.html "B.3.3.2 How to Reset the Root Password").
 
-* `localhost` is a synonym for your local host name, and is also the default host to which clients try to connect if you specify no host explicitly.
+* `localhost` é um sinônimo para o seu hostname local e também é o host default ao qual os clients tentam se conectar se você não especificar um host explicitamente.
 
-  You can use a [`--host=127.0.0.1`](connection-options.html#option_general_host) option to name the server host explicitly. This makes a TCP/IP connection to the local [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server. You can also use TCP/IP by specifying a [`--host`](connection-options.html#option_general_host) option that uses the actual host name of the local host. In this case, the host name must be specified in a `user` table row on the server host, even though you are running the client program on the same host as the server.
+  Você pode usar uma opção [`--host=127.0.0.1`](connection-options.html#option_general_host) para nomear o server host explicitamente. Isso estabelece uma conexão TCP/IP com o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server local. Você também pode usar TCP/IP especificando uma opção [`--host`](connection-options.html#option_general_host) que usa o hostname real do host local. Neste caso, o hostname deve ser especificado em uma linha da `user` table no server host, mesmo que você esteja executando o programa client no mesmo host que o server.
 
-* The `Access denied` error message tells you who you are trying to log in as, the client host from which you are trying to connect, and whether you were using a password. Normally, you should have one row in the `user` table that exactly matches the host name and user name that were given in the error message. For example, if you get an error message that contains `using password: NO`, it means that you tried to log in without a password.
+* A mensagem de erro `Access denied` informa quem você está tentando logar, o client host a partir do qual você está tentando se conectar e se você estava usando um password. Normalmente, você deve ter uma linha na `user` table que corresponda exatamente ao hostname e ao nome de user que foram fornecidos na mensagem de erro. Por exemplo, se você receber uma mensagem de erro que contém `using password: NO`, isso significa que você tentou fazer login sem um password.
 
-* If you get an `Access denied` error when trying to connect to the database with `mysql -u user_name`, you may have a problem with the `user` table. Check this by executing `mysql -u root mysql` and issuing this SQL statement:
+* Se você receber um erro `Access denied` ao tentar se conectar à database com `mysql -u user_name`, você pode ter um problema com a `user` table. Verifique isso executando `mysql -u root mysql` e emitindo esta instrução SQL:
 
   ```sql
   SELECT * FROM user;
   ```
 
-  The result should include a row with the `Host` and `User` columns matching your client's host name and your MySQL user name.
+  O resultado deve incluir uma linha com as colunas `Host` e `User` correspondentes ao hostname do seu client e ao seu nome de user do MySQL.
 
-* If the following error occurs when you try to connect from a host other than the one on which the MySQL server is running, it means that there is no row in the `user` table with a `Host` value that matches the client host:
+* Se o erro a seguir ocorrer quando você tentar se conectar a partir de um host diferente daquele em que o MySQL server está sendo executado, significa que não há nenhuma linha na `user` table com um valor `Host` que corresponda ao client host:
 
   ```sql
   Host ... is not allowed to connect to this MySQL server
   ```
 
-  You can fix this by setting up an account for the combination of client host name and user name that you are using when trying to connect.
+  Você pode corrigir isso configurando uma conta para a combinação de client hostname e nome de user que você está usando ao tentar se conectar.
 
-  If you do not know the IP address or host name of the machine from which you are connecting, you should put a row with `'%'` as the `Host` column value in the `user` table. After trying to connect from the client machine, use a `SELECT USER()` query to see how you really did connect. Then change the `'%'` in the `user` table row to the actual host name that shows up in the log. Otherwise, your system is left insecure because it permits connections from any host for the given user name.
+  Se você não souber o IP address ou hostname da máquina a partir da qual você está se conectando, você deve inserir uma linha com `'%'` como valor da coluna `Host` na `user` table. Depois de tentar conectar a partir da máquina client, use uma Query `SELECT USER()` para ver como você realmente se conectou. Em seguida, altere o `'%'` na linha da `user` table para o hostname real que aparece no log. Caso contrário, seu sistema fica inseguro porque permite conexões de qualquer host para o nome de user fornecido.
 
-  On Linux, another reason that this error might occur is that you are using a binary MySQL version that is compiled with a different version of the `glibc` library than the one you are using. In this case, you should either upgrade your operating system or `glibc`, or download a source distribution of MySQL version and compile it yourself. A source RPM is normally trivial to compile and install, so this is not a big problem.
+  No Linux, outra razão pela qual este erro pode ocorrer é que você está usando uma versão binária do MySQL que foi compilada com uma versão diferente da biblioteca `glibc` daquela que você está usando. Neste caso, você deve atualizar seu sistema operacional ou `glibc`, ou baixar uma distribuição source da versão do MySQL e compilá-la você mesmo. Um source RPM é normalmente trivial para compilar e instalar, portanto, isso não é um grande problema.
 
-* If you specify a host name when trying to connect, but get an error message where the host name is not shown or is an IP address, it means that the MySQL server got an error when trying to resolve the IP address of the client host to a name:
+* Se você especificar um hostname ao tentar se conectar, mas receber uma mensagem de erro onde o hostname não é mostrado ou é um IP address, significa que o MySQL server recebeu um erro ao tentar resolver o IP address do client host para um nome:
 
   ```sql
   $> mysqladmin -u root -pxxxx -h some_hostname ver
   Access denied for user 'root'@'' (using password: YES)
   ```
 
-  If you try to connect as `root` and get the following error, it means that you do not have a row in the `user` table with a `User` column value of `'root'` and that [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") cannot resolve the host name for your client:
+  Se você tentar se conectar como `root` e receber o seguinte erro, significa que você não tem uma linha na `user` table com um valor na coluna `User` de `'root'` e que o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") não consegue resolver o hostname para o seu client:
 
   ```sql
   Access denied for user ''@'unknown'
   ```
 
-  These errors indicate a DNS problem. To fix it, execute [**mysqladmin flush-hosts**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") to reset the internal DNS host cache. See [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache").
+  Esses erros indicam um problema de DNS. Para corrigi-lo, execute [**mysqladmin flush-hosts**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") para redefinir o host cache interno do DNS. Consulte [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache").
 
-  Some permanent solutions are:
+  Algumas soluções permanentes são:
 
-  + Determine what is wrong with your DNS server and fix it.
-  + Specify IP addresses rather than host names in the MySQL grant tables.
+  + Determine o que está errado com seu DNS server e conserte-o.
+  + Especifique IP addresses em vez de hostnames nas grant tables do MySQL.
+  + Coloque uma entrada para o nome da máquina client em `/etc/hosts` no Unix ou `\windows\hosts` no Windows.
+  + Inicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a variável de sistema [`skip_name_resolve`](server-system-variables.html#sysvar_skip_name_resolve) habilitada.
+  + Inicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com a opção [`--skip-host-cache`](server-options.html#option_mysqld_skip-host-cache).
+  + No Unix, se você estiver executando o server e o client na mesma máquina, conecte-se a `localhost`. Para conexões com `localhost`, os programas MySQL tentam se conectar ao server local usando um Unix socket file, a menos que parâmetros de conexão sejam especificados para garantir que o client faça uma conexão TCP/IP. Para mais informações, consulte [Section 4.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "4.2.4 Connecting to the MySQL Server Using Command Options").
+  + No Windows, se você estiver executando o server e o client na mesma máquina e o server suportar conexões por named pipe, conecte-se ao hostname `.` (ponto). Conexões para `.` usam um named pipe em vez de TCP/IP.
 
-  + Put an entry for the client machine name in `/etc/hosts` on Unix or `\windows\hosts` on Windows.
+* Se `mysql -u root` funcionar, mas `mysql -h your_hostname -u root` resultar em `Access denied` (onde *`your_hostname`* é o hostname real do host local), você pode não ter o nome correto para o seu host na `user` table. Um problema comum aqui é que o valor `Host` na linha da `user` table especifica um hostname não qualificado, mas as rotinas de resolução de nomes do seu sistema retornam um fully qualified domain name (ou vice-versa). Por exemplo, se você tiver uma linha com host `'pluto'` na `user` table, mas seu DNS disser ao MySQL que seu hostname é `'pluto.example.com'`, a linha não funcionará. Tente adicionar uma linha à `user` table que contenha o IP address do seu host como valor da coluna `Host`. (Alternativamente, você poderia adicionar uma linha à `user` table com um valor `Host` que contenha um wildcard (por exemplo, `'pluto.%'`). No entanto, o uso de valores `Host` terminados em `%` é *inseguro* e *não* é recomendado!)
 
-  + Start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`skip_name_resolve`](server-system-variables.html#sysvar_skip_name_resolve) system variable enabled.
+* Se `mysql -u user_name` funcionar, mas `mysql -u user_name some_db` não funcionar, você não concedeu acesso ao user fornecido para a database chamada *`some_db`*.
 
-  + Start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--skip-host-cache`](server-options.html#option_mysqld_skip-host-cache) option.
+* Se `mysql -u user_name` funcionar quando executado no server host, mas `mysql -h host_name -u user_name` não funcionar quando executado em um client host remoto, você não habilitou o acesso ao server para o nome de user fornecido a partir do host remoto.
 
-  + On Unix, if you are running the server and the client on the same machine, connect to `localhost`. For connections to `localhost`, MySQL programs attempt to connect to the local server by using a Unix socket file, unless there are connection parameters specified to ensure that the client makes a TCP/IP connection. For more information, see [Section 4.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "4.2.4 Connecting to the MySQL Server Using Command Options").
+* Se você não conseguir descobrir por que recebe `Access denied`, remova da `user` table todas as linhas que têm valores `Host` contendo wildcards (linhas que contêm os caracteres `'%'` ou `'_'`). Um erro muito comum é inserir uma nova linha com `Host`=`'%'` e `User`=`'some_user'`, pensando que isso permite que você especifique `localhost` para conectar a partir da mesma máquina. A razão pela qual isso não funciona é que os default privileges incluem uma linha com `Host`=`'localhost'` e `User`=`''`. Como essa linha tem um valor `Host` `'localhost'` que é mais específico do que `'%'`, ela é usada em preferência à nova linha ao conectar-se a partir de `localhost`! O procedimento correto é inserir uma segunda linha com `Host`=`'localhost'` e `User`=`'some_user'`, ou excluir a linha com `Host`=`'localhost'` e `User`=`''`. Após excluir a linha, lembre-se de emitir uma instrução [`FLUSH PRIVILEGES`](flush.html#flush-privileges) para recarregar as grant tables. Consulte também [Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification").
 
-  + On Windows, if you are running the server and the client on the same machine and the server supports named pipe connections, connect to the host name `.` (period). Connections to `.` use a named pipe rather than TCP/IP.
+* Se você conseguir se conectar ao MySQL server, mas receber uma mensagem `Access denied` sempre que emitir uma instrução [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") ou [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), sua linha na `user` table não tem o privilege [`FILE`](privileges-provided.html#priv_file) habilitado.
 
-* If `mysql -u root` works but `mysql -h your_hostname -u root` results in `Access denied` (where *`your_hostname`* is the actual host name of the local host), you may not have the correct name for your host in the `user` table. A common problem here is that the `Host` value in the `user` table row specifies an unqualified host name, but your system's name resolution routines return a fully qualified domain name (or vice versa). For example, if you have a row with host `'pluto'` in the `user` table, but your DNS tells MySQL that your host name is `'pluto.example.com'`, the row does not work. Try adding a row to the `user` table that contains the IP address of your host as the `Host` column value. (Alternatively, you could add a row to the `user` table with a `Host` value that contains a wildcard (for example, `'pluto.%'`). However, use of `Host` values ending with `%` is *insecure* and is *not* recommended!)
+* Se você alterar as grant tables diretamente (por exemplo, usando instruções [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement") ou [`DELETE`](delete.html "13.2.2 DELETE Statement")) e suas alterações parecerem ser ignoradas, lembre-se de que você deve executar uma instrução [`FLUSH PRIVILEGES`](flush.html#flush-privileges) ou um comando [**mysqladmin flush-privileges**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") para fazer com que o server recarregue as privilege tables. Caso contrário, suas alterações não terão efeito até a próxima vez que o server for reiniciado. Lembre-se de que depois de alterar o password de `root` com uma instrução [`UPDATE`](update.html "13.2.11 UPDATE Statement"), você não precisa especificar o new password até que você execute o flush dos privileges, porque o server ainda não sabe que você alterou o password.
 
-* If `mysql -u user_name` works but `mysql -u user_name some_db` does not, you have not granted access to the given user for the database named *`some_db`*.
+* Se seus privileges parecerem ter mudado no meio de uma sessão, pode ser que um administrador MySQL os tenha alterado. Recarregar as grant tables afeta novas conexões client, mas também afeta conexões existentes, conforme indicado em [Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect").
 
-* If `mysql -u user_name` works when executed on the server host, but `mysql -h host_name -u user_name` does not work when executed on a remote client host, you have not enabled access to the server for the given user name from the remote host.
+* Se você tiver problemas de acesso com um programa Perl, PHP, Python ou ODBC, tente conectar-se ao server com `mysql -u user_name db_name` ou `mysql -u user_name -ppassword db_name`. Se você conseguir se conectar usando o client [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), o problema reside no seu programa, e não nos access privileges. (Não há espaço entre `-p` e o password; você também pode usar a sintaxe [`--password=password`](connection-options.html#option_general_password) para especificar o password. Se você usar a opção `-p` ou [`--password`](connection-options.html#option_general_password) sem um valor de password, o MySQL solicitará o password.)
 
-* If you cannot figure out why you get `Access denied`, remove from the `user` table all rows that have `Host` values containing wildcards (rows that contain `'%'` or `'_'` characters). A very common error is to insert a new row with `Host`=`'%'` and `User`=`'some_user'`, thinking that this enables you to specify `localhost` to connect from the same machine. The reason that this does not work is that the default privileges include a row with `Host`=`'localhost'` and `User`=`''`. Because that row has a `Host` value `'localhost'` that is more specific than `'%'`, it is used in preference to the new row when connecting from `localhost`! The correct procedure is to insert a second row with `Host`=`'localhost'` and `User`=`'some_user'`, or to delete the row with `Host`=`'localhost'` and `User`=`''`. After deleting the row, remember to issue a [`FLUSH PRIVILEGES`](flush.html#flush-privileges) statement to reload the grant tables. See also [Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification").
+* Para fins de teste, inicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server com a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables). Em seguida, você pode alterar as grant tables do MySQL e usar a instrução [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") para verificar se suas modificações têm o efeito desejado. Quando estiver satisfeito com suas alterações, execute [**mysqladmin flush-privileges**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") para instruir o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server a recarregar os privileges. Isso permite que você comece a usar o novo conteúdo da grant table sem parar e reiniciar o server.
 
-* If you are able to connect to the MySQL server, but get an `Access denied` message whenever you issue a [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") or [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, your row in the `user` table does not have the [`FILE`](privileges-provided.html#priv_file) privilege enabled.
+* Se tudo mais falhar, inicie o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server com uma opção de debugging (por exemplo, [`--debug=d,general,query`](server-options.html#option_mysqld_debug)). Isso imprime informações de host e user sobre tentativas de conexão, bem como informações sobre cada comando emitido. Consulte [Section 5.8.3, “The DBUG Package”](dbug-package.html "5.8.3 The DBUG Package").
 
-* If you change the grant tables directly (for example, by using [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), or [`DELETE`](delete.html "13.2.2 DELETE Statement") statements) and your changes seem to be ignored, remember that you must execute a [`FLUSH PRIVILEGES`](flush.html#flush-privileges) statement or a [**mysqladmin flush-privileges**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command to cause the server to reload the privilege tables. Otherwise, your changes have no effect until the next time the server is restarted. Remember that after you change the `root` password with an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement, you do not need to specify the new password until after you flush the privileges, because the server does not yet know that you have changed the password.
-
-* If your privileges seem to have changed in the middle of a session, it may be that a MySQL administrator has changed them. Reloading the grant tables affects new client connections, but it also affects existing connections as indicated in [Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect").
-
-* If you have access problems with a Perl, PHP, Python, or ODBC program, try to connect to the server with `mysql -u user_name db_name` or `mysql -u user_name -ppassword db_name`. If you are able to connect using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, the problem lies with your program, not with the access privileges. (There is no space between `-p` and the password; you can also use the [`--password=password`](connection-options.html#option_general_password) syntax to specify the password. If you use the `-p` or [`--password`](connection-options.html#option_general_password) option with no password value, MySQL prompts you for the password.)
-
-* For testing purposes, start the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option. Then you can change the MySQL grant tables and use the [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") statement to check whether your modifications have the desired effect. When you are satisfied with your changes, execute [**mysqladmin flush-privileges**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") to tell the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server to reload the privileges. This enables you to begin using the new grant table contents without stopping and restarting the server.
-
-* If everything else fails, start the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server with a debugging option (for example, [`--debug=d,general,query`](server-options.html#option_mysqld_debug)). This prints host and user information about attempted connections, as well as information about each command issued. See [Section 5.8.3, “The DBUG Package”](dbug-package.html "5.8.3 The DBUG Package").
-
-* If you have any other problems with the MySQL grant tables and ask on the [MySQL Community Slack](https://mysqlcommunity.slack.com/), always provide a dump of the MySQL grant tables. You can dump the tables with the [**mysqldump mysql**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") command. To file a bug report, see the instructions at [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems"). In some cases, you may need to restart [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) to run [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
+* Se você tiver qualquer outro problema com as grant tables do MySQL e perguntar no [MySQL Community Slack](https://mysqlcommunity.slack.com/), sempre forneça um dump das grant tables do MySQL. Você pode despejar as tables com o comando [**mysqldump mysql**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"). Para registrar um bug report, consulte as instruções em [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems"). Em alguns casos, você pode precisar reiniciar o [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") com [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) para executar o [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").

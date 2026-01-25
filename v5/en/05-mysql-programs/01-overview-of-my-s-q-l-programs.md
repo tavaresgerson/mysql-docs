@@ -1,175 +1,175 @@
-## 4.1 Overview of MySQL Programs
+## 4.1 Visão Geral dos Programas MySQL
 
-There are many different programs in a MySQL installation. This section provides a brief overview of them. Later sections provide a more detailed description of each one, with the exception of NDB Cluster programs. Each program's description indicates its invocation syntax and the options that it supports. Section 21.5, “NDB Cluster Programs”, describes programs specific to NDB Cluster.
+Há muitos programas diferentes em uma instalação MySQL. Esta seção fornece uma breve visão geral deles. Seções posteriores fornecem uma descrição mais detalhada de cada um, com exceção dos programas NDB Cluster. A descrição de cada programa indica sua sintaxe de invocação e as opções que ele suporta. A Seção 21.5, “NDB Cluster Programs”, descreve programas específicos do NDB Cluster.
 
-Most MySQL distributions include all of these programs, except for those programs that are platform-specific. (For example, the server startup scripts are not used on Windows.) The exception is that RPM distributions are more specialized. There is one RPM for the server, another for client programs, and so forth. If you appear to be missing one or more programs, see Chapter 2, *Installing and Upgrading MySQL*, for information on types of distributions and what they contain. It may be that you have a distribution that does not include all programs and you need to install an additional package.
+A maioria das distribuições MySQL inclui todos esses programas, exceto aqueles que são específicos de plataforma. (Por exemplo, os scripts de inicialização do server não são usados no Windows.) A exceção é que as distribuições RPM são mais especializadas. Há um RPM para o server, outro para programas client, e assim por diante. Se você notar a ausência de um ou mais programas, consulte o Capítulo 2, *Installing and Upgrading MySQL*, para obter informações sobre os tipos de distribuição e o que eles contêm. Pode ser que você tenha uma distribuição que não inclua todos os programas e precise instalar um pacote adicional.
 
-Each MySQL program takes many different options. Most programs provide a `--help` option that you can use to get a description of the program's different options. For example, try **mysql --help**.
+Cada programa MySQL aceita muitas opções diferentes. A maioria dos programas fornece uma opção `--help` que você pode usar para obter uma descrição das diferentes opções do programa. Por exemplo, tente **mysql --help**.
 
-You can override default option values for MySQL programs by specifying options on the command line or in an option file. See Section 4.2, “Using MySQL Programs”, for general information on invoking programs and specifying program options.
+Você pode substituir os valores de opção padrão para programas MySQL especificando opções na linha de comando ou em um option file. Consulte a Seção 4.2, “Using MySQL Programs”, para obter informações gerais sobre a invocação de programas e a especificação de opções de programas.
 
-The MySQL server, **mysqld**, is the main program that does most of the work in a MySQL installation. The server is accompanied by several related scripts that assist you in starting and stopping the server:
+O MySQL server, **mysqld**, é o programa principal que realiza a maior parte do trabalho em uma instalação MySQL. O server é acompanhado por vários scripts relacionados que auxiliam na inicialização e parada do server:
 
 * **mysqld**
 
-  The SQL daemon (that is, the MySQL server). To use client programs, **mysqld** must be running, because clients gain access to databases by connecting to the server. See Section 4.3.1, “mysqld — The MySQL Server”.
+  O daemon SQL (ou seja, o MySQL server). Para usar programas client, o **mysqld** deve estar em execução, pois os clients obtêm acesso aos Databases conectando-se ao server. Consulte a Seção 4.3.1, “mysqld — The MySQL Server”.
 
 * **mysqld_safe**
 
-  A server startup script. **mysqld_safe** attempts to start **mysqld**. See Section 4.3.2, “mysqld_safe — MySQL Server Startup Script”.
+  Um script de inicialização do server. O **mysqld_safe** tenta iniciar o **mysqld**. Consulte a Seção 4.3.2, “mysqld_safe — MySQL Server Startup Script”.
 
 * **mysql.server**
 
-  A server startup script. This script is used on systems that use System V-style run directories containing scripts that start system services for particular run levels. It invokes **mysqld_safe** to start the MySQL server. See Section 4.3.3, “mysql.server — MySQL Server Startup Script”.
+  Um script de inicialização do server. Este script é usado em sistemas que utilizam diretórios de execução no estilo System V contendo scripts que iniciam serviços do sistema para níveis de execução específicos. Ele invoca **mysqld_safe** para iniciar o MySQL server. Consulte a Seção 4.3.3, “mysql.server — MySQL Server Startup Script”.
 
 * **mysqld_multi**
 
-  A server startup script that can start or stop multiple servers installed on the system. See Section 4.3.4, “mysqld_multi — Manage Multiple MySQL Servers”.
+  Um script de inicialização do server que pode iniciar ou parar múltiplos servers instalados no sistema. Consulte a Seção 4.3.4, “mysqld_multi — Manage Multiple MySQL Servers”.
 
-Several programs perform setup operations during MySQL installation or upgrading:
+Vários programas executam operações de configuração durante a instalação ou atualização do MySQL:
 
 * **comp_err**
 
-  This program is used during the MySQL build/installation process. It compiles error message files from the error source files. See Section 4.4.1, “comp_err — Compile MySQL Error Message File”.
+  Este programa é usado durante o processo de build/instalação do MySQL. Ele compila arquivos de mensagens de erro a partir dos arquivos de origem de erro. Consulte a Seção 4.4.1, “comp_err — Compile MySQL Error Message File”.
 
 * **mysql_install_db**
 
-  This program initializes the MySQL data directory, creates the `mysql` database and initializes its grant tables with default privileges, and sets up the `InnoDB` system tablespace. It is usually executed only once, when first installing MySQL on a system. See Section 4.4.2, “mysql_install_db — Initialize MySQL Data Directory”, and Section 2.9, “Postinstallation Setup and Testing”.
+  Este programa inicializa o data directory do MySQL, cria o Database `mysql` e inicializa suas grant tables com privilégios padrão, e configura o tablespace do sistema `InnoDB`. Geralmente, ele é executado apenas uma vez, ao instalar o MySQL pela primeira vez em um sistema. Consulte a Seção 4.4.2, “mysql_install_db — Initialize MySQL Data Directory”, e Seção 2.9, “Postinstallation Setup and Testing”.
 
 * **mysql_plugin**
 
-  This program configures MySQL server plugins. See Section 4.4.3, “mysql_plugin — Configure MySQL Server Plugins”.
+  Este programa configura plugins do MySQL server. Consulte a Seção 4.4.3, “mysql_plugin — Configure MySQL Server Plugins”.
 
 * **mysql_secure_installation**
 
-  This program enables you to improve the security of your MySQL installation. See Section 4.4.4, “mysql_secure_installation — Improve MySQL Installation Security”.
+  Este programa permite melhorar a segurança da sua instalação MySQL. Consulte a Seção 4.4.4, “mysql_secure_installation — Improve MySQL Installation Security”.
 
 * **mysql_ssl_rsa_setup**
 
-  This program creates the SSL certificate and key files and RSA key-pair files required to support secure connections, if those files are missing. Files created by **mysql_ssl_rsa_setup** can be used for secure connections using SSL or RSA. See Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
+  Este programa cria os arquivos de certificado e chave SSL e os arquivos de par de chaves RSA necessários para suportar conexões seguras, caso esses arquivos estejam ausentes. Os arquivos criados por **mysql_ssl_rsa_setup** podem ser usados para conexões seguras usando SSL ou RSA. Consulte a Seção 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
 
 * **mysql_tzinfo_to_sql**
 
-  This program loads the time zone tables in the `mysql` database using the contents of the host system zoneinfo database (the set of files describing time zones). See Section 4.4.6, “mysql_tzinfo_to_sql — Load the Time Zone Tables”.
+  Este programa carrega as tabelas de fuso horário no Database `mysql` usando o conteúdo do Database zoneinfo do sistema host (o conjunto de arquivos que descrevem os fusos horários). Consulte a Seção 4.4.6, “mysql_tzinfo_to_sql — Load the Time Zone Tables”.
 
 * **mysql_upgrade**
 
-  This program is used after a MySQL upgrade operation. It updates the grant tables with any changes that have been made in newer versions of MySQL, and checks tables for incompatibilities and repairs them if necessary. See Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
+  Este programa é usado após uma operação de upgrade do MySQL. Ele atualiza as grant tables com quaisquer alterações feitas em versões mais recentes do MySQL e verifica as tabelas quanto a incompatibilidades, reparando-as se necessário. Consulte a Seção 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
 
-MySQL client programs that connect to the MySQL server:
+Programas client MySQL que se conectam ao MySQL server:
 
 * **mysql**
 
-  The command-line tool for interactively entering SQL statements or executing them from a file in batch mode. See Section 4.5.1, “mysql — The MySQL Command-Line Client”.
+  A ferramenta de linha de comando para inserir interativamente instruções SQL ou executá-las a partir de um arquivo em modo batch. Consulte a Seção 4.5.1, “mysql — The MySQL Command-Line Client”.
 
 * **mysqladmin**
 
-  A client that performs administrative operations, such as creating or dropping databases, reloading the grant tables, flushing tables to disk, and reopening log files. **mysqladmin** can also be used to retrieve version, process, and status information from the server. See Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”.
+  Um client que executa operações administrativas, como criar ou descartar Databases, recarregar as grant tables, fazer flush de tabelas para o disco e reabrir log files. O **mysqladmin** também pode ser usado para recuperar informações de versão, processo e status do server. Consulte a Seção 4.5.2, “mysqladmin — A MySQL Server Administration Program”.
 
 * **mysqlcheck**
 
-  A table-maintenance client that checks, repairs, analyzes, and optimizes tables. See Section 4.5.3, “mysqlcheck — A Table Maintenance Program”.
+  Um client de manutenção de tabelas que verifica, repara, analisa e otimiza tabelas. Consulte a Seção 4.5.3, “mysqlcheck — A Table Maintenance Program”.
 
 * **mysqldump**
 
-  A client that dumps a MySQL database into a file as SQL, text, or XML. See Section 4.5.4, “mysqldump — A Database Backup Program”.
+  Um client que despeja um Database MySQL em um arquivo como SQL, texto ou XML. Consulte a Seção 4.5.4, “mysqldump — A Database Backup Program”.
 
 * **mysqlimport**
 
-  A client that imports text files into their respective tables using `LOAD DATA`. See Section 4.5.5, “mysqlimport — A Data Import Program”.
+  Um client que importa arquivos de texto para suas respectivas tabelas usando `LOAD DATA`. Consulte a Seção 4.5.5, “mysqlimport — A Data Import Program”.
 
 * **mysqlpump**
 
-  A client that dumps a MySQL database into a file as SQL. See Section 4.5.6, “mysqlpump — A Database Backup Program”.
+  Um client que despeja um Database MySQL em um arquivo como SQL. Consulte a Seção 4.5.6, “mysqlpump — A Database Backup Program”.
 
 * **mysqlsh**
 
-  MySQL Shell is an advanced client and code editor for MySQL Server. See MySQL Shell 8.0. In addition to the provided SQL functionality, similar to **mysql**, MySQL Shell provides scripting capabilities for JavaScript and Python and includes APIs for working with MySQL. X DevAPI enables you to work with both relational and document data, see Chapter 19, *Using MySQL as a Document Store*. AdminAPI enables you to work with InnoDB Cluster, see MySQL AdminAPI.
+  O MySQL Shell é um client avançado e editor de código para o MySQL Server. Consulte MySQL Shell 8.0. Além da funcionalidade SQL fornecida, semelhante ao **mysql**, o MySQL Shell oferece recursos de scripting para JavaScript e Python e inclui APIs para trabalhar com MySQL. O X DevAPI permite trabalhar com dados relacionais e de documentos, consulte o Capítulo 19, *Using MySQL as a Document Store*. O AdminAPI permite trabalhar com o InnoDB Cluster, consulte MySQL AdminAPI.
 
 * **mysqlshow**
 
-  A client that displays information about databases, tables, columns, and indexes. See Section 4.5.7, “mysqlshow — Display Database, Table, and Column Information”.
+  Um client que exibe informações sobre Databases, tabelas, colunas e Indexes. Consulte a Seção 4.5.7, “mysqlshow — Display Database, Table, and Column Information”.
 
 * **mysqlslap**
 
-  A client that is designed to emulate client load for a MySQL server and report the timing of each stage. It works as if multiple clients are accessing the server. See Section 4.5.8, “mysqlslap — A Load Emulation Client”.
+  Um client projetado para emular o client load para um MySQL server e relatar o tempo de cada estágio. Ele funciona como se múltiplos clients estivessem acessando o server. Consulte a Seção 4.5.8, “mysqlslap — A Load Emulation Client”.
 
-MySQL administrative and utility programs:
+Programas utilitários e administrativos do MySQL:
 
 * **innochecksum**
 
-  An offline `InnoDB` offline file checksum utility. See Section 4.6.1, “innochecksum — Offline InnoDB File Checksum Utility”.
+  Um utilitário de checksum de arquivo offline `InnoDB`. Consulte a Seção 4.6.1, “innochecksum — Offline InnoDB File Checksum Utility”.
 
 * **myisam_ftdump**
 
-  A utility that displays information about full-text indexes in `MyISAM` tables. See Section 4.6.2, “myisam_ftdump — Display Full-Text Index information”.
+  Um utilitário que exibe informações sobre full-text Indexes em tabelas `MyISAM`. Consulte a Seção 4.6.2, “myisam_ftdump — Display Full-Text Index information”.
 
 * **myisamchk**
 
-  A utility to describe, check, optimize, and repair `MyISAM` tables. See Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”.
+  Um utilitário para descrever, verificar, otimizar e reparar tabelas `MyISAM`. Consulte a Seção 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”.
 
 * **myisamlog**
 
-  A utility that processes the contents of a `MyISAM` log file. See Section 4.6.4, “myisamlog — Display MyISAM Log File Contents”.
+  Um utilitário que processa o conteúdo de um log file `MyISAM`. Consulte a Seção 4.6.4, “myisamlog — Display MyISAM Log File Contents”.
 
 * **myisampack**
 
-  A utility that compresses `MyISAM` tables to produce smaller read-only tables. See Section 4.6.5, “myisampack — Generate Compressed, Read-Only MyISAM Tables”.
+  Um utilitário que compacta tabelas `MyISAM` para produzir tabelas read-only menores. Consulte a Seção 4.6.5, “myisampack — Generate Compressed, Read-Only MyISAM Tables”.
 
 * **mysql_config_editor**
 
-  A utility that enables you to store authentication credentials in a secure, encrypted login path file named `.mylogin.cnf`. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  Um utilitário que permite armazenar credenciais de autenticação em um arquivo de login path seguro e criptografado chamado `.mylogin.cnf`. Consulte a Seção 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
 
 * **mysqlbinlog**
 
-  A utility for reading statements from a binary log. The log of executed statements contained in the binary log files can be used to help recover from a crash. See Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”.
+  Um utilitário para ler instruções de um binary log. O log de instruções executadas contido nos arquivos de binary log pode ser usado para auxiliar na recuperação de um crash. Consulte a Seção 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”.
 
 * **mysqldumpslow**
 
-  A utility to read and summarize the contents of a slow query log. See Section 4.6.8, “mysqldumpslow — Summarize Slow Query Log Files”.
+  Um utilitário para ler e resumir o conteúdo de um slow query log. Consulte a Seção 4.6.8, “mysqldumpslow — Summarize Slow Query Log Files”.
 
-MySQL program-development utilities:
+Utilitários de desenvolvimento de programas MySQL:
 
 * **mysql_config**
 
-  A shell script that produces the option values needed when compiling MySQL programs. See Section 4.7.1, “mysql_config — Display Options for Compiling Clients”.
+  Um script shell que produz os valores de opção necessários ao compilar programas MySQL. Consulte a Seção 4.7.1, “mysql_config — Display Options for Compiling Clients”.
 
 * **my_print_defaults**
 
-  A utility that shows which options are present in option groups of option files. See Section 4.7.2, “my_print_defaults — Display Options from Option Files”.
+  Um utilitário que mostra quais opções estão presentes em option groups de option files. Consulte a Seção 4.7.2, “my_print_defaults — Display Options from Option Files”.
 
 * **resolve_stack_dump**
 
-  A utility program that resolves a numeric stack trace dump to symbols. See Section 4.7.3, “resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols”.
+  Um programa utilitário que resolve um stack trace dump numérico para símbolos. Consulte a Seção 4.7.3, “resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols”.
 
-Miscellaneous utilities:
+Utilitários diversos:
 
 * **lz4_decompress**
 
-  A utility that decompresses **mysqlpump** output that was created using LZ4 compression. See Section 4.8.1, “lz4_decompress — Decompress mysqlpump LZ4-Compressed Output”.
+  Um utilitário que descompacta a saída do **mysqlpump** que foi criada usando compressão LZ4. Consulte a Seção 4.8.1, “lz4_decompress — Decompress mysqlpump LZ4-Compressed Output”.
 
 * **perror**
 
-  A utility that displays the meaning of system or MySQL error codes. See Section 4.8.2, “perror — Display MySQL Error Message Information”.
+  Um utilitário que exibe o significado de códigos de erro de sistema ou MySQL. Consulte a Seção 4.8.2, “perror — Display MySQL Error Message Information”.
 
 * **replace**
 
-  A utility program that performs string replacement in the input text. See Section 4.8.3, “replace — A String-Replacement Utility”.
+  Um programa utilitário que realiza string replacement no texto de entrada. Consulte a Seção 4.8.3, “replace — A String-Replacement Utility”.
 
 * **resolveip**
 
-  A utility program that resolves a host name to an IP address or vice versa. See Section 4.8.4, “resolveip — Resolve Host name to IP Address or Vice Versa”.
+  Um programa utilitário que resolve um host name para um IP address ou vice-versa. Consulte a Seção 4.8.4, “resolveip — Resolve Host name to IP Address or Vice Versa”.
 
 * **zlib_decompress**
 
-  A utility that decompresses **mysqlpump** output that was created using ZLIB compression. See Section 4.8.5, “zlib_decompress — Decompress mysqlpump ZLIB-Compressed Output”.
+  Um utilitário que descompacta a saída do **mysqlpump** que foi criada usando compressão ZLIB. Consulte a Seção 4.8.5, “zlib_decompress — Decompress mysqlpump ZLIB-Compressed Output”.
 
-Oracle Corporation also provides the MySQL Workbench GUI tool, which is used to administer MySQL servers and databases, to create, execute, and evaluate queries, and to migrate schemas and data from other relational database management systems for use with MySQL.
+A Oracle Corporation também fornece a ferramenta GUI MySQL Workbench, que é usada para administrar MySQL servers e Databases, para criar, executar e avaliar Queries, e para migrar schemas e dados de outros sistemas de gerenciamento de Database relacionais para uso com MySQL.
 
-MySQL client programs that communicate with the server using the MySQL client/server library use the following environment variables.
+Programas client MySQL que se comunicam com o server usando a library client/server MySQL usam as seguintes environment variables.
 
-<table summary="Environment variables used by MySQL client programs that communicate with the server using the MySQL client/server library."><thead><tr> <th>Environment Variable</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>MYSQL_UNIX_PORT</code></td> <td>The default Unix socket file; used for connections to <code>localhost</code></td> </tr><tr> <td><code>MYSQL_TCP_PORT</code></td> <td>The default port number; used for TCP/IP connections</td> </tr><tr> <td><code>MYSQL_PWD</code></td> <td>The default password</td> </tr><tr> <td><code>MYSQL_DEBUG</code></td> <td>Debug trace options when debugging</td> </tr><tr> <td><code>TMPDIR</code></td> <td>The directory where temporary tables and files are created</td> </tr></tbody></table>
+<table summary="Environment variables used by MySQL client programs that communicate with the server using the MySQL client/server library."><thead><tr> <th>Environment Variable</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>MYSQL_UNIX_PORT</code></td> <td>O arquivo default de Unix socket; usado para conexões com <code>localhost</code></td> </tr><tr> <td><code>MYSQL_TCP_PORT</code></td> <td>O número default da porta; usado para conexões TCP/IP</td> </tr><tr> <td><code>MYSQL_PWD</code></td> <td>O password default</td> </tr><tr> <td><code>MYSQL_DEBUG</code></td> <td>Opções de Debug trace durante a depuração</td> </tr><tr> <td><code>TMPDIR</code></td> <td>O diretório onde tabelas temporárias e arquivos são criados</td> </tr></tbody></table>
 
-For a full list of environment variables used by MySQL programs, see Section 4.9, “Environment Variables”.
+Para uma lista completa das environment variables usadas por programas MySQL, consulte a Seção 4.9, “Environment Variables”.
 
-Use of `MYSQL_PWD` is insecure. See Section 6.1.2.1, “End-User Guidelines for Password Security”.
+O uso de `MYSQL_PWD` é inseguro. Consulte a Seção 6.1.2.1, “End-User Guidelines for Password Security”.

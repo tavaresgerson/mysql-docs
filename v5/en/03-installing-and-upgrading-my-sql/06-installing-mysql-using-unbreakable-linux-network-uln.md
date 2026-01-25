@@ -1,13 +1,13 @@
-## 2.6 Installing MySQL Using Unbreakable Linux Network (ULN)
+## 2.6 Instalando MySQL Usando Unbreakable Linux Network (ULN)
 
-Linux supports a number of different solutions for installing MySQL, covered in Section 2.5, “Installing MySQL on Linux”. One of the methods, covered in this section, is installing from Oracle's Unbreakable Linux Network (ULN). You can find information about Oracle Linux and ULN under <http://linux.oracle.com/>.
+O Linux suporta várias soluções diferentes para instalar o MySQL, abordadas na Seção 2.5, “Instalando MySQL no Linux”. Um dos métodos, coberto nesta seção, é a instalação a partir do Unbreakable Linux Network (ULN) da Oracle. Você pode encontrar informações sobre o Oracle Linux e o ULN em <http://linux.oracle.com/>.
 
-To use ULN, you need to obtain a ULN login and register the machine used for installation with ULN. This is described in detail in the [ULN FAQ](https://linux.oracle.com/uln_faq.html). The page also describes how to install and update packages. The MySQL packages are in the “MySQL for Oracle Linux 6” and “MySQL for Oracle Linux 7” channels for your system architecture on ULN.
+Para usar o ULN, você precisa obter um login no ULN e registrar a máquina usada para a instalação no ULN. Isso é descrito em detalhes no [ULN FAQ](https://linux.oracle.com/uln_faq.html). A página também descreve como instalar e atualizar packages. Os packages do MySQL estão nos "channels" “MySQL for Oracle Linux 6” e “MySQL for Oracle Linux 7” para a architecture do seu sistema no ULN.
 
-Note
+Nota
 
-ULN provides MySQL 5.7 for Oracle Linux 6 and Oracle Linux 7. Alternatively, Oracle Linux 8 supports MySQL 8.0. In addition, Enterprise packages are available as of MySQL 8.0.21.
+O ULN fornece o MySQL 5.7 para o Oracle Linux 6 e Oracle Linux 7. Alternativamente, o Oracle Linux 8 suporta o MySQL 8.0. Além disso, packages Enterprise estão disponíveis a partir do MySQL 8.0.21.
 
-Once MySQL has been installed using ULN, you can find information on starting and stopping the server, and more, in this section, particularly under Section 2.5.5, “Installing MySQL on Linux Using RPM Packages from Oracle”.
+Após o MySQL ser instalado usando o ULN, você pode encontrar informações sobre como iniciar e parar o server, e mais, nesta seção, particularmente na Seção 2.5.5, “Instalando MySQL no Linux Usando Packages RPM da Oracle”.
 
-If you are changing your package source to use ULN and not changing which build of MySQL you are using, then back up your data, remove your existing binaries, and replace them with those from ULN. If a change of build is involved, we recommend the backup be a dump (**mysqldump** or **mysqlpump** or from MySQL Shell's backup utility) just in case you need to rebuild your data after the new binaries are in place. If this shift to ULN crosses a version boundary, consult this section before proceeding: Section 2.10, “Upgrading MySQL”.
+Se você estiver mudando sua fonte de packages para usar o ULN e não estiver alterando qual build do MySQL você está utilizando, faça um backup dos seus dados, remova seus binaries existentes e substitua-os pelos do ULN. Se uma mudança de build estiver envolvida, recomendamos que o backup seja um dump (**mysqldump** ou **mysqlpump** ou a partir da backup utility do MySQL Shell) caso você precise reconstruir seus dados após os novos binaries estarem instalados. Se essa mudança para o ULN cruzar um limite de versão, consulte esta seção antes de prosseguir: Seção 2.10, “Upgrading MySQL”.

@@ -1,43 +1,43 @@
-### 1.2.1 What is MySQL?
+### 1.2.1 O que é MySQL?
 
-MySQL, the most popular Open Source SQL database management system, is developed, distributed, and supported by Oracle Corporation.
+MySQL, o sistema de gerenciamento de Database SQL Open Source mais popular, é desenvolvido, distribuído e suportado pela Oracle Corporation.
 
-The MySQL website (<http://www.mysql.com/>) provides the latest information about MySQL software.
+O website do MySQL (<http://www.mysql.com/>) fornece as informações mais recentes sobre o software MySQL.
 
-* **MySQL is a database management system.**
+* **MySQL é um sistema de gerenciamento de Database.**
 
-  A database is a structured collection of data. It may be anything from a simple shopping list to a picture gallery or the vast amounts of information in a corporate network. To add, access, and process data stored in a computer database, you need a database management system such as MySQL Server. Since computers are very good at handling large amounts of data, database management systems play a central role in computing, as standalone utilities, or as parts of other applications.
+  Um Database é uma coleção estruturada de dados. Pode ser desde uma simples lista de compras até uma galeria de imagens ou a vasta quantidade de informações em uma rede corporativa. Para adicionar, acessar e processar dados armazenados em um Database de computador, você precisa de um sistema de gerenciamento de Database, como o MySQL Server. Como os computadores são muito eficientes no manuseio de grandes quantidades de dados, os sistemas de gerenciamento de Database desempenham um papel central na computação, seja como utilitários standalone (autônomos) ou como parte de outras aplicações.
 
-* **MySQL databases are relational.**
+* **Databases MySQL são relacionais.**
 
-  A relational database stores data in separate tables rather than putting all the data in one big storeroom. The database structures are organized into physical files optimized for speed. The logical model, with objects such as databases, tables, views, rows, and columns, offers a flexible programming environment. You set up rules governing the relationships between different data fields, such as one-to-one, one-to-many, unique, required or optional, and “pointers” between different tables. The database enforces these rules, so that with a well-designed database, your application never sees inconsistent, duplicate, orphan, out-of-date, or missing data.
+  Um Database relacional armazena dados em tables separadas, em vez de colocar todos os dados em um único grande depósito. As estruturas do Database são organizadas em arquivos físicos otimizados para velocidade. O modelo lógico, com objetos como Databases, tables, views, rows e columns, oferece um ambiente de programação flexível. Você define regras que governam os relacionamentos entre diferentes campos de dados, como um-para-um, um-para-muitos, unique, required ou optional, e “pointers” (ponteiros) entre diferentes tables. O Database impõe essas regras, de modo que, com um Database bem projetado, sua aplicação nunca verá dados inconsistentes, duplicados, órfãos, desatualizados ou ausentes.
 
-  The SQL part of “MySQL” stands for “Structured Query Language”. SQL is the most common standardized language used to access databases. Depending on your programming environment, you might enter SQL directly (for example, to generate reports), embed SQL statements into code written in another language, or use a language-specific API that hides the SQL syntax.
+  A parte SQL de “MySQL” significa “Structured Query Language”. SQL é a linguagem padronizada mais comum usada para acessar Databases. Dependendo do seu ambiente de programação, você pode inserir SQL diretamente (por exemplo, para gerar relatórios), incorporar comandos SQL em código escrito em outra linguagem ou usar uma API específica da linguagem que oculte a sintaxe SQL.
 
-  SQL is defined by the ANSI/ISO SQL Standard. The SQL standard has been evolving since 1986 and several versions exist. In this manual, “SQL-92” refers to the standard released in 1992, “SQL:1999” refers to the standard released in 1999, and “SQL:2003” refers to the current version of the standard. We use the phrase “the SQL standard” to mean the current version of the SQL Standard at any time.
+  SQL é definido pelo Padrão SQL ANSI/ISO. O Padrão SQL tem evoluído desde 1986 e várias versões existem. Neste manual, “SQL-92” refere-se ao padrão lançado em 1992, “SQL:1999” refere-se ao padrão lançado em 1999, e “SQL:2003” refere-se à versão atual do padrão. Usamos a frase “o padrão SQL” para significar a versão atual do Padrão SQL em qualquer momento.
 
-* **MySQL software is Open Source.**
+* **O software MySQL é Open Source.**
 
-  Open Source means that it is possible for anyone to use and modify the software. Anybody can download the MySQL software from the Internet and use it without paying anything. If you wish, you may study the source code and change it to suit your needs. The MySQL software uses the GPL (GNU General Public License), <http://www.fsf.org/licenses/>, to define what you may and may not do with the software in different situations. If you feel uncomfortable with the GPL or need to embed MySQL code into a commercial application, you can buy a commercially licensed version from us. See the MySQL Licensing Overview for more information (<http://www.mysql.com/company/legal/licensing/>).
+  Open Source significa que é possível que qualquer pessoa utilize e modifique o software. Qualquer um pode baixar o software MySQL da Internet e usá-lo sem pagar nada. Se desejar, você pode estudar o código-fonte e alterá-lo para atender às suas necessidades. O software MySQL utiliza a GPL (GNU General Public License), <http://www.fsf.org/licenses/>, para definir o que você pode ou não fazer com o software em diferentes situações. Se você se sentir desconfortável com a GPL ou precisar incorporar o código MySQL em uma aplicação comercial, você pode comprar uma versão licenciada comercialmente de nós. Consulte o Overview de Licenciamento MySQL para mais informações (<http://www.mysql.com/company/legal/licensing/>).
 
-* **The MySQL Database Server is very fast, reliable, scalable, and easy to use.**
+* **O MySQL Database Server é muito rápido, confiável, escalável e fácil de usar.**
 
-  If that is what you are looking for, you should give it a try. MySQL Server can run comfortably on a desktop or laptop, alongside your other applications, web servers, and so on, requiring little or no attention. If you dedicate an entire machine to MySQL, you can adjust the settings to take advantage of all the memory, CPU power, and I/O capacity available. MySQL can also scale up to clusters of machines, networked together.
+  Se é isso que você está procurando, você deve experimentá-lo. O MySQL Server pode rodar confortavelmente em um desktop ou laptop, junto com suas outras aplicações, web servers, e assim por diante, exigindo pouca ou nenhuma atenção. Se você dedicar uma máquina inteira ao MySQL, pode ajustar as configurações para aproveitar toda a memória, poder de CPU e capacidade de I/O disponíveis. O MySQL também pode escalar para Clusters de máquinas, interligadas em rede.
 
-  MySQL Server was originally developed to handle large databases much faster than existing solutions and has been successfully used in highly demanding production environments for several years. Although under constant development, MySQL Server today offers a rich and useful set of functions. Its connectivity, speed, and security make MySQL Server highly suited for accessing databases on the Internet.
+  O MySQL Server foi originalmente desenvolvido para lidar com grandes Databases muito mais rapidamente do que as soluções existentes e tem sido usado com sucesso em ambientes de produção altamente exigentes por vários anos. Embora esteja em constante desenvolvimento, o MySQL Server hoje oferece um conjunto de funções rico e útil. Sua conectividade, velocidade e segurança tornam o MySQL Server altamente adequado para acessar Databases na Internet.
 
-* **MySQL Server works in client/server or embedded systems.**
+* **O MySQL Server funciona em sistemas client/server ou embarcados (embedded).**
 
-  The MySQL Database Software is a client/server system that consists of a multithreaded SQL server that supports different back ends, several different client programs and libraries, administrative tools, and a wide range of application programming interfaces (APIs).
+  O MySQL Database Software é um sistema client/server que consiste em um server SQL multithreaded que suporta diferentes back ends, vários programas client e libraries diferentes, ferramentas administrativas e uma ampla gama de application programming interfaces (APIs).
 
-  We also provide MySQL Server as an embedded multithreaded library that you can link into your application to get a smaller, faster, easier-to-manage standalone product.
+  Também fornecemos o MySQL Server como uma library multithreaded embarcada (embedded) que você pode linkar à sua aplicação para obter um produto standalone (autônomo) menor, mais rápido e mais fácil de gerenciar.
 
-* **A large amount of contributed MySQL software is available.**
+* **Uma grande quantidade de software MySQL contribuído está disponível.**
 
-  MySQL Server has a practical set of features developed in close cooperation with our users. It is very likely that your favorite application or language supports the MySQL Database Server.
+  O MySQL Server possui um conjunto prático de funcionalidades desenvolvidas em estreita cooperação com nossos usuários. É muito provável que sua aplicação ou linguagem favorita suporte o MySQL Database Server.
 
 * **MySQL HeatWave.**
 
-  MySQL HeatWave is a fully managed database service, powered by the MySQL HeatWave in-memory query accelerator. It is the only cloud service that combines transactions, real-time analytics across data warehouses and data lakes, and machine learning in one MySQL Database; without the complexity, latency, risks, and cost of ETL duplication. It is available on OCI, AWS, and Azure. Learn more at: <https://www.oracle.com/mysql/>.
+  MySQL HeatWave é um serviço de Database totalmente gerenciado (fully managed), alimentado pelo acelerador de Query in-memory MySQL HeatWave. É o único serviço de Cloud que combina transações, analytics em tempo real em data warehouses e data lakes, e machine learning em um único MySQL Database; sem a complexidade, latência, riscos e custo da duplicação de ETL. Está disponível no OCI, AWS e Azure. Saiba mais em: <https://www.oracle.com/mysql/>.
 
-The official way to pronounce “MySQL” is “My Ess Que Ell” (not “my sequel”), but we do not mind if you pronounce it as “my sequel” or in some other localized way.
+A maneira oficial de pronunciar “MySQL” é “Mai Ess Qui Éll” (não “mai sequel”), mas não nos importamos se você o pronunciar como “mai sequel” ou de alguma outra forma localizada.

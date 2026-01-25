@@ -1,6 +1,6 @@
-### 9.1.6 Boolean Literals
+### 9.1.6 Literais Booleanos
 
-The constants `TRUE` and `FALSE` evaluate to `1` and `0`, respectively. The constant names can be written in any lettercase.
+As constantes `TRUE` e `FALSE` avaliam para `1` e `0`, respectivamente. Os nomes das constantes podem ser escritos em qualquer caixa de letras.
 
 ```sql
 mysql> SELECT TRUE, true, FALSE, false;

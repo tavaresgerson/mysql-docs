@@ -1,42 +1,42 @@
-### 5.7.1 Setting Up Multiple Data Directories
+### 5.7.1 Configurando Múltiplos Data Directories
 
-Each MySQL Instance on a machine should have its own data directory. The location is specified using the [`--datadir=dir_name`](server-system-variables.html#sysvar_datadir) option.
+Cada MySQL Instance em uma máquina deve ter seu próprio Data Directory. A localização é especificada usando a opção [`--datadir=dir_name`](server-system-variables.html#sysvar_datadir).
 
-There are different methods of setting up a data directory for a new instance:
+Existem diferentes métodos para configurar um Data Directory para uma nova Instance:
 
-* Create a new data directory.
-* Copy an existing data directory.
+* Criar um novo Data Directory.
+* Copiar um Data Directory existente.
 
-The following discussion provides more detail about each method.
+A discussão a seguir fornece mais detalhes sobre cada método.
 
-Warning
+Aviso
 
-Normally, you should never have two servers that update data in the same databases. This may lead to unpleasant surprises if your operating system does not support fault-free system locking. If (despite this warning) you run multiple servers using the same data directory and they have logging enabled, you must use the appropriate options to specify log file names that are unique to each server. Otherwise, the servers try to log to the same files.
+Normalmente, você nunca deve ter dois servers que atualizam dados nos mesmos Databases. Isso pode levar a surpresas desagradáveis se o seu sistema operacional não suportar system locking livre de falhas. Se (apesar deste aviso) você executar múltiplos servers usando o mesmo Data Directory e eles tiverem o logging ativado, você deve usar as opções apropriadas para especificar nomes de arquivos de log que sejam exclusivos para cada server. Caso contrário, os servers tentarão fazer log nos mesmos arquivos.
 
-Even when the preceding precautions are observed, this kind of setup works only with `MyISAM` and `MERGE` tables, and not with any of the other storage engines. Also, this warning against sharing a data directory among servers always applies in an NFS environment. Permitting multiple MySQL servers to access a common data directory over NFS is a *very bad idea*. The primary problem is that NFS is the speed bottleneck. It is not meant for such use. Another risk with NFS is that you must devise a way to ensure that two or more servers do not interfere with each other. Usually NFS file locking is handled by the `lockd` daemon, but at the moment there is no platform that performs locking 100% reliably in every situation.
+Mesmo quando as precauções precedentes são observadas, este tipo de configuração funciona apenas com tabelas `MyISAM` e `MERGE`, e não com nenhuma das outras storage engines. Além disso, este aviso contra o compartilhamento de um Data Directory entre servers sempre se aplica em um ambiente NFS. Permitir que múltiplos servers MySQL acessem um Data Directory comum via NFS é uma *ideia muito ruim*. O problema principal é que o NFS é o gargalo de velocidade (speed bottleneck). Ele não foi feito para tal uso. Outro risco com NFS é que você deve elaborar uma maneira de garantir que dois ou mais servers não interfiram um com o outro. Geralmente, o file locking do NFS é tratado pelo daemon `lockd`, mas no momento não existe plataforma que execute locking 100% confiavelmente em todas as situações.
 
-#### Create a New Data Directory
+#### Criar um Novo Data Directory
 
-With this method, the data directory is in the same state as when you first install MySQL. It has the default set of MySQL accounts and no user data.
+Com este método, o Data Directory está no mesmo estado de quando você instala o MySQL pela primeira vez. Ele possui o conjunto padrão de contas MySQL e nenhum dado de usuário.
 
-On Unix, initialize the data directory. See [Section 2.9, “Postinstallation Setup and Testing”](postinstallation.html "2.9 Postinstallation Setup and Testing").
+No Unix, inicialize o Data Directory. Consulte [Section 2.9, “Postinstallation Setup and Testing”](postinstallation.html "2.9 Postinstallation Setup and Testing").
 
-On Windows, the data directory is included in the MySQL distribution:
+No Windows, o Data Directory está incluído na distribuição do MySQL:
 
-* MySQL Zip archive distributions for Windows contain an unmodified data directory. You can unpack such a distribution into a temporary location, then copy it `data` directory to where you are setting up the new instance.
+* Distribuições de arquivo Zip do MySQL para Windows contêm um Data Directory não modificado. Você pode descompactar tal distribuição em uma localização temporária e, em seguida, copiar seu diretório `data` para onde você está configurando a nova Instance.
 
-* Windows MSI package installers create and set up the data directory that the installed server uses, but also create a pristine “template” data directory named `data` under the installation directory. After an installation has been performed using an MSI package, the template data directory can be copied to set up additional MySQL instances.
+* Instaladores de pacote MSI do Windows criam e configuram o Data Directory que o server instalado usa, mas também criam um Data Directory "template" (modelo) original chamado `data` sob o diretório de instalação. Após uma instalação ter sido realizada usando um pacote MSI, o Data Directory template pode ser copiado para configurar Instances MySQL adicionais.
 
-#### Copy an Existing Data Directory
+#### Copiar um Data Directory Existente
 
-With this method, any MySQL accounts or user data present in the data directory are carried over to the new data directory.
+Com este método, quaisquer contas MySQL ou dados de usuário presentes no Data Directory são transferidos para o novo Data Directory.
 
-1. Stop the existing MySQL instance using the data directory. This must be a clean shutdown so that the instance flushes any pending changes to disk.
+1. Pare a MySQL Instance existente que está usando o Data Directory. Este deve ser um shutdown limpo para que a Instance descarregue (flushes) quaisquer alterações pendentes no disco.
 
-2. Copy the data directory to the location where the new data directory should be.
+2. Copie o Data Directory para o local onde o novo Data Directory deve estar.
 
-3. Copy the `my.cnf` or `my.ini` option file used by the existing instance. This serves as a basis for the new instance.
+3. Copie o arquivo de opção `my.cnf` ou `my.ini` usado pela Instance existente. Isso serve como base para a nova Instance.
 
-4. Modify the new option file so that any pathnames referring to the original data directory refer to the new data directory. Also, modify any other options that must be unique per instance, such as the TCP/IP port number and the log files. For a list of parameters that must be unique per instance, see [Section 5.7, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "5.7 Running Multiple MySQL Instances on One Machine").
+4. Modifique o novo arquivo de opção para que quaisquer pathnames (caminhos) que se refiram ao Data Directory original se refiram ao novo Data Directory. Além disso, modifique quaisquer outras opções que devam ser exclusivas por Instance, como o número da porta TCP/IP e os arquivos de log. Para uma lista de parâmetros que devem ser exclusivos por Instance, consulte [Section 5.7, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "5.7 Running Multiple MySQL Instances on One Machine").
 
-5. Start the new instance, telling it to use the new option file.
+5. Inicie a nova Instance, instruindo-a a usar o novo arquivo de opção.

@@ -1,33 +1,33 @@
-### 2.9.2 Starting the Server
+### 2.9.2 Iniciando o Server
 
-2.9.2.1 Troubleshooting Problems Starting the MySQL Server
+2.9.2.1 Solução de Problemas na Inicialização do MySQL Server
 
-This section describes how start the server on Unix and Unix-like systems. (For Windows, see Section 2.3.4.5, “Starting the Server for the First Time”.) For some suggested commands that you can use to test whether the server is accessible and working properly, see Section 2.9.3, “Testing the Server”.
+Esta seção descreve como iniciar o server em sistemas Unix e similares a Unix. (Para Windows, veja Seção 2.3.4.5, “Iniciando o Server pela Primeira Vez”.) Para alguns comandos sugeridos que você pode usar para testar se o server está acessível e funcionando corretamente, veja Seção 2.9.3, “Testando o Server”.
 
-Start the MySQL server like this if your installation includes **mysqld_safe**:
+Inicie o MySQL server desta forma se sua instalação incluir **mysqld_safe**:
 
 ```sql
 $> bin/mysqld_safe --user=mysql &
 ```
 
-Note
+Nota
 
-For Linux systems on which MySQL is installed using RPM packages, server startup and shutdown is managed using systemd rather than **mysqld_safe**, and **mysqld_safe** is not installed. See Section 2.5.10, “Managing MySQL Server with systemd”.
+Para sistemas Linux nos quais o MySQL é instalado usando pacotes RPM, a inicialização e o desligamento do server são gerenciados usando systemd em vez de **mysqld_safe**, e o **mysqld_safe** não é instalado. Veja Seção 2.5.10, “Gerenciando o MySQL Server com systemd”.
 
-Start the server like this if your installation includes systemd support:
+Inicie o server desta forma se sua instalação incluir suporte a systemd:
 
 ```sql
 $> systemctl start mysqld
 ```
 
-Substitute the appropriate service name if it differs from `mysqld` (for example, `mysql` on SLES systems).
+Substitua o nome do service apropriado se ele for diferente de `mysqld` (por exemplo, `mysql` em sistemas SLES).
 
-It is important that the MySQL server be run using an unprivileged (non-`root`) login account. To ensure this, run **mysqld_safe** as `root` and include the `--user` option as shown. Otherwise, you should execute the program while logged in as `mysql`, in which case you can omit the `--user` option from the command.
+É importante que o MySQL server seja executado usando uma conta de login sem privilégios (não-`root`). Para garantir isso, execute o **mysqld_safe** como `root` e inclua a opção `--user`, conforme mostrado. Caso contrário, você deve executar o programa enquanto estiver logado como `mysql`, nesse caso você pode omitir a opção `--user` do comando.
 
-For further instructions for running MySQL as an unprivileged user, see Section 6.1.5, “How to Run MySQL as a Normal User”.
+Para instruções adicionais sobre como executar o MySQL como um usuário sem privilégios, veja Seção 6.1.5, “Como Executar o MySQL como um Usuário Normal”.
 
-If the command fails immediately and prints `mysqld ended`, look for information in the error log (which by default is the `host_name.err` file in the data directory).
+Se o comando falhar imediatamente e imprimir `mysqld ended`, procure por informações no error log (que por padrão é o arquivo `host_name.err` no data directory).
 
-If the server is unable to access the data directory it starts or read the grant tables in the `mysql` database, it writes a message to its error log. Such problems can occur if you neglected to create the grant tables by initializing the data directory before proceeding to this step, or if you ran the command that initializes the data directory without the `--user` option. Remove the `data` directory and run the command with the `--user` option.
+Se o server não conseguir acessar o data directory de inicialização ou ler as grant tables no `mysql` database, ele escreverá uma mensagem em seu error log. Tais problemas podem ocorrer se você negligenciou a criação das grant tables inicializando o data directory antes de prosseguir para esta etapa, ou se você executou o comando que inicializa o data directory sem a opção `--user`. Remova o `data` directory e execute o comando com a opção `--user`.
 
-If you have other problems starting the server, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”. For more information about **mysqld_safe**, see Section 4.3.2, “mysqld_safe — MySQL Server Startup Script”. For more information about systemd support, see Section 2.5.10, “Managing MySQL Server with systemd”.
+Se você tiver outros problemas ao iniciar o server, veja Seção 2.9.2.1, “Solução de Problemas na Inicialização do MySQL Server”. Para mais informações sobre **mysqld_safe**, veja Seção 4.3.2, “mysqld_safe — Script de Inicialização do MySQL Server”. Para mais informações sobre suporte a systemd, veja Seção 2.5.10, “Gerenciando o MySQL Server com systemd”.

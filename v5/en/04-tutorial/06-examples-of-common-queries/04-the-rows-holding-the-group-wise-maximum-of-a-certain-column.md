@@ -1,8 +1,8 @@
-### 3.6.4 The Rows Holding the Group-wise Maximum of a Certain Column
+### 3.6.4 As Linhas que Contêm o Máximo Agrupado de uma Determinada Coluna
 
-*Task: For each article, find the dealer or dealers with the most expensive price.*
+*Tarefa: Para cada artigo, encontre o revendedor ou revendedores com o preço mais caro.*
 
-This problem can be solved with a subquery like this one:
+Este problema pode ser resolvido com uma subquery como esta:
 
 ```sql
 SELECT article, dealer, price
@@ -22,9 +22,9 @@ ORDER BY article;
 +---------+--------+-------+
 ```
 
-The preceding example uses a correlated subquery, which can be inefficient (see [Section 13.2.10.7, “Correlated Subqueries”](correlated-subqueries.html "13.2.10.7 Correlated Subqueries")). Other possibilities for solving the problem are to use an uncorrelated subquery in the `FROM` clause or a `LEFT JOIN`.
+O exemplo anterior usa uma subquery correlacionada, o que pode ser ineficiente (consulte [Seção 13.2.10.7, “Subqueries Correlacionadas”](correlated-subqueries.html "13.2.10.7 Subqueries Correlacionadas")). Outras possibilidades para resolver o problema são usar uma subquery não correlacionada na cláusula `FROM` ou um `LEFT JOIN`.
 
-Uncorrelated subquery:
+Subquery não correlacionada:
 
 ```sql
 SELECT s1.article, dealer, s1.price
@@ -47,4 +47,4 @@ WHERE s2.article IS NULL
 ORDER BY s1.article;
 ```
 
-The `LEFT JOIN` works on the basis that when `s1.price` is at its maximum value, there is no `s2.price` with a greater value and thus the corresponding `s2.article` value is `NULL`. See [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause").
+O `LEFT JOIN` funciona com base no princípio de que, quando `s1.price` está no seu valor máximo, não há `s2.price` com um valor maior e, portanto, o valor correspondente de `s2.article` é `NULL`. Consulte [Seção 13.2.9.2, “Cláusula JOIN”](join.html "13.2.9.2 Cláusula JOIN").

@@ -1,70 +1,70 @@
-## 6.2 Access Control and Account Management
+## 6.2 Controle de Acesso e Gerenciamento de Contas
 
-[6.2.1 Account User Names and Passwords](user-names.html)
+[6.2.1 Nomes de Usuários de Contas e Senhas](user-names.html)
 
-[6.2.2 Privileges Provided by MySQL](privileges-provided.html)
+[6.2.2 Privilégios Fornecidos pelo MySQL](privileges-provided.html)
 
 [6.2.3 Grant Tables](grant-tables.html)
 
-[6.2.4 Specifying Account Names](account-names.html)
+[6.2.4 Especificando Nomes de Contas](account-names.html)
 
-[6.2.5 Access Control, Stage 1: Connection Verification](connection-access.html)
+[6.2.5 Controle de Acesso, Estágio 1: Verificação de Conexão](connection-access.html)
 
-[6.2.6 Access Control, Stage 2: Request Verification](request-access.html)
+[6.2.6 Controle de Acesso, Estágio 2: Verificação de Solicitação](request-access.html)
 
-[6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts](creating-accounts.html)
+[6.2.7 Adicionando Contas, Atribuindo Privilégios e Removendo Contas](creating-accounts.html)
 
-[6.2.8 Reserved Accounts](reserved-accounts.html)
+[6.2.8 Contas Reservadas](reserved-accounts.html)
 
-[6.2.9 When Privilege Changes Take Effect](privilege-changes.html)
+[6.2.9 Quando as Alterações de Privilégio Entram em Vigor](privilege-changes.html)
 
-[6.2.10 Assigning Account Passwords](assigning-passwords.html)
+[6.2.10 Atribuindo Senhas de Contas](assigning-passwords.html)
 
-[6.2.11 Password Management](password-management.html)
+[6.2.11 Gerenciamento de Senhas](password-management.html)
 
-[6.2.12 Server Handling of Expired Passwords](expired-password-handling.html)
+[6.2.12 Tratamento de Senhas Expiradas pelo Servidor](expired-password-handling.html)
 
-[6.2.13 Pluggable Authentication](pluggable-authentication.html)
+[6.2.13 Autenticação Pluggable](pluggable-authentication.html)
 
-[6.2.14 Proxy Users](proxy-users.html)
+[6.2.14 Usuários Proxy](proxy-users.html)
 
-[6.2.15 Account Locking](account-locking.html)
+[6.2.15 Bloqueio de Contas](account-locking.html)
 
-[6.2.16 Setting Account Resource Limits](user-resources.html)
+[6.2.16 Definindo Limites de Recursos de Conta](user-resources.html)
 
-[6.2.17 Troubleshooting Problems Connecting to MySQL](problems-connecting.html)
+[6.2.17 Solução de Problemas de Conexão ao MySQL](problems-connecting.html)
 
-[6.2.18 SQL-Based Account Activity Auditing](account-activity-auditing.html)
+[6.2.18 Auditoria de Atividade de Conta Baseada em SQL](account-activity-auditing.html)
 
-MySQL enables the creation of accounts that permit client users to connect to the server and access data managed by the server. The primary function of the MySQL privilege system is to authenticate a user who connects from a given host and to associate that user with privileges on a database such as [`SELECT`](select.html "13.2.9 SELECT Statement"), [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), and [`DELETE`](delete.html "13.2.2 DELETE Statement"). Additional functionality includes the ability to grant privileges for administrative operations.
+O MySQL permite a criação de contas que autorizam usuários cliente a se conectar ao servidor e acessar dados gerenciados por ele. A função principal do sistema de privilégios do MySQL é autenticar um usuário que se conecta a partir de um determinado host e associar esse usuário a privilégios em um Database, como [`SELECT`](select.html "13.2.9 SELECT Statement"), [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement") e [`DELETE`](delete.html "13.2.2 DELETE Statement"). Funcionalidades adicionais incluem a capacidade de conceder privilégios para operações administrativas.
 
-To control which users can connect, each account can be assigned authentication credentials such as a password. The user interface to MySQL accounts consists of SQL statements such as [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), and [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement"). See [Section 13.7.1, “Account Management Statements”](account-management-statements.html "13.7.1 Account Management Statements").
+Para controlar quais usuários podem se conectar, cada conta pode receber credenciais de autenticação, como uma senha. A interface de usuário para contas MySQL consiste em instruções SQL como [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement") e [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement"). Consulte a [Seção 13.7.1, “Account Management Statements”](account-management-statements.html "13.7.1 Account Management Statements").
 
-The MySQL privilege system ensures that all users may perform only the operations permitted to them. As a user, when you connect to a MySQL server, your identity is determined by *the host from which you connect* and *the user name you specify*. When you issue requests after connecting, the system grants privileges according to your identity and *what you want to do*.
+O sistema de privilégios do MySQL garante que todos os usuários possam realizar apenas as operações permitidas a eles. Como usuário, ao se conectar a um servidor MySQL, sua identidade é determinada pelo *host do qual você se conecta* e pelo *nome de usuário que você especifica*. Ao emitir solicitações após a conexão, o sistema concede privilégios de acordo com sua identidade e *o que você deseja fazer*.
 
-MySQL considers both your host name and user name in identifying you because there is no reason to assume that a given user name belongs to the same person on all hosts. For example, the user `joe` who connects from `office.example.com` need not be the same person as the user `joe` who connects from `home.example.com`. MySQL handles this by enabling you to distinguish users on different hosts that happen to have the same name: You can grant one set of privileges for connections by `joe` from `office.example.com`, and a different set of privileges for connections by `joe` from `home.example.com`. To see what privileges a given account has, use the [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") statement. For example:
+O MySQL considera tanto o seu host name quanto o nome de usuário ao identificá-lo porque não há razão para presumir que um determinado nome de usuário pertença à mesma pessoa em todos os hosts. Por exemplo, o usuário `joe` que se conecta a partir de `office.example.com` não precisa ser a mesma pessoa que o usuário `joe` que se conecta a partir de `home.example.com`. O MySQL lida com isso permitindo que você distinga usuários em diferentes hosts que por acaso têm o mesmo nome: Você pode conceder um conjunto de privilégios para conexões de `joe` a partir de `office.example.com` e um conjunto diferente de privilégios para conexões de `joe` a partir de `home.example.com`. Para ver quais privilégios uma determinada conta possui, use a instrução [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement"). Por exemplo:
 
 ```sql
 SHOW GRANTS FOR 'joe'@'office.example.com';
 SHOW GRANTS FOR 'joe'@'home.example.com';
 ```
 
-Internally, the server stores privilege information in the grant tables of the `mysql` system database. The MySQL server reads the contents of these tables into memory when it starts and bases access-control decisions on the in-memory copies of the grant tables.
+Internamente, o servidor armazena informações de privilégio nas *grant tables* do `mysql` system database. O servidor MySQL lê o conteúdo dessas tabelas para a memória quando inicia e baseia as decisões de controle de acesso nas cópias das *grant tables* que estão na memória.
 
-MySQL access control involves two stages when you run a client program that connects to the server:
+O controle de acesso do MySQL envolve dois estágios ao executar um programa cliente que se conecta ao servidor:
 
-**Stage 1:** The server accepts or rejects the connection based on your identity and whether you can verify your identity by supplying the correct password.
+**Estágio 1:** O servidor aceita ou rejeita a conexão com base em sua identidade e se você pode verificar sua identidade fornecendo a senha correta.
 
-**Stage 2:** Assuming that you can connect, the server checks each statement you issue to determine whether you have sufficient privileges to perform it. For example, if you try to select rows from a table in a database or drop a table from the database, the server verifies that you have the [`SELECT`](privileges-provided.html#priv_select) privilege for the table or the [`DROP`](privileges-provided.html#priv_drop) privilege for the database.
+**Estágio 2:** Assumindo que você pode se conectar, o servidor verifica cada instrução que você emite para determinar se você tem privilégios suficientes para executá-la. Por exemplo, se você tentar selecionar linhas de uma tabela em um Database ou remover (drop) uma tabela do Database, o servidor verifica se você tem o privilégio [`SELECT`](privileges-provided.html#priv_select) para a tabela ou o privilégio [`DROP`](privileges-provided.html#priv_drop) para o Database.
 
-For a more detailed description of what happens during each stage, see [Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification"), and [Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification"). For help in diagnosing privilege-related problems, see [Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL").
+Para uma descrição mais detalhada do que acontece durante cada estágio, consulte a [Seção 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification") e a [Seção 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification"). Para obter ajuda no diagnóstico de problemas relacionados a privilégios, consulte a [Seção 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL").
 
-If your privileges are changed (either by yourself or someone else) while you are connected, those changes do not necessarily take effect immediately for the next statement that you issue. For details about the conditions under which the server reloads the grant tables, see [Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect").
+Se seus privilégios forem alterados (seja por você ou por outra pessoa) enquanto você estiver conectado, essas alterações não entrarão necessariamente em vigor imediatamente para a próxima instrução que você emitir. Para obter detalhes sobre as condições sob as quais o servidor recarrega as *grant tables*, consulte a [Seção 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect").
 
-There are some things that you cannot do with the MySQL privilege system:
+Existem algumas coisas que você não pode fazer com o sistema de privilégios do MySQL:
 
-* You cannot explicitly specify that a given user should be denied access. That is, you cannot explicitly match a user and then refuse the connection.
+* Você não pode especificar explicitamente que o acesso a um determinado usuário deve ser negado. Ou seja, você não pode corresponder explicitamente um usuário e, em seguida, recusar a conexão.
 
-* You cannot specify that a user has privileges to create or drop tables in a database but not to create or drop the database itself.
+* Você não pode especificar que um usuário tem privilégios para criar ou remover (drop) tabelas em um Database, mas não para criar ou remover o Database em si.
 
-* A password applies globally to an account. You cannot associate a password with a specific object such as a database, table, or routine.
+* Uma senha se aplica globalmente a uma conta. Você não pode associar uma senha a um objeto específico, como um Database, tabela ou rotina.

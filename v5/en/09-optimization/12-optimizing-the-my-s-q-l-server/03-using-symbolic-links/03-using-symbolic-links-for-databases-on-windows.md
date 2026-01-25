@@ -1,72 +1,72 @@
-#### 8.12.3.3 Using Symbolic Links for Databases on Windows
+#### 8.12.3.3 Usando Symbolic Links para Databases no Windows
 
-On Windows, symbolic links can be used for database directories. This enables you to put a database directory at a different location (for example, on a different disk) by setting up a symbolic link to it. Use of database symlinks on Windows is similar to their use on Unix, although the procedure for setting up the link differs.
+No Windows, Symbolic Links podem ser usados para diretórios de Database. Isso permite que você coloque um diretório de Database em um local diferente (por exemplo, em um disco diferente) configurando um Symbolic Link para ele. O uso de database symlinks no Windows é semelhante ao seu uso no Unix, embora o procedimento para configurar o link seja diferente.
 
-Suppose that you want to place the database directory for a database named `mydb` at `D:\data\mydb`. To do this, create a symbolic link in the MySQL data directory that points to `D:\data\mydb`. However, before creating the symbolic link, make sure that the `D:\data\mydb` directory exists by creating it if necessary. If you already have a database directory named `mydb` in the data directory, move it to `D:\data`. Otherwise, the symbolic link is ineffective. To avoid problems, make sure that the server is not running when you move the database directory.
+Suponha que você queira colocar o diretório da Database chamada `mydb` em `D:\data\mydb`. Para fazer isso, crie um Symbolic Link no diretório de dados do MySQL que aponte para `D:\data\mydb`. No entanto, antes de criar o Symbolic Link, certifique-se de que o diretório `D:\data\mydb` exista, criando-o, se necessário. Se você já tiver um diretório de Database chamado `mydb` no diretório de dados, mova-o para `D:\data`. Caso contrário, o Symbolic Link será ineficaz. Para evitar problemas, certifique-se de que o Server não esteja em execução ao mover o diretório da Database.
 
-On Windows, you can create a symlink using the **mklink** command. This command requires administrative privileges.
+No Windows, você pode criar um Symlink usando o comando **mklink**. Este comando requer privilégios administrativos.
 
-1. Make sure that the desired path to the database exists. For this example, we use `D:\data\mydb`, and a database named `mydb`.
+1. Certifique-se de que o caminho desejado para a Database exista. Para este exemplo, usamos `D:\data\mydb` e uma Database chamada `mydb`.
 
-2. If the database does not already exist, issue `CREATE DATABASE mydb` in the **mysql** client to create it.
+2. Se a Database ainda não existir, execute `CREATE DATABASE mydb` no Client **mysql** para criá-la.
 
-3. Stop the MySQL service.
-4. Using Windows Explorer or the command line, move the directory `mydb` from the data directory to `D:\data`, replacing the directory of the same name.
+3. Pare o Service do MySQL.
+4. Usando o Windows Explorer ou a linha de comando, mova o diretório `mydb` do data directory para `D:\data`, substituindo o diretório de mesmo nome.
 
-5. If you are not already using the command prompt, open it, and change location to the data directory, like this:
+5. Se você ainda não estiver usando o prompt de comando, abra-o e altere o local para o data directory, assim:
 
    ```sql
    C:\> cd \path\to\datadir
    ```
 
-   If your MySQL installation is in the default location, you can use this:
+   Se sua instalação do MySQL estiver no local padrão, você pode usar:
 
    ```sql
    C:\> cd C:\ProgramData\MySQL\MySQL Server 5.7\Data
    ```
 
-6. In the data directory, create a symlink named `mydb` that points to the location of the database directory:
+6. No data directory, crie um Symlink chamado `mydb` que aponte para o local do diretório da Database:
 
    ```sql
    C:\> mklink /d mydb D:\data\mydb
    ```
 
-7. Start the MySQL service.
+7. Inicie o Service do MySQL.
 
-After this, all tables created in the database `mydb` are created in `D:\data\mydb`.
+Depois disso, todas as tabelas criadas na Database `mydb` são criadas em `D:\data\mydb`.
 
-Alternatively, on any version of Windows supported by MySQL, you can create a symbolic link to a MySQL database by creating a `.sym` file in the data directory that contains the path to the destination directory. The file should be named `db_name.sym`, where *`db_name`* is the database name.
+Alternativamente, em qualquer versão do Windows suportada pelo MySQL, você pode criar um Symbolic Link para uma Database MySQL criando um arquivo `.sym` no data directory que contenha o caminho para o diretório de destino. O arquivo deve ser nomeado como `db_name.sym`, onde *`db_name`* é o nome da Database.
 
-Support for database symbolic links on Windows using `.sym` files is enabled by default. If you do not need `.sym` file symbolic links, you can disable support for them by starting **mysqld** with the `--skip-symbolic-links` option. To determine whether your system supports `.sym` file symbolic links, check the value of the `have_symlink` system variable using this statement:
+O suporte para Symbolic Links de Database no Windows usando arquivos `.sym` é habilitado por padrão. Se você não precisar de Symbolic Links de arquivo `.sym`, você pode desabilitar o suporte para eles iniciando o **mysqld** com a opção `--skip-symbolic-links`. Para determinar se o seu sistema suporta Symbolic Links de arquivo `.sym`, verifique o valor da variável de sistema `have_symlink` usando esta Statement:
 
 ```sql
 SHOW VARIABLES LIKE 'have_symlink';
 ```
 
-To create a `.sym` file symlink, use this procedure:
+Para criar um Symlink de arquivo `.sym`, use este procedimento:
 
-1. Change location into the data directory:
+1. Altere o local para o data directory:
 
    ```sql
    C:\> cd \path\to\datadir
    ```
 
-2. In the data directory, create a text file named `mydb.sym` that contains this path name: `D:\data\mydb\`
+2. No data directory, crie um arquivo de texto chamado `mydb.sym` que contenha este nome de caminho: `D:\data\mydb\`
 
    Note
 
-   The path name to the new database and tables should be absolute. If you specify a relative path, the location is relative to the `mydb.sym` file.
+   O caminho para a nova Database e tabelas deve ser absoluto. Se você especificar um caminho relativo, o local será relativo ao arquivo `mydb.sym`.
 
-After this, all tables created in the database `mydb` are created in `D:\data\mydb`.
+Depois disso, todas as tabelas criadas na Database `mydb` são criadas em `D:\data\mydb`.
 
 Note
 
-Because support for `.sym` files is redundant with native symlink support available using **mklink**, use of `.sym` files is deprecated; expect support for them to be removed in a future MySQL release.
+Uma vez que o suporte para arquivos `.sym` é redundante com o suporte nativo a Symlink disponível usando **mklink**, o uso de arquivos `.sym` está depreciado; espere que o suporte a eles seja removido em uma futura release do MySQL.
 
-The following limitations apply to the use of `.sym` files for database symbolic linking on Windows. These limitations do not apply for symlinks created using **mklink**.
+As seguintes limitações se aplicam ao uso de arquivos `.sym` para Symbolic Linking de Database no Windows. Estas limitações não se aplicam a Symlinks criados usando **mklink**.
 
-* The symbolic link is not used if a directory with the same name as the database exists in the MySQL data directory.
+* O Symbolic Link não é usado se um diretório com o mesmo nome da Database existir no data directory do MySQL.
 
-* The `--innodb_file_per_table` option cannot be used.
+* A opção `--innodb_file_per_table` não pode ser usada.
 
-* If you run **mysqld** as a service, you cannot use a mapped drive to a remote server as the destination of the symbolic link. As a workaround, you can use the full path (`\\servername\path\`).
+* Se você executar o **mysqld** como um Service, você não pode usar um drive mapeado para um Server remoto como destino do Symbolic Link. Como solução alternativa (workaround), você pode usar o caminho completo (`\\servername\path\`).

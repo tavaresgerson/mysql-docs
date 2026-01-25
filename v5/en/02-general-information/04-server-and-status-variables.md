@@ -1,735 +1,735 @@
-## 1.4 Server and Status Variables and Options Added, Deprecated, or Removed in MySQL 5.7
+## 1.4 Variáveis, Variáveis de Status e Opções do Servidor Adicionadas, Descontinuadas ou Removidas no MySQL 5.7
 
-This section lists server variables, status variables, and options that were added for the first time, have been deprecated, or have been removed in MySQL 5.7.
+Esta seção lista variáveis do servidor, variáveis de status e opções que foram adicionadas pela primeira vez, foram descontinuadas (deprecated) ou foram removidas no MySQL 5.7.
 
-### Options and Variables Introduced in MySQL 5.7
+### Opções e Variáveis Introduzidas no MySQL 5.7
 
-The following system variables, status variables, and server options have been added in MySQL 5.7.
+As seguintes variáveis de sistema, variáveis de status e opções do servidor foram adicionadas no MySQL 5.7.
 
-* `Audit_log_current_size`: Audit log file current size. Added in MySQL 5.7.9.
+* `Audit_log_current_size`: Tamanho atual do arquivo de log de auditoria. Adicionado no MySQL 5.7.9.
 
-* `Audit_log_event_max_drop_size`: Size of largest dropped audited event. Added in MySQL 5.7.9.
+* `Audit_log_event_max_drop_size`: Tamanho do maior evento auditado descartado (dropped). Adicionado no MySQL 5.7.9.
 
-* `Audit_log_events`: Number of handled audited events. Added in MySQL 5.7.9.
+* `Audit_log_events`: Número de eventos auditados manipulados. Adicionado no MySQL 5.7.9.
 
-* `Audit_log_events_filtered`: Number of filtered audited events. Added in MySQL 5.7.9.
+* `Audit_log_events_filtered`: Número de eventos auditados filtrados. Adicionado no MySQL 5.7.9.
 
-* `Audit_log_events_lost`: Number of dropped audited events. Added in MySQL 5.7.9.
+* `Audit_log_events_lost`: Número de eventos auditados descartados (dropped). Adicionado no MySQL 5.7.9.
 
-* `Audit_log_events_written`: Number of written audited events. Added in MySQL 5.7.9.
+* `Audit_log_events_written`: Número de eventos auditados escritos. Adicionado no MySQL 5.7.9.
 
-* `Audit_log_total_size`: Combined size of written audited events. Added in MySQL 5.7.9.
+* `Audit_log_total_size`: Tamanho combinado de eventos auditados escritos. Adicionado no MySQL 5.7.9.
 
-* `Audit_log_write_waits`: Number of write-delayed audited events. Added in MySQL 5.7.9.
+* `Audit_log_write_waits`: Número de eventos auditados com escrita atrasada (write-delayed). Adicionado no MySQL 5.7.9.
 
-* `Com_change_repl_filter`: Count of CHANGE REPLICATION FILTER statements. Added in MySQL 5.7.3.
+* `Com_change_repl_filter`: Contagem de comandos CHANGE REPLICATION FILTER. Adicionado no MySQL 5.7.3.
 
-* `Com_explain_other`: Count of EXPLAIN FOR CONNECTION statements. Added in MySQL 5.7.2.
+* `Com_explain_other`: Contagem de comandos EXPLAIN FOR CONNECTION. Adicionado no MySQL 5.7.2.
 
-* `Com_group_replication_start`: Count of START GROUP_REPLICATION statements. Added in MySQL 5.7.6.
+* `Com_group_replication_start`: Contagem de comandos START GROUP_REPLICATION. Adicionado no MySQL 5.7.6.
 
-* `Com_group_replication_stop`: Count of STOP GROUP_REPLICATION statements. Added in MySQL 5.7.6.
+* `Com_group_replication_stop`: Contagem de comandos STOP GROUP_REPLICATION. Adicionado no MySQL 5.7.6.
 
-* `Com_show_create_user`: Count of SHOW CREATE USER statements. Added in MySQL 5.7.6.
+* `Com_show_create_user`: Contagem de comandos SHOW CREATE USER. Adicionado no MySQL 5.7.6.
 
-* `Com_show_slave_status_nonblocking`: Count of SHOW REPLICA | SLAVE STATUS NONBLOCKING statements. Added in MySQL 5.7.0.
+* `Com_show_slave_status_nonblocking`: Contagem de comandos SHOW REPLICA | SLAVE STATUS NONBLOCKING. Adicionado no MySQL 5.7.0.
 
-* `Com_shutdown`: Count of SHUTDOWN statements. Added in MySQL 5.7.9.
+* `Com_shutdown`: Contagem de comandos SHUTDOWN. Adicionado no MySQL 5.7.9.
 
-* `Connection_control_delay_generated`: How many times server delayed connection request. Added in MySQL 5.7.17.
+* `Connection_control_delay_generated`: Quantas vezes o servidor atrasou a requisição de conexão. Adicionado no MySQL 5.7.17.
 
-* `Firewall_access_denied`: Number of statements rejected by MySQL Enterprise Firewall plugin. Added in MySQL 5.7.9.
+* `Firewall_access_denied`: Número de statements rejeitados pelo Plugin MySQL Enterprise Firewall. Adicionado no MySQL 5.7.9.
 
-* `Firewall_access_granted`: Number of statements accepted by MySQL Enterprise Firewall plugin. Added in MySQL 5.7.9.
+* `Firewall_access_granted`: Número de statements aceitos pelo Plugin MySQL Enterprise Firewall. Adicionado no MySQL 5.7.9.
 
-* `Firewall_cached_entries`: Number of statements recorded by MySQL Enterprise Firewall plugin. Added in MySQL 5.7.9.
+* `Firewall_cached_entries`: Número de statements registrados pelo Plugin MySQL Enterprise Firewall. Adicionado no MySQL 5.7.9.
 
-* `Innodb_buffer_pool_resize_status`: Status of dynamic buffer pool resizing operation. Added in MySQL 5.7.5.
+* `Innodb_buffer_pool_resize_status`: Status da operação de redimensionamento dinâmico do Buffer Pool. Adicionado no MySQL 5.7.5.
 
-* `Locked_connects`: Number of attempts to connect to locked accounts. Added in MySQL 5.7.6.
+* `Locked_connects`: Número de tentativas de conexão a contas bloqueadas. Adicionado no MySQL 5.7.6.
 
-* `Max_execution_time_exceeded`: Number of statements that exceeded execution timeout value. Added in MySQL 5.7.8.
+* `Max_execution_time_exceeded`: Número de statements que excederam o valor de Timeout de execução. Adicionado no MySQL 5.7.8.
 
-* `Max_execution_time_set`: Number of statements for which execution timeout was set. Added in MySQL 5.7.8.
+* `Max_execution_time_set`: Número de statements para os quais o Timeout de execução foi definido. Adicionado no MySQL 5.7.8.
 
-* `Max_execution_time_set_failed`: Number of statements for which execution timeout setting failed. Added in MySQL 5.7.8.
+* `Max_execution_time_set_failed`: Número de statements para os quais a definição do Timeout de execução falhou. Adicionado no MySQL 5.7.8.
 
-* `Max_statement_time_exceeded`: Number of statements that exceeded execution timeout value. Added in MySQL 5.7.4.
+* `Max_statement_time_exceeded`: Número de statements que excederam o valor de Timeout de execução. Adicionado no MySQL 5.7.4.
 
-* `Max_statement_time_set`: Number of statements for which execution timeout was set. Added in MySQL 5.7.4.
+* `Max_statement_time_set`: Número de statements para os quais o Timeout de execução foi definido. Adicionado no MySQL 5.7.4.
 
-* `Max_statement_time_set_failed`: Number of statements for which execution timeout setting failed. Added in MySQL 5.7.4.
+* `Max_statement_time_set_failed`: Número de statements para os quais a definição do Timeout de execução falhou. Adicionado no MySQL 5.7.4.
 
-* `Max_used_connections_time`: Time at which Max_used_connections reached its current value. Added in MySQL 5.7.5.
+* `Max_used_connections_time`: Tempo em que `Max_used_connections` atingiu seu valor atual. Adicionado no MySQL 5.7.5.
 
-* `Performance_schema_index_stat_lost`: Number of indexes for which statistics were lost. Added in MySQL 5.7.6.
+* `Performance_schema_index_stat_lost`: Número de Indexes para os quais as estatísticas foram perdidas. Adicionado no MySQL 5.7.6.
 
-* `Performance_schema_memory_classes_lost`: How many memory instruments could not be loaded. Added in MySQL 5.7.2.
+* `Performance_schema_memory_classes_lost`: Quantos instrumentos de memória não puderam ser carregados. Adicionado no MySQL 5.7.2.
 
-* `Performance_schema_metadata_lock_lost`: Number of metadata locks that could not be recorded. Added in MySQL 5.7.3.
+* `Performance_schema_metadata_lock_lost`: Número de Locks de Metadata que não puderam ser registrados. Adicionado no MySQL 5.7.3.
 
-* `Performance_schema_nested_statement_lost`: Number of stored program statements for which statistics were lost. Added in MySQL 5.7.2.
+* `Performance_schema_nested_statement_lost`: Número de statements de stored program para os quais as estatísticas foram perdidas. Adicionado no MySQL 5.7.2.
 
-* `Performance_schema_prepared_statements_lost`: Number of prepared statements that could not be instrumented. Added in MySQL 5.7.4.
+* `Performance_schema_prepared_statements_lost`: Número de Prepared Statements que não puderam ser instrumentados. Adicionado no MySQL 5.7.4.
 
-* `Performance_schema_program_lost`: Number of stored programs for which statistics were lost. Added in MySQL 5.7.2.
+* `Performance_schema_program_lost`: Número de stored programs para os quais as estatísticas foram perdidas. Adicionado no MySQL 5.7.2.
 
-* `Performance_schema_table_lock_stat_lost`: Number of tables for which lock statistics were lost. Added in MySQL 5.7.6.
+* `Performance_schema_table_lock_stat_lost`: Número de tabelas para as quais as estatísticas de Lock foram perdidas. Adicionado no MySQL 5.7.6.
 
-* `Rewriter_number_loaded_rules`: Number of rewrite rules successfully loaded into memory. Added in MySQL 5.7.6.
+* `Rewriter_number_loaded_rules`: Número de regras de Rewrite carregadas com sucesso na memória. Adicionado no MySQL 5.7.6.
 
-* `Rewriter_number_reloads`: Number of reloads of rules table into memory. Added in MySQL 5.7.6.
+* `Rewriter_number_reloads`: Número de recarregamentos da tabela de regras na memória. Adicionado no MySQL 5.7.6.
 
-* `Rewriter_number_rewritten_queries`: Number of queries rewritten since plugin was loaded. Added in MySQL 5.7.6.
+* `Rewriter_number_rewritten_queries`: Número de Queries reescritas desde que o Plugin foi carregado. Adicionado no MySQL 5.7.6.
 
-* `Rewriter_reload_error`: Whether error occurred when last loading rewriting rules into memory. Added in MySQL 5.7.6.
+* `Rewriter_reload_error`: Indica se ocorreu um erro ao carregar as regras de reescrita na memória pela última vez. Adicionado no MySQL 5.7.6.
 
-* `audit-log`: Whether to activate audit log plugin. Added in MySQL 5.7.9.
+* `audit-log`: Se deve ativar o Plugin de Audit Log. Adicionado no MySQL 5.7.9.
 
-* `audit_log_buffer_size`: Size of audit log buffer. Added in MySQL 5.7.9.
+* `audit_log_buffer_size`: Tamanho do Buffer do Audit Log. Adicionado no MySQL 5.7.9.
 
-* `audit_log_compression`: Audit log file compression method. Added in MySQL 5.7.21.
+* `audit_log_compression`: Método de compressão do arquivo de Audit Log. Adicionado no MySQL 5.7.21.
 
-* `audit_log_connection_policy`: Audit logging policy for connection-related events. Added in MySQL 5.7.9.
+* `audit_log_connection_policy`: Política de log de auditoria para eventos relacionados à conexão. Adicionado no MySQL 5.7.9.
 
-* `audit_log_current_session`: Whether to audit current session. Added in MySQL 5.7.9.
+* `audit_log_current_session`: Se deve auditar a sessão atual. Adicionado no MySQL 5.7.9.
 
-* `audit_log_disable`: Whether to disable the audit log. Added in MySQL 5.7.37.
+* `audit_log_disable`: Se deve desabilitar o Audit Log. Adicionado no MySQL 5.7.37.
 
-* `audit_log_encryption`: Audit log file encryption method. Added in MySQL 5.7.21.
+* `audit_log_encryption`: Método de Encryption do arquivo de Audit Log. Adicionado no MySQL 5.7.21.
 
-* `audit_log_exclude_accounts`: Accounts not to audit. Added in MySQL 5.7.9.
+* `audit_log_exclude_accounts`: Contas a não auditar. Adicionado no MySQL 5.7.9.
 
-* `audit_log_file`: Name of audit log file. Added in MySQL 5.7.9.
+* `audit_log_file`: Nome do arquivo de Audit Log. Adicionado no MySQL 5.7.9.
 
-* `audit_log_filter_id`: ID of current audit log filter. Added in MySQL 5.7.13.
+* `audit_log_filter_id`: ID do Filter atual do Audit Log. Adicionado no MySQL 5.7.13.
 
-* `audit_log_flush`: Close and reopen audit log file. Added in MySQL 5.7.9.
+* `audit_log_flush`: Fecha e reabre o arquivo de Audit Log. Adicionado no MySQL 5.7.9.
 
-* `audit_log_format`: Audit log file format. Added in MySQL 5.7.9.
+* `audit_log_format`: Formato do arquivo de Audit Log. Adicionado no MySQL 5.7.9.
 
-* `audit_log_format_unix_timestamp`: Whether to include Unix timestamp in JSON-format audit log. Added in MySQL 5.7.35.
+* `audit_log_format_unix_timestamp`: Se deve incluir o Unix Timestamp no Audit Log com formato JSON. Adicionado no MySQL 5.7.35.
 
-* `audit_log_include_accounts`: Accounts to audit. Added in MySQL 5.7.9.
+* `audit_log_include_accounts`: Contas a auditar. Adicionado no MySQL 5.7.9.
 
-* `audit_log_policy`: Audit logging policy. Added in MySQL 5.7.9.
+* `audit_log_policy`: Política de log de auditoria. Adicionado no MySQL 5.7.9.
 
-* `audit_log_read_buffer_size`: Audit log file read buffer size. Added in MySQL 5.7.21.
+* `audit_log_read_buffer_size`: Tamanho do Buffer de leitura do arquivo de Audit Log. Adicionado no MySQL 5.7.21.
 
-* `audit_log_rotate_on_size`: Close and reopen audit log file at this size. Added in MySQL 5.7.9.
+* `audit_log_rotate_on_size`: Fecha e reabre o arquivo de Audit Log neste tamanho. Adicionado no MySQL 5.7.9.
 
-* `audit_log_statement_policy`: Audit logging policy for statement-related events. Added in MySQL 5.7.9.
+* `audit_log_statement_policy`: Política de log de auditoria para eventos relacionados a statements. Adicionado no MySQL 5.7.9.
 
-* `audit_log_strategy`: Audit logging strategy. Added in MySQL 5.7.9.
+* `audit_log_strategy`: Estratégia de log de auditoria. Adicionado no MySQL 5.7.9.
 
-* `authentication_ldap_sasl_auth_method_name`: Authentication method name. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_auth_method_name`: Nome do método de Authentication. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_bind_base_dn`: LDAP server base distinguished name. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_bind_base_dn`: Distinguished Name Base do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_bind_root_dn`: LDAP server root distinguished name. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_bind_root_dn`: Distinguished Name Root do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_bind_root_pwd`: LDAP server root bind password. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_bind_root_pwd`: Senha Root Bind do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_ca_path`: LDAP server certificate authority file name. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_ca_path`: Nome do arquivo da Certificate Authority SSL do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_group_search_attr`: LDAP server group search attribute. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_group_search_attr`: Atributo de busca de grupo do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_group_search_filter`: LDAP custom group search filter. Added in MySQL 5.7.21.
+* `authentication_ldap_sasl_group_search_filter`: Filtro de busca de grupo LDAP personalizado. Adicionado no MySQL 5.7.21.
 
-* `authentication_ldap_sasl_init_pool_size`: LDAP server initial connection pool size. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_init_pool_size`: Tamanho inicial do Pool de conexão do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_log_status`: LDAP server log level. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_log_status`: Nível de Log do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_max_pool_size`: LDAP server maximum connection pool size. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_max_pool_size`: Tamanho máximo do Pool de conexão do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_server_host`: LDAP server host name or IP address. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_server_host`: Nome do Host ou endereço IP do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_server_port`: LDAP server port number. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_server_port`: Número da Porta do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_tls`: Whether to use encrypted connections to LDAP server. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_tls`: Se deve usar conexões criptografadas com o servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_sasl_user_search_attr`: LDAP server user search attribute. Added in MySQL 5.7.19.
+* `authentication_ldap_sasl_user_search_attr`: Atributo de busca de usuário do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_auth_method_name`: Authentication method name. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_auth_method_name`: Nome do método de Authentication. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_bind_base_dn`: LDAP server base distinguished name. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_bind_base_dn`: Distinguished Name Base do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_bind_root_dn`: LDAP server root distinguished name. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_bind_root_dn`: Distinguished Name Root do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_bind_root_pwd`: LDAP server root bind password. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_bind_root_pwd`: Senha Root Bind do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_ca_path`: LDAP server certificate authority file name. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_ca_path`: Nome do arquivo da Certificate Authority SSL do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_group_search_attr`: LDAP server group search attribute. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_group_search_attr`: Atributo de busca de grupo do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_group_search_filter`: LDAP custom group search filter. Added in MySQL 5.7.21.
+* `authentication_ldap_simple_group_search_filter`: Filtro de busca de grupo LDAP personalizado. Adicionado no MySQL 5.7.21.
 
-* `authentication_ldap_simple_init_pool_size`: LDAP server initial connection pool size. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_init_pool_size`: Tamanho inicial do Pool de conexão do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_log_status`: LDAP server log level. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_log_status`: Nível de Log do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_max_pool_size`: LDAP server maximum connection pool size. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_max_pool_size`: Tamanho máximo do Pool de conexão do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_server_host`: LDAP server host name or IP address. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_server_host`: Nome do Host ou endereço IP do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_server_port`: LDAP server port number. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_server_port`: Número da Porta do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_tls`: Whether to use encrypted connections to LDAP server. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_tls`: Se deve usar conexões criptografadas com o servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_ldap_simple_user_search_attr`: LDAP server user search attribute. Added in MySQL 5.7.19.
+* `authentication_ldap_simple_user_search_attr`: Atributo de busca de usuário do servidor LDAP. Adicionado no MySQL 5.7.19.
 
-* `authentication_windows_log_level`: Windows authentication plugin logging level. Added in MySQL 5.7.9.
+* `authentication_windows_log_level`: Nível de Logging do Plugin de Windows Authentication. Adicionado no MySQL 5.7.9.
 
-* `authentication_windows_use_principal_name`: Whether to use Windows authentication plugin principal name. Added in MySQL 5.7.9.
+* `authentication_windows_use_principal_name`: Se deve usar o Principal Name do Plugin de Windows Authentication. Adicionado no MySQL 5.7.9.
 
-* `auto_generate_certs`: Whether to autogenerate SSL key and certificate files. Added in MySQL 5.7.5.
+* `auto_generate_certs`: Se deve autogerar arquivos de chave e certificado SSL. Adicionado no MySQL 5.7.5.
 
-* `avoid_temporal_upgrade`: Whether ALTER TABLE should upgrade pre-5.6.4 temporal columns. Added in MySQL 5.7.6.
+* `avoid_temporal_upgrade`: Se ALTER TABLE deve atualizar colunas temporais pré-5.6.4. Adicionado no MySQL 5.7.6.
 
-* `binlog_error_action`: Controls what happens when server cannot write to binary log. Added in MySQL 5.7.6.
+* `binlog_error_action`: Controla o que acontece quando o servidor não pode escrever no Binary Log. Adicionado no MySQL 5.7.6.
 
-* `binlog_group_commit_sync_delay`: Sets number of microseconds to wait before synchronizing transactions to disk. Added in MySQL 5.7.5.
+* `binlog_group_commit_sync_delay`: Define o número de microssegundos a aguardar antes de sincronizar transactions para o disco. Adicionado no MySQL 5.7.5.
 
-* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog_group_commit_sync_delay. Added in MySQL 5.7.5.
+* `binlog_group_commit_sync_no_delay_count`: Define o número máximo de transactions a aguardar antes de abortar o atraso atual especificado por `binlog_group_commit_sync_delay`. Adicionado no MySQL 5.7.5.
 
-* `binlog_gtid_simple_recovery`: Controls how binary logs are iterated during GTID recovery. Added in MySQL 5.7.6.
+* `binlog_gtid_simple_recovery`: Controla como os Binary Logs são iterados durante a recuperação de GTID. Adicionado no MySQL 5.7.6.
 
-* `binlog_transaction_dependency_history_size`: Number of row hashes kept for looking up transaction that last updated some row. Added in MySQL 5.7.22.
+* `binlog_transaction_dependency_history_size`: Número de Hashes de linha mantidos para procurar a Transaction que atualizou uma linha pela última vez. Adicionado no MySQL 5.7.22.
 
-* `binlog_transaction_dependency_tracking`: Source of dependency information (commit timestamps or transaction write sets) from which to assess which transactions can be executed in parallel by replica's multithreaded applier. Added in MySQL 5.7.22.
+* `binlog_transaction_dependency_tracking`: Fonte de informação de dependência (Timestamps de Commit ou Write Sets de Transaction) a partir da qual se avalia quais transactions podem ser executadas em paralelo pelo aplicador multi-threaded da Replica. Adicionado no MySQL 5.7.22.
 
-* `binlogging_impossible_mode`: Deprecated and later removed. Use binlog_error_action instead. Added in MySQL 5.7.5.
+* `binlogging_impossible_mode`: Descontinuada e posteriormente removida. Use `binlog_error_action` em vez disso. Adicionado no MySQL 5.7.5.
 
-* `block_encryption_mode`: Mode for block-based encryption algorithms. Added in MySQL 5.7.4.
+* `block_encryption_mode`: Modo para algoritmos de Encryption baseados em bloco. Adicionado no MySQL 5.7.4.
 
-* `check_proxy_users`: Whether built-in authentication plugins do proxying. Added in MySQL 5.7.7.
+* `check_proxy_users`: Se Plugins de Authentication embutidos realizam Proxying. Adicionado no MySQL 5.7.7.
 
-* `connection_control_failed_connections_threshold`: Consecutive failed connection attempts before delays occur. Added in MySQL 5.7.17.
+* `connection_control_failed_connections_threshold`: Tentativas consecutivas de conexão falhadas antes que os atrasos ocorram. Adicionado no MySQL 5.7.17.
 
-* `connection_control_max_connection_delay`: Maximum delay (milliseconds) for server response to failed connection attempts. Added in MySQL 5.7.17.
+* `connection_control_max_connection_delay`: Atraso máximo (em milissegundos) para a resposta do servidor a tentativas de conexão falhadas. Adicionado no MySQL 5.7.17.
 
-* `connection_control_min_connection_delay`: Minimum delay (milliseconds) for server response to failed connection attempts. Added in MySQL 5.7.17.
+* `connection_control_min_connection_delay`: Atraso mínimo (em milissegundos) para a resposta do servidor a tentativas de conexão falhadas. Adicionado no MySQL 5.7.17.
 
-* `daemonize`: Run as System V daemon. Added in MySQL 5.7.6.
+* `daemonize`: Executa como um Daemon System V. Adicionado no MySQL 5.7.6.
 
-* `default_authentication_plugin`: Default authentication plugin. Added in MySQL 5.7.2.
+* `default_authentication_plugin`: Plugin de Authentication padrão. Adicionado no MySQL 5.7.2.
 
-* `default_password_lifetime`: Age in days when passwords effectively expire. Added in MySQL 5.7.4.
+* `default_password_lifetime`: Idade em dias em que as senhas efetivamente expiram. Adicionado no MySQL 5.7.4.
 
-* `disable-partition-engine-check`: Whether to disable startup check for tables without native partitioning. Added in MySQL 5.7.17.
+* `disable-partition-engine-check`: Se deve desabilitar a verificação de inicialização para tabelas sem particionamento nativo. Adicionado no MySQL 5.7.17.
 
-* `disabled_storage_engines`: Storage engines that cannot be used to create tables. Added in MySQL 5.7.8.
+* `disabled_storage_engines`: Storage Engines que não podem ser usados para criar tabelas. Adicionado no MySQL 5.7.8.
 
-* `disconnect_on_expired_password`: Whether server disconnects clients with expired passwords if clients cannot handle such accounts. Added in MySQL 5.7.1.
+* `disconnect_on_expired_password`: Se o servidor desconecta clientes com senhas expiradas caso os clientes não consigam lidar com tais contas. Adicionado no MySQL 5.7.1.
 
-* `early-plugin-load`: Specify plugins to load before loading mandatory built-in plugins and before storage engine initialization. Added in MySQL 5.7.11.
+* `early-plugin-load`: Especifica Plugins a serem carregados antes de carregar Plugins embutidos obrigatórios e antes da inicialização do Storage Engine. Adicionado no MySQL 5.7.11.
 
-* `executed_gtids_compression_period`: Renamed to gtid_executed_compression_period. Added in MySQL 5.7.5.
+* `executed_gtids_compression_period`: Renomeada para `gtid_executed_compression_period`. Adicionado no MySQL 5.7.5.
 
-* `group_replication_allow_local_disjoint_gtids_join`: Allow current server to join group even if it has transactions not present in group. Added in MySQL 5.7.17.
+* `group_replication_allow_local_disjoint_gtids_join`: Permite que o servidor atual se junte ao Group, mesmo que tenha transactions não presentes no Group. Adicionado no MySQL 5.7.17.
 
-* `group_replication_allow_local_lower_version_join`: Allow current server to join group even if it has lower plugin version than group. Added in MySQL 5.7.17.
+* `group_replication_allow_local_lower_version_join`: Permite que o servidor atual se junte ao Group, mesmo que tenha uma versão de Plugin inferior à do Group. Adicionado no MySQL 5.7.17.
 
-* `group_replication_auto_increment_increment`: Determines interval between successive column values for transactions executing on this server. Added in MySQL 5.7.17.
+* `group_replication_auto_increment_increment`: Determina o intervalo entre valores de coluna sucessivos para transactions executadas neste servidor. Adicionado no MySQL 5.7.17.
 
-* `group_replication_bootstrap_group`: Configure this server to bootstrap group. Added in MySQL 5.7.17.
+* `group_replication_bootstrap_group`: Configura este servidor para inicializar (bootstrap) o Group. Adicionado no MySQL 5.7.17.
 
-* `group_replication_components_stop_timeout`: Timeout, in seconds, that plugin waits for each component when shutting down. Added in MySQL 5.7.17.
+* `group_replication_components_stop_timeout`: Timeout, em segundos, que o Plugin aguarda por cada componente ao desligar. Adicionado no MySQL 5.7.17.
 
-* `group_replication_compression_threshold`: Value in bytes above which (LZ4) compression is enforced; when set to zero, deactivates compression. Added in MySQL 5.7.17.
+* `group_replication_compression_threshold`: Valor em bytes acima do qual a compressão (LZ4) é aplicada; quando definido como zero, desativa a compressão. Adicionado no MySQL 5.7.17.
 
-* `group_replication_enforce_update_everywhere_checks`: Enable or disable strict consistency checks for multi-source update everywhere. Added in MySQL 5.7.17.
+* `group_replication_enforce_update_everywhere_checks`: Habilita ou desabilita verificações rigorosas de consistência para atualização multi-source em todos os lugares. Adicionado no MySQL 5.7.17.
 
-* `group_replication_exit_state_action`: How instance behaves when it leaves group involuntarily. Added in MySQL 5.7.24.
+* `group_replication_exit_state_action`: Como a instância se comporta quando sai involuntariamente do Group. Adicionado no MySQL 5.7.24.
 
-* `group_replication_flow_control_applier_threshold`: Number of waiting transactions in applier queue which trigger flow control. Added in MySQL 5.7.17.
+* `group_replication_flow_control_applier_threshold`: Número de transactions esperando na fila do Applier que acionam o Flow Control. Adicionado no MySQL 5.7.17.
 
-* `group_replication_flow_control_certifier_threshold`: Number of waiting transactions in certifier queue that trigger flow control. Added in MySQL 5.7.17.
+* `group_replication_flow_control_certifier_threshold`: Número de transactions esperando na fila do Certifier que acionam o Flow Control. Adicionado no MySQL 5.7.17.
 
-* `group_replication_flow_control_mode`: Mode used for flow control. Added in MySQL 5.7.17.
+* `group_replication_flow_control_mode`: Modo usado para Flow Control. Adicionado no MySQL 5.7.17.
 
-* `group_replication_force_members`: Comma separated list of peer addresses, such as host1:port1,host2:port2. Added in MySQL 5.7.17.
+* `group_replication_force_members`: Lista de endereços de pares separados por vírgula, como host1:port1,host2:port2. Adicionado no MySQL 5.7.17.
 
-* `group_replication_group_name`: Name of group. Added in MySQL 5.7.17.
+* `group_replication_group_name`: Nome do Group. Adicionado no MySQL 5.7.17.
 
-* `group_replication_group_seeds`: List of peer addresses, comma separated list such as host1:port1,host2:port2. Added in MySQL 5.7.17.
+* `group_replication_group_seeds`: Lista de endereços de pares, lista separada por vírgula, como host1:port1,host2:port2. Adicionado no MySQL 5.7.17.
 
-* `group_replication_gtid_assignment_block_size`: Number of consecutive GTIDs that are reserved for each member; each member consumes its blocks and reserves more when needed. Added in MySQL 5.7.17.
+* `group_replication_gtid_assignment_block_size`: Número de GTIDs consecutivos que são reservados para cada membro; cada membro consome seus blocos e reserva mais quando necessário. Adicionado no MySQL 5.7.17.
 
-* `group_replication_ip_whitelist`: List of hosts permitted to connect to group. Added in MySQL 5.7.17.
+* `group_replication_ip_whitelist`: Lista de Hosts permitidos para conectar-se ao Group. Adicionado no MySQL 5.7.17.
 
-* `group_replication_local_address`: Local address in host:port format. Added in MySQL 5.7.17.
+* `group_replication_local_address`: Endereço local no formato Host:Port. Adicionado no MySQL 5.7.17.
 
-* `group_replication_member_weight`: Chance of this member being elected as primary. Added in MySQL 5.7.20.
+* `group_replication_member_weight`: Chance deste membro ser eleito como Primary. Adicionado no MySQL 5.7.20.
 
-* `group_replication_poll_spin_loops`: Number of times group communication thread waits. Added in MySQL 5.7.17.
+* `group_replication_poll_spin_loops`: Número de vezes que a Thread de comunicação do Group aguarda. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_complete_at`: Recovery policies when handling cached transactions after state transfer. Added in MySQL 5.7.17.
+* `group_replication_recovery_complete_at`: Políticas de Recovery ao lidar com transactions em cache após a transferência de estado. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_reconnect_interval`: Sleep time, in seconds, between reconnection attempts when no donor was found in group. Added in MySQL 5.7.17.
+* `group_replication_recovery_reconnect_interval`: Tempo de Sleep, em segundos, entre as tentativas de reconexão quando nenhum Donor foi encontrado no Group. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_retry_count`: Number of times that joining member tries to connect to available donors before giving up. Added in MySQL 5.7.17.
+* `group_replication_recovery_retry_count`: Número de vezes que o membro que está se juntando tenta conectar-se a Donors disponíveis antes de desistir. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_ca`: File that contains list of trusted SSL Certificate Authorities. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_ca`: Arquivo que contém a lista de Certificate Authorities SSL confiáveis. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_capath`: Directory that contains trusted SSL Certificate Authority certificate files. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_capath`: Diretório que contém os arquivos de certificado da Certificate Authority SSL confiável. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_cert`: Name of SSL certificate file to use for establishing encrypted connection. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_cert`: Nome do arquivo de certificado SSL a ser usado para estabelecer a conexão criptografada. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_cipher`: Permissible ciphers for SSL encryption. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_cipher`: Cifras permissíveis para Encryption SSL. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_crl`: File that contains certificate revocation lists. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_crl`: Arquivo que contém as listas de revogação de certificado. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_crlpath`: Directory that contains certificate revocation-list files. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_crlpath`: Diretório que contém os arquivos de lista de revogação de certificado. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_key`: Name of SSL key file to use for establishing encrypted connection. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_key`: Nome do arquivo de chave SSL a ser usado para estabelecer a conexão criptografada. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_ssl_verify_server_cert`: Make recovery process check server Common Name value in certificate sent by donor. Added in MySQL 5.7.17.
+* `group_replication_recovery_ssl_verify_server_cert`: Faz com que o processo de Recovery verifique o valor do Common Name do servidor no certificado enviado pelo Donor. Adicionado no MySQL 5.7.17.
 
-* `group_replication_recovery_use_ssl`: Whether Group Replication recovery connection should use SSL. Added in MySQL 5.7.17.
+* `group_replication_recovery_use_ssl`: Se a conexão de Recovery do Group Replication deve usar SSL. Adicionado no MySQL 5.7.17.
 
-* `group_replication_single_primary_mode`: Instructs group to use single server for read/write workload. Added in MySQL 5.7.17.
+* `group_replication_single_primary_mode`: Instruiu o Group a usar um único servidor para cargas de trabalho de leitura/escrita (Read/Write). Adicionado no MySQL 5.7.17.
 
-* `group_replication_ssl_mode`: Desired security state of connection between Group Replication members. Added in MySQL 5.7.17.
+* `group_replication_ssl_mode`: Estado de segurança desejado da conexão entre os membros do Group Replication. Adicionado no MySQL 5.7.17.
 
-* `group_replication_start_on_boot`: Whether server should start Group Replication during server startup. Added in MySQL 5.7.17.
+* `group_replication_start_on_boot`: Se o servidor deve iniciar o Group Replication durante a inicialização do servidor. Adicionado no MySQL 5.7.17.
 
-* `group_replication_transaction_size_limit`: Sets maximum size of transaction in bytes which group accepts. Added in MySQL 5.7.19.
+* `group_replication_transaction_size_limit`: Define o tamanho máximo da Transaction em bytes que o Group aceita. Adicionado no MySQL 5.7.19.
 
-* `group_replication_unreachable_majority_timeout`: How long to wait for network partitions that result in minority to leave group. Added in MySQL 5.7.19.
+* `group_replication_unreachable_majority_timeout`: Quanto tempo esperar por partições de rede que resultam na minoria deixando o Group. Adicionado no MySQL 5.7.19.
 
-* `gtid_executed_compression_period`: Compress gtid_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled. Added in MySQL 5.7.6.
+* `gtid_executed_compression_period`: Compacta a tabela `gtid_executed` cada vez que este número de transactions tiver ocorrido. 0 significa nunca compactar esta tabela. Aplica-se apenas quando o Binary Logging está desabilitado. Adicionado no MySQL 5.7.6.
 
-* `have_statement_timeout`: Whether statement execution timeout is available. Added in MySQL 5.7.4.
+* `have_statement_timeout`: Se o Timeout de execução de statement está disponível. Adicionado no MySQL 5.7.4.
 
-* `initialize`: Whether to run in initialization mode (secure). Added in MySQL 5.7.6.
+* `initialize`: Se deve ser executado no modo de initialization (seguro). Adicionado no MySQL 5.7.6.
 
-* `initialize-insecure`: Whether to run in initialization mode (insecure). Added in MySQL 5.7.6.
+* `initialize-insecure`: Se deve ser executado no modo de initialization (inseguro). Adicionado no MySQL 5.7.6.
 
-* `innodb_adaptive_hash_index_parts`: Partitions adaptive hash index search system into n partitions, with each partition protected by separate latch. Each index is bound to specific partition based on space ID and index ID attributes. Added in MySQL 5.7.8.
+* `innodb_adaptive_hash_index_parts`: Particiona o sistema de busca de Adaptive Hash Index em n partições, com cada partição protegida por um Latch separado. Cada Index está vinculado à partição específica com base nos atributos de ID de espaço e ID de Index. Adicionado no MySQL 5.7.8.
 
-* `innodb_background_drop_list_empty`: Delays table creation until background drop list is empty (debug). Added in MySQL 5.7.10.
+* `innodb_background_drop_list_empty`: Atrasos na criação de tabelas até que a lista de Drop em Background esteja vazia (debug). Adicionado no MySQL 5.7.10.
 
-* `innodb_buffer_pool_chunk_size`: Chunk size used when resizing buffer pool. Added in MySQL 5.7.5.
+* `innodb_buffer_pool_chunk_size`: Tamanho do Chunk usado ao redimensionar o Buffer Pool. Adicionado no MySQL 5.7.5.
 
-* `innodb_buffer_pool_dump_pct`: Percentage of most recently used pages for each buffer pool to read out and dump. Added in MySQL 5.7.2.
+* `innodb_buffer_pool_dump_pct`: Porcentagem das páginas usadas mais recentemente para cada Buffer Pool a serem lidas e despejadas (dump). Adicionado no MySQL 5.7.2.
 
-* `innodb_compress_debug`: Compresses all tables using specified compression algorithm. Added in MySQL 5.7.8.
+* `innodb_compress_debug`: Compacta todas as tabelas usando o algoritmo de compressão especificado. Adicionado no MySQL 5.7.8.
 
-* `innodb_deadlock_detect`: Enables or disables deadlock detection. Added in MySQL 5.7.15.
+* `innodb_deadlock_detect`: Habilita ou desabilita a detecção de Deadlock. Adicionado no MySQL 5.7.15.
 
-* `innodb_default_row_format`: Default row format for InnoDB tables. Added in MySQL 5.7.9.
+* `innodb_default_row_format`: Row Format padrão para tabelas InnoDB. Adicionado no MySQL 5.7.9.
 
-* `innodb_disable_resize_buffer_pool_debug`: Disables resizing of InnoDB buffer pool. Added in MySQL 5.7.6.
+* `innodb_disable_resize_buffer_pool_debug`: Desabilita o redimensionamento do Buffer Pool do InnoDB. Adicionado no MySQL 5.7.6.
 
-* `innodb_fill_factor`: Percentage for B-tree leaf and non-leaf page space to be filled with data. Remaining space is reserved for future growth. Added in MySQL 5.7.5.
+* `innodb_fill_factor`: Porcentagem de espaço da página folha e não folha da B-tree a ser preenchida com dados. O espaço restante é reservado para crescimento futuro. Adicionado no MySQL 5.7.5.
 
-* `innodb_flush_sync`: Enable innodb_flush_sync to ignore the innodb_io_capacity and innodb_io_capacity_max settings for bursts of I/O activity that occur at checkpoints. Disable innodb_flush_sync to adhere to limits on I/O activity as defined by innodb_io_capacity and innodb_io_capacity_max. Added in MySQL 5.7.8.
+* `innodb_flush_sync`: Habilita `innodb_flush_sync` para ignorar as configurações `innodb_io_capacity` e `innodb_io_capacity_max` para picos de atividade de I/O que ocorrem nos Checkpoints. Desabilita `innodb_flush_sync` para aderir aos limites de atividade de I/O conforme definido por `innodb_io_capacity` e `innodb_io_capacity_max`. Adicionado no MySQL 5.7.8.
 
-* `innodb_ft_result_cache_limit`: InnoDB FULLTEXT search query result cache limit. Added in MySQL 5.7.2.
+* `innodb_ft_result_cache_limit`: Limite do Cache de resultados de Query de busca FULLTEXT do InnoDB. Adicionado no MySQL 5.7.2.
 
-* `innodb_ft_total_cache_size`: Total memory allocated for InnoDB FULLTEXT search index cache. Added in MySQL 5.7.2.
+* `innodb_ft_total_cache_size`: Memória total alocada para o Cache de Index de busca FULLTEXT do InnoDB. Adicionado no MySQL 5.7.2.
 
-* `innodb_log_checkpoint_now`: Debug option that forces InnoDB to write checkpoint. Added in MySQL 5.7.2.
+* `innodb_log_checkpoint_now`: Opção de Debug que força o InnoDB a escrever um Checkpoint. Adicionado no MySQL 5.7.2.
 
-* `innodb_log_checksum_algorithm`: Specifies how to generate and verify checksum stored in each redo log disk block. Added in MySQL 5.7.8.
+* `innodb_log_checksum_algorithm`: Especifica como gerar e verificar o Checksum armazenado em cada bloco de disco do Redo Log. Adicionado no MySQL 5.7.8.
 
-* `innodb_log_checksums`: Enables or disables checksums for redo log pages. Added in MySQL 5.7.9.
+* `innodb_log_checksums`: Habilita ou desabilita Checksums para páginas de Redo Log. Adicionado no MySQL 5.7.9.
 
-* `innodb_log_write_ahead_size`: Redo log write-ahead block size. Added in MySQL 5.7.4.
+* `innodb_log_write_ahead_size`: Tamanho do bloco Write-Ahead do Redo Log. Adicionado no MySQL 5.7.4.
 
-* `innodb_max_undo_log_size`: Sets threshold for truncating InnoDB undo log. Added in MySQL 5.7.5.
+* `innodb_max_undo_log_size`: Define o limite para truncar o Undo Log do InnoDB. Adicionado no MySQL 5.7.5.
 
-* `innodb_merge_threshold_set_all_debug`: Overrides current MERGE_THRESHOLD setting with specified value for all indexes that are currently in dictionary cache. Added in MySQL 5.7.6.
+* `innodb_merge_threshold_set_all_debug`: Sobrescreve a configuração MERGE_THRESHOLD atual com o valor especificado para todos os Indexes que estão atualmente no Dictionary Cache. Adicionado no MySQL 5.7.6.
 
-* `innodb_numa_interleave`: Enables NUMA MPOL_INTERLEAVE memory policy for allocation of InnoDB buffer pool. Added in MySQL 5.7.9.
+* `innodb_numa_interleave`: Habilita a política de memória NUMA MPOL_INTERLEAVE para alocação do Buffer Pool do InnoDB. Adicionado no MySQL 5.7.9.
 
-* `innodb_optimize_point_storage`: Enable this option to store POINT data as fixed-length data rather than variable-length data. Added in MySQL 5.7.5.
+* `innodb_optimize_point_storage`: Habilita esta opção para armazenar dados POINT como dados de comprimento fixo (fixed-length) em vez de dados de comprimento variável (variable-length). Adicionado no MySQL 5.7.5.
 
-* `innodb_page_cleaners`: Number of page cleaner threads. Added in MySQL 5.7.4.
+* `innodb_page_cleaners`: Número de Threads de Page Cleaner. Adicionado no MySQL 5.7.4.
 
-* `innodb_purge_rseg_truncate_frequency`: Rate at which undo log purge should be invoked as part of purge action. Value = n invokes undo log purge on every nth iteration of purge invocation. Added in MySQL 5.7.5.
+* `innodb_purge_rseg_truncate_frequency`: Taxa na qual o Purge do Undo Log deve ser invocado como parte da ação de Purge. Valor = n invoca o Purge do Undo Log a cada n-ésima iteração da invocação de Purge. Adicionado no MySQL 5.7.5.
 
-* `innodb_stats_include_delete_marked`: Include delete-marked records when calculating persistent InnoDB statistics. Added in MySQL 5.7.17.
+* `innodb_stats_include_delete_marked`: Inclui registros marcados para exclusão ao calcular estatísticas persistentes do InnoDB. Adicionado no MySQL 5.7.17.
 
-* `innodb_status_output`: Used to enable or disable periodic output for standard InnoDB Monitor. Also used in combination with innodb_status_output_locks to enable and disable periodic output for InnoDB Lock Monitor. Added in MySQL 5.7.4.
+* `innodb_status_output`: Usado para habilitar ou desabilitar a saída periódica para o Monitor InnoDB padrão. Também usado em combinação com `innodb_status_output_locks` para habilitar e desabilitar a saída periódica para o Monitor de Lock do InnoDB. Adicionado no MySQL 5.7.4.
 
-* `innodb_status_output_locks`: Used to enable or disable periodic output for standard InnoDB Lock Monitor. innodb_status_output must also be enabled to produce periodic output for InnoDB Lock Monitor. Added in MySQL 5.7.4.
+* `innodb_status_output_locks`: Usado para habilitar ou desabilitar a saída periódica para o Monitor de Lock do InnoDB padrão. `innodb_status_output` também deve estar habilitado para produzir a saída periódica para o Monitor de Lock do InnoDB. Adicionado no MySQL 5.7.4.
 
-* `innodb_sync_debug`: Enables InnoDB sync debug checking. Added in MySQL 5.7.8.
+* `innodb_sync_debug`: Habilita a verificação de Debug de Sync do InnoDB. Adicionado no MySQL 5.7.8.
 
-* `innodb_temp_data_file_path`: Path to temporary tablespace data files and their sizes. Added in MySQL 5.7.1.
+* `innodb_temp_data_file_path`: Caminho para arquivos de dados de tablespace temporário e seus tamanhos. Adicionado no MySQL 5.7.1.
 
-* `innodb_tmpdir`: Directory location for temporary table files created during online ALTER TABLE operations. Added in MySQL 5.7.11.
+* `innodb_tmpdir`: Localização do diretório para arquivos de tabelas temporárias criados durante operações online de ALTER TABLE. Adicionado no MySQL 5.7.11.
 
-* `innodb_undo_log_truncate`: Enable this option to mark InnoDB undo tablespace for truncation. Added in MySQL 5.7.5.
+* `innodb_undo_log_truncate`: Habilita esta opção para marcar o tablespace de Undo do InnoDB para truncamento. Adicionado no MySQL 5.7.5.
 
-* `internal_tmp_disk_storage_engine`: Storage engine for internal temporary tables. Added in MySQL 5.7.5.
+* `internal_tmp_disk_storage_engine`: Storage Engine para tabelas temporárias internas. Adicionado no MySQL 5.7.5.
 
-* `keyring-migration-destination`: Key migration destination keyring plugin. Added in MySQL 5.7.21.
+* `keyring-migration-destination`: Plugin Keyring de destino da migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring-migration-host`: Host name for connecting to running server for key migration. Added in MySQL 5.7.21.
+* `keyring-migration-host`: Nome do Host para conectar-se ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring-migration-password`: Password for connecting to running server for key migration. Added in MySQL 5.7.21.
+* `keyring-migration-password`: Senha para conectar-se ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring-migration-port`: TCP/IP port number for connecting to running server for key migration. Added in MySQL 5.7.21.
+* `keyring-migration-port`: Número da porta TCP/IP para conectar-se ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring-migration-socket`: Unix socket file or Windows named pipe for connecting to running server for key migration. Added in MySQL 5.7.21.
+* `keyring-migration-socket`: Arquivo de Unix Socket ou Named Pipe do Windows para conectar-se ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring-migration-source`: Key migration source keyring plugin. Added in MySQL 5.7.21.
+* `keyring-migration-source`: Plugin Keyring de origem da migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring-migration-user`: User name for connecting to running server for key migration. Added in MySQL 5.7.21.
+* `keyring-migration-user`: Nome de usuário para conectar-se ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring_aws_cmk_id`: AWS keyring plugin customer master key ID value. Added in MySQL 5.7.19.
+* `keyring_aws_cmk_id`: Valor do Customer Master Key ID do Plugin AWS Keyring. Adicionado no MySQL 5.7.19.
 
-* `keyring_aws_conf_file`: AWS keyring plugin configuration file location. Added in MySQL 5.7.19.
+* `keyring_aws_conf_file`: Localização do arquivo de configuração do Plugin AWS Keyring. Adicionado no MySQL 5.7.19.
 
-* `keyring_aws_data_file`: AWS keyring plugin storage file location. Added in MySQL 5.7.19.
+* `keyring_aws_data_file`: Localização do arquivo de Storage do Plugin AWS Keyring. Adicionado no MySQL 5.7.19.
 
-* `keyring_aws_region`: AWS keyring plugin region. Added in MySQL 5.7.19.
+* `keyring_aws_region`: Região do Plugin AWS Keyring. Adicionado no MySQL 5.7.19.
 
-* `keyring_encrypted_file_data`: keyring_encrypted_file plugin data file. Added in MySQL 5.7.21.
+* `keyring_encrypted_file_data`: Arquivo de dados do Plugin `keyring_encrypted_file`. Adicionado no MySQL 5.7.21.
 
-* `keyring_encrypted_file_password`: keyring_encrypted_file plugin password. Added in MySQL 5.7.21.
+* `keyring_encrypted_file_password`: Senha do Plugin `keyring_encrypted_file`. Adicionado no MySQL 5.7.21.
 
-* `keyring_file_data`: keyring_file plugin data file. Added in MySQL 5.7.11.
+* `keyring_file_data`: Arquivo de dados do Plugin `keyring_file`. Adicionado no MySQL 5.7.11.
 
-* `keyring_okv_conf_dir`: Oracle Key Vault keyring plugin configuration directory. Added in MySQL 5.7.12.
+* `keyring_okv_conf_dir`: Diretório de configuração do Plugin Oracle Key Vault Keyring. Adicionado no MySQL 5.7.12.
 
-* `keyring_operations`: Whether keyring operations are enabled. Added in MySQL 5.7.21.
+* `keyring_operations`: Se as operações de Keyring estão habilitadas. Adicionado no MySQL 5.7.21.
 
-* `log_backward_compatible_user_definitions`: Whether to log CREATE/ALTER USER, GRANT in backward-compatible fashion. Added in MySQL 5.7.6.
+* `log_backward_compatible_user_definitions`: Se deve registrar CREATE/ALTER USER, GRANT de forma compatível com versões anteriores. Adicionado no MySQL 5.7.6.
 
-* `log_builtin_as_identified_by_password`: Whether to log CREATE/ALTER USER, GRANT in backward-compatible fashion. Added in MySQL 5.7.9.
+* `log_builtin_as_identified_by_password`: Se deve registrar CREATE/ALTER USER, GRANT de forma compatível com versões anteriores. Adicionado no MySQL 5.7.9.
 
-* `log_error_verbosity`: Error logging verbosity level. Added in MySQL 5.7.2.
+* `log_error_verbosity`: Nível de verbosidade do Log de erro. Adicionado no MySQL 5.7.2.
 
-* `log_slow_admin_statements`: Log slow OPTIMIZE, ANALYZE, ALTER and other administrative statements to slow query log if it is open. Added in MySQL 5.7.1.
+* `log_slow_admin_statements`: Registra statements lentos de OPTIMIZE, ANALYZE, ALTER e outros statements administrativos no Slow Query Log, se estiver aberto. Adicionado no MySQL 5.7.1.
 
-* `log_slow_slave_statements`: Cause slow statements as executed by replica to be written to slow query log. Added in MySQL 5.7.1.
+* `log_slow_slave_statements`: Causa o registro de statements lentos executados pela Replica no Slow Query Log. Adicionado no MySQL 5.7.1.
 
-* `log_statements_unsafe_for_binlog`: Disables error 1592 warnings being written to error log. Added in MySQL 5.7.11.
+* `log_statements_unsafe_for_binlog`: Desabilita os Warnings de erro 1592 sendo escritos no Error Log. Adicionado no MySQL 5.7.11.
 
-* `log_syslog`: Whether to write error log to syslog. Added in MySQL 5.7.5.
+* `log_syslog`: Se deve escrever o Error Log para o Syslog. Adicionado no MySQL 5.7.5.
 
-* `log_syslog_facility`: Facility for syslog messages. Added in MySQL 5.7.5.
+* `log_syslog_facility`: Facility para mensagens Syslog. Adicionado no MySQL 5.7.5.
 
-* `log_syslog_include_pid`: Whether to include server PID in syslog messages. Added in MySQL 5.7.5.
+* `log_syslog_include_pid`: Se deve incluir o PID do servidor nas mensagens Syslog. Adicionado no MySQL 5.7.5.
 
-* `log_syslog_tag`: Tag for server identifier in syslog messages. Added in MySQL 5.7.5.
+* `log_syslog_tag`: Tag para o identificador do servidor nas mensagens Syslog. Adicionado no MySQL 5.7.5.
 
-* `log_timestamps`: Log timestamp format. Added in MySQL 5.7.2.
+* `log_timestamps`: Formato de Timestamp de Log. Adicionado no MySQL 5.7.2.
 
-* `max_digest_length`: Maximum digest size in bytes. Added in MySQL 5.7.6.
+* `max_digest_length`: Tamanho máximo do Digest em bytes. Adicionado no MySQL 5.7.6.
 
-* `max_execution_time`: Statement execution timeout value. Added in MySQL 5.7.8.
+* `max_execution_time`: Valor de Timeout de execução de statement. Adicionado no MySQL 5.7.8.
 
-* `max_points_in_geometry`: Maximum number of points in geometry values for ST_Buffer_Strategy(). Added in MySQL 5.7.8.
+* `max_points_in_geometry`: Número máximo de pontos em valores Geometry para ST_Buffer_Strategy(). Adicionado no MySQL 5.7.8.
 
-* `max_statement_time`: Statement execution timeout value. Added in MySQL 5.7.4.
+* `max_statement_time`: Valor de Timeout de execução de statement. Adicionado no MySQL 5.7.4.
 
-* `mecab_charset`: Character set currently used by MeCab full-text parser plugin. Added in MySQL 5.7.6.
+* `mecab_charset`: Character Set atualmente usado pelo Plugin de parser FULL-TEXT MeCab. Adicionado no MySQL 5.7.6.
 
-* `mecab_rc_file`: Path to mecabrc configuration file for MeCab parser for full-text search. Added in MySQL 5.7.6.
+* `mecab_rc_file`: Caminho para o arquivo de configuração `mecabrc` para o parser MeCab para busca FULL-TEXT. Adicionado no MySQL 5.7.6.
 
-* `mysql_firewall_mode`: Whether MySQL Enterprise Firewall plugin is operational. Added in MySQL 5.7.9.
+* `mysql_firewall_mode`: Se o Plugin MySQL Enterprise Firewall está operacional. Adicionado no MySQL 5.7.9.
 
-* `mysql_firewall_trace`: Whether to enable MySQL Enterprise Firewall plugin trace. Added in MySQL 5.7.9.
+* `mysql_firewall_trace`: Se deve habilitar o Trace do Plugin MySQL Enterprise Firewall. Adicionado no MySQL 5.7.9.
 
-* `mysql_native_password_proxy_users`: Whether mysql_native_password authentication plugin does proxying. Added in MySQL 5.7.7.
+* `mysql_native_password_proxy_users`: Se o Plugin de Authentication `mysql_native_password` realiza Proxying. Adicionado no MySQL 5.7.7.
 
-* `mysqlx`: Whether X Plugin is initialized. Added in MySQL 5.7.12.
+* `mysqlx`: Se o X Plugin está inicializado. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_bind_address`: Network address X Plugin uses for connections. Added in MySQL 5.7.17.
+* `mysqlx_bind_address`: Endereço de rede que o X Plugin usa para conexões. Adicionado no MySQL 5.7.17.
 
-* `mysqlx_connect_timeout`: Maximum permitted waiting time in seconds for a connection to set up a session. Added in MySQL 5.7.12.
+* `mysqlx_connect_timeout`: Tempo máximo de espera permitido em segundos para uma conexão configurar uma sessão. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_idle_worker_thread_timeout`: Time in seconds after which idle worker threads are terminated. Added in MySQL 5.7.12.
+* `mysqlx_idle_worker_thread_timeout`: Tempo em segundos após o qual as Worker Threads ociosas são encerradas. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_max_allowed_packet`: Maximum size of network packets that can be received by X Plugin. Added in MySQL 5.7.12.
+* `mysqlx_max_allowed_packet`: Tamanho máximo dos pacotes de rede que podem ser recebidos pelo X Plugin. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_max_connections`: Maximum number of concurrent client connections X Plugin can accept. Added in MySQL 5.7.12.
+* `mysqlx_max_connections`: Número máximo de conexões de cliente simultâneas que o X Plugin pode aceitar. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_min_worker_threads`: Minimum number of worker threads used for handling client requests. Added in MySQL 5.7.12.
+* `mysqlx_min_worker_threads`: Número mínimo de Worker Threads usadas para lidar com requisições de clientes. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_port`: Port number on which X Plugin accepts TCP/IP connections. Added in MySQL 5.7.12.
+* `mysqlx_port`: Número da Porta na qual o X Plugin aceita conexões TCP/IP. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_port_open_timeout`: Time which X Plugin waits when accepting connections. Added in MySQL 5.7.17.
+* `mysqlx_port_open_timeout`: Tempo que o X Plugin aguarda ao aceitar conexões. Adicionado no MySQL 5.7.17.
 
-* `mysqlx_socket`: Path to socket where X Plugin listens for connections. Added in MySQL 5.7.15.
+* `mysqlx_socket`: Caminho para o Socket onde o X Plugin escuta por conexões. Adicionado no MySQL 5.7.15.
 
-* `mysqlx_ssl_ca`: File that contains list of trusted SSL Certificate Authorities. Added in MySQL 5.7.12.
+* `mysqlx_ssl_ca`: Arquivo que contém a lista de Certificate Authorities SSL confiáveis. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_ssl_capath`: Directory that contains trusted SSL Certificate Authority certificate files. Added in MySQL 5.7.12.
+* `mysqlx_ssl_capath`: Diretório que contém os arquivos de certificado da Certificate Authority SSL confiável. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_ssl_cert`: File that contains X.509 certificate. Added in MySQL 5.7.12.
+* `mysqlx_ssl_cert`: Arquivo que contém o certificado X.509. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_ssl_cipher`: Permissible ciphers for connection encryption. Added in MySQL 5.7.12.
+* `mysqlx_ssl_cipher`: Cifras permissíveis para Encryption de conexão. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_ssl_crl`: File that contains certificate revocation lists. Added in MySQL 5.7.12.
+* `mysqlx_ssl_crl`: Arquivo que contém listas de revogação de certificado. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_ssl_crlpath`: Directory that contains certificate revocation list files. Added in MySQL 5.7.12.
+* `mysqlx_ssl_crlpath`: Diretório que contém os arquivos de lista de revogação de certificado. Adicionado no MySQL 5.7.12.
 
-* `mysqlx_ssl_key`: File that contains X.509 key. Added in MySQL 5.7.12.
+* `mysqlx_ssl_key`: Arquivo que contém a chave X.509. Adicionado no MySQL 5.7.12.
 
-* `named_pipe_full_access_group`: Name of Windows group granted full access to named pipe. Added in MySQL 5.7.25.
+* `named_pipe_full_access_group`: Nome do grupo Windows com acesso total concedido ao Named Pipe. Adicionado no MySQL 5.7.25.
 
-* `ngram_token_size`: Defines n-gram token size for full-text search ngram parser. Added in MySQL 5.7.6.
+* `ngram_token_size`: Define o tamanho do Token N-gram para o parser N-gram de busca FULL-TEXT. Adicionado no MySQL 5.7.6.
 
-* `offline_mode`: Whether server is offline. Added in MySQL 5.7.5.
+* `offline_mode`: Se o servidor está offline. Adicionado no MySQL 5.7.5.
 
-* `parser_max_mem_size`: Maximum amount of memory available to parser. Added in MySQL 5.7.12.
+* `parser_max_mem_size`: Quantidade máxima de memória disponível para o Parser. Adicionado no MySQL 5.7.12.
 
-* `performance-schema-consumer-events-transactions-current`: Configure events-transactions-current consumer. Added in MySQL 5.7.3.
+* `performance-schema-consumer-events-transactions-current`: Configura o Consumer `events-transactions-current`. Adicionado no MySQL 5.7.3.
 
-* `performance-schema-consumer-events-transactions-history`: Configure events-transactions-history consumer. Added in MySQL 5.7.3.
+* `performance-schema-consumer-events-transactions-history`: Configura o Consumer `events-transactions-history`. Adicionado no MySQL 5.7.3.
 
-* `performance-schema-consumer-events-transactions-history-long`: Configure events-transactions-history-long consumer. Added in MySQL 5.7.3.
+* `performance-schema-consumer-events-transactions-history-long`: Configura o Consumer `events-transactions-history-long`. Adicionado no MySQL 5.7.3.
 
-* `performance_schema_events_transactions_history_long_size`: Number of rows in events_transactions_history_long table. Added in MySQL 5.7.3.
+* `performance_schema_events_transactions_history_long_size`: Número de linhas na tabela `events_transactions_history_long`. Adicionado no MySQL 5.7.3.
 
-* `performance_schema_events_transactions_history_size`: Number of rows per thread in events_transactions_history table. Added in MySQL 5.7.3.
+* `performance_schema_events_transactions_history_size`: Número de linhas por Thread na tabela `events_transactions_history`. Adicionado no MySQL 5.7.3.
 
-* `performance_schema_max_digest_length`: Maximum Performance Schema digest size in bytes. Added in MySQL 5.7.8.
+* `performance_schema_max_digest_length`: Tamanho máximo do Digest do Performance Schema em bytes. Adicionado no MySQL 5.7.8.
 
-* `performance_schema_max_index_stat`: Maximum number of indexes to keep statistics for. Added in MySQL 5.7.6.
+* `performance_schema_max_index_stat`: Número máximo de Indexes para os quais manter estatísticas. Adicionado no MySQL 5.7.6.
 
-* `performance_schema_max_memory_classes`: Maximum number of memory instruments. Added in MySQL 5.7.2.
+* `performance_schema_max_memory_classes`: Número máximo de instrumentos de memória. Adicionado no MySQL 5.7.2.
 
-* `performance_schema_max_metadata_locks`: Maximum number of metadata locks to track. Added in MySQL 5.7.3.
+* `performance_schema_max_metadata_locks`: Número máximo de Locks de Metadata a serem rastreados. Adicionado no MySQL 5.7.3.
 
-* `performance_schema_max_prepared_statements_instances`: Number of rows in prepared_statements_instances table. Added in MySQL 5.7.4.
+* `performance_schema_max_prepared_statements_instances`: Número de linhas na tabela `prepared_statements_instances`. Adicionado no MySQL 5.7.4.
 
-* `performance_schema_max_program_instances`: Maximum number of stored programs for statistics. Added in MySQL 5.7.2.
+* `performance_schema_max_program_instances`: Número máximo de Stored Programs para estatísticas. Adicionado no MySQL 5.7.2.
 
-* `performance_schema_max_sql_text_length`: Maximum number of bytes stored from SQL statements. Added in MySQL 5.7.6.
+* `performance_schema_max_sql_text_length`: Número máximo de bytes armazenados de statements SQL. Adicionado no MySQL 5.7.6.
 
-* `performance_schema_max_statement_stack`: Maximum stored program nesting for statistics. Added in MySQL 5.7.2.
+* `performance_schema_max_statement_stack`: Aninhamento máximo de Stored Program para estatísticas. Adicionado no MySQL 5.7.2.
 
-* `performance_schema_max_table_lock_stat`: Maximum number of tables to keep lock statistics for. Added in MySQL 5.7.6.
+* `performance_schema_max_table_lock_stat`: Número máximo de tabelas para as quais manter estatísticas de Lock. Adicionado no MySQL 5.7.6.
 
-* `performance_schema_show_processlist`: Select SHOW PROCESSLIST implementation. Added in MySQL 5.7.39.
+* `performance_schema_show_processlist`: Seleciona a implementação de SHOW PROCESSLIST. Adicionado no MySQL 5.7.39.
 
-* `range_optimizer_max_mem_size`: Limit on range optimizer memory consumption. Added in MySQL 5.7.9.
+* `range_optimizer_max_mem_size`: Limite de consumo de memória do Range Optimizer. Adicionado no MySQL 5.7.9.
 
-* `rbr_exec_mode`: Allows for switching server between IDEMPOTENT mode (key and some other errors suppressed) and STRICT mode; STRICT mode is default. Added in MySQL 5.7.1.
+* `rbr_exec_mode`: Permite alternar o servidor entre o modo IDEMPOTENT (erros de chave e alguns outros suprimidos) e o modo STRICT; o modo STRICT é o padrão. Adicionado no MySQL 5.7.1.
 
-* `replication_optimize_for_static_plugin_config`: Shared locks for semisynchronous replication. Added in MySQL 5.7.33.
+* `replication_optimize_for_static_plugin_config`: Shared Locks para replicação semi-síncrona. Adicionado no MySQL 5.7.33.
 
-* `replication_sender_observe_commit_only`: Limited callbacks for semisynchronous replication. Added in MySQL 5.7.33.
+* `replication_sender_observe_commit_only`: Callbacks limitados para replicação semi-síncrona. Adicionado no MySQL 5.7.33.
 
-* `require_secure_transport`: Whether client connections must use secure transport. Added in MySQL 5.7.8.
+* `require_secure_transport`: Se as conexões do cliente devem usar transporte seguro. Adicionado no MySQL 5.7.8.
 
-* `rewriter_enabled`: Whether query rewrite plugin is enabled. Added in MySQL 5.7.6.
+* `rewriter_enabled`: Se o Plugin de Query Rewrite está habilitado. Adicionado no MySQL 5.7.6.
 
-* `rewriter_verbose`: For internal use. Added in MySQL 5.7.6.
+* `rewriter_verbose`: Para uso interno. Adicionado no MySQL 5.7.6.
 
-* `rpl_semi_sync_master_wait_for_slave_count`: Number of replica acknowledgments source must receive per transaction before proceeding. Added in MySQL 5.7.3.
+* `rpl_semi_sync_master_wait_for_slave_count`: Número de acknowledgments da Replica que o Source deve receber por Transaction antes de prosseguir. Adicionado no MySQL 5.7.3.
 
-* `rpl_semi_sync_master_wait_point`: Wait point for replica transaction receipt acknowledgment. Added in MySQL 5.7.2.
+* `rpl_semi_sync_master_wait_point`: Ponto de espera para o acknowledgment de recebimento de Transaction da Replica. Adicionado no MySQL 5.7.2.
 
-* `rpl_stop_slave_timeout`: Number of seconds that STOP REPLICA or STOP SLAVE waits before timing out. Added in MySQL 5.7.2.
+* `rpl_stop_slave_timeout`: Número de segundos que STOP REPLICA ou STOP SLAVE aguarda antes de atingir o Timeout. Adicionado no MySQL 5.7.2.
 
-* `session_track_gtids`: Enables tracker which can be set to track different GTIDs. Added in MySQL 5.7.6.
+* `session_track_gtids`: Habilita o Tracker que pode ser configurado para rastrear GTIDs diferentes. Adicionado no MySQL 5.7.6.
 
-* `session_track_schema`: Whether to track schema changes. Added in MySQL 5.7.4.
+* `session_track_schema`: Se deve rastrear alterações de Schema. Adicionado no MySQL 5.7.4.
 
-* `session_track_state_change`: Whether to track session state changes. Added in MySQL 5.7.4.
+* `session_track_state_change`: Se deve rastrear alterações de estado da sessão. Adicionado no MySQL 5.7.4.
 
-* `session_track_system_variables`: Session variables to track changes for. Added in MySQL 5.7.4.
+* `session_track_system_variables`: Variáveis de sessão para rastrear alterações. Adicionado no MySQL 5.7.4.
 
-* `session_track_transaction_info`: How to perform transaction tracking. Added in MySQL 5.7.8.
+* `session_track_transaction_info`: Como realizar o rastreamento de Transaction. Adicionado no MySQL 5.7.8.
 
-* `sha256_password_auto_generate_rsa_keys`: Whether to generate RSA key-pair files automatically. Added in MySQL 5.7.5.
+* `sha256_password_auto_generate_rsa_keys`: Se deve gerar pares de chave RSA automaticamente. Adicionado no MySQL 5.7.5.
 
-* `sha256_password_proxy_users`: Whether sha256_password authentication plugin does proxying. Added in MySQL 5.7.7.
+* `sha256_password_proxy_users`: Se o Plugin de Authentication `sha256_password` realiza Proxying. Adicionado no MySQL 5.7.7.
 
-* `show_compatibility_56`: Compatibility for SHOW STATUS/VARIABLES. Added in MySQL 5.7.6.
+* `show_compatibility_56`: Compatibilidade para SHOW STATUS/VARIABLES. Adicionado no MySQL 5.7.6.
 
-* `show_create_table_verbosity`: Whether to display ROW_FORMAT in SHOW CREATE TABLE even if it has default value. Added in MySQL 5.7.22.
+* `show_create_table_verbosity`: Se deve exibir ROW_FORMAT em SHOW CREATE TABLE, mesmo que tenha o valor padrão. Adicionado no MySQL 5.7.22.
 
-* `show_old_temporals`: Whether SHOW CREATE TABLE should indicate pre-5.6.4 temporal columns. Added in MySQL 5.7.6.
+* `show_old_temporals`: Se SHOW CREATE TABLE deve indicar colunas temporais pré-5.6.4. Adicionado no MySQL 5.7.6.
 
-* `simplified_binlog_gtid_recovery`: Renamed to binlog_gtid_simple_recovery. Added in MySQL 5.7.5.
+* `simplified_binlog_gtid_recovery`: Renomeada para `binlog_gtid_simple_recovery`. Adicionado no MySQL 5.7.5.
 
-* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL_CLOCK) or database partioning (DATABASE) to parallelize transactions. Added in MySQL 5.7.2.
+* `slave_parallel_type`: Indica à Replica para usar informações de Timestamp (LOGICAL_CLOCK) ou particionamento de Database (DATABASE) para paralelizar transactions. Adicionado no MySQL 5.7.2.
 
-* `slave_preserve_commit_order`: Ensures that all commits by replica workers happen in same order as on source to maintain consistency when using parallel applier threads. Added in MySQL 5.7.5.
+* `slave_preserve_commit_order`: Garante que todos os Commits pelos Workers da Replica ocorram na mesma ordem que no Source para manter a consistência ao usar Threads de Applier paralelos. Adicionado no MySQL 5.7.5.
 
-* `super_read_only`: Whether to ignore SUPER exceptions to read-only mode. Added in MySQL 5.7.8.
+* `super_read_only`: Se deve ignorar exceções SUPER para o modo Read-Only. Adicionado no MySQL 5.7.8.
 
-* `thread_pool_algorithm`: Thread pool algorithm. Added in MySQL 5.7.9.
+* `thread_pool_algorithm`: Algoritmo do Thread Pool. Adicionado no MySQL 5.7.9.
 
-* `thread_pool_high_priority_connection`: Whether current session is high priority. Added in MySQL 5.7.9.
+* `thread_pool_high_priority_connection`: Se a sessão atual é de alta prioridade. Adicionado no MySQL 5.7.9.
 
-* `thread_pool_max_unused_threads`: Maximum permissible number of unused threads. Added in MySQL 5.7.9.
+* `thread_pool_max_unused_threads`: Número máximo permitido de Threads não utilizadas. Adicionado no MySQL 5.7.9.
 
-* `thread_pool_prio_kickup_timer`: How long before statement is moved to high-priority execution. Added in MySQL 5.7.9.
+* `thread_pool_prio_kickup_timer`: Quanto tempo antes que o statement seja movido para execução de alta prioridade. Adicionado no MySQL 5.7.9.
 
-* `thread_pool_size`: Number of thread groups in thread pool. Added in MySQL 5.7.9.
+* `thread_pool_size`: Número de grupos de Thread no Thread Pool. Adicionado no MySQL 5.7.9.
 
-* `thread_pool_stall_limit`: How long before statement is defined as stalled. Added in MySQL 5.7.9.
+* `thread_pool_stall_limit`: Quanto tempo antes que o statement seja definido como paralisado (stalled). Adicionado no MySQL 5.7.9.
 
-* `tls_version`: Permissible TLS protocols for encrypted connections. Added in MySQL 5.7.10.
+* `tls_version`: Protocolos TLS permissíveis para conexões criptografadas. Adicionado no MySQL 5.7.10.
 
-* `transaction_write_set_extraction`: Defines algorithm used to hash writes extracted during transaction. Added in MySQL 5.7.6.
+* `transaction_write_set_extraction`: Define o algoritmo usado para fazer o Hash das gravações (writes) extraídas durante a Transaction. Adicionado no MySQL 5.7.6.
 
-* `validate_password_check_user_name`: Whether to check passwords against user name. Added in MySQL 5.7.15.
+* `validate_password_check_user_name`: Se deve verificar senhas em relação ao nome de usuário. Adicionado no MySQL 5.7.15.
 
-* `validate_password_dictionary_file_last_parsed`: When dictionary file was last parsed. Added in MySQL 5.7.8.
+* `validate_password_dictionary_file_last_parsed`: Quando o arquivo de dicionário foi analisado pela última vez. Adicionado no MySQL 5.7.8.
 
-* `validate_password_dictionary_file_words_count`: Number of words in dictionary file. Added in MySQL 5.7.8.
+* `validate_password_dictionary_file_words_count`: Número de palavras no arquivo de dicionário. Adicionado no MySQL 5.7.8.
 
-* `version_tokens_session`: Client token list for Version Tokens. Added in MySQL 5.7.8.
+* `version_tokens_session`: Lista de Tokens do cliente para Version Tokens. Adicionado no MySQL 5.7.8.
 
-* `version_tokens_session_number`: For internal use. Added in MySQL 5.7.8.
+* `version_tokens_session_number`: Para uso interno. Adicionado no MySQL 5.7.8.
 
-### Options and Variables Deprecated in MySQL 5.7
+### Opções e Variáveis Descontinuadas no MySQL 5.7
 
-The following system variables, status variables, and options have been deprecated in MySQL 5.7.
+As seguintes variáveis de sistema, variáveis de status e opções foram descontinuadas no MySQL 5.7.
 
-* `Innodb_available_undo_logs`: Total number of InnoDB rollback segments; different from innodb_rollback_segments, which displays number of active rollback segments. Deprecated in MySQL 5.7.19.
+* `Innodb_available_undo_logs`: Número total de segmentos de Rollback do InnoDB; diferente de `innodb_rollback_segments`, que exibe o número de segmentos de Rollback ativos. Descontinuada no MySQL 5.7.19.
 
-* `Qcache_free_blocks`: Number of free memory blocks in query cache. Deprecated in MySQL 5.7.20.
+* `Qcache_free_blocks`: Número de blocos de memória livre no Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `Qcache_free_memory`: Amount of free memory for query cache. Deprecated in MySQL 5.7.20.
+* `Qcache_free_memory`: Quantidade de memória livre para o Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `Qcache_hits`: Number of query cache hits. Deprecated in MySQL 5.7.20.
+* `Qcache_hits`: Número de acertos do Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `Qcache_inserts`: Number of query cache inserts. Deprecated in MySQL 5.7.20.
+* `Qcache_inserts`: Número de inserções no Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `Qcache_lowmem_prunes`: Number of queries which were deleted from query cache due to lack of free memory in cache. Deprecated in MySQL 5.7.20.
+* `Qcache_lowmem_prunes`: Número de Queries que foram excluídas do Query Cache devido à falta de memória livre no Cache. Descontinuada no MySQL 5.7.20.
 
-* `Qcache_not_cached`: Number of noncached queries (not cacheable, or not cached due to query_cache_type setting). Deprecated in MySQL 5.7.20.
+* `Qcache_not_cached`: Número de Queries não armazenadas em Cache (não cacheáveis, ou não armazenadas devido à configuração de `query_cache_type`). Descontinuada no MySQL 5.7.20.
 
-* `Qcache_queries_in_cache`: Number of queries registered in query cache. Deprecated in MySQL 5.7.20.
+* `Qcache_queries_in_cache`: Número de Queries registradas no Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `Qcache_total_blocks`: Total number of blocks in query cache. Deprecated in MySQL 5.7.20.
+* `Qcache_total_blocks`: Número total de blocos no Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `Slave_heartbeat_period`: Replica's replication heartbeat interval, in seconds. Deprecated in MySQL 5.7.6.
+* `Slave_heartbeat_period`: Intervalo de Heartbeat de replicação da Replica, em segundos. Descontinuada no MySQL 5.7.6.
 
-* `Slave_last_heartbeat`: Shows when latest heartbeat signal was received, in TIMESTAMP format. Deprecated in MySQL 5.7.6.
+* `Slave_last_heartbeat`: Mostra quando o último sinal de Heartbeat foi recebido, no formato TIMESTAMP. Descontinuada no MySQL 5.7.6.
 
-* `Slave_received_heartbeats`: Number of heartbeats received by replica since previous reset. Deprecated in MySQL 5.7.6.
+* `Slave_received_heartbeats`: Número de Heartbeats recebidos pela Replica desde o reset anterior. Descontinuada no MySQL 5.7.6.
 
-* `Slave_retried_transactions`: Total number of times since startup that replication SQL thread has retried transactions. Deprecated in MySQL 5.7.6.
+* `Slave_retried_transactions`: Número total de vezes desde a inicialização que a Thread SQL de replicação repetiu Transactions. Descontinuada no MySQL 5.7.6.
 
-* `Slave_running`: State of this server as replica (replication I/O thread status). Deprecated in MySQL 5.7.6.
+* `Slave_running`: Estado deste servidor como Replica (status da Thread I/O de replicação). Descontinuada no MySQL 5.7.6.
 
-* `avoid_temporal_upgrade`: Whether ALTER TABLE should upgrade pre-5.6.4 temporal columns. Deprecated in MySQL 5.7.6.
+* `avoid_temporal_upgrade`: Se ALTER TABLE deve atualizar colunas temporais pré-5.6.4. Descontinuada no MySQL 5.7.6.
 
-* `binlog_max_flush_queue_time`: How long to read transactions before flushing to binary log. Deprecated in MySQL 5.7.9.
+* `binlog_max_flush_queue_time`: Quanto tempo para ler Transactions antes de fazer Flush para o Binary Log. Descontinuada no MySQL 5.7.9.
 
-* `bootstrap`: Used by mysql installation scripts. Deprecated in MySQL 5.7.6.
+* `bootstrap`: Usada por scripts de instalação do mysql. Descontinuada no MySQL 5.7.6.
 
-* `des-key-file`: Load keys for des_encrypt() and des_encrypt from given file. Deprecated in MySQL 5.7.6.
+* `des-key-file`: Carrega chaves para `des_encrypt()` e `des_encrypt` do arquivo fornecido. Descontinuada no MySQL 5.7.6.
 
-* `disable-partition-engine-check`: Whether to disable startup check for tables without native partitioning. Deprecated in MySQL 5.7.17.
+* `disable-partition-engine-check`: Se deve desabilitar a verificação de inicialização para tabelas sem particionamento nativo. Descontinuada no MySQL 5.7.17.
 
-* `group_replication_allow_local_disjoint_gtids_join`: Allow current server to join group even if it has transactions not present in group. Deprecated in MySQL 5.7.21.
+* `group_replication_allow_local_disjoint_gtids_join`: Permite que o servidor atual se junte ao Group, mesmo que tenha Transactions não presentes no Group. Descontinuada no MySQL 5.7.21.
 
-* `have_crypt`: Availability of crypt() system call. Deprecated in MySQL 5.7.6.
+* `have_crypt`: Disponibilidade da chamada de sistema `crypt()`. Descontinuada no MySQL 5.7.6.
 
-* `have_query_cache`: Whether mysqld supports query cache. Deprecated in MySQL 5.7.20.
+* `have_query_cache`: Se o mysqld suporta o Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `ignore-db-dir`: Treat directory as nondatabase directory. Deprecated in MySQL 5.7.16.
+* `ignore-db-dir`: Trata o diretório como um diretório não-Database. Descontinuada no MySQL 5.7.16.
 
-* `ignore_db_dirs`: Directories treated as nondatabase directories. Deprecated in MySQL 5.7.16.
+* `ignore_db_dirs`: Diretórios tratados como diretórios não-Database. Descontinuada no MySQL 5.7.16.
 
-* `innodb`: Enable InnoDB (if this version of MySQL supports it). Deprecated in MySQL 5.7.5.
+* `innodb`: Habilita o InnoDB (se esta versão do MySQL o suportar). Descontinuada no MySQL 5.7.5.
 
-* `innodb_file_format`: Format for new InnoDB tables. Deprecated in MySQL 5.7.7.
+* `innodb_file_format`: Formato para novas tabelas InnoDB. Descontinuada no MySQL 5.7.7.
 
-* `innodb_file_format_check`: Whether InnoDB performs file format compatibility checking. Deprecated in MySQL 5.7.7.
+* `innodb_file_format_check`: Se o InnoDB executa verificação de compatibilidade de formato de arquivo. Descontinuada no MySQL 5.7.7.
 
-* `innodb_file_format_max`: File format tag in shared tablespace. Deprecated in MySQL 5.7.7.
+* `innodb_file_format_max`: Tag de formato de arquivo no Tablespace compartilhado. Descontinuada no MySQL 5.7.7.
 
-* `innodb_large_prefix`: Enables longer keys for column prefix indexes. Deprecated in MySQL 5.7.7.
+* `innodb_large_prefix`: Habilita chaves mais longas para Indexes de prefixo de coluna. Descontinuada no MySQL 5.7.7.
 
-* `innodb_support_xa`: Enable InnoDB support for XA two-phase commit. Deprecated in MySQL 5.7.10.
+* `innodb_support_xa`: Habilita o suporte do InnoDB para XA Two-Phase Commit. Descontinuada no MySQL 5.7.10.
 
-* `innodb_undo_logs`: Number of undo logs (rollback segments) used by InnoDB; alias for innodb_rollback_segments. Deprecated in MySQL 5.7.19.
+* `innodb_undo_logs`: Número de Undo Logs (segmentos de Rollback) usados pelo InnoDB; alias para `innodb_rollback_segments`. Descontinuada no MySQL 5.7.19.
 
-* `innodb_undo_tablespaces`: Number of tablespace files that rollback segments are divided between. Deprecated in MySQL 5.7.21.
+* `innodb_undo_tablespaces`: Número de arquivos de Tablespace pelos quais os segmentos de Rollback são divididos. Descontinuada no MySQL 5.7.21.
 
-* `log-warnings`: Write some noncritical warnings to log file. Deprecated in MySQL 5.7.2.
+* `log-warnings`: Escreve alguns Warnings não críticos no arquivo de Log. Descontinuada no MySQL 5.7.2.
 
-* `metadata_locks_cache_size`: Size of metadata locks cache. Deprecated in MySQL 5.7.4.
+* `metadata_locks_cache_size`: Tamanho do Cache de Locks de Metadata. Descontinuada no MySQL 5.7.4.
 
-* `metadata_locks_hash_instances`: Number of metadata lock hashes. Deprecated in MySQL 5.7.4.
+* `metadata_locks_hash_instances`: Número de Hashes de Lock de Metadata. Descontinuada no MySQL 5.7.4.
 
-* `myisam_repair_threads`: Number of threads to use when repairing MyISAM tables. 1 disables parallel repair. Deprecated in MySQL 5.7.38.
+* `myisam_repair_threads`: Número de Threads a serem usadas ao reparar tabelas MyISAM. 1 desabilita o Repair paralelo. Descontinuada no MySQL 5.7.38.
 
-* `old_passwords`: Selects password hashing method for PASSWORD(). Deprecated in MySQL 5.7.6.
+* `old_passwords`: Seleciona o método de Hash de senha para PASSWORD(). Descontinuada no MySQL 5.7.6.
 
-* `partition`: Enable (or disable) partitioning support. Deprecated in MySQL 5.7.16.
+* `partition`: Habilita (ou desabilita) o suporte a Particionamento. Descontinuada no MySQL 5.7.16.
 
-* `query_cache_limit`: Do not cache results that are bigger than this. Deprecated in MySQL 5.7.20.
+* `query_cache_limit`: Não armazena em Cache resultados maiores que este. Descontinuada no MySQL 5.7.20.
 
-* `query_cache_min_res_unit`: Minimal size of unit in which space for results is allocated (last unit is trimmed after writing all result data). Deprecated in MySQL 5.7.20.
+* `query_cache_min_res_unit`: Tamanho mínimo da unidade na qual o espaço para resultados é alocado (a última unidade é aparada após escrever todos os dados de resultado). Descontinuada no MySQL 5.7.20.
 
-* `query_cache_size`: Memory allocated to store results from old queries. Deprecated in MySQL 5.7.20.
+* `query_cache_size`: Memória alocada para armazenar resultados de Queries antigas. Descontinuada no MySQL 5.7.20.
 
-* `query_cache_type`: Query cache type. Deprecated in MySQL 5.7.20.
+* `query_cache_type`: Tipo de Query Cache. Descontinuada no MySQL 5.7.20.
 
-* `query_cache_wlock_invalidate`: Invalidate queries in query cache on LOCK for write. Deprecated in MySQL 5.7.20.
+* `query_cache_wlock_invalidate`: Invalida Queries no Query Cache em LOCK para escrita (Write). Descontinuada no MySQL 5.7.20.
 
-* `secure_auth`: Disallow authentication for accounts that have old (pre-4.1) passwords. Deprecated in MySQL 5.7.5.
+* `secure_auth`: Desautoriza Authentication para contas que possuem senhas antigas (pré-4.1). Descontinuada no MySQL 5.7.5.
 
-* `show_compatibility_56`: Compatibility for SHOW STATUS/VARIABLES. Deprecated in MySQL 5.7.6.
+* `show_compatibility_56`: Compatibilidade para SHOW STATUS/VARIABLES. Descontinuada no MySQL 5.7.6.
 
-* `show_old_temporals`: Whether SHOW CREATE TABLE should indicate pre-5.6.4 temporal columns. Deprecated in MySQL 5.7.6.
+* `show_old_temporals`: Se SHOW CREATE TABLE deve indicar colunas temporais pré-5.6.4. Descontinuada no MySQL 5.7.6.
 
-* `skip-partition`: Do not enable user-defined partitioning. Deprecated in MySQL 5.7.16.
+* `skip-partition`: Não habilita o particionamento definido pelo usuário. Descontinuada no MySQL 5.7.16.
 
-* `sync_frm`: Sync .frm to disk on create. Enabled by default. Deprecated in MySQL 5.7.6.
+* `sync_frm`: Sincroniza .frm para o disco na criação. Habilitado por padrão. Descontinuada no MySQL 5.7.6.
 
-* `temp-pool`: Using this option causes most temporary files created to use small set of names, rather than unique name for each new file. Deprecated in MySQL 5.7.18.
+* `temp-pool`: Usar esta opção faz com que a maioria dos arquivos temporários criados use um pequeno conjunto de nomes, em vez de um nome único para cada novo arquivo. Descontinuada no MySQL 5.7.18.
 
-* `tx_isolation`: Default transaction isolation level. Deprecated in MySQL 5.7.20.
+* `tx_isolation`: Nível de Isolation de Transaction padrão. Descontinuada no MySQL 5.7.20.
 
-* `tx_read_only`: Default transaction access mode. Deprecated in MySQL 5.7.20.
+* `tx_read_only`: Modo de acesso de Transaction padrão. Descontinuada no MySQL 5.7.20.
 
-### Options and Variables Removed in MySQL 5.7
+### Opções e Variáveis Removidas no MySQL 5.7
 
-The following system variables, status variables, and options have been removed in MySQL 5.7.
+As seguintes variáveis de sistema, variáveis de status e opções foram removidas no MySQL 5.7.
 
-* `Com_show_slave_status_nonblocking`: Count of SHOW REPLICA | SLAVE STATUS NONBLOCKING statements. Removed in MySQL 5.7.6.
+* `Com_show_slave_status_nonblocking`: Contagem de comandos SHOW REPLICA | SLAVE STATUS NONBLOCKING. Removida no MySQL 5.7.6.
 
-* `Max_statement_time_exceeded`: Number of statements that exceeded execution timeout value. Removed in MySQL 5.7.8.
+* `Max_statement_time_exceeded`: Número de statements que excederam o valor de Timeout de execução. Removida no MySQL 5.7.8.
 
-* `Max_statement_time_set`: Number of statements for which execution timeout was set. Removed in MySQL 5.7.8.
+* `Max_statement_time_set`: Número de statements para os quais o Timeout de execução foi definido. Removida no MySQL 5.7.8.
 
-* `Max_statement_time_set_failed`: Number of statements for which execution timeout setting failed. Removed in MySQL 5.7.8.
+* `Max_statement_time_set_failed`: Número de statements para os quais a definição do Timeout de execução falhou. Removida no MySQL 5.7.8.
 
-* `binlogging_impossible_mode`: Deprecated and later removed. Use binlog_error_action instead. Removed in MySQL 5.7.6.
+* `binlogging_impossible_mode`: Descontinuada e posteriormente removida. Use `binlog_error_action` em vez disso. Removida no MySQL 5.7.6.
 
-* `default-authentication-plugin`: Default authentication plugin. Removed in MySQL 5.7.2.
+* `default-authentication-plugin`: Plugin de Authentication padrão. Removida no MySQL 5.7.2.
 
-* `executed_gtids_compression_period`: Renamed to gtid_executed_compression_period. Removed in MySQL 5.7.6.
+* `executed_gtids_compression_period`: Renomeada para `gtid_executed_compression_period`. Removida no MySQL 5.7.6.
 
-* `innodb_additional_mem_pool_size`: Size of memory pool InnoDB uses to store data dictionary information and other internal data structures. Removed in MySQL 5.7.4.
+* `innodb_additional_mem_pool_size`: Tamanho do Pool de memória adicional que o InnoDB usa para armazenar informações de dicionário de dados e outras estruturas de dados internas. Removida no MySQL 5.7.4.
 
-* `innodb_log_checksum_algorithm`: Specifies how to generate and verify checksum stored in each redo log disk block. Removed in MySQL 5.7.9.
+* `innodb_log_checksum_algorithm`: Especifica como gerar e verificar o Checksum armazenado em cada bloco de disco do Redo Log. Removida no MySQL 5.7.9.
 
-* `innodb_optimize_point_storage`: Enable this option to store POINT data as fixed-length data rather than variable-length data. Removed in MySQL 5.7.6.
+* `innodb_optimize_point_storage`: Habilita esta opção para armazenar dados POINT como dados de comprimento fixo em vez de dados de comprimento variável. Removida no MySQL 5.7.6.
 
-* `innodb_use_sys_malloc`: Whether InnoDB uses OS or own memory allocator. Removed in MySQL 5.7.4.
+* `innodb_use_sys_malloc`: Se o InnoDB usa o OS ou seu próprio alocador de memória. Removida no MySQL 5.7.4.
 
-* `log-slow-admin-statements`: Log slow OPTIMIZE, ANALYZE, ALTER and other administrative statements to slow query log if it is open. Removed in MySQL 5.7.1.
+* `log-slow-admin-statements`: Registra statements lentos de OPTIMIZE, ANALYZE, ALTER e outros statements administrativos no Slow Query Log, se estiver aberto. Removida no MySQL 5.7.1.
 
-* `log-slow-slave-statements`: Cause slow statements as executed by replica to be written to slow query log. Removed in MySQL 5.7.1.
+* `log-slow-slave-statements`: Causa o registro de statements lentos executados pela Replica no Slow Query Log. Removida no MySQL 5.7.1.
 
-* `log_backward_compatible_user_definitions`: Whether to log CREATE/ALTER USER, GRANT in backward-compatible fashion. Removed in MySQL 5.7.9.
+* `log_backward_compatible_user_definitions`: Se deve registrar CREATE/ALTER USER, GRANT de forma compatível com versões anteriores. Removida no MySQL 5.7.9.
 
-* `max_statement_time`: Statement execution timeout value. Removed in MySQL 5.7.8.
+* `max_statement_time`: Valor de Timeout de execução de statement. Removida no MySQL 5.7.8.
 
-* `myisam_repair_threads`: Number of threads to use when repairing MyISAM tables. 1 disables parallel repair. Removed in MySQL 5.7.39.
+* `myisam_repair_threads`: Número de Threads a serem usadas ao reparar tabelas MyISAM. 1 desabilita o Repair paralelo. Removida no MySQL 5.7.39.
 
-* `simplified_binlog_gtid_recovery`: Renamed to binlog_gtid_simple_recovery. Removed in MySQL 5.7.6.
+* `simplified_binlog_gtid_recovery`: Renomeada para `binlog_gtid_simple_recovery`. Removida no MySQL 5.7.6.
 
-* `storage_engine`: Default storage engine. Removed in MySQL 5.7.5.
+* `storage_engine`: Storage Engine padrão. Removida no MySQL 5.7.5.
 
-* `thread_concurrency`: Permits application to provide hint to threads system for desired number of threads which should be run at one time. Removed in MySQL 5.7.2.
+* `thread_concurrency`: Permite que a aplicação forneça uma sugestão ao sistema de Threads para o número desejado de Threads que devem ser executadas simultaneamente. Removida no MySQL 5.7.2.
 
-* `timed_mutexes`: Specify whether to time mutexes (only InnoDB mutexes are currently supported). Removed in MySQL 5.7.5.
+* `timed_mutexes`: Especifica se deve cronometrar Mutexes (apenas Mutexes InnoDB são atualmente suportados). Removida no MySQL 5.7.5.

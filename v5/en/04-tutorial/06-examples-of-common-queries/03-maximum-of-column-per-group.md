@@ -1,6 +1,6 @@
-### 3.6.3 Maximum of Column per Group
+### 3.6.3 Máximo de Coluna por Grupo
 
-*Task: Find the highest price per article.*
+*Tarefa: Encontrar o preço mais alto por artigo.*
 
 ```sql
 SELECT article, MAX(price) AS price

@@ -1,12 +1,12 @@
-#### 4.5.1.4 mysql Client Server-Side Help
+#### 4.5.1.4 Ajuda Server-Side do Cliente mysql
 
 ```sql
 mysql> help search_string
 ```
 
-If you provide an argument to the `help` command, **mysql** uses it as a search string to access server-side help from the contents of the MySQL Reference Manual. The proper operation of this command requires that the help tables in the `mysql` database be initialized with help topic information (see Section 5.1.14, “Server-Side Help Support”).
+Se você fornecer um argumento para o comando `help`, o **mysql** o utiliza como uma string de busca para acessar a ajuda server-side a partir do conteúdo do Manual de Referência do MySQL. O funcionamento adequado deste comando requer que as tabelas de `help` no `database` `mysql` sejam inicializadas com informações de tópicos de ajuda (consulte a Seção 5.1.14, “Suporte a Ajuda Server-Side”).
 
-If there is no match for the search string, the search fails:
+Se não houver correspondência para a string de busca, a busca falha:
 
 ```sql
 mysql> help me
@@ -15,7 +15,7 @@ Nothing found
 Please try to run 'help contents' for a list of all accessible topics
 ```
 
-Use **help contents** to see a list of the help categories:
+Use **help contents** para ver uma lista das categorias de ajuda:
 
 ```sql
 mysql> help contents
@@ -39,7 +39,7 @@ following categories:
    Triggers
 ```
 
-If the search string matches multiple items, **mysql** shows a list of matching topics:
+Se a string de busca corresponder a múltiplos itens, o **mysql** mostra uma lista de tópicos correspondentes:
 
 ```sql
 mysql> help logs
@@ -52,7 +52,7 @@ where <item> is one of the following topics:
    SHOW LOGS
 ```
 
-Use a topic as the search string to see the help entry for that topic:
+Use um tópico como a string de busca para ver a entrada de ajuda para aquele tópico:
 
 ```sql
 mysql> help show binary logs
@@ -77,7 +77,7 @@ mysql> SHOW BINARY LOGS;
 +---------------+-----------+
 ```
 
-The search string can contain the wildcard characters `%` and `_`. These have the same meaning as for pattern-matching operations performed with the `LIKE` operator. For example, `HELP rep%` returns a list of topics that begin with `rep`:
+A string de busca pode conter os caracteres `wildcard` `%` e `_`. Estes têm o mesmo significado que nas operações de pattern-matching realizadas com o operador `LIKE`. Por exemplo, `HELP rep%` retorna uma lista de tópicos que começam com `rep`:
 
 ```sql
 mysql> HELP rep%

@@ -1,64 +1,64 @@
-### 4.6.3 myisamchk — MyISAM Table-Maintenance Utility
+### 4.6.3 myisamchk — Utilitário de Manutenção de Tabela MyISAM
 
-4.6.3.1 myisamchk General Options
+4.6.3.1 Opções Gerais do myisamchk
 
-4.6.3.2 myisamchk Check Options
+4.6.3.2 Opções de Verificação do myisamchk
 
-4.6.3.3 myisamchk Repair Options
+4.6.3.3 Opções de Reparo do myisamchk
 
-4.6.3.4 Other myisamchk Options
+4.6.3.4 Outras Opções do myisamchk
 
-4.6.3.5 Obtaining Table Information with myisamchk
+4.6.3.5 Obtendo Informações da Tabela com myisamchk
 
-4.6.3.6 myisamchk Memory Usage
+4.6.3.6 Uso de Memória do myisamchk
 
-The **myisamchk** utility gets information about your database tables or checks, repairs, or optimizes them. **myisamchk** works with `MyISAM` tables (tables that have `.MYD` and `.MYI` files for storing data and indexes).
+O utilitário **myisamchk** obtém informações sobre suas tabelas de Database ou as verifica, repara ou otimiza. **myisamchk** funciona com tabelas `MyISAM` (tabelas que possuem arquivos `.MYD` e `.MYI` para armazenar dados e Indexes).
 
-You can also use the `CHECK TABLE` and `REPAIR TABLE` statements to check and repair `MyISAM` tables. See Section 13.7.2.2, “CHECK TABLE Statement”, and Section 13.7.2.5, “REPAIR TABLE Statement”.
+Você também pode usar as instruções `CHECK TABLE` e `REPAIR TABLE` para verificar e reparar tabelas `MyISAM`. Consulte a Seção 13.7.2.2, “Instrução CHECK TABLE”, e a Seção 13.7.2.5, “Instrução REPAIR TABLE”.
 
-The use of **myisamchk** with partitioned tables is not supported.
+O uso do **myisamchk** com tabelas particionadas não é suportado.
 
-Caution
+Atenção
 
-It is best to make a backup of a table before performing a table repair operation; under some circumstances the operation might cause data loss. Possible causes include but are not limited to file system errors.
+É melhor fazer um backup de uma tabela antes de executar uma operação de reparo de tabela; em algumas circunstâncias, a operação pode causar perda de dados. As possíveis causas incluem, mas não se limitam a, erros de sistema de arquivos (file system errors).
 
-Invoke **myisamchk** like this:
+Invoque **myisamchk** desta forma:
 
 ```sql
 myisamchk [options] tbl_name ...
 ```
 
-The *`options`* specify what you want **myisamchk** to do. They are described in the following sections. You can also get a list of options by invoking **myisamchk --help**.
+As *`options`* (opções) especificam o que você deseja que o **myisamchk** faça. Elas estão descritas nas seções a seguir. Você também pode obter uma lista de opções invocando **myisamchk --help**.
 
-With no options, **myisamchk** simply checks your table as the default operation. To get more information or to tell **myisamchk** to take corrective action, specify options as described in the following discussion.
+Sem opções, o **myisamchk** simplesmente verifica sua tabela como operação padrão. Para obter mais informações ou para instruir o **myisamchk** a tomar medidas corretivas, especifique opções conforme descrito na discussão a seguir.
 
-*`tbl_name`* is the database table you want to check or repair. If you run **myisamchk** somewhere other than in the database directory, you must specify the path to the database directory, because **myisamchk** has no idea where the database is located. In fact, **myisamchk** does not actually care whether the files you are working on are located in a database directory. You can copy the files that correspond to a database table into some other location and perform recovery operations on them there.
+*`tbl_name`* é a tabela do Database que você deseja verificar ou reparar. Se você executar o **myisamchk** em um local diferente do diretório do Database, deverá especificar o path (caminho) para o diretório do Database, pois o **myisamchk** não sabe onde o Database está localizado. Na verdade, o **myisamchk** não se importa se os arquivos nos quais você está trabalhando estão localizados em um diretório do Database. Você pode copiar os arquivos que correspondem a uma tabela do Database para algum outro local e executar operações de recovery (recuperação) neles.
 
-You can name several tables on the **myisamchk** command line if you wish. You can also specify a table by naming its index file (the file with the `.MYI` suffix). This enables you to specify all tables in a directory by using the pattern `*.MYI`. For example, if you are in a database directory, you can check all the `MyISAM` tables in that directory like this:
+Você pode nomear várias tabelas na linha de comando do **myisamchk**, se desejar. Você também pode especificar uma tabela nomeando seu arquivo Index (o arquivo com o sufixo `.MYI`). Isso permite que você especifique todas as tabelas em um diretório usando o padrão `*.MYI`. Por exemplo, se você estiver em um diretório de Database, poderá verificar todas as tabelas `MyISAM` nesse diretório desta forma:
 
 ```sql
 myisamchk *.MYI
 ```
 
-If you are not in the database directory, you can check all the tables there by specifying the path to the directory:
+Se você não estiver no diretório do Database, poderá verificar todas as tabelas lá especificando o path para o diretório:
 
 ```sql
 myisamchk /path/to/database_dir/*.MYI
 ```
 
-You can even check all tables in all databases by specifying a wildcard with the path to the MySQL data directory:
+Você pode até verificar todas as tabelas em todos os Databases especificando um wildcard (curinga) com o path para o diretório de dados do MySQL:
 
 ```sql
 myisamchk /path/to/datadir/*/*.MYI
 ```
 
-The recommended way to quickly check all `MyISAM` tables is:
+A maneira recomendada de verificar rapidamente todas as tabelas `MyISAM` é:
 
 ```sql
 myisamchk --silent --fast /path/to/datadir/*/*.MYI
 ```
 
-If you want to check all `MyISAM` tables and repair any that are corrupted, you can use the following command:
+Se você quiser verificar todas as tabelas `MyISAM` e reparar qualquer uma que esteja corrompida, você pode usar o seguinte comando:
 
 ```sql
 myisamchk --silent --force --fast --update-state \
@@ -67,28 +67,28 @@ myisamchk --silent --force --fast --update-state \
           /path/to/datadir/*/*.MYI
 ```
 
-This command assumes that you have more than 64MB free. For more information about memory allocation with **myisamchk**, see Section 4.6.3.6, “myisamchk Memory Usage”.
+Este comando pressupõe que você tenha mais de 64MB livres. Para obter mais informações sobre a alocação de memória com o **myisamchk**, consulte a Seção 4.6.3.6, “Uso de Memória do myisamchk”.
 
-For additional information about using **myisamchk**, see Section 7.6, “MyISAM Table Maintenance and Crash Recovery”.
+Para obter informações adicionais sobre o uso do **myisamchk**, consulte a Seção 7.6, “Manutenção de Tabela MyISAM e Crash Recovery”.
 
-Important
+Importante
 
-*You must ensure that no other program is using the tables while you are running **myisamchk***. The most effective means of doing so is to shut down the MySQL server while running **myisamchk**, or to lock all tables that **myisamchk** is being used on.
+*Você deve garantir que nenhum outro programa esteja usando as tabelas enquanto você executa o **myisamchk***. A forma mais eficaz de fazer isso é desligar o MySQL server enquanto executa o **myisamchk**, ou aplicar Lock em todas as tabelas nas quais o **myisamchk** está sendo usado.
 
-Otherwise, when you run **myisamchk**, it may display the following error message:
+Caso contrário, ao executar o **myisamchk**, ele pode exibir a seguinte mensagem de erro:
 
 ```sql
 warning: clients are using or haven't closed the table properly
 ```
 
-This means that you are trying to check a table that has been updated by another program (such as the **mysqld** server) that hasn't yet closed the file or that has died without closing the file properly, which can sometimes lead to the corruption of one or more `MyISAM` tables.
+Isso significa que você está tentando verificar uma tabela que foi atualizada por outro programa (como o **mysqld** server) que ainda não fechou o arquivo ou que falhou (died) sem fechar o arquivo corretamente, o que às vezes pode levar à corrupção de uma ou mais tabelas `MyISAM`.
 
-If **mysqld** is running, you must force it to flush any table modifications that are still buffered in memory by using `FLUSH TABLES`. You should then ensure that no one is using the tables while you are running **myisamchk**
+Se o **mysqld** estiver em execução, você deve forçá-lo a fazer o flush de quaisquer modificações de tabela que ainda estejam em Buffer na memória usando `FLUSH TABLES`. Você deve então garantir que ninguém esteja usando as tabelas enquanto você executa o **myisamchk**.
 
-However, the easiest way to avoid this problem is to use `CHECK TABLE` instead of **myisamchk** to check tables. See Section 13.7.2.2, “CHECK TABLE Statement”.
+No entanto, a maneira mais fácil de evitar esse problema é usar `CHECK TABLE` em vez de **myisamchk** para verificar tabelas. Consulte a Seção 13.7.2.2, “Instrução CHECK TABLE”.
 
-**myisamchk** supports the following options, which can be specified on the command line or in the `[myisamchk]` group of an option file. For information about option files used by MySQL programs, see Section 4.2.2.2, “Using Option Files”.
+O **myisamchk** suporta as seguintes opções, que podem ser especificadas na linha de comando ou no grupo `[myisamchk]` de um arquivo de opções. Para obter informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando Arquivos de Opções”.
 
-**Table 4.21 myisamchk Options**
+**Tabela 4.21 Opções do myisamchk**
 
-<table frame="box" rules="all" summary="Command-line options available for myisamchk."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--analyze</td> <td>Analyze the distribution of key values</td> </tr><tr><td>--backup</td> <td>Make a backup of the .MYD file as file_name-time.BAK</td> </tr><tr><td>--block-search</td> <td>Find the record that a block at the given offset belongs to</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets can be found</td> </tr><tr><td>--check</td> <td>Check the table for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--correct-checksum</td> <td>Correct the checksum information for the table</td> </tr><tr><td>--data-file-length</td> <td>Maximum length of the data file (when re-creating data file when it is full)</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--decode_bits</td> <td>Decode_bits</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--description</td> <td>Print some descriptive information about the table</td> </tr><tr><td>--extend-check</td> <td>Do very thorough table check or repair that tries to recover every possible row from the data file</td> </tr><tr><td>--fast</td> <td>Check only tables that haven't been closed properly</td> </tr><tr><td>--force</td> <td>Do a repair operation automatically if myisamchk finds any errors in the table</td> </tr><tr><td>--force</td> <td>Overwrite old temporary files. For use with the -r or -o option</td> </tr><tr><td>--ft_max_word_len</td> <td>Maximum word length for FULLTEXT indexes</td> </tr><tr><td>--ft_min_word_len</td> <td>Minimum word length for FULLTEXT indexes</td> </tr><tr><td>--ft_stopword_file</td> <td>Use stopwords from this file instead of built-in list</td> </tr><tr><td>--HELP</td> <td>Display help message and exit</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--information</td> <td>Print informational statistics about the table that is checked</td> </tr><tr><td>--key_buffer_size</td> <td>Size of buffer used for index blocks for MyISAM tables</td> </tr><tr><td>--keys-used</td> <td>A bit-value that indicates which indexes to update</td> </tr><tr><td>--max-record-length</td> <td>Skip rows larger than the given length if myisamchk cannot allocate memory to hold them</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extend-check operation</td> </tr><tr><td>--myisam_block_size</td> <td>Block size to be used for MyISAM index pages</td> </tr><tr><td>--myisam_sort_buffer_size</td> <td>The buffer that is allocated when sorting the index when doing a REPAIR or when creating indexes with CREATE INDEX or ALTER TABLE</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--parallel-recover</td> <td>Uses the same technique as -r and -n, but creates all the keys in parallel, using different threads (beta)</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--quick</td> <td>Achieve a faster repair by not modifying the data file</td> </tr><tr><td>--read_buffer_size</td> <td>Each thread that does a sequential scan allocates a buffer of this size for each table it scans</td> </tr><tr><td>--read-only</td> <td>Do not mark the table as checked</td> </tr><tr><td>--recover</td> <td>Do a repair that can fix almost any problem except unique keys that aren't unique</td> </tr><tr><td>--safe-recover</td> <td>Do a repair using an old recovery method that reads through all rows in order and updates all index trees based on the rows found</td> </tr><tr><td>--set-auto-increment</td> <td>Force AUTO_INCREMENT numbering for new records to start at the given value</td> </tr><tr><td>--set-collation</td> <td>Specify the collation to use for sorting table indexes</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--sort_buffer_size</td> <td>The buffer that is allocated when sorting the index when doing a REPAIR or when creating indexes with CREATE INDEX or ALTER TABLE</td> </tr><tr><td>--sort-index</td> <td>Sort the index tree blocks in high-low order</td> </tr><tr><td>--sort_key_blocks</td> <td>sort_key_blocks</td> </tr><tr><td>--sort-records</td> <td>Sort records according to a particular index</td> </tr><tr><td>--sort-recover</td> <td>Force myisamchk to use sorting to resolve the keys even if the temporary files would be very large</td> </tr><tr><td>--stats_method</td> <td>Specifies how MyISAM index statistics collection code should treat NULLs</td> </tr><tr><td>--tmpdir</td> <td>Directory to be used for storing temporary files</td> </tr><tr><td>--unpack</td> <td>Unpack a table that was packed with myisampack</td> </tr><tr><td>--update-state</td> <td>Store information in the .MYI file to indicate when the table was checked and whether the table crashed</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--wait</td> <td>Wait for locked table to be unlocked, instead of terminating</td> </tr><tr><td>--write_buffer_size</td> <td>Write buffer size</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para myisamchk."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> </tr></thead><tbody><tr><td>--analyze</td> <td>Analisa a distribuição dos valores de key (chave)</td> </tr><tr><td>--backup</td> <td>Cria um backup do arquivo .MYD como *nome_do_arquivo*-*hora*.BAK</td> </tr><tr><td>--block-search</td> <td>Encontra o record (registro) ao qual pertence um bloco no offset (deslocamento) fornecido</td> </tr><tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres podem ser encontrados</td> </tr><tr><td>--check</td> <td>Verifica a tabela em busca de erros</td> </tr><tr><td>--check-only-changed</td> <td>Verifica apenas as tabelas que foram alteradas desde a última verificação</td> </tr><tr><td>--correct-checksum</td> <td>Corrige a informação de checksum para a tabela</td> </tr><tr><td>--data-file-length</td> <td>Comprimento máximo do arquivo de dados (ao recriar o arquivo de dados quando estiver cheio)</td> </tr><tr><td>--debug</td> <td>Escreve o log de debugging</td> </tr><tr><td>--decode_bits</td> <td>Decode_bits</td> </tr><tr><td>--defaults-extra-file</td> <td>Lê o arquivo de opções nomeado além dos arquivos de opções usuais</td> </tr><tr><td>--defaults-file</td> <td>Lê apenas o arquivo de opções nomeado</td> </tr><tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td> </tr><tr><td>--description</td> <td>Imprime algumas informações descritivas sobre a tabela</td> </tr><tr><td>--extend-check</td> <td>Realiza uma verificação ou reparo muito completa da tabela que tenta recuperar todas as linhas possíveis do arquivo de dados</td> </tr><tr><td>--fast</td> <td>Verifica apenas as tabelas que não foram fechadas corretamente</td> </tr><tr><td>--force</td> <td>Executa uma operação de reparo automaticamente se o myisamchk encontrar quaisquer erros na tabela</td> </tr><tr><td>--force</td> <td>Sobrescreve arquivos temporários antigos. Para uso com a opção -r ou -o</td> </tr><tr><td>--ft_max_word_len</td> <td>Comprimento máximo de palavra para Indexes FULLTEXT</td> </tr><tr><td>--ft_min_word_len</td> <td>Comprimento mínimo de palavra para Indexes FULLTEXT</td> </tr><tr><td>--ft_stopword_file</td> <td>Usa stopwords (palavras de parada) deste arquivo em vez da lista built-in (incorporada)</td> </tr><tr><td>--HELP</td> <td>Exibe mensagem de ajuda e sai</td> </tr><tr><td>--help</td> <td>Exibe mensagem de ajuda e sai</td> </tr><tr><td>--information</td> <td>Imprime estatísticas informativas sobre a tabela que está sendo verificada</td> </tr><tr><td>--key_buffer_size</td> <td>Tamanho do Buffer usado para blocos de Index de tabelas MyISAM</td> </tr><tr><td>--keys-used</td> <td>Um valor de bit que indica quais Indexes devem ser atualizados</td> </tr><tr><td>--max-record-length</td> <td>Ignora linhas maiores do que o comprimento fornecido se o myisamchk não puder alocar memória para contê-las</td> </tr><tr><td>--medium-check</td> <td>Realiza uma verificação mais rápida do que uma operação --extend-check</td> </tr><tr><td>--myisam_block_size</td> <td>Tamanho do Block a ser usado para páginas de Index MyISAM</td> </tr><tr><td>--myisam_sort_buffer_size</td> <td>O Buffer que é alocado ao ordenar o Index durante um REPAIR ou ao criar Indexes com CREATE INDEX ou ALTER TABLE</td> </tr><tr><td>--no-defaults</td> <td>Não lê arquivos de opções</td> </tr><tr><td>--parallel-recover</td> <td>Usa a mesma técnica que -r e -n, mas cria todas as keys em paralelo, usando diferentes Threads (beta)</td> </tr><tr><td>--print-defaults</td> <td>Imprime opções padrão</td> </tr><tr><td>--quick</td> <td>Consegue um reparo mais rápido ao não modificar o arquivo de dados</td> </tr><tr><td>--read_buffer_size</td> <td>Cada Thread que faz um sequential scan (leitura sequencial) aloca um Buffer deste tamanho para cada tabela que ele verifica</td> </tr><tr><td>--read-only</td> <td>Não marca a tabela como verificada</td> </tr><tr><td>--recover</td> <td>Realiza um reparo que pode corrigir quase todos os problemas, exceto keys exclusivas que não são exclusivas (unique keys that aren't unique)</td> </tr><tr><td>--safe-recover</td> <td>Realiza um reparo usando um método de recovery antigo que lê todas as linhas em ordem e atualiza todas as árvores de Index com base nas linhas encontradas</td> </tr><tr><td>--set-auto-increment</td> <td>Força a numeração AUTO_INCREMENT para novos records a começar no valor fornecido</td> </tr><tr><td>--set-collation</td> <td>Especifica o collation (ordenamento) a ser usado para ordenar os Indexes da tabela</td> </tr><tr><td>--silent</td> <td>Modo silencioso</td> </tr><tr><td>--sort_buffer_size</td> <td>O Buffer que é alocado ao ordenar o Index durante um REPAIR ou ao criar Indexes com CREATE INDEX ou ALTER TABLE</td> </tr><tr><td>--sort-index</td> <td>Ordena os blocos da árvore de Index em ordem decrescente</td> </tr><tr><td>--sort_key_blocks</td> <td>sort_key_blocks</td> </tr><tr><td>--sort-records</td> <td>Ordena records (registros) de acordo com um Index específico</td> </tr><tr><td>--sort-recover</td> <td>Força o myisamchk a usar a ordenação para resolver as keys, mesmo que os arquivos temporários sejam muito grandes</td> </tr><tr><td>--stats_method</td> <td>Especifica como o código de coleta de estatísticas de Index MyISAM deve tratar os NULLs</td> </tr><tr><td>--tmpdir</td> <td>Diretório a ser usado para armazenar arquivos temporários</td> </tr><tr><td>--unpack</td> <td>Descompacta uma tabela que foi empacotada com myisampack</td> </tr><tr><td>--update-state</td> <td>Armazena informações no arquivo .MYI para indicar quando a tabela foi verificada e se a tabela falhou (crashed)</td> </tr><tr><td>--verbose</td> <td>Modo verboso (detalhado)</td> </tr><tr><td>--version</td> <td>Exibe informações da versão e sai</td> </tr><tr><td>--wait</td> <td>Espera que a tabela com Lock seja desbloqueada, em vez de ser encerrado</td> </tr><tr><td>--write_buffer_size</td> <td>Tamanho do Write Buffer (Buffer de escrita)</td> </tr> </tbody></table>

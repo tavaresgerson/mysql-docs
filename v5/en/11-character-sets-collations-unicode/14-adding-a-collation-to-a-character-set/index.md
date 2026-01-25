@@ -1,18 +1,18 @@
-## 10.14 Adding a Collation to a Character Set
+## 10.14 Adicionando um Collation a um Character Set
 
-10.14.1 Collation Implementation Types
+10.14.1 Tipos de Implementação de Collation
 
-10.14.2 Choosing a Collation ID
+10.14.2 Escolhendo um ID de Collation
 
-10.14.3 Adding a Simple Collation to an 8-Bit Character Set
+10.14.3 Adicionando um Collation Simples a um Character Set de 8-Bits
 
-10.14.4 Adding a UCA Collation to a Unicode Character Set
+10.14.4 Adicionando um Collation UCA a um Character Set Unicode
 
-A collation is a set of rules that defines how to compare and sort character strings. Each collation in MySQL belongs to a single character set. Every character set has at least one collation, and most have two or more collations.
+Um collation é um conjunto de regras que define como comparar e ordenar strings de caracteres. Cada collation no MySQL pertence a um único character set. Todo character set tem pelo menos um collation, e a maioria tem dois ou mais collations.
 
-A collation orders characters based on weights. Each character in a character set maps to a weight. Characters with equal weights compare as equal, and characters with unequal weights compare according to the relative magnitude of their weights.
+Um collation ordena caracteres com base em pesos (weights). Cada caractere em um character set é mapeado para um peso. Caracteres com pesos iguais são comparados como iguais, e caracteres com pesos diferentes são comparados de acordo com a magnitude relativa dos seus pesos.
 
-The `WEIGHT_STRING()` function can be used to see the weights for the characters in a string. The value that it returns to indicate weights is a binary string, so it is convenient to use `HEX(WEIGHT_STRING(str))` to display the weights in printable form. The following example shows that weights do not differ for lettercase for the letters in `'AaBb'` if it is a nonbinary case-insensitive string, but do differ if it is a binary string:
+A função `WEIGHT_STRING()` pode ser usada para ver os pesos dos caracteres em uma string. O valor que ela retorna para indicar os pesos é uma string binária, então é conveniente usar `HEX(WEIGHT_STRING(str))` para exibir os pesos em formato imprimível. O exemplo a seguir mostra que os pesos não diferem em relação à caixa (maiúscula/minúscula) para as letras em `'AaBb'` se for uma string *case-insensitive* não binária, mas diferem se for uma string binária:
 
 ```sql
 mysql> SELECT HEX(WEIGHT_STRING('AaBb' COLLATE latin1_swedish_ci));
@@ -29,32 +29,31 @@ mysql> SELECT HEX(WEIGHT_STRING(BINARY 'AaBb'));
 +-----------------------------------+
 ```
 
-MySQL supports several collation implementations, as discussed in Section 10.14.1, “Collation Implementation Types”. Some of these can be added to MySQL without recompiling:
+O MySQL suporta várias implementações de collation, conforme discutido na Seção 10.14.1, “Tipos de Implementação de Collation”. Algumas delas podem ser adicionadas ao MySQL sem a necessidade de recompilação:
 
-* Simple collations for 8-bit character sets.
-* UCA-based collations for Unicode character sets.
-* Binary (`xxx_bin`) collations.
+* Collations simples para character sets de 8-bits.
+* Collations baseados em UCA para character sets Unicode.
+* Collations binários (`xxx_bin`).
 
-The following sections describe how to add user-defined collations of the first two types to existing character sets. All existing character sets already have a binary collation, so there is no need here to describe how to add one.
+As seções a seguir descrevem como adicionar collations definidos pelo usuário dos dois primeiros tipos a character sets existentes. Todos os character sets existentes já possuem um collation binário, então não é necessário descrever aqui como adicionar um.
 
-Summary of the procedure for adding a new user-defined collation:
+Resumo do procedimento para adicionar um novo collation definido pelo usuário:
 
-1. Choose a collation ID.
-2. Add configuration information that names the collation and describes the character-ordering rules.
+1. Escolha um ID de Collation.
+2. Adicione informações de configuração que nomeiam o collation e descrevem as regras de ordenação de caracteres.
+3. Reinicie o server.
+4. Verifique se o server reconhece o collation.
 
-3. Restart the server.
-4. Verify that the server recognizes the collation.
+As instruções aqui cobrem apenas collations definidos pelo usuário que podem ser adicionados sem a recompilação do MySQL. Para adicionar um collation que exija recompilação (implementado por meio de funções em um arquivo fonte C), use as instruções na Seção 10.13, “Adicionando um Character Set”. No entanto, em vez de adicionar todas as informações necessárias para um character set completo, apenas modifique os arquivos apropriados para um character set existente. Ou seja, com base no que já está presente para os collations atuais do character set, adicione estruturas de dados, funções e informações de configuração para o novo collation.
 
-The instructions here cover only user-defined collations that can be added without recompiling MySQL. To add a collation that does require recompiling (as implemented by means of functions in a C source file), use the instructions in Section 10.13, “Adding a Character Set”. However, instead of adding all the information required for a complete character set, just modify the appropriate files for an existing character set. That is, based on what is already present for the character set's current collations, add data structures, functions, and configuration information for the new collation.
+Nota
 
-Note
+Se você modificar um collation definido pelo usuário existente, isso pode afetar a ordenação de linhas para Indexes em colunas que usam o collation. Neste caso, reconstrua quaisquer desses Indexes para evitar problemas como resultados de Query incorretos. Consulte a Seção 2.10.12, “Reconstruindo ou Reparando Tables ou Indexes”.
 
-If you modify an existing user-defined collation, that may affect the ordering of rows for indexes on columns that use the collation. In this case, rebuild any such indexes to avoid problems such as incorrect query results. See Section 2.10.12, “Rebuilding or Repairing Tables or Indexes”.
+### Recursos Adicionais
 
-### Additional Resources
+* Exemplo mostrando como adicionar um collation para buscas de texto completo (full-text searches): Seção 12.9.7, “Adicionando um Collation Definido pelo Usuário para Indexação de Texto Completo”
 
-* Example showing how to add a collation for full-text searches: Section 12.9.7, “Adding a User-Defined Collation for Full-Text Indexing”
+* A especificação do Unicode Collation Algorithm (UCA): <http://www.unicode.org/reports/tr10/>
 
-* The Unicode Collation Algorithm (UCA) specification: <http://www.unicode.org/reports/tr10/>
-
-* The Locale Data Markup Language (LDML) specification: <http://www.unicode.org/reports/tr35/>
+* A especificação do Locale Data Markup Language (LDML): <http://www.unicode.org/reports/tr35/>

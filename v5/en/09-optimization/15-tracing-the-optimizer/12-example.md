@@ -1,6 +1,6 @@
-### 8.15.12 Example
+### 8.15.12 Exemplo
 
-Here we take an example from the test suite.
+Aqui, tomamos um exemplo da suíte de testes.
 
 ```sql
 #
@@ -72,11 +72,11 @@ SELECT SUM(alias2.col_varchar_nokey) AS c1, alias2.pk AS c2
 +------+----+
 ```
 
-Note
+Nota
 
-For reference, the complete trace is shown uninterrupted at the end of this section.
+Para referência, o trace completo é mostrado ininterruptamente no final desta seção.
 
-Now we can examine the trace, whose first column (`QUERY`), containing the original statement to be traced, is shown here:
+Agora podemos examinar o trace, cuja primeira coluna (`QUERY`), contendo a instrução original a ser rastreada (traced), é mostrada aqui:
 
 ```sql
 SELECT * FROM INFORMATION_SCHEMA.OPTIMIZER_TRACE\G
@@ -90,16 +90,16 @@ QUERY: SELECT SUM(alias2.col_varchar_nokey) AS c1, alias2.pk AS c2
   ORDER BY alias1.col_int_key, alias2.pk
 ```
 
-This can be useful mark when several traces are stored.
+Isso pode ser uma marca útil quando vários traces estão armazenados.
 
-The `TRACE` column begins by showing that execution of the statement is made up of discrete steps, like this:
+A coluna `TRACE` começa mostrando que a execução da instrução é composta de etapas discretas, assim:
 
 ```sql
 "steps": [
   {
 ```
 
-This is followed by the preparation of the join for the first (and only) `SELECT` in the statement being traced, as shown here:
+Isto é seguido pela preparação do JOIN para o primeiro (e único) `SELECT` na instrução sendo rastreada, conforme mostrado aqui:
 
 ```sql
 "steps": [
@@ -118,9 +118,9 @@ This is followed by the preparation of the join for the first (and only) `SELECT
      },
 ```
 
-The output just shown displays the query as it is used for preparing the join; all columns (fields) have been resolved to their databases and tables, and each `SELECT` is annotated with a sequence number, which can be useful when studying subqueries.
+A saída que acabamos de mostrar exibe a Query como ela é usada para preparar o JOIN; todas as colunas (fields) foram resolvidas para seus Databases e tables, e cada `SELECT` é anotado com um número de sequência, o que pode ser útil ao estudar subqueries.
 
-The next portion of the trace shows how the join is optimized, starting with condition processing:
+A próxima porção do trace mostra como o JOIN é otimizado, começando pelo processamento de condições:
 
 ```sql
      {
@@ -156,7 +156,7 @@ The next portion of the trace shows how the join is optimized, starting with con
            },
 ```
 
-Next, the optimizer checks for possible `ref` accesses, and identifies one:
+Em seguida, o otimizador verifica possíveis acessos `ref` e identifica um:
 
 ```sql
            {
@@ -172,11 +172,11 @@ Next, the optimizer checks for possible `ref` accesses, and identifies one:
          },
 ```
 
-A `ref` access which rejects `NULL` has been identified: no `NULL` in `test.alias1.col_int_key` can have a match. (Observe that it could have a match, were the operator a null-safe equals `<=>`).
+Um acesso `ref` que rejeita `NULL` foi identificado: nenhum `NULL` em `test.alias1.col_int_key` pode ter uma correspondência (match). (Observe que poderia haver uma correspondência, caso o operador fosse um null-safe equals `<=>`).
 
-Next, for every table in the query, we estimate the cost of, and number of records returned by, a table scan or a range access.
+Em seguida, para cada table na Query, estimamos o custo e o número de registros retornados por um table scan ou por um range access.
 
-We need to find an optimal order for the tables. Normally, greedy search is used, but since the statement uses a straight join, only the requested order is explored, and one or more access methods are selected. As shown in this portion of the trace, we can choose a table scan:
+Precisamos encontrar uma ordem ótima para as tables. Normalmente, a busca gulosa (greedy search) é usada, mas como a instrução usa um straight join, apenas a ordem solicitada é explorada, e um ou mais métodos de acesso são selecionados. Conforme mostrado nesta porção do trace, podemos escolher um table scan:
 
 ```sql
            {
@@ -231,9 +231,9 @@ We need to find an optimal order for the tables. Normally, greedy search is used
            },
 ```
 
-As just shown in the second portion of the range analysis, it is not possible to use `GROUP_MIN_MAX` because it accepts only one table, and we have two in the join. This means that no range access is possible.
+Conforme mostrado na segunda porção da análise de range, não é possível usar `GROUP_MIN_MAX` porque ele aceita apenas uma table, e temos duas no JOIN. Isso significa que nenhum range access é possível.
 
-The optimizer estimates that reading the first table, and applying any required conditions to it, yields 20 rows:
+O otimizador estima que ler a primeira table, e aplicar quaisquer condições necessárias a ela, resulta em 20 linhas (rows):
 
 ```sql
            {
@@ -255,7 +255,7 @@ The optimizer estimates that reading the first table, and applying any required 
                  "records_for_plan": 20,
 ```
 
-For `alias2`, we choose `ref` access on the primary key rather than a table scan, because the number of records returned by the latter (75) is far greater than that returned by `ref` access (1), as shown here:
+Para `alias2`, escolhemos o acesso `ref` na Primary Key em vez de um table scan, porque o número de registros retornados por este último (75) é muito maior do que o retornado pelo acesso `ref` (1), conforme mostrado aqui:
 
 ```sql
                  "rest_of_plan": [
@@ -290,7 +290,7 @@ For `alias2`, we choose `ref` access on the primary key rather than a table scan
            },
 ```
 
-Now that the order of tables is fixed, we can split the `WHERE` condition into chunks which can be tested early (pushdown of conditions down the join tree):
+Agora que a ordem das tables está definida, podemos dividir a condição `WHERE` em partes (chunks) que podem ser testadas precocemente (pushdown de condições na árvore do JOIN):
 
 ```sql
            {
@@ -308,7 +308,7 @@ Now that the order of tables is fixed, we can split the `WHERE` condition into c
            },
 ```
 
-This condition can be tested on rows of `alias1` without reading rows from `alias2`.
+Esta condição pode ser testada nas linhas de `alias1` sem ler linhas de `alias2`.
 
 ```sql
                  {
@@ -322,7 +322,7 @@ This condition can be tested on rows of `alias1` without reading rows from `alia
            {
 ```
 
-Now we try to simplify the `ORDER BY`:
+Agora tentamos simplificar o `ORDER BY`:
 
 ```sql
               "clause_processing": {
@@ -339,7 +339,7 @@ Now we try to simplify the `ORDER BY`:
                ] /* items */,
 ```
 
-Because the `WHERE` clause contains `alias2.pk=alias1.col_int_key`, ordering by both columns is unnecessary; we can order by the first column alone, since the second column is always equal to it.
+Como a cláusula `WHERE` contém `alias2.pk=alias1.col_int_key`, a ordenação por ambas as colunas é desnecessária; podemos ordenar apenas pela primeira coluna, já que a segunda coluna é sempre igual a ela.
 
 ```sql
                "resulting_clause_is_simple": true,
@@ -348,7 +348,7 @@ Because the `WHERE` clause contains `alias2.pk=alias1.col_int_key`, ordering by 
            },
 ```
 
-The shorter `ORDER BY` clause (which is not visible in in the output of `EXPLAIN`) can be implemented as an index scan, since it uses only a single column of one table.
+A cláusula `ORDER BY` mais curta (que não é visível na saída do `EXPLAIN`) pode ser implementada como um index scan, já que usa apenas uma única coluna de uma table.
 
 ```sql
            {
@@ -383,7 +383,7 @@ The shorter `ORDER BY` clause (which is not visible in in the output of `EXPLAIN
      {
 ```
 
-Now the join is executed:
+Agora o JOIN é executado:
 
 ```sql
        "join_execution": {
@@ -396,9 +396,9 @@ Now the join is executed:
  }	0	0
 ```
 
-All traces have the same basic structure. If a statement uses subqueries, there can be mutliple preparations, optimizations, and executions, as well as subquery-specific transformations.
+Todos os traces têm a mesma estrutura básica. Se uma instrução usa subqueries, pode haver múltiplas preparações, otimizações e execuções, bem como transformações específicas para subqueries.
 
-The complete trace is shown here:
+O trace completo é mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.OPTIMIZER_TRACE\G

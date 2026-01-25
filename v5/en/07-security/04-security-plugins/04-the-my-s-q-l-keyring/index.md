@@ -1,61 +1,61 @@
-### 6.4.4 The MySQL Keyring
+### 6.4.4 O Keyring do MySQL
 
-[6.4.4.1 Keyring Plugin Installation](keyring-plugin-installation.html)
+[6.4.4.1 Instalação do Plugin Keyring](keyring-plugin-installation.html)
 
-[6.4.4.2 Using the keyring_file File-Based Keyring Plugin](keyring-file-plugin.html)
+[6.4.4.2 Usando o Plugin Keyring Baseado em Arquivo keyring_file](keyring-file-plugin.html)
 
-[6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin](keyring-encrypted-file-plugin.html)
+[6.4.4.3 Usando o Plugin Keyring Baseado em Arquivo Criptografado keyring_encrypted_file](keyring-encrypted-file-plugin.html)
 
-[6.4.4.4 Using the keyring_okv KMIP Plugin](keyring-okv-plugin.html)
+[6.4.4.4 Usando o Plugin KMIP keyring_okv](keyring-okv-plugin.html)
 
-[6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin](keyring-aws-plugin.html)
+[6.4.4.5 Usando o Plugin Keyring Amazon Web Services keyring_aws](keyring-aws-plugin.html)
 
-[6.4.4.6 Supported Keyring Key Types and Lengths](keyring-key-types.html)
+[6.4.4.6 Tipos e Tamanhos de Keyring Key Suportados](keyring-key-types.html)
 
-[6.4.4.7 Migrating Keys Between Keyring Keystores](keyring-key-migration.html)
+[6.4.4.7 Migrando Keys Entre Keyring Keystores](keyring-key-migration.html)
 
-[6.4.4.8 General-Purpose Keyring Key-Management Functions](keyring-functions-general-purpose.html)
+[6.4.4.8 Funções Key-Management de Propósito Geral do Keyring](keyring-functions-general-purpose.html)
 
-[6.4.4.9 Plugin-Specific Keyring Key-Management Functions](keyring-functions-plugin-specific.html)
+[6.4.4.9 Funções Key-Management do Keyring Específicas do Plugin](keyring-functions-plugin-specific.html)
 
-[6.4.4.10 Keyring Metadata](keyring-metadata.html)
+[6.4.4.10 Metadados do Keyring](keyring-metadata.html)
 
-[6.4.4.11 Keyring Command Options](keyring-options.html)
+[6.4.4.11 Opções de Comando do Keyring](keyring-options.html)
 
-[6.4.4.12 Keyring System Variables](keyring-system-variables.html)
+[6.4.4.12 Variáveis de Sistema do Keyring](keyring-system-variables.html)
 
-MySQL Server supports a keyring that enables internal server components and plugins to securely store sensitive information for later retrieval. The implementation comprises these elements:
+O MySQL Server suporta um *keyring* que permite que componentes internos do servidor e *plugins* armazenem informações confidenciais de forma segura para posterior recuperação. A implementação abrange estes elementos:
 
-* Keyring plugins that manage a backing store or communicate with a storage back end. These keyring plugins are available:
+* Plugins Keyring que gerenciam um armazenamento de suporte (*backing store*) ou se comunicam com um *storage back end*. Estes *plugins* Keyring estão disponíveis:
 
-  + `keyring_file`: Stores keyring data in a file local to the server host. Available in MySQL Community Edition and MySQL Enterprise Edition distributions as of MySQL 5.7.11. See [Section 6.4.4.2, “Using the keyring_file File-Based Keyring Plugin”](keyring-file-plugin.html "6.4.4.2 Using the keyring_file File-Based Keyring Plugin").
+  + `keyring_file`: Armazena dados do Keyring em um arquivo local no host do servidor. Disponível nas distribuições MySQL Community Edition e MySQL Enterprise Edition a partir do MySQL 5.7.11. Consulte [Seção 6.4.4.2, “Usando o Plugin Keyring Baseado em Arquivo keyring_file”](keyring-file-plugin.html "6.4.4.2 Usando o Plugin Keyring Baseado em Arquivo keyring_file").
 
-  + `keyring_encrypted_file`: Stores keyring data in an encrypted, password-protected file local to the server host. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.21. See [Section 6.4.4.3, “Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin”](keyring-encrypted-file-plugin.html "6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin").
+  + `keyring_encrypted_file`: Armazena dados do Keyring em um arquivo criptografado e protegido por senha local ao host do servidor. Disponível nas distribuições MySQL Enterprise Edition a partir do MySQL 5.7.21. Consulte [Seção 6.4.4.3, “Usando o Plugin Keyring Baseado em Arquivo Criptografado keyring_encrypted_file”](keyring-encrypted-file-plugin.html "6.4.4.3 Usando o Plugin Keyring Baseado em Arquivo Criptografado keyring_encrypted_file").
 
-  + `keyring_okv`: A KMIP 1.1 plugin for use with KMIP-compatible back end keyring storage products such as Oracle Key Vault and Gemalto SafeNet KeySecure Appliance. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.12. See [Section 6.4.4.4, “Using the keyring_okv KMIP Plugin”](keyring-okv-plugin.html "6.4.4.4 Using the keyring_okv KMIP Plugin").
+  + `keyring_okv`: Um *plugin* KMIP 1.1 para uso com produtos de armazenamento *back end* Keyring compatíveis com KMIP, como Oracle Key Vault e Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições MySQL Enterprise Edition a partir do MySQL 5.7.12. Consulte [Seção 6.4.4.4, “Usando o Plugin KMIP keyring_okv”](keyring-okv-plugin.html "6.4.4.4 Usando o Plugin KMIP keyring_okv").
 
-  + `keyring_aws`: Communicates with the Amazon Web Services Key Management Service for key generation and uses a local file for key storage. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.19. See [Section 6.4.4.5, “Using the keyring_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin").
+  + `keyring_aws`: Comunica-se com o Amazon Web Services Key Management Service para geração de *key* e usa um arquivo local para armazenamento de *key*. Disponível nas distribuições MySQL Enterprise Edition a partir do MySQL 5.7.19. Consulte [Seção 6.4.4.5, “Usando o Plugin Keyring Amazon Web Services keyring_aws”](keyring-aws-plugin.html "6.4.4.5 Usando o Plugin Keyring Amazon Web Services keyring_aws").
 
-* A keyring service interface for keyring key management (MySQL 5.7.13 and higher). This service is accessible at two levels:
+* Uma interface de *service* Keyring para *key management* do Keyring (MySQL 5.7.13 e superior). Este *service* é acessível em dois níveis:
 
-  + SQL interface: In SQL statements, call the functions described in [Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
+  + Interface SQL: Em comandos SQL, chame as funções descritas na [Seção 6.4.4.8, “Funções Key-Management de Propósito Geral do Keyring”](keyring-functions-general-purpose.html "6.4.4.8 Funções Key-Management de Propósito Geral do Keyring").
 
-  + C interface: In C-language code, call the keyring service functions described in [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service").
+  + Interface C: Em código C, chame as funções do *service* Keyring descritas na [Seção 5.5.6.2, “O Keyring Service”](keyring-service.html "5.5.6.2 O Keyring Service").
 
-* A key migration capability. MySQL 5.7.21 and higher supports migration of keys between keystores, enabling DBAs to switch a MySQL installation from one keystore to another. See [Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores").
+* Uma capacidade de migração de *key*. O MySQL 5.7.21 e superior suporta a migração de *keys* entre *keystores*, permitindo que DBAs mudem uma instalação MySQL de um *keystore* para outro. Consulte [Seção 6.4.4.7, “Migrando Keys Entre Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrando Keys Entre Keyring Keystores").
 
-Warning
+Aviso
 
-For encryption key management, the `keyring_file` and `keyring_encrypted_file` plugins are not intended as a regulatory compliance solution. Security standards such as PCI, FIPS, and others require use of key management systems to secure, manage, and protect encryption keys in key vaults or hardware security modules (HSMs).
+Para *key management* de criptografia, os *plugins* `keyring_file` e `keyring_encrypted_file` não são destinados a ser uma solução de conformidade regulatória. Padrões de segurança como PCI, FIPS e outros exigem o uso de sistemas de *key management* para proteger, gerenciar e resguardar *encryption keys* em *key vaults* ou *hardware security modules* (HSMs).
 
-Within MySQL, keyring service consumers include:
+Dentro do MySQL, os consumidores do *keyring service* incluem:
 
-* The `InnoDB` storage engine uses the keyring to store its key for tablespace encryption. See [Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption").
+* O *storage engine* `InnoDB` usa o Keyring para armazenar sua *key* para criptografia de *tablespace*. Consulte [Seção 14.14, “Criptografia de Dados em Repouso (Data-at-Rest) do InnoDB”](innodb-data-encryption.html "14.14 Criptografia de Dados em Repouso (Data-at-Rest) do InnoDB").
 
-* MySQL Enterprise Audit uses the keyring to store the audit log file encryption password. See [Encrypting Audit Log Files](audit-log-logging-configuration.html#audit-log-file-encryption "Encrypting Audit Log Files").
+* O MySQL Enterprise Audit usa o Keyring para armazenar a senha de criptografia do arquivo de *audit log*. Consulte [Criptografando Arquivos de Audit Log](audit-log-logging-configuration.html#audit-log-file-encryption "Criptografando Arquivos de Audit Log").
 
-For general keyring installation instructions, see [Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation"). For installation and configuration information specific to a given keyring plugin, see the section describing that plugin.
+Para instruções gerais de instalação do Keyring, consulte [Seção 6.4.4.1, “Instalação do Plugin Keyring”](keyring-plugin-installation.html "6.4.4.1 Instalação do Plugin Keyring"). Para informações de instalação e configuração específicas de um determinado *plugin* Keyring, consulte a seção que descreve esse *plugin*.
 
-For information about using the keyring functions, see [Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions").
+Para informações sobre o uso das funções do Keyring, consulte [Seção 6.4.4.8, “Funções Key-Management de Propósito Geral do Keyring”](keyring-functions-general-purpose.html "6.4.4.8 Funções Key-Management de Propósito Geral do Keyring").
 
-Keyring plugins and functions access a keyring service that provides the interface to the keyring. For information about accessing this service and writing keyring plugins, see [Section 5.5.6.2, “The Keyring Service”](keyring-service.html "5.5.6.2 The Keyring Service"), and [Writing Keyring Plugins](/doc/extending-mysql/5.7/en/writing-keyring-plugins.html).
+Os *plugins* e funções Keyring acessam um *keyring service* que fornece a interface para o Keyring. Para informações sobre como acessar este *service* e escrever *plugins* Keyring, consulte [Seção 5.5.6.2, “O Keyring Service”](keyring-service.html "5.5.6.2 O Keyring Service") e [Escrevendo Keyring Plugins](/doc/extending-mysql/5.7/en/writing-keyring-plugins.html).

@@ -1,24 +1,24 @@
-### 10.10.2 West European Character Sets
+### 10.10.2 Character Sets da Europa Ocidental
 
-Western European character sets cover most West European languages, such as French, Spanish, Catalan, Basque, Portuguese, Italian, Albanian, Dutch, German, Danish, Swedish, Norwegian, Finnish, Faroese, Icelandic, Irish, Scottish, and English.
+Os Character Sets da Europa Ocidental cobrem a maioria das línguas da Europa Ocidental, como francês, espanhol, catalão, basco, português, italiano, albanês, holandês, alemão, dinamarquês, sueco, norueguês, finlandês, feroês, islandês, irlandês, escocês e inglês.
 
-* `ascii` (US ASCII) collations:
+* `Collation`s `ascii` (US ASCII):
 
   + `ascii_bin`
-  + `ascii_general_ci` (default)
-* `cp850` (DOS West European) collations:
+  + `ascii_general_ci` (padrão)
+* `Collation`s `cp850` (DOS Europa Ocidental):
 
   + `cp850_bin`
-  + `cp850_general_ci` (default)
-* `dec8` (DEC Western European) collations:
+  + `cp850_general_ci` (padrão)
+* `Collation`s `dec8` (DEC Europa Ocidental):
 
   + `dec8_bin`
-  + `dec8_swedish_ci` (default)
-* `hp8` (HP Western European) collations:
+  + `dec8_swedish_ci` (padrão)
+* `Collation`s `hp8` (HP Europa Ocidental):
 
   + `hp8_bin`
-  + `hp8_english_ci` (default)
-* `latin1` (cp1252 West European) collations:
+  + `hp8_english_ci` (padrão)
+* `Collation`s `latin1` (cp1252 Europa Ocidental):
 
   + `latin1_bin`
   + `latin1_danish_ci`
@@ -27,15 +27,15 @@ Western European character sets cover most West European languages, such as Fren
   + `latin1_german1_ci`
   + `latin1_german2_ci`
   + `latin1_spanish_ci`
-  + `latin1_swedish_ci` (default)
+  + `latin1_swedish_ci` (padrão)
 
-  `latin1` is the default character set. MySQL's `latin1` is the same as the Windows `cp1252` character set. This means it is the same as the official `ISO 8859-1` or IANA (Internet Assigned Numbers Authority) `latin1`, except that IANA `latin1` treats the code points between `0x80` and `0x9f` as “undefined,” whereas `cp1252`, and therefore MySQL's `latin1`, assign characters for those positions. For example, `0x80` is the Euro sign. For the “undefined” entries in `cp1252`, MySQL translates `0x81` to Unicode `0x0081`, `0x8d` to `0x008d`, `0x8f` to `0x008f`, `0x90` to `0x0090`, and `0x9d` to `0x009d`.
+O `latin1` é o Character Set padrão. O `latin1` do MySQL é o mesmo que o Character Set `cp1252` do Windows. Isso significa que ele é o mesmo que o `ISO 8859-1` oficial ou IANA (Internet Assigned Numbers Authority) `latin1`, exceto que o IANA `latin1` trata os Code Points entre `0x80` e `0x9f` como “indefinidos”, enquanto o `cp1252`, e consequentemente o `latin1` do MySQL, atribui caracteres a essas posições. Por exemplo, `0x80` é o sinal do Euro. Para as entradas “indefinidas” no `cp1252`, o MySQL traduz `0x81` para o Unicode `0x0081`, `0x8d` para `0x008d`, `0x8f` para `0x008f`, `0x90` para `0x0090`, e `0x9d` para `0x009d`.
 
-  The `latin1_swedish_ci` collation is the default that probably is used by the majority of MySQL customers. Although it is frequently said that it is based on the Swedish/Finnish collation rules, there are Swedes and Finns who disagree with this statement.
+A Collation `latin1_swedish_ci` é o padrão que provavelmente é usado pela maioria dos clientes MySQL. Embora seja frequentemente dito que ela se baseia nas regras de Collation suecas/finlandesas, há suecos e finlandeses que discordam dessa afirmação.
 
-  The `latin1_german1_ci` and `latin1_german2_ci` collations are based on the DIN-1 and DIN-2 standards, where DIN stands for *Deutsches Institut für Normung* (the German equivalent of ANSI). DIN-1 is called the “dictionary collation” and DIN-2 is called the “phone book collation.” For an example of the effect this has in comparisons or when doing searches, see Section 10.8.6, “Examples of the Effect of Collation”.
+As Collation`s `latin1_german1_ci` e `latin1_german2_ci` são baseadas nos padrões DIN-1 e DIN-2, onde DIN significa *Deutsches Institut für Normung* (o equivalente alemão da ANSI). DIN-1 é chamada de “dictionary collation” (Collation de dicionário) e DIN-2 é chamada de “phone book collation” (Collation de lista telefônica). Para um exemplo do efeito que isso tem em comparações ou ao realizar buscas, veja Seção 10.8.6, “Exemplos do Efeito da Collation”.
 
-  + `latin1_german1_ci` (dictionary) rules:
+  + Regras para `latin1_german1_ci` (dicionário):
 
     ```sql
     Ä = A
@@ -44,7 +44,7 @@ Western European character sets cover most West European languages, such as Fren
     ß = s
     ```
 
-  + `latin1_german2_ci` (phone-book) rules:
+  + Regras para `latin1_german2_ci` (lista telefônica):
 
     ```sql
     Ä = AE
@@ -53,13 +53,13 @@ Western European character sets cover most West European languages, such as Fren
     ß = ss
     ```
 
-  In the `latin1_spanish_ci` collation, `ñ` (n-tilde) is a separate letter between `n` and `o`.
+Na Collation `latin1_spanish_ci`, o caractere `ñ` (n-til) é uma letra separada entre `n` e `o`.
 
-* `macroman` (Mac West European) collations:
+* `Collation`s `macroman` (Mac Europa Ocidental):
 
   + `macroman_bin`
-  + `macroman_general_ci` (default)
-* `swe7` (7bit Swedish) collations:
+  + `macroman_general_ci` (padrão)
+* `Collation`s `swe7` (Sueco 7bit):
 
   + `swe7_bin`
-  + `swe7_swedish_ci` (default)
+  + `swe7_swedish_ci` (padrão)

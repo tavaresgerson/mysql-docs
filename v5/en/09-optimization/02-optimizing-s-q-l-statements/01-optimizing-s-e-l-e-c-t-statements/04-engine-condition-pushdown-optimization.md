@@ -1,10 +1,10 @@
-#### 8.2.1.4 Engine Condition Pushdown Optimization
+#### 8.2.1.4 Otimização Engine Condition Pushdown
 
-This optimization improves the efficiency of direct comparisons between a nonindexed column and a constant. In such cases, the condition is “pushed down” to the storage engine for evaluation. This optimization can be used only by the `NDB` storage engine.
+Esta otimização melhora a eficiência de comparações diretas entre uma coluna não indexada e uma constante. Nesses casos, a condição é "pushed down" (empurrada para baixo) para o storage engine para avaliação. Esta otimização pode ser usada apenas pelo storage engine `NDB`.
 
-For NDB Cluster, this optimization can eliminate the need to send nonmatching rows over the network between the cluster's data nodes and the MySQL server that issued the query, and can speed up queries where it is used by a factor of 5 to 10 times over cases where condition pushdown could be but is not used.
+Para NDB Cluster, esta otimização pode eliminar a necessidade de enviar linhas não correspondentes pela rede entre os nós de dados do Cluster e o servidor MySQL que emitiu a Query, podendo acelerar Queries onde é utilizada por um fator de 5 a 10 vezes em comparação com casos onde o condition pushdown poderia ser usado, mas não é.
 
-Suppose that an NDB Cluster table is defined as follows:
+Suponha que uma tabela NDB Cluster esteja definida da seguinte forma:
 
 ```sql
 CREATE TABLE t1 (
@@ -14,13 +14,13 @@ CREATE TABLE t1 (
 ) ENGINE=NDB;
 ```
 
-Engine condition pushdown can be used with queries such as the one shown here, which includes a comparison between a nonindexed column and a constant:
+Engine condition pushdown pode ser usado com Queries como a mostrada aqui, que inclui uma comparação entre uma coluna não indexada e uma constante:
 
 ```sql
 SELECT a, b FROM t1 WHERE b = 10;
 ```
 
-The use of engine condition pushdown can be seen in the output of `EXPLAIN`:
+O uso de engine condition pushdown pode ser visto na saída do `EXPLAIN`:
 
 ```sql
 mysql> EXPLAIN SELECT a,b FROM t1 WHERE b = 10\G
@@ -37,16 +37,16 @@ possible_keys: NULL
         Extra: Using where with pushed condition
 ```
 
-However, engine condition pushdown *cannot* be used with either of these two queries:
+No entanto, engine condition pushdown *não pode* ser usado com nenhuma destas duas Queries:
 
 ```sql
 SELECT a,b FROM t1 WHERE a = 10;
 SELECT a,b FROM t1 WHERE b + 1 = 10;
 ```
 
-Engine condition pushdown is not applicable to the first query because an index exists on column `a`. (An index access method would be more efficient and so would be chosen in preference to condition pushdown.) Engine condition pushdown cannot be employed for the second query because the comparison involving the nonindexed column `b` is indirect. (However, engine condition pushdown could be applied if you were to reduce `b + 1 = 10` to `b = 9` in the `WHERE` clause.)
+Engine condition pushdown não é aplicável à primeira Query porque existe um Index na coluna `a`. (Um método de acesso por Index seria mais eficiente e, portanto, seria escolhido em preferência ao condition pushdown.) Engine condition pushdown não pode ser empregado para a segunda Query porque a comparação envolvendo a coluna não indexada `b` é indireta. (No entanto, engine condition pushdown poderia ser aplicado se você reduzisse `b + 1 = 10` para `b = 9` na cláusula `WHERE`.)
 
-Engine condition pushdown may also be employed when an indexed column is compared with a constant using a `>` or `<` operator:
+Engine condition pushdown também pode ser empregado quando uma coluna indexada é comparada com uma constante usando um operador `>` ou `<`:
 
 ```sql
 mysql> EXPLAIN SELECT a, b FROM t1 WHERE a < 2\G
@@ -63,45 +63,45 @@ possible_keys: a
         Extra: Using where with pushed condition
 ```
 
-Other supported comparisons for engine condition pushdown include the following:
+Outras comparações suportadas para engine condition pushdown incluem as seguintes:
 
 * `column [NOT] LIKE pattern`
 
-  *`pattern`* must be a string literal containing the pattern to be matched; for syntax, see Section 12.8.1, “String Comparison Functions and Operators”.
+  *`pattern`* deve ser um literal string contendo o padrão a ser correspondido; para sintaxe, veja a Seção 12.8.1, “String Comparison Functions and Operators”.
 
 * `column IS [NOT] NULL`
 
 * `column IN (value_list)`
 
-  Each item in the *`value_list`* must be a constant, literal value.
+  Cada item na *`value_list`* deve ser uma constante, valor literal.
 
 * `column BETWEEN constant1 AND constant2`
 
-  *`constant1`* and *`constant2`* must each be a constant, literal value.
+  *`constant1`* e *`constant2`* devem ser constantes, valores literais.
 
-In all of the cases in the preceding list, it is possible for the condition to be converted into the form of one or more direct comparisons between a column and a constant.
+Em todos os casos na lista anterior, é possível que a condição seja convertida na forma de uma ou mais comparações diretas entre uma coluna e uma constante.
 
-Engine condition pushdown is enabled by default. To disable it at server startup, set the `optimizer_switch` system variable's `engine_condition_pushdown` flag to `off`. For example, in a `my.cnf` file, use these lines:
+Engine condition pushdown é habilitado por padrão. Para desabilitá-lo na inicialização do servidor, defina o flag `engine_condition_pushdown` da variável de sistema `optimizer_switch` como `off`. Por exemplo, em um arquivo `my.cnf`, use estas linhas:
 
 ```sql
 [mysqld]
 optimizer_switch=engine_condition_pushdown=off
 ```
 
-At runtime, disable condition pushdown like this:
+Em tempo de execução (runtime), desabilite o condition pushdown desta forma:
 
 ```sql
 SET optimizer_switch='engine_condition_pushdown=off';
 ```
 
-**Limitations.** Engine condition pushdown is subject to the following limitations:
+**Limitações.** Engine condition pushdown está sujeito às seguintes limitações:
 
-* Engine condition pushdown is supported only by the `NDB` storage engine.
+* Engine condition pushdown é suportado apenas pelo storage engine `NDB`.
 
-* Columns may be compared with constants only; however, this includes expressions which evaluate to constant values.
+* Colunas podem ser comparadas apenas com constantes; no entanto, isso inclui expressões que avaliam a valores constantes.
 
-* Columns used in comparisons cannot be of any of the `BLOB` or `TEXT` types. This exclusion extends to `JSON`, `BIT`, and `ENUM` columns as well.
+* Colunas usadas em comparações não podem ser de nenhum dos tipos `BLOB` ou `TEXT`. Esta exclusão se estende também às colunas `JSON`, `BIT` e `ENUM`.
 
-* A string value to be compared with a column must use the same collation as the column.
+* Um valor string a ser comparado com uma coluna deve usar a mesma collation que a coluna.
 
-* Joins are not directly supported; conditions involving multiple tables are pushed separately where possible. Use extended `EXPLAIN` output to determine which conditions are actually pushed down. See Section 8.8.3, “Extended EXPLAIN Output Format”.
+* Joins não são diretamente suportados; condições envolvendo múltiplas tabelas são "pushed" (empurradas) separadamente quando possível. Use a saída `EXPLAIN` estendida para determinar quais condições são realmente "pushed down". Veja a Seção 8.8.3, “Extended EXPLAIN Output Format”.

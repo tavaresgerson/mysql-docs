@@ -1,13 +1,13 @@
-#### 2.3.4.3 Selecting a MySQL Server Type
+#### 2.3.4.3 Selecionando um Tipo de MySQL Server
 
-The following table shows the available servers for Windows in MySQL 5.7.
+A tabela a seguir mostra os Servers disponíveis para Windows no MySQL 5.7.
 
-<table summary="Servers available for Windows in MySQL 5.7."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binary</th> <th>Description</th> </tr></thead><tbody><tr> <td><span><strong>mysqld</strong></span></td> <td>Optimized binary with named-pipe support</td> </tr><tr> <td><span><strong>mysqld-debug</strong></span></td> <td>Like <span><strong>mysqld</strong></span>, but compiled with full debugging and automatic memory allocation checking</td> </tr></tbody></table>
+<table summary="Servers available for Windows in MySQL 5.7."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binary</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><span><strong>mysqld</strong></span></td> <td>Binary otimizado com suporte a named-pipe</td> </tr><tr> <td><span><strong>mysqld-debug</strong></span></td> <td>Semelhante ao <span><strong>mysqld</strong></span>, mas compilado com Debugging completo e verificação automática de alocação de memória</td> </tr> </tbody></table>
 
-All of the preceding binaries are optimized for modern Intel processors, but should work on any Intel i386-class or higher processor.
+Todos os Binaries precedentes são otimizados para processadores Intel modernos, mas devem funcionar em qualquer processador Intel de classe i386 ou superior.
 
-Each of the servers in a distribution support the same set of storage engines. The `SHOW ENGINES` statement displays which engines a given server supports.
+Cada um dos Servers em uma distribuição suporta o mesmo conjunto de Storage Engines. A instrução `SHOW ENGINES` exibe quais Engines um determinado Server suporta.
 
-All Windows MySQL 5.7 servers have support for symbolic linking of database directories.
+Todos os Servers MySQL 5.7 para Windows possuem suporte para Symbolic Linking de diretórios de Database.
 
-MySQL supports TCP/IP on all Windows platforms. MySQL servers on Windows also support named pipes, if you start the server with the `named_pipe` system variable enabled. It is necessary to enable this variable explicitly because some users have experienced problems with shutting down the MySQL server when named pipes were used. The default is to use TCP/IP regardless of platform because named pipes are slower than TCP/IP in many Windows configurations.
+O MySQL suporta TCP/IP em todas as plataformas Windows. Os MySQL Servers no Windows também suportam Named Pipes, se você iniciar o Server com a variável de sistema `named_pipe` habilitada. É necessário habilitar esta variável explicitamente porque alguns usuários tiveram problemas ao desligar o MySQL Server quando Named Pipes eram utilizados. O padrão é usar TCP/IP independentemente da plataforma, pois Named Pipes são mais lentos que TCP/IP em muitas configurações do Windows.

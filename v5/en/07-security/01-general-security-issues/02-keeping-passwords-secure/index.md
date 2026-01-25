@@ -1,11 +1,11 @@
-### 6.1.2 Keeping Passwords Secure
+### 6.1.2 Mantendo Senhas Seguras
 
-[6.1.2.1 End-User Guidelines for Password Security](password-security-user.html)
+[6.1.2.1 Diretrizes para Usuários Finais sobre Segurança de Senhas](password-security-user.html)
 
-[6.1.2.2 Administrator Guidelines for Password Security](password-security-admin.html)
+[6.1.2.2 Diretrizes para Administradores sobre Segurança de Senhas](password-security-admin.html)
 
-[6.1.2.3 Passwords and Logging](password-logging.html)
+[6.1.2.3 Senhas e Logging](password-logging.html)
 
-[6.1.2.4 Password Hashing in MySQL](password-hashing.html)
+[6.1.2.4 Hashing de Senhas no MySQL](password-hashing.html)
 
-Passwords occur in several contexts within MySQL. The following sections provide guidelines that enable end users and administrators to keep these passwords secure and avoid exposing them. There is also a discussion of how MySQL uses password hashing internally and of a plugin that you can use to enforce stricter passwords.
+Senhas ocorrem em diversos contextos dentro do MySQL. As seções a seguir fornecem diretrizes que permitem que usuários finais e administradores mantenham essas senhas seguras e evitem expô-las. Há também uma discussão sobre como o MySQL usa o Hashing de senhas internamente e sobre um plugin que você pode usar para impor senhas mais rigorosas.

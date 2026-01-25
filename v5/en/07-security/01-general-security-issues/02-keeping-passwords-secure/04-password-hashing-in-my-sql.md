@@ -1,26 +1,26 @@
-#### 6.1.2.4 Password Hashing in MySQL
+#### 6.1.2.4 Hashing de Senha no MySQL
 
-Note
+Nota
 
-The information in this section applies fully only before MySQL 5.7.5, and only for accounts that use the `mysql_native_password` or `mysql_old_password` authentication plugins. Support for pre-4.1 password hashes was removed in MySQL 5.7.5. This includes removal of the `mysql_old_password` authentication plugin and the `OLD_PASSWORD()` function. Also, [`secure_auth`](server-system-variables.html#sysvar_secure_auth) cannot be disabled, and [`old_passwords`](server-system-variables.html#sysvar_old_passwords) cannot be set to 1.
+As informações nesta seção se aplicam integralmente apenas antes do MySQL 5.7.5 e somente para contas que usam os *authentication plugins* `mysql_native_password` ou `mysql_old_password`. O suporte para *password hashes* pré-4.1 foi removido no MySQL 5.7.5. Isso inclui a remoção do *authentication plugin* `mysql_old_password` e da função `OLD_PASSWORD()`. Além disso, [`secure_auth`](server-system-variables.html#sysvar_secure_auth) não pode ser desativado, e [`old_passwords`](server-system-variables.html#sysvar_old_passwords) não pode ser definido como 1.
 
-As of MySQL 5.7.5, only the information about 4.1 password hashes and the `mysql_native_password` authentication plugin remains relevant.
+A partir do MySQL 5.7.5, apenas as informações sobre *password hashes* 4.1 e o *authentication plugin* `mysql_native_password` permanecem relevantes.
 
-MySQL lists user accounts in the `user` table of the `mysql` database. Each MySQL account can be assigned a password, although the `user` table does not store the cleartext version of the password, but a hash value computed from it.
+O MySQL lista as contas de *user* na tabela `user` do *Database* `mysql`. Cada conta MySQL pode ter uma *password* atribuída, embora a tabela `user` não armazene a versão em texto puro (*cleartext*) da *password*, mas sim um *hash value* computado a partir dela.
 
-MySQL uses passwords in two phases of client/server communication:
+O MySQL usa *passwords* em duas fases da comunicação *client*/server:
 
-* When a client attempts to connect to the server, there is an initial authentication step in which the client must present a password that has a hash value matching the hash value stored in the `user` table for the account the client wants to use.
+* Quando um *client* tenta se conectar ao *server*, há uma etapa inicial de autenticação na qual o *client* deve apresentar uma *password* que tenha um *hash value* correspondente ao *hash value* armazenado na tabela `user` para a conta que o *client* deseja usar.
 
-* After the client connects, it can (if it has sufficient privileges) set or change the password hash for accounts listed in the `user` table. The client can do this by using the [`PASSWORD()`](encryption-functions.html#function_password) function to generate a password hash, or by using a password-generating statement ([`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), or [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement")).
+* Após o *client* se conectar, ele pode (se tiver privilégios suficientes) definir ou alterar o *password hash* para contas listadas na tabela `user`. O *client* pode fazer isso usando a função [`PASSWORD()`](encryption-functions.html#function_password) para gerar um *password hash*, ou usando uma *statement* de geração de *password* ([`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), ou [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement")).
 
-In other words, the server *checks* hash values during authentication when a client first attempts to connect. The server *generates* hash values if a connected client invokes the [`PASSWORD()`](encryption-functions.html#function_password) function or uses a password-generating statement to set or change a password.
+Em outras palavras, o *server* *verifica* os *hash values* durante a autenticação quando um *client* tenta se conectar pela primeira vez. O *server* *gera* os *hash values* se um *client* conectado invocar a função [`PASSWORD()`](encryption-functions.html#function_password) ou usar uma *statement* de geração de *password* para definir ou alterar uma *password*.
 
-Password hashing methods in MySQL have the history described following. These changes are illustrated by changes in the result from the [`PASSWORD()`](encryption-functions.html#function_password) function that computes password hash values and in the structure of the `user` table where passwords are stored.
+Os métodos de *password hashing* no MySQL têm o histórico descrito a seguir. Essas mudanças são ilustradas por alterações no resultado da função [`PASSWORD()`](encryption-functions.html#function_password) que computa os *password hash values* e na estrutura da tabela `user` onde as *passwords* são armazenadas.
 
-##### The Original (Pre-4.1) Hashing Method
+##### O Método de Hashing Original (Pré-4.1)
 
-The original hashing method produced a 16-byte string. Such hashes look like this:
+O método de *hashing* original produzia uma *string* de 16 *bytes*. Tais *hashes* se parecem com isto:
 
 ```sql
 mysql> SELECT PASSWORD('mypass');
@@ -31,23 +31,22 @@ mysql> SELECT PASSWORD('mypass');
 +--------------------+
 ```
 
-To store account passwords, the `Password` column of the `user` table was at this point 16 bytes long.
+Para armazenar *passwords* de contas, a coluna `Password` da tabela `user` tinha, neste ponto, 16 *bytes* de comprimento.
 
-##### The 4.1 Hashing Method
+##### O Método de Hashing 4.1
 
-MySQL 4.1 introduced password hashing that provided better security and reduced the risk of passwords being intercepted. There were several aspects to this change:
+O MySQL 4.1 introduziu o *password hashing* que forneceu melhor segurança e reduziu o risco de *passwords* serem interceptadas. Houve vários aspectos nesta mudança:
 
-* Different format of password values produced by the [`PASSWORD()`](encryption-functions.html#function_password) function
+* Formato diferente dos *password values* produzidos pela função [`PASSWORD()`](encryption-functions.html#function_password)
+* Alargamento da coluna `Password`
+* Controle sobre o método de *hashing* padrão
+* Controle sobre os métodos de *hashing* permitidos para *clients* que tentam se conectar ao *server*
 
-* Widening of the `Password` column
-* Control over the default hashing method
-* Control over the permitted hashing methods for clients attempting to connect to the server
+As mudanças no MySQL 4.1 ocorreram em duas etapas:
 
-The changes in MySQL 4.1 took place in two stages:
+* O MySQL 4.1.0 usou uma versão preliminar do método de *hashing* 4.1. Este método teve vida curta e a discussão a seguir não menciona mais nada sobre ele.
 
-* MySQL 4.1.0 used a preliminary version of the 4.1 hashing method. This method was short lived and the following discussion says nothing more about it.
-
-* In MySQL 4.1.1, the hashing method was modified to produce a longer 41-byte hash value:
+* No MySQL 4.1.1, o método de *hashing* foi modificado para produzir um *hash value* mais longo, de 41 *bytes*:
 
   ```sql
   mysql> SELECT PASSWORD('mypass');
@@ -58,37 +57,37 @@ The changes in MySQL 4.1 took place in two stages:
   +-------------------------------------------+
   ```
 
-  The longer password hash format has better cryptographic properties, and client authentication based on long hashes is more secure than that based on the older short hashes.
+  O formato de *password hash* mais longo tem melhores propriedades criptográficas, e a autenticação de *client* baseada em *long hashes* é mais segura do que a baseada em *short hashes* mais antigos.
 
-  To accommodate longer password hashes, the `Password` column in the `user` table was changed at this point to be 41 bytes, its current length.
+  Para acomodar *password hashes* mais longos, a coluna `Password` na tabela `user` foi alterada neste ponto para ter 41 *bytes*, seu comprimento atual.
 
-  A widened `Password` column can store password hashes in both the pre-4.1 and 4.1 formats. The format of any given hash value can be determined two ways:
+  Uma coluna `Password` alargada pode armazenar *password hashes* nos formatos pré-4.1 e 4.1. O formato de qualquer *hash value* pode ser determinado de duas maneiras:
 
-  + The length: 4.1 and pre-4.1 hashes are 41 and 16 bytes, respectively.
+  + O comprimento: *hashes* 4.1 e pré-4.1 são de 41 e 16 *bytes*, respectivamente.
 
-  + Password hashes in the 4.1 format always begin with a `*` character, whereas passwords in the pre-4.1 format never do.
+  + *Password hashes* no formato 4.1 sempre começam com um caractere `*`, enquanto *passwords* no formato pré-4.1 nunca começam.
 
-  To permit explicit generation of pre-4.1 password hashes, two additional changes were made:
+  Para permitir a geração explícita de *password hashes* pré-4.1, duas mudanças adicionais foram feitas:
 
-  + The `OLD_PASSWORD()` function was added, which returns hash values in the 16-byte format.
+  + A função `OLD_PASSWORD()` foi adicionada, que retorna *hash values* no formato de 16 *bytes*.
 
-  + For compatibility purposes, the [`old_passwords`](server-system-variables.html#sysvar_old_passwords) system variable was added, to enable DBAs and applications control over the hashing method. The default [`old_passwords`](server-system-variables.html#sysvar_old_passwords) value of 0 causes hashing to use the 4.1 method (41-byte hash values), but setting [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) causes hashing to use the pre-4.1 method. In this case, [`PASSWORD()`](encryption-functions.html#function_password) produces 16-byte values and is equivalent to `OLD_PASSWORD()`
+  + Para fins de compatibilidade, a *system variable* [`old_passwords`](server-system-variables.html#sysvar_old_passwords) foi adicionada, para permitir que DBAs e aplicações controlem o método de *hashing*. O valor padrão de 0 para [`old_passwords`](server-system-variables.html#sysvar_old_passwords) faz com que o *hashing* use o método 4.1 (*hash values* de 41 *bytes*), mas definir [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) faz com que o *hashing* use o método pré-4.1. Neste caso, [`PASSWORD()`](encryption-functions.html#function_password) produz valores de 16 *bytes* e é equivalente a `OLD_PASSWORD()`.
 
-  To permit DBAs control over how clients are permitted to connect, the [`secure_auth`](server-system-variables.html#sysvar_secure_auth) system variable was added. Starting the server with this variable disabled or enabled permits or prohibits clients to connect using the older pre-4.1 password hashing method. Before MySQL 5.6.5, [`secure_auth`](server-system-variables.html#sysvar_secure_auth) is disabled by default. As of 5.6.5, [`secure_auth`](server-system-variables.html#sysvar_secure_auth) is enabled by default to promote a more secure default configuration DBAs can disable it at their discretion, but this is not recommended, and pre-4.1 password hashes are deprecated and should be avoided. (For account upgrade instructions, see [Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”](account-upgrades.html "6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin").)
+  Para permitir que os DBAs controlem como os *clients* têm permissão para se conectar, a *system variable* [`secure_auth`](server-system-variables.html#sysvar_secure_auth) foi adicionada. Iniciar o *server* com esta variável desativada ou ativada permite ou proíbe que *clients* se conectem usando o método de *password hashing* pré-4.1 mais antigo. Antes do MySQL 5.6.5, [`secure_auth`](server-system-variables.html#sysvar_secure_auth) é desativado por padrão. A partir do 5.6.5, [`secure_auth`](server-system-variables.html#sysvar_secure_auth) é ativado por padrão para promover uma configuração padrão mais segura. Os DBAs podem desativá-lo a seu critério, mas isso não é recomendado, e os *password hashes* pré-4.1 estão descontinuados (*deprecated*) e devem ser evitados. (Para instruções de atualização de conta, consulte [Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”](account-upgrades.html "6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin").)
 
-  In addition, the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client supports a [`--secure-auth`](mysql-command-options.html#option_mysql_secure-auth) option that is analogous to [`secure_auth`](server-system-variables.html#sysvar_secure_auth), but from the client side. It can be used to prevent connections to less secure accounts that use pre-4.1 password hashing. This option is disabled by default before MySQL 5.6.7, enabled thereafter.
+  Além disso, o *client* [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") suporta a opção [`--secure-auth`](mysql-command-options.html#option_mysql_secure-auth) que é análoga a [`secure_auth`](server-system-variables.html#sysvar_secure_auth), mas do lado do *client*. Ela pode ser usada para evitar conexões com contas menos seguras que usam *password hashing* pré-4.1. Esta opção é desativada por padrão antes do MySQL 5.6.7, sendo ativada a partir de então.
 
-##### Compatibility Issues Related to Hashing Methods
+##### Problemas de Compatibilidade Relacionados aos Métodos de Hashing
 
-The widening of the `Password` column in MySQL 4.1 from 16 bytes to 41 bytes affects installation or upgrade operations as follows:
+O alargamento da coluna `Password` no MySQL 4.1 de 16 *bytes* para 41 *bytes* afeta as operações de instalação ou *upgrade* da seguinte forma:
 
-* If you perform a new installation of MySQL, the `Password` column is made 41 bytes long automatically.
+* Se você realizar uma nova instalação do MySQL, a coluna `Password` é automaticamente definida com 41 *bytes* de comprimento.
 
-* Upgrades from MySQL 4.1 or later to current versions of MySQL should not give rise to any issues in regard to the `Password` column because both versions use the same column length and password hashing method.
+* *Upgrades* do MySQL 4.1 ou posterior para versões atuais do MySQL não devem gerar quaisquer problemas em relação à coluna `Password` porque ambas as versões usam o mesmo comprimento de coluna e método de *password hashing*.
 
-* For upgrades from a pre-4.1 release to 4.1 or later, you must upgrade the system tables after upgrading. (See [Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").)
+* Para *upgrades* de uma versão pré-4.1 para 4.1 ou posterior, você deve atualizar as tabelas do sistema após o *upgrade*. (Consulte [Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").)
 
-The 4.1 hashing method is understood only by MySQL 4.1 (and higher) servers and clients, which can result in some compatibility problems. A 4.1 or higher client can connect to a pre-4.1 server, because the client understands both the pre-4.1 and 4.1 password hashing methods. However, a pre-4.1 client that attempts to connect to a 4.1 or higher server may run into difficulties. For example, a 4.0 [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client may fail with the following error message:
+O método de *hashing* 4.1 é compreendido apenas por *servers* e *clients* MySQL 4.1 (e superiores), o que pode resultar em alguns problemas de compatibilidade. Um *client* 4.1 ou superior pode se conectar a um *server* pré-4.1, porque o *client* entende ambos os métodos de *password hashing*, pré-4.1 e 4.1. No entanto, um *client* pré-4.1 que tenta se conectar a um *server* 4.1 ou superior pode encontrar dificuldades. Por exemplo, um *client* [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") 4.0 pode falhar com a seguinte mensagem de erro:
 
 ```sql
 $> mysql -h localhost -u root
@@ -96,45 +95,45 @@ Client does not support authentication protocol requested
 by server; consider upgrading MySQL client
 ```
 
-The following discussion describes the differences between the pre-4.1 and 4.1 hashing methods, and what you should do if you upgrade your server but need to maintain backward compatibility with pre-4.1 clients. (However, permitting connections by old clients is not recommended and should be avoided if possible.) This information is of particular importance to PHP programmers migrating MySQL databases from versions older than 4.1 to 4.1 or higher.
+A discussão a seguir descreve as diferenças entre os métodos de *hashing* pré-4.1 e 4.1 e o que você deve fazer se atualizar seu *server*, mas precisar manter a compatibilidade retroativa (*backward compatibility*) com *clients* pré-4.1. (No entanto, permitir conexões por *clients* antigos não é recomendado e deve ser evitado, se possível.) Esta informação é de particular importância para programadores PHP que estão migrando *Databases* MySQL de versões anteriores a 4.1 para 4.1 ou superiores.
 
-The differences between short and long password hashes are relevant both for how the server uses passwords during authentication and for how it generates password hashes for connected clients that perform password-changing operations.
+As diferenças entre *short* e *long password hashes* são relevantes tanto para como o *server* usa *passwords* durante a autenticação quanto para como ele gera *password hashes* para *clients* conectados que realizam operações de alteração de *password*.
 
-The way in which the server uses password hashes during authentication is affected by the width of the `Password` column:
+A forma como o *server* usa *password hashes* durante a autenticação é afetada pela largura da coluna `Password`:
 
-* If the column is short, only short-hash authentication is used.
+* Se a coluna for *short* (curta), apenas a autenticação por *short hash* é usada.
 
-* If the column is long, it can hold either short or long hashes, and the server can use either format:
+* Se a coluna for *long* (longa), ela pode conter *short* ou *long hashes*, e o *server* pode usar qualquer um dos formatos:
 
-  + Pre-4.1 clients can connect, but because they know only about the pre-4.1 hashing method, they can authenticate only using accounts that have short hashes.
+  + *Clients* pré-4.1 podem se conectar, mas como eles conhecem apenas o método de *hashing* pré-4.1, eles só podem se autenticar usando contas que tenham *short hashes*.
 
-  + 4.1 and later clients can authenticate using accounts that have short or long hashes.
+  + *Clients* 4.1 e posteriores podem se autenticar usando contas que tenham *short* ou *long hashes*.
 
-Even for short-hash accounts, the authentication process is actually a bit more secure for 4.1 and later clients than for older clients. In terms of security, the gradient from least to most secure is:
+  Mesmo para contas com *short hash*, o processo de autenticação é, na verdade, um pouco mais seguro para *clients* 4.1 e posteriores do que para *clients* mais antigos. Em termos de segurança, o gradiente do menos para o mais seguro é:
 
-* Pre-4.1 client authenticating with short password hash
-* 4.1 or later client authenticating with short password hash
-* 4.1 or later client authenticating with long password hash
+  * *Client* pré-4.1 autenticando com *short password hash*
+  * *Client* 4.1 ou posterior autenticando com *short password hash*
+  * *Client* 4.1 ou posterior autenticando com *long password hash*
 
-The way in which the server generates password hashes for connected clients is affected by the width of the `Password` column and by the [`old_passwords`](server-system-variables.html#sysvar_old_passwords) system variable. A 4.1 or later server generates long hashes only if certain conditions are met: The `Password` column must be wide enough to hold long values and [`old_passwords`](server-system-variables.html#sysvar_old_passwords) must not be set to 1.
+A forma como o *server* gera *password hashes* para *clients* conectados é afetada pela largura da coluna `Password` e pela *system variable* [`old_passwords`](server-system-variables.html#sysvar_old_passwords). Um *server* 4.1 ou posterior gera *long hashes* apenas se certas condições forem atendidas: A coluna `Password` deve ser larga o suficiente para armazenar valores *long* e [`old_passwords`](server-system-variables.html#sysvar_old_passwords) não deve estar definido como 1.
 
-Those conditions apply as follows:
+Essas condições se aplicam da seguinte forma:
 
-* The `Password` column must be wide enough to hold long hashes (41 bytes). If the column has not been updated and still has the pre-4.1 width of 16 bytes, the server notices that long hashes cannot fit into it and generates only short hashes when a client performs password-changing operations using the [`PASSWORD()`](encryption-functions.html#function_password) function or a password-generating statement. This is the behavior that occurs if you have upgraded from a version of MySQL older than 4.1 to 4.1 or later but have not yet run the [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") program to widen the `Password` column.
+* A coluna `Password` deve ser larga o suficiente para conter *long hashes* (41 *bytes*). Se a coluna não tiver sido atualizada e ainda tiver a largura pré-4.1 de 16 *bytes*, o *server* percebe que os *long hashes* não cabem nela e gera apenas *short hashes* quando um *client* realiza operações de alteração de *password* usando a função [`PASSWORD()`](encryption-functions.html#function_password) ou uma *statement* de geração de *password*. Este é o comportamento que ocorre se você tiver feito *upgrade* de uma versão do MySQL mais antiga que 4.1 para 4.1 ou posterior, mas ainda não executou o programa [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") para alargar a coluna `Password`.
 
-* If the `Password` column is wide, it can store either short or long password hashes. In this case, the [`PASSWORD()`](encryption-functions.html#function_password) function and password-generating statements generate long hashes unless the server was started with the [`old_passwords`](server-system-variables.html#sysvar_old_passwords) system variable set to 1 to force the server to generate short password hashes instead.
+* Se a coluna `Password` for larga, ela pode armazenar *short* ou *long password hashes*. Neste caso, a função [`PASSWORD()`](encryption-functions.html#function_password) e as *statements* de geração de *password* geram *long hashes*, a menos que o *server* tenha sido iniciado com a *system variable* [`old_passwords`](server-system-variables.html#sysvar_old_passwords) definida como 1 para forçar o *server* a gerar *short password hashes* em vez disso.
 
-The purpose of the [`old_passwords`](server-system-variables.html#sysvar_old_passwords) system variable is to permit backward compatibility with pre-4.1 clients under circumstances where the server would otherwise generate long password hashes. The option does not affect authentication (4.1 and later clients can still use accounts that have long password hashes), but it does prevent creation of a long password hash in the `user` table as the result of a password-changing operation. Were that permitted to occur, the account could no longer be used by pre-4.1 clients. With [`old_passwords`](server-system-variables.html#sysvar_old_passwords) disabled, the following undesirable scenario is possible:
+O propósito da *system variable* [`old_passwords`](server-system-variables.html#sysvar_old_passwords) é permitir a compatibilidade retroativa com *clients* pré-4.1 em circunstâncias onde o *server* de outra forma geraria *long password hashes*. A opção não afeta a autenticação (*clients* 4.1 e posteriores ainda podem usar contas que têm *long password hashes*), mas impede a criação de um *long password hash* na tabela `user` como resultado de uma operação de alteração de *password*. Se isso fosse permitido, a conta não poderia mais ser usada por *clients* pré-4.1. Com [`old_passwords`](server-system-variables.html#sysvar_old_passwords) desativado, o seguinte cenário indesejável é possível:
 
-* An old pre-4.1 client connects to an account that has a short password hash.
+* Um *client* pré-4.1 antigo se conecta a uma conta que tem um *short password hash*.
 
-* The client changes its own password. With [`old_passwords`](server-system-variables.html#sysvar_old_passwords) disabled, this results in the account having a long password hash.
+* O *client* altera sua própria *password*. Com [`old_passwords`](server-system-variables.html#sysvar_old_passwords) desativado, isso resulta na conta passando a ter um *long password hash*.
 
-* The next time the old client attempts to connect to the account, it cannot, because the account has a long password hash that requires the 4.1 hashing method during authentication. (Once an account has a long password hash in the user table, only 4.1 and later clients can authenticate for it because pre-4.1 clients do not understand long hashes.)
+* Na próxima vez que o *client* antigo tentar se conectar à conta, ele não conseguirá, porque a conta tem um *long password hash* que exige o método de *hashing* 4.1 durante a autenticação. (Uma vez que uma conta tem um *long password hash* na tabela *user*, apenas *clients* 4.1 e posteriores podem se autenticar para ela, pois *clients* pré-4.1 não entendem *long hashes*.)
 
-This scenario illustrates that, if you must support older pre-4.1 clients, it is problematic to run a 4.1 or higher server without [`old_passwords`](server-system-variables.html#sysvar_old_passwords) set to 1. By running the server with [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords), password-changing operations do not generate long password hashes and thus do not cause accounts to become inaccessible to older clients. (Those clients cannot inadvertently lock themselves out by changing their password and ending up with a long password hash.)
+Este cenário ilustra que, se você precisar dar suporte a *clients* pré-4.1 mais antigos, é problemático executar um *server* 4.1 ou superior sem [`old_passwords`](server-system-variables.html#sysvar_old_passwords) definido como 1. Ao executar o *server* com [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords), as operações de alteração de *password* não geram *long password hashes* e, portanto, não fazem com que as contas se tornem inacessíveis para *clients* mais antigos. (Esses *clients* não podem se bloquear inadvertidamente alterando sua *password* e terminando com um *long password hash*.)
 
-The downside of [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) is that any passwords created or changed use short hashes, even for 4.1 or later clients. Thus, you lose the additional security provided by long password hashes. To create an account that has a long hash (for example, for use by 4.1 clients) or to change an existing account to use a long password hash, an administrator can set the session value of [`old_passwords`](server-system-variables.html#sysvar_old_passwords) set to 0 while leaving the global value set to 1:
+A desvantagem de [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) é que quaisquer *passwords* criadas ou alteradas usam *short hashes*, mesmo para *clients* 4.1 ou posteriores. Assim, você perde a segurança adicional fornecida pelos *long password hashes*. Para criar uma conta que tenha um *long hash* (por exemplo, para uso por *clients* 4.1) ou para alterar uma conta existente para usar um *long password hash*, um administrador pode definir o valor de sessão de [`old_passwords`](server-system-variables.html#sysvar_old_passwords) como 0, mantendo o valor global definido como 1:
 
 ```sql
 mysql> SET @@SESSION.old_passwords = 0;
@@ -155,75 +154,75 @@ mysql> SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-The following scenarios are possible in MySQL 4.1 or later. The factors are whether the `Password` column is short or long, and, if long, whether the server is started with [`old_passwords`](server-system-variables.html#sysvar_old_passwords) enabled or disabled.
+Os seguintes cenários são possíveis no MySQL 4.1 ou posterior. Os fatores são se a coluna `Password` é *short* ou *long* e, se for *long*, se o *server* é iniciado com [`old_passwords`](server-system-variables.html#sysvar_old_passwords) ativado ou desativado.
 
-**Scenario 1:** Short `Password` column in user table:
+**Cenário 1:** Coluna `Password` *short* na tabela *user*:
 
-* Only short hashes can be stored in the `Password` column.
+* Apenas *short hashes* podem ser armazenados na coluna `Password`.
 
-* The server uses only short hashes during client authentication.
+* O *server* usa apenas *short hashes* durante a autenticação do *client*.
 
-* For connected clients, password hash-generating operations involving the [`PASSWORD()`](encryption-functions.html#function_password) function or password-generating statements use short hashes exclusively. Any change to an account's password results in that account having a short password hash.
+* Para *clients* conectados, as operações de geração de *password hash* que envolvem a função [`PASSWORD()`](encryption-functions.html#function_password) ou *statements* de geração de *password* usam *short hashes* exclusivamente. Qualquer alteração na *password* de uma conta resulta nessa conta ter um *short password hash*.
 
-* The value of [`old_passwords`](server-system-variables.html#sysvar_old_passwords) is irrelevant because with a short `Password` column, the server generates only short password hashes anyway.
+* O valor de [`old_passwords`](server-system-variables.html#sysvar_old_passwords) é irrelevante, pois com uma coluna `Password` *short*, o *server* gera apenas *short password hashes* de qualquer maneira.
 
-This scenario occurs when a pre-4.1 MySQL installation has been upgraded to 4.1 or later but [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") has not been run to upgrade the system tables in the `mysql` database. (This is not a recommended configuration because it does not permit use of more secure 4.1 password hashing.)
+Este cenário ocorre quando uma instalação MySQL pré-4.1 foi atualizada para 4.1 ou posterior, mas [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") não foi executado para atualizar as tabelas do sistema no *Database* `mysql`. (Esta não é uma configuração recomendada porque não permite o uso do *password hashing* 4.1 mais seguro.)
 
-**Scenario 2:** Long `Password` column; server started with [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords):
+**Cenário 2:** Coluna `Password` *long*; *server* iniciado com [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords):
 
-* Short or long hashes can be stored in the `Password` column.
+* *Short* ou *long hashes* podem ser armazenados na coluna `Password`.
 
-* 4.1 and later clients can authenticate for accounts that have short or long hashes.
+* *Clients* 4.1 e posteriores podem se autenticar para contas que têm *short* ou *long hashes*.
 
-* Pre-4.1 clients can authenticate only for accounts that have short hashes.
+* *Clients* pré-4.1 podem se autenticar apenas para contas que têm *short hashes*.
 
-* For connected clients, password hash-generating operations involving the [`PASSWORD()`](encryption-functions.html#function_password) function or password-generating statements use short hashes exclusively. Any change to an account's password results in that account having a short password hash.
+* Para *clients* conectados, as operações de geração de *password hash* que envolvem a função [`PASSWORD()`](encryption-functions.html#function_password) ou *statements* de geração de *password* usam *short hashes* exclusivamente. Qualquer alteração na *password* de uma conta resulta nessa conta ter um *short password hash*.
 
-In this scenario, newly created accounts have short password hashes because [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) prevents generation of long hashes. Also, if you create an account with a long hash before setting [`old_passwords`](server-system-variables.html#sysvar_old_passwords) to 1, changing the account's password while [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) results in the account being given a short password, causing it to lose the security benefits of a longer hash.
+Neste cenário, as contas recém-criadas têm *short password hashes* porque [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) impede a geração de *long hashes*. Além disso, se você criar uma conta com um *long hash* antes de definir [`old_passwords`](server-system-variables.html#sysvar_old_passwords) como 1, a alteração da *password* da conta enquanto [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) resulta na conta receber uma *password* *short*, fazendo com que ela perca os benefícios de segurança de um *hash* mais longo.
 
-To create a new account that has a long password hash, or to change the password of any existing account to use a long hash, first set the session value of [`old_passwords`](server-system-variables.html#sysvar_old_passwords) set to 0 while leaving the global value set to 1, as described previously.
+Para criar uma nova conta que tenha um *long password hash*, ou para alterar a *password* de qualquer conta existente para usar um *long hash*, primeiro defina o valor de sessão de [`old_passwords`](server-system-variables.html#sysvar_old_passwords) como 0, mantendo o valor global definido como 1, conforme descrito anteriormente.
 
-In this scenario, the server has an up to date `Password` column, but is running with the default password hashing method set to generate pre-4.1 hash values. This is not a recommended configuration but may be useful during a transitional period in which pre-4.1 clients and passwords are upgraded to 4.1 or later. When that has been done, it is preferable to run the server with [`old_passwords=0`](server-system-variables.html#sysvar_old_passwords) and [`secure_auth=1`](server-system-variables.html#sysvar_secure_auth).
+Neste cenário, o *server* tem uma coluna `Password` atualizada, mas está sendo executado com o método de *password hashing* padrão definido para gerar *hash values* pré-4.1. Esta não é uma configuração recomendada, mas pode ser útil durante um período de transição no qual *clients* e *passwords* pré-4.1 são atualizados para 4.1 ou posterior. Quando isso for feito, é preferível executar o *server* com [`old_passwords=0`](server-system-variables.html#sysvar_old_passwords) e [`secure_auth=1`](server-system-variables.html#sysvar_secure_auth).
 
-**Scenario 3:** Long `Password` column; server started with [`old_passwords=0`](server-system-variables.html#sysvar_old_passwords):
+**Cenário 3:** Coluna `Password` *long*; *server* iniciado com [`old_passwords=0`](server-system-variables.html#sysvar_old_passwords):
 
-* Short or long hashes can be stored in the `Password` column.
+* *Short* ou *long hashes* podem ser armazenados na coluna `Password`.
 
-* 4.1 and later clients can authenticate using accounts that have short or long hashes.
+* *Clients* 4.1 e posteriores podem se autenticar usando contas que têm *short* ou *long hashes*.
 
-* Pre-4.1 clients can authenticate only using accounts that have short hashes.
+* *Clients* pré-4.1 podem se autenticar apenas usando contas que têm *short hashes*.
 
-* For connected clients, password hash-generating operations involving the [`PASSWORD()`](encryption-functions.html#function_password) function or password-generating statements use long hashes exclusively. A change to an account's password results in that account having a long password hash.
+* Para *clients* conectados, as operações de geração de *password hash* que envolvem a função [`PASSWORD()`](encryption-functions.html#function_password) ou *statements* de geração de *password* usam *long hashes* exclusivamente. Uma alteração na *password* de uma conta resulta nessa conta ter um *long password hash*.
 
-As indicated earlier, a danger in this scenario is that it is possible for accounts that have a short password hash to become inaccessible to pre-4.1 clients. A change to such an account's password made using the [`PASSWORD()`](encryption-functions.html#function_password) function or a password-generating statement results in the account being given a long password hash. From that point on, no pre-4.1 client can connect to the server using that account. The client must upgrade to 4.1 or later.
+Conforme indicado anteriormente, um perigo neste cenário é que é possível que contas que têm um *short password hash* se tornem inacessíveis para *clients* pré-4.1. Uma alteração na *password* de tal conta feita usando a função [`PASSWORD()`](encryption-functions.html#function_password) ou uma *statement* de geração de *password* resulta na conta receber um *long password hash*. A partir desse ponto, nenhum *client* pré-4.1 pode se conectar ao *server* usando essa conta. O *client* deve fazer *upgrade* para 4.1 ou posterior.
 
-If this is a problem, you can change a password in a special way. For example, normally you use [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") as follows to change an account password:
+Se isso for um problema, você pode alterar uma *password* de uma maneira especial. Por exemplo, normalmente você usa [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") da seguinte forma para alterar a *password* de uma conta:
 
 ```sql
 SET PASSWORD FOR 'some_user'@'some_host' = PASSWORD('password');
 ```
 
-To change the password but create a short hash, use the `OLD_PASSWORD()` function instead:
+Para alterar a *password*, mas criar um *short hash*, use a função `OLD_PASSWORD()` em vez disso:
 
 ```sql
 SET PASSWORD FOR 'some_user'@'some_host' = OLD_PASSWORD('password');
 ```
 
-`OLD_PASSWORD()` is useful for situations in which you explicitly want to generate a short hash.
+`OLD_PASSWORD()` é útil para situações em que você deseja gerar explicitamente um *short hash*.
 
-The disadvantages for each of the preceding scenarios may be summarized as follows:
+As desvantagens para cada um dos cenários anteriores podem ser resumidas da seguinte forma:
 
-In scenario 1, you cannot take advantage of longer hashes that provide more secure authentication.
+No cenário 1, você não pode tirar proveito de *hashes* mais longos que fornecem autenticação mais segura.
 
-In scenario 2, [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) prevents accounts with short hashes from becoming inaccessible, but password-changing operations cause accounts with long hashes to revert to short hashes unless you take care to change the session value of [`old_passwords`](server-system-variables.html#sysvar_old_passwords) to 0 first.
+No cenário 2, [`old_passwords=1`](server-system-variables.html#sysvar_old_passwords) impede que contas com *short hashes* se tornem inacessíveis, mas as operações de alteração de *password* fazem com que contas com *long hashes* revertam para *short hashes*, a menos que você tome cuidado para alterar o valor de sessão de [`old_passwords`](server-system-variables.html#sysvar_old_passwords) para 0 primeiro.
 
-In scenario 3, accounts with short hashes become inaccessible to pre-4.1 clients if you change their passwords without explicitly using `OLD_PASSWORD()`.
+No cenário 3, contas com *short hashes* tornam-se inacessíveis para *clients* pré-4.1 se você alterar suas *passwords* sem usar explicitamente `OLD_PASSWORD()`.
 
-The best way to avoid compatibility problems related to short password hashes is to not use them:
+A melhor maneira de evitar problemas de compatibilidade relacionados a *short password hashes* é não usá-los:
 
-* Upgrade all client programs to MySQL 4.1 or later.
-* Run the server with [`old_passwords=0`](server-system-variables.html#sysvar_old_passwords).
+* Faça o *upgrade* de todos os programas *client* para MySQL 4.1 ou posterior.
+* Execute o *server* com [`old_passwords=0`](server-system-variables.html#sysvar_old_passwords).
 
-* Reset the password for any account with a short password hash to use a long password hash.
+* Redefina a *password* para qualquer conta com um *short password hash* para usar um *long password hash*.
 
-* For additional security, run the server with [`secure_auth=1`](server-system-variables.html#sysvar_secure_auth).
+* Para segurança adicional, execute o *server* com [`secure_auth=1`](server-system-variables.html#sysvar_secure_auth).

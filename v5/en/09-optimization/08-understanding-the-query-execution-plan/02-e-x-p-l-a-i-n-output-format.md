@@ -1,209 +1,209 @@
-### 8.8.2 EXPLAIN Output Format
+### 8.8.2 Formato de Saída do EXPLAIN
 
-The `EXPLAIN` statement provides information about how MySQL executes statements. `EXPLAIN` works with `SELECT`, `DELETE`, `INSERT`, `REPLACE`, and `UPDATE` statements.
+O comando `EXPLAIN` fornece informações sobre como o MySQL executa comandos. O `EXPLAIN` funciona com comandos `SELECT`, `DELETE`, `INSERT`, `REPLACE` e `UPDATE`.
 
-`EXPLAIN` returns a row of information for each table used in the `SELECT` statement. It lists the tables in the output in the order that MySQL would read them while processing the statement. MySQL resolves all joins using a nested-loop join method. This means that MySQL reads a row from the first table, and then finds a matching row in the second table, the third table, and so on. When all tables are processed, MySQL outputs the selected columns and backtracks through the table list until a table is found for which there are more matching rows. The next row is read from this table and the process continues with the next table.
+O `EXPLAIN` retorna uma linha de informação para cada tabela usada no comando `SELECT`. Ele lista as tabelas na saída na ordem em que o MySQL as leria durante o processamento do comando. O MySQL resolve todos os JOINs usando um método de JOIN de loop aninhado (nested-loop join). Isso significa que o MySQL lê uma linha da primeira tabela, depois encontra uma linha correspondente na segunda tabela, na terceira tabela e assim por diante. Quando todas as tabelas são processadas, o MySQL exibe as colunas selecionadas e retrocede pela lista de tabelas até que uma tabela seja encontrada para a qual existam mais linhas correspondentes. A próxima linha é lida desta tabela e o processo continua com a próxima tabela.
 
-`EXPLAIN` output includes partition information. Also, for `SELECT` statements, `EXPLAIN` generates extended information that can be displayed with `SHOW WARNINGS` following the `EXPLAIN` (see Section 8.8.3, “Extended EXPLAIN Output Format”).
+A saída do `EXPLAIN` inclui informações de Partition. Além disso, para comandos `SELECT`, o `EXPLAIN` gera informações estendidas que podem ser exibidas com `SHOW WARNINGS` após o `EXPLAIN` (veja Seção 8.8.3, “Formato de Saída Estendida do EXPLAIN”).
 
-Note
+Nota
 
-In older MySQL releases, partition and extended information was produced using `EXPLAIN PARTITIONS` and `EXPLAIN EXTENDED`. Those syntaxes are still recognized for backward compatibility but partition and extended output is now enabled by default, so the `PARTITIONS` and `EXTENDED` keywords are superfluous and deprecated. Their use results in a warning; expect them to be removed from `EXPLAIN` syntax in a future MySQL release.
+Em versões mais antigas do MySQL, as informações de Partition e estendidas eram produzidas usando `EXPLAIN PARTITIONS` e `EXPLAIN EXTENDED`. Essas sintaxes ainda são reconhecidas para compatibilidade com versões anteriores, mas a saída de Partition e estendida agora está habilitada por padrão, então as palavras-chave `PARTITIONS` e `EXTENDED` são supérfluas e estão depreciadas. O uso delas resulta em um aviso; espera-se que sejam removidas da sintaxe `EXPLAIN` em um futuro lançamento do MySQL.
 
-You cannot use the deprecated `PARTITIONS` and `EXTENDED` keywords together in the same `EXPLAIN` statement. In addition, neither of these keywords can be used together with the `FORMAT` option.
+Você não pode usar as palavras-chave depreciadas `PARTITIONS` e `EXTENDED` juntas no mesmo comando `EXPLAIN`. Além disso, nenhuma dessas palavras-chave pode ser usada em conjunto com a opção `FORMAT`.
 
-Note
+Nota
 
-MySQL Workbench has a Visual Explain capability that provides a visual representation of `EXPLAIN` output. See Tutorial: Using Explain to Improve Query Performance.
+O MySQL Workbench possui um recurso Visual Explain que fornece uma representação visual da saída do `EXPLAIN`. Veja Tutorial: Usando Explain para Melhorar a Performance da Query.
 
-* EXPLAIN Output Columns
-* EXPLAIN Join Types
-* EXPLAIN Extra Information
-* EXPLAIN Output Interpretation
+* Colunas de Saída do EXPLAIN
+* Tipos de JOIN do EXPLAIN
+* Informações Extras do EXPLAIN
+* Interpretação da Saída do EXPLAIN
 
-#### EXPLAIN Output Columns
+#### Colunas de Saída do EXPLAIN
 
-This section describes the output columns produced by `EXPLAIN`. Later sections provide additional information about the `type` and `Extra` columns.
+Esta seção descreve as colunas de saída produzidas pelo `EXPLAIN`. As seções posteriores fornecem informações adicionais sobre as colunas `type` e `Extra`.
 
-Each output row from `EXPLAIN` provides information about one table. Each row contains the values summarized in Table 8.1, “EXPLAIN Output Columns”, and described in more detail following the table. Column names are shown in the table's first column; the second column provides the equivalent property name shown in the output when `FORMAT=JSON` is used.
+Cada linha de saída do `EXPLAIN` fornece informações sobre uma tabela. Cada linha contém os valores resumidos na Tabela 8.1, “Colunas de Saída do EXPLAIN”, e descritos em mais detalhes após a tabela. Os nomes das colunas são mostrados na primeira coluna da tabela; a segunda coluna fornece o nome de propriedade equivalente mostrado na saída quando `FORMAT=JSON` é usado.
 
-**Table 8.1 EXPLAIN Output Columns**
+**Tabela 8.1 Colunas de Saída do EXPLAIN**
 
-<table summary="Output columns produced by the EXPLAIN statement.">
+<table summary="Colunas de saída produzidas pelo comando EXPLAIN.">
    <thead>
       <tr>
-         <th>Column</th>
-         <th>JSON Name</th>
-         <th>Meaning</th>
+         <th>Coluna</th>
+         <th>Nome JSON</th>
+         <th>Significado</th>
       </tr>
    </thead>
    <tbody>
       <tr>
          <th><code>id</code></th>
          <td><code>select_id</code></td>
-         <td>The <code>SELECT</code> identifier</td>
+         <td>O identificador do <code>SELECT</code></td>
       </tr>
       <tr>
          <th><code>select_type</code></th>
          <td>None</td>
-         <td>The <code>SELECT</code> type</td>
+         <td>O tipo de <code>SELECT</code></td>
       </tr>
       <tr>
          <th><code>table</code></th>
          <td><code>table_name</code></td>
-         <td>The table for the output row</td>
+         <td>A tabela para a linha de saída</td>
       </tr>
       <tr>
          <th><code>partitions</code></th>
          <td><code>partitions</code></td>
-         <td>The matching partitions</td>
+         <td>As Partitions correspondentes</td>
       </tr>
       <tr>
          <th><code>type</code></th>
          <td><code>access_type</code></td>
-         <td>The join type</td>
+         <td>O tipo de JOIN</td>
       </tr>
       <tr>
          <th><code>possible_keys</code></th>
          <td><code>possible_keys</code></td>
-         <td>The possible indexes to choose</td>
+         <td>Os Indexes possíveis a escolher</td>
       </tr>
       <tr>
          <th><code>key</code></th>
          <td><code>key</code></td>
-         <td>The index actually chosen</td>
+         <td>O Index realmente escolhido</td>
       </tr>
       <tr>
          <th><code>key_len</code></th>
          <td><code>key_length</code></td>
-         <td>The length of the chosen key</td>
+         <td>O comprimento da Key escolhida</td>
       </tr>
       <tr>
          <th><code>ref</code></th>
          <td><code>ref</code></td>
-         <td>The columns compared to the index</td>
+         <td>As colunas comparadas ao Index</td>
       </tr>
       <tr>
          <th><code>rows</code></th>
          <td><code>rows</code></td>
-         <td>Estimate of rows to be examined</td>
+         <td>Estimativa de linhas a serem examinadas</td>
       </tr>
       <tr>
          <th><code>filtered</code></th>
          <td><code>filtered</code></td>
-         <td>Percentage of rows filtered by table condition</td>
+         <td>Porcentagem de linhas filtradas pela condição da tabela</td>
       </tr>
       <tr>
          <th><code>Extra</code></th>
          <td>None</td>
-         <td>Additional information</td>
+         <td>Informação adicional</td>
       </tr>
    </tbody>
 </table>
 
-Note
+Nota
 
-JSON properties which are `NULL` are not displayed in JSON-formatted `EXPLAIN` output.
+Propriedades JSON que são `NULL` não são exibidas na saída `EXPLAIN` formatada em JSON.
 
-* `id` (JSON name: `select_id`)
+* `id` (Nome JSON: `select_id`)
 
-  The `SELECT` identifier. This is the sequential number of the `SELECT` within the query. The value can be `NULL` if the row refers to the union result of other rows. In this case, the `table` column shows a value like `<unionM,N>` to indicate that the row refers to the union of the rows with `id` values of *`M`* and *`N`*.
+  O identificador do `SELECT`. Este é o número sequencial do `SELECT` dentro da Query. O valor pode ser `NULL` se a linha se referir ao resultado da `UNION` de outras linhas. Neste caso, a coluna `table` mostra um valor como `<unionM,N>` para indicar que a linha se refere à `UNION` das linhas com valores `id` de *`M`* e *`N`*.
 
-* `select_type` (JSON name: none)
+* `select_type` (Nome JSON: nenhum)
 
-  The type of `SELECT`, which can be any of those shown in the following table. A JSON-formatted `EXPLAIN` exposes the `SELECT` type as a property of a `query_block`, unless it is `SIMPLE` or `PRIMARY`. The JSON names (where applicable) are also shown in the table.
+  O tipo de `SELECT`, que pode ser qualquer um dos mostrados na tabela a seguir. Um `EXPLAIN` formatado em JSON expõe o tipo de `SELECT` como uma propriedade de um `query_block`, a menos que seja `SIMPLE` ou `PRIMARY`. Os nomes JSON (quando aplicável) também são mostrados na tabela.
 
-  <table summary="select_type values and the meaning of each value."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th><code>select_type</code> Value</th> <th>JSON Name</th> <th>Meaning</th> </tr></thead><tbody><tr> <th><code>SIMPLE</code></th> <td>None</td> <td>Simple <code>SELECT</code> (not using <code>UNION</code> or subqueries)</td> </tr><tr> <th><code>PRIMARY</code></th> <td>None</td> <td>Outermost <code>SELECT</code></td> </tr><tr> <th><code>UNION</code></th> <td>None</td> <td>Second or later <code>SELECT</code> statement in a <code>UNION</code></td> </tr><tr> <th><code>DEPENDENT UNION</code></th> <td><code>dependent</code> (<code>true</code>)</td> <td>Second or later <code>SELECT</code> statement in a <code>UNION</code>, dependent on outer query</td> </tr><tr> <th><code>UNION RESULT</code></th> <td><code>union_result</code></td> <td>Result of a <code>UNION</code>.</td> </tr><tr> <th><code>SUBQUERY</code></th> <td>None</td> <td>First <code>SELECT</code> in subquery</td> </tr><tr> <th><code>DEPENDENT SUBQUERY</code></th> <td><code>dependent</code> (<code>true</code>)</td> <td>First <code>SELECT</code> in subquery, dependent on outer query</td> </tr><tr> <th><code>DERIVED</code></th> <td>None</td> <td>Derived table</td> </tr><tr> <th><code>MATERIALIZED</code></th> <td><code>materialized_from_subquery</code></td> <td>Materialized subquery</td> </tr><tr> <th><code>UNCACHEABLE SUBQUERY</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>A subquery for which the result cannot be cached and must be re-evaluated for each row of the outer query</td> </tr><tr> <th><code>UNCACHEABLE UNION</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>The second or later select in a <code>UNION</code> that belongs to an uncacheable subquery (see <code>UNCACHEABLE SUBQUERY</code>)</td> </tr></tbody></table>
+  <table summary="Valores de select_type e o significado de cada valor."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th>Valor <code>select_type</code></th> <th>Nome JSON</th> <th>Significado</th> </tr></thead><tbody><tr> <th><code>SIMPLE</code></th> <td>None</td> <td><code>SELECT</code> simples (não usando <code>UNION</code> ou subqueries)</td> </tr><tr> <th><code>PRIMARY</code></th> <td>None</td> <td><code>SELECT</code> mais externo</td> </tr><tr> <th><code>UNION</code></th> <td>None</td> <td>Segundo ou posterior comando <code>SELECT</code> em uma <code>UNION</code></td> </tr><tr> <th><code>DEPENDENT UNION</code></th> <td><code>dependent</code> (<code>true</code>)</td> <td>Segundo ou posterior comando <code>SELECT</code> em uma <code>UNION</code>, dependente da Query externa</td> </tr><tr> <th><code>UNION RESULT</code></th> <td><code>union_result</code></td> <td>Resultado de uma <code>UNION</code>.</td> </tr><tr> <th><code>SUBQUERY</code></th> <td>None</td> <td>Primeiro <code>SELECT</code> em subquery</td> </tr><tr> <th><code>DEPENDENT SUBQUERY</code></th> <td><code>dependent</code> (<code>true</code>)</td> <td>Primeiro <code>SELECT</code> em subquery, dependente da Query externa</td> </tr><tr> <th><code>DERIVED</code></th> <td>None</td> <td>Tabela derivada (Derived table)</td> </tr><tr> <th><code>MATERIALIZED</code></th> <td><code>materialized_from_subquery</code></td> <td>Subquery materializada</td> </tr><tr> <th><code>UNCACHEABLE SUBQUERY</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>Uma subquery cujo resultado não pode ser armazenado em cache e deve ser reavaliada para cada linha da Query externa</td> </tr><tr> <th><code>UNCACHEABLE UNION</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>O segundo ou posterior SELECT em uma <code>UNION</code> que pertence a uma subquery não armazenável em cache (veja <code>UNCACHEABLE SUBQUERY</code>)</td> </tr></tbody></table>
 
-  `DEPENDENT` typically signifies the use of a correlated subquery. See Section 13.2.10.7, “Correlated Subqueries”.
+  `DEPENDENT` tipicamente significa o uso de uma subquery correlacionada. Veja Seção 13.2.10.7, “Subqueries Correlacionadas”.
 
-  `DEPENDENT SUBQUERY` evaluation differs from `UNCACHEABLE SUBQUERY` evaluation. For `DEPENDENT SUBQUERY`, the subquery is re-evaluated only once for each set of different values of the variables from its outer context. For `UNCACHEABLE SUBQUERY`, the subquery is re-evaluated for each row of the outer context.
+  A avaliação de `DEPENDENT SUBQUERY` difere da avaliação de `UNCACHEABLE SUBQUERY`. Para `DEPENDENT SUBQUERY`, a subquery é reavaliada apenas uma vez para cada conjunto de valores diferentes das variáveis de seu contexto externo. Para `UNCACHEABLE SUBQUERY`, a subquery é reavaliada para cada linha do contexto externo.
 
-  Cacheability of subqueries differs from caching of query results in the query cache (which is described in Section 8.10.3.1, “How the Query Cache Operates”). Subquery caching occurs during query execution, whereas the query cache is used to store results only after query execution finishes.
+  A capacidade de cache de subqueries difere do cache de resultados de Query no Query cache (descrito na Seção 8.10.3.1, “Como o Query Cache Opera”). O cache de subquery ocorre durante a execução da Query, enquanto o Query cache é usado para armazenar resultados somente após a conclusão da execução da Query.
 
-  When you specify `FORMAT=JSON` with `EXPLAIN`, the output has no single property directly equivalent to `select_type`; the `query_block` property corresponds to a given `SELECT`. Properties equivalent to most of the `SELECT` subquery types just shown are available (an example being `materialized_from_subquery` for `MATERIALIZED`), and are displayed when appropriate. There are no JSON equivalents for `SIMPLE` or `PRIMARY`.
+  Quando você especifica `FORMAT=JSON` com `EXPLAIN`, a saída não tem uma única propriedade diretamente equivalente a `select_type`; a propriedade `query_block` corresponde a um determinado `SELECT`. Propriedades equivalentes à maioria dos tipos de subquery `SELECT` acabam de ser mostradas e estão disponíveis (um exemplo é `materialized_from_subquery` para `MATERIALIZED`) e são exibidas quando apropriado. Não há equivalentes JSON para `SIMPLE` ou `PRIMARY`.
 
-  The `select_type` value for non-`SELECT` statements displays the statement type for affected tables. For example, `select_type` is `DELETE` for `DELETE` statements.
+  O valor `select_type` para comandos que não são `SELECT` exibe o tipo de comando para as tabelas afetadas. Por exemplo, `select_type` é `DELETE` para comandos `DELETE`.
 
-* `table` (JSON name: `table_name`)
+* `table` (Nome JSON: `table_name`)
 
-  The name of the table to which the row of output refers. This can also be one of the following values:
+  O nome da tabela à qual a linha de saída se refere. Este também pode ser um dos seguintes valores:
 
-  + `<unionM,N>`: The row refers to the union of the rows with `id` values of *`M`* and *`N`*.
+  + `<unionM,N>`: A linha se refere à `UNION` das linhas com valores `id` de *`M`* e *`N`*.
 
-  + `<derivedN>`: The row refers to the derived table result for the row with an `id` value of *`N`*. A derived table may result, for example, from a subquery in the `FROM` clause.
+  + `<derivedN>`: A linha se refere ao resultado da tabela derivada para a linha com um valor `id` de *`N`*. Uma tabela derivada pode resultar, por exemplo, de uma subquery na cláusula `FROM`.
 
-  + `<subqueryN>`: The row refers to the result of a materialized subquery for the row with an `id` value of *`N`*. See Section 8.2.2.2, “Optimizing Subqueries with Materialization”.
+  + `<subqueryN>`: A linha se refere ao resultado de uma subquery materializada para a linha com um valor `id` de *`N`*. Veja Seção 8.2.2.2, “Otimizando Subqueries com Materialização”.
 
-* `partitions` (JSON name: `partitions`)
+* `partitions` (Nome JSON: `partitions`)
 
-  The partitions from which records would be matched by the query. The value is `NULL` for nonpartitioned tables. See Section 22.3.5, “Obtaining Information About Partitions”.
+  As Partitions das quais os registros seriam correspondidos pela Query. O valor é `NULL` para tabelas não particionadas. Veja Seção 22.3.5, “Obtendo Informações Sobre Partitions”.
 
-* `type` (JSON name: `access_type`)
+* `type` (Nome JSON: `access_type`)
 
-  The join type. For descriptions of the different types, see `EXPLAIN` Join Types.
+  O tipo de JOIN. Para descrições dos diferentes tipos, veja Tipos de JOIN do EXPLAIN.
 
-* `possible_keys` (JSON name: `possible_keys`)
+* `possible_keys` (Nome JSON: `possible_keys`)
 
-  The `possible_keys` column indicates the indexes from which MySQL can choose to find the rows in this table. Note that this column is totally independent of the order of the tables as displayed in the output from `EXPLAIN`. That means that some of the keys in `possible_keys` might not be usable in practice with the generated table order.
+  A coluna `possible_keys` indica os Indexes a partir dos quais o MySQL pode escolher para encontrar as linhas nesta tabela. Observe que esta coluna é totalmente independente da ordem das tabelas exibidas na saída do `EXPLAIN`. Isso significa que algumas das Keys em `possible_keys` podem não ser utilizáveis na prática com a ordem de tabela gerada.
 
-  If this column is `NULL` (or undefined in JSON-formatted output), there are no relevant indexes. In this case, you may be able to improve the performance of your query by examining the `WHERE` clause to check whether it refers to some column or columns that would be suitable for indexing. If so, create an appropriate index and check the query with `EXPLAIN` again. See Section 13.1.8, “ALTER TABLE Statement”.
+  Se esta coluna for `NULL` (ou indefinida na saída formatada em JSON), não há Indexes relevantes. Neste caso, você pode melhorar a performance da sua Query examinando a cláusula `WHERE` para verificar se ela se refere a alguma coluna ou colunas que seriam adequadas para Indexing. Se sim, crie um Index apropriado e verifique a Query com `EXPLAIN` novamente. Veja Seção 13.1.8, “Comando ALTER TABLE”.
 
-  To see what indexes a table has, use `SHOW INDEX FROM tbl_name`.
+  Para ver quais Indexes uma tabela possui, use `SHOW INDEX FROM tbl_name`.
 
-* `key` (JSON name: `key`)
+* `key` (Nome JSON: `key`)
 
-  The `key` column indicates the key (index) that MySQL actually decided to use. If MySQL decides to use one of the `possible_keys` indexes to look up rows, that index is listed as the key value.
+  A coluna `key` indica a Key (Index) que o MySQL realmente decidiu usar. Se o MySQL decidir usar um dos Indexes `possible_keys` para procurar linhas, esse Index será listado como o valor Key.
 
-  It is possible for `key` to name an index that is not present in the `possible_keys` value. This can happen if none of the `possible_keys` indexes are suitable for looking up rows, but all the columns selected by the query are columns of some other index. That is, the named index covers the selected columns, so although it is not used to determine which rows to retrieve, an index scan is more efficient than a data row scan.
+  É possível que `key` nomeie um Index que não esteja presente no valor `possible_keys`. Isso pode acontecer se nenhum dos Indexes `possible_keys` for adequado para procurar linhas, mas todas as colunas selecionadas pela Query forem colunas de algum outro Index. Ou seja, o Index nomeado cobre as colunas selecionadas, então, embora não seja usado para determinar quais linhas recuperar, uma varredura de Index (Index scan) é mais eficiente do que uma varredura de linha de dados.
 
-  For `InnoDB`, a secondary index might cover the selected columns even if the query also selects the primary key because `InnoDB` stores the primary key value with each secondary index. If `key` is `NULL`, MySQL found no index to use for executing the query more efficiently.
+  Para `InnoDB`, um Index secundário pode cobrir as colunas selecionadas, mesmo que a Query também selecione a Primary Key, porque o `InnoDB` armazena o valor da Primary Key com cada Index secundário. Se `key` for `NULL`, o MySQL não encontrou nenhum Index para usar para executar a Query de forma mais eficiente.
 
-  To force MySQL to use or ignore an index listed in the `possible_keys` column, use `FORCE INDEX`, `USE INDEX`, or `IGNORE INDEX` in your query. See Section 8.9.4, “Index Hints”.
+  Para forçar o MySQL a usar ou ignorar um Index listado na coluna `possible_keys`, use `FORCE INDEX`, `USE INDEX` ou `IGNORE INDEX` na sua Query. Veja Seção 8.9.4, “Dicas de Index”.
 
-  For `MyISAM` tables, running `ANALYZE TABLE` helps the optimizer choose better indexes. For `MyISAM` tables, **myisamchk --analyze** does the same. See Section 13.7.2.1, “ANALYZE TABLE Statement”, and Section 7.6, “MyISAM Table Maintenance and Crash Recovery”.
+  Para tabelas `MyISAM`, executar `ANALYZE TABLE` ajuda o Optimizer a escolher Indexes melhores. Para tabelas `MyISAM`, **myisamchk --analyze** faz o mesmo. Veja Seção 13.7.2.1, “Comando ANALYZE TABLE”, e Seção 7.6, “Manutenção de Tabela MyISAM e Recuperação de Falhas”.
 
-* `key_len` (JSON name: `key_length`)
+* `key_len` (Nome JSON: `key_length`)
 
-  The `key_len` column indicates the length of the key that MySQL decided to use. The value of `key_len` enables you to determine how many parts of a multiple-part key MySQL actually uses. If the `key` column says `NULL`, the `key_len` column also says `NULL`.
+  A coluna `key_len` indica o comprimento da Key que o MySQL decidiu usar. O valor de `key_len` permite determinar quantas partes de uma Key composta o MySQL realmente usa. Se a coluna `key` disser `NULL`, a coluna `key_len` também dirá `NULL`.
 
-  Due to the key storage format, the key length is one greater for a column that can be `NULL` than for a `NOT NULL` column.
+  Devido ao formato de armazenamento da Key, o comprimento da Key é um a mais para uma coluna que pode ser `NULL` do que para uma coluna `NOT NULL`.
 
-* `ref` (JSON name: `ref`)
+* `ref` (Nome JSON: `ref`)
 
-  The `ref` column shows which columns or constants are compared to the index named in the `key` column to select rows from the table.
+  A coluna `ref` mostra quais colunas ou constantes são comparadas ao Index nomeado na coluna `key` para selecionar linhas da tabela.
 
-  If the value is `func`, the value used is the result of some function. To see which function, use `SHOW WARNINGS` following `EXPLAIN` to see the extended `EXPLAIN` output. The function might actually be an operator such as an arithmetic operator.
+  Se o valor for `func`, o valor usado é o resultado de alguma função. Para ver qual função, use `SHOW WARNINGS` após `EXPLAIN` para ver a saída estendida do `EXPLAIN`. A função pode ser, na verdade, um operador, como um operador aritmético.
 
-* `rows` (JSON name: `rows`)
+* `rows` (Nome JSON: `rows`)
 
-  The `rows` column indicates the number of rows MySQL believes it must examine to execute the query.
+  A coluna `rows` indica o número de linhas que o MySQL acredita que deve examinar para executar a Query.
 
-  For `InnoDB` tables, this number is an estimate, and may not always be exact.
+  Para tabelas `InnoDB`, este número é uma estimativa e nem sempre é exato.
 
-* `filtered` (JSON name: `filtered`)
+* `filtered` (Nome JSON: `filtered`)
 
-  The `filtered` column indicates an estimated percentage of table rows filtered by the table condition. The maximum value is 100, which means no filtering of rows occurred. Values decreasing from 100 indicate increasing amounts of filtering. `rows` shows the estimated number of rows examined and `rows` × `filtered` shows the number of rows joined with the following table. For example, if `rows` is 1000 and `filtered` is 50.00 (50%), the number of rows to be joined with the following table is 1000 × 50% = 500.
+  A coluna `filtered` indica uma porcentagem estimada de linhas da tabela filtradas pela condição da tabela. O valor máximo é 100, o que significa que não ocorreu nenhuma filtragem de linhas. Valores decrescentes a partir de 100 indicam quantidades crescentes de filtragem. `rows` mostra o número estimado de linhas examinadas e `rows` × `filtered` mostra o número de linhas unidas com a tabela seguinte. Por exemplo, se `rows` for 1000 e `filtered` for 50.00 (50%), o número de linhas a serem unidas com a tabela seguinte é 1000 × 50% = 500.
 
-* `Extra` (JSON name: none)
+* `Extra` (Nome JSON: nenhum)
 
-  This column contains additional information about how MySQL resolves the query. For descriptions of the different values, see `EXPLAIN` Extra Information.
+  Esta coluna contém informações adicionais sobre como o MySQL resolve a Query. Para descrições dos diferentes valores, veja Informações Extras do EXPLAIN.
 
-  There is no single JSON property corresponding to the `Extra` column; however, values that can occur in this column are exposed as JSON properties, or as the text of the `message` property.
+  Não há uma única propriedade JSON correspondente à coluna `Extra`; no entanto, valores que podem ocorrer nesta coluna são expostos como propriedades JSON ou como o texto da propriedade `message`.
 
-#### EXPLAIN Join Types
+#### Tipos de JOIN do EXPLAIN
 
-The `type` column of `EXPLAIN` output describes how tables are joined. In JSON-formatted output, these are found as values of the `access_type` property. The following list describes the join types, ordered from the best type to the worst:
+A coluna `type` da saída do `EXPLAIN` descreve como as tabelas são unidas. Na saída formatada em JSON, elas são encontradas como valores da propriedade `access_type`. A lista a seguir descreve os tipos de JOIN, ordenados do melhor tipo para o pior:
 
 * `system`
 
-  The table has only one row (= system table). This is a special case of the `const` join type.
+  A tabela tem apenas uma linha (= tabela de sistema). Este é um caso especial do tipo de JOIN `const`.
 
 * `const`
 
-  The table has at most one matching row, which is read at the start of the query. Because there is only one row, values from the column in this row can be regarded as constants by the rest of the optimizer. `const` tables are very fast because they are read only once.
+  A tabela tem no máximo uma linha correspondente, que é lida no início da Query. Como há apenas uma linha, os valores da coluna nesta linha podem ser considerados como constantes pelo restante do Optimizer. Tabelas `const` são muito rápidas porque são lidas apenas uma vez.
 
-  `const` is used when you compare all parts of a `PRIMARY KEY` or `UNIQUE` index to constant values. In the following queries, *`tbl_name`* can be used as a `const` table:
+  `const` é usado quando você compara todas as partes de um Index `PRIMARY KEY` ou `UNIQUE` com valores constantes. Nas Queries a seguir, *`tbl_name`* pode ser usada como uma tabela `const`:
 
   ```sql
   SELECT * FROM tbl_name WHERE primary_key=1;
@@ -214,9 +214,9 @@ The `type` column of `EXPLAIN` output describes how tables are joined. In JSON-f
 
 * `eq_ref`
 
-  One row is read from this table for each combination of rows from the previous tables. Other than the `system` and `const` types, this is the best possible join type. It is used when all parts of an index are used by the join and the index is a `PRIMARY KEY` or `UNIQUE NOT NULL` index.
+  Uma linha é lida desta tabela para cada combinação de linhas das tabelas anteriores. Além dos tipos `system` e `const`, este é o melhor tipo de JOIN possível. É usado quando todas as partes de um Index são usadas pelo JOIN e o Index é um Index `PRIMARY KEY` ou `UNIQUE NOT NULL`.
 
-  `eq_ref` can be used for indexed columns that are compared using the `=` operator. The comparison value can be a constant or an expression that uses columns from tables that are read before this table. In the following examples, MySQL can use an `eq_ref` join to process *`ref_table`*:
+  `eq_ref` pode ser usado para colunas Indexadas que são comparadas usando o operador `=`. O valor de comparação pode ser uma constante ou uma expressão que usa colunas de tabelas que são lidas antes desta tabela. Nos exemplos a seguir, o MySQL pode usar um JOIN `eq_ref` para processar *`ref_table`*:
 
   ```sql
   SELECT * FROM ref_table,other_table
@@ -229,9 +229,9 @@ The `type` column of `EXPLAIN` output describes how tables are joined. In JSON-f
 
 * `ref`
 
-  All rows with matching index values are read from this table for each combination of rows from the previous tables. `ref` is used if the join uses only a leftmost prefix of the key or if the key is not a `PRIMARY KEY` or `UNIQUE` index (in other words, if the join cannot select a single row based on the key value). If the key that is used matches only a few rows, this is a good join type.
+  Todas as linhas com valores de Index correspondentes são lidas desta tabela para cada combinação de linhas das tabelas anteriores. `ref` é usado se o JOIN usar apenas um prefixo mais à esquerda da Key ou se a Key não for uma `PRIMARY KEY` ou um Index `UNIQUE` (em outras palavras, se o JOIN não puder selecionar uma única linha com base no valor da Key). Se a Key usada corresponder a apenas algumas linhas, este é um bom tipo de JOIN.
 
-  `ref` can be used for indexed columns that are compared using the `=` or `<=>` operator. In the following examples, MySQL can use a `ref` join to process *`ref_table`*:
+  `ref` pode ser usado para colunas Indexadas que são comparadas usando o operador `=` ou `<=>`. Nos exemplos a seguir, o MySQL pode usar um JOIN `ref` para processar *`ref_table`*:
 
   ```sql
   SELECT * FROM ref_table WHERE key_column=expr;
@@ -246,36 +246,36 @@ The `type` column of `EXPLAIN` output describes how tables are joined. In JSON-f
 
 * `fulltext`
 
-  The join is performed using a `FULLTEXT` index.
+  O JOIN é executado usando um Index `FULLTEXT`.
 
 * `ref_or_null`
 
-  This join type is like `ref`, but with the addition that MySQL does an extra search for rows that contain `NULL` values. This join type optimization is used most often in resolving subqueries. In the following examples, MySQL can use a `ref_or_null` join to process *`ref_table`*:
+  Este tipo de JOIN é como `ref`, mas com o acréscimo de que o MySQL faz uma busca extra por linhas que contêm valores `NULL`. Esta otimização de tipo de JOIN é usada com mais frequência na resolução de subqueries. Nos exemplos a seguir, o MySQL pode usar um JOIN `ref_or_null` para processar *`ref_table`*:
 
   ```sql
   SELECT * FROM ref_table
     WHERE key_column=expr OR key_column IS NULL;
   ```
 
-  See Section 8.2.1.13, “IS NULL Optimization”.
+  Veja Seção 8.2.1.13, “Otimização IS NULL”.
 
 * `index_merge`
 
-  This join type indicates that the Index Merge optimization is used. In this case, the `key` column in the output row contains a list of indexes used, and `key_len` contains a list of the longest key parts for the indexes used. For more information, see Section 8.2.1.3, “Index Merge Optimization”.
+  Este tipo de JOIN indica que a otimização Index Merge é usada. Neste caso, a coluna `key` na linha de saída contém uma lista de Indexes usados, e `key_len` contém uma lista das partes mais longas da Key para os Indexes usados. Para mais informações, veja Seção 8.2.1.3, “Otimização Index Merge”.
 
 * `unique_subquery`
 
-  This type replaces `eq_ref` for some `IN` subqueries of the following form:
+  Este tipo substitui `eq_ref` para algumas subqueries `IN` da seguinte forma:
 
   ```sql
   value IN (SELECT primary_key FROM single_table WHERE some_expr)
   ```
 
-  `unique_subquery` is just an index lookup function that replaces the subquery completely for better efficiency.
+  `unique_subquery` é apenas uma função de busca de Index que substitui a subquery completamente para melhor eficiência.
 
 * `index_subquery`
 
-  This join type is similar to `unique_subquery`. It replaces `IN` subqueries, but it works for nonunique indexes in subqueries of the following form:
+  Este tipo de JOIN é semelhante a `unique_subquery`. Ele substitui subqueries `IN`, mas funciona para Indexes não-únicos em subqueries da seguinte forma:
 
   ```sql
   value IN (SELECT key_column FROM single_table WHERE some_expr)
@@ -283,9 +283,9 @@ The `type` column of `EXPLAIN` output describes how tables are joined. In JSON-f
 
 * `range`
 
-  Only rows that are in a given range are retrieved, using an index to select the rows. The `key` column in the output row indicates which index is used. The `key_len` contains the longest key part that was used. The `ref` column is `NULL` for this type.
+  Apenas as linhas que estão em um determinado Range são recuperadas, usando um Index para selecionar as linhas. A coluna `key` na linha de saída indica qual Index é usado. O `key_len` contém a parte da Key mais longa que foi usada. A coluna `ref` é `NULL` para este tipo.
 
-  `range` can be used when a key column is compared to a constant using any of the `=`, `<>`, `>`, `>=`, `<`, `<=`, `IS NULL`, `<=>`, `BETWEEN`, `LIKE`, or `IN()` operators:
+  `range` pode ser usado quando uma coluna Key é comparada a uma constante usando qualquer um dos operadores `=`, `<>`, `>`, `>=`, `<`, `<=`, `IS NULL`, `<=>`, `BETWEEN`, `LIKE` ou `IN()`:
 
   ```sql
   SELECT * FROM tbl_name
@@ -303,214 +303,214 @@ The `type` column of `EXPLAIN` output describes how tables are joined. In JSON-f
 
 * `index`
 
-  The `index` join type is the same as `ALL`, except that the index tree is scanned. This occurs two ways:
+  O tipo de JOIN `index` é o mesmo que `ALL`, exceto que a Index tree é varrida. Isso ocorre de duas maneiras:
 
-  + If the index is a covering index for the queries and can be used to satisfy all data required from the table, only the index tree is scanned. In this case, the `Extra` column says `Using index`. An index-only scan usually is faster than `ALL` because the size of the index usually is smaller than the table data.
+  + Se o Index for um Index de cobertura (covering index) para as Queries e puder ser usado para satisfazer todos os dados exigidos da tabela, apenas a Index tree é varrida. Neste caso, a coluna `Extra` diz `Using index`. Uma varredura de Index-only geralmente é mais rápida que `ALL` porque o tamanho do Index geralmente é menor do que os dados da tabela.
 
-  + A full table scan is performed using reads from the index to look up data rows in index order. `Uses index` does not appear in the `Extra` column.
+  + Uma varredura de tabela completa é realizada usando leituras do Index para procurar linhas de dados na ordem do Index. `Uses index` não aparece na coluna `Extra`.
 
-  MySQL can use this join type when the query uses only columns that are part of a single index.
+  O MySQL pode usar este tipo de JOIN quando a Query usa apenas colunas que fazem parte de um único Index.
 
 * `ALL`
 
-  A full table scan is done for each combination of rows from the previous tables. This is normally not good if the table is the first table not marked `const`, and usually *very* bad in all other cases. Normally, you can avoid `ALL` by adding indexes that enable row retrieval from the table based on constant values or column values from earlier tables.
+  Uma varredura de tabela completa (full table scan) é feita para cada combinação de linhas das tabelas anteriores. Isso normalmente não é bom se a tabela for a primeira tabela não marcada como `const`, e geralmente *muito* ruim em todos os outros casos. Normalmente, você pode evitar `ALL` adicionando Indexes que permitam a recuperação de linhas da tabela com base em valores constantes ou valores de coluna de tabelas anteriores.
 
-#### EXPLAIN Extra Information
+#### Informações Extras do EXPLAIN
 
-The `Extra` column of `EXPLAIN` output contains additional information about how MySQL resolves the query. The following list explains the values that can appear in this column. Each item also indicates for JSON-formatted output which property displays the `Extra` value. For some of these, there is a specific property. The others display as the text of the `message` property.
+A coluna `Extra` da saída do `EXPLAIN` contém informações adicionais sobre como o MySQL resolve a Query. A lista a seguir explica os valores que podem aparecer nesta coluna. Cada item também indica qual propriedade exibe o valor `Extra` na saída formatada em JSON. Para alguns destes, existe uma propriedade específica. Os outros são exibidos como o texto da propriedade `message`.
 
-If you want to make your queries as fast as possible, look out for `Extra` column values of `Using filesort` and `Using temporary`, or, in JSON-formatted `EXPLAIN` output, for `using_filesort` and `using_temporary_table` properties equal to `true`.
+Se você deseja tornar suas Queries o mais rápidas possível, procure valores na coluna `Extra` de `Using filesort` e `Using temporary`, ou, na saída `EXPLAIN` formatada em JSON, para as propriedades `using_filesort` e `using_temporary_table` iguais a `true`.
 
-* `Child of 'table' pushed join@1` (JSON: `message` text)
+* `Child of 'table' pushed join@1` (JSON: texto `message`)
 
-  This table is referenced as the child of *`table`* in a join that can be pushed down to the NDB kernel. Applies only in NDB Cluster, when pushed-down joins are enabled. See the description of the `ndb_join_pushdown` server system variable for more information and examples.
+  Esta tabela é referenciada como o filho de *`table`* em um JOIN que pode ser empurrado (pushed down) para o kernel NDB. Aplica-se apenas no NDB Cluster, quando os JOINs pushed-down estão habilitados. Veja a descrição da variável de sistema do servidor `ndb_join_pushdown` para mais informações e exemplos.
 
-* `const row not found` (JSON property: `const_row_not_found`)
+* `const row not found` (Propriedade JSON: `const_row_not_found`)
 
-  For a query such as `SELECT ... FROM tbl_name`, the table was empty.
+  Para uma Query como `SELECT ... FROM tbl_name`, a tabela estava vazia.
 
-* `Deleting all rows` (JSON property: `message`)
+* `Deleting all rows` (Propriedade JSON: `message`)
 
-  For `DELETE`, some storage engines (such as `MyISAM`) support a handler method that removes all table rows in a simple and fast way. This `Extra` value is displayed if the engine uses this optimization.
+  Para `DELETE`, alguns Storage Engines (como `MyISAM`) suportam um método de Handler que remove todas as linhas da tabela de maneira simples e rápida. Este valor `Extra` é exibido se o Engine usar essa otimização.
 
-* `Distinct` (JSON property: `distinct`)
+* `Distinct` (Propriedade JSON: `distinct`)
 
-  MySQL is looking for distinct values, so it stops searching for more rows for the current row combination after it has found the first matching row.
+  O MySQL está procurando valores distintos, então ele para de procurar por mais linhas para a combinação de linhas atual depois de encontrar a primeira linha correspondente.
 
-* `FirstMatch(tbl_name)` (JSON property: `first_match`)
+* `FirstMatch(tbl_name)` (Propriedade JSON: `first_match`)
 
-  The semijoin FirstMatch join shortcutting strategy is used for *`tbl_name`*.
+  A estratégia de atalho de JOIN FirstMatch de semijoin é usada para *`tbl_name`*.
 
-* `Full scan on NULL key` (JSON property: `message`)
+* `Full scan on NULL key` (Propriedade JSON: `message`)
 
-  This occurs for subquery optimization as a fallback strategy when the optimizer cannot use an index-lookup access method.
+  Isso ocorre para otimização de subquery como uma estratégia de fallback quando o Optimizer não pode usar um método de acesso de busca de Index (index-lookup access method).
 
-* `Impossible HAVING` (JSON property: `message`)
+* `Impossible HAVING` (Propriedade JSON: `message`)
 
-  The `HAVING` clause is always false and cannot select any rows.
+  A cláusula `HAVING` é sempre falsa e não pode selecionar nenhuma linha.
 
-* `Impossible WHERE` (JSON property: `message`)
+* `Impossible WHERE` (Propriedade JSON: `message`)
 
-  The `WHERE` clause is always false and cannot select any rows.
+  A cláusula `WHERE` é sempre falsa e não pode selecionar nenhuma linha.
 
-* `Impossible WHERE noticed after reading const tables` (JSON property: `message`)
+* `Impossible WHERE noticed after reading const tables` (Propriedade JSON: `message`)
 
-  MySQL has read all `const` (and `system`) tables and notice that the `WHERE` clause is always false.
+  O MySQL leu todas as tabelas `const` (e `system`) e notou que a cláusula `WHERE` é sempre falsa.
 
-* `LooseScan(m..n)` (JSON property: `message`)
+* `LooseScan(m..n)` (Propriedade JSON: `message`)
 
-  The semijoin LooseScan strategy is used. *`m`* and *`n`* are key part numbers.
+  A estratégia de semijoin LooseScan é usada. *`m`* e *`n`* são números de parte da Key.
 
-* `No matching min/max row` (JSON property: `message`)
+* `No matching min/max row` (Propriedade JSON: `message`)
 
-  No row satisfies the condition for a query such as `SELECT MIN(...) FROM ... WHERE condition`.
+  Nenhuma linha satisfaz a condição para uma Query como `SELECT MIN(...) FROM ... WHERE condition`.
 
-* `no matching row in const table` (JSON property: `message`)
+* `no matching row in const table` (Propriedade JSON: `message`)
 
-  For a query with a join, there was an empty table or a table with no rows satisfying a unique index condition.
+  Para uma Query com um JOIN, havia uma tabela vazia ou uma tabela sem linhas que satisfizessem uma condição de Index único.
 
-* `No matching rows after partition pruning` (JSON property: `message`)
+* `No matching rows after partition pruning` (Propriedade JSON: `message`)
 
-  For `DELETE` or `UPDATE`, the optimizer found nothing to delete or update after partition pruning. It is similar in meaning to `Impossible WHERE` for `SELECT` statements.
+  Para `DELETE` ou `UPDATE`, o Optimizer não encontrou nada para deletar ou atualizar após o Partition Pruning. É semelhante em significado a `Impossible WHERE` para comandos `SELECT`.
 
-* `No tables used` (JSON property: `message`)
+* `No tables used` (Propriedade JSON: `message`)
 
-  The query has no `FROM` clause, or has a `FROM DUAL` clause.
+  A Query não tem cláusula `FROM`, ou tem uma cláusula `FROM DUAL`.
 
-  For `INSERT` or `REPLACE` statements, `EXPLAIN` displays this value when there is no `SELECT` part. For example, it appears for `EXPLAIN INSERT INTO t VALUES(10)` because that is equivalent to `EXPLAIN INSERT INTO t SELECT 10 FROM DUAL`.
+  Para comandos `INSERT` ou `REPLACE`, `EXPLAIN` exibe este valor quando não há parte `SELECT`. Por exemplo, ele aparece para `EXPLAIN INSERT INTO t VALUES(10)` porque isso é equivalente a `EXPLAIN INSERT INTO t SELECT 10 FROM DUAL`.
 
-* `Not exists` (JSON property: `message`)
+* `Not exists` (Propriedade JSON: `message`)
 
-  MySQL was able to do a `LEFT JOIN` optimization on the query and does not examine more rows in this table for the previous row combination after it finds one row that matches the `LEFT JOIN` criteria. Here is an example of the type of query that can be optimized this way:
+  O MySQL conseguiu fazer uma otimização `LEFT JOIN` na Query e não examina mais linhas nesta tabela para a combinação de linhas anterior depois de encontrar uma linha que corresponda aos critérios do `LEFT JOIN`. Aqui está um exemplo do tipo de Query que pode ser otimizada desta forma:
 
   ```sql
   SELECT * FROM t1 LEFT JOIN t2 ON t1.id=t2.id
     WHERE t2.id IS NULL;
   ```
 
-  Assume that `t2.id` is defined as `NOT NULL`. In this case, MySQL scans `t1` and looks up the rows in `t2` using the values of `t1.id`. If MySQL finds a matching row in `t2`, it knows that `t2.id` can never be `NULL`, and does not scan through the rest of the rows in `t2` that have the same `id` value. In other words, for each row in `t1`, MySQL needs to do only a single lookup in `t2`, regardless of how many rows actually match in `t2`.
+  Suponha que `t2.id` seja definido como `NOT NULL`. Neste caso, o MySQL varre `t1` e procura as linhas em `t2` usando os valores de `t1.id`. Se o MySQL encontrar uma linha correspondente em `t2`, ele sabe que `t2.id` nunca pode ser `NULL` e não varre o restante das linhas em `t2` que têm o mesmo valor `id`. Em outras palavras, para cada linha em `t1`, o MySQL precisa fazer apenas uma única busca em `t2`, independentemente de quantas linhas realmente correspondam em `t2`.
 
-* `Plan isn't ready yet` (JSON property: none)
+* `Plan isn't ready yet` (Propriedade JSON: nenhuma)
 
-  This value occurs with `EXPLAIN FOR CONNECTION` when the optimizer has not finished creating the execution plan for the statement executing in the named connection. If execution plan output comprises multiple lines, any or all of them could have this `Extra` value, depending on the progress of the optimizer in determining the full execution plan.
+  Este valor ocorre com `EXPLAIN FOR CONNECTION` quando o Optimizer ainda não terminou de criar o plano de execução para o comando que está sendo executado na conexão nomeada. Se a saída do plano de execução incluir várias linhas, qualquer ou todas elas podem ter este valor `Extra`, dependendo do progresso do Optimizer na determinação do plano de execução completo.
 
-* `Range checked for each record (index map: N)` (JSON property: `message`)
+* `Range checked for each record (index map: N)` (Propriedade JSON: `message`)
 
-  MySQL found no good index to use, but found that some of indexes might be used after column values from preceding tables are known. For each row combination in the preceding tables, MySQL checks whether it is possible to use a `range` or `index_merge` access method to retrieve rows. This is not very fast, but is faster than performing a join with no index at all. The applicability criteria are as described in Section 8.2.1.2, “Range Optimization”, and Section 8.2.1.3, “Index Merge Optimization”, with the exception that all column values for the preceding table are known and considered to be constants.
+  O MySQL não encontrou um Index bom para usar, mas descobriu que alguns Indexes podem ser usados depois que os valores das colunas das tabelas precedentes forem conhecidos. Para cada combinação de linhas nas tabelas precedentes, o MySQL verifica se é possível usar um método de acesso `range` ou `index_merge` para recuperar linhas. Isso não é muito rápido, mas é mais rápido do que realizar um JOIN sem nenhum Index. Os critérios de aplicabilidade são conforme descrito na Seção 8.2.1.2, “Otimização Range”, e Seção 8.2.1.3, “Otimização Index Merge”, com a exceção de que todos os valores de coluna para a tabela precedente são conhecidos e considerados constantes.
 
-  Indexes are numbered beginning with 1, in the same order as shown by `SHOW INDEX` for the table. The index map value *`N`* is a bitmask value that indicates which indexes are candidates. For example, a value of `0x19` (binary 11001) means that indexes 1, 4, and 5 are considered.
+  Os Indexes são numerados começando com 1, na mesma ordem mostrada por `SHOW INDEX` para a tabela. O valor do Index map *`N`* é um valor de bitmask que indica quais Indexes são candidatos. Por exemplo, um valor de `0x19` (binário 11001) significa que os Indexes 1, 4 e 5 são considerados.
 
-* `Scanned N databases` (JSON property: `message`)
+* `Scanned N databases` (Propriedade JSON: `message`)
 
-  This indicates how many directory scans the server performs when processing a query for `INFORMATION_SCHEMA` tables, as described in Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”. The value of *`N`* can be 0, 1, or `all`.
+  Isso indica quantas varreduras de diretório o servidor executa ao processar uma Query para tabelas `INFORMATION_SCHEMA`, conforme descrito na Seção 8.2.3, “Otimizando Queries INFORMATION_SCHEMA”. O valor de *`N`* pode ser 0, 1 ou `all`.
 
-* `Select tables optimized away` (JSON property: `message`)
+* `Select tables optimized away` (Propriedade JSON: `message`)
 
-  The optimizer determined 1) that at most one row should be returned, and 2) that to produce this row, a deterministic set of rows must be read. When the rows to be read can be read during the optimization phase (for example, by reading index rows), there is no need to read any tables during query execution.
+  O Optimizer determinou 1) que no máximo uma linha deve ser retornada e 2) que, para produzir esta linha, um conjunto determinístico de linhas deve ser lido. Quando as linhas a serem lidas podem ser lidas durante a fase de otimização (por exemplo, lendo linhas de Index), não há necessidade de ler nenhuma tabela durante a execução da Query.
 
-  The first condition is fulfilled when the query is implicitly grouped (contains an aggregate function but no `GROUP BY` clause). The second condition is fulfilled when one row lookup is performed per index used. The number of indexes read determines the number of rows to read.
+  A primeira condição é satisfeita quando a Query é implicitamente agrupada (contém uma função de agregação, mas nenhuma cláusula `GROUP BY`). A segunda condição é satisfeita quando uma busca de linha é realizada por Index usado. O número de Indexes lidos determina o número de linhas a serem lidas.
 
-  Consider the following implicitly grouped query:
+  Considere a seguinte Query implicitamente agrupada:
 
   ```sql
   SELECT MIN(c1), MIN(c2) FROM t1;
   ```
 
-  Suppose that `MIN(c1)` can be retrieved by reading one index row and `MIN(c2)` can be retrieved by reading one row from a different index. That is, for each column `c1` and `c2`, there exists an index where the column is the first column of the index. In this case, one row is returned, produced by reading two deterministic rows.
+  Suponha que `MIN(c1)` possa ser recuperado lendo uma linha de Index e `MIN(c2)` possa ser recuperado lendo uma linha de um Index diferente. Ou seja, para cada coluna `c1` e `c2`, existe um Index onde a coluna é a primeira coluna do Index. Neste caso, uma linha é retornada, produzida pela leitura de duas linhas determinísticas.
 
-  This `Extra` value does not occur if the rows to read are not deterministic. Consider this query:
+  Este valor `Extra` não ocorre se as linhas a serem lidas não forem determinísticas. Considere esta Query:
 
   ```sql
   SELECT MIN(c2) FROM t1 WHERE c1 <= 10;
   ```
 
-  Suppose that `(c1, c2)` is a covering index. Using this index, all rows with `c1 <= 10` must be scanned to find the minimum `c2` value. By contrast, consider this query:
+  Suponha que `(c1, c2)` seja um covering index. Usando este Index, todas as linhas com `c1 <= 10` devem ser varridas para encontrar o valor mínimo de `c2`. Por outro lado, considere esta Query:
 
   ```sql
   SELECT MIN(c2) FROM t1 WHERE c1 = 10;
   ```
 
-  In this case, the first index row with `c1 = 10` contains the minimum `c2` value. Only one row must be read to produce the returned row.
+  Neste caso, a primeira linha de Index com `c1 = 10` contém o valor mínimo de `c2`. Apenas uma linha deve ser lida para produzir a linha retornada.
 
-  For storage engines that maintain an exact row count per table (such as `MyISAM`, but not `InnoDB`), this `Extra` value can occur for `COUNT(*)` queries for which the `WHERE` clause is missing or always true and there is no `GROUP BY` clause. (This is an instance of an implicitly grouped query where the storage engine influences whether a deterministic number of rows can be read.)
+  Para Storage Engines que mantêm uma contagem exata de linhas por tabela (como `MyISAM`, mas não `InnoDB`), este valor `Extra` pode ocorrer para Queries `COUNT(*)` para as quais a cláusula `WHERE` está faltando ou é sempre verdadeira e não há cláusula `GROUP BY`. (Este é um caso de uma Query implicitamente agrupada onde o Storage Engine influencia se um número determinístico de linhas pode ser lido.)
 
-* `Skip_open_table`, `Open_frm_only`, `Open_full_table` (JSON property: `message`)
+* `Skip_open_table`, `Open_frm_only`, `Open_full_table` (Propriedade JSON: `message`)
 
-  These values indicate file-opening optimizations that apply to queries for `INFORMATION_SCHEMA` tables, as described in Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
+  Estes valores indicam otimizações de abertura de arquivo que se aplicam a Queries para tabelas `INFORMATION_SCHEMA`, conforme descrito na Seção 8.2.3, “Otimizando Queries INFORMATION_SCHEMA”.
 
-  + `Skip_open_table`: Table files do not need to be opened. The information has already become available within the query by scanning the database directory.
+  + `Skip_open_table`: Os arquivos da tabela não precisam ser abertos. A informação já se tornou disponível dentro da Query varrendo o diretório da Database.
 
-  + `Open_frm_only`: Only the table's `.frm` file need be opened.
+  + `Open_frm_only`: Apenas o arquivo `.frm` da tabela precisa ser aberto.
 
-  + `Open_full_table`: The unoptimized information lookup. The `.frm`, `.MYD`, and `.MYI` files must be opened.
+  + `Open_full_table`: A busca de informação não otimizada. Os arquivos `.frm`, `.MYD` e `.MYI` devem ser abertos.
 
-* `Start temporary`, `End temporary` (JSON property: `message`)
+* `Start temporary`, `End temporary` (Propriedade JSON: `message`)
 
-  This indicates temporary table use for the semijoin Duplicate Weedout strategy.
+  Isso indica o uso de tabela temporária para a estratégia de semijoin Duplicate Weedout.
 
-* `unique row not found` (JSON property: `message`)
+* `unique row not found` (Propriedade JSON: `message`)
 
-  For a query such as `SELECT ... FROM tbl_name`, no rows satisfy the condition for a `UNIQUE` index or `PRIMARY KEY` on the table.
+  Para uma Query como `SELECT ... FROM tbl_name`, nenhuma linha satisfaz a condição para um Index `UNIQUE` ou `PRIMARY KEY` na tabela.
 
-* `Using filesort` (JSON property: `using_filesort`)
+* `Using filesort` (Propriedade JSON: `using_filesort`)
 
-  MySQL must do an extra pass to find out how to retrieve the rows in sorted order. The sort is done by going through all rows according to the join type and storing the sort key and pointer to the row for all rows that match the `WHERE` clause. The keys then are sorted and the rows are retrieved in sorted order. See Section 8.2.1.14, “ORDER BY Optimization”.
+  O MySQL deve fazer uma passagem extra para descobrir como recuperar as linhas em ordem classificada (sorted order). A classificação é feita percorrendo todas as linhas de acordo com o tipo de JOIN e armazenando a Key de classificação (sort key) e o Pointer para a linha para todas as linhas que correspondem à cláusula `WHERE`. As Keys são então classificadas e as linhas são recuperadas em ordem classificada. Veja Seção 8.2.1.14, “Otimização ORDER BY”.
 
-* `Using index` (JSON property: `using_index`)
+* `Using index` (Propriedade JSON: `using_index`)
 
-  The column information is retrieved from the table using only information in the index tree without having to do an additional seek to read the actual row. This strategy can be used when the query uses only columns that are part of a single index.
+  A informação da coluna é recuperada da tabela usando apenas informação na Index tree sem ter que fazer uma busca adicional para ler a linha real. Esta estratégia pode ser usada quando a Query usa apenas colunas que fazem parte de um único Index.
 
-  For `InnoDB` tables that have a user-defined clustered index, that index can be used even when `Using index` is absent from the `Extra` column. This is the case if `type` is `index` and `key` is `PRIMARY`.
+  Para tabelas `InnoDB` que possuem um Index clusterizado definido pelo usuário, esse Index pode ser usado mesmo quando `Using index` estiver ausente na coluna `Extra`. Este é o caso se `type` for `index` e `key` for `PRIMARY`.
 
-* `Using index condition` (JSON property: `using_index_condition`)
+* `Using index condition` (Propriedade JSON: `using_index_condition`)
 
-  Tables are read by accessing index tuples and testing them first to determine whether to read full table rows. In this way, index information is used to defer (“push down”) reading full table rows unless it is necessary. See Section 8.2.1.5, “Index Condition Pushdown Optimization”.
+  As tabelas são lidas acessando tuplas de Index e testando-as primeiro para determinar se devem ler linhas de tabela completas. Desta forma, a informação do Index é usada para adiar (“push down”) a leitura de linhas de tabela completas, a menos que seja necessário. Veja Seção 8.2.1.5, “Otimização Index Condition Pushdown”.
 
-* `Using index for group-by` (JSON property: `using_index_for_group_by`)
+* `Using index for group-by` (Propriedade JSON: `using_index_for_group_by`)
 
-  Similar to the `Using index` table access method, `Using index for group-by` indicates that MySQL found an index that can be used to retrieve all columns of a `GROUP BY` or `DISTINCT` query without any extra disk access to the actual table. Additionally, the index is used in the most efficient way so that for each group, only a few index entries are read. For details, see Section 8.2.1.15, “GROUP BY Optimization”.
+  Semelhante ao método de acesso à tabela `Using index`, `Using index for group-by` indica que o MySQL encontrou um Index que pode ser usado para recuperar todas as colunas de uma Query `GROUP BY` ou `DISTINCT` sem nenhum acesso de disco extra à tabela real. Além disso, o Index é usado da maneira mais eficiente para que, para cada grupo, apenas algumas entradas de Index sejam lidas. Para detalhes, veja Seção 8.2.1.15, “Otimização GROUP BY”.
 
-* `Using join buffer (Block Nested Loop)`, `Using join buffer (Batched Key Access)` (JSON property: `using_join_buffer`)
+* `Using join buffer (Block Nested Loop)`, `Using join buffer (Batched Key Access)` (Propriedade JSON: `using_join_buffer`)
 
-  Tables from earlier joins are read in portions into the join buffer, and then their rows are used from the buffer to perform the join with the current table. `(Block Nested Loop)` indicates use of the Block Nested-Loop algorithm and `(Batched Key Access)` indicates use of the Batched Key Access algorithm. That is, the keys from the table on the preceding line of the `EXPLAIN` output are buffered, and the matching rows are fetched in batches from the table represented by the line in which `Using join buffer` appears.
+  As tabelas de JOINs anteriores são lidas em porções no Join Buffer, e então suas linhas são usadas do Buffer para realizar o JOIN com a tabela atual. `(Block Nested Loop)` indica o uso do algoritmo Block Nested-Loop e `(Batched Key Access)` indica o uso do algoritmo Batched Key Access. Ou seja, as Keys da tabela na linha anterior da saída do `EXPLAIN` são armazenadas em Buffer, e as linhas correspondentes são buscadas em lotes da tabela representada pela linha na qual `Using join buffer` aparece.
 
-  In JSON-formatted output, the value of `using_join_buffer` is always either one of `Block Nested Loop` or `Batched Key Access`.
+  Na saída formatada em JSON, o valor de `using_join_buffer` é sempre um de `Block Nested Loop` ou `Batched Key Access`.
 
-  For more information about these algorithms, see Block Nested-Loop Join Algorithm, and Batched Key Access Joins.
+  Para mais informações sobre estes algoritmos, veja Algoritmo de Join Block Nested-Loop e Joins Batched Key Access.
 
-* `Using MRR` (JSON property: `message`)
+* `Using MRR` (Propriedade JSON: `message`)
 
-  Tables are read using the Multi-Range Read optimization strategy. See Section 8.2.1.10, “Multi-Range Read Optimization”.
+  As tabelas são lidas usando a estratégia de otimização Multi-Range Read. Veja Seção 8.2.1.10, “Otimização Multi-Range Read”.
 
-* `Using sort_union(...)`, `Using union(...)`, `Using intersect(...)` (JSON property: `message`)
+* `Using sort_union(...)`, `Using union(...)`, `Using intersect(...)` (Propriedade JSON: `message`)
 
-  These indicate the particular algorithm showing how index scans are merged for the `index_merge` join type. See Section 8.2.1.3, “Index Merge Optimization”.
+  Estes indicam o algoritmo particular mostrando como as varreduras de Index são mescladas para o tipo de JOIN `index_merge`. Veja Seção 8.2.1.3, “Otimização Index Merge”.
 
-* `Using temporary` (JSON property: `using_temporary_table`)
+* `Using temporary` (Propriedade JSON: `using_temporary_table`)
 
-  To resolve the query, MySQL needs to create a temporary table to hold the result. This typically happens if the query contains `GROUP BY` and `ORDER BY` clauses that list columns differently.
+  Para resolver a Query, o MySQL precisa criar uma tabela temporária para manter o resultado. Isso tipicamente acontece se a Query contiver cláusulas `GROUP BY` e `ORDER BY` que listam colunas de forma diferente.
 
-* `Using where` (JSON property: `attached_condition`)
+* `Using where` (Propriedade JSON: `attached_condition`)
 
-  A `WHERE` clause is used to restrict which rows to match against the next table or send to the client. Unless you specifically intend to fetch or examine all rows from the table, you may have something wrong in your query if the `Extra` value is not `Using where` and the table join type is `ALL` or `index`.
+  Uma cláusula `WHERE` é usada para restringir quais linhas correspondem à próxima tabela ou são enviadas ao cliente. A menos que você pretenda especificamente buscar ou examinar todas as linhas da tabela, você pode ter algo errado na sua Query se o valor `Extra` não for `Using where` e o tipo de JOIN da tabela for `ALL` ou `index`.
 
-  `Using where` has no direct counterpart in JSON-formatted output; the `attached_condition` property contains any `WHERE` condition used.
+  `Using where` não tem uma contraparte direta na saída formatada em JSON; a propriedade `attached_condition` contém qualquer condição `WHERE` usada.
 
-* `Using where with pushed condition` (JSON property: `message`)
+* `Using where with pushed condition` (Propriedade JSON: `message`)
 
-  This item applies to `NDB` tables *only*. It means that NDB Cluster is using the Condition Pushdown optimization to improve the efficiency of a direct comparison between a nonindexed column and a constant. In such cases, the condition is “pushed down” to the cluster's data nodes and is evaluated on all data nodes simultaneously. This eliminates the need to send nonmatching rows over the network, and can speed up such queries by a factor of 5 to 10 times over cases where Condition Pushdown could be but is not used. For more information, see Section 8.2.1.4, “Engine Condition Pushdown Optimization”.
+  Este item se aplica a tabelas `NDB` *apenas*. Isso significa que o NDB Cluster está usando a otimização Condition Pushdown para melhorar a eficiência de uma comparação direta entre uma coluna não Indexada e uma constante. Em tais casos, a condição é “empurrada para baixo” (pushed down) para os Data Nodes do Cluster e é avaliada em todos os Data Nodes simultaneamente. Isso elimina a necessidade de enviar linhas não correspondentes pela rede e pode acelerar tais Queries em um fator de 5 a 10 vezes em comparação com os casos em que o Condition Pushdown poderia ser, mas não é usado. Para mais informações, veja Seção 8.2.1.4, “Otimização Engine Condition Pushdown”.
 
-* `Zero limit` (JSON property: `message`)
+* `Zero limit` (Propriedade JSON: `message`)
 
-  The query had a `LIMIT 0` clause and cannot select any rows.
+  A Query tinha uma cláusula `LIMIT 0` e não pode selecionar nenhuma linha.
 
-#### EXPLAIN Output Interpretation
+#### Interpretação da Saída do EXPLAIN
 
-You can get a good indication of how good a join is by taking the product of the values in the `rows` column of the `EXPLAIN` output. This should tell you roughly how many rows MySQL must examine to execute the query. If you restrict queries with the `max_join_size` system variable, this row product also is used to determine which multiple-table `SELECT` statements to execute and which to abort. See Section 5.1.1, “Configuring the Server”.
+Você pode obter uma boa indicação de quão bom é um JOIN multiplicando os valores na coluna `rows` da saída do `EXPLAIN`. Isso deve lhe dizer aproximadamente quantas linhas o MySQL deve examinar para executar a Query. Se você restringir Queries com a variável de sistema `max_join_size`, este produto de linhas também é usado para determinar quais comandos `SELECT` de múltiplas tabelas executar e quais abortar. Veja Seção 5.1.1, “Configurando o Servidor”.
 
-The following example shows how a multiple-table join can be optimized progressively based on the information provided by `EXPLAIN`.
+O exemplo a seguir mostra como um JOIN de múltiplas tabelas pode ser otimizado progressivamente com base nas informações fornecidas pelo `EXPLAIN`.
 
-Suppose that you have the `SELECT` statement shown here and that you plan to examine it using `EXPLAIN`:
+Suponha que você tenha o comando `SELECT` mostrado aqui e que você planeje examiná-lo usando `EXPLAIN`:
 
 ```sql
 EXPLAIN SELECT tt.TicketNumber, tt.TimeIn,
@@ -527,19 +527,19 @@ EXPLAIN SELECT tt.TicketNumber, tt.TimeIn,
           AND tt.ClientID = do.CUSTNMBR;
 ```
 
-For this example, make the following assumptions:
+Para este exemplo, faça as seguintes suposições:
 
-* The columns being compared have been declared as follows.
+* As colunas que estão sendo comparadas foram declaradas da seguinte forma.
 
-  <table summary="Table names, column names, and data types for the columns being compared in the EXPLAIN example described in the preceding text."><col style="width: 10%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Table</th> <th>Column</th> <th>Data Type</th> </tr></thead><tbody><tr> <th><code>tt</code></th> <td><code>ActualPC</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>tt</code></th> <td><code>AssignedPC</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>tt</code></th> <td><code>ClientID</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>et</code></th> <td><code>EMPLOYID</code></td> <td><code>CHAR(15)</code></td> </tr><tr> <th><code>do</code></th> <td><code>CUSTNMBR</code></td> <td><code>CHAR(15)</code></td> </tr></tbody></table>
+  <table summary="Nomes de tabelas, nomes de colunas e tipos de dados para as colunas que estão sendo comparadas no exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Tabela</th> <th>Coluna</th> <th>Tipo de Dado</th> </tr></thead><tbody><tr> <th><code>tt</code></th> <td><code>ActualPC</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>tt</code></th> <td><code>AssignedPC</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>tt</code></th> <td><code>ClientID</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>et</code></th> <td><code>EMPLOYID</code></td> <td><code>CHAR(15)</code></td> </tr><tr> <th><code>do</code></th> <td><code>CUSTNMBR</code></td> <td><code>CHAR(15)</code></td> </tr></tbody></table>
 
-* The tables have the following indexes.
+* As tabelas têm os seguintes Indexes.
 
-  <table summary="Indexes for each of the tables that are part of the EXPLAIN example described in the preceding text."><col style="width: 10%"/><col style="width: 40%"/><thead><tr> <th>Table</th> <th>Index</th> </tr></thead><tbody><tr> <td><code>tt</code></td> <td><code>ActualPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>AssignedPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>ClientID</code></td> </tr><tr> <td><code>et</code></td> <td><code>EMPLOYID</code> (primary key)</td> </tr><tr> <td><code>do</code></td> <td><code>CUSTNMBR</code> (primary key)</td> </tr></tbody></table>
+  <table summary="Indexes para cada uma das tabelas que fazem parte do exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 40%"/><thead><tr> <th>Tabela</th> <th>Índice</th> </tr></thead><tbody><tr> <td><code>tt</code></td> <td><code>ActualPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>AssignedPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>ClientID</code></td> </tr><tr> <td><code>et</code></td> <td><code>EMPLOYID</code> (primary key)</td> </tr><tr> <td><code>do</code></td> <td><code>CUSTNMBR</code> (primary key)</td> </tr></tbody></table>
 
-* The `tt.ActualPC` values are not evenly distributed.
+* Os valores de `tt.ActualPC` não estão distribuídos uniformemente.
 
-Initially, before any optimizations have been performed, the `EXPLAIN` statement produces the following information:
+Inicialmente, antes que qualquer otimização tenha sido executada, o comando `EXPLAIN` produz a seguinte informação:
 
 ```sql
 table type possible_keys key  key_len ref  rows  Extra
@@ -552,17 +552,17 @@ tt    ALL  AssignedPC,   NULL NULL    NULL 3872
       Range checked for each record (index map: 0x23)
 ```
 
-Because `type` is `ALL` for each table, this output indicates that MySQL is generating a Cartesian product of all the tables; that is, every combination of rows. This takes quite a long time, because the product of the number of rows in each table must be examined. For the case at hand, this product is 74 × 2135 × 74 × 3872 = 45,268,558,720 rows. If the tables were bigger, you can only imagine how long it would take.
+Como `type` é `ALL` para cada tabela, esta saída indica que o MySQL está gerando um produto cartesiano de todas as tabelas; ou seja, cada combinação de linhas. Isso leva bastante tempo, porque o produto do número de linhas em cada tabela deve ser examinado. Para o caso em questão, este produto é 74 × 2135 × 74 × 3872 = 45.268.558.720 linhas. Se as tabelas fossem maiores, você pode apenas imaginar quanto tempo levaria.
 
-One problem here is that MySQL can use indexes on columns more efficiently if they are declared as the same type and size. In this context, `VARCHAR` and `CHAR` are considered the same if they are declared as the same size. `tt.ActualPC` is declared as `CHAR(10)` and `et.EMPLOYID` is `CHAR(15)`, so there is a length mismatch.
+Um problema aqui é que o MySQL pode usar Indexes em colunas de forma mais eficiente se elas forem declaradas com o mesmo tipo e tamanho. Neste contexto, `VARCHAR` e `CHAR` são considerados iguais se forem declarados com o mesmo tamanho. `tt.ActualPC` é declarado como `CHAR(10)` e `et.EMPLOYID` é `CHAR(15)`, então há uma incompatibilidade de comprimento.
 
-To fix this disparity between column lengths, use `ALTER TABLE` to lengthen `ActualPC` from 10 characters to 15 characters:
+Para corrigir essa disparidade entre os comprimentos das colunas, use `ALTER TABLE` para aumentar o comprimento de `ActualPC` de 10 caracteres para 15 caracteres:
 
 ```sql
 mysql> ALTER TABLE tt MODIFY ActualPC VARCHAR(15);
 ```
 
-Now `tt.ActualPC` and `et.EMPLOYID` are both `VARCHAR(15)`. Executing the `EXPLAIN` statement again produces this result:
+Agora `tt.ActualPC` e `et.EMPLOYID` são ambos `VARCHAR(15)`. Executar o comando `EXPLAIN` novamente produz este resultado:
 
 ```sql
 table type   possible_keys key     key_len ref         rows    Extra
@@ -576,16 +576,16 @@ et_1  ALL    PRIMARY       NULL    NULL    NULL        74
 et    eq_ref PRIMARY       PRIMARY 15      tt.ActualPC 1
 ```
 
-This is not perfect, but is much better: The product of the `rows` values is less by a factor of 74. This version executes in a couple of seconds.
+Isto não é perfeito, mas é muito melhor: O produto dos valores de `rows` é menor por um fator de 74. Esta versão é executada em alguns segundos.
 
-A second alteration can be made to eliminate the column length mismatches for the `tt.AssignedPC = et_1.EMPLOYID` and `tt.ClientID = do.CUSTNMBR` comparisons:
+Uma segunda alteração pode ser feita para eliminar as incompatibilidades de comprimento de coluna para as comparações `tt.AssignedPC = et_1.EMPLOYID` e `tt.ClientID = do.CUSTNMBR`:
 
 ```sql
 mysql> ALTER TABLE tt MODIFY AssignedPC VARCHAR(15),
                       MODIFY ClientID   VARCHAR(15);
 ```
 
-After that modification, `EXPLAIN` produces the output shown here:
+Após essa modificação, `EXPLAIN` produz a saída mostrada aqui:
 
 ```sql
 table type   possible_keys key      key_len ref           rows Extra
@@ -597,13 +597,13 @@ et_1  eq_ref PRIMARY       PRIMARY  15      tt.AssignedPC 1
 do    eq_ref PRIMARY       PRIMARY  15      tt.ClientID   1
 ```
 
-At this point, the query is optimized almost as well as possible. The remaining problem is that, by default, MySQL assumes that values in the `tt.ActualPC` column are evenly distributed, and that is not the case for the `tt` table. Fortunately, it is easy to tell MySQL to analyze the key distribution:
+Neste ponto, a Query está otimizada quase o máximo possível. O problema restante é que, por padrão, o MySQL assume que os valores na coluna `tt.ActualPC` estão distribuídos uniformemente, e esse não é o caso para a tabela `tt`. Felizmente, é fácil dizer ao MySQL para analisar a distribuição da Key:
 
 ```sql
 mysql> ANALYZE TABLE tt;
 ```
 
-With the additional index information, the join is perfect and `EXPLAIN` produces this result:
+Com a informação de Index adicional, o JOIN é perfeito e `EXPLAIN` produz este resultado:
 
 ```sql
 table type   possible_keys key     key_len ref           rows Extra
@@ -615,6 +615,6 @@ et_1  eq_ref PRIMARY       PRIMARY 15      tt.AssignedPC 1
 do    eq_ref PRIMARY       PRIMARY 15      tt.ClientID   1
 ```
 
-The `rows` column in the output from `EXPLAIN` is an educated guess from the MySQL join optimizer. Check whether the numbers are even close to the truth by comparing the `rows` product with the actual number of rows that the query returns. If the numbers are quite different, you might get better performance by using `STRAIGHT_JOIN` in your `SELECT` statement and trying to list the tables in a different order in the `FROM` clause. (However, `STRAIGHT_JOIN` may prevent indexes from being used because it disables semijoin transformations. See Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”.)
+A coluna `rows` na saída do `EXPLAIN` é um palpite educado do Optimizer de JOIN do MySQL. Verifique se os números estão próximos da verdade comparando o produto `rows` com o número real de linhas que a Query retorna. Se os números forem bastante diferentes, você pode obter melhor performance usando `STRAIGHT_JOIN` no seu comando `SELECT` e tentando listar as tabelas em uma ordem diferente na cláusula `FROM`. (No entanto, `STRAIGHT_JOIN` pode impedir que Indexes sejam usados porque desabilita transformações de semijoin. Veja Seção 8.2.2.1, “Otimizando Subqueries, Tabelas Derivadas e Referências de View com Transformações Semijoin”.)
 
-It is possible in some cases to execute statements that modify data when `EXPLAIN SELECT` is used with a subquery; for more information, see Section 13.2.10.8, “Derived Tables”.
+É possível em alguns casos executar comandos que modificam dados quando `EXPLAIN SELECT` é usado com uma subquery; para mais informações, veja Seção 13.2.10.8, “Tabelas Derivadas”.

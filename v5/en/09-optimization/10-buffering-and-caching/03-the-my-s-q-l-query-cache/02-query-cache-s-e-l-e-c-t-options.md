@@ -1,20 +1,20 @@
-#### 8.10.3.2 Query Cache SELECT Options
+#### 8.10.3.2 Opções SELECT do Query Cache
 
-Note
+Nota
 
-The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0.
+O query cache está obsoleto desde o MySQL 5.7.20 e foi removido no MySQL 8.0.
 
-Two query cache-related options may be specified in `SELECT` statements:
+Duas opções relacionadas ao query cache podem ser especificadas em comandos `SELECT`:
 
 * `SQL_CACHE`
 
-  The query result is cached if it is cacheable and the value of the `query_cache_type` system variable is `ON` or `DEMAND`.
+  O resultado da Query é armazenado em cache se for "cacheável" (cacheable) e o valor da variável de sistema `query_cache_type` for `ON` ou `DEMAND`.
 
 * `SQL_NO_CACHE`
 
-  The server does not use the query cache. It neither checks the query cache to see whether the result is already cached, nor does it cache the query result.
+  O servidor não utiliza o query cache. Ele não verifica o query cache para ver se o resultado já está em cache, nem armazena o resultado da Query em cache.
 
-Examples:
+Exemplos:
 
 ```sql
 SELECT SQL_CACHE id, name FROM customer;

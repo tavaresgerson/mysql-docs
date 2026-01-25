@@ -1,8 +1,8 @@
-### 4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables
+### 4.4.6 mysql_tzinfo_to_sql — Carregar as Tabelas de Time Zone
 
-The **mysql_tzinfo_to_sql** program loads the time zone tables in the `mysql` database. It is used on systems that have a zoneinfo database (the set of files describing time zones). Examples of such systems are Linux, FreeBSD, Solaris, and macOS. One likely location for these files is the `/usr/share/zoneinfo` directory (`/usr/share/lib/zoneinfo` on Solaris). If your system does not have a zoneinfo database, you can use the downloadable package described in Section 5.1.13, “MySQL Server Time Zone Support”.
+O programa **mysql_tzinfo_to_sql** carrega as tabelas de time zone no Database `mysql`. Ele é usado em sistemas que possuem um Database zoneinfo (o conjunto de arquivos que descrevem os time zones). Exemplos de tais sistemas são Linux, FreeBSD, Solaris e macOS. Um local provável para esses arquivos é o diretório `/usr/share/zoneinfo` (`/usr/share/lib/zoneinfo` no Solaris). Se o seu sistema não possui um Database zoneinfo, você pode usar o pacote para download descrito na Seção 5.1.13, “MySQL Server Time Zone Support”.
 
-**mysql_tzinfo_to_sql** can be invoked several ways:
+O **mysql_tzinfo_to_sql** pode ser invocado de várias maneiras:
 
 ```sql
 mysql_tzinfo_to_sql tz_dir
@@ -10,24 +10,24 @@ mysql_tzinfo_to_sql tz_file tz_name
 mysql_tzinfo_to_sql --leap tz_file
 ```
 
-For the first invocation syntax, pass the zoneinfo directory path name to **mysql_tzinfo_to_sql** and send the output into the **mysql** program. For example:
+Para a primeira sintaxe de invocação, passe o nome do caminho do diretório zoneinfo para o **mysql_tzinfo_to_sql** e envie a saída para o programa **mysql**. Por exemplo:
 
 ```sql
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
 ```
 
-**mysql_tzinfo_to_sql** reads your system's time zone files and generates SQL statements from them. **mysql** processes those statements to load the time zone tables.
+O **mysql_tzinfo_to_sql** lê os arquivos de time zone do seu sistema e gera instruções SQL a partir deles. O **mysql** processa essas instruções para carregar as tabelas de time zone.
 
-The second syntax causes **mysql_tzinfo_to_sql** to load a single time zone file *`tz_file`* that corresponds to a time zone name *`tz_name`*:
+A segunda sintaxe faz com que o **mysql_tzinfo_to_sql** carregue um único arquivo de time zone *`tz_file`* que corresponde a um nome de time zone *`tz_name`*:
 
 ```sql
 mysql_tzinfo_to_sql tz_file tz_name | mysql -u root mysql
 ```
 
-If your time zone needs to account for leap seconds, invoke **mysql_tzinfo_to_sql** using the third syntax, which initializes the leap second information. *`tz_file`* is the name of your time zone file:
+Se o seu time zone precisar considerar segundos bissextos (leap seconds), invoque o **mysql_tzinfo_to_sql** usando a terceira sintaxe, que inicializa as informações de leap second. *`tz_file`* é o nome do seu arquivo de time zone:
 
 ```sql
 mysql_tzinfo_to_sql --leap tz_file | mysql -u root mysql
 ```
 
-After running **mysql_tzinfo_to_sql**, it is best to restart the server so that it does not continue to use any previously cached time zone data.
+Após executar o **mysql_tzinfo_to_sql**, é recomendável reiniciar o Server para que ele não continue a usar quaisquer dados de time zone previamente armazenados em cache.

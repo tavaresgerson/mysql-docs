@@ -1,6 +1,6 @@
-### 3.6.1 The Maximum Value for a Column
+### 3.6.1 O Valor Máximo para uma Coluna
 
-“What is the highest item number?”
+“Qual é o maior número de item?”
 
 ```sql
 SELECT MAX(article) AS article FROM shop;

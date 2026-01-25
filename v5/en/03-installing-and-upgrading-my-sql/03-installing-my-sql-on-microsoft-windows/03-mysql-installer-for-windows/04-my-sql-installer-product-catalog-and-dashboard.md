@@ -1,155 +1,155 @@
-#### 2.3.3.4 MySQL Installer Product Catalog and Dashboard
+#### 2.3.3.4 Catálogo de Produtos e Dashboard do MySQL Installer
 
-This section describes the MySQL Installer product catalog, the dashboard, and other actions related to product selection and upgrades.
+Esta seção descreve o catálogo de produtos do MySQL Installer, o Dashboard e outras ações relacionadas à seleção e ao Upgrade de produtos.
 
-* Product Catalog
-* MySQL Installer Dashboard
-* Locating Products to Install
-* Upgrading MySQL Server
-* Removing MySQL Server
-* Upgrading MySQL Installer
+* Catálogo de Produtos
+* Dashboard do MySQL Installer
+* Localizando Produtos para Install
+* Upgrading do MySQL Server
+* Removendo o MySQL Server
+* Upgrading do MySQL Installer
 
-##### Product Catalog
+##### Catálogo de Produtos
 
-The product catalog stores the complete list of released MySQL products for Microsoft Windows that are available to download from [MySQL Downloads](https://dev.mysql.com/downloads/). By default, and when an Internet connection is present, MySQL Installer attempts to update the catalog at startup every seven days. You can also update the catalog manually from the dashboard (described later).
+O catálogo de produtos armazena a lista completa de produtos MySQL lançados para Microsoft Windows que estão disponíveis para Download em [MySQL Downloads](https://dev.mysql.com/downloads/). Por padrão, e quando há uma conexão com a Internet, o MySQL Installer tenta atualizar o catálogo na inicialização a cada sete dias. Você também pode atualizar o catálogo manualmente a partir do Dashboard (descrito posteriormente).
 
-An up-to-date catalog performs the following actions:
+Um catálogo atualizado executa as seguintes ações:
 
-* Populates the Available Products pane of the Select Products page. This step appears when you select:
+* Preenche o painel de Produtos Disponíveis (Available Products) da página Selecionar Produtos (Select Products). Esta etapa aparece quando você seleciona:
 
-  + The `Custom` setup type during the initial setup.
+  + O tipo de Setup `Custom` durante o Setup inicial.
 
-  + The Add operation from the dashboard.
+  + A operação Add a partir do Dashboard.
 
-* Identifies when product updates are available for the installed products listed in the dashboard.
+* Identifica quando há Updates de produtos disponíveis para os produtos instalados listados no Dashboard.
 
-The catalog includes all development releases (Pre-Release), general releases (Current GA), and minor releases (Other Releases). Products in the catalog will vary somewhat, depending on the MySQL Installer release that you download.
+O catálogo inclui todos os lançamentos de desenvolvimento (Pre-Release), lançamentos gerais (Current GA) e lançamentos secundários (Other Releases). Os produtos no catálogo podem variar um pouco, dependendo do Release do MySQL Installer que você baixou.
 
-##### MySQL Installer Dashboard
+##### Dashboard do MySQL Installer
 
-The MySQL Installer dashboard is the default view that you see when you start MySQL Installer after the initial setup finishes. If you closed MySQL Installer before the setup was finished, MySQL Installer resumes the initial setup before it displays the dashboard.
+O Dashboard do MySQL Installer é a visualização padrão que você vê ao iniciar o MySQL Installer após a conclusão do Setup inicial. Se você fechou o MySQL Installer antes da conclusão do Setup, o MySQL Installer retoma o Setup inicial antes de exibir o Dashboard.
 
-Note
+Nota
 
-Products covered under Oracle Lifetime Sustaining Support, if installed, may appear in the dashboard. These products, such as MySQL for Excel and MySQL Notifier, can be modified or removed only.
+Produtos cobertos pelo Oracle Lifetime Sustaining Support, se instalados, podem aparecer no Dashboard. Esses produtos, como MySQL for Excel e MySQL Notifier, podem apenas ser modificados ou removidos.
 
-**Figure 2.11 MySQL Installer Dashboard Elements**
+**Figure 2.11 Elementos do Dashboard do MySQL Installer**
 
-![Content is described in the surrounding text.](images/mi-dashboard-annotated.png)
+![O conteúdo é descrito no texto circundante.](images/mi-dashboard-annotated.png)
 
-###### Description of MySQL Installer Dashboard Elements
+###### Descrição dos Elementos do Dashboard do MySQL Installer
 
-1. MySQL Installer dashboard operations provide a variety of actions that apply to installed products or products listed in the catalog. To initiate the following operations, first click the operation link and then select the product or products to manage:
+1. As operações do Dashboard do MySQL Installer oferecem uma variedade de ações que se aplicam a produtos instalados ou a produtos listados no catálogo. Para iniciar as seguintes operações, primeiro clique no link da operação e, em seguida, selecione o produto ou produtos a serem gerenciados:
 
-   * Add: This operation opens the Select Products page. From there you can adjust the filter, select one or more products to download (as needed), and begin the installation. For hints about using the filter, see Locating Products to Install.
+   * Add: Esta operação abre a página Selecionar Produtos (Select Products). A partir dela, você pode ajustar o filtro, selecionar um ou mais produtos para Download (conforme necessário) e iniciar a Install. Para obter dicas sobre como usar o filtro, consulte Localizando Produtos para Install.
 
-     Use the directional arrows to move each product from the Available Products column to the Products To Be Installed column. To enable the Product Features page where you can customize features, click the related check box (disabled by default).
+     Use as setas direcionais para mover cada produto da coluna Produtos Disponíveis (Available Products) para a coluna Produtos a Serem Instalados (Products To Be Installed). Para habilitar a página Recursos do Produto (Product Features), onde você pode personalizar os Features, clique na caixa de seleção relacionada (desabilitada por padrão).
 
-   * Modify: Use this operation to add or remove the features associated with installed products. Features that you can modify vary in complexity by product. When the Program Shortcut check box is selected, the product appears in the Start menu under the `MySQL` group.
+   * Modify: Use esta operação para adicionar ou remover os Features associados a produtos instalados. Os Features que você pode modificar variam em complexidade por produto. Quando a caixa de seleção Atalho do Programa (Program Shortcut) está selecionada, o produto aparece no menu Iniciar (Start) sob o grupo `MySQL`.
 
-   * Upgrade: This operation loads the Select Products to Upgrade page and populates it with all the upgrade candidates. An installed product can have more than one upgrade version and the operation requires a current product catalog. MySQL Installer upgrades all of the selected products in one action. Click Show Details to view the actions performed by MySQL Installer.
+   * Upgrade: Esta operação carrega a página Selecionar Produtos para Upgrade (Select Products to Upgrade) e a preenche com todos os candidatos a Upgrade. Um produto instalado pode ter mais de uma versão de Upgrade e a operação requer um catálogo de produtos atualizado. O MySQL Installer faz o Upgrade de todos os produtos selecionados em uma única ação. Clique em Exibir Detalhes (Show Details) para visualizar as ações executadas pelo MySQL Installer.
 
-   * Remove: This operation opens the Remove Products page and populates it with the MySQL products installed on the host. Select the MySQL products you want to remove (uninstall) and then click Execute to begin the removal process. During the operation, an indicator shows the number of steps that are executed as a percentage of all steps.
+   * Remove: Esta operação abre a página Remover Produtos (Remove Products) e a preenche com os produtos MySQL instalados no host. Selecione os produtos MySQL que deseja remover (Uninstall) e, em seguida, clique em Executar (Execute) para iniciar o processo de remoção. Durante a operação, um indicador mostra o número de etapas executadas como uma porcentagem do total de etapas.
 
-     To select products to remove, do one of the following:
+     Para selecionar produtos para remoção, faça o seguinte:
 
-     + Select the check box for one or more products.
-     + Select the Product check box to select all products.
+     + Selecione a caixa de seleção de um ou mais produtos.
+     + Selecione a caixa de seleção Produto (Product) para selecionar todos os produtos.
 
-2. The Reconfigure link in the Quick Action column next to each installed server loads the current configuration values for the server and then cycles through all configuration steps enabling you to change the options and values. You must provide credentials with root privileges to reconfigure these items. Click the Log tab to show the output of each configuration step performed by MySQL Installer.
+2. O link Reconfigurar (Reconfigure) na coluna Ação Rápida (Quick Action) ao lado de cada Server instalado carrega os valores de configuração atuais para o Server e, em seguida, percorre todas as etapas de configuração, permitindo que você altere as opções e valores. Você deve fornecer credenciais com privilégios de root para reconfigurar esses itens. Clique na guia Log para exibir a saída de cada etapa de configuração executada pelo MySQL Installer.
 
-   On completion, MySQL Installer stops the server, applies the configuration changes, and restarts the server for you. For a description of each configuration option, see Section 2.3.3.3.1, “MySQL Server Configuration with MySQL Installer”. Installed `Samples and Examples` associated with a specific MySQL server version can be also be reconfigured to apply new feature settings, if any.
+   Após a conclusão, o MySQL Installer para o Server, aplica as alterações de configuração e reinicia o Server para você. Para uma descrição de cada opção de configuração, consulte a Seção 2.3.3.3.1, “Configuração do MySQL Server com o MySQL Installer”. Os `Samples and Examples` instalados associados a uma versão específica do MySQL Server também podem ser reconfigurados para aplicar novas configurações de Feature, se houver.
 
-3. The Catalog link enables you to download the latest catalog of MySQL products manually and then to integrate those product changes with MySQL Installer. The catalog-download action does not perform an upgrade of the products already installed on the host. Instead, it returns to the dashboard and adds an arrow icon to the Version column for each installed product that has a newer version. Use the Upgrade operation to install the newer product version.
+3. O link Catálogo (Catalog) permite que você faça o Download manual do catálogo mais recente de produtos MySQL e, em seguida, integre essas alterações de produto ao MySQL Installer. A ação de Download do catálogo não executa um Upgrade dos produtos já instalados no host. Em vez disso, ele retorna ao Dashboard e adiciona um ícone de seta à coluna Versão para cada produto instalado que possui uma versão mais recente. Use a operação Upgrade para instalar a versão mais recente do produto.
 
-   You can also use the Catalog link to display the current change history of each product without downloading the new catalog. Select the Do not update at this time check box to view the change history only.
+   Você também pode usar o link Catálogo (Catalog) para exibir o histórico de alterações atual de cada produto sem baixar o novo catálogo. Selecione a caixa de seleção Não atualizar neste momento (Do not update at this time) para visualizar apenas o histórico de alterações.
 
-4. The MySQL Installer About icon (!) shows the current version of MySQL Installer and general information about MySQL. The version number is located above the Back button.
+4. O ícone Sobre o MySQL Installer (About - !) mostra a versão atual do MySQL Installer e informações gerais sobre o MySQL. O número da versão está localizado acima do botão Voltar (Back).
 
-   Tip
+   Dica
 
-   Always include this version number when reporting a problem with MySQL Installer.
+   Sempre inclua este número de versão ao relatar um problema com o MySQL Installer.
 
-   In addition to the About MySQL information (!), you can also select the following icons from the side panel:
+   Além das informações Sobre o MySQL (!), você também pode selecionar os seguintes ícones no painel lateral:
 
-   * License icon (!) for MySQL Installer.
+   * Ícone Licença (!) para o MySQL Installer.
 
-     This product may include third-party software, used under license. If you are using a Commercial release of MySQL Installer, the icon opens the MySQL Installer Commercial License Information User Manual for licensing information, including licensing information relating to third-party software that may be included in this Commercial release. If you are using a Community release of MySQL Installer, the icon opens the MySQL Installer Community License Information User Manual for licensing information, including licensing information relating to third-party software that may be included in this Community release.
+     Este produto pode incluir software de terceiros, usado sob licença. Se você estiver usando um Release Comercial do MySQL Installer, o ícone abre o Manual do Usuário de Informações de Licença Comercial do MySQL Installer (MySQL Installer Commercial License Information User Manual) para informações de licenciamento, incluindo informações de licenciamento relacionadas a software de terceiros que podem estar incluídas neste Release Comercial. Se você estiver usando um Release Community do MySQL Installer, o ícone abre o Manual do Usuário de Informações de Licença Community do MySQL Installer (MySQL Installer Community License Information User Manual) para informações de licenciamento, incluindo informações de licenciamento relacionadas a software de terceiros que podem estar incluídas neste Release Community.
 
-   * Resource links icon (!) to the latest MySQL product documentation, blogs, webinars, and more.
+   * Ícone Links de Recurso (!) para a documentação, Blogs, Webinars e mais recentes do produto MySQL.
 
-5. The MySQL Installer Options icon (!) includes the following tabs:
+5. O ícone Opções do MySQL Installer (Options - !) inclui as seguintes guias:
 
-   * General: Enables or disables the Offline mode option. If selected, this option configures MySQL Installer to run without depending on internet-connection capabilities. When running MySQL Installer in offline mode, you see a warning together with a Disable quick action on the dashboard. The warning serves to remind you that running MySQL Installer in offline mode prevents you from downloading the latest MySQL products and product catalog updates. Offline mode persists until you disable the option.
+   * Geral (General): Habilita ou desabilita a opção Modo Offline (Offline mode). Se selecionada, esta opção configura o MySQL Installer para rodar sem depender de capacidades de conexão com a Internet. Ao rodar o MySQL Installer no modo Offline, você verá um aviso juntamente com uma ação rápida Desabilitar (Disable) no Dashboard. O aviso serve para lembrar que rodar o MySQL Installer no modo Offline impede o Download dos produtos MySQL mais recentes e das atualizações do catálogo de produtos. O modo Offline persiste até que você desabilite a opção.
 
-     At startup, MySQL Installer determines whether an internet connection is present, and, if not, prompts you to enable offline mode to resume working without a connection.
+     Na inicialização, o MySQL Installer determina se uma conexão com a Internet está presente e, se não estiver, solicita que você habilite o modo Offline para retomar o trabalho sem uma conexão.
 
-   * Product Catalog: Manages the automatic catalog updates. By default, MySQL Installer checks for catalog updates at startup every seven days. When new products or product versions are available, MySQL Installer adds them to the catalog and then inserts an arrow icon (!) next to the version number of installed products listed in the dashboard.
+   * Catálogo de Produtos (Product Catalog): Gerencia as atualizações automáticas do catálogo. Por padrão, o MySQL Installer verifica atualizações do catálogo na inicialização a cada sete dias. Quando novos produtos ou versões de produtos estão disponíveis, o MySQL Installer os adiciona ao catálogo e, em seguida, insere um ícone de seta (!) próximo ao número de versão dos produtos instalados listados no Dashboard.
 
-     Use the product catalog option to enable or disable automatic updates and to reset the number of days between automatic catalog downloads. At startup, MySQL Installer uses the number of days you set to determine whether a download should be attempted. This action is repeated during next startup if MySQL Installer encounters an error downloading the catalog.
+     Use a opção Catálogo de Produtos para habilitar ou desabilitar atualizações automáticas e para redefinir o número de dias entre os Downloads automáticos do catálogo. Na inicialização, o MySQL Installer usa o número de dias que você definiu para determinar se uma tentativa de Download deve ser feita. Essa ação é repetida durante a próxima inicialização se o MySQL Installer encontrar um erro ao baixar o catálogo.
 
-   * Connectivity Settings: Several operations performed by MySQL Installer require internet access. This option enables you to use a default value to validate the connection or to use a different URL, one selected from a list or added by you manually. With the Manual option selected, new URLs can be added and all URLs in the list can be moved or deleted. When the Automatic option is selected, MySQL Installer attempts to connect to each default URL in the list (in order) until a connection is made. If no connection can be made, it raises an error.
+   * Configurações de Conectividade (Connectivity Settings): Várias operações realizadas pelo MySQL Installer requerem acesso à Internet. Esta opção permite que você use um valor padrão para validar a conexão ou use um URL diferente, selecionado em uma lista ou adicionado manualmente por você. Com a opção Manual selecionada, novos URLs podem ser adicionados e todos os URLs na lista podem ser movidos ou excluídos. Quando a opção Automático (Automatic) é selecionada, o MySQL Installer tenta se conectar a cada URL padrão na lista (em ordem) até que uma conexão seja estabelecida. Se nenhuma conexão puder ser feita, ele levanta um Error.
 
-   * Proxy: MySQL Installer provides multiple proxy modes that enable you to download MySQL products, updates, or even the product catalog in most network environments. The mode are:
+   * Proxy: O MySQL Installer fornece múltiplos modos de Proxy que permitem que você baixe produtos MySQL, Updates ou mesmo o catálogo de produtos na maioria dos ambientes de rede. Os modos são:
 
-     + No proxy
+     + Sem Proxy (No proxy)
 
-       Select this mode to prevent MySQL Installer from looking for system settings. This mode disables any proxy settings.
+       Selecione este modo para impedir que o MySQL Installer procure por configurações do sistema. Este modo desabilita quaisquer configurações de Proxy.
 
-     + Automatic
+     + Automático (Automatic)
 
-       Select this mode to have MySQL Installer look for system settings and to use those settings if found, or to use no proxy if nothing is found. This mode is the default.
+       Selecione este modo para que o MySQL Installer procure por configurações do sistema e use essas configurações, se encontradas, ou não use Proxy, se nada for encontrado. Este modo é o padrão (default).
 
      + Manual
 
-       Select this mode to have MySQL Installer use your authentication details to configuration proxy access to the internet. Specifically:
+       Selecione este modo para que o MySQL Installer use seus detalhes de autenticação para configurar o acesso Proxy à Internet. Especificamente:
 
-       - A proxy-server address (`http://`*`address-to-server`*) and port number
+       - Um endereço de Proxy Server (`http://`*`address-to-server`*) e número da porta (port number)
 
-       - A user name and password for authentication
+       - Um nome de usuário e senha para autenticação
 
-##### Locating Products to Install
+##### Localizando Produtos para Install
 
-MySQL products in the catalog are listed by category: MySQL Servers, Applications, MySQL Connectors, and Documentation. Only the latest GA versions appear in the Available Products pane by default. If you are looking for a pre-release or older version of a product, it may not be visible in the default list.
+Os produtos MySQL no catálogo são listados por categoria: MySQL Servers, Applications, MySQL Connectors e Documentation. Apenas as versões GA mais recentes aparecem no painel Produtos Disponíveis (Available Products) por padrão. Se você estiver procurando por um pre-release ou uma versão mais antiga de um produto, ela pode não estar visível na lista padrão.
 
-Note
+Nota
 
-Keep the product catalog up-to-date. Click Catalog on the MySQL Installer dashboard to download the latest manifest.
+Mantenha o catálogo de produtos atualizado. Clique em Catálogo (Catalog) no Dashboard do MySQL Installer para baixar o manifesto mais recente.
 
-To change the default product list, click Add in the dashboard to open the Select Products page, and then click Edit to open the dialog box shown in the figure that follows. Modify the settings and then click Filter.
+Para alterar a lista de produtos padrão, clique em Add no Dashboard para abrir a página Selecionar Produtos (Select Products) e, em seguida, clique em Editar (Edit) para abrir a caixa de diálogo mostrada na figura a seguir. Modifique as configurações e, em seguida, clique em Filtrar (Filter).
 
-**Figure 2.12 Filter Available Products**
+**Figure 2.12 Filtrar Produtos Disponíveis**
 
-![Filter by Text, Category, Maturity, Already Downloaded, and Architecture.](images/mi-product-filter.png)
+![Filtre por Texto, Categoria, Maturidade, Já Baixados e Arquitetura.](images/mi-product-filter.png)
 
-Reset one or more of the following fields to modify the list of available products:
+Redefina um ou mais dos seguintes campos para modificar a lista de produtos disponíveis:
 
-* Text: Filter by text.
-* Category: All Software (default), MySQL Servers, Applications, MySQL Connectors, or Documentation (for samples and documentation).
+* Text: Filtra por texto (Text).
+* Category: Todo o Software (All Software - padrão), MySQL Servers, Applications, MySQL Connectors ou Documentation (para samples e documentation).
 
-* Maturity: Current Bundle (appears initially with the full package only), Pre-Release, Current GA, or Other Releases. If you see a warning, confirm that you have the most recent product manifest by clicking Catalog on the MySQL Installer dashboard. If MySQL Installer is unable to download the manifest, the range of products you see is limited to bundled products, standalone product MSIs located in the `Product Cache` folder already, or both.
+* Maturity: Bundle Atual (Current Bundle - aparece inicialmente apenas com o pacote completo), Pre-Release, Current GA ou Outros Releases (Other Releases). Se você vir um aviso, confirme se possui o manifesto de produto mais recente clicando em Catálogo (Catalog) no Dashboard do MySQL Installer. Se o MySQL Installer não conseguir baixar o manifesto, o intervalo de produtos que você vê é limitado a produtos agrupados (bundled products), MSIs de produtos Standalone já localizados na pasta `Product Cache` ou ambos.
 
-  Note
+  Nota
 
-  The Commercial release of MySQL Installer does not display any MySQL products when you select the Pre-Release maturity filter. Products in development are available from the Community release of MySQL Installer only.
+  O Release Comercial do MySQL Installer não exibe nenhum produto MySQL quando você seleciona o filtro de maturidade Pre-Release. Os produtos em desenvolvimento estão disponíveis apenas no Release Community do MySQL Installer.
 
-* Already Downloaded (the check box is deselected by default). Permits you to view and manage downloaded products only.
+* Already Downloaded: Já Baixado (Already Downloaded - a caixa de seleção está desmarcada por padrão). Permite visualizar e gerenciar apenas produtos baixados.
 
-* Architecture: Any (default), 32-bit, or 64-bit.
+* Architecture: Qualquer (Any - padrão), 32-bit ou 64-bit.
 
-##### Upgrading MySQL Server
+##### Upgrading do MySQL Server
 
-Important server upgrade conditions:
+Condições importantes para Upgrade de Server:
 
-* MySQL Installer does not permit server upgrades between major release versions or minor release versions, but does permit upgrades within a release series, such as an upgrade from 8.0.36 to 8.0.37.
+* O MySQL Installer não permite Upgrades de Server entre versões de Major Release ou versões de Minor Release, mas permite Upgrades dentro de uma série de Release, como um Upgrade de 8.0.36 para 8.0.37.
 
-* Upgrades between milestone releases (or from a milestone release to a GA release) are not supported. Significant development changes take place in milestone releases and you may encounter compatibility issues or problems starting the server.
+* Upgrades entre Milestone Releases (ou de um Milestone Release para um Release GA) não são suportados. Ocorrem mudanças significativas de desenvolvimento nos Milestone Releases e você pode encontrar problemas de compatibilidade ou problemas ao iniciar o Server.
 
-* For upgrades, a check box enables you to skip the upgrade check and process for system tables, while checking and processing data dictionary tables normally. MySQL Installer does not prompt you with the check box when the previous server upgrade was skipped or when the server was configured as a sandbox InnoDB Cluster. This behavior represents a change in how MySQL Server performs an upgrade (see What the MySQL Upgrade Process Upgrades) and it alters the sequence of steps that MySQL Installer applies to the configuration process.
+* Para Upgrades, uma caixa de seleção permite ignorar a verificação e o processo de Upgrade para System Tables, enquanto verifica e processa as tabelas do Data Dictionary normalmente. O MySQL Installer não solicita a caixa de seleção quando o Upgrade de Server anterior foi ignorado ou quando o Server foi configurado como um Sandbox InnoDB Cluster. Este comportamento representa uma mudança na forma como o MySQL Server realiza um Upgrade (consulte O que o Processo de Upgrade do MySQL Atualiza) e altera a sequência de etapas que o MySQL Installer aplica ao processo de configuração.
 
-  If you select Skip system tables upgrade check and process. (Not recommended), MySQL Installer starts the upgraded server with the `--upgrade=MINIMAL` server option, which upgrades the data dictionary only. If you stop and then restart the server without the `--upgrade=MINIMAL` option, the server upgrades the system tables automatically, if needed.
+  Se você selecionar Ignorar verificação e processo de Upgrade de System Tables. (Não recomendado) (Skip system tables upgrade check and process. (Not recommended)), o MySQL Installer inicia o Server atualizado com a opção de Server `--upgrade=MINIMAL`, que faz o Upgrade apenas do Data Dictionary. Se você parar e, em seguida, reiniciar o Server sem a opção `--upgrade=MINIMAL`, o Server faz o Upgrade das System Tables automaticamente, se necessário.
 
-  The following information appears in the Log tab and log file after the upgrade configuration (with system tables skipped) is complete:
+  A seguinte informação aparece na guia Log e no arquivo de Log após a conclusão da configuração de Upgrade (com System Tables ignoradas):
 
   ```sql
   WARNING: The system tables upgrade was skipped after upgrading MySQL Server. The
@@ -162,43 +162,43 @@ Important server upgrade conditions:
   the system tables manually.
   ```
 
-To choose a new server version:
+Para escolher uma nova versão do Server:
 
-1. Click Upgrade. Confirm that the check box next to product name in the Upgradeable Products pane has a check mark. Deselect the products that you do not intend to upgrade at this time.
+1. Clique em Upgrade. Confirme se a caixa de seleção ao lado do nome do produto no painel Produtos Passíveis de Upgrade (Upgradeable Products) está marcada. Desmarque os produtos que você não pretende atualizar neste momento.
 
-   Note
+   Nota
 
-   For server milestone releases in the same release series, MySQL Installer deselects the server upgrade and displays a warning to indicate that the upgrade is not supported, identifies the risks of continuing, and provides a summary of the steps to perform a logical upgrade manually. You can reselect server upgrade at your own risk. For instructions on how to perform a logical upgrade with a milestone release, see Logical Upgrade.
+   Para Milestone Releases de Server na mesma série de Release, o MySQL Installer desmarca o Upgrade de Server e exibe um aviso para indicar que o Upgrade não é suportado, identifica os riscos de continuar e fornece um resumo das etapas para realizar um Upgrade lógico manualmente. Você pode reselecionar o Upgrade de Server por sua própria conta e risco. Para obter instruções sobre como realizar um Upgrade lógico com um Milestone Release, consulte Upgrade Lógico (Logical Upgrade).
 
-2. Click a product in the list to highlight it. This action populates the Upgradeable Versions pane with the details of each available version for the selected product: version number, published date, and a `Changes` link to open the release notes for that version.
+2. Clique em um produto na lista para destacá-lo. Esta ação preenche o painel Versões Passíveis de Upgrade (Upgradeable Versions) com os detalhes de cada versão disponível para o produto selecionado: número da versão, data de publicação e um link `Changes` para abrir as Notas de Release para essa versão.
 
-##### Removing MySQL Server
+##### Removendo o MySQL Server
 
-To remove a local MySQL server:
+Para remover um MySQL Server local:
 
-1. Determine whether the local data directory should be removed. If you retain the data directory, another server installation can reuse the data. This option is enabled by default (removes the data directory).
+1. Determine se o Data Directory local deve ser removido. Se você mantiver o Data Directory, outra Install de Server pode reutilizar os dados. Esta opção está habilitada por padrão (remove o Data Directory).
 
-2. Click Execute to begin uninstalling the local server. Note that all products that you selected to remove are also uninstalled at this time.
+2. Clique em Executar (Execute) para começar a Uninstall do Server local. Observe que todos os produtos que você selecionou para remover também são desinstalados neste momento.
 
-3. (Optional) Click the Log tab to display the current actions performed by MySQL Installer.
+3. (Opcional) Clique na guia Log para exibir as ações atuais executadas pelo MySQL Installer.
 
-##### Upgrading MySQL Installer
+##### Upgrading do MySQL Installer
 
-MySQL Installer remains installed on your computer, and like other software, MySQL Installer can be upgraded from the previous version. In some cases, other MySQL software may require that you upgrade MySQL Installer for compatibility. This section describes how to identify the current version of MySQL Installer and how to upgrade MySQL Installer manually.
+O MySQL Installer permanece instalado em seu computador e, assim como outro software, o MySQL Installer pode ser atualizado a partir da versão anterior (Upgrade). Em alguns casos, outro software MySQL pode exigir que você faça o Upgrade do MySQL Installer para garantir a compatibilidade. Esta seção descreve como identificar a versão atual do MySQL Installer e como fazer o Upgrade do MySQL Installer manualmente.
 
-**To locate the installed version of MySQL Installer:**
+**Para localizar a versão instalada do MySQL Installer:**
 
-1. Start MySQL Installer from the search menu. The MySQL Installer dashboard opens.
-2. Click the MySQL Installer About icon (!). The version number is located above the Back button.
+1. Inicie o MySQL Installer a partir do menu de pesquisa. O Dashboard do MySQL Installer é aberto.
+2. Clique no ícone Sobre o MySQL Installer (About - !). O número da versão está localizado acima do botão Voltar (Back).
 
-**To initiate an on-demand upgrade of MySQL Installer:**
+**Para iniciar um Upgrade sob demanda do MySQL Installer:**
 
-1. Connect the computer with MySQL Installer installed to the internet.
-2. Start MySQL Installer from the search menu. The MySQL Installer dashboard opens.
-3. Click Catalog on the bottom of the dashboard to open the Update Catalog window.
+1. Conecte o computador com o MySQL Installer instalado à Internet.
+2. Inicie o MySQL Installer a partir do menu de pesquisa. O Dashboard do MySQL Installer é aberto.
+3. Clique em Catálogo (Catalog) na parte inferior do Dashboard para abrir a janela Atualizar Catálogo (Update Catalog).
 
-4. Click Execute to begin the process. If the installed version of MySQL Installer can be upgraded, you will be prompted to start the upgrade.
+4. Clique em Executar (Execute) para iniciar o processo. Se a versão instalada do MySQL Installer puder ser atualizada (Upgrade), você será solicitado a iniciar o Upgrade.
 
-5. Click Next to review all changes to the catalog and then click Finish to return to the dashboard.
+5. Clique em Avançar (Next) para revisar todas as alterações no catálogo e, em seguida, clique em Concluir (Finish) para retornar ao Dashboard.
 
-6. Verify the (new) installed version of MySQL Installer (see the previous procedure).
+6. Verifique a (nova) versão instalada do MySQL Installer (consulte o procedimento anterior).

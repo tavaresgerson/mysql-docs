@@ -1,8 +1,8 @@
-### 2.4.3 Installing a MySQL Launch Daemon
+### 2.4.3 Instalando um Daemon de Inicialização do MySQL
 
-macOS uses launch daemons to automatically start, stop, and manage processes and applications such as MySQL.
+O macOS utiliza launch daemons para iniciar, parar e gerenciar automaticamente processos e aplicações, como o MySQL.
 
-By default, the installation package (DMG) on macOS installs a launchd file named `/Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist` that contains a plist definition similar to:
+Por padrão, o pacote de instalação (DMG) no macOS instala um arquivo launchd chamado `/Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist` que contém uma definição plist semelhante a:
 
 ```sql
 <?xml version="1.0" encoding="utf-8"?>
@@ -35,52 +35,52 @@ By default, the installation package (DMG) on macOS installs a launchd file name
 </plist>
 ```
 
-Note
+Nota
 
-Some users report that adding a plist DOCTYPE declaration causes the launchd operation to fail, despite it passing the lint check. We suspect it's a copy-n-paste error. The md5 checksum of a file containing the above snippet is *24710a27dc7a28fb7ee6d825129cd3cf*.
+Alguns usuários relatam que adicionar uma declaração DOCTYPE no plist faz com que a operação launchd falhe, apesar de passar na verificação de lint. Suspeitamos que seja um erro de copy-n-paste (copiar e colar). O checksum md5 de um arquivo contendo o trecho acima é *24710a27dc7a28fb7ee6d825129cd3cf*.
 
-To enable the launchd service, you can either:
+Para habilitar o serviço launchd, você pode:
 
-* Click Start MySQL Server from the MySQL preference pane.
+* Clicar em Start MySQL Server (Iniciar Servidor MySQL) no painel de preferências do MySQL.
 
-  **Figure 2.19 MySQL Preference Pane: Location**
+  **Figura 2.19 Painel de Preferências do MySQL: Localização**
 
-  ![Content is described in the surrounding text.](images/mac-installer-preference-pane-location.png)
+  ![O conteúdo é descrito no texto circundante.](images/mac-installer-preference-pane-location.png)
 
-  **Figure 2.20 MySQL Preference Pane: Usage**
+  **Figura 2.20 Painel de Preferências do MySQL: Uso**
 
-  ![Content is described in the surrounding text.](images/mac-installer-preference-pane-usage.png)
+  ![O conteúdo é descrito no texto circundante.](images/mac-installer-preference-pane-usage.png)
 
-* Or, manually load the launchd file.
+* Ou, carregar manualmente o arquivo launchd.
 
   ```sql
   $> cd /Library/LaunchDaemons
   $> sudo launchctl load -F com.oracle.oss.mysql.mysqld.plist
   ```
 
-* To configure MySQL to automatically start at bootup, you can:
+* Para configurar o MySQL para iniciar automaticamente durante o bootup, você pode:
 
   ```sql
   $> sudo launchctl load -w com.oracle.oss.mysql.mysqld.plist
   ```
 
-Note
+Nota
 
-When upgrading MySQL server, the launchd installation process removes the old startup items that were installed with MySQL server 5.7.7 and earlier.
+Ao atualizar o MySQL server, o processo de instalação launchd remove os itens de startup antigos que foram instalados com o MySQL server 5.7.7 e anterior.
 
-Upgrading also replaces your existing **launchd** file of the same name.
+A atualização também substitui o seu arquivo **launchd** existente com o mesmo nome.
 
-Additional **launchd** related information:
+Informações adicionais relacionadas ao **launchd**:
 
-* The `plist` entries override `my.cnf` entries, because they are passed in as command line arguments. For additional information about passing in program options, see Section 4.2.2, “Specifying Program Options”.
+* As entradas `plist` sobrescrevem as entradas `my.cnf`, porque elas são passadas como command line arguments. Para informações adicionais sobre como passar opções de programa, consulte a Seção 4.2.2, “Especificando Opções de Programa”.
 
-* The **ProgramArguments** section defines the command line options that are passed into the program, which is the `mysqld` binary in this case.
+* A seção **ProgramArguments** define as opções de linha de comando que são passadas para o programa, que neste caso é o binário `mysqld`.
 
-* The default `plist` definition is written with less sophisticated use cases in mind. For more complicated setups, you may want to remove some of the arguments and instead rely on a MySQL configuration file, such as `my.cnf`.
+* A definição padrão do `plist` é escrita pensando em casos de uso menos sofisticados. Para configurações mais complexas, você pode querer remover alguns dos argumentos e, em vez disso, confiar em um arquivo de configuração do MySQL, como o `my.cnf`.
 
-* If you edit the `plist` file, then uncheck the installer option when reinstalling or upgrading MySQL. Otherwise, your edited `plist` file is overwritten, with the loss of any changes you have made.
+* Se você editar o arquivo `plist`, desmarque a opção do instalador ao reinstalar ou atualizar o MySQL. Caso contrário, seu arquivo `plist` editado será sobrescrito, resultando na perda de quaisquer alterações que você tenha feito.
 
-Because the default `plist` definition defines several **ProgramArguments**, you might remove most of these arguments and instead rely upon your `my.cnf` MySQL configuration file to define them. For example:
+Como a definição padrão do plist define vários **ProgramArguments**, você pode remover a maioria desses argumentos e, em vez disso, confiar no seu arquivo de configuração my.cnf do MySQL para defini-los. Por exemplo:
 
 ```sql
 <?xml version="1.0" encoding="utf-8"?>
@@ -108,4 +108,4 @@ Because the default `plist` definition defines several **ProgramArguments**, you
 </plist>
 ```
 
-In this case, the `basedir`, `datadir`, `plugin_dir`, `log_error`, and `pid_file` options were removed from the plist definition, and then you might define them in `my.cnf`.
+Neste caso, as opções `basedir`, `datadir`, `plugin_dir`, `log_error` e `pid_file` foram removidas da definição plist, e então você pode defini-las no `my.cnf`.

@@ -1,8 +1,8 @@
-### 10.3.2 Server Character Set and Collation
+### 10.3.2 Character Set e Collation do Server
 
-MySQL Server has a server character set and a server collation. By default, these are `latin1` and `latin1_swedish_ci`, but they can be set explicitly at server startup on the command line or in an option file and changed at runtime.
+O MySQL Server possui um character set e um collation do server. Por padrão, estes são `latin1` e `latin1_swedish_ci`, mas eles podem ser definidos explicitamente no *startup* do server na *command line* ou em um arquivo de opção e alterados em *runtime*.
 
-Initially, the server character set and collation depend on the options that you use when you start **mysqld**. You can use `--character-set-server` for the character set. Along with it, you can add `--collation-server` for the collation. If you don't specify a character set, that is the same as saying `--character-set-server=latin1`. If you specify only a character set (for example, `latin1`) but not a collation, that is the same as saying `--character-set-server=latin1` `--collation-server=latin1_swedish_ci` because `latin1_swedish_ci` is the default collation for `latin1`. Therefore, the following three commands all have the same effect:
+Inicialmente, o character set e o collation do server dependem das opções que você usa ao iniciar o **mysqld**. Você pode usar `--character-set-server` para o character set. Juntamente com isso, você pode adicionar `--collation-server` para o collation. Se você não especificar um character set, isso é o mesmo que dizer `--character-set-server=latin1`. Se você especificar apenas um character set (por exemplo, `latin1`), mas não um collation, isso é o mesmo que dizer `--character-set-server=latin1` `--collation-server=latin1_swedish_ci`, pois `latin1_swedish_ci` é o collation padrão para `latin1`. Portanto, os três comandos a seguir têm o mesmo efeito:
 
 ```sql
 mysqld
@@ -11,21 +11,21 @@ mysqld --character-set-server=latin1 \
   --collation-server=latin1_swedish_ci
 ```
 
-One way to change the settings is by recompiling. To change the default server character set and collation when building from sources, use the `DEFAULT_CHARSET` and `DEFAULT_COLLATION` options for **CMake**. For example:
+Uma maneira de alterar as configurações é recompilando. Para alterar o character set e o collation padrão do server ao compilar a partir dos códigos-fonte (*sources*), use as opções `DEFAULT_CHARSET` e `DEFAULT_COLLATION` para o **CMake**. Por exemplo:
 
 ```sql
 cmake . -DDEFAULT_CHARSET=latin1
 ```
 
-Or:
+Ou:
 
 ```sql
 cmake . -DDEFAULT_CHARSET=latin1 \
   -DDEFAULT_COLLATION=latin1_german1_ci
 ```
 
-Both **mysqld** and **CMake** verify that the character set/collation combination is valid. If not, each program displays an error message and terminates.
+Tanto o **mysqld** quanto o **CMake** verificam se a combinação character set/collation é válida. Caso contrário, cada programa exibe uma mensagem de erro e é encerrado.
 
-The server character set and collation are used as default values if the database character set and collation are not specified in `CREATE DATABASE` statements. They have no other purpose.
+O character set e o collation do server são usados como valores padrão se o character set e o collation do Database não forem especificados nas instruções `CREATE DATABASE`. Eles não têm outro propósito.
 
-The current server character set and collation can be determined from the values of the `character_set_server` and `collation_server` system variables. These variables can be changed at runtime.
+O character set e o collation atuais do server podem ser determinados a partir dos valores das variáveis de sistema `character_set_server` e `collation_server`. Essas variáveis podem ser alteradas em *runtime*.

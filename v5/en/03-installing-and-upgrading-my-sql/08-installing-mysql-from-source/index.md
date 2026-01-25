@@ -1,29 +1,21 @@
-## 2.8 Installing MySQL from Source
+## 2.8 Instalando MySQL a Partir do Código-Fonte
 
-2.8.1 Source Installation Methods
+2.8.1 Métodos de Instalação a Partir do Código-Fonte
+2.8.2 Pré-requisitos para Instalação a Partir do Código-Fonte
+2.8.3 Layout do MySQL para Instalação a Partir do Código-Fonte
+2.8.4 Instalando MySQL Usando uma Distribuição Source Padrão
+2.8.5 Instalando MySQL Usando uma Árvore Source de Desenvolvimento
+2.8.6 Configurando o Suporte à Biblioteca SSL
+2.8.7 Opções de Configuração do Source do MySQL
+2.8.8 Lidando com Problemas na Compilação do MySQL
+2.8.9 Configuração do MySQL e Ferramentas de Terceiros
 
-2.8.2 Source Installation Prerequisites
+A construção (Building) do MySQL a partir do código-fonte permite que você personalize parâmetros de compilação, otimizações do compilador e o local de instalação. Para obter uma lista de sistemas nos quais se sabe que o MySQL funciona, consulte <https://www.mysql.com/support/supportedplatforms/database.html>.
 
-2.8.3 MySQL Layout for Source Installation
+Antes de prosseguir com uma instalação a partir do código-fonte (*source*), verifique se a Oracle oferece uma distribuição binária pré-compilada para sua plataforma e se ela atende às suas necessidades. Dedicamos um grande esforço para garantir que nossos binários sejam construídos com as melhores opções possíveis para um desempenho ideal. As instruções para a instalação de distribuições binárias estão disponíveis na Seção 2.2, “Instalando MySQL no Unix/Linux Usando Binários Genéricos”.
 
-2.8.4 Installing MySQL Using a Standard Source Distribution
+Se você estiver interessado em construir o MySQL a partir de uma distribuição Source usando opções de *build* iguais ou similares às usadas pela Oracle para produzir distribuições binárias em sua plataforma, obtenha uma distribuição binária, descompacte-a (*unpack*) e procure no arquivo `docs/INFO_BIN`, que contém informações sobre como essa distribuição MySQL foi configurada e compilada.
 
-2.8.5 Installing MySQL Using a Development Source Tree
+Aviso
 
-2.8.6 Configuring SSL Library Support
-
-2.8.7 MySQL Source-Configuration Options
-
-2.8.8 Dealing with Problems Compiling MySQL
-
-2.8.9 MySQL Configuration and Third-Party Tools
-
-Building MySQL from the source code enables you to customize build parameters, compiler optimizations, and installation location. For a list of systems on which MySQL is known to run, see <https://www.mysql.com/support/supportedplatforms/database.html>.
-
-Before you proceed with an installation from source, check whether Oracle produces a precompiled binary distribution for your platform and whether it works for you. We put a great deal of effort into ensuring that our binaries are built with the best possible options for optimal performance. Instructions for installing binary distributions are available in Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”.
-
-If you are interested in building MySQL from a source distribution using build options the same as or similar to those use by Oracle to produce binary distributions on your platform, obtain a binary distribution, unpack it, and look in the `docs/INFO_BIN` file, which contains information about how that MySQL distribution was configured and compiled.
-
-Warning
-
-Building MySQL with nonstandard options may lead to reduced functionality, performance, or security.
+Construir o MySQL com opções não padronizadas pode levar à redução da funcionalidade, desempenho ou segurança.

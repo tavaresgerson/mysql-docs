@@ -1,3 +1,3 @@
-### 2.1.1 Supported Platforms
+### 2.1.1 Plataformas Suportadas
 
-MySQL platform support evolves over time; please refer to <https://www.mysql.com/support/supportedplatforms/database.html> for the latest updates.
+O suporte a plataformas do MySQL evolui com o tempo; consulte <https://www.mysql.com/support/supportedplatforms/database.html> para obter as atualizações mais recentes.

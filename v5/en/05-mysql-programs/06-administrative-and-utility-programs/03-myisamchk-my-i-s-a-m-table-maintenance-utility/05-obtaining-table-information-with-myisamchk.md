@@ -1,26 +1,26 @@
-#### 4.6.3.5 Obtaining Table Information with myisamchk
+#### 4.6.3.5 Obtendo Informações da Tabela com myisamchk
 
-To obtain a description of a `MyISAM` table or statistics about it, use the commands shown here. The output from these commands is explained later in this section.
+Para obter uma descrição de uma tabela `MyISAM` ou estatísticas sobre ela, use os comandos mostrados aqui. A saída desses comandos é explicada mais adiante nesta seção.
 
-* **myisamchk -d *`tbl_name`***
+* **myisamchk -d *`nome_da_tabela`***
 
-  Runs **myisamchk** in “describe mode” to produce a description of your table. If you start the MySQL server with external locking disabled, **myisamchk** may report an error for a table that is updated while it runs. However, because **myisamchk** does not change the table in describe mode, there is no risk of destroying data.
+  Executa o **myisamchk** em “describe mode” (modo de descrição) para produzir uma descrição da sua tabela. Se você iniciar o servidor MySQL com o external locking desabilitado, o **myisamchk** pode reportar um erro para uma tabela que esteja sendo atualizada enquanto ele é executado. No entanto, como o **myisamchk** não altera a tabela no describe mode, não há risco de destruição de dados.
 
-* **myisamchk -dv *`tbl_name`***
+* **myisamchk -dv *`nome_da_tabela`***
 
-  Adding `-v` runs **myisamchk** in verbose mode so that it produces more information about the table. Adding `-v` a second time produces even more information.
+  Adicionar `-v` executa o **myisamchk** em modo verbose (detalhado) para que ele produza mais informações sobre a tabela. Adicionar `-v` uma segunda vez produz ainda mais informações.
 
-* **myisamchk -eis *`tbl_name`***
+* **myisamchk -eis *`nome_da_tabela`***
 
-  Shows only the most important information from a table. This operation is slow because it must read the entire table.
+  Mostra apenas as informações mais importantes de uma tabela. Esta operação é lenta porque deve ler a tabela inteira.
 
-* **myisamchk -eiv *`tbl_name`***
+* **myisamchk -eiv *`nome_da_tabela`***
 
-  This is like `-eis`, but tells you what is being done.
+  Isso é semelhante a `-eis`, mas informa o que está sendo feito.
 
-The *`tbl_name`* argument can be either the name of a `MyISAM` table or the name of its index file, as described in Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”. Multiple *`tbl_name`* arguments can be given.
+O argumento *`nome_da_tabela`* pode ser tanto o nome de uma tabela `MyISAM` quanto o nome do seu arquivo Index, conforme descrito na Seção 4.6.3, “myisamchk — Utilitário de Manutenção de Tabela MyISAM”. Vários argumentos *`nome_da_tabela`* podem ser fornecidos.
 
-Suppose that a table named `person` has the following structure. (The `MAX_ROWS` table option is included so that in the example output from **myisamchk** shown later, some values are smaller and fit the output format more easily.)
+Suponha que uma tabela chamada `person` tenha a seguinte estrutura. (A opção de tabela `MAX_ROWS` está incluída para que, no exemplo de saída do **myisamchk** mostrado mais tarde, alguns valores sejam menores e se ajustem mais facilmente ao formato de saída.)
 
 ```sql
 CREATE TABLE person
@@ -36,14 +36,14 @@ CREATE TABLE person
 ) MAX_ROWS = 1000000 ENGINE=MYISAM;
 ```
 
-Suppose also that the table has these data and index file sizes:
+Suponha também que a tabela tenha estes tamanhos de arquivo de dados e Index:
 
 ```sql
 -rw-rw----  1 mysql  mysql  9347072 Aug 19 11:47 person.MYD
 -rw-rw----  1 mysql  mysql  6066176 Aug 19 11:47 person.MYI
 ```
 
-Example of **myisamchk -dvv** output:
+Exemplo de saída de **myisamchk -dvv**:
 
 ```sql
 MyISAM file:         person
@@ -77,181 +77,179 @@ Field Start Length Nullpos Nullbit Type
 6     51    3      1       2       no zeros
 ```
 
-Explanations for the types of information **myisamchk** produces are given here. “Keyfile” refers to the index file. “Record” and “row” are synonymous, as are “field” and “column.”
+As explicações para os tipos de informação que o **myisamchk** produz são fornecidas aqui. "Keyfile" (Arquivo de Key) refere-se ao arquivo Index. "Record" (Registro) e "row" (linha) são sinônimos, assim como "field" (campo) e "column" (coluna).
 
-The initial part of the table description contains these values:
+A parte inicial da descrição da tabela contém os seguintes valores:
 
 * `MyISAM file`
 
-  Name of the `MyISAM` (index) file.
+  Nome do arquivo `MyISAM` (Index).
 
 * `Record format`
 
-  The format used to store table rows. The preceding examples use `Fixed length`. Other possible values are `Compressed` and `Packed`. (`Packed` corresponds to what `SHOW TABLE STATUS` reports as `Dynamic`.)
+  O formato usado para armazenar as rows da tabela. Os exemplos anteriores usam `Fixed length` (Comprimento fixo). Outros valores possíveis são `Compressed` (Comprimido) e `Packed` (Empacotado). (`Packed` corresponde ao que `SHOW TABLE STATUS` reporta como `Dynamic`.)
 
 * `Chararacter set`
 
-  The table default character set.
+  O character set padrão da tabela.
 
 * `File-version`
 
-  Version of `MyISAM` format. Always 1.
+  Versão do formato `MyISAM`. Sempre 1.
 
 * `Creation time`
 
-  When the data file was created.
+  Quando o arquivo de dados foi criado.
 
 * `Recover time`
 
-  When the index/data file was last reconstructed.
+  Quando o arquivo Index/dados foi reconstruído pela última vez.
 
 * `Status`
 
-  Table status flags. Possible values are `crashed`, `open`, `changed`, `analyzed`, `optimized keys`, and `sorted index pages`.
+  Flags de status da tabela. Valores possíveis são `crashed` (travada), `open` (aberta), `changed` (alterada), `analyzed` (analisada), `optimized keys` (Keys otimizadas) e `sorted index pages` (páginas de Index ordenadas).
 
 * `Auto increment key`, `Last value`
 
-  The key number associated the table's `AUTO_INCREMENT` column, and the most recently generated value for this column. These fields do not appear if there is no such column.
+  O número da Key associada à coluna `AUTO_INCREMENT` da tabela e o valor gerado mais recentemente para esta coluna. Esses campos não aparecem se não houver tal coluna.
 
 * `Data records`
 
-  The number of rows in the table.
+  O número de rows na tabela.
 
 * `Deleted blocks`
 
-  How many deleted blocks still have reserved space. You can optimize your table to minimize this space. See Section 7.6.4, “MyISAM Table Optimization”.
+  Quantos blocos deletados ainda têm espaço reservado. Você pode otimizar sua tabela para minimizar este espaço. Consulte a Seção 7.6.4, “Otimização de Tabela MyISAM”.
 
 * `Datafile parts`
 
-  For dynamic-row format, this indicates how many data blocks there are. For an optimized table without fragmented rows, this is the same as `Data records`.
+  Para o formato de row dinâmico, isso indica quantos blocos de dados existem. Para uma tabela otimizada sem rows fragmentadas, isso é o mesmo que `Data records`.
 
 * `Deleted data`
 
-  How many bytes of unreclaimed deleted data there are. You can optimize your table to minimize this space. See Section 7.6.4, “MyISAM Table Optimization”.
+  Quantos bytes de dados deletados não recuperados existem. Você pode otimizar sua tabela para minimizar este espaço. Consulte a Seção 7.6.4, “Otimização de Tabela MyISAM”.
 
 * `Datafile pointer`
 
-  The size of the data file pointer, in bytes. It is usually 2, 3, 4, or 5 bytes. Most tables manage with 2 bytes, but this cannot be controlled from MySQL yet. For fixed tables, this is a row address. For dynamic tables, this is a byte address.
+  O tamanho do ponteiro do arquivo de dados, em bytes. Geralmente é de 2, 3, 4 ou 5 bytes. A maioria das tabelas funciona com 2 bytes, mas isso ainda não pode ser controlado a partir do MySQL. Para tabelas fixas, este é um endereço de row. Para tabelas dinâmicas, este é um endereço de byte.
 
 * `Keyfile pointer`
 
-  The size of the index file pointer, in bytes. It is usually 1, 2, or 3 bytes. Most tables manage with 2 bytes, but this is calculated automatically by MySQL. It is always a block address.
+  O tamanho do ponteiro do arquivo Index, em bytes. Geralmente é de 1, 2 ou 3 bytes. A maioria das tabelas funciona com 2 bytes, mas isso é calculado automaticamente pelo MySQL. É sempre um endereço de bloco.
 
 * `Max datafile length`
 
-  How long the table data file can become, in bytes.
+  O quão longo o arquivo de dados da tabela pode se tornar, em bytes.
 
 * `Max keyfile length`
 
-  How long the table index file can become, in bytes.
+  O quão longo o arquivo Index da tabela pode se tornar, em bytes.
 
 * `Recordlength`
 
-  How much space each row takes, in bytes.
+  Quanto espaço cada row ocupa, em bytes.
 
-The `table description` part of the output includes a list of all keys in the table. For each key, **myisamchk** displays some low-level information:
+A parte de `table description` (descrição da tabela) da saída inclui uma lista de todas as Keys na tabela. Para cada Key, o **myisamchk** exibe algumas informações de baixo nível:
 
 * `Key`
 
-  This key's number. This value is shown only for the first column of the key. If this value is missing, the line corresponds to the second or later column of a multiple-column key. For the table shown in the example, there are two `table description` lines for the second index. This indicates that it is a multiple-part index with two parts.
+  O número desta Key. Este valor é exibido apenas para a primeira coluna da Key. Se este valor estiver ausente, a linha corresponde à segunda ou a uma coluna posterior de uma Key de múltiplas colunas. Para a tabela mostrada no exemplo, existem duas linhas de `table description` para o segundo Index. Isso indica que é um Index de múltiplas partes com duas partes.
 
 * `Start`
 
-  Where in the row this portion of the index starts.
+  Onde, na row, esta porção do Index começa.
 
 * `Len`
 
-  How long this portion of the index is. For packed numbers, this should always be the full length of the column. For strings, it may be shorter than the full length of the indexed column, because you can index a prefix of a string column. The total length of a multiple-part key is the sum of the `Len` values for all key parts.
+  O comprimento desta porção do Index. Para números empacotados, este deve ser sempre o comprimento total da coluna. Para strings, pode ser menor que o comprimento total da coluna indexada, pois você pode indexar um prefixo de uma coluna string. O comprimento total de uma Key de múltiplas partes é a soma dos valores `Len` para todas as partes da Key.
 
 * `Index`
 
-  Whether a key value can exist multiple times in the index. Possible values are `unique` or `multip.` (multiple).
+  Se um valor de Key pode existir múltiplas vezes no Index. Os valores possíveis são `unique` (único) ou `multip.` (múltiplo).
 
 * `Type`
 
-  What data type this portion of the index has. This is a `MyISAM` data type with the possible values `packed`, `stripped`, or `empty`.
+  Qual Data Type esta porção do Index possui. Este é um Data Type `MyISAM` com os valores possíveis `packed` (empacotado), `stripped` (removido) ou `empty` (vazio).
 
 * `Root`
 
-  Address of the root index block.
+  Endereço do bloco de Index raiz.
 
 * `Blocksize`
 
-  The size of each index block. By default this is 1024, but the value may be changed at compile time when MySQL is built from source.
+  O tamanho de cada bloco de Index. Por padrão, é 1024, mas o valor pode ser alterado no momento da compilação, quando o MySQL é construído a partir do código-fonte.
 
 * `Rec/key`
 
-  This is a statistical value used by the optimizer. It tells how many rows there are per value for this index. A unique index always has a value of 1. This may be updated after a table is loaded (or greatly changed) with **myisamchk -a**. If this is not updated at all, a default value of 30 is given.
+  Este é um valor estatístico usado pelo optimizer. Ele informa quantas rows existem por valor para este Index. Um Index unique (único) sempre tem o valor 1. Isso pode ser atualizado após o carregamento (ou grande alteração) de uma tabela com **myisamchk -a**. Se não for atualizado, um valor padrão de 30 é fornecido.
 
-The last part of the output provides information about each column:
+A última parte da saída fornece informações sobre cada coluna:
 
 * `Field`
 
-  The column number.
+  O número da coluna.
 
 * `Start`
 
-  The byte position of the column within table rows.
+  A posição do byte da coluna dentro das rows da tabela.
 
 * `Length`
 
-  The length of the column in bytes.
+  O comprimento da coluna em bytes.
 
 * `Nullpos`, `Nullbit`
 
-  For columns that can be `NULL`, `MyISAM` stores `NULL` values as a flag in a byte. Depending on how many nullable columns there are, there can be one or more bytes used for this purpose. The `Nullpos` and `Nullbit` values, if nonempty, indicate which byte and bit contains that flag indicating whether the column is `NULL`.
+  Para colunas que podem ser `NULL`, o `MyISAM` armazena valores `NULL` como uma flag em um byte. Dependendo de quantas colunas anuláveis existem, pode haver um ou mais bytes usados para esse fim. Os valores `Nullpos` e `Nullbit`, se não estiverem vazios, indicam qual byte e bit contêm essa flag que sinaliza se a coluna é `NULL`.
 
-  The position and number of bytes used to store `NULL` flags is shown in the line for field
-
-  1. This is why there are six `Field` lines for the `person` table even though it has only five columns.
+  A posição e o número de bytes usados para armazenar flags `NULL` são mostrados na linha para o `Field` 1. É por isso que existem seis linhas `Field` para a tabela `person`, embora ela tenha apenas cinco colunas.
 
 * `Type`
 
-  The data type. The value may contain any of the following descriptors:
+  O Data Type. O valor pode conter qualquer um dos seguintes descritores:
 
   + `constant`
 
-    All rows have the same value.
+    Todas as rows têm o mesmo valor.
 
   + `no endspace`
 
-    Do not store endspace.
+    Não armazena espaço final (`endspace`).
 
   + `no endspace, not_always`
 
-    Do not store endspace and do not do endspace compression for all values.
+    Não armazena espaço final e não realiza compressão de espaço final para todos os valores.
 
   + `no endspace, no empty`
 
-    Do not store endspace. Do not store empty values.
+    Não armazena espaço final. Não armazena valores vazios.
 
   + `table-lookup`
 
-    The column was converted to an `ENUM`.
+    A coluna foi convertida para um `ENUM`.
 
   + `zerofill(N)`
 
-    The most significant *`N`* bytes in the value are always 0 and are not stored.
+    Os *`N`* bytes mais significativos no valor são sempre 0 e não são armazenados.
 
   + `no zeros`
 
-    Do not store zeros.
+    Não armazena zeros.
 
   + `always zero`
 
-    Zero values are stored using one bit.
+    Valores zero são armazenados usando um bit.
 
 * `Huff tree`
 
-  The number of the Huffman tree associated with the column.
+  O número da Huffman tree associada à coluna.
 
 * `Bits`
 
-  The number of bits used in the Huffman tree.
+  O número de bits usados na Huffman tree.
 
-The `Huff tree` and `Bits` fields are displayed if the table has been compressed with **myisampack**. See Section 4.6.5, “myisampack — Generate Compressed, Read-Only MyISAM Tables”, for an example of this information.
+Os campos `Huff tree` e `Bits` são exibidos se a tabela foi compactada com **myisampack**. Consulte a Seção 4.6.5, “myisampack — Gerar Tabelas MyISAM Compactadas e Somente Leitura”, para um exemplo desta informação.
 
-Example of **myisamchk -eiv** output:
+Exemplo de saída de **myisamchk -eiv**:
 
 ```sql
 Checking MyISAM file: person
@@ -287,76 +285,76 @@ Voluntary context switches 0, Involuntary context switches 0
 Maximum memory usage: 1046926 bytes (1023k)
 ```
 
-**myisamchk -eiv** output includes the following information:
+A saída de **myisamchk -eiv** inclui as seguintes informações:
 
 * `Data records`
 
-  The number of rows in the table.
+  O número de rows na tabela.
 
 * `Deleted blocks`
 
-  How many deleted blocks still have reserved space. You can optimize your table to minimize this space. See Section 7.6.4, “MyISAM Table Optimization”.
+  Quantos blocos deletados ainda têm espaço reservado. Você pode otimizar sua tabela para minimizar este espaço. Consulte a Seção 7.6.4, “Otimização de Tabela MyISAM”.
 
 * `Key`
 
-  The key number.
+  O número da Key.
 
 * `Keyblocks used`
 
-  What percentage of the keyblocks are used. When a table has just been reorganized with **myisamchk**, the values are very high (very near theoretical maximum).
+  Qual porcentagem dos keyblocks é usada. Quando uma tabela acaba de ser reorganizada com **myisamchk**, os valores são muito altos (muito próximos do máximo teórico).
 
 * `Packed`
 
-  MySQL tries to pack key values that have a common suffix. This can only be used for indexes on `CHAR` and `VARCHAR` columns. For long indexed strings that have similar leftmost parts, this can significantly reduce the space used. In the preceding example, the second key is 40 bytes long and a 97% reduction in space is achieved.
+  O MySQL tenta empacotar valores de Key que possuem um sufixo comum. Isso só pode ser usado para Indexes em colunas `CHAR` e `VARCHAR`. Para strings longas indexadas que têm partes mais à esquerda semelhantes, isso pode reduzir significativamente o espaço usado. No exemplo anterior, a segunda Key tem 40 bytes de comprimento e é alcançada uma redução de 97% no espaço.
 
 * `Max levels`
 
-  How deep the B-tree for this key is. Large tables with long key values get high values.
+  A profundidade da B-tree para esta Key. Tabelas grandes com valores de Key longos obtêm valores altos.
 
 * `Records`
 
-  How many rows are in the table.
+  Quantas rows estão na tabela.
 
 * `M.recordlength`
 
-  The average row length. This is the exact row length for tables with fixed-length rows, because all rows have the same length.
+  O comprimento médio da row. Este é o comprimento exato da row para tabelas com rows de comprimento fixo, pois todas as rows têm o mesmo comprimento.
 
 * `Packed`
 
-  MySQL strips spaces from the end of strings. The `Packed` value indicates the percentage of savings achieved by doing this.
+  O MySQL remove espaços do final das strings. O valor `Packed` indica a porcentagem de economia alcançada ao fazer isso.
 
 * `Recordspace used`
 
-  What percentage of the data file is used.
+  Qual porcentagem do arquivo de dados é usada.
 
 * `Empty space`
 
-  What percentage of the data file is unused.
+  Qual porcentagem do arquivo de dados está sem uso.
 
 * `Blocks/Record`
 
-  Average number of blocks per row (that is, how many links a fragmented row is composed of). This is always 1.0 for fixed-format tables. This value should stay as close to 1.0 as possible. If it gets too large, you can reorganize the table. See Section 7.6.4, “MyISAM Table Optimization”.
+  Número médio de blocos por row (ou seja, de quantos links uma row fragmentada é composta). Este valor é sempre 1.0 para tabelas de formato fixo. Este valor deve permanecer o mais próximo possível de 1.0. Se ficar muito grande, você pode reorganizar a tabela. Consulte a Seção 7.6.4, “Otimização de Tabela MyISAM”.
 
 * `Recordblocks`
 
-  How many blocks (links) are used. For fixed-format tables, this is the same as the number of rows.
+  Quantos blocos (links) são usados. Para tabelas de formato fixo, este é o mesmo que o número de rows.
 
 * `Deleteblocks`
 
-  How many blocks (links) are deleted.
+  Quantos blocos (links) são deletados.
 
 * `Recorddata`
 
-  How many bytes in the data file are used.
+  Quantos bytes no arquivo de dados são usados.
 
 * `Deleted data`
 
-  How many bytes in the data file are deleted (unused).
+  Quantos bytes no arquivo de dados são deletados (não utilizados).
 
 * `Lost space`
 
-  If a row is updated to a shorter length, some space is lost. This is the sum of all such losses, in bytes.
+  Se uma row for atualizada para um comprimento menor, algum espaço é perdido. Esta é a soma de todas essas perdas, em bytes.
 
 * `Linkdata`
 
-  When the dynamic table format is used, row fragments are linked with pointers (4 to 7 bytes each). `Linkdata` is the sum of the amount of storage used by all such pointers.
+  Quando o formato de tabela dinâmico é usado, fragmentos de row são ligados por ponteiros (4 a 7 bytes cada). `Linkdata` é a soma da quantidade de armazenamento usada por todos esses ponteiros.

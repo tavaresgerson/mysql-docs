@@ -1,23 +1,23 @@
-## 8.5 Optimizing for InnoDB Tables
+## 8.5 Otimizando para Tabelas InnoDB
 
-8.5.1 Optimizing Storage Layout for InnoDB Tables
+8.5.1 Otimizando o Layout de Armazenamento para Tabelas InnoDB
 
-8.5.2 Optimizing InnoDB Transaction Management
+8.5.2 Otimizando o Gerenciamento de Transaction do InnoDB
 
-8.5.3 Optimizing InnoDB Read-Only Transactions
+8.5.3 Otimizando Transactions Somente Leitura (Read-Only) do InnoDB
 
-8.5.4 Optimizing InnoDB Redo Logging
+8.5.4 Otimizando o Redo Logging do InnoDB
 
-8.5.5 Bulk Data Loading for InnoDB Tables
+8.5.5 Carregamento em Massa de Dados (Bulk Data Loading) para Tabelas InnoDB
 
-8.5.6 Optimizing InnoDB Queries
+8.5.6 Otimizando Queries do InnoDB
 
-8.5.7 Optimizing InnoDB DDL Operations
+8.5.7 Otimizando Operações DDL do InnoDB
 
-8.5.8 Optimizing InnoDB Disk I/O
+8.5.8 Otimizando I/O de Disco do InnoDB
 
-8.5.9 Optimizing InnoDB Configuration Variables
+8.5.9 Otimizando Variáveis de Configuração do InnoDB
 
-8.5.10 Optimizing InnoDB for Systems with Many Tables
+8.5.10 Otimizando o InnoDB para Sistemas com Muitas Tabelas
 
-`InnoDB` is the storage engine that MySQL customers typically use in production databases where reliability and concurrency are important. `InnoDB` is the default storage engine in MySQL. This section explains how to optimize database operations for `InnoDB` tables.
+O `InnoDB` é o storage engine que os clientes MySQL tipicamente usam em bancos de dados em produção onde a confiabilidade e a concorrência são importantes. O `InnoDB` é o storage engine padrão no MySQL. Esta seção explica como otimizar as operações de database para tabelas `InnoDB`.

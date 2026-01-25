@@ -1,9 +1,9 @@
-#### 1.6.3.1 PRIMARY KEY and UNIQUE Index Constraints
+#### 1.6.3.1 Restrições de PRIMARY KEY e UNIQUE Index
 
-Normally, errors occur for data-change statements (such as `INSERT` or `UPDATE`) that would violate primary-key, unique-key, or foreign-key constraints. If you are using a transactional storage engine such as `InnoDB`, MySQL automatically rolls back the statement. If you are using a nontransactional storage engine, MySQL stops processing the statement at the row for which the error occurred and leaves any remaining rows unprocessed.
+Normalmente, erros ocorrem para *statements* de alteração de dados (como `INSERT` ou `UPDATE`) que violariam restrições de *primary-key*, *unique-key* ou *foreign-key*. Se você estiver usando um *storage engine* transacional, como `InnoDB`, o MySQL automaticamente faz o *rollback* do *statement*. Se você estiver usando um *storage engine* não transacional, o MySQL para de processar o *statement* na linha em que o erro ocorreu e deixa quaisquer linhas restantes sem processamento.
 
-MySQL supports an `IGNORE` keyword for `INSERT`, `UPDATE`, and so forth. If you use it, MySQL ignores primary-key or unique-key violations and continues processing with the next row. See the section for the statement that you are using (Section 13.2.5, “INSERT Statement”, Section 13.2.11, “UPDATE Statement”, and so forth).
+O MySQL suporta a palavra-chave `IGNORE` para `INSERT`, `UPDATE` e assim por diante. Se você a usar, o MySQL ignora violações de *primary-key* ou *unique-key* e continua o processamento com a próxima linha. Consulte a seção para o *statement* que você está usando (Seção 13.2.5, “INSERT Statement”, Seção 13.2.11, “UPDATE Statement”, e assim por diante).
 
-You can get information about the number of rows actually inserted or updated with the `mysql_info()` C API function. You can also use the `SHOW WARNINGS` statement. See `mysql_info()`, and Section 13.7.5.40, “SHOW WARNINGS Statement”.
+Você pode obter informações sobre o número de linhas realmente inseridas ou atualizadas com a função `mysql_info()` da C API. Você também pode usar o *statement* `SHOW WARNINGS`. Consulte `mysql_info()`, e Seção 13.7.5.40, “SHOW WARNINGS Statement”.
 
-`InnoDB` and `NDB` tables support foreign keys. See Section 1.6.3.2, “FOREIGN KEY Constraints”.
+As tabelas `InnoDB` e `NDB` suportam *foreign keys*. Consulte a Seção 1.6.3.2, “FOREIGN KEY Constraints”.

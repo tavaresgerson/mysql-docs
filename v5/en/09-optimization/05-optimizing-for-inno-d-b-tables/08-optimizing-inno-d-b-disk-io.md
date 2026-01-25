@@ -1,103 +1,103 @@
-### 8.5.8 Optimizing InnoDB Disk I/O
+### 8.5.8 Otimizando I/O de Disco do InnoDB
 
-If you follow best practices for database design and tuning techniques for SQL operations, but your database is still slow due to heavy disk I/O activity, consider these disk I/O optimizations. If the Unix `top` tool or the Windows Task Manager shows that the CPU usage percentage with your workload is less than 70%, your workload is probably disk-bound.
+Se você seguir as melhores práticas para design de Database e técnicas de tuning para operações SQL, mas seu Database ainda estiver lento devido à intensa atividade de I/O de disco, considere estas otimizações de I/O de disco. Se a ferramenta `top` do Unix ou o Gerenciador de Tarefas do Windows mostrar que a porcentagem de uso da CPU com sua workload é inferior a 70%, sua workload está provavelmente limitada pelo disco (*disk-bound*).
 
-* Increase buffer pool size
+* Aumentar o tamanho do Buffer Pool
 
-  When table data is cached in the `InnoDB` buffer pool, it can be accessed repeatedly by queries without requiring any disk I/O. Specify the size of the buffer pool with the `innodb_buffer_pool_size` option. This memory area is important enough that it is typically recommended that `innodb_buffer_pool_size` is configured to 50 to 75 percent of system memory. For more information see, Section 8.12.4.1, “How MySQL Uses Memory”.
+  Quando os dados da tabela são armazenados em cache no `InnoDB` Buffer Pool, eles podem ser acessados repetidamente por Queries sem exigir I/O de disco. Especifique o tamanho do Buffer Pool com a opção `innodb_buffer_pool_size`. Esta área de memória é importante o suficiente para que geralmente seja recomendado que `innodb_buffer_pool_size` seja configurado para 50 a 75 por cento da memória do sistema. Para mais informações, consulte a Seção 8.12.4.1, “Como o MySQL Usa Memória”.
 
-* Adjust the flush method
+* Ajustar o método de Flush
 
-  In some versions of GNU/Linux and Unix, flushing files to disk with the Unix `fsync()` call (which `InnoDB` uses by default) and similar methods is surprisingly slow. If database write performance is an issue, conduct benchmarks with the `innodb_flush_method` parameter set to `O_DSYNC`.
+  Em algumas versões do GNU/Linux e Unix, o *flushing* (descarga) de arquivos para o disco com a chamada `fsync()` do Unix (que o `InnoDB` usa por padrão) e métodos semelhantes é surpreendentemente lento. Se a performance de escrita do Database for um problema, realize benchmarks com o parâmetro `innodb_flush_method` definido como `O_DSYNC`.
 
-* Use a noop or deadline I/O scheduler with native AIO on Linux
+* Usar um scheduler de I/O noop ou deadline com AIO nativo no Linux
 
-  `InnoDB` uses the asynchronous I/O subsystem (native AIO) on Linux to perform read-ahead and write requests for data file pages. This behavior is controlled by the `innodb_use_native_aio` configuration option, which is enabled by default. With native AIO, the type of I/O scheduler has greater influence on I/O performance. Generally, noop and deadline I/O schedulers are recommended. Conduct benchmarks to determine which I/O scheduler provides the best results for your workload and environment. For more information, see Section 14.8.7, “Using Asynchronous I/O on Linux”.
+  O `InnoDB` usa o subsistema de I/O assíncrono (AIO nativo) no Linux para executar requisições de *read-ahead* e de escrita para páginas de arquivos de dados. Este comportamento é controlado pela opção de configuração `innodb_use_native_aio`, que está habilitada por padrão. Com o AIO nativo, o tipo de *I/O scheduler* tem maior influência na performance de I/O. Geralmente, os *I/O schedulers* noop e deadline são recomendados. Realize benchmarks para determinar qual *I/O scheduler* fornece os melhores resultados para sua workload e ambiente. Para mais informações, consulte a Seção 14.8.7, “Usando I/O Assíncrono no Linux”.
 
-* Use direct I/O on Solaris 10 for x86_64 architecture
+* Usar Direct I/O no Solaris 10 para arquitetura x86_64
 
-  When using the `InnoDB` storage engine on Solaris 10 for x86_64 architecture (AMD Opteron), use direct I/O for `InnoDB`-related files to avoid degradation of `InnoDB` performance. To use direct I/O for an entire UFS file system used for storing `InnoDB`-related files, mount it with the `forcedirectio` option; see `mount_ufs(1M)`. (The default on Solaris 10/x86_64 is *not* to use this option.) To apply direct I/O only to `InnoDB` file operations rather than the whole file system, set `innodb_flush_method = O_DIRECT`. With this setting, `InnoDB` calls `directio()` instead of `fcntl()` for I/O to data files (not for I/O to log files).
+  Ao usar o storage engine `InnoDB` no Solaris 10 para arquitetura x86_64 (AMD Opteron), use Direct I/O para arquivos relacionados ao `InnoDB` para evitar a degradação da performance do `InnoDB`. Para usar Direct I/O para um sistema de arquivos UFS inteiro usado para armazenar arquivos relacionados ao `InnoDB`, monte-o com a opção `forcedirectio`; consulte `mount_ufs(1M)`. (O padrão no Solaris 10/x86_64 é *não* usar esta opção.) Para aplicar Direct I/O apenas às operações de arquivo do `InnoDB`, e não a todo o sistema de arquivos, defina `innodb_flush_method = O_DIRECT`. Com esta configuração, o `InnoDB` chama `directio()` em vez de `fcntl()` para I/O em arquivos de dados (não para I/O em arquivos de Log).
 
-* Use raw storage for data and log files with Solaris 2.6 or later
+* Usar armazenamento *Raw* para arquivos de dados e Log no Solaris 2.6 ou posterior
 
-  When using the `InnoDB` storage engine with a large `innodb_buffer_pool_size` value on any release of Solaris 2.6 and up and any platform (sparc/x86/x64/amd64), conduct benchmarks with `InnoDB` data files and log files on raw devices or on a separate direct I/O UFS file system, using the `forcedirectio` mount option as described previously. (It is necessary to use the mount option rather than setting `innodb_flush_method` if you want direct I/O for the log files.) Users of the Veritas file system VxFS should use the `convosync=direct` mount option.
+  Ao usar o storage engine `InnoDB` com um valor grande de `innodb_buffer_pool_size` em qualquer release do Solaris 2.6 ou superior e em qualquer plataforma (sparc/x86/x64/amd64), realize benchmarks com arquivos de dados e arquivos de Log do `InnoDB` em dispositivos *raw* (brutos) ou em um sistema de arquivos UFS separado com Direct I/O, usando a opção de mount `forcedirectio`, conforme descrito anteriormente. (É necessário usar a opção de mount em vez de configurar `innodb_flush_method` se você quiser Direct I/O para os arquivos de Log.) Usuários do sistema de arquivos Veritas VxFS devem usar a opção de mount `convosync=direct`.
 
-  Do not place other MySQL data files, such as those for `MyISAM` tables, on a direct I/O file system. Executables or libraries *must not* be placed on a direct I/O file system.
+  Não coloque outros arquivos de dados do MySQL, como aqueles para tabelas `MyISAM`, em um sistema de arquivos Direct I/O. Executáveis ou bibliotecas *não devem* ser colocados em um sistema de arquivos Direct I/O.
 
-* Use additional storage devices
+* Usar dispositivos de armazenamento adicionais
 
-  Additional storage devices could be used to set up a RAID configuration. For related information, see Section 8.12.2, “Optimizing Disk I/O”.
+  Dispositivos de armazenamento adicionais podem ser usados para configurar uma configuração RAID. Para informações relacionadas, consulte a Seção 8.12.2, “Otimizando I/O de Disco”.
 
-  Alternatively, `InnoDB` tablespace data files and log files can be placed on different physical disks. For more information, refer to the following sections:
+  Alternativamente, arquivos de dados de Tablespace do `InnoDB` e arquivos de Log podem ser colocados em discos físicos diferentes. Para mais informações, consulte as seguintes seções:
 
-  + Section 14.8.1, “InnoDB Startup Configuration”
-  + Section 14.6.1.2, “Creating Tables Externally”
-  + Creating a General Tablespace
-  + Section 14.6.1.4, “Moving or Copying InnoDB Tables”
-* Consider non-rotational storage
+  + Seção 14.8.1, “Configuração de Inicialização do InnoDB”
+  + Seção 14.6.1.2, “Criando Tabelas Externamente”
+  + Criando um Tablespace Geral
+  + Seção 14.6.1.4, “Movendo ou Copiando Tabelas InnoDB”
 
-  Non-rotational storage generally provides better performance for random I/O operations; and rotational storage for sequential I/O operations. When distributing data and log files across rotational and non-rotational storage devices, consider the type of I/O operations that are predominantly performed on each file.
+* Considerar armazenamento não rotacional
 
-  Random I/O-oriented files typically include file-per-table and general tablespace data files, undo tablespace files, and temporary tablespace files. Sequential I/O-oriented files include `InnoDB` system tablespace files (due to doublewrite buffering and change buffering) and log files such as binary log files and redo log files.
+  O armazenamento não rotacional geralmente oferece melhor performance para operações de I/O aleatório; e o armazenamento rotacional para operações de I/O sequencial. Ao distribuir arquivos de dados e Log por dispositivos de armazenamento rotacionais e não rotacionais, considere o tipo de operações de I/O predominantemente executadas em cada arquivo.
 
-  Review settings for the following configuration options when using non-rotational storage:
+  Arquivos orientados a I/O aleatório tipicamente incluem arquivos de dados de Tablespace *file-per-table* e geral, arquivos de Tablespace de *undo*, e arquivos de Tablespace temporários. Arquivos orientados a I/O sequencial incluem arquivos de Tablespace do sistema `InnoDB` (devido a *doublewrite buffering* e *change buffering*) e arquivos de Log, como arquivos de *binary log* e *redo log*.
+
+  Revise as configurações para as seguintes opções de configuração ao usar armazenamento não rotacional:
 
   + `innodb_checksum_algorithm`
 
-    The `crc32` option uses a faster checksum algorithm and is recommended for fast storage systems.
+    A opção `crc32` usa um algoritmo de checksum mais rápido e é recomendada para sistemas de armazenamento rápidos.
 
   + `innodb_flush_neighbors`
 
-    Optimizes I/O for rotational storage devices. Disable it for non-rotational storage or a mix of rotational and non-rotational storage.
+    Otimiza I/O para dispositivos de armazenamento rotacionais. Desabilite-o para armazenamento não rotacional ou uma mistura de armazenamento rotacional e não rotacional.
 
   + `innodb_io_capacity`
 
-    The default setting of 200 is generally sufficient for a lower-end non-rotational storage device. For higher-end, bus-attached devices, consider a higher setting such as 1000.
+    A configuração padrão de 200 é geralmente suficiente para um dispositivo de armazenamento não rotacional de baixo custo. Para dispositivos de alto desempenho anexados via *bus*, considere uma configuração mais alta, como 1000.
 
   + `innodb_io_capacity_max`
 
-    The default value of 2000 is intended for workloads that use non-rotational storage. For a high-end, bus-attached non-rotational storage device, consider a higher setting such as 2500.
+    O valor padrão de 2000 é destinado a workloads que usam armazenamento não rotacional. Para um dispositivo de armazenamento não rotacional de alto desempenho anexado via *bus*, considere uma configuração mais alta, como 2500.
 
   + `innodb_log_compressed_pages`
 
-    If redo logs are on non-rotational storage, consider disabling this option to reduce logging. See Disable logging of compressed pages.
+    Se os *redo logs* estiverem em armazenamento não rotacional, considere desabilitar esta opção para reduzir o *logging*. Consulte Desabilitar o logging de páginas compactadas.
 
   + `innodb_log_file_size`
 
-    If redo logs are on non-rotational storage, configure this option to maximize caching and write combining.
+    Se os *redo logs* estiverem em armazenamento não rotacional, configure esta opção para maximizar o *caching* e o *write combining*.
 
   + `innodb_page_size`
 
-    Consider using a page size that matches the internal sector size of the disk. Early-generation SSD devices often have a 4KB sector size. Some newer devices have a 16KB sector size. The default `InnoDB` page size is 16KB. Keeping the page size close to the storage device block size minimizes the amount of unchanged data that is rewritten to disk.
+    Considere usar um *page size* que corresponda ao tamanho interno do setor do disco. Dispositivos SSD de primeira geração geralmente têm um tamanho de setor de 4KB. Alguns dispositivos mais novos têm um tamanho de setor de 16KB. O *page size* padrão do `InnoDB` é 16KB. Manter o *page size* próximo ao tamanho do bloco do dispositivo de armazenamento minimiza a quantidade de dados inalterados que são reescritos no disco.
 
   + `binlog_row_image`
 
-    If binary logs are on non-rotational storage and all tables have primary keys, consider setting this option to `minimal` to reduce logging.
+    Se os *binary logs* estiverem em armazenamento não rotacional e todas as tabelas tiverem Primary Keys, considere definir esta opção como `minimal` para reduzir o *logging*.
 
-  Ensure that TRIM support is enabled for your operating system. It is typically enabled by default.
+  Certifique-se de que o suporte a TRIM esteja habilitado para o seu sistema operacional. Geralmente, ele é habilitado por padrão.
 
-* Increase I/O capacity to avoid backlogs
+* Aumentar a capacidade de I/O para evitar acúmulos (*backlogs*)
 
-  If throughput drops periodically because of `InnoDB` checkpoint operations, consider increasing the value of the `innodb_io_capacity` configuration option. Higher values cause more frequent flushing, avoiding the backlog of work that can cause dips in throughput.
+  Se o *throughput* cair periodicamente devido a operações de Checkpoint do `InnoDB`, considere aumentar o valor da opção de configuração `innodb_io_capacity`. Valores mais altos causam *flushing* mais frequente, evitando o acúmulo de trabalho que pode causar quedas no *throughput*.
 
-* Lower I/O capacity if flushing does not fall behind
+* Reduzir a capacidade de I/O se o flushing não estiver atrasado
 
-  If the system is not falling behind with `InnoDB` flushing operations, consider lowering the value of the `innodb_io_capacity` configuration option. Typically, you keep this option value as low as practical, but not so low that it causes periodic drops in throughput as mentioned in the preceding bullet. In a typical scenario where you could lower the option value, you might see a combination like this in the output from `SHOW ENGINE INNODB STATUS`:
+  Se o sistema não estiver atrasando as operações de *flushing* do `InnoDB`, considere diminuir o valor da opção de configuração `innodb_io_capacity`. Normalmente, você mantém o valor desta opção o mais baixo possível na prática, mas não tão baixo a ponto de causar quedas periódicas no *throughput*, conforme mencionado no item anterior. Em um cenário típico em que você poderia diminuir o valor da opção, você pode ver uma combinação como esta na saída de `SHOW ENGINE INNODB STATUS`:
 
-  + History list length low, below a few thousand.
-  + Insert buffer merges close to rows inserted.
-  + Modified pages in buffer pool consistently well below `innodb_max_dirty_pages_pct` of the buffer pool. (Measure at a time when the server is not doing bulk inserts; it is normal during bulk inserts for the modified pages percentage to rise significantly.)
+  + O tamanho da lista de histórico (*History list length*) é baixo, abaixo de alguns milhares.
+  + As *merges* do *Insert Buffer* estão próximas ao número de linhas inseridas.
+  + As páginas modificadas no Buffer Pool estão consistentemente bem abaixo de `innodb_max_dirty_pages_pct` do Buffer Pool. (Meça em um momento em que o servidor não esteja fazendo *bulk inserts*; é normal que a porcentagem de páginas modificadas aumente significativamente durante *bulk inserts*.)
+  + `Log sequence number - Last checkpoint` está em menos de 7/8 ou, idealmente, menos de 6/8 do tamanho total dos arquivos de Log do `InnoDB`.
 
-  + `Log sequence number - Last checkpoint` is at less than 7/8 or ideally less than 6/8 of the total size of the `InnoDB` log files.
+* Armazenar arquivos de Tablespace do sistema em dispositivos Fusion-io
 
-* Store system tablespace files on Fusion-io devices
-
-  You can take advantage of a doublewrite buffer-related I/O optimization by storing system tablespace files (“ibdata files”) on Fusion-io devices that support atomic writes. In this case, doublewrite buffering (`innodb_doublewrite`) is automatically disabled and Fusion-io atomic writes are used for all data files. This feature is only supported on Fusion-io hardware and is only enabled for Fusion-io NVMFS on Linux. To take full advantage of this feature, an `innodb_flush_method` setting of `O_DIRECT` is recommended.
+  Você pode aproveitar uma otimização de I/O relacionada ao *doublewrite buffer* armazenando arquivos de Tablespace do sistema (“arquivos ibdata”) em dispositivos Fusion-io que suportam escritas atômicas (*atomic writes*). Neste caso, o *doublewrite buffering* (`innodb_doublewrite`) é automaticamente desabilitado e as escritas atômicas Fusion-io são usadas para todos os arquivos de dados. Este recurso é suportado apenas em hardware Fusion-io e está habilitado somente para Fusion-io NVMFS no Linux. Para tirar o máximo proveito deste recurso, é recomendada uma configuração de `innodb_flush_method` como `O_DIRECT`.
 
   Note
 
-  Because the doublewrite buffer setting is global, doublewrite buffering is also disabled for data files residing on non-Fusion-io hardware.
+  Como a configuração do *doublewrite buffer* é global, o *doublewrite buffering* também é desabilitado para arquivos de dados que residem em hardware que não seja Fusion-io.
 
-* Disable logging of compressed pages
+* Desabilitar o logging de páginas compactadas
 
-  When using the `InnoDB` table compression feature, images of re-compressed pages are written to the redo log when changes are made to compressed data. This behavior is controlled by `innodb_log_compressed_pages`, which is enabled by default to prevent corruption that can occur if a different version of the `zlib` compression algorithm is used during recovery. If you are certain that the `zlib` version is not subject to change, disable `innodb_log_compressed_pages` to reduce redo log generation for workloads that modify compressed data.
+  Ao usar o recurso de compressão de tabela do `InnoDB`, imagens de páginas recompactadas são escritas no *redo log* quando alterações são feitas em dados compactados. Este comportamento é controlado por `innodb_log_compressed_pages`, que é habilitado por padrão para prevenir corrupção que pode ocorrer se uma versão diferente do algoritmo de compressão `zlib` for usada durante a recuperação (*recovery*). Se você tiver certeza de que a versão `zlib` não está sujeita a alterações, desabilite `innodb_log_compressed_pages` para reduzir a geração de *redo log* para workloads que modificam dados compactados.

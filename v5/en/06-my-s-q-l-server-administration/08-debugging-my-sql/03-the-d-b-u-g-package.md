@@ -1,19 +1,19 @@
-### 5.8.3 The DBUG Package
+### 5.8.3 O Pacote DBUG
 
-The MySQL server and most MySQL clients are compiled with the `DBUG` package originally created by Fred Fish. When you have configured MySQL for debugging, this package makes it possible to get a trace file of what the program is doing. See [Section 5.8.1.2, “Creating Trace Files”](making-trace-files.html "5.8.1.2 Creating Trace Files").
+O servidor MySQL e a maioria dos clientes MySQL são compilados com o pacote `DBUG`, originalmente criado por Fred Fish. Quando você configura o MySQL para debugging, este pacote possibilita a obtenção de um *trace file* (arquivo de rastreamento) do que o programa está executando. Consulte [Seção 5.8.1.2, “Criação de Trace Files”](making-trace-files.html "5.8.1.2 Creating Trace Files").
 
-This section summarizes the argument values that you can specify in debug options on the command line for MySQL programs that have been built with debugging support.
+Esta seção resume os valores de argumento que você pode especificar nas opções de debug na linha de comando para programas MySQL que foram construídos com suporte a debugging.
 
-The `DBUG` package can be used by invoking a program with the `--debug[=debug_options]` or `-# [debug_options]` option. If you specify the `--debug` or `-#` option without a *`debug_options`* value, most MySQL programs use a default value. The server default is `d:t:i:o,/tmp/mysqld.trace` on Unix and `d:t:i:O,\mysqld.trace` on Windows. The effect of this default is:
+O pacote `DBUG` pode ser usado invocando um programa com a opção `--debug[=debug_options]` ou `-# [debug_options]`. Se você especificar a opção `--debug` ou `-#` sem um valor *`debug_options`*, a maioria dos programas MySQL utiliza um valor default (padrão). O default do servidor é `d:t:i:o,/tmp/mysqld.trace` no Unix e `d:t:i:O,\mysqld.trace` no Windows. O efeito deste default é:
 
-* `d`: Enable output for all debug macros
-* `t`: Trace function calls and exits
-* `i`: Add PID to output lines
-* `o,/tmp/mysqld.trace`, `O,\mysqld.trace`: Set the debug output file.
+* `d`: Habilita a saída para todas as macros de debug
+* `t`: Rastreia chamadas e saídas de função (function calls and exits)
+* `i`: Adiciona o PID (Process ID) às linhas de saída
+* `o,/tmp/mysqld.trace`, `O,\mysqld.trace`: Define o arquivo de saída de debug.
 
-Most client programs use a default *`debug_options`* value of `d:t:o,/tmp/program_name.trace`, regardless of platform.
+A maioria dos programas cliente utiliza um valor *`debug_options`* default de `d:t:o,/tmp/program_name.trace`, independentemente da plataforma.
 
-Here are some example debug control strings as they might be specified on a shell command line:
+Aqui estão alguns exemplos de strings de controle de debug como poderiam ser especificadas em uma linha de comando shell:
 
 ```sql
 --debug=d:t
@@ -22,40 +22,40 @@ Here are some example debug control strings as they might be specified on a shel
 --debug=d:t:i:O,\\mysqld.trace
 ```
 
-For [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), it is also possible to change `DBUG` settings at runtime by setting the [`debug`](server-system-variables.html#sysvar_debug) system variable. This variable has global and session values:
+Para [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), também é possível alterar as configurações `DBUG` em runtime, definindo a *system variable* [`debug`](server-system-variables.html#sysvar_debug). Esta variável possui valores global e de session:
 
 ```sql
 mysql> SET GLOBAL debug = 'debug_options';
 mysql> SET SESSION debug = 'debug_options';
 ```
 
-Changing the global [`debug`](server-system-variables.html#sysvar_debug) value requires privileges sufficient to set global system variables. Changing the session [`debug`](server-system-variables.html#sysvar_debug) value requires privileges sufficient to set restricted session system variables. See [Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges").
+Alterar o valor global de [`debug`] requer privilégios suficientes para definir *system variables* globais. Alterar o valor de session de [`debug`] requer privilégios suficientes para definir *system variables* de session restritas. Consulte [Seção 5.1.8.1, “Privilégios de System Variable”](system-variable-privileges.html "5.1.8.1 System Variable Privileges").
 
-The *`debug_options`* value is a sequence of colon-separated fields:
+O valor *`debug_options`* é uma sequência de campos separados por dois-pontos:
 
 ```sql
 field_1:field_2:...:field_N
 ```
 
-Each field within the value consists of a mandatory flag character, optionally preceded by a `+` or `-` character, and optionally followed by a comma-separated list of modifiers:
+Cada campo dentro do valor consiste em um caractere de flag obrigatório, opcionalmente precedido por um caractere `+` ou `-`, e opcionalmente seguido por uma lista de modificadores separados por vírgula:
 
 ```sql
 [+|-]flag[,modifier,modifier,...,modifier]
 ```
 
-The following table describes the permitted flag characters. Unrecognized flag characters are silently ignored.
+A tabela a seguir descreve os caracteres de flag permitidos. Caracteres de flag não reconhecidos são ignorados silenciosamente.
 
-<table frame="all" summary="Descriptions of permitted debug_options flag characters."><col style="width: 8%"/><col style="width: 92%"/><thead><tr> <th><p> Flag </p></th> <th><p> Description </p></th> </tr></thead><tbody><tr> <td><p> <code>d</code> </p></td> <td><p> Enable output from <code>DBUG_<em><code>XXX</code></em></code> macros for the current state. May be followed by a list of keywords, which enables output only for the <code>DBUG</code> macros with that keyword. An empty list of keywords enables output for all macros. </p><p> In MySQL, common debug macro keywords to enable are <code>enter</code>, <code>exit</code>, <code>error</code>, <code>warning</code>, <code>info</code>, and <code>loop</code>. </p></td> </tr><tr> <td><p> <code>D</code> </p></td> <td><p> Delay after each debugger output line. The argument is the delay, in tenths of seconds, subject to machine capabilities. For example, <code>D,20</code> specifies a delay of two seconds. </p></td> </tr><tr> <td><p> <code>f</code> </p></td> <td><p> Limit debugging, tracing, and profiling to the list of named functions. An empty list enables all functions. The appropriate <code>d</code> or <code>t</code> flags must still be given; this flag only limits their actions if they are enabled. </p></td> </tr><tr> <td><p> <code>F</code> </p></td> <td><p> Identify the source file name for each line of debug or trace output. </p></td> </tr><tr> <td><p> <code>i</code> </p></td> <td><p> Identify the process with the PID or thread ID for each line of debug or trace output. </p></td> </tr><tr> <td><p> <code>L</code> </p></td> <td><p> Identify the source file line number for each line of debug or trace output. </p></td> </tr><tr> <td><p> <code>n</code> </p></td> <td><p> Print the current function nesting depth for each line of debug or trace output. </p></td> </tr><tr> <td><p> <code>N</code> </p></td> <td><p> Number each line of debug output. </p></td> </tr><tr> <td><p> <code>o</code> </p></td> <td><p> Redirect the debugger output stream to the specified file. The default output is <code>stderr</code>. </p></td> </tr><tr> <td><p> <code>O</code> </p></td> <td><p> Like <code>o</code>, but the file is really flushed between each write. When needed, the file is closed and reopened between each write. </p></td> </tr><tr> <td><p> <code>a</code> </p></td> <td><p> Like <code>o</code>, but opens for append. </p></td> </tr><tr> <td><p> <code>A</code> </p></td> <td><p> Like <code>O</code>, but opens for append. </p></td> </tr><tr> <td><p> <code>p</code> </p></td> <td><p> Limit debugger actions to specified processes. A process must be identified with the <code>DBUG_PROCESS</code> macro and match one in the list for debugger actions to occur. </p></td> </tr><tr> <td><p> <code>P</code> </p></td> <td><p> Print the current process name for each line of debug or trace output. </p></td> </tr><tr> <td><p> <code>r</code> </p></td> <td><p> When pushing a new state, do not inherit the previous state's function nesting level. Useful when the output is to start at the left margin. </p></td> </tr><tr> <td><p> <code>t</code> </p></td> <td><p> Enable function call/exit trace lines. May be followed by a list (containing only one modifier) giving a numeric maximum trace level, beyond which no output occurs for either debugging or tracing macros. The default is a compile time option. </p></td> </tr><tr> <td><p> <code>T</code> </p></td> <td><p> Print the current timestamp for every line of output. </p></td> </tr></tbody></table>
+<table frame="all" summary="Descriptions of permitted debug_options flag characters."><col style="width: 8%"/><col style="width: 92%"/><thead><tr> <th><p> Flag </p></th> <th><p> Descrição </p></th> </tr></thead><tbody><tr> <td><p> <code>d</code> </p></td> <td><p> Habilita a saída das macros <code>DBUG_<em><code>XXX</code></em></code> para o estado atual. Pode ser seguido por uma lista de keywords, o que habilita a saída apenas para as macros DBUG com aquela keyword. Uma lista vazia de keywords habilita a saída para todas as macros. </p><p> No MySQL, as keywords de macro de debug comuns a serem habilitadas são <code>enter</code>, <code>exit</code>, <code>error</code>, <code>warning</code>, <code>info</code> e <code>loop</code>. </p></td> </tr><tr> <td><p> <code>D</code> </p></td> <td><p> Delay após cada linha de saída do debugger. O argumento é o delay (atraso), em décimos de segundo, sujeito às capacidades da máquina. Por exemplo, <code>D,20</code> especifica um delay de dois segundos. </p></td> </tr><tr> <td><p> <code>f</code> </p></td> <td><p> Limita debugging, tracing e profiling à lista de funções nomeadas. Uma lista vazia habilita todas as funções. As flags <code>d</code> ou <code>t</code> apropriadas ainda devem ser fornecidas; esta flag apenas limita suas ações se estiverem habilitadas. </p></td> </tr><tr> <td><p> <code>F</code> </p></td> <td><p> Identifica o nome do arquivo fonte (source file) para cada linha de saída de debug ou trace. </p></td> </tr><tr> <td><p> <code>i</code> </p></td> <td><p> Identifica o processo com o PID ou ID do Thread para cada linha de saída de debug ou trace. </p></td> </tr><tr> <td><p> <code>L</code> </p></td> <td><p> Identifica o número da linha do arquivo fonte para cada linha de saída de debug ou trace. </p></td> </tr><tr> <td><p> <code>n</code> </p></td> <td><p> Imprime a profundidade atual de aninhamento de função (function nesting depth) para cada linha de saída de debug ou trace. </p></td> </tr><tr> <td><p> <code>N</code> </p></td> <td><p> Numera cada linha da saída de debug. </p></td> </tr><tr> <td><p> <code>o</code> </p></td> <td><p> Redireciona o stream de saída do debugger para o arquivo especificado. A saída default é <code>stderr</code>. </p></td> </tr><tr> <td><p> <code>O</code> </p></td> <td><p> Semelhante a <code>o</code>, mas o arquivo é realmente liberado (flushed) entre cada escrita. Quando necessário, o arquivo é fechado e reaberto entre cada escrita. </p></td> </tr><tr> <td><p> <code>a</code> </p></td> <td><p> Semelhante a <code>o</code>, mas abre para append (anexação). </p></td> </tr><tr> <td><p> <code>A</code> </p></td> <td><p> Semelhante a <code>O</code>, mas abre para append (anexação). </p></td> </tr><tr> <td><p> <code>p</code> </p></td> <td><p> Limita as ações do debugger aos processos especificados. Um processo deve ser identificado com a macro <code>DBUG_PROCESS</code> e corresponder a um na lista para que as ações do debugger ocorram. </p></td> </tr><tr> <td><p> <code>P</code> </p></td> <td><p> Imprime o nome do processo atual para cada linha de saída de debug ou trace. </p></td> </tr><tr> <td><p> <code>r</code> </p></td> <td><p> Ao empurrar um novo estado, não herda o nível de aninhamento de função do estado anterior. Útil quando a saída deve começar na margem esquerda. </p></td> </tr><tr> <td><p> <code>t</code> </p></td> <td><p> Habilita as linhas de trace de chamada/saída de função (function call/exit trace lines). Pode ser seguido por uma lista (contendo apenas um modificador) que fornece um nível máximo numérico de trace, além do qual nenhuma saída ocorre para macros de debugging ou tracing. O default é uma opção de tempo de compilação. </p></td> </tr><tr> <td><p> <code>T</code> </p></td> <td><p> Imprime o timestamp atual para cada linha de saída. </p></td> </tr></tbody></table>
 
-The leading `+` or `-` character and trailing list of modifiers are used for flag characters such as `d` or `f` that can enable a debug operation for all applicable modifiers or just some of them:
+O caractere principal `+` ou `-` e a lista de modificadores subsequente são usados para caracteres de flag como `d` ou `f` que podem habilitar uma operação de debug para todos os modificadores aplicáveis ou apenas para alguns deles:
 
-* With no leading `+` or `-`, the flag value is set to exactly the modifier list as given.
+* Sem um `+` ou `-` principal, o valor da flag é definido exatamente como a lista de modificadores fornecida.
 
-* With a leading `+` or `-`, the modifiers in the list are added to or subtracted from the current modifier list.
+* Com um `+` ou `-` principal, os modificadores na lista são adicionados ou subtraídos da lista de modificadores atual.
 
-The following examples show how this works for the `d` flag. An empty `d` list enabled output for all debug macros. A nonempty list enables output only for the macro keywords in the list.
+Os exemplos a seguir mostram como isso funciona para a flag `d`. Uma lista `d` vazia habilita a saída para todas as macros de debug. Uma lista não vazia habilita a saída apenas para as keywords de macro na lista.
 
-These statements set the `d` value to the modifier list as given:
+Estas declarações definem o valor `d` para a lista de modificadores conforme fornecido:
 
 ```sql
 mysql> SET debug = 'd';
@@ -74,7 +74,7 @@ mysql> SELECT @@debug;
 +-----------------+
 ```
 
-A leading `+` or `-` adds to or subtracts from the current `d` value:
+Um `+` ou `-` principal adiciona ou subtrai do valor `d` atual:
 
 ```sql
 mysql> SET debug = '+d,loop';
@@ -93,7 +93,7 @@ mysql> SELECT @@debug;
 +-----------+
 ```
 
-Adding to “all macros enabled” results in no change:
+Adicionar a "todas as macros habilitadas" não resulta em alteração:
 
 ```sql
 mysql> SET debug = 'd';
@@ -112,7 +112,7 @@ mysql> SELECT @@debug;
 +---------+
 ```
 
-Disabling all enabled macros disables the `d` flag entirely:
+Desabilitar todas as macros habilitadas desabilita a flag `d` completamente:
 
 ```sql
 mysql> SET debug = 'd,error,loop';

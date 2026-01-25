@@ -1,73 +1,73 @@
-#### 4.2.2.3 Command-Line Options that Affect Option-File Handling
+#### 4.2.2.3 Opções de Linha de Comando que Afetam o Tratamento de Option Files
 
-Most MySQL programs that support option files handle the following options. Because these options affect option-file handling, they must be given on the command line and not in an option file. To work properly, each of these options must be given before other options, with these exceptions:
+A maioria dos programas MySQL que suportam option files trata as seguintes opções. Como essas opções afetam o tratamento de option files, elas devem ser fornecidas na command line e não em um option file. Para funcionar corretamente, cada uma dessas opções deve ser fornecida antes de outras opções, com estas exceções:
 
-* `--print-defaults` may be used immediately after `--defaults-file`, `--defaults-extra-file`, or `--login-path`.
+* `--print-defaults` pode ser usado imediatamente após `--defaults-file`, `--defaults-extra-file` ou `--login-path`.
 
-* On Windows, if the server is started with the `--defaults-file` and `--install` options, `--install` must be first. See Section 2.3.4.8, “Starting MySQL as a Windows Service”.
+* No Windows, se o server for iniciado com as opções `--defaults-file` e `--install`, `--install` deve vir primeiro. Veja Seção 2.3.4.8, “Iniciando MySQL como um Serviço Windows”.
 
-When specifying file names as option values, avoid the use of the `~` shell metacharacter because it might not be interpreted as you expect.
+Ao especificar nomes de arquivos como valores de opção, evite o uso do metacaractere `~` do shell, pois ele pode não ser interpretado como você espera.
 
-**Table 4.3 Option File Option Summary**
+**Table 4.3 Resumo das Opções de Option File**
 
-<table frame="box" rules="all" summary="Command-line options available for handling option files."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de command-line disponíveis para tratamento de option files."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> </tr></thead><tbody><tr><td>--defaults-extra-file</td> <td>Lê o option file nomeado além dos option files usuais</td> </tr><tr><td>--defaults-file</td> <td>Lê apenas o option file nomeado</td> </tr><tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td> </tr><tr><td>--login-path</td> <td>Lê opções de login path de .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Não lê nenhum option file</td> </tr></tbody></table>
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato da Command-Line</th> <td><code>--defaults-extra-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read this option file after the global option file but (on Unix) before the user option file and (on all platforms) before the login path file. (For information about the order in which option files are used, see Section 4.2.2.2, “Using Option Files”.) If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+  Lê este option file após o option file global, mas (no Unix) antes do option file do usuário e (em todas as plataformas) antes do login path file. (Para informações sobre a ordem em que os option files são usados, veja Seção 4.2.2.2, “Usando Option Files”.) Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um path name absoluto, ele será interpretado em relação ao diretório atual.
 
-  See the introduction to this section regarding constraints on the position in which this option may be specified.
+  Veja a introdução desta seção sobre restrições na posição em que esta opção pode ser especificada.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato da Command-Line</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. *`file_name`* is interpreted relative to the current directory if given as a relative path name rather than a full path name.
+  Lê apenas o option file fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. *`file_name`* é interpretado em relação ao diretório atual se fornecido como um path name relativo, e não como um path name completo.
 
-  Exception: Even with `--defaults-file`, client programs read `.mylogin.cnf`.
+  Exceção: Mesmo com `--defaults-file`, programas cliente leem `.mylogin.cnf`.
 
-  See the introduction to this section regarding constraints on the position in which this option may be specified.
+  Veja a introdução desta seção sobre restrições na posição em que esta opção pode ser especificada.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato da Command-Line</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, the **mysql** client normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
+  Lê não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, o cliente **mysql** normalmente lê os grupos `[client]` e `[mysql]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysql** também lê os grupos `[client_other]` e `[mysql_other]`.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para login-path"><tbody><tr><th>Formato da Command-Line</th> <td><code>--login-path=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  Lê opções do login path nomeado no arquivo de login path `.mylogin.cnf`. Um “login path” é um grupo de opções que contém opções especificando a qual server MySQL conectar e com qual conta autenticar. Para criar ou modificar um arquivo de login path, use o utilitário **mysql_config_editor**. Veja Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
-  A client program reads the option group corresponding to the named login path, in addition to option groups that the program reads by default. Consider this command:
+  Um programa cliente lê o grupo de opções correspondente ao login path nomeado, além dos grupos de opções que o programa lê por padrão. Considere este comando:
 
   ```sql
   mysql --login-path=mypath
   ```
 
-  By default, the **mysql** client reads the `[client]` and `[mysql]` option groups. So for the command shown, **mysql** reads `[client]` and `[mysql]` from other option files, and `[client]`, `[mysql]`, and `[mypath]` from the login path file.
+  Por padrão, o cliente **mysql** lê os grupos de opções `[client]` e `[mysql]`. Assim, para o comando mostrado, **mysql** lê `[client]` e `[mysql]` de outros option files, e `[client]`, `[mysql]` e `[mypath]` do login path file.
 
-  Client programs read the login path file even when the `--no-defaults` option is used.
+  Programas cliente leem o login path file mesmo quando a opção `--no-defaults` é utilizada.
 
-  To specify an alternate login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable.
+  Para especificar um nome de login path file alternativo, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`.
 
-  See the introduction to this section regarding constraints on the position in which this option may be specified.
+  Veja a introdução desta seção sobre restrições na posição em que esta opção pode ser especificada.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for no-defaults"><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-defaults"><tbody><tr><th>Formato da Command-Line</th> <td><code>--no-defaults</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
-  Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
+  Não lê nenhum option file. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um option file, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-  The exception is that client programs read the `.mylogin.cnf` login path file, if it exists, even when `--no-defaults` is used. This permits passwords to be specified in a safer way than on the command line even if `--no-defaults` is present. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
+  A exceção é que programas cliente leem o login path file `.mylogin.cnf`, se ele existir, mesmo quando `--no-defaults` é usado. Isso permite que passwords sejam especificadas de maneira mais segura do que na command line, mesmo que `--no-defaults` esteja presente. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for print-defaults"><tbody><tr><th>Command-Line Format</th> <td><code>--print-defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para print-defaults"><tbody><tr><th>Formato da Command-Line</th> <td><code>--print-defaults</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor Padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
-  Print the program name and all options that it gets from option files. Password values are masked.
+  Imprime o nome do programa e todas as opções que ele obtém dos option files. Valores de Password são mascarados.
 
-  See the introduction to this section regarding constraints on the position in which this option may be specified.
+  Veja a introdução desta seção sobre restrições na posição em que esta opção pode ser especificada.

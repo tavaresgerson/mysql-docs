@@ -1,8 +1,8 @@
-#### 3.3.4.6 Working with NULL Values
+#### 3.3.4.6 Trabalhando com Valores NULL
 
-The `NULL` value can be surprising until you get used to it. Conceptually, `NULL` means “a missing unknown value” and it is treated somewhat differently from other values.
+O valor `NULL` pode ser surpreendente até que você se acostume com ele. Conceitualmente, `NULL` significa "um valor ausente desconhecido" e é tratado de forma um pouco diferente dos outros valores.
 
-To test for `NULL`, use the [`IS NULL`](comparison-operators.html#operator_is-null) and [`IS NOT NULL`](comparison-operators.html#operator_is-not-null) operators, as shown here:
+Para testar `NULL`, use os operadores [`IS NULL`](comparison-operators.html#operator_is-null) e [`IS NOT NULL`](comparison-operators.html#operator_is-not-null), conforme mostrado aqui:
 
 ```sql
 mysql> SELECT 1 IS NULL, 1 IS NOT NULL;
@@ -13,7 +13,7 @@ mysql> SELECT 1 IS NULL, 1 IS NOT NULL;
 +-----------+---------------+
 ```
 
-You cannot use arithmetic comparison operators such as [`=`](comparison-operators.html#operator_equal), [`<`](comparison-operators.html#operator_less-than), or [`<>`](comparison-operators.html#operator_not-equal) to test for `NULL`. To demonstrate this for yourself, try the following query:
+Você não pode usar operadores de comparação aritmética como [`=`](comparison-operators.html#operator_equal), [`<`](comparison-operators.html#operator_less-than) ou [`<>`](comparison-operators.html#operator_not-equal) para testar `NULL`. Para demonstrar isso por conta própria, tente a seguinte Query:
 
 ```sql
 mysql> SELECT 1 = NULL, 1 <> NULL, 1 < NULL, 1 > NULL;
@@ -24,17 +24,17 @@ mysql> SELECT 1 = NULL, 1 <> NULL, 1 < NULL, 1 > NULL;
 +----------+-----------+----------+----------+
 ```
 
-Because the result of any arithmetic comparison with `NULL` is also `NULL`, you cannot obtain any meaningful results from such comparisons.
+Como o resultado de qualquer comparação aritmética com `NULL` também é `NULL`, você não pode obter resultados significativos a partir de tais comparações.
 
-In MySQL, `0` or `NULL` means false and anything else means true. The default truth value from a boolean operation is `1`.
+No MySQL, `0` ou `NULL` significa falso e qualquer outra coisa significa verdadeiro. O valor de verdade padrão de uma operação booleana é `1`.
 
-This special treatment of `NULL` is why, in the previous section, it was necessary to determine which animals are no longer alive using `death IS NOT NULL` instead of `death <> NULL`.
+Este tratamento especial de `NULL` é a razão pela qual, na seção anterior, foi necessário determinar quais animais não estão mais vivos usando `death IS NOT NULL` em vez de `death <> NULL`.
 
-Two `NULL` values are regarded as equal in a `GROUP BY`.
+Dois valores `NULL` são considerados iguais em um `GROUP BY`.
 
-When doing an `ORDER BY`, `NULL` values are presented first if you do `ORDER BY ... ASC` and last if you do `ORDER BY ... DESC`.
+Ao executar um `ORDER BY`, os valores `NULL` são apresentados primeiro se você fizer `ORDER BY ... ASC` e por último se você fizer `ORDER BY ... DESC`.
 
-A common error when working with `NULL` is to assume that it is not possible to insert a zero or an empty string into a column defined as `NOT NULL`, but this is not the case. These are in fact values, whereas `NULL` means “not having a value.” You can test this easily enough by using `IS [NOT] NULL` as shown:
+Um erro comum ao trabalhar com `NULL` é presumir que não é possível inserir um zero ou uma string vazia em uma coluna definida como `NOT NULL`, mas este não é o caso. Estes são, na verdade, valores, enquanto `NULL` significa "não ter um valor." Você pode testar isso facilmente usando `IS [NOT] NULL`, conforme mostrado:
 
 ```sql
 mysql> SELECT 0 IS NULL, 0 IS NOT NULL, '' IS NULL, '' IS NOT NULL;
@@ -45,4 +45,4 @@ mysql> SELECT 0 IS NULL, 0 IS NOT NULL, '' IS NULL, '' IS NOT NULL;
 +-----------+---------------+------------+----------------+
 ```
 
-Thus it is entirely possible to insert a zero or empty string into a `NOT NULL` column, as these are in fact `NOT NULL`. See [Section B.3.4.3, “Problems with NULL Values”](problems-with-null.html "B.3.4.3 Problems with NULL Values").
+Assim, é inteiramente possível inserir um zero ou uma string vazia em uma coluna `NOT NULL`, pois estes são, de fato, `NOT NULL`. Consulte [Seção B.3.4.3, “Problems with NULL Values”](problems-with-null.html "B.3.4.3 Problems with NULL Values").

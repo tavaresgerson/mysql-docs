@@ -1,30 +1,30 @@
-### 7.4.2 Reloading SQL-Format Backups
+### 7.4.2 Recarregando Backups em Formato SQL
 
-To reload a dump file written by **mysqldump** that consists of SQL statements, use it as input to the **mysql** client. If the dump file was created by **mysqldump** with the `--all-databases` or `--databases` option, it contains `CREATE DATABASE` and `USE` statements and it is not necessary to specify a default database into which to load the data:
+Para recarregar um dump file escrito pelo **mysqldump** que consiste em comandos SQL, use-o como input para o client **mysql**. Se o dump file foi criado pelo **mysqldump** com a opção `--all-databases` ou `--databases`, ele contém comandos `CREATE DATABASE` e `USE` e não é necessário especificar um Database padrão no qual carregar os dados:
 
 ```sql
 $> mysql < dump.sql
 ```
 
-Alternatively, from within **mysql**, use a `source` command:
+Alternativamente, de dentro do **mysql**, use um comando `source`:
 
 ```sql
 mysql> source dump.sql
 ```
 
-If the file is a single-database dump not containing `CREATE DATABASE` and `USE` statements, create the database first (if necessary):
+Se o arquivo for um dump de um único Database que não contenha comandos `CREATE DATABASE` e `USE`, crie o Database primeiro (se necessário):
 
 ```sql
 $> mysqladmin create db1
 ```
 
-Then specify the database name when you load the dump file:
+Em seguida, especifique o nome do Database ao carregar o dump file:
 
 ```sql
 $> mysql db1 < dump.sql
 ```
 
-Alternatively, from within **mysql**, create the database, select it as the default database, and load the dump file:
+Alternativamente, de dentro do **mysql**, crie o Database, selecione-o como o Database padrão e carregue o dump file:
 
 ```sql
 mysql> CREATE DATABASE IF NOT EXISTS db1;
@@ -32,6 +32,6 @@ mysql> USE db1;
 mysql> source dump.sql
 ```
 
-Note
+Nota
 
-For Windows PowerShell users: Because the "<" character is reserved for future use in PowerShell, an alternative approach is required, such as using quotes `cmd.exe /c "mysql < dump.sql"`.
+Para usuários do Windows PowerShell: Como o caractere "<" é reservado para uso futuro no PowerShell, é necessária uma abordagem alternativa, como usar aspas `cmd.exe /c "mysql < dump.sql"`.

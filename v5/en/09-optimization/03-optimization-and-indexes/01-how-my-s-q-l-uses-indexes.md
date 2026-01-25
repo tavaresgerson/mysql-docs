@@ -1,39 +1,39 @@
-### 8.3.1 How MySQL Uses Indexes
+### 8.3.1 Como o MySQL Usa Indexes
 
-Indexes are used to find rows with specific column values quickly. Without an index, MySQL must begin with the first row and then read through the entire table to find the relevant rows. The larger the table, the more this costs. If the table has an index for the columns in question, MySQL can quickly determine the position to seek to in the middle of the data file without having to look at all the data. This is much faster than reading every row sequentially.
+Indexes são usados para encontrar rapidamente linhas com valores de coluna específicos. Sem um index, o MySQL deve começar pela primeira linha e, em seguida, ler a tabela inteira para encontrar as linhas relevantes. Quanto maior a tabela, maior o custo disso. Se a tabela tiver um index para as colunas em questão, o MySQL pode determinar rapidamente a posição a ser buscada no meio do arquivo de dados sem ter que analisar todos os dados. Isso é muito mais rápido do que ler todas as linhas sequencialmente.
 
-Most MySQL indexes (`PRIMARY KEY`, `UNIQUE`, `INDEX`, and `FULLTEXT`) are stored in B-trees. Exceptions: Indexes on spatial data types use R-trees; `MEMORY` tables also support hash indexes; `InnoDB` uses inverted lists for `FULLTEXT` indexes.
+A maioria dos indexes do MySQL (`PRIMARY KEY`, `UNIQUE`, `INDEX` e `FULLTEXT`) são armazenados em B-trees. Exceções: Indexes em tipos de dados espaciais usam R-trees; tabelas `MEMORY` também suportam hash indexes; o `InnoDB` usa listas invertidas para indexes `FULLTEXT`.
 
-In general, indexes are used as described in the following discussion. Characteristics specific to hash indexes (as used in `MEMORY` tables) are described in Section 8.3.8, “Comparison of B-Tree and Hash Indexes”.
+Em geral, indexes são usados conforme descrito na discussão a seguir. As características específicas dos hash indexes (usados em tabelas `MEMORY`) são descritas na Seção 8.3.8, “Comparison of B-Tree and Hash Indexes”.
 
-MySQL uses indexes for these operations:
+O MySQL usa indexes para estas operações:
 
-* To find the rows matching a `WHERE` clause quickly.
+* Para encontrar rapidamente as linhas que correspondem a uma cláusula `WHERE`.
 
-* To eliminate rows from consideration. If there is a choice between multiple indexes, MySQL normally uses the index that finds the smallest number of rows (the most selective index).
+* Para eliminar linhas da consideração. Se houver uma escolha entre múltiplos indexes, o MySQL normalmente usa o index que encontra o menor número de linhas (o index mais seletivo).
 
-* If the table has a multiple-column index, any leftmost prefix of the index can be used by the optimizer to look up rows. For example, if you have a three-column index on `(col1, col2, col3)`, you have indexed search capabilities on `(col1)`, `(col1, col2)`, and `(col1, col2, col3)`. For more information, see Section 8.3.5, “Multiple-Column Indexes”.
+* Se a tabela tiver um multiple-column index, qualquer prefixo mais à esquerda do index pode ser usado pelo optimizer para fazer o lookup das linhas. Por exemplo, se você tiver um index de três colunas em `(col1, col2, col3)`, você terá recursos de busca indexada em `(col1)`, `(col1, col2)` e `(col1, col2, col3)`. Para mais informações, consulte a Seção 8.3.5, “Multiple-Column Indexes”.
 
-* To retrieve rows from other tables when performing joins. MySQL can use indexes on columns more efficiently if they are declared as the same type and size. In this context, `VARCHAR` and `CHAR` are considered the same if they are declared as the same size. For example, `VARCHAR(10)` and `CHAR(10)` are the same size, but `VARCHAR(10)` and `CHAR(15)` are not.
+* Para recuperar linhas de outras tabelas ao realizar joins. O MySQL pode usar indexes em colunas de forma mais eficiente se estas forem declaradas com o mesmo tipo e tamanho. Neste contexto, `VARCHAR` e `CHAR` são considerados iguais se forem declarados com o mesmo tamanho. Por exemplo, `VARCHAR(10)` e `CHAR(10)` têm o mesmo tamanho, mas `VARCHAR(10)` e `CHAR(15)` não.
 
-  For comparisons between nonbinary string columns, both columns should use the same character set. For example, comparing a `utf8` column with a `latin1` column precludes use of an index.
+  Para comparações entre colunas de string não binárias, ambas as colunas devem usar o mesmo character set. Por exemplo, comparar uma coluna `utf8` com uma coluna `latin1` impede o uso de um index.
 
-  Comparison of dissimilar columns (comparing a string column to a temporal or numeric column, for example) may prevent use of indexes if values cannot be compared directly without conversion. For a given value such as `1` in the numeric column, it might compare equal to any number of values in the string column such as `'1'`, `' 1'`, `'00001'`, or `'01.e1'`. This rules out use of any indexes for the string column.
+  A comparação de colunas não semelhantes (comparar uma coluna de string com uma coluna temporal ou numérica, por exemplo) pode impedir o uso de indexes se os valores não puderem ser comparados diretamente sem conversão. Para um determinado valor, como `1` na coluna numérica, ele pode ser comparado como igual a qualquer número de valores na coluna string, como `'1'`, `' 1'`, `'00001'` ou `'01.e1'`. Isso impede o uso de qualquer index para a coluna string.
 
-* To find the `MIN()` or `MAX()` value for a specific indexed column *`key_col`*. This is optimized by a preprocessor that checks whether you are using `WHERE key_part_N = constant` on all key parts that occur before *`key_col`* in the index. In this case, MySQL does a single key lookup for each `MIN()` or `MAX()` expression and replaces it with a constant. If all expressions are replaced with constants, the query returns at once. For example:
+* Para encontrar o valor `MIN()` ou `MAX()` para uma coluna indexada específica *`key_col`*. Isso é otimizado por um pré-processador que verifica se você está usando `WHERE key_part_N = constant` em todas as partes da key que ocorrem antes de *`key_col`* no index. Neste caso, o MySQL faz um único key lookup para cada expressão `MIN()` ou `MAX()` e a substitui por uma constante. Se todas as expressões forem substituídas por constantes, a Query retorna imediatamente. Por exemplo:
 
   ```sql
   SELECT MIN(key_part2),MAX(key_part2)
     FROM tbl_name WHERE key_part1=10;
   ```
 
-* To sort or group a table if the sorting or grouping is done on a leftmost prefix of a usable index (for example, `ORDER BY key_part1, key_part2`). If all key parts are followed by `DESC`, the key is read in reverse order. See Section 8.2.1.14, “ORDER BY Optimization”, and Section 8.2.1.15, “GROUP BY Optimization”.
+* Para ordenar ou agrupar uma tabela se a ordenação ou agrupamento for feita em um prefixo mais à esquerda de um index utilizável (por exemplo, `ORDER BY key_part1, key_part2`). Se todas as partes da key forem seguidas por `DESC`, a key é lida em ordem inversa. Consulte a Seção 8.2.1.14, “ORDER BY Optimization”, e a Seção 8.2.1.15, “GROUP BY Optimization”.
 
-* In some cases, a query can be optimized to retrieve values without consulting the data rows. (An index that provides all the necessary results for a query is called a covering index.) If a query uses from a table only columns that are included in some index, the selected values can be retrieved from the index tree for greater speed:
+* Em alguns casos, uma Query pode ser otimizada para recuperar valores sem consultar as linhas de dados. (Um index que fornece todos os resultados necessários para uma Query é chamado de covering index.) Se uma Query usar de uma tabela apenas colunas que estão incluídas em algum index, os valores selecionados podem ser recuperados da árvore do index para maior velocidade:
 
   ```sql
   SELECT key_part3 FROM tbl_name
     WHERE key_part1=1
   ```
 
-Indexes are less important for queries on small tables, or big tables where report queries process most or all of the rows. When a query needs to access most of the rows, reading sequentially is faster than working through an index. Sequential reads minimize disk seeks, even if not all the rows are needed for the query. See Section 8.2.1.20, “Avoiding Full Table Scans” for details.
+Indexes são menos importantes para Queries em tabelas pequenas, ou em tabelas grandes onde Queries de relatório processam a maioria ou todas as linhas. Quando uma Query precisa acessar a maioria das linhas, a leitura sequencial é mais rápida do que trabalhar através de um index. Leituras sequenciais minimizam as buscas em disco (disk seeks), mesmo que nem todas as linhas sejam necessárias para a Query. Consulte a Seção 8.2.1.20, “Avoiding Full Table Scans” para detalhes.

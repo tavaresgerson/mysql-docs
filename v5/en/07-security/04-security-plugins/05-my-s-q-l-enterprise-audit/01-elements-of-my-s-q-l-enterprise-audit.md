@@ -1,15 +1,15 @@
-#### 6.4.5.1 Elements of MySQL Enterprise Audit
+#### 6.4.5.1 Elementos do MySQL Enterprise Audit
 
-MySQL Enterprise Audit is based on the audit log plugin and related elements:
+O MySQL Enterprise Audit é baseado no plugin de log de auditoria (audit log plugin) e elementos relacionados:
 
-* A server-side plugin named `audit_log` examines auditable events and determines whether to write them to the audit log.
+* Um plugin server-side chamado `audit_log` examina eventos auditáveis e determina se deve gravá-los no audit log.
 
-* A set of functions enables manipulation of filtering definitions that control logging behavior, the encryption password, and log file reading.
+* Um conjunto de funções permite a manipulação de definições de filtragem que controlam o comportamento de logging, a senha de criptografia e a leitura do arquivo de log.
 
-* Tables in the `mysql` system database provide persistent storage of filter and user account data.
+* Tabelas no Database de sistema `mysql` fornecem armazenamento persistente de dados de filtro e de contas de usuário.
 
-* System variables enable audit log configuration and status variables provide runtime operational information.
+* Variáveis de sistema permitem a configuração do audit log e variáveis de status fornecem informações operacionais de runtime.
 
-Note
+Nota
 
-Prior to MySQL 5.7.13, MySQL Enterprise Audit consists only of the `audit_log` plugin and operates in legacy mode. See [Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering").
+Antes do MySQL 5.7.13, o MySQL Enterprise Audit consistia apenas no plugin `audit_log` e operava em modo legado. Veja [Seção 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering").

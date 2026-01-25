@@ -1,74 +1,74 @@
-## 6.5 MySQL Enterprise Data Masking and De-Identification
+## 6.5 MySQL Enterprise Data Masking e De-Identification
 
-[6.5.1 MySQL Enterprise Data Masking and De-Identification Elements](data-masking-elements.html)
+[6.5.1 Elementos do MySQL Enterprise Data Masking e De-Identification](data-masking-elements.html)
 
-[6.5.2 Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification](data-masking-installation.html)
+[6.5.2 Instalação ou Desinstalação do MySQL Enterprise Data Masking e De-Identification](data-masking-installation.html)
 
-[6.5.3 Using MySQL Enterprise Data Masking and De-Identification](data-masking-usage.html)
+[6.5.3 Usando o MySQL Enterprise Data Masking e De-Identification](data-masking-usage.html)
 
-[6.5.4 MySQL Enterprise Data Masking and De-Identification Function Reference](data-masking-function-reference.html)
+[6.5.4 Referência de Funções do MySQL Enterprise Data Masking e De-Identification](data-masking-function-reference.html)
 
-[6.5.5 MySQL Enterprise Data Masking and De-Identification Function Descriptions](data-masking-functions.html)
+[6.5.5 Descrições das Funções do MySQL Enterprise Data Masking e De-Identification](data-masking-functions.html)
 
-Note
+Nota
 
-MySQL Enterprise Data Masking and De-Identification is an extension included in MySQL Enterprise Edition, a commercial product. To learn more about commercial products, <https://www.mysql.com/products/>.
+MySQL Enterprise Data Masking e De-Identification é uma extensão incluída no MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, acesse <https://www.mysql.com/products/>.
 
-As of MySQL 5.7.24, MySQL Enterprise Edition provides data masking and de-identification capabilities:
+A partir do MySQL 5.7.24, o MySQL Enterprise Edition oferece recursos de Data Masking e De-Identification:
 
-* Transformation of existing data to mask it and remove identifying characteristics, such as changing all digits of a credit card number but the last four to `'X'` characters.
+*   Transformação de dados existentes para mascará-los e remover características de identificação, como alterar todos os dígitos de um número de cartão de crédito, exceto os últimos quatro, para caracteres `'X'`.
 
-* Generation of random data, such as email addresses and payment card numbers.
+*   Geração de dados aleatórios, como endereços de e-mail e números de cartões de pagamento.
 
-The way that applications use these capabilities depends on the purpose for which the data is used and who accesses it:
+A forma como as aplicações utilizam esses recursos depende da finalidade para a qual os dados são usados e de quem os acessa:
 
-* Applications that use sensitive data may protect it by performing data masking and permitting use of partially masked data for client identification. Example: A call center may ask for clients to provide their last four Social Security number digits.
+*   Aplicações que usam dados sensíveis podem protegê-los realizando o Data Masking e permitindo o uso de dados parcialmente mascarados para identificação do cliente. Exemplo: Um call center pode solicitar aos clientes que forneçam os últimos quatro dígitos do seu Social Security number.
 
-* Applications that require properly formatted data, but not necessarily the original data, can synthesize sample data. Example: An application developer who is testing data validators but has no access to original data may synthesize random data with the same format.
+*   Aplicações que exigem dados formatados corretamente, mas não necessariamente os dados originais, podem sintetizar dados de amostra. Exemplo: Um desenvolvedor de aplicações que está testando validadores de dados, mas não tem acesso aos dados originais, pode sintetizar dados aleatórios com o mesmo formato.
 
-Example 1:
+Exemplo 1:
 
-Medical research facilities can hold patient data that comprises a mix of personal and medical data. This may include genetic sequences (long strings), test results stored in JSON format, and other data types. Although the data may be used mostly by automated analysis software, access to genome data or test results of particular patients is still possible. In such cases, data masking should be used to render this information not personally identifiable.
+Instalações de pesquisa médica podem armazenar dados de pacientes que compreendem uma mistura de dados pessoais e médicos. Isso pode incluir sequências genéticas (longas strings), resultados de testes armazenados em formato JSON, e outros tipos de dados. Embora os dados possam ser usados principalmente por software de análise automatizada, o acesso a dados de genoma ou resultados de testes de pacientes específicos ainda é possível. Nesses casos, o Data Masking deve ser usado para tornar essas informações não identificáveis pessoalmente.
 
-Example 2:
+Exemplo 2:
 
-A credit card processor company provides a set of services using sensitive data, such as:
+Uma empresa processadora de cartões de crédito fornece um conjunto de serviços usando dados sensíveis, tais como:
 
-* Processing a large number of financial transactions per second.
-* Storing a large amount of transaction-related data.
-* Protecting transaction-related data with strict requirements for personal data.
+*   Processar um grande número de transações financeiras por segundo.
+*   Armazenar uma grande quantidade de dados relacionados à transação.
+*   Proteger dados relacionados à transação com requisitos rigorosos para dados pessoais.
 
-* Handling client complaints about transactions using reversible or partially masked data.
+*   Lidar com reclamações de clientes sobre transações usando dados reversíveis ou parcialmente mascarados.
 
-A typical transaction may include many types of sensitive information, including:
+Uma transação típica pode incluir muitos tipos de informações sensíveis, incluindo:
 
-* Credit card number.
-* Transaction type and amount.
-* Merchant type.
-* Transaction cryptogram (to confirm transaction legitimacy).
-* Geolocation of GPS-equipped terminal (for fraud detection).
+*   Número do cartão de crédito.
+*   Tipo e valor da transação.
+*   Tipo de comerciante.
+*   Criptograma da transação (para confirmar a legitimidade da transação).
+*   Geolocalização do terminal equipado com GPS (para detecção de fraude).
 
-Those types of information may then be joined within a bank or other card-issuing financial institution with client personal data, such as:
+Esses tipos de informação podem então ser unidos (joined) dentro de um banco ou outra instituição financeira emissora de cartão com dados pessoais do cliente, tais como:
 
-* Full client name (either person or company).
-* Address.
-* Date of birth.
-* Social Security number.
-* Email address.
-* Phone number.
+*   Nome completo do cliente (pessoa ou empresa).
+*   Endereço.
+*   Data de nascimento.
+*   Social Security number.
+*   Endereço de e-mail.
+*   Número de telefone.
 
-Various employee roles within both the card processing company and the financial institution require access to that data. Some of these roles may require access only to masked data. Other roles may require access to the original data on a case-to-case basis, which is recorded in audit logs.
+Várias funções de funcionários, tanto na empresa processadora de cartões quanto na instituição financeira, exigem acesso a esses dados. Algumas dessas funções podem exigir acesso apenas a dados mascarados. Outras funções podem exigir acesso aos dados originais, caso a caso, o que é registrado em logs de auditoria.
 
-Masking and de-identification are core to regulatory compliance, so MySQL Enterprise Data Masking and De-Identification can help application developers satisfy privacy requirements:
+O Masking e o De-Identification são centrais para a conformidade regulatória, portanto, o MySQL Enterprise Data Masking e De-Identification pode ajudar desenvolvedores de aplicações a satisfazer os requisitos de privacidade:
 
-* PCI – DSS: Payment Card Data.
-* HIPAA: Privacy of Health Data, Health Information Technology for Economic and Clinical Health Act (HITECH Act).
+*   PCI – DSS: Dados de Cartões de Pagamento.
+*   HIPAA: Privacidade de Dados de Saúde, Health Information Technology for Economic and Clinical Health Act (HITECH Act).
 
-* EU General Data Protection Directive (GDPR): Protection of Personal Data.
+*   EU General Data Protection Directive (GDPR): Proteção de Dados Pessoais.
 
-* Data Protection Act (UK): Protection of Personal Data.
-* Sarbanes Oxley, GLBA, The USA Patriot Act, Identity Theft and Assumption Deterrence Act of 1998.
+*   Data Protection Act (Reino Unido): Proteção de Dados Pessoais.
+*   Sarbanes Oxley, GLBA, The USA Patriot Act, Identity Theft and Assumption Deterrence Act of 1998.
 
-* FERPA – Student Data, NASD, CA SB1386 and AB 1950, State Data Protection Laws, Basel II.
+*   FERPA – Student Data, NASD, CA SB1386 e AB 1950, State Data Protection Laws, Basel II.
 
-The following sections describe the elements of MySQL Enterprise Data Masking and De-Identification, discuss how to install and use it, and provide reference information for its elements.
+As seções a seguir descrevem os elementos do MySQL Enterprise Data Masking e De-Identification, discutem como instalá-lo e usá-lo, e fornecem informações de referência para seus elementos.

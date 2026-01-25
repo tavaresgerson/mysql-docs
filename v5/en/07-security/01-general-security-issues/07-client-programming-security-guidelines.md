@@ -1,63 +1,63 @@
-### 6.1.7 Client Programming Security Guidelines
+### 6.1.7 Diretrizes de Segurança para Programação de Cliente
 
-Client applications that access MySQL should use the following guidelines to avoid interpreting external data incorrectly or exposing sensitive information.
+Aplicações Client que acessam o MySQL devem seguir as diretrizes abaixo para evitar a interpretação incorreta de dados externos ou a exposição de informações sensíveis.
 
-* [Handle External Data Properly](secure-client-programming.html#client-external-data-handling "Handle External Data Properly")
-* [Handle MySQL Error Messages Properly](secure-client-programming.html#client-mysql-error-handling "Handle MySQL Error Messages Properly")
+* [Trate Dados Externos de Maneira Adequada](secure-client-programming.html#client-external-data-handling "Trate Dados Externos de Maneira Adequada")
+* [Trate Mensagens de Erro do MySQL de Maneira Adequada](secure-client-programming.html#client-mysql-error-handling "Trate Mensagens de Erro do MySQL de Maneira Adequada")
 
-#### Handle External Data Properly
+#### Trate Dados Externos de Maneira Adequada
 
-Applications that access MySQL should not trust any data entered by users, who can try to trick your code by entering special or escaped character sequences in Web forms, URLs, or whatever application you have built. Be sure that your application remains secure if a user tries to perform SQL injection by entering something like `; DROP DATABASE mysql;` into a form. This is an extreme example, but large security leaks and data loss might occur as a result of hackers using similar techniques, if you do not prepare for them.
+Aplicações que acessam o MySQL não devem confiar em nenhum dado inserido por usuários, que podem tentar enganar seu código inserindo sequências de caracteres especiais ou escapados em formulários Web, URLs, ou qualquer aplicação que você tenha construído. Certifique-se de que sua aplicação permaneça segura se um usuário tentar executar uma SQL injection inserindo algo como `; DROP DATABASE mysql;` em um formulário. Este é um exemplo extremo, mas grandes vazamentos de segurança e perda de dados podem ocorrer como resultado de hackers usando técnicas semelhantes, caso você não se prepare para elas.
 
-A common mistake is to protect only string data values. Remember to check numeric data as well. If an application generates a query such as `SELECT * FROM table WHERE ID=234` when a user enters the value `234`, the user can enter the value `234 OR 1=1` to cause the application to generate the query `SELECT * FROM table WHERE ID=234 OR 1=1`. As a result, the server retrieves every row in the table. This exposes every row and causes excessive server load. The simplest way to protect from this type of attack is to use single quotation marks around the numeric constants: `SELECT * FROM table WHERE ID='234'`. If the user enters extra information, it all becomes part of the string. In a numeric context, MySQL automatically converts this string to a number and strips any trailing nonnumeric characters from it.
+Um erro comum é proteger apenas valores de dados do tipo string. Lembre-se de verificar dados numéricos também. Se uma aplicação gera uma Query como `SELECT * FROM table WHERE ID=234` quando um usuário insere o valor `234`, o usuário pode inserir o valor `234 OR 1=1` para fazer com que a aplicação gere a Query `SELECT * FROM table WHERE ID=234 OR 1=1`. Como resultado, o server recupera todas as rows na table. Isso expõe todas as rows e causa uma carga excessiva no server. A maneira mais simples de proteger contra esse tipo de ataque é usar aspas simples ao redor das constantes numéricas: `SELECT * FROM table WHERE ID='234'`. Se o usuário inserir informações extras, tudo se torna parte da string. Em um contexto numérico, o MySQL converte automaticamente essa string para um número e remove quaisquer caracteres não numéricos subsequentes.
 
-Sometimes people think that if a database contains only publicly available data, it need not be protected. This is incorrect. Even if it is permissible to display any row in the database, you should still protect against denial of service attacks (for example, those that are based on the technique in the preceding paragraph that causes the server to waste resources). Otherwise, your server becomes unresponsive to legitimate users.
+Às vezes, as pessoas pensam que, se um Database contém apenas dados disponíveis publicamente, ele não precisa ser protegido. Isso está incorreto. Mesmo que seja permitido exibir qualquer row no Database, você ainda deve proteger contra ataques de negação de serviço (denial of service attacks) (por exemplo, aqueles baseados na técnica do parágrafo anterior que faz com que o server desperdice recursos). Caso contrário, seu server se tornará sem resposta para usuários legítimos.
 
 Checklist:
 
-* Enable strict SQL mode to tell the server to be more restrictive of what data values it accepts. See [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+* Habilite o modo SQL estrito para instruir o server a ser mais restritivo quanto aos valores de dados que ele aceita. Veja [Seção 5.1.10, “Modos SQL do Server”](sql-mode.html "5.1.10 Modos SQL do Server").
 
-* Try to enter single and double quotation marks (`'` and `"`) in all of your Web forms. If you get any kind of MySQL error, investigate the problem right away.
+* Tente inserir aspas simples e duplas (`'` e `"`) em todos os seus formulários Web. Se você receber qualquer tipo de erro do MySQL, investigue o problema imediatamente.
 
-* Try to modify dynamic URLs by adding `%22` (`"`), `%23` (`#`), and `%27` (`'`) to them.
+* Tente modificar URLs dinâmicas adicionando `%22` (`"`), `%23` (`#`), e `%27` (`'`) a elas.
 
-* Try to modify data types in dynamic URLs from numeric to character types using the characters shown in the previous examples. Your application should be safe against these and similar attacks.
+* Tente modificar tipos de dados em URLs dinâmicas de numéricos para tipos de caracteres usando os caracteres mostrados nos exemplos anteriores. Sua aplicação deve estar segura contra estes e ataques semelhantes.
 
-* Try to enter characters, spaces, and special symbols rather than numbers in numeric fields. Your application should remove them before passing them to MySQL or else generate an error. Passing unchecked values to MySQL is very dangerous!
+* Tente inserir caracteres, espaços e símbolos especiais em vez de números em campos numéricos. Sua aplicação deve removê-los antes de passá-los ao MySQL ou, caso contrário, gerar um erro. Passar valores não verificados para o MySQL é muito perigoso!
 
-* Check the size of data before passing it to MySQL.
-* Have your application connect to the database using a user name different from the one you use for administrative purposes. Do not give your applications any access privileges they do not need.
+* Verifique o tamanho dos dados antes de passá-los para o MySQL.
+* Faça sua aplicação se conectar ao Database usando um user name diferente daquele que você usa para fins administrativos. Não conceda às suas aplicações quaisquer privilégios de acesso de que elas não precisem.
 
-Many application programming interfaces provide a means of escaping special characters in data values. Properly used, this prevents application users from entering values that cause the application to generate statements that have a different effect than you intend:
+Muitas application programming interfaces (APIs) fornecem um meio de escapar caracteres especiais em valores de dados. Usado corretamente, isso impede que usuários da aplicação insiram valores que façam com que a aplicação gere comandos que tenham um efeito diferente do pretendido:
 
-* MySQL SQL statements: Use SQL prepared statements and accept data values only by means of placeholders; see [Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements").
+* Comandos SQL do MySQL: Use prepared statements SQL e aceite valores de dados apenas por meio de placeholders; veja [Seção 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements").
 
-* MySQL C API: Use the [`mysql_real_escape_string_quote()`](/doc/c-api/5.7/en/mysql-real-escape-string-quote.html) API call. Alternatively, use the C API prepared statement interface and accept data values only by means of placeholders; see [C API Prepared Statement Interface](/doc/c-api/5.7/en/c-api-prepared-statement-interface.html).
+* API C do MySQL: Use a chamada de API [`mysql_real_escape_string_quote()`](/doc/c-api/5.7/en/mysql-real-escape-string-quote.html). Alternativamente, use a interface de prepared statement da API C e aceite valores de dados apenas por meio de placeholders; veja [C API Prepared Statement Interface](/doc/c-api/5.7/en/c-api-prepared-statement-interface.html).
 
-* MySQL++: Use the `escape` and `quote` modifiers for query streams.
+* MySQL++: Use os modificadores `escape` e `quote` para Query streams.
 
-* PHP: Use either the `mysqli` or `pdo_mysql` extensions, and not the older `ext/mysql` extension. The preferred API's support the improved MySQL authentication protocol and passwords, as well as prepared statements with placeholders. See also [MySQL and PHP](/doc/apis-php/en/).
+* PHP: Use as extensões `mysqli` ou `pdo_mysql`, e não a extensão mais antiga `ext/mysql`. As APIs preferenciais suportam o protocolo de autenticação e senhas aprimorados do MySQL, bem como prepared statements com placeholders. Veja também [MySQL and PHP](/doc/apis-php/en/).
 
-  If the older `ext/mysql` extension must be used, then for escaping use the [`mysql_real_escape_string_quote()`](/doc/c-api/5.7/en/mysql-real-escape-string-quote.html) function and not [`mysql_escape_string()`](/doc/c-api/5.7/en/mysql-escape-string.html) or `addslashes()` because only [`mysql_real_escape_string_quote()`](/doc/c-api/5.7/en/mysql-real-escape-string-quote.html) is character set-aware; the other functions can be “bypassed” when using (invalid) multibyte character sets.
+  Se a extensão mais antiga `ext/mysql` precisar ser usada, então para escaping utilize a função [`mysql_real_escape_string_quote()`](/doc/c-api/5.7/en/mysql-real-escape-string-quote.html) e não [`mysql_escape_string()`](/doc/c-api/5.7/en/mysql-escape-string.html) ou `addslashes()`, pois apenas [`mysql_real_escape_string_quote()`](/doc/c-api/5.7/en/mysql-real-escape-string-quote.html) tem consciência do character set (é character set-aware); as outras funções podem ser “contornadas” ao usar character sets multibyte (inválidos).
 
-* Perl DBI: Use placeholders or the `quote()` method.
+* Perl DBI: Use placeholders ou o método `quote()`.
 
-* Java JDBC: Use a `PreparedStatement` object and placeholders.
+* Java JDBC: Use um objeto `PreparedStatement` e placeholders.
 
-Other programming interfaces might have similar capabilities.
+Outras interfaces de programação podem ter recursos semelhantes.
 
-#### Handle MySQL Error Messages Properly
+#### Trate Mensagens de Erro do MySQL de Maneira Adequada
 
-It is the application's responsibility to intercept errors that occur as a result of executing SQL statements with the MySQL database server and handle them appropriately.
+É responsabilidade da aplicação interceptar os errors que ocorrem como resultado da execução de comandos SQL com o server do Database MySQL e tratá-los de maneira apropriada.
 
-The information returned in a MySQL error is not gratuitous because that information is key in debugging MySQL using applications. It would be nearly impossible, for example, to debug a common 10-way join [`SELECT`](select.html "13.2.9 SELECT Statement") statement without providing information regarding which databases, tables, and other objects are involved with problems. Thus, MySQL errors must sometimes necessarily contain references to the names of those objects.
+A informação retornada em um error do MySQL não é gratuita, pois essa informação é fundamental para o debugging de aplicações que usam o MySQL. Seria quase impossível, por exemplo, fazer o debug de um comando [`SELECT`](select.html "13.2.9 SELECT Statement") comum com JOIN de 10 vias sem fornecer informações sobre quais Databases, tables e outros objetos estão envolvidos nos problemas. Assim, os errors do MySQL devem, por vezes, necessariamente conter referências aos nomes desses objetos.
 
-A simple but insecure approach for an application when it receives such an error from MySQL is to intercept it and display it verbatim to the client. However, revealing error information is a known application vulnerability type ([CWE-209](http://cwe.mitre.org/data/definitions/209.html)) and the application developer must ensure the application does not have this vulnerability.
+Uma abordagem simples, mas insegura, para uma aplicação ao receber tal error do MySQL é interceptá-lo e exibi-lo literalmente ao client. No entanto, revelar informações de error é um tipo de vulnerabilidade de aplicação conhecida ([CWE-209](http://cwe.mitre.org/data/definitions/209.html)) e o desenvolvedor da aplicação deve garantir que a aplicação não possua essa vulnerabilidade.
 
-For example, an application that displays a message such as this exposes both a database name and a table name to clients, which is information a client might attempt to exploit:
+Por exemplo, uma aplicação que exibe uma mensagem como esta expõe tanto um nome de Database quanto um nome de table aos clients, o que é uma informação que um client pode tentar explorar:
 
 ```sql
 ERROR 1146 (42S02): Table 'mydb.mytable' does not exist
 ```
 
-Instead, the proper behavior for an application when it receives such an error from MySQL is to log appropriate information, including the error information, to a secure audit location only accessible to trusted personnel. The application can return something more generic such as “Internal Error” to the user.
+Em vez disso, o comportamento adequado para uma aplicação ao receber tal error do MySQL é registrar (log) as informações apropriadas, incluindo os detalhes do error, em um local de auditoria seguro acessível apenas a pessoal confiável. A aplicação pode retornar algo mais genérico, como “Erro Interno”, para o usuário.

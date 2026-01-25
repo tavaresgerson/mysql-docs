@@ -1,57 +1,57 @@
-### 8.11.1 Internal Locking Methods
+### 8.11.1 Métodos de Bloqueio Interno
 
-This section discusses internal locking; that is, locking performed within the MySQL server itself to manage contention for table contents by multiple sessions. This type of locking is internal because it is performed entirely by the server and involves no other programs. For locking performed on MySQL files by other programs, see Section 8.11.5, “External Locking”.
+Esta seção discute o bloqueio interno; ou seja, o bloqueio realizado dentro do próprio servidor MySQL para gerenciar a contenção pelo conteúdo da tabela por múltiplas sessões. Este tipo de bloqueio é interno porque é realizado inteiramente pelo servidor e não envolve outros programas. Para bloqueio realizado em arquivos MySQL por outros programas, consulte a Seção 8.11.5, “External Locking”.
 
 * Row-Level Locking
 * Table-Level Locking
-* Choosing the Type of Locking
+* Escolhendo o Tipo de Bloqueio
 
 #### Row-Level Locking
 
-MySQL uses row-level locking for `InnoDB` tables to support simultaneous write access by multiple sessions, making them suitable for multi-user, highly concurrent, and OLTP applications.
+O MySQL usa Row-Level Locking (bloqueio em nível de linha) para tabelas `InnoDB` para suportar acesso de escrita simultâneo por múltiplas sessões, tornando-as adequadas para aplicações multiusuário, de alta concorrência e OLTP.
 
-To avoid deadlocks when performing multiple concurrent write operations on a single `InnoDB` table, acquire necessary locks at the start of the transaction by issuing a `SELECT ... FOR UPDATE` statement for each group of rows expected to be modified, even if the data change statements come later in the transaction. If transactions modify or lock more than one table, issue the applicable statements in the same order within each transaction. Deadlocks affect performance rather than representing a serious error, because `InnoDB` automatically detects deadlock conditions and rolls back one of the affected transactions.
+Para evitar deadlocks ao realizar múltiplas operações de escrita concorrentes em uma única tabela `InnoDB`, adquira os Locks necessários no início da Transaction, emitindo uma instrução `SELECT ... FOR UPDATE` para cada grupo de linhas que se espera modificar, mesmo que as instruções de alteração de dados venham mais tarde na Transaction. Se as Transactions modificarem ou bloquearem mais de uma tabela, emita as instruções aplicáveis na mesma ordem dentro de cada Transaction. Deadlocks afetam o desempenho em vez de representar um erro grave, porque o `InnoDB` detecta automaticamente as condições de deadlock e reverte (rollback) uma das Transactions afetadas.
 
-On high concurrency systems, deadlock detection can cause a slowdown when numerous threads wait for the same lock. At times, it may be more efficient to disable deadlock detection and rely on the `innodb_lock_wait_timeout` setting for transaction rollback when a deadlock occurs. Deadlock detection can be disabled using the `innodb_deadlock_detect` configuration option.
+Em sistemas de alta concorrência, a detecção de deadlock pode causar uma lentidão quando numerosos Threads esperam pelo mesmo Lock. Às vezes, pode ser mais eficiente desabilitar a detecção de deadlock e confiar na configuração `innodb_lock_wait_timeout` para o rollback da Transaction quando um deadlock ocorrer. A detecção de deadlock pode ser desabilitada usando a opção de configuração `innodb_deadlock_detect`.
 
-Advantages of row-level locking:
+Vantagens do Row-Level Locking:
 
-* Fewer lock conflicts when different sessions access different rows.
+* Menos conflitos de Lock quando diferentes sessões acessam diferentes linhas.
 
-* Fewer changes for rollbacks.
-* Possible to lock a single row for a long time.
+* Menos alterações para rollbacks.
+* Possibilidade de bloquear uma única linha por um longo tempo.
 
 #### Table-Level Locking
 
-MySQL uses table-level locking for `MyISAM`, `MEMORY`, and `MERGE` tables, permitting only one session to update those tables at a time. This locking level makes these storage engines more suitable for read-only, read-mostly, or single-user applications.
+O MySQL usa Table-Level Locking (bloqueio em nível de tabela) para tabelas `MyISAM`, `MEMORY` e `MERGE`, permitindo que apenas uma Session atualize essas tabelas por vez. Este nível de bloqueio torna esses Storage Engines mais adequados para aplicações somente leitura, predominantemente de leitura ou *single-user*.
 
-These storage engines avoid deadlocks by always requesting all needed locks at once at the beginning of a query and always locking the tables in the same order. The tradeoff is that this strategy reduces concurrency; other sessions that want to modify the table must wait until the current data change statement finishes.
+Esses Storage Engines evitam deadlocks solicitando sempre todos os Locks necessários de uma vez no início de uma Query e bloqueando sempre as tabelas na mesma ordem. A compensação é que essa estratégia reduz a concorrência; outras sessões que desejam modificar a tabela devem esperar até que a instrução de alteração de dados atual termine.
 
-Advantages of table-level locking:
+Vantagens do Table-Level Locking:
 
-* Relatively little memory required (row locking requires memory per row or group of rows locked)
+* Memória relativamente baixa necessária (o bloqueio de linha requer memória por linha ou grupo de linhas bloqueadas).
 
-* Fast when used on a large part of the table because only a single lock is involved.
+* Rápido quando usado em uma grande parte da tabela, pois envolve apenas um único Lock.
 
-* Fast if you often do `GROUP BY` operations on a large part of the data or must scan the entire table frequently.
+* Rápido se você frequentemente executa operações `GROUP BY` em uma grande parte dos dados ou precisa varrer a tabela inteira frequentemente.
 
-MySQL grants table write locks as follows:
+O MySQL concede Locks de escrita de tabela da seguinte forma:
 
-1. If there are no locks on the table, put a write lock on it.
+1. Se não houver Locks na tabela, aplica-se um Lock de escrita nela.
 
-2. Otherwise, put the lock request in the write lock queue.
+2. Caso contrário, a solicitação de Lock é colocada na fila de Lock de escrita.
 
-MySQL grants table read locks as follows:
+O MySQL concede Locks de leitura de tabela da seguinte forma:
 
-1. If there are no write locks on the table, put a read lock on it.
+1. Se não houver Locks de escrita na tabela, aplica-se um Lock de leitura nela.
 
-2. Otherwise, put the lock request in the read lock queue.
+2. Caso contrário, a solicitação de Lock é colocada na fila de Lock de leitura.
 
-Table updates are given higher priority than table retrievals. Therefore, when a lock is released, the lock is made available to the requests in the write lock queue and then to the requests in the read lock queue. This ensures that updates to a table are not “starved” even when there is heavy `SELECT` activity for the table. However, if there are many updates for a table, `SELECT` statements wait until there are no more updates.
+As atualizações de tabela recebem prioridade mais alta do que as recuperações de tabela. Portanto, quando um Lock é liberado, ele é disponibilizado para as requisições na fila de Lock de escrita e, em seguida, para as requisições na fila de Lock de leitura. Isso garante que as atualizações em uma tabela não sofram “starvation” (inanição), mesmo quando há intensa atividade de `SELECT` para a tabela. No entanto, se houver muitas atualizações para uma tabela, as instruções `SELECT` esperam até que não haja mais atualizações.
 
-For information on altering the priority of reads and writes, see Section 8.11.2, “Table Locking Issues”.
+Para informações sobre como alterar a prioridade de leituras e escritas, consulte a Seção 8.11.2, “Table Locking Issues”.
 
-You can analyze the table lock contention on your system by checking the `Table_locks_immediate` and `Table_locks_waited` status variables, which indicate the number of times that requests for table locks could be granted immediately and the number that had to wait, respectively:
+Você pode analisar a contenção de Lock de tabela no seu sistema verificando as variáveis de Status `Table_locks_immediate` e `Table_locks_waited`, que indicam o número de vezes que as requisições de Locks de tabela puderam ser concedidas imediatamente e o número que teve que esperar, respectivamente:
 
 ```sql
 mysql> SHOW STATUS LIKE 'Table%';
@@ -63,13 +63,13 @@ mysql> SHOW STATUS LIKE 'Table%';
 +-----------------------+---------+
 ```
 
-The Performance Schema lock tables also provide locking information. See Section 25.12.12, “Performance Schema Lock Tables”.
+As tabelas de Lock do Performance Schema também fornecem informações de bloqueio. Consulte a Seção 25.12.12, “Performance Schema Lock Tables”.
 
-The `MyISAM` storage engine supports concurrent inserts to reduce contention between readers and writers for a given table: If a `MyISAM` table has no free blocks in the middle of the data file, rows are always inserted at the end of the data file. In this case, you can freely mix concurrent `INSERT` and `SELECT` statements for a `MyISAM` table without locks. That is, you can insert rows into a `MyISAM` table at the same time other clients are reading from it. Holes can result from rows having been deleted from or updated in the middle of the table. If there are holes, concurrent inserts are disabled but are enabled again automatically when all holes have been filled with new data. To control this behavior, use the `concurrent_insert` system variable. See Section 8.11.3, “Concurrent Inserts”.
+O Storage Engine `MyISAM` suporta *Inserts* concorrentes para reduzir a contenção entre leitores e escritores para uma determinada tabela: Se uma tabela `MyISAM` não tiver blocos livres no meio do arquivo de dados, as linhas são sempre inseridas no final do arquivo de dados. Neste caso, você pode misturar livremente instruções `INSERT` e `SELECT` concorrentes para uma tabela `MyISAM` sem Locks. Ou seja, você pode inserir linhas em uma tabela `MyISAM` ao mesmo tempo em que outros clientes estão lendo dela. Lacunas (Holes) podem resultar de linhas que foram excluídas ou atualizadas no meio da tabela. Se houver lacunas, os Inserts concorrentes são desabilitados, mas são habilitados novamente automaticamente quando todas as lacunas forem preenchidas com novos dados. Para controlar esse comportamento, use a variável de sistema `concurrent_insert`. Consulte a Seção 8.11.3, “Concurrent Inserts”.
 
-If you acquire a table lock explicitly with `LOCK TABLES`, you can request a `READ LOCAL` lock rather than a `READ` lock to enable other sessions to perform concurrent inserts while you have the table locked.
+Se você adquirir um Lock de tabela explicitamente com `LOCK TABLES`, você pode solicitar um Lock `READ LOCAL` em vez de um Lock `READ` para permitir que outras sessões realizem Inserts concorrentes enquanto a tabela estiver bloqueada por você.
 
-To perform many `INSERT` and `SELECT` operations on a table `t1` when concurrent inserts are not possible, you can insert rows into a temporary table `temp_t1` and update the real table with the rows from the temporary table:
+Para executar muitas operações `INSERT` e `SELECT` em uma tabela `t1` quando Inserts concorrentes não são possíveis, você pode inserir linhas em uma tabela temporária `temp_t1` e atualizar a tabela real com as linhas da tabela temporária:
 
 ```sql
 mysql> LOCK TABLES t1 WRITE, temp_t1 WRITE;
@@ -78,28 +78,28 @@ mysql> DELETE FROM temp_t1;
 mysql> UNLOCK TABLES;
 ```
 
-#### Choosing the Type of Locking
+#### Escolhendo o Tipo de Bloqueio
 
-Generally, table locks are superior to row-level locks in the following cases:
+Geralmente, Locks de tabela são superiores aos Locks em nível de linha nos seguintes casos:
 
-* Most statements for the table are reads.
-* Statements for the table are a mix of reads and writes, where writes are updates or deletes for a single row that can be fetched with one key read:
+* A maioria das instruções para a tabela são leituras.
+* As instruções para a tabela são uma mistura de leituras e escritas, onde as escritas são Updates ou Deletes para uma única linha que pode ser recuperada com uma leitura de Key:
 
   ```sql
   UPDATE tbl_name SET column=value WHERE unique_key_col=key_value;
   DELETE FROM tbl_name WHERE unique_key_col=key_value;
   ```
 
-* `SELECT` combined with concurrent `INSERT` statements, and very few `UPDATE` or `DELETE` statements.
+* `SELECT` combinado com instruções `INSERT` concorrentes, e muito poucas instruções `UPDATE` ou `DELETE`.
 
-* Many scans or `GROUP BY` operations on the entire table without any writers.
+* Muitas varreduras ou operações `GROUP BY` na tabela inteira sem quaisquer escritores.
 
-With higher-level locks, you can more easily tune applications by supporting locks of different types, because the lock overhead is less than for row-level locks.
+Com Locks de nível superior, você pode ajustar (tune) as aplicações mais facilmente, suportando Locks de diferentes tipos, porque o overhead de Lock é menor do que para Locks em nível de linha.
 
-Options other than row-level locking:
+Opções além do Row-Level Locking:
 
-* Versioning (such as that used in MySQL for concurrent inserts) where it is possible to have one writer at the same time as many readers. This means that the database or table supports different views for the data depending on when access begins. Other common terms for this are “time travel,” “copy on write,” or “copy on demand.”
+* Versionamento (como o usado no MySQL para Inserts concorrentes) onde é possível ter um escritor ao mesmo tempo que muitos leitores. Isso significa que o Database ou a tabela suporta diferentes visualizações para os dados, dependendo de quando o acesso começa. Outros termos comuns para isso são “time travel” (viagem no tempo), “copy on write” (cópia na escrita) ou “copy on demand” (cópia sob demanda).
 
-* Copy on demand is in many cases superior to row-level locking. However, in the worst case, it can use much more memory than using normal locks.
+* A cópia sob demanda é em muitos casos superior ao Row-Level Locking. No entanto, no pior caso, pode usar muito mais memória do que usar Locks normais.
 
-* Instead of using row-level locks, you can employ application-level locks, such as those provided by `GET_LOCK()` and `RELEASE_LOCK()` in MySQL. These are advisory locks, so they work only with applications that cooperate with each other. See Section 12.14, “Locking Functions”.
+* Em vez de usar Locks em nível de linha, você pode empregar Locks em nível de aplicação, como aqueles fornecidos por `GET_LOCK()` e `RELEASE_LOCK()` no MySQL. Estes são Locks consultivos (advisory locks), então eles funcionam apenas com aplicações que cooperam entre si. Consulte a Seção 12.14, “Locking Functions”.
