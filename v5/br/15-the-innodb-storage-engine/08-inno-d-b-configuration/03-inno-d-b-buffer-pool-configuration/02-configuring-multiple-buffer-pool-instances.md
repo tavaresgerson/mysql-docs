@@ -1,9 +1,0 @@
-#### 14.8.3.2 Configurando Múltiplas Instâncias do Buffer Pool
-
-Para sistemas com *Buffer Pools* na faixa de múltiplos gigabytes, dividir o *Buffer Pool* em instâncias separadas pode melhorar a concorrência, reduzindo a *contention* (contenção) à medida que diferentes *threads* leem e escrevem em páginas em *cache*. Este recurso é tipicamente destinado a sistemas com um tamanho de *Buffer Pool* na faixa de múltiplos gigabytes. Múltiplas instâncias do *Buffer Pool* são configuradas usando a opção de configuração `innodb_buffer_pool_instances`, e você também pode ajustar o valor de `innodb_buffer_pool_size`.
-
-Quando o *Buffer Pool* do `InnoDB` é grande, muitas requisições de dados podem ser satisfeitas através da recuperação a partir da memória. Você pode encontrar gargalos devido a múltiplas *threads* tentando acessar o *Buffer Pool* simultaneamente. Você pode habilitar múltiplos *Buffer Pools* para minimizar essa *contention*. Cada página que é armazenada ou lida do *Buffer Pool* é atribuída a um dos *Buffer Pools* aleatoriamente, usando uma função de *hashing*. Cada *Buffer Pool* gerencia suas próprias *free lists*, *flush lists*, *LRUs* e todas as outras estruturas de dados conectadas a um *Buffer Pool*, e é protegido pelo seu próprio *buffer pool mutex*.
-
-Para habilitar múltiplas instâncias do *Buffer Pool*, defina a opção de configuração `innodb_buffer_pool_instances` para um valor maior que 1 (o padrão) até 64 (o máximo). Esta opção só entra em vigor quando você define `innodb_buffer_pool_size` para um tamanho de 1GB ou mais. O tamanho total especificado é dividido entre todos os *Buffer Pools*. Para obter a melhor eficiência, especifique uma combinação de `innodb_buffer_pool_instances` e `innodb_buffer_pool_size` de modo que cada instância do *Buffer Pool* seja de pelo menos 1GB.
-
-Para obter informações sobre a modificação do tamanho do *Buffer Pool* do `InnoDB`, consulte a Seção 14.8.3.1, “Configuring InnoDB Buffer Pool Size”.

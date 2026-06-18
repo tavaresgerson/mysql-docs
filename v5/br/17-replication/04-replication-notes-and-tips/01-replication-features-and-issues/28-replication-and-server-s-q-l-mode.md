@@ -1,7 +1,0 @@
-#### 16.4.1.28 Replication e SQL Mode do Servidor
-
-Usar configurações de SQL mode do servidor diferentes na source e na replica pode fazer com que as mesmas instruções `INSERT` sejam tratadas de forma diferente na source e na replica, levando a source e a replica a divergirem. Para melhores resultados, você deve sempre usar o mesmo SQL mode do servidor na source e na replica. Esta recomendação se aplica independentemente de você estar usando Replication baseada em instrução (statement-based) ou baseada em linha (row-based).
-
-Se você estiver replicando tabelas particionadas, é provável que o uso de SQL modes diferentes na source e na replica cause problemas. No mínimo, isso provavelmente fará com que a distribuição de dados entre as partições seja diferente nas cópias da source e da replica de uma determinada tabela. Também pode fazer com que instruções INSERT em tabelas particionadas que são bem-sucedidas na source falhem na replica.
-
-Para mais informações, consulte Seção 5.1.10, “SQL Modes do Servidor”. Em particular, consulte Mudanças no SQL Mode no MySQL 5.7, que descreve as mudanças no MySQL 5.7, para que você possa avaliar se suas aplicações são afetadas.

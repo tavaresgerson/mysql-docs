@@ -1,5 +1,0 @@
-#### 16.4.1.18 Replicação e LOAD DATA
-
-O `LOAD DATA` é considerado inseguro para logging baseado em statement (statement-based logging) (veja Seção 16.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”). Quando `binlog_format=MIXED` está configurado, o statement é registrado no formato baseado em linha (row-based format). Quando `binlog_format=STATEMENT` está configurado, observe que o `LOAD DATA` não gera um aviso (warning), diferentemente de outros statements inseguros.
-
-Quando o **mysqlbinlog** lê `log events` para statements [`LOAD DATA`] registrados no formato baseado em statement, um arquivo local gerado é criado em um diretório temporário. Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinlog** ou por qualquer outro programa MySQL. Se você utilizar statements [`LOAD DATA`] com `binary logging` baseado em statement, você deve excluir os arquivos temporários manualmente depois que não precisar mais do log de statement. Para mais informações, veja Seção 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”.

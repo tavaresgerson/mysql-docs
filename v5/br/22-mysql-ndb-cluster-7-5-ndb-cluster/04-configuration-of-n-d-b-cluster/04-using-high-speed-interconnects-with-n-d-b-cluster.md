@@ -1,5 +1,0 @@
-### 21.4.4 Usando Interconexões de Alta Velocidade com NDB Cluster
-
-Mesmo antes de o projeto do `NDBCLUSTER` começar em 1996, era evidente que um dos principais problemas a serem encontrados na construção de Databases paralelas seria a comunicação entre os Nodes na rede. Por esta razão, o `NDBCLUSTER` foi projetado desde o início para permitir o uso de diversos mecanismos de transporte de dados diferentes, ou *transporters*.
-
-NDB Cluster 7.5 e 7.6 suportam três destes (veja Seção 21.2.1, “NDB Cluster Core Concepts”). Um quarto *transporter*, Scalable Coherent Interface (SCI), também era suportado em versões muito antigas do `NDB`. Isso exigia hardware, software e binários MySQL especializados que não estão mais disponíveis.

@@ -1,3 +1,0 @@
-### 14.6.4 InnoDB Data Dictionary
-
-O `InnoDB` Data Dictionary é composto por *system tables* internas que contêm *metadata* usada para rastrear objetos como *tables*, *indexes* e colunas de *table*. A *metadata* está fisicamente localizada no *system tablespace* do `InnoDB`. Por razões históricas, a *metadata* do *data dictionary* se sobrepõe em certo grau às informações armazenadas nos arquivos de *metadata* das *tables* do `InnoDB` (arquivos `.frm`).

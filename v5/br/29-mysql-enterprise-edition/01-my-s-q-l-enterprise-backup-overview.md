@@ -1,9 +1,0 @@
-## 28.1 Visão Geral do MySQL Enterprise Backup
-
-O MySQL Enterprise Backup realiza operações de *hot backup* para *Databases* MySQL. O produto é arquitetado para *backups* eficientes e confiáveis de tabelas criadas pelo *storage engine* InnoDB. Para maior completude, ele também pode fazer *backup* de tabelas de MyISAM e outros *storage engines*.
-
-A discussão a seguir resume brevemente o MySQL Enterprise Backup. Para mais informações, consulte o manual do MySQL Enterprise Backup, disponível em https://dev.mysql.com/doc/mysql-enterprise-backup/en/.
-
-Os *hot backups* são realizados enquanto o *Database* está em execução e os aplicativos estão lendo e escrevendo nele. Este tipo de *backup* não bloqueia operações normais do *Database* e captura até mesmo as alterações que ocorrem enquanto o *backup* está em andamento. Por esses motivos, os *hot backups* são desejáveis quando o seu *Database* “amadurece” — quando os dados são grandes o suficiente para que o *backup* demore um tempo significativo, e quando os seus dados são importantes o suficiente para o seu negócio que você deve capturar todas as alterações, sem tirar o seu aplicativo, *website* ou *web service* de operação (*offline*).
-
-O MySQL Enterprise Backup realiza um *hot backup* de todas as tabelas que usam o *storage engine* InnoDB. Para tabelas que usam MyISAM ou outros *storage engines* que não sejam InnoDB, ele realiza um *backup* “*warm*” (quente), onde o *Database* continua a ser executado, mas essas tabelas não podem ser modificadas enquanto o *backup* é realizado. Para operações de *backup* eficientes, você pode designar o InnoDB como o *storage engine* padrão para novas tabelas, ou converter tabelas existentes para usar o *storage engine* InnoDB.

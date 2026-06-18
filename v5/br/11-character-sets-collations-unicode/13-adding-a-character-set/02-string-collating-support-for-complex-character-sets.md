@@ -1,5 +1,0 @@
-### 10.13.2 Suporte a String Collating para Character Sets Complexos
-
-Para um *Character Set* simples chamado *`MYSET`*, as regras de ordenação (*sorting rules*) são especificadas no arquivo de configuração `MYSET.xml` usando elementos de array `<map>` dentro de elementos `<collation>`. Se as regras de ordenação para a sua linguagem forem complexas demais para serem tratadas com arrays simples, você deve definir funções de *string collating* no arquivo fonte `ctype-MYSET.c` no diretório `strings`.
-
-Os *Character Sets* existentes fornecem a melhor documentação e exemplos para mostrar como essas funções são implementadas. Observe os arquivos `ctype-*.c` no diretório `strings`, como os arquivos para os *Character Sets* `big5`, `czech`, `gbk`, `sjis` e `tis160`. Dê uma olhada nas estruturas `MY_COLLATION_HANDLER` para ver como elas são usadas. Consulte também o arquivo `CHARSET_INFO.txt` no diretório `strings` para informações adicionais.

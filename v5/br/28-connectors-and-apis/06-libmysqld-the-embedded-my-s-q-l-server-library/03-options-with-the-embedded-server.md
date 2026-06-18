@@ -1,5 +1,0 @@
-### 27.6.3 Opções com o Embedded Server
-
-Quaisquer opções que possam ser fornecidas com o daemon do **mysqld**, podem ser usadas com uma embedded server library. Opções do Server podem ser fornecidas em um array como um argumento para `mysql_library_init()`, que inicializa o Server. Elas também podem ser fornecidas em um option file como `my.cnf`. Para especificar um option file para um programa C, use a opção `--defaults-file` como um dos elementos do segundo argumento da função `mysql_library_init()`. Consulte mysql_library_init() para mais informações sobre a função `mysql_library_init()`.
-
-Usar option files pode tornar mais fácil a transição entre uma aplicação client/server e uma onde o MySQL está embedded. Coloque as opções comuns sob o group `[server]`. Estas são lidas por ambas as versões do MySQL. Opções específicas para client/server devem ir sob a seção `[mysqld]`. Coloque as opções específicas da embedded MySQL server library na seção `[embedded]`. Opções específicas a aplicações vão sob a seção rotulada `[ApplicationName_SERVER]`. Consulte Seção 4.2.2.2, “Using Option Files”.

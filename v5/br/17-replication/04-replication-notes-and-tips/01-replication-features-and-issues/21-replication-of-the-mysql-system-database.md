@@ -1,3 +1,0 @@
-#### 16.4.1.21 Replicação do Banco de Dados de Sistema mysql
-
-Instruções de modificação de dados feitas em tabelas no Database `mysql` são replicadas de acordo com o valor de `binlog_format`; se este valor for `MIXED`, estas instruções são replicadas usando o row-based format. No entanto, instruções que normalmente atualizariam esta informação indiretamente—como `GRANT`, `REVOKE`, e instruções que manipulam triggers, stored routines e views—são replicadas para as réplicas usando statement-based replication.

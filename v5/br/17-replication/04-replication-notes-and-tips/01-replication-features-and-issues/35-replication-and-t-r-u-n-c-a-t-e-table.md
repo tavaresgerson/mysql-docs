@@ -1,5 +1,0 @@
-#### 16.4.1.35 Replication e TRUNCATE TABLE
-
-O `TRUNCATE TABLE` é normalmente considerado um DML statement, e por isso seria esperado que fosse logged e replicated usando o formato row-based quando o binary logging mode é `ROW` ou `MIXED`. No entanto, isso causou problemas ao fazer logging ou Replication, nos modos `STATEMENT` ou `MIXED`, em tables que usavam transactional storage engines como o `InnoDB` quando o transaction isolation level era `READ COMMITTED` ou `READ UNCOMMITTED`, o que impede o statement-based logging.
-
-O `TRUNCATE TABLE` é tratado, para fins de logging e Replication, como DDL em vez de DML para que possa ser logged e replicated como um statement. No entanto, os efeitos do statement aplicáveis ao `InnoDB` e a outros transactional tables nas replicas ainda seguem as regras descritas na Seção 13.1.34, “TRUNCATE TABLE Statement” que regem tais tables. (Bug #36763)

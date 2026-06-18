@@ -1,5 +1,0 @@
-## 25.18 Performance Schema e Plugins
-
-A remoção de um plugin usando `UNINSTALL PLUGIN` não afeta as informações já coletadas para o código daquele plugin. O tempo gasto na execução do código enquanto o plugin estava carregado ainda foi gasto, mesmo que o plugin seja descarregado posteriormente. As informações de evento associadas, incluindo informações agregadas, permanecem legíveis nas tabelas do Database `performance_schema`. Para informações adicionais sobre o efeito da instalação e remoção de plugins, consulte Seção 25.7, “Monitoramento de Status do Performance Schema”.
-
-Um implementador de plugin que instrumenta o código do plugin deve documentar suas características de instrumentation para permitir que aqueles que carregam o plugin considerem seus requisitos. Por exemplo, um Storage Engine de terceiros deve incluir em sua documentação a quantidade de memória que o Engine necessita para *mutex* e outros instruments.

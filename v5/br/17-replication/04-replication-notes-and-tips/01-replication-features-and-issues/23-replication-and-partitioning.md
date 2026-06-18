@@ -1,7 +1,0 @@
-#### 16.4.1.23 Replication e Partitioning
-
-Replication é suportada entre partitioned tables contanto que elas usem o mesmo esquema de partitioning e tenham a mesma estrutura, exceto onde uma exceção é especificamente permitida (veja Seção 16.4.1.10, “Replication com Definições de Table Diferentes no Source e na Replica”).
-
-Replication entre tables que possuem partitioning diferente geralmente não é suportada. Isso ocorre porque statements (como `ALTER TABLE ... DROP PARTITION`) que agem diretamente nas partitions nesses casos podem produzir resultados diferentes no Source e na Replica. No caso em que uma table é partitioned no Source, mas não na Replica, quaisquer statements que operem em partitions, originados do Source, falham na Replica. Quando a cópia da table na Replica é partitioned, mas a cópia do Source não é, statements que atuam em partitions não podem ser executados no Source sem causar erros.
-
-Devido a esses perigos de causar a falha completa da replication (por causa de statements mal-sucedidos) e de inconsistências (quando o resultado de um SQL statement de nível de partition produz resultados diferentes no Source e na Replica), recomendamos que se garanta que o partitioning de quaisquer tables a serem replicadas do Source corresponda às versões dessas tables na Replica.

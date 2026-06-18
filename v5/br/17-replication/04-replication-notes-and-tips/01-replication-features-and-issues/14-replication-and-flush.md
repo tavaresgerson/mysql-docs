@@ -1,5 +1,0 @@
-#### 16.4.1.14 Replicação e FLUSH
-
-Algumas formas da instrução `FLUSH` não são registradas (logged) porque poderiam causar problemas se replicadas para uma réplica: `FLUSH LOGS` e `FLUSH TABLES WITH READ LOCK`. Para um exemplo de sintaxe, consulte Seção 13.7.6.3, “FLUSH Statement”. As instruções `FLUSH TABLES`, `ANALYZE TABLE`, `OPTIMIZE TABLE` e `REPAIR TABLE` são escritas no binary log e, portanto, replicadas para as réplicas. Isso normalmente não é um problema porque essas instruções não modificam os dados da tabela.
-
-No entanto, este comportamento pode causar dificuldades em certas circunstâncias. Se você replica as privilege tables no `mysql` database e atualiza essas tabelas diretamente sem usar `GRANT`, você deve executar um `FLUSH PRIVILEGES` nas réplicas para que os novos privilégios entrem em vigor. Além disso, se você usar `FLUSH TABLES` ao renomear uma tabela `MyISAM` que faz parte de uma tabela `MERGE`, você deve executar `FLUSH TABLES` manualmente nas réplicas. Essas instruções são escritas no binary log a menos que você especifique `NO_WRITE_TO_BINLOG` ou seu alias `LOCAL`.
