@@ -376,7 +376,7 @@ values and descriptions, are shown in the following table:
 <td>Log update as <code>UPDATE_ROW</code>; log only primary key
               columns in before image, and only updated columns in after
               image (same effect as
-              <code class="option">--ndb-log-update-minimal</code>,
+              <code>--ndb-log-update-minimal</code>,
               but applies to one or more specified tables only)</td>
 </tr><tr>
 <td>9</td>
@@ -402,9 +402,9 @@ shown in the following table:
 
 <table><col width="10%"/><col width="30%"/><col width="30%"/><col width="30%"/><thead><tr>
 <th>Value</th>
-<th><code class="option">--ndb-log-updated-only</code> Value</th>
-<th><code class="option">--ndb-log-update-as-write</code> Value</th>
-<th><code class="option">--ndb-log-update-minimal</code> Value</th>
+<th><code>--ndb-log-updated-only</code> Value</th>
+<th><code>--ndb-log-update-as-write</code> Value</th>
+<th><code>--ndb-log-update-minimal</code> Value</th>
 </tr></thead><tbody><tr>
 <td>0</td>
 <td>--</td>

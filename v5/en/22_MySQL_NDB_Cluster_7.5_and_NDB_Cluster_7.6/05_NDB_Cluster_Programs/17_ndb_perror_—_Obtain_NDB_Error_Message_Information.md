@@ -97,7 +97,7 @@ Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option">
 -?
@@ -150,7 +150,7 @@ Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--silent</code>,
+<code>--silent</code>,
               </p><p>
 <code class="option">
 -s
@@ -162,7 +162,7 @@ Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option">
 -V
@@ -174,7 +174,7 @@ Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--verbose</code>,
+<code>--verbose</code>,
               </p><p>
 <code class="option">
 -v

@@ -691,7 +691,7 @@ Statements may be logged with or without a warning; failed statements are not lo
       <td><code>STATEMENT</code></td>
       <td>Yes</td>
       <td>No</td>
-      <td><span class="errortext">Warning: Unsafe statement binlogged in statement format</span>, since <code>BINLOG_FORMAT = STATEMENT</code></td>
+      <td>Warning: Unsafe statement binlogged in statement format, since <code>BINLOG_FORMAT = STATEMENT</code></td>
       <td><code>STATEMENT</code></td>
     </tr>
     <tr>
@@ -835,7 +835,7 @@ Statements may be logged with or without a warning; failed statements are not lo
       <td><code>STATEMENT</code></td>
       <td>Yes</td>
       <td>Yes</td>
-      <td><span class="errortext">Warning: Unsafe statement binlogged in statement format</span> since <code>BINLOG_FORMAT = STATEMENT</code>.</td>
+      <td>Warning: Unsafe statement binlogged in statement format since <code>BINLOG_FORMAT = STATEMENT</code>.</td>
       <td><code>STATEMENT</code></td>
     </tr>
     <tr>

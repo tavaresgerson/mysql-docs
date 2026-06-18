@@ -149,7 +149,7 @@ innochecksum [options] file_name
 
 * `--strict-check`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for strict-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for strict-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>crc32</code></td> </tr><tr><th>Valid Values</th> <td><code>innodb</code><code>crc32</code><code>none</code></td> </tr></tbody></table>
 
   Specify a strict checksum algorithm. Options include `innodb`, `crc32`, and `none`.
 
@@ -2780,7 +2780,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--base64-output=value`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>
 
   This option determines when events should be displayed encoded as base-64 strings using `BINLOG` statements. The option has these permissible values (not case-sensitive):
 
@@ -2951,29 +2951,29 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
 * `--hexdump`, `-H`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>0
 
   Display a hex dump of the log in comments, as described in Section 4.6.7.1, “mysqlbinlog Hex Dump Format”. The hex output can be helpful for replication debugging.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>1
 
   Get the binary log from the MySQL server on the given host.
 
 * `--idempotent`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>2
 
   Tell the MySQL Server to use idempotent mode while processing updates; this causes suppression of any duplicate-key or key-not-found errors that the server encounters in the current session while processing updates. This option may prove useful whenever it is desirable or necessary to replay one or more binary logs to a MySQL Server which may not contain all of the data to which the logs refer.
 
@@ -2981,13 +2981,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--include-gtids=gtid_set`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>3
 
   Display only the groups listed in the *`gtid_set`*.
 
 * `--local-load=dir_name`, `-l dir_name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>4
 
   For data loading operations corresponding to `LOAD DATA` statements, **mysqlbinlog** extracts the files from the binary log events, writes them as temporary files to the local file system, and writes `LOAD DATA LOCAL` statements to cause the files to be loaded. By default, **mysqlbinlog** writes these temporary files to an operating system-specific directory. The `--local-load` option can be used to explicitly specify the directory where **mysqlbinlog** should prepare local temporary files.
 
@@ -2997,7 +2997,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>5
 
   Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 4.6.6, “mysql\_config\_editor — MySQL Configuration Utility”.
 
@@ -3005,7 +3005,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>6
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
@@ -3015,19 +3015,19 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--offset=N`, `-o N`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>7
 
   Skip the first *`N`* entries in the log.
 
 * `--open-files-limit=N`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>8
 
   Specify the number of open file descriptors to reserve.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>9
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlbinlog** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -3148,13 +3148,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
   <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>2
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 
@@ -3678,7 +3678,7 @@ Without `--raw`, **mysqlbinlog** produces text output and the `--result-file` op
 
 Suppose that a server currently has binary log files named `binlog.000999` and up. If you use **mysqlbinlog --raw** to back up the files, the `--result-file` option produces output file names as shown in the following table. You can write the files to a specific directory by beginning the `--result-file` value with the directory path. If the `--result-file` value consists only of a directory name, the value must end with the pathname separator character. Output files are overwritten if they exist.
 
-<table summary="mysqlbinlog --result-file options and corresponding output file names, as described in the example in the preceding text."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><code class="option">--result-file</code> Option</th> <th>Output File Names</th> </tr></thead><tbody><tr> <td><code class="option">--result-file=x</code></td> <td><code>xbinlog.000999</code> and up</td> </tr><tr> <td><code class="option">--result-file=/tmp/</code></td> <td><code>/tmp/binlog.000999</code> and up</td> </tr><tr> <td><code class="option">--result-file=/tmp/x</code></td> <td><code>/tmp/xbinlog.000999</code> and up</td> </tr></tbody></table>
+<table summary="mysqlbinlog --result-file options and corresponding output file names, as described in the example in the preceding text."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><code>--result-file</code> Option</th> <th>Output File Names</th> </tr></thead><tbody><tr> <td><code>--result-file=x</code></td> <td><code>xbinlog.000999</code> and up</td> </tr><tr> <td><code>--result-file=/tmp/</code></td> <td><code>/tmp/binlog.000999</code> and up</td> </tr><tr> <td><code>--result-file=/tmp/x</code></td> <td><code>/tmp/xbinlog.000999</code> and up</td> </tr></tbody></table>
 
 ##### Example: mysqldump + mysqlbinlog for Backup and Restore
 

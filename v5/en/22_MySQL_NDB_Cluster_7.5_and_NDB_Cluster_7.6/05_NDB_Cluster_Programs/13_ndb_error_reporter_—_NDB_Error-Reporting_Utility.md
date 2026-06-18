@@ -49,7 +49,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option">
 -?

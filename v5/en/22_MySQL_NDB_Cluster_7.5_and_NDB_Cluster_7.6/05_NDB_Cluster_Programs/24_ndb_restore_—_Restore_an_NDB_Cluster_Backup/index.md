@@ -76,7 +76,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--backupid=#</code>,
+<code>--backupid=#</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid">-b
                 #</a> </code>
@@ -97,7 +97,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect=connection_string</code>,
+<code>--connect=connection_string</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_connect">-c
                 connection_string</a> </code>
@@ -128,7 +128,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect-string=connection_string</code>,
+<code>--connect-string=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_connect-string">-c
@@ -191,7 +191,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--dont-ignore-systab-0</code>,
+<code>--dont-ignore-systab-0</code>,
               </p><p>
 <code class="option">
 -f
@@ -289,7 +289,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option">
 -?
@@ -364,7 +364,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--lossy-conversions</code>,
+<code>--lossy-conversions</code>,
               </p><p>
 <code class="option">
 -L
@@ -398,7 +398,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--no-restore-disk-objects</code>,
+<code>--no-restore-disk-objects</code>,
               </p><p>
 <code class="option">
 -d
@@ -410,7 +410,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--no-upgrade</code>,
+<code>--no-upgrade</code>,
               </p><p>
 <code class="option">
 -u
@@ -423,7 +423,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-connectstring=connection_string</code>,
+<code>--ndb-connectstring=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring">-c
@@ -437,7 +437,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-mgmd-host=connection_string</code>,
+<code>--ndb-mgmd-host=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-mgmd-host">-c
@@ -449,7 +449,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-nodegroup-map=map</code>,
+<code>--ndb-nodegroup-map=map</code>,
               </p><p>
 <code class="option">
 -z
@@ -483,7 +483,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--nodeid=#</code>,
+<code>--nodeid=#</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid">-n
                 #</a> </code>
@@ -504,7 +504,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--parallelism=#</code>,
+<code>--parallelism=#</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_parallelism">-p
@@ -516,7 +516,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--preserve-trailing-spaces</code>,
+<code>--preserve-trailing-spaces</code>,
               </p><p>
 <code class="option">
 -P
@@ -600,7 +600,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--promote-attributes</code>,
+<code>--promote-attributes</code>,
               </p><p>
 <code class="option">
 -A
@@ -636,7 +636,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--restore-data</code>,
+<code>--restore-data</code>,
               </p><p>
 <code class="option">
 -r
@@ -648,7 +648,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--restore-epoch</code>,
+<code>--restore-epoch</code>,
               </p><p>
 <code class="option">
 -e
@@ -662,7 +662,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--restore-meta</code>,
+<code>--restore-meta</code>,
               </p><p>
 <code class="option">
 -m
@@ -704,7 +704,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--skip-table-check</code>,
+<code>--skip-table-check</code>,
               </p><p>
 <code class="option">
 -s
@@ -738,7 +738,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--tab=path</code>,
+<code>--tab=path</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_tab">-T
                 path</a> </code>
@@ -759,7 +759,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--usage</code>,
+<code>--usage</code>,
               </p><p>
 <code class="option">
 -?
@@ -781,7 +781,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option">
 -V

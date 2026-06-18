@@ -26,30 +26,30 @@ A.5.12. [Do triggers work with replication?](faqs-triggers.html#faq-mysql-can-tr
 
 A.5.13. [How are actions carried out through triggers on a source replicated to a replica?](faqs-triggers.html#faq-mysql-how-triggers-source-replica)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.5.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.5.1.</b></td><td align="left" valign="top"><p>
         Where can I find the documentation for MySQL 5.7
         triggers?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         See Section 23.3, “Using Triggers”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.2.</b></td><td align="left" valign="top"><p>
         Is there a discussion forum for MySQL Triggers?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. It is available at https://forums.mysql.com/list.php?99.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.3.</b></td><td align="left" valign="top"><p>
         Does MySQL have statement-level or row-level triggers?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         All triggers are <code>FOR EACH ROW</code>; that is, the
         trigger is activated for each row that is inserted, updated, or
         deleted. MySQL does not support triggers using <code>FOR EACH
         STATEMENT</code>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.4.</b></td><td align="left" valign="top"><p>
         Are there any default triggers?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Not explicitly. MySQL does have specific special behavior for
         some <code>TIMESTAMP</code> columns, as well
         as for columns which are defined using
         <code>AUTO_INCREMENT</code>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.5.</b></td><td align="left" valign="top"><p>
         How are triggers managed in MySQL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Triggers can be created using the <a class="link" href="create-trigger.html" title="13.1.20 CREATE TRIGGER Statement"><code>CREATE
@@ -61,7 +61,7 @@ A.5.13. [How are actions carried out through triggers on a source replicated to 
         Information about triggers can be obtained by querying the
         <code>INFORMATION_SCHEMA.TRIGGERS</code> table.
         See Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.6.</b></td><td align="left" valign="top"><p>
         Is there a way to view all triggers in a given database?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. You can obtain a listing of all triggers defined on
@@ -70,30 +70,30 @@ A.5.13. [How are actions carried out through triggers on a source replicated to 
         such as the one shown here:
       </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">SELECT TRIGGER_NAME, EVENT_MANIPULATION, EVENT_OBJECT_TABLE, ACTION_STATEMENT
     FROM INFORMATION_SCHEMA.TRIGGERS
-    WHERE TRIGGER_SCHEMA='<em class="replaceable">dbname</em>';</code></pre><p>
+    WHERE TRIGGER_SCHEMA='dbname';</code></pre><p>
         For more information about this table, see
         Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”.
       </p><p>
         You can also use the <a class="link" href="show-triggers.html" title="13.7.5.38 SHOW TRIGGERS Statement"><code>SHOW
         TRIGGERS</code></a> statement, which is specific to MySQL. See
         Section 13.7.5.38, “SHOW TRIGGERS Statement”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.7.</b></td><td align="left" valign="top"><p>
         Where are triggers stored?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Triggers are stored in <code>.TRG</code> files, with one
         such file one per table.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.8.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.8.</b></td><td align="left" valign="top"><p>
         Can a trigger call a stored procedure?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.9.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.9.</b></td><td align="left" valign="top"><p>
         Can triggers access tables?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         A trigger can access both old and new data in its own table. A
         trigger can also affect other tables, but it is not permitted to
         modify a table that is already being used (for reading or
         writing) by the statement that invoked the function or trigger.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.10.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.10.</b></td><td align="left" valign="top"><p>
         Can a table have multiple triggers with the same trigger event
         and action time?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -109,18 +109,18 @@ A.5.13. [How are actions carried out through triggers on a source replicated to 
         <code>FOLLOWS</code>, the new trigger activates after the
         existing trigger. With <code>PRECEDES</code>, the new
         trigger activates before the existing trigger.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.11.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.11.</b></td><td align="left" valign="top"><p>
         Is it possible for a trigger to update tables on a remote
         server?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. A table on a remote server could be updated using the
         <code>FEDERATED</code> storage engine. (See
         Section 15.8, “The FEDERATED Storage Engine”).
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.12.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.12.</b></td><td align="left" valign="top"><p>
         Do triggers work with replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. However, the way in which they work depends whether you are
-        using MySQL's “<span class="quote">classic”</span> statement-based or
+        using MySQL's “classic” statement-based or
         row-based replication format.
       </p><p>
         When using statement-based replication, triggers on the replica
@@ -135,7 +135,7 @@ A.5.13. [How are actions carried out through triggers on a source replicated to 
       </p><p>
         For more information, see
         Section 16.4.1.34, “Replication and Triggers”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.5.13.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.5.13.</b></td><td align="left" valign="top"><p>
         How are actions carried out through triggers on a source
         replicated to a replica?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>

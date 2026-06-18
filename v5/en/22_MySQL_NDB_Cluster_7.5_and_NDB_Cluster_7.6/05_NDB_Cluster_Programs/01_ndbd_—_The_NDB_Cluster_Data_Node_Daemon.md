@@ -89,7 +89,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect-string=connection_string</code>,
+<code>--connect-string=connection_string</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_connect-string">-c
                 connection_string</a> </code>
@@ -110,7 +110,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--daemon</code>,
+<code>--daemon</code>,
               </p><p>
 <code class="option"> -d
 </code>
@@ -162,7 +162,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option"> -?
 </code>
@@ -227,7 +227,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-connectstring=connection_string</code>,
+<code>--ndb-connectstring=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_ndb-connectstring">-c
@@ -241,7 +241,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-mgmd-host=connection_string</code>,
+<code>--ndb-mgmd-host=connection_string</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_ndb-mgmd-host">-c
                 connection_string</a> </code>
@@ -282,7 +282,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--nostart</code>,
+<code>--nostart</code>,
               </p><p>
 <code class="option"> -n
 </code>
@@ -338,7 +338,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--usage</code>,
+<code>--usage</code>,
               </p><p>
 <code class="option"> -?
 </code>
@@ -349,7 +349,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--verbose</code>,
+<code>--verbose</code>,
               </p><p>
 <code class="option"> -v
 </code>
@@ -360,7 +360,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option"> -V
 </code>

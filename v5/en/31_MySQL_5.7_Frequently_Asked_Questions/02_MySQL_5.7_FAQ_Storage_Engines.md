@@ -12,7 +12,7 @@ A.2.5. [Is there an advantage to using the InnoDB storage engine exclusively, as
 
 A.2.6. [What are the unique benefits of the ARCHIVE storage engine?](faqs-storage-engines.html#faq-mysql-what-archive-engine)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.2.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.2.1.</b></td><td align="left" valign="top"><p>
         Where can I obtain complete documentation for MySQL storage
         engines?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -24,17 +24,17 @@ A.2.6. [What are the unique benefits of the ARCHIVE storage engine?](faqs-storag
         Chapter 14, <i>The InnoDB Storage Engine</i>.
         <code>NDB</code> is covered in
         Chapter 21, <i>MySQL NDB Cluster 7.5 and NDB Cluster 7.6</i>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.2.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.2.2.</b></td><td align="left" valign="top"><p>
         Are there any new storage engines in MySQL 5.7?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No. <code>InnoDB</code> is the default storage engine for
         new tables. See Section 14.1, “Introduction to InnoDB” for
         details.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.2.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.2.3.</b></td><td align="left" valign="top"><p>
         Have any storage engines been removed in MySQL 5.7?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.2.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.2.4.</b></td><td align="left" valign="top"><p>
         Can I prevent the use of a particular storage engine?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. The
@@ -44,7 +44,7 @@ A.2.6. [What are the unique benefits of the ARCHIVE storage engine?](faqs-storag
         <code>disabled_storage_engines</code> is
         empty (no engines disabled), but it can be set to a
         comma-separated list of one or more engines.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.2.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.2.5.</b></td><td align="left" valign="top"><p>
         Is there an advantage to using the <code>InnoDB</code>
         storage engine exclusively, as opposed to a combination of
         <code>InnoDB</code> and non-<code>InnoDB</code>
@@ -56,10 +56,10 @@ A.2.6. [What are the unique benefits of the ARCHIVE storage engine?](faqs-storag
         that use the <code>InnoDB</code> storage engine. For
         tables using <code>MyISAM</code> or other
         non-<code>InnoDB</code> storage engines, it does a
-        “<span class="quote">warm”</span> backup, where the database continues to run,
+        “warm” backup, where the database continues to run,
         but those tables cannot be modified while being backed up. See
         Section 28.1, “MySQL Enterprise Backup Overview”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.2.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.2.6.</b></td><td align="left" valign="top"><p>
         What are the unique benefits of the <code>ARCHIVE</code>
         storage engine?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>

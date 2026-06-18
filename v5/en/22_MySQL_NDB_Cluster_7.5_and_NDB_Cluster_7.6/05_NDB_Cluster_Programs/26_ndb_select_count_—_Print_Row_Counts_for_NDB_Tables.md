@@ -54,7 +54,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect-string=connection_string</code>,
+<code>--connect-string=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-select-count.html#option_ndb_select_count_connect-string">-c
@@ -76,9 +76,9 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--database=name</code>,
+<code>--database=name</code>,
               </p><p>
-<code class="option">-d name</code>
+<code>-d name</code>
 </p></th>
 <td>Name of database in which table is found</td>
 <td><p>
@@ -116,7 +116,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option">
 -?
@@ -128,9 +128,9 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--lock=#</code>,
+<code>--lock=#</code>,
               </p><p>
-<code class="option">-l #</code>
+<code>-l #</code>
 </p></th>
 <td>Lock type</td>
 <td><p>
@@ -148,7 +148,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-connectstring=connection_string</code>,
+<code>--ndb-connectstring=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-select-count.html#option_ndb_select_count_ndb-connectstring">-c
@@ -162,7 +162,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-mgmd-host=connection_string</code>,
+<code>--ndb-mgmd-host=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-select-count.html#option_ndb_select_count_ndb-mgmd-host">-c
@@ -206,9 +206,9 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--parallelism=#</code>,
+<code>--parallelism=#</code>,
               </p><p>
-<code class="option">-p #</code>
+<code>-p #</code>
 </p></th>
 <td>Degree of parallelism</td>
 <td><p>
@@ -226,7 +226,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--usage</code>,
+<code>--usage</code>,
               </p><p>
 <code class="option">
 -?
@@ -238,7 +238,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option">
 -V

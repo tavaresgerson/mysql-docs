@@ -118,9 +118,9 @@ more information.
 <td><code>BIGINT</code></td>
 <td>8 bytes</td>
 </tr><tr>
-<td><code>FLOAT(<em class="replaceable"><code>p</code></em>)</code></td>
-<td>4 bytes if 0 &lt;= <em class="replaceable"><code>p</code></em> &lt;= 24, 8 bytes if 25
-              &lt;= <em class="replaceable"><code>p</code></em> &lt;= 53</td>
+<td><code>FLOAT(<code>p</code>)</code></td>
+<td>4 bytes if 0 &lt;= <code>p</code> &lt;= 24, 8 bytes if 25
+              &lt;= <code>p</code> &lt;= 53</td>
 </tr><tr>
 <td><code>FLOAT</code></td>
 <td>4 bytes</td>
@@ -129,12 +129,12 @@ more information.
               <code>REAL</code></td>
 <td>8 bytes</td>
 </tr><tr>
-<td><code>DECIMAL(<em class="replaceable"><code>M</code></em>,<em class="replaceable"><code>D</code></em>)</code>,
-              <code>NUMERIC(<em class="replaceable"><code>M</code></em>,<em class="replaceable"><code>D</code></em>)</code></td>
+<td><code>DECIMAL(<code>M</code>,<code>D</code>)</code>,
+              <code>NUMERIC(<code>M</code>,<code>D</code>)</code></td>
 <td>Varies; see following discussion</td>
 </tr><tr>
-<td><code>BIT(<em class="replaceable"><code>M</code></em>)</code></td>
-<td>approximately (<em class="replaceable"><code>M</code></em>+7)/8 bytes</td>
+<td><code>BIT(<code>M</code>)</code></td>
+<td>approximately (<code>M</code>+7)/8 bytes</td>
 </tr></tbody></table>
 
 Values for [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") (and
@@ -267,55 +267,55 @@ bytes of a given string value.
 <th>Data Type</th>
 <th>Storage Required</th>
 </tr></thead><tbody><tr>
-<td><code>CHAR(<em class="replaceable"><code>M</code></em>)</code></td>
+<td><code>CHAR(<code>M</code>)</code></td>
 <td>The compact family of InnoDB row formats optimize storage for
               variable-length character sets. See
               COMPACT Row Format Storage Characteristics.
-              Otherwise, <em class="replaceable"><code>M</code></em> ×
-              <em class="replaceable"><code>w</code></em> bytes, <code>&lt;=
-              <em class="replaceable"><code>M</code></em> &lt;=</code> 255, where
-              <em class="replaceable"><code>w</code></em> is the number of bytes
+              Otherwise, <code>M</code> ×
+              <code>w</code> bytes, <code>&lt;=
+              <code>M</code> &lt;=</code> 255, where
+              <code>w</code> is the number of bytes
               required for the maximum-length character in the character
               set.</td>
 </tr><tr>
-<td><code>BINARY(<em class="replaceable"><code>M</code></em>)</code></td>
-<td><em class="replaceable"><code>M</code></em> bytes, 0 <code>&lt;=
-              <em class="replaceable"><code>M</code></em> &lt;=</code> 255</td>
+<td><code>BINARY(<code>M</code>)</code></td>
+<td><code>M</code> bytes, 0 <code>&lt;=
+              <code>M</code> &lt;=</code> 255</td>
 </tr><tr>
-<td><code>VARCHAR(<em class="replaceable"><code>M</code></em>)</code>,
-              <code>VARBINARY(<em class="replaceable"><code>M</code></em>)</code></td>
-<td><em class="replaceable"><code>L</code></em> + 1 bytes if column values require 0
-              − 255 bytes, <em class="replaceable"><code>L</code></em> + 2 bytes
+<td><code>VARCHAR(<code>M</code>)</code>,
+              <code>VARBINARY(<code>M</code>)</code></td>
+<td><code>L</code> + 1 bytes if column values require 0
+              − 255 bytes, <code>L</code> + 2 bytes
               if values may require more than 255 bytes</td>
 </tr><tr>
 <td><code>TINYBLOB</code>,
               <code>TINYTEXT</code></td>
-<td><em class="replaceable"><code>L</code></em> + 1 bytes, where
-              <em class="replaceable"><code>L</code></em> &lt;
+<td><code>L</code> + 1 bytes, where
+              <code>L</code> &lt;
               2<sup>8</sup></td>
 </tr><tr>
 <td><code>BLOB</code>, <code>TEXT</code></td>
-<td><em class="replaceable"><code>L</code></em> + 2 bytes, where
-              <em class="replaceable"><code>L</code></em> &lt;
+<td><code>L</code> + 2 bytes, where
+              <code>L</code> &lt;
               2<sup>16</sup></td>
 </tr><tr>
 <td><code>MEDIUMBLOB</code>,
               <code>MEDIUMTEXT</code></td>
-<td><em class="replaceable"><code>L</code></em> + 3 bytes, where
-              <em class="replaceable"><code>L</code></em> &lt;
+<td><code>L</code> + 3 bytes, where
+              <code>L</code> &lt;
               2<sup>24</sup></td>
 </tr><tr>
 <td><code>LONGBLOB</code>,
               <code>LONGTEXT</code></td>
-<td><em class="replaceable"><code>L</code></em> + 4 bytes, where
-              <em class="replaceable"><code>L</code></em> &lt;
+<td><code>L</code> + 4 bytes, where
+              <code>L</code> &lt;
               2<sup>32</sup></td>
 </tr><tr>
-<td><code>ENUM('<em class="replaceable"><code>value1</code></em>','<em class="replaceable"><code>value2</code></em>',...)</code></td>
+<td><code>ENUM('<code>value1</code>','<code>value2</code>',...)</code></td>
 <td>1 or 2 bytes, depending on the number of enumeration values (65,535
               values maximum)</td>
 </tr><tr>
-<td><code>SET('<em class="replaceable"><code>value1</code></em>','<em class="replaceable"><code>value2</code></em>',...)</code></td>
+<td><code>SET('<code>value1</code>','<code>value2</code>',...)</code></td>
 <td>1, 2, 3, 4, or 8 bytes, depending on the number of set members (64
               members maximum)</td>
 </tr></tbody></table>

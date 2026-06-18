@@ -48,13 +48,13 @@ the forms shown in the following table.
 <td><code>default</code></td>
 <td>Reset every optimization to its default value</td>
 </tr><tr>
-<td><code><em class="replaceable"><code>opt_name</code></em>=default</code></td>
+<td><code><code>opt_name</code>=default</code></td>
 <td>Set the named optimization to its default value</td>
 </tr><tr>
-<td><code><em class="replaceable"><code>opt_name</code></em>=off</code></td>
+<td><code><code>opt_name</code>=off</code></td>
 <td>Disable the named optimization</td>
 </tr><tr>
-<td><code><em class="replaceable"><code>opt_name</code></em>=on</code></td>
+<td><code><code>opt_name</code>=on</code></td>
 <td>Enable the named optimization</td>
 </tr></tbody></table>
 

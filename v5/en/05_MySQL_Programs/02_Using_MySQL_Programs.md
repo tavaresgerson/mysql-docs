@@ -165,12 +165,12 @@ On Windows, MySQL programs read startup options from the files shown in the foll
       <td>Global options</td>
     </tr>
     <tr>
-      <td><code><em class="replaceable"><code>BASEDIR</code></em>\my.ini</code>, <code><em class="replaceable"><code>BASEDIR</code></em>\my.cnf</code></td>
+      <td><code><code>BASEDIR</code>\my.ini</code>, <code><code>BASEDIR</code>\my.cnf</code></td>
       <td>Global options</td>
     </tr>
     <tr>
       <td><code>defaults-extra-file</code></td>
-      <td>The file specified with <code class="option">--defaults-extra-file</code>, if any</td>
+      <td>The file specified with <code>--defaults-extra-file</code>, if any</td>
     </tr>
     <tr>
       <td><code><code>%APPDATA%</code>\MySQL\.mylogin.cnf</code></td>
@@ -222,7 +222,7 @@ On Unix platforms, MySQL ignores configuration files that are world-writable. Th
       <td>Global options</td>
     </tr>
     <tr>
-      <td><code><em class="replaceable"><code>SYSCONFDIR</code></em>/my.cnf</code></td>
+      <td><code><code>SYSCONFDIR</code>/my.cnf</code></td>
       <td>Global options</td>
     </tr>
     <tr>
@@ -231,7 +231,7 @@ On Unix platforms, MySQL ignores configuration files that are world-writable. Th
     </tr>
     <tr>
       <td><code>defaults-extra-file</code></td>
-      <td>The file specified with <code class="option">--defaults-extra-file</code>, if any</td>
+      <td>The file specified with <code>--defaults-extra-file</code>, if any</td>
     </tr>
     <tr>
       <td><code>~/.my.cnf</code></td>
@@ -1015,7 +1015,7 @@ This section describes options that control how client programs establish connec
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for protocol"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>TCP</code></p><p class="valid-value"><code>SOCKET</code></p><p class="valid-value"><code>PIPE</code></p><p class="valid-value"><code>MEMORY</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for protocol"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><code>TCP</code><code>SOCKET</code><code>PIPE</code><code>MEMORY</code></td> </tr></tbody></table>
 
   This option explicitly specifies which transport protocol to use for connecting to the server. It is useful when other connection parameters normally result in use of a protocol other than the one you want. For example, connections on Unix to `localhost` are made using a Unix socket file by default:
 
@@ -1031,7 +1031,7 @@ This section describes options that control how client programs establish connec
 
   The following table shows the permissible `--protocol` option values and indicates the applicable platforms for each value. The values are not case-sensitive.
 
-  <table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th><code class="option">--protocol</code> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
+  <table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th><code>--protocol</code> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
 
   See also Section 4.2.5, “Connection Transport Protocols”
 
@@ -1089,11 +1089,11 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
   <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -1101,11 +1101,11 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
   <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   This option is available only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
 * `--ssl`, `--skip-ssl`
 
@@ -1465,7 +1465,7 @@ To specify the protocol explicitly, use the `--protocol` command option. The fol
   <col style="width: 30%"/>
   <thead>
     <tr>
-      <th><code class="option">--protocol</code> Value</th>
+      <th><code>--protocol</code> Value</th>
       <th>Transport Protocol Used</th>
       <th>Applicable Platforms</th>
     </tr>

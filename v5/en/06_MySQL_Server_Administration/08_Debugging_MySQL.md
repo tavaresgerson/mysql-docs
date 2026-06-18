@@ -426,139 +426,139 @@ The following table describes the permitted flag characters. Unrecognized flag c
   <tbody>
     <tr>
       <td>
-        <p> <code>d</code> </p>
+         <code>d</code> 
       </td>
       <td>
-        <p> Enable output from <code>DBUG_<em class="replaceable"><code>XXX</code></em></code> macros for the current state. May be followed by a list of keywords, which enables output only for the <code>DBUG</code> macros with that keyword. An empty list of keywords enables output for all macros. </p>
-        <p> In MySQL, common debug macro keywords to enable are <code>enter</code>, <code>exit</code>, <code>error</code>, <code>warning</code>, <code>info</code>, and <code>loop</code>. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>D</code> </p>
-      </td>
-      <td>
-        <p> Delay after each debugger output line. The argument is the delay, in tenths of seconds, subject to machine capabilities. For example, <code>D,20</code> specifies a delay of two seconds. </p>
+         Enable output from <code>DBUG_<code>XXX</code></code> macros for the current state. May be followed by a list of keywords, which enables output only for the <code>DBUG</code> macros with that keyword. An empty list of keywords enables output for all macros. 
+         In MySQL, common debug macro keywords to enable are <code>enter</code>, <code>exit</code>, <code>error</code>, <code>warning</code>, <code>info</code>, and <code>loop</code>. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>f</code> </p>
+         <code>D</code> 
       </td>
       <td>
-        <p> Limit debugging, tracing, and profiling to the list of named functions. An empty list enables all functions. The appropriate <code>d</code> or <code>t</code> flags must still be given; this flag only limits their actions if they are enabled. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>F</code> </p>
-      </td>
-      <td>
-        <p> Identify the source file name for each line of debug or trace output. </p>
+         Delay after each debugger output line. The argument is the delay, in tenths of seconds, subject to machine capabilities. For example, <code>D,20</code> specifies a delay of two seconds. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>i</code> </p>
+         <code>f</code> 
       </td>
       <td>
-        <p> Identify the process with the PID or thread ID for each line of debug or trace output. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>L</code> </p>
-      </td>
-      <td>
-        <p> Identify the source file line number for each line of debug or trace output. </p>
+         Limit debugging, tracing, and profiling to the list of named functions. An empty list enables all functions. The appropriate <code>d</code> or <code>t</code> flags must still be given; this flag only limits their actions if they are enabled. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>n</code> </p>
+         <code>F</code> 
       </td>
       <td>
-        <p> Print the current function nesting depth for each line of debug or trace output. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>N</code> </p>
-      </td>
-      <td>
-        <p> Number each line of debug output. </p>
+         Identify the source file name for each line of debug or trace output. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>o</code> </p>
+         <code>i</code> 
       </td>
       <td>
-        <p> Redirect the debugger output stream to the specified file. The default output is <code>stderr</code>. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>O</code> </p>
-      </td>
-      <td>
-        <p> Like <code>o</code>, but the file is really flushed between each write. When needed, the file is closed and reopened between each write. </p>
+         Identify the process with the PID or thread ID for each line of debug or trace output. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>a</code> </p>
+         <code>L</code> 
       </td>
       <td>
-        <p> Like <code>o</code>, but opens for append. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>A</code> </p>
-      </td>
-      <td>
-        <p> Like <code>O</code>, but opens for append. </p>
+         Identify the source file line number for each line of debug or trace output. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>p</code> </p>
+         <code>n</code> 
       </td>
       <td>
-        <p> Limit debugger actions to specified processes. A process must be identified with the <code>DBUG_PROCESS</code> macro and match one in the list for debugger actions to occur. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>P</code> </p>
-      </td>
-      <td>
-        <p> Print the current process name for each line of debug or trace output. </p>
+         Print the current function nesting depth for each line of debug or trace output. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>r</code> </p>
+         <code>N</code> 
       </td>
       <td>
-        <p> When pushing a new state, do not inherit the previous state's function nesting level. Useful when the output is to start at the left margin. </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> <code>t</code> </p>
-      </td>
-      <td>
-        <p> Enable function call/exit trace lines. May be followed by a list (containing only one modifier) giving a numeric maximum trace level, beyond which no output occurs for either debugging or tracing macros. The default is a compile time option. </p>
+         Number each line of debug output. 
       </td>
     </tr>
     <tr>
       <td>
-        <p> <code>T</code> </p>
+         <code>o</code> 
       </td>
       <td>
-        <p> Print the current timestamp for every line of output. </p>
+         Redirect the debugger output stream to the specified file. The default output is <code>stderr</code>. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>O</code> 
+      </td>
+      <td>
+         Like <code>o</code>, but the file is really flushed between each write. When needed, the file is closed and reopened between each write. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>a</code> 
+      </td>
+      <td>
+         Like <code>o</code>, but opens for append. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>A</code> 
+      </td>
+      <td>
+         Like <code>O</code>, but opens for append. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>p</code> 
+      </td>
+      <td>
+         Limit debugger actions to specified processes. A process must be identified with the <code>DBUG_PROCESS</code> macro and match one in the list for debugger actions to occur. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>P</code> 
+      </td>
+      <td>
+         Print the current process name for each line of debug or trace output. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>r</code> 
+      </td>
+      <td>
+         When pushing a new state, do not inherit the previous state's function nesting level. Useful when the output is to start at the left margin. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>t</code> 
+      </td>
+      <td>
+         Enable function call/exit trace lines. May be followed by a list (containing only one modifier) giving a numeric maximum trace level, beyond which no output occurs for either debugging or tracing macros. The default is a compile time option. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <code>T</code> 
+      </td>
+      <td>
+         Print the current timestamp for every line of output. 
       </td>
     </tr>
   </tbody>

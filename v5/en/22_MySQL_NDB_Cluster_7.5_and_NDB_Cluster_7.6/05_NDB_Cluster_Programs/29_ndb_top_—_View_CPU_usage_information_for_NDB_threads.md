@@ -97,7 +97,7 @@ descriptions follow the table.
 <th>Added, Deprecated, or Removed</th>
 </tr></thead><tbody><tr>
 <th><p>
-<code class="option">--color</code>,
+<code>--color</code>,
               </p><p>
 <code class="option"> -c
 </code>
@@ -138,7 +138,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--graph</code>,
+<code>--graph</code>,
               </p><p>
 <code class="option"> -g
 </code>
@@ -159,7 +159,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--host=string</code>,
+<code>--host=string</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_host">-h
                 string</a> </code>
@@ -180,7 +180,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--measured-load</code>,
+<code>--measured-load</code>,
               </p><p>
 <code class="option">
 -m
@@ -202,7 +202,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--node-id=#</code>,
+<code>--node-id=#</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
                 #</a> </code>
@@ -213,7 +213,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--os-load</code>,
+<code>--os-load</code>,
               </p><p>
 <code class="option">
 -o
@@ -225,7 +225,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--passwd=password</code>,
+<code>--passwd=password</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_passwd">-p
                 password</a> </code>
@@ -238,7 +238,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--password=password</code>,
+<code>--password=password</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_password">-p
                 password</a> </code>
@@ -249,7 +249,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--port=#</code>,
+<code>--port=#</code>,
               </p><p>
 <code class="option"><a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_port">-t
                 #</a></code> (&lt;=7.6.5),
@@ -273,7 +273,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--sleep-time=#</code>,
+<code>--sleep-time=#</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_sleep-time">-s
                 #</a> </code>
@@ -284,7 +284,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--socket=path</code>,
+<code>--socket=path</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_socket">-S
                 path</a> </code>
@@ -295,7 +295,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--sort</code>,
+<code>--sort</code>,
               </p><p>
 <code class="option"> -r
 </code>
@@ -306,12 +306,12 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--text</code>,
+<code>--text</code>,
               </p><p>
-<code class="option">-x</code>
+<code>-x</code>
                 (&lt;=7.6.5),
               </p><p>
-<code class="option">-t</code>
+<code>-t</code>
                 (&gt;=7.6.6)
               </p></th>
 <td>Display data using text</td>
@@ -330,7 +330,7 @@ descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--user=name</code>,
+<code>--user=name</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_user">-u
                 name</a> </code>

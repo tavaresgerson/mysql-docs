@@ -10,7 +10,7 @@ A.15.4. [When should I use the Thread Pool?](faqs-thread-pool.html#faq-thread-po
 
 A.15.5. [Are there recommended Thread Pool configurations?](faqs-thread-pool.html#faq-thread-pool-what-config-recommend)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.15.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.15.1.</b></td><td align="left" valign="top"><p>
         What is the Thread Pool and what problem does it solve?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The MySQL Thread Pool is a MySQL server plugin that extends the
@@ -32,11 +32,11 @@ A.15.5. [Are there recommended Thread Pool configurations?](faqs-thread-pool.htm
         multi-CPU/Core systems.
       </p><p>
         For more information, see Section 5.5.3, “MySQL Enterprise Thread Pool”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.15.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.15.2.</b></td><td align="left" valign="top"><p>
         How does the Thread Pool limit and manage concurrent sessions
         and transactions for optimal performance and throughput?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        The Thread Pool uses a “<span class="quote">divide and conquer”</span>
+        The Thread Pool uses a “divide and conquer”
         approach to limiting and balancing concurrency. Unlike the
         default connection handling of the MySQL Server, the Thread Pool
         separates connections and threads, so there is no fixed
@@ -48,7 +48,7 @@ A.15.5. [Are there recommended Thread Pool configurations?](faqs-thread-pool.htm
       </p><p>
         For more information, see
         Section 5.5.3.3, “Thread Pool Operation”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.15.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.15.3.</b></td><td align="left" valign="top"><p>
         How is the Thread Pool different from the client side Connection
         Pool?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -70,7 +70,7 @@ A.15.5. [Are there recommended Thread Pool configurations?](faqs-thread-pool.htm
       </p><p>
         MySQL Connection Pooling via the MySQL Connectors is covered in
         Chapter 27, <i>Connectors and APIs</i>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.15.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.15.4.</b></td><td align="left" valign="top"><p>
         When should I use the Thread Pool?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         There are a few rules of thumb to consider for optimal Thread
@@ -96,7 +96,7 @@ A.15.5. [Are there recommended Thread Pool configurations?](faqs-thread-pool.htm
         Thread Pool should be beneficial.
       </p><p>
         To learn more, see Section 5.5.3.4, “Thread Pool Tuning”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.15.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.15.5.</b></td><td align="left" valign="top"><p>
         Are there recommended Thread Pool configurations?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The Thread Pool has a number of user case driven configuration

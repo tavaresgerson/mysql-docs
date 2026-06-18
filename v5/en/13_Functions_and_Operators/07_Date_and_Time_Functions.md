@@ -662,7 +662,7 @@ seconds as appropriate.
 <td><code>AM</code> or <code>PM</code></td>
 </tr><tr>
 <td><code>%r</code></td>
-<td>Time, 12-hour (<em class="replaceable"><code>hh:mm:ss</code></em> followed by
+<td>Time, 12-hour (<code>hh:mm:ss</code> followed by
                 <code>AM</code> or <code>PM</code>)</td>
 </tr><tr>
 <td><code>%S</code></td>
@@ -672,7 +672,7 @@ seconds as appropriate.
 <td>Seconds (<code>00</code>..<code>59</code>)</td>
 </tr><tr>
 <td><code>%T</code></td>
-<td>Time, 24-hour (<em class="replaceable"><code>hh:mm:ss</code></em>)</td>
+<td>Time, 24-hour (<code>hh:mm:ss</code>)</td>
 </tr><tr>
 <td><code>%U</code></td>
 <td>Week (<code>00</code>..<code>53</code>), where Sunday is the
@@ -720,9 +720,9 @@ seconds as appropriate.
 <td><code>%%</code></td>
 <td>A literal <code>%</code> character</td>
 </tr><tr>
-<td><code>%<em class="replaceable"><code>x</code></em></code></td>
-<td><em class="replaceable"><code>x</code></em>, for any
-                “<span class="quote"><em class="replaceable"><code>x</code></em>”</span> not listed
+<td><code>%<code>x</code></code></td>
+<td><code>x</code>, for any
+                “<code>x</code>” not listed
                 above</td>
 </tr></tbody></table>
 

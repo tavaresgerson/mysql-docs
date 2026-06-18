@@ -29,13 +29,13 @@ files.
 <th>File</th>
 <th>Purpose</th>
 </tr></thead><tbody><tr>
-<td><code><em class="replaceable"><code>tbl_name</code></em>.frm</code></td>
+<td><code><code>tbl_name</code>.frm</code></td>
 <td>Table format (definition) file</td>
 </tr><tr>
-<td><code><em class="replaceable"><code>tbl_name</code></em>.MYD</code></td>
+<td><code><code>tbl_name</code>.MYD</code></td>
 <td>Data file</td>
 </tr><tr>
-<td><code><em class="replaceable"><code>tbl_name</code></em>.MYI</code></td>
+<td><code><code>tbl_name</code>.MYI</code></td>
 <td>Index file</td>
 </tr></tbody></table>
 

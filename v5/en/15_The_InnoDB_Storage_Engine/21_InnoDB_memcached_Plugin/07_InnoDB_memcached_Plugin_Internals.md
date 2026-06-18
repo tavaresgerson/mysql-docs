@@ -260,7 +260,7 @@ configuration script. To use the
               specified using the separator character specified in the
               <code>innodb_memcached.config_options</code> table.
               By default, the separator is a pipe character
-              (“<span class="quote">|”</span>). To specify multiple columns, separate
+              (“|”). To specify multiple columns, separate
               them with the defined separator character. For example:
               <code>col1|col2|col3</code>. This is a required
               value.</td>

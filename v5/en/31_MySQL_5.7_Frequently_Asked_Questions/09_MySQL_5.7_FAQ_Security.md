@@ -14,7 +14,7 @@ A.9.6. [Does MySQL include support for Roles Based Access Control (RBAC)?](faqs-
 
 A.9.7. [Does MySQL support TLS 1.0 and 1.1?](faqs-security.html#faq-mysql-tls-versions)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.9.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.9.1.</b></td><td align="left" valign="top"><p>
         Where can I find documentation that addresses security issues
         for MySQL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -52,7 +52,7 @@ Loadable Function Security Precautions.
         Deployment Guide</a>, which provides procedures for
         deploying a generic binary distribution of MySQL Enterprise Edition Server with
         features for managing the security of your MySQL installation.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.9.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.9.2.</b></td><td align="left" valign="top"><p>
         What is the default authentication plugin in MySQL
         5.7?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -64,7 +64,7 @@ Loadable Function Security Precautions.
         authentication plugins, see
         Section 6.2.13, “Pluggable Authentication”, and
         Section 6.4.1, “Authentication Plugins”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.9.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.9.3.</b></td><td align="left" valign="top"><p>
         Does MySQL have native support for SSL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes, the binaries have support for SSL connections between the
@@ -73,14 +73,14 @@ Loadable Function Security Precautions.
         You can also tunnel a connection using SSH, if (for example) the
         client application does not support SSL connections. For an
         example, see Section 6.3.5, “Connecting to MySQL Remotely from Windows with SSH”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.9.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.9.4.</b></td><td align="left" valign="top"><p>
         Is SSL support built into MySQL binaries, or must I recompile
         the binary myself to enable it?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes, the binaries have SSL enabled for client/server connections
         that are secured, authenticated, or both. See
         Section 6.3, “Using Encrypted Connections”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.9.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.9.5.</b></td><td align="left" valign="top"><p>
         Does MySQL have built-in authentication against LDAP
         directories?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -88,12 +88,12 @@ Loadable Function Security Precautions.
         <a class="link" href="pam-pluggable-authentication.html" title="6.4.1.7 PAM Pluggable Authentication">PAM Authentication
         Plugin</a> that supports authentication against an LDAP
         directory.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.9.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.9.6.</b></td><td align="left" valign="top"><p>
         Does MySQL include support for Roles Based Access Control
         (RBAC)?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Not at this time.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.9.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.9.7.</b></td><td align="left" valign="top"><p>
         Does MySQL support TLS 1.0 and 1.1?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Support for the TLSv1 and TLSv1.1 connection protocols is
@@ -166,9 +166,9 @@ WHERE thd_id IN (
         Connector/C++. To determine what library dependencies are used,
         run the following commands to see if OpenSSL is listed. On
         Linux, use this command:
-      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code class="language-terminal">$&gt; sudo ldd usr/local/mysql/lib/libmysqlclient.a | grep -i openssl</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code>$&gt; sudo ldd usr/local/mysql/lib/libmysqlclient.a | grep -i openssl</code></pre><p>
         On MacOS, use this command:
-      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code class="language-terminal">$&gt; sudo otool -l /usr/local/mysql/lib/libmysqlclient.a | grep -i openssl</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code>$&gt; sudo otool -l /usr/local/mysql/lib/libmysqlclient.a | grep -i openssl</code></pre><p>
         Check the documentation for each connector, but they do support
         TLS 1.2 and TLS 1.3.
 </p></td></tr></tbody></table>

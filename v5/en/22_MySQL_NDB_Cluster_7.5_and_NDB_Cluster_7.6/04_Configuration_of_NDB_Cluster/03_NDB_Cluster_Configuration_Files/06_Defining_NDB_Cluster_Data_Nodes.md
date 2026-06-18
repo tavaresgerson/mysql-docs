@@ -428,7 +428,7 @@ file.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>
 
@@ -459,7 +459,7 @@ file.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>
 
@@ -502,7 +502,7 @@ file.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>
 
@@ -3552,7 +3552,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>0
 
@@ -3608,7 +3608,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>1
 
@@ -3670,7 +3670,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>2
 
@@ -3712,7 +3712,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>3
 
@@ -3752,7 +3752,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>4
 
@@ -3802,7 +3802,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>5
 
@@ -3850,7 +3850,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>6
 
@@ -3879,7 +3879,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>7
 
@@ -3914,7 +3914,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>8
 
@@ -3960,7 +3960,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>9
 
@@ -4006,7 +4006,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>0
 
@@ -4035,7 +4035,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>1
 
@@ -4069,7 +4069,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>2
 
@@ -4106,7 +4106,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>3
 
@@ -4158,7 +4158,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>4
 
@@ -4200,7 +4200,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>5
 
@@ -4241,7 +4241,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>6
 
@@ -4282,7 +4282,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>7
 
@@ -4322,7 +4322,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>8
 
@@ -4361,7 +4361,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>9
 
@@ -4393,7 +4393,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>0
 
@@ -4425,7 +4425,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>1
 
@@ -4500,7 +4500,7 @@ applicable.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>2
 
@@ -4552,7 +4552,7 @@ storage engine's file system abstraction layer.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>3
 
@@ -4582,7 +4582,7 @@ storage engine's file system abstraction layer.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>4
 
@@ -4612,7 +4612,7 @@ storage engine's file system abstraction layer.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>5
 
@@ -4665,7 +4665,7 @@ storage engine's file system abstraction layer.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>6
 
@@ -4713,7 +4713,7 @@ to determine which event levels to record in the cluster log.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>7
 
@@ -4744,7 +4744,7 @@ to determine which event levels to record in the cluster log.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>8
 
@@ -4775,7 +4775,7 @@ to determine which event levels to record in the cluster log.
                     <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling
                     restart</a> of the cluster; each data node must
                     be restarted with
-                    <code class="option">--initial</code>. (NDB 7.5.0)
+                    <code>--initial</code>. (NDB 7.5.0)
                   </p></td>
 </tr></tbody></table>9
 

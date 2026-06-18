@@ -174,8 +174,8 @@ The following table shows the expected form of the
 **Table 9.2 Temporal Interval Expression and Unit Arguments**
 
 <table summary="unit values and the expected expr argument for each unit value."><col style="width: 50%"/><col style="width: 50%"/><thead><tr>
-<th><em class="replaceable"><code>unit</code></em> Value</th>
-<th>Expected <em class="replaceable"><code>expr</code></em> Format</th>
+<th><code>unit</code> Value</th>
+<th>Expected <code>expr</code> Format</th>
 </tr></thead><tbody><tr>
 <td><code>MICROSECOND</code></td>
 <td><code>MICROSECONDS</code></td>

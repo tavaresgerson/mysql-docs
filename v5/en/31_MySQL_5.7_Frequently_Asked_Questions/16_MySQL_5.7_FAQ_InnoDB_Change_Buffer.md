@@ -20,7 +20,7 @@ A.16.9. [When should the change buffer not be used?](faqs-innodb-change-buffer.h
 
 A.16.10. [Where can I find additional information about the change buffer?](faqs-innodb-change-buffer.html#faq-innodb-change-buffer-info)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.16.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.16.1.</b></td><td align="left" valign="top"><p>
         What types of operations modify secondary indexes and result in
         change buffering?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -28,7 +28,7 @@ A.16.10. [Where can I find additional information about the change buffer?](faqs
         <code>DELETE</code> operations can modify secondary
         indexes. If an affected index page is not in the buffer pool,
         the changes can be buffered in the change buffer.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.2.</b></td><td align="left" valign="top"><p>
         What is the benefit of the <code>InnoDB</code> change
         buffer?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -38,13 +38,13 @@ A.16.10. [Where can I find additional information about the change buffer?](faqs
         affected index pages from disk. Buffered changes can be applied
         later, in batches, as pages are read into the buffer pool by
         other read operations.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.3.</b></td><td align="left" valign="top"><p>
         Does the change buffer support other types of indexes?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No. The change buffer only supports secondary indexes. Clustered
         indexes, full-text indexes, and spatial indexes are not
         supported. Full-text indexes have their own caching mechanism.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.4.</b></td><td align="left" valign="top"><p>
         How much space does <code>InnoDB</code> use for the change
         buffer?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -68,7 +68,7 @@ A.16.10. [Where can I find additional information about the change buffer?](faqs
       </p><p>
         Change buffer pages are not required to persist in the buffer
         pool and may be evicted by LRU operations.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.5.</b></td><td align="left" valign="top"><p>
         How do I determine the current size of the change buffer?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The current size of the change buffer is reported by
@@ -95,7 +95,7 @@ Ibuf: size 1, free list len 0, seg size 2, 0 merges</code></pre><p>
 <p>
         For information about monitoring change buffer status, see
         Section 14.5.2, “Change Buffer”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.6.</b></td><td align="left" valign="top"><p>
         When does change buffer merging occur?
 </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top">
 <div class="itemizedlist">
@@ -124,12 +124,12 @@ Ibuf: size 1, free list len 0, seg size 2, 0 merges</code></pre><p>
             <code>--innodb-fast-shutdown=0</code>.
 </p></li></ul>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.7.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.16.7.</b></td><td align="left" valign="top"><p>
         When is the change buffer flushed?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Updated pages are flushed by the same flushing mechanism that
         flushes the other pages that occupy the buffer pool.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.8.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.8.</b></td><td align="left" valign="top"><p>
         When should the change buffer be used?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The change buffer is a feature designed to reduce random I/O to
@@ -139,7 +139,7 @@ Ibuf: size 1, free list len 0, seg size 2, 0 merges</code></pre><p>
         the buffer pool, when there is substantial DML activity that
         modifies secondary index pages, or when there are lots of
         secondary indexes that are regularly changed by DML activity.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.9.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.9.</b></td><td align="left" valign="top"><p>
         When should the change buffer not be used?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         You might consider disabling the change buffer if the entire
@@ -150,7 +150,7 @@ Ibuf: size 1, free list len 0, seg size 2, 0 merges</code></pre><p>
         recommended that you run tests using a representative workload
         to determine if disabling the change buffer provides any
         benefit.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.16.10.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.16.10.</b></td><td align="left" valign="top"><p>
         Where can I find additional information about the change buffer?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         See Section 14.5.2, “Change Buffer”.

@@ -2,7 +2,7 @@
 
 A.18.1. [Is MySQL supported on virtualized environments such as Oracle VM, VMWare, Docker, Microsoft Hyper-V, or others?](faqs-virtualization.html#faq-virtualization-support)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.18.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.18.1.</b></td><td align="left" valign="top"><p>
         Is MySQL supported on virtualized environments such as Oracle
         VM, VMWare, Docker, Microsoft Hyper-V, or others?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>

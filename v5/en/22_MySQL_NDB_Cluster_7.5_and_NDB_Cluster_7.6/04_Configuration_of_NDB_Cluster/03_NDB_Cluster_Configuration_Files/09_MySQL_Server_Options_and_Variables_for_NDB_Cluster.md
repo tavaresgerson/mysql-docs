@@ -314,7 +314,7 @@ Cluster processes, see [Section 21.5, “NDB Cluster Programs”](mysql-cluster
 </tr><tr><th>Default Value (≥ 5.7.11-ndb-7.5.1, ≤ 5.7.13-ndb-7.5.3)</th>
 <td><code>DYNAMIC</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td>
+<td><code>FIXED</code><code>DYNAMIC</code></td>
 </tr></tbody></table>
 
   In NDB 7.5.1 and later, sets the default

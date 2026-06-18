@@ -32,7 +32,7 @@ A.17.15. [How do I migrate data from a cleartext InnoDB tablespace to an encrypt
 
 A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in an external device using the PKSC11 interface?](faqs-tablespace-encryption.html#faq-tablespace-encryption-external-key-storage)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.17.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.17.1.</b></td><td align="left" valign="top"><p>
         Is data decrypted for users who are authorized to see it?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. <code>InnoDB</code> data-at-rest encryption is
@@ -44,14 +44,14 @@ A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in
         traditional database encryption solutions, which would typically
         require expensive and substantial changes to applications,
         database triggers, and views.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.2.</b></td><td align="left" valign="top"><p>
         What is the overhead associated with <code>InnoDB</code>
         data-at-rest encryption?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         There is no additional storage overhead. According to internal
         benchmarks, performance overhead amounts to a single digit
         percentage difference.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.3.</b></td><td align="left" valign="top"><p>
         What are the encryption algorithms used with
         <code>InnoDB</code> data-at-rest encryption?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -60,25 +60,25 @@ A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in
         algorithm. It uses Electronic Codebook (ECB) block encryption
         mode for tablespace key encryption and Cipher Block Chaining
         (CBC) block encryption mode for data encryption.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.4.</b></td><td align="left" valign="top"><p>
         Is it possible to use 3rd party encryption algorithms in place
         of the one provided by the <code>InnoDB</code>
         data-at-rest encryption feature?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No, it is not possible to use other encryption algorithms. The
         provided encryption algorithm is broadly accepted.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.5.</b></td><td align="left" valign="top"><p>
         Can indexed columns be encrypted?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
 <code>InnoDB</code> data-at-rest encryption supports all
         indexes transparently.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.6.</b></td><td align="left" valign="top"><p>
         What data types and data lengths does <code>InnoDB</code>
         data-at-rest encryption support?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
 <code>InnoDB</code> data-at-rest encryption supports all
         supported data types. There is no data length limitation.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.7.</b></td><td align="left" valign="top"><p>
         Does data remain encrypted on the network?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Data encrypted by the <code>InnoDB</code> data-at-rest
@@ -87,13 +87,13 @@ A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in
         However, data on the network can be encrypted using MySQL
         network encryption, which encrypts data traveling to and from a
         database using SSL/TLS.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.8.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.8.</b></td><td align="left" valign="top"><p>
         Does database memory contain cleartext or encrypted data?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         With <code>InnoDB</code> data-at-rest encryption,
         in-memory data is decrypted, which provides complete
         transparency.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.9.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.9.</b></td><td align="left" valign="top"><p>
         How do I know which data to encrypt?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Compliance with the PCI-DSS standard requires that credit card
@@ -110,7 +110,7 @@ A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in
         enforcement informants may require encryption. In the health
         care industry, the privacy of patient data, health records and
         X-ray images is of the highest importance.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.10.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.10.</b></td><td align="left" valign="top"><p>
         How is <code>InnoDB</code> data-at-rest encryption
         different from encryption functions MySQL already provides?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -121,26 +121,26 @@ A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in
         functions. <code>InnoDB</code> data-at-rest encryption
         requires no application changes, is transparent to end users,
         and provides automated, built-in key management.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.11.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.11.</b></td><td align="left" valign="top"><p>
         Does the transportable tablespaces feature work with
         <code>InnoDB</code> data-at-rest encryption?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. It is supported for encrypted file-per-table tablespaces.
         For more information, see
         Exporting Encrypted Tablespaces.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.12.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.12.</b></td><td align="left" valign="top"><p>
         Does compression work with <code>InnoDB</code>
         data-at-rest encryption?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Customers using <code>InnoDB</code> data-at-rest
         encryption receive the full benefit of compression because
         compression is applied before data blocks are encrypted.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.13.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.13.</b></td><td align="left" valign="top"><p>
         Can I use <code>mysqldump</code> with encrypted tables?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. Because these utilities create logical backups, the data
         dumped from encrypted tables is not encrypted.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.14.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.14.</b></td><td align="left" valign="top"><p>
         How do I change (rotate, re-key) the master encryption key?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
 <code>InnoDB</code> data-at-rest encryption uses a two
@@ -154,7 +154,7 @@ A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in
         INSTANCE ROTATE INNODB MASTER KEY</code></a> statement, which
         generates a new master encryption key, stores the key, and
         rotates the key into use.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.15.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.15.</b></td><td align="left" valign="top"><p>
         How do I migrate data from a cleartext <code>InnoDB</code>
         tablespace to an encrypted <code>InnoDB</code> tablespace?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -162,16 +162,16 @@ A.17.16. [Can the InnoDB data-at-rest feature store the master encryption key in
         required. To encrypt data in an <code>InnoDB</code>
         file-per-table tablespace, run
         <a class="link" href="alter-table.html" title="13.1.8 ALTER TABLE Statement"><code>ALTER TABLE
-        <em class="replaceable"><code>tbl_name</code></em> ENCRYPTION = 'Y'</code></a>.
+        <code>tbl_name</code> ENCRYPTION = 'Y'</code></a>.
         To encrypt a general tablespace or the <code>mysql</code>
         tablespace, run
         <a class="link" href="alter-tablespace.html" title="13.1.9 ALTER TABLESPACE Statement"><code>ALTER
-        TABLESPACE <em class="replaceable"><code>tablespace_name</code></em> ENCRYPTION
+        TABLESPACE <code>tablespace_name</code> ENCRYPTION
         = 'Y'</code></a>. Encryption support for general tablespaces was
         introduced in MySQL 8.0.13. Encryption support for the
         <code>mysql</code> system tablespace is available as of
         MySQL 8.0.16.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.17.16.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.17.16.</b></td><td align="left" valign="top"><p>
         Can the <code>InnoDB</code> data-at-rest feature store the
         master encryption key in an external device using the PKSC11
         interface?

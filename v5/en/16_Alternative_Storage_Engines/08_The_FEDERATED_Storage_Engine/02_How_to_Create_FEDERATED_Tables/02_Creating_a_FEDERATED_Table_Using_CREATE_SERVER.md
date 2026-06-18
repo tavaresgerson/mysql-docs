@@ -87,32 +87,32 @@ scheme://user_name[:password]@host_name[:port_num]/db_name/tbl_name
 <th><code>mysql.servers</code> column</th>
 </tr></thead><tbody><tr>
 <th>Connection scheme</th>
-<td><em class="replaceable"><code>scheme</code></em></td>
+<td><code>scheme</code></td>
 <td><code>wrapper_name</code></td>
 <td><code>Wrapper</code></td>
 </tr><tr>
 <th>Remote user</th>
-<td><em class="replaceable"><code>user_name</code></em></td>
+<td><code>user_name</code></td>
 <td><code>USER</code></td>
 <td><code>Username</code></td>
 </tr><tr>
 <th>Remote password</th>
-<td><em class="replaceable"><code>password</code></em></td>
+<td><code>password</code></td>
 <td><code>PASSWORD</code></td>
 <td><code>Password</code></td>
 </tr><tr>
 <th>Remote host</th>
-<td><em class="replaceable"><code>host_name</code></em></td>
+<td><code>host_name</code></td>
 <td><code>HOST</code></td>
 <td><code>Host</code></td>
 </tr><tr>
 <th>Remote port</th>
-<td><em class="replaceable"><code>port_num</code></em></td>
+<td><code>port_num</code></td>
 <td><code>PORT</code></td>
 <td><code>Port</code></td>
 </tr><tr>
 <th>Remote database</th>
-<td><em class="replaceable"><code>db_name</code></em></td>
+<td><code>db_name</code></td>
 <td><code>DATABASE</code></td>
 <td><code>Db</code></td>
 </tr></tbody></table>

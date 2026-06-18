@@ -89,7 +89,7 @@ is non-compressed; the specified
 </tr></thead><tbody><tr>
 <th>Warning</th>
 <td>1478</td>
-<td><code> InnoDB: ignoring KEY_BLOCK_SIZE=<em class="replaceable"><code>n</code></em>
+<td><code> InnoDB: ignoring KEY_BLOCK_SIZE=<code>n</code>
               unless ROW_FORMAT=COMPRESSED. </code></td>
 </tr></tbody></table>
 
@@ -135,7 +135,7 @@ provides an overview the `ROW_FORMAT` and
               <code>innodb_file​_format=Barracuda</code></td>
 <td>Compresses the table and indexes using zlib</td>
 </tr><tr>
-<th><code>KEY_BLOCK_​SIZE=<em class="replaceable"><code>n</code></em></code></th>
+<th><code>KEY_BLOCK_​SIZE=<code>n</code></code></th>
 <td>File-per-table tablespaces require
               <code>innodb_file​_format=Barracuda</code></td>
 <td>Specifies compressed page size of 1, 2, 4, 8 or 16 kilobytes; implies

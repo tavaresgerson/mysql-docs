@@ -31,7 +31,7 @@ A.14.13. [Does replication work on mixed operating systems (for example, the sou
 
 A.14.14. [Does replication work on mixed hardware architectures (for example, the source runs on a 64-bit machine while replicas run on 32-bit machines)?](faqs-replication.html#faq-replication-can-mix-arch)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.14.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.14.1.</b></td><td align="left" valign="top"><p>
         Must the replica be connected to the source all the time?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No, it does not. The replica can go down or stay disconnected
@@ -49,7 +49,7 @@ A.14.14. [Does replication work on mixed hardware architectures (for example, th
         to the replicas. Asynchronous replication can work only if the
         replica is able to continue reading the binary log from the
         point where it last read events.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.2.</b></td><td align="left" valign="top"><p>
         Must I enable networking on my source and replica to enable
         replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -59,7 +59,7 @@ A.14.14. [Does replication work on mixed hardware architectures (for example, th
         <code>skip_networking</code> system variable
         has not been enabled in the configuration file for either
         server.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.3.</b></td><td align="left" valign="top"><p>
         How do I know how late a replica is compared to the source? In
         other words, how do I know the date of the last statement
         replicated by the replica?
@@ -85,7 +85,7 @@ A.14.14. [Does replication work on mixed hardware architectures (for example, th
         SQL thread in <code>SHOW PROCESSLIST</code>.
         This is because the replica is executing statements that are one
         hour old. See Section 16.2.3, “Replication Threads”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.4.</b></td><td align="left" valign="top"><p>
         How do I force the source to block updates until the replica
         catches up?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -106,10 +106,10 @@ mysql&gt; SHOW MASTER STATUS;</code></pre><p>
             <code>MASTER_POS_WAIT()</code> function
             are the replication coordinate values obtained in the
             previous step:
-          </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">mysql&gt; SELECT MASTER_POS_WAIT('<em class="replaceable">log_name</em>', <em class="replaceable">log_pos</em>);
+          </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">mysql&gt; SELECT MASTER_POS_WAIT('log_name', log_pos);
 
 Or from MySQL 8.0.26:
-mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em class="replaceable">log_pos</em>);</code></pre><p>
+mysql&gt; SELECT SOURCE_POS_WAIT('log_name', log_pos);</code></pre><p>
             The <code>SELECT</code> statement blocks
             until the replica reaches the specified log file and
             position. At that point, the replica is in synchrony with
@@ -117,9 +117,9 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
           </p></li><li class="listitem"><p>
             On the source, issue the following statement to enable the
             source to begin processing updates again:
-          </p><pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">mysql&gt; UNLOCK TABLES;</code></pre></li></ol>
+          </p><pre class="programlisting copytoclipboard language-sql one-line"><code>mysql&gt; UNLOCK TABLES;</code></pre></li></ol>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.5.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.14.5.</b></td><td align="left" valign="top"><p>
         What issues should I be aware of when setting up two-way
         replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -146,14 +146,14 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
         updates originating on another server are serialized in one
         replication thread. Even this benefit might be offset by network
         delays.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.6.</b></td><td align="left" valign="top"><p>
         How can I use replication to improve performance of my system?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Set up one server as the source and direct all writes to it.
         Then configure as many replicas as you have the budget and
         rackspace for, and distribute the reads among the source and the
         replicas. You can also start the replicas with the
-        <code class="option">--skip-innodb</code>
+        <code>--skip-innodb</code>
         option, enable the
         <code>low_priority_updates</code> system
         variable, and set the
@@ -163,13 +163,13 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
         <code>MyISAM</code> tables instead of
         <code>InnoDB</code> tables to get more speed by
         eliminating transactional overhead.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.7.</b></td><td align="left" valign="top"><p>
         What should I do to prepare client code in my own applications
         to use performance-enhancing replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         See the guide to using replication as a scale-out solution,
         Section 16.3.4, “Using Replication for Scale-Out”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.8.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.8.</b></td><td align="left" valign="top"><p>
         When and how much can MySQL replication improve the performance
         of my system?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -199,23 +199,23 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
         twice as slow as the average read, and the relationship is
         linear. Suppose that the source and each replica have the same
         capacity, and that we have one source and
-        <em class="replaceable"><code>N</code></em> replicas. Then we have for each
+        <code>N</code> replicas. Then we have for each
         server (source or replica):
       </p><p>
 <code>reads</code> = 1200 - 2 * <code>writes</code>
 </p><p>
 <code>reads</code> = 9 * <code>writes</code> /
-        (<em class="replaceable"><code>N</code></em> + 1) (reads are split, but writes
+        (<code>N</code> + 1) (reads are split, but writes
         replicated to all replicas)
       </p><p>
-        9 * <code>writes</code> / (<em class="replaceable"><code>N</code></em> +
+        9 * <code>writes</code> / (<code>N</code> +
         1) + 2 * <code>writes</code> = 1200
       </p><p>
 <code>writes</code> = 1200 / (2 +
-        9/(<em class="replaceable"><code>N</code></em> + 1))
+        9/(<code>N</code> + 1))
       </p><p>
         The last equation indicates the maximum number of writes for
-        <em class="replaceable"><code>N</code></em> replicas, given a maximum possible
+        <code>N</code> replicas, given a maximum possible
         read rate of 1,200 per second and a ratio of nine reads per
         write.
       </p><p>
@@ -223,20 +223,20 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
 </p>
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-            If <em class="replaceable"><code>N</code></em> = 0 (which means we have no
+            If <code>N</code> = 0 (which means we have no
             replication), our system can handle about 1200/11 = 109
             writes per second.
           </p></li><li class="listitem"><p>
-            If <em class="replaceable"><code>N</code></em> = 1, we get up to 184 writes
+            If <code>N</code> = 1, we get up to 184 writes
             per second.
           </p></li><li class="listitem"><p>
-            If <em class="replaceable"><code>N</code></em> = 8, we get up to 400 writes
+            If <code>N</code> = 8, we get up to 400 writes
             per second.
           </p></li><li class="listitem"><p>
-            If <em class="replaceable"><code>N</code></em> = 17, we get up to 480
+            If <code>N</code> = 17, we get up to 480
             writes per second.
           </p></li><li class="listitem"><p>
-            Eventually, as <em class="replaceable"><code>N</code></em> approaches
+            Eventually, as <code>N</code> approaches
             infinity (and our budget negative infinity), we can get very
             close to 600 writes per second, increasing system throughput
             about 5.5 times. However, with only eight servers, we
@@ -248,7 +248,7 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
         several other factors that could be significant on your system.
         In many cases, you may not be able to perform a computation
         similar to the one just shown that accurately predicts what
-        happens on your system if you add <em class="replaceable"><code>N</code></em>
+        happens on your system if you add <code>N</code>
         replicas. However, answering the following questions should help
         you decide whether and by how much replication may improve the
         performance of your system:
@@ -264,7 +264,7 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
             your network?
 </p></li></ul>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.9.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.14.9.</b></td><td align="left" valign="top"><p>
         How can I use replication to provide redundancy or high
         availability?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -282,13 +282,13 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
       </p><p>
         For more information and some example solutions, see
         Section 16.3.7, “Switching Sources During Failover”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.10.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.10.</b></td><td align="left" valign="top"><p>
         How do I tell whether a replication source server is using
         statement-based or row-based binary logging format?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Check the value of the
         <code>binlog_format</code> system variable:
-      </p><pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">mysql&gt; SHOW VARIABLES LIKE 'binlog_format';</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-sql one-line"><code>mysql&gt; SHOW VARIABLES LIKE 'binlog_format';</code></pre><p>
         The value shown is always one of <code>STATEMENT</code>,
         <code>ROW</code>, or <code>MIXED</code>. For
         <code>MIXED</code> mode, statement-based logging is used
@@ -296,26 +296,26 @@ mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>', <em cl
         logging under certain conditions, such as unsafe statements. For
         information about when this may occur, see
         Section 5.4.4.3, “Mixed Binary Logging Format”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.11.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.11.</b></td><td align="left" valign="top"><p>
         How do I tell a replica to use row-based replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Replicas automatically know which format to use.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.12.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.12.</b></td><td align="left" valign="top"><p>
         How do I prevent <code>GRANT</code> and
         <code>REVOKE</code> statements from
         replicating to replica machines?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Start the server with the
-        <code class="option">--replicate-wild-ignore-table=mysql.%</code>
+        <code>--replicate-wild-ignore-table=mysql.%</code>
         option to ignore replication for tables in the
         <code>mysql</code> database.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.13.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.13.</b></td><td align="left" valign="top"><p>
         Does replication work on mixed operating systems (for example,
         the source runs on Linux while replicas run on macOS and
         Windows)?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.14.14.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.14.14.</b></td><td align="left" valign="top"><p>
         Does replication work on mixed hardware architectures (for
         example, the source runs on a 64-bit machine while replicas run
         on 32-bit machines)?

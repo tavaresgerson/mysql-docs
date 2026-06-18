@@ -707,8 +707,8 @@ result.
 <td><code>\\</code></td>
 <td>A backslash (<code>\</code>) character</td>
 </tr><tr>
-<td><code>\u<em class="replaceable"><code>XXXX</code></em></code></td>
-<td>UTF-8 bytes for Unicode value <em class="replaceable"><code>XXXX</code></em></td>
+<td><code>\u<code>XXXX</code></code></td>
+<td>UTF-8 bytes for Unicode value <code>XXXX</code></td>
 </tr></tbody></table>
 
   Two simple examples of the use of this function are shown

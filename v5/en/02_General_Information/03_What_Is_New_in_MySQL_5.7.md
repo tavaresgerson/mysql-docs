@@ -13,7 +13,7 @@ The following features have been added to MySQL 5.7:
 **Security improvements.**
 These security enhancements were added:
 
-+ In MySQL 8.0, ``caching_sha2_password`` is the default authentication plugin. To enable MySQL 5.7 clients to connect to 8.0 servers using accounts that authenticate using ``caching_sha2_password``, the MySQL 5.7 client library and client programs support the ``caching_sha2_password`` client-side authentication plugin as of MySQL 5.7.23. This improves compatibility of MySQL 5.7 with MySQL 8.0 and higher servers. See Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
++ In MySQL 8.0, `caching_sha2_password` is the default authentication plugin. To enable MySQL 5.7 clients to connect to 8.0 servers using accounts that authenticate using `caching_sha2_password`, the MySQL 5.7 client library and client programs support the `caching_sha2_password` client-side authentication plugin as of MySQL 5.7.23. This improves compatibility of MySQL 5.7 with MySQL 8.0 and higher servers. See Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
 + The server now requires account rows in the `mysql.user` system table to have a nonempty `plugin` column value and disables accounts with an empty value. For server upgrade instructions, see Section 2.10.3, “Changes in MySQL 5.7”. DBAs are advised to also convert accounts that use the `mysql_old_password` authentication plugin to use `mysql_native_password` instead, because support for `mysql_old_password` has been removed. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
 

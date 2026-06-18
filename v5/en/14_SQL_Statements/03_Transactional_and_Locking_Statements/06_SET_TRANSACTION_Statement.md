@@ -199,15 +199,15 @@ variable-assignment syntax.
 <th>Affected Characteristic Scope</th>
 </tr></thead><tbody><tr>
 <td><code>SET GLOBAL TRANSACTION
-              <em class="replaceable"><code>transaction_characteristic</code></em></code></td>
+              <code>transaction_characteristic</code></code></td>
 <td>Global</td>
 </tr><tr>
 <td><code>SET SESSION TRANSACTION
-              <em class="replaceable"><code>transaction_characteristic</code></em></code></td>
+              <code>transaction_characteristic</code></code></td>
 <td>Session</td>
 </tr><tr>
 <td><code>SET TRANSACTION
-              <em class="replaceable"><code>transaction_characteristic</code></em></code></td>
+              <code>transaction_characteristic</code></code></td>
 <td>Next transaction only</td>
 </tr></tbody></table>
 
@@ -217,28 +217,28 @@ variable-assignment syntax.
 <th>Syntax</th>
 <th>Affected Characteristic Scope</th>
 </tr></thead><tbody><tr>
-<td><code>SET GLOBAL <em class="replaceable"><code>var_name</code></em> =
-              <em class="replaceable"><code>value</code></em></code></td>
+<td><code>SET GLOBAL <code>var_name</code> =
+              <code>value</code></code></td>
 <td>Global</td>
 </tr><tr>
-<td><code>SET @@GLOBAL.<em class="replaceable"><code>var_name</code></em> =
-              <em class="replaceable"><code>value</code></em></code></td>
+<td><code>SET @@GLOBAL.<code>var_name</code> =
+              <code>value</code></code></td>
 <td>Global</td>
 </tr><tr>
-<td><code>SET SESSION <em class="replaceable"><code>var_name</code></em> =
-              <em class="replaceable"><code>value</code></em></code></td>
+<td><code>SET SESSION <code>var_name</code> =
+              <code>value</code></code></td>
 <td>Session</td>
 </tr><tr>
-<td><code>SET @@SESSION.<em class="replaceable"><code>var_name</code></em> =
-              <em class="replaceable"><code>value</code></em></code></td>
+<td><code>SET @@SESSION.<code>var_name</code> =
+              <code>value</code></code></td>
 <td>Session</td>
 </tr><tr>
-<td><code>SET <em class="replaceable"><code>var_name</code></em> =
-              <em class="replaceable"><code>value</code></em></code></td>
+<td><code>SET <code>var_name</code> =
+              <code>value</code></code></td>
 <td>Session</td>
 </tr><tr>
-<td><code>SET @@<em class="replaceable"><code>var_name</code></em> =
-              <em class="replaceable"><code>value</code></em></code></td>
+<td><code>SET @@<code>var_name</code> =
+              <code>value</code></code></td>
 <td>Next transaction only</td>
 </tr></tbody></table>
 

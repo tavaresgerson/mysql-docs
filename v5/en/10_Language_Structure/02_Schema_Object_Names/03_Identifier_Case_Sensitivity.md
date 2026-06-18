@@ -78,7 +78,7 @@ Windows, the default value is 1. On macOS, the default value is
               this variable to 0 if you are running MySQL on a system
               that has case-insensitive file names (such as Windows or
               macOS). If you force this variable to 0 with
-              <code class="option">--lower-case-table-names=0</code>
+              <code>--lower-case-table-names=0</code>
               on a case-insensitive file system and access
               <code>MyISAM</code> tablenames using different
               lettercases, index corruption may result.</td>

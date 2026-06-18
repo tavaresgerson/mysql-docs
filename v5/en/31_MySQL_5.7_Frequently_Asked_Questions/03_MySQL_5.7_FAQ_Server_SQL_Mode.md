@@ -14,7 +14,7 @@ A.3.6. [Does strict mode impact performance?](faqs-sql-modes.html#faq-mysql-stri
 
 A.3.7. [What is the default server SQL mode when MySQL 5.7 is installed?](faqs-sql-modes.html#faq-mysql-what-default-mode)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.3.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.3.1.</b></td><td align="left" valign="top"><p>
         What are server SQL modes?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Server SQL modes define what SQL syntax MySQL should support and
@@ -23,26 +23,26 @@ A.3.7. [What is the default server SQL mode when MySQL 5.7 is installed?](faqs-s
         use MySQL together with other database servers. The MySQL Server
         apply these modes individually to different clients. For more
         information, see Section 5.1.10, “Server SQL Modes”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.3.2.</b></td><td align="left" valign="top"><p>
         How many server SQL modes are there?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Each mode can be independently switched on and off. See
         Section 5.1.10, “Server SQL Modes”, for a complete list of available
         modes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.3.3.</b></td><td align="left" valign="top"><p>
         How do you determine the server SQL mode?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         You can set the default SQL mode (for <strong>mysqld</strong>
-        startup) with the <code class="option">--sql-mode</code>
+        startup) with the <code>--sql-mode</code>
         option. Using the statement
         <a class="link" href="set-variable.html" title="13.7.4.1 SET Syntax for Variable Assignment"><code>SET
         [GLOBAL|SESSION]
-        sql_mode='<em class="replaceable"><code>modes</code></em>'</code></a>, you can
+        sql_mode='<code>modes</code>'</code></a>, you can
         change the settings from within a connection, either locally to
         the connection, or to take effect globally. You can retrieve the
         current mode by issuing a <code>SELECT @@sql_mode</code>
         statement.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.3.4.</b></td><td align="left" valign="top"><p>
         Is the mode dependent on the database or connection?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         A mode is not linked to a particular database. Modes can be set
@@ -50,8 +50,8 @@ A.3.7. [What is the default server SQL mode when MySQL 5.7 is installed?](faqs-s
         you can change these settings using
         <a class="link" href="set-variable.html" title="13.7.4.1 SET Syntax for Variable Assignment"><code>SET
         [GLOBAL|SESSION]
-        sql_mode='<em class="replaceable"><code>modes</code></em>'</code></a>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.5.</b></p></td><td align="left" valign="top"><p>
+        sql_mode='<code>modes</code>'</code></a>.
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.3.5.</b></td><td align="left" valign="top"><p>
         Can the rules for strict mode be extended?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         When we refer to <em>strict mode</em>, we mean a
@@ -61,7 +61,7 @@ A.3.7. [What is the default server SQL mode when MySQL 5.7 is installed?](faqs-s
         <code>STRICT_ALL_TABLES</code> is enabled.
         Options can be combined, so you can add restrictions to a mode.
         See Section 5.1.10, “Server SQL Modes”, for more information.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.3.6.</b></td><td align="left" valign="top"><p>
         Does strict mode impact performance?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The intensive validation of input data that some settings
@@ -71,7 +71,7 @@ A.3.7. [What is the default server SQL mode when MySQL 5.7 is installed?](faqs-s
         this), then MySQL gives you the option of leaving strict mode
         disabled. However, if you do require it, strict mode can provide
         such validation.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.3.7.</b></td><td align="left" valign="top"><p>
         What is the default server SQL mode when MySQL 5.7
         is installed?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>

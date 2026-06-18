@@ -128,7 +128,7 @@ used to monitor and control Global Transaction Identifiers
 </tr><tr><th>Default Value</th>
 <td><code>OFF</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>WARN</code></p></td>
+<td><code>OFF</code><code>ON</code><code>WARN</code></td>
 </tr></tbody></table>
 
   Depending on the value of this variable, the server enforces
@@ -319,7 +319,7 @@ used to monitor and control Global Transaction Identifiers
 </tr><tr><th>Default Value</th>
 <td><code>OFF</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>OFF_PERMISSIVE</code></p><p class="valid-value"><code>ON_PERMISSIVE</code></p><p class="valid-value"><code>ON</code></p></td>
+<td><code>OFF</code><code>OFF_PERMISSIVE</code><code>ON_PERMISSIVE</code><code>ON</code></td>
 </tr></tbody></table>
 
   Controls whether GTID based logging is enabled and what type
@@ -402,7 +402,7 @@ used to monitor and control Global Transaction Identifiers
 </tr><tr><th>Default Value</th>
 <td><code>AUTOMATIC</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>AUTOMATIC</code></p><p class="valid-value"><code>ANONYMOUS</code></p><p class="valid-value"><code>&lt;UUID&gt;:&lt;NUMBER&gt;</code></p></td>
+<td><code>AUTOMATIC</code><code>ANONYMOUS</code><code>&lt;UUID&gt;:&lt;NUMBER&gt;</code></td>
 </tr></tbody></table>
 
   This variable is used to specify whether and how the next GTID

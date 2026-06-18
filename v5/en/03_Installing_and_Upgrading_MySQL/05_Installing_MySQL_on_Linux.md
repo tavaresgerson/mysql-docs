@@ -545,7 +545,7 @@ The *`distribution`* and *`arch`* values indicate the Linux distribution and the
   </thead>
   <tbody>
     <tr>
-      <td>el<em class="replaceable"><code>{version}</code></em> where <em class="replaceable"><code>{version}</code></em> is the major Enterprise Linux version, such as <code>el8</code></td>
+      <td>el<code>{version}</code> where <code>{version}</code> is the major Enterprise Linux version, such as <code>el8</code></td>
       <td>EL6 (8.0), EL7, EL8, EL9, and EL10-based platforms (for example, the corresponding versions of Oracle Linux, Red Hat Enterprise Linux, and CentOS)</td>
     </tr>
     <tr>
@@ -628,8 +628,8 @@ A standard installation of MySQL using the RPM packages result in files and reso
     <tr>
       <td>Error log file</td>
       <td>
-        <p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/var/log/mysqld.log</code> </p>
-        <p> For SLES: <code>/var/log/mysql/mysqld.log</code> </p>
+         For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/var/log/mysqld.log</code> 
+         For SLES: <code>/var/log/mysql/mysqld.log</code> 
       </td>
     </tr>
     <tr>
@@ -639,15 +639,15 @@ A standard installation of MySQL using the RPM packages result in files and reso
     <tr>
       <td>System V init script</td>
       <td>
-        <p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/etc/init.d/mysqld</code> </p>
-        <p> For SLES: <code>/etc/init.d/mysql</code> </p>
+         For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/etc/init.d/mysqld</code> 
+         For SLES: <code>/etc/init.d/mysql</code> 
       </td>
     </tr>
     <tr>
       <td>Systemd service</td>
       <td>
-        <p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>mysqld</code> </p>
-        <p> For SLES: <code>mysql</code> </p>
+         For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>mysqld</code> 
+         For SLES: <code>mysql</code> 
       </td>
     </tr>
     <tr>

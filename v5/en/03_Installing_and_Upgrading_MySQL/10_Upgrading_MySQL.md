@@ -738,16 +738,16 @@ Because of the dependency relationships among the RPM packages, all of the insta
       <th>Service name</th>
       <td>mysql</td>
       <td>
-        <p>For RHEL, Oracle Linux, CentOS, and Fedora: <strong>mysqld</strong> </p>
-        <p>For SLES: <strong>mysql</strong> </p>
+        For RHEL, Oracle Linux, CentOS, and Fedora: <strong>mysqld</strong> 
+        For SLES: <strong>mysql</strong> 
       </td>
     </tr>
     <tr>
       <th>Error log file</th>
       <td>At <code>/var/lib/mysql/<code>hostname</code>.err</code></td>
       <td>
-        <p> For RHEL, Oracle Linux, CentOS, and Fedora: at <code>/var/log/mysqld.log</code> </p>
-        <p> For SLES: at <code>/var/log/mysql/mysqld.log</code> </p>
+         For RHEL, Oracle Linux, CentOS, and Fedora: at <code>/var/log/mysqld.log</code> 
+         For SLES: at <code>/var/log/mysql/mysqld.log</code> 
       </td>
     </tr>
     <tr>

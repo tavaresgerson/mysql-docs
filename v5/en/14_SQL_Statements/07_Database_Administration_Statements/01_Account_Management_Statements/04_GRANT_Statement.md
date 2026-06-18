@@ -459,7 +459,7 @@ information about each privilege, see
                 database, table, column.</td>
 </tr><tr>
 <td><code>USAGE</code></td>
-<td>Synonym for “<span class="quote">no privileges”</span></td>
+<td>Synonym for “no privileges”</td>
 </tr></tbody></table>
 
 A trigger is associated with a table. To create or drop a

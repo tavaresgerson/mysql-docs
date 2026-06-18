@@ -86,7 +86,7 @@ A.10.40. [How do I back up and restore an NDB Cluster?](faqs-mysql-cluster.html#
 
 A.10.41. [What is an “angel process”?](faqs-mysql-cluster.html#faq-cluster-what-angel-process)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.10.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.10.1.</b></td><td align="left" valign="top"><p>
         Which versions of the MySQL software support NDB Cluster? Do I
         have to compile from source?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -153,7 +153,7 @@ A.10.41. [What is an “angel process”?](faqs-mysql-cluster.html#faq-cluster-w
 </p></li><li class="listitem"><p>
             Windows
             <a class="link" href="mysql-cluster-install-windows-binary.html" title="21.3.2.1 Installing NDB Cluster on Windows from a Binary Release">binary
-            “<span class="quote">no-install”</span> release</a>
+            “no-install” release</a>
 </p></li><li class="listitem"><p>
             Windows MSI Installer
 </p></li></ul>
@@ -167,17 +167,17 @@ A.10.41. [What is an “angel process”?](faqs-mysql-cluster.html#faq-cluster-w
         statements <code>SHOW VARIABLES LIKE 'have_%'</code>,
         <code>SHOW ENGINES</code>, or
         <code>SHOW PLUGINS</code>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.2.</b></p></td><td align="left" valign="top"><p>
-        What do “<span class="quote">NDB”</span> and “<span class="quote">NDBCLUSTER”</span> mean?
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.2.</b></td><td align="left" valign="top"><p>
+        What do “NDB” and “NDBCLUSTER” mean?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-“<span class="quote">NDB”</span> stands for
+“NDB” stands for
         “<span class="quote"><span class="bold"><strong>N</strong>etwork
         <strong>D</strong>ata<strong>b</strong>ase</span>”</span>.
         <code>NDB</code> and <code>NDBCLUSTER</code> are
         both names for the storage engine that enables clustering
         support with MySQL. <code>NDB</code> is preferred, but
         either name is correct.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.3.</b></td><td align="left" valign="top"><p>
         What is the difference between using NDB Cluster versus using
         MySQL Replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -202,11 +202,11 @@ A.10.41. [What is an “angel process”?](faqs-mysql-cluster.html#faq-cluster-w
       </p><p>
         Asynchronous replication is also available in NDB Cluster.
         NDB Cluster Replication
-        (also sometimes known as “<span class="quote">geo-replication”</span>)
+        (also sometimes known as “geo-replication”)
         includes the capability to replicate both between two NDB
         Clusters, and from an NDB Cluster to a non-Cluster MySQL server.
         See Section 21.7, “NDB Cluster Replication”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.4.</b></td><td align="left" valign="top"><p>
         Do I need any special networking to run NDB Cluster? How do
         computers in a cluster communicate?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -217,7 +217,7 @@ A.10.41. [What is an “angel process”?](faqs-mysql-cluster.html#faq-cluster-w
         requirements for NDB Cluster include a typical 100-megabit
         Ethernet network or the equivalent. We recommend you use gigabit
         Ethernet whenever available.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.5.</b></td><td align="left" valign="top"><p>
         How many computers do I need to run an NDB Cluster, and why?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         A minimum of three computers is required to run a viable
@@ -233,7 +233,7 @@ A.10.41. [What is an “angel process”?](faqs-mysql-cluster.html#faq-cluster-w
         should use multiple SQL nodes (MySQL Servers connected to the
         cluster). It is also possible (although not strictly necessary)
         to run multiple management servers.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.6.</b></td><td align="left" valign="top"><p>
         What do the different computers do in an NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         An NDB Cluster has both a physical and logical organization,
@@ -266,9 +266,9 @@ A.10.41. [What is an “angel process”?](faqs-mysql-cluster.html#faq-cluster-w
               This is simply an instance of MySQL Server
               (<strong>mysqld</strong>) that is built with support for
               the <code>NDBCLUSTER</code> storage engine
-              and started with the <code class="option">--ndb-cluster</code> option
+              and started with the <code>--ndb-cluster</code> option
               to enable the engine and the
-              <code class="option">--ndb-connectstring</code> option to enable it
+              <code>--ndb-connectstring</code> option to enable it
               to connect to an NDB Cluster management server. For more
               about these options, see
               Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”.
@@ -292,11 +292,11 @@ Note
 </div>
 </li></ul>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.7.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.10.7.</b></td><td align="left" valign="top"><p>
         When I run the <code>SHOW</code> command in the NDB
         Cluster management client, I see a line of output that looks
         like this:
-      </p><pre class="programlisting copytoclipboard language-none one-line"><code class="language-none">id=2    @10.100.10.32  (Version: 8.0.44-ndb-8.0.44 Nodegroup: 0, *)</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-none one-line"><code>id=2    @10.100.10.32  (Version: 8.0.44-ndb-8.0.44 Nodegroup: 0, *)</code></pre><p>
         What does the <code>*</code> mean? How is this node
         different from the others?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -312,15 +312,15 @@ Note
         coordination among the data nodes. These distributed algorithms
         and protocols include global checkpointing, DDL (schema)
         changes, and node restart handling. To make this coordination
-        simpler, the data nodes “<span class="quote">elect”</span> one of their number
+        simpler, the data nodes “elect” one of their number
         to act as leader. There is no user-facing mechanism for
         influencing this selection, which is completely automatic; the
         fact that it <em>is</em> automatic is a key part of
         NDB Cluster's internal architecture.
       </p><p>
-        When a node acts as the “<span class="quote">leader”</span> for any of these
+        When a node acts as the “leader” for any of these
         mechanisms, it is usually the point of coordination for the
-        activity, and the other nodes act as “<span class="quote">followers”</span>,
+        activity, and the other nodes act as “followers”,
         carrying out their parts of the activity as directed by the
         leader. If the node acting as leader fails, then the remaining
         nodes elect a new leader. Tasks in progress that were being
@@ -341,7 +341,7 @@ Note
         CPU or resource usage than the other data nodes, and failure of
         the leader should not have a significantly different impact on
         the cluster than the failure of any other data node.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.8.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.8.</b></td><td align="left" valign="top"><p>
         With which operating systems can I use NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         NDB Cluster is supported on most Unix-like operating systems.
@@ -353,7 +353,7 @@ Note
         versions, operating system distributions, and hardware
         platforms, please refer to
         https://www.mysql.com/support/supportedplatforms/cluster.html.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.9.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.9.</b></td><td align="left" valign="top"><p>
         What are the hardware requirements for running NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         NDB Cluster should run on any platform for which
@@ -371,7 +371,7 @@ Note
         They can also use the high-speed SCI protocol; however, special
         networking hardware and software are required to use SCI (see
         Section 21.4.4, “Using High-Speed Interconnects with NDB Cluster”).
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.10.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.10.</b></td><td align="left" valign="top"><p>
         How much RAM do I need to use NDB Cluster? Is it possible to use
         disk memory at all?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -383,7 +383,7 @@ Note
         For in-memory <code>NDB</code> tables, you can use the
         following formula for obtaining a rough estimate of how much RAM
         is needed for each data node in the cluster:
-      </p><pre class="programlisting copytoclipboard language-simple one-line"><code class="language-simple">(SizeofDatabase × NumberOfReplicas × 1.1 ) / NumberOfDataNodes</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-simple one-line"><code>(SizeofDatabase × NumberOfReplicas × 1.1 ) / NumberOfDataNodes</code></pre><p>
         To calculate the memory requirements more exactly requires
         determining, for each table in the cluster database, the storage
         space required per row (see
@@ -455,7 +455,7 @@ Note
         <code>DataMemory</code> or (prior to
         NDB 7.6) <code>IndexMemory</code> is
         in use, and again when usage reaches 90%, 99%, and 100%.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.11.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.11.</b></td><td align="left" valign="top"><p>
         What file systems can I use with NDB Cluster? What about network
         file systems or network shares?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -479,7 +479,7 @@ Note
         reason, the use of network shares or network file systems is not
         supported for NDB Cluster. This also applies to shared storage
         devices such as SANs.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.12.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.12.</b></td><td align="left" valign="top"><p>
         Can I run NDB Cluster nodes inside virtual machines (such as
         those created by VMWare, VirtualBox, Parallels, or Xen)?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -492,7 +492,7 @@ Note
         using other virtualization products; in such cases, Oracle can
         provide NDB Cluster support, but issues specific to the virtual
         environment must be referred to that product's vendor.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.13.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.13.</b></td><td align="left" valign="top"><p>
         I am trying to populate an NDB Cluster database. The loading
         process terminates prematurely and I get an error message like
         this one:
@@ -540,7 +540,7 @@ Note
         <code>IndexMemory</code> for use in
         restarts. This reserved memory is not available for storing
         <code>NDB</code> tables or data.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.14.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.14.</b></td><td align="left" valign="top"><p>
         NDB Cluster uses TCP/IP. Does this mean that I can run it over
         the Internet, with one or more nodes in remote locations?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -561,7 +561,7 @@ Note
         outside. (For SQL nodes, you should take the same precautions as
         you would with any other instance of the MySQL server.) For more
         information, see Section 21.6.18, “NDB Cluster Security Issues”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.15.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.15.</b></td><td align="left" valign="top"><p>
         Do I have to learn a new programming or query language to use
         NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -588,7 +588,7 @@ Note
         client (<strong>ndb_mgm</strong>) for tasks such as starting
         and stopping cluster nodes. See
         Section 21.6.1, “Commands in the NDB Cluster Management Client”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.16.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.16.</b></td><td align="left" valign="top"><p>
         What programming languages and APIs are supported by NDB
         Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -619,7 +619,7 @@ Note
         applications written against <code>Node.js</code>, with
         NDB Cluster as the data store. See MySQL NoSQL Connector for JavaScript,
         for more information.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.17.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.17.</b></td><td align="left" valign="top"><p>
         Does NDB Cluster include any management tools?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         NDB Cluster includes a command line client for performing basic
@@ -632,7 +632,7 @@ Note
         many NDB Cluster management tasks such as rolling restarts and
         configuration changes. For more information about MySQL Cluster Manager, see
         MySQL Cluster Manager 1.4.8 User Manual.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.18.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.18.</b></td><td align="left" valign="top"><p>
         How do I find out what an error or warning message means when
         using NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -646,10 +646,10 @@ Note
             error or warning condition.
           </p></li><li class="listitem"><p>
             From a system shell prompt, use <a class="link" href="perror.html" title="4.8.2 perror — Display MySQL Error Message Information"><span class="command"><strong>perror --ndb
-            <em class="replaceable"><code>error_code</code></em></strong></span></a>.
+            <code>error_code</code></strong></span></a>.
 </p></li></ul>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.19.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.10.19.</b></td><td align="left" valign="top"><p>
         Is NDB Cluster transaction-safe? What isolation levels are
         supported?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -658,7 +658,7 @@ Note
         are supported. Currently, NDB Cluster supports only the
         <code>READ COMMITTED</code> transaction
         isolation level.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.20.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.20.</b></td><td align="left" valign="top"><p>
         What storage engines are supported by NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         NDB Cluster requires the <code>NDB</code>
@@ -684,7 +684,7 @@ Note
         Section 21.2.6, “MySQL Server Using InnoDB Compared with NDB Cluster”, for information about
         the differences between the <code>NDB</code> and
         <code>InnoDB</code> storage engines.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.21.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.21.</b></td><td align="left" valign="top"><p>
         In the event of a catastrophic failure— for example, the
         whole city loses power <em>and</em> my UPS
         fails—would I lose all my data?
@@ -695,7 +695,7 @@ Note
         further reduced by minimizing the number of operations per
         transaction. (It is not a good idea to perform large numbers of
         operations per transaction in any case.)
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.22.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.22.</b></td><td align="left" valign="top"><p>
         Is it possible to use <code>FULLTEXT</code> indexes with
         NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -703,7 +703,7 @@ Note
         by the <code>InnoDB</code> and
         <code>MyISAM</code> storage engines. See
         Section 12.9, “Full-Text Search Functions”, for more information.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.23.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.23.</b></td><td align="left" valign="top"><p>
         Can I run multiple nodes on a single computer?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         It is possible but not always advisable. One of the chief
@@ -741,7 +741,7 @@ Note
         memory available to the data node and SQL node processes, and
         you must take these factors into account when planning such a
         configuration.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.24.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.24.</b></td><td align="left" valign="top"><p>
         Can I add data nodes to an NDB Cluster without restarting it?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         It is possible to add new data nodes to a running NDB Cluster
@@ -751,7 +751,7 @@ Note
         For other types of NDB Cluster nodes, a rolling restart is all
         that is required (see
         Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”).
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.25.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.25.</b></td><td align="left" valign="top"><p>
         Are there any limitations that I should be aware of when using
         NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -807,7 +807,7 @@ Note
         For a complete listing of limitations in NDB Cluster, see
         Section 21.2.7, “Known Limitations of NDB Cluster”. See also
         Previous NDB Cluster Issues Resolved in NDB Cluster 8.0.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.26.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.26.</b></td><td align="left" valign="top"><p>
         Does NDB Cluster support foreign keys?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         NDB Cluster provides support for foreign key constraints which
@@ -818,7 +818,7 @@ Note
         Section 13.1.18.5, “FOREIGN KEY Constraints”. Applications
         requiring foreign key support should use NDB Cluster 7.3, 7.4,
         7.5, or later.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.27.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.27.</b></td><td align="left" valign="top"><p>
         How do I import an existing MySQL database into an NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         You can import databases into NDB Cluster much as you would with
@@ -837,7 +837,7 @@ Note
         storage engine prior to making the conversion. In MySQL
         5.7, an additional workaround is also required; see
         Section 21.2.7, “Known Limitations of NDB Cluster”, for details.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.28.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.28.</b></td><td align="left" valign="top"><p>
         How do NDB Cluster nodes communicate with one another?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Cluster nodes can communicate through any of three different
@@ -850,14 +850,14 @@ Note
         special hardware and drivers. See
         Section 21.4.4, “Using High-Speed Interconnects with NDB Cluster”, for more about
         using SCI as a transport mechanism for NDB Cluster.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.29.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.29.</b></td><td align="left" valign="top"><p>
         What is an arbitrator?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         If one or more data nodes in a cluster fail, it is possible that
-        not all cluster data nodes are able to “<span class="quote">see”</span> one
+        not all cluster data nodes are able to “see” one
         another. In fact, it is possible that two sets of data nodes
         might become isolated from one another in a network
-        partitioning, also known as a “<span class="quote">split-brain”</span>
+        partitioning, also known as a “split-brain”
         scenario. This type of situation is undesirable because each set
         of data nodes tries to behave as though it is the entire
         cluster. An arbitrator is required to decide between the
@@ -868,7 +868,7 @@ Note
         of the cluster can form a functional cluster on its own. The
         real problem arises when no single node group has all its nodes
         alive, in which case network partitioning (the
-        “<span class="quote">split-brain”</span> scenario) becomes possible. Then an
+        “split-brain” scenario) becomes possible. Then an
         arbitrator is required. All cluster nodes recognize the same
         node as the arbitrator, which is normally the management server;
         however, it is possible to configure any of the MySQL Servers in
@@ -886,7 +886,7 @@ Note
         heavy demands upon the host so designated, and thus the
         arbitrator host does not need to be particularly fast or to have
         extra memory especially for this purpose.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.30.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.30.</b></td><td align="left" valign="top"><p>
         What data types are supported by NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         NDB Cluster supports all of the usual MySQL data types,
@@ -918,7 +918,7 @@ Note
 <p>
         See Section 21.2.7, “Known Limitations of NDB Cluster”, for more
         information about these issues.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.31.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.31.</b></td><td align="left" valign="top"><p>
         How do I start and stop NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         It is necessary to start each node in the cluster separately, in
@@ -931,8 +931,8 @@ Note
           </p><p>
             When starting the cluster for the first time, you must
             include the
-            <code class="option">-f</code>
-            or <code class="option">--config-file</code> option to
+            <code>-f</code>
+            or <code>--config-file</code> option to
             tell the management node where its configuration file can be
             found.
           </p></li><li class="listitem"><p>
@@ -940,8 +940,8 @@ Note
             command.
           </p><p>
             Each data node must be started with the
-            <code class="option">-c</code>
-            or <code class="option">--ndb-connectstring</code> option
+            <code>-c</code>
+            or <code>--ndb-connectstring</code> option
             so that the data node knows how to connect to the management
             server.
           </p></li><li class="listitem"><p>
@@ -949,8 +949,8 @@ Note
             startup script, such as <strong>mysqld_safe</strong>.
           </p><p>
             Each MySQL Server must be started with the
-            <code class="option">--ndbcluster</code> and
-            <code class="option">--ndb-connectstring</code> options.
+            <code>--ndbcluster</code> and
+            <code>--ndb-connectstring</code> options.
             These options cause <strong>mysqld</strong> to enable
             <code>NDBCLUSTER</code> storage engine
             support and how to connect to the management server.
@@ -971,10 +971,10 @@ Note
         <code>SHUTDOWN</code> in the management client.
         Alternatively, you may enter the following command in a system
         shell:
-      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code class="language-terminal">$&gt; ndb_mgm -e "SHUTDOWN"</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code>$&gt; ndb_mgm -e "SHUTDOWN"</code></pre><p>
         (The quotation marks in this example are optional, since there
         are no spaces in the command string following the
-        <code class="option">-e</code> option; in addition, the
+        <code>-e</code> option; in addition, the
         <code>SHUTDOWN</code> command, like other management
         client commands, is not case-sensitive.)
       </p><p>
@@ -991,13 +991,13 @@ Note
         MySQL Cluster Manager provides additional ways to handle starting ansd stopping
         of NDB Cluster nodes. See MySQL Cluster Manager 1.4.8 User Manual, for more
         information about this tool.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.32.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.32.</b></td><td align="left" valign="top"><p>
         What happens to NDB Cluster data when the cluster is shut down?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The data that was held in memory by the cluster's data
         nodes is written to disk, and is reloaded into memory the next
         time that the cluster is started.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.33.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.33.</b></td><td align="left" valign="top"><p>
         Is it a good idea to have more than one management node for an
         NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -1009,18 +1009,18 @@ Note
       </p><p>
         See Section 21.4.3, “NDB Cluster Configuration Files”, for information
         on how to configure NDB Cluster management nodes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.34.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.34.</b></td><td align="left" valign="top"><p>
         Can I mix different kinds of hardware and operating systems in
         one NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes, as long as all machines and operating systems have the same
-        “<span class="quote">endianness”</span> (all big-endian or all little-endian).
+        “endianness” (all big-endian or all little-endian).
       </p><p>
         It is also possible to use software from different NDB Cluster
         releases on different nodes. However, we support such use only
         as part of a rolling upgrade procedure (see
         Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”).
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.35.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.35.</b></td><td align="left" valign="top"><p>
         Can I run two data nodes on a single host? Two SQL nodes?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes, it is possible to do this. In the case of multiple data
@@ -1033,16 +1033,16 @@ Note
         possible, but you should be aware that the
         <strong>ndbd</strong> or <strong>ndbmtd</strong> processes
         may compete for memory with <strong>mysqld</strong>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.36.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.36.</b></td><td align="left" valign="top"><p>
         Can I use host names with NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes, it is possible to use DNS and DHCP for cluster hosts.
-        However, if your application requires “<span class="quote">five nines”</span>
+        However, if your application requires “five nines”
         availability, you should use fixed (numeric) IP addresses, since
         making communication between Cluster hosts dependent on services
         such as DNS and DHCP introduces additional potential points of
         failure.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.37.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.37.</b></td><td align="left" valign="top"><p>
         Does NDB Cluster support IPv6?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         IPv6 is supported for connections between SQL nodes (MySQL
@@ -1053,7 +1053,7 @@ Note
         replication between NDB Clusters, but connections between nodes
         in the same NDB Cluster must use IPv4. For more information, see
         Section 21.7.3, “Known Issues in NDB Cluster Replication”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.38.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.38.</b></td><td align="left" valign="top"><p>
         How do I handle MySQL users in an NDB Cluster having multiple
         MySQL servers?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -1078,14 +1078,14 @@ Important
           for details.
 </p>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.39.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.10.39.</b></td><td align="left" valign="top"><p>
         How do I continue to send queries in the event that one of the
         SQL nodes fails?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         MySQL NDB Cluster does not provide any sort of automatic
         failover between SQL nodes. Your application must be prepared to
         handle the loss of SQL nodes and to fail over between them.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.40.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.40.</b></td><td align="left" valign="top"><p>
         How do I back up and restore an NDB Cluster?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         You can use the NDB Cluster native backup and restore
@@ -1097,8 +1097,8 @@ Important
         You can also use the traditional functionality provided for this
         purpose in <strong>mysqldump</strong> and the MySQL server.
         See Section 4.5.4, “mysqldump — A Database Backup Program”, for more information.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.10.41.</b></p></td><td align="left" valign="top"><p>
-        What is an “<span class="quote">angel process”</span>?
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.10.41.</b></td><td align="left" valign="top"><p>
+        What is an “angel process”?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         This process monitors and, if necessary, attempts to restart the
         data node process. If you check the list of active processes on

@@ -48,7 +48,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--config-file=file</code>,
+<code>--config-file=file</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file">-f
                 file</a> </code>
@@ -60,7 +60,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--configdir=directory</code>,
+<code>--configdir=directory</code>,
               </p><p>
 <code class="option">
 --config-dir=directory
@@ -92,7 +92,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect-string=connection_string</code>,
+<code>--connect-string=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_connect-string">-c
@@ -114,7 +114,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--daemon</code>,
+<code>--daemon</code>,
               </p><p>
 <code class="option">
 -d
@@ -156,7 +156,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option"> -?
 </code>
@@ -230,7 +230,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-connectstring=connection_string</code>,
+<code>--ndb-connectstring=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-connectstring">-c
@@ -244,7 +244,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-mgmd-host=connection_string</code>,
+<code>--ndb-mgmd-host=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-mgmd-host">-c
@@ -329,7 +329,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--print-full-config</code>,
+<code>--print-full-config</code>,
               </p><p>
 <code class="option">
 -P
@@ -374,7 +374,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--usage</code>,
+<code>--usage</code>,
               </p><p>
 <code class="option"> -?
 </code>
@@ -385,7 +385,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--verbose</code>,
+<code>--verbose</code>,
               </p><p>
 <code class="option">
 -v
@@ -397,7 +397,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option">
 -V
@@ -551,7 +551,7 @@ table.
 * `--configdir=dir_name`
 
   <table frame="box" rules="all" summary="Properties for configdir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><p class="valid-value"><code>--configdir=directory</code></p><p class="valid-value"><code>--config-dir=directory</code></p></td>
+<td><code>--configdir=directory</code><code>--config-dir=directory</code></td>
 </tr><tr><th>Type</th>
 <td>File name</td>
 </tr><tr><th>Default Value</th>

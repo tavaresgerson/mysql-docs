@@ -144,7 +144,7 @@ enabled; see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Se
 
 <table summary="Format of the zero value for temporal data types."><col style="width: 30%"/><col style="width: 40%"/><thead><tr>
 <th>Data Type</th>
-<th>“<span class="quote">Zero”</span> Value</th>
+<th>“Zero” Value</th>
 </tr></thead><tbody><tr>
 <td><code>DATE</code></td>
 <td><code>'0000-00-00'</code></td>

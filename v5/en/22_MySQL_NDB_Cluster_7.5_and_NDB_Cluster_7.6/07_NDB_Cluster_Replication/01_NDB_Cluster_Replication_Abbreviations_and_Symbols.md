@@ -12,43 +12,43 @@ commands run on cluster nodes**
 <th>Symbol or Abbreviation</th>
 <th>Description (Refers to...)</th>
 </tr></thead><tbody><tr>
-<td><em class="replaceable"><code>S</code></em></td>
+<td><code>S</code></td>
 <td>The cluster serving as the (primary) replication source</td>
 </tr><tr>
-<td><em class="replaceable"><code>R</code></em></td>
+<td><code>R</code></td>
 <td>The cluster acting as the (primary) replica</td>
 </tr><tr>
-<td><code>shell<em class="replaceable"><code>S</code></em>&gt;</code></td>
+<td><code>shell<code>S</code>&gt;</code></td>
 <td>Shell command to be issued on the source cluster</td>
 </tr><tr>
-<td><code>mysql<em class="replaceable"><code>S</code></em>&gt;</code></td>
+<td><code>mysql<code>S</code>&gt;</code></td>
 <td>MySQL client command issued on a single MySQL server running as an SQL
             node on the source cluster</td>
 </tr><tr>
-<td><code>mysql<em class="replaceable"><code>S*</code></em>&gt;</code></td>
+<td><code>mysql<code>S*</code>&gt;</code></td>
 <td>MySQL client command to be issued on all SQL nodes participating in the
             replication source cluster</td>
 </tr><tr>
-<td><code>shell<em class="replaceable"><code>R</code></em>&gt;</code></td>
+<td><code>shell<code>R</code>&gt;</code></td>
 <td>Shell command to be issued on the replica cluster</td>
 </tr><tr>
-<td><code>mysql<em class="replaceable"><code>R</code></em>&gt;</code></td>
+<td><code>mysql<code>R</code>&gt;</code></td>
 <td>MySQL client command issued on a single MySQL server running as an SQL
             node on the replica cluster</td>
 </tr><tr>
-<td><code>mysql<em class="replaceable"><code>R*</code></em>&gt;</code></td>
+<td><code>mysql<code>R*</code>&gt;</code></td>
 <td>MySQL client command to be issued on all SQL nodes participating in the
             replica cluster</td>
 </tr><tr>
-<td><em class="replaceable"><code>C</code></em></td>
+<td><code>C</code></td>
 <td>Primary replication channel</td>
 </tr><tr>
-<td><em class="replaceable"><code>C'</code></em></td>
+<td><code>C'</code></td>
 <td>Secondary replication channel</td>
 </tr><tr>
-<td><em class="replaceable"><code>S'</code></em></td>
+<td><code>S'</code></td>
 <td>Secondary replication source</td>
 </tr><tr>
-<td><em class="replaceable"><code>R'</code></em></td>
+<td><code>R'</code></td>
 <td>Secondary replica</td>
 </tr></tbody></table>

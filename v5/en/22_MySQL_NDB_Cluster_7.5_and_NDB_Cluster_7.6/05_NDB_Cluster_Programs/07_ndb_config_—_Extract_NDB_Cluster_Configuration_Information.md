@@ -116,7 +116,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect-string=connection_string</code>,
+<code>--connect-string=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_connect-string">-c
@@ -178,7 +178,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--fields=string</code>,
+<code>--fields=string</code>,
               </p><p>
 <code class="option">
 -f
@@ -190,7 +190,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option">
 -?
@@ -232,7 +232,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-connectstring=connection_string</code>,
+<code>--ndb-connectstring=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-connectstring">-c
@@ -246,7 +246,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-mgmd-host=connection_string</code>,
+<code>--ndb-mgmd-host=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-mgmd-host">-c
@@ -312,7 +312,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--query=string</code>,
+<code>--query=string</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_query">-q
                 string</a> </code>
@@ -323,7 +323,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--query-all</code>,
+<code>--query-all</code>,
               </p><p>
 <code class="option">
 -a
@@ -345,7 +345,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--rows=string</code>,
+<code>--rows=string</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_rows">-r
                 string</a> </code>
@@ -377,7 +377,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--usage</code>,
+<code>--usage</code>,
               </p><p>
 <code class="option">
 -?
@@ -389,7 +389,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option">
 -V

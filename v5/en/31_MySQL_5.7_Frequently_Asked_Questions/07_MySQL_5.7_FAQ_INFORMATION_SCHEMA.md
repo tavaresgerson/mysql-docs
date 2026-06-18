@@ -10,7 +10,7 @@ A.7.4. [What is the difference between the Oracle Data Dictionary and MySQL INFO
 
 A.7.5. [Can I add to or otherwise modify the tables found in the INFORMATION\_SCHEMA database?](faqs-information-schema.html#faq-mysql-can-modify-information-schema)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.7.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.7.1.</b></td><td align="left" valign="top"><p>
         Where can I find documentation for the MySQL
         <code>INFORMATION_SCHEMA</code> database?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -19,13 +19,13 @@ A.7.5. [Can I add to or otherwise modify the tables found in the INFORMATION\_SC
         You may also find the
         MySQL User Forums
         to be helpful.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.7.2.</b></td><td align="left" valign="top"><p>
         Is there a discussion forum for
         <code>INFORMATION_SCHEMA</code>?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         See the <a class="ulink" href="https://forums.mysql.com/list.php?20" target="_blank">MySQL User
         Forums</a>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.7.3.</b></td><td align="left" valign="top"><p>
         Where can I find the ANSI SQL 2003 specification for
         <code>INFORMATION_SCHEMA</code>?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -35,7 +35,7 @@ A.7.5. [Can I add to or otherwise modify the tables found in the INFORMATION\_SC
         Really</em> by Peter Gulutzan and Trudy Pelzer, that
         provide a comprehensive overview of the standard, including
         <code>INFORMATION_SCHEMA</code>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.7.4.</b></td><td align="left" valign="top"><p>
         What is the difference between the Oracle Data Dictionary and
         MySQL <code>INFORMATION_SCHEMA</code>?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -45,7 +45,7 @@ A.7.5. [Can I add to or otherwise modify the tables found in the INFORMATION\_SC
         SQL Server, which also support
         <code>INFORMATION_SCHEMA</code> as defined in the SQL
         standard.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.7.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.7.5.</b></td><td align="left" valign="top"><p>
         Can I add to or otherwise modify the tables found in the
         <code>INFORMATION_SCHEMA</code> database?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>

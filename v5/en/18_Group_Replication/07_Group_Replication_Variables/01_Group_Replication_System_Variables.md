@@ -390,7 +390,7 @@ plugin are as follows:
 </tr><tr><th>Default Value</th>
 <td><code>READ_ONLY</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>ABORT_SERVER</code></p><p class="valid-value"><code>READ_ONLY</code></p></td>
+<td><code>ABORT_SERVER</code><code>READ_ONLY</code></td>
 </tr></tbody></table>
 
   Configures how Group Replication behaves when a server

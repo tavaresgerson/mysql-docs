@@ -281,7 +281,7 @@ using PHP 5:
 
   while($row = $result->fetch_assoc())
   {
-    echo "<p>" . $row["$col"] . "</p>\n";
+    echo "" . $row["$col"] . "\n";
   }
 
   $result->close();

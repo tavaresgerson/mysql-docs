@@ -42,7 +42,7 @@ A.11.18. [Where can I find translations of the MySQL Manual into Chinese, Japane
 
 A.11.19. [Where can I get help with CJK and related issues in MySQL?](faqs-cjk.html#faq-cjk-help-with-cjk)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.11.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.11.1.</b></td><td align="left" valign="top"><p>
         What CJK character sets are available in MySQL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The list of CJK character sets may vary depending on your MySQL
@@ -99,7 +99,7 @@ A.11.19. [Where can I get help with CJK and related issues in MySQL?](faqs-cjk.h
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
             The MySQL <code>gbk</code> character set is in reality
-            “<span class="quote">Microsoft code page 936”</span>. This differs from
+            “Microsoft code page 936”. This differs from
             the official <code>gbk</code> for characters
             <code>A1A4</code> (middle dot),
             <code>A1AA</code> (em dash),
@@ -161,10 +161,10 @@ A.11.19. [Where can I get help with CJK and related issues in MySQL?](faqs-cjk.h
         differentiating properties, including collation properties for
         supplementary characters, see
         Section 10.10.1, “Unicode Character Sets”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.2.</b></td><td align="left" valign="top"><p>
         I have inserted CJK characters into my table. Why does
         <code>SELECT</code> display them as
-        “<span class="quote">?”</span> characters?
+        “?” characters?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         This problem is usually due to a setting in MySQL that does not
         match the settings for the application program or the operating
@@ -187,7 +187,7 @@ A.11.19. [Where can I get help with CJK and related issues in MySQL?](faqs-cjk.h
             set used for display purposes. However, both of these are
             false assumptions. You can make sure by checking the result
             of <code>SHOW CREATE TABLE
-            <em class="replaceable"><code>tablename</code></em></code> or, better
+            <code>tablename</code></code> or, better
             yet, by using this statement:
           </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">SELECT character_set_name, collation_name
     FROM information_schema.columns
@@ -199,11 +199,11 @@ A.11.19. [Where can I get help with CJK and related issues in MySQL?](faqs-cjk.h
             correctly</em></span>.
           </p><p>
             You can obtain this information for a column
-            <em class="replaceable"><code>column_name</code></em> in the table
-            <em class="replaceable"><code>table_name</code></em> using the following
+            <code>column_name</code> in the table
+            <code>table_name</code> using the following
             query:
-          </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">SELECT HEX(<em class="replaceable">column_name</em>)
-FROM <em class="replaceable">table_name</em>;</code></pre><p>
+          </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">SELECT HEX(column_name)
+FROM table_name;</code></pre><p>
 <code>3F</code> is the encoding for the
             <code>?</code> character; this means that
             <code>?</code> is the character actually stored in the
@@ -212,17 +212,17 @@ FROM <em class="replaceable">table_name</em>;</code></pre><p>
             set to the target character set.
           </p></li><li class="listitem"><p>
 <span class="emphasis"><em>Make sure that a round trip is possible. When you
-            select <em class="replaceable"><code>literal</code></em> (or
-            <em class="replaceable"><code>_introducer hexadecimal-value</code></em>),
-            do you obtain <em class="replaceable"><code>literal</code></em> as a
+            select <code>literal</code> (or
+            <code>_introducer hexadecimal-value</code>),
+            do you obtain <code>literal</code> as a
             result</em></span>?
           </p><p>
             For example, the Japanese Katakana character
-            <em class="foreignphrase">Pe</em> (<code>ペ'</code>)
+            Pe (<code>ペ'</code>)
             exists in all CJK character sets, and has the code point
             value (hexadecimal coding) <code>0x30da</code>. To
             test a round trip for this character, use this query:
-          </p><pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">SELECT 'ペ' AS `ペ`;         /* or SELECT _ucs2 0x30da; */</code></pre><p>
+          </p><pre class="programlisting copytoclipboard language-sql one-line"><code>SELECT 'ペ' AS `ペ`;         /* or SELECT _ucs2 0x30da; */</code></pre><p>
             If the result is not also <code>ペ</code>, the round
             trip failed.
           </p><p>
@@ -281,7 +281,7 @@ FROM <em class="replaceable">table_name</em>;</code></pre><p>
             results settings. The <a class="link" href="set-names.html" title="13.7.4.3 SET NAMES Statement"><code>SET
             NAMES</code></a>. statement changes all three at once. For
             example:
-          </p><pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">SET NAMES 'big5';</code></pre><p>
+          </p><pre class="programlisting copytoclipboard language-sql one-line"><code>SET NAMES 'big5';</code></pre><p>
             Once the setting is correct, you can make it permanent by
             editing <code>my.cnf</code> or
             <code>my.ini</code>. For example you might add lines
@@ -297,7 +297,7 @@ default-character-set=big5</code></pre><p>
             information.
 </p></li></ul>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.3.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.11.3.</b></td><td align="left" valign="top"><p>
         What problems should I be aware of when working with the Big5
         Chinese character set?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -310,7 +310,7 @@ default-character-set=big5</code></pre><p>
         A feature request for adding <code>HKSCS</code> extensions
         has been filed. People who need this extension may find the
         suggested patch for Bug #13577 to be of interest.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.4.</b></td><td align="left" valign="top"><p>
         Why do Japanese character set conversions fail?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         MySQL supports the <code>sjis</code>,
@@ -521,19 +521,19 @@ default-character-set=big5</code></pre><p>
         (Unicode <code>U+00AC</code>) to <code>sjis</code>
         code point <code>0x81CA</code> and to
         <code>cp932</code> code point <code>3F</code>.
-        (<code>3F</code> is the question mark (“<span class="quote">?”</span>.
+        (<code>3F</code> is the question mark (“?”.
         This is what is always used when the conversion cannot be
         performed.)
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.5.</b></td><td align="left" valign="top"><p>
         What should I do if I want to convert SJIS
         <code>81CA</code> to <code>cp932</code>?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Our answer is: “<span class="quote">?”</span>. There are disadvantages to
-        this, and many people would prefer a “<span class="quote">loose”</span>
+        Our answer is: “?”. There are disadvantages to
+        this, and many people would prefer a “loose”
         conversion, so that <code>81CA (NOT SIGN)</code> in
         <code>sjis</code> becomes <code>81CA (FULLWIDTH NOT
         SIGN)</code> in <code>cp932</code>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.6.</b></td><td align="left" valign="top"><p>
         How does MySQL represent the Yen (<code>¥</code>) sign?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         A problem arises because some versions of Japanese character
@@ -547,17 +547,17 @@ default-character-set=big5</code></pre><p>
         Standards) standard description. In MySQL,
         <span class="emphasis"><em><code>5C</code> is always the reverse solidus
         (<code>\</code>)</em></span>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.7.</b></td><td align="left" valign="top"><p>
         Of what issues should I be aware when working with Korean
         character sets in MySQL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         In theory, while there have been several versions of the
         <code>euckr</code> (<span class="firstterm">Extended
         Unix Code Korea</span>) character set, only one problem has
-        been noted. We use the “<span class="quote">ASCII”</span> variant of EUC-KR,
+        been noted. We use the “ASCII” variant of EUC-KR,
         in which the code point <code>0x5c</code> is REVERSE
         SOLIDUS, that is <code>\</code>, instead of the
-        “<span class="quote">KS-Roman”</span> variant of EUC-KR, in which the code
+        “KS-Roman” variant of EUC-KR, in which the code
         point <code>0x5c</code> is <code>WON SIGN</code>
         (<code>₩</code>). This means that you cannot convert
         Unicode <code>U+20A9</code> to <code>euckr</code>:
@@ -568,7 +568,7 @@ default-character-set=big5</code></pre><p>
 | euckr | hexeuckr |
 +-------+----------+
 | ?     | 3F       |
-+-------+----------+</code></pre></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.8.</b></p></td><td align="left" valign="top"><p>
++-------+----------+</code></pre></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.8.</b></td><td align="left" valign="top"><p>
         Why do I get Incorrect string value error
         messages?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -618,7 +618,7 @@ Message: Incorrect string value: '\xE6\xB1\x8CB' for column 'gb2312' at row 1</c
             fails.
 </p></li></ol>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.9.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.11.9.</b></td><td align="left" valign="top"><p>
         Why does my GUI front end or browser display CJK characters
         incorrectly in my application using Access, PHP, or another API?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -640,8 +640,8 @@ Message: Incorrect string value: '\xE6\xB1\x8CB' for column 'gb2312' at row 1</c
 Session.CodePage=0
 Dim strConnection
 Dim Conn
-strConnection="driver={MySQL ODBC 3.51 Driver};server=<em class="replaceable">server</em>;uid=<em class="replaceable">username</em>;" \
-               &amp; "pwd=<em class="replaceable">password</em>;database=<em class="replaceable">database</em>;stmt=SET NAMES 'big5';"
+strConnection="driver={MySQL ODBC 3.51 Driver};server=server;uid=username;" \
+               &amp; "pwd=password;database=database;stmt=SET NAMES 'big5';"
 Set Conn = Server.CreateObject("ADODB.Connection")
 Conn.Open strConnection
 %&gt;</code></pre><p>
@@ -679,15 +679,15 @@ Conn.Open strConnection
       </p><p>
         If you are using Connector/J, see
         Using Character Sets and Unicode.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.10.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.10.</b></td><td align="left" valign="top"><p>
         I've upgraded to MySQL 5.7. How can I revert to
         behavior like that in MySQL 4.0 with regard to character sets?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        In MySQL Version 4.0, there was a single “<span class="quote">global”</span>
+        In MySQL Version 4.0, there was a single “global”
         character set for both server and client, and the decision as to
         which character to use was made by the server administrator.
         This changed starting with MySQL Version 4.1. What happens now
-        is a “<span class="quote">handshake”</span>, as described in
+        is a “handshake”, as described in
         Section 10.4, “Connection Character Sets and Collations”:
 </p>
 <div class="blockquote">
@@ -706,15 +706,15 @@ Conn.Open strConnection
 <p>
         The effect of this is that you cannot control the client
         character set by starting <strong>mysqld</strong> with
-        <code class="option">--character-set-server=utf8</code>.
+        <code>--character-set-server=utf8</code>.
         However, some Asian customers prefer the MySQL 4.0 behavior. To
         make it possible to retain this behavior, we added a
         <strong>mysqld</strong> switch,
-        <code class="option">--character-set-client-handshake</code>,
+        <code>--character-set-client-handshake</code>,
         which can be turned off with
-        <code class="option">--skip-character-set-client-handshake</code>.
+        <code>--skip-character-set-client-handshake</code>.
         If you start <strong>mysqld</strong> with
-        <code class="option">--skip-character-set-client-handshake</code>,
+        <code>--skip-character-set-client-handshake</code>,
         then, when a client connects, it sends to the server the name of
         the character set that it wants to use. However, <span class="emphasis"><em>the
         server ignores this request from the client</em></span>.
@@ -724,10 +724,10 @@ Conn.Open strConnection
         client uses <code>utf8</code> because this is what the
         client's operating system supports. Start the server with
         <code>latin1</code> as its default character set:
-      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code class="language-terminal">mysqld --character-set-server=latin1</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code>mysqld --character-set-server=latin1</code></pre><p>
         And then start the client with the default character set
         <code>utf8</code>:
-      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code class="language-terminal">mysql --default-character-set=utf8</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code>mysql --default-character-set=utf8</code></pre><p>
         The resulting settings can be seen by viewing the output of
         <code>SHOW VARIABLES</code>:
       </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">mysql&gt; SHOW VARIABLES LIKE 'char%';
@@ -746,7 +746,7 @@ Conn.Open strConnection
         Now stop the client, and stop the server using
         <strong>mysqladmin</strong>. Then start the server again, but
         this time tell it to skip the handshake like so:
-      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code class="language-terminal">mysqld --character-set-server=utf8 --skip-character-set-client-handshake</code></pre><p>
+      </p><pre class="programlisting copytoclipboard language-terminal one-line"><code>mysqld --character-set-server=utf8 --skip-character-set-client-handshake</code></pre><p>
         Start the client with <code>utf8</code> once again as the
         default character set, then display the resulting settings:
       </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">mysql&gt; SHOW VARIABLES LIKE 'char%';
@@ -765,9 +765,9 @@ Conn.Open strConnection
         As you can see by comparing the differing results from
         <code>SHOW VARIABLES</code>, the server
         ignores the client's initial settings if the
-        <code class="option">--skip-character-set-client-handshake</code>
+        <code>--skip-character-set-client-handshake</code>
         option is used.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.11.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.11.</b></td><td align="left" valign="top"><p>
         Why do some <code>LIKE</code> and
         <code>FULLTEXT</code> searches with CJK characters fail?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -809,8 +809,8 @@ Conn.Open strConnection
         list, which means that we would have to include a dictionary in
         the server for each Asian language supported. This is simply not
         feasible.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.12.</b></p></td><td align="left" valign="top"><p>
-        How do I know whether character <em class="replaceable"><code>X</code></em> is
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.12.</b></td><td align="left" valign="top"><p>
+        How do I know whether character <code>X</code> is
         available in all character sets?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The majority of simplified Chinese and basic nonhalfwidth
@@ -872,7 +872,7 @@ DELIMITER ;</code></pre><p>
         <code>ucs2</code> encodings and names
         (http://www.unicode.org/Public/UNIDATA/UnicodeData.txt),
         we know that the Katakana character
-        <em class="foreignphrase">Pe</em> appears in all CJK character
+        Pe appears in all CJK character
         sets, and that its code value is <code>X'30DA'</code>. If
         we use this value as the argument to
         <code>p_convert()</code>, the result is as shown here:
@@ -885,7 +885,7 @@ DELIMITER ;</code></pre><p>
         Since none of the column values is <code>3F</code> (that
         is, the question mark character, <code>?</code>), we know
         that every conversion worked.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.13.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.13.</b></td><td align="left" valign="top"><p>
         Why do CJK strings sort incorrectly in Unicode? (I)
 </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top">
 <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
@@ -916,7 +916,7 @@ Note
             http://www.unicode.org/Public/UCA/4.0.0/allkeys-4.0.0.txt
 </p><p>
             This includes
-            <code><em class="replaceable"><code>xxx</code></em>_unicode_ci</code>
+            <code><code>xxx</code>_unicode_ci</code>
             collations with no version number in the collation name.
           </p></li><li class="listitem"><p>
             UCA 5.2.0 table:
@@ -968,7 +968,7 @@ mysql&gt; SELECT * FROM tj WHERE s1 = 'か';
         table, and find these lines:
       </p><pre class="programlisting copytoclipboard language-none"><code class="language-none">304B  ; [.1E57.0020.000E.304B] # HIRAGANA LETTER KA
 304C  ; [.1E57.0020.000E.304B][.0000.0140.0002.3099] # HIRAGANA LETTER GA; QQCM</code></pre><p>
-        The official Unicode names (following the “<span class="quote">#”</span> mark)
+        The official Unicode names (following the “#” mark)
         tell us the Japanese syllabary (Hiragana), the informal
         classification (letter, digit, or punctuation mark), and the
         Western identifier (<code>KA</code> or
@@ -986,13 +986,13 @@ mysql&gt; SELECT * FROM tj WHERE s1 = 'か';
         <code>utf8_general_ci</code>), or to compare the
         <code>HEX()</code> values, or use
         <code>ORDER BY CONVERT(s1 USING sjis)</code>. Being
-        correct “<span class="quote">according to Unicode”</span> is not enough, of
+        correct “according to Unicode” is not enough, of
         course: the person who submitted the bug was equally correct. To
         solve this, we need another collation for Japanese according to
         the JIS X 4061 standard, in which voiced/unvoiced letter pairs
         like <code>KA</code>/<code>GA</code> are
         distinguishable for ordering purposes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.14.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.14.</b></td><td align="left" valign="top"><p>
         Why do CJK strings sort incorrectly in Unicode? (II)
 </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top">
 <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
@@ -1048,10 +1048,10 @@ Create Table: CREATE TABLE `t` (
 | ucs2    | UCS-2 Unicode | ucs2_general_ci   |      2 |
 +---------+---------------+-------------------+--------+</code></pre><p>
         For <code>ucs2</code> and <code>utf8</code>, the
-        default collation is “<span class="quote">general”</span>. To specify a
+        default collation is “general”. To specify a
         Unicode UCA collation, use <code>COLLATE
         ucs2_unicode_ci</code>, as shown in the preceding item.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.15.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.15.</b></td><td align="left" valign="top"><p>
         Why are my supplementary characters rejected by MySQL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Supplementary characters lie outside the Unicode <span class="emphasis"><em>Basic
@@ -1072,7 +1072,7 @@ Create Table: CREATE TABLE `t` (
             The <code>utf8</code> character set permits only
             <code>UTF-8</code> characters that take up to three
             bytes. This has led to reports such as that found in Bug
-            #12600, which we rejected as “<span class="quote">not a bug”</span>. With
+            #12600, which we rejected as “not a bug”. With
             <code>utf8</code>, MySQL must truncate an input string
             when it encounters bytes that it does no understand.
             Otherwise, it is unknown how long the bad multibyte
@@ -1080,7 +1080,7 @@ Create Table: CREATE TABLE `t` (
           </p><p>
             One possible workaround is to use <code>ucs2</code>
             instead of <code>utf8</code>, in which case the
-            “<span class="quote">bad”</span> characters are changed to question marks.
+            “bad” characters are changed to question marks.
             However, no truncation takes place. You can also change the
             data type to <code>BLOB</code> or
             <code>BINARY</code>, which perform no
@@ -1092,10 +1092,10 @@ Create Table: CREATE TABLE `t` (
             supplementary characters outside the BMP.
 </p></li></ul>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.16.</b></p></td><td align="left" valign="top"><p>
-        Should “<span class="quote">CJK”</span> be “<span class="quote">CJKV”</span>?
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.11.16.</b></td><td align="left" valign="top"><p>
+        Should “CJK” be “CJKV”?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        No. The term “<span class="quote">CJKV”</span>
+        No. The term “CJKV”
         (<span class="firstterm">Chinese Japanese Korean
         Vietnamese</span>) refers to Vietnamese character sets which
         contain Han (originally Chinese) characters. MySQL supports the
@@ -1105,18 +1105,18 @@ Create Table: CREATE TABLE `t` (
         As of MySQL 5.6, there are Vietnamese collations for Unicode
         character sets, as described in
         Section 10.10.1, “Unicode Character Sets”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.17.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.17.</b></td><td align="left" valign="top"><p>
         Does MySQL permit CJK characters to be used in database and
         table names?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.18.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.18.</b></td><td align="left" valign="top"><p>
         Where can I find translations of the MySQL Manual into Chinese,
         Japanese, and Korean?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The Japanese translation of the MySQL 5.6 manual can be
         downloaded from https://dev.mysql.com/doc/.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.11.19.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.11.19.</b></td><td align="left" valign="top"><p>
         Where can I get help with CJK and related issues in MySQL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The following resources are available:

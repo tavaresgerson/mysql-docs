@@ -84,9 +84,9 @@ the anchor point.
   the `'G'` character:
 
   ```sql
-  <p>G</p>
+  G
 
-  <p>\u0047</p>
+  \u0047
   ```
 
 * The `<i>` shift rule indicates that
@@ -131,7 +131,7 @@ the anchor point.
 
   ```sql
   <reset>abc</reset>
-  <p>z</p>
+  z
   ```
 
 * A contraction is a shift rule that sorts a
@@ -142,7 +142,7 @@ the anchor point.
 
   ```sql
   <reset>a</reset>
-  <p>xyz</p>
+  xyz
   ```
 
 * Long expansions and long contractions can be used
@@ -152,7 +152,7 @@ the anchor point.
 
   ```sql
   <reset>abc</reset>
-  <p>xyz</p>
+  xyz
   ```
 
 * Normal expansion syntax uses `<x>`
@@ -205,7 +205,7 @@ the anchor point.
 
   ```sql
   <reset>a</reset>
-  <x><context>abc</context><p>def</p><extend>ghi</extend></x>
+  <x><context>abc</context>def<extend>ghi</extend></x>
   ```
 
 * Reset rules permit a `before` attribute.
@@ -219,7 +219,7 @@ the anchor point.
 
   ```sql
   <reset before="primary">a</reset>
-  <p>b</p>
+  b
   ```
 
   Permissible `before` attribute values
@@ -262,7 +262,7 @@ the anchor point.
 
   ```sql
   <reset><last_non_ignorable/></reset>
-  <p>z</p>
+  z
   ```
 
   Logical positions have the code points shown in the

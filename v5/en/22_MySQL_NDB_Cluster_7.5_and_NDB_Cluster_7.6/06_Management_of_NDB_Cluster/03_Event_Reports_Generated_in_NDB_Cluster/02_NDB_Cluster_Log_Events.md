@@ -146,7 +146,7 @@ process, including information concerning logging activities.
 <th><code>StartPhaseCompleted</code></th>
 <td>4</td>
 <td><code>INFO</code></td>
-<td>Data node start phase <em class="replaceable"><code>X</code></em> completed</td>
+<td>Data node start phase <code>X</code> completed</td>
 </tr><tr>
 <th><code>CM_REGCONF</code></th>
 <td>3</td>
@@ -189,15 +189,15 @@ process, including information concerning logging activities.
 <th><code>StartREDOLog</code></th>
 <td>4</td>
 <td><code>INFO</code></td>
-<td>New redo log started; GCI keep <em class="replaceable"><code>X</code></em>, newest
-              restorable GCI <em class="replaceable"><code>Y</code></em></td>
+<td>New redo log started; GCI keep <code>X</code>, newest
+              restorable GCI <code>Y</code></td>
 </tr><tr>
 <th><code>StartLog</code></th>
 <td>10</td>
 <td><code>INFO</code></td>
-<td>New log started; log part <em class="replaceable"><code>X</code></em>, start MB
-              <em class="replaceable"><code>Y</code></em>, stop MB
-              <em class="replaceable"><code>Z</code></em></td>
+<td>New log started; log part <code>X</code>, start MB
+              <code>Y</code>, stop MB
+              <code>Z</code></td>
 </tr><tr>
 <th><code>UNDORecordsExecuted</code></th>
 <td>15</td>
@@ -296,26 +296,26 @@ possible outcomes when seeking an arbitrator, listed here:
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
                     Management server restarts arbitration thread
-                    [state=<em class="replaceable"><code>X</code></em>]
+                    [state=<code>X</code>]
                   </p></li><li class="listitem"><p>
-                    Prepare arbitrator node <em class="replaceable"><code>X</code></em>
-                    [ticket=<em class="replaceable"><code>Y</code></em>]
+                    Prepare arbitrator node <code>X</code>
+                    [ticket=<code>Y</code>]
                   </p></li><li class="listitem"><p>
-                    Receive arbitrator node <em class="replaceable"><code>X</code></em>
-                    [ticket=<em class="replaceable"><code>Y</code></em>]
+                    Receive arbitrator node <code>X</code>
+                    [ticket=<code>Y</code>]
                   </p></li><li class="listitem"><p>
-                    Started arbitrator node <em class="replaceable"><code>X</code></em>
-                    [ticket=<em class="replaceable"><code>Y</code></em>]
+                    Started arbitrator node <code>X</code>
+                    [ticket=<code>Y</code>]
                   </p></li><li class="listitem"><p>
-                    Lost arbitrator node <em class="replaceable"><code>X</code></em> -
-                    process failure [state=<em class="replaceable"><code>Y</code></em>]
+                    Lost arbitrator node <code>X</code> -
+                    process failure [state=<code>Y</code>]
                   </p></li><li class="listitem"><p>
-                    Lost arbitrator node <em class="replaceable"><code>X</code></em> -
-                    process exit [state=<em class="replaceable"><code>Y</code></em>]
+                    Lost arbitrator node <code>X</code> -
+                    process exit [state=<code>Y</code>]
                   </p></li><li class="listitem"><p>
-                    Lost arbitrator node <em class="replaceable"><code>X</code></em>
+                    Lost arbitrator node <code>X</code>
                     &lt;error msg&gt;
-                    [state=<em class="replaceable"><code>Y</code></em>]
+                    [state=<code>Y</code>]
 </p></li></ul>
 </div>
 </td>
@@ -336,10 +336,10 @@ for arbitration attempts, listed here:
                     Network partitioning: arbitration required
                   </p></li><li class="listitem"><p>
                     Arbitration succeeded: affirmative response from
-                    node <em class="replaceable"><code>X</code></em>
+                    node <code>X</code>
 </p></li><li class="listitem"><p>
                     Arbitration failed: negative response from node
-                    <em class="replaceable"><code>X</code></em>
+                    <code>X</code>
 </p></li><li class="listitem"><p>
                     Network partitioning: no arbitrator available
                   </p></li><li class="listitem"><p>
@@ -366,7 +366,7 @@ for arbitration attempts, listed here:
 <th><code>LCP_TakeoverCompleted</code></th>
 <td>7</td>
 <td><code>INFO</code></td>
-<td>LCP takeover complete (state = <em class="replaceable"><code>X</code></em>)</td>
+<td>LCP takeover complete (state = <code>X</code>)</td>
 </tr><tr>
 <th><code>ConnectCheckStarted</code></th>
 <td>6</td>
@@ -429,12 +429,12 @@ and memory usage.
 <th><code>SendBytesStatistic</code></th>
 <td>9</td>
 <td><code>INFO</code></td>
-<td>Mean number of bytes sent to node <em class="replaceable"><code>X</code></em></td>
+<td>Mean number of bytes sent to node <code>X</code></td>
 </tr><tr>
 <th><code>ReceiveBytesStatistic</code></th>
 <td>9</td>
 <td><code>INFO</code></td>
-<td>Mean number of bytes received from node <em class="replaceable"><code>X</code></em></td>
+<td>Mean number of bytes received from node <code>X</code></td>
 </tr><tr>
 <th><code>MemoryUsage</code></th>
 <td>5</td>
@@ -502,13 +502,13 @@ malfunction or failure has occurred.
 <th><code>MissedHeartbeat</code></th>
 <td>8</td>
 <td><code>WARNING</code></td>
-<td>Node <em class="replaceable"><code>X</code></em> missed heartbeat number
-              <em class="replaceable"><code>Y</code></em></td>
+<td>Node <code>X</code> missed heartbeat number
+              <code>Y</code></td>
 </tr><tr>
 <th><code>DeadDueToHeartbeat</code></th>
 <td>8</td>
 <td><code>ALERT</code></td>
-<td>Node <em class="replaceable"><code>X</code></em> declared “<span class="quote">dead”</span> due to
+<td>Node <code>X</code> declared “dead” due to
               missed heartbeat</td>
 </tr><tr>
 <th><code>WarningEvent</code></th>

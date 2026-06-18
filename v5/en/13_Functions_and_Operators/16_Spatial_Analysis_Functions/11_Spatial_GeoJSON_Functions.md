@@ -45,7 +45,7 @@ values. For more information, see [Section 11.5, “The JSON Data Type”](json
 <th>Meaning</th>
 </tr></thead><tbody><tr>
 <td>0</td>
-<td>No options. This is the default if <em class="replaceable"><code>options</code></em> is
+<td>No options. This is the default if <code>options</code> is
                 not specified.</td>
 </tr><tr>
 <td>1</td>
@@ -54,11 +54,11 @@ values. For more information, see [Section 11.5, “The JSON Data Type”](json
 <td>2</td>
 <td>Add a short-format CRS URN to the output. The default format is a short
                 format
-                (<code>EPSG:<em class="replaceable"><code>srid</code></em></code>).</td>
+                (<code>EPSG:<code>srid</code></code>).</td>
 </tr><tr>
 <td>4</td>
 <td>Add a long-format CRS URN
-                (<code>urn:ogc:def:crs:EPSG::<em class="replaceable"><code>srid</code></em></code>).
+                (<code>urn:ogc:def:crs:EPSG::<code>srid</code></code>).
                 This flag overrides flag 2. For example, option values
                 of 5 and 7 mean the same (add a bounding box and a
                 long-format CRS URN).</td>
@@ -95,7 +95,7 @@ values. For more information, see [Section 11.5, “The JSON Data Type”](json
 </tr></thead><tbody><tr>
 <td>1</td>
 <td>Reject the document and produce an error. This is the default if
-                <em class="replaceable"><code>options</code></em> is not specified.</td>
+                <code>options</code> is not specified.</td>
 </tr><tr>
 <td>2, 3, 4</td>
 <td>Accept the document and strip off the coordinates for higher coordinate

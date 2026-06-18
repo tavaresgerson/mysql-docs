@@ -93,5 +93,5 @@ descriptions in this section is shown in the following table:
 <th>I</th>
 <td>Initial</td>
 <td>Data nodes must be restarted using the
-              <code class="option">--initial</code> option</td>
+              <code>--initial</code> option</td>
 </tr></tbody></table>

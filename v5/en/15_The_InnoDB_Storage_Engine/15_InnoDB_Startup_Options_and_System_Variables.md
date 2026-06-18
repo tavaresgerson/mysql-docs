@@ -1527,7 +1527,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>
 
   Controls loading of the `InnoDB` storage
@@ -1819,7 +1819,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>0
 
   Specifies whether to dynamically adjust the rate of flushing
@@ -1843,7 +1843,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>1
 
   Defines the low water mark representing percentage of
@@ -1863,7 +1863,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>2
 
   Whether the `InnoDB`
@@ -1903,7 +1903,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>3
 
   Partitions the adaptive hash index search system. Each index
@@ -1932,7 +1932,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>4
 
   Permits `InnoDB` to automatically adjust the
@@ -1963,7 +1963,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>5
 
   How often to auto-commit idle connections that use the
@@ -1982,7 +1982,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>6
 
   Use this option to disable row locks when
@@ -2016,7 +2016,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>7
 
   Lets you use the `InnoDB`
@@ -2036,7 +2036,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>8
 
   Locks the table used by the `InnoDB`
@@ -2056,7 +2056,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>9
 
   Controls the transaction
@@ -5472,7 +5472,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>00
 
   Defines a threshold size for undo tablespaces. If an undo
@@ -5495,7 +5495,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>01
 
   Defines a page-full percentage value for index pages that
@@ -5517,7 +5517,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>02
 
   This variable acts as a switch, disabling
@@ -5545,7 +5545,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>03
 
   This variable acts as a switch, enabling
@@ -5573,7 +5573,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>04
 
   This variable acts as a switch, resetting the count value for
@@ -5601,7 +5601,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>05
 
   This variable acts as a switch, resetting all values (minimum,
@@ -5623,7 +5623,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>06
 
   Enables the NUMA interleave memory policy for allocation of
@@ -5656,7 +5656,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>07
 
   Specifies the approximate percentage of the
@@ -5685,7 +5685,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>08
 
   Non-zero values protect against the
@@ -5731,7 +5731,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>09
 
   Specifies an upper limit in bytes on the size of the temporary
@@ -5763,7 +5763,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>10
 
   Specifies the maximum number of files that
@@ -5786,7 +5786,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>11
 
   Changes the way [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement")
@@ -5816,7 +5816,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>12
 
   The number of page cleaner threads that flush dirty pages from
@@ -5922,7 +5922,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>13
 
   Specifies the [page size](glossary.html#glos_page_size "page size")
@@ -5989,7 +5989,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>14
 
   When this option is enabled, information about all
@@ -6026,7 +6026,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>15
 
   Defines the number of undo log pages that purge parses and
@@ -6063,7 +6063,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>16
 
   The number of background threads devoted to the
@@ -6088,7 +6088,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>17
 
   Defines the frequency with which the purge system frees
@@ -6116,7 +6116,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>18
 
   Enables the random
@@ -6140,7 +6140,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>19
 
   Controls the sensitivity of linear
@@ -6203,7 +6203,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>20
 
   The number of I/O threads for read operations in
@@ -6237,7 +6237,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>21
 
   Starts `InnoDB` in read-only mode. For
@@ -6257,7 +6257,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>22
 
   The replication thread delay in milliseconds on a replica
@@ -6276,7 +6276,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>23
 
   `InnoDB` [rolls
@@ -6301,7 +6301,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>24
 
   Defines the number of
@@ -6361,7 +6361,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>25
 
   Saves a page number. Setting the
@@ -6385,7 +6385,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>26
 
   This variable defines:
@@ -6413,7 +6413,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>27
 
   The maximum delay between polls for a
@@ -6435,7 +6435,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>28
 
   Causes `InnoDB` to automatically recalculate
@@ -6468,7 +6468,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>29
 
   By default, `InnoDB` reads uncommitted data
@@ -6510,7 +6510,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>30
 
   How the server treats `NULL` values when
@@ -6546,7 +6546,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>31
 
   This option only applies when optimizer
@@ -6595,7 +6595,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>32
 
   Specifies whether `InnoDB` index statistics
@@ -6626,7 +6626,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>33
 
   The number of index [pages](glossary.html#glos_page "page") to
@@ -6672,7 +6672,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>34
 
   Deprecated. Use
@@ -6690,7 +6690,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>35
 
   The number of index [pages](glossary.html#glos_page "page") to
@@ -6740,7 +6740,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>36
 
   Enables or disables periodic output for the standard
@@ -6762,7 +6762,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>37
 
   Enables or disables the `InnoDB` Lock
@@ -6789,7 +6789,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>38
 
   When [`innodb_strict_mode`](innodb-parameters.html#sysvar_innodb_strict_mode) is
@@ -6838,7 +6838,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>39
 
   Enables `InnoDB` support for two-phase commit
@@ -6875,7 +6875,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>40
 
   Defines the size of the mutex/lock wait array. Increasing the
@@ -6898,7 +6898,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>41
 
   The number of times a thread waits for an
@@ -6916,7 +6916,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>42
 
   Enables sync debug checking for the `InnoDB`
@@ -6943,7 +6943,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>43
 
   If [`autocommit = 0`](server-system-variables.html#sysvar_autocommit),
@@ -6980,7 +6980,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>44
 
   Defines the relative path, name, size, and attributes of
@@ -7078,7 +7078,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>45
 
   Defines the maximum number of threads permitted inside of
@@ -7190,7 +7190,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>46
 
   Defines how long `InnoDB` threads sleep
@@ -7221,7 +7221,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>47
 
   Used to define an alternate directory for temporary sort files
@@ -7295,7 +7295,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>48
 
   Pauses purging of delete-marked records while allowing the
@@ -7317,7 +7317,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>49
 
   Sets a debug flag that limits
@@ -7339,7 +7339,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>50
 
   The path where `InnoDB` creates undo
@@ -7367,7 +7367,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>51
 
   When enabled, undo tablespaces that exceed the threshold value
@@ -7402,7 +7402,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>52
 
   Note
@@ -7431,7 +7431,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>53
 
   The number of [undo
@@ -7499,7 +7499,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>54
 
   Specifies whether to use the Linux asynchronous I/O subsystem.
@@ -7559,7 +7559,7 @@
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>FORCE</code></p></td>
+<td><code>OFF</code><code>ON</code><code>FORCE</code></td>
 </tr></tbody></table>55
 
   The number of I/O threads for write operations in

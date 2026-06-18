@@ -18,7 +18,7 @@ A.1.8. [Why do I see multiple processes for mysqld?](faqs-general.html#faq-mysql
 
 A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-acid-transactions)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.1.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.1.1.</b></td><td align="left" valign="top"><p>
         Which version of MySQL is production-ready (GA)?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         MySQL 9.5, 8.4, and 8.0 are actively
@@ -60,11 +60,11 @@ A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-a
         MySQL 5.0 achieved General Availability (GA) status with MySQL
         5.0.15, which was released for production use on 19 October
         2005. Active development for MySQL 5.0 has ended.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.2.</b></td><td align="left" valign="top"><p>
         Can MySQL do subqueries?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. See Section 13.2.10, “Subqueries”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.3.</b></td><td align="left" valign="top"><p>
         Can MySQL perform multiple-table inserts, updates, and deletes?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. For the syntax required to perform multiple-table updates,
@@ -76,7 +76,7 @@ A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-a
         <code>INSERT</code> statements within a
         <code>BEGIN ... END</code> block. See
         Section 23.3, “Using Triggers”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.4.</b></td><td align="left" valign="top"><p>
         Does MySQL 5.7 have a Query Cache? Does it work on
         Server, Instance or Database?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -88,7 +88,7 @@ A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-a
         parsing or execution is necessary; the result is sent directly
         from the cache. Various tuning options are available. See
         Section 8.10.3, “The MySQL Query Cache”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.5.</b></td><td align="left" valign="top"><p>
         Does MySQL have Sequences?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No. However, MySQL has an <code>AUTO_INCREMENT</code>
@@ -101,12 +101,12 @@ A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-a
         <code>auto_increment_increment</code> value
         should be greater than the number of servers, and each server
         should have a unique offset.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.6.</b></td><td align="left" valign="top"><p>
         Does MySQL have a <code>NOW()</code> function
         with fractions of seconds?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes, see Section 11.2.7, “Fractional Seconds in Time Values”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.7.</b></td><td align="left" valign="top"><p>
         Does MySQL work with multi-core processors?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. MySQL is fully multithreaded, and makes use of all CPUs
@@ -136,7 +136,7 @@ A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-a
             CPU-bond part, adding CPUs may still be useful.
 </p></li></ul>
 </div>
-</td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.8.</b></p></td><td align="left" valign="top"><p>
+</td></tr><tr class="question"><td align="left" valign="top"><b>A.1.8.</b></td><td align="left" valign="top"><p>
         Why do I see multiple processes for <strong>mysqld</strong>?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
 <strong>mysqld</strong> is a single-process program, not a
@@ -146,7 +146,7 @@ A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-a
         entries for each thread of multithreaded processes, which may
         lead to the appearance of multiple <strong>mysqld</strong>
         processes when in fact there is only one.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.1.9.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.9.</b></td><td align="left" valign="top"><p>
         Can MySQL perform ACID transactions?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. All current MySQL versions support transactions. The

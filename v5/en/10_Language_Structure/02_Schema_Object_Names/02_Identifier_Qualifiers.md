@@ -114,19 +114,19 @@ type:
 <th>Column Reference</th>
 <th>Meaning</th>
 </tr></thead><tbody><tr>
-<td><em class="replaceable"><code>col_name</code></em></td>
-<td>Column <em class="replaceable"><code>col_name</code></em> from whichever table used in
+<td><code>col_name</code></td>
+<td>Column <code>col_name</code> from whichever table used in
                   the statement contains a column of that name</td>
 </tr><tr>
-<td><em class="replaceable"><code>tbl_name.col_name</code></em></td>
-<td>Column <em class="replaceable"><code>col_name</code></em> from table
-                  <em class="replaceable"><code>tbl_name</code></em> of the default
+<td><code>tbl_name.col_name</code></td>
+<td>Column <code>col_name</code> from table
+                  <code>tbl_name</code> of the default
                   database</td>
 </tr><tr>
-<td><em class="replaceable"><code>db_name.tbl_name.col_name</code></em></td>
-<td>Column <em class="replaceable"><code>col_name</code></em> from table
-                  <em class="replaceable"><code>tbl_name</code></em> of the database
-                  <em class="replaceable"><code>db_name</code></em></td>
+<td><code>db_name.tbl_name.col_name</code></td>
+<td>Column <code>col_name</code> from table
+                  <code>tbl_name</code> of the database
+                  <code>db_name</code></td>
 </tr></tbody></table>
 
   In other words, a column name may be given a table-name

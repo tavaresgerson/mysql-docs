@@ -94,7 +94,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect-string=connection-string</code>,
+<code>--connect-string=connection-string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-string">-c
@@ -116,7 +116,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--database=db_name</code>,
+<code>--database=db_name</code>,
               </p><p>
 <code class="option">
 -d
@@ -168,7 +168,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option">
 -?
@@ -190,7 +190,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--loops=#</code>,
+<code>--loops=#</code>,
               </p><p>
 <code class="option">
 -l
@@ -202,7 +202,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-connectstring=connection-string</code>,
+<code>--ndb-connectstring=connection-string</code>,
               </p><p>
 <code class="option">
 -c
@@ -216,7 +216,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-mgmd-host=connection-string</code>,
+<code>--ndb-mgmd-host=connection-string</code>,
               </p><p>
 <code class="option">
 -c
@@ -260,7 +260,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--parallelism=#</code>,
+<code>--parallelism=#</code>,
               </p><p>
 <code class="option">
 -p
@@ -282,7 +282,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--usage</code>,
+<code>--usage</code>,
               </p><p>
 <code class="option">
 -?
@@ -294,7 +294,7 @@ table. Additional descriptions follow the table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option">
 -V

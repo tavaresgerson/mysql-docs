@@ -1146,7 +1146,7 @@ types:
 <td>The geometry value is converted into a JSON document by calling
               <code>ST_AsGeoJSON()</code>.</td>
 <td>Illegal operation. Workaround: Pass the result of
-              <a class="link" href="cast-functions.html#function_cast"><code>CAST(<em class="replaceable"><code>json_val</code></em>
+              <a class="link" href="cast-functions.html#function_cast"><code>CAST(<code>json_val</code>
               AS CHAR)</code></a> to
               <code>ST_GeomFromGeoJSON()</code>.</td>
 </tr><tr>

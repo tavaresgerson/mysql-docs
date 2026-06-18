@@ -4,7 +4,7 @@ A.8.1. [Where can I find information on how to upgrade or downgrade MySQL?](faqs
 
 A.8.2. [How has storage engine (table type) support changed in MySQL 5.7 from previous versions?](faqs-migration.html#faq-mysql-how-storage-engines-changed)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.8.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.8.1.</b></td><td align="left" valign="top"><p>
         Where can I find information on how to upgrade or downgrade
         MySQL?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -16,7 +16,7 @@ A.8.2. [How has storage engine (table type) support changed in MySQL 5.7 from pr
         encounter problems during the upgrade, their origin is easier to
         identify, either by you or, if you have a MySQL Enterprise
         subscription, by MySQL support.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.8.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.8.2.</b></td><td align="left" valign="top"><p>
         How has storage engine (table type) support changed in MySQL
         5.7 from previous versions?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -28,10 +28,10 @@ A.8.2. [How has storage engine (table type) support changed in MySQL 5.7 from pr
               MySQL 5.0 and you should now use the
               <code>MyISAM</code> storage engine in place of
               <code>ISAM</code>. To convert a table
-              <em class="replaceable"><code>tblname</code></em> from
+              <code>tblname</code> from
               <code>ISAM</code> to <code>MyISAM</code>,
               simply issue a statement such as this one:
-            </p><pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">ALTER TABLE <em class="replaceable">tblname</em> ENGINE=MYISAM;</code></pre></li><li class="listitem"><p>
+            </p><pre class="programlisting copytoclipboard language-sql one-line"><code>ALTER TABLE tblname ENGINE=MYISAM;</code></pre></li><li class="listitem"><p>
               Internal <code>RAID</code> for
               <code>MyISAM</code> tables was also removed in MySQL
               5.0. This was formerly used to allow large tables in file

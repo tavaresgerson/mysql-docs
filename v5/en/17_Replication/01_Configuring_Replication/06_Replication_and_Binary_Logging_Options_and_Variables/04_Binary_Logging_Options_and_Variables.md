@@ -428,7 +428,7 @@ These are enabled using the two options listed here:
 </tr><tr><th>Default Value</th>
 <td><code>CRC32</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>CRC32</code></p></td>
+<td><code>NONE</code><code>CRC32</code></td>
 </tr></tbody></table>
 
   Enabling this option causes the source to write checksums
@@ -545,7 +545,7 @@ in this section.
 </tr><tr><th>Default Value</th>
 <td><code>CRC32</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>CRC32</code></p></td>
+<td><code>NONE</code><code>CRC32</code></td>
 </tr></tbody></table>
 
   When enabled, this variable causes the source to write a

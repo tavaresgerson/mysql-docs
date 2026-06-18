@@ -258,7 +258,7 @@ extension running on a Web server elsewhere on the network:
 </table>
 <?
   # ...and verify the number of rows that were retrieved
-    printf("<p>Affected rows: %d</p>\n", $link->affected_rows);
+    printf("Affected rows: %d\n", $link->affected_rows);
   }
   else
     # otherwise, tell us what went wrong

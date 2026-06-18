@@ -56,22 +56,22 @@ A.4.27. [Do the preceding limitations affect the ability of MySQL to do point-in
 
 A.4.28. [What is being done to correct the aforementioned limitations?](faqs-stored-procs.html#faq-mysql-when-limitations-resolved)
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.4.1.</b></p></td><td align="left" valign="top"><p>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.4.1.</b></td><td align="left" valign="top"><p>
         Does MySQL support stored procedures and functions?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. MySQL supports two types of stored routines, stored
         procedures, and stored functions.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.2.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.2.</b></td><td align="left" valign="top"><p>
         Where can I find documentation for MySQL stored procedures and
         stored functions?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         See Section 23.2, “Using Stored Routines”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.3.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.3.</b></td><td align="left" valign="top"><p>
         Is there a discussion forum for MySQL stored procedures?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. See
         https://forums.mysql.com/list.php?98.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.4.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.4.</b></td><td align="left" valign="top"><p>
         Where can I find the ANSI SQL 2003 specification for stored
         procedures?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -81,7 +81,7 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         Really</em> by Peter Gulutzan and Trudy Pelzer, that
         provide a comprehensive overview of the standard, including
         coverage of stored procedures.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.5.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.5.</b></td><td align="left" valign="top"><p>
         How do you manage stored routines?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         It is always good practice to use a clear naming scheme for your
@@ -94,16 +94,16 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         <code>ROUTINES</code> table in the
         <code>INFORMATION_SCHEMA</code> database (see
         Section 24.3.21, “The INFORMATION_SCHEMA ROUTINES Table”).
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.6.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.6.</b></td><td align="left" valign="top"><p>
         Is there a way to view all stored procedures and stored
         functions in a given database?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Yes. For a database named <em class="replaceable"><code>dbname</code></em>, use
+        Yes. For a database named <code>dbname</code>, use
         this query on the
         <code>INFORMATION_SCHEMA.ROUTINES</code> table:
       </p><pre class="programlisting copytoclipboard language-sql"><code class="language-sql">SELECT ROUTINE_TYPE, ROUTINE_NAME
     FROM INFORMATION_SCHEMA.ROUTINES
-    WHERE ROUTINE_SCHEMA='<em class="replaceable">dbname</em>';</code></pre><p>
+    WHERE ROUTINE_SCHEMA='dbname';</code></pre><p>
         For more information, see
         Section 24.3.21, “The INFORMATION_SCHEMA ROUTINES Table”.
       </p><p>
@@ -112,7 +112,7 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         stored function) or <a class="link" href="show-create-procedure.html" title="13.7.5.9 SHOW CREATE PROCEDURE Statement"><code>SHOW CREATE
         PROCEDURE</code></a> (for a stored procedure). See
         Section 13.7.5.9, “SHOW CREATE PROCEDURE Statement”, for more information.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.7.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.7.</b></td><td align="left" valign="top"><p>
         Where are stored procedures stored?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         In the <code>proc</code> table of the
@@ -129,40 +129,40 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         and <code>SHOW CREATE PROCEDURE</code> to
         obtain information about stored procedures. See
         Section 13.7.5.9, “SHOW CREATE PROCEDURE Statement”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.8.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.8.</b></td><td align="left" valign="top"><p>
         Is it possible to group stored procedures or stored functions
         into packages?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No. This is not supported in MySQL.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.9.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.9.</b></td><td align="left" valign="top"><p>
         Can a stored procedure call another stored procedure?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.10.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.10.</b></td><td align="left" valign="top"><p>
         Can a stored procedure call a trigger?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         A stored procedure can execute an SQL statement, such as an
         <code>UPDATE</code>, that causes a trigger to
         activate.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.11.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.11.</b></td><td align="left" valign="top"><p>
         Can a stored procedure access tables?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. A stored procedure can access one or more tables as
         required.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.12.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.12.</b></td><td align="left" valign="top"><p>
         Do stored procedures have a statement for raising application
         errors?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. MySQL implements the SQL standard <code>SIGNAL</code>
         and <code>RESIGNAL</code> statements. See
         Section 13.6.7, “Condition Handling”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.13.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.13.</b></td><td align="left" valign="top"><p>
         Do stored procedures provide exception handling?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         MySQL implements <code>HANDLER</code>
         definitions according to the SQL standard. See
         Section 13.6.7.2, “DECLARE ... HANDLER Statement”, for details.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.14.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.14.</b></td><td align="left" valign="top"><p>
         Can MySQL stored routines return result sets?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
 <em>Stored procedures</em> can, but stored functions
@@ -173,27 +173,27 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         work. This means that, for example, in PHP, you need to use the
         <code>mysqli</code> extension rather than the old
         <code>mysql</code> extension.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.15.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.15.</b></td><td align="left" valign="top"><p>
         Is <code>WITH RECOMPILE</code> supported for stored
         procedures?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.16.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.16.</b></td><td align="left" valign="top"><p>
         Is there a MySQL equivalent to using
         <code>mod_plsql</code> as a gateway on Apache to talk
         directly to a stored procedure in the database?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         There is no equivalent in MySQL.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.17.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.17.</b></td><td align="left" valign="top"><p>
         Can I pass an array as input to a stored procedure?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         No.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.18.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.18.</b></td><td align="left" valign="top"><p>
         Can I pass a cursor as an <code>IN</code> parameter to a
         stored procedure?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Cursors are only available inside stored procedures.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.19.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.19.</b></td><td align="left" valign="top"><p>
         Can I return a cursor as an <code>OUT</code> parameter
         from a stored procedure?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -202,7 +202,7 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         <code>SELECT</code>, the result is sent
         directly to the client. You can also <code>SELECT
         INTO</code> variables. See Section 13.2.9, “SELECT Statement”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.20.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.20.</b></td><td align="left" valign="top"><p>
         Can I print out a variable's value within a stored routine for
         debugging purposes?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -214,20 +214,20 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         work. This means that, for example, in PHP, you need to use the
         <code>mysqli</code> extension rather than the old
         <code>mysql</code> extension.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.21.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.21.</b></td><td align="left" valign="top"><p>
         Can I commit or roll back transactions inside a stored
         procedure?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes. However, you cannot perform transactional operations within
         a stored function.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.22.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.22.</b></td><td align="left" valign="top"><p>
         Do MySQL stored procedures and functions work with replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         Yes, standard actions carried out in stored procedures and
         functions are replicated from a replication source server to a
         replica. There are a few limitations that are described in
         detail in Section 23.7, “Stored Program Binary Logging”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.23.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.23.</b></td><td align="left" valign="top"><p>
         Are stored procedures and functions created on a replication
         source server replicated to a replica?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -237,7 +237,7 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         servers. <code>ALTER</code> and <code>DROP</code>
         statements for stored procedures and functions are also
         replicated.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.24.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.24.</b></td><td align="left" valign="top"><p>
         How are actions that take place inside stored procedures and
         functions replicated?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -248,7 +248,7 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         Stored functions that change data are logged as function
         invocations, not as the DML events that occur inside each
         function.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.25.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.25.</b></td><td align="left" valign="top"><p>
         Are there special security requirements for using stored
         procedures and functions together with replication?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -273,7 +273,7 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
 </p></li></ol>
 </div>
 <p>
-</p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.26.</b></p></td><td align="left" valign="top"><p>
+</p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.26.</b></td><td align="left" valign="top"><p>
         What limitations exist for replicating stored procedure and
         function actions?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -303,13 +303,13 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
         <code>IGNORE</code> keyword so that updates on the source
         that cause errors are ignored and updates that do not cause
         errors are replicated to the replica.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.27.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.27.</b></td><td align="left" valign="top"><p>
         Do the preceding limitations affect the ability of MySQL to do
         point-in-time recovery?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         The same limitations that affect replication do affect
         point-in-time recovery.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.4.28.</b></p></td><td align="left" valign="top"><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.4.28.</b></td><td align="left" valign="top"><p>
         What is being done to correct the aforementioned limitations?
       </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
         You can choose either statement-based replication or row-based
@@ -319,8 +319,8 @@ A.4.28. [What is being done to correct the aforementioned limitations?](faqs-sto
       </p><p>
 Mixed replication is also
         available (by starting the server with
-        <code class="option">--binlog-format=mixed</code>). This
-        hybrid form of replication “<span class="quote">knows”</span> whether
+        <code>--binlog-format=mixed</code>). This
+        hybrid form of replication “knows” whether
         statement-level replication can safely be used, or row-level
         replication is required.
       </p><p>

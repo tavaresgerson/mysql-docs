@@ -54,8 +54,8 @@ table reorganization**
 
 <table><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr>
 <th>Failure during</th>
-<th>Failure in “<span class="quote">Old”</span> data node</th>
-<th>Failure in “<span class="quote">New”</span> data node</th>
+<th>Failure in “Old” data node</th>
+<th>Failure in “New” data node</th>
 <th>System Failure</th>
 </tr></thead><tbody><tr>
 <th>Node group creation</th>
@@ -64,7 +64,7 @@ table reorganization**
 <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><b>If a node other than the master fails: </b>
                       The creation of the node group is always rolled
                       forward.
-</p></li><li class="listitem"><p><b>If the master fails: </b></p>
+</p></li><li class="listitem"><b>If the master fails: </b>
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p><b>If the internal commit point has been reached: </b>
                           The creation of the node group is rolled
@@ -81,7 +81,7 @@ table reorganization**
 <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><b>If a node other than the master fails: </b>
                       The creation of the node group is always rolled
                       forward.
-</p></li><li class="listitem"><p><b>If the master fails: </b></p>
+</p></li><li class="listitem"><b>If the master fails: </b>
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p><b>If the internal commit point has been reached: </b>
                           The creation of the node group is rolled
@@ -112,7 +112,7 @@ table reorganization**
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><b>If a node other than the master fails: </b>
                       The table reorganization is always rolled forward.
-</p></li><li class="listitem"><p><b>If the master fails: </b></p>
+</p></li><li class="listitem"><b>If the master fails: </b>
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p><b>If the internal commit point has been reached: </b>
                           The table reorganization is rolled forward.
@@ -127,7 +127,7 @@ table reorganization**
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><b>If a node other than the master fails: </b>
                       The table reorganization is always rolled forward.
-</p></li><li class="listitem"><p><b>If the master fails: </b></p>
+</p></li><li class="listitem"><b>If the master fails: </b>
 <div class="itemizedlist">
 <ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p><b>If the internal commit point has been reached: </b>
                           The table reorganization is rolled forward.
@@ -144,14 +144,14 @@ table reorganization**
                       has reached the internal commit point: </b>
                       When the cluster is restarted, the data and
                       indexes belonging to
-                      <em class="replaceable"><code>table</code></em> are distributed
-                      using the “<span class="quote">new”</span> data nodes.
+                      <code>table</code> are distributed
+                      using the “new” data nodes.
                     </p></li><li class="listitem"><p><b>If the execution of an ALTER TABLE ... REORGANIZE PARTITION statement
                       has not yet reached the internal commit point: </b>
                       When the cluster is restarted, the data and
                       indexes belonging to
-                      <em class="replaceable"><code>table</code></em> are distributed
-                      using only the “<span class="quote">old”</span> data nodes.
+                      <code>table</code> are distributed
+                      using only the “old” data nodes.
 </p></li></ul>
 </div>
 </td>

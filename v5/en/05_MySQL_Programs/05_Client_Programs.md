@@ -916,11 +916,11 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
   <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>9
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -1196,13 +1196,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
   <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>0
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
 * `--shared-memory-base-name=name`
 
@@ -1623,7 +1623,7 @@ You can also combine the `tee` and `pager` functions. Have a `tee` file enabled 
 
 The `prompt` command reconfigures the default `mysql>` prompt. The string for defining the prompt can contain the following special sequences.
 
-<table summary="prompt command options that are used to configure the mysql&gt; prompt."><col style="width: 15%"/><col style="width: 75%"/><thead><tr> <th>Option</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>\C</code></td> <td>The current connection identifier</td> </tr><tr> <td><code>\c</code></td> <td>A counter that increments for each statement you issue</td> </tr><tr> <td><code>\D</code></td> <td>The full current date</td> </tr><tr> <td><code>\d</code></td> <td>The default database</td> </tr><tr> <td><code>\h</code></td> <td>The server host</td> </tr><tr> <td><code>\l</code></td> <td>The current delimiter</td> </tr><tr> <td><code>\m</code></td> <td>Minutes of the current time</td> </tr><tr> <td><code>\n</code></td> <td>A newline character</td> </tr><tr> <td><code>\O</code></td> <td>The current month in three-letter format (Jan, Feb, …)</td> </tr><tr> <td><code>\o</code></td> <td>The current month in numeric format</td> </tr><tr> <td><code>\P</code></td> <td>am/pm</td> </tr><tr> <td><code>\p</code></td> <td>The current TCP/IP port or socket file</td> </tr><tr> <td><code>\R</code></td> <td>The current time, in 24-hour military time (0–23)</td> </tr><tr> <td><code>\r</code></td> <td>The current time, standard 12-hour time (1–12)</td> </tr><tr> <td><code>\S</code></td> <td>Semicolon</td> </tr><tr> <td><code>\s</code></td> <td>Seconds of the current time</td> </tr><tr> <td><code>\t</code></td> <td>A tab character</td> </tr><tr> <td><code>\U</code></td> <td><p> Your full <code><em class="replaceable"><code>user_name</code></em>@<em class="replaceable"><code>host_name</code></em></code> account name </p></td> </tr><tr> <td><code>\u</code></td> <td>Your user name</td> </tr><tr> <td><code>\v</code></td> <td>The server version</td> </tr><tr> <td><code>\w</code></td> <td>The current day of the week in three-letter format (Mon, Tue, …)</td> </tr><tr> <td><code>\Y</code></td> <td>The current year, four digits</td> </tr><tr> <td><code>\y</code></td> <td>The current year, two digits</td> </tr><tr> <td><code>\_</code></td> <td>A space</td> </tr><tr> <td><code>\ </code></td> <td>A space (a space follows the backslash)</td> </tr><tr> <td><code>\'</code></td> <td>Single quote</td> </tr><tr> <td><code>\"</code></td> <td>Double quote</td> </tr><tr> <td><code>\\</code></td> <td>A literal <code>\</code> backslash character</td> </tr><tr> <td><code>\<em class="replaceable"><code>x</code></em></code></td> <td><p> <em class="replaceable"><code>x</code></em>, for any “<span class="quote"><em class="replaceable"><code>x</code></em>”</span> not listed above </p></td> </tr></tbody></table>
+<table summary="prompt command options that are used to configure the mysql&gt; prompt."><col style="width: 15%"/><col style="width: 75%"/><thead><tr> <th>Option</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>\C</code></td> <td>The current connection identifier</td> </tr><tr> <td><code>\c</code></td> <td>A counter that increments for each statement you issue</td> </tr><tr> <td><code>\D</code></td> <td>The full current date</td> </tr><tr> <td><code>\d</code></td> <td>The default database</td> </tr><tr> <td><code>\h</code></td> <td>The server host</td> </tr><tr> <td><code>\l</code></td> <td>The current delimiter</td> </tr><tr> <td><code>\m</code></td> <td>Minutes of the current time</td> </tr><tr> <td><code>\n</code></td> <td>A newline character</td> </tr><tr> <td><code>\O</code></td> <td>The current month in three-letter format (Jan, Feb, …)</td> </tr><tr> <td><code>\o</code></td> <td>The current month in numeric format</td> </tr><tr> <td><code>\P</code></td> <td>am/pm</td> </tr><tr> <td><code>\p</code></td> <td>The current TCP/IP port or socket file</td> </tr><tr> <td><code>\R</code></td> <td>The current time, in 24-hour military time (0–23)</td> </tr><tr> <td><code>\r</code></td> <td>The current time, standard 12-hour time (1–12)</td> </tr><tr> <td><code>\S</code></td> <td>Semicolon</td> </tr><tr> <td><code>\s</code></td> <td>Seconds of the current time</td> </tr><tr> <td><code>\t</code></td> <td>A tab character</td> </tr><tr> <td><code>\U</code></td> <td> Your full <code><code>user_name</code>@<code>host_name</code></code> account name </td> </tr><tr> <td><code>\u</code></td> <td>Your user name</td> </tr><tr> <td><code>\v</code></td> <td>The server version</td> </tr><tr> <td><code>\w</code></td> <td>The current day of the week in three-letter format (Mon, Tue, …)</td> </tr><tr> <td><code>\Y</code></td> <td>The current year, four digits</td> </tr><tr> <td><code>\y</code></td> <td>The current year, two digits</td> </tr><tr> <td><code>\_</code></td> <td>A space</td> </tr><tr> <td><code>\ </code></td> <td>A space (a space follows the backslash)</td> </tr><tr> <td><code>\'</code></td> <td>Single quote</td> </tr><tr> <td><code>\"</code></td> <td>Double quote</td> </tr><tr> <td><code>\\</code></td> <td>A literal <code>\</code> backslash character</td> </tr><tr> <td><code>\<code>x</code></code></td> <td> <code>x</code>, for any “<code>x</code>” not listed above </td> </tr></tbody></table>
 
 You can set the prompt in several ways:
 
@@ -2716,11 +2716,11 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -2824,13 +2824,13 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>1
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 
@@ -2948,7 +2948,7 @@ If you do not name any tables following *`db_name`* or if you use the `--databas
 
 The names shown in the following table can be used to change **mysqlcheck** default behavior.
 
-<table summary="Command names that can be used to change mysqlcheck default behavior."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Command</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><strong>mysqlrepair</strong></td> <td>The default option is <code class="option">--repair</code></td> </tr><tr> <td><strong>mysqlanalyze</strong></td> <td>The default option is <code class="option">--analyze</code></td> </tr><tr> <td><strong>mysqloptimize</strong></td> <td>The default option is <code class="option">--optimize</code></td> </tr></tbody></table>
+<table summary="Command names that can be used to change mysqlcheck default behavior."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Command</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><strong>mysqlrepair</strong></td> <td>The default option is <code>--repair</code></td> </tr><tr> <td><strong>mysqlanalyze</strong></td> <td>The default option is <code>--analyze</code></td> </tr><tr> <td><strong>mysqloptimize</strong></td> <td>The default option is <code>--optimize</code></td> </tr></tbody></table>
 
 **mysqlcheck** supports the following options, which can be specified on the command line or in the `[mysqlcheck]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see Section 4.2.2.2, “Using Option Files”.
 
@@ -7461,11 +7461,11 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -7577,13 +7577,13 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
   <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 
@@ -8476,11 +8476,11 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
   <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Introduced</th> <td>5.7.23</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -8548,13 +8548,13 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 
@@ -9871,11 +9871,11 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -10005,13 +10005,13 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>9
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 
@@ -10848,11 +10848,11 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
   <table frame="box" rules="all" summary="Properties for add-drop-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>1
 
-  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the ``caching_sha2_password`` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -11040,13 +11040,13 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
   <table frame="box" rules="all" summary="Properties for add-locks"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>8
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 
@@ -11720,11 +11720,11 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Request from the server the RSA public key that it uses for key pair-based password exchange. This option applies to clients that connect to the server using an account that authenticates with the ``caching_sha2_password`` authentication plugin. For connections by such accounts, the server does not send the public key to the client unless requested. The option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not needed, as is the case when the client connects to the server using a secure connection.
+  Request from the server the RSA public key that it uses for key pair-based password exchange. This option applies to clients that connect to the server using an account that authenticates with the `caching_sha2_password` authentication plugin. For connections by such accounts, the server does not send the public key to the client unless requested. The option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not needed, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -11816,13 +11816,13 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 
@@ -12391,7 +12391,7 @@ mysqlslap --concurrency=5
 
 * `--auto-generate-sql-load-type=type`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><code>read</code><code>write</code><code>key</code><code>update</code><code>mixed</code></td> </tr></tbody></table>
 
   Specify the test load type. The permissible values are `read` (scan tables), `write` (insert into tables), `key` (read primary keys), `update` (update primary keys), or `mixed` (half inserts, half scanning selects). The default is `mixed`.
 
@@ -12543,11 +12543,11 @@ mysqlslap --concurrency=5
 
   <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Request from the server the RSA public key that it uses for key pair-based password exchange. This option applies to clients that connect to the server using an account that authenticates with the ``caching_sha2_password`` authentication plugin. For connections by such accounts, the server does not send the public key to the client unless requested. The option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not needed, as is the case when the client connects to the server using a secure connection.
+  Request from the server the RSA public key that it uses for key pair-based password exchange. This option applies to clients that connect to the server using an account that authenticates with the `caching_sha2_password` authentication plugin. For connections by such accounts, the server does not send the public key to the client unless requested. The option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not needed, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the ``caching_sha2_password`` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `caching_sha2_password` plugin, see Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--get-server-public-key` option was added in MySQL 5.7.23.
 
@@ -12704,13 +12704,13 @@ mysqlslap --concurrency=5
 
   <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or ``caching_sha2_password`` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
   If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
   For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password` and ``caching_sha2_password`` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 6.4.1.5, “SHA-256 Pluggable Authentication”, and Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
   The `--server-public-key-path` option was added in MySQL 5.7.23.
 

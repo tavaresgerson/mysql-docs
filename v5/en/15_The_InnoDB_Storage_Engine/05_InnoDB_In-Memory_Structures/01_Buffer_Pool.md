@@ -212,11 +212,11 @@ printed.
 </tr><tr>
 <td>Pages made young</td>
 <td>The total number of pages made young in the buffer pool LRU list (moved
-            to the head of sublist of “<span class="quote">new”</span> pages).</td>
+            to the head of sublist of “new” pages).</td>
 </tr><tr>
 <td>Pages made not young</td>
 <td>The total number of pages not made young in the buffer pool LRU list
-            (pages that have remained in the “<span class="quote">old”</span> sublist
+            (pages that have remained in the “old” sublist
             without being made young).</td>
 </tr><tr>
 <td>youngs/s</td>

@@ -13,7 +13,7 @@ To control activation of X Plugin, use this option:
 </tr><tr><th>Default Value</th>
 <td><code>ON</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td>
+<td><code>ON</code><code>OFF</code><code>FORCE</code><code>FORCE_PLUS_PERMANENT</code></td>
 </tr></tbody></table>
 
   This option controls how the server loads X Plugin at

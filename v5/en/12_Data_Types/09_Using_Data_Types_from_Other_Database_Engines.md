@@ -15,8 +15,8 @@ from other database systems into MySQL.
 <td><code>BOOLEAN</code></td>
 <td><code>TINYINT</code></td>
 </tr><tr>
-<td><code>CHARACTER VARYING(<em class="replaceable"><code>M</code></em>)</code></td>
-<td><code>VARCHAR(<em class="replaceable"><code>M</code></em>)</code></td>
+<td><code>CHARACTER VARYING(<code>M</code>)</code></td>
+<td><code>VARCHAR(<code>M</code>)</code></td>
 </tr><tr>
 <td><code>FIXED</code></td>
 <td><code>DECIMAL</code></td>

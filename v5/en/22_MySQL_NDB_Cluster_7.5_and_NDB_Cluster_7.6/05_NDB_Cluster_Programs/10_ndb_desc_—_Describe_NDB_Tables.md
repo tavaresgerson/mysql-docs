@@ -392,7 +392,7 @@ table.
 <th>Added, Deprecated, or Removed</th>
 </tr></thead><tbody><tr>
 <th><p>
-<code class="option">--auto-inc</code>,
+<code>--auto-inc</code>,
               </p><p>
 <code class="option">
 -a
@@ -404,7 +404,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--blob-info</code>,
+<code>--blob-info</code>,
               </p><p>
 <code class="option">
 -b
@@ -447,7 +447,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--connect-string=connection_string</code>,
+<code>--connect-string=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-string">-c
@@ -459,7 +459,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--context</code>,
+<code>--context</code>,
               </p><p>
 <code class="option">
 -x
@@ -482,7 +482,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--database=name</code>,
+<code>--database=name</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_database">-d
                 name</a> </code>
@@ -523,7 +523,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--extra-node-info</code>,
+<code>--extra-node-info</code>,
               </p><p>
 <code class="option">
 -n
@@ -536,7 +536,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--extra-partition-info</code>,
+<code>--extra-partition-info</code>,
               </p><p>
 <code class="option">
 -p
@@ -548,7 +548,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--help</code>,
+<code>--help</code>,
               </p><p>
 <code class="option"> -?
 </code>
@@ -569,7 +569,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-connectstring=connection_string</code>,
+<code>--ndb-connectstring=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring">-c
@@ -583,7 +583,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--ndb-mgmd-host=connection_string</code>,
+<code>--ndb-mgmd-host=connection_string</code>,
               </p><p>
 <code class="option">
 <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgmd-host">-c
@@ -637,7 +637,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--retries=#</code>,
+<code>--retries=#</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries">-r
                 #</a> </code>
@@ -648,7 +648,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--table=name</code>,
+<code>--table=name</code>,
               </p><p>
 <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_table">-t
                 name</a> </code>
@@ -660,7 +660,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--unqualified</code>,
+<code>--unqualified</code>,
               </p><p>
 <code class="option">
 -u
@@ -672,7 +672,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--usage</code>,
+<code>--usage</code>,
               </p><p>
 <code class="option"> -?
 </code>
@@ -683,7 +683,7 @@ table.
               </p></td>
 </tr></tbody><tbody><tr>
 <th><p>
-<code class="option">--version</code>,
+<code>--version</code>,
               </p><p>
 <code class="option">
 -V

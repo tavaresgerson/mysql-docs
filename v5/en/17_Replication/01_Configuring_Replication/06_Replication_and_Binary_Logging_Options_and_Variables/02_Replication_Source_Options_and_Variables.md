@@ -521,7 +521,7 @@ The following system variables are used to control sources:
 </tr><tr><th>Default Value</th>
 <td><code>AFTER_SYNC</code></td>
 </tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code>AFTER_SYNC</code></p><p class="valid-value"><code>AFTER_COMMIT</code></p></td>
+<td><code>AFTER_SYNC</code><code>AFTER_COMMIT</code></td>
 </tr></tbody></table>
 
   This variable controls the point at which a semisynchronous
