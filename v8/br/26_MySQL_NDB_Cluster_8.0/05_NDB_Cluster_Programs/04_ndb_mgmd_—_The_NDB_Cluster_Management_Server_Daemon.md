@@ -1,0 +1,356 @@
+### 25.5.4 ndb\_mgmd — O daemon do servidor de gerenciamento de cluster NDB
+
+O servidor de gerenciamento é o processo que lê o arquivo de configuração do clúster e distribui essas informações para todos os nós do clúster que solicitarem. Ele também mantém um registro das atividades do clúster. Os clientes de gerenciamento podem se conectar ao servidor de gerenciamento e verificar o status do clúster.
+
+Todas as opções que podem ser usadas com **ndb\_mgmd** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+
+**Tabela 25.26 Opções de linha de comando usadas com o programa ndb\_mgmd**
+
+<table frame="box" rules="all"><thead><tr> <th scope="col">Formato</th> <th scope="col">Descrição</th> <th scope="col">Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> [[PH_HTML_CODE_<code>--connect-string=connection_string</code>] </p></th> <td>Endereço de ligação local</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code>--connect-string=connection_string</code>] </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>REMOvido: 8.0.31</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code> --core-file </code>] </p></th> <td>Substitua o sufixo padrão do grupo ao ler seções do cluster_config no arquivo my.cnf; usado em testes</td> <td><p>ADICIONADO: 8.0.24</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code>--daemon</code>] </p></th> <td>Habilitar o cache de configuração do servidor de gerenciamento; verdadeiro por padrão</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[PH_HTML_CODE_<code> -d </code>],</p><p> [[PH_HTML_CODE_<code> --defaults-extra-file=path </code>] </p></th> <td>Especifique o arquivo de configuração do cluster; também especifique --reload ou --initial para substituir o cache de configuração, se estiver presente</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[PH_HTML_CODE_<code> --defaults-file=path </code>],</p><p> [[PH_HTML_CODE_<code> --defaults-group-suffix=string </code>] </p></th> <td>Especifique o diretório de cache de configuração do servidor de gerenciamento de clúster</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code>--help</code>] </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>REMOvido: 8.0.31</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code> -? </code>] </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>REMOvido: 8.0.31</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--connect-string=connection_string</code>]],</p><p> [[<code> --character-sets-dir=path </code><code>--connect-string=connection_string</code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --core-file </code>]] </p></th> <td>Escreva o arquivo de núcleo em erro; usado no depuração</td> <td><p>REMOvido: 8.0.31</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--daemon</code>]],</p><p> [[<code> -d </code>]] </p></th> <td>Execute ndb_mgmd no modo daemon (padrão)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --defaults-extra-file=path </code>]] </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --defaults-file=path </code>]] </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --defaults-group-suffix=string </code>]] </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--help</code>]],</p><p> [[<code> -? </code>]] </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --cluster-config-suffix=name </code><code>--connect-string=connection_string</code>] </p></th> <td>Faz com que o servidor de gerenciamento recarregue os dados de configuração do arquivo de configuração, ignorando o cache de configuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --cluster-config-suffix=name </code><code>--connect-string=connection_string</code>] </p></th> <td>Usado para instalar o processo do servidor de gerenciamento como serviço do Windows; não se aplica em outras plataformas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --cluster-config-suffix=name </code><code> --core-file </code>] </p></th> <td>Execute o ndb_mgmd no modo interativo (não é oficialmente suportado na produção; apenas para fins de teste)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --cluster-config-suffix=name </code><code>--daemon</code>] </p></th> <td>Nome a ser usado ao escrever mensagens de log de cluster que se aplicam a este nó</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --cluster-config-suffix=name </code><code> -d </code>] </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --cluster-config-suffix=name </code><code> --defaults-extra-file=path </code>] </p></th> <td>Ler dados de configuração de cluster a partir do arquivo my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --cluster-config-suffix=name </code><code> --defaults-file=path </code>],</p><p> [[<code> --cluster-config-suffix=name </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:por<code>--connect-string=connection_string</code>". Substitui as entradas no NDB_CONNECTSTRING e no my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --cluster-config-suffix=name </code><code>--help</code>],</p><p> [[<code> --cluster-config-suffix=name </code><code> -? </code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code>--connect-string=connection_string</code>] </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code>--connect-string=connection_string</code>] </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>REMOvido: 8.0.31</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code> --core-file </code>] </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code>--daemon</code>] </p></th> <td>Não realize nenhuma verificação de ID de nó</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code> -d </code>] </p></th> <td>Não execute o ndb_mgmd como um daemon</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code> --defaults-extra-file=path </code>] </p></th> <td>Não espere por nós de gerenciamento especificados ao iniciar este servidor de gerenciamento; requer a opção --ndb-nodeid</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code> --defaults-file=path </code>] </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code> --defaults-group-suffix=string </code>],</p><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code>--help</code>] </p></th> <td>Imprimir configuração completa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --config-cache[=TRUE|FALS<code>--config-file=file</code> </code><code> -? </code>] </p></th> <td>Faz com que o servidor de gerenciamento compare o arquivo de configuração com o cache de configuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code>--config-file=file</code><code>--connect-string=connection_string</code>] </p></th> <td>Usado para remover o processo do servidor de gerenciamento que foi instalado anteriormente como serviço do Windows, especificando opcionalmente o nome do serviço a ser removido; não se aplica em outras plataformas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code>--config-file=file</code><code>--connect-string=connection_string</code>] </p></th> <td>Não use o arquivo de configuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--config-file=file</code><code> --core-file </code>],</p><p> [[<code>--config-file=file</code><code>--daemon</code>] </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--config-file=file</code><code> -d </code>],</p><p> [[<code>--config-file=file</code><code> --defaults-extra-file=path </code>] </p></th> <td>Escreva informações adicionais para registrar</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--config-file=file</code><code> --defaults-file=path </code>],</p><p> [[<code>--config-file=file</code><code> --defaults-group-suffix=string </code>] </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 8.0)</p></td> </tr></tbody></table>
+
+- `--bind-address=host`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+
+  Faz com que o servidor de gerenciamento se ligue a uma interface de rede específica (nome de host ou endereço IP). Esta opção não tem um valor padrão.
+
+- `--character-sets-dir`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>
+
+  Diretório contendo conjuntos de caracteres.
+
+- `cluster-config-suffix`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+
+  Sobrepor o sufixo do grupo padrão ao ler seções de configuração de cluster em `my.cnf`; usado em testes.
+
+- `--config-cache`
+
+  <table summary="Propriedades para config-cache"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--config-cache[=TRUE|FALS<code>TRUE</code></code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>TRUE</code>]]</td> </tr></tbody></table>
+
+  Esta opção, cujo valor padrão é `1` (ou `TRUE`, ou `ON`), pode ser usada para desabilitar o cache de configuração do servidor de gerenciamento, para que ele leia sua configuração do `config.ini` toda vez que iniciar (veja a Seção 25.4.3, “Arquivos de Configuração do NDB Cluster”). Você pode fazer isso iniciando o processo **ndb\_mgmd** com qualquer uma das seguintes opções:
+
+  - `--config-cache=0`
+  - `--config-cache=FALSE`
+  - `--config-cache=OFF`
+  - `--skip-config-cache`
+
+  Usar uma das opções listadas acima é eficaz apenas se o servidor de gerenciamento não tiver nenhuma configuração armazenada no momento em que ele for iniciado. Se o servidor de gerenciamento encontrar algum arquivo de cache de configuração, a opção `--config-cache` ou a opção `--skip-config-cache` será ignorada. Portanto, para desativar o cache de configuração, a opção deve ser usada *primeiro* quando o servidor de gerenciamento for iniciado. Caso contrário — ou seja, se você deseja desativar o cache de configuração para um servidor de gerenciamento que *já* criou um cache de configuração — você deve parar o servidor de gerenciamento, excluir manualmente quaisquer arquivos de cache de configuração existentes e, em seguida, reiniciar o servidor de gerenciamento com `--skip-config-cache` (ou com `--config-cache` igual a 0, `OFF` ou `FALSE`).
+
+  Os arquivos de cache de configuração são normalmente criados em um diretório chamado `mysql-cluster` sob o diretório de instalação (a menos que essa localização tenha sido sobrescrita usando a opção `--configdir`). Toda vez que o servidor de gerenciamento atualiza seus dados de configuração, ele escreve um novo arquivo de cache. Os arquivos são nomeados sequencialmente em ordem de criação usando o seguinte formato:
+
+  ```
+  ndb_node-id_config.bin.seq-number
+  ```
+
+  `node-id` é o ID do nó do servidor de gerenciamento; `seq-number` é um número de sequência, começando com 1. Por exemplo, se o ID do nó do servidor de gerenciamento for 5, então os três primeiros arquivos de cache de configuração seriam nomeados `ndb_5_config.bin.1`, `ndb_5_config.bin.2` e `ndb_5_config.bin.3` quando forem criados.
+
+  Se a sua intenção é limpar ou recarregar o cache de configuração sem realmente desativar o cache, você deve iniciar o **ndb\_mgmd** com uma das opções `--reload` ou `--initial` em vez de `--skip-config-cache`.
+
+  Para reativar o cache de configuração, basta reiniciar o servidor de gerenciamento, mas sem a opção `--config-cache` ou `--skip-config-cache` que foi usada anteriormente para desativar o cache de configuração.
+
+  O **ndb\_mgmd** não verifica o diretório de configuração (`--configdir`) ou tenta criá-lo quando o `--skip-config-cache` é usado. (Bug #13428853)
+
+- `--config-file=filename`, `-f filename`
+
+  <table summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--config-file=file</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-config-file</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+
+  Instrui o servidor de gerenciamento sobre qual arquivo deve usar para seu arquivo de configuração. Por padrão, o servidor de gerenciamento procura por um arquivo chamado `config.ini` no mesmo diretório do executável **ndb\_mgmd**. Caso contrário, o nome e a localização do arquivo devem ser especificados explicitamente.
+
+  Esta opção não tem um valor padrão e é ignorada, a menos que o servidor de gerenciamento seja forçado a ler o arquivo de configuração, seja porque o **ndb\_mgmd** foi iniciado com a opção `--reload` ou `--initial`, ou porque o servidor de gerenciamento não conseguiu encontrar nenhum cache de configuração. A partir do NDB 8.0.26, o **ndb\_mgmd** se recusa a iniciar se `--config-file` for especificado sem nenhuma das opções `--initial` ou `--reload`.
+
+  A opção `--config-file` também é lida se o **ndb\_mgmd** foi iniciado com `--config-cache=OFF`. Consulte a Seção 25.4.3, “Arquivos de Configuração do NDB Cluster”, para obter mais informações.
+
+- `--configdir=dir_name`
+
+  <table summary="Propriedades para configdir"><tbody><tr><th>Formato de linha de comando</th> <td><p class="valid-value">[[<code>--configdir=directory</code>]]</p><p class="valid-value">[[<code>--config-dir=directory</code>]]</p></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>$INSTALLDIR/mysql-cluster</code>]]</td> </tr></tbody></table>
+
+  Especifica o diretório de cache de configuração do servidor de gerenciamento de clúster. `--config-dir` é um alias para esta opção.
+
+  No NDB 8.0.27 e versões posteriores, este deve ser um caminho absoluto. Caso contrário, o servidor de gerenciamento se recusa a iniciar.
+
+- `--connect-retries`
+
+  <table summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--connect-retries=#</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>12</code>]]</td> </tr></tbody></table>
+
+  Número de vezes para tentar a conexão novamente antes de desistir.
+
+- `--connect-retry-delay`
+
+  <table summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--connect-retry-delay=#</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>5</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>5</code>]]</td> </tr></tbody></table>
+
+  Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
+
+- `--connect-string`
+
+  <table summary="Propriedades para a string de conexão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+
+  O mesmo que --ndb-connectstring.
+
+- `--core-file`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>0
+
+  Escreva o arquivo de núcleo em erro; usado no depuração.
+
+- `--daemon`, `-d`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>1
+
+  Instrui o **ndb\_mgmd** a iniciar como um processo de daemon. Esse é o comportamento padrão.
+
+  Esta opção não tem efeito quando você executa o **ndb\_mgmd** em plataformas Windows.
+
+- `--defaults-extra-file`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>2
+
+  Leia o arquivo fornecido após a leitura dos arquivos globais.
+
+- `--defaults-file`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>3
+
+  Leia as opções padrão do arquivo fornecido.
+
+- `--defaults-group-suffix`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>4
+
+  Leia também grupos com concatenação (grupo, sufixo).
+
+- `--help`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>5
+
+  Exibir texto de ajuda e sair.
+
+- `--initial`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>6
+
+  Os dados de configuração são armazenados em cache internamente, em vez de serem lidos do arquivo de configuração global do cluster cada vez que o servidor de gerenciamento é iniciado (consulte a Seção 25.4.3, “Arquivos de Configuração do Cluster NDB”). A opção `--initial` sobrescreve esse comportamento, forçando o servidor de gerenciamento a excluir quaisquer arquivos de cache existentes e, em seguida, a reler os dados de configuração do arquivo de configuração do cluster e a construir um novo cache.
+
+  Isso difere de duas maneiras da opção `--reload`. Primeiro, `--reload` obriga o servidor a verificar o arquivo de configuração contra o cache e recarregar seus dados apenas se o conteúdo do arquivo for diferente do cache. Segundo, `--reload` não exclui nenhum arquivo de cache existente.
+
+  Se o **ndb\_mgmd** for invocado com `--initial` e não conseguir encontrar um arquivo de configuração global, o servidor de gerenciamento não poderá ser iniciado.
+
+  Quando um servidor de gerenciamento é iniciado, ele verifica se há outro servidor de gerenciamento no mesmo NDB Cluster e tenta usar os dados de configuração do outro servidor de gerenciamento. Esse comportamento tem implicações ao realizar um reinício contínuo de um NDB Cluster com vários nós de gerenciamento. Consulte a Seção 25.6.5, “Realizando um Reinício Contínuo de um NDB Cluster”, para obter mais informações.
+
+  Quando usado juntamente com a opção `--config-file`, o cache é limpo apenas se o arquivo de configuração for encontrado.
+
+- `--install[=name]`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>7
+
+  Faz com que o **ndb\_mgmd** seja instalado como um serviço do Windows. Opcionalmente, você pode especificar um nome para o serviço; se não for definido, o nome do serviço será `ndb_mgmd`. Embora seja preferível especificar outras opções do programa **ndb\_mgmd** em um arquivo de configuração `my.ini` ou `my.cnf`, é possível usá-las junto com `--install`. No entanto, nesses casos, a opção `--install` deve ser especificada primeiro, antes de quaisquer outras opções serem fornecidas, para que a instalação do serviço do Windows seja bem-sucedida.
+
+  Geralmente, não é aconselhável usar essa opção junto com a opção `--initial`, pois isso faz com que o cache de configuração seja apagado e reconstruído toda vez que o serviço é parado e reiniciado. Também é preciso ter cuidado se você pretende usar outras opções do **ndb\_mgmd** que afetam o início do servidor de gerenciamento, e você deve ter certeza absoluta de que entende completamente e permite quaisquer possíveis consequências de fazer isso.
+
+  A opção `--install` não tem efeito em plataformas que não são do Windows.
+
+- `--interactive`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>8
+
+  Inicia o **ndb\_mgmd** no modo interativo; ou seja, uma sessão de cliente **ndb\_mgm** é iniciada assim que o servidor de gerenciamento estiver em execução. Esta opção não inicia nenhum outro nó do NDB Cluster.
+
+- `--log-name=name`
+
+  <table summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=host</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>9
+
+  Fornece um nome a ser usado para este nó no log do cluster.
+
+- `--login-path`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>0
+
+  Leia o caminho fornecido a partir do arquivo de login.
+
+- `--mycnf`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>1
+
+  Leia os dados de configuração do arquivo `my.cnf`.
+
+- `--ndb-connectstring`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>2
+
+  Defina a string de conexão. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. OBRIGA entradas em `NDB_CONNECTSTRING` e `my.cnf`. Ignorado se `--config-file` for especificado; a partir do NDB 8.0.27, um aviso é emitido quando ambas as opções são usadas.
+
+- `--ndb-mgmd-host`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>3
+
+  O mesmo que --ndb-connectstring.
+
+- `--ndb-nodeid`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>4
+
+  Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring.
+
+- `--ndb-optimized-node-selection`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>5
+
+  Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
+
+- `--no-nodeid-checks`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>6
+
+  Não realize nenhuma verificação dos IDs dos nós.
+
+- `--nodaemon`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>7
+
+  Instrui o **ndb\_mgmd** a não iniciar como um processo de daemon.
+
+  O comportamento padrão para **ndb\_mgmd** no Windows é executar em primeiro plano, tornando essa opção desnecessária nas plataformas Windows.
+
+- `--no-defaults`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>8
+
+  Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
+
+- `--nowait-nodes`
+
+  <table summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=path</code>]]</td> </tr><tr><th>Removido</th> <td>8.0.31</td> </tr></tbody></table>9
+
+  Ao iniciar um NDB Cluster, ele é configurado com dois nós de gerenciamento. Normalmente, cada servidor de gerenciamento verifica se o outro **ndb\_mgmd** também está operacional e se a configuração do outro servidor de gerenciamento é idêntica à sua própria. No entanto, às vezes é desejável iniciar o cluster com apenas um nó de gerenciamento (e talvez permitir que o outro **ndb\_mgmd** seja iniciado mais tarde). Esta opção faz com que o nó de gerenciamento ignore quaisquer verificações para quaisquer outros nós de gerenciamento cujos IDs de nó são passados para esta opção, permitindo que o cluster seja iniciado como se estivesse configurado para usar apenas o nó de gerenciamento que foi iniciado.
+
+  Para fins ilustrativos, considere a seguinte parte de um arquivo `config.ini` (onde omitimos a maioria dos parâmetros de configuração que não são relevantes para este exemplo):
+
+  ```
+  [ndbd]
+  NodeId = 1
+  HostName = 198.51.100.101
+
+  [ndbd]
+  NodeId = 2
+  HostName = 198.51.100.102
+
+  [ndbd]
+  NodeId = 3
+  HostName = 198.51.100.103
+
+  [ndbd]
+  NodeId = 4
+  HostName = 198.51.100.104
+
+  [ndb_mgmd]
+  NodeId = 10
+  HostName = 198.51.100.150
+
+  [ndb_mgmd]
+  NodeId = 11
+  HostName = 198.51.100.151
+
+  [api]
+  NodeId = 20
+  HostName = 198.51.100.200
+
+  [api]
+  NodeId = 21
+  HostName = 198.51.100.201
+  ```
+
+  Suponha que você queira iniciar esse clúster usando apenas o servidor de gerenciamento com o ID de nó `10` e executando no host com o endereço IP 198.51.100.150. (Suponha, por exemplo, que o computador do host no qual você pretende o outro servidor de gerenciamento esteja temporariamente indisponível devido a uma falha de hardware, e você esteja esperando para que ele seja reparado.) Para iniciar o clúster dessa maneira, use uma linha de comando na máquina em 198.51.100.150 para inserir o seguinte comando:
+
+  ```
+  $> ndb_mgmd --ndb-nodeid=10 --nowait-nodes=11
+  ```
+
+  Como mostrado no exemplo anterior, ao usar `--nowait-nodes`, você também deve usar a opção `--ndb-nodeid` para especificar o ID do nó deste processo **ndb\_mgmd**.
+
+  Em seguida, você pode iniciar cada um dos nós de dados do clúster da maneira usual. Se você quiser iniciar e usar o segundo servidor de gerenciamento, além do primeiro servidor de gerenciamento, mais tarde, sem reiniciar os nós de dados, você deve iniciar cada nó de dados com uma cadeia de conexão que faça referência a ambos os servidores de gerenciamento, da seguinte maneira:
+
+  ```
+  $> ndbd -c 198.51.100.150,198.51.100.151
+  ```
+
+  O mesmo vale para a string de conexão usada com quaisquer processos **mysqld** que você deseja iniciar como nós SQL do NDB Cluster conectados a este cluster. Consulte a Seção 25.4.3.3, “Strings de Conexão do NDB Cluster”, para obter mais informações.
+
+  Quando usado com **ndb\_mgmd**, essa opção afeta o comportamento do nó de gerenciamento apenas em relação a outros nós de gerenciamento. Não confunda com a opção `--nowait-nodes` usada com **ndbd** ou **ndbmtd**") para permitir que um clúster comece com menos do que seu complemento total de nós de dados; quando usado com nós de dados, essa opção afeta apenas seu comportamento em relação a outros nós de dados.
+
+  Pode-se passar vários IDs de nó de gerenciamento para esta opção como uma lista separada por vírgula. Cada ID de nó deve ser maior ou igual a 1 e menor ou igual a 255. Na prática, é bastante raro usar mais de dois servidores de gerenciamento para o mesmo NDB Cluster (ou ter a necessidade de fazê-lo); na maioria dos casos, é necessário passar para esta opção apenas o ID de nó único para o servidor de gerenciamento que você não deseja usar ao iniciar o cluster.
+
+  Nota
+
+  Quando você iniciar o servidor de gerenciamento "falta" mais tarde, sua configuração deve corresponder à do servidor de gerenciamento que já está sendo usado pelo clúster. Caso contrário, ele falhará na verificação de configuração realizada pelo servidor de gerenciamento existente e não iniciará.
+
+- `--print-defaults`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>0
+
+  Imprima a lista de argumentos do programa e saia.
+
+- `--print-full-config`, `-P`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>1
+
+  Mostra informações detalhadas sobre a configuração do clúster. Com esta opção na linha de comando, o processo **ndb\_mgmd** imprime informações sobre a configuração do clúster, incluindo uma lista extensa das seções de configuração do clúster, bem como os parâmetros e seus valores. Normalmente usado em conjunto com a opção `--config-file` (`-f`).
+
+- `--reload`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>2
+
+  Os dados de configuração do NDB Cluster são armazenados internamente, em vez de serem lidos do arquivo de configuração global do cluster a cada vez que o servidor de gerenciamento é iniciado (consulte a Seção 25.4.3, “Arquivos de Configuração do NDB Cluster”). A utilização desta opção obriga o servidor de gerenciamento a verificar seu armazenamento de dados interno contra o arquivo de configuração do cluster e a recarregar a configuração se encontrar que o arquivo de configuração não corresponde ao cache. Os arquivos de cache de configuração existentes são preservados, mas não utilizados.
+
+  Isso difere de duas maneiras da opção `--initial`. Primeiro, `--initial` faz com que todos os arquivos de cache sejam excluídos. Segundo, `--initial` obriga o servidor de gerenciamento a reler o arquivo de configuração global e construir um novo cache.
+
+  Se o servidor de gerenciamento não conseguir encontrar um arquivo de configuração global, a opção `--reload` será ignorada.
+
+  Quando o `--reload` é usado, o servidor de gerenciamento deve ser capaz de se comunicar com os nós de dados e quaisquer outros servidores de gerenciamento no clúster antes de tentar ler o arquivo de configuração global; caso contrário, o servidor de gerenciamento não consegue iniciar. Isso pode acontecer devido a mudanças no ambiente de rede, como novos endereços IP para os nós ou uma alteração na configuração do firewall. Nesses casos, você deve usar `--initial` em vez disso para forçar o descarte e a recarga da configuração cache existente do arquivo. Consulte a Seção 25.6.5, “Realizando um Reinício Rotativo de um Clúster NDB”, para obter informações adicionais.
+
+- `--remove[=name]`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>3
+
+  Remova um processo do servidor de gerenciamento que foi instalado como um serviço do Windows, especificando opcionalmente o nome do serviço a ser removido. Aplica-se apenas a plataformas Windows.
+
+- `--skip-config-file`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>4
+
+  Não leia o arquivo de configuração do cluster; ignore as opções `--initial` e `--reload` se especificadas.
+
+- `--usage`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>5
+
+  Exibir texto de ajuda e sair; o mesmo que --help.
+
+- `--verbose`, `-v`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>6
+
+  Remova um processo do servidor de gerenciamento que foi instalado como um serviço do Windows, especificando opcionalmente o nome do serviço a ser removido. Aplica-se apenas a plataformas Windows.
+
+- `--version`
+
+  <table summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--cluster-config-suffix=name</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.24</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>7
+
+  Exibir informações da versão e sair.
+
+Não é estritamente necessário especificar uma cadeia de conexão ao iniciar o servidor de gerenciamento. No entanto, se você estiver usando mais de um servidor de gerenciamento, uma cadeia de conexão deve ser fornecida e cada nó no clúster deve especificar seu ID de nó explicitamente.
+
+Consulte a Seção 25.4.3.3, “Strings de Conexão de NDB Cluster”, para obter informações sobre o uso de strings de conexão. A Seção 25.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”, descreve outras opções para **ndb\_mgmd**.
+
+Os seguintes arquivos são criados ou usados pelo **ndb\_mgmd** em seu diretório inicial e são colocados no `DataDir` conforme especificado no arquivo de configuração `config.ini`. Na lista a seguir, `node_id` é o identificador de nó único.
+
+- `config.ini` é o arquivo de configuração para o cluster como um todo. Este arquivo é criado pelo usuário e lido pelo servidor de gerenciamento. A seção 25.4, “Configuração do NDB Cluster”, discute como configurar este arquivo.
+
+- `ndb_node_id_cluster.log` é o arquivo de registro de eventos do cluster. Exemplos desses eventos incluem o início e o término do ponto de verificação, eventos de inicialização do nó, falhas no nó e níveis de uso de memória. Uma lista completa dos eventos do cluster com descrições pode ser encontrada na Seção 25.6, “Gestão do NDB Cluster”.
+
+  Por padrão, quando o tamanho do log do clúster atinge um milhão de bytes, o arquivo é renomeado para `ndb_node_id_cluster.log.seq_id`, onde `seq_id` é o número de sequência do arquivo de log do clúster. (Por exemplo: Se os arquivos com os números de sequência 1, 2 e 3 já existirem, o próximo arquivo de log é nomeado usando o número `4`.) Você pode alterar o tamanho e o número de arquivos, bem como outras características do log do clúster, usando o parâmetro de configuração `LogDestination`.
+
+- `ndb_node_id_out.log` é o arquivo usado para `stdout` e `stderr` ao executar o servidor de gerenciamento como um daemon.
+
+- `ndb_node_id.pid` é o arquivo de ID de processo usado ao executar o servidor de gerenciamento como um daemon.

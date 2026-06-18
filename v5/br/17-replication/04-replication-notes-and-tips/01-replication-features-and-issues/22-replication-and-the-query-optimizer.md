@@ -1,0 +1,3 @@
+#### 16.4.1.22 Replicação e o Query Optimizer
+
+É possível que os dados na origem (*source*) e na réplica (*replica*) se tornem diferentes se uma *statement* for escrita de tal forma que a modificação dos dados seja não determinística; ou seja, deixada a cargo do *query optimizer*. (Em geral, esta não é uma boa prática, mesmo fora da Replicação.) Exemplos de *statements* não determinísticas incluem *statements* `DELETE` ou `UPDATE` que usam `LIMIT` sem uma cláusula `ORDER BY`; consulte Seção 16.4.1.17, “Replicação e LIMIT”, para uma discussão detalhada sobre esses casos.

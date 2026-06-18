@@ -1,0 +1,11 @@
+#### 17.15.2.2 Informações sobre bloqueio e espera de bloqueio do InnoDB
+
+Nota
+
+Esta seção descreve as informações de bloqueio expostas pelas tabelas do Schema de Desempenho `data_locks` e `data_lock_waits`, que substituem as tabelas `INFORMATION_SCHEMA` `INNODB_LOCKS` e `INNODB_LOCK_WAITS` no MySQL 8.0. Para uma discussão semelhante escrita em termos das tabelas mais antigas `INFORMATION_SCHEMA`, consulte Bloqueio InnoDB e Informações de Bloqueio, no Manual de Referência do MySQL 5.7.
+
+Quando uma transação atualiza uma linha em uma tabela ou bloqueia-a com `SELECT FOR UPDATE`, `InnoDB` estabelece uma lista ou fila de bloqueios nessa linha. Da mesma forma, `InnoDB` mantém uma lista de bloqueios em uma tabela para bloqueios de nível de tabela. Se uma segunda transação quiser atualizar uma linha ou bloquear uma tabela já bloqueada por uma transação anterior em um modo incompatível, `InnoDB` adiciona um pedido de bloqueio para a linha à fila correspondente. Para que um bloqueio seja adquirido por uma transação, todos os pedidos de bloqueio incompatíveis previamente inseridos na fila de bloqueio para essa linha ou tabela devem ser removidos (o que ocorre quando as transações que detêm ou solicitam esses bloqueios compõem ou desistem).
+
+Uma transação pode ter qualquer número de solicitações de bloqueio para diferentes linhas ou tabelas. Em qualquer momento, uma transação pode solicitar um bloqueio que está sendo mantido por outra transação, caso em que será bloqueada por essa outra transação. A transação solicitante deve esperar que a transação que mantém o bloqueio seja confirmada ou revertida. Se uma transação não estiver aguardando um bloqueio, ela está no estado `RUNNING`. Se uma transação estiver aguardando um bloqueio, ela está no estado `LOCK WAIT`. (A tabela `INFORMATION_SCHEMA` `INNODB_TRX` indica os valores do estado da transação.)
+
+A tabela Schema de Desempenho `data_locks` contém uma ou mais linhas para cada transação `LOCK WAIT`, indicando quaisquer solicitações de bloqueio que impeçam seu progresso. Esta tabela também contém uma linha que descreve cada bloqueio em uma fila de bloqueios pendentes para uma determinada linha ou tabela. A tabela Schema de Desempenho `data_lock_waits` mostra quais bloqueios já mantidos por uma transação estão bloqueando bloqueios solicitados por outras transações.

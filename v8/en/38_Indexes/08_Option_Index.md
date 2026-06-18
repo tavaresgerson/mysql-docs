@@ -1,0 +1,10343 @@
+## Option Index
+
+[Symbols](dynindex-option.html#option-index-Symbols "Symbols") | [A](dynindex-option.html#option-index-A "A") | [B](dynindex-option.html#option-index-B "B") | [C](dynindex-option.html#option-index-C "C") | [D](dynindex-option.html#option-index-D "D") | [E](dynindex-option.html#option-index-E "E") | [F](dynindex-option.html#option-index-F "F") | [G](dynindex-option.html#option-index-G "G") | [H](dynindex-option.html#option-index-H "H") | [I](dynindex-option.html#option-index-I "I") | [J](dynindex-option.html#option-index-J "J") | [K](dynindex-option.html#option-index-K "K") | [L](dynindex-option.html#option-index-L "L") | [M](dynindex-option.html#option-index-M "M") | [N](dynindex-option.html#option-index-N "N") | [O](dynindex-option.html#option-index-O "O") | [P](dynindex-option.html#option-index-P "P") | [Q](dynindex-option.html#option-index-Q "Q") | [R](dynindex-option.html#option-index-R "R") | [S](dynindex-option.html#option-index-S "S") | [T](dynindex-option.html#option-index-T "T") | [U](dynindex-option.html#option-index-U "U") | [V](dynindex-option.html#option-index-V "V") | [W](dynindex-option.html#option-index-W "W") | [X](dynindex-option.html#option-index-X "X") | [Y](dynindex-option.html#option-index-Y "Y") | [Z](dynindex-option.html#option-index-Z "Z")
+
+### Symbols
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### --
+
+[Section 1.6.2.4, “'--' as the Start of a Comment”](ansi-diff-comments.html "1.6.2.4 '--' as the Start of a Comment")
+
+### -#
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.9.4, “The DBUG Package”](dbug-package.html "7.9.4 The DBUG Package")
+
+### -1
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### 1231
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+### -?
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”](mysql-cluster-programs-ndb-error-reporter.html "25.5.12 ndb_error_reporter — NDB Error-Reporting Utility")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+### ?
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+### A
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -A
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+### -a
+
+[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 9.6.4, “MyISAM Table Optimization”](myisam-optimization.html "9.6.4 MyISAM Table Optimization")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+[Section 8.4.4.10, “Using the HashiCorp Vault Keyring Plugin”](keyring-hashicorp-plugin.html "8.4.4.10 Using the HashiCorp Vault Keyring Plugin")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --abort-on-error
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+### --abort-slave-event-count
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --add-drop-database
+
+[Section 9.4.1, “Dumping Data in SQL Format with mysqldump”](mysqldump-sql-format.html "9.4.1 Dumping Data in SQL Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --add-drop-table
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --add-drop-trigger
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --add-drop-user
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --add-locks
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --add-missing
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --admin-ssl
+
+[Section 7.1.12.2, “Administrative Connection Management”](administrative-connection-interface.html "7.1.12.2 Administrative Connection Management")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --ai-increment
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --ai-offset
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --ai-prefetch-sz
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --all
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+### --all-databases
+
+[Section 19.1.2.5.1, “Creating a Data Snapshot Using mysqldump”](replication-snapshot-method.html#replication-howto-mysqldump "19.1.2.5.1 Creating a Data Snapshot Using mysqldump")
+
+[Section 16.7, “Data Dictionary Usage Differences”](data-dictionary-usage-differences.html "16.7 Data Dictionary Usage Differences")
+
+[Section 9.4.1, “Dumping Data in SQL Format with mysqldump”](mysqldump-sql-format.html "9.4.1 Dumping Data in SQL Format with mysqldump")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.6.16, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "25.6.16 ndbinfo: The NDB Cluster Information Database")
+
+[Section 3.14, “Rebuilding or Repairing Tables or Indexes”](rebuilding-tables.html "3.14 Rebuilding or Repairing Tables or Indexes")
+
+[Section 9.4.2, “Reloading SQL-Format Backups”](reloading-sql-format-dumps.html "9.4.2 Reloading SQL-Format Backups")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 3.7, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "3.7 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --all-in-1
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --all-tablespaces
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --allow-keywords
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --allow-mismatches
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --allow-pk-changes
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --allow-suspicious-udfs
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --analyze
+
+[Section 9.6.4, “MyISAM Table Optimization”](myisam-optimization.html "9.6.4 MyISAM Table Optimization")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --ansi
+
+[Section 1.6, “MySQL Standards Compliance”](compatibility.html "1.6 MySQL Standards Compliance")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### antonio
+
+[Section 8.4.1.5, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "8.4.1.5 PAM Pluggable Authentication")
+
+### --append
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --apply-replica-statements
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --apply-slave-statements
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --audit-log
+
+[Section 8.4.5.11, “Audit Log Reference”](audit-log-reference.html "8.4.5.11 Audit Log Reference")
+
+[Section 8.4.5.2, “Installing or Uninstalling MySQL Enterprise Audit”](audit-log-installation.html "8.4.5.2 Installing or Uninstalling MySQL Enterprise Audit")
+
+### --authentication-oci-client-config-profile
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --auto-generate-sql
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-add-autoincrement
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-execute-number
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-guid-primary
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-load-type
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-secondary-indexes
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-unique-query-number
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-unique-write-number
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-generate-sql-write-number
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --auto-inc
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --auto-rehash
+
+[Section 17.8.10.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "17.8.10.2 Configuring Non-Persistent Optimizer Statistics Parameters")
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### auto-rehash
+
+[Section 17.8.10.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "17.8.10.2 Configuring Non-Persistent Optimizer Statistics Parameters")
+
+### --auto-repair
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --auto-vertical-output
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --autocommit
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### B
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -B
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### -b
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --back\_log
+
+[Section 2.7, “Installing MySQL on Solaris”](solaris-installation.html "2.7 Installing MySQL on Solaris")
+
+### --backup
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+### --backup-key
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --backup-key-from-stdin
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --backup-password
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --backup-password-from-stdin
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --backup-path
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.23.3.1, “Restoring a parallel backup in parallel”](ndb-restore-parallel-data-node-backup.html#ndb-restore-parallel-backup-in-parallel "25.5.23.3.1 Restoring a parallel backup in parallel")
+
+[Section 25.5.23.3.2, “Restoring a parallel backup serially”](ndb-restore-parallel-data-node-backup.html#ndb-restore-parallel-backup-serial "25.5.23.3.2 Restoring a parallel backup serially")
+
+[Section 25.5.23.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "25.5.23.2.1 Restoring to Fewer Nodes Than the Original")
+
+### backup-path
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### backup-to-image
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### --backupid
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.23.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "25.5.23.2.1 Restoring to Fewer Nodes Than the Original")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --base64-output
+
+[Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "19.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
+
+[Section 6.6.9.2, “mysqlbinlog Row Event Display”](mysqlbinlog-row-events.html "6.6.9.2 mysqlbinlog Row Event Display")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 19.2.1.2, “Usage of Row-Based Logging and Replication”](replication-rbr-usage.html "19.2.1.2 Usage of Row-Based Logging and Replication")
+
+### --basedir
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 25.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”](mysql-cluster-limitations-syntax.html "25.2.7.1 Noncompliance with SQL Syntax in NDB Cluster")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”](starting-server-troubleshooting.html "2.9.2.1 Troubleshooting Problems Starting the MySQL Server")
+
+### basedir
+
+[Section 2.3.4.2, “Creating an Option File”](windows-create-option-file.html "2.3.4.2 Creating an Option File")
+
+[Section 6.3.3, “mysql.server — MySQL Server Startup Script”](mysql-server.html "6.3.3 mysql.server — MySQL Server Startup Script")
+
+[Section 2.3.5, “Troubleshooting a Microsoft Windows MySQL Server Installation”](windows-troubleshooting.html "2.3.5 Troubleshooting a Microsoft Windows MySQL Server Installation")
+
+### --batch
+
+[Section 6.5.1.3, “mysql Client Logging”](mysql-logging.html "6.5.1.3 mysql Client Logging")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --binary-as-hex
+
+[Section 14.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "14.19.1 Aggregate Function Descriptions")
+
+[Section 8.4.5.11, “Audit Log Reference”](audit-log-reference.html "8.4.5.11 Audit Log Reference")
+
+[Section 14.12, “Bit Functions and Operators”](bit-functions.html "14.12 Bit Functions and Operators")
+
+[Section 14.10, “Cast Functions and Operators”](cast-functions.html "14.10 Cast Functions and Operators")
+
+[Section 14.13, “Encryption and Compression Functions”](encryption-functions.html "14.13 Encryption and Compression Functions")
+
+[Section 14.23, “Miscellaneous Functions”](miscellaneous-functions.html "14.23 Miscellaneous Functions")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 8.5.3.4, “MySQL Enterprise Data Masking and De-Identification Plugin Function Descriptions”](data-masking-plugin-functions.html "8.5.3.4 MySQL Enterprise Data Masking and De-Identification Plugin Function Descriptions")
+
+[Section 8.4.5.6, “Reading Audit Log Files”](audit-log-file-reading.html "8.4.5.6 Reading Audit Log Files")
+
+[Section 14.8.1, “String Comparison Functions and Operators”](string-comparison-functions.html "14.8.1 String Comparison Functions and Operators")
+
+[Section 14.8, “String Functions and Operators”](string-functions.html "14.8 String Functions and Operators")
+
+[Section 11.1.1, “String Literals”](string-literals.html "11.1.1 String Literals")
+
+[Section 13.3.3, “The BINARY and VARBINARY Types”](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types")
+
+[Section 12.10.8, “The Binary Character Set”](charset-binary-set.html "12.10.8 The Binary Character Set")
+
+[Section 13.3.4, “The BLOB and TEXT Types”](blob.html "13.3.4 The BLOB and TEXT Types")
+
+### --binary-mode
+
+[Section 11.7, “Comments”](comments.html "11.7 Comments")
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 9.5.1, “Point-in-Time Recovery Using Binary Log”](point-in-time-recovery-binlog.html "9.5.1 Point-in-Time Recovery Using Binary Log")
+
+### --bind-address
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --binlog-checksum
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+### --binlog-do-db
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 19.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "19.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+### --binlog-format
+
+[Section 7.4.4.1, “Binary Logging Formats”](binary-log-formats.html "7.4.4.1 Binary Logging Formats")
+
+[Section 25.7.2, “General Requirements for NDB Cluster Replication”](mysql-cluster-replication-general.html "25.7.2 General Requirements for NDB Cluster Replication")
+
+[Section A.4, “MySQL 8.0 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 8.0 FAQ: Stored Procedures and Functions")
+
+[Section 7.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "7.4.4.2 Setting The Binary Log Format")
+
+[Section 25.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "25.7.6 Starting NDB Cluster Replication (Single Replication Channel)")
+
+[Section 25.2.7.6, “Unsupported or Missing Features in NDB Cluster”](mysql-cluster-limitations-unsupported.html "25.2.7.6 Unsupported or Missing Features in NDB Cluster")
+
+### --binlog-ignore-db
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 19.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "19.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”](replication-privilege-checks-account.html "19.3.3.1 Privileges For The Replication PRIVILEGE_CHECKS_USER Account")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+### --binlog-row-event-max-size
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 7.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "7.4.4.2 Setting The Binary Log Format")
+
+### --binlog-transaction-compression
+
+[Section 7.4.4.5, “Binary Log Transaction Compression”](binary-log-transaction-compression.html "7.4.4.5 Binary Log Transaction Compression")
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --binlog-transaction-dependency-tracking
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --blob-info
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+### --block-search
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+### --bootstrap
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### C
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -C
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### -c
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 25.3.2.1, “Installing NDB Cluster on Windows from a Binary Release”](mysql-cluster-install-windows-binary.html "25.3.2.1 Installing NDB Cluster on Windows from a Binary Release")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section A.10, “MySQL 8.0 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 8.0 FAQ: NDB Cluster")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 25.5.23.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "25.5.23.2.1 Restoring to Fewer Nodes Than the Original")
+
+[Section 8.4.4.10, “Using the HashiCorp Vault Keyring Plugin”](keyring-hashicorp-plugin.html "8.4.4.10 Using the HashiCorp Vault Keyring Plugin")
+
+### --cflags
+
+[Section 2.8.8, “Dealing with Problems Compiling MySQL”](compilation-problems.html "2.8.8 Dealing with Problems Compiling MySQL")
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+### --character-set-client-handshake
+
+[Section A.11, “MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 12.10.7.1, “The cp932 Character Set”](charset-cp932.html "12.10.7.1 The cp932 Character Set")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --character-set-server
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 12.15, “Character Set Configuration”](charset-configuration.html "12.15 Character Set Configuration")
+
+[Section 12.5, “Configuring Application Character Set and Collation”](charset-applications.html "12.5 Configuring Application Character Set and Collation")
+
+[Section A.11, “MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 12.3.2, “Server Character Set and Collation”](charset-server.html "12.3.2 Server Character Set and Collation")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --character-sets-dir
+
+[Section B.3.2.15, “Can't initialize character set”](cannot-initialize-character-set.html "B.3.2.15 Can't initialize character set")
+
+[Section 12.15, “Character Set Configuration”](charset-configuration.html "12.15 Character Set Configuration")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --charset
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --check
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --check-missing
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --check-only-changed
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --check-orphans
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+### --check-table-functions
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --check-upgrade
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --chroot
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --clone
+
+[Section 7.6.7.1, “Installing the Clone Plugin”](clone-plugin-installation.html "7.6.7.1 Installing the Clone Plugin")
+
+### --cluster-config-suffix
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### cluster-config-suffix
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### CMAKE\_BUILD\_TYPE
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### CMAKE\_C\_FLAGS
+
+[Section 7.9.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "7.9.1.1 Compiling MySQL for Debugging")
+
+[Section 2.8.8, “Dealing with Problems Compiling MySQL”](compilation-problems.html "2.8.8 Dealing with Problems Compiling MySQL")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### CMAKE\_C\_FLAGS\_build\_type
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### CMAKE\_C\_FLAGS\_RELWITHDEBINFO
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### CMAKE\_CXX\_FLAGS
+
+[Section 7.9.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "7.9.1.1 Compiling MySQL for Debugging")
+
+[Section 2.8.8, “Dealing with Problems Compiling MySQL”](compilation-problems.html "2.8.8 Dealing with Problems Compiling MySQL")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### CMAKE\_CXX\_FLAGS\_build\_type
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### CMAKE\_CXX\_FLAGS\_RELWITHDEBINFO
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### CMAKE\_INSTALL\_PREFIX
+
+[Section 2.8.5, “Installing MySQL Using a Development Source Tree”](installing-development-tree.html "2.8.5 Installing MySQL Using a Development Source Tree")
+
+[Section 8.4.4.19, “Keyring System Variables”](keyring-system-variables.html "8.4.4.19 Keyring System Variables")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 7.8.3, “Running Multiple MySQL Instances on Unix”](multiple-unix-servers.html "7.8.3 Running Multiple MySQL Instances on Unix")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### CMAKE\_PREFIX\_PATH
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### --collation-server
+
+[Section 12.14, “Adding a Collation to a Character Set”](adding-collation.html "12.14 Adding a Collation to a Character Set")
+
+[Section 14.9.7, “Adding a User-Defined Collation for Full-Text Indexing”](full-text-adding-collation.html "14.9.7 Adding a User-Defined Collation for Full-Text Indexing")
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 12.15, “Character Set Configuration”](charset-configuration.html "12.15 Character Set Configuration")
+
+[Section 12.5, “Configuring Application Character Set and Collation”](charset-applications.html "12.5 Configuring Application Character Set and Collation")
+
+[Section 12.3.2, “Server Character Set and Collation”](charset-server.html "12.3.2 Server Character Set and Collation")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --collation\_server
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### --color
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --column-names
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")
+
+### --column-statistics
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --column-type-info
+
+[Section 10.2.1.19, “LIMIT Query Optimization”](limit-optimization.html "10.2.1.19 LIMIT Query Optimization")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --columns
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+### --commands
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --comments
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --commit
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --compact
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --compatible
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### COMPILATION\_COMMENT
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### COMPILATION\_COMMENT\_SERVER
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --complete-insert
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --component-dir
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+### --compress
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.8, “Connection Compression Control”](connection-compression-control.html "6.2.8 Connection Compression Control")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --compress-output
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --compression-algorithms
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.8, “Connection Compression Control”](connection-compression-control.html "6.2.8 Connection Compression Control")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --concurrency
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --config-binary-file
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --config-cache
+
+[Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --config-dir
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --config-file
+
+[Section 25.3.4, “Initial Startup of NDB Cluster”](mysql-cluster-install-first-start.html "25.3.4 Initial Startup of NDB Cluster")
+
+[Section 25.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "25.3.2.3 Initial Startup of NDB Cluster on Windows")
+
+[Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "25.3.2.4 Installing NDB Cluster Processes as Windows Services")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section A.10, “MySQL 8.0 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 8.0 FAQ: NDB Cluster")
+
+[Section 25.4.3.1, “NDB Cluster Configuration: Basic Example”](mysql-cluster-config-example.html "25.4.3.1 NDB Cluster Configuration: Basic Example")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --config-from-node
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### --config\_from\_node
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### --configdir
+
+[Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --configinfo
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### configure
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --connect
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --connect-delay
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --connect-expired-password
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 8.2.16, “Server Handling of Expired Passwords”](expired-password-handling.html "8.2.16 Server Handling of Expired Passwords")
+
+### --connect-retries
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --connect-retry-delay
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --connect-string
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### --connect-timeout
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### --connection-control
+
+[Section 8.4.2.1, “Connection Control Plugin Installation”](connection-control-plugin-installation.html "8.4.2.1 Connection Control Plugin Installation")
+
+### --connection-control-failed-login-attempts
+
+[Section 8.4.2.1, “Connection Control Plugin Installation”](connection-control-plugin-installation.html "8.4.2.1 Connection Control Plugin Installation")
+
+### --connection-server-id
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”](mysqlbinlog-server-id.html "6.6.9.4 Specifying the mysqlbinlog Server ID")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --connection-timeout
+
+[Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”](mysql-cluster-programs-ndb-error-reporter.html "25.5.12 ndb_error_reporter — NDB Error-Reporting Utility")
+
+### --connections
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --console
+
+[Section 7.4.2.2, “Default Error Log Destination Configuration”](error-log-destination-configuration.html "7.4.2.2 Default Error Log Destination Configuration")
+
+[Section 17.17.2, “Enabling InnoDB Monitors”](innodb-enabling-monitors.html "17.17.2 Enabling InnoDB Monitors")
+
+[Section 7.4.2.1, “Error Log Configuration”](error-log-configuration.html "7.4.2.1 Error Log Configuration")
+
+[Section 25.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "25.3.2.3 Initial Startup of NDB Cluster on Windows")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 17.21, “InnoDB Troubleshooting”](innodb-troubleshooting.html "17.21 InnoDB Troubleshooting")
+
+[Section B.3.3.2.1, “Resetting the Root Password: Windows Systems”](resetting-permissions.html#resetting-permissions-windows "B.3.3.2.1 Resetting the Root Password: Windows Systems")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.3.4.6, “Starting MySQL from the Windows Command Line”](windows-start-command-line.html "2.3.4.6 Starting MySQL from the Windows Command Line")
+
+[Section 2.3.4.5, “Starting the Server for the First Time”](windows-server-first-start.html "2.3.4.5 Starting the Server for the First Time")
+
+### --context
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --continue
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --control-directory-number
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### copy-back-and-apply-log
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### --core-file
+
+[Section 7.9.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "7.9.1.4 Debugging mysqld under gdb")
+
+[Section 17.8.3.7, “Excluding Buffer Pool Pages from Core Files”](innodb-buffer-pool-in-core-file.html "17.8.3.7 Excluding Buffer Pool Pages from Core Files")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### core-file
+
+[Section 7.9.1.3, “Using WER with PDB to create a Windows crashdump”](making-windows-dumps.html "7.9.1.3 Using WER with PDB to create a Windows crashdump")
+
+### --core-file-size
+
+[Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --correct-checksum
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### --count
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+### --create
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --create-options
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --create-schema
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --csv
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --csvopt
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --cxxflags
+
+[Section 2.8.8, “Dealing with Problems Compiling MySQL”](compilation-problems.html "2.8.8 Dealing with Problems Compiling MySQL")
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+### D
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -D
+
+[Section 12.13, “Adding a Character Set”](adding-character-set.html "12.13 Adding a Character Set")
+
+[Section 25.3.1.4, “Building NDB Cluster from Source on Linux”](mysql-cluster-install-linux-source.html "25.3.1.4 Building NDB Cluster from Source on Linux")
+
+[Section B.3.2.15, “Can't initialize character set”](cannot-initialize-character-set.html "B.3.2.15 Can't initialize character set")
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”](mysql-cluster-install-windows-source.html "25.3.2.2 Compiling and Installing NDB Cluster from Source on Windows")
+
+[Section 7.9.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "7.9.1.1 Compiling MySQL for Debugging")
+
+[Section 2.8.6, “Configuring SSL Library Support”](source-ssl-library-configuration.html "2.8.6 Configuring SSL Library Support")
+
+[Section 7.9.2, “Debugging a MySQL Client”](debugging-client.html "7.9.2 Debugging a MySQL Client")
+
+[Section 22.5.2, “Disabling X Plugin”](x-plugin-disabling.html "22.5.2 Disabling X Plugin")
+
+[Section 25.1, “General Information”](mysql-cluster-general-info.html "25.1 General Information")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 2.8.4, “Installing MySQL Using a Standard Source Distribution”](installing-source-distribution.html "2.8.4 Installing MySQL Using a Standard Source Distribution")
+
+[Section 6.8.1, “lz4\_decompress — Decompress mysqlpump LZ4-Compressed Output”](lz4-decompress.html "6.8.1 lz4_decompress — Decompress mysqlpump LZ4-Compressed Output")
+
+[Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section A.2, “MySQL 8.0 FAQ: Storage Engines”](faqs-storage-engines.html "A.2 MySQL 8.0 FAQ: Storage Engines")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 25.6.10, “MySQL Server Usage for NDB Cluster”](mysql-cluster-mysqld.html "25.6.10 MySQL Server Usage for NDB Cluster")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 17.20.3, “Setting Up the InnoDB memcached Plugin”](innodb-memcached-setup.html "17.20.3 Setting Up the InnoDB memcached Plugin")
+
+[Section 18.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "18.5 The ARCHIVE Storage Engine")
+
+[Section 18.6, “The BLACKHOLE Storage Engine”](blackhole-storage-engine.html "18.6 The BLACKHOLE Storage Engine")
+
+[Section 18.9, “The EXAMPLE Storage Engine”](example-storage-engine.html "18.9 The EXAMPLE Storage Engine")
+
+[Section 18.8, “The FEDERATED Storage Engine”](federated-storage-engine.html "18.8 The FEDERATED Storage Engine")
+
+[Section 7.9.3, “The LOCK\_ORDER Tool”](lock-order-tool.html "7.9.3 The LOCK_ORDER Tool")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+[Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing")
+
+[Section 2.1.2, “Which MySQL Version and Distribution to Install”](which-version.html "2.1.2 Which MySQL Version and Distribution to Install")
+
+[Section 6.8.3, “zlib\_decompress — Decompress mysqlpump ZLIB-Compressed Output”](zlib-decompress.html "6.8.3 zlib_decompress — Decompress mysqlpump ZLIB-Compressed Output")
+
+### -d
+
+[Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”](docker-mysql-getting-started.html "2.5.6.1 Basic Steps for MySQL Server Deployment with Docker")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 8.4.4.8, “Using the keyring\_okv KMIP Plugin”](keyring-okv-plugin.html "8.4.4.8 Using the keyring_okv KMIP Plugin")
+
+### --daemon
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --daemonize
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --data-file-length
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### --database
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### --databases
+
+[Section 9.4.5.2, “Copy a Database from one Server to Another”](mysqldump-copying-to-other-server.html "9.4.5.2 Copy a Database from one Server to Another")
+
+[Section 19.1.2.5.1, “Creating a Data Snapshot Using mysqldump”](replication-snapshot-method.html#replication-howto-mysqldump "19.1.2.5.1 Creating a Data Snapshot Using mysqldump")
+
+[Section 9.4.1, “Dumping Data in SQL Format with mysqldump”](mysqldump-sql-format.html "9.4.1 Dumping Data in SQL Format with mysqldump")
+
+[Section 9.4.5.1, “Making a Copy of a Database”](mysqldump-copying-database.html "9.4.5.1 Making a Copy of a Database")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.6.16, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "25.6.16 ndbinfo: The NDB Cluster Information Database")
+
+[Section 3.14, “Rebuilding or Repairing Tables or Indexes”](rebuilding-tables.html "3.14 Rebuilding or Repairing Tables or Indexes")
+
+[Section 9.4.2, “Reloading SQL-Format Backups”](reloading-sql-format-dumps.html "9.4.2 Reloading SQL-Format Backups")
+
+### --datadir
+
+[Section 2.3.4.2, “Creating an Option File”](windows-create-option-file.html "2.3.4.2 Creating an Option File")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 25.6.20.3, “NDB Cluster and MySQL Security Procedures”](mysql-cluster-security-mysql-security-procedures.html "25.6.20.3 NDB Cluster and MySQL Security Procedures")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.8.3, “Running Multiple MySQL Instances on Unix”](multiple-unix-servers.html "7.8.3 Running Multiple MySQL Instances on Unix")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.8.1, “Setting Up Multiple Data Directories”](multiple-data-directories.html "7.8.1 Setting Up Multiple Data Directories")
+
+[Section 7.2, “The MySQL Data Directory”](data-directory.html "7.2 The MySQL Data Directory")
+
+[Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”](starting-server-troubleshooting.html "2.9.2.1 Troubleshooting Problems Starting the MySQL Server")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### datadir
+
+[Section 2.3.4.2, “Creating an Option File”](windows-create-option-file.html "2.3.4.2 Creating an Option File")
+
+[Section 2.4.1, “General Notes on Installing MySQL on macOS”](macos-installation-notes.html "2.4.1 General Notes on Installing MySQL on macOS")
+
+[Section 6.3.3, “mysql.server — MySQL Server Startup Script”](mysql-server.html "6.3.3 mysql.server — MySQL Server Startup Script")
+
+[Section 2.3.5, “Troubleshooting a Microsoft Windows MySQL Server Installation”](windows-troubleshooting.html "2.3.5 Troubleshooting a Microsoft Windows MySQL Server Installation")
+
+[Section 2.3.7, “Windows Platform Restrictions”](windows-restrictions.html "2.3.7 Windows Platform Restrictions")
+
+### --db-workers
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --ddl-rewriter
+
+[Section 7.6.5.2, “ddl\_rewriter Plugin Options”](ddl-rewriter-options.html "7.6.5.2 ddl_rewriter Plugin Options")
+
+[Section 7.6.5.1, “Installing or Uninstalling ddl\_rewriter”](ddl-rewriter-installation.html "7.6.5.1 Installing or Uninstalling ddl_rewriter")
+
+### --debug
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 7.9.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "7.9.1.1 Compiling MySQL for Debugging")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 2.3.4.6, “Starting MySQL from the Windows Command Line”](windows-start-command-line.html "2.3.4.6 Starting MySQL from the Windows Command Line")
+
+[Section 7.9.4, “The DBUG Package”](dbug-package.html "7.9.4 The DBUG Package")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”](starting-server-troubleshooting.html "2.9.2.1 Troubleshooting Problems Starting the MySQL Server")
+
+### debug
+
+[Section 16.1, “Data Dictionary Schema”](data-dictionary-schema.html "16.1 Data Dictionary Schema")
+
+### --debug-check
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --debug-info
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --debug-sync-timeout
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --decrypt
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --decrypt-key
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --decrypt-key-from-stdin
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --decrypt-password
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --decrypt-password-from-stdin
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --default-auth
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.4.1.8, “Kerberos Pluggable Authentication”](kerberos-pluggable-authentication.html "8.4.1.8 Kerberos Pluggable Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 8.4.1.1, “Native Pluggable Authentication”](native-pluggable-authentication.html "8.4.1.1 Native Pluggable Authentication")
+
+[Section 8.2.17, “Pluggable Authentication”](pluggable-authentication.html "8.2.17 Pluggable Authentication")
+
+### --default-authentication-plugin
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+### --default-character-set
+
+[Section 8.2.1, “Account User Names and Passwords”](user-names.html "8.2.1 Account User Names and Passwords")
+
+[Section 12.15, “Character Set Configuration”](charset-configuration.html "12.15 Character Set Configuration")
+
+[Section 12.5, “Configuring Application Character Set and Collation”](charset-applications.html "12.5 Configuring Application Character Set and Collation")
+
+[Section 12.4, “Connection Character Sets and Collations”](charset-connection.html "12.4 Connection Character Sets and Collations")
+
+[Section 6.5.1.5, “Executing SQL Statements from a Text File”](mysql-batch-commands.html "6.5.1.5 Executing SQL Statements from a Text File")
+
+[Section 15.2.9, “LOAD DATA Statement”](load-data.html "15.2.9 LOAD DATA Statement")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --default-parallelism
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --default-storage-engine
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --default-time-zone
+
+[Section 7.1.15, “MySQL Server Time Zone Support”](time-zone-support.html "7.1.15 MySQL Server Time Zone Support")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --default-tmp-storage-engine
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --default.key\_buffer\_size
+
+[Section 7.1.9.5, “Structured System Variables”](structured-system-variables.html "7.1.9.5 Structured System Variables")
+
+### DEFAULT\_CHARSET
+
+[Section 12.5, “Configuring Application Character Set and Collation”](charset-applications.html "12.5 Configuring Application Character Set and Collation")
+
+[Section 12.3.2, “Server Character Set and Collation”](charset-server.html "12.3.2 Server Character Set and Collation")
+
+### DEFAULT\_COLLATION
+
+[Section 12.5, “Configuring Application Character Set and Collation”](charset-applications.html "12.5 Configuring Application Character Set and Collation")
+
+[Section 12.3.2, “Server Character Set and Collation”](charset-server.html "12.3.2 Server Character Set and Collation")
+
+### --defaults-extra-file
+
+[Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 29.12.14.2, “Performance Schema variables\_info Table”](performance-schema-variables-info-table.html "29.12.14.2 Performance Schema variables_info Table")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --defaults-file
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling")
+
+[Section 8.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "8.1.2.1 End-User Guidelines for Password Security")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 17.8.1, “InnoDB Startup Configuration”](innodb-init-startup-configuration.html "17.8.1 InnoDB Startup Configuration")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 29.12.14.2, “Performance Schema variables\_info Table”](performance-schema-variables-info-table.html "29.12.14.2 Performance Schema variables_info Table")
+
+[Section B.3.3.2.2, “Resetting the Root Password: Unix and Unix-Like Systems”](resetting-permissions.html#resetting-permissions-unix "B.3.3.2.2 Resetting the Root Password: Unix and Unix-Like Systems")
+
+[Section B.3.3.2.1, “Resetting the Root Password: Windows Systems”](resetting-permissions.html#resetting-permissions-windows "B.3.3.2.1 Resetting the Root Password: Windows Systems")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.8.3, “Running Multiple MySQL Instances on Unix”](multiple-unix-servers.html "7.8.3 Running Multiple MySQL Instances on Unix")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.3, “Server Configuration Validation”](server-configuration-validation.html "7.1.3 Server Configuration Validation")
+
+[Section 7.8.2.2, “Starting Multiple MySQL Instances as Windows Services”](multiple-windows-services.html "7.8.2.2 Starting Multiple MySQL Instances as Windows Services")
+
+[Section 7.8.2.1, “Starting Multiple MySQL Instances at the Windows Command Line”](multiple-windows-command-line-servers.html "7.8.2.1 Starting Multiple MySQL Instances at the Windows Command Line")
+
+[Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")
+
+### --defaults-group-suffix
+
+[Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling")
+
+[Section 6.9, “Environment Variables”](environment-variables.html "6.9 Environment Variables")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --defer-table-indexes
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --delay
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### --delay-key-write
+
+[Section 10.11.5, “External Locking”](external-locking.html "10.11.5 External Locking")
+
+### delay\_key\_write
+
+[Section 18.2.1, “MyISAM Startup Options”](myisam-start.html "18.2.1 MyISAM Startup Options")
+
+### --delete
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --delete-master-logs
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --delete-orphans
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+### --delete-source-logs
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --delimiter
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --des-key-file
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --descending
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --description
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+### --destination-keyring
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+### --destination-keyring-configuration-dir
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+### --detach
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --detailed-info
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --diff-default
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### --disable
+
+[Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")
+
+### --disable-admin-ssl
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --disable-auto-rehash
+
+[Section 17.8.10.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "17.8.10.2 Configuring Non-Persistent Optimizer Statistics Parameters")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --disable-indexes
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.23.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "25.5.23.2.2 Restoring to More Nodes Than the Original")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --disable-keys
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --disable-log-bin
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 19.1.3.1, “GTID Format and Storage”](replication-gtids-concepts.html "19.1.3.1 GTID Format and Storage")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”](replication-privilege-checks-account.html "19.3.3.1 Privileges For The Replication PRIVILEGE_CHECKS_USER Account")
+
+[Section 7.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "7.4.4.2 Setting The Binary Log Format")
+
+[Section 27.7, “Stored Program Binary Logging”](stored-programs-logging.html "27.7 Stored Program Binary Logging")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+### --disable-named-commands
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --disable-plugin\_name
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+### --disable-ssl
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### DISABLE\_PSI\_THREAD
+
+[Section 29.12.21.7, “The processlist Table”](performance-schema-processlist-table.html "29.12.21.7 The processlist Table")
+
+### DISABLE\_SHARED
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --disconnect-slave-event-count
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --disk
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --diskscan
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+### --dns-srv-name
+
+[Section 6.2.6, “Connecting to the Server Using DNS SRV Records”](connecting-using-dns-srv.html "6.2.6 Connecting to the Server Using DNS SRV Records")
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### do-\*
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+### --dont-ignore-systab-0
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --drop-source
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+### --dry-scp
+
+[Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”](mysql-cluster-programs-ndb-error-reporter.html "25.5.12 ndb_error_reporter — NDB Error-Reporting Utility")
+
+### --dump
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --dump-date
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --dump-file
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+### --dump-replica
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 19.5.1.34, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "19.5.1.34 Replication and Transaction Inconsistencies")
+
+### --dump-slave
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 19.5.1.34, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "19.5.1.34 Replication and Transaction Inconsistencies")
+
+### E
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -E
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### -e
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 9.6.2, “How to Check MyISAM Tables for Errors”](myisam-check.html "9.6.2 How to Check MyISAM Tables for Errors")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 15.2.10, “LOAD XML Statement”](load-xml.html "15.2.10 LOAD XML Statement")
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section A.10, “MySQL 8.0 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 8.0 FAQ: NDB Cluster")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "25.7.9 NDB Cluster Backups With NDB Cluster Replication")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 6.6.4.5, “Obtaining Table Information with myisamchk”](myisamchk-table-info.html "6.6.4.5 Obtaining Table Information with myisamchk")
+
+[Section 25.3.6, “Safe Shutdown and Restart of NDB Cluster”](mysql-cluster-install-shutdown-restart.html "25.3.6 Safe Shutdown and Restart of NDB Cluster")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+### --early-plugin-load
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+[Section 2.4.3, “Installing and Using the MySQL Launch Daemon”](macos-installation-launchd.html "2.4.3 Installing and Using the MySQL Launch Daemon")
+
+[Section 8.4.4.2, “Keyring Component Installation”](keyring-component-installation.html "8.4.4.2 Keyring Component Installation")
+
+[Section 8.4.4.1, “Keyring Components Versus Keyring Plugins”](keyring-component-plugin-comparison.html "8.4.4.1 Keyring Components Versus Keyring Plugins")
+
+[Section 8.4.4.3, “Keyring Plugin Installation”](keyring-plugin-installation.html "8.4.4.3 Keyring Plugin Installation")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 3.7, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "3.7 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
+
+[Section 8.4.4.10, “Using the HashiCorp Vault Keyring Plugin”](keyring-hashicorp-plugin.html "8.4.4.10 Using the HashiCorp Vault Keyring Plugin")
+
+[Section 8.4.4.9, “Using the keyring\_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "8.4.4.9 Using the keyring_aws Amazon Web Services Keyring Plugin")
+
+[Section 8.4.4.7, “Using the keyring\_encrypted\_file Encrypted File-Based Keyring Plugin”](keyring-encrypted-file-plugin.html "8.4.4.7 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin")
+
+[Section 8.4.4.6, “Using the keyring\_file File-Based Keyring Plugin”](keyring-file-plugin.html "8.4.4.6 Using the keyring_file File-Based Keyring Plugin")
+
+[Section 8.4.4.8, “Using the keyring\_okv KMIP Plugin”](keyring-okv-plugin.html "8.4.4.8 Using the keyring_okv KMIP Plugin")
+
+[Section 8.4.4.12, “Using the Oracle Cloud Infrastructure Vault Keyring Plugin”](keyring-oci-plugin.html "8.4.4.12 Using the Oracle Cloud Infrastructure Vault Keyring Plugin")
+
+### --embedded
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --embedded-libs
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --embedded-server
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --enable-cleartext-plugin
+
+[Section 8.4.1.4, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "8.4.1.4 Client-Side Cleartext Pluggable Authentication")
+
+[Section 8.4.1.7, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "8.4.1.7 LDAP Pluggable Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 8.4.1.5, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "8.4.1.5 PAM Pluggable Authentication")
+
+### --enable-plugin\_name
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+### --enable-ssl
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### ENABLE\_DOWNLOADS
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### enabled
+
+[Section 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository”](linux-installation-yum-repo.html "2.5.1 Installing MySQL on Linux Using the MySQL Yum Repository")
+
+### ENABLED\_LOCAL\_INFILE
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "8.1.6 Security Considerations for LOAD DATA LOCAL")
+
+### --encrypt-backup
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --encrypt-block-size
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --encrypt-cipher
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --encrypt-kdf-iter-count
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --encrypt-key
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --encrypt-key-from-stdin
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --encrypt-password
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --encrypt-password-from-stdin
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --end-page
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --enforce-gtid-consistency
+
+[Section 19.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "19.1.6.5 Global Transaction ID System Variables")
+
+[Section 19.1.3.7, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "19.1.3.7 Restrictions on Replication with GTIDs")
+
+### --engine
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --env
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### --errins-delay
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --errins-type
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --errmsg-file
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --error-insert
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+### --event-scheduler
+
+[Section 27.4.2, “Event Scheduler Configuration”](events-configuration.html "27.4.2 Event Scheduler Configuration")
+
+### event-scheduler
+
+[Section 27.4.2, “Event Scheduler Configuration”](events-configuration.html "27.4.2 Event Scheduler Configuration")
+
+### --events
+
+[Section 16.7, “Data Dictionary Usage Differences”](data-dictionary-usage-differences.html "16.7 Data Dictionary Usage Differences")
+
+[Section 9.4.5.3, “Dumping Stored Programs”](mysqldump-stored-programs.html "9.4.5.3 Dumping Stored Programs")
+
+[Section 9.4.5.4, “Dumping Table Definitions and Content Separately”](mysqldump-definition-data-dumps.html "9.4.5.4 Dumping Table Definitions and Content Separately")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 3.7, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "3.7 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --example
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+### --exclude-\*
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --exclude-databases
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --exclude-events
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --exclude-gtids
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --exclude-intermediate-sql-tables
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --exclude-missing-columns
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --exclude-missing-tables
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --exclude-routines
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --exclude-tables
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --exclude-triggers
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --exclude-users
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --excludedbs
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+### --excludetables
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+### --execute
+
+[Section 6.5.1.3, “mysql Client Logging”](mysql-logging.html "6.5.1.3 mysql Client Logging")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --exit-info
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### expire\_logs\_days
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+### --extend-check
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### --extended
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --extended-insert
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --external-locking
+
+[Section 10.11.5, “External Locking”](external-locking.html "10.11.5 External Locking")
+
+[Section 18.2.1, “MyISAM Startup Options”](myisam-start.html "18.2.1 MyISAM Startup Options")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --extra-file
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+### --extra-node-info
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+### --extra-partition-info
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.6.16.7, “The ndbinfo cluster\_operations Table”](mysql-cluster-ndbinfo-cluster-operations.html "25.6.16.7 The ndbinfo cluster_operations Table")
+
+[Section 25.6.16.54, “The ndbinfo server\_operations Table”](mysql-cluster-ndbinfo-server-operations.html "25.6.16.54 The ndbinfo server_operations Table")
+
+### F
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -F
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### -f
+
+[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")
+
+[Section 25.3.4, “Initial Startup of NDB Cluster”](mysql-cluster-install-first-start.html "25.3.4 Initial Startup of NDB Cluster")
+
+[Section 25.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "25.3.2.3 Initial Startup of NDB Cluster on Windows")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section A.10, “MySQL 8.0 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 8.0 FAQ: NDB Cluster")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 7.9.1.5, “Using a Stack Trace”](using-stack-trace.html "7.9.1.5 Using a Stack Trace")
+
+### --fast
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --federated
+
+[Section 18.8, “The FEDERATED Storage Engine”](federated-storage-engine.html "18.8 The FEDERATED Storage Engine")
+
+### --fido-register-factor
+
+[Section 15.7.1.1, “ALTER USER Statement”](alter-user.html "15.7.1.1 ALTER USER Statement")
+
+[Section 8.4.1.11, “FIDO Pluggable Authentication”](fido-pluggable-authentication.html "8.4.1.11 FIDO Pluggable Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --fields
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### --fields-enclosed-by
+
+[Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "9.4.3 Dumping Data in Delimited-Text Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --fields-escaped-by
+
+[Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "9.4.3 Dumping Data in Delimited-Text Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --fields-optionally-enclosed-by
+
+[Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "9.4.3 Dumping Data in Delimited-Text Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --fields-terminated-by
+
+[Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "9.4.3 Dumping Data in Delimited-Text Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --fields-xxx
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --file-key
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+### --file-key-from-stdin
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+### --filesystem-password
+
+[Section 25.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "25.4.3.6 Defining NDB Cluster Data Nodes")
+
+[Section 25.6.14.1, “NDB File System Encryption Setup and Usage”](mysql-cluster-tde-setup.html "25.6.14.1 NDB File System Encryption Setup and Usage")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --filesystem-password-from-stdin
+
+[Section 25.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "25.4.3.6 Defining NDB Cluster Data Nodes")
+
+[Section 25.6.14.1, “NDB File System Encryption Setup and Usage”](mysql-cluster-tde-setup.html "25.6.14.1 NDB File System Encryption Setup and Usage")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --fix-db-names
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --fix-table-names
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --flush
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing")
+
+### --flush-logs
+
+[Section 9.3.1, “Establishing a Backup Policy”](backup-policy.html "9.3.1 Establishing a Backup Policy")
+
+[Section 7.4, “MySQL Server Logs”](server-logs.html "7.4 MySQL Server Logs")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+### --flush-privileges
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --force
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 5.5, “Using mysql in Batch Mode”](batch-mode.html "5.5 Using mysql in Batch Mode")
+
+[Section 3.4, “What the MySQL Upgrade Process Upgrades”](upgrading-what-is-upgraded.html "3.4 What the MySQL Upgrade Process Upgrades")
+
+### --force-if-open
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --force-read
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --foreground
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --format
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+### FPROFILE\_GENERATE
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### FPROFILE\_USE
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### --fragment-id
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --fs
+
+[Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”](mysql-cluster-programs-ndb-error-reporter.html "25.5.12 ndb_error_reporter — NDB Error-Reporting Utility")
+
+### G
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -G
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+### -g
+
+[Section 7.9.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "7.9.1.1 Compiling MySQL for Debugging")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --gci
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --gci64
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --gdb
+
+[Section 7.9.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "7.9.1.4 Debugging mysqld under gdb")
+
+[Section 15.7.8.8, “RESTART Statement”](restart.html "15.7.8.8 RESTART Statement")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 6.10, “Unix Signal Handling in MySQL”](unix-signal-response.html "6.10 Unix Signal Handling in MySQL")
+
+### --general-log
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 7.1.9, “Using System Variables”](using-system-variables.html "7.1.9 Using System Variables")
+
+### --general\_log
+
+[Section 7.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "7.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
+
+[Section 7.4.3, “The General Query Log”](query-log.html "7.4.3 The General Query Log")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 7.1.9, “Using System Variables”](using-system-variables.html "7.1.9 Using System Variables")
+
+### --general\_log\_file
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 7.4.3, “The General Query Log”](query-log.html "7.4.3 The General Query Log")
+
+### --get-server-public-key
+
+[Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "8.4.1.2 Caching SHA-2 Pluggable Authentication")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --graph
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### H
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -H
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### -h
+
+[Section 1.1, “About This Manual”](manual-info.html "1.1 About This Manual")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+### HAVE\_CRYPT
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --header
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --header-file
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --HELP
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+### --help
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "25.3.2.4 Installing NDB Cluster Processes as Windows Services")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”](mysql-cluster-programs-ndb-error-reporter.html "25.5.12 ndb_error_reporter — NDB Error-Reporting Utility")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 6.1, “Overview of MySQL Programs”](programs-overview.html "6.1 Overview of MySQL Programs")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.9.3, “Testing the Server”](testing-server.html "2.9.3 Testing the Server")
+
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
+
+[Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”](starting-server-troubleshooting.html "2.9.2.1 Troubleshooting Problems Starting the MySQL Server")
+
+[Chapter 5, *Tutorial*](tutorial.html "Chapter 5 Tutorial")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### help
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --hex
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --hex-blob
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --hexdump
+
+[Section 6.6.9.1, “mysqlbinlog Hex Dump Format”](mysqlbinlog-hexdump.html "6.6.9.1 mysqlbinlog Hex Dump Format")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --histignore
+
+[Section 6.5.1.3, “mysql Client Logging”](mysql-logging.html "6.5.1.3 mysql Client Logging")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+### --host
+
+[Section 1.1, “About This Manual”](manual-info.html "1.1 About This Manual")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 8.4.1.8, “Kerberos Pluggable Authentication”](kerberos-pluggable-authentication.html "8.4.1.8 Kerberos Pluggable Authentication")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 6.2.2.6, “Option Defaults, Options Expecting Values, and the = Sign”](option-defaults-equals.html "6.2.2.6 Option Defaults, Options Expecting Values, and the = Sign")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "7.8.4 Using Client Programs in a Multiple-Server Environment")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 22.5.6.2, “X Plugin Options and System Variables”](x-plugin-options-system-variables.html "22.5.6.2 X Plugin Options and System Variables")
+
+### host
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --hostname
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+### --html
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### I
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -I
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### -i
+
+[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")
+
+[Section 9.6.2, “How to Check MyISAM Tables for Errors”](myisam-check.html "9.6.2 How to Check MyISAM Tables for Errors")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --i-am-a-dummy
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+### --id
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+### --idempotent
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --idlesleep
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --idlespin
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --ignore
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+### ignore-\*
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+### --ignore-db-dir
+
+[Section 3.6, “Preparing Your Installation for Upgrade”](upgrade-prerequisites.html "3.6 Preparing Your Installation for Upgrade")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --ignore-error
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --ignore-extended-pk-updates
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ignore-lines
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --ignore-spaces
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --ignore-table
+
+[Section 19.1.2.5.1, “Creating a Data Snapshot Using mysqldump”](replication-snapshot-method.html#replication-howto-mysqldump "19.1.2.5.1 Creating a Data Snapshot Using mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --in-file
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --in-file-errlog
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --in-file-toclient
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --include
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+### --include-\*
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --include-databases
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --include-events
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --include-gtids
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --include-master-host-port
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --include-routines
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --include-source-host-port
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --include-stored-grants
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --include-tables
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --include-triggers
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --include-users
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --info
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+### --information
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+### --init-command
+
+[Section 25.6.9, “Importing Data Into MySQL Cluster”](mysql-cluster-importing-data.html "25.6.9 Importing Data Into MySQL Cluster")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --init\_connect
+
+[Section 12.5, “Configuring Application Character Set and Collation”](charset-applications.html "12.5 Configuring Application Character Set and Collation")
+
+### --initial
+
+[Section 25.6.7.2, “Adding NDB Cluster Data Nodes Online: Basic procedure”](mysql-cluster-online-add-node-basics.html "25.6.7.2 Adding NDB Cluster Data Nodes Online: Basic procedure")
+
+[Section 25.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "25.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
+
+[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")
+
+[Section 25.4.3.5, “Defining an NDB Cluster Management Server”](mysql-cluster-mgm-definition.html "25.4.3.5 Defining an NDB Cluster Management Server")
+
+[Section 25.4.3.4, “Defining Computers in an NDB Cluster”](mysql-cluster-computer-definition.html "25.4.3.4 Defining Computers in an NDB Cluster")
+
+[Section 25.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "25.4.3.6 Defining NDB Cluster Data Nodes")
+
+[Section 25.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "25.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster")
+
+[Section 25.4.3.8, “Defining the System”](mysql-cluster-system-definition.html "25.4.3.8 Defining the System")
+
+[Section 25.3.4, “Initial Startup of NDB Cluster”](mysql-cluster-install-first-start.html "25.3.4 Initial Startup of NDB Cluster")
+
+[Section 25.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "25.3.2.3 Initial Startup of NDB Cluster on Windows")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 25.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "25.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes")
+
+[Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files")
+
+[Section 25.6.11.2, “NDB Cluster Disk Data Storage Requirements”](mysql-cluster-disk-data-storage-requirements.html "25.6.11.2 NDB Cluster Disk Data Storage Requirements")
+
+[Section 25.4.3.12, “NDB Cluster Shared-Memory Connections”](mysql-cluster-shm-definition.html "25.4.3.12 NDB Cluster Shared-Memory Connections")
+
+[Section 25.4.3.10, “NDB Cluster TCP/IP Connections”](mysql-cluster-tcp-definition.html "25.4.3.10 NDB Cluster TCP/IP Connections")
+
+[Section 25.6.14.1, “NDB File System Encryption Setup and Usage”](mysql-cluster-tde-setup.html "25.6.14.1 NDB File System Encryption Setup and Usage")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.3, “ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)”](mysql-cluster-programs-ndbmtd.html "25.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")
+
+[Section 25.4.2, “Overview of NDB Cluster Configuration Parameters, Options, and Variables”](mysql-cluster-configuration-overview.html "25.4.2 Overview of NDB Cluster Configuration Parameters, Options, and Variables")
+
+[Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "25.6.5 Performing a Rolling Restart of an NDB Cluster")
+
+[Section 25.7.9.2, “Point-In-Time Recovery Using NDB Cluster Replication”](mysql-cluster-replication-pitr.html "25.7.9.2 Point-In-Time Recovery Using NDB Cluster Replication")
+
+[Section 25.5.23.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "25.5.23.2.1 Restoring to Fewer Nodes Than the Original")
+
+[Section 25.6.4, “Summary of NDB Cluster Start Phases”](mysql-cluster-start-phases.html "25.6.4 Summary of NDB Cluster Start Phases")
+
+[Section 25.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "25.3.7 Upgrading and Downgrading NDB Cluster")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --initial-start
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --initialize
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 2.3.4.2, “Creating an Option File”](windows-create-option-file.html "2.3.4.2 Creating an Option File")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 25.3.1.1, “Installing an NDB Cluster Binary Release on Linux”](mysql-cluster-install-linux-binary.html "25.3.1.1 Installing an NDB Cluster Binary Release on Linux")
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Chapter 30, *MySQL sys Schema*](sys-schema.html "Chapter 30 MySQL sys Schema")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+[Section 17.6.3.1, “The System Tablespace”](innodb-system-tablespace.html "17.6.3.1 The System Tablespace")
+
+[Section 25.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "25.3.7 Upgrading and Downgrading NDB Cluster")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --initialize-insecure
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 2.3.4.2, “Creating an Option File”](windows-create-option-file.html "2.3.4.2 Creating an Option File")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 25.3.1.1, “Installing an NDB Cluster Binary Release on Linux”](mysql-cluster-install-linux-binary.html "25.3.1.1 Installing an NDB Cluster Binary Release on Linux")
+
+[Chapter 30, *MySQL sys Schema*](sys-schema.html "Chapter 30 MySQL sys Schema")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+[Section 17.6.3.1, “The System Tablespace”](innodb-system-tablespace.html "17.6.3.1 The System Tablespace")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --innodb
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+### --innodb-adaptive-hash-index
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+### --innodb-dedicated-server
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 17.8.12, “Enabling Automatic InnoDB Configuration for a Dedicated MySQL Server”](innodb-dedicated-server.html "17.8.12 Enabling Automatic InnoDB Configuration for a Dedicated MySQL Server")
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+[Section 17.6.5, “Redo Log”](innodb-redo-log.html "17.6.5 Redo Log")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --innodb-file-per-table
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### innodb-file-per-table
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --innodb-rollback-on-timeout
+
+[Section 17.21.5, “InnoDB Error Handling”](innodb-error-handling.html "17.21.5 InnoDB Error Handling")
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+### --innodb-status-file
+
+[Section 17.17.2, “Enabling InnoDB Monitors”](innodb-enabling-monitors.html "17.17.2 Enabling InnoDB Monitors")
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+### --innodb-xxx
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### innodb\_file\_per\_table
+
+[Section 19.1.2.5.2, “Creating a Data Snapshot Using Raw Data Files”](replication-snapshot-method.html#replication-howto-rawdata "19.1.2.5.2 Creating a Data Snapshot Using Raw Data Files")
+
+### --input-type
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --input-workers
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --insert-ignore
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --install
+
+[Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling")
+
+[Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "25.3.2.4 Installing NDB Cluster Processes as Windows Services")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.8.2.2, “Starting Multiple MySQL Instances as Windows Services”](multiple-windows-services.html "7.8.2.2 Starting Multiple MySQL Instances as Windows Services")
+
+[Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")
+
+### install
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --install-manual
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.8.2.2, “Starting Multiple MySQL Instances as Windows Services”](multiple-windows-services.html "7.8.2.2 Starting Multiple MySQL Instances as Windows Services")
+
+[Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")
+
+### INSTALL\_LAYOUT
+
+[Section 8.4.4.19, “Keyring System Variables”](keyring-system-variables.html "8.4.4.19 Keyring System Variables")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### INSTALL\_LIBDIR
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### INSTALL\_MYSQLKEYRINGDIR
+
+[Section 8.4.4.19, “Keyring System Variables”](keyring-system-variables.html "8.4.4.19 Keyring System Variables")
+
+### INSTALL\_PRIV\_LIBDIR
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### INSTALL\_SCRIPTDIR
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### INSTALL\_SECURE\_FILE\_PRIV\_EMBEDDEDDIR
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### INSTALL\_SECURE\_FILE\_PRIVDIR
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --interactive
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --iterations
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### J
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -j
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --join
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+### K
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -K
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### -k
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --keep-state
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --keep\_files\_on\_create
+
+[Section 15.1.20, “CREATE TABLE Statement”](create-table.html "15.1.20 CREATE TABLE Statement")
+
+### --keyring-migration-destination
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keyring-migration-host
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keyring-migration-password
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keyring-migration-port
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keyring-migration-socket
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keyring-migration-source
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keyring-migration-to-component
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keyring-migration-user
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+### --keys
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+### --keys-used
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### L
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -L
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 2.10.3, “Problems Using the Perl DBI/DBD Interface”](perl-support-problems.html "2.10.3 Problems Using the Perl DBI/DBD Interface")
+
+### -l
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### --language
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --large-pages
+
+[Section 10.12.3.3, “Enabling Large Page Support”](large-page-support.html "10.12.3.3 Enabling Large Page Support")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --lc-messages
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --lc-messages-dir
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --ledir
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --length
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+### --libmysqld-libs
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --libs
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+### --libs\_r
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+### --line-numbers
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --lines-terminated-by
+
+[Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "9.4.3 Dumping Data in Delimited-Text Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### LINK\_RANDOMIZE
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### list
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --load-data-local-dir
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "8.1.6 Security Considerations for LOAD DATA LOCAL")
+
+### --loadqueries
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+### --local
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "8.1.6 Security Considerations for LOAD DATA LOCAL")
+
+### --local-infile
+
+[Section 15.2.10, “LOAD XML Statement”](load-xml.html "15.2.10 LOAD XML Statement")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "8.1.6 Security Considerations for LOAD DATA LOCAL")
+
+### --local-load
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "8.1.6 Security Considerations for LOAD DATA LOCAL")
+
+### --local-service
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")
+
+### --lock
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+### --lock-all-tables
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --lock-order
+
+[Section 7.9.3, “The LOCK\_ORDER Tool”](lock-order-tool.html "7.9.3 The LOCK_ORDER Tool")
+
+### --lock-tables
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+### --log
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+### --log-bin
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 9.3.1, “Establishing a Backup Policy”](backup-policy.html "9.3.1 Establishing a Backup Policy")
+
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
+
+[Section 17.6.3.6, “Moving Tablespace Files While the Server is Offline”](innodb-moving-data-files-offline.html "17.6.3.6 Moving Tablespace Files While the Server is Offline")
+
+[Section 25.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”](mysql-cluster-limitations-syntax.html "25.2.7.1 Noncompliance with SQL Syntax in NDB Cluster")
+
+[Section 9.5.1, “Point-in-Time Recovery Using Binary Log”](point-in-time-recovery-binlog.html "9.5.1 Point-in-Time Recovery Using Binary Log")
+
+[Section 15.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "15.4.1.1 PURGE BINARY LOGS Statement")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 19.1.2.1, “Setting the Replication Source Configuration”](replication-howto-masterbaseconfig.html "19.1.2.1 Setting the Replication Source Configuration")
+
+[Section 19.4.8, “Switching Sources During Failover”](replication-solutions-switch.html "19.4.8 Switching Sources During Failover")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+[Section 9.3.2, “Using Backups for Recovery”](recovery-from-backups.html "9.3.2 Using Backups for Recovery")
+
+[Section 20.5.6, “Using MySQL Enterprise Backup with Group Replication”](group-replication-enterprise-backup.html "20.5.6 Using MySQL Enterprise Backup with Group Replication")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+### --log-bin-index
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 25.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”](mysql-cluster-limitations-syntax.html "25.2.7.1 Noncompliance with SQL Syntax in NDB Cluster")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+### --log-error
+
+[Section 7.4.2.2, “Default Error Log Destination Configuration”](error-log-destination-configuration.html "7.4.2.2 Default Error Log Destination Configuration")
+
+[Section 7.4.2.1, “Error Log Configuration”](error-log-configuration.html "7.4.2.1 Error Log Configuration")
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.2.2.6, “Option Defaults, Options Expecting Values, and the = Sign”](option-defaults-equals.html "6.2.2.6 Option Defaults, Options Expecting Values, and the = Sign")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.4.6, “Server Log Maintenance”](log-file-maintenance.html "7.4.6 Server Log Maintenance")
+
+[Section 2.3.4.6, “Starting MySQL from the Windows Command Line”](windows-start-command-line.html "2.3.4.6 Starting MySQL from the Windows Command Line")
+
+[Section 2.3.4.5, “Starting the Server for the First Time”](windows-server-first-start.html "2.3.4.5 Starting the Server for the First Time")
+
+### --log-error-file
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --log-error-verbosity
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --log-isam
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --log-level
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --log-name
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --log-raw
+
+[Section 8.1.2.3, “Passwords and Logging”](password-logging.html "8.1.2.3 Passwords and Logging")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 7.4.3, “The General Query Log”](query-log.html "7.4.3 The General Query Log")
+
+### --log-replica-updates
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 19.1.2.2, “Setting the Replica Configuration”](replication-howto-slavebaseconfig.html "19.1.2.2 Setting the Replica Configuration")
+
+[Section 19.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "19.1.3.4 Setting Up Replication Using GTIDs")
+
+### --log-short-format
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.4.5, “The Slow Query Log”](slow-query-log.html "7.4.5 The Slow Query Log")
+
+### --log-slave-updates
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 19.1.4.3, “Disabling GTID Transactions Online”](replication-mode-change-online-disable-gtids.html "19.1.4.3 Disabling GTID Transactions Online")
+
+[Section 19.5.5, “How to Report Replication Bugs or Problems”](replication-bugs.html "19.5.5 How to Report Replication Bugs or Problems")
+
+[Section 19.4.7, “Improving Replication Performance”](replication-solutions-performance.html "19.4.7 Improving Replication Performance")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.1.2.2, “Setting the Replica Configuration”](replication-howto-slavebaseconfig.html "19.1.2.2 Setting the Replica Configuration")
+
+[Section 19.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "19.1.3.4 Setting Up Replication Using GTIDs")
+
+[Section 19.4.8, “Switching Sources During Failover”](replication-solutions-switch.html "19.4.8 Switching Sources During Failover")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+### --log-tc
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --log-tc-size
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.10, “Server Status Variables”](server-status-variables.html "7.1.10 Server Status Variables")
+
+### --log-warnings
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --log\_bin
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+### --log\_output
+
+[Section 7.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "7.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
+
+### --log\_timestamps
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --logbuffer-size
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --login-path
+
+[Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --loops
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### --loose
+
+[Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")
+
+### --loose-opt\_name
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --lossy-conversions
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --low-priority
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+### --low-priority-updates
+
+[Section 10.11.3, “Concurrent Inserts”](concurrent-inserts.html "10.11.3 Concurrent Inserts")
+
+[Section 15.2.7, “INSERT Statement”](insert.html "15.2.7 INSERT Statement")
+
+[Section 10.11.2, “Table Locking Issues”](table-locking.html "10.11.2 Table Locking Issues")
+
+### --lower-case-table-names
+
+[Section 11.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "11.2.3 Identifier Case Sensitivity")
+
+### M
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -M
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### -m
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "25.7.9 NDB Cluster Backups With NDB Cluster Replication")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.23.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "25.5.23.2.2 Restoring to More Nodes Than the Original")
+
+### --malloc-lib
+
+[Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --master-data
+
+[Section 19.1.2.5.1, “Creating a Data Snapshot Using mysqldump”](replication-snapshot-method.html#replication-howto-mysqldump "19.1.2.5.1 Creating a Data Snapshot Using mysqldump")
+
+[Section 9.3.1, “Establishing a Backup Policy”](backup-policy.html "9.3.1 Establishing a Backup Policy")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+[Section 19.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "19.1.3.5 Using GTIDs for Failover and Scaleout")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --master-info-file
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.2.4.2, “Replication Metadata Repositories”](replica-logs-status.html "19.2.4.2 Replication Metadata Repositories")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --master-retry-count
+
+[Section 15.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement")
+
+[Section 15.4.2.3, “CHANGE REPLICATION SOURCE TO Statement”](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+### --max-allowed-packet
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --max-binlog-dump-events
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+### --max-binlog-size
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --max-join-size
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+### --max-record-length
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 15.7.3.5, “REPAIR TABLE Statement”](repair-table.html "15.7.3.5 REPAIR TABLE Statement")
+
+### --max-relay-log-size
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --max-rows
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --max-seeks-for-key
+
+[Section 10.2.1.23, “Avoiding Full Table Scans”](table-scan-avoidance.html "10.2.1.23 Avoiding Full Table Scans")
+
+[Section B.3.5, “Optimizer-Related Issues”](optimizer-issues.html "B.3.5 Optimizer-Related Issues")
+
+### --maximum
+
+[Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")
+
+### --maximum-back\_log
+
+[Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")
+
+### --maximum-max\_heap\_table\_size
+
+[Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")
+
+### --maximum-sort-buffer-size
+
+[Section 7.1.9, “Using System Variables”](using-system-variables.html "7.1.9 Using System Variables")
+
+### --maximum-var\_name
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.9, “Using System Variables”](using-system-variables.html "7.1.9 Using System Variables")
+
+### --measured-load
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --medium-check
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --memlock
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 17.6.3.1, “The System Tablespace”](innodb-system-tablespace.html "17.6.3.1 The System Tablespace")
+
+### --missing-ai-column
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### modify
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --monitor
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --mount
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### --my-plugin
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+### --my\_plugin
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+### --mycnf
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --myisam-block-size
+
+[Section 10.10.2.5, “Key Cache Block Size”](key-cache-block-size.html "10.10.2.5 Key Cache Block Size")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --myisam\_sort\_buffer\_size
+
+[Section 6.6.4.6, “myisamchk Memory Usage”](myisamchk-memory.html "6.6.4.6 myisamchk Memory Usage")
+
+### MYSQL\_ALLOW\_EMPTY\_PASSWORD
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_DATABASE
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_LOG\_CONSOLE
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_MAINTAINER\_MODE
+
+[Section 2.8.8, “Dealing with Problems Compiling MySQL”](compilation-problems.html "2.8.8 Dealing with Problems Compiling MySQL")
+
+### MYSQL\_ONETIME\_PASSWORD
+
+[Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”](docker-mysql-getting-started.html "2.5.6.1 Basic Steps for MySQL Server Deployment with Docker")
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_OPT\_USER\_PASSWORD
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### MYSQL\_PASSWORD
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_RANDOM\_ROOT\_PASSWORD
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_ROOT\_HOST
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_ROOT\_PASSWORD
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### MYSQL\_TCP\_PORT
+
+[Section 2.8.5, “Installing MySQL Using a Development Source Tree”](installing-development-tree.html "2.8.5 Installing MySQL Using a Development Source Tree")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### MYSQL\_UNIX\_ADDR
+
+[Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”](problems-with-mysql-sock.html "B.3.3.6 How to Protect or Change the MySQL Unix Socket File")
+
+[Section 2.8.5, “Installing MySQL Using a Development Source Tree”](installing-development-tree.html "2.8.5 Installing MySQL Using a Development Source Tree")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 22.5.6.2, “X Plugin Options and System Variables”](x-plugin-options-system-variables.html "22.5.6.2 X Plugin Options and System Variables")
+
+### MYSQL\_USER
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### --mysqladmin
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+### --mysqld
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --mysqld-long-query-time
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --mysqld-safe-log-timestamps
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --mysqld-version
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --mysqlx
+
+[Section 22.5.2, “Disabling X Plugin”](x-plugin-disabling.html "22.5.2 Disabling X Plugin")
+
+[Section 22.5.6.2, “X Plugin Options and System Variables”](x-plugin-options-system-variables.html "22.5.6.2 X Plugin Options and System Variables")
+
+### mysqlx
+
+[Section 22.5.2, “Disabling X Plugin”](x-plugin-disabling.html "22.5.2 Disabling X Plugin")
+
+### MYSQLX\_UNIX\_ADDR
+
+[Section 22.5.6.2, “X Plugin Options and System Variables”](x-plugin-options-system-variables.html "22.5.6.2 X Plugin Options and System Variables")
+
+### N
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -N
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### -n
+
+[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --name
+
+[Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”](docker-mysql-getting-started.html "2.5.6.1 Basic Steps for MySQL Server Deployment with Docker")
+
+### --name-file
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --named-commands
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --ndb
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-allow-copying-alter-table
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-applier-allow-skip-epoch
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --ndb-batch-size
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+[Section 25.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "25.7.5 Preparing the NDB Cluster for Replication")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-blob-read-batch-bytes
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-blob-write-batch-bytes
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+[Section 25.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "25.7.5 Preparing the NDB Cluster for Replication")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### ndb-blob-write-batch-bytes
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-cluster
+
+[Section A.10, “MySQL 8.0 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 8.0 FAQ: NDB Cluster")
+
+### --ndb-cluster-connection-pool
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-cluster-connection-pool-nodeids
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-connectstring
+
+[Section 25.3.2.1, “Installing NDB Cluster on Windows from a Binary Release”](mysql-cluster-install-windows-binary.html "25.3.2.1 Installing NDB Cluster on Windows from a Binary Release")
+
+[Section A.10, “MySQL 8.0 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 8.0 FAQ: NDB Cluster")
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.6.10, “MySQL Server Usage for NDB Cluster”](mysql-cluster-mysqld.html "25.6.10 MySQL Server Usage for NDB Cluster")
+
+[Section 25.6.20.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "25.6.20.2 NDB Cluster and MySQL Privileges")
+
+[Section 25.2.1, “NDB Cluster Core Concepts”](mysql-cluster-basics.html "25.2.1 NDB Cluster Core Concepts")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "25.7.5 Preparing the NDB Cluster for Replication")
+
+[Section 25.4.3.2, “Recommended Starting Configuration for NDB Cluster”](mysql-cluster-config-starting.html "25.4.3.2 Recommended Starting Configuration for NDB Cluster")
+
+[Section 25.5.23.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "25.5.23.2.1 Restoring to Fewer Nodes Than the Original")
+
+[Section 25.5.23.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "25.5.23.2.2 Restoring to More Nodes Than the Original")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### ndb-connectstring
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+### --ndb-default-column-format
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-deferred-constraints
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-distribution
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-index-stat-enable
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+### --ndb-log-apply-status
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+### --ndb-log-bin
+
+[Section 25.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "25.7.6 Starting NDB Cluster Replication (Single Replication Channel)")
+
+### --ndb-log-empty-epochs
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "25.7.4 NDB Cluster Replication Schema and Tables")
+
+### --ndb-log-empty-update
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-log-exclusive-reads
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-log-fail-terminate
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-log-orig
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "25.7.4 NDB Cluster Replication Schema and Tables")
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+### --ndb-log-transaction-compression
+
+[Section 7.4.4.5, “Binary Log Transaction Compression”](binary-log-transaction-compression.html "7.4.4.5 Binary Log Transaction Compression")
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+### --ndb-log-transaction-dependency
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.7.11, “NDB Cluster Replication Using the Multithreaded Applier”](mysql-cluster-replication-mta.html "25.7.11 NDB Cluster Replication Using the Multithreaded Applier")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-log-transaction-id
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.7.12, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "25.7.12 NDB Cluster Replication Conflict Resolution")
+
+[Section 25.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "25.4.3.9.2 NDB Cluster System Variables")
+
+### --ndb-log-update-as-write
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.7.12, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "25.7.12 NDB Cluster Replication Conflict Resolution")
+
+[Section 25.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "25.7.4 NDB Cluster Replication Schema and Tables")
+
+[Section 25.7.11, “NDB Cluster Replication Using the Multithreaded Applier”](mysql-cluster-replication-mta.html "25.7.11 NDB Cluster Replication Using the Multithreaded Applier")
+
+### --ndb-log-update-minimal
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "25.7.4 NDB Cluster Replication Schema and Tables")
+
+[Section 25.7.11, “NDB Cluster Replication Using the Multithreaded Applier”](mysql-cluster-replication-mta.html "25.7.11 NDB Cluster Replication Using the Multithreaded Applier")
+
+### --ndb-log-updated-only
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.7.12, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "25.7.12 NDB Cluster Replication Conflict Resolution")
+
+[Section 25.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "25.7.4 NDB Cluster Replication Schema and Tables")
+
+[Section 25.7.11, “NDB Cluster Replication Using the Multithreaded Applier”](mysql-cluster-replication-mta.html "25.7.11 NDB Cluster Replication Using the Multithreaded Applier")
+
+### --ndb-mgmd-host
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### --ndb-nodegroup-map
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --ndb-nodeid
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-optimization-delay
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 15.7.3.4, “OPTIMIZE TABLE Statement”](optimize-table.html "15.7.3.4 OPTIMIZE TABLE Statement")
+
+### --ndb-optimized-node-selection
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-replica-batch-size
+
+[Section 25.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "25.7.5 Preparing the NDB Cluster for Replication")
+
+### --ndb-replica-blob-write-batch-bytes
+
+[Section 25.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "25.7.5 Preparing the NDB Cluster for Replication")
+
+### --ndb-schema-dist-timeout
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --ndb-schema-dist-upgrade-allowed
+
+[Section 25.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "25.3.7 Upgrading and Downgrading NDB Cluster")
+
+### --ndb-transid-mysql-connection-map
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 28.3.18, “The INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map Table”](information-schema-ndb-transid-mysql-connection-map-table.html "28.3.18 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table")
+
+### --ndb-wait-connected
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndb-wait-setup
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --ndbcluster
+
+[Section 25.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "25.4 Configuration of NDB Cluster")
+
+[Section 25.3.2.1, “Installing NDB Cluster on Windows from a Binary Release”](mysql-cluster-install-windows-binary.html "25.3.2.1 Installing NDB Cluster on Windows from a Binary Release")
+
+[Section A.10, “MySQL 8.0 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 8.0 FAQ: NDB Cluster")
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.6.10, “MySQL Server Usage for NDB Cluster”](mysql-cluster-mysqld.html "25.6.10 MySQL Server Usage for NDB Cluster")
+
+[Section 25.6.20.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "25.6.20.2 NDB Cluster and MySQL Privileges")
+
+[Section 25.2.1, “NDB Cluster Core Concepts”](mysql-cluster-basics.html "25.2.1 NDB Cluster Core Concepts")
+
+[Section 25.6.16, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "25.6.16 ndbinfo: The NDB Cluster Information Database")
+
+[Section 25.4.3.2, “Recommended Starting Configuration for NDB Cluster”](mysql-cluster-config-starting.html "25.4.3.2 Recommended Starting Configuration for NDB Cluster")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 15.7.7.16, “SHOW ENGINES Statement”](show-engines.html "15.7.7.16 SHOW ENGINES Statement")
+
+[Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”](information-schema-engines-table.html "28.3.13 The INFORMATION_SCHEMA ENGINES Table")
+
+### --ndbinfo
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+### --net-buffer-length
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### net\_retry\_count
+
+[Section 19.2.3.1, “Monitoring Replication Main Threads”](replication-threads-monitor-main.html "19.2.3.1 Monitoring Replication Main Threads")
+
+### net\_write\_timeout
+
+[Section 19.2.3.1, “Monitoring Replication Main Threads”](replication-threads-monitor-main.html "19.2.3.1 Monitoring Replication Main Threads")
+
+### --network
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### --network-namespace
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 7.1.14, “Network Namespace Support”](network-namespace-support.html "7.1.14 Network Namespace Support")
+
+### --network-timeout
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --nice
+
+[Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --no-asynch
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --no-auto-rehash
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --no-autocommit
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --no-beep
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### --no-binlog
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --no-check
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --no-contact
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+### --no-create-db
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --no-create-info
+
+[Section 9.4.5.4, “Dumping Table Definitions and Content Separately”](mysqldump-definition-data-dumps.html "9.4.5.4 Dumping Table Definitions and Content Separately")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --no-data
+
+[Section 9.4.5.4, “Dumping Table Definitions and Content Separately”](mysqldump-definition-data-dumps.html "9.4.5.4 Dumping Table Definitions and Content Separately")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --no-dd-upgrade
+
+[Section 16.1, “Data Dictionary Schema”](data-dictionary-schema.html "16.1 Data Dictionary Schema")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+[Section 3.4, “What the MySQL Upgrade Process Upgrades”](upgrading-what-is-upgraded.html "3.4 What the MySQL Upgrade Process Upgrades")
+
+### --no-defaults
+
+[Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 7.1.9.3, “Persisted System Variables”](persisted-system-variables.html "7.1.9.3 Persisted System Variables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --no-drop
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --no-hint
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --no-history-logging
+
+[Section 20.5.6, “Using MySQL Enterprise Backup with Group Replication”](group-replication-enterprise-backup.html "20.5.6 Using MySQL Enterprise Backup with Group Replication")
+
+### --no-log
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+### --no-login-paths
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+### --no-monitor
+
+[Section 2.3, “Installing MySQL on Microsoft Windows”](windows-installation.html "2.3 Installing MySQL on Microsoft Windows")
+
+[Section 15.7.8.8, “RESTART Statement”](restart.html "15.7.8.8 RESTART Statement")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --no-nodeid-checks
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --no-print-rows
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --no-restore-disk-objects
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --no-set-names
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --no-tablespaces
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --no-upgrade
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --nodaemon
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --nodata
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --node-id
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --nodeid
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.23.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "25.5.23.2.1 Restoring to Fewer Nodes Than the Original")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --nodes
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### --nostart
+
+[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --not-started
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+### --nowait-nodes
+
+[Section 25.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "25.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
+
+[Section 25.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "25.4.3.6 Defining NDB Cluster Data Nodes")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+### --num-slices
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --number-char-cols
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --number-int-cols
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --number-of-queries
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### O
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -O
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### -o
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 10.12.1, “Optimizing Disk I/O”](disk-issues.html "10.12.1 Optimizing Disk I/O")
+
+### --offset
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --old-style-user-limits
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 8.2.21, “Setting Account Resource Limits”](user-resources.html "8.2.21 Setting Account Resource Limits")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### old\_passwords
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+### --oldpackage
+
+[Section 2.5.4, “Installing MySQL on Linux Using RPM Packages from Oracle”](linux-installation-rpm.html "2.5.4 Installing MySQL on Linux Using RPM Packages from Oracle")
+
+### ON
+
+[Section 5.3.4.9, “Using More Than one Table”](multiple-tables.html "5.3.4.9 Using More Than one Table")
+
+### --one-database
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --online-migration
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+### --only-print
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --opbatch
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --opbytes
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --open-files-limit
+
+[Section B.3.2.16, “File Not Found and Similar Errors”](not-enough-file-handles.html "B.3.2.16 File Not Found and Similar Errors")
+
+[Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --opt
+
+[Section 10.5.5, “Bulk Data Loading for InnoDB Tables”](optimizing-innodb-bulk-data-loading.html "10.5.5 Bulk Data Loading for InnoDB Tables")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --opt\_name
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --optimize
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### options
+
+[Section 14.16.4, “Functions That Create Geometry Values from WKB Values”](gis-wkb-functions.html "14.16.4 Functions That Create Geometry Values from WKB Values")
+
+[Section 14.16.3, “Functions That Create Geometry Values from WKT Values”](gis-wkt-functions.html "14.16.3 Functions That Create Geometry Values from WKT Values")
+
+[Section 14.16.6, “Geometry Format Conversion Functions”](gis-format-conversion-functions.html "14.16.6 Geometry Format Conversion Functions")
+
+### --order
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --order-by-primary
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --os-load
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --out-dir
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --out-file
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+### --output-type
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --output-workers
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### P
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -P
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### -p
+
+[Section 8.2.1, “Account User Names and Passwords”](user-names.html "8.2.1 Account User Names and Passwords")
+
+[Section 25.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "25.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 8.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "8.1.2.1 End-User Guidelines for Password Security")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 26.2.5, “KEY Partitioning”](partitioning-key.html "26.2.5 KEY Partitioning")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section B.3.2.4, “Password Fails When Entered Interactively”](password-too-long.html "B.3.2.4 Password Fails When Entered Interactively")
+
+[Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")
+
+[Section 2.3.4.6, “Starting MySQL from the Windows Command Line”](windows-start-command-line.html "2.3.4.6 Starting MySQL from the Windows Command Line")
+
+[Section 2.3.4.9, “Testing The MySQL Installation”](windows-testing.html "2.3.4.9 Testing The MySQL Installation")
+
+[Section 2.9.3, “Testing the Server”](testing-server.html "2.9.3 Testing the Server")
+
+[Section 25.6.16.7, “The ndbinfo cluster\_operations Table”](mysql-cluster-ndbinfo-cluster-operations.html "25.6.16.7 The ndbinfo cluster_operations Table")
+
+[Section 25.6.16.54, “The ndbinfo server\_operations Table”](mysql-cluster-ndbinfo-server-operations.html "25.6.16.54 The ndbinfo server_operations Table")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Chapter 3, *Upgrading MySQL*](upgrading.html "Chapter 3 Upgrading MySQL")
+
+[Section 3.11, “Upgrading MySQL on Windows”](windows-upgrading.html "3.11 Upgrading MySQL on Windows")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 2.3.6, “Windows Postinstallation Procedures”](windows-postinstallation.html "2.3.6 Windows Postinstallation Procedures")
+
+### --page
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --page-type-dump
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --page-type-summary
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --pagecnt
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --pager
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --pagesize
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --parallel-recover
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --parallel-schemas
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --parallelism
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### parallelism
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --parsable
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+### --partition
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --passwd
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --password
+
+[Section 8.2.1, “Account User Names and Passwords”](user-names.html "8.2.1 Account User Names and Passwords")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 8.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "8.1.2.1 End-User Guidelines for Password Security")
+
+[Section 9.3, “Example Backup and Recovery Strategy”](backup-strategy-example.html "9.3 Example Backup and Recovery Strategy")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 8.4.1.8, “Kerberos Pluggable Authentication”](kerberos-pluggable-authentication.html "8.4.1.8 Kerberos Pluggable Authentication")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 8.2.18, “Multifactor Authentication”](multifactor-authentication.html "8.2.18 Multifactor Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section B.3.2.4, “Password Fails When Entered Interactively”](password-too-long.html "B.3.2.4 Password Fails When Entered Interactively")
+
+[Section 25.5.23.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "25.5.23.2.2 Restoring to More Nodes Than the Original")
+
+[Section 8.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "8.4.1.12 Test Pluggable Authentication")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### password
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --password1
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.2.18, “Multifactor Authentication”](multifactor-authentication.html "8.2.18 Multifactor Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --password2
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.2.18, “Multifactor Authentication”](multifactor-authentication.html "8.2.18 Multifactor Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --password3
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.2.18, “Multifactor Authentication”](multifactor-authentication.html "8.2.18 Multifactor Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --performance-schema-consumer-consumer\_name
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-stages-current
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-stages-history
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-stages-history-long
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-statements-cpu
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-statements-current
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-statements-history
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-statements-history-long
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-transactions-current
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-transactions-history
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-transactions-history-long
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-waits-current
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-waits-history
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-events-waits-history-long
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-global-instrumentation
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-statements-digest
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-consumer-thread-instrumentation
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+### --performance-schema-instrument
+
+[Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options")
+
+[Section 29.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "29.3 Performance Schema Startup Configuration")
+
+### --performance-schema-xxx
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --performance\_schema\_max\_mutex\_classes
+
+[Section 29.7, “Performance Schema Status Monitoring”](performance-schema-status-monitoring.html "29.7 Performance Schema Status Monitoring")
+
+### --performance\_schema\_max\_mutex\_instances
+
+[Section 29.7, “Performance Schema Status Monitoring”](performance-schema-status-monitoring.html "29.7 Performance Schema Status Monitoring")
+
+### --pid-file
+
+[Section 7.4.2.2, “Default Error Log Destination Configuration”](error-log-destination-configuration.html "7.4.2.2 Default Error Log Destination Configuration")
+
+[Section 7.4.2.1, “Error Log Configuration”](error-log-configuration.html "7.4.2.1 Error Log Configuration")
+
+[Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### pid-file
+
+[Section 6.3.3, “mysql.server — MySQL Server Startup Script”](mysql-server.html "6.3.3 mysql.server — MySQL Server Startup Script")
+
+### --pipe
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 2.3.4.9, “Testing The MySQL Installation”](windows-testing.html "2.3.4.9 Testing The MySQL Installation")
+
+### --plugin
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --plugin-authentication-kerberos-client-mode
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --plugin-dir
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.4.1.8, “Kerberos Pluggable Authentication”](kerberos-pluggable-authentication.html "8.4.1.8 Kerberos Pluggable Authentication")
+
+[Section 8.4.1.7, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "8.4.1.7 LDAP Pluggable Authentication")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 8.2.17, “Pluggable Authentication”](pluggable-authentication.html "8.2.17 Pluggable Authentication")
+
+### --plugin-innodb-file-per-table
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --plugin-load
+
+[Section 8.4.5.11, “Audit Log Reference”](audit-log-reference.html "8.4.5.11 Audit Log Reference")
+
+[Section 7.6.5.2, “ddl\_rewriter Plugin Options”](ddl-rewriter-options.html "7.6.5.2 ddl_rewriter Plugin Options")
+
+[Section 15.7.4.4, “INSTALL PLUGIN Statement”](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement")
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+[Section 8.4.4.18, “Keyring Command Options”](keyring-options.html "8.4.4.18 Keyring Command Options")
+
+[Section 8.4.4.3, “Keyring Plugin Installation”](keyring-plugin-installation.html "8.4.4.3 Keyring Plugin Installation")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 8.4.3.3, “Transitioning to the Password Validation Component”](validate-password-transitioning.html "8.4.3.3 Transitioning to the Password Validation Component")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --plugin-load-add
+
+[Section 8.4.5.11, “Audit Log Reference”](audit-log-reference.html "8.4.5.11 Audit Log Reference")
+
+[Section 8.4.2.1, “Connection Control Plugin Installation”](connection-control-plugin-installation.html "8.4.2.1 Connection Control Plugin Installation")
+
+[Section 7.6.5.2, “ddl\_rewriter Plugin Options”](ddl-rewriter-options.html "7.6.5.2 ddl_rewriter Plugin Options")
+
+[Section 8.4.1.11, “FIDO Pluggable Authentication”](fido-pluggable-authentication.html "8.4.1.11 FIDO Pluggable Authentication")
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+[Section 7.6.7.1, “Installing the Clone Plugin”](clone-plugin-installation.html "7.6.7.1 Installing the Clone Plugin")
+
+[Section 8.4.1.8, “Kerberos Pluggable Authentication”](kerberos-pluggable-authentication.html "8.4.1.8 Kerberos Pluggable Authentication")
+
+[Section 8.4.4.3, “Keyring Plugin Installation”](keyring-plugin-installation.html "8.4.4.3 Keyring Plugin Installation")
+
+[Section 8.4.1.7, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "8.4.1.7 LDAP Pluggable Authentication")
+
+[Section 8.4.1.9, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "8.4.1.9 No-Login Pluggable Authentication")
+
+[Section 8.4.1.5, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "8.4.1.5 PAM Pluggable Authentication")
+
+[Section 8.4.3.2, “Password Validation Options and Variables”](validate-password-options-variables.html "8.4.3.2 Password Validation Options and Variables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 8.4.1.10, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "8.4.1.10 Socket Peer-Credential Pluggable Authentication")
+
+[Section 8.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "8.4.1.12 Test Pluggable Authentication")
+
+[Section 7.6.3.2, “Thread Pool Installation”](thread-pool-installation.html "7.6.3.2 Thread Pool Installation")
+
+[Section 8.4.3.3, “Transitioning to the Password Validation Component”](validate-password-transitioning.html "8.4.3.3 Transitioning to the Password Validation Component")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+[Section 8.4.1.6, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "8.4.1.6 Windows Pluggable Authentication")
+
+### plugin-load-add
+
+[Section 20.2.1.2, “Configuring an Instance for Group Replication”](group-replication-configuring-instances.html "20.2.1.2 Configuring an Instance for Group Replication")
+
+[Section 7.6.7.1, “Installing the Clone Plugin”](clone-plugin-installation.html "7.6.7.1 Installing the Clone Plugin")
+
+### --plugin-sql-mode
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --plugin-xxx
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --plugin\_dir
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### --plugin\_name
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+### PLUGIN\_OPT\_ALLOW\_EARLY
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --plugindir
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+### --polltimeout
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --port
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 8.4.1.8, “Kerberos Pluggable Authentication”](kerberos-pluggable-authentication.html "8.4.1.8 Kerberos Pluggable Authentication")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.8.3, “Running Multiple MySQL Instances on Unix”](multiple-unix-servers.html "7.8.3 Running Multiple MySQL Instances on Unix")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”](starting-server-troubleshooting.html "2.9.2.1 Troubleshooting Problems Starting the MySQL Server")
+
+[Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "7.8.4 Using Client Programs in a Multiple-Server Environment")
+
+### port
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --port-open-timeout
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --post-query
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --post-system
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --pre-query
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --pre-system
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### PREFIX
+
+[Section 25.3.1.4, “Building NDB Cluster from Source on Linux”](mysql-cluster-install-linux-source.html "25.3.1.4 Building NDB Cluster from Source on Linux")
+
+### --preserve-trailing-spaces
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --pretty
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+### --print
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --print-data
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --print-defaults
+
+[Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 3.13, “Upgrade Troubleshooting”](upgrade-troubleshooting.html "3.13 Upgrade Troubleshooting")
+
+### --print-full-config
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --print-header-words
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --print-log
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --print-meta
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --print-restored-rows
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --print-rows
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --print-rows-per-page
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --print-sql-log
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### print-sql-log
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --print-table-metadata
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --print\_\*
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --progress-frequency
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --promote-attributes
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --prompt
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --protocol
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 6.2.7, “Connection Transport Protocols”](transport-protocols.html "6.2.7 Connection Transport Protocols")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 7.8.3, “Running Multiple MySQL Instances on Unix”](multiple-unix-servers.html "7.8.3 Running Multiple MySQL Instances on Unix")
+
+[Section 2.3.4.5, “Starting the Server for the First Time”](windows-server-first-start.html "2.3.4.5 Starting the Server for the First Time")
+
+[Section 2.3.4.9, “Testing The MySQL Installation”](windows-testing.html "2.3.4.9 Testing The MySQL Installation")
+
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
+
+[Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "7.8.4 Using Client Programs in a Multiple-Server Environment")
+
+### Q
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -Q
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### -q
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+### --query
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --query-all
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### --quick
+
+[Section 6.6.4.6, “myisamchk Memory Usage”](myisamchk-memory.html "6.6.4.6 myisamchk Memory Usage")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section B.3.2.6, “Out of memory”](out-of-memory.html "B.3.2.6 Out of memory")
+
+[Section 9.6.1, “Using myisamchk for Crash Recovery”](myisam-crash-recovery.html "9.6.1 Using myisamchk for Crash Recovery")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --quiet
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+### --quote-names
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### R
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -R
+
+[Section 9.6.4, “MyISAM Table Optimization”](myisam-optimization.html "9.6.4 MyISAM Table Optimization")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### -r
+
+[Section 9.6.3, “How to Repair MyISAM Tables”](myisam-repair.html "9.6.3 How to Repair MyISAM Tables")
+
+[Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”](binary-installation.html "2.2 Installing MySQL on Unix/Linux Using Generic Binaries")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --raw
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 19.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "19.1.3.5 Using GTIDs for Failover and Scaleout")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --read-from-remote-master
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+[Section 19.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "19.1.3.5 Using GTIDs for Failover and Scaleout")
+
+### --read-from-remote-server
+
+[Section 19.3.2, “Encrypting Binary Log Files and Relay Log Files”](replication-binlog-encryption.html "19.3.2 Encrypting Binary Log Files and Relay Log Files")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 9.5.1, “Point-in-Time Recovery Using Binary Log”](point-in-time-recovery-binlog.html "9.5.1 Point-in-Time Recovery Using Binary Log")
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+[Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”](mysqlbinlog-server-id.html "6.6.9.4 Specifying the mysqlbinlog Server ID")
+
+[Section 19.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "19.1.3.5 Using GTIDs for Failover and Scaleout")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --read-from-remote-source
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+[Section 19.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "19.1.3.5 Using GTIDs for Failover and Scaleout")
+
+### --read-only
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+### --real\_table\_name
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+### --rebuild-indexes
+
+[Section 25.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "25.4.3.6 Defining NDB Cluster Data Nodes")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --reconnect
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --recover
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.4.6, “myisamchk Memory Usage”](myisamchk-memory.html "6.6.4.6 myisamchk Memory Usage")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### --rejects
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --relative
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### --relay-log
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+[Section 20.5.6, “Using MySQL Enterprise Backup with Group Replication”](group-replication-enterprise-backup.html "20.5.6 Using MySQL Enterprise Backup with Group Replication")
+
+### --relay-log-index
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --relay-log-purge
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --relay-log-recovery
+
+[Section 19.4.2, “Handling an Unexpected Halt of a Replica”](replication-solutions-unexpected-replica-halt.html "19.4.2 Handling an Unexpected Halt of a Replica")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.5.1.34, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "19.5.1.34 Replication and Transaction Inconsistencies")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+[Section 7.1.19, “The Server Shutdown Process”](server-shutdown.html "7.1.19 The Server Shutdown Process")
+
+### --relay-log-space-limit
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --reload
+
+[Section 25.6.7.2, “Adding NDB Cluster Data Nodes Online: Basic procedure”](mysql-cluster-online-add-node-basics.html "25.6.7.2 Adding NDB Cluster Data Nodes Online: Basic procedure")
+
+[Section 25.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "25.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
+
+[Section 25.3.4, “Initial Startup of NDB Cluster”](mysql-cluster-install-first-start.html "25.3.4 Initial Startup of NDB Cluster")
+
+[Section 25.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "25.3.2.3 Initial Startup of NDB Cluster on Windows")
+
+[Section 25.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "25.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes")
+
+[Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files")
+
+[Section 25.6.14.1, “NDB File System Encryption Setup and Usage”](mysql-cluster-tde-setup.html "25.6.14.1 NDB File System Encryption Setup and Usage")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "25.6.5 Performing a Rolling Restart of an NDB Cluster")
+
+### --remap-column
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --remove
+
+[Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "25.3.2.4 Installing NDB Cluster Processes as Windows Services")
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.8.2.2, “Starting Multiple MySQL Instances as Windows Services”](multiple-windows-services.html "7.8.2.2 Starting Multiple MySQL Instances as Windows Services")
+
+[Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")
+
+### remove
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --repair
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --replace
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --replica-net-timeout
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --replica-parallel-type
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --replica-parallel-workers
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --replica-skip-counter
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --replicate-\*
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.2.5.4, “Replication Channel Based Filters”](replication-rules-channel-based-filters.html "19.2.5.4 Replication Channel Based Filters")
+
+[Section 29.12.11.6, “The replication\_applier\_filters Table”](performance-schema-replication-applier-filters-table.html "29.12.11.6 The replication_applier_filters Table")
+
+[Section 29.12.11.7, “The replication\_applier\_global\_filters Table”](performance-schema-replication-applier-global-filters-table.html "29.12.11.7 The replication_applier_global_filters Table")
+
+### --replicate-\*-db
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 27.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "27.8 Restrictions on Stored Programs")
+
+### --replicate-do-\*
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+### --replicate-do-db
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "19.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.4.6, “Replicating Different Databases to Different Replicas”](replication-solutions-partitioning.html "19.4.6 Replicating Different Databases to Different Replicas")
+
+[Section 19.5.1.26, “Replication and Reserved Words”](replication-features-reserved-words.html "19.5.1.26 Replication and Reserved Words")
+
+[Section 19.5.1.31, “Replication and Temporary Tables”](replication-features-temptables.html "19.5.1.31 Replication and Temporary Tables")
+
+[Section 19.2.5.4, “Replication Channel Based Filters”](replication-rules-channel-based-filters.html "19.2.5.4 Replication Channel Based Filters")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+[Section 15.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+[Section 15.3.8.1, “XA Transaction SQL Statements”](xa-statements.html "15.3.8.1 XA Transaction SQL Statements")
+
+### --replicate-do-db:channel\_1:db\_name
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --replicate-do-table
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5.2, “Evaluation of Table-Level Replication Options”](replication-rules-table-options.html "19.2.5.2 Evaluation of Table-Level Replication Options")
+
+[Section 19.2.5.3, “Interactions Between Replication Filtering Options”](replication-rules-examples.html "19.2.5.3 Interactions Between Replication Filtering Options")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.5.1.26, “Replication and Reserved Words”](replication-features-reserved-words.html "19.5.1.26 Replication and Reserved Words")
+
+[Section 19.5.1.31, “Replication and Temporary Tables”](replication-features-temptables.html "19.5.1.31 Replication and Temporary Tables")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+[Section 18.6, “The BLACKHOLE Storage Engine”](blackhole-storage-engine.html "18.6 The BLACKHOLE Storage Engine")
+
+### --replicate-do-table:channel\_1:db\_name.tbl\_name
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --replicate-ignore-\*
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+### --replicate-ignore-db
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "19.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+[Section 19.2.5.3, “Interactions Between Replication Filtering Options”](replication-rules-examples.html "19.2.5.3 Interactions Between Replication Filtering Options")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.5.1.26, “Replication and Reserved Words”](replication-features-reserved-words.html "19.5.1.26 Replication and Reserved Words")
+
+[Section 19.2.5.4, “Replication Channel Based Filters”](replication-rules-channel-based-filters.html "19.2.5.4 Replication Channel Based Filters")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+[Section 15.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+[Section 15.3.8.1, “XA Transaction SQL Statements”](xa-statements.html "15.3.8.1 XA Transaction SQL Statements")
+
+### --replicate-ignore-db:channel\_1:db\_name
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --replicate-ignore-table
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5.2, “Evaluation of Table-Level Replication Options”](replication-rules-table-options.html "19.2.5.2 Evaluation of Table-Level Replication Options")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.5.1.26, “Replication and Reserved Words”](replication-features-reserved-words.html "19.5.1.26 Replication and Reserved Words")
+
+[Section 19.5.1.31, “Replication and Temporary Tables”](replication-features-temptables.html "19.5.1.31 Replication and Temporary Tables")
+
+[Section 15.4.2.4, “RESET REPLICA Statement”](reset-replica.html "15.4.2.4 RESET REPLICA Statement")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+[Section 18.6, “The BLACKHOLE Storage Engine”](blackhole-storage-engine.html "18.6 The BLACKHOLE Storage Engine")
+
+### --replicate-ignore-table:channel\_1:db\_name.tbl\_name
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --replicate-rewrite-db
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --replicate-same-server-id
+
+[Section 15.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement")
+
+[Section 15.4.2.3, “CHANGE REPLICATION SOURCE TO Statement”](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement")
+
+[Section 19.1.4.3, “Disabling GTID Transactions Online”](replication-mode-change-online-disable-gtids.html "19.1.4.3 Disabling GTID Transactions Online")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "19.1.6 Replication and Binary Logging Options and Variables")
+
+### --replicate-wild-\*-table
+
+[Section 19.2.5.4, “Replication Channel Based Filters”](replication-rules-channel-based-filters.html "19.2.5.4 Replication Channel Based Filters")
+
+### --replicate-wild-do-table
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5.2, “Evaluation of Table-Level Replication Options”](replication-rules-table-options.html "19.2.5.2 Evaluation of Table-Level Replication Options")
+
+[Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "19.2.5 How Servers Evaluate Replication Filtering Rules")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.4.6, “Replicating Different Databases to Different Replicas”](replication-solutions-partitioning.html "19.4.6 Replicating Different Databases to Different Replicas")
+
+[Section 19.5.1.31, “Replication and Temporary Tables”](replication-features-temptables.html "19.5.1.31 Replication and Temporary Tables")
+
+[Section 19.2.5.4, “Replication Channel Based Filters”](replication-rules-channel-based-filters.html "19.2.5.4 Replication Channel Based Filters")
+
+[Section 27.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "27.8 Restrictions on Stored Programs")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+### --replicate-wild-do-table:channel\_1:db\_name.tbl\_name
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --replicate-wild-ignore-table
+
+[Section 15.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "15.4.2.2 CHANGE REPLICATION FILTER Statement")
+
+[Section 19.2.5.2, “Evaluation of Table-Level Replication Options”](replication-rules-table-options.html "19.2.5.2 Evaluation of Table-Level Replication Options")
+
+[Section 25.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "25.7.3 Known Issues in NDB Cluster Replication")
+
+[Section A.14, “MySQL 8.0 FAQ: Replication”](faqs-replication.html "A.14 MySQL 8.0 FAQ: Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.5.1.31, “Replication and Temporary Tables”](replication-features-temptables.html "19.5.1.31 Replication and Temporary Tables")
+
+[Section 15.7.7.35, “SHOW REPLICA STATUS Statement”](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
+
+### --replicate-wild-ignore:channel\_1:db\_name.tbl\_name
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### replication-ignore-table
+
+[Section 19.5.1.40, “Replication and Views”](replication-features-views.html "19.5.1.40 Replication and Views")
+
+### --report-host
+
+[Section 19.1.7.1, “Checking Replication Status”](replication-administration-status.html "19.1.7.1 Checking Replication Status")
+
+[Section 20.10, “Frequently Asked Questions”](group-replication-frequently-asked-questions.html "20.10 Frequently Asked Questions")
+
+[Section 15.7.7.33, “SHOW REPLICAS Statement”](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement")
+
+### --report-password
+
+[Section 19.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "19.1.6.2 Replication Source Options and Variables")
+
+[Section 15.7.7.33, “SHOW REPLICAS Statement”](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement")
+
+### --report-port
+
+[Section 15.7.7.33, “SHOW REPLICAS Statement”](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement")
+
+### --report-user
+
+[Section 19.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "19.1.6.2 Replication Source Options and Variables")
+
+[Section 15.7.7.33, “SHOW REPLICAS Statement”](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement")
+
+### --require-row-format
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 19.3.3, “Replication Privilege Checks”](replication-privilege-checks.html "19.3.3 Replication Privilege Checks")
+
+### --restart
+
+[Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”](docker-mysql-getting-started.html "2.5.6.1 Basic Steps for MySQL Server Deployment with Docker")
+
+### --restore-data
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.23.1.1, “Restoring an NDB backup to a previous version of NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-previous-version "25.5.23.1.1 Restoring an NDB backup to a previous version of NDB Cluster")
+
+[Section 25.5.23.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "25.5.23.2.1 Restoring to Fewer Nodes Than the Original")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --restore-epoch
+
+[Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "25.7.9 NDB Cluster Backups With NDB Cluster Replication")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.7.9.2, “Point-In-Time Recovery Using NDB Cluster Replication”](mysql-cluster-replication-pitr.html "25.7.9.2 Point-In-Time Recovery Using NDB Cluster Replication")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --restore-meta
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.23.1.2, “Restoring an NDB backup to a later version of NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-later-version "25.5.23.1.2 Restoring an NDB backup to a later version of NDB Cluster")
+
+[Section 25.5.23.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "25.5.23.2.2 Restoring to More Nodes Than the Original")
+
+### --restore-privilege-tables
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --result-file
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --resume
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --retries
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+### --rewrite-database
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --rewrite-db
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --rm
+
+[Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”](docker-mysql-more-topics.html "2.5.6.2 More Topics on Deploying MySQL Server with Docker")
+
+### --routines
+
+[Section 16.7, “Data Dictionary Usage Differences”](data-dictionary-usage-differences.html "16.7 Data Dictionary Usage Differences")
+
+[Section 9.4.5.3, “Dumping Stored Programs”](mysqldump-stored-programs.html "9.4.5.3 Dumping Stored Programs")
+
+[Section 9.4.5.4, “Dumping Table Definitions and Content Separately”](mysqldump-definition-data-dumps.html "9.4.5.4 Dumping Table Definitions and Content Separately")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 3.7, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "3.7 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --rowbatch
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --rowbytes
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --rowid
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --rowid-file
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --rows
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### S
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -S
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 9.6.4, “MyISAM Table Optimization”](myisam-optimization.html "9.6.4 MyISAM Table Optimization")
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+### -s
+
+[Section 9.6.2, “How to Check MyISAM Tables for Errors”](myisam-check.html "9.6.2 How to Check MyISAM Tables for Errors")
+
+[Section 9.6.3, “How to Repair MyISAM Tables”](myisam-repair.html "9.6.3 How to Repair MyISAM Tables")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”](binary-installation.html "2.2 Installing MySQL on Unix/Linux Using Generic Binaries")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 9.6.5, “Setting Up a MyISAM Table Maintenance Schedule”](myisam-maintenance-schedule.html "9.6.5 Setting Up a MyISAM Table Maintenance Schedule")
+
+### --safe-recover
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.4.6, “myisamchk Memory Usage”](myisamchk-memory.html "6.6.4.6 myisamchk Memory Usage")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### --safe-updates
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --safe-user-create
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --savequeries
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+### --secure-auth
+
+[Section 8.2.17, “Pluggable Authentication”](pluggable-authentication.html "8.2.17 Pluggable Authentication")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --select-limit
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+### --server-arg
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --server-file
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --server-id
+
+[Section 25.7.2, “General Requirements for NDB Cluster Replication”](mysql-cluster-replication-general.html "25.7.2 General Requirements for NDB Cluster Replication")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 15.7.7.33, “SHOW REPLICAS Statement”](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement")
+
+### --server-id-bits
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --server-public-key-path
+
+[Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "8.4.1.2 Caching SHA-2 Pluggable Authentication")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 8.4.1.3, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "8.4.1.3 SHA-256 Pluggable Authentication")
+
+### service-startup-timeout
+
+[Section 6.3.3, “mysql.server — MySQL Server Startup Script”](mysql-server.html "6.3.3 mysql.server — MySQL Server Startup Script")
+
+### --set
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### set
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --set-auto-increment
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+### --set-charset
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --set-collation
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### --set-gtid-purged
+
+[Section 3.15, “Copying MySQL Databases to Another Machine”](copying-databases.html "3.15 Copying MySQL Databases to Another Machine")
+
+[Section 19.1.2.5.1, “Creating a Data Snapshot Using mysqldump”](replication-snapshot-method.html#replication-howto-mysqldump "19.1.2.5.1 Creating a Data Snapshot Using mysqldump")
+
+[Section 9.4.1, “Dumping Data in SQL Format with mysqldump”](mysqldump-sql-format.html "9.4.1 Dumping Data in SQL Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 19.1.3.8, “Stored Function Examples to Manipulate GTIDs”](replication-gtids-functions.html "19.1.3.8 Stored Function Examples to Manipulate GTIDs")
+
+[Section 19.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "19.1.3.5 Using GTIDs for Failover and Scaleout")
+
+### --shared-memory-base-name
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "7.8.4 Using Client Programs in a Multiple-Server Environment")
+
+### --short-form
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --show
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+### --show-create-skip-secondary-engine
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --show-ignored-rows
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --show-replica-auth-info
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "19.1.6.2 Replication Source Options and Variables")
+
+[Section 15.7.7.33, “SHOW REPLICAS Statement”](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement")
+
+### --show-slave-auth-info
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "19.1.6.2 Replication Source Options and Variables")
+
+[Section 15.7.7.33, “SHOW REPLICAS Statement”](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement")
+
+### --show-table-type
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+### --show-temp-status
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+### --show-warnings
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### --shutdown-timeout
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### --sigint-ignore
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.10, “Unix Signal Handling in MySQL”](unix-signal-response.html "6.10 Unix Signal Handling in MySQL")
+
+### --silent
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 9.6.5, “Setting Up a MyISAM Table Maintenance Schedule”](myisam-maintenance-schedule.html "9.6.5 Setting Up a MyISAM Table Maintenance Schedule")
+
+### --single-transaction
+
+[Section 9.2, “Database Backup Methods”](backup-methods.html "9.2 Database Backup Methods")
+
+[Section 9.3.1, “Establishing a Backup Policy”](backup-policy.html "9.3.1 Establishing a Backup Policy")
+
+[Section 17.18.1, “InnoDB Backup”](innodb-backup.html "17.18.1 InnoDB Backup")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 17.8.9, “Purge Configuration”](innodb-purge-configuration.html "17.8.9 Purge Configuration")
+
+### --single-user
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+### --skip
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --skip-add-drop-table
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-add-locks
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-admin-ssl
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --skip-auto-rehash
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --skip-binary-as-hex
+
+[Section 14.13, “Encryption and Compression Functions”](encryption-functions.html "14.13 Encryption and Compression Functions")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --skip-binlog
+
+[Section 20.5.6, “Using MySQL Enterprise Backup with Group Replication”](group-replication-enterprise-backup.html "20.5.6 Using MySQL Enterprise Backup with Group Replication")
+
+### --skip-broken-objects
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --skip-character-set-client-handshake
+
+[Section A.11, “MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 12.10.7.1, “The cp932 Character Set”](charset-cp932.html "12.10.7.1 The cp932 Character Set")
+
+### --skip-color
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --skip-colors
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --skip-column-names
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --skip-commands
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --skip-comments
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-config-cache
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --skip-config-file
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+### --skip-data
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+### --skip-database
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --skip-defer-table-indexes
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-definer
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-disable-keys
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-dump-date
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-dump-rows
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-engine\_name
+
+[Section 15.7.7.16, “SHOW ENGINES Statement”](show-engines.html "15.7.7.16 SHOW ENGINES Statement")
+
+[Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”](information-schema-engines-table.html "28.3.13 The INFORMATION_SCHEMA ENGINES Table")
+
+### --skip-events
+
+[Section 9.4.5.3, “Dumping Stored Programs”](mysqldump-stored-programs.html "9.4.5.3 Dumping Stored Programs")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-extended-insert
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-external-locking
+
+[Section 10.11.5, “External Locking”](external-locking.html "10.11.5 External Locking")
+
+[Section 10.14.3, “General Thread States”](general-thread-states.html "10.14.3 General Thread States")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing")
+
+### --skip-federated
+
+[Section 19.4.4, “Using Replication with Different Source and Replica Storage Engines”](replication-solutions-diffengines.html "19.4.4 Using Replication with Different Source and Replica Storage Engines")
+
+### --skip-generated-invisible-primary-key
+
+[Section 15.1.20.11, “Generated Invisible Primary Keys”](create-table-gipks.html "15.1.20.11 Generated Invisible Primary Keys")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --skip-grant-tables
+
+[Section 15.7.4.1, “CREATE FUNCTION Statement for Loadable Functions”](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions")
+
+[Section 27.4.2, “Event Scheduler Configuration”](events-configuration.html "27.4.2 Event Scheduler Configuration")
+
+[Section 15.7.8.3, “FLUSH Statement”](flush.html "15.7.8.3 FLUSH Statement")
+
+[Section 15.7.4.3, “INSTALL COMPONENT Statement”](install-component.html "15.7.4.3 INSTALL COMPONENT Statement")
+
+[Section 15.7.4.4, “INSTALL PLUGIN Statement”](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement")
+
+[Section 7.5.1, “Installing and Uninstalling Components”](component-loading.html "7.5.1 Installing and Uninstalling Components")
+
+[Section 7.7.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "7.7.1 Installing and Uninstalling Loadable Functions")
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 8.2.15, “Password Management”](password-management.html "8.2.15 Password Management")
+
+[Section 8.2.17, “Pluggable Authentication”](pluggable-authentication.html "8.2.17 Pluggable Authentication")
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+[Section B.3.3.2.3, “Resetting the Root Password: Generic Instructions”](resetting-permissions.html#resetting-permissions-generic "B.3.3.2.3 Resetting the Root Password: Generic Instructions")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 28.3.46, “The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table”](information-schema-user-attributes-table.html "28.3.46 The INFORMATION_SCHEMA USER_ATTRIBUTES Table")
+
+[Section 7.3, “The mysql System Schema”](system-schema.html "7.3 The mysql System Schema")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 8.2.13, “When Privilege Changes Take Effect”](privilege-changes.html "8.2.13 When Privilege Changes Take Effect")
+
+### --skip-graphs
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --skip-gtids
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --skip-host-cache
+
+[Section 7.1.12.3, “DNS Lookups and the Host Cache”](host-cache.html "7.1.12.3 DNS Lookups and the Host Cache")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --skip-innodb
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+[Section A.14, “MySQL 8.0 FAQ: Replication”](faqs-replication.html "A.14 MySQL 8.0 FAQ: Replication")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --skip-innodb-adaptive-hash-index
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+### --skip-kill-mysqld
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --skip-line-numbers
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --skip-lock-tables
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-log-bin
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 19.1.3.1, “GTID Format and Storage”](replication-gtids-concepts.html "19.1.3.1 GTID Format and Storage")
+
+[Section 7.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "7.4.4.2 Setting The Binary Log Format")
+
+[Section 19.1.2.2, “Setting the Replica Configuration”](replication-howto-slavebaseconfig.html "19.1.2.2 Setting the Replica Configuration")
+
+[Section 19.1.2.1, “Setting the Replication Source Configuration”](replication-howto-masterbaseconfig.html "19.1.2.1 Setting the Replication Source Configuration")
+
+[Section 19.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "19.1.3.4 Setting Up Replication Using GTIDs")
+
+[Section 27.7, “Stored Program Binary Logging”](stored-programs-logging.html "27.7 Stored Program Binary Logging")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+[Section 19.5.4, “Troubleshooting Replication”](replication-problems.html "19.5.4 Troubleshooting Replication")
+
+[Section 19.5.3, “Upgrading a Replication Topology”](replication-upgrade.html "19.5.3 Upgrading a Replication Topology")
+
+### --skip-mysqlx
+
+[Section 22.5.2, “Disabling X Plugin”](x-plugin-disabling.html "22.5.2 Disabling X Plugin")
+
+### --skip-named-commands
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --skip-ndb-optimized-node-selection
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+### --skip-ndbcluster
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 25.4.2.5, “NDB Cluster mysqld Option and Variable Reference”](mysql-cluster-option-tables.html "25.4.2.5 NDB Cluster mysqld Option and Variable Reference")
+
+### --skip-network-timeout
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-new
+
+[Section 7.9.1, “Debugging a MySQL Server”](debugging-server.html "7.9.1 Debugging a MySQL Server")
+
+[Section 15.7.3.4, “OPTIMIZE TABLE Statement”](optimize-table.html "15.7.3.4 OPTIMIZE TABLE Statement")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --skip-nodegroup
+
+[Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”](mysql-cluster-programs-ndb-error-reporter.html "25.5.12 ndb_error_reporter — NDB Error-Reporting Utility")
+
+### --skip-opt
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-pager
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --skip-partition
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --skip-password
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --skip-password1
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --skip-plugin-innodb-file-per-table
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --skip-plugin\_name
+
+[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins")
+
+### --skip-quick
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-quote-names
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --skip-reconnect
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+### --skip-relaylog
+
+[Section 20.5.6, “Using MySQL Enterprise Backup with Group Replication”](group-replication-enterprise-backup.html "20.5.6 Using MySQL Enterprise Backup with Group Replication")
+
+### --skip-replica-start
+
+[Section 19.4.9.2, “Asynchronous Connection Failover for Replicas”](replication-asynchronous-connection-failover-replica.html "19.4.9.2 Asynchronous Connection Failover for Replicas")
+
+[Section 25.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "25.7.5 Preparing the NDB Cluster for Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "19.1.3.4 Setting Up Replication Using GTIDs")
+
+[Section 25.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "25.7.6 Starting NDB Cluster Replication (Single Replication Channel)")
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --skip-routines
+
+[Section 9.4.5.3, “Dumping Stored Programs”](mysqldump-stored-programs.html "9.4.5.3 Dumping Stored Programs")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-safe-updates
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --skip-set-charset
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-show-database
+
+[Section 8.2.2, “Privileges Provided by MySQL”](privileges-provided.html "8.2.2 Privileges Provided by MySQL")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 15.7.7.14, “SHOW DATABASES Statement”](show-databases.html "15.7.7.14 SHOW DATABASES Statement")
+
+### --skip-slave-preserve-commit-order
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+### --skip-slave-start
+
+[Section 19.1.2.8, “Adding Replicas to a Replication Environment”](replication-howto-additionalslaves.html "19.1.2.8 Adding Replicas to a Replication Environment")
+
+[Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "25.7.9 NDB Cluster Backups With NDB Cluster Replication")
+
+[Section 25.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "25.7.5 Preparing the NDB Cluster for Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+[Section 19.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "19.1.3.4 Setting Up Replication Using GTIDs")
+
+[Section 19.1.2.6.2, “Setting Up Replication with Existing Data”](replication-setup-replicas.html#replication-howto-existingdata "19.1.2.6.2 Setting Up Replication with Existing Data")
+
+[Section 15.4.2.6, “START REPLICA Statement”](start-replica.html "15.4.2.6 START REPLICA Statement")
+
+[Section 25.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "25.7.6 Starting NDB Cluster Replication (Single Replication Channel)")
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+[Section 19.5.4, “Troubleshooting Replication”](replication-problems.html "19.5.4 Troubleshooting Replication")
+
+[Section 19.5.3, “Upgrading a Replication Topology”](replication-upgrade.html "19.5.3 Upgrading a Replication Topology")
+
+### --skip-sort
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --skip-ssl
+
+[Section 20.6.1, “Communication Stack for Connection Security Management”](group-replication-connection-security.html "20.6.1 Communication Stack for Connection Security Management")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --skip-stack-trace
+
+[Section 7.9.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "7.9.1.4 Debugging mysqld under gdb")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --skip-super-large-pages
+
+[Section 10.12.3.3, “Enabling Large Page Support”](large-page-support.html "10.12.3.3 Enabling Large Page Support")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --skip-symbolic-links
+
+[Section 15.1.20, “CREATE TABLE Statement”](create-table.html "15.1.20 CREATE TABLE Statement")
+
+[Section 8.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "8.1.3 Making MySQL Secure Against Attackers")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 10.12.2.3, “Using Symbolic Links for Databases on Windows”](windows-symbolic-links.html "10.12.2.3 Using Symbolic Links for Databases on Windows")
+
+[Section 10.12.2.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "10.12.2.2 Using Symbolic Links for MyISAM Tables on Unix")
+
+### --skip-sys-schema
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 3.4, “What the MySQL Upgrade Process Upgrades”](upgrading-what-is-upgraded.html "3.4 What the MySQL Upgrade Process Upgrades")
+
+### --skip-syslog
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --skip-system-command
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --skip-table-check
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --skip-triggers
+
+[Section 9.4.5.3, “Dumping Stored Programs”](mysqldump-stored-programs.html "9.4.5.3 Dumping Stored Programs")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-tz-utc
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-unknown-objects
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --skip-version-check
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+### --skip-warn
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+### --skip-watch-progress
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --skip-write-binlog
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --skip\_grant\_tables
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+### --slave-net-timeout
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --slave-parallel-workers
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --slave-preserve-commit-order
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log")
+
+### --slave-skip-counter
+
+[Section 19.2.2.3, “Startup Options and Replication Channels”](channels-startup-options.html "19.2.2.3 Startup Options and Replication Channels")
+
+### --slave-skip-errors
+
+[Section 25.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "25.7.8 Implementing Failover with NDB Cluster Replication")
+
+[Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "25.4.3.9.1 MySQL Server Options for NDB Cluster")
+
+[Section 19.5.1.29, “Replica Errors During Replication”](replication-features-errors.html "19.5.1.29 Replica Errors During Replication")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --slave-sql-verify-checksum
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 19.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "19.1.6.3 Replica Server Options and Variables")
+
+### --sleep
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### --sleep-time
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --slice-id
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### slice-id
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --slow-start-timeout
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --slow\_query\_log
+
+[Section 7.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "7.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
+
+[Section 7.4.5, “The Slow Query Log”](slow-query-log.html "7.4.5 The Slow Query Log")
+
+### --slow\_query\_log\_file
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.4.5, “The Slow Query Log”](slow-query-log.html "7.4.5 The Slow Query Log")
+
+### --socket
+
+[Section B.3.2.2, “Can't connect to [local] MySQL server”](can-not-connect-to-server.html "B.3.2.2 Can't connect to [local] MySQL server")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.4, “Connecting to the MySQL Server Using Command Options”](connecting.html "6.2.4 Connecting to the MySQL Server Using Command Options")
+
+[Section 2.5.6.3, “Deploying MySQL on Windows and Other Non-Linux Platforms with Docker”](deploy-mysql-nonlinux-docker.html "2.5.6.3 Deploying MySQL on Windows and Other Non-Linux Platforms with Docker")
+
+[Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”](problems-with-mysql-sock.html "B.3.3.6 How to Protect or Change the MySQL Unix Socket File")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.8.3, “Running Multiple MySQL Instances on Unix”](multiple-unix-servers.html "7.8.3 Running Multiple MySQL Instances on Unix")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.3.4.9, “Testing The MySQL Installation”](windows-testing.html "2.3.4.9 Testing The MySQL Installation")
+
+[Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "8.2.22 Troubleshooting Problems Connecting to MySQL")
+
+[Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "7.8.4 Using Client Programs in a Multiple-Server Environment")
+
+### socket
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --sort
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --sort-index
+
+[Section 9.6.4, “MyISAM Table Optimization”](myisam-optimization.html "9.6.4 MyISAM Table Optimization")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+### --sort-records
+
+[Section 9.6.4, “MyISAM Table Optimization”](myisam-optimization.html "9.6.4 MyISAM Table Optimization")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+### --sort-recover
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.4.6, “myisamchk Memory Usage”](myisamchk-memory.html "6.6.4.6 myisamchk Memory Usage")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+### --sort\_buffer\_size
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --source-data
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --source-keyring
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+### --source-keyring-configuration-dir
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+### --sporadic-binlog-dump-fail
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+### --sql-mode
+
+[Chapter 14, *Functions and Operators*](functions.html "Chapter 14 Functions and Operators")
+
+[Section A.3, “MySQL 8.0 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 8.0 FAQ: Server SQL Mode")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes")
+
+### sql-mode
+
+[Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes")
+
+### --ssl
+
+[Section 7.1.12.2, “Administrative Connection Management”](administrative-connection-interface.html "7.1.12.2 Administrative Connection Management")
+
+[Section 20.6.1, “Communication Stack for Connection Security Management”](group-replication-connection-security.html "20.6.1 Communication Stack for Connection Security Management")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 8.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "8.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --ssl\*
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --ssl-ca
+
+[Section 15.7.1.1, “ALTER USER Statement”](alter-user.html "15.7.1.1 ALTER USER Statement")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 15.7.1.3, “CREATE USER Statement”](create-user.html "15.7.1.3 CREATE USER Statement")
+
+[Section 8.3.3.2, “Creating SSL Certificates and Keys Using openssl”](creating-ssl-files-using-openssl.html "8.3.3.2 Creating SSL Certificates and Keys Using openssl")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 7.1.9.4, “Nonpersistible and Persist-Restricted System Variables”](nonpersistible-system-variables.html "7.1.9.4 Nonpersistible and Persist-Restricted System Variables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --ssl-capath
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --ssl-cert
+
+[Section 15.7.1.1, “ALTER USER Statement”](alter-user.html "15.7.1.1 ALTER USER Statement")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 15.7.1.3, “CREATE USER Statement”](create-user.html "15.7.1.3 CREATE USER Statement")
+
+[Section 8.3.3.2, “Creating SSL Certificates and Keys Using openssl”](creating-ssl-files-using-openssl.html "8.3.3.2 Creating SSL Certificates and Keys Using openssl")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 7.1.9.4, “Nonpersistible and Persist-Restricted System Variables”](nonpersistible-system-variables.html "7.1.9.4 Nonpersistible and Persist-Restricted System Variables")
+
+### --ssl-cipher
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "8.3.2 Encrypted Connection TLS Protocols and Ciphers")
+
+### --ssl-crl
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+### --ssl-crlpath
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+### --ssl-fips-mode
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.8, “FIPS Support”](fips-mode.html "8.8 FIPS Support")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --ssl-key
+
+[Section 15.7.1.1, “ALTER USER Statement”](alter-user.html "15.7.1.1 ALTER USER Statement")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 15.7.1.3, “CREATE USER Statement”](create-user.html "15.7.1.3 CREATE USER Statement")
+
+[Section 8.3.3.2, “Creating SSL Certificates and Keys Using openssl”](creating-ssl-files-using-openssl.html "8.3.3.2 Creating SSL Certificates and Keys Using openssl")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 7.1.9.4, “Nonpersistible and Persist-Restricted System Variables”](nonpersistible-system-variables.html "7.1.9.4 Nonpersistible and Persist-Restricted System Variables")
+
+### --ssl-mode
+
+[Section 15.7.1.1, “ALTER USER Statement”](alter-user.html "15.7.1.1 ALTER USER Statement")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 6.2.5, “Connecting to the Server Using URI-Like Strings or Key-Value Pairs”](connecting-using-uri-or-key-value-pairs.html "6.2.5 Connecting to the Server Using URI-Like Strings or Key-Value Pairs")
+
+[Section 15.7.1.3, “CREATE USER Statement”](create-user.html "15.7.1.3 CREATE USER Statement")
+
+[Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "8.3.2 Encrypted Connection TLS Protocols and Ciphers")
+
+[Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "8.1.6 Security Considerations for LOAD DATA LOCAL")
+
+[Section 19.3.1, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "19.3.1 Setting Up Replication to Use Encrypted Connections")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --ssl-session-data
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.5, “Reusing SSL Sessions”](reusing-ssl-sessions.html "8.3.5 Reusing SSL Sessions")
+
+### --ssl-session-data-continue-on-failed-reuse
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.5, “Reusing SSL Sessions”](reusing-ssl-sessions.html "8.3.5 Reusing SSL Sessions")
+
+### ssl-session-data-continue-on-failed-reuse
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+### --ssl-verify-server-cert
+
+[Section 19.3.1, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "19.3.1 Setting Up Replication to Use Encrypted Connections")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --ssl-xxx
+
+[Section 15.4.2.3, “CHANGE REPLICATION SOURCE TO Statement”](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 2.8.6, “Configuring SSL Library Support”](source-ssl-library-configuration.html "2.8.6 Configuring SSL Library Support")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 19.3.1, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "19.3.1 Setting Up Replication to Use Encrypted Connections")
+
+### --staging-tries
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+### --standalone
+
+[Section 7.9.1.2, “Creating Trace Files”](making-trace-files.html "7.9.1.2 Creating Trace Files")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.3.4.6, “Starting MySQL from the Windows Command Line”](windows-start-command-line.html "2.3.4.6 Starting MySQL from the Windows Command Line")
+
+### --start-datetime
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 9.5.2, “Point-in-Time Recovery Using Event Positions”](point-in-time-recovery-positions.html "9.5.2 Point-in-Time Recovery Using Event Positions")
+
+### --start-page
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --start-position
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 9.5.2, “Point-in-Time Recovery Using Event Positions”](point-in-time-recovery-positions.html "9.5.2 Point-in-Time Recovery Using Event Positions")
+
+### --state-dir
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --stats
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --status
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+### status
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --stop-datetime
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 9.5.2, “Point-in-Time Recovery Using Event Positions”](point-in-time-recovery-positions.html "9.5.2 Point-in-Time Recovery Using Event Positions")
+
+### --stop-never
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”](mysqlbinlog-server-id.html "6.6.9.4 Specifying the mysqlbinlog Server ID")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --stop-never-slave-server-id
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --stop-position
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 9.5.2, “Point-in-Time Recovery Using Event Positions”](point-in-time-recovery-positions.html "9.5.2 Point-in-Time Recovery Using Event Positions")
+
+### --strict-check
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --suffix
+
+[Section 8.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "8.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+### --super-large-pages
+
+[Section 10.12.3.3, “Enabling Large Page Support”](large-page-support.html "10.12.3.3 Enabling Large Page Support")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --symbolic-links
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 10.12.2.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "10.12.2.2 Using Symbolic Links for MyISAM Tables on Unix")
+
+### --sync-relay-log-info
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --sys-\*
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --sys-check
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --sys-create
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --sys-create-if-not-exist
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --sys-create-if-not-valid
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --sys-drop
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --sys-skip-events
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### --sys-skip-tables
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### SYSCONFDIR
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --sysdate-is-now
+
+[Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "19.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
+
+[Section 14.7, “Date and Time Functions”](date-and-time-functions.html "14.7 Date and Time Functions")
+
+[Section 19.5.1.14, “Replication and System Functions”](replication-features-functions.html "19.5.1.14 Replication and System Functions")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+### --syslog
+
+[Section 6.9, “Environment Variables”](environment-variables.html "6.9 Environment Variables")
+
+[Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd")
+
+[Section 6.5.1.3, “mysql Client Logging”](mysql-logging.html "6.5.1.3 mysql Client Logging")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.1.6, “mysql Client Tips”](mysql-tips.html "6.5.1.6 mysql Client Tips")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --syslog-tag
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+### --system
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+### --system-command
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### T
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -T
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### -t
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”](mysql-cluster-programs-ndb-redo-log-reader.html "25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --tab
+
+[Section 9.1, “Backup and Recovery Types”](backup-types.html "9.1 Backup and Recovery Types")
+
+[Section 9.2, “Database Backup Methods”](backup-methods.html "9.2 Database Backup Methods")
+
+[Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "9.4.3 Dumping Data in Delimited-Text Format with mysqldump")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 9.4, “Using mysqldump for Backups”](using-mysqldump.html "9.4 Using mysqldump for Backups")
+
+### --table
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --table-id
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### --tables
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --tc-heuristic-recover
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --tcp-ip
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+### --tee
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --temp-pool
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### --tempdelay
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --temperrors
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+### --test
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+### Text
+
+[Section 1.1, “About This Manual”](manual-info.html "1.1 About This Manual")
+
+### --text
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+### --thread-pool-size
+
+[Section 7.6.3.4, “Thread Pool Tuning”](thread-pool-tuning.html "7.6.3.4 Thread Pool Tuning")
+
+### --thread\_cache\_size
+
+[Section 7.9.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "7.9.1.4 Debugging mysqld under gdb")
+
+### --timeout
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+### --timestamp-printouts
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --timestamp-printouts{
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+### --timezone
+
+[Section 7.1.15, “MySQL Server Time Zone Support”](time-zone-support.html "7.1.15 MySQL Server Time Zone Support")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section B.3.3.7, “Time Zone Problems”](timezone-problems.html "B.3.3.7 Time Zone Problems")
+
+### --tls-ciphersuites
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "8.3.2 Encrypted Connection TLS Protocols and Ciphers")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --tls-version
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections")
+
+[Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "8.3.2 Encrypted Connection TLS Protocols and Ciphers")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### --tls-xxx
+
+[Section 15.4.2.3, “CHANGE REPLICATION SOURCE TO Statement”](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement")
+
+### --tmpdir
+
+[Section B.3.2.11, “Can't create/write to file”](cannot-create.html "B.3.2.11 Can't create/write to file")
+
+[Section 6.6.4.6, “myisamchk Memory Usage”](myisamchk-memory.html "6.6.4.6 myisamchk Memory Usage")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")
+
+[Section B.3.3.5, “Where MySQL Stores Temporary Files”](temporary-files.html "B.3.3.5 Where MySQL Stores Temporary Files")
+
+### tmpdir
+
+[Section 2.3, “Installing MySQL on Microsoft Windows”](windows-installation.html "2.3 Installing MySQL on Microsoft Windows")
+
+### --to-last-log
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”](mysqlbinlog-server-id.html "6.6.9.4 Specifying the mysqlbinlog Server ID")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+### --transaction-isolation
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 15.3.7, “SET TRANSACTION Statement”](set-transaction.html "15.3.7 SET TRANSACTION Statement")
+
+[Section 17.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "17.7.2.1 Transaction Isolation Levels")
+
+### --transaction-read-only
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")
+
+[Section 15.3.7, “SET TRANSACTION Statement”](set-transaction.html "15.3.7 SET TRANSACTION Statement")
+
+### --transactional
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+### --triggers
+
+[Section 9.4.5.3, “Dumping Stored Programs”](mysqldump-stored-programs.html "9.4.5.3 Dumping Stored Programs")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --try-reconnect
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+### --tupscan
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --type
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+### --tz-utc
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### U
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -U
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+### -u
+
+[Section 8.2.1, “Account User Names and Passwords”](user-names.html "8.2.1 Account User Names and Passwords")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.3.4.9, “Testing The MySQL Installation”](windows-testing.html "2.3.4.9 Testing The MySQL Installation")
+
+[Section 2.9.3, “Testing the Server”](testing-server.html "2.9.3 Testing the Server")
+
+[Chapter 3, *Upgrading MySQL*](upgrading.html "Chapter 3 Upgrading MySQL")
+
+[Section 2.3.6, “Windows Postinstallation Procedures”](windows-postinstallation.html "2.3.6 Windows Postinstallation Procedures")
+
+### --uid
+
+[Section 8.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "8.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+### --unbuffered
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+### --unpack
+
+[Section 18.2.3, “MyISAM Table Storage Formats”](myisam-table-formats.html "18.2.3 MyISAM Table Storage Formats")
+
+[Section 6.6.4.3, “myisamchk Repair Options”](myisamchk-repair-options.html "6.6.4.3 myisamchk Repair Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+### --unqualified
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+### --update
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+### update
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --update-state
+
+[Section 9.6.3, “How to Repair MyISAM Tables”](myisam-repair.html "9.6.3 How to Repair MyISAM Tables")
+
+[Section 6.6.4.2, “myisamchk Check Options”](myisamchk-check-options.html "6.6.4.2 myisamchk Check Options")
+
+[Section 18.2, “The MyISAM Storage Engine”](myisam-storage-engine.html "18.2 The MyISAM Storage Engine")
+
+### --upgrade
+
+[Section 3.5, “Changes in MySQL 8.0”](upgrading-from-previous-series.html "3.5 Changes in MySQL 8.0")
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+[Section 2.3.3.4, “MySQL Installer Product Catalog and Dashboard”](mysql-installer-catalog-dashboard.html "2.3.3.4 MySQL Installer Product Catalog and Dashboard")
+
+[Section 25.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "25.7.4 NDB Cluster Replication Schema and Tables")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 3.7, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "3.7 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+[Section 3.4, “What the MySQL Upgrade Process Upgrades”](upgrading-what-is-upgraded.html "3.4 What the MySQL Upgrade Process Upgrades")
+
+### upgrade
+
+[Section 2.3.3.5, “MySQL Installer Console Reference”](MySQLInstallerConsole.html "2.3.3.5 MySQL Installer Console Reference")
+
+### --upgrade-system-tables
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 3.4, “What the MySQL Upgrade Process Upgrades”](upgrading-what-is-upgraded.html "3.4 What the MySQL Upgrade Process Upgrades")
+
+### --uri
+
+[Section 6.2.5, “Connecting to the Server Using URI-Like Strings or Key-Value Pairs”](connecting-using-uri-or-key-value-pairs.html "6.2.5 Connecting to the Server Using URI-Like Strings or Key-Value Pairs")
+
+### --usage
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+### --use-default
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+### --use-frm
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+### --use-threads
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+### --useHexFormat
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --user
+
+[Section 8.2.1, “Account User Names and Passwords”](user-names.html "8.2.1 Account User Names and Passwords")
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 9.3, “Example Backup and Recovery Strategy”](backup-strategy-example.html "9.3 Example Backup and Recovery Strategy")
+
+[Section B.3.2.16, “File Not Found and Similar Errors”](not-enough-file-handles.html "B.3.2.16 File Not Found and Similar Errors")
+
+[Section 8.1.5, “How to Run MySQL as a Normal User”](changing-mysql-user.html "8.1.5 How to Run MySQL as a Normal User")
+
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
+
+[Section 6.2.1, “Invoking MySQL Programs”](invoking-programs.html "6.2.1 Invoking MySQL Programs")
+
+[Section 8.4.1.8, “Kerberos Pluggable Authentication”](kerberos-pluggable-authentication.html "8.4.1.8 Kerberos Pluggable Authentication")
+
+[Section 8.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "8.1.3 Making MySQL Secure Against Attackers")
+
+[Section 8.4.4.14, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "8.4.4.14 Migrating Keys Between Keyring Keystores")
+
+[Section 6.5.1.3, “mysql Client Logging”](mysql-logging.html "6.5.1.3 mysql Client Logging")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "6.4.2 mysql_secure_installation — Improve MySQL Installation Security")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.6.20.3, “NDB Cluster and MySQL Security Procedures”](mysql-cluster-security-mysql-security-procedures.html "25.6.20.3 NDB Cluster and MySQL Security Procedures")
+
+[Section 25.5.28, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”](mysql-cluster-programs-ndb-size-pl.html "25.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 6.2.2.6, “Option Defaults, Options Expecting Values, and the = Sign”](option-defaults-equals.html "6.2.2.6 Option Defaults, Options Expecting Values, and the = Sign")
+
+[Section B.3.3.2.2, “Resetting the Root Password: Unix and Unix-Like Systems”](resetting-permissions.html#resetting-permissions-unix "B.3.3.2.2 Resetting the Root Password: Unix and Unix-Like Systems")
+
+[Section 25.5.23.2.2, “Restoring to More Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-more-nodes "25.5.23.2.2 Restoring to More Nodes Than the Original")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 8.4.1.10, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "8.4.1.10 Socket Peer-Credential Pluggable Authentication")
+
+[Section 6.2.2, “Specifying Program Options”](program-options.html "6.2.2 Specifying Program Options")
+
+[Section 2.9.2, “Starting the Server”](starting-server.html "2.9.2 Starting the Server")
+
+[Section 8.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "8.4.1.12 Test Pluggable Authentication")
+
+[Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### user
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+### --users
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### V
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -V
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### -v
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 9.6.2, “How to Check MyISAM Tables for Errors”](myisam-check.html "9.6.2 How to Check MyISAM Tables for Errors")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9.2, “mysqlbinlog Row Event Display”](mysqlbinlog-row-events.html "6.6.9.2 mysqlbinlog Row Event Display")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 6.6.4.5, “Obtaining Table Information with myisamchk”](myisamchk-table-info.html "6.6.4.5 Obtaining Table Information with myisamchk")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+[Section 8.4.4.8, “Using the keyring\_okv KMIP Plugin”](keyring-okv-plugin.html "8.4.4.8 Using the keyring_okv KMIP Plugin")
+
+### --validate-config
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 7.1.3, “Server Configuration Validation”](server-configuration-validation.html "7.1.3 Server Configuration Validation")
+
+### --validate-password
+
+[Section 8.4.3.2, “Password Validation Options and Variables”](validate-password-options-variables.html "8.4.3.2 Password Validation Options and Variables")
+
+[Section 8.4.3.3, “Transitioning to the Password Validation Component”](validate-password-transitioning.html "8.4.3.3 Transitioning to the Password Validation Component")
+
+### --validate-user-plugins
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --var\_name
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+### --variable
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+### --verbose
+
+[Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "19.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
+
+[Section 19.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "19.1.6.4 Binary Logging Options and Variables")
+
+[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")
+
+[Section 6.5.1.5, “Executing SQL Statements from a Text File”](mysql-batch-commands.html "6.5.1.5 Executing SQL Statements from a Text File")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 7.4.4.5.3, “Monitoring Binary Log Transaction Compression”](binary-log-transaction-compression.html#binary-log-transaction-compression-monitoring "7.4.4.5.3 Monitoring Binary Log Transaction Compression")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9.2, “mysqlbinlog Row Event Display”](mysqlbinlog-row-events.html "6.6.9.2 mysqlbinlog Row Event Display")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 6.6.4.4, “Other myisamchk Options”](myisamchk-other-options.html "6.6.4.4 Other myisamchk Options")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”](starting-server-troubleshooting.html "2.9.2.1 Troubleshooting Problems Starting the MySQL Server")
+
+[Section 19.2.1.2, “Usage of Row-Based Logging and Replication”](replication-rbr-usage.html "19.2.1.2 Usage of Row-Based Logging and Replication")
+
+[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+### --verify-binlog-checksum
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+### --version
+
+[Section 6.4.1, “comp\_err — Compile MySQL Error Message File”](comp-err.html "6.4.1 comp_err — Compile MySQL Error Message File")
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”](my-print-defaults.html "6.7.2 my_print_defaults — Display Options from Option Files")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”](mysql-migrate-keyring.html "6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility")
+
+[Section 6.4.3, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”](mysql-ssl-rsa-setup.html "6.4.3 mysql_ssl_rsa_setup — Create SSL/RSA Files")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "6.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "25.5.8 ndb_delete_all — Delete All Rows from an NDB Table")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "25.5.10 ndb_drop_index — Drop Index from an NDB Table")
+
+[Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "25.5.11 ndb_drop_table — Drop an NDB Table")
+
+[Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "25.5.13 ndb_import — Import CSV Data Into NDB")
+
+[Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "25.5.14 ndb_index_stat — NDB Index Statistics Utility")
+
+[Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
+
+[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
+
+[Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”](mysql-cluster-programs-ndb-move-data.html "25.5.15 ndb_move_data — NDB Data Copy Utility")
+
+[Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information")
+
+[Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”](mysql-cluster-programs-ndb-print-backup-file.html "25.5.17 ndb_print_backup_file — Print NDB Backup File Contents")
+
+[Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”](mysql-cluster-programs-ndb-print-file.html "25.5.18 ndb_print_file — Print NDB Disk Data File Contents")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”](mysql-cluster-programs-ndb-secretsfile-reader.html "25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”](mysql-cluster-programs-ndb-select-count.html "25.5.26 ndb_select_count — Print Row Counts for NDB Tables")
+
+[Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+[Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon")
+
+[Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables")
+
+[Section 25.5.31, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster")
+
+[Section 6.8.2, “perror — Display MySQL Error Message Information”](perror.html "6.8.2 perror — Display MySQL Error Message Information")
+
+[Section 7.1.7, “Server Command Options”](server-options.html "7.1.7 Server Command Options")
+
+[Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line")
+
+### --version-check
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+### --vertical
+
+[Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### W
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -W
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### -w
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+### --wait
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+### --wait-nodes
+
+[Section 25.5.30, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”](mysql-cluster-programs-ndb-waiter.html "25.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
+
+### --warn
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+### --watch-progress
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+### --where
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### --with-apply-status
+
+[Section 25.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "25.7.4 NDB Cluster Replication Schema and Tables")
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### WITH\_ANT
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_BOOST
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 2.8.2, “Source Installation Prerequisites”](source-installation-prerequisites.html "2.8.2 Source Installation Prerequisites")
+
+### WITH\_CLASSPATH
+
+[Section 25.3.1.4, “Building NDB Cluster from Source on Linux”](mysql-cluster-install-linux-source.html "25.3.1.4 Building NDB Cluster from Source on Linux")
+
+[Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”](mysql-cluster-install-windows-source.html "25.3.2.2 Compiling and Installing NDB Cluster from Source on Windows")
+
+### WITH\_CLIENT\_PROTOCOL\_TRACING
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_CURL
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_DEBUG
+
+[Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”](ibd2sdi.html "6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility")
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+[Section 6.6.4.1, “myisamchk General Options”](myisamchk-general-options.html "6.6.4.1 myisamchk General Options")
+
+[Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”](mysqldumpslow.html "6.6.10 mysqldumpslow — Summarize Slow Query Log Files")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### WITH\_EDITLINE
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_EMBEDDED\_SERVER
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### WITH\_EMBEDDED\_SHARED\_LIBRARY
+
+[Section 1.3, “What Is New in MySQL 8.0”](mysql-nutshell.html "1.3 What Is New in MySQL 8.0")
+
+### WITH\_FIDO
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_GMOCK
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_ICU
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_JEMALLOC
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_LIBEVENT
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_LOCK\_ORDER
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 7.9.3, “The LOCK\_ORDER Tool”](lock-order-tool.html "7.9.3 The LOCK_ORDER Tool")
+
+### WITH\_LTO
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_LZ4
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_LZMA
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_MECAB
+
+[Section 14.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "14.9.9 MeCab Full-Text Parser Plugin")
+
+### WITH\_NDB
+
+[Section 25.3.1.4, “Building NDB Cluster from Source on Linux”](mysql-cluster-install-linux-source.html "25.3.1.4 Building NDB Cluster from Source on Linux")
+
+[Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”](mysql-cluster-install-windows-source.html "25.3.2.2 Compiling and Installing NDB Cluster from Source on Windows")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### WITH\_NDB\_JAVA
+
+[Section 25.3.1.4, “Building NDB Cluster from Source on Linux”](mysql-cluster-install-linux-source.html "25.3.1.4 Building NDB Cluster from Source on Linux")
+
+[Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”](mysql-cluster-install-windows-source.html "25.3.2.2 Compiling and Installing NDB Cluster from Source on Windows")
+
+### WITH\_NDBCLUSTER
+
+[Section 25.3.1.4, “Building NDB Cluster from Source on Linux”](mysql-cluster-install-linux-source.html "25.3.1.4 Building NDB Cluster from Source on Linux")
+
+[Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”](mysql-cluster-install-windows-source.html "25.3.2.2 Compiling and Installing NDB Cluster from Source on Windows")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### WITH\_NDBCLUSTER\_STORAGE\_ENGINE
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### WITH\_NUMA
+
+[Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_PLUGIN\_NDBCLUSTER
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### WITH\_PROTOBUF
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_RE2
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_SSL
+
+[Section 2.8.6, “Configuring SSL Library Support”](source-ssl-library-configuration.html "2.8.6 Configuring SSL Library Support")
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+[Section 2.8.2, “Source Installation Prerequisites”](source-installation-prerequisites.html "2.8.2 Source Installation Prerequisites")
+
+[Section 8.3, “Using Encrypted Connections”](encrypted-connections.html "8.3 Using Encrypted Connections")
+
+### WITH\_SYSTEMD
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_TCMALLOC
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_TEST\_TRACE\_PLUGIN
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_ZLIB
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### WITH\_ZSTD
+
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
+
+### --write
+
+[Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "6.6.2 innochecksum — Offline InnoDB File Checksum Utility")
+
+### --write-binlog
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 19.1.3.7, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "19.1.3.7 Restrictions on Replication with GTIDs")
+
+[Section 19.5.3, “Upgrading a Replication Topology”](replication-upgrade.html "19.5.3 Upgrading a Replication Topology")
+
+### X
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -X
+
+[Section 6.5.1.2, “mysql Client Commands”](mysql-commands.html "6.5.1.2 mysql Client Commands")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### -x
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+[Section 25.5.9, “ndb\_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+[Section 25.5.29, “ndb\_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "25.5.29 ndb_top — View CPU usage information for NDB threads")
+
+[Section 25.2.4, “What is New in MySQL NDB Cluster 8.0”](mysql-cluster-what-is-new.html "25.2.4 What is New in MySQL NDB Cluster 8.0")
+
+### --xml
+
+[Section 15.2.10, “LOAD XML Statement”](load-xml.html "15.2.10 LOAD XML Statement")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”](mysql-cluster-programs-ndb-config.html "25.5.7 ndb_config — Extract NDB Cluster Configuration Information")
+
+[Section 14.11, “XML Functions”](xml-functions.html "14.11 XML Functions")
+
+### Y
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -Y
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+### -y
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")
+
+### Z
+
+[[index top](dynindex-option.html#option-index-top)]
+
+### -z
+
+[Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup")
+
+[Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table")
+
+### --zstd-compression-level
+
+[Section 6.2.3, “Command Options for Connecting to the Server”](connection-options.html "6.2.3 Command Options for Connecting to the Server")
+
+[Section 6.2.8, “Connection Compression Control”](connection-compression-control.html "6.2.8 Connection Compression Control")
+
+[Section 6.5.1.1, “mysql Client Options”](mysql-command-options.html "6.5.1.1 mysql Client Options")
+
+[Section 6.4.5, “mysql\_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "6.4.5 mysql_upgrade — Check and Upgrade MySQL Tables")
+
+[Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program")
+
+[Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
+
+[Section 6.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "6.5.3 mysqlcheck — A Table Maintenance Program")
+
+[Section 6.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "6.5.4 mysqldump — A Database Backup Program")
+
+[Section 6.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "6.5.5 mysqlimport — A Data Import Program")
+
+[Section 6.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "6.5.6 mysqlpump — A Database Backup Program")
+
+[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
+
+[Section 6.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "6.5.8 mysqlslap — A Load Emulation Client")

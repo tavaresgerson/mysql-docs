@@ -1,0 +1,49 @@
+#### 17.15.2.2 InnoDB Lock and Lock-Wait Information
+
+Note
+
+This section describes locking information as exposed by the
+Performance Schema [`data_locks`](performance-schema-data-locks-table.html "29.12.13.1 The data_locks Table") and
+[`data_lock_waits`](performance-schema-data-lock-waits-table.html "29.12.13.2 The data_lock_waits Table") tables, which
+supersede the `INFORMATION_SCHEMA`
+`INNODB_LOCKS` and
+`INNODB_LOCK_WAITS` tables in MySQL
+8.0. For similar discussion written in terms of
+the older `INFORMATION_SCHEMA` tables, see
+[InnoDB Lock and Lock-Wait Information](/doc/refman/5.7/en/innodb-information-schema-understanding-innodb-locking.html),
+in [MySQL 5.7 Reference Manual](/doc/refman/5.7/en/).
+
+When a transaction updates a row in a table, or locks it with
+`SELECT FOR UPDATE`, `InnoDB`
+establishes a list or queue of locks on that row. Similarly,
+`InnoDB` maintains a list of locks on a table
+for table-level locks. If a second transaction wants to update a
+row or lock a table already locked by a prior transaction in an
+incompatible mode, `InnoDB` adds a lock request
+for the row to the corresponding queue. For a lock to be
+acquired by a transaction, all incompatible lock requests
+previously entered into the lock queue for that row or table
+must be removed (which occurs when the transactions holding or
+requesting those locks either commit or roll back).
+
+A transaction may have any number of lock requests for different
+rows or tables. At any given time, a transaction may request a
+lock that is held by another transaction, in which case it is
+blocked by that other transaction. The requesting transaction
+must wait for the transaction that holds the blocking lock to
+commit or roll back. If a transaction is not waiting for a lock,
+it is in a `RUNNING` state. If a transaction is
+waiting for a lock, it is in a `LOCK WAIT`
+state. (The `INFORMATION_SCHEMA`
+[`INNODB_TRX`](information-schema-innodb-trx-table.html "28.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") table indicates
+transaction state values.)
+
+The Performance Schema [`data_locks`](performance-schema-data-locks-table.html "29.12.13.1 The data_locks Table")
+table holds one or more rows for each `LOCK
+WAIT` transaction, indicating any lock requests that
+prevent its progress. This table also contains one row
+describing each lock in a queue of locks pending for a given row
+or table. The Performance Schema
+[`data_lock_waits`](performance-schema-data-lock-waits-table.html "29.12.13.2 The data_lock_waits Table") table shows which
+locks already held by a transaction are blocking locks requested
+by other transactions.

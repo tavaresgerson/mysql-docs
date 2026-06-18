@@ -1,0 +1,63 @@
+## 28.4 INFORMATION\_SCHEMA Tabelas InnoDB
+
+28.4.1 INFORMAÇÕES\_SCHEMA Referência da Tabela InnoDB
+
+28.4.2 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE
+
+28.4.3 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU
+
+28.4.4 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS
+
+28.4.5 A tabela INFORMATION\_SCHEMA INNODB\_CACHED\_INDEXES
+
+28.4.6 As tabelas INFORMATION\_SCHEMA INNODB\_CMP e INNODB\_CMP\_RESET
+
+28.4.7 As tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET
+
+28.4.8 As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET
+
+28.4.9 A tabela INFORMATION\_SCHEMA INNODB\_COLUMNS
+
+28.4.10 A tabela INFORMATION\_SCHEMA INNODB\_DATAFILES
+
+28.4.11 A tabela INFORMATION\_SCHEMA INNODB\_FIELDS
+
+28.4.12 A tabela INFORMATION\_SCHEMA INNODB\_FOREIGN
+
+28.4.13 A tabela INFORMATION\_SCHEMA INNODB\_FOREIGN\_COLS
+
+28.4.14 A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED
+
+28.4.15 A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG
+
+28.4.16 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD
+
+28.4.17 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED
+
+28.4.18 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE
+
+28.4.19 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE
+
+28.4.20 A tabela INFORMATION\_SCHEMA INNODB\_INDEXES
+
+28.4.21 A tabela INFORMATION\_SCHEMA INNODB\_METRICS
+
+28.4.22 A tabela INFORMATION\_SCHEMA INNODB\_SESSION\_TEMP\_TABLESPACES
+
+28.4.23 A tabela INFORMATION\_SCHEMA INNODB\_TABLES
+
+28.4.24 A tabela INFORMATION\_SCHEMA INNODB\_TABLESPACES
+
+28.4.25 A tabela INFORMATION\_SCHEMA INNODB\_TABLESPACES\_BRIEF
+
+28.4.26 A visão INFORMATION\_SCHEMA INNODB\_TABLESTATS
+
+28.4.27 A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO
+
+28.4.28 A tabela INFORMATION\_SCHEMA INNODB\_TRX
+
+28.4.29 A tabela INFORMATION\_SCHEMA INNODB\_VIRTUAL
+
+Esta seção fornece definições de tabelas para as tabelas `INFORMATION_SCHEMA` `InnoDB`. Para informações e exemplos relacionados, consulte a Seção 17.15, “Tabelas do Schema de Informações InnoDB”.
+
+As tabelas `INFORMATION_SCHEMA` e `InnoDB` podem ser usadas para monitorar a atividade em andamento `InnoDB`, para detectar ineficiências antes que se tornem problemas ou para solucionar problemas de desempenho e capacidade. À medida que seu banco de dados se torna maior e mais ocupado, enfrentando os limites da capacidade do hardware, você monitora e ajusta esses aspectos para manter o banco de dados funcionando sem problemas.

@@ -1,0 +1,3 @@
+#### 16.4.1.30 Repetições e Timeouts na Replicação
+
+A `system variable` global `slave_transaction_retries` afeta a `replication` da seguinte maneira: Se o `SQL thread` de `replication` falhar ao executar uma `transaction` devido a um `deadlock` no `InnoDB` ou porque excedeu o valor `innodb_lock_wait_timeout` do `InnoDB`, ou o valor de `TransactionDeadlockDetectionTimeout` ou `TransactionInactiveTimeout` do `NDB`, a `replica` automaticamente tenta novamente a `transaction` o número de vezes definido em `slave_transaction_retries` antes de parar com um erro. O valor padrão é 10. A contagem total de repetições pode ser vista na saída de `SHOW STATUS`; veja Section 5.1.9, “Server Status Variables”.

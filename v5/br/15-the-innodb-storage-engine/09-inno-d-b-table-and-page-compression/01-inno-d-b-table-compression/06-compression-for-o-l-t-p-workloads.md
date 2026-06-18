@@ -1,0 +1,15 @@
+#### 14.9.1.6 Compressão para Workloads OLTP
+
+Tradicionalmente, o recurso de compressão do `InnoDB` era recomendado principalmente para workloads de somente leitura (read-only) ou predominantemente de leitura (read-mostly), como em uma configuração de data warehouse. O surgimento de dispositivos de armazenamento SSD, que são rápidos, mas relativamente pequenos e caros, torna a compressão atraente também para workloads `OLTP`: sites interativos de alto tráfego podem reduzir seus requisitos de armazenamento e suas operações de I/O por segundo (IOPS) utilizando tabelas comprimidas com aplicações que realizam operações frequentes de `INSERT`, `UPDATE` e `DELETE`.
+
+Opções de configuração introduzidas no MySQL 5.6 permitem ajustar a forma como a compressão funciona para uma instância específica do MySQL, com ênfase no desempenho e escalabilidade para operações intensivas em escrita:
+
+* `innodb_compression_level` permite aumentar ou diminuir o grau de compressão. Um valor mais alto permite que você armazene mais dados em um dispositivo de armazenamento, às custas de uma sobrecarga maior de CPU durante a compressão. Um valor mais baixo permite reduzir a sobrecarga de CPU quando o espaço de armazenamento não é crítico, ou se você espera que os dados não sejam especialmente compressíveis.
+
+* `innodb_compression_failure_threshold_pct` especifica um ponto de corte para falhas de compressão durante Updates em uma tabela comprimida. Quando esse threshold é ultrapassado, o MySQL começa a deixar um espaço livre adicional dentro de cada nova page comprimida, ajustando dinamicamente a quantidade de espaço livre até a porcentagem do tamanho da page especificada por `innodb_compression_pad_pct_max`.
+
+* `innodb_compression_pad_pct_max` permite ajustar a quantidade máxima de espaço reservado dentro de cada page para registrar alterações em rows comprimidas, sem a necessidade de comprimir a page inteira novamente. Quanto maior o valor, mais alterações podem ser registradas sem recompressão da page. O MySQL usa uma quantidade variável de espaço livre para as pages dentro de cada tabela comprimida, apenas quando uma porcentagem designada de operações de compressão "falha" em runtime, exigindo uma operação custosa para dividir a page comprimida.
+
+* `innodb_log_compressed_pages` permite desabilitar a escrita de imagens de pages re-comprimidas no redo log. A recompressão pode ocorrer quando alterações são feitas em dados comprimidos. Esta opção é habilitada por padrão para prevenir corrupção que poderia ocorrer se uma versão diferente do algoritmo de compressão `zlib` for usada durante a recovery. Se você tem certeza de que a versão `zlib` não deve mudar, desabilite `innodb_log_compressed_pages` para reduzir a geração de redo log para workloads que modificam dados comprimidos.
+
+Visto que trabalhar com dados comprimidos, às vezes, envolve manter as versões comprimida e não comprimida de uma page na memória simultaneamente, ao usar compressão com um workload do tipo OLTP, esteja preparado para aumentar o valor da opção de configuração `innodb_buffer_pool_size`.

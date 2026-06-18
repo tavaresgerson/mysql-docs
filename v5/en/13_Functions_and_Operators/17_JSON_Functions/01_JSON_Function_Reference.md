@@ -1,0 +1,192 @@
+### 12.17.1 JSON Function Reference
+
+**Table 12.22 JSON Functions**
+
+<table frame="box" rules="all" summary="A reference that lists all JSON functions."><col style="width: 22%"/><col style="width: 55%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Name</th>
+<th>Description</th>
+<th>Introduced</th>
+<th>Deprecated</th>
+</tr></thead><tbody><tr><th><code>-&gt;</code></th>
+<td>
+      Return value from JSON column after evaluating path; equivalent to
+      JSON_EXTRACT().
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>-&gt;&gt;</code></th>
+<td>
+      Return value from JSON column after evaluating path and unquoting
+      the result; equivalent to JSON_UNQUOTE(JSON_EXTRACT()).
+    </td>
+<td>5.7.13</td>
+<td></td>
+</tr><tr><th><code>JSON_APPEND()</code></th>
+<td>
+      Append data to JSON document
+    </td>
+<td></td>
+<td>Yes</td>
+</tr><tr><th><code>JSON_ARRAY()</code></th>
+<td>
+      Create JSON array
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_ARRAY_APPEND()</code></th>
+<td>
+      Append data to JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_ARRAY_INSERT()</code></th>
+<td>
+      Insert into JSON array
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_CONTAINS()</code></th>
+<td>
+      Whether JSON document contains specific object at path
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_CONTAINS_PATH()</code></th>
+<td>
+      Whether JSON document contains any data at path
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_DEPTH()</code></th>
+<td>
+      Maximum depth of JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_EXTRACT()</code></th>
+<td>
+      Return data from JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_INSERT()</code></th>
+<td>
+      Insert data into JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_KEYS()</code></th>
+<td>
+      Array of keys from JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_LENGTH()</code></th>
+<td>
+      Number of elements in JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_MERGE()</code></th>
+<td>
+      Merge JSON documents, preserving duplicate keys. Deprecated
+      synonym for JSON_MERGE_PRESERVE()
+    </td>
+<td></td>
+<td>5.7.22</td>
+</tr><tr><th><code>JSON_MERGE_PATCH()</code></th>
+<td>
+      Merge JSON documents, replacing values of duplicate keys
+    </td>
+<td>5.7.22</td>
+<td></td>
+</tr><tr><th><code>JSON_MERGE_PRESERVE()</code></th>
+<td>
+      Merge JSON documents, preserving duplicate keys
+    </td>
+<td>5.7.22</td>
+<td></td>
+</tr><tr><th><code>JSON_OBJECT()</code></th>
+<td>
+      Create JSON object
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_PRETTY()</code></th>
+<td>
+      Print a JSON document in human-readable format
+    </td>
+<td>5.7.22</td>
+<td></td>
+</tr><tr><th><code>JSON_QUOTE()</code></th>
+<td>
+      Quote JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_REMOVE()</code></th>
+<td>
+      Remove data from JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_REPLACE()</code></th>
+<td>
+      Replace values in JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_SEARCH()</code></th>
+<td>
+      Path to value within JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_SET()</code></th>
+<td>
+      Insert data into JSON document
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_STORAGE_SIZE()</code></th>
+<td>
+      Space used for storage of binary representation of a JSON document
+    </td>
+<td>5.7.22</td>
+<td></td>
+</tr><tr><th><code>JSON_TYPE()</code></th>
+<td>
+      Type of JSON value
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_UNQUOTE()</code></th>
+<td>
+      Unquote JSON value
+    </td>
+<td></td>
+<td></td>
+</tr><tr><th><code>JSON_VALID()</code></th>
+<td>
+      Whether JSON value is valid
+    </td>
+<td></td>
+<td></td>
+</tr></tbody></table>
+
+MySQL 5.7.22 and later supports two aggregate JSON functions
+[`JSON_ARRAYAGG()`](aggregate-functions.html#function_json-arrayagg) and
+[`JSON_OBJECTAGG()`](aggregate-functions.html#function_json-objectagg). See
+[Section 12.19, “Aggregate Functions”](aggregate-functions-and-modifiers.html "12.19 Aggregate Functions"), for
+descriptions of these.
+
+Also beginning with MySQL 5.7.22:
+
+* “pretty-printing” of JSON values in an
+  easy-to-read format can be obtained using the
+  [`JSON_PRETTY()`](json-utility-functions.html#function_json-pretty) function.
+
+* You can see how much storage space a given JSON value takes up
+  using [`JSON_STORAGE_SIZE()`](json-utility-functions.html#function_json-storage-size).
+
+For complete descriptions of these two functions, see
+[Section 12.17.6, “JSON Utility Functions”](json-utility-functions.html "12.17.6 JSON Utility Functions").

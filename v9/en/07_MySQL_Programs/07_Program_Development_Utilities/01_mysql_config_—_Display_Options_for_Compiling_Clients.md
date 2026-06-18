@@ -1,0 +1,114 @@
+### 6.7.1 mysql\_config — Display Options for Compiling Clients
+
+[**mysql\_config**](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients") provides you with useful
+information for compiling your MySQL client and connecting it to
+MySQL. It is a shell script, so it is available only on Unix and
+Unix-like systems.
+
+Note
+
+**pkg-config** can be used as an alternative to
+[**mysql\_config**](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients") for obtaining information such
+as compiler flags or link libraries required to compile MySQL
+applications. For more information, see
+[Building C API Client Programs Using pkg-config](/doc/c-api/9.5/en/c-api-building-clients-pkg-config.html).
+
+[**mysql\_config**](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients") supports the following options.
+
+* [`--cflags`](mysql-config.html#option_mysql_config_cflags)
+
+  C Compiler flags to find include files and critical compiler
+  flags and defines used when compiling the
+  `libmysqlclient` library. The options
+  returned are tied to the specific compiler that was used
+  when the library was created and might clash with the
+  settings for your own compiler. Use
+  [`--include`](mysql-config.html#option_mysql_config_include) for more
+  portable options that contain only include paths.
+
+* [`--cxxflags`](mysql-config.html#option_mysql_config_cxxflags)
+
+  Like [`--cflags`](mysql-config.html#option_mysql_config_cflags), but for
+  C++ compiler flags.
+
+* [`--include`](mysql-config.html#option_mysql_config_include)
+
+  Compiler options to find MySQL include files.
+
+* [`--libs`](mysql-config.html#option_mysql_config_libs)
+
+  Libraries and options required to link with the MySQL client
+  library.
+
+* [`--libs_r`](mysql-config.html#option_mysql_config_libs_r)
+
+  Libraries and options required to link with the thread-safe
+  MySQL client library. In MySQL 9.5, all client
+  libraries are thread-safe, so this option need not be used.
+  The [`--libs`](mysql-config.html#option_mysql_config_libs) option can
+  be used in all cases.
+
+* [`--plugindir`](mysql-config.html#option_mysql_config_plugindir)
+
+  The default plugin directory path name, defined when
+  configuring MySQL.
+
+* [`--port`](mysql-config.html#option_mysql_config_port)
+
+  The default TCP/IP port number, defined when configuring
+  MySQL.
+
+* [`--socket`](mysql-config.html#option_mysql_config_socket)
+
+  The default Unix socket file, defined when configuring
+  MySQL.
+
+* [`--variable=var_name`](mysql-config.html#option_mysql_config_variable)
+
+  Display the value of the named configuration variable.
+  Permitted *`var_name`* values are
+  `pkgincludedir` (the header file
+  directory), `pkglibdir` (the library
+  directory), and `plugindir` (the plugin
+  directory).
+
+* [`--version`](mysql-config.html#option_mysql_config_version)
+
+  Version number for the MySQL distribution.
+
+If you invoke [**mysql\_config**](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients") with no options,
+it displays a list of all options that it supports, and their
+values:
+
+```
+$> mysql_config
+Usage: ./mysql_config [OPTIONS]
+Compiler: GNU 10.4.0
+
+Options:
+  --cflags         [-I/usr/local/mysql/include/mysql]
+  --cxxflags       [-I/usr/local/mysql/include/mysql]
+  --include        [-I/usr/local/mysql/include/mysql]
+  --libs           [-L/usr/local/mysql/lib/mysql -lmysqlclient -lpthread -ldl
+                    -lssl  -lcrypto -lresolv -lm -lrt]
+  --libs_r         [-L/usr/local/mysql/lib/mysql -lmysqlclient -lpthread -ldl
+                    -lssl  -lcrypto -lresolv -lm -lrt]
+  --plugindir      [/usr/local/mysql/lib/plugin]
+  --socket         [/tmp/mysql.sock]
+  --port           [3306]
+  --version        [8.4.0]
+  --variable=VAR   VAR is one of:
+          pkgincludedir [/usr/local/mysql/include]
+          pkglibdir     [/usr/local/mysql/lib]
+          plugindir     [/usr/local/mysql/lib/plugin]
+```
+
+You can use [**mysql\_config**](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients") within a command
+line using backticks to include the output that it produces for
+particular options. For example, to compile and link a MySQL
+client program, use [**mysql\_config**](mysql-config.html "6.7.1 mysql_config — Display Options for Compiling Clients") as follows:
+
+```
+gcc -c `mysql_config --cflags` progname.c
+gcc -o progname progname.o `mysql_config --libs`
+```

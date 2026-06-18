@@ -1,0 +1,7 @@
+#### 5.1.8.1 Privilegios de variáveis de sistema
+
+Uma variável de sistema pode ter um valor global que afeta o funcionamento do servidor como um todo, um valor de sessão que afeta apenas a sessão atual ou ambos. Para modificar os valores de execução de variáveis de sistema, use a instrução `SET`. Veja Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variáveis”. Esta seção descreve os privilégios necessários para atribuir valores a variáveis de sistema em tempo de execução.
+
+Definir o valor de runtime de uma variável de sistema global requer o privilégio `SUPER`.
+
+Para definir o valor de execução de uma variável de sessão do sistema, use a instrução `SET SESSION`. Em contraste com a definição de valores de execução globais, definir valores de execução de sessão normalmente não requer privilégios especiais e pode ser feito por qualquer usuário para afetar a sessão atual. Para algumas variáveis de sistema, definir o valor da sessão pode ter efeitos fora da sessão atual e, portanto, é uma operação restrita que só pode ser feita por usuários que têm o privilégio `SUPER`. Se uma variável de sistema de sessão for restringida dessa maneira, a descrição da variável indica essa restrição. Exemplos incluem `binlog_format` e `sql_log_bin`. Definir o valor da sessão dessas variáveis afeta o registro binário para a sessão atual, mas também pode ter implicações mais amplas para a integridade da replicação e backups do servidor.

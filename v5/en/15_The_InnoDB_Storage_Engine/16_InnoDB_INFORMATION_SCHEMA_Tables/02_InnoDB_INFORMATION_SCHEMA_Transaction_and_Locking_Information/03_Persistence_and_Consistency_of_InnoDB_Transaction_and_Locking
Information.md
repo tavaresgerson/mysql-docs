@@ -1,0 +1,70 @@
+#### 14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information
+
+The data exposed by the transaction and locking tables
+([`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table"),
+[`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table"), and
+[`INNODB_LOCK_WAITS`](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table")) represents a
+glimpse into fast-changing data. This is not like user tables,
+where the data changes only when application-initiated updates
+occur. The underlying data is internal system-managed data, and
+can change very quickly.
+
+For performance reasons, and to minimize the chance of
+misleading joins between the transaction and locking tables,
+`InnoDB` collects the required transaction and
+locking information into an intermediate buffer whenever a
+`SELECT` on any of the tables is issued. This
+buffer is refreshed only if more than 0.1 seconds has elapsed
+since the last time the buffer was read. The data needed to fill
+the three tables is fetched atomically and consistently and is
+saved in this global internal buffer, forming a point-in-time
+“snapshot”. If multiple table accesses occur within
+0.1 seconds (as they almost certainly do when MySQL processes a
+join among these tables), then the same snapshot is used to
+satisfy the query.
+
+A correct result is returned when you join any of these tables
+together in a single query, because the data for the three
+tables comes from the same snapshot. Because the buffer is not
+refreshed with every query of any of these tables, if you issue
+separate queries against these tables within a tenth of a
+second, the results are the same from query to query. On the
+other hand, two separate queries of the same or different tables
+issued more than a tenth of a second apart may see different
+results, since the data come from different snapshots.
+
+Because `InnoDB` must temporarily stall while
+the transaction and locking data is collected, too frequent
+queries of these tables can negatively impact performance as
+seen by other users.
+
+As these tables contain sensitive information (at least
+`INNODB_LOCKS.LOCK_DATA` and
+`INNODB_TRX.TRX_QUERY`), for security reasons,
+only the users with the `PROCESS` privilege are
+allowed to `SELECT` from them.
+
+As described previously, the data that fills the transaction and
+locking tables ([`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table"),
+[`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table") and
+[`INNODB_LOCK_WAITS`](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table")) is fetched
+automatically and saved to an intermediate buffer that provides
+a “point-in-time” snapshot. The data across all
+three tables is consistent when queried from the same snapshot.
+However, the underlying data changes so fast that similar
+glimpses at other, similarly fast-changing data, may not be in
+synchrony. Thus, you should be careful when comparing data in
+the `InnoDB` transaction and locking tables
+with data in the [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table.
+The data from the [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table
+does not come from the same snapshot as the data about locking
+and transactions. Even if you issue a single
+`SELECT` (joining
+[`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") and
+[`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table"), for example), the
+content of those tables is generally not consistent.
+[`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") may reference rows that
+are not present in [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") or
+the currently executing SQL query of a transaction shown in
+`INNODB_TRX.TRX_QUERY` may differ from the one
+in `PROCESSLIST.INFO`.

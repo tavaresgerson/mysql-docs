@@ -1,0 +1,11 @@
+#### 16.4.1.25 Replicação e Palavras Reservadas
+
+Você pode encontrar problemas ao tentar replicar de uma *source* mais antiga para uma *replica* mais nova e você utiliza identificadores na *source* que são palavras reservadas na versão mais nova do MySQL rodando na *replica*. Um exemplo disso é usar uma coluna de tabela chamada `virtual` em uma *source* 5.6 que está replicando para uma *replica* 5.7 ou superior, pois `VIRTUAL` é uma palavra reservada a partir do MySQL 5.7. A *Replication* pode falhar nesses casos com o *Error* 1064 (*You have an error in your SQL syntax...*), *mesmo que um database ou tabela nomeada usando a palavra reservada ou uma tabela que contenha uma coluna nomeada usando a palavra reservada seja excluída da Replication*. Isso se deve ao fato de que cada *SQL event* deve ser analisado pela *replica* antes da execução, para que a *replica* saiba qual(is) objeto(s) do *database* seria(m) afetado(s); somente após o *event* ser analisado é que a *replica* pode aplicar quaisquer regras de filtragem definidas por `--replicate-do-db`, `--replicate-do-table`, `--replicate-ignore-db`, e `--replicate-ignore-table`.
+
+Para contornar o problema de nomes de *database*, tabela ou coluna na *source* que seriam consideradas palavras reservadas pela *replica*, faça o seguinte:
+
+* Use uma ou mais *statements* `ALTER TABLE` na *source* para alterar os nomes de quaisquer objetos do *database* onde esses nomes seriam considerados palavras reservadas na *replica*, e altere quaisquer *SQL statements* que usem os nomes antigos para usar os novos nomes.
+
+* Em quaisquer *SQL statements* que usem esses nomes de objetos de *database*, escreva os nomes como identificadores entre aspas (*quoted identifiers*) usando o caractere *backtick* (`` ` ``).
+
+Para listas de palavras reservadas por versão do MySQL, consulte Keywords and Reserved Words in MySQL 5.7, na *MySQL Server Version Reference*. Para regras de citação de identificadores, consulte a Seção 9.2, “Schema Object Names”.

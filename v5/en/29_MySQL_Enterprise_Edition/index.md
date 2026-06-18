@@ -1,0 +1,43 @@
+# Chapter 28 MySQL Enterprise Edition
+
+**Table of Contents**
+
+[28.1 MySQL Enterprise Backup Overview](mysql-enterprise-backup.html)
+
+[28.2 MySQL Enterprise Security Overview](mysql-enterprise-security.html)
+
+[28.3 MySQL Enterprise Encryption Overview](mysql-enterprise-encryption.html)
+
+[28.4 MySQL Enterprise Audit Overview](mysql-enterprise-audit.html)
+
+[28.5 MySQL Enterprise Firewall Overview](mysql-enterprise-firewall.html)
+
+[28.6 MySQL Enterprise Thread Pool Overview](mysql-enterprise-thread-pool.html)
+
+[28.7 MySQL Enterprise Data Masking and De-Identification Overview](mysql-enterprise-data-masking.html)
+
+[28.8 MySQL Enterprise Monitor Overview](mysql-enterprise-monitor.html)
+
+[28.9 MySQL Telemetry](mysql-enterprise-telemetry.html)
+
+MySQL Enterprise Edition is a commercial product. Like MySQL Community Edition, MySQL Enterprise Edition
+includes MySQL Server, a fully integrated transaction-safe,
+ACID-compliant database with full commit, rollback, crash-recovery,
+and row-level locking capabilities. In addition, MySQL Enterprise Edition includes the
+following components designed to provide monitoring and online
+backup, as well as improved security and scalability:
+
+The following sections briefly discuss each of these components and
+indicate where to find more detailed information. To learn more
+about commercial products, see <https://www.mysql.com/products/>.
+
+* [MySQL Enterprise Backup](mysql-enterprise-backup.html "28.1 MySQL Enterprise Backup Overview")
+* [MySQL Enterprise
+  Security](mysql-enterprise-security.html "28.2 MySQL Enterprise Security Overview")
+
+* [MySQL Enterprise Encryption](mysql-enterprise-encryption.html "28.3 MySQL Enterprise Encryption Overview")
+* [MySQL Enterprise Audit](mysql-enterprise-audit.html "28.4 MySQL Enterprise Audit Overview")
+* [MySQL Enterprise Firewall](mysql-enterprise-firewall.html "28.5 MySQL Enterprise Firewall Overview")
+* [MySQL Enterprise Thread Pool](mysql-enterprise-thread-pool.html "28.6 MySQL Enterprise Thread Pool Overview")
+* [MySQL Enterprise Data Masking and De-Identification](mysql-enterprise-data-masking.html "28.7 MySQL Enterprise Data Masking and De-Identification Overview")
+* [MySQL Enterprise Monitor](mysql-enterprise-monitor.html "28.8 MySQL Enterprise Monitor Overview")

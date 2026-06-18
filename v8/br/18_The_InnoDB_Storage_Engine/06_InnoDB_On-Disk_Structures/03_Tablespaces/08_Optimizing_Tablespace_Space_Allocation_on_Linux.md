@@ -1,0 +1,11 @@
+#### 17.6.3.8. Otimizando a Alocação de Espaço de Tablespace no Linux
+
+A partir do MySQL 8.0.22, você pode otimizar a forma como o `InnoDB` aloca espaço para espaços de tabela por arquivo e espaços de tabela gerais no Linux. Por padrão, quando espaço adicional é necessário, o `InnoDB` aloca páginas ao espaço de tabela e escreve NULLs fisicamente nessas páginas. Esse comportamento pode afetar o desempenho se novas páginas forem alocadas frequentemente. A partir do MySQL 8.0.22, você pode desabilitar o `innodb_extend_and_initialize` em sistemas Linux para evitar escrever NULLs fisicamente em páginas de espaço de tabela recém-alocadas. Quando o `innodb_extend_and_initialize` é desativado, o espaço é alocado em arquivos de espaço de tabela usando chamadas do `posix_fallocate()`, que reservam espaço sem escrever NULLs fisicamente.
+
+Quando as páginas são alocadas usando chamadas `posix_fallocate()`, o tamanho da extensão é pequeno por padrão e as páginas são frequentemente alocadas apenas algumas de cada vez, o que pode causar fragmentação e aumentar o I/O aleatório. Para evitar esse problema, aumente o tamanho da extensão do tablespace ao habilitar as chamadas `posix_fallocate()`. O tamanho da extensão do tablespace pode ser aumentado até 4 GB usando a opção `AUTOEXTEND_SIZE`. Para mais informações, consulte a Seção 17.6.3.9, “Configuração de AUTOEXTEND\_SIZE do Tablespace”.
+
+`InnoDB` escreve um registro do log de refazer antes de alocar uma nova página de espaço de tabela. Se uma operação de alocação de página for interrompida, a operação é reexecutada a partir do registro do log de refazer durante a recuperação. (Uma operação de alocação de página reexecutada a partir de um registro do log de refazer escreve fisicamente NULLs na página recém-alocada.) Um registro do log de refazer é escrito antes de alocar uma página, independentemente da configuração `innodb_extend_and_initialize`.
+
+Em sistemas que não são Linux e no Windows, o `InnoDB` aloca novas páginas para o espaço de tabelas e escreve fisicamente NULLs nessas páginas, que é o comportamento padrão. Tentar desabilitar o `innodb_extend_and_initialize` nesses sistemas retorna o seguinte erro:
+
+Alterar innodb\_extend\_and\_initialize não é suportado nesta plataforma. Voltei para o padrão.

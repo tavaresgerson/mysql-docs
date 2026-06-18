@@ -1,0 +1,9 @@
+### 14.6.5 Doublewrite Buffer
+
+O *doublewrite buffer* é uma área de armazenamento onde o `InnoDB` escreve páginas descarregadas do *buffer pool* antes de escrever as páginas em suas posições adequadas nos arquivos de dados do `InnoDB`. Se houver uma falha no sistema operacional, subsistema de armazenamento ou uma saída inesperada do processo **mysqld** no meio da escrita de uma página, o `InnoDB` pode encontrar uma cópia válida da página a partir do *doublewrite buffer* durante o *crash recovery*.
+
+Embora os dados sejam escritos duas vezes, o *doublewrite buffer* não exige o dobro de *I/O overhead* ou o dobro de *I/O operations*. Os dados são escritos no *doublewrite buffer* em um grande bloco sequencial, com uma única chamada `fsync()` para o sistema operacional (exceto no caso em que `innodb_flush_method` está definido como `O_DIRECT_NO_FSYNC`).
+
+O *doublewrite buffer* é habilitado por padrão na maioria dos casos. Para desativar o *doublewrite buffer*, defina `innodb_doublewrite` como 0.
+
+Se os arquivos do *system tablespace* (“*ibdata files*”) estiverem localizados em dispositivos Fusion-io que suportam *atomic writes* (escritas atômicas), o *doublewrite buffering* é desativado automaticamente e as *atomic writes* da Fusion-io são usadas para todos os arquivos de dados. Como a configuração do *doublewrite buffer* é global, o *doublewrite buffering* também é desativado para arquivos de dados que residem em *hardware* não-Fusion-io. Este recurso é suportado apenas em *hardware* Fusion-io e só é habilitado para Fusion-io NVMFS no Linux. Para tirar o máximo proveito deste recurso, é recomendada uma configuração de `innodb_flush_method` para `O_DIRECT`.

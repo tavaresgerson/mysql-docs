@@ -1,0 +1,20 @@
+#### 15.7.7.34 SHOW PROFILES Statement
+
+```
+SHOW PROFILES
+```
+
+The [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") statement,
+together with [`SHOW PROFILE`](show-profile.html "15.7.7.33 SHOW PROFILE Statement"),
+displays profiling information that indicates resource usage for
+statements executed during the course of the current session.
+For more information, see [Section 15.7.7.33, “SHOW PROFILE Statement”](show-profile.html "15.7.7.33 SHOW PROFILE Statement").
+
+Note
+
+The [`SHOW PROFILE`](show-profile.html "15.7.7.33 SHOW PROFILE Statement") and
+[`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") statements are
+deprecated; expect it to be removed in a future MySQL release.
+Use the [Performance
+Schema](performance-schema.html "Chapter 29 MySQL Performance Schema") instead; see
+[Section 29.19.1, “Query Profiling Using Performance Schema”](performance-schema-query-profiling.html "29.19.1 Query Profiling Using Performance Schema").

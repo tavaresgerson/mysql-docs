@@ -1,0 +1,69 @@
+#### 16.2.2.3 Opções de Inicialização e Canais de Replicação
+
+Esta seção descreve as opções de inicialização que são afetadas pela adição de canais de replicação.
+
+As seguintes configurações de inicialização *devem* ser configuradas corretamente para usar a replicação multi-source.
+
+* `relay_log_info_repository`.
+
+  Este deve ser definido como `TABLE`. Se esta variável for definida como `FILE`, a tentativa de adicionar mais sources a uma replica falhará com `ER_SLAVE_NEW_CHANNEL_WRONG_REPOSITORY`.
+
+* `master_info_repository`
+
+  Este deve ser definido como `TABLE`. Se esta variável for definida como `FILE`, a tentativa de adicionar mais sources a uma replica falhará com `ER_SLAVE_NEW_CHANNEL_WRONG_REPOSITORY`.
+
+As seguintes opções de inicialização agora afetam *todos* os canais em uma topologia de replicação.
+
+* `--log-slave-updates`
+
+  Todas as transações recebidas pela replica (mesmo de múltiplas sources) são escritas no binary log.
+
+* `--relay-log-purge`
+
+  Quando definido, cada canal purga seu próprio relay log automaticamente.
+
+* `--slave_transaction_retries`
+
+  As Applier Threads de todos os canais fazem retry das transações.
+
+* `--skip-slave-start`
+
+  Nenhuma Replication Thread é iniciada em nenhum dos canais.
+
+* `--slave-skip-errors`
+
+  A execução continua e os erros são ignorados (skipped) para todos os canais.
+
+Os valores definidos para as seguintes opções de inicialização se aplicam a cada canal; visto que estas são opções de inicialização do **mysqld**, elas são aplicadas em todos os canais.
+
+* `--max-relay-log-size=size`
+
+  Tamanho máximo do arquivo de relay log individual para cada canal; após atingir este limite, o arquivo é rotacionado.
+
+* `--relay-log-space-limit=size`
+
+  Limite superior para o tamanho total de todos os relay logs combinados, para cada canal individual. Para *`N`* canais, o tamanho combinado desses logs é limitado a `relay_log_space_limit * N`.
+
+* `--slave-parallel-workers=value`
+
+  Número de Worker Threads por canal.
+
+* `slave_checkpoint_group`
+
+  Tempo de espera de uma I/O Thread para cada source.
+
+* `--relay-log-index=filename`
+
+  Nome base para o arquivo index do relay log de cada canal. Veja Section 16.2.2.4, “Convenções de Nomenclatura de Canais de Replicação”.
+
+* `--relay-log=filename`
+
+  Denota o nome base do arquivo de relay log de cada canal. Veja Section 16.2.2.4, “Convenções de Nomenclatura de Canais de Replicação”.
+
+* `--slave_net-timeout=N`
+
+  Este valor é definido por canal, de modo que cada canal aguarda *`N`* segundos para verificar uma broken connection.
+
+* `--slave-skip-counter=N`
+
+  Este valor é definido por canal, de modo que cada canal pula *`N`* eventos de sua source.

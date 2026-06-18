@@ -1,0 +1,795 @@
+## A.10 Perguntas Frequentes do MySQL 5.7: NDB Cluster
+Na seção a seguir, respondemos a perguntas frequentes sobre o NDB Cluster e o Storage Engine `NDB`.
+<table style="width: 100%;">
+  <tbody>
+    <tr class="question">
+      <td>
+        <p><b>A.10.1.</b></p>
+      </td>
+      <td>
+        <p> Quais versões do software MySQL suportam NDB Cluster? Eu preciso compilar a partir do código-fonte? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster não é suportado em releases padrão do MySQL Server. Em vez disso, o MySQL NDB Cluster é fornecido como um produto separado. As séries de release disponíveis do NDB Cluster incluem as seguintes: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p><b>NDB Cluster 7.3 / NDB Cluster 7.4.</b> Estas duas séries não são mais mantidas ou suportadas para novas implantações. Os usuários do NDB Cluster 7.3 ou 7.4 devem atualizar para o NDB 7.5 ou mais recente o mais rápido possível. Recomendamos que novas implantações utilizem o release mais recente do NDB Cluster 8.0. </p>
+            </li>
+            <li class="listitem">
+              <p><b>NDB Cluster 7.5. </b> Esta série é uma versão anterior de Disponibilidade Geral (GA - General Availability) do NDB Cluster, ainda disponível para uso em produção, embora recomendemos que novas implantações utilizem o release mais recente do NDB Cluster 8.0. Os releases mais recentes do NDB Cluster 7.5 podem ser obtidos em https://dev.mysql.com/downloads/cluster/. </p>
+            </li>
+            <li class="listitem">
+              <p><b>NDB Cluster 7.6. </b> Esta série é uma versão anterior de Disponibilidade Geral (GA) do NDB Cluster, ainda disponível para uso em produção, embora recomendemos que novas implantações utilizem o release mais recente do NDB Cluster 8.0. Os releases mais recentes do NDB Cluster 7.6 podem ser obtidos em https://dev.mysql.com/downloads/cluster/. </p>
+            </li>
+            <li class="listitem">
+              <p><b>NDB Cluster 8.0. </b> Esta série é a versão mais recente de Disponibilidade Geral (GA) do NDB Cluster, baseada na versão 8.0 do Storage Engine <code>NDB</code> e no MySQL Server 8.0. O NDB Cluster 8.0 está disponível para uso em produção; novas implantações destinadas à produção devem usar o release GA mais recente desta série, que atualmente é o NDB Cluster 8.0.44. Você pode obter o release mais recente do NDB Cluster 8.0 em https://dev.mysql.com/downloads/cluster/. Para informações sobre novos recursos e outras mudanças importantes nesta série, consulte What is New in MySQL NDB Cluster 8.0. </p>
+            </li>
+          </ul>
+        </div>
+        <p> Você pode obter e compilar o NDB Cluster a partir do código-fonte (consulte Section 21.3.1.4, “Building NDB Cluster from Source on Linux”, e Section 21.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”), mas para todos os casos, exceto os mais especializados, recomendamos usar um dos seguintes instaladores fornecidos pela Oracle que seja apropriado para sua plataforma operacional e circunstâncias: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p> Release binário para Linux (arquivo <code>tar.gz</code>) </p>
+            </li>
+            <li class="listitem">
+              <p> Pacote RPM para Linux </p>
+            </li>
+            <li class="listitem">
+              <p> Arquivo <code>.deb</code> para Linux </p>
+            </li>
+            <li class="listitem">
+              <p> Release binário <span class="quote">“<span class="quote">sem instalação</span>”</span> para Windows </p>
+            </li>
+            <li class="listitem">
+              <p> Instalador MSI para Windows </p>
+            </li>
+          </ul>
+        </div>
+        <p> Pacotes de instalação também podem estar disponíveis no sistema de gerenciamento de pacotes da sua plataforma. </p>
+        <p> Você pode determinar se o seu MySQL Server possui suporte a <code>NDB</code> usando uma das declarações <code>SHOW VARIABLES LIKE 'have_%'</code>, <code>SHOW ENGINES</code> ou <code>SHOW PLUGINS</code>. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.2.</b></p>
+      </td>
+      <td>
+        <p> O que significam <span class="quote">“<span class="quote">NDB</span>”</span> e <span class="quote">“<span class="quote">NDBCLUSTER</span>”</span>? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> <span class="quote">“<span class="quote">NDB</span>”</span> significa <span class="quote">“<span class="quote"><span><strong>N</strong></span>etwork <span><strong>D</strong></span>ata<span><strong>b</strong></span>ase (Banco de Dados em Rede)</span>”</span>. <code>NDB</code> e <code>NDBCLUSTER</code> são ambos nomes para o Storage Engine que habilita o suporte a Cluster com MySQL. <code>NDB</code> é preferível, mas ambos os nomes estão corretos. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.3.</b></p>
+      </td>
+      <td>
+        <p> Qual é a diferença entre usar o NDB Cluster e usar a MySQL Replication? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Na Replication tradicional do MySQL, um MySQL Server Source (fonte) atualiza uma ou mais Réplicas. As Transactions são confirmadas sequencialmente, e uma Transaction lenta pode fazer com que a Réplica fique para trás da Source. Isso significa que, se a Source falhar, é possível que a Réplica não tenha registrado as últimas poucas Transactions. Se um engine seguro para transações como o <code>InnoDB</code> estiver sendo usado, uma Transaction é concluída na Réplica ou não é aplicada de forma alguma, mas a Replication não garante que todos os dados na Source e na Réplica permaneçam consistentes o tempo todo. No NDB Cluster, todos os Data Nodes são mantidos em sincronia, e uma Transaction confirmada por qualquer Data Node é confirmada para todos os Data Nodes. No caso de uma falha de Data Node, todos os Data Nodes restantes permanecem em um estado consistente. </p>
+        <p> Em resumo, enquanto a Replication padrão do MySQL é <span class="firstterm">assíncrona</span>, o NDB Cluster é <span class="firstterm">síncrono</span>. </p>
+        <p> A Replication assíncrona também está disponível no NDB Cluster. A <span class="firstterm">NDB Cluster Replication</span> (também conhecida como <span class="quote">“<span class="quote">geo-replication</span>”</span>) inclui a capacidade de replicar tanto entre dois NDB Clusters quanto de um NDB Cluster para um servidor MySQL que não seja Cluster. Consulte Section 21.7, “NDB Cluster Replication”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.4.</b></p>
+      </td>
+      <td>
+        <p> Eu preciso de alguma rede especial para executar o NDB Cluster? Como os computadores em um Cluster se comunicam? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster é projetado para ser usado em um ambiente de alta largura de banda, com computadores conectando-se via TCP/IP. Seu desempenho depende diretamente da velocidade de conexão entre os computadores do Cluster. Os requisitos mínimos de conectividade para o NDB Cluster incluem uma rede Ethernet típica de 100 megabits ou equivalente. Recomendamos que você use Ethernet gigabit sempre que disponível. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.5.</b></p>
+      </td>
+      <td>
+        <p> Quantos computadores eu preciso para executar um NDB Cluster, e por quê? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Um mínimo de três computadores é necessário para executar um Cluster viável. No entanto, o número mínimo *recomendado* de computadores em um NDB Cluster é quatro: um para executar o Management Node, um para o SQL Node e dois computadores para servir como Data Nodes. O objetivo dos dois Data Nodes é fornecer redundância; o Management Node deve ser executado em uma máquina separada para garantir serviços de arbitragem contínuos caso um dos Data Nodes falhe. </p>
+        <p> Para fornecer maior throughput e alta disponibilidade, você deve usar múltiplos SQL Nodes (MySQL Servers conectados ao Cluster). Também é possível (embora não estritamente necessário) executar múltiplos servidores de gerenciamento. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.6.</b></p>
+      </td>
+      <td>
+        <p> O que os diferentes computadores fazem em um NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Um NDB Cluster tem uma organização física e lógica, sendo os computadores os elementos físicos. Os elementos lógicos ou funcionais de um Cluster são chamados de <span class="firstterm">Nodes</span>, e um computador que abriga um Node de Cluster é às vezes referido como um <span class="firstterm">host de Cluster</span>. Existem três tipos de Nodes, cada um correspondendo a uma função específica dentro do Cluster. Estes são: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p><b>Management Node (Node de Gerenciamento). </b> Este Node fornece serviços de gerenciamento para o Cluster como um todo, incluindo inicialização, desligamento, Backups e dados de configuração para os outros Nodes. O servidor Management Node é implementado como o aplicativo <span><strong>ndb_mgmd</strong></span>; o cliente de gerenciamento usado para controlar o NDB Cluster é <span><strong>ndb_mgm</strong></span>. Consulte Section 21.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”, e Section 21.5.5, “ndb_mgm — The NDB Cluster Management Client”, para obter informações sobre esses programas. </p>
+            </li>
+            <li class="listitem">
+              <p><b>Data Node. </b> Este tipo de Node armazena e replica dados. A funcionalidade do Data Node é tratada por instâncias do processo <span><strong>ndbd</strong></span> do Data Node <code>NDB</code>. Para mais informações, consulte Section 21.5.1, “ndbd — The NDB Cluster Data Node Daemon”. </p>
+            </li>
+            <li class="listitem">
+              <p><b>SQL Node. </b> Esta é simplesmente uma instância do MySQL Server (<span><strong>mysqld</strong></span>) que é construída com suporte para o Storage Engine <code>NDBCLUSTER</code> e iniciada com a opção <code>--ndb-cluster</code> para habilitar o engine e a opção <code>--ndb-connectstring</code> para habilitá-lo a se conectar a um servidor Management do NDB Cluster. Para mais informações sobre essas opções, consulte Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”. </p>
+              <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                <div class="admon-title"> Nota </div>
+                <p> Um <span class="firstterm">API Node</span> é qualquer aplicativo que faz uso direto dos Data Nodes do Cluster para armazenamento e recuperação de dados. Um SQL Node pode, portanto, ser considerado um tipo de API Node que usa um MySQL Server para fornecer uma interface SQL para o Cluster. Você pode escrever tais aplicativos (que não dependem de um MySQL Server) usando a NDB API, que fornece uma interface direta, orientada a objetos para Transaction e Scanning de dados do NDB Cluster; consulte NDB Cluster API Overview: The NDB API, para mais informações. </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.7.</b></p>
+      </td>
+      <td>
+        <p> Quando eu executo o comando <code>SHOW</code> no cliente de gerenciamento do NDB Cluster, vejo uma linha de saída parecida com esta: </p>
+        <pre class="programlisting copytoclipboard language-none one-line"><code class="language-none">id=2    @10.100.10.32  (Version: 8.0.44-ndb-8.0.44 Nodegroup: 0, *)</code></pre>
+        <p> O que significa o <code>*</code>? Como este Node é diferente dos outros? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> A resposta mais simples é: <span class="quote">“<span class="quote">Não é algo que você possa controlar, e não é algo com que você precise se preocupar em qualquer caso, a menos que você seja um engenheiro de software escrevendo ou analisando o código-fonte do NDB Cluster</span>”</span>. </p>
+        <p> Se essa resposta não for satisfatória, aqui está uma versão mais longa e técnica: </p>
+        <p> Vários mecanismos no NDB Cluster exigem coordenação distribuída entre os Data Nodes. Estes algoritmos e protocolos distribuídos incluem checkpointing global, mudanças DDL (schema) e tratamento de reinicialização de Node. Para simplificar esta coordenação, os Data Nodes <span class="quote">“<span class="quote">elegem</span>”</span> um deles para atuar como Leader. Não há um mecanismo voltado para o usuário para influenciar esta seleção, que é completamente automática; o fato de *ser* automática é uma parte crucial da arquitetura interna do NDB Cluster. </p>
+        <p> Quando um Node atua como o <span class="quote">“<span class="quote">Leader</span>”</span> para qualquer um desses mecanismos, ele é geralmente o ponto de coordenação para a atividade, e os outros Nodes atuam como <span class="quote">“<span class="quote">Followers</span>”</span>, executando suas partes da atividade conforme direcionado pelo Leader. Se o Node que atua como Leader falhar, os Nodes restantes elegem um novo Leader. As tarefas em andamento que estavam sendo coordenadas pelo Leader antigo podem falhar ou ser continuadas pelo novo Leader, dependendo do mecanismo envolvido. </p>
+        <p> É possível que alguns desses diferentes mecanismos e protocolos tenham Nodes Leader distintos, mas, em geral, o mesmo Leader é escolhido para todos eles. O Node indicado como Leader na saída de <code>SHOW</code> no cliente de gerenciamento é conhecido internamente como `DICT manager`, responsável por coordenar as atividades de DDL e metadados. </p>
+        <p> O NDB Cluster é projetado de tal forma que a escolha do Leader não tem efeito perceptível fora do Cluster em si. Por exemplo, o Leader atual não tem um uso de CPU ou de recursos significativamente maior do que os outros Data Nodes, e a falha do Leader não deve ter um impacto significativamente diferente no Cluster do que a falha de qualquer outro Data Node. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.8.</b></p>
+      </td>
+      <td>
+        <p> Com quais sistemas operacionais eu posso usar o NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster é suportado na maioria dos sistemas operacionais tipo Unix. O NDB Cluster também é suportado em ambientes de produção em sistemas operacionais Microsoft Windows. </p>
+        <p> Para informações mais detalhadas sobre o nível de suporte oferecido para NDB Cluster em várias versões de sistemas operacionais, distribuições de sistemas operacionais e plataformas de hardware, consulte https://www.mysql.com/support/supportedplatforms/cluster.html. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.9.</b></p>
+      </td>
+      <td>
+        <p> Quais são os requisitos de hardware para executar o NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster deve ser executado em qualquer plataforma para a qual binários habilitados para <code>NDB</code> estejam disponíveis. Para Data Nodes e API Nodes, CPUs mais rápidas e mais memória provavelmente melhorarão o desempenho, e CPUs de 64 bits tendem a ser mais eficazes do que processadores de 32 bits. Deve haver memória suficiente nas máquinas usadas para Data Nodes para conter a parte do Database de cada Node (consulte <span><em>Quanta RAM eu preciso?</em></span> para mais informações). Para um computador usado apenas para executar o servidor de gerenciamento do NDB Cluster, os requisitos são mínimos; um PC desktop comum (ou equivalente) geralmente é suficiente para esta tarefa. Os Nodes podem se comunicar através da rede TCP/IP e hardware padrão. Eles também podem usar o protocolo SCI de alta velocidade; no entanto, hardware e software de rede especiais são necessários para usar SCI (consulte Section 21.4.4, “Using High-Speed Interconnects with NDB Cluster”). </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.10.</b></p>
+      </td>
+      <td>
+        <p> Quanta RAM eu preciso para usar o NDB Cluster? É possível usar memória em disco? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster foi originalmente implementado apenas para memória (in-memory only), mas todas as versões atualmente disponíveis também oferecem a capacidade de armazenar o NDB Cluster em disco. Consulte Section 21.6.11, “NDB Cluster Disk Data Tables”, para mais informações. </p>
+        <p> Para tabelas <code>NDB</code> in-memory, você pode usar a seguinte fórmula para obter uma estimativa aproximada de quanta RAM é necessária para cada Data Node no Cluster: </p>
+        <pre class="programlisting copytoclipboard language-simple one-line"><code class="language-simple">(SizeofDatabase × NumberOfReplicas × 1.1 ) / NumberOfDataNodes</code></pre>
+        <p> Para calcular os requisitos de memória de forma mais exata, é necessário determinar, para cada tabela no Database do Cluster, o espaço de armazenamento exigido por linha (consulte Section 11.7, “Data Type Storage Requirements”, para detalhes) e multiplicar isso pelo número de linhas. Você também deve lembrar de contabilizar quaisquer Indexes de coluna da seguinte forma: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p> Cada Primary Key ou Hash Index criado para uma tabela <code>NDBCLUSTER</code> requer 21−25 bytes por registro. Estes Indexes usam <code>IndexMemory</code>. </p>
+            </li>
+            <li class="listitem">
+              <p> Cada Ordered Index requer 10 bytes de armazenamento por registro, usando <code>DataMemory</code>. </p>
+            </li>
+            <li class="listitem">
+              <p> A criação de uma Primary Key ou Unique Index também cria um Ordered Index, a menos que este Index seja criado com <code>USING HASH</code>. Em outras palavras: </p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" style="list-style-type: circle; ">
+                  <li class="listitem">
+                    <p> Uma Primary Key ou Unique Index em uma tabela Cluster normalmente ocupa 31 a 35 bytes por registro. </p>
+                  </li>
+                  <li class="listitem">
+                    <p> No entanto, se a Primary Key ou Unique Index for criado com <code>USING HASH</code>, ele requer apenas 21 a 25 bytes por registro. </p>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p> Criar tabelas NDB Cluster com <code>USING HASH</code> para todas as Primary Keys e Unique Indexes geralmente faz com que as atualizações de tabela sejam executadas mais rapidamente — em alguns casos, até 20 a 30 por cento mais rápidas do que atualizações em tabelas onde <code>USING HASH</code> não foi usado na criação de chaves primárias e únicas. Isso se deve ao fato de que é necessária menos memória (porque nenhum Ordered Index é criado) e que menos CPU precisa ser utilizada (porque menos Indexes precisam ser lidos e possivelmente atualizados). No entanto, isso também significa que Queries que poderiam usar varreduras de intervalo (range scans) devem ser satisfeitas por outros meios, o que pode resultar em Selects mais lentos. </p>
+        <p> Ao calcular os requisitos de memória do Cluster, você pode achar útil o utilitário <span><strong>ndb_size.pl</strong></span> que está disponível em releases recentes do MySQL 5.7. Este script Perl se conecta a um Database MySQL atual (não Cluster) e cria um relatório sobre quanto espaço esse Database exigiria se usasse o Storage Engine <code>NDBCLUSTER</code>. Para mais informações, consulte Section 21.5.28, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”. </p>
+        <p> É especialmente importante ter em mente que *toda tabela NDB Cluster deve ter uma Primary Key*. O Storage Engine <code>NDB</code> cria uma Primary Key automaticamente se nenhuma for definida; esta Primary Key é criada sem <code>USING HASH</code>. </p>
+        <p> Você pode determinar quanta memória está sendo usada para armazenamento de dados e Indexes do NDB Cluster a qualquer momento usando o comando <code>REPORT MEMORYUSAGE</code> no cliente <span><strong>ndb_mgm</strong></span>; consulte Section 21.6.1, “Commands in the NDB Cluster Management Client”, para mais informações. Além disso, avisos são gravados no log do Cluster quando 80% do <code>DataMemory</code> disponível ou (antes do NDB 7.6) do <code>IndexMemory</code> está em uso, e novamente quando o uso atinge 90%, 99% e 100%. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.11.</b></p>
+      </td>
+      <td>
+        <p> Quais sistemas de arquivos eu posso usar com o NDB Cluster? E quanto a sistemas de arquivos de rede ou compartilhamentos de rede? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Geralmente, qualquer sistema de arquivos nativo do sistema operacional host deve funcionar bem com o NDB Cluster. Se você descobrir que um determinado sistema de arquivos funciona particularmente bem (ou não tão bem) com o NDB Cluster, convidamos você a discutir suas descobertas nos Fóruns do NDB Cluster. </p>
+        <p> Para Windows, recomendamos que você use sistemas de arquivos <code>NTFS</code> para NDB Cluster, assim como fazemos para o MySQL padrão. Não testamos o NDB Cluster com sistemas de arquivos <code>FAT</code> ou <code>VFAT</code>. Por causa disso, não recomendamos seu uso com MySQL ou NDB Cluster. </p>
+        <p> O NDB Cluster é implementado como uma solução shared-nothing (sem compartilhamento); a ideia por trás disso é que a falha de uma única peça de hardware não deve causar a falha de múltiplos Nodes do Cluster, ou possivelmente até mesmo a falha do Cluster como um todo. Por este motivo, o uso de compartilhamentos de rede ou sistemas de arquivos de rede *não é suportado* para NDB Cluster. Isso também se aplica a dispositivos de armazenamento compartilhado, como SANs. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.12.</b></p>
+      </td>
+      <td>
+        <p> Posso executar Nodes do NDB Cluster dentro de máquinas virtuais (como as criadas por VMWare, VirtualBox, Parallels ou Xen)? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster é suportado para uso em máquinas virtuais. Atualmente, suportamos e testamos o uso do Oracle VM. </p>
+        <p> Alguns usuários do NDB Cluster implementaram o NDB Cluster com sucesso usando outros produtos de virtualização; nesses casos, a Oracle pode fornecer suporte ao NDB Cluster, mas problemas específicos do ambiente virtual devem ser encaminhados ao fornecedor desse produto. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.13.</b></p>
+      </td>
+      <td>
+        <p> Estou tentando popular um Database do NDB Cluster. O processo de carregamento é encerrado prematuramente e recebo uma mensagem de erro como esta: </p>
+        <p> <code><span class="errortext">ERROR 1114: The table 'my_cluster_table' is full</span></code> </p>
+        <p> Por que isso está acontecendo? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> A causa é muito provavelmente que sua configuração não fornece RAM suficiente para todos os dados da tabela e todos os Indexes, *incluindo a Primary Key exigida pelo Storage Engine <code>NDB</code> e criada automaticamente caso a definição da tabela não inclua a definição de uma Primary Key*. </p>
+        <p> Também vale a pena notar que todos os Data Nodes devem ter a mesma quantidade de RAM, já que nenhum Data Node em um Cluster pode usar mais memória do que a menor quantidade disponível para qualquer Data Node individual. Por exemplo, se houver quatro computadores hospedando Data Nodes do Cluster, e três deles tiverem 3GB de RAM disponíveis para armazenar dados do Cluster enquanto o Data Node restante tiver apenas 1GB de RAM, então cada Data Node pode dedicar no máximo 1GB aos dados e Indexes do NDB Cluster. </p>
+        <p> Em alguns casos, é possível obter erros <span class="errortext">Table is full</span> em aplicativos clientes MySQL, mesmo quando <span><strong>ndb_mgm -e "ALL REPORT MEMORYUSAGE"</strong></span> mostra uma quantidade significativa de <code>DataMemory</code> livre. Você pode forçar o <code>NDB</code> a criar partições extras para tabelas NDB Cluster e, assim, ter mais memória disponível para Hash Indexes, usando a opção <code>MAX_ROWS</code> para <code>CREATE TABLE</code>. Em geral, definir <code>MAX_ROWS</code> para o dobro do número de linhas que você espera armazenar na tabela deve ser suficiente. </p>
+        <p> Por razões semelhantes, você também pode encontrar problemas com a reinicialização de Data Nodes em Nodes que estão fortemente carregados com dados. O parâmetro <code>MinFreePct</code> pode ajudar com esta questão, reservando uma porção (5% por padrão) de <code>DataMemory</code> e (antes do NDB 7.6) <code>IndexMemory</code> para uso em reinicializações. Esta memória reservada não está disponível para armazenar tabelas ou dados <code>NDB</code>. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.14.</b></p>
+      </td>
+      <td>
+        <p> O NDB Cluster usa TCP/IP. Isso significa que posso executá-lo pela Internet, com um ou mais Nodes em locais remotos? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> É *muito* improvável que um Cluster funcione de forma confiável nessas condições, pois o NDB Cluster foi projetado e implementado com a suposição de que seria executado em condições que garantem conectividade dedicada de alta velocidade, como a encontrada em um ambiente de LAN usando Ethernet de 100 Mbps ou gigabit — de preferência, esta última. Não testamos nem garantimos seu desempenho usando algo mais lento do que isso. </p>
+        <p> Além disso, é extremamente importante ter em mente que as comunicações entre os Nodes em um NDB Cluster não são seguras; elas não são criptografadas nem protegidas por qualquer outro mecanismo. A configuração mais segura para um Cluster é em uma rede privada atrás de um firewall, sem acesso direto a quaisquer Data Nodes ou Nodes de Gerenciamento do Cluster a partir do exterior. (Para SQL Nodes, você deve tomar as mesmas precauções que tomaria com qualquer outra instância do MySQL Server.) Para mais informações, consulte Section 21.6.18, “NDB Cluster Security Issues”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.15.</b></p>
+      </td>
+      <td>
+        <p> Eu preciso aprender uma nova linguagem de programação ou Query para usar o NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> *Não*. Embora alguns comandos especializados sejam usados para gerenciar e configurar o Cluster em si, apenas declarações SQL padrão (My)SQL são necessárias para as seguintes operações: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p> Criação, alteração e descarte de tabelas </p>
+            </li>
+            <li class="listitem">
+              <p> Inserção, atualização e exclusão de dados de tabela </p>
+            </li>
+            <li class="listitem">
+              <p> Criação, alteração e descarte de Primary Keys e Unique Indexes </p>
+            </li>
+          </ul>
+        </div>
+        <p> Alguns parâmetros e arquivos de configuração especializados são necessários para configurar um NDB Cluster — consulte Section 21.4.3, “NDB Cluster Configuration Files”, para obter informações sobre eles. </p>
+        <p> Alguns comandos simples são usados no cliente de gerenciamento do NDB Cluster (<span><strong>ndb_mgm</strong></span>) para tarefas como iniciar e parar Nodes do Cluster. Consulte Section 21.6.1, “Commands in the NDB Cluster Management Client”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.16.</b></p>
+      </td>
+      <td>
+        <p> Quais linguagens de programação e APIs são suportadas pelo NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster suporta as mesmas APIs e linguagens de programação que o MySQL Server padrão, incluindo ODBC, .Net, a MySQL C API e inúmeros drivers para linguagens de script populares como PHP, Perl e Python. Aplicativos NDB Cluster escritos usando essas APIs se comportam de maneira semelhante a outros aplicativos MySQL; eles transmitem declarações SQL para um MySQL Server (no caso do NDB Cluster, um SQL Node) e recebem respostas contendo linhas de dados. Para mais informações sobre essas APIs, consulte Chapter 27, <i>Connectors and APIs</i>. </p>
+        <p> O NDB Cluster também suporta programação de aplicativos usando a NDB API, que fornece uma interface C++ de baixo nível para dados do NDB Cluster sem precisar passar por um MySQL Server. Consulte The NDB API. Além disso, muitas funções de gerenciamento <code>NDBCLUSTER</code> são expostas pela MGM API em linguagem C; consulte The MGM API, para mais informações. </p>
+        <p> O NDB Cluster também suporta programação de aplicativos Java usando o ClusterJ, que suporta um modelo de objeto de domínio de dados usando sessions e Transactions. Consulte Java and NDB Cluster, para mais informações. </p>
+        <p> O NDB Cluster 8.0 também inclui adaptadores que suportam aplicativos NoSQL escritos contra <code>Node.js</code>, com o NDB Cluster como o Data Store. Consulte MySQL NoSQL Connector for JavaScript, para mais informações. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.17.</b></p>
+      </td>
+      <td>
+        <p> O NDB Cluster inclui alguma ferramenta de gerenciamento? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster inclui um cliente de linha de comando para executar funções básicas de gerenciamento. Consulte Section 21.5.5, “ndb_mgm — The NDB Cluster Management Client”, e Section 21.6.1, “Commands in the NDB Cluster Management Client”. </p>
+        <p> O NDB Cluster também é suportado pelo MySQL Cluster Manager, um produto separado que fornece uma interface de linha de comando avançada que pode automatizar muitas tarefas de gerenciamento do NDB Cluster, como Rolling Restarts e alterações de configuração. Para mais informações sobre o MySQL Cluster Manager, consulte MySQL Cluster Manager 1.4.8 User Manual. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.18.</b></p>
+      </td>
+      <td>
+        <p> Como eu descubro o que significa uma mensagem de erro ou aviso ao usar o NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Existem duas maneiras de fazer isso: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p> De dentro do cliente <span><strong>mysql</strong></span>, use <span><strong>SHOW ERRORS</strong></span> ou <span><strong>SHOW WARNINGS</strong></span> imediatamente após ser notificado sobre a condição de erro ou aviso. </p>
+            </li>
+            <li class="listitem">
+              <p> A partir de um prompt de shell do sistema, use <span><strong>perror --ndb <em><code>error_code</code></em></strong></span>. </p>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.19.</b></p>
+      </td>
+      <td>
+        <p> O NDB Cluster é seguro para transações (transaction-safe)? Quais níveis de isolamento são suportados? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> *Sim*. Para tabelas criadas com o Storage Engine <code>NDB</code>, as Transactions são suportadas. Atualmente, o NDB Cluster suporta apenas o nível de isolamento de Transaction <code>READ COMMITTED</code>. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.20.</b></p>
+      </td>
+      <td>
+        <p> Quais Storage Engines são suportados pelo NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster requer o Storage Engine <code>NDB</code>. Ou seja, para que uma tabela seja compartilhada entre Nodes em um NDB Cluster, a tabela deve ser criada usando <code>ENGINE=NDB</code> (ou a opção equivalente <code>ENGINE=NDBCLUSTER</code>). </p>
+        <p> É possível criar tabelas usando outros Storage Engines (como <code>InnoDB</code> ou <code>MyISAM</code>) em um servidor MySQL sendo usado com NDB Cluster, mas como essas tabelas não usam <code>NDB</code>, elas não participam do Clustering; cada tabela é estritamente local à instância individual do MySQL Server na qual é criada. </p>
+        <p> O NDB Cluster é bastante diferente do Clustering <code>InnoDB</code> em relação à arquitetura, requisitos e implementação; apesar de qualquer semelhança em seus nomes, os dois não são compatíveis. Para mais informações sobre o Clustering <code>InnoDB</code>, consulte MySQL AdminAPI. Consulte também Section 21.2.6, “MySQL Server Using InnoDB Compared with NDB Cluster”, para informações sobre as diferenças entre os Storage Engines <code>NDB</code> e <code>InnoDB</code>. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.21.</b></p>
+      </td>
+      <td>
+        <p> No caso de uma falha catastrófica — por exemplo, toda a cidade perde energia <span><em>e</em></span> meu UPS falha — eu perderia todos os meus dados? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Todas as Transactions confirmadas são registradas em log. Portanto, embora seja possível que alguns dados sejam perdidos no caso de uma catástrofe, isso deve ser bastante limitado. A perda de dados pode ser ainda mais reduzida minimizando o número de operações por Transaction. (Não é uma boa ideia realizar um grande número de operações por Transaction em qualquer caso.) </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.22.</b></p>
+      </td>
+      <td>
+        <p> É possível usar Indexes <code>FULLTEXT</code> com NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O Indexing <code>FULLTEXT</code> é atualmente suportado apenas pelos Storage Engines <code>InnoDB</code> e <code>MyISAM</code>. Consulte Section 12.9, “Full-Text Search Functions”, para mais informações. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.23.</b></p>
+      </td>
+      <td>
+        <p> Posso executar vários Nodes em um único computador? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> É possível, mas nem sempre é aconselhável. Uma das principais razões para executar um Cluster é fornecer redundância. Para obter todos os benefícios desta redundância, cada Node deve residir em uma máquina separada. Se você colocar múltiplos Nodes em uma única máquina e essa máquina falhar, você perde todos esses Nodes. Por esta razão, se você executar múltiplos Data Nodes em uma única máquina, é *extremamente* importante que eles sejam configurados de tal forma que a falha desta máquina não cause a perda de todos os Data Nodes em um determinado Node Group. </p>
+        <p> Dado que o NDB Cluster pode ser executado em hardware comum carregado com um sistema operacional de baixo custo (ou até mesmo sem custo), a despesa de uma ou duas máquinas extras vale a pena para salvaguardar dados de missão crítica. Também vale a pena notar que os requisitos para um host de Cluster executando um Management Node são mínimos. Esta tarefa pode ser realizada com um Pentium de 300 MHz ou CPU equivalente e RAM suficiente para o sistema operacional, mais uma pequena sobrecarga para os processos <span><strong>ndb_mgmd</strong></span> e <span><strong>ndb_mgm</strong></span>. </p>
+        <p> É aceitável executar múltiplos Data Nodes do Cluster em um único host que tenha múltiplas CPUs, Cores, ou ambos. A distribuição do NDB Cluster também fornece uma versão multi-Threaded do binário do Data Node destinada ao uso em tais sistemas. Para mais informações, consulte Section 21.5.3, “ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)”. </p>
+        <p> Também é possível em alguns casos executar Data Nodes e SQL Nodes concomitantemente na mesma máquina; o desempenho de tal arranjo depende de uma série de fatores, como o número de Cores e CPUs, bem como a quantidade de disco e memória disponível para os processos Data Node e SQL Node, e você deve levar estes fatores em consideração ao planejar tal configuração. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.24.</b></p>
+      </td>
+      <td>
+        <p> Posso adicionar Data Nodes a um NDB Cluster sem reiniciá-lo? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> É possível adicionar novos Data Nodes a um NDB Cluster em execução sem tirar o Cluster do ar. Para mais informações, consulte Section 21.6.7, “Adding NDB Cluster Data Nodes Online”. </p>
+        <p> Para outros tipos de Nodes do NDB Cluster, um Rolling Restart é tudo o que é necessário (consulte Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”). </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.25.</b></p>
+      </td>
+      <td>
+        <p> Existem limitações das quais eu deva estar ciente ao usar o NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> As limitações nas tabelas <code>NDB</code> no MySQL NDB Cluster incluem o seguinte: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p> Tabelas temporárias não são suportadas; uma declaração <code>CREATE TEMPORARY TABLE</code> usando <code>ENGINE=NDB</code> ou <code>ENGINE=NDBCLUSTER</code> falha com um erro. </p>
+            </li>
+            <li class="listitem">
+              <p> Os únicos tipos de Particionamento definidos pelo usuário suportados para tabelas <code>NDBCLUSTER</code> são <code>KEY</code> e <code>LINEAR KEY</code>. Tentar criar uma tabela <code>NDB</code> usando qualquer outro tipo de Particionamento falha com um erro. </p>
+            </li>
+            <li class="listitem">
+              <p> Indexes <code>FULLTEXT</code> não são suportados. </p>
+            </li>
+            <li class="listitem">
+              <p> Prefixes de Index não são suportados. Apenas colunas completas podem ser indexadas. </p>
+            </li>
+            <li class="listitem">
+              <p> Indexes espaciais não são suportados (embora colunas espaciais possam ser usadas). Consulte Section 11.4, “Spatial Data Types”. </p>
+            </li>
+            <li class="listitem">
+              <p> O suporte para Transactions parciais e Rollbacks parciais é comparável ao de outros Storage Engines transacionais, como <code>InnoDB</code>, que podem reverter declarações individuais. </p>
+            </li>
+            <li class="listitem">
+              <p> O número máximo de atributos permitidos por tabela é 512. Os nomes dos atributos não podem ter mais de 31 caracteres. Para cada tabela, o comprimento combinado máximo dos nomes da tabela e do Database é de 122 caracteres. </p>
+            </li>
+            <li class="listitem">
+              <p> Antes do NDB 8.0, o tamanho máximo para uma linha de tabela é de 14 kilobytes, sem contar os valores <code>BLOB</code>. No NDB 8.0, este máximo é aumentado para 30000 bytes. Consulte Section 21.2.7.5, “Limits Associated with Database Objects in NDB Cluster”, para mais informações. </p>
+              <p> Não há limite definido para o número de linhas por tabela <code>NDB</code>. Os limites de tamanho da tabela dependem de vários fatores, em particular da quantidade de RAM disponível para cada Data Node. </p>
+            </li>
+          </ul>
+        </div>
+        <p> Para uma listagem completa das limitações no NDB Cluster, consulte Section 21.2.7, “Known Limitations of NDB Cluster”. Consulte também Previous NDB Cluster Issues Resolved in NDB Cluster 8.0. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.26.</b></p>
+      </td>
+      <td>
+        <p> O NDB Cluster suporta Foreign Keys? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster fornece suporte para Foreign Key Constraints que é comparável ao encontrado no Storage Engine <code>InnoDB</code>; consulte Section 1.6.3.2, “FOREIGN KEY Constraints”, para informações mais detalhadas, bem como Section 13.1.18.5, “FOREIGN KEY Constraints”. Aplicativos que exigem suporte a Foreign Key devem usar o NDB Cluster 7.3, 7.4, 7.5 ou posterior. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.27.</b></p>
+      </td>
+      <td>
+        <p> Como eu importo um Database MySQL existente para um NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Você pode importar Databases para o NDB Cluster assim como faria com qualquer outra versão do MySQL. Além das limitações mencionadas em outras partes deste FAQ, o único outro requisito especial é que quaisquer tabelas a serem incluídas no Cluster devem usar o Storage Engine <code>NDB</code>. Isso significa que as tabelas devem ser criadas com <code>ENGINE=NDB</code> ou <code>ENGINE=NDBCLUSTER</code>. </p>
+        <p> Também é possível converter tabelas existentes que usam outros Storage Engines para <code>NDBCLUSTER</code> usando uma ou mais declarações <code>ALTER TABLE</code>. No entanto, a definição da tabela deve ser compatível com o Storage Engine <code>NDBCLUSTER</code> antes de fazer a conversão. No MySQL 5.7, uma solução alternativa adicional também é necessária; consulte Section 21.2.7, “Known Limitations of NDB Cluster”, para detalhes. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.28.</b></p>
+      </td>
+      <td>
+        <p> Como os Nodes do NDB Cluster se comunicam entre si? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Os Nodes do Cluster podem se comunicar através de três mecanismos de transporte diferentes: TCP/IP, SHM (Shared Memory - Memória Compartilhada) e SCI (Scalable Coherent Interface). Onde disponível, o SHM é usado por padrão entre Nodes que residem no mesmo host de Cluster; no entanto, isso é considerado experimental. SCI é um protocolo de alta velocidade (1 gigabit por segundo e superior) e alta disponibilidade usado na construção de sistemas multiprocessadores escaláveis; ele requer hardware e drivers especiais. Consulte Section 21.4.4, “Using High-Speed Interconnects with NDB Cluster”, para mais informações sobre o uso de SCI como um mecanismo de transporte para NDB Cluster. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.29.</b></p>
+      </td>
+      <td>
+        <p> O que é um <span class="firstterm">Arbitrator</span>? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Se um ou mais Data Nodes em um Cluster falharem, é possível que nem todos os Data Nodes do Cluster consigam <span class="quote">“<span class="quote">ver</span>”</span> uns aos outros. Na verdade, é possível que dois conjuntos de Data Nodes fiquem isolados um do outro em um particionamento de rede, também conhecido como cenário de <span class="quote">“<span class="quote">split-brain</span>”</span>. Este tipo de situação é indesejável porque cada conjunto de Data Nodes tenta se comportar como se fosse o Cluster inteiro. Um Arbitrator é necessário para decidir entre os conjuntos concorrentes de Data Nodes. </p>
+        <p> Quando todos os Data Nodes em pelo menos um Node Group estão ativos, o particionamento de rede não é um problema, porque nenhum subconjunto único do Cluster pode formar um Cluster funcional por conta própria. O problema real surge quando nenhum Node Group único tem todos os seus Nodes ativos, caso em que o particionamento de rede (o cenário <span class="quote">“<span class="quote">split-brain</span>”</span>) se torna possível. Então, um Arbitrator é necessário. Todos os Nodes do Cluster reconhecem o mesmo Node como o Arbitrator, que é normalmente o Management Server; no entanto, é possível configurar qualquer um dos MySQL Servers no Cluster para atuar como o Arbitrator. O Arbitrator aceita o primeiro conjunto de Nodes do Cluster a contatá-lo e informa o conjunto restante para desligar. A seleção do Arbitrator é controlada pelo parâmetro de configuração <code>ArbitrationRank</code> para os Nodes MySQL Server e Management Server. Você também pode usar o parâmetro de configuração <code>ArbitrationRank</code> para controlar o processo de seleção do Arbitrator. Para mais informações sobre esses parâmetros, consulte Section 21.4.3.5, “Defining an NDB Cluster Management Server”. </p>
+        <p> O papel de Arbitrator não impõe, por si só, demandas pesadas ao host assim designado, e, portanto, o host Arbitrator não precisa ser particularmente rápido ou ter memória extra especialmente para este propósito. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.30.</b></p>
+      </td>
+      <td>
+        <p> Quais tipos de dados são suportados pelo NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O NDB Cluster suporta todos os tipos de dados usuais do MySQL, incluindo aqueles associados às extensões espaciais do MySQL; no entanto, o Storage Engine <code>NDB</code> não suporta Indexes espaciais. (Indexes espaciais são suportados apenas por <code>MyISAM</code>; consulte Section 11.4, “Spatial Data Types”, para mais informações.) Além disso, existem algumas diferenças em relação aos Indexes quando usados com tabelas <code>NDB</code>. </p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <div class="admon-title"> Nota </div>
+          <p> As tabelas NDB Cluster Disk Data (ou seja, tabelas criadas com <code>TABLESPACE ... STORAGE DISK ENGINE=NDB</code> ou <code>TABLESPACE ... STORAGE DISK ENGINE=NDBCLUSTER</code>) têm apenas linhas de largura fixa (fixed-width). Isso significa que (por exemplo) cada registro de tabela Disk Data contendo uma coluna <code>VARCHAR(255)</code> requer espaço para 255 caracteres (conforme exigido para o conjunto de caracteres e collation usados para a tabela), independentemente do número real de caracteres armazenados nela. </p>
+        </div>
+        <p> Consulte Section 21.2.7, “Known Limitations of NDB Cluster”, para mais informações sobre esses problemas. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.31.</b></p>
+      </td>
+      <td>
+        <p> Como eu inicio e paro o NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> É necessário iniciar cada Node no Cluster separadamente, na seguinte ordem: </p>
+        <div class="orderedlist">
+          <ol class="orderedlist" type="1">
+            <li class="listitem">
+              <p> Inicie o Management Node, usando o comando <span><strong>ndb_mgmd</strong></span>. </p>
+              <p> Ao iniciar o Cluster pela primeira vez, você deve incluir a opção <code>-f</code> ou <code>--config-file</code> para informar ao Management Node onde seu arquivo de configuração pode ser encontrado. </p>
+            </li>
+            <li class="listitem">
+              <p> Inicie cada Data Node com o comando <span><strong>ndbd</strong></span>. </p>
+              <p> Cada Data Node deve ser iniciado com a opção <code>-c</code> ou <code>--ndb-connectstring</code> para que o Data Node saiba como se conectar ao Management Server. </p>
+            </li>
+            <li class="listitem">
+              <p> Inicie cada MySQL Server (SQL Node) usando seu script de inicialização preferido, como <span><strong>mysqld_safe</strong></span>. </p>
+              <p> Cada MySQL Server deve ser iniciado com as opções <code>--ndbcluster</code> e <code>--ndb-connectstring</code>. Essas opções fazem com que <span><strong>mysqld</strong></span> habilite o suporte ao Storage Engine <code>NDBCLUSTER</code> e saiba como se conectar ao Management Server. </p>
+            </li>
+          </ol>
+        </div>
+        <p> Cada um desses comandos deve ser executado a partir de um shell do sistema na máquina que abriga o Node afetado. (Você não precisa estar fisicamente presente na máquina — um shell de login remoto pode ser usado para este propósito.) Você pode verificar se o Cluster está em execução iniciando o cliente de gerenciamento <code>NDB</code> <span><strong>ndb_mgm</strong></span> na máquina que abriga o Management Node e emitindo o comando <code>SHOW</code> ou <code>ALL STATUS</code>. </p>
+        <p> Para desligar um Cluster em execução, emita o comando <code>SHUTDOWN</code> no cliente de gerenciamento. Alternativamente, você pode digitar o seguinte comando em um shell do sistema: </p>
+        <pre class="programlisting copytoclipboard language-terminal one-line"><code class="language-terminal">$&gt; ndb_mgm -e "SHUTDOWN"</code></pre>
+        <p> (As aspas neste exemplo são opcionais, já que não há espaços na string de comando após a opção <code>-e</code>; além disso, o comando <code>SHUTDOWN</code>, assim como outros comandos do cliente de gerenciamento, não diferencia maiúsculas de minúsculas.) </p>
+        <p> Qualquer um desses comandos faz com que os processos <span><strong>ndb_mgm</strong></span>, <span><strong>ndb_mgmd</strong></span> e quaisquer processos <span><strong>ndbd</strong></span> sejam encerrados de forma graciosa. Os servidores MySQL rodando como SQL Nodes podem ser parados usando <span><strong>mysqladmin shutdown</strong></span>. </p>
+        <p> Para mais informações, consulte Section 21.6.1, “Commands in the NDB Cluster Management Client”, e Section 21.3.6, “Safe Shutdown and Restart of NDB Cluster”. </p>
+        <p> O MySQL Cluster Manager fornece maneiras adicionais de lidar com a inicialização e parada de Nodes do NDB Cluster. Consulte MySQL Cluster Manager 1.4.8 User Manual, para mais informações sobre esta ferramenta. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.32.</b></p>
+      </td>
+      <td>
+        <p> O que acontece com os dados do NDB Cluster quando o Cluster é desligado? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Os dados que estavam mantidos na memória pelos Data Nodes do Cluster são gravados no disco e são recarregados na memória na próxima vez que o Cluster for iniciado. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.33.</b></p>
+      </td>
+      <td>
+        <p> É uma boa ideia ter mais de um Management Node para um NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Pode ser útil como um fail-safe. Apenas um Management Node controla o Cluster a qualquer momento, mas é possível configurar um Management Node como primário e um ou mais Management Nodes adicionais para assumir o controle caso o Management Node primário falhe. </p>
+        <p> Consulte Section 21.4.3, “NDB Cluster Configuration Files”, para obter informações sobre como configurar os Management Nodes do NDB Cluster. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.34.</b></p>
+      </td>
+      <td>
+        <p> Posso misturar diferentes tipos de hardware e sistemas operacionais em um NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Sim, desde que todas as máquinas e sistemas operacionais tenham a mesma <span class="quote">“<span class="quote">endianness</span>”</span> (todos big-endian ou todos little-endian). </p>
+        <p> Também é possível usar software de diferentes releases do NDB Cluster em diferentes Nodes. No entanto, suportamos tal uso apenas como parte de um procedimento de Rolling Upgrade (consulte Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”). </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.35.</b></p>
+      </td>
+      <td>
+        <p> Posso executar dois Data Nodes em um único host? Dois SQL Nodes? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Sim, é possível fazer isso. No caso de múltiplos Data Nodes, é aconselhável (mas não obrigatório) que cada Node use um diretório de dados diferente. Se você quiser executar múltiplos SQL Nodes em uma máquina, cada instância de <span><strong>mysqld</strong></span> deve usar uma porta TCP/IP diferente. </p>
+        <p> Executar Data Nodes e SQL Nodes juntos no mesmo host é possível, mas você deve estar ciente de que os processos <span><strong>ndbd</strong></span> ou <span><strong>ndbmtd</strong></span> podem competir por memória com <span><strong>mysqld</strong></span>. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.36.</b></p>
+      </td>
+      <td>
+        <p> Posso usar nomes de host com NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Sim, é possível usar DNS e DHCP para hosts de Cluster. No entanto, se sua aplicação exigir disponibilidade de <span class="quote">“<span class="quote">cinco noves</span>”</span> (five nines), você deve usar endereços IP fixos (numéricos), pois tornar a comunicação entre os hosts do Cluster dependente de serviços como DNS e DHCP introduz pontos de falha potenciais adicionais. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.37.</b></p>
+      </td>
+      <td>
+        <p> O NDB Cluster suporta IPv6? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O IPv6 é suportado para conexões entre SQL Nodes (MySQL Servers), mas as conexões entre todos os outros tipos de Nodes do NDB Cluster devem usar IPv4. </p>
+        <p> Em termos práticos, isso significa que você pode usar IPv6 para Replication entre NDB Clusters, mas as conexões entre Nodes no mesmo NDB Cluster devem usar IPv4. Para mais informações, consulte Section 21.7.3, “Known Issues in NDB Cluster Replication”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.38.</b></p>
+      </td>
+      <td>
+        <p> Como eu gerencio usuários MySQL em um NDB Cluster que possui múltiplos servidores MySQL? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> As contas de usuário e privilégios do MySQL normalmente não são propagadas automaticamente entre diferentes servidores MySQL acessando o mesmo NDB Cluster. O MySQL NDB Cluster fornece suporte para privilégios distribuídos, que você pode habilitar seguindo um procedimento fornecido na documentação; consulte Section 21.6.13, “Distributed Privileges Using Shared Grant Tables”, para mais informações. </p>
+        <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <div class="admon-title"> Importante </div>
+          <p> O mecanismo para gerenciar usuários distribuídos ou compartilhados entre SQL Nodes do NDB Cluster mudou significativamente no NDB 8.0; esta implementação não é compatível com a do NDB 7.6 e anterior. Consulte Privilege Synchronization and NDB_STORED_USER, para detalhes. </p>
+        </div>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.39.</b></p>
+      </td>
+      <td>
+        <p> Como eu continuo a enviar Queries caso um dos SQL Nodes falhe? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> O MySQL NDB Cluster não fornece nenhum tipo de failover automático entre SQL Nodes. Seu aplicativo deve estar preparado para lidar com a perda de SQL Nodes e fazer o failover entre eles. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.40.</b></p>
+      </td>
+      <td>
+        <p> Como eu faço Backup e Restore de um NDB Cluster? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Você pode usar a funcionalidade nativa de Backup e Restore do NDB Cluster no cliente de gerenciamento NDB e no programa <span><strong>ndb_restore</strong></span>. Consulte Section 21.6.8, “Online Backup of NDB Cluster”, e Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”. </p>
+        <p> Você também pode usar a funcionalidade tradicional fornecida para este fim em <span><strong>mysqldump</strong></span> e no MySQL Server. Consulte Section 4.5.4, “mysqldump — A Database Backup Program”, para mais informações. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td>
+        <p><b>A.10.41.</b></p>
+      </td>
+      <td>
+        <p> O que é um <span class="quote">“<span class="quote">angel process</span>”</span>? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td></td>
+      <td>
+        <p> Este processo monitora e, se necessário, tenta reiniciar o processo do Data Node. Se você verificar a lista de processos ativos em seu sistema após iniciar <span><strong>ndbd</strong></span>, você pode ver que há, na verdade, 2 processos rodando com esse nome, conforme mostrado aqui (omitimos a saída de <span><strong>ndb_mgmd</strong></span> e <span><strong>ndbd</strong></span> para brevidade): </p>
+        <pre class="programlisting copytoclipboard language-terminal"><code class="language-terminal">$&gt; ./ndb_mgmd</code></pre>
+        <code>$> ps aux | grep ndb me      23002  0.0  0.0 122948  3104 ?        Ssl  14:14   0:00 ./ndb_mgmd me      23025  0.0  0.0   5284   820 pts/2    S+   14:14   0:00 grep ndb
+        $&gt; ./ndbd -c 127.0.0.1 --initial
+        $&gt; ps aux | grep ndb me      23002  0.0  0.0 123080  3356 ?        Ssl  14:14   0:00 ./ndb_mgmd me      23096  0.0  0.0  35876  2036 ?        Ss   14:14   0:00 ./ndbmtd -c 127.0.0.1 --initial me      23097  1.0  2.4 524116 91096 ?        Sl   14:14   0:00 ./ndbmtd -c 127.0.0.1 --initial me      23168  0.0  0.0   5284   812 pts/2    R+   14:15   0:00 grep ndb</code>
+        <p> O processo <span><strong>ndbd</strong></span> que mostra <code>0.0</code> para o uso de memória e CPU é o angel process (embora ele realmente use uma quantidade muito pequena de ambos). Este processo meramente verifica se o processo principal <span><strong>ndbd</strong></span> ou <span><strong>ndbmtd</strong></span> (o processo primário do Data Node que realmente lida com os dados) está em execução. Se permitido (por exemplo, se o parâmetro de configuração <code>StopOnError</code> estiver definido como <code>false</code>), o angel process tenta reiniciar o processo primário do Data Node. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

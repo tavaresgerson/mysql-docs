@@ -1,0 +1,7 @@
+### 14.12.5 Recuperando Espaço em Disco com TRUNCATE TABLE
+
+Para recuperar o espaço em disco do sistema operacional ao truncar uma tabela `InnoDB`, a tabela deve estar armazenada em seu próprio arquivo `.ibd`. Para que uma tabela seja armazenada em seu próprio arquivo `.ibd`, `innodb_file_per_table` deve estar habilitado quando a tabela for criada. Além disso, não pode haver uma `foreign key constraint` entre a tabela que está sendo truncada e outras tabelas, caso contrário, a operação `TRUNCATE TABLE` falhará. No entanto, uma `foreign key constraint` entre duas colunas na mesma tabela é permitida.
+
+Quando uma tabela é truncada, ela é descartada (`dropped`) e recriada em um novo arquivo `.ibd`, e o espaço liberado é devolvido ao sistema operacional. Isso contrasta com o truncamento de tabelas `InnoDB` que estão armazenadas dentro do `InnoDB system tablespace` (tabelas criadas quando `innodb_file_per_table=OFF`) e tabelas armazenadas em `general tablespaces` compartilhados, onde apenas o `InnoDB` pode usar o espaço liberado após o truncamento da tabela.
+
+A capacidade de truncar tabelas e retornar o espaço em disco ao sistema operacional também significa que os `backups` físicos podem ser menores. O truncamento de tabelas armazenadas no `system tablespace` (tabelas criadas quando `innodb_file_per_table=OFF`) ou em um `general tablespace` deixa blocos de espaço não utilizado no `tablespace`.

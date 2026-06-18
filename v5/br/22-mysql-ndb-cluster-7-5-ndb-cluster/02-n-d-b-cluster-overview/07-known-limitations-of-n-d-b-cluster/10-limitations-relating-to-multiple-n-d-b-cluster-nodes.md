@@ -1,0 +1,23 @@
+#### 21.2.7.10 Limitações Relacionadas a Múltiplos Nós (Nodes) do NDB Cluster
+
+**Múltiplos nós SQL (SQL nodes).** A seguir estão os problemas relacionados ao uso de múltiplos servidores MySQL como nós SQL do NDB Cluster, e são específicos do storage engine `NDBCLUSTER`:
+
+* **Programas armazenados (Stored programs) não distribuídos.** Stored procedures, stored functions, triggers e scheduled events são todos suportados por tabelas que usam o storage engine `NDB`, mas eles *não* se propagam automaticamente entre Servidores MySQL atuando como SQL nodes do Cluster e devem ser recriados separadamente em cada SQL node. Consulte Stored Programs in NDB Cluster.
+
+* **Sem Locks de tabela distribuídos.** Uma instrução `LOCK TABLES` ou chamada `GET_LOCK()` funciona apenas para o SQL node no qual o Lock é emitido; nenhum outro SQL node no Cluster "vê" esse Lock. Isso é verdade para um Lock emitido por qualquer instrução que realize o Locking de tabelas como parte de suas operações. (Consulte o próximo item para um exemplo.)
+
+  A implementação de Locks de tabela no `NDBCLUSTER` pode ser feita em uma aplicação API, garantindo que todas as aplicações iniciem definindo `LockMode` como `LM_Read` ou `LM_Exclusive`. Para mais informações sobre como fazer isso, consulte a descrição de `NdbOperation::getLockHandle()` no *NDB Cluster API Guide*.
+
+* **Operações ALTER TABLE.** O `ALTER TABLE` não é totalmente "locking" (bloqueador) ao executar múltiplos servidores MySQL (SQL nodes). (Conforme discutido no item anterior, o NDB Cluster não suporta Locks de tabela distribuídos.)
+
+**Múltiplos nós de gerenciamento (Management nodes).** Ao usar múltiplos servidores de gerenciamento (management servers):
+
+* Se algum dos servidores de gerenciamento estiver sendo executado no mesmo host, você deve fornecer IDs de node explícitos nas connection strings, pois a alocação automática de Node IDs não funciona entre múltiplos servidores de gerenciamento no mesmo host. Isso não é necessário se cada servidor de gerenciamento residir em um host diferente.
+
+* Quando um servidor de gerenciamento inicia, ele primeiro verifica a existência de qualquer outro servidor de gerenciamento no mesmo NDB Cluster e, após uma conexão bem-sucedida com o outro servidor de gerenciamento, utiliza seus dados de configuração. Isso significa que as opções de inicialização `--reload` e `--initial` do servidor de gerenciamento são ignoradas, a menos que ele seja o único servidor de gerenciamento em execução. Isso também significa que, ao realizar um rolling restart (reinicialização gradual) de um NDB Cluster com múltiplos management nodes, o servidor de gerenciamento lê seu próprio arquivo de configuração se (e somente se) for o único servidor de gerenciamento em execução neste NDB Cluster. Consulte Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”, para mais informações.
+
+**Múltiplos endereços de rede.** Múltiplos endereços de rede por data node não são suportados. O uso deles pode causar problemas: No caso de falha de um data node, um SQL node espera a confirmação de que o data node foi desativado, mas nunca a recebe porque outra rota para esse data node permanece aberta. Isso pode, efetivamente, tornar o Cluster inoperável.
+
+Nota
+
+É possível usar múltiplas *interfaces* de hardware de rede (como placas Ethernet) para um único data node, mas elas devem estar vinculadas ao mesmo endereço. Isso também significa que não é possível usar mais de uma seção `[tcp]` por conexão no arquivo `config.ini`. Consulte Section 21.4.3.10, “NDB Cluster TCP/IP Connections”, para mais informações.

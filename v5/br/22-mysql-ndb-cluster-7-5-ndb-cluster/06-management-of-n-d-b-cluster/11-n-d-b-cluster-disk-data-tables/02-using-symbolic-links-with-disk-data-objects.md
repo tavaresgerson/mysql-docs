@@ -1,0 +1,3 @@
+#### 21.6.11.2 Usando Links Simbólicos com Objetos Disk Data
+
+O desempenho de um NDB Cluster que utiliza armazenamento Disk Data pode ser significativamente melhorado separando o file system do nó de dados de quaisquer tablespace files (undo log files e data files), e colocando estes em diferentes discos. Em versões anteriores do NDB Cluster, não havia suporte direto para isso, e era necessário alcançar essa separação usando symbolic links. O NDB Cluster agora suporta os configuration parameters do nó de dados `FileSystemPathDD`, `FileSystemPathDataFiles`, e `FileSystemPathUndoFiles`, o que torna o uso de symbolic links para essa finalidade desnecessário. Para mais informações sobre esses parameters, consulte Parâmetros do file system Disk Data.

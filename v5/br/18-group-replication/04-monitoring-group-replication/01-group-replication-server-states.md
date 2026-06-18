@@ -1,0 +1,13 @@
+### 17.4.1 Estados do Server no Group Replication
+
+Existem vários estados em que uma instância de servidor pode se encontrar. Se os servers estiverem se comunicando adequadamente, todos relatam os mesmos estados para todos os servers. No entanto, se houver uma partição de rede, ou se um server deixar o grupo, informações diferentes podem ser relatadas, dependendo de qual server é consultado. Se o server tiver deixado o grupo, ele não poderá relatar informações atualizadas sobre os estados dos outros servers. Se houver uma partição, de forma que o quorum seja perdido, os servers não conseguem se coordenar entre si. Consequentemente, eles não conseguem adivinhar o status dos diferentes servers. Portanto, em vez de adivinhar seu estado, eles relatam que alguns servers estão inacessíveis (unreachable).
+
+**Tabela 17.1 Estado do Server**
+
+<table><col style="width: 38%"/><col style="width: 50%"/><col style="width: 12%"/><thead><tr> <th><p> Campo </p></th> <th><p> Descrição </p></th> <th><p> Sincronizado pelo Grupo </p></th> </tr></thead><tbody><tr> <th><p> <code>ONLINE</code> </p></th> <td><p> O membro está pronto para servir como um membro do grupo totalmente funcional, o que significa que o client pode se conectar e começar a executar transactions. </p></td> <td><p> Sim </p></td> </tr><tr> <th><p> <code>RECOVERING</code> </p></th> <td><p> O membro está no processo de se tornar um membro ativo do grupo e está atualmente passando pelo processo de recovery, recebendo informações de estado de um donor. </p></td> <td><p> Não </p></td> </tr><tr> <th><p> <code>OFFLINE</code> </p></th> <td><p> O plugin está carregado, mas o membro não pertence a nenhum grupo. </p></td> <td><p> Não </p></td> </tr><tr> <th><p> <code>ERROR</code> </p></th> <td><p> O estado do membro. Sempre que há um erro na fase de recovery ou ao aplicar mudanças, o server entra neste estado. </p></td> <td><p> Não </p></td> </tr><tr> <th><p> <code>UNREACHABLE</code> </p></th> <td><p> Sempre que o detector de falhas local suspeita que um determinado server não está acessível (por exemplo, porque foi desconectado involuntariamente), ele exibe o estado desse server como <code>UNREACHABLE</code>. </p></td> <td><p> Não </p></td> </tr></tbody></table>
+
+Importante
+
+Uma vez que uma instância entra no estado `ERROR`, a opção `super_read_only` é definida como `ON`. Para sair do estado `ERROR`, você deve configurar manualmente a instância com `super_read_only=OFF`.
+
+Note que o Group Replication *não* é síncrono, mas eventualmente síncrono. Mais precisamente, as transactions são entregues a todos os membros do grupo na mesma ordem, mas sua execução não é sincronizada, o que significa que, após uma transaction ser aceita para commit, cada membro faz o commit em seu próprio ritmo.

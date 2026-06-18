@@ -1,0 +1,24 @@
+### 7.5.2 Obtaining Component Information
+
+The `mysql.component` system table contains
+information about currently loaded components and shows which
+components have been registered using [`INSTALL
+COMPONENT`](install-component.html "15.7.4.3 INSTALL COMPONENT Statement"). Selecting from the table shows which
+components are installed. For example:
+
+```
+mysql> SELECT * FROM mysql.component;
++--------------+--------------------+------------------------------------+
+| component_id | component_group_id | component_urn                      |
++--------------+--------------------+------------------------------------+
+|            1 |                  1 | file://component_validate_password |
+|            2 |                  2 | file://component_log_sink_json     |
++--------------+--------------------+------------------------------------+
+```
+
+The `component_id` and
+`component_group_id` values are for internal use.
+The `component_urn` is the URN used in
+[`INSTALL COMPONENT`](install-component.html "15.7.4.3 INSTALL COMPONENT Statement") and
+[`UNINSTALL COMPONENT`](uninstall-component.html "15.7.4.5 UNINSTALL COMPONENT Statement") statements to
+load and unload the component.

@@ -1,0 +1,29 @@
+#### 16.1.3.6 Restrições na Replication com GTIDs
+
+Como a Replication baseada em GTID depende de Transactions, alguns recursos que estariam disponíveis no MySQL não são suportados ao utilizá-la. Esta seção fornece informações sobre restrições e limitações da Replication com GTIDs.
+
+**Atualizações envolvendo storage engines não transacionais.** Ao usar GTIDs, as atualizações em tabelas que utilizam storage engines não transacionais, como `MyISAM`, não podem ser feitas no mesmo statement ou Transaction que atualizações em tabelas que utilizam storage engines transacionais, como `InnoDB`.
+
+Esta restrição se deve ao fato de que atualizações em tabelas que usam um storage engine não transacional misturadas com atualizações em tabelas que usam um storage engine transacional dentro da mesma Transaction podem resultar em múltiplos GTIDs sendo atribuídos à mesma Transaction.
+
+Tais problemas também podem ocorrer quando a source e a replica usam diferentes storage engines para suas respectivas versões da mesma tabela, sendo um storage engine transacional e o outro não. Esteja ciente também de que triggers definidos para operar em tabelas não transacionais podem ser a causa desses problemas.
+
+Em qualquer um dos casos mencionados, a correspondência um-para-um entre Transactions e GTIDs é quebrada, resultando no mau funcionamento da Replication baseada em GTID.
+
+**Statements CREATE TABLE ... SELECT.** Statements `CREATE TABLE ... SELECT` não são permitidos ao usar Replication baseada em GTID. Quando `binlog_format` é definido como STATEMENT, um statement `CREATE TABLE ... SELECT` é registrado no Binary Log como uma Transaction com um GTID, mas se o formato ROW for usado, o statement é registrado como duas Transactions com dois GTIDs. Se uma source usasse o formato STATEMENT e uma replica usasse o formato ROW, a replica seria incapaz de lidar com a Transaction corretamente, portanto, o statement `CREATE TABLE ... SELECT` é proibido com GTIDs para evitar este cenário.
+
+**Tabelas temporárias.** Statements `CREATE TEMPORARY TABLE` e `DROP TEMPORARY TABLE` não são suportados dentro de Transactions, procedures, functions e triggers ao usar GTIDs (ou seja, quando a variável de sistema `enforce_gtid_consistency` está definida como `ON`). É possível usar esses statements com GTIDs habilitados, mas apenas fora de qualquer Transaction, e somente com `autocommit=1`.
+
+**Prevenção da execução de statements não suportados.** Para evitar a execução de statements que fariam a Replication baseada em GTID falhar, todos os servers devem ser iniciados com a opção `--enforce-gtid-consistency` ao habilitar GTIDs. Isso faz com que statements de qualquer um dos tipos discutidos anteriormente nesta seção falhem com um erro.
+
+Note que `--enforce-gtid-consistency` só entra em vigor se o Binary Logging ocorrer para um statement. Se o Binary Logging estiver desabilitado no server, ou se os statements não forem gravados no Binary Log porque foram removidos por um filtro, a consistência de GTID não é verificada ou imposta para os statements que não são logados.
+
+Para obter informações sobre outras opções de inicialização necessárias ao habilitar GTIDs, consulte Section 16.1.3.4, “Setting Up Replication Using GTIDs”.
+
+**Pulando Transactions.** `sql_slave_skip_counter` não é suportado ao usar GTIDs. Se você precisar pular Transactions, use o valor da variável `gtid_executed` da source. Para obter instruções, consulte Section 16.1.7.3, “Skipping Transactions”.
+
+**Ignorando servers.** A opção IGNORE_SERVER_IDS do statement `CHANGE MASTER TO` é obsoleta ao usar GTIDs, porque Transactions que já foram aplicadas são automaticamente ignoradas. Antes de iniciar a Replication baseada em GTID, verifique e limpe todas as listas de IDs de server ignorados que foram definidas anteriormente nos servers envolvidos. O statement `SHOW SLAVE STATUS`, que pode ser emitido para canais individuais, exibe a lista de IDs de server ignorados, se houver. Se não houver lista, o campo `Replicate_Ignore_Server_Ids` estará em branco.
+
+**Modo GTID e mysqldump.** É possível importar um dump feito usando **mysqldump** para um server MySQL em execução com o modo GTID habilitado, desde que não haja GTIDs no Binary Log do server de destino.
+
+**Modo GTID e mysql_upgrade.** Quando o server está em execução com identificadores globais de Transaction (GTIDs) habilitados ( `gtid_mode=ON`), não habilite o Binary Logging por **mysql_upgrade** (a opção `--write-binlog`).

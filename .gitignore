@@ -1,0 +1,10 @@
+node_modules
+dist
+.idea
+v8/br/.vitepress/cache
+v8/br/.vitepress/dist
+v5/br/.vitepress/cache
+v5/br/.vitepress/dist
+v5/br/.vitepress/5.zip
+v8/br/.vitepress/8.zip
+v5/br/.vitepress/5.zip

@@ -1,0 +1,15 @@
+#### 16.4.1.27 Erros da Replica Durante a Replication
+
+Se uma statement produzir o mesmo erro (código de erro idêntico) tanto no Source quanto na Replica, o erro é registrado, mas a Replication continua.
+
+Se uma statement produzir erros diferentes no Source e na Replica, a replication SQL thread é encerrada, e a Replica grava uma mensagem no seu error log e aguarda que o administrator de Database decida o que fazer em relação ao erro. Isso inclui o caso em que uma statement produz um erro no Source ou na Replica, mas não em ambos. Para resolver o problema, conecte-se à Replica manualmente e determine a causa do problema. O comando `SHOW SLAVE STATUS` é útil para isso. Em seguida, corrija o problema e execute `START SLAVE`. Por exemplo, você pode precisar criar uma table inexistente antes de poder iniciar a Replica novamente.
+
+Nota
+
+Se um erro temporário for registrado no error log da Replica, você não precisa necessariamente tomar qualquer ação sugerida na mensagem de erro citada. Erros temporários devem ser tratados pelo client que repete a transaction. Por exemplo, se a replication SQL thread registrar um erro temporário relacionado a um deadlock, você não precisa reiniciar a transaction manualmente na Replica, a menos que a replication SQL thread seja subsequentemente encerrada com uma mensagem de erro não-temporário.
+
+Se este comportamento de validação de código de erro não for desejável, alguns ou todos os erros podem ser mascarados (ignorados) com a opção `--slave-skip-errors`.
+
+Para storage engines não transacionais, como `MyISAM`, é possível ter uma statement que apenas atualiza parcialmente uma table e retorna um código de erro. Isso pode ocorrer, por exemplo, em um multiple-row insert onde uma linha viola uma key constraint, ou se uma update statement longa for encerrada após atualizar algumas das linhas. Se isso acontecer no Source, a Replica espera que a execução da statement resulte no mesmo código de erro. Caso contrário, a replication SQL thread é interrompida conforme descrito anteriormente.
+
+Se você estiver realizando Replication entre tables que usam diferentes storage engines no Source e na Replica, tenha em mente que a mesma statement pode produzir um erro diferente quando executada em uma versão da table, mas não na outra, ou pode causar um erro para uma versão da table, mas não para a outra. Por exemplo, visto que o `MyISAM` ignora foreign key constraints, uma statement `INSERT` ou `UPDATE` acessando uma table `InnoDB` no Source pode causar uma foreign key violation, mas a mesma statement executada em uma versão `MyISAM` da mesma table na Replica não produziria tal erro, fazendo com que a Replication fosse interrompida.

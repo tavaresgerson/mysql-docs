@@ -1,0 +1,54 @@
+#### 21.2.6.2 NDB and InnoDB Workloads
+
+NDB Cluster has a range of unique attributes that make it ideal
+to serve applications requiring high availability, fast
+failover, high throughput, and low latency. Due to its
+distributed architecture and multi-node implementation, NDB
+Cluster also has specific constraints that may keep some
+workloads from performing well. A number of major differences in
+behavior between the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") and
+[`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engines with regard
+to some common types of database-driven application workloads
+are shown in the following table::
+
+**Table 21.2 Differences between InnoDB and NDB storage engines, common
+types of data-driven application workloads.**
+
+<table><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr>
+<th>Workload</th>
+<th><code>InnoDB</code></th>
+<th>NDB Cluster (<code>NDB</code>)</th>
+</tr></thead><tbody><tr>
+<th><em>High-Volume OLTP Applications</em></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr><tr>
+<th><em>DSS Applications (data marts, analytics)</em></th>
+<td>Yes</td>
+<td>Limited (Join operations across OLTP datasets not exceeding 3TB in size)</td>
+</tr><tr>
+<th><em>Custom Applications</em></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr><tr>
+<th><em>Packaged Applications</em></th>
+<td>Yes</td>
+<td>Limited (should be mostly primary key access); NDB Cluster 7.5 supports
+              foreign keys</td>
+</tr><tr>
+<th><em>In-Network Telecoms Applications (HLR, HSS, SDP)</em></th>
+<td>No</td>
+<td>Yes</td>
+</tr><tr>
+<th><em>Session Management and Caching</em></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr><tr>
+<th><em>E-Commerce Applications</em></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr><tr>
+<th><em>User Profile Management, AAA Protocol</em></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr></tbody></table>

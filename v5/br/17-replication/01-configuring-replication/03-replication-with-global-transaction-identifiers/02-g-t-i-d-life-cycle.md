@@ -1,0 +1,103 @@
+#### 16.1.3.2 Ciclo de Vida do GTID
+
+O ciclo de vida de um GTID consiste nas seguintes etapas:
+
+1. Uma Transaction é executada e committed no servidor Source de Replication. Esta Transaction de Client recebe um GTID composto pelo UUID do Source e pelo menor número de sequência de Transaction (nonzero) ainda não usado neste servidor. O GTID é escrito no Binary Log do Source (imediatamente precedendo a própria Transaction no Log). Se uma Transaction de Client não for escrita no Binary Log (por exemplo, porque a Transaction foi filtrada ou era read-only), ela não recebe um GTID.
+
+2. Se um GTID foi atribuído à Transaction, o GTID é persistido atomicamente no momento do Commit, escrevendo-o no Binary Log no início da Transaction (como um `Gtid_log_event`). Sempre que o Binary Log é rotacionado ou o servidor é desligado, o servidor escreve os GTIDs de todas as Transactions que foram gravadas no arquivo de Binary Log anterior na tabela `mysql.gtid_executed`.
+
+3. Se um GTID foi atribuído à Transaction, o GTID é externalizado de forma não atômica (muito pouco tempo após a Transaction ser committed) adicionando-o ao conjunto de GTIDs na variável de sistema `gtid_executed` (`@@GLOBAL.gtid_executed`). Este conjunto de GTIDs contém uma representação do conjunto de todas as Transactions de GTID committed e é usado na Replication como um token que representa o estado do servidor. Com o Binary Logging ativado (conforme exigido para o Source), o conjunto de GTIDs na variável de sistema `gtid_executed` é um registro completo das Transactions aplicadas, mas a tabela `mysql.gtid_executed` não é, porque o histórico mais recente ainda está no arquivo de Binary Log atual.
+
+4. Depois que os dados do Binary Log são transmitidos para a Replica e armazenados no Relay Log da Replica (usando mecanismos estabelecidos para este processo, consulte Seção 16.2, “Implementação de Replication” para detalhes), a Replica lê o GTID e define o valor de sua variável de sistema `gtid_next` como este GTID. Isso informa à Replica que a próxima Transaction deve ser logada usando este GTID. É importante notar que a Replica define `gtid_next` em um contexto de Session.
+
+5. A Replica verifica se nenhuma Thread assumiu a propriedade do GTID em `gtid_next` para processar a Transaction. Ao ler e verificar primeiro o GTID da Transaction replicada, antes de processar a Transaction em si, a Replica garante não apenas que nenhuma Transaction anterior com este GTID foi aplicada na Replica, mas também que nenhuma outra Session já leu este GTID, mas ainda não committed a Transaction associada. Assim, se múltiplos Clients tentarem aplicar a mesma Transaction concorrentemente, o servidor resolve isso permitindo que apenas um deles execute. A variável de sistema `gtid_owned` (`@@GLOBAL.gtid_owned`) para a Replica mostra cada GTID que está atualmente em uso e o ID da Thread que o possui. Se o GTID já tiver sido usado, nenhum erro é levantado, e a função de auto-skip é usada para ignorar a Transaction.
+
+6. Se o GTID não foi usado, a Replica aplica a Transaction replicada. Como `gtid_next` está configurado para o GTID já atribuído pelo Source, a Replica não tenta gerar um novo GTID para esta Transaction, mas, em vez disso, usa o GTID armazenado em `gtid_next`.
+
+7. Se o Binary Logging estiver ativado na Replica, o GTID é persistido atomicamente no momento do Commit, escrevendo-o no Binary Log no início da Transaction (como um `Gtid_log_event`). Sempre que o Binary Log é rotacionado ou o servidor é desligado, o servidor escreve os GTIDs de todas as Transactions que foram gravadas no arquivo de Binary Log anterior na tabela `mysql.gtid_executed`.
+
+8. Se o Binary Logging estiver desativado na Replica, o GTID é persistido atomicamente, escrevendo-o diretamente na tabela `mysql.gtid_executed`. O MySQL anexa um Statement à Transaction para inserir o GTID na tabela. Nesta situação, a tabela `mysql.gtid_executed` é um registro completo das Transactions aplicadas na Replica. Observe que no MySQL 5.7, a operação para inserir o GTID na tabela é atômica para Statements DML, mas não para Statements DDL, então se o servidor for encerrado inesperadamente após uma Transaction envolvendo Statements DDL, o estado do GTID pode se tornar inconsistente. A partir do MySQL 8.0, a operação é atômica para Statements DDL, bem como para Statements DML.
+
+9. Muito pouco tempo após a Transaction replicada ser committed na Replica, o GTID é externalizado de forma não atômica adicionando-o ao conjunto de GTIDs na variável de sistema `gtid_executed` (`@@GLOBAL.gtid_executed`) para a Replica. Assim como no Source, este conjunto de GTIDs contém uma representação do conjunto de todas as Transactions de GTID committed. Se o Binary Logging estiver desativado na Replica, a tabela `mysql.gtid_executed` também é um registro completo das Transactions aplicadas na Replica. Se o Binary Logging estiver ativado na Replica, significando que alguns GTIDs são registrados apenas no Binary Log, o conjunto de GTIDs na variável de sistema `gtid_executed` é o único registro completo.
+
+Transactions de Client que são completamente filtradas no Source não recebem um GTID, portanto, não são adicionadas ao conjunto de Transactions na variável de sistema `gtid_executed`, nem adicionadas à tabela `mysql.gtid_executed`. No entanto, os GTIDs de Transactions replicadas que são completamente filtradas na Replica são persistidos. Se o Binary Logging estiver ativado na Replica, a Transaction filtrada é escrita no Binary Log como um `Gtid_log_event` seguido por uma Transaction vazia contendo apenas Statements `BEGIN` e `COMMIT`. Se o Binary Logging estiver desativado, o GTID da Transaction filtrada é escrito na tabela `mysql.gtid_executed`. A preservação dos GTIDs para Transactions filtradas garante que a tabela `mysql.gtid_executed` e o conjunto de GTIDs na variável de sistema `gtid_executed` possam ser comprimidos. Também garante que as Transactions filtradas não sejam recuperadas novamente se a Replica se reconectar ao Source, conforme explicado na Seção 16.1.3.3, “GTID Auto-Positioning”.
+
+Em uma Replica multithreaded (com `slave_parallel_workers > 0`), as Transactions podem ser aplicadas em paralelo, de modo que as Transactions replicadas podem ser committed fora de ordem (a menos que `slave_preserve_commit_order=1` esteja definido). Quando isso acontece, o conjunto de GTIDs na variável de sistema `gtid_executed` contém múltiplos intervalos de GTID com Gaps entre eles. (Em um Source ou em uma Replica single-threaded, há GTIDs monotonicamente crescentes sem Gaps entre os números.) Gaps em Replicas multithreaded ocorrem apenas entre as Transactions aplicadas mais recentemente e são preenchidos à medida que a Replication avança. Quando as Threads de Replication são paradas de forma limpa usando o Statement `STOP SLAVE`, as Transactions em andamento são aplicadas para que os Gaps sejam preenchidos. No caso de um desligamento, como uma falha do servidor ou o uso do Statement `KILL` para parar as Threads de Replication, os Gaps podem permanecer.
+
+##### Que mudanças recebem um GTID?
+
+O cenário típico é que o servidor gera um novo GTID para uma Transaction committed. No entanto, GTIDs também podem ser atribuídos a outras mudanças além de Transactions e, em alguns casos, uma única Transaction pode receber múltiplos GTIDs.
+
+Toda mudança de Database (DDL ou DML) que é escrita no Binary Log recebe um GTID. Isso inclui mudanças que são autocommitted, e mudanças que são committed usando Statements `BEGIN` e `COMMIT` ou `START TRANSACTION`. Um GTID também é atribuído à criação, alteração ou exclusão de um Database, e de um objeto de Database que não seja uma tabela, como um procedure, function, trigger, event, view, user, role ou grant.
+
+Atualizações não transacionais, bem como atualizações transacionais, recebem GTIDs. Além disso, para uma atualização não transacional, se ocorrer uma falha de escrita em disco ao tentar escrever no cache do Binary Log e, consequentemente, um Gap for criado no Binary Log, o evento de Log de incidente resultante recebe um GTID.
+
+Quando uma tabela é descartada automaticamente por um Statement gerado no Binary Log, um GTID é atribuído ao Statement. Temporary tables são descartadas automaticamente quando uma Replica começa a aplicar Events de um Source que acabou de ser iniciado, e quando a Replication baseada em Statement está em uso (`binlog_format=STATEMENT`) e uma Session de usuário com Temporary Tables abertas se desconecta. Tables que usam o Storage Engine `MEMORY` são excluídas automaticamente na primeira vez que são acessadas após o servidor ser iniciado, porque as Rows podem ter sido perdidas durante o desligamento.
+
+Quando uma Transaction não é escrita no Binary Log no servidor de origem, o servidor não atribui um GTID a ela. Isso inclui Transactions que são rolled back e Transactions que são executadas enquanto o Binary Logging está desativado no servidor de origem, seja globalmente (com `--skip-log-bin` especificado na configuração do servidor) ou para a Session (`SET @@SESSION.sql_log_bin = 0`). Isso também inclui Transactions no-op quando a Replication baseada em Row está em uso (`binlog_format=ROW`).
+
+XA Transactions recebem GTIDs separados para a fase `XA PREPARE` da Transaction e a fase `XA COMMIT` ou `XA ROLLBACK` da Transaction. XA Transactions são preparadas persistentemente para que os usuários possam committed ou rolled back em caso de falha (o que em uma topologia de Replication pode incluir um failover para outro servidor). As duas partes da Transaction são, portanto, replicadas separadamente, então devem ter seus próprios GTIDs, embora uma Transaction não XA que é rolled back não teria um GTID.
+
+Nos seguintes casos especiais, um único Statement pode gerar múltiplas Transactions e, portanto, receber múltiplos GTIDs:
+
+* Um stored procedure é invocado e faz Commit de múltiplas Transactions. Um GTID é gerado para cada Transaction que o procedure faz Commit.
+
+* Um Statement `DROP TABLE` de múltiplas tabelas descarta tables de diferentes tipos.
+
+* Um Statement `CREATE TABLE ... SELECT` é emitido quando a Replication baseada em Row está em uso (`binlog_format=ROW`). Um GTID é gerado para a ação `CREATE TABLE` e um GTID é gerado para as ações de inserção de Row.
+
+##### A Variável de Sistema gtid_next
+
+Por padrão, para novas Transactions committed em Sessions de usuário, o servidor gera e atribui automaticamente um novo GTID. Quando a Transaction é aplicada em uma Replica, o GTID do servidor de origem é preservado. Você pode alterar esse comportamento definindo o valor da Session da variável de sistema `gtid_next`:
+
+* Quando `gtid_next` é definido como `AUTOMATIC`, que é o padrão, e uma Transaction é committed e escrita no Binary Log, o servidor gera e atribui automaticamente um novo GTID. Se uma Transaction for rolled back ou não for escrita no Binary Log por outro motivo, o servidor não gera nem atribui um GTID.
+
+* Se você definir `gtid_next` para um GTID válido (consistindo em um UUID e um número de sequência de Transaction, separados por dois pontos), o servidor atribui esse GTID à sua Transaction. Este GTID é atribuído e adicionado a `gtid_executed` mesmo quando a Transaction não é escrita no Binary Log ou quando a Transaction está vazia.
+
+Observe que, depois de definir `gtid_next` para um GTID específico, e a Transaction ter sido committed ou rolled back, um Statement explícito `SET @@SESSION.gtid_next` deve ser emitido antes de qualquer outro Statement. Você pode usar isso para redefinir o valor do GTID para `AUTOMATIC` se não quiser atribuir mais GTIDs explicitamente.
+
+Quando as Threads de Applier de Replication aplicam Transactions replicadas, elas usam essa técnica, definindo `@@SESSION.gtid_next` explicitamente para o GTID da Transaction replicada, conforme atribuído no servidor de origem. Isso significa que o GTID do servidor de origem é mantido, em vez de um novo GTID ser gerado e atribuído pela Replica. Também significa que o GTID é adicionado a `gtid_executed` na Replica, mesmo quando o Binary Logging ou o Logging de atualização da Replica estão desativados na Replica, ou quando a Transaction é uma no-op ou é filtrada na Replica.
+
+É possível para um Client simular uma Transaction replicada, definindo `@@SESSION.gtid_next` para um GTID específico antes de executar a Transaction. Essa técnica é usada pelo **mysqlbinlog** para gerar um Dump do Binary Log que o Client pode Replay para preservar GTIDs. Uma Transaction replicada simulada committed por meio de um Client é completamente equivalente a uma Transaction replicada committed por meio de uma Thread de Applier de Replication, e elas não podem ser distinguidas posteriormente.
+
+##### A Variável de Sistema gtid_purged
+
+O conjunto de GTIDs na variável de sistema `gtid_purged` (`@@GLOBAL.gtid_purged`) contém os GTIDs de todas as Transactions que foram committed no servidor, mas não existem em nenhum arquivo de Binary Log no servidor. `gtid_purged` é um subconjunto de `gtid_executed`. As seguintes categorias de GTIDs estão em `gtid_purged`:
+
+* GTIDs de Transactions replicadas que foram committed com o Binary Logging desativado na Replica.
+
+* GTIDs de Transactions que foram escritas em um arquivo de Binary Log que agora foi purged.
+
+* GTIDs que foram adicionados explicitamente ao conjunto pelo Statement `SET @@GLOBAL.gtid_purged`.
+
+Você pode alterar o valor de `gtid_purged` para registrar no servidor que as Transactions em um determinado conjunto de GTIDs foram aplicadas, embora não existam em nenhum Binary Log no servidor. Quando você adiciona GTIDs a `gtid_purged`, eles também são adicionados a `gtid_executed`. Um exemplo de caso de uso para esta ação é quando você está restaurando um Backup de um ou mais Databases em um servidor, mas não tem os Binary Logs relevantes contendo as Transactions no servidor. No MySQL 5.7, você só pode alterar o valor de `gtid_purged` quando `gtid_executed` (e, portanto, `gtid_purged`) está vazio. Para detalhes sobre como fazer isso, consulte a descrição para `gtid_purged`.
+
+Os conjuntos de GTIDs nas variáveis de sistema `gtid_executed` e `gtid_purged` são inicializados quando o servidor é iniciado. Todo arquivo de Binary Log começa com o Event `Previous_gtids_log_event`, que contém o conjunto de GTIDs em todos os arquivos de Binary Log anteriores (composto pelos GTIDs no `Previous_gtids_log_event` do arquivo precedente e pelos GTIDs de cada `Gtid_log_event` no próprio arquivo precedente). O conteúdo de `Previous_gtids_log_event` nos arquivos de Binary Log mais antigos e mais recentes é usado para calcular os conjuntos `gtid_executed` e `gtid_purged` na inicialização do servidor:
+
+* `gtid_executed` é calculado como a união dos GTIDs em `Previous_gtids_log_event` no arquivo de Binary Log mais recente, os GTIDs das Transactions nesse arquivo de Binary Log e os GTIDs armazenados na tabela `mysql.gtid_executed`. Este conjunto de GTIDs contém todos os GTIDs que foram usados (ou adicionados explicitamente a `gtid_purged`) no servidor, estejam ou não atualmente em um arquivo de Binary Log no servidor. Não inclui os GTIDs para Transactions que estão atualmente sendo processadas no servidor (`@@GLOBAL.gtid_owned`).
+
+* `gtid_purged` é calculado adicionando primeiro os GTIDs em `Previous_gtids_log_event` no arquivo de Binary Log mais recente e os GTIDs das Transactions nesse arquivo de Binary Log. Esta etapa fornece o conjunto de GTIDs que estão atualmente, ou já estiveram, registrados em um Binary Log no servidor (`gtids_in_binlog`). Em seguida, os GTIDs em `Previous_gtids_log_event` no arquivo de Binary Log mais antigo são subtraídos de `gtids_in_binlog`. Esta etapa fornece o conjunto de GTIDs que estão atualmente registrados em um Binary Log no servidor (`gtids_in_binlog_not_purged`). Finalmente, `gtids_in_binlog_not_purged` é subtraído de `gtid_executed`. O resultado é o conjunto de GTIDs que foram usados no servidor, mas não estão atualmente registrados em um arquivo de Binary Log no servidor, e este resultado é usado para inicializar `gtid_purged`.
+
+Se Binary Logs do MySQL 5.7.7 ou mais antigos estiverem envolvidos nesses cálculos, é possível que conjuntos de GTID incorretos sejam calculados para `gtid_executed` e `gtid_purged`, e eles permanecerão incorretos mesmo se o servidor for reiniciado posteriormente. Para detalhes, consulte a descrição da variável de sistema `binlog_gtid_simple_recovery`, que controla como os Binary Logs são iterados para calcular os conjuntos de GTIDs. Se uma das situações descritas lá se aplicar a um servidor, defina `binlog_gtid_simple_recovery=FALSE` no arquivo de configuração do servidor antes de iniciá-lo. Essa configuração faz com que o servidor itere todos os arquivos de Binary Log (não apenas o mais novo e o mais antigo) para encontrar onde os GTID Events começam a aparecer. Este processo pode levar muito tempo se o servidor tiver um grande número de arquivos de Binary Log sem GTID Events.
+
+##### Redefinindo o Histórico de Execução do GTID
+
+Se você precisar redefinir o histórico de execução do GTID em um servidor, use o Statement `RESET MASTER`. Por exemplo, você pode precisar fazer isso após realizar Queries de teste para verificar uma configuração de Replication em novos servidores habilitados para GTID, ou quando quiser juntar um novo servidor a um grupo de Replication, mas ele contém algumas Transactions locais indesejadas que não são aceitas pelo Group Replication.
+
+Aviso
+
+Use `RESET MASTER` com cautela para evitar a perda de qualquer histórico de execução de GTID e arquivos de Binary Log desejados.
+
+Antes de emitir `RESET MASTER`, certifique-se de ter Backups dos arquivos de Binary Log e do arquivo Index do Binary Log do servidor, se houver, e obtenha e salve o conjunto de GTID mantido no valor Global da variável de sistema `gtid_executed` (por exemplo, emitindo um Statement `SELECT @@GLOBAL.gtid_executed` e salvando os resultados). Se você estiver removendo Transactions indesejadas desse conjunto de GTID, use o **mysqlbinlog** para examinar o conteúdo das Transactions e garantir que elas não tenham valor, não contenham dados que devam ser salvos ou replicados e não tenham resultado em mudanças de dados no servidor.
+
+Quando você emite `RESET MASTER`, as seguintes operações de reset são realizadas:
+
+* O valor da variável de sistema `gtid_purged` é definido como uma string vazia (`''`).
+
+* O valor Global (mas não o valor de Session) da variável de sistema `gtid_executed` é definido como uma string vazia.
+
+* A tabela `mysql.gtid_executed` é limpa (consulte Tabela mysql.gtid_executed).
+
+* Se o servidor tiver o Binary Logging ativado, os arquivos de Binary Log existentes são excluídos e o arquivo Index do Binary Log é limpo.
+
+Observe que `RESET MASTER` é o método para redefinir o histórico de execução do GTID, mesmo que o servidor seja uma Replica onde o Binary Logging esteja desativado. `RESET SLAVE` não tem efeito sobre o histórico de execução do GTID.

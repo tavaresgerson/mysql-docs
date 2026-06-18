@@ -1,0 +1,152 @@
+#### 14.16.1.3 Using the Compression Information Schema Tables
+
+**Example 14.1 Using the Compression Information Schema Tables**
+
+The following is sample output from a database that contains
+compressed tables (see [Section 14.9, “InnoDB Table and Page Compression”](innodb-compression.html "14.9 InnoDB Table and Page Compression"),
+[`INNODB_CMP`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables"),
+[`INNODB_CMP_PER_INDEX`](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables"), and
+[`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables")).
+
+The following table shows the contents of the Information
+Schema [`INNODB_CMP`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables") table under a
+light [workload](glossary.html#glos_workload "workload"). The only
+compressed page size that the buffer pool contains is 8K.
+Compressing or uncompressing pages has consumed less than a
+second since the time the statistics were reset, because the
+columns `COMPRESS_TIME` and
+`UNCOMPRESS_TIME` are zero.
+
+<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_CMP table, showing the internal workings of InnoDB table compression under a light workload."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr>
+<th>page size</th>
+<th>compress ops</th>
+<th>compress ops ok</th>
+<th>compress time</th>
+<th>uncompress ops</th>
+<th>uncompress time</th>
+</tr></thead><tbody><tr>
+<th>1024</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>2048</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>4096</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>8192</th>
+<td>1048</td>
+<td>921</td>
+<td>0</td>
+<td>61</td>
+<td>0</td>
+</tr><tr>
+<th>16384</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr></tbody></table>
+
+According to [`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables"), there
+are 6169 compressed 8KB pages in the
+[buffer pool](glossary.html#glos_buffer_pool "buffer pool"). The only
+other allocated block size is 64 bytes. The smallest
+`PAGE_SIZE` in
+[`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") is used for block
+descriptors of those compressed pages for which no
+uncompressed page exists in the buffer pool. We see that there
+are 5910 such pages. Indirectly, we see that 259 (6169-5910)
+compressed pages also exist in the buffer pool in uncompressed
+form.
+
+The following table shows the contents of the Information
+Schema [`INNODB_CMPMEM`](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables") table under
+a light [workload](glossary.html#glos_workload "workload"). Some
+memory is unusable due to fragmentation of the memory
+allocator for compressed pages:
+`SUM(PAGE_SIZE*PAGES_FREE)=6784`. This is
+because small memory allocation requests are fulfilled by
+splitting bigger blocks, starting from the 16K blocks that are
+allocated from the main buffer pool, using the buddy
+allocation system. The fragmentation is this low because some
+allocated blocks have been relocated (copied) to form bigger
+adjacent free blocks. This copying of
+`SUM(PAGE_SIZE*RELOCATION_OPS)` bytes has
+consumed less than a second
+`(SUM(RELOCATION_TIME)=0)`.
+
+<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_CMPMEM table, showing buffer pool memory operations for InnoDB table compression under a light workload."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr>
+<th>page size</th>
+<th>pages used</th>
+<th>pages free</th>
+<th>relocation ops</th>
+<th>relocation time</th>
+</tr></thead><tbody><tr>
+<th>64</th>
+<td>5910</td>
+<td>0</td>
+<td>2436</td>
+<td>0</td>
+</tr><tr>
+<th>128</th>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>256</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>512</th>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>1024</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>2048</th>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>4096</th>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr><tr>
+<th>8192</th>
+<td>6169</td>
+<td>0</td>
+<td>5</td>
+<td>0</td>
+</tr><tr>
+<th>16384</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr></tbody></table>

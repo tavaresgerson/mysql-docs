@@ -1,0 +1,5 @@
+## A.8 Perguntas frequentes sobre o MySQL 8.0: Migração
+
+A.8.1. Onde posso encontrar informações sobre como atualizar ou desatualizar o MySQL?
+
+<table border="0" style="width: 100%;"><colgroup><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.8.1.</b></p></td><td align="left" valign="top"><p>Onde posso encontrar informações sobre como atualizar ou desatualizar o MySQL?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>Para informações detalhadas sobre a atualização, consulte o Capítulo 3,<i>Atualizando o MySQL</i>Não pule uma versão importante ao fazer uma atualização, mas sim complete o processo em etapas, atualizando de uma versão principal para a próxima em cada etapa. Isso pode parecer mais complicado, mas, no final, economiza tempo e problemas. Se você encontrar problemas durante a atualização, sua origem é mais fácil de identificar, seja por você ou, se você tiver uma assinatura do MySQL Enterprise, pelo suporte do MySQL.</p></td></tr></tbody></table>

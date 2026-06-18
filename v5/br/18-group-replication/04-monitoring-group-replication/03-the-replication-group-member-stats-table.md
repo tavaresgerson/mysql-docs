@@ -1,0 +1,11 @@
+### 17.4.3 A Tabela replication_group_member_stats
+
+Cada membro em um grupo de replicação certifica e aplica transações recebidas pelo grupo. Estatísticas relacionadas aos procedimentos do certifier e applier são úteis para entender como a fila do applier está crescendo, quantos conflitos foram encontrados, quantas transações foram verificadas, quais transações estão committed em todos os lugares, e assim por diante.
+
+A tabela `performance_schema.replication_group_member_stats` fornece informações no nível do grupo relacionadas ao processo de certificação e também estatísticas para as transações recebidas e originadas por cada membro individual do grupo de replicação. A informação é compartilhada entre todas as instâncias do servidor que são membros do grupo de replicação, de modo que informações sobre todos os membros do grupo podem ser consultadas a partir de qualquer membro. Observe que a atualização (refreshing) de estatísticas para membros remotos é controlada pelo período de mensagem especificado na opção `group_replication_flow_control_period`, portanto, estas podem diferir ligeiramente das estatísticas coletadas localmente para o membro onde a Query é feita. Para usar esta tabela para monitorar um membro do Group Replication, execute a seguinte instrução:
+
+```sql
+mysql> SELECT * FROM performance_schema.replication_group_member_stats\G
+```
+
+Essas colunas são importantes para monitorar a performance dos membros conectados no grupo. Suponha que um dos membros do grupo sempre relate um grande número de transações em sua fila (queue) em comparação com outros membros. Isso significa que o membro está atrasado (delayed) e não é capaz de se manter atualizado com os outros membros do grupo. Com base nessas informações, você pode decidir remover o membro do grupo ou atrasar o processamento de transações nos outros membros do grupo para reduzir o número de transações em fila (queued transactions). Essa informação também pode ajudá-lo a decidir como ajustar o flow control do plugin Group Replication, veja Seção 17.9.7.3, “Flow Control”.

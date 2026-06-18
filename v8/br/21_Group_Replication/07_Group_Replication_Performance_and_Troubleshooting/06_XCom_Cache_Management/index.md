@@ -1,0 +1,13 @@
+### 20.7.6 Gerenciamento de Cache do XCom
+
+20.7.6.1 Aumentar o tamanho do cache
+
+20.7.6.2 Reduzir o tamanho do cache
+
+O mecanismo de comunicação em grupo para a Replicação em Grupo (XCom, uma variante do Paxos) inclui um cache para mensagens (e seus metadados) trocadas entre os membros do grupo como parte do protocolo de consenso. Entre outras funções, o cache de mensagens é usado para a recuperação de mensagens perdidas por membros que se reconectam ao grupo após um período em que não conseguiram se comunicar com os outros membros do grupo.
+
+A partir do MySQL 8.0.16, é possível definir um limite de tamanho de cache para o cache de mensagens do XCom usando a variável de sistema `group_replication_message_cache_size`. Se o limite de tamanho de cache for atingido, o XCom remove as entradas mais antigas que foram decididas e entregues. O mesmo limite de tamanho de cache deve ser definido em todos os membros do grupo, pois um membro inacessível que está tentando se reconectar seleciona aleatoriamente outro membro para a recuperação de mensagens perdidas. Portanto, as mesmas mensagens devem estar disponíveis no cache de cada membro.
+
+Antes do MySQL 8.0.16, o tamanho do cache era de 1 GB, e o ajuste padrão para o tamanho do cache a partir do MySQL 8.0.16 é o mesmo. Certifique-se de que há memória suficiente disponível no seu sistema para o limite de tamanho do cache escolhido, considerando o tamanho dos outros caches e pools de objetos do MySQL Server. Observe que o limite definido usando `group_replication_message_cache_size` se aplica apenas aos dados armazenados no cache, e as estruturas do cache requerem um adicional de 50 MB de memória.
+
+Ao selecionar um ajuste `group_replication_message_cache_size`, faça-o com referência ao volume esperado de mensagens no período de tempo antes de um membro ser expulso. O comprimento desse período de tempo é controlado pela variável de sistema `group_replication_member_expel_timeout`, que determina o período de espera (até uma hora) que é permitido, além do período inicial de detecção de 5 segundos para que os membros retornem ao grupo em vez de serem expulsos. Note que, antes do MySQL 8.0.21, esse período de tempo era padrão de 5 segundos a partir do membro ficar indisponível, que é apenas o período de detecção antes de uma suspeita ser criada, porque o tempo limite de expulsão adicional definido pela variável de sistema `group_replication_member_expel_timeout` era padrão de zero. A partir do 8.0.21, o tempo limite de expulsão é padrão de 5 segundos, então, por padrão, um membro não é expulso até que esteja ausente por pelo menos 10 segundos.

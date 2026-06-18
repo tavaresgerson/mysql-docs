@@ -1,0 +1,15 @@
+#### 21.3.2.2 Compilando e Instalando o NDB Cluster a partir do Código Fonte no Windows
+
+A Oracle fornece **binaries** pré-compilados do **NDB Cluster** para Windows que devem ser adequados para a maioria dos usuários. No entanto, se desejar, também é possível compilar o **NDB Cluster** para Windows a partir do **source code**. O procedimento para fazer isso é quase idêntico ao procedimento usado para compilar os **binaries** padrão do **MySQL Server** para Windows e utiliza as mesmas ferramentas. No entanto, existem duas grandes diferenças:
+
+* A compilação do **NDB Cluster** requer o uso das **sources** do **NDB Cluster**. Elas estão disponíveis na página de **downloads** do **NDB Cluster** em <https://dev.mysql.com/downloads/cluster/>. O arquivo **source** compactado deve ter um nome semelhante a `mysql-cluster-gpl-7.6.35.tar.gz`. Você também pode obter as **sources** do **NDB Cluster** no **GitHub** em <https://github.com/mysql/mysql-server/tree/cluster-7.5> (**NDB** 7.5) e <https://github.com/mysql/mysql-server/tree/cluster-7.6> (**NDB** 7.6). *Não há suporte para a compilação do NDB Cluster 7.5 ou 7.6 a partir das sources padrão do MySQL Server 5.7*.
+
+* Você deve configurar o **build** usando a **option** \`WITH_NDBCLUSTER\` além de quaisquer outras **options** de **build** que você deseje usar com o **CMake**. (\`WITH_NDBCLUSTER_STORAGE_ENGINE\` é suportado como um **alias**.)
+
+Importante
+
+A **option** \`WITH_NDB_JAVA\` é ativada por **default**. Isso significa que, por **default**, se o **CMake** não conseguir encontrar a localização do **Java** em seu sistema, o processo de configuração falhará; se você não deseja habilitar o suporte a **Java** e **ClusterJ**, você deve indicar isso explicitamente configurando o **build** usando `-DWITH_NDB_JAVA=OFF`. (Bug #12379735) Use \`WITH_CLASSPATH\` para fornecer o **Java classpath**, se necessário.
+
+Para mais informações sobre as **options** do **CMake** específicas para a compilação do **NDB Cluster**, consulte CMake Options for Compiling NDB Cluster.
+
+Assim que o processo de **build** estiver concluído, você pode criar um **Zip archive** contendo os **binaries** compilados; Seção 2.8.4, “Installing MySQL Using a Standard Source Distribution” fornece os comandos necessários para executar essa tarefa em sistemas Windows. Os **binaries** do **NDB Cluster** podem ser encontrados no **directory** `bin` do **archive** resultante, que é equivalente ao **archive** `no-install`, e que pode ser instalado e configurado da mesma maneira. Para mais informações, consulte Seção 21.3.2.1, “Installing NDB Cluster on Windows from a Binary Release”.

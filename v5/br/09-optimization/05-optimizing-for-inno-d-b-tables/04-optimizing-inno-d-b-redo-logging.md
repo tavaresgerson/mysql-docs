@@ -1,0 +1,15 @@
+### 8.5.4 Otimizando o registro de reinicialização do InnoDB
+
+Considere as seguintes diretrizes para otimizar o registro de refazer:
+
+- Faça seus arquivos de log de refazer grandes, tão grandes quanto o pool de buffer. Quando o `InnoDB` preencher completamente os arquivos de log de refazer, ele deve gravar o conteúdo modificado do pool de buffer no disco em um ponto de verificação. Arquivos de log de refazer pequenos causam muitos escritos desnecessários no disco. Embora, historicamente, arquivos de log de refazer grandes causassem tempos de recuperação longos, a recuperação agora é muito mais rápida e você pode usar com confiança arquivos de log de refazer grandes.
+
+  O tamanho e o número de arquivos de registro de refazer são configurados usando as opções de configuração `innodb_log_file_size` e `innodb_log_files_in_group`. Para obter informações sobre como modificar a configuração de um arquivo de registro de refazer existente, consulte Alterar o número ou o tamanho dos arquivos de registro de refazer do InnoDB.
+
+- Considere aumentar o tamanho do buffer de log. Um buffer de log grande permite que transações grandes sejam executadas sem a necessidade de gravar o log no disco antes do commit das transações. Portanto, se você tiver transações que atualizam, inserem ou excluem muitas linhas, aumentar o tamanho do buffer de log economiza o I/O do disco. O tamanho do buffer de log é configurado usando a opção de configuração `innodb_log_buffer_size`.
+
+- Configure a opção de configuração `innodb_log_write_ahead_size` para evitar o "leitura durante a escrita". Esta opção define o tamanho do bloco de escrita antecipada para o log de refazer. Defina `innodb_log_write_ahead_size` para corresponder ao tamanho do bloco de cache do sistema operacional ou do sistema de arquivos. A leitura durante a escrita ocorre quando os blocos do log de refazer não são completamente armazenados no cache do sistema operacional ou do sistema de arquivos devido a uma incompatibilidade entre o tamanho do bloco de escrita antecipada para o log de refazer e o tamanho do bloco de cache do sistema operacional ou do sistema de arquivos.
+
+  Os valores válidos para `innodb_log_write_ahead_size` são múltiplos do tamanho do bloco do arquivo de log do `InnoDB` (2n). O valor mínimo é o tamanho do bloco do arquivo de log do `InnoDB` (512). A escrita antecipada não ocorre quando o valor mínimo é especificado. O valor máximo é igual ao valor de `innodb_page_size`. Se você especificar um valor para `innodb_log_write_ahead_size` que é maior que o valor de `innodb_page_size`, o ajuste `innodb_log_write_ahead_size` é truncado para o valor de `innodb_page_size`.
+
+  Definir o valor de `innodb_log_write_ahead_size` muito baixo em relação ao tamanho do bloco de cache do sistema operacional ou do sistema de arquivos resulta em leitura durante a escrita. Definir o valor muito alto pode ter um pequeno impacto no desempenho do `fsync` para gravações de arquivos de log devido ao fato de vários blocos serem escritos de uma só vez.

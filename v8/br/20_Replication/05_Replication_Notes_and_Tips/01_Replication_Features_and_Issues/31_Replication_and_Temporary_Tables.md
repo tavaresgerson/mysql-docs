@@ -1,0 +1,21 @@
+#### 19.5.1.31 Replicação e tabelas temporárias
+
+No MySQL 8.0, quando `binlog_format` é definido como `ROW` ou `MIXED`, as instruções que usam exclusivamente tabelas temporárias não são registradas na fonte, e, portanto, as tabelas temporárias não são replicadas. As instruções que envolvem uma mistura de tabelas temporárias e não temporárias são registradas na fonte apenas para as operações nas tabelas não temporárias, e as operações nas tabelas temporárias não são registradas. Isso significa que nunca há tabelas temporárias na replica que possam ser perdidas em caso de um desligamento não planejado pela replica. Para obter mais informações sobre a replicação baseada em linhas e tabelas temporárias, consulte Registro baseado em linhas de tabelas temporárias.
+
+Quando `binlog_format` está definido como `STATEMENT`, as operações em tabelas temporárias são registradas na fonte e replicadas na replica, desde que as instruções que envolvem tabelas temporárias possam ser registradas com segurança usando o formato baseado em instruções. Nessa situação, a perda de tabelas temporárias replicadas na replica pode ser um problema. No modo de replicação baseado em instruções, as instruções `CREATE TEMPORARY TABLE` e `DROP TEMPORARY TABLE` não podem ser usadas dentro de uma transação, procedimento, função ou gatilho quando GTIDs estão em uso no servidor (ou seja, quando a variável de sistema `enforce_gtid_consistency` está definida como `ON`). Elas podem ser usadas fora desses contextos quando GTIDs estão em uso, desde que `autocommit=1` esteja definido.
+
+Devido às diferenças de comportamento entre o modo de replicação baseado em linhas ou misto e o modo de replicação baseado em instruções, em relação às tabelas temporárias, você não pode alternar o formato de replicação em tempo de execução, se a alteração se aplicar a um contexto (global ou de sessão) que contenha quaisquer tabelas temporárias abertas. Para mais detalhes, consulte a descrição da opção `binlog_format`.
+
+**Desativação segura da replica quando se usa tabelas temporárias.** No modo de replicação baseado em declarações, as tabelas temporárias são replicadas, exceto quando você para o servidor da replica (não apenas os threads de replicação) e você já replicou tabelas temporárias que estão abertas para uso em atualizações que ainda não foram executadas na replica. Se você parar o servidor da replica, as tabelas temporárias necessárias para essas atualizações não estarão mais disponíveis quando a replica for reiniciada. Para evitar esse problema, não desligue a replica enquanto ela tiver tabelas temporárias abertas. Em vez disso, use o seguinte procedimento:
+
+1. Emita uma declaração `STOP REPLICA SQL_THREAD`.
+
+2. Use `SHOW STATUS` para verificar o valor da variável de status `Replica_open_temp_tables` ou `Slave_open_temp_tables`.
+
+3. Se o valor não for 0, reinicie o fio de replicação SQL com `START REPLICA SQL_THREAD` e repita o procedimento mais tarde.
+
+4. Quando o valor for 0, execute o comando **mysqladmin shutdown** para parar a replica.
+
+**Tabelas temporárias e opções de replicação.** Por padrão, com a replicação baseada em instruções, todas as tabelas temporárias são replicadas; isso acontece independentemente de existirem ou não opções correspondentes `--replicate-do-db`, `--replicate-do-table` ou `--replicate-wild-do-table` em vigor. No entanto, as opções `--replicate-ignore-table` e `--replicate-wild-ignore-table` são respeitadas para tabelas temporárias. A exceção é que, para permitir a remoção correta das tabelas temporárias no final de uma sessão, uma replica sempre replica uma instrução `DROP TEMPORARY TABLE IF EXISTS`, independentemente de quaisquer regras de exclusão que normalmente seriam aplicadas à tabela especificada.
+
+Uma prática recomendada ao usar a replicação baseada em declarações é designar um prefixo para uso exclusivo ao nomear tabelas temporárias que você não deseja replicar, e, em seguida, usar a opção `--replicate-wild-ignore-table` para corresponder a esse prefixo. Por exemplo, você pode dar nomes a todas essas tabelas começando com `norep` (como `norepmytable`, `norepyourtable` e assim por diante), e, em seguida, usar `--replicate-wild-ignore-table=norep%` para impedir que sejam replicadas.

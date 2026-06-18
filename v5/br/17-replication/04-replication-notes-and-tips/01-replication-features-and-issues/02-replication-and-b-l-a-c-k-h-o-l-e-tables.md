@@ -1,0 +1,5 @@
+#### 16.4.1.2 Replicação e Tabelas BLACKHOLE
+
+O `storage engine` `BLACKHOLE` aceita dados, mas os descarta e não os armazena. Ao realizar o `binary logging`, todos os `inserts` nessas tabelas são sempre registrados (`logged`), independentemente do `logging format` em uso. `Updates` e `deletes` são tratados de forma diferente dependendo se o `logging` baseado em `statement` ou baseado em `row` está em uso. Com o `logging format` baseado em `statement`, todos os `statements` que afetam tabelas `BLACKHOLE` são registrados (`logged`), mas seus efeitos são ignorados. Ao usar o `logging` baseado em `row`, `updates` e `deletes` nessas tabelas são simplesmente ignorados—eles não são gravados no `binary log`. Um aviso (`warning`) é registrado sempre que isso ocorre (Bug #13004581).
+
+Por este motivo, recomendamos que, ao replicar para tabelas que usam o `storage engine` `BLACKHOLE`, você defina a variável de servidor `binlog_format` como `STATEMENT`, e não como `ROW` ou `MIXED`.

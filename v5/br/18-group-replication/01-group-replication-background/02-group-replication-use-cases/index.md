@@ -1,0 +1,9 @@
+### 17.1.2 Casos de Uso do Group Replication
+
+17.1.2.1 Exemplos de Cenários de Casos de Uso
+
+O Group Replication permite criar sistemas tolerantes a falhas (*fault-tolerant systems*) com redundância, replicando o estado do sistema para um conjunto de *servers*. Mesmo que alguns dos *servers* falhem posteriormente, contanto que não sejam todos ou a maioria, o sistema permanece disponível. Dependendo do número de *servers* que falham, o grupo pode ter desempenho ou escalabilidade degradados, mas ainda está disponível. As falhas de *server* são isoladas e independentes. Elas são rastreadas por um serviço de associação de grupo (*group membership service*) que depende de um detector de falhas distribuído, capaz de sinalizar quando quaisquer *servers* deixam o grupo, seja voluntariamente ou devido a uma interrupção inesperada. Há um procedimento de recuperação distribuída para garantir que, quando os *servers* se juntam ao grupo, eles sejam atualizados automaticamente. Não há necessidade de *server fail-over*, e a natureza de atualização multi-fonte em todos os lugares (*multi-source update everywhere nature*) garante que até mesmo as atualizações não sejam bloqueadas no caso de uma única falha de *server*. Em resumo, o MySQL Group Replication garante que o serviço de Database esteja continuamente disponível.
+
+É importante entender que, embora o serviço de Database esteja disponível, no caso de uma saída inesperada de *server*, os *clients* conectados a ele devem ser redirecionados, ou passados por *fail-over*, para um *server* diferente. Isso não é algo que o Group Replication tente resolver. Um *connector*, *load balancer*, *router*, ou alguma forma de *middleware* são mais adequados para lidar com essa questão. Por exemplo, consulte MySQL Router 8.0.
+
+Em resumo, o MySQL Group Replication fornece um serviço MySQL altamente disponível, altamente elástico e confiável.

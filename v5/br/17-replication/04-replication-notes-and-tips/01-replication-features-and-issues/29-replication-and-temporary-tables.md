@@ -1,0 +1,16 @@
+#### 16.4.1.29 Replication e Tabelas Temporárias
+
+A discussão nos parágrafos seguintes não se aplica quando `binlog_format=ROW` porque, nesse caso, as tabelas temporárias não são replicadas; isso significa que nunca haverá tabelas temporárias na replica que possam ser perdidas no evento de um desligamento não planejado pela replica. O restante desta seção se aplica apenas ao usar Replication baseada em Statement (statement-based) ou no formato misto (mixed-format). A perda de tabelas temporárias replicadas na replica pode ser um problema, sempre que `binlog_format` for `STATEMENT` ou `MIXED`, para statements envolvendo tabelas temporárias que podem ser logados de forma segura usando o formato statement-based. Para mais informações sobre Replication row-based e tabelas temporárias, consulte Row-based logging de tabelas temporárias.
+
+**Desligamento seguro da replica ao usar tabelas temporárias.** As tabelas temporárias são replicadas, exceto no caso em que você interrompe o servidor replica (não apenas os Replication Threads) e há tabelas temporárias replicadas que estão abertas para uso em updates que ainda não foram executados na replica. Se você interromper o servidor replica, as tabelas temporárias necessárias para esses updates não estarão mais disponíveis quando a replica for reiniciada. Para evitar esse problema, não desligue a replica enquanto ela tiver tabelas temporárias abertas. Em vez disso, use o seguinte procedimento:
+
+1. Emita um statement `STOP SLAVE SQL_THREAD`.
+2. Use `SHOW STATUS` para verificar o valor da variável `Slave_open_temp_tables`.
+
+3. Se o valor não for 0, reinicie o SQL Thread de Replication com `START SLAVE SQL_THREAD` e repita o procedimento mais tarde.
+
+4. Quando o valor for 0, emita um comando **mysqladmin shutdown** para interromper a replica.
+
+**Tabelas temporárias e opções de Replication.** Por padrão, todas as tabelas temporárias são replicadas; isso ocorre independentemente de haver ou não opções correspondentes `--replicate-do-db`, `--replicate-do-table` ou `--replicate-wild-do-table` em vigor. No entanto, as opções `--replicate-ignore-table` e `--replicate-wild-ignore-table` são respeitadas para tabelas temporárias. A exceção é que, para permitir a remoção correta de tabelas temporárias ao final de uma sessão, uma replica sempre replica um statement `DROP TEMPORARY TABLE IF EXISTS`, independentemente de quaisquer regras de exclusão que normalmente se aplicariam à tabela especificada.
+
+Uma prática recomendada ao usar Replication statement-based ou mixed-format é designar um prefixo para uso exclusivo na nomenclatura de tabelas temporárias que você não deseja replicar e, em seguida, empregar a opção `--replicate-wild-ignore-table` para corresponder a esse prefixo. Por exemplo, você pode dar a todas essas tabelas nomes começando com `norep` (como `norepmytable`, `norepyourtable` e assim por diante) e, em seguida, usar `--replicate-wild-ignore-table=norep%` para evitar que sejam replicadas.

@@ -1,0 +1,132 @@
+#### 15.4.1.2 RESET MASTER Statement
+
+Note
+
+This statement is replaced in later versions of MySQL by
+`RESET BINARY LOGS AND GTIDS`, and should be
+considered deprecated. See
+[RESET BINARY LOGS AND GTIDS Statement](/doc/refman/8.4/en/reset-binary-logs-and-gtids.html), in
+the *MySQL 8.4 Manual*, for more
+information.
+
+```
+RESET MASTER [TO binary_log_file_index_number]
+```
+
+Warning
+
+Use this statement with caution to ensure you do not lose any
+wanted binary log file data and GTID execution history.
+
+[`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement") requires the
+[`RELOAD`](privileges-provided.html#priv_reload) privilege.
+
+For a server where binary logging is enabled
+([`log_bin`](replication-options-binary-log.html#sysvar_log_bin) is
+`ON`), `RESET MASTER` deletes
+all existing binary log files and resets the binary log index
+file, resetting the server to its state before binary logging
+was started. A new empty binary log file is created so that
+binary logging can be restarted.
+
+For a server where GTIDs are in use
+([`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is
+`ON`), issuing `RESET MASTER`
+resets the GTID execution history. The value of the
+[`gtid_purged`](replication-options-gtids.html#sysvar_gtid_purged) system variable is
+set to an empty string (`''`), the global value
+(but not the session value) of the
+[`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable
+is set to an empty string, and the
+`mysql.gtid_executed` table is cleared (see
+[mysql.gtid\_executed Table](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table")). If the
+GTID-enabled server has binary logging enabled,
+[`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement") also resets the
+binary log as described above. Note that
+[`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement") is the method to
+reset the GTID execution history even if the GTID-enabled server
+is a replica where binary logging is disabled;
+[`RESET
+REPLICA`](reset-replica.html "15.4.2.4 RESET REPLICA Statement") has no effect on the GTID execution history.
+For more information on resetting the GTID execution history,
+see [Resetting the GTID Execution History](replication-gtids-lifecycle.html#replication-gtids-execution-history "Resetting the GTID Execution History").
+
+Issuing `RESET MASTER` without the optional
+`TO` clause deletes all binary log files listed
+in the index file, resets the binary log index file to be empty,
+and creates a new binary log file starting at
+`1`. Use the optional `TO`
+clause to start the binary log file index from a number other
+than `1` after the reset.
+
+Check that you are using a reasonable value for the index
+number. If you enter an incorrect value, you can correct this by
+issuing another [`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement")
+statement with or without the `TO` clause. If
+you do not correct a value that is out of range, the server
+cannot be restarted.
+
+The following example demonstrates `TO` clause
+usage:
+
+```
+RESET MASTER TO 1234;
+
+SHOW BINARY LOGS;
++-------------------+-----------+-----------+
+| Log_name          | File_size | Encrypted |
++-------------------+-----------+-----------+
+| source-bin.001234 |       154 | No        |
++-------------------+-----------+-----------+
+```
+
+Important
+
+The effects of [`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement")
+without the `TO` clause differ from those of
+[`PURGE BINARY LOGS`](purge-binary-logs.html "15.4.1.1 PURGE BINARY LOGS Statement") in 2 key
+ways:
+
+1. [`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement") removes
+   *all* binary log files that are listed
+   in the index file, leaving only a single, empty binary log
+   file with a numeric suffix of `.000001`,
+   whereas the numbering is not reset by
+   [`PURGE BINARY LOGS`](purge-binary-logs.html "15.4.1.1 PURGE BINARY LOGS Statement").
+
+2. [`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement") is
+   *not* intended to be used while any
+   replicas are running. The behavior of
+   [`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement") when used
+   while replicas are running is undefined (and thus
+   unsupported), whereas [`PURGE BINARY
+   LOGS`](purge-binary-logs.html "15.4.1.1 PURGE BINARY LOGS Statement") may be safely used while replicas are
+   running.
+
+See also [Section 15.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "15.4.1.1 PURGE BINARY LOGS Statement").
+
+[`RESET MASTER`](reset-master.html "15.4.1.2 RESET MASTER Statement") without the
+`TO` clause can prove useful when you first set
+up a source and replica, so that you can verify the setup as
+follows:
+
+1. Start the source and replica, and start replication (see
+   [Section 19.1.2, “Setting Up Binary Log File Position Based Replication”](replication-howto.html "19.1.2 Setting Up Binary Log File Position Based Replication")).
+
+2. Execute a few test queries on the source.
+3. Check that the queries were replicated to the replica.
+4. When replication is running correctly, issue
+   [`STOP
+   REPLICA`](stop-replica.html "15.4.2.8 STOP REPLICA Statement") followed by
+   [`RESET
+   REPLICA`](reset-replica.html "15.4.2.4 RESET REPLICA Statement") on the replica, then verify that no
+   unwanted data from the test queries exists on the replica.
+
+5. Remove the unwanted data from the source, then issue
+   `RESET MASTER` to purge any binary log
+   entries and identifiers associated with it.
+
+After verifying the setup, resetting the source and replica and
+ensuring that no unwanted data or binary log files generated by
+testing remain on the source or replica, you can start the
+replica and begin replicating.

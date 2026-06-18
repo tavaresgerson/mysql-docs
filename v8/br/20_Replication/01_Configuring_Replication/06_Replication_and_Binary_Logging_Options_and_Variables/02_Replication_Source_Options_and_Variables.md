@@ -1,0 +1,375 @@
+#### 19.1.6.2 Opções e variáveis de fonte de replicação
+
+Esta seção descreve as opções do servidor e as variáveis do sistema que você pode usar nos servidores de origem da replicação. Você pode especificar as opções na linha de comando ou em um arquivo de opções. Você pode especificar os valores das variáveis do sistema usando `SET`.
+
+Na fonte e em cada réplica, você deve definir a variável de sistema `server_id` para estabelecer um ID de replicação único. Para cada servidor, você deve escolher um número inteiro positivo único no intervalo de 1 a 232 − 1, e cada ID deve ser diferente de todas as outras IDs em uso por qualquer outra fonte ou réplica na topologia de replicação. Exemplo: `server-id=3`.
+
+Para opções usadas na fonte para controlar o registro binário, consulte a Seção 19.1.6.4, “Opções e variáveis de registro binário”.
+
+##### Opções de inicialização para servidores de origem de replicação
+
+A lista a seguir descreve as opções de inicialização para controlar os servidores de origem da replicação. As variáveis de sistema relacionadas à replicação são discutidas mais adiante nesta seção.
+
+- `--show-replica-auth-info`
+
+  <table summary="Propriedades para show-replica-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-replica-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Introduzido</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+
+  A partir do MySQL 8.0.26, use `--show-replica-auth-info`, e antes do MySQL 8.0.26, use `--show-slave-auth-info`. Ambas as opções têm o mesmo efeito. As opções exibem os nomes de usuário e senhas de replicação na saída do `SHOW REPLICAS` (ou antes do MySQL 8.0.22, `SHOW SLAVE HOSTS`) na fonte para réplicas iniciadas com as opções `--report-user` e `--report-password`.
+
+- `--show-slave-auth-info`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+
+  Use esta opção antes do MySQL 8.0.26 em vez de `--show-replica-auth-info`. Ambas as opções têm o mesmo efeito.
+
+##### Variáveis do sistema usadas nos servidores de origem de replicação
+
+As seguintes variáveis de sistema são usadas para ou por servidores de origem de replicação:
+
+- `auto_increment_increment`
+
+  <table summary="Propriedades para auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-increment-increment=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>auto_increment_increment</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
+
+  `auto_increment_increment` e `auto_increment_offset` são destinados para uso com replicação circular (de fonte para fonte) e podem ser usados para controlar o funcionamento das colunas `AUTO_INCREMENT`. Ambas as variáveis têm valores globais e de sessão, e cada uma pode assumir um valor inteiro entre 1 e 65.535, inclusive. Definir o valor de qualquer uma dessas duas variáveis para 0 faz com que seu valor seja definido para 1 em vez disso. Tentar definir o valor de qualquer uma dessas duas variáveis para um valor inteiro maior que 65.535 ou menor que 0 faz com que seu valor seja definido para 65.535 em vez disso. Tentar definir o valor de `auto_increment_increment` ou `auto_increment_offset` para um valor não inteiro produz um erro, e o valor real da variável permanece inalterado.
+
+  Nota
+
+  O `auto_increment_increment` também é suportado para uso com tabelas `NDB`.
+
+  A partir do MySQL 8.0.18, definir o valor da sessão desta variável do sistema deixou de ser uma operação restrita.
+
+  Quando a Replicação em Grupo é iniciada em um servidor, o valor de `auto_increment_increment` é alterado para o valor de `group_replication_auto_increment_increment`, que tem o valor padrão de 7, e o valor de `auto_increment_offset` é alterado para o ID do servidor. As alterações são revertidas quando a Replicação em Grupo é interrompida. Essas alterações são feitas e revertidas apenas se `auto_increment_increment` e `auto_increment_offset` tiverem seus valores padrão de 1, respectivamente. Se seus valores já tiverem sido modificados do padrão, a Replicação em Grupo não os altera. A partir do MySQL 8.0, as variáveis de sistema também não são modificadas quando a Replicação em Grupo está no modo de único servidor primário, onde apenas um servidor escreve.
+
+  `auto_increment_increment` e `auto_increment_offset` afetam o comportamento da coluna `AUTO_INCREMENT` da seguinte forma:
+
+  - `auto_increment_increment` controla o intervalo entre os valores sucessivos das colunas. Por exemplo:
+
+    ```
+    mysql> SHOW VARIABLES LIKE 'auto_inc%';
+    +--------------------------+-------+
+    | Variable_name            | Value |
+    +--------------------------+-------+
+    | auto_increment_increment | 1     |
+    | auto_increment_offset    | 1     |
+    +--------------------------+-------+
+    2 rows in set (0.00 sec)
+
+    mysql> CREATE TABLE autoinc1
+        -> (col INT NOT NULL AUTO_INCREMENT PRIMARY KEY);
+      Query OK, 0 rows affected (0.04 sec)
+
+    mysql> SET @@auto_increment_increment=10;
+    Query OK, 0 rows affected (0.00 sec)
+
+    mysql> SHOW VARIABLES LIKE 'auto_inc%';
+    +--------------------------+-------+
+    | Variable_name            | Value |
+    +--------------------------+-------+
+    | auto_increment_increment | 10    |
+    | auto_increment_offset    | 1     |
+    +--------------------------+-------+
+    2 rows in set (0.01 sec)
+
+    mysql> INSERT INTO autoinc1 VALUES (NULL), (NULL), (NULL), (NULL);
+    Query OK, 4 rows affected (0.00 sec)
+    Records: 4  Duplicates: 0  Warnings: 0
+
+    mysql> SELECT col FROM autoinc1;
+    +-----+
+    | col |
+    +-----+
+    |   1 |
+    |  11 |
+    |  21 |
+    |  31 |
+    +-----+
+    4 rows in set (0.00 sec)
+    ```
+
+  - `auto_increment_offset` determina o ponto de partida para o valor da coluna `AUTO_INCREMENT`. Considere o seguinte, assumindo que essas instruções são executadas durante a mesma sessão que o exemplo dado na descrição para `auto_increment_increment`:
+
+    ```
+    mysql> SET @@auto_increment_offset=5;
+    Query OK, 0 rows affected (0.00 sec)
+
+    mysql> SHOW VARIABLES LIKE 'auto_inc%';
+    +--------------------------+-------+
+    | Variable_name            | Value |
+    +--------------------------+-------+
+    | auto_increment_increment | 10    |
+    | auto_increment_offset    | 5     |
+    +--------------------------+-------+
+    2 rows in set (0.00 sec)
+
+    mysql> CREATE TABLE autoinc2
+        -> (col INT NOT NULL AUTO_INCREMENT PRIMARY KEY);
+    Query OK, 0 rows affected (0.06 sec)
+
+    mysql> INSERT INTO autoinc2 VALUES (NULL), (NULL), (NULL), (NULL);
+    Query OK, 4 rows affected (0.00 sec)
+    Records: 4  Duplicates: 0  Warnings: 0
+
+    mysql> SELECT col FROM autoinc2;
+    +-----+
+    | col |
+    +-----+
+    |   5 |
+    |  15 |
+    |  25 |
+    |  35 |
+    +-----+
+    4 rows in set (0.02 sec)
+    ```
+
+    Quando o valor de `auto_increment_offset` for maior que o de `auto_increment_increment`, o valor de `auto_increment_offset` será ignorado.
+
+  Se alguma dessas variáveis for alterada e novas linhas forem inseridas em uma tabela que contém uma coluna `AUTO_INCREMENT`, os resultados podem parecer contraintuitivos porque a série de valores `AUTO_INCREMENT` é calculada sem considerar quaisquer valores já presentes na coluna, e o próximo valor inserido é o menor valor da série que é maior que o valor máximo existente na coluna `AUTO_INCREMENT`. A série é calculada da seguinte forma:
+
+  `auto_increment_offset` + `N` × `auto_increment_increment`
+
+  onde `N` é um valor inteiro positivo na série \[1, 2, 3, ...]. Por exemplo:
+
+  ```
+  mysql> SHOW VARIABLES LIKE 'auto_inc%';
+  +--------------------------+-------+
+  | Variable_name            | Value |
+  +--------------------------+-------+
+  | auto_increment_increment | 10    |
+  | auto_increment_offset    | 5     |
+  +--------------------------+-------+
+  2 rows in set (0.00 sec)
+
+  mysql> SELECT col FROM autoinc1;
+  +-----+
+  | col |
+  +-----+
+  |   1 |
+  |  11 |
+  |  21 |
+  |  31 |
+  +-----+
+  4 rows in set (0.00 sec)
+
+  mysql> INSERT INTO autoinc1 VALUES (NULL), (NULL), (NULL), (NULL);
+  Query OK, 4 rows affected (0.00 sec)
+  Records: 4  Duplicates: 0  Warnings: 0
+
+  mysql> SELECT col FROM autoinc1;
+  +-----+
+  | col |
+  +-----+
+  |   1 |
+  |  11 |
+  |  21 |
+  |  31 |
+  |  35 |
+  |  45 |
+  |  55 |
+  |  65 |
+  +-----+
+  8 rows in set (0.00 sec)
+  ```
+
+  Os valores mostrados para `auto_increment_increment` e `auto_increment_offset` geram a série 5 + `N` × 10, ou seja, \[5, 15, 25, 35, 45, ...]. O valor mais alto presente na coluna `col` antes do `INSERT` é 31, e o próximo valor disponível na série `AUTO_INCREMENT` é 35, então os valores inseridos para `col` começam nesse ponto e os resultados são conforme mostrado para a consulta `SELECT`.
+
+  Não é possível restringir os efeitos dessas duas variáveis a uma única tabela; essas variáveis controlam o comportamento de todas as colunas `AUTO_INCREMENT` em *todas* as tabelas no servidor MySQL. Se o valor global de qualquer uma dessas variáveis for definido, seus efeitos persistem até que o valor global seja alterado ou substituído definindo o valor da sessão, ou até que o **mysqld** seja reiniciado. Se o valor local for definido, o novo valor afeta as colunas `AUTO_INCREMENT` para todas as tabelas nas quais novas linhas forem inseridas pelo usuário atual durante a duração da sessão, a menos que os valores sejam alterados durante essa sessão.
+
+  O valor padrão de `auto_increment_increment` é
+
+  1. Consulte a Seção 19.5.1.1, “Replicação e AUTO\_INCREMENT”.
+
+- `auto_increment_offset`
+
+  <table summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-increment-offset=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>auto_increment_offset</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
+
+  Esta variável tem um valor padrão de 1. Se for deixada com seu valor padrão e a replicação por grupo for iniciada no servidor no modo multi-primário, ela será alterada para o ID do servidor. Para mais informações, consulte a descrição para `auto_increment_increment`.
+
+  Nota
+
+  O `auto_increment_offset` também é suportado para uso com tabelas `NDB`.
+
+  A partir do MySQL 8.0.18, definir o valor da sessão desta variável do sistema deixou de ser uma operação restrita.
+
+- `immediate_server_version`
+
+  <table summary="Propriedades para immediate_server_version"><tbody><tr><th>Introduzido</th> <td>8.0.14</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>immediate_server_version</code>]]</td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>999999</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>999999</code>]]</td> </tr></tbody></table>
+
+  Para uso interno por replicação. Esta variável de sistema de sessão contém o número de versão do servidor do MySQL Server do servidor que é a fonte imediata em uma topologia de replicação (por exemplo, `80014` para uma instância de servidor do MySQL 8.0.14). Se este servidor imediato estiver em uma versão que não suporte a variável de sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`).
+
+  O valor da variável é replicado de uma fonte para uma réplica. Com essas informações, a réplica pode processar corretamente os dados originados de uma fonte em uma versão anterior, reconhecendo onde ocorreram mudanças de sintaxe ou mudanças semânticas entre as versões envolvidas e tratando essas alterações de forma apropriada. As informações também podem ser usadas em um ambiente de replicação por grupo, onde um ou mais membros do grupo de replicação estão em uma versão mais recente do que os outros. O valor da variável pode ser visualizado no log binário de cada transação (como parte do `Gtid_log_event` ou `Anonymous_gtid_log_event`, se os GTIDs não estiverem em uso no servidor) e pode ser útil no depuração de problemas de replicação entre versões.
+
+  Definir o valor da sessão desta variável de sistema é uma operação restrita. O usuário da sessão deve ter o privilégio `REPLICATION_APPLIER` (consulte a Seção 19.3.3, “Verificação de Privilégios de Replicação”) ou privilégios suficientes para definir variáveis de sessão restritas (consulte a Seção 7.1.9.1, “Privilégios de Variáveis de Sistema”). No entanto, observe que a variável não é destinada para que os usuários a definam; ela é definida automaticamente pela infraestrutura de replicação.
+
+- `original_server_version`
+
+  <table summary="Propriedades para original_server_version"><tbody><tr><th>Introduzido</th> <td>8.0.14</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>original_server_version</code>]]</td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>999999</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>999999</code>]]</td> </tr></tbody></table>
+
+  Para uso interno por replicação. Esta variável de sistema de sessão contém o número de versão do servidor MySQL do servidor onde uma transação foi originalmente comprometida (por exemplo, `80014` para uma instância de servidor MySQL 8.0.14). Se este servidor original estiver em uma versão que não suporte a variável de sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`). Observe que, quando um número de versão é definido pelo servidor original, o valor da variável é redefinido para 0 se o servidor imediato ou qualquer outro servidor intermediário na topologia de replicação não suportar a variável de sistema de sessão e, portanto, não replicar seu valor.
+
+  O valor da variável é definido e utilizado da mesma forma que para a variável de sistema `immediate_server_version`. Se o valor da variável for o mesmo que o da variável de sistema `immediate_server_version`, apenas esta última será registrada no log binário, com um indicador de que a versão original do servidor é a mesma.
+
+  Em um ambiente de replicação em grupo, os eventos do log de alterações, que são transações especiais agendadas por cada membro do grupo quando um novo membro se junta ao grupo, são marcados com a versão do servidor do membro do grupo que agendou a transação. Isso garante que a versão do servidor do doador original seja conhecida pelo membro que está se juntando. Como os eventos do log de alterações agendados para uma determinada alteração de visualização têm o mesmo GTID em todos os membros, apenas nesse caso, instâncias do mesmo GTID podem ter uma versão do servidor original diferente.
+
+  Definir o valor da sessão desta variável de sistema é uma operação restrita. O usuário da sessão deve ter o privilégio `REPLICATION_APPLIER` (consulte a Seção 19.3.3, “Verificação de Privilégios de Replicação”) ou privilégios suficientes para definir variáveis de sessão restritas (consulte a Seção 7.1.9.1, “Privilégios de Variáveis de Sistema”). No entanto, observe que a variável não é destinada para que os usuários a definam; ela é definida automaticamente pela infraestrutura de replicação.
+
+- `rpl_semi_sync_master_enabled`
+
+  <table summary="Propriedades para rpl_semi_sync_master_enabled"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-enabled[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_enabled</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+
+  Controla se a replicação semisoincronizada está habilitada no servidor de origem. Para habilitar ou desabilitar o plugin, defina essa variável para `ON` ou `OFF` (ou 1 ou 0), respectivamente. O padrão é `OFF`.
+
+  Esta variável está disponível apenas se o plugin de replicação semisoincronizada do lado da fonte estiver instalado.
+
+- `rpl_semi_sync_master_timeout`
+
+  <table summary="Propriedades para rpl_semi_sync_master_timeout"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-timeout=#</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_timeout</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>10000</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr><tr><th>Unidade</th> <td>milissegundos</td> </tr></tbody></table>
+
+  Um valor em milissegundos que controla quanto tempo a fonte espera por um commit para receber um reconhecimento de uma réplica antes de expirar e reverter para replicação assíncrona. O valor padrão é 10000 (10 segundos).
+
+  Esta variável está disponível apenas se o plugin de replicação semisoincronizada do lado da fonte estiver instalado.
+
+- `rpl_semi_sync_master_trace_level`
+
+  <table summary="Propriedades para rpl_semi_sync_master_trace_level"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-trace-level=#</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_trace_level</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>32</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr></tbody></table>
+
+  O nível de rastreamento de depuração da replicação semiesincronizada no servidor de origem. Quatro níveis são definidos:
+
+  - 1 = nível geral (por exemplo, falhas na função de tempo)
+
+  - 16 = nível de detalhe (informações mais verbais)
+
+  - 32 = nível de espera líquida (mais informações sobre as esperas de rede)
+
+  - 64 = nível de função (informações sobre a entrada e saída da função)
+
+  Esta variável está disponível apenas se o plugin de replicação semisoincronizada do lado da fonte estiver instalado.
+
+- `rpl_semi_sync_master_wait_for_slave_count`
+
+  <table summary="Propriedades para rpl_semi_sync_master_wait_for_slave_count"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-wait-for-slave-count=#</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_wait_for_slave_count</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
+
+  O número de confirmações de replicação que a fonte deve receber por transação antes de prosseguir. Por padrão, `rpl_semi_sync_master_wait_for_slave_count` é `1`, o que significa que a replicação semiconsoante prossegue após receber uma única confirmação de replicação. O desempenho é melhor para valores pequenos dessa variável.
+
+  Por exemplo, se `rpl_semi_sync_master_wait_for_slave_count` for `2`, então 2 réplicas devem confirmar a recepção da transação antes que o período de tempo limite configurado por `rpl_semi_sync_master_timeout` para a replicação semiesincronizada seja concluído. Se menos réplicas confirmarem a recepção da transação durante o período de tempo limite, a fonte retorna à replicação normal.
+
+  Nota
+
+  Esse comportamento também depende de `rpl_semi_sync_master_wait_no_slave`
+
+  Esta variável está disponível apenas se o plugin de replicação semisoincronizada do lado da fonte estiver instalado.
+
+- `rpl_semi_sync_master_wait_no_slave`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>0
+
+  Controla se a fonte espera que o período de tempo limite configurado por `rpl_semi_sync_master_timeout` expire, mesmo que o número de réplicas caia para menos que o número de réplicas configurado por `rpl_semi_sync_master_wait_for_slave_count` durante o período de tempo limite.
+
+  Quando o valor de `rpl_semi_sync_master_wait_no_slave` for `ON` (o padrão), é permitido que o número de réplicas caia para menos de `rpl_semi_sync_master_wait_for_slave_count` durante o período de tempo limite. Enquanto houver réplicas suficientes reconhecendo a transação antes do período de tempo limite expirar, a replicação semiesincronizada continua.
+
+  Quando o valor de `rpl_semi_sync_master_wait_no_slave` for `OFF`, se a contagem de réplicas cair para menos que o número configurado em `rpl_semi_sync_master_wait_for_slave_count` em qualquer momento durante o período de tempo de espera configurado por `rpl_semi_sync_master_timeout`, a fonte retorna à replicação normal.
+
+  Esta variável está disponível apenas se o plugin de replicação semisoincronizada do lado da fonte estiver instalado.
+
+- `rpl_semi_sync_master_wait_point`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>1
+
+  Essa variável controla o ponto em que um servidor de origem de replicação semisoincronizada aguarda a confirmação da replicação da recepção da transação antes de retornar um status ao cliente que comprometeu a transação. Esses valores são permitidos:
+
+  - `AFTER_SYNC` (padrão): A fonte escreve cada transação no seu log binário e na replica, e sincroniza o log binário com o disco. A fonte aguarda a confirmação da replica sobre a recepção da transação após a sincronização. Ao receber a confirmação, a fonte confirma a transação no mecanismo de armazenamento e retorna um resultado ao cliente, que pode então prosseguir.
+
+  - `AFTER_COMMIT`: A fonte escreve cada transação no seu log binário e na replica, sincroniza o log binário e confirma a transação no motor de armazenamento. A fonte aguarda a confirmação da replica sobre a recepção da transação após o commit. Ao receber a confirmação, a fonte retorna um resultado ao cliente, que pode então prosseguir.
+
+  As características de replicação desses ajustes diferem da seguinte forma:
+
+  - Com `AFTER_SYNC`, todos os clientes veem a transação comprometida ao mesmo tempo: Depois de ser reconhecida pela replica e comprometida no motor de armazenamento na fonte. Assim, todos os clientes veem os mesmos dados na fonte.
+
+    Em caso de falha na fonte, todas as transações realizadas na fonte foram replicadas para a replica (salvadas em seu log de retransmissão). Uma saída inesperada do servidor fonte e a transição para a replica são irreversíveis porque a replica está atualizada. No entanto, note que a fonte não pode ser reiniciada neste cenário e deve ser descartada, pois seu log binário pode conter transações não confirmadas que causariam um conflito com a replica quando externalizadas após a recuperação do log binário.
+
+  - Com `AFTER_COMMIT`, o cliente que emite a transação recebe o status de retorno apenas após o servidor comprometer o mecanismo de armazenamento e receber o reconhecimento da replica. Após o compromisso e antes do reconhecimento da replica, outros clientes podem ver a transação comprometida antes do cliente que está comprometedor.
+
+    Se algo der errado de modo que a réplica não processe a transação, então, em caso de saída inesperada do servidor fonte e failover para a réplica, é possível que esses clientes percam dados em relação ao que viram no fonte.
+
+  Esta variável está disponível apenas se o plugin de replicação semisoincronizada do lado da fonte estiver instalado.
+
+  Com a adição de `rpl_semi_sync_master_wait_point` no MySQL 5.7, uma restrição de compatibilidade de versão foi criada porque ela incrementa a versão da interface semisoincronizada: Servidores para o MySQL 5.7 e versões superiores não funcionam com plugins de replicação semisoincronizada de versões mais antigas, nem servidores de versões mais antigas funcionam com plugins de replicação semisoincronizada para o MySQL 5.7 e versões superiores.
+
+- `rpl_semi_sync_source_enabled`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>2
+
+  `rpl_semi_sync_source_enabled` está disponível quando o plugin `rpl_semi_sync_source` (biblioteca `semisync_source.so`) foi instalado na réplica para configurar a replicação semiesincronizada. Se o plugin `rpl_semi_sync_master` (biblioteca `semisync_master.so`) foi instalado, `rpl_semi_sync_master_enabled` está disponível.
+
+  `rpl_semi_sync_source_enabled` controla se a replicação semiesincronizada está habilitada no servidor de origem. Para habilitar ou desabilitar o plugin, defina essa variável para `ON` ou `OFF` (ou 1 ou 0), respectivamente. O padrão é `OFF`.
+
+- `rpl_semi_sync_source_timeout`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>3
+
+  `rpl_semi_sync_source_timeout` está disponível quando o plugin `rpl_semi_sync_source` (biblioteca `semisync_source.so`) foi instalado na réplica para configurar a replicação semiesincronizada. Se o plugin `rpl_semi_sync_master` (biblioteca `semisync_master.so`) foi instalado, `rpl_semi_sync_master_timeout` está disponível.
+
+  `rpl_semi_sync_source_timeout` controla quanto tempo a fonte espera por um commit para receber um reconhecimento de uma réplica antes de expirar e reverter para replicação assíncrona. O valor é especificado em milissegundos, e o valor padrão é 10000 (10 segundos).
+
+- `rpl_semi_sync_source_trace_level`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>4
+
+  `rpl_semi_sync_source_trace_level` está disponível quando o plugin `rpl_semi_sync_source` (biblioteca `semisync_source.so`) foi instalado na réplica para configurar a replicação semiesincronizada. Se o plugin `rpl_semi_sync_master` (biblioteca `semisync_master.so`) foi instalado, `rpl_semi_sync_master_trace_level` está disponível.
+
+  `rpl_semi_sync_source_trace_level` especifica o nível de rastreamento de depuração da replicação semisoincronizada no servidor de origem. Quatro níveis são definidos:
+
+  - 1 = nível geral (por exemplo, falhas na função de tempo)
+
+  - 16 = nível de detalhe (informações mais verbais)
+
+  - 32 = nível de espera líquida (mais informações sobre as esperas de rede)
+
+  - 64 = nível de função (informações sobre a entrada e saída da função)
+
+- `rpl_semi_sync_source_wait_for_replica_count`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>5
+
+  `rpl_semi_sync_source_wait_for_replica_count` está disponível quando o plugin `rpl_semi_sync_source` (biblioteca `semisync_source.so`) foi instalado na réplica para configurar a replicação semiesincronizada. Se o plugin `rpl_semi_sync_master` (biblioteca `semisync_master.so`) foi instalado, `rpl_semi_sync_master_wait_for_slave_count` está disponível.
+
+  `rpl_semi_sync_source_wait_for_replica_count` especifica o número de confirmações de replica que a fonte deve receber por transação antes de prosseguir. Por padrão, `rpl_semi_sync_source_wait_for_replica_count` é `1`, o que significa que a replicação semiconsoante prossegue após receber uma única confirmação de replica. O desempenho é melhor para valores pequenos dessa variável.
+
+  Por exemplo, se `rpl_semi_sync_source_wait_for_replica_count` for `2`, então 2 réplicas devem confirmar a recepção da transação antes que o período de tempo limite configurado por `rpl_semi_sync_source_timeout` para a replicação semiesincronizada seja concluído. Se menos réplicas confirmarem a recepção da transação durante o período de tempo limite, a fonte retorna à replicação normal.
+
+  Nota
+
+  Esse comportamento também depende de `rpl_semi_sync_source_wait_no_replica`.
+
+- `rpl_semi_sync_source_wait_no_replica`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>6
+
+  `rpl_semi_sync_source_wait_no_replica` está disponível quando o plugin `rpl_semi_sync_source` (biblioteca `semisync_source.so`) foi instalado na réplica para configurar a replicação semiesincronizada. Se o plugin `rpl_semi_sync_master` (biblioteca `semisync_master.so`) foi instalado, `rpl_semi_sync_source_wait_no_replica` está disponível.
+
+  `rpl_semi_sync_source_wait_no_replica` controla se a fonte aguarda o período de tempo limite configurado por `rpl_semi_sync_source_timeout` para expirar, mesmo que o número de réplicas caia para menos que o número de réplicas configurado por `rpl_semi_sync_source_wait_for_replica_count` durante o período de tempo limite.
+
+  Quando o valor de `rpl_semi_sync_source_wait_no_replica` for `ON` (o padrão), é permitido que o número de réplicas caia para menos de `rpl_semi_sync_source_wait_for_replica_count` durante o período de tempo limite. Enquanto houver réplicas suficientes reconhecendo a transação antes do período de tempo limite expirar, a replicação semiesincronizada continua.
+
+  Quando o valor de `rpl_semi_sync_source_wait_no_replica` for `OFF`, se a contagem de réplicas cair para menos que o número configurado em `rpl_semi_sync_source_wait_for_replica_count` em qualquer momento durante o período de tempo de espera configurado por `rpl_semi_sync_source_timeout`, a fonte retorna à replicação normal.
+
+- `rpl_semi_sync_source_wait_point`
+
+  <table summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>8.0.26</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>7
+
+  `rpl_semi_sync_source_wait_point` está disponível quando o plugin `rpl_semi_sync_source` (biblioteca `semisync_source.so`) foi instalado na réplica para configurar a replicação semiesincronizada. Se o plugin `rpl_semi_sync_master` (biblioteca `semisync_master.so`) foi instalado, `rpl_semi_sync_master_wait_point` está disponível.
+
+  `rpl_semi_sync_source_wait_point` controla o ponto em que um servidor de origem de replicação semisoincronizada aguarda a confirmação da replicação da recepção da transação antes de retornar um status ao cliente que comprometeu a transação. Esses valores são permitidos:
+
+  - `AFTER_SYNC` (padrão): A fonte escreve cada transação no seu log binário e na replica, e sincroniza o log binário com o disco. A fonte aguarda a confirmação da replica sobre a recepção da transação após a sincronização. Ao receber a confirmação, a fonte confirma a transação no mecanismo de armazenamento e retorna um resultado ao cliente, que pode então prosseguir.
+
+  - `AFTER_COMMIT`: A fonte escreve cada transação no seu log binário e na replica, sincroniza o log binário e confirma a transação no motor de armazenamento. A fonte aguarda a confirmação da replica sobre a recepção da transação após o commit. Ao receber a confirmação, a fonte retorna um resultado ao cliente, que pode então prosseguir.
+
+  As características de replicação desses ajustes diferem da seguinte forma:
+
+  - Com `AFTER_SYNC`, todos os clientes veem a transação comprometida ao mesmo tempo: Depois de ser reconhecida pela replica e comprometida no motor de armazenamento na fonte. Assim, todos os clientes veem os mesmos dados na fonte.
+
+    Em caso de falha na fonte, todas as transações realizadas na fonte foram replicadas para a replica (salvadas em seu log de retransmissão). Uma saída inesperada do servidor fonte e a transição para a replica são irreversíveis porque a replica está atualizada. No entanto, note que a fonte não pode ser reiniciada neste cenário e deve ser descartada, pois seu log binário pode conter transações não confirmadas que causariam um conflito com a replica quando externalizadas após a recuperação do log binário.
+
+  - Com `AFTER_COMMIT`, o cliente que emite a transação recebe o status de retorno apenas após o servidor comprometer o mecanismo de armazenamento e receber o reconhecimento da replica. Após o compromisso e antes do reconhecimento da replica, outros clientes podem ver a transação comprometida antes do cliente que está comprometedor.
+
+    Se algo der errado de modo que a réplica não processe a transação, então, em caso de saída inesperada do servidor fonte e failover para a réplica, é possível que esses clientes percam dados em relação ao que viram no fonte.

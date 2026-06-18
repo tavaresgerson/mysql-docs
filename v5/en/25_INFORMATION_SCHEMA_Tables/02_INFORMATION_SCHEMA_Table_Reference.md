@@ -1,0 +1,285 @@
+## 24.2 INFORMATION\_SCHEMA Table Reference
+
+The following table summarizes all available
+`INFORMATION_SCHEMA` tables. For greater detail,
+see the individual table descriptions.
+
+**Table 24.1 INFORMATION\_SCHEMA Tables**
+
+<table frame="box" rules="all" summary="A reference that lists all INFORMATION_SCHEMA tables."><col style="width: 22%"/><col style="width: 55%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Table Name</th>
+<th>Description</th>
+<th>Introduced</th>
+<th>Deprecated</th>
+</tr></thead><tbody><tr><th><code>CHARACTER_SETS</code></th>
+<td>Available character sets</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>COLLATION_CHARACTER_SET_APPLICABILITY</code></th>
+<td>Character set applicable to each collation</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>COLLATIONS</code></th>
+<td>Collations for each character set</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>COLUMN_PRIVILEGES</code></th>
+<td>Privileges defined on columns</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>COLUMNS</code></th>
+<td>Columns in each table</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS</code></th>
+<td>Current number of consecutive failed connection attempts per account</td>
+<td>5.7.17</td>
+<td></td>
+</tr><tr><th><code>ENGINES</code></th>
+<td>Storage engine properties</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>EVENTS</code></th>
+<td>Event Manager events</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>FILES</code></th>
+<td>Files that store tablespace data</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>GLOBAL_STATUS</code></th>
+<td>Global status variables</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>GLOBAL_VARIABLES</code></th>
+<td>Global system variables</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_BUFFER_PAGE</code></th>
+<td>Pages in InnoDB buffer pool</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_BUFFER_PAGE_LRU</code></th>
+<td>LRU ordering of pages in InnoDB buffer pool</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_BUFFER_POOL_STATS</code></th>
+<td>InnoDB buffer pool statistics</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_CMP</code></th>
+<td>Status for operations related to compressed InnoDB tables</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_CMP_PER_INDEX</code></th>
+<td>Status for operations related to compressed InnoDB tables and indexes</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_CMP_PER_INDEX_RESET</code></th>
+<td>Status for operations related to compressed InnoDB tables and indexes</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_CMP_RESET</code></th>
+<td>Status for operations related to compressed InnoDB tables</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_CMPMEM</code></th>
+<td>Status for compressed pages within InnoDB buffer pool</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_CMPMEM_RESET</code></th>
+<td>Status for compressed pages within InnoDB buffer pool</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_FT_BEING_DELETED</code></th>
+<td>Snapshot of INNODB_FT_DELETED table</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_FT_CONFIG</code></th>
+<td>Metadata for InnoDB table FULLTEXT index and associated processing</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_FT_DEFAULT_STOPWORD</code></th>
+<td>Default list of stopwords for InnoDB FULLTEXT indexes</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_FT_DELETED</code></th>
+<td>Rows deleted from InnoDB table FULLTEXT index</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_FT_INDEX_CACHE</code></th>
+<td>Token information for newly inserted rows in InnoDB FULLTEXT index</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_FT_INDEX_TABLE</code></th>
+<td>Inverted index information for processing text searches against InnoDB table FULLTEXT index</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_LOCK_WAITS</code></th>
+<td>InnoDB transaction lock-wait information</td>
+<td></td>
+<td>5.7.14</td>
+</tr><tr><th><code>INNODB_LOCKS</code></th>
+<td>InnoDB transaction lock information</td>
+<td></td>
+<td>5.7.14</td>
+</tr><tr><th><code>INNODB_METRICS</code></th>
+<td>InnoDB performance information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_COLUMNS</code></th>
+<td>Columns in each InnoDB table</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_DATAFILES</code></th>
+<td>Data file path information for InnoDB file-per-table and general tablespaces</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_FIELDS</code></th>
+<td>Key columns of InnoDB indexes</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_FOREIGN</code></th>
+<td>InnoDB foreign-key metadata</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_FOREIGN_COLS</code></th>
+<td>InnoDB foreign-key column status information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_INDEXES</code></th>
+<td>InnoDB index metadata</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_TABLES</code></th>
+<td>InnoDB table metadata</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_TABLESPACES</code></th>
+<td>InnoDB file-per-table, general, and undo tablespace metadata</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_TABLESTATS</code></th>
+<td>InnoDB table low-level status information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_SYS_VIRTUAL</code></th>
+<td>InnoDB virtual generated column metadata</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_TEMP_TABLE_INFO</code></th>
+<td>Information about active user-created InnoDB temporary tables</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>INNODB_TRX</code></th>
+<td>Active InnoDB transaction information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>KEY_COLUMN_USAGE</code></th>
+<td>Which key columns have constraints</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>MYSQL_FIREWALL_USERS</code></th>
+<td>Firewall in-memory data for account profiles</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>MYSQL_FIREWALL_WHITELIST</code></th>
+<td>Firewall in-memory data for account profile allowlists</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>ndb_transid_mysql_connection_map</code></th>
+<td>NDB transaction information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>OPTIMIZER_TRACE</code></th>
+<td>Information produced by optimizer trace activity</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>PARAMETERS</code></th>
+<td>Stored routine parameters and stored function return values</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>PARTITIONS</code></th>
+<td>Table partition information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>PLUGINS</code></th>
+<td>Plugin information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>PROCESSLIST</code></th>
+<td>Information about currently executing threads</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>PROFILING</code></th>
+<td>Statement profiling information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>REFERENTIAL_CONSTRAINTS</code></th>
+<td>Foreign key information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>ROUTINES</code></th>
+<td>Stored routine information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>SCHEMA_PRIVILEGES</code></th>
+<td>Privileges defined on schemas</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>SCHEMATA</code></th>
+<td>Schema information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>SESSION_STATUS</code></th>
+<td>Status variables for current session</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>SESSION_VARIABLES</code></th>
+<td>System variables for current session</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>STATISTICS</code></th>
+<td>Table index statistics</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TABLE_CONSTRAINTS</code></th>
+<td>Which tables have constraints</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TABLE_PRIVILEGES</code></th>
+<td>Privileges defined on tables</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TABLES</code></th>
+<td>Table information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TABLESPACES</code></th>
+<td>Tablespace information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TP_THREAD_GROUP_STATE</code></th>
+<td>Thread pool thread group states</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TP_THREAD_GROUP_STATS</code></th>
+<td>Thread pool thread group statistics</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TP_THREAD_STATE</code></th>
+<td>Thread pool thread information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>TRIGGERS</code></th>
+<td>Trigger information</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>USER_PRIVILEGES</code></th>
+<td>Privileges defined globally per user</td>
+<td></td>
+<td></td>
+</tr><tr><th><code>VIEWS</code></th>
+<td>View information</td>
+<td></td>
+<td></td>
+</tr></tbody></table>

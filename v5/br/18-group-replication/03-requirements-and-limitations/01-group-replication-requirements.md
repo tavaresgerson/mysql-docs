@@ -1,0 +1,49 @@
+### 17.3.1 Requisitos do Group Replication
+
+As instâncias de Server que você deseja usar para o Group Replication devem satisfazer os seguintes requisitos.
+
+#### Infraestrutura
+
+*   **InnoDB Storage Engine.** Os dados devem ser armazenados no Storage Engine transacional `InnoDB`. As Transactions são executadas de forma otimista e, no momento do Commit, são verificadas quanto a conflitos. Se houver conflitos, a fim de manter a consistência em todo o grupo, algumas Transactions são submetidas a Rollback. Isso significa que um Storage Engine transacional é obrigatório. Além disso, o `InnoDB` fornece alguma funcionalidade adicional que permite melhor gerenciamento e tratamento de conflitos ao operar em conjunto com o Group Replication. O uso de outros Storage Engines, incluindo o Storage Engine temporário `MEMORY`, pode causar erros no Group Replication. Converta quaisquer tabelas em outros Storage Engines para usar o `InnoDB` antes de usar a instância com o Group Replication. Você pode impedir o uso de outros Storage Engines configurando a variável de sistema `disabled_storage_engines` nos membros do grupo, por exemplo:
+
+  ```sql
+  disabled_storage_engines="MyISAM,BLACKHOLE,FEDERATED,ARCHIVE,MEMORY"
+  ```
+
+*   **Primary Keys.** Cada tabela a ser replicada pelo grupo deve ter uma Primary Key definida, ou um equivalente de Primary Key onde o equivalente é uma Unique Key não nula. Tais Keys são necessárias como um identificador único para cada linha dentro de uma tabela, permitindo que o sistema determine quais Transactions conflitam, identificando exatamente quais linhas cada Transaction modificou.
+
+*   **Rede IPv4.** O engine de comunicação de grupo usado pelo MySQL Group Replication suporta apenas IPv4. Portanto, o Group Replication requer uma infraestrutura de rede IPv4.
+
+*   **Performance da Rede.** O MySQL Group Replication é projetado para ser implantado em um ambiente de Cluster onde as instâncias de Server estão muito próximas umas das outras. A Performance e estabilidade de um grupo podem ser impactadas tanto pela Latency da rede quanto pela Bandwidth da rede. A comunicação bidirecional deve ser mantida o tempo todo entre todos os membros do grupo. Se a comunicação de entrada ou saída for bloqueada para uma instância de Server (por exemplo, por um Firewall ou por problemas de conectividade), o membro não pode funcionar no grupo, e os membros do grupo (incluindo o membro com problemas) podem não ser capazes de relatar o status correto do membro para a instância de Server afetada.
+
+#### Configuração da Instância de Server
+
+As seguintes opções devem ser configuradas nas instâncias de Server que são membros de um grupo.
+
+*   **Identificador Único de Server.** Use a variável de sistema `server_id` para configurar o Server com um Server ID único, conforme exigido para todos os Servers em Replication Topologies. Com o Server ID padrão de 0, os Servers em uma Replication Topology não podem se conectar uns aos outros. O Server ID deve ser um inteiro positivo entre 1 e (2^32)−1, e deve ser diferente de qualquer outro Server ID em uso por qualquer outro Server na Replication Topology.
+
+*   **Binary Log Ativo.** Defina `--log-bin[=log_file_name]`. O MySQL Group Replication replica o conteúdo do Binary Log; portanto, o Binary Log precisa estar ativado para operar. Esta opção é habilitada por padrão. Veja Section 5.4.4, “The Binary Log”.
+
+*   **Atualizações de Replica Registradas.** Defina `--log-slave-updates`. Os Servers precisam registrar (log) os Binary Logs que são aplicados através do Replication Applier. Os Servers no grupo precisam registrar todas as Transactions que recebem e aplicam do grupo. Isso é necessário porque o Recovery é conduzido contando com os Binary Logs dos participantes no grupo. Portanto, cópias de cada Transaction precisam existir em cada Server, mesmo para aquelas Transactions que não foram iniciadas no próprio Server.
+
+*   **Binary Log Row Format.** Defina `--binlog-format=row`. O Group Replication depende do formato de Replication baseado em linha (row-based replication format) para propagar as mudanças consistentemente entre os Servers do grupo. Ele depende da infraestrutura baseada em linha para poder extrair as informações necessárias para detectar conflitos entre Transactions que são executadas concorrentemente em diferentes Servers no grupo. Veja Section 16.2.1, “Replication Formats”.
+
+*   **Binary Log Checksums Desativados.** Defina `--binlog-checksum=NONE`. Devido a uma limitação de design dos Replication Event Checksums, o Group Replication não pode fazer uso deles, e eles devem ser desabilitados.
+
+*   **Global Transaction Identifiers Ativados.** Defina `gtid_mode=ON` e `enforce_gtid_consistency=ON`. O Group Replication usa Global Transaction Identifiers para rastrear exatamente quais Transactions foram submetidas a Commit em cada instância de Server e, assim, ser capaz de inferir quais Servers executaram Transactions que poderiam entrar em conflito com Transactions já submetidas a Commit em outro lugar. Em outras palavras, os Transaction Identifiers explícitos são uma parte fundamental da estrutura para poder determinar quais Transactions podem conflitar. Veja Section 16.1.3, “Replication with Global Transaction Identifiers”.
+
+  Além disso, se você precisar definir o valor de `gtid_purged`, você deve fazê-lo enquanto o Group Replication não estiver em execução.
+
+*   **Repositórios de Informação de Replication.** Defina `master_info_repository=TABLE` e `relay_log_info_repository=TABLE`. O Replication Applier precisa que o Source e a Replica Metadata sejam gravados nas System Tables `mysql.slave_master_info` e `mysql.slave_relay_log_info`. Isso garante que o Plugin Group Replication tenha Recovery consistente e gerenciamento transacional da Replication Metadata. Veja Section 16.2.4.2, “Replication Metadata Repositories”.
+
+*   **Extração de Transaction Write Set.** Defina `--transaction-write-set-extraction=XXHASH64` para que, ao coletar linhas para registrá-las no Binary Log, o Server colete o Write Set também. O Write Set é baseado nas Primary Keys de cada linha e é uma visão simplificada e compacta de um Tag que identifica unicamente a linha que foi alterada. Este Tag é então usado para a detecção de conflitos.
+
+*   **Nomes de Tabela em Letras Minúsculas.** Defina `--lower-case-table-names` com o mesmo valor em todos os membros do grupo. A configuração 1 é correta para o uso do Storage Engine `InnoDB`, que é obrigatório para o Group Replication. Note que esta configuração não é o padrão em todas as plataformas.
+
+*   **Appliers Multithreaded.** Os membros do Group Replication podem ser configurados como Multithreaded Replicas, permitindo que as Transactions sejam aplicadas em Parallel. Um valor não zero para `slave_parallel_workers` habilita o Applier multithreaded no membro, e até 1024 Applier Threads Parallel podem ser especificadas. Se você fizer isso, as seguintes configurações também são necessárias:
+
+  `slave_preserve_commit_order=1` : Esta configuração é necessária para garantir que o Commit final das Transactions Parallel esteja na mesma ordem que as Transactions originais. O Group Replication depende de mecanismos de consistência construídos em torno da garantia de que todos os membros participantes recebem e aplicam as Transactions submetidas a Commit na mesma ordem.
+
+  `slave_parallel_type=LOGICAL_CLOCK` : Esta configuração é necessária com `slave_preserve_commit_order=1`. Ela especifica a política usada para decidir quais Transactions são permitidas para executar em Parallel na Replica.
+
+  Definir `slave_parallel_workers=0` desabilita a execução Parallel e fornece à Replica um único Applier Thread e nenhum Coordinator Thread. Com essa configuração, as opções `slave_parallel_type` e `slave_preserve_commit_order` não têm efeito e são ignoradas.

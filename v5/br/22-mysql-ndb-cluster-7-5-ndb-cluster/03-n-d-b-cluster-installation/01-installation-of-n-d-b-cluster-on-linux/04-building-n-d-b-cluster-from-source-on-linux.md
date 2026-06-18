@@ -1,0 +1,25 @@
+#### 21.3.1.4 Compilando o NDB Cluster a partir do Código Fonte no Linux
+
+Esta seção fornece informações sobre como compilar o NDB Cluster no Linux e em outras plataformas tipo Unix. Compilar o NDB Cluster a partir do código fonte é semelhante a compilar o MySQL Server padrão, embora difira em alguns pontos-chave discutidos aqui. Para informações gerais sobre como compilar o MySQL a partir do código fonte, consulte Seção 2.8, “Instalando o MySQL a partir do Código Fonte”. Para informações sobre como compilar o NDB Cluster em plataformas Windows, consulte Seção 21.3.2.2, “Compilando e Instalando o NDB Cluster a partir do Código Fonte no Windows”.
+
+A compilação do NDB Cluster requer o uso dos códigos fonte do NDB Cluster. Estes estão disponíveis na página de downloads do NDB Cluster em <https://dev.mysql.com/downloads/cluster/>. O arquivo de código fonte compactado deve ter um nome semelhante a `mysql-cluster-gpl-7.6.35.tar.gz`. Você também pode obter os códigos fonte do NDB Cluster no GitHub em <https://github.com/mysql/mysql-server/tree/cluster-7.5> (NDB 7.5) e <https://github.com/mysql/mysql-server/tree/cluster-7.6> (NDB 7.6). *Não há suporte para compilar o NDB Cluster 7.5 ou 7.6 a partir dos códigos fonte padrão do MySQL Server 5.7*.
+
+A opção `WITH_NDBCLUSTER_STORAGE_ENGINE` para o **CMake** faz com que os binaries para os management nodes, data nodes e outros programas do NDB Cluster sejam construídos; ela também faz com que o **mysqld** seja compilado com suporte ao storage engine NDB. Esta opção (ou seu alias `WITH_NDBCLUSTER`) é obrigatória ao compilar o NDB Cluster.
+
+Importante
+
+A opção `WITH_NDB_JAVA` é habilitada por padrão. Isso significa que, por padrão, se o **CMake** não conseguir encontrar a localização do Java no seu sistema, o processo de configuração falha; se você não deseja habilitar o suporte a Java e ClusterJ, você deve indicar isso explicitamente configurando a build usando `-DWITH_NDB_JAVA=OFF`. Use `WITH_CLASSPATH` para fornecer o Java classpath, se necessário.
+
+Para mais informações sobre opções do **CMake** específicas para a compilação do NDB Cluster, consulte Opções do CMake para Compilar o NDB Cluster.
+
+Depois de executar **make && make install** (ou o equivalente do seu sistema), o resultado é semelhante ao obtido ao descompactar um binary pré-compilado no mesmo local.
+
+**Management nodes.** Ao compilar a partir do código fonte e executar o **make install** padrão, os binaries do servidor de gerenciamento e do cliente de gerenciamento (**ndb_mgmd** e **ndb_mgm**) podem ser encontrados em `/usr/local/mysql/bin`. Apenas **ndb_mgmd** é exigido em um host de management node; no entanto, também é uma boa prática ter **ndb_mgm** presente na mesma máquina host. Nenhum desses executáveis requer uma localização específica no file system da máquina host.
+
+**Data nodes.** O único executável necessário em um host de data node é o binary do data node **ndbd** ou **ndbmtd**"). (O **mysqld**, por exemplo, não precisa estar presente na máquina host.) Por padrão, ao compilar a partir do código fonte, este arquivo é colocado no diretório `/usr/local/mysql/bin`. Para instalar em múltiplos hosts de data node, apenas **ndbd** ou **ndbmtd**") precisam ser copiados para a(s) outra(s) máquina(s) host. (Isso pressupõe que todos os hosts de data node usem a mesma arquitetura e sistema operacional; caso contrário, você pode precisar compilar separadamente para cada plataforma diferente.) O binary do data node não precisa estar em uma localização específica no file system do host, desde que a localização seja conhecida.
+
+Ao compilar o NDB Cluster a partir do código fonte, não são necessárias opções especiais para construir binaries de data node multithreaded. A configuração da build com suporte ao storage engine NDB faz com que o **ndbmtd**") seja construído automaticamente; o **make install** coloca o binary **ndbmtd**") no diretório `bin` de instalação, juntamente com **mysqld**, **ndbd** e **ndb_mgm**.
+
+**SQL nodes.** Se você compilar o MySQL com suporte a clustering e realizar a instalação padrão (usando **make install** como o usuário `root` do sistema), o **mysqld** é colocado em `/usr/local/mysql/bin`. Siga os passos fornecidos na Seção 2.8, “Instalando o MySQL a partir do Código Fonte” para preparar o **mysqld** para uso. Se você deseja executar múltiplos SQL nodes, pode usar uma cópia do mesmo executável **mysqld** e seus arquivos de suporte associados em várias máquinas. A maneira mais fácil de fazer isso é copiar todo o diretório `/usr/local/mysql` e todos os diretórios e arquivos contidos nele para o(s) outro(s) host(s) de SQL node, e então repetir os passos da Seção 2.8, “Instalando o MySQL a partir do Código Fonte” em cada máquina. Se você configurar a build com uma opção `PREFIX` não padrão, você deve ajustar o diretório de acordo.
+
+Na Seção 21.3.3, “Configuração Inicial do NDB Cluster”, criamos arquivos de configuração para todos os nodes em nosso exemplo de NDB Cluster.

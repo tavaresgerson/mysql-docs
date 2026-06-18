@@ -1,0 +1,7 @@
+### 21.2.4 Novidades no MySQL NDB Cluster
+
+21.2.4.1 Novidades no NDB Cluster 7.5
+
+21.2.4.2 Novidades no NDB Cluster 7.6
+
+As seções a seguir descrevem as mudanças na implementação do MySQL NDB Cluster nas versões NDB Cluster 7.6 (até 5.7.44-ndb-7.6.36) e NDB Cluster 7.5 (até 5.7.44-ndb-7.5.36), em comparação com séries de release anteriores. O NDB Cluster 8.0 está disponível como um release de General Availability (GA), começando com o NDB 8.0.19; consulte Novidades no MySQL NDB Cluster 8.0 para obter mais informações sobre novos recursos e outras mudanças no NDB 8.0. NDB Cluster 7.6 e 7.5 são releases GA anteriores que ainda são suportados em produção; para obter informações sobre o NDB Cluster 7.6, consulte Seção 21.2.4.2, “Novidades no NDB Cluster 7.6”. Para obter informações sobre o NDB Cluster 7.5, consulte Seção 21.2.4.1, “Novidades no NDB Cluster 7.5”. NDB Cluster 7.4 e 7.3 foram releases GA anteriores que atingiram o seu fim de vida, e que não são mais suportados ou mantidos. Recomendamos que novas implantações para uso em produção utilizem o MySQL NDB Cluster 8.0.

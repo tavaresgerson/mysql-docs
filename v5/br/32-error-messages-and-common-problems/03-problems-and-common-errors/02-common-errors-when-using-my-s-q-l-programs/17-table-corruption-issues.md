@@ -1,0 +1,7 @@
+#### B.3.2.17 Problemas de Corrupção de Tabela
+
+Se você iniciou o **mysqld** com a variável de sistema `myisam_recover_options` definida, o MySQL automaticamente faz o Check e tenta o Repair de tabelas `MyISAM` se elas estiverem marcadas como 'not closed properly' (não fechadas corretamente) ou 'crashed' (corrompidas). Se isso ocorrer, o MySQL escreve uma entrada no arquivo `hostname.err` com `'Warning: Checking table ...'`, que é seguida por `Warning: Repairing table` se a tabela precisar de Repair. Se você receber muitos desses erros, sem que o **mysqld** tenha morrido inesperadamente logo antes, então algo está errado e precisa ser investigado mais a fundo.
+
+Quando o server detecta corrupção na tabela `MyISAM`, ele escreve informações adicionais no error log, como o nome e o número da linha do arquivo fonte, e a lista de Threads acessando a tabela. Exemplo: `Got an error from thread_id=1, mi_dynrec.c:368`. Esta é uma informação útil para incluir em relatórios de bug.
+
+Veja também Seção 5.1.6, “Opções de Comando do Server”, e Seção 5.8.1.7, “Criando um Caso de Teste Se Você Tiver Corrupção de Tabela”.

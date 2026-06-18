@@ -1,0 +1,15 @@
+### 14.7.5 Deadlocks no InnoDB
+
+14.7.5.1 Um Exemplo de Deadlock no InnoDB
+
+14.7.5.2 Detecção de Deadlock
+
+14.7.5.3 Como Minimizar e Lidar com Deadlocks
+
+Um *deadlock* é uma situação na qual múltiplas *transactions* são incapazes de prosseguir porque cada *transaction* detém um *lock* que é necessário por outra. Como todas as *transactions* envolvidas estão esperando que o mesmo recurso se torne disponível, nenhuma delas jamais libera o *lock* que detém.
+
+Um *deadlock* pode ocorrer quando *transactions* bloqueiam linhas em múltiplas tabelas (através de comandos como `UPDATE` ou `SELECT ... FOR UPDATE`), mas na ordem oposta. Um *deadlock* também pode ocorrer quando esses comandos bloqueiam intervalos de registros de *index* e *gaps* (lacunas), com cada *transaction* adquirindo alguns *locks* mas não outros devido a um problema de tempo (*timing issue*). Para um exemplo de *deadlock*, consulte a Seção 14.7.5.1, “Um Exemplo de Deadlock no InnoDB”.
+
+Para reduzir a possibilidade de *deadlocks*, use *transactions* em vez de comandos `LOCK TABLES`; mantenha as *transactions* que inserem ou atualizam dados pequenas o suficiente para que não permaneçam abertas por longos períodos de tempo; quando diferentes *transactions* atualizam múltiplas tabelas ou grandes intervalos de linhas, use a mesma ordem de operações (como `SELECT ... FOR UPDATE`) em cada *transaction*; crie *indexes* nas colunas usadas nos comandos `SELECT ... FOR UPDATE` e `UPDATE ... WHERE`. A possibilidade de *deadlocks* não é afetada pelo *isolation level*, porque o *isolation level* altera o comportamento das operações de leitura, enquanto os *deadlocks* ocorrem devido a operações de escrita. Para mais informações sobre como evitar e se recuperar de condições de *deadlock*, consulte a Seção 14.7.5.3, “Como Minimizar e Lidar com Deadlocks”.
+
+Quando a detecção de *deadlock* está ativada (o padrão) e um *deadlock* ocorre, o `InnoDB` detecta a condição e faz o *rollback* de uma das *transactions* (a vítima). Se a detecção de *deadlock* estiver desativada usando a variável `innodb_deadlock_detect`, o `InnoDB` depende da configuração `innodb_lock_wait_timeout` para fazer o *rollback* de *transactions* em caso de *deadlock*. Assim, mesmo que a lógica da sua aplicação esteja correta, você ainda deve lidar com o caso em que uma *transaction* deve ser repetida. Para visualizar o último *deadlock* em uma *transaction* de usuário `InnoDB`, use `SHOW ENGINE INNODB STATUS`. Se *deadlocks* frequentes destacarem um problema com a estrutura da *transaction* ou o tratamento de erros da aplicação, ative `innodb_print_all_deadlocks` para imprimir informações sobre todos os *deadlocks* no *error log* do **mysqld**. Para mais informações sobre como os *deadlocks* são detectados e tratados automaticamente, consulte a Seção 14.7.5.2, “Detecção de Deadlock”.

@@ -1,0 +1,15 @@
+#### 13.1.18.2 Instrução CREATE TEMPORARY TABLE
+
+Você pode usar a palavra-chave `TEMPORARY` ao criar uma table. Uma table `TEMPORARY` é visível apenas dentro da sessão atual e é automaticamente descartada (`dropped`) quando a sessão é fechada. Isso significa que duas sessões diferentes podem usar o mesmo nome de table temporária sem conflitar entre si ou com uma table não-`TEMPORARY` existente de mesmo nome. (A table existente fica oculta até que a table temporária seja descartada.)
+
+`CREATE TABLE` causa um commit implícito, exceto quando usada com a palavra-chave `TEMPORARY`. Consulte Seção 13.3.3, “Instruções Que Causam um Commit Implícito”.
+
+Tables `TEMPORARY` têm um relacionamento muito flexível com Databases (schemas). Descartar um Database não descarta automaticamente nenhuma table `TEMPORARY` criada dentro desse Database. Além disso, você pode criar uma table `TEMPORARY` em um Database inexistente se qualificar o nome da table com o nome do Database na instrução `CREATE TABLE`. Neste caso, todas as referências subsequentes à table devem ser qualificadas com o nome do Database.
+
+Para criar uma table temporária, você deve ter o privilégio `CREATE TEMPORARY TABLES`. Depois que uma sessão cria uma table temporária, o servidor não executa verificações de privilégios adicionais na table. A sessão criadora pode executar qualquer operação na table, como `DROP TABLE`, `INSERT`, `UPDATE` ou `SELECT`.
+
+Uma implicação desse comportamento é que uma sessão pode manipular suas tables temporárias mesmo que o usuário atual não tenha privilégio para criá-las. Suponha que o usuário atual não tenha o privilégio `CREATE TEMPORARY TABLES`, mas seja capaz de executar um stored procedure em contexto de definidor que é executado com os privilégios de um usuário que possui `CREATE TEMPORARY TABLES` e que cria uma table temporária. Enquanto o procedure é executado, a sessão usa os privilégios do usuário definidor. Após o retorno do procedure, os privilégios efetivos revertem para os do usuário atual, que ainda pode ver a table temporária e executar qualquer operação nela.
+
+Note
+
+O suporte para as cláusulas `TABLESPACE = innodb_file_per_table` e `TABLESPACE = innodb_temporary` com `CREATE TEMPORARY TABLE` foi descontinuado (deprecated) a partir do MySQL 5.7.24; espera-se que seja removido em uma futura versão do MySQL.
