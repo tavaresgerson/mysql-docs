@@ -1,10 +1,10 @@
 # Preface and Legal Notices
 
-This is the Reference Manual for the MySQL Database System, version 5.7, through release 5.7.44. Differences between minor versions of MySQL 5.7 are noted in the present text with reference to release numbers (5.7.*`x`*). For license information, see the [Legal Notices](preface.html#legalnotice "Legal Notices").
+This is the Reference Manual for the MySQL Database System, version 5.7, through release 5.7.44. Differences between minor versions of MySQL 5.7 are noted in the present text with reference to release numbers (5.7.*`x`*). For license information, see the Legal Notices.
 
-This manual is not intended for use with older versions of the MySQL software due to the many functional and other differences between MySQL 5.7 and previous versions. If you are using an earlier release of the MySQL software, please refer to the appropriate manual. For example, [*MySQL 5.6 Reference Manual*](/doc/refman/5.6/en/) covers the 5.6 series of MySQL software releases.
+This manual is not intended for use with older versions of the MySQL software due to the many functional and other differences between MySQL 5.7 and previous versions. If you are using an earlier release of the MySQL software, please refer to the appropriate manual. For example, *MySQL 5.6 Reference Manual* covers the 5.6 series of MySQL software releases.
 
-If you are using MySQL 8.0, please refer to the [*MySQL 8.0 Reference Manual*](/doc/refman/8.0/en/).
+If you are using MySQL 8.0, please refer to the *MySQL 8.0 Reference Manual*.
 
 **Licensing information—MySQL 5.7.**
 This product may include third-party software, used under license. If you are using a *Commercial* release of MySQL 5.7, see the [MySQL 5.7 Commercial Release License Information User Manual](https://downloads.mysql.com/docs/licenses/mysqld-5.7-com-en.pdf) for licensing information, including licensing information relating to third-party software that may be included in this Commercial release. If you are using a *Community* release of MySQL 5.7, see the [MySQL 5.7 Community Release License Information User Manual](https://downloads.mysql.com/docs/licenses/mysqld-5.7-gpl-en.pdf) for licensing information, including licensing information relating to third-party software that may be included in this Community release.

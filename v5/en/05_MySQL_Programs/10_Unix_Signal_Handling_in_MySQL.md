@@ -1,37 +1,17 @@
 ## 4.10 Unix Signal Handling in MySQL
 
-On Unix and Unix-like systems, a process can be the recipient of
-signals sent to it by the `root` system account
-or the system account that owns the process. Signals can be sent
-using the [**kill**](kill.html "13.7.6.4 KILL Statement") command. Some command
-interpreters associate certain key sequences with signals, such as
-**Control+C** to send a `SIGINT`
-signal. This section describes how the MySQL server and client
-programs respond to signals.
+On Unix and Unix-like systems, a process can be the recipient of signals sent to it by the `root` system account or the system account that owns the process. Signals can be sent using the **kill** command. Some command interpreters associate certain key sequences with signals, such as **Control+C** to send a `SIGINT` signal. This section describes how the MySQL server and client programs respond to signals.
 
-* [Server Response to Signals](unix-signal-response.html#server-signal-response "Server Response to Signals")
-* [Client Response to Signals](unix-signal-response.html#client-signal-response "Client Response to Signals")
+* Server Response to Signals
+* Client Response to Signals
 
 ### Server Response to Signals
 
-[`mysqld`](mysqld.html "4.3.1 mysqld — The MySQL Server") responds to signals as follows:
+`mysqld` responds to signals as follows:
 
-* `SIGTERM` causes the server to shut down.
-  This is like executing a
-  [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") statement without
-  having to connect to the server (which for shutdown requires
-  an account that has the
-  [`SHUTDOWN`](privileges-provided.html#priv_shutdown) privilege).
+* `SIGTERM` causes the server to shut down. This is like executing a `SHUTDOWN` statement without having to connect to the server (which for shutdown requires an account that has the `SHUTDOWN` privilege).
 
-* `SIGHUP` causes the server to reload the
-  grant tables and to flush tables, logs, the thread cache,
-  and the host cache. These actions are like various forms of
-  the [`FLUSH`](flush.html "13.7.6.3 FLUSH Statement") statement. Sending
-  the signal enables the flush operations to be performed
-  without having to connect to the server, which requires a
-  MySQL account that has privileges sufficient for those
-  operations. The server also writes a status report to the
-  error log that has this format:
+* `SIGHUP` causes the server to reload the grant tables and to flush tables, logs, the thread cache, and the host cache. These actions are like various forms of the `FLUSH` statement. Sending the signal enables the flush operations to be performed without having to connect to the server, which requires a MySQL account that has privileges sufficient for those operations. The server also writes a status report to the error log that has this format:
 
   ```sql
   Status information:
@@ -131,35 +111,16 @@ programs respond to signals.
   Next activation : never
   ```
 
-* `SIGINT` normally is ignored by the server.
-  Starting the server with the
-  [`--gdb`](server-options.html#option_mysqld_gdb) option installs an
-  interrupt handler for `SIGINT` for
-  debugging purposes. See
-  [Section 5.8.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "5.8.1.4 Debugging mysqld under gdb").
+* `SIGINT` normally is ignored by the server. Starting the server with the `--gdb` option installs an interrupt handler for `SIGINT` for debugging purposes. See Section 5.8.1.4, “Debugging mysqld under gdb”.
 
 ### Client Response to Signals
 
 MySQL client programs respond to signals as follows:
 
-* The [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client interprets
-  `SIGINT` (typically the result of typing
-  **Control+C**) as instruction to interrupt the
-  current statement if there is one, or to cancel any partial
-  input line otherwise. This behavior can be disabled using
-  the [`--sigint-ignore`](mysql-command-options.html#option_mysql_sigint-ignore) option to
-  ignore `SIGINT` signals.
+* The **mysql** client interprets `SIGINT` (typically the result of typing **Control+C**) as instruction to interrupt the current statement if there is one, or to cancel any partial input line otherwise. This behavior can be disabled using the `--sigint-ignore` option to ignore `SIGINT` signals.
 
-* Client programs that use the MySQL client library block
-  `SIGPIPE` signals by default. These
-  variations are possible:
+* Client programs that use the MySQL client library block `SIGPIPE` signals by default. These variations are possible:
 
-  + Client can install their own `SIGPIPE`
-    handler to override the default behavior. See
-    [Writing C API Threaded Client Programs](/doc/c-api/5.7/en/c-api-threaded-clients.html).
+  + Client can install their own `SIGPIPE` handler to override the default behavior. See Writing C API Threaded Client Programs.
 
-  + Clients can prevent installation of
-    `SIGPIPE` handlers by specifying the
-    `CLIENT_IGNORE_SIGPIPE` option to
-    [`mysql_real_connect()`](/doc/c-api/5.7/en/mysql-real-connect.html) at
-    connect time. See [mysql\_real\_connect()](/doc/c-api/5.7/en/mysql-real-connect.html).
+  + Clients can prevent installation of `SIGPIPE` handlers by specifying the `CLIENT_IGNORE_SIGPIPE` option to `mysql_real_connect()` at connect time. See mysql\_real\_connect().

@@ -12620,7 +12620,7 @@ MYSQL\_TEST\_TRACE\_CRASH environment variable, [Environment Variables](environm
 
 MYSQL\_TEST\_TRACE\_DEBUG environment variable, [Environment Variables](environment-variables.html)
 
-mysql\_tzinfo\_to\_sql, [Overview of MySQL Programs](programs-overview.html), [mysql\_tzinfo\_to\_sql — Load the Time Zone Tables](mysql-tzinfo-to-sql.html)
+`mysql_tzinfo_to_sql`, [Overview of MySQL Programs](programs-overview.html), [`mysql_tzinfo_to_sql` — Load the Time Zone Tables](mysql-tzinfo-to-sql.html)
 
 MYSQL\_UNIX\_ADDR option
 :   CMake, [Feature Options](source-configuration-options.html#cmake-feature-options)
@@ -24552,7 +24552,7 @@ time representation
 
 time zone problems, [Time Zone Problems](timezone-problems.html)
 
-time zone tables, [mysql\_tzinfo\_to\_sql — Load the Time Zone Tables](mysql-tzinfo-to-sql.html)
+time zone tables, [`mysql_tzinfo_to_sql` — Load the Time Zone Tables](mysql-tzinfo-to-sql.html)
 :   system tables, [Time Zone System Tables](system-schema.html#system-schema-time-zone-tables)
 
 time zones

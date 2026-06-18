@@ -1126,7 +1126,7 @@
 
 [Section 4.4.2, “mysql\_install\_db — Initialize MySQL Data Directory”](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory")
 
-[Section 4.4.6, “mysql\_tzinfo\_to\_sql — Load the Time Zone Tables”](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables")
+[Section 4.4.6, “`mysql_tzinfo_to_sql` — Load the Time Zone Tables”](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables")
 
 [Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables")
 
@@ -1498,11 +1498,11 @@
 
 [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### mysql\_tzinfo\_to\_sql
+### `mysql_tzinfo_to_sql`
 
 [Section 5.1.13, “MySQL Server Time Zone Support”](time-zone-support.html "5.1.13 MySQL Server Time Zone Support")
 
-[Section 4.4.6, “mysql\_tzinfo\_to\_sql — Load the Time Zone Tables”](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables")
+[Section 4.4.6, “`mysql_tzinfo_to_sql` — Load the Time Zone Tables”](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables")
 
 [Section 4.1, “Overview of MySQL Programs”](programs-overview.html "4.1 Overview of MySQL Programs")
 

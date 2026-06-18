@@ -419,9 +419,9 @@ The query cache is deprecated. Deprecation includes these items:
 
   Upgrades are supported only from one release series to another (for example, 5.0 to 5.1, or 5.1 to 5.5), so there should be little remaining need for conversion of older 5.0 database names to current versions of MySQL. As a workaround, upgrade a MySQL 5.0 installation to MySQL 5.1 before upgrading to a more recent release.
 
-* **mysql_install_db** functionality has been integrated into the MySQL server, `mysqld`. To use this capability to initialize a MySQL installation, if you previously invoked **mysql_install_db** manually, invoke `mysqld` with the `--initialize` or `--initialize-insecure` option, depending on whether you want the server to generate a random password for the initial `'root'@'localhost'` account.
+* `mysql_install_db` functionality has been integrated into the MySQL server, `mysqld`. To use this capability to initialize a MySQL installation, if you previously invoked `mysql_install_db` manually, invoke `mysqld` with the `--initialize` or `--initialize-insecure` option, depending on whether you want the server to generate a random password for the initial `'root'@'localhost'` account.
 
-  **mysql_install_db** is now deprecated, as is the special `--bootstrap` option that **mysql_install_db** passes to `mysqld`.
+  `mysql_install_db` is now deprecated, as is the special `--bootstrap` option that `mysql_install_db` passes to `mysqld`.
 
 * The **mysql_plugin** utility is deprecated. Alternatives include loading plugins at server startup using the `--plugin-load` or `--plugin-load-add` option, or at runtime using the `INSTALL PLUGIN` statement.
 
