@@ -1,33 +1,14 @@
 ## 24.8 Extensions to SHOW Statements
 
-Some extensions to [`SHOW`](show.html "13.7.5 SHOW Statements") statements
-accompany the implementation of
-`INFORMATION_SCHEMA`:
+Some extensions to `SHOW` statements accompany the implementation of `INFORMATION_SCHEMA`:
 
-* [`SHOW`](show.html "13.7.5 SHOW Statements") can be used to get
-  information about the structure of
-  `INFORMATION_SCHEMA` itself.
+* `SHOW` can be used to get information about the structure of `INFORMATION_SCHEMA` itself.
 
-* Several [`SHOW`](show.html "13.7.5 SHOW Statements") statements accept
-  a `WHERE` clause that provides more
-  flexibility in specifying which rows to display.
+* Several `SHOW` statements accept a `WHERE` clause that provides more flexibility in specifying which rows to display.
 
-  The `IS_UPDATABLE` flag may be unreliable if
-  a view depends on one or more other views, and one of these
-  underlying views is updated. Regardless of the
-  `IS_UPDATABLE` value, the server keeps track
-  of the updatability of a view and correctly rejects data
-  change operations to views that are not updatable. If the
-  `IS_UPDATABLE` value for a view has become
-  inaccurate to due to changes to underlying views, the value
-  can be updated by deleting and recreating the view.
+  The `IS_UPDATABLE` flag may be unreliable if a view depends on one or more other views, and one of these underlying views is updated. Regardless of the `IS_UPDATABLE` value, the server keeps track of the updatability of a view and correctly rejects data change operations to views that are not updatable. If the `IS_UPDATABLE` value for a view has become inaccurate to due to changes to underlying views, the value can be updated by deleting and recreating the view.
 
-`INFORMATION_SCHEMA` is an information database,
-so its name is included in the output from
-[`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"). Similarly,
-[`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") can be used with
-`INFORMATION_SCHEMA` to obtain a list of its
-tables:
+`INFORMATION_SCHEMA` is an information database, so its name is included in the output from `SHOW DATABASES`. Similarly, `SHOW TABLES` can be used with `INFORMATION_SCHEMA` to obtain a list of its tables:
 
 ```sql
 mysql> SHOW TABLES FROM INFORMATION_SCHEMA;
@@ -64,15 +45,9 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA;
 +---------------------------------------+
 ```
 
-[`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") and
-[`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") can display information
-about the columns in individual
-`INFORMATION_SCHEMA` tables.
+`SHOW COLUMNS` and `DESCRIBE` can display information about the columns in individual `INFORMATION_SCHEMA` tables.
 
-[`SHOW`](show.html "13.7.5 SHOW Statements") statements that accept a
-[`LIKE`](string-comparison-functions.html#operator_like) clause to limit the rows
-displayed also permit a `WHERE` clause that
-specifies more general conditions that selected rows must satisfy:
+`SHOW` statements that accept a `LIKE` clause to limit the rows displayed also permit a `WHERE` clause that specifies more general conditions that selected rows must satisfy:
 
 ```sql
 SHOW CHARACTER SET
@@ -90,11 +65,7 @@ SHOW TRIGGERS
 SHOW VARIABLES
 ```
 
-The `WHERE` clause, if present, is evaluated
-against the column names displayed by the
-[`SHOW`](show.html "13.7.5 SHOW Statements") statement. For example, the
-[`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") statement
-produces these output columns:
+The `WHERE` clause, if present, is evaluated against the column names displayed by the `SHOW` statement. For example, the `SHOW CHARACTER SET` statement produces these output columns:
 
 ```sql
 mysql> SHOW CHARACTER SET;
@@ -111,11 +82,7 @@ mysql> SHOW CHARACTER SET;
 ...
 ```
 
-To use a `WHERE` clause with
-[`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement"), you would refer
-to those column names. As an example, the following statement
-displays information about character sets for which the default
-collation contains the string `'japanese'`:
+To use a `WHERE` clause with `SHOW CHARACTER SET`, you would refer to those column names. As an example, the following statement displays information about character sets for which the default collation contains the string `'japanese'`:
 
 ```sql
 mysql> SHOW CHARACTER SET WHERE `Default collation` LIKE '%japanese%';

@@ -1,9 +1,5 @@
 ## 19.2 Setting Up MySQL as a Document Store
 
-[19.2.1 Installing MySQL Shell](document-store-shell-install.html)
-
-[19.2.2 Starting MySQL Shell](installing-mysql-shell-starting.html)
-
 To use MySQL 5.7 as a document store, the X Plugin needs to be
 installed. Then you can use X Protocol to communicate with the
 server. Without the X Plugin running, X Protocol clients cannot

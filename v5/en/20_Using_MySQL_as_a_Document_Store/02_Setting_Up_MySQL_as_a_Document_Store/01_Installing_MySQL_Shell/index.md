@@ -1,11 +1,5 @@
 ### 19.2.1 Installing MySQL Shell
 
-[19.2.1.1 Installing MySQL Shell on Microsoft Windows](installing-mysql-shell-windows-quick.html)
-
-[19.2.1.2 Installing MySQL Shell on Linux](installing-mysql-shell-linux-quick.html)
-
-[19.2.1.3 Installing MySQL Shell on macOS](installing-mysql-shell-macos-quick.html)
-
 This section describes how to download, install, and start
 MySQL Shell, which is an interactive JavaScript, Python, or SQL
 interface supporting development and administration for the MySQL

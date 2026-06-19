@@ -1,161 +1,168 @@
 ## A.1 MySQL 5.7 FAQ: General
 
-A.1.1. [Which version of MySQL is production-ready (GA)?](faqs-general.html#faq-mysql-version-ga)
+A.1.1. Which version of MySQL is production-ready (GA)?
 
-A.1.2. [Can MySQL do subqueries?](faqs-general.html#faq-mysql-do-subqueries)
+A.1.2. Can MySQL do subqueries?
 
-A.1.3. [Can MySQL perform multiple-table inserts, updates, and deletes?](faqs-general.html#faq-mysql-do-multiple-iud)
+A.1.3. Can MySQL perform multiple-table inserts, updates, and deletes?
 
-A.1.4. [Does MySQL 5.7 have a Query Cache? Does it work on Server, Instance or Database?](faqs-general.html#faq-mysql-have-query-cache)
+A.1.4. Does MySQL 5.7 have a Query Cache? Does it work on Server, Instance or Database?
 
-A.1.5. [Does MySQL have Sequences?](faqs-general.html#faq-mysql-have-sequences)
+A.1.5. Does MySQL have Sequences?
 
-A.1.6. [Does MySQL have a NOW() function with fractions of seconds?](faqs-general.html#faq-mysql-have-now-fractions)
+A.1.6. Does MySQL have a NOW() function with fractions of seconds?
 
-A.1.7. [Does MySQL work with multi-core processors?](faqs-general.html#faq-mysql-support-multi-core)
+A.1.7. Does MySQL work with multi-core processors?
 
-A.1.8. [Why do I see multiple processes for mysqld?](faqs-general.html#faq-mysql-why-multiple-processes)
+A.1.8. Why do I see multiple processes for mysqld?
 
-A.1.9. [Can MySQL perform ACID transactions?](faqs-general.html#faq-mysql-have-acid-transactions)
+A.1.9. Can MySQL perform ACID transactions?
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.1.1.</b></td><td align="left" valign="top"><p>
-        Which version of MySQL is production-ready (GA)?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        MySQL 9.5, 8.4, and 8.0 are actively
-        supported for production use.
-      </p><p>
-        The MySQL 9 Innovation series began with the MySQL 9.0.0 release
-        on 01 July 2024.
-      </p><p>
-        The MySQL 8.4 LTS series began with the MySQL 8.4.0 release on
-        30 April 2024.
-      </p><p>
-        The MySQL 8 Innovation series began with the MySQL 8.1.0 release
-        on 18 July 2023. Active development ended on 2024-01-16 with the
-        MySQL 8.3.0 release.
-      </p><p>
-        MySQL 8.0 achieved General Availability (GA) status with MySQL
-        8.0.11, which was released for production use on 19 April 2018.
-        It became a bugfix series as of MySQL 8.0.34 with the
-        introduction of the <a class="ulink" href="/doc/refman/8.4/en/mysql-releases.html" target="_top">Innovation
-        and LTS release model</a>.
-      </p><p>
-        MySQL 5.7 achieved General Availability (GA) status with MySQL
-        5.7.9, which was released for production use on 21 October 2015.
-        Active development for MySQL 5.7 ended on 25 October 2023 with
-        the MySQL 5.7.44 release.
-      </p><p>
-        MySQL 5.6 achieved General Availability (GA) status with MySQL
-        5.6.10, which was released for production use on 5 February
-        2013. Active development for MySQL 5.6 has ended.
-      </p><p>
-        MySQL 5.5 achieved General Availability (GA) status with MySQL
-        5.5.8, which was released for production use on 3 December 2010.
-        Active development for MySQL 5.5 has ended.
-      </p><p>
-        MySQL 5.1 achieved General Availability (GA) status with MySQL
-        5.1.30, which was released for production use on 14 November
-        2008. Active development for MySQL 5.1 has ended.
-      </p><p>
-        MySQL 5.0 achieved General Availability (GA) status with MySQL
-        5.0.15, which was released for production use on 19 October
-        2005. Active development for MySQL 5.0 has ended.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.2.</b></td><td align="left" valign="top"><p>
-        Can MySQL do subqueries?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Yes. See Section 13.2.10, “Subqueries”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.3.</b></td><td align="left" valign="top"><p>
-        Can MySQL perform multiple-table inserts, updates, and deletes?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Yes. For the syntax required to perform multiple-table updates,
-        see Section 13.2.11, “UPDATE Statement”; for that required to perform
-        multiple-table deletes, see Section 13.2.2, “DELETE Statement”.
-      </p><p>
-        A multiple-table insert can be accomplished using a trigger
-        whose <code>FOR EACH ROW</code> clause contains multiple
-        <code>INSERT</code> statements within a
-        <code>BEGIN ... END</code> block. See
-        Section 23.3, “Using Triggers”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.4.</b></td><td align="left" valign="top"><p>
-        Does MySQL 5.7 have a Query Cache? Does it work on
-        Server, Instance or Database?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Yes. (However, the query cache is deprecated as of MySQL 5.7.20,
-        and is removed in MySQL 8.0.) The query cache operates on the
-        server level, caching complete result sets matched with the
-        original query string. If an exactly identical query is made
-        (which often happens, particularly in web applications), no
-        parsing or execution is necessary; the result is sent directly
-        from the cache. Various tuning options are available. See
-        Section 8.10.3, “The MySQL Query Cache”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.5.</b></td><td align="left" valign="top"><p>
-        Does MySQL have Sequences?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        No. However, MySQL has an <code>AUTO_INCREMENT</code>
-        system, which can also handle inserts in a multi-source
-        replication setup. With the
-        <code>auto_increment_increment</code> and
-        <code>auto_increment_offset</code> system
-        variables, you can set each server to generate auto-increment
-        values that don't conflict with other servers. The
-        <code>auto_increment_increment</code> value
-        should be greater than the number of servers, and each server
-        should have a unique offset.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.6.</b></td><td align="left" valign="top"><p>
-        Does MySQL have a <code>NOW()</code> function
-        with fractions of seconds?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Yes, see Section 11.2.7, “Fractional Seconds in Time Values”.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.7.</b></td><td align="left" valign="top"><p>
-        Does MySQL work with multi-core processors?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Yes. MySQL is fully multithreaded, and makes use of all CPUs
-        made available to it. Not all CPUs may be available; modern
-        operating systems should be able to utilize all underlying CPUs,
-        but also make it possible to restrict a process to a specific
-        CPU or sets of CPUs.
-      </p><p>
-        On Windows, there is currently a limit to the number of
-        (logical) processors that <strong>mysqld</strong> can use: a
-        single processor group, which is limited to a maximum of 64
-        logical processors.
-      </p><p>
-        Use of multiple cores may be seen in these ways:
-</p>
-<div class="itemizedlist">
-<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-            A single core is usually used to service the commands issued
-            from one session.
-          </p></li><li class="listitem"><p>
-            A few background threads make limited use of extra cores;
-            for example, to keep background I/O tasks moving.
-          </p></li><li class="listitem"><p>
-            If the database is I/O-bound (indicated by CPU consumption
-            less than capacity), adding more CPUs is futile. If the
-            database is partitioned into an I/O-bound part and a
-            CPU-bond part, adding CPUs may still be useful.
-</p></li></ul>
-</div>
-</td></tr><tr class="question"><td align="left" valign="top"><b>A.1.8.</b></td><td align="left" valign="top"><p>
-        Why do I see multiple processes for <strong>mysqld</strong>?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-<strong>mysqld</strong> is a single-process program, not a
-        multi-process program, and does not fork or launch other
-        processes. However, <strong>mysqld</strong> is multithreaded
-        and some process-reporting system utilities display separate
-        entries for each thread of multithreaded processes, which may
-        lead to the appearance of multiple <strong>mysqld</strong>
-        processes when in fact there is only one.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.1.9.</b></td><td align="left" valign="top"><p>
-        Can MySQL perform ACID transactions?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Yes. All current MySQL versions support transactions. The
-        <code>InnoDB</code> storage engine offers full ACID
-        transactions with row-level locking, multi-versioning,
-        nonlocking repeatable reads, and all four SQL standard isolation
-        levels.
-      </p><p>
-        The <code>NDB</code> storage engine supports the
-        <code>READ COMMITTED</code> transaction
-        isolation level only.
-</p></td></tr></tbody></table>
+<table border="0" style="width: 100%;">
+  <colgroup>
+    <col align="left" width="1%"/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.1.</b></td>
+      <td align="left" valign="top">
+        <p> Which version of MySQL is production-ready (GA)? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> MySQL 9.5, 8.4, and 8.0 are actively supported for production use. </p>
+        <p> The MySQL 9 Innovation series began with the MySQL 9.0.0 release on 01 July 2024. </p>
+        <p> The MySQL 8.4 LTS series began with the MySQL 8.4.0 release on 30 April 2024. </p>
+        <p> The MySQL 8 Innovation series began with the MySQL 8.1.0 release on 18 July 2023. Active development ended on 2024-01-16 with the MySQL 8.3.0 release. </p>
+        <p> MySQL 8.0 achieved General Availability (GA) status with MySQL 8.0.11, which was released for production use on 19 April 2018. It became a bugfix series as of MySQL 8.0.34 with the introduction of the <a class="ulink" href="/doc/refman/8.4/en/mysql-releases.html" target="_top">Innovation and LTS release model</a>. </p>
+        <p> MySQL 5.7 achieved General Availability (GA) status with MySQL 5.7.9, which was released for production use on 21 October 2015. Active development for MySQL 5.7 ended on 25 October 2023 with the MySQL 5.7.44 release. </p>
+        <p> MySQL 5.6 achieved General Availability (GA) status with MySQL 5.6.10, which was released for production use on 5 February
+          2013. Active development for MySQL 5.6 has ended. 
+        </p>
+        <p> MySQL 5.5 achieved General Availability (GA) status with MySQL 5.5.8, which was released for production use on 3 December 2010. Active development for MySQL 5.5 has ended. </p>
+        <p> MySQL 5.1 achieved General Availability (GA) status with MySQL 5.1.30, which was released for production use on 14 November
+          2008. Active development for MySQL 5.1 has ended. 
+        </p>
+        <p> MySQL 5.0 achieved General Availability (GA) status with MySQL 5.0.15, which was released for production use on 19 October
+          2005. Active development for MySQL 5.0 has ended. 
+        </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.2.</b></td>
+      <td align="left" valign="top">
+        <p> Can MySQL do subqueries? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> Yes. See Section 13.2.10, “Subqueries”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.3.</b></td>
+      <td align="left" valign="top">
+        <p> Can MySQL perform multiple-table inserts, updates, and deletes? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> Yes. For the syntax required to perform multiple-table updates, see Section 13.2.11, “UPDATE Statement”; for that required to perform multiple-table deletes, see Section 13.2.2, “DELETE Statement”. </p>
+        <p> A multiple-table insert can be accomplished using a trigger whose <code>FOR EACH ROW</code> clause contains multiple <code>INSERT</code> statements within a <code>BEGIN ... END</code> block. See Section 23.3, “Using Triggers”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.4.</b></td>
+      <td align="left" valign="top">
+        <p> Does MySQL 5.7 have a Query Cache? Does it work on Server, Instance or Database? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> Yes. (However, the query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0.) The query cache operates on the server level, caching complete result sets matched with the original query string. If an exactly identical query is made (which often happens, particularly in web applications), no parsing or execution is necessary; the result is sent directly from the cache. Various tuning options are available. See Section 8.10.3, “The MySQL Query Cache”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.5.</b></td>
+      <td align="left" valign="top">
+        <p> Does MySQL have Sequences? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> No. However, MySQL has an <code>AUTO_INCREMENT</code> system, which can also handle inserts in a multi-source replication setup. With the <code>auto_increment_increment</code> and <code>auto_increment_offset</code> system variables, you can set each server to generate auto-increment values that don't conflict with other servers. The <code>auto_increment_increment</code> value should be greater than the number of servers, and each server should have a unique offset. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.6.</b></td>
+      <td align="left" valign="top">
+        <p> Does MySQL have a <code>NOW()</code> function with fractions of seconds? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> Yes, see Section 11.2.7, “Fractional Seconds in Time Values”. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.7.</b></td>
+      <td align="left" valign="top">
+        <p> Does MySQL work with multi-core processors? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> Yes. MySQL is fully multithreaded, and makes use of all CPUs made available to it. Not all CPUs may be available; modern operating systems should be able to utilize all underlying CPUs, but also make it possible to restrict a process to a specific CPU or sets of CPUs. </p>
+        <p> On Windows, there is currently a limit to the number of (logical) processors that <strong>mysqld</strong> can use: a single processor group, which is limited to a maximum of 64 logical processors. </p>
+        <p> Use of multiple cores may be seen in these ways: </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p> A single core is usually used to service the commands issued from one session. </p>
+            </li>
+            <li class="listitem">
+              <p> A few background threads make limited use of extra cores; for example, to keep background I/O tasks moving. </p>
+            </li>
+            <li class="listitem">
+              <p> If the database is I/O-bound (indicated by CPU consumption less than capacity), adding more CPUs is futile. If the database is partitioned into an I/O-bound part and a CPU-bond part, adding CPUs may still be useful. </p>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.8.</b></td>
+      <td align="left" valign="top">
+        <p> Why do I see multiple processes for <strong>mysqld</strong>? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> <strong>mysqld</strong> is a single-process program, not a multi-process program, and does not fork or launch other processes. However, <strong>mysqld</strong> is multithreaded and some process-reporting system utilities display separate entries for each thread of multithreaded processes, which may lead to the appearance of multiple <strong>mysqld</strong> processes when in fact there is only one. </p>
+      </td>
+    </tr>
+    <tr class="question">
+      <td align="left" valign="top"><b>A.1.9.</b></td>
+      <td align="left" valign="top">
+        <p> Can MySQL perform ACID transactions? </p>
+      </td>
+    </tr>
+    <tr class="answer">
+      <td align="left" valign="top"></td>
+      <td align="left" valign="top">
+        <p> Yes. All current MySQL versions support transactions. The <code>InnoDB</code> storage engine offers full ACID transactions with row-level locking, multi-versioning, nonlocking repeatable reads, and all four SQL standard isolation levels. </p>
+        <p> The <code>NDB</code> storage engine supports the <code>READ COMMITTED</code> transaction isolation level only. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

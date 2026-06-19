@@ -1,23 +1,5 @@
 # Chapter 19 Using MySQL as a Document Store
 
-**Table of Contents**
-
-[19.1 Key Concepts](document-store-concepts.html)
-
-[19.2 Setting Up MySQL as a Document Store](document-store-setting-up.html)
-:   [19.2.1 Installing MySQL Shell](document-store-shell-install.html)
-
-    [19.2.2 Starting MySQL Shell](installing-mysql-shell-starting.html)
-
-[19.3 Quick-Start Guide: MySQL for Visual Studio](mysql-shell-visual-studio.html)
-
-[19.4 X Plugin](x-plugin.html)
-:   [19.4.1 Using Encrypted Connections with X Plugin](x-plugin-encrypted-connections.html)
-
-    [19.4.2 X Plugin Options and Variables](x-plugin-options-variables.html)
-
-    [19.4.3 Monitoring X Plugin](x-plugin-system-monitoring.html)
-
 This chapter introduces an alternative way of working with MySQL as
 a document store, sometimes referred to as “using
 NoSQL”. If your intention is to use MySQL in a traditional
