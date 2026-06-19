@@ -1,16 +1,13 @@
 ## 11.6 Data Type Default Values
 
-Data type specifications can have explicit or implicit default
-values.
+Data type specifications can have explicit or implicit default values.
 
-* [Explicit Default Handling](data-type-defaults.html#data-type-defaults-explicit "Explicit Default Handling")
-* [Implicit Default Handling](data-type-defaults.html#data-type-defaults-implicit "Implicit Default Handling")
+* Explicit Default Handling
+* Implicit Default Handling
 
 ### Explicit Default Handling
 
-A `DEFAULT value`
-clause in a data type specification explicitly indicates a
-default value for a column. Examples:
+A `DEFAULT value` clause in a data type specification explicitly indicates a default value for a column. Examples:
 
 ```sql
 CREATE TABLE t1 (
@@ -20,59 +17,25 @@ CREATE TABLE t1 (
 );
 ```
 
-`SERIAL DEFAULT VALUE` is a special case. In
-the definition of an integer column, it is an alias for
-`NOT NULL AUTO_INCREMENT UNIQUE`.
+`SERIAL DEFAULT VALUE` is a special case. In the definition of an integer column, it is an alias for `NOT NULL AUTO_INCREMENT UNIQUE`.
 
-With one exception, the default value specified in a
-`DEFAULT` clause must be a literal constant; it
-cannot be a function or an expression. This means, for example,
-that you cannot set the default for a date column to be the
-value of a function such as [`NOW()`](date-and-time-functions.html#function_now)
-or [`CURRENT_DATE`](date-and-time-functions.html#function_current-date). The exception is
-that, for [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") and
-[`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns, you can specify
-[`CURRENT_TIMESTAMP`](date-and-time-functions.html#function_current-timestamp) as the default.
-See [Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”](timestamp-initialization.html "11.2.6 Automatic Initialization and Updating for TIMESTAMP and DATETIME").
+With one exception, the default value specified in a `DEFAULT` clause must be a literal constant; it cannot be a function or an expression. This means, for example, that you cannot set the default for a date column to be the value of a function such as `NOW()` or `CURRENT_DATE`. The exception is that, for `TIMESTAMP` and `DATETIME` columns, you can specify `CURRENT_TIMESTAMP` as the default. See Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”.
 
-The [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"),
-[`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"),
-`GEOMETRY`, and
-[`JSON`](json.html "11.5 The JSON Data Type") data types cannot be
-assigned a default value.
+The `BLOB`, `TEXT`, `GEOMETRY`, and `JSON` data types cannot be assigned a default value.
 
 ### Implicit Default Handling
 
-If a data type specification includes no explicit
-`DEFAULT` value, MySQL determines the default
-value as follows:
+If a data type specification includes no explicit `DEFAULT` value, MySQL determines the default value as follows:
 
-If the column can take `NULL` as a value, the
-column is defined with an explicit `DEFAULT
-NULL` clause.
+If the column can take `NULL` as a value, the column is defined with an explicit `DEFAULT NULL` clause.
 
-If the column cannot take `NULL` as a value,
-MySQL defines the column with no explicit
-`DEFAULT` clause.
+If the column cannot take `NULL` as a value, MySQL defines the column with no explicit `DEFAULT` clause.
 
-For data entry into a `NOT NULL` column that
-has no explicit `DEFAULT` clause, if an
-[`INSERT`](insert.html "13.2.5 INSERT Statement") or
-[`REPLACE`](replace.html "13.2.8 REPLACE Statement") statement includes no
-value for the column, or an
-[`UPDATE`](update.html "13.2.11 UPDATE Statement") statement sets the column
-to `NULL`, MySQL handles the column according
-to the SQL mode in effect at the time:
+For data entry into a `NOT NULL` column that has no explicit `DEFAULT` clause, if an `INSERT` or `REPLACE` statement includes no value for the column, or an `UPDATE` statement sets the column to `NULL`, MySQL handles the column according to the SQL mode in effect at the time:
 
-* If strict SQL mode is enabled, an error occurs for
-  transactional tables and the statement is rolled back. For
-  nontransactional tables, an error occurs, but if this
-  happens for the second or subsequent row of a multiple-row
-  statement, any rows preceding the error have already been
-  inserted.
+* If strict SQL mode is enabled, an error occurs for transactional tables and the statement is rolled back. For nontransactional tables, an error occurs, but if this happens for the second or subsequent row of a multiple-row statement, any rows preceding the error have already been inserted.
 
-* If strict mode is not enabled, MySQL sets the column to the
-  implicit default value for the column data type.
+* If strict mode is not enabled, MySQL sets the column to the implicit default value for the column data type.
 
 Suppose that a table `t` is defined as follows:
 
@@ -80,13 +43,7 @@ Suppose that a table `t` is defined as follows:
 CREATE TABLE t (i INT NOT NULL);
 ```
 
-In this case, `i` has no explicit default, so
-in strict mode each of the following statements produce an error
-and no row is inserted. When not using strict mode, only the
-third statement produces an error; the implicit default is
-inserted for the first two statements, but the third fails
-because [`DEFAULT(i)`](miscellaneous-functions.html#function_default) cannot produce
-a value:
+In this case, `i` has no explicit default, so in strict mode each of the following statements produce an error and no row is inserted. When not using strict mode, only the third statement produces an error; the implicit default is inserted for the first two statements, but the third fails because `DEFAULT(i)` cannot produce a value:
 
 ```sql
 INSERT INTO t VALUES();
@@ -94,32 +51,14 @@ INSERT INTO t VALUES(DEFAULT);
 INSERT INTO t VALUES(DEFAULT(i));
 ```
 
-See [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
+See Section 5.1.10, “Server SQL Modes”.
 
-For a given table, the [`SHOW CREATE
-TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") statement displays which columns have an
-explicit `DEFAULT` clause.
+For a given table, the [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") statement displays which columns have an explicit `DEFAULT` clause.
 
 Implicit defaults are defined as follows:
 
-* For numeric types, the default is `0`, with
-  the exception that for integer or floating-point types
-  declared with the `AUTO_INCREMENT`
-  attribute, the default is the next value in the sequence.
+* For numeric types, the default is `0`, with the exception that for integer or floating-point types declared with the `AUTO_INCREMENT` attribute, the default is the next value in the sequence.
 
-* For date and time types other than
-  [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), the default is the
-  appropriate “zero” value for the type. This is
-  also true for [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") if
-  the
-  [`explicit_defaults_for_timestamp`](server-system-variables.html#sysvar_explicit_defaults_for_timestamp)
-  system variable is enabled (see
-  [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")). Otherwise, for
-  the first [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column in
-  a table, the default value is the current date and time. See
-  [Section 11.2, “Date and Time Data Types”](date-and-time-types.html "11.2 Date and Time Data Types").
+* For date and time types other than `TIMESTAMP`, the default is the appropriate “zero” value for the type. This is also true for `TIMESTAMP` if the `explicit_defaults_for_timestamp` system variable is enabled (see Section 5.1.7, “Server System Variables”). Otherwise, for the first `TIMESTAMP` column in a table, the default value is the current date and time. See Section 11.2, “Date and Time Data Types”.
 
-* For string types other than
-  [`ENUM`](enum.html "11.3.5 The ENUM Type"), the default value is
-  the empty string. For [`ENUM`](enum.html "11.3.5 The ENUM Type"),
-  the default is the first enumeration value.
+* For string types other than `ENUM`, the default value is the empty string. For `ENUM`, the default is the first enumeration value.
