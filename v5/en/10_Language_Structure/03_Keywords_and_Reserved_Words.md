@@ -1,15 +1,8 @@
 ## 9.3 Keywords and Reserved Words
 
-Keywords are words that have significance in SQL. Certain
-keywords, such as [`SELECT`](select.html "13.2.9 SELECT Statement"),
-[`DELETE`](delete.html "13.2.2 DELETE Statement"), or
-[`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), are reserved and require
-special treatment for use as identifiers such as table and column
-names. This may also be true for the names of built-in functions.
+Keywords are words that have significance in SQL. Certain keywords, such as `SELECT`, `DELETE`, or `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), are reserved and require special treatment for use as identifiers such as table and column names. This may also be true for the names of built-in functions.
 
-Nonreserved keywords are permitted as identifiers without quoting.
-Reserved words are permitted as identifiers if you quote them as
-described in [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names"):
+Nonreserved keywords are permitted as identifiers without quoting. Reserved words are permitted as identifiers if you quote them as described in Section 9.2, “Schema Object Names”:
 
 ```sql
 mysql> CREATE TABLE interval (begin INT, end INT);
@@ -17,79 +10,33 @@ ERROR 1064 (42000): You have an error in your SQL syntax ...
 near 'interval (begin INT, end INT)'
 ```
 
-`BEGIN` and `END` are keywords
-but not reserved, so their use as identifiers does not require
-quoting. `INTERVAL` is a reserved keyword and
-must be quoted to be used as an identifier:
+`BEGIN` and `END` are keywords but not reserved, so their use as identifiers does not require quoting. `INTERVAL` is a reserved keyword and must be quoted to be used as an identifier:
 
 ```sql
 mysql> CREATE TABLE `interval` (begin INT, end INT);
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-Exception: A word that follows a period in a qualified name must
-be an identifier, so it need not be quoted even if it is reserved:
+Exception: A word that follows a period in a qualified name must be an identifier, so it need not be quoted even if it is reserved:
 
 ```sql
 mysql> CREATE TABLE mydb.interval (begin INT, end INT);
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-Names of built-in functions are permitted as identifiers but may
-require care to be used as such. For example,
-`COUNT` is acceptable as a column name. However,
-by default, no whitespace is permitted in function invocations
-between the function name and the following `(`
-character. This requirement enables the parser to distinguish
-whether the name is used in a function call or in nonfunction
-context. For further details on recognition of function names, see
-[Section 9.2.5, “Function Name Parsing and Resolution”](function-resolution.html "9.2.5 Function Name Parsing and Resolution").
+Names of built-in functions are permitted as identifiers but may require care to be used as such. For example, `COUNT` is acceptable as a column name. However, by default, no whitespace is permitted in function invocations between the function name and the following `(` character. This requirement enables the parser to distinguish whether the name is used in a function call or in nonfunction context. For further details on recognition of function names, see Section 9.2.5, “Function Name Parsing and Resolution”.
 
-* [MySQL 5.7 Keywords and Reserved Words](keywords.html#keywords-in-current-series "MySQL 5.7 Keywords and Reserved Words")
-* [MySQL 5.7 New Keywords and Reserved Words](keywords.html#keywords-new-in-current-series "MySQL 5.7 New Keywords and Reserved Words")
-* [MySQL 5.7 Removed Keywords and Reserved Words](keywords.html#keywords-removed-in-current-series "MySQL 5.7 Removed Keywords and Reserved Words")
+* MySQL 5.7 Keywords and Reserved Words
+* MySQL 5.7 New Keywords and Reserved Words
+* MySQL 5.7 Removed Keywords and Reserved Words
 
 ### MySQL 5.7 Keywords and Reserved Words
 
-The following list shows the keywords and reserved words in
-MySQL 5.7, along with changes to individual words
-from version to version. Reserved keywords are marked with (R).
-In addition, `_FILENAME` is reserved.
+The following list shows the keywords and reserved words in MySQL 5.7, along with changes to individual words from version to version. Reserved keywords are marked with (R). In addition, `_FILENAME` is reserved.
 
-At some point, you might upgrade to a higher version, so it is a
-good idea to have a look at future reserved words, too. You can
-find these in the manuals that cover higher versions of MySQL.
-Most of the reserved words in the list are forbidden by standard
-SQL as column or table names (for example,
-`GROUP`). A few are reserved because MySQL
-needs them and uses a **yacc** parser.
+At some point, you might upgrade to a higher version, so it is a good idea to have a look at future reserved words, too. You can find these in the manuals that cover higher versions of MySQL. Most of the reserved words in the list are forbidden by standard SQL as column or table names (for example, `GROUP`). A few are reserved because MySQL needs them and uses a **yacc** parser.
 
-[A](keywords.html#keywords-5-7-detailed-A)
-| [B](keywords.html#keywords-5-7-detailed-B)
-| [C](keywords.html#keywords-5-7-detailed-C)
-| [D](keywords.html#keywords-5-7-detailed-D)
-| [E](keywords.html#keywords-5-7-detailed-E)
-| [F](keywords.html#keywords-5-7-detailed-F)
-| [G](keywords.html#keywords-5-7-detailed-G)
-| [H](keywords.html#keywords-5-7-detailed-H)
-| [I](keywords.html#keywords-5-7-detailed-I)
-| [J](keywords.html#keywords-5-7-detailed-J)
-| [K](keywords.html#keywords-5-7-detailed-K)
-| [L](keywords.html#keywords-5-7-detailed-L)
-| [M](keywords.html#keywords-5-7-detailed-M)
-| [N](keywords.html#keywords-5-7-detailed-N)
-| [O](keywords.html#keywords-5-7-detailed-O)
-| [P](keywords.html#keywords-5-7-detailed-P)
-| [Q](keywords.html#keywords-5-7-detailed-Q)
-| [R](keywords.html#keywords-5-7-detailed-R)
-| [S](keywords.html#keywords-5-7-detailed-S)
-| [T](keywords.html#keywords-5-7-detailed-T)
-| [U](keywords.html#keywords-5-7-detailed-U)
-| [V](keywords.html#keywords-5-7-detailed-V)
-| [W](keywords.html#keywords-5-7-detailed-W)
-| [X](keywords.html#keywords-5-7-detailed-X)
-| [Y](keywords.html#keywords-5-7-detailed-Y)
-| [Z](keywords.html#keywords-5-7-detailed-Z)
+A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
 
 A
 
@@ -793,26 +740,9 @@ Z
 
 ### MySQL 5.7 New Keywords and Reserved Words
 
-The following list shows the keywords and reserved words that
-are added in MySQL 5.7, compared to MySQL
-5.6. Reserved keywords are marked with (R).
+The following list shows the keywords and reserved words that are added in MySQL 5.7, compared to MySQL 5.6. Reserved keywords are marked with (R).
 
-[A](keywords.html#keywords-new-5-7-A)
-| [C](keywords.html#keywords-new-5-7-C)
-| [E](keywords.html#keywords-new-5-7-E)
-| [F](keywords.html#keywords-new-5-7-F)
-| [G](keywords.html#keywords-new-5-7-G)
-| [I](keywords.html#keywords-new-5-7-I)
-| [J](keywords.html#keywords-new-5-7-J)
-| [M](keywords.html#keywords-new-5-7-M)
-| [N](keywords.html#keywords-new-5-7-N)
-| [O](keywords.html#keywords-new-5-7-O)
-| [P](keywords.html#keywords-new-5-7-P)
-| [R](keywords.html#keywords-new-5-7-R)
-| [S](keywords.html#keywords-new-5-7-S)
-| [V](keywords.html#keywords-new-5-7-V)
-| [W](keywords.html#keywords-new-5-7-W)
-| [X](keywords.html#keywords-new-5-7-X)
+A | C | E | F | G | I | J | M | N | O | P | R | S | V | W | X
 
 A
 
@@ -895,8 +825,6 @@ X
 
 ### MySQL 5.7 Removed Keywords and Reserved Words
 
-The following list shows the keywords and reserved words that
-are removed in MySQL 5.7, compared to MySQL
-5.6. Reserved keywords are marked with (R).
+The following list shows the keywords and reserved words that are removed in MySQL 5.7, compared to MySQL 5.6. Reserved keywords are marked with (R).
 
 * `OLD_PASSWORD`
