@@ -40,7 +40,7 @@ Um mecanismo de armazenamento plugável MySQL é o componente no servidor de ban
 
 Do ponto de vista técnico, quais são alguns dos componentes de infraestrutura de suporte únicos que estão em um motor de armazenamento? Algumas das principais diferenças de recursos incluem:
 
-* Concorrência*: Algumas aplicações têm requisitos de bloqueio mais granulares (como bloqueios em nível de linha) do que outras. Escolher a estratégia de bloqueio correta pode reduzir o overhead e, portanto, melhorar o desempenho geral. Esta área também inclui suporte para capacidades como controle de concorrência de múltiplas versões ou leitura de "instantâneo".
+* Concorrência*: Algumas aplicações têm requisitos de bloqueio mais granulares (como bloqueios em nível de string) do que outras. Escolher a estratégia de bloqueio correta pode reduzir o overhead e, portanto, melhorar o desempenho geral. Esta área também inclui suporte para capacidades como controle de concorrência de múltiplas versões ou leitura de "instantâneo".
 
 * Suporte de transações: Nem todas as aplicações precisam de transações, mas para aquelas que precisam, há requisitos bem definidos, como a conformidade ACID e mais.
 

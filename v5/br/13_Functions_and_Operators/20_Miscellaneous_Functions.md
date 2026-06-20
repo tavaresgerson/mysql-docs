@@ -18,7 +18,7 @@ Por exemplo, se `name` for uma coluna não indexada, a seguinte consulta falha c
   is incompatible with sql_mode=only_full_group_by
   ```
 
-O erro ocorre porque `address` é uma coluna não agregada que não está nomeada entre as colunas de `GROUP BY` e não depende funcionalmente delas. Como resultado, o valor de `address` para as linhas dentro de cada grupo de `name` é não determinístico. Existem várias maneiras de fazer o MySQL aceitar a consulta:
+O erro ocorre porque `address` é uma coluna não agregada que não está nomeada entre as colunas de `GROUP BY` e não depende funcionalmente delas. Como resultado, o valor de `address` para as strings dentro de cada grupo de `name` é não determinístico. Existem várias maneiras de fazer o MySQL aceitar a consulta:
 
 + Altere a tabela para tornar `name` uma chave primária ou uma coluna única `NOT NULL`. Isso permite que o MySQL determine que `address` é funcionalmente dependente de `name`; ou seja, `address` é determinado de forma única por `name`. (Essa técnica não é aplicável se `NULL` deve ser permitido como um valor válido `name`.)
 
@@ -135,7 +135,7 @@ Por exemplo:
           -> '0A000509'
   ```
 
-Se `INET6_ATON()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `INET6_ATON()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `INET6_NTOA(expr)`
 
@@ -171,7 +171,7 @@ A tabela resultante teria esta definição:
           -> '10.0.5.9'
   ```
 
-Se `INET6_NTOA()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `INET6_NTOA()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `IS_IPV4(expr)`
 
@@ -401,7 +401,7 @@ Nota
 
 * `VALUES(col_name)`
 
-Em uma declaração `INSERT ... ON DUPLICATE KEY UPDATE`(insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"), você pode usar a função `VALUES(col_name)` na cláusula `UPDATE` para referenciar valores de coluna da parte `INSERT` da declaração. Em outras palavras, `VALUES(col_name)` na cláusula `UPDATE` refere-se ao valor de *`col_name`* que seria inserido, caso não ocorresse conflito de chave duplicada. Esta função é especialmente útil em inserções de múltiplas linhas. A função `VALUES()` é significativa apenas na cláusula `ON DUPLICATE KEY UPDATE` das declarações `INSERT` e retorna `NULL` caso contrário. Veja a Seção 13.2.5.2, “Declaração INSERT ... ON DUPLICATE KEY UPDATE”.
+Em uma declaração `INSERT ... ON DUPLICATE KEY UPDATE`(insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"), você pode usar a função `VALUES(col_name)` na cláusula `UPDATE` para referenciar valores de coluna da parte `INSERT` da declaração. Em outras palavras, `VALUES(col_name)` na cláusula `UPDATE` refere-se ao valor de *`col_name`* que seria inserido, caso não ocorresse conflito de chave duplicada. Esta função é especialmente útil em inserções de múltiplas strings. A função `VALUES()` é significativa apenas na cláusula `ON DUPLICATE KEY UPDATE` das declarações `INSERT` e retorna `NULL` caso contrário. Veja a Seção 13.2.5.2, “Declaração INSERT ... ON DUPLICATE KEY UPDATE”.
 
   ```sql
   mysql> INSERT INTO table (a,b,c) VALUES (1,2,3),(4,5,6)

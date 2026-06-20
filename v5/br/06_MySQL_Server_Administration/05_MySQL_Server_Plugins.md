@@ -48,7 +48,7 @@ Antes que um plugin de servidor possa ser usado, ele deve ser instalado usando u
 
 * Plugins embutidos
 * Plugins registrados na tabela de sistema mysql.plugin
-* Plugins com nomes com opções de linha de comando
+* Plugins com nomes com opções de string de comando
 * Plugins instalados com a declaração de INSTALAR PLUGIN
 
 ##### Plugins integrados
@@ -61,7 +61,7 @@ A tabela do sistema `mysql.plugin` serve como um registro de plugins (outros que
 
 Se o servidor for iniciado com a opção `--skip-grant-tables`, os plugins registrados na tabela `mysql.plugin` não são carregados e ficam indisponíveis.
 
-##### Plugins com nomes com opções de linha de comando
+##### Plugins com nomes com opções de string de comando
 
 Um plugin localizado em um arquivo de biblioteca de plugins pode ser carregado na inicialização do servidor com as opções `--plugin-load`, `--plugin-load-add` ou `--early-plugin-load`. Normalmente, para um plugin carregado na inicialização, o servidor também habilita o plugin. Isso pode ser alterado com a opção `--plugin_name[=activation_state]`.
 
@@ -117,7 +117,7 @@ Um plugin localizado em um arquivo de biblioteca de plugins pode ser carregado e
 
 O nome de arquivo da biblioteca de plugins depende da sua plataforma. Sufixos comuns são `.so` para sistemas Unix e Unix-like, `.dll` para Windows.
 
-Exemplo: A opção `--plugin-load-add` instala um plugin no início da inicialização do servidor. Para instalar um plugin chamado `myplugin` a partir de um arquivo de biblioteca de plugins chamado `somepluglib.so`, use essas linhas em um arquivo `my.cnf`:
+Exemplo: A opção `--plugin-load-add` instala um plugin no início da inicialização do servidor. Para instalar um plugin chamado `myplugin` a partir de um arquivo de biblioteca de plugins chamado `somepluglib.so`, use essas strings em um arquivo `my.cnf`:
 
 ```sql
 [mysqld]
@@ -174,7 +174,7 @@ Como `FORCE`, mas, além disso, impede que o plugin seja descarregado durante a 
 
 Os estados de ativação do plugin são visíveis na coluna `LOAD_OPTION` da tabela do Esquema de Informações `PLUGINS`.
 
-Suponha que `CSV`, `BLACKHOLE` e `ARCHIVE` sejam motores de armazenamento plugáveis integrados e que você queira que o servidor os carregue no início, sujeito a essas condições: O servidor é permitido funcionar se a inicialização de `CSV` falhar, deve exigir que a inicialização de `BLACKHOLE` seja bem-sucedida e deve desabilitar `ARCHIVE`. Para isso, use essas linhas em um arquivo de opção:
+Suponha que `CSV`, `BLACKHOLE` e `ARCHIVE` sejam motores de armazenamento plugáveis integrados e que você queira que o servidor os carregue no início, sujeito a essas condições: O servidor é permitido funcionar se a inicialização de `CSV` falhar, deve exigir que a inicialização de `BLACKHOLE` seja bem-sucedida e deve desabilitar `ARCHIVE`. Para isso, use essas strings em um arquivo de opção:
 
 ```sql
 [mysqld]
@@ -210,7 +210,7 @@ Para desinstalar um plugin que atualmente é carregado na inicialização do ser
 
 Existem várias maneiras de determinar quais plugins estão instalados no servidor:
 
-* A tabela do esquema de informações `PLUGINS` contém uma linha para cada plugin carregado. Qualquer um que tenha um valor `PLUGIN_LIBRARY` de `NULL` é construído e não pode ser descarregado.
+* A tabela do esquema de informações `PLUGINS` contém uma string para cada plugin carregado. Qualquer um que tenha um valor `PLUGIN_LIBRARY` de `NULL` é construído e não pode ser descarregado.
 
   ```sql
   mysql> SELECT * FROM INFORMATION_SCHEMA.PLUGINS\G
@@ -243,7 +243,7 @@ Existem várias maneiras de determinar quais plugins estão instalados no servid
   ...
   ```
 
-* A declaração `SHOW PLUGINS` exibe uma linha para cada plugin carregado. Qualquer um que tenha um valor `Library` de `NULL` é construído e não pode ser descarregado.
+* A declaração `SHOW PLUGINS` exibe uma string para cada plugin carregado. Qualquer um que tenha um valor `Library` de `NULL` é construído e não pode ser descarregado.
 
   ```sql
   mysql> SHOW PLUGINS\G
@@ -275,9 +275,9 @@ A Edição Empresarial do MySQL inclui o MySQL Enterprise Thread Pool, implement
 
 O pool de threads resolve vários problemas do modelo que usa uma thread por conexão:
 
-* Muitas pilhas de fios tornam os caches da CPU quase inúteis em cargas de trabalho de execução altamente paralelas. O pool de fios promove a reutilização da pilha de fios para minimizar a pegada do cache da CPU.
+* Muitas pilhas de threads tornam os caches da CPU quase inúteis em cargas de trabalho de execução altamente paralelas. O pool de threads promove a reutilização da pilha de threads para minimizar a pegada do cache da CPU.
 
-* Com muitos fios executando em paralelo, o custo de alternância de contexto é alto. Isso também apresenta um desafio para o planejador do sistema operacional. O grupo de fios controla o número de fios ativos para manter o paralelismo dentro do servidor MySQL em um nível que ele pode lidar e que é apropriado para o host do servidor no qual o MySQL está sendo executado.
+* Com muitos threads executando em paralelo, o custo de alternância de contexto é alto. Isso também apresenta um desafio para o planejador do sistema operacional. O grupo de threads controla o número de threads ativos para manter o paralelismo dentro do servidor MySQL em um nível que ele pode lidar e que é apropriado para o host do servidor no qual o MySQL está sendo executado.
 
 * Muitas transações executando em paralelo aumentam a disputa por recursos. Em `InnoDB`, isso aumenta o tempo gasto mantendo mutxes centrais. O grupo de threads controla quando as transações começam para garantir que não sejam executadas em paralelo demasiadas.
 
@@ -285,7 +285,7 @@ O pool de threads resolve vários problemas do modelo que usa uma thread por con
 
 Seção A.15, “Perguntas frequentes sobre o MySQL 5.7: MySQL Enterprise Thread Pool”
 
-#### 5.5.3.1 Elementos do Pool de Fios
+#### 5.5.3.1 Elementos do Pool de Threads
 
 O MySQL Enterprise Thread Pool compreende esses elementos:
 
@@ -308,7 +308,7 @@ As outras variáveis relacionadas ao sistema são implementadas pelo plugin de p
 
 Para mais informações, consulte o Capítulo 25, *MySQL Performance Schema*.
 
-#### 5.5.3.2 Instalação do Pool de Fios
+#### 5.5.3.2 Instalação do Pool de Threads
 
 Esta seção descreve como instalar o MySQL Enterprise Thread Pool. Para informações gerais sobre a instalação de plugins, consulte a Seção 5.5.1, “Instalando e Desinstalando Plugins”.
 
@@ -316,7 +316,7 @@ Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve esta
 
 O nome de arquivo da biblioteca de plugins é `thread_pool`. O sufixo do nome do arquivo difere de acordo com a plataforma (por exemplo, `.so` para sistemas Unix e Unix-like, `.dll` para Windows).
 
-Para habilitar a capacidade de pool de threads, carregue os plugins que serão usados, iniciando o servidor com a opção `--plugin-load-add`. Por exemplo, se você nomear apenas o arquivo da biblioteca de plugins, o servidor carregará todos os plugins que ele contém (ou seja, o plugin de pool de threads e todas as tabelas `INFORMATION_SCHEMA`). Para fazer isso, coloque essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma, conforme necessário:
+Para habilitar a capacidade de pool de threads, carregue os plugins que serão usados, iniciando o servidor com a opção `--plugin-load-add`. Por exemplo, se você nomear apenas o arquivo da biblioteca de plugins, o servidor carregará todos os plugins que ele contém (ou seja, o plugin de pool de threads e todas as tabelas `INFORMATION_SCHEMA`). Para fazer isso, coloque essas strings no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma, conforme necessário:
 
 ```sql
 [mysqld]
@@ -372,21 +372,21 @@ Se o servidor carregar o plugin do pool de threads com sucesso, ele define a var
 
 Se um plugin não conseguir se inicializar, verifique o log de erro do servidor em busca de mensagens de diagnóstico.
 
-#### 5.5.3.3 Operação do Pool de Fios
+#### 5.5.3.3 Operação do Pool de Threads
 
 O pool de threads consiste em vários grupos de threads, cada um dos quais gerencia um conjunto de conexões de cliente. À medida que as conexões são estabelecidas, o pool de threads as atribui aos grupos de threads de forma round-robin.
 
-O pool de fios exibe variáveis do sistema que podem ser usadas para configurar sua operação:
+O pool de threads exibe variáveis do sistema que podem ser usadas para configurar sua operação:
 
 * `thread_pool_algorithm`: O algoritmo de concorrência a ser utilizado para a programação.
 
 * `thread_pool_high_priority_connection`: Como agendar a execução de uma declaração para uma sessão.
 
-* `thread_pool_max_unused_threads`: Quantos fios de sono permitir.
+* `thread_pool_max_unused_threads`: Quantos threads de sono permitir.
 
 * `thread_pool_prio_kickup_timer`: Quanto tempo antes o pool de threads move uma declaração aguardando execução da fila de baixa prioridade para a fila de alta prioridade.
 
-* `thread_pool_size`: O número de grupos de fios no conjunto de fios. Este é o parâmetro mais importante que controla o desempenho do conjunto de fios.
+* `thread_pool_size`: O número de grupos de threads no conjunto de threads. Este é o parâmetro mais importante que controla o desempenho do conjunto de threads.
 
 * `thread_pool_stall_limit`: O tempo antes de uma declaração de execução é considerado parado.
 
@@ -394,11 +394,11 @@ Para configurar o número de grupos de threads, use a variável de sistema `thre
 
 O número máximo de threads por grupo é de 4096 (ou 4095 em alguns sistemas onde uma thread é usada internamente).
 
-O pool de fios separa conexões e fios, portanto, não há uma relação fixa entre conexões e os fios que executam as declarações recebidas dessas conexões. Isso difere do modelo padrão de manipulação de fios que associa um fio a uma conexão, de modo que um determinado fio executa todas as declarações de sua conexão.
+O pool de threads separa conexões e threads, portanto, não há uma relação fixa entre conexões e os threads que executam as declarações recebidas dessas conexões. Isso difere do modelo padrão de manipulação de threads que associa um thread a uma conexão, de modo que um determinado thread executa todas as declarações de sua conexão.
 
 O pool de threads tenta garantir um máximo de uma thread executando em cada grupo a qualquer momento, mas, às vezes, permite que mais threads sejam executadas temporariamente para obter o melhor desempenho:
 
-* Cada grupo de fios tem um fio de ouvinte que escuta as declarações recebidas das conexões atribuídas ao grupo. Quando uma declaração chega, o grupo de fios ou executa imediatamente, ou coloca-a em fila para execução posterior:
+* Cada grupo de threads tem um thread de ouvinte que escuta as declarações recebidas das conexões atribuídas ao grupo. Quando uma declaração chega, o grupo de threads ou executa imediatamente, ou coloca-a em fila para execução posterior:
 
 A execução imediata ocorre se a declaração for a única que é recebida e não houver declarações em fila ou que estejam sendo executadas no momento.
 
@@ -406,7 +406,7 @@ O acúmulo de tarefas ocorre se a declaração não puder começar a ser executa
 
 * Se a execução imediata ocorrer, o thread de escuta a executa. (Isso significa que, temporariamente, nenhum thread do grupo está ouvindo.) Se a declaração terminar rapidamente, o thread executando retorna para ouvir declarações. Caso contrário, o pool de threads considera a declaração como travada e inicia outro thread como um thread de escuta (criando-o, se necessário). Para garantir que nenhum grupo de threads seja bloqueado por declarações travadas, o pool de threads tem um thread de fundo que monitora regularmente os estados dos grupos de threads.
 
-Ao usar o fio de escuta para executar uma declaração que pode começar imediatamente, não é necessário criar um fio adicional se a declaração terminar rapidamente. Isso garante a execução mais eficiente possível no caso de um número baixo de threads concorrentes.
+Ao usar o thread de escuta para executar uma declaração que pode começar imediatamente, não é necessário criar um thread adicional se a declaração terminar rapidamente. Isso garante a execução mais eficiente possível no caso de um número baixo de threads concorrentes.
 
 Quando o plugin de pool de threads é iniciado, ele cria uma thread por grupo (a thread do ouvinte), além da thread de fundo. Threads adicionais são criadas conforme necessário para executar as instruções.
 
@@ -414,27 +414,27 @@ Quando o plugin de pool de threads é iniciado, ele cria uma thread por grupo (a
 
 * O pool de threads foca em limitar o número de declarações concorrentes de execução curta. Antes que uma declaração em execução atinja o tempo de espera, ela impede que outras declarações comecem a ser executadas. Se a declaração for executada após o tempo de espera, ela é permitida para continuar, mas não impede mais que outras declarações comecem. Dessa forma, o pool de threads tenta garantir que, em cada grupo de threads, nunca haja mais de uma declaração de execução curta, embora possa haver várias declarações de execução longa. Não é desejável permitir que declarações de execução longa impeçam outras declarações de serem executadas, porque não há limite para a quantidade de espera que pode ser necessária. Por exemplo, em uma fonte de replicação, um thread que está enviando eventos de log binário para uma replica efetivamente corre para sempre.
 
-* Uma declaração fica bloqueada se encontrar uma operação de E/S de disco ou um bloqueio de nível de usuário (bloqueio de linha ou bloqueio de tabela). O bloqueio faria com que o grupo de threads se tornasse inutilizado, então há chamadas de volta para o grupo de threads para garantir que o grupo de threads possa imediatamente iniciar um novo thread neste grupo para executar outra declaração. Quando um thread bloqueado retorna, o grupo de threads permite que ele reinicie imediatamente.
+* Uma declaração fica bloqueada se encontrar uma operação de E/S de disco ou um bloqueio de nível de usuário (bloqueio de string ou bloqueio de tabela). O bloqueio faria com que o grupo de threads se tornasse inutilizado, então há chamadas de volta para o grupo de threads para garantir que o grupo de threads possa imediatamente iniciar um novo thread neste grupo para executar outra declaração. Quando um thread bloqueado retorna, o grupo de threads permite que ele reinicie imediatamente.
 
 * Existem duas filas, uma fila de alta prioridade e uma fila de baixa prioridade. A primeira declaração em uma transação vai para a fila de baixa prioridade. Quaisquer declarações subsequentes para a transação vão para a fila de alta prioridade se a transação estiver em andamento (as declarações para ela já começaram a ser executadas), ou para a fila de baixa prioridade caso contrário. A atribuição da fila pode ser afetada ao habilitar a variável de sistema `thread_pool_high_priority_connection`, o que faz com que todas as declarações em fila para uma sessão vão para a fila de alta prioridade.
 
 As declarações para um motor de armazenamento não transacional, ou para um motor transacional se `autocommit` estiver habilitado, são tratadas como declarações de baixa prioridade, pois, neste caso, cada declaração é uma transação. Assim, dada uma mistura de declarações para as tabelas `InnoDB` e `MyISAM`, o pool de threads prioriza as de `InnoDB` sobre as de `MyISAM`, a menos que `autocommit` esteja habilitado. Com `autocommit` habilitado, todas as declarações têm prioridade baixa.
 
-* Quando o grupo de fios seleciona uma declaração em fila para execução, ele primeiro procura na fila de alta prioridade, depois na fila de baixa prioridade. Se uma declaração for encontrada, ela é removida de sua fila e começa a ser executada.
+* Quando o grupo de threads seleciona uma declaração em fila para execução, ele primeiro procura na fila de alta prioridade, depois na fila de baixa prioridade. Se uma declaração for encontrada, ela é removida de sua fila e começa a ser executada.
 
 * Se uma declaração ficar na fila de baixa prioridade por muito tempo, o pool de threads passa para a fila de alta prioridade. O valor da variável de sistema `thread_pool_prio_kickup_timer` controla o tempo antes do movimento. Para cada grupo de threads, no máximo uma declaração por 10 ms (100 por segundo) é movida da fila de baixa prioridade para a fila de alta prioridade.
 
-* O pool de fios reutiliza os fios mais ativos para obter um uso muito melhor dos caches de CPU. Esse é um pequeno ajuste que tem um grande impacto no desempenho.
+* O pool de threads reutiliza os threads mais ativos para obter um uso muito melhor dos caches de CPU. Esse é um pequeno ajuste que tem um grande impacto no desempenho.
 
-* Enquanto um fio executa uma declaração de uma conexão do usuário, a instrumentação do Schema de desempenho contabiliza a atividade do fio na conexão do usuário. Caso contrário, o Schema de desempenho contabiliza a atividade no pool de threads.
+* Enquanto um thread executa uma declaração de uma conexão do usuário, a instrumentação do Schema de desempenho contabiliza a atividade do thread na conexão do usuário. Caso contrário, o Schema de desempenho contabiliza a atividade no pool de threads.
 
 Aqui estão exemplos de condições sob as quais um grupo de threads pode ter múltiplas threads iniciadas para executar instruções:
 
-* Um fio começa a executar uma declaração, mas funciona o tempo suficiente para ser considerado parado. O grupo de fios permite que outro fio comece a executar outra declaração, mesmo que o primeiro fio ainda esteja executando.
+* Um thread começa a executar uma declaração, mas funciona o tempo suficiente para ser considerado parado. O grupo de threads permite que outro thread comece a executar outra declaração, mesmo que o primeiro thread ainda esteja executando.
 
-* Um fio começa a executar uma declaração, depois é bloqueado e reporta isso de volta ao grupo de fios. O grupo de fios permite que outro fio comece a executar outra declaração.
+* Um thread começa a executar uma declaração, depois é bloqueado e reporta isso de volta ao grupo de threads. O grupo de threads permite que outro thread comece a executar outra declaração.
 
-* Um fio começa a executar uma declaração, fica bloqueado, mas não relata que está bloqueado porque o bloqueio não ocorre em código que foi instrumentado com callbacks do pool de threads. Neste caso, o fio parece para o grupo de fios que ainda está em execução. Se o bloqueio durar o tempo suficiente para que a declaração seja considerada parada, o grupo permite que outro fio comece a executar outra declaração.
+* Um thread começa a executar uma declaração, fica bloqueado, mas não relata que está bloqueado porque o bloqueio não ocorre em código que foi instrumentado com callbacks do pool de threads. Neste caso, o thread parece para o grupo de threads que ainda está em execução. Se o bloqueio durar o tempo suficiente para que a declaração seja considerada parada, o grupo permite que outro thread comece a executar outra declaração.
 
 O pool de threads é projetado para ser escalável em um número crescente de conexões. Ele também é projetado para evitar deadlocks que podem surgir ao limitar o número de declarações que estão sendo executadas ativamente. É importante que as threads que não retornem ao pool de threads não impeçam outras declarações de serem executadas, e assim, não causem o pool de threads a ficar em deadlock. Exemplos de tais declarações são os seguintes:
 
@@ -442,13 +442,13 @@ O pool de threads é projetado para ser escalável em um número crescente de co
 
 * Descarte de threads de registro binário que leem o registro binário e o enviam para réplicas. Esse é um tipo de "declaração" de longa duração que funciona por um longo tempo e que não deve impedir que outras declarações sejam executadas.
 
-* Declarações bloqueadas em um bloqueio de linha, bloqueio de tabela, sono ou qualquer outra atividade de bloqueio que não tenha sido reportada de volta ao pool de threads pelo MySQL Server ou por um mecanismo de armazenamento.
+* Declarações bloqueadas em um bloqueio de string, bloqueio de tabela, sono ou qualquer outra atividade de bloqueio que não tenha sido reportada de volta ao pool de threads pelo MySQL Server ou por um mecanismo de armazenamento.
 
 Em cada caso, para evitar o impasse, a declaração é movida para a categoria travada quando não é concluída rapidamente, para que o grupo de threads possa permitir que outra declaração comece a ser executada. Com esse design, quando um thread é executado ou fica bloqueado por um período prolongado, o grupo de threads move o thread para a categoria travada e, para o resto da execução da declaração, não impede que outras declarações sejam executadas.
 
-O número máximo de threads que podem ocorrer é a soma de `max_connections` e `thread_pool_size`. Isso pode acontecer em uma situação em que todas as conexões estão em modo de execução e um fio extra é criado por grupo para ouvir mais declarações. Isso não é necessariamente um estado que acontece com frequência, mas é teoricamente possível.
+O número máximo de threads que podem ocorrer é a soma de `max_connections` e `thread_pool_size`. Isso pode acontecer em uma situação em que todas as conexões estão em modo de execução e um thread extra é criado por grupo para ouvir mais declarações. Isso não é necessariamente um estado que acontece com frequência, mas é teoricamente possível.
 
-#### 5.5.3.4 Ajuste do Pool de Fios
+#### 5.5.3.4 Ajuste do Pool de Threads
 
 Esta seção fornece diretrizes sobre como definir as variáveis do sistema de pool de threads para o melhor desempenho, medido usando uma métrica como transações por segundo.
 
@@ -497,7 +497,7 @@ As distribuições do MySQL incluem um plugin de reescrita de consulta postparse
 
 * Um plugin do lado do servidor chamado `Rewriter` examina as declarações `SELECT` e pode reescrevê-las, com base em sua cache de regras de reescrita de memória. As declarações `SELECT` e `SELECT` independentes e as declarações `SELECT` em declarações preparadas estão sujeitas à reescrita. As declarações `SELECT` que ocorrem dentro das definições de visão ou programas armazenados não estão sujeitas à reescrita.
 
-* O plugin `Rewriter` utiliza um banco de dados denominado `query_rewrite`, que contém uma tabela denominada `rewrite_rules`. A tabela fornece armazenamento persistente para as regras que o plugin usa para decidir se deve reescrever declarações. Os usuários se comunicam com o plugin modificando o conjunto de regras armazenadas nesta tabela. O plugin se comunica com os usuários definindo a coluna `message` das linhas da tabela.
+* O plugin `Rewriter` utiliza um banco de dados denominado `query_rewrite`, que contém uma tabela denominada `rewrite_rules`. A tabela fornece armazenamento persistente para as regras que o plugin usa para decidir se deve reescrever declarações. Os usuários se comunicam com o plugin modificando o conjunto de regras armazenadas nesta tabela. O plugin se comunica com os usuários definindo a coluna `message` das strings da tabela.
 
 * O banco de dados `query_rewrite` contém um procedimento armazenado chamado `flush_rewrite_rules()` que carrega o conteúdo da tabela de regras no plugin.
 
@@ -543,7 +543,7 @@ Para obter instruções de uso, consulte a Seção 5.5.4.2, “Usando o Plugin d
 
 #### 5.5.4.2 Usando o Plugin de Reescrita de Consulta Rewriter
 
-Para habilitar ou desabilitar o plugin, habilite ou desabilite a variável de sistema `rewriter_enabled`. Por padrão, o plugin `Rewriter` está habilitado quando você o instala (consulte Seção 5.5.4.1, “Instalando ou Desinstalando o Plugin de Reescritura de Reescritura de Consulta”). Para definir o estado inicial do plugin explicitamente, você pode definir a variável na inicialização do servidor. Por exemplo, para habilitar o plugin em um arquivo de opção, use essas linhas:
+Para habilitar ou desabilitar o plugin, habilite ou desabilite a variável de sistema `rewriter_enabled`. Por padrão, o plugin `Rewriter` está habilitado quando você o instala (consulte Seção 5.5.4.1, “Instalando ou Desinstalando o Plugin de Reescritura de Reescritura de Consulta”). Para definir o estado inicial do plugin explicitamente, você pode definir a variável na inicialização do servidor. Por exemplo, para habilitar o plugin em um arquivo de opção, use essas strings:
 
 ```sql
 [mysqld]
@@ -567,7 +567,7 @@ Supondo que o plugin `Rewriter` esteja habilitado, ele examina e, possivelmente,
 
 ##### Adicionar regras de reescrita
 
-Para adicionar regras para o plugin `Rewriter`, adicione linhas à tabela `rewrite_rules`, então invoque o procedimento armazenado `flush_rewrite_rules()` para carregar as regras da tabela para o plugin. O exemplo a seguir cria uma regra simples para corresponder a declarações que selecionam um único valor literal:
+Para adicionar regras para o plugin `Rewriter`, adicione strings à tabela `rewrite_rules`, então invoque o procedimento armazenado `flush_rewrite_rules()` para carregar as regras da tabela para o plugin. O exemplo a seguir cria uma regra simples para corresponder a declarações que selecionam um único valor literal:
 
 ```sql
 INSERT INTO query_rewrite.rewrite_rules (pattern, replacement)
@@ -623,7 +623,7 @@ mysql> CALL query_rewrite.flush_rewrite_rules();
 ERROR 1644 (45000): Loading of some rule(s) failed.
 ```
 
-Quando isso ocorre, o plugin escreve uma mensagem de erro na coluna `message` da linha da regra para comunicar o problema. Verifique a tabela `rewrite_rules` para linhas com valores na coluna `message` que não são `NULL`. Isso ajudará a identificar quais problemas existem.
+Quando isso ocorre, o plugin escreve uma mensagem de erro na coluna `message` da string da regra para comunicar o problema. Verifique a tabela `rewrite_rules` para strings com valores na coluna `message` que não são `NULL`. Isso ajudará a identificar quais problemas existem.
 
 Os padrões utilizam a mesma sintaxe que as instruções preparadas (consulte a Seção 13.5.1, “Instrução PREPARE”). Dentro de um modelo de padrão, os caracteres `?` atuam como marcadores de parâmetro que correspondem a valores de dados. Os caracteres `?` não devem ser fechados entre aspas. Os marcadores de parâmetro podem ser usados apenas onde os valores de dados devem aparecer, e não podem ser usados para palavras-chave SQL, identificadores, funções, etc. O plugin analisa uma instrução para identificar os valores literais (conforme definido na Seção 9.1, “Valores Literais”), então você pode colocar um marcador de parâmetro no lugar de qualquer valor literal.
 
@@ -681,7 +681,7 @@ A tabela `rewrite_rules` contém uma coluna `pattern_database` que a tabela `Rew
 
 * Os nomes de tabela não qualificados em declarações correspondem a nomes não qualificados no padrão apenas se o banco de dados padrão for o mesmo que `pattern_database` e os nomes de tabela forem idênticos.
 
-Suponha que uma tabela chamada `appdb.users` tenha uma coluna chamada `id` e que as aplicações sejam esperadas para selecionar linhas da tabela usando uma consulta de um desses formulários, onde a segunda pode ser usada quando `appdb` é o banco de dados padrão:
+Suponha que uma tabela chamada `appdb.users` tenha uma coluna chamada `id` e que as aplicações sejam esperadas para selecionar strings da tabela usando uma consulta de um desses formulários, onde a segunda pode ser usada quando `appdb` é o banco de dados padrão:
 
 ```sql
 SELECT * FROM users WHERE appdb.id = id_value;
@@ -690,7 +690,7 @@ SELECT * FROM users WHERE id = id_value;
 
 Suponha também que a coluna `id` seja renomeada para `user_id` (talvez a tabela precise ser modificada para adicionar outro tipo de ID e seja necessário indicar mais especificamente qual tipo de ID a coluna `id` representa).
 
-A mudança significa que as aplicações devem se referir a `user_id` em vez de `id` na cláusula `WHERE`, mas as aplicações antigas que não podem ser atualizadas não funcionam mais corretamente. O plugin `Rewriter` pode resolver esse problema, correspondendo e reescrevendo as declarações problemáticas. Para corresponder à declaração `SELECT * FROM appdb.users WHERE id = value` e reescrevê-la como `SELECT * FROM appdb.users WHERE user_id = value`, você pode inserir uma linha representando uma regra de substituição na tabela de regras de reescrita. Se você também deseja corresponder a este `SELECT` usando o nome da tabela não qualificada, também é necessário adicionar uma regra explícita. Usando `?` como um localizador de valor, as duas declarações `INSERT` necessárias parecem assim:
+A mudança significa que as aplicações devem se referir a `user_id` em vez de `id` na cláusula `WHERE`, mas as aplicações antigas que não podem ser atualizadas não funcionam mais corretamente. O plugin `Rewriter` pode resolver esse problema, correspondendo e reescrevendo as declarações problemáticas. Para corresponder à declaração `SELECT * FROM appdb.users WHERE id = value` e reescrevê-la como `SELECT * FROM appdb.users WHERE user_id = value`, você pode inserir uma string representando uma regra de substituição na tabela de regras de reescrita. Se você também deseja corresponder a este `SELECT` usando o nome da tabela não qualificada, também é necessário adicionar uma regra explícita. Usando `?` como um localizador de valor, as duas declarações `INSERT` necessárias parecem assim:
 
 ```sql
 INSERT INTO query_rewrite.rewrite_rules
@@ -728,7 +728,7 @@ O plugin combina cada declaração com as regras de reescrita da seguinte forma:
 
 Se várias regras corresponderem a uma declaração, não é determinado qual plugin usa para reescrever a declaração.
 
-Se um padrão contiver mais marcadores do que a substituição, o plugin descarta os valores de dados em excesso. Se um padrão contiver menos marcadores do que a substituição, é um erro. O plugin percebe isso quando a tabela de regras é carregada, escreve uma mensagem de erro na coluna `message` da linha da regra para comunicar o problema e define a variável de status `Rewriter_reload_error` para `ON`.
+Se um padrão contiver mais marcadores do que a substituição, o plugin descarta os valores de dados em excesso. Se um padrão contiver menos marcadores do que a substituição, é um erro. O plugin percebe isso quando a tabela de regras é carregada, escreve uma mensagem de erro na coluna `message` da string da regra para comunicar o problema e define a variável de status `Rewriter_reload_error` para `ON`.
 
 ##### Reescrita de declarações preparadas
 
@@ -776,7 +776,7 @@ mysql> SHOW GLOBAL STATUS LIKE 'Rewriter_reload_error';
 +-----------------------+-------+
 ```
 
-Nesse caso, verifique a tabela `rewrite_rules` para verificar as linhas com valores de coluna `NULL` que não são `message` para ver quais problemas existem.
+Nesse caso, verifique a tabela `rewrite_rules` para verificar as strings com valores de coluna `NULL` que não são `message` para ver quais problemas existem.
 
 ##### Plugin de Reescritor Uso de Conjuntos de Caracteres
 
@@ -855,7 +855,7 @@ Este procedimento armazenado usa a função `load_rewrite_rules()` para carregar
 
 Chamar `flush_rewrite_rules()` implica em `COMMIT`.
 
-Invoque este procedimento após modificar a tabela de regras para fazer com que o plugin atualize seu cache com o novo conteúdo da tabela. Se ocorrerem erros, o plugin define a coluna `message` para as linhas de regra apropriadas na tabela e define a variável de status `Rewriter_reload_error` para `ON`.
+Invoque este procedimento após modificar a tabela de regras para fazer com que o plugin atualize seu cache com o novo conteúdo da tabela. Se ocorrerem erros, o plugin define a coluna `message` para as strings de regra apropriadas na tabela e define a variável de status `Rewriter_reload_error` para `ON`.
 
 * `load_rewrite_rules()`
 
@@ -1582,7 +1582,7 @@ int mysql_acquire_locking_service_locks(MYSQL_THD opaque_thd,
 
 Os argumentos têm esses significados:
 
-* `opaque_thd`: Um controle de fio. Se especificado como `NULL`, o controle do fio do thread atual é usado.
+* `opaque_thd`: Um controle de thread. Se especificado como `NULL`, o controle do thread do thread atual é usado.
 
 * `lock_namespace`: Uma cadeia de caracteres terminada por nulo que indica o espaço de nomes de bloqueio.
 
@@ -1603,7 +1603,7 @@ int mysql_release_locking_service_locks(MYSQL_THD opaque_thd,
 
 Os argumentos têm esses significados:
 
-* `opaque_thd`: Um controle de fio. Se especificado como `NULL`, o controle do fio do thread atual é usado.
+* `opaque_thd`: Um controle de thread. Se especificado como `NULL`, o controle do thread do thread atual é usado.
 
 * `lock_namespace`: Uma cadeia de caracteres terminada por nulo que indica o espaço de nomes de bloqueio.
 
@@ -1703,7 +1703,7 @@ Se você examinar a tabela do Schema de desempenho `metadata_locks` neste moment
 
 Como a sessão mantém pelo menos um bloqueio de escrita em `(ns, lock1)`, nenhuma outra sessão pode adquirir um bloqueio para ele, seja de leitura ou de escrita. Se a sessão tivesse apenas blocos de leitura para o identificador, outras sessões poderiam adquirir blocos de leitura para ele, mas não blocos de escrita.
 
-As chaves para uma única chamada de aquisição de chave são adquiridas de forma atômica, mas a atinência não se estende a chamadas múltiplas. Assim, para uma declaração como a seguinte, onde `service_get_write_locks()` é chamada uma vez por linha do conjunto de resultados, a atinência se mantém para cada chamada individual, mas não para a declaração como um todo:
+As chaves para uma única chamada de aquisição de chave são adquiridas de forma atômica, mas a atinência não se estende a chamadas múltiplas. Assim, para uma declaração como a seguinte, onde `service_get_write_locks()` é chamada uma vez por string do conjunto de resultados, a atinência se mantém para cada chamada individual, mas não para a declaração como um todo:
 
 ```sql
 SELECT service_get_write_locks('ns', 'lock1', 'lock2', 0) FROM t1 WHERE ... ;
@@ -1717,7 +1717,7 @@ Como o serviço de bloqueio retorna um bloqueio separado para cada solicitação
 INSERT INTO ... SELECT service_get_write_locks('ns', t1.col_name, 0) FROM t1;
 ```
 
-Esses tipos de declarações podem ter certos efeitos adversos. Por exemplo, se a declaração falhar em meio caminho e for revertida, as chaves adquiridas até o ponto de falha ainda existem. Se a intenção é que haja uma correspondência entre as linhas inseridas e as chaves adquiridas, essa intenção não é satisfeita. Além disso, se é importante que as chaves sejam concedidas em uma certa ordem, esteja ciente de que a ordem do conjunto de resultados pode diferir dependendo do plano de execução que o otimizador escolhe. Por essas razões, pode ser melhor limitar as aplicações a uma única chamada de aquisição de chave por declaração.
+Esses tipos de declarações podem ter certos efeitos adversos. Por exemplo, se a declaração falhar em meio caminho e for revertida, as chaves adquiridas até o ponto de falha ainda existem. Se a intenção é que haja uma correspondência entre as strings inseridas e as chaves adquiridas, essa intenção não é satisfeita. Além disso, se é importante que as chaves sejam concedidas em uma certa ordem, esteja ciente de que a ordem do conjunto de resultados pode diferir dependendo do plano de execução que o otimizador escolhe. Por essas razões, pode ser melhor limitar as aplicações a uma única chamada de aquisição de chave por declaração.
 
 ###### Monitoramento do Serviço de Fechamento
 

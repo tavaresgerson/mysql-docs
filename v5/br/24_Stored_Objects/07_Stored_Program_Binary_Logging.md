@@ -8,9 +8,9 @@ O log binário contém informações sobre declarações SQL que modificam o con
 
 No entanto, se o registro ocorrer no nível de declaração, há certos problemas de registro binário em relação a programas armazenados (procedimentos e funções armazenados, gatilhos e eventos):
 
-* Em alguns casos, uma declaração pode afetar diferentes conjuntos de linhas no banco de dados de origem e na replica.
+* Em alguns casos, uma declaração pode afetar diferentes conjuntos de strings no banco de dados de origem e na replica.
 
-* As declarações replicadas executadas em uma réplica são processadas pelo fio SQL da réplica, que possui privilégios completos. É possível que um procedimento siga caminhos de execução diferentes nos servidores de origem e réplica, de modo que um usuário possa escrever uma rotina que contenha uma declaração perigosa que seja executada apenas na réplica onde é processada por um fio que possui privilégios completos.
+* As declarações replicadas executadas em uma réplica são processadas pelo thread SQL da réplica, que possui privilégios completos. É possível que um procedimento siga caminhos de execução diferentes nos servidores de origem e réplica, de modo que um usuário possa escrever uma rotina que contenha uma declaração perigosa que seja executada apenas na réplica onde é processada por um thread que possui privilégios completos.
 
 * Se um programa armazenado que modifica dados for não determinístico, ele não é repetiível. Isso pode resultar em dados diferentes na fonte e na replica, ou fazer com que os dados restaurados se diferenciem dos dados originais.
 
@@ -18,9 +18,9 @@ Esta seção descreve como o MySQL lida com o registro binário para programas a
 
 A menos que haja indicação em contrário, as observações aqui assumem que o registro binário está habilitado no servidor (consulte a Seção 5.4.4, “O Registro Binário”). Se o registro binário não estiver habilitado, a replicação não é possível, e o registro binário também não está disponível para recuperação de dados. No MySQL 5.7, o registro binário não está habilitado por padrão, e você o habilita usando a opção `--log-bin`.
 
-Em geral, os problemas descritos aqui ocorrem quando o registro binário ocorre no nível do comando SQL (registro binário baseado em declaração). Se você usar o registro binário baseado em linha, o registro contém as alterações feitas em linhas individuais como resultado da execução de declarações SQL. Quando rotinas ou gatilhos são executados, as alterações de linha são registradas, não as declarações que fazem as alterações. Para procedimentos armazenados, isso significa que a declaração `CALL` não é registrada. Para funções armazenadas, as alterações de linha feitas dentro da função são registradas, não a invocação da função. Para gatilhos, as alterações de linha feitas pelo gatilho são registradas. No lado da replica, apenas as alterações de linha são vistas, não a invocação do programa armazenado.
+Em geral, os problemas descritos aqui ocorrem quando o registro binário ocorre no nível do comando SQL (registro binário baseado em declaração). Se você usar o registro binário baseado em string, o registro contém as alterações feitas em strings individuais como resultado da execução de declarações SQL. Quando rotinas ou gatilhos são executados, as alterações de string são registradas, não as declarações que fazem as alterações. Para procedimentos armazenados, isso significa que a declaração `CALL` não é registrada. Para funções armazenadas, as alterações de string feitas dentro da função são registradas, não a invocação da função. Para gatilhos, as alterações de string feitas pelo gatilho são registradas. No lado da replica, apenas as alterações de string são vistas, não a invocação do programa armazenado.
 
-O registro binário de formato misto (`binlog_format=MIXED`) utiliza registro binário baseado em declarações, exceto nos casos em que apenas o registro binário baseado em linhas garante resultados adequados. Com o formato misto, quando uma função armazenada, um procedimento armazenado, um gatilho, um evento ou uma declaração preparada contém algo que não é seguro para registro binário baseado em declarações, toda a declaração é marcada como insegura e registrada em formato de linha. As declarações usadas para criar e descartar procedimentos, funções, gatilhos e eventos são sempre seguras e são registradas em formato de declaração. Para mais informações sobre registro baseado em linha, misto e baseado em declarações, e como os termos seguros e inseguro são determinados, consulte a Seção 16.2.1, “Formatos de Replicação”.
+O registro binário de formato misto (`binlog_format=MIXED`) utiliza registro binário baseado em declarações, exceto nos casos em que apenas o registro binário baseado em strings garante resultados adequados. Com o formato misto, quando uma função armazenada, um procedimento armazenado, um gatilho, um evento ou uma declaração preparada contém algo que não é seguro para registro binário baseado em declarações, toda a declaração é marcada como insegura e registrada em formato de string. As declarações usadas para criar e descartar procedimentos, funções, gatilhos e eventos são sempre seguras e são registradas em formato de declaração. Para mais informações sobre registro baseado em string, misto e baseado em declarações, e como os termos seguros e inseguro são determinados, consulte a Seção 16.2.1, “Formatos de Replicação”.
 
 As condições para o uso de funções armazenadas no MySQL podem ser resumidas da seguinte forma. Essas condições não se aplicam a procedimentos armazenados ou eventos do Agendamento de Eventos e não se aplicam a menos que o registro binário esteja habilitado.
 
@@ -72,9 +72,9 @@ Essa função modifica dados, então ela pode não ser segura:
 
 A avaliação da natureza de uma função é baseada na "honestidade" do criador. O MySQL não verifica se uma função declarada `DETERMINISTIC` está livre de declarações que produzem resultados não determinísticos.
 
-* Quando você tenta executar uma função armazenada, se `binlog_format=STATEMENT` estiver definido, a palavra-chave `DETERMINISTIC` deve ser especificada na definição da função. Se este não for o caso, um erro é gerado e a função não é executada, a menos que `log_bin_trust_function_creators=1` seja especificado para ignorar essa verificação (veja abaixo). Para chamadas recursivas de função, a palavra-chave `DETERMINISTIC` é necessária apenas na chamada mais externa. Se o registro baseado em linha ou binário misto estiver em uso, a declaração é aceita e replicada mesmo se a função foi definida sem a palavra-chave `DETERMINISTIC`.
+* Quando você tenta executar uma função armazenada, se `binlog_format=STATEMENT` estiver definido, a palavra-chave `DETERMINISTIC` deve ser especificada na definição da função. Se este não for o caso, um erro é gerado e a função não é executada, a menos que `log_bin_trust_function_creators=1` seja especificado para ignorar essa verificação (veja abaixo). Para chamadas recursivas de função, a palavra-chave `DETERMINISTIC` é necessária apenas na chamada mais externa. Se o registro baseado em string ou binário misto estiver em uso, a declaração é aceita e replicada mesmo se a função foi definida sem a palavra-chave `DETERMINISTIC`.
 
-* Como o MySQL não verifica se uma função é realmente determinística no momento da criação, a invocação de uma função armazenada com a palavra-chave `DETERMINISTIC` pode realizar uma ação que é insegura para o registro baseado em declarações, ou invocar uma função ou procedimento que contenha declarações inseguras. Se isso ocorrer quando o `binlog_format=STATEMENT` estiver definido, uma mensagem de aviso é emitida. Se o registro baseado em linhas ou misto binário estiver em uso, não é emitido nenhum aviso e a declaração é replicada no formato baseado em linha.
+* Como o MySQL não verifica se uma função é realmente determinística no momento da criação, a invocação de uma função armazenada com a palavra-chave `DETERMINISTIC` pode realizar uma ação que é insegura para o registro baseado em declarações, ou invocar uma função ou procedimento que contenha declarações inseguras. Se isso ocorrer quando o `binlog_format=STATEMENT` estiver definido, uma mensagem de aviso é emitida. Se o registro baseado em strings ou misto binário estiver em uso, não é emitido nenhum aviso e a declaração é replicada no formato baseado em string.
 
 * Para relaxar as condições anteriores sobre a criação de funções (que você deve ter o privilégio `SUPER` e que uma função deve ser declarada determinística ou não modificar dados), defina a variável de sistema global `log_bin_trust_function_creators` para 1. Por padrão, essa variável tem um valor de 0, mas você pode alterá-la da seguinte forma:
 
@@ -92,7 +92,7 @@ Os gatilhos são semelhantes às funções armazenadas, então as observações 
 
 Os gatilhos podem atualizar tabelas, portanto, mensagens de erro semelhantes às das funções armazenadas ocorrem com `CREATE TRIGGER` se você não tiver os privilégios necessários. No lado da replica, a replica usa o atributo `DEFINER` para determinar qual usuário é considerado o criador do gatilho.
 
-O restante desta seção fornece detalhes adicionais sobre a implementação de registro e suas implicações. Você não precisa lê-la, a menos que esteja interessado no contexto sobre a justificativa para as atuais condições relacionadas ao registro de uso de rotina armazenada. Esta discussão se aplica apenas ao registro baseado em declarações, e não ao registro baseado em linhas, com exceção do primeiro item: as declarações `CREATE` e `DROP` são registradas como declarações, independentemente do modo de registro.
+O restante desta seção fornece detalhes adicionais sobre a implementação de registro e suas implicações. Você não precisa lê-la, a menos que esteja interessado no contexto sobre a justificativa para as atuais condições relacionadas ao registro de uso de rotina armazenada. Esta discussão se aplica apenas ao registro baseado em declarações, e não ao registro baseado em strings, com exceção do primeiro item: as declarações `CREATE` e `DROP` são registradas como declarações, independentemente do modo de registro.
 
 * O servidor escreve as declarações `CREATE EVENT`, `CREATE PROCEDURE`, `CREATE FUNCTION`, `ALTER EVENT`, `ALTER PROCEDURE`, `ALTER FUNCTION`, `DROP EVENT`, `DROP PROCEDURE` e `DROP FUNCTION` no log binário.
 
@@ -113,7 +113,7 @@ O restante desta seção fornece detalhes adicionais sobre a implementação de 
   SELECT f1(a) FROM t1;
   ```
 
-Quando a declaração `SELECT` é executada, a função `f1()` é invocada três vezes. Duas dessas invocações inserem uma linha, e o MySQL registra uma declaração `SELECT` para cada uma delas. Ou seja, o MySQL escreve as seguintes declarações no log binário:
+Quando a declaração `SELECT` é executada, a função `f1()` é invocada três vezes. Duas dessas invocações inserem uma string, e o MySQL registra uma declaração `SELECT` para cada uma delas. Ou seja, o MySQL escreve as seguintes declarações no log binário:
 
   ```sql
   SELECT f1(1);
@@ -126,7 +126,7 @@ O servidor também registra uma declaração `SELECT` para uma invocação de fu
 
 É possível que uma função siga diferentes caminhos de execução nos servidores de origem e réplica.
 
-+ As declarações executadas em uma réplica são processadas pelo fio SQL da réplica, que possui privilégios completos.
++ As declarações executadas em uma réplica são processadas pelo thread SQL da réplica, que possui privilégios completos.
 
 A implicação é que, embora o usuário deva ter o privilégio `CREATE ROUTINE` para criar uma função, ele pode escrever uma função que contenha uma declaração perigosa que seja executada apenas na réplica onde ela é processada por um thread que tenha privilégios completos. Por exemplo, se os servidores de origem e réplica tiverem os valores de ID de servidor 1 e 2, respectivamente, um usuário no servidor de origem pode criar e invocar uma função insegura `unsafe_func()` da seguinte forma:
 

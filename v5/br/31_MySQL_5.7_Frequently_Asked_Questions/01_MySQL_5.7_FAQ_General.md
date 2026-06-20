@@ -124,7 +124,7 @@ A.1.9. O MySQL pode realizar transações ACID?
 <p>Um único núcleo é geralmente usado para atender aos comandos emitidos a partir de uma sessão.</p>
 </li>
 <li class="listitem">
-<p>Alguns fios de fundo fazem uso limitado de núcleos extras; por exemplo, para manter as tarefas de E/S em segundo plano em movimento.</p>
+<p>Alguns threads de fundo fazem uso limitado de núcleos extras; por exemplo, para manter as tarefas de E/S em segundo plano em movimento.</p>
 </li>
 <li class="listitem">
 <p>Se o banco de dados estiver limitado por I/O (indicado pelo consumo de CPU menor que a capacidade), adicionar mais CPUs é inútil. Se o banco de dados estiver dividido em uma parte limitada por I/O e uma parte limitada por CPU, adicionar CPUs ainda pode ser útil.</p>
@@ -154,7 +154,7 @@ A.1.9. O MySQL pode realizar transações ACID?
 <tr class="answer">
 <td align="left" valign="top"></td>
 <td align="left" valign="top">
-<p>Sim. Todas as versões atuais do MySQL suportam transações. O<code>InnoDB</code>O mecanismo de armazenamento oferece transações ACID completas com bloqueio de nível de linha, multiversão, leituras repetidas não bloqueáveis e os quatro níveis de isolamento padrão do SQL.</p>
+<p>Sim. Todas as versões atuais do MySQL suportam transações. O<code>InnoDB</code>O mecanismo de armazenamento oferece transações ACID completas com bloqueio de nível de string, multiversão, leituras repetidas não bloqueáveis e os quatro níveis de isolamento padrão do SQL.</p>
 <p>O<code>NDB</code>o motor de armazenamento suporta o<code>READ COMMITTED</code>apenas nível de isolamento de transação.</p>
 </td>
 </tr>

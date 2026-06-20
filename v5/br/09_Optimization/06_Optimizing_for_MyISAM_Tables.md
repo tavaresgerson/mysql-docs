@@ -6,31 +6,31 @@ O motor de armazenamento `MyISAM` funciona melhor com dados que são lidos princ
 
 Algumas dicas gerais para acelerar as consultas em tabelas de `MyISAM`:
 
-* Para ajudar o MySQL a otimizar melhor as consultas, use `ANALYZE TABLE` ou execute **myisamchk --analyze** em uma tabela após ela ter sido carregada com dados. Isso atualiza um valor para cada parte do índice que indica o número médio de linhas que têm o mesmo valor. (Para índices exclusivos, isso é sempre 1.) O MySQL usa isso para decidir qual índice escolher quando você junta duas tabelas com base em uma expressão não constante. Você pode verificar o resultado da análise da tabela usando `SHOW INDEX FROM tbl_name` e examinando o valor de `Cardinality`. **myisamchk --description --verbose** mostra informações sobre a distribuição do índice.
+* Para ajudar o MySQL a otimizar melhor as consultas, use `ANALYZE TABLE` ou execute **myisamchk --analyze** em uma tabela após ela ter sido carregada com dados. Isso atualiza um valor para cada parte do índice que indica o número médio de strings que têm o mesmo valor. (Para índices exclusivos, isso é sempre 1.) O MySQL usa isso para decidir qual índice escolher quando você junta duas tabelas com base em uma expressão não constante. Você pode verificar o resultado da análise da tabela usando `SHOW INDEX FROM tbl_name` e examinando o valor de `Cardinality`. **myisamchk --description --verbose** mostra informações sobre a distribuição do índice.
 
-* Para ordenar um índice e dados de acordo com um índice, use **myisamchk --sort-index --sort-records=1** (assumindo que você deseja ordenar no índice 1). Esta é uma boa maneira de tornar as consultas mais rápidas se você tiver um índice exclusivo do qual deseja ler todas as linhas em ordem de acordo com o índice. A primeira vez que você ordena uma tabela dessa maneira, pode levar um longo tempo.
+* Para ordenar um índice e dados de acordo com um índice, use **myisamchk --sort-index --sort-records=1** (assumindo que você deseja ordenar no índice 1). Esta é uma boa maneira de tornar as consultas mais rápidas se você tiver um índice exclusivo do qual deseja ler todas as strings em ordem de acordo com o índice. A primeira vez que você ordena uma tabela dessa maneira, pode levar um longo tempo.
 
 * Tente evitar consultas complexas de `SELECT` em tabelas de `MyISAM` que são atualizadas frequentemente, para evitar problemas com bloqueio de tabela que ocorrem devido à concorrência entre leitores e escritores.
 
-* `MyISAM` suporta inserções concorrentes: Se uma tabela não tiver blocos livres no meio do arquivo de dados, você pode `INSERT` inserir novas linhas nela ao mesmo tempo em que outros threads estão lendo da tabela. Se é importante ser capaz de fazer isso, considere usar a tabela de maneiras que evitem a exclusão de linhas. Outra possibilidade é executar `OPTIMIZE TABLE` para desfragmentar a tabela após ter excluído muitas linhas dela. Esse comportamento é alterado ao definir a variável `concurrent_insert`. Você pode forçar novas linhas a serem anexadas (e, portanto, permitir inserções concorrentes), mesmo em tabelas que tenham linhas excluídas. Veja a Seção 8.11.3, “Inserções Concorrentes”.
+* `MyISAM` suporta inserções concorrentes: Se uma tabela não tiver blocos livres no meio do arquivo de dados, você pode `INSERT` inserir novas strings nela ao mesmo tempo em que outros threads estão lendo da tabela. Se é importante ser capaz de fazer isso, considere usar a tabela de maneiras que evitem a exclusão de strings. Outra possibilidade é executar `OPTIMIZE TABLE` para desfragmentar a tabela após ter excluído muitas strings dela. Esse comportamento é alterado ao definir a variável `concurrent_insert`. Você pode forçar novas strings a serem anexadas (e, portanto, permitir inserções concorrentes), mesmo em tabelas que tenham strings excluídas. Veja a Seção 8.11.3, “Inserções Concorrentes”.
 
-* Para tabelas `MyISAM` que mudam com frequência, tente evitar todas as colunas de comprimento variável (`VARCHAR`, `BLOB` e `TEXT`). A tabela usa o formato de linha dinâmico se incluir até mesmo uma única coluna de comprimento variável. Veja o Capítulo 15, *Motores de Armazenamento Alternativos*.
+* Para tabelas `MyISAM` que mudam com frequência, tente evitar todas as colunas de comprimento variável (`VARCHAR`, `BLOB` e `TEXT`). A tabela usa o formato de string dinâmico se incluir até mesmo uma única coluna de comprimento variável. Veja o Capítulo 15, *Motores de Armazenamento Alternativos*.
 
-Normalmente, não é útil dividir uma tabela em diferentes tabelas apenas porque as linhas se tornam grandes. Ao acessar uma linha, o maior impacto no desempenho é o busca no disco necessário para encontrar o primeiro byte da linha. Após encontrar os dados, a maioria dos discos modernos pode ler toda a linha o suficiente para a maioria das aplicações. Os únicos casos em que dividir uma tabela faz uma diferença perceptível é se for uma tabela `MyISAM` usando um formato de linha dinâmico que você pode alterar para um tamanho de linha fixo, ou se você precisa muito frequentemente de escanear a tabela, mas não precisa da maioria das colunas. Veja o Capítulo 15, *Motores de Armazenamento Alternativos*.
+Normalmente, não é útil dividir uma tabela em diferentes tabelas apenas porque as strings se tornam grandes. Ao acessar uma string, o maior impacto no desempenho é o busca no disco necessário para encontrar o primeiro byte da string. Após encontrar os dados, a maioria dos discos modernos pode ler toda a string o suficiente para a maioria das aplicações. Os únicos casos em que dividir uma tabela faz uma diferença perceptível é se for uma tabela `MyISAM` usando um formato de string dinâmico que você pode alterar para um tamanho de string fixo, ou se você precisa muito frequentemente de escanear a tabela, mas não precisa da maioria das colunas. Veja o Capítulo 15, *Motores de Armazenamento Alternativos*.
 
-* Use `ALTER TABLE ... ORDER BY expr1, expr2, ...` se você geralmente recupera linhas em ordem de `expr1, expr2, ...`. Ao usar esta opção após alterações extensas na tabela, você poderá obter um desempenho maior.
+* Use `ALTER TABLE ... ORDER BY expr1, expr2, ...` se você geralmente recupera strings em ordem de `expr1, expr2, ...`. Ao usar esta opção após alterações extensas na tabela, você poderá obter um desempenho maior.
 
-* Se você precisa calcular resultados, como contagens, com base em informações de muitas linhas, pode ser preferível introduzir uma nova tabela e atualizar o contador em tempo real. Uma atualização do seguinte formato é muito rápida:
+* Se você precisa calcular resultados, como contagens, com base em informações de muitas strings, pode ser preferível introduzir uma nova tabela e atualizar o contador em tempo real. Uma atualização do seguinte formato é muito rápida:
 
   ```sql
   UPDATE tbl_name SET count_col=count_col+1 WHERE key_col=constant;
   ```
 
-Isso é muito importante quando você usa motores de armazenamento MySQL, como o `MyISAM`, que possui bloqueio apenas em nível de tabela (vários leitores com um único escritor). Isso também oferece melhor desempenho com a maioria dos sistemas de banco de dados, porque o gerenciador de bloqueio de linha, neste caso, tem menos a ver.
+Isso é muito importante quando você usa motores de armazenamento MySQL, como o `MyISAM`, que possui bloqueio apenas em nível de tabela (vários leitores com um único escritor). Isso também oferece melhor desempenho com a maioria dos sistemas de banco de dados, porque o gerenciador de bloqueio de string, neste caso, tem menos a ver.
 
 * Use `OPTIMIZE TABLE` periodicamente para evitar fragmentação com tabelas de formato dinâmico `MyISAM`. Veja a Seção 15.2.3, “Formatos de Armazenamento de Tabela MyISAM”.
 
-* Declarar uma tabela `MyISAM` com a opção de tabela `DELAY_KEY_WRITE=1` torna as atualizações de índice mais rápidas, pois elas não são descarregadas no disco até que a tabela seja fechada. O inconveniente é que, se algo matar o servidor enquanto uma tabela estiver aberta, você deve garantir que a tabela esteja em ordem, executando o servidor com a variável de sistema `myisam_recover_options` definida, ou executando **myisamchk** antes de reiniciar o servidor. (No entanto, mesmo nesse caso, você não deve perder nada ao usar `DELAY_KEY_WRITE`, porque as informações chave sempre podem ser geradas a partir das linhas de dados.)
+* Declarar uma tabela `MyISAM` com a opção de tabela `DELAY_KEY_WRITE=1` torna as atualizações de índice mais rápidas, pois elas não são descarregadas no disco até que a tabela seja fechada. O inconveniente é que, se algo matar o servidor enquanto uma tabela estiver aberta, você deve garantir que a tabela esteja em ordem, executando o servidor com a variável de sistema `myisam_recover_options` definida, ou executando **myisamchk** antes de reiniciar o servidor. (No entanto, mesmo nesse caso, você não deve perder nada ao usar `DELAY_KEY_WRITE`, porque as informações chave sempre podem ser geradas a partir das strings de dados.)
 
 * As strings são automaticamente comprimidas com espaços pré e pós-prefixo nos índices `MyISAM`. Veja a Seção 13.1.14, “Instrução CREATE INDEX”.
 
@@ -40,7 +40,7 @@ Isso é muito importante quando você usa motores de armazenamento MySQL, como o
 
 Esses conselhos de desempenho complementam as diretrizes gerais para inserções rápidas na Seção 8.2.4.1, “Otimizando as declarações INSERT”.
 
-* Para uma tabela `MyISAM`, você pode usar inserções concorrentes para adicionar linhas ao mesmo tempo em que as instruções `SELECT` estão sendo executadas, se não houver linhas excluídas no meio do arquivo de dados. Veja a Seção 8.11.3, “Inserções Concorrentes”.
+* Para uma tabela `MyISAM`, você pode usar inserções concorrentes para adicionar strings ao mesmo tempo em que as instruções `SELECT` estão sendo executadas, se não houver strings excluídas no meio do arquivo de dados. Veja a Seção 8.11.3, “Inserções Concorrentes”.
 
 * Com um pouco mais de trabalho, é possível fazer o `LOAD DATA` rodar ainda mais rápido para uma tabela `MyISAM` quando a tabela tem muitos índices. Use o procedimento a seguir:
 
@@ -75,7 +75,7 @@ Você também pode desabilitar ou habilitar os índices não únicos para uma ta
   UNLOCK TABLES;
   ```
 
-Isso beneficia o desempenho, pois o buffer de índice é descarregado no disco apenas uma vez, após todas as declarações `INSERT` terem sido concluídas. Normalmente, haveria tantos descarregamentos do buffer de índice quanto houver declarações `INSERT`. Declarações de bloqueio explícitas não são necessárias se você puder inserir todas as linhas com uma única `INSERT`.
+Isso beneficia o desempenho, pois o buffer de índice é descarregado no disco apenas uma vez, após todas as declarações `INSERT` terem sido concluídas. Normalmente, haveria tantos descarregamentos do buffer de índice quanto houver declarações `INSERT`. Declarações de bloqueio explícitas não são necessárias se você puder inserir todas as strings com uma única `INSERT`.
 
 A bloqueadoria também reduz o tempo total para testes de múltiplas conexões, embora o tempo máximo de espera para conexões individuais possa aumentar, pois elas aguardam por bloqueios. Suponha que cinco clientes tentem realizar inserções simultaneamente da seguinte forma:
 
@@ -85,7 +85,7 @@ A bloqueadoria também reduz o tempo total para testes de múltiplas conexões, 
 
 Se você não usar o bloqueio, as conexões 2, 3 e 4 terminam antes das conexões 1 e 5. Se você usar o bloqueio, as conexões 2, 3 e 4 provavelmente não terminam antes das conexões 1 ou 5, mas o tempo total deve ser cerca de 40% mais rápido.
 
-As operações `INSERT`, `UPDATE` e `DELETE` são muito rápidas no MySQL, mas você pode obter um desempenho geral melhor adicionando bloqueios em torno de tudo o que faz mais de cerca de cinco inserções ou atualizações consecutivas. Se você fizer muitas inserções consecutivas, você pode fazer um `LOCK TABLES` seguido por um `UNLOCK TABLES` de vez em quando (a cada 1.000 linhas ou algo assim) para permitir que outros threads acessem a tabela. Isso ainda resultaria em um bom ganho de desempenho.
+As operações `INSERT`, `UPDATE` e `DELETE` são muito rápidas no MySQL, mas você pode obter um desempenho geral melhor adicionando bloqueios em torno de tudo o que faz mais de cerca de cinco inserções ou atualizações consecutivas. Se você fizer muitas inserções consecutivas, você pode fazer um `LOCK TABLES` seguido por um `UNLOCK TABLES` de vez em quando (a cada 1.000 strings ou algo assim) para permitir que outros threads acessem a tabela. Isso ainda resultaria em um bom ganho de desempenho.
 
 `INSERT` ainda é muito mais lento para carregar dados do que `LOAD DATA`, mesmo quando se usa as estratégias que acabamos de descrever.
 
@@ -134,7 +134,7 @@ REPAIR TABLE tbl_name ;
 SET GLOBAL myisam_max_sort_file_size = @old_myisam_max_sort_file_size;
 ```
 
-As variáveis do sistema que afetam `REPAIR TABLE` podem ser definidas globalmente na inicialização do servidor se você deseja que os valores sejam aplicados por padrão. Por exemplo, adicione essas linhas ao arquivo do servidor `my.cnf`:
+As variáveis do sistema que afetam `REPAIR TABLE` podem ser definidas globalmente na inicialização do servidor se você deseja que os valores sejam aplicados por padrão. Por exemplo, adicione essas strings ao arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]

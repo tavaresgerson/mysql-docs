@@ -4,7 +4,7 @@ Algumas extensões às declarações `SHOW` acompanham a implementação de `INF
 
 * `SHOW` pode ser usado para obter informações sobre a estrutura do próprio `INFORMATION_SCHEMA`.
 
-* Várias declarações `SHOW` aceitam uma cláusula `WHERE` que oferece mais flexibilidade na especificação de quais linhas devem ser exibidas.
+* Várias declarações `SHOW` aceitam uma cláusula `WHERE` que oferece mais flexibilidade na especificação de quais strings devem ser exibidas.
 
 A bandeira `IS_UPDATABLE` pode ser pouco confiável se uma visão depender de uma ou mais outras visões, e uma dessas visões subjacentes for atualizada. Independentemente do valor `IS_UPDATABLE`, o servidor mantém o controle da atualizabilidade de uma visão e rejeita corretamente as operações de mudança de dados para visões que não são atualizáveis. Se o valor `IS_UPDATABLE` para uma visão se tornou impreciso devido a alterações em visões subjacentes, o valor pode ser atualizado por meio da exclusão e recreação da visão.
 
@@ -47,7 +47,7 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA;
 
 `SHOW COLUMNS` e `DESCRIBE` podem exibir informações sobre as colunas em tabelas individuais de `INFORMATION_SCHEMA`.
 
-As declarações `SHOW` que aceitam uma cláusula `LIKE` para limitar as linhas exibidas também permitem uma cláusula `WHERE` que especifica condições mais gerais que as linhas selecionadas devem satisfazer:
+As declarações `SHOW` que aceitam uma cláusula `LIKE` para limitar as strings exibidas também permitem uma cláusula `WHERE` que especifica condições mais gerais que as strings selecionadas devem satisfazer:
 
 ```sql
 SHOW CHARACTER SET

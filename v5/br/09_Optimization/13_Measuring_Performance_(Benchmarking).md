@@ -14,7 +14,7 @@ Esta seção progride de técnicas de medição simples e diretas que um único 
 
 ### 8.13.1 Medindo a Velocidade das Expressões e Funções
 
-Para medir a velocidade de uma expressão ou função específica do MySQL, invoque a função `BENCHMARK()` usando o programa cliente **mysql**. Sua sintaxe é `BENCHMARK(loop_count,expr)`. O valor de retorno é sempre zero, mas o **mysql** exibe uma linha mostrando aproximadamente quanto tempo a declaração levou para ser executada. Por exemplo:
+Para medir a velocidade de uma expressão ou função específica do MySQL, invoque a função `BENCHMARK()` usando o programa cliente **mysql**. Sua sintaxe é `BENCHMARK(loop_count,expr)`. O valor de retorno é sempre zero, mas o **mysql** exibe uma string mostrando aproximadamente quanto tempo a declaração levou para ser executada. Por exemplo:
 
 ```sql
 mysql> SELECT BENCHMARK(1000000,1+1);

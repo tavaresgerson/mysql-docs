@@ -63,11 +63,11 @@ Para um conjunto de caracteres complexo, crie um arquivo de fonte C que descreva
 
 * Se o conjunto de caracteres exigir suporte a caracteres multibyte, consulte a Seção 10.13.3, “Suporte a caracteres multibyte para conjuntos de caracteres complexos”.
 
-3. Modifique as informações de configuração. Use as informações de configuração existentes como guia para adicionar informações para *`MYSYS`*. O exemplo aqui assume que o conjunto de caracteres tem colunas padrão e binárias, mas são necessárias mais linhas se *`MYSET`* tiver colunas adicionais.
+3. Modifique as informações de configuração. Use as informações de configuração existentes como guia para adicionar informações para *`MYSYS`*. O exemplo aqui assume que o conjunto de caracteres tem colunas padrão e binárias, mas são necessárias mais strings se *`MYSET`* tiver colunas adicionais.
 
 1. Editar `mysys/charset-def.c` e “registrar” as colatões para o novo conjunto de caracteres.
 
-Adicione essas linhas à seção “declaração”:
+Adicione essas strings à seção “declaração”:
 
       ```sql
       #ifdef HAVE_CHARSET_MYSET
@@ -76,7 +76,7 @@ Adicione essas linhas à seção “declaração”:
       #endif
       ```
 
-Adicione essas linhas à seção “registro”:
+Adicione essas strings à seção “registro”:
 
       ```sql
       #ifdef HAVE_CHARSET_MYSET

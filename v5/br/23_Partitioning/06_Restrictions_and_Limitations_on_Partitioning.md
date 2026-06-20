@@ -183,7 +183,7 @@ Veja também Operações do sistema de arquivos.
 
 O escopo das restrições listadas acima inclui todas as tabelas que utilizam o mecanismo de armazenamento `InnoDB`. As declarações `CREATE TABLE` e `ALTER TABLE` que resultarão em tabelas que violam essas restrições não são permitidas.
 
-**ALTER TABLE ... ORDER BY.** Uma declaração `ALTER TABLE ... ORDER BY column` executada em uma tabela particionada faz com que as linhas sejam ordenadas apenas dentro de cada particionamento.
+**ALTER TABLE ... ORDER BY.** Uma declaração `ALTER TABLE ... ORDER BY column` executada em uma tabela particionada faz com que as strings sejam ordenadas apenas dentro de cada particionamento.
 
 **Efeitos nas declarações REPLACE por modificação de chaves primárias.** Em alguns casos, pode ser desejável (ver Seção 22.6.1, "Chaves de Partição, Chaves Primárias e Chaves Únicas") modificar a chave primária de uma tabela. Esteja ciente de que, se sua aplicação utiliza declarações `REPLACE` e você fizer isso, os resultados dessas declarações podem ser drasticamente alterados. Consulte a Seção 13.2.8, "Declaração REPLACE", para mais informações e um exemplo.
 
@@ -687,9 +687,9 @@ Consulte a Seção 12.6.2, “Funções Matemáticas”, para obter mais informa
 
 ### 22.6.4 Partição e bloqueio
 
-Para motores de armazenamento, como `MyISAM` que executam bloqueios de nível de tabela ao executar instruções DML ou DDL, uma declaração em versões mais antigas do MySQL (5.6.5 e anteriores) que afetava uma tabela particionada impunha um bloqueio na tabela como um todo; ou seja, todas as partições eram bloqueadas até que a declaração fosse concluída. No MySQL 5.7, a poda de bloqueio de partição elimina blocos desnecessários em muitos casos, e a maioria das declarações que leem ou atualizam uma tabela particionada `MyISAM` causa apenas o bloqueio das partições que realmente contêm as linhas que satisfazem a condição `SELECT` da declaração `WHERE` são bloqueadas. Por exemplo, uma `SELECT` de uma tabela particionada `MyISAM` bloqueia apenas as partições que realmente contêm as linhas que satisfazem a condição `SELECT` da declaração `WHERE` são bloqueadas.
+Para motores de armazenamento, como `MyISAM` que executam bloqueios de nível de tabela ao executar instruções DML ou DDL, uma declaração em versões mais antigas do MySQL (5.6.5 e anteriores) que afetava uma tabela particionada impunha um bloqueio na tabela como um todo; ou seja, todas as partições eram bloqueadas até que a declaração fosse concluída. No MySQL 5.7, a poda de bloqueio de partição elimina blocos desnecessários em muitos casos, e a maioria das declarações que leem ou atualizam uma tabela particionada `MyISAM` causa apenas o bloqueio das partições que realmente contêm as strings que satisfazem a condição `SELECT` da declaração `WHERE` são bloqueadas. Por exemplo, uma `SELECT` de uma tabela particionada `MyISAM` bloqueia apenas as partições que realmente contêm as strings que satisfazem a condição `SELECT` da declaração `WHERE` são bloqueadas.
 
-Para declarações que afetam tabelas particionadas usando motores de armazenamento como `InnoDB`, que empregam bloqueio em nível de linha e não realizam (ou não precisam realizar) os bloqueios antes da poda de partição, isso não é um problema.
+Para declarações que afetam tabelas particionadas usando motores de armazenamento como `InnoDB`, que empregam bloqueio em nível de string e não realizam (ou não precisam realizar) os bloqueios antes da poda de partição, isso não é um problema.
 
 Os próximos parágrafos discutem os efeitos da poda de bloqueio de partição para várias declarações do MySQL em tabelas que utilizam motores de armazenamento que empregam bloqueios em nível de tabela.
 
@@ -699,7 +699,7 @@ As declarações `SELECT` (incluindo aquelas que contêm uniões ou junções) b
 
 Um `UPDATE` poda blocos apenas para tabelas nas quais não são atualizados os campos de particionamento.
 
-`REPLACE` e `INSERT` bloqueiam apenas as partições que possuem linhas a serem inseridas ou substituídas. No entanto, se um valor `AUTO_INCREMENT` for gerado para qualquer coluna de partição, todas as partições serão bloqueadas.
+`REPLACE` e `INSERT` bloqueiam apenas as partições que possuem strings a serem inseridas ou substituídas. No entanto, se um valor `AUTO_INCREMENT` for gerado para qualquer coluna de partição, todas as partições serão bloqueadas.
 
 `INSERT ... ON DUPLICATE KEY UPDATE` é podado enquanto nenhuma coluna de particionamento é atualizada.
 
@@ -707,7 +707,7 @@ Um `UPDATE` poda blocos apenas para tabelas nas quais não são atualizados os c
 
 As bloqueadoras impostas por declarações `LOAD DATA` em tabelas particionadas não podem ser reduzidas.
 
-A presença de `BEFORE INSERT` ou `BEFORE UPDATE` que utiliza qualquer coluna de particionamento de uma tabela particionada significa que as bloqueadas em declarações `INSERT` e `UPDATE` que atualizam esta tabela não podem ser eliminadas, uma vez que o gatilho pode alterar seus valores: Um gatilho `BEFORE INSERT` em qualquer uma das colunas de particionamento da tabela significa que as bloqueadas por `INSERT` ou `REPLACE` não podem ser eliminadas, uma vez que o gatilho `BEFORE INSERT` pode alterar as colunas de particionamento de uma linha antes de a linha ser inserida, forçando a linha para uma partição diferente do que seria de outra forma. Um gatilho `BEFORE UPDATE` em uma coluna de particionamento significa que as bloqueadas impostas por `UPDATE` ou `INSERT ... ON DUPLICATE KEY UPDATE` não podem ser eliminadas.
+A presença de `BEFORE INSERT` ou `BEFORE UPDATE` que utiliza qualquer coluna de particionamento de uma tabela particionada significa que as bloqueadas em declarações `INSERT` e `UPDATE` que atualizam esta tabela não podem ser eliminadas, uma vez que o gatilho pode alterar seus valores: Um gatilho `BEFORE INSERT` em qualquer uma das colunas de particionamento da tabela significa que as bloqueadas por `INSERT` ou `REPLACE` não podem ser eliminadas, uma vez que o gatilho `BEFORE INSERT` pode alterar as colunas de particionamento de uma string antes de a string ser inserida, forçando a string para uma partição diferente do que seria de outra forma. Um gatilho `BEFORE UPDATE` em uma coluna de particionamento significa que as bloqueadas impostas por `UPDATE` ou `INSERT ... ON DUPLICATE KEY UPDATE` não podem ser eliminadas.
 
 #### Declarações DDL afetadas
 

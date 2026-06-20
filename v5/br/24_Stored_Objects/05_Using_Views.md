@@ -107,9 +107,9 @@ Se o algoritmo `MERGE` não puder ser utilizado, uma tabela temporária deve ser
 
 ### 23.5.3 Visões atualizáveis e inseríveis
 
-Algumas visualizações são atualizáveis e as referências a elas podem ser usadas para especificar as tabelas que devem ser atualizadas em declarações de mudança de dados. Isso significa que você pode usá-las em declarações como `UPDATE`, `DELETE` ou `INSERT` para atualizar o conteúdo da tabela subjacente. Tabelas derivadas também podem ser especificadas em declarações de múltiplas tabelas `UPDATE` e `DELETE`, mas só podem ser usadas para ler dados para especificar linhas que devem ser atualizadas ou excluídas. Geralmente, as referências da visualização devem ser atualizáveis, o que significa que elas podem ser unidas e não materializadas. Visualizações compostas têm regras mais complexas.
+Algumas visualizações são atualizáveis e as referências a elas podem ser usadas para especificar as tabelas que devem ser atualizadas em declarações de mudança de dados. Isso significa que você pode usá-las em declarações como `UPDATE`, `DELETE` ou `INSERT` para atualizar o conteúdo da tabela subjacente. Tabelas derivadas também podem ser especificadas em declarações de múltiplas tabelas `UPDATE` e `DELETE`, mas só podem ser usadas para ler dados para especificar strings que devem ser atualizadas ou excluídas. Geralmente, as referências da visualização devem ser atualizáveis, o que significa que elas podem ser unidas e não materializadas. Visualizações compostas têm regras mais complexas.
 
-Para que uma visão seja atualizável, deve haver uma relação um-a-um entre as linhas da visão e as linhas da tabela subjacente. Existem também certos outros construtos que tornam uma visão não atualizável. Para ser mais específico, uma visão não é atualizável se contiver qualquer uma das seguintes:
+Para que uma visão seja atualizável, deve haver uma relação um-a-um entre as strings da visão e as strings da tabela subjacente. Existem também certos outros construtos que tornam uma visão não atualizável. Para ser mais específico, uma visão não é atualizável se contiver qualquer uma das seguintes:
 
 * Funções agregadas (`SUM()`, `MIN()`, `MAX()`, `COUNT()`, e assim por diante)
 
@@ -260,7 +260,7 @@ Se uma tabela contiver uma coluna `AUTO_INCREMENT`, inserir em uma visão inser�
 
 ### 23.5.4 A cláusula de opção de visualização com verificação
 
-A cláusula `WITH CHECK OPTION` pode ser aplicada em uma visão atualizável para impedir inserções em linhas para as quais a cláusula `WHERE` no *`select_statement`* não é verdadeira. Ela também impede atualizações em linhas para as quais a cláusula `WHERE` é verdadeira, mas a atualização causaria que ela não fosse verdadeira (em outras palavras, ela impede que linhas visíveis sejam atualizadas para linhas não visíveis).
+A cláusula `WITH CHECK OPTION` pode ser aplicada em uma visão atualizável para impedir inserções em strings para as quais a cláusula `WHERE` no *`select_statement`* não é verdadeira. Ela também impede atualizações em strings para as quais a cláusula `WHERE` é verdadeira, mas a atualização causaria que ela não fosse verdadeira (em outras palavras, ela impede que strings visíveis sejam atualizadas para strings não visíveis).
 
 Em uma cláusula `WITH CHECK OPTION` para uma visão atualizável, as palavras-chave `LOCAL` e `CASCADED` determinam o escopo dos testes de verificação quando a visão é definida em termos de outra visão. Quando nenhuma dessas palavras-chave é dada, o padrão é `CASCADED`.
 

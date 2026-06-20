@@ -6,7 +6,7 @@ A maioria das distribuições do MySQL inclui todos esses programas, exceto aque
 
 Cada programa do MySQL oferece muitas opções diferentes. A maioria dos programas oferece uma opção `--help` que você pode usar para obter uma descrição das diferentes opções do programa. Por exemplo, tente **mysql --help**.
 
-Você pode substituir os valores padrão das opções dos programas MySQL especificando opções na linha de comando ou em um arquivo de opções. Consulte a Seção 4.2, “Usando programas MySQL”, para obter informações gerais sobre como invocar programas e especificar opções de programas.
+Você pode substituir os valores padrão das opções dos programas MySQL especificando opções na string de comando ou em um arquivo de opções. Consulte a Seção 4.2, “Usando programas MySQL”, para obter informações gerais sobre como invocar programas e especificar opções de programas.
 
 O servidor MySQL, `mysqld`, é o principal programa que realiza a maior parte do trabalho em uma instalação do MySQL. O servidor é acompanhado por vários scripts relacionados que o ajudam a iniciar e parar o servidor:
 
@@ -60,7 +60,7 @@ Programas de cliente MySQL que se conectam ao servidor MySQL:
 
 * **mysql**
 
-A ferramenta de linha de comando para inserir interativamente instruções SQL ou executá-las a partir de um arquivo em modo em lote. Veja a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+A ferramenta de string de comando para inserir interativamente instruções SQL ou executá-las a partir de um arquivo em modo em lote. Veja a Seção 4.5.1, “mysql — O cliente de string de comando do MySQL”.
 
 * **mysqladmin**
 

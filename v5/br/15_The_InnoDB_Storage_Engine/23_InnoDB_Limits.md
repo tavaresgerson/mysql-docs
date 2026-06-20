@@ -6,11 +6,11 @@ Esta seção descreve os limites para as tabelas `InnoDB`, índices, espaços de
 
 * Uma tabela pode conter um máximo de 64 índices secundários.
 
-* Se `innodb_large_prefix` estiver habilitado (o padrão), o limite do prefixo da chave de índice é de 3072 bytes para as tabelas `InnoDB` que utilizam o formato de linha `DYNAMIC` ou `COMPRESSED`. Se `innodb_large_prefix` estiver desativado, o limite do prefixo da chave de índice é de 767 bytes para tabelas de qualquer formato de linha.
+* Se `innodb_large_prefix` estiver habilitado (o padrão), o limite do prefixo da chave de índice é de 3072 bytes para as tabelas `InnoDB` que utilizam o formato de string `DYNAMIC` ou `COMPRESSED`. Se `innodb_large_prefix` estiver desativado, o limite do prefixo da chave de índice é de 767 bytes para tabelas de qualquer formato de string.
 
 `innodb_large_prefix` é descontinuado; espere que ele seja removido em um lançamento futuro do MySQL. `innodb_large_prefix` foi introduzido no MySQL 5.5 para desabilitar grandes prefixos de chave de índice para compatibilidade com versões anteriores do `InnoDB` que não suportam grandes prefixos de chave de índice.
 
-O limite de comprimento do prefixo da chave do índice é de 767 bytes para as tabelas `InnoDB` que utilizam o formato de linha `REDUNDANT` ou `COMPACT`. Por exemplo, você pode atingir esse limite com um índice de prefixo de coluna com mais de 255 caracteres em uma coluna `TEXT` ou `VARCHAR`, assumindo um conjunto de caracteres `utf8mb3` e o máximo de 3 bytes para cada caractere.
+O limite de comprimento do prefixo da chave do índice é de 767 bytes para as tabelas `InnoDB` que utilizam o formato de string `REDUNDANT` ou `COMPACT`. Por exemplo, você pode atingir esse limite com um índice de prefixo de coluna com mais de 255 caracteres em uma coluna `TEXT` ou `VARCHAR`, assumindo um conjunto de caracteres `utf8mb3` e o máximo de 3 bytes para cada caractere.
 
 Tentar usar um prefixo de comprimento de chave de índice que exceda o limite retorna um erro. Para evitar tais erros nas configurações de replicação, evite habilitar `innodb_large_prefix` na fonte se ele não puder ser habilitado também nas réplicas.
 
@@ -24,11 +24,11 @@ Os limites que se aplicam aos prefixos de chave de índice também se aplicam à
   ERROR 1070 (42000): Too many key parts specified; max 16 parts allowed
   ```
 
-* O tamanho máximo da linha, excluindo quaisquer colunas de comprimento variável que sejam armazenadas fora da página, é um pouco menos de metade de uma página para tamanhos de página de 4KB, 8KB, 16KB e 32KB. Por exemplo, o tamanho máximo da linha para o `innodb_page_size` padrão de 16KB é de aproximadamente 8000 bytes. No entanto, para um tamanho de página `InnoDB` de 64KB, o tamanho máximo da linha é de aproximadamente 16000 bytes. As colunas `LONGBLOB` e `LONGTEXT` devem ser menores que 4GB, e o tamanho total da linha, incluindo as colunas `BLOB` e `TEXT`, deve ser menor que 4GB.
+* O tamanho máximo da string, excluindo quaisquer colunas de comprimento variável que sejam armazenadas fora da página, é um pouco menos de metade de uma página para tamanhos de página de 4KB, 8KB, 16KB e 32KB. Por exemplo, o tamanho máximo da string para o `innodb_page_size` padrão de 16KB é de aproximadamente 8000 bytes. No entanto, para um tamanho de página `InnoDB` de 64KB, o tamanho máximo da string é de aproximadamente 16000 bytes. As colunas `LONGBLOB` e `LONGTEXT` devem ser menores que 4GB, e o tamanho total da string, incluindo as colunas `BLOB` e `TEXT`, deve ser menor que 4GB.
 
-Se uma linha tiver menos de meia página, toda ela será armazenada localmente dentro da página. Se ultrapassar meia página, colunas de comprimento variável serão escolhidas para armazenamento externo fora da página até que a linha se encaixe em meia página, conforme descrito na Seção 14.12.2, “Gestão do Espaço de Arquivo”.
+Se uma string tiver menos de meia página, toda ela será armazenada localmente dentro da página. Se ultrapassar meia página, colunas de comprimento variável serão escolhidas para armazenamento externo fora da página até que a string se encaixe em meia página, conforme descrito na Seção 14.12.2, “Gestão do Espaço de Arquivo”.
 
-* Embora o `InnoDB` suporte tamanhos de linha maiores que 65.535 bytes internamente, o próprio MySQL impõe um limite de tamanho de linha de 65.535 para o tamanho combinado de todas as colunas. Veja a Seção 8.4.7, “Limites no número de colunas da tabela e tamanho de linha”.
+* Embora o `InnoDB` suporte tamanhos de string maiores que 65.535 bytes internamente, o próprio MySQL impõe um limite de tamanho de string de 65.535 para o tamanho combinado de todas as colunas. Veja a Seção 8.4.7, “Limites no número de colunas da tabela e tamanho de string”.
 
 * Em alguns sistemas operacionais mais antigos, os arquivos devem ter menos de 2 GB. Esta não é uma limitação do `InnoDB`. Se você precisar de um espaço de tabela de sistema grande, configure-o usando vários arquivos de dados menores, em vez de um único arquivo de dados grande, ou distribua os dados da tabela em arquivos de dados por tabela e arquivos de dados de espaço de tabela geral.
 

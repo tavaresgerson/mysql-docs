@@ -8,7 +8,7 @@ Existem dois tipos de monitor `InnoDB`:
 
 * O monitor padrão `InnoDB` exibe os seguintes tipos de informações:
 
-+ Trabalho realizado pelo principal fio de fundo
++ Trabalho realizado pelo principal thread de fundo
   + Espera de semaforo
   + Dados sobre a chave estrangeira mais recente e erros de bloqueio
   + Espera de bloqueio para transações
@@ -17,7 +17,7 @@ Existem dois tipos de monitor `InnoDB`:
   + Estatísticas do buffer de inserção e índice de hash adaptativo
   + Dados do log de refazer
   + Estatísticas do pool de buffer
-  + Dados de operação de linha * O `InnoDB` Lock Monitor imprime informações adicionais de bloqueio como parte da saída padrão do monitor `InnoDB`.
+  + Dados de operação de string * O `InnoDB` Lock Monitor imprime informações adicionais de bloqueio como parte da saída padrão do monitor `InnoDB`.
 
 ### 14.18.2 Habilitar monitores InnoDB
 
@@ -359,11 +359,11 @@ Esta seção mostra o timestamp, o nome do monitor e o número de segundos com b
 
 * `BACKGROUND THREAD`
 
-As linhas `srv_master_thread` mostram o trabalho realizado pelo fio de fundo principal.
+As strings `srv_master_thread` mostram o trabalho realizado pelo thread de fundo principal.
 
 * `SEMAPHORES`
 
-Esta seção relata os fios que estão aguardando um semaforo e as estatísticas sobre quantas vezes os fios precisaram de um giro ou uma espera em um semaforo de mutex ou de bloqueio de leitura/escrita. Um grande número de fios aguardando semaforos pode ser o resultado de I/O de disco ou problemas de concorrência dentro de `InnoDB`. A concorrência pode ser devido ao paralelismo pesado de consultas ou problemas na programação de threads do sistema operacional. Definir a variável de sistema `innodb_thread_concurrency` menor que o valor padrão pode ajudar em tais situações. A linha `Spin rounds per wait` mostra o número de rodadas de giro por espera do sistema operacional em um mutex.
+Esta seção relata os threads que estão aguardando um semaforo e as estatísticas sobre quantas vezes os threads precisaram de um giro ou uma espera em um semaforo de mutex ou de bloqueio de leitura/escrita. Um grande número de threads aguardando semaforos pode ser o resultado de I/O de disco ou problemas de concorrência dentro de `InnoDB`. A concorrência pode ser devido ao paralelismo pesado de consultas ou problemas na programação de threads do sistema operacional. Definir a variável de sistema `innodb_thread_concurrency` menor que o valor padrão pode ajudar em tais situações. A string `Spin rounds per wait` mostra o número de rodadas de giro por espera do sistema operacional em um mutex.
 
 As métricas de mutex são relatadas por `SHOW ENGINE INNODB MUTEX`.
 
@@ -383,7 +383,7 @@ Se esta seção relatar espera de bloqueio, suas aplicações podem ter disputa 
 
 Esta seção fornece informações sobre os threads que o `InnoDB` utiliza para realizar vários tipos de I/O. Os primeiros deles são dedicados ao processamento geral do `InnoDB`. O conteúdo também exibe informações para operações de I/O pendentes e estatísticas para o desempenho do I/O.
 
-O número desses fios é controlado pelos parâmetros `innodb_read_io_threads` e `innodb_write_io_threads`. Veja a Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”.
+O número desses threads é controlado pelos parâmetros `innodb_read_io_threads` e `innodb_write_io_threads`. Veja a Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”.
 
 * `INSERT BUFFER AND ADAPTIVE HASH INDEX`
 
@@ -403,4 +403,4 @@ Para descrições das estatísticas do buffer pool, consulte o Monitoramento do 
 
 * `ROW OPERATIONS`
 
-Esta seção mostra o que o fio principal está fazendo, incluindo o número e a taxa de desempenho para cada tipo de operação de linha.
+Esta seção mostra o que o thread principal está fazendo, incluindo o número e a taxa de desempenho para cada tipo de operação de string.

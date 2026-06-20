@@ -4,9 +4,9 @@ Esta seção descreve as estruturas de memória `InnoDB` e os tópicos relaciona
 
 ### 14.5.1 Banco de Buffer
 
-O pool de tampão é uma área na memória principal onde o `InnoDB` armazena dados de tabela e índice à medida que são acessados. O pool de tampão permite que os dados utilizados frequentemente sejam acessados diretamente da memória, o que acelera o processamento. Em servidores dedicados, até 80% da memória física é frequentemente atribuída ao pool de tampão.
+O pool de buffer é uma área na memória principal onde o `InnoDB` armazena dados de tabela e índice à medida que são acessados. O pool de buffer permite que os dados utilizados frequentemente sejam acessados diretamente da memória, o que acelera o processamento. Em servidores dedicados, até 80% da memória física é frequentemente atribuída ao pool de buffer.
 
-Para a eficiência das operações de leitura de alto volume, o conjunto de buffers é dividido em páginas que podem potencialmente conter múltiplas linhas. Para a eficiência da gestão de cache, o conjunto de buffers é implementado como uma lista vinculada de páginas; os dados que raramente são usados são eliminados da cache usando uma variação do algoritmo do menos recentemente usado (LRU).
+Para a eficiência das operações de leitura de alto volume, o conjunto de buffers é dividido em páginas que podem potencialmente conter múltiplas strings. Para a eficiência da gestão de cache, o conjunto de buffers é implementado como uma lista vinculada de páginas; os dados que raramente são usados são eliminados da cache usando uma variação do algoritmo do menos recentemente usado (LRU).
 
 Saber como aproveitar o buffer pool para manter dados frequentemente acessados na memória é um aspecto importante do ajuste do MySQL.
 
@@ -97,7 +97,7 @@ As médias por segundo fornecidas na saída do Monitor Padrão `InnoDB` são bas
 
 * A métrica `non-youngs/s` é aplicável apenas a páginas antigas. Ela é baseada no número de acessos à página. Pode haver múltiplos acessos para uma página específica, todos contados. Se você não ver um valor maior `non-youngs/s` ao realizar grandes varreduras de tabela (e um valor maior `youngs/s`,) aumente o valor do atraso. Veja a Seção 14.8.3.3, “Tornando a varredura do Buffer Pool resistente”.
 
-* A taxa `young-making` contabiliza todos os acessos à página do pool de tampão, não apenas os acessos às páginas da antiga sublista. A taxa `young-making` e a taxa `not` normalmente não somam a taxa geral de acerto do pool de tampão. Os acertos de página na antiga sublista fazem com que as páginas sejam movidas para a nova sublista, mas os acertos de página na nova sublista fazem com que as páginas sejam movidas à cabeça da lista, apenas se estiverem a uma certa distância da cabeça.
+* A taxa `young-making` contabiliza todos os acessos à página do pool de buffer, não apenas os acessos às páginas da antiga sublista. A taxa `young-making` e a taxa `not` normalmente não somam a taxa geral de acerto do pool de buffer. Os acertos de página na antiga sublista fazem com que as páginas sejam movidas para a nova sublista, mas os acertos de página na nova sublista fazem com que as páginas sejam movidas à cabeça da lista, apenas se estiverem a uma certa distância da cabeça.
 
 * `not (young-making rate)` é a taxa média de acerto na qual os acessos à página não resultaram em páginas jovens devido ao atraso definido por `innodb_old_blocks_time` não ser atendido, ou devido a acessos à página na nova sublista que não resultaram em páginas sendo movidas para a cabeça. Essa taxa contabiliza todos os acessos de página do buffer pool, não apenas os acessos para páginas na sublista antiga.
 
@@ -115,7 +115,7 @@ Ao contrário dos índices agrupados, os índices secundários geralmente não s
 
 Periodicamente, a operação de purga que é executada quando o sistema está quase parado ou durante um desligamento lento, escreve as páginas de índice atualizadas no disco. A operação de purga pode escrever blocos de disco para uma série de valores de índice de forma mais eficiente do que se cada valor fosse escrito no disco imediatamente.
 
-A fusão de buffers pode levar várias horas quando há muitas linhas afetadas e vários índices secundários a serem atualizados. Durante esse período, o I/O do disco é aumentado, o que pode causar um atraso significativo para consultas vinculadas ao disco. A fusão de buffers também pode continuar a ocorrer após a transação ser comprometida e até mesmo após o desligamento e o reinício do servidor (consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB”, para mais informações).
+A fusão de buffers pode levar várias horas quando há muitas strings afetadas e vários índices secundários a serem atualizados. Durante esse período, o I/O do disco é aumentado, o que pode causar um atraso significativo para consultas vinculadas ao disco. A fusão de buffers também pode continuar a ocorrer após a transação ser comprometida e até mesmo após o desligamento e o reinício do servidor (consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB”, para mais informações).
 
 Em memória, o buffer de alterações ocupa parte do conjunto de buffers. No disco, o buffer de alterações faz parte do espaço de tabela do sistema, onde as alterações de índice são armazenadas quando o servidor de banco de dados é desligado.
 
@@ -147,7 +147,7 @@ Não realize bufferamento em nenhuma operação.
 
 * **`inserts`**
 
-Operações de inserção de tampão.
+Operações de inserção de buffer.
 
 * **`deletes`**
 
@@ -265,7 +265,7 @@ Para informações sobre as características de desempenho dos índices de hash,
 
 ### 14.5.4 Buffer de registro
 
-O buffer de registro é a área de memória que armazena os dados que serão escritos nos arquivos de registro no disco. O tamanho do buffer de registro é definido pela variável `innodb_log_buffer_size`. O tamanho padrão é de 16 MB. O conteúdo do buffer de registro é periodicamente descarregado no disco. Um buffer de registro grande permite que transações grandes sejam executadas sem a necessidade de escrever dados de log de revisão no disco antes do comprometimento das transações. Assim, se você tiver transações que atualizam, inserem ou excluem muitas linhas, aumentar o tamanho do buffer de registro economiza o I/O do disco.
+O buffer de registro é a área de memória que armazena os dados que serão escritos nos arquivos de registro no disco. O tamanho do buffer de registro é definido pela variável `innodb_log_buffer_size`. O tamanho padrão é de 16 MB. O conteúdo do buffer de registro é periodicamente descarregado no disco. Um buffer de registro grande permite que transações grandes sejam executadas sem a necessidade de escrever dados de log de revisão no disco antes do comprometimento das transações. Assim, se você tiver transações que atualizam, inserem ou excluem muitas strings, aumentar o tamanho do buffer de registro economiza o I/O do disco.
 
 A variável `innodb_flush_log_at_trx_commit` controla como o conteúdo do buffer de registro é escrito e esvaziado no disco. A variável `innodb_flush_log_at_timeout` controla a frequência de esvaziamento do log.
 

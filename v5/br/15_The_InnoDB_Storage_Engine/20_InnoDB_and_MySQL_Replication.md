@@ -6,7 +6,7 @@ Para obter informações sobre a configuração de uma replica, consulte a Seç�
 
 As transações que falham na fonte não afetam a replicação. A replicação do MySQL é baseada no log binário, onde o MySQL escreve declarações SQL que modificam os dados. Uma transação que falha (por exemplo, devido a uma violação de chave estrangeira ou porque é revertida) não é escrita no log binário, portanto, não é enviada para as réplicas. Veja a Seção 13.3.1, “Declarações START TRANSACTION, COMMIT e ROLLBACK”.
 
-**Replicação e CASCADE.** Ações em cascata para as tabelas `InnoDB` na fonte são executadas na réplica *apenas* se as tabelas que compartilham a relação de chave estrangeira usam `InnoDB` tanto na fonte quanto na réplica. Isso é verdade, independentemente de você estar usando replicação baseada em declaração ou baseada em linha. Suponha que você tenha iniciado a replicação e, em seguida, crie duas tabelas na fonte, onde `InnoDB` é definido como o motor de armazenamento padrão, usando as seguintes declarações `CREATE TABLE`:
+**Replicação e CASCADE.** Ações em cascata para as tabelas `InnoDB` na fonte são executadas na réplica *apenas* se as tabelas que compartilham a relação de chave estrangeira usam `InnoDB` tanto na fonte quanto na réplica. Isso é verdade, independentemente de você estar usando replicação baseada em declaração ou baseada em string. Suponha que você tenha iniciado a replicação e, em seguida, crie duas tabelas na fonte, onde `InnoDB` é definido como o motor de armazenamento padrão, usando as seguintes declarações `CREATE TABLE`:
 
 ```sql
 CREATE TABLE fc1 (
@@ -22,7 +22,7 @@ CREATE TABLE fc2 (
 );
 ```
 
-Se a réplica tiver `MyISAM` definido como o motor de armazenamento padrão, as mesmas tabelas são criadas na réplica, mas elas usam o motor de armazenamento `MyISAM`, e a opção `FOREIGN KEY` é ignorada. Agora, inserimos algumas linhas nas tabelas na fonte:
+Se a réplica tiver `MyISAM` definido como o motor de armazenamento padrão, as mesmas tabelas são criadas na réplica, mas elas usam o motor de armazenamento `MyISAM`, e a opção `FOREIGN KEY` é ignorada. Agora, inserimos algumas strings nas tabelas na fonte:
 
 ```sql
 source> INSERT INTO fc1 VALUES (1, 1), (2, 2);
@@ -34,7 +34,7 @@ Query OK, 3 rows affected (0.19 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 ```
 
-Neste ponto, tanto na fonte quanto na réplica, a tabela `fc1` contém 2 linhas, e a tabela `fc2` contém 3 linhas, conforme mostrado aqui:
+Neste ponto, tanto na fonte quanto na réplica, a tabela `fc1` contém 2 strings, e a tabela `fc2` contém 3 strings, conforme mostrado aqui:
 
 ```sql
 source> SELECT * FROM fc1;
@@ -83,7 +83,7 @@ source> DELETE FROM fc1 WHERE i=1;
 Query OK, 1 row affected (0.09 sec)
 ```
 
-Devido à cascata, a tabela `fc2` na fonte agora contém apenas 1 linha:
+Devido à cascata, a tabela `fc2` na fonte agora contém apenas 1 string:
 
 ```sql
 source> SELECT * FROM fc2;
@@ -95,7 +95,7 @@ source> SELECT * FROM fc2;
 1 row in set (0.00 sec)
 ```
 
-No entanto, a cascata não se propaga na replica porque, na replica, o `DELETE` para `fc1` não exclui nenhuma linha de `fc2`. A cópia da replica de `fc2` ainda contém todas as linhas que foram originalmente inseridas:
+No entanto, a cascata não se propaga na replica porque, na replica, o `DELETE` para `fc1` não exclui nenhuma string de `fc2`. A cópia da replica de `fc2` ainda contém todas as strings que foram originalmente inseridas:
 
 ```sql
 replica> SELECT * FROM fc2;

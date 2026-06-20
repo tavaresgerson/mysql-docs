@@ -97,7 +97,7 @@ O MySQL permite que você crie uma coluna do tipo `CHAR(0)`. Isso é útil princ
 
 * `[NATIONAL] VARCHAR(M) [CHARACTER SET charset_name] [COLLATE collation_name]`
 
-Uma string de comprimento variável. *`M`* representa o comprimento máximo da coluna em caracteres. A faixa de *`M`* é de 0 a 65.535. O comprimento máximo efetivo de um `VARCHAR` está sujeito ao tamanho máximo da linha (65.535 bytes, que é compartilhado entre todas as colunas) e ao conjunto de caracteres utilizado. Por exemplo, os caracteres de `utf8` podem exigir até três bytes por caractere, então uma coluna de `VARCHAR` que utiliza o conjunto de caracteres de `utf8` pode ser declarada como um máximo de 21.844 caracteres. Veja a Seção 8.4.7, “Limites no Número de Colunas da Tabela e Tamanho da Linha”.
+Uma string de comprimento variável. *`M`* representa o comprimento máximo da coluna em caracteres. A faixa de *`M`* é de 0 a 65.535. O comprimento máximo efetivo de um `VARCHAR` está sujeito ao tamanho máximo da string (65.535 bytes, que é compartilhado entre todas as colunas) e ao conjunto de caracteres utilizado. Por exemplo, os caracteres de `utf8` podem exigir até três bytes por caractere, então uma coluna de `VARCHAR` que utiliza o conjunto de caracteres de `utf8` pode ser declarada como um máximo de 21.844 caracteres. Veja a Seção 8.4.7, “Limites no Número de Colunas da Tabela e Tamanho da String”.
 
 MySQL armazena os valores `VARCHAR` como um prefixo de comprimento de 1 byte ou 2 bytes mais dados. O prefixo de comprimento indica o número de bytes no valor. Uma coluna `VARCHAR` usa um byte de comprimento se os valores não exigirem mais de 255 bytes, dois bytes de comprimento se os valores podem exigir mais de 255 bytes.
 
@@ -171,7 +171,7 @@ Os tipos `CHAR` e `VARCHAR` são declarados com um comprimento que indica o núm
 
 O comprimento de uma coluna `CHAR` é fixo ao comprimento que você declara ao criar a tabela. O comprimento pode ser qualquer valor de 0 a 255. Quando os valores de `CHAR` são armazenados, eles são preenchidos com espaços à direita até o comprimento especificado. Quando os valores de `CHAR` são recuperados, os espaços finais são removidos, a menos que o modo SQL `PAD_CHAR_TO_FULL_LENGTH` seja habilitado.
 
-Os valores nas colunas `VARCHAR` são cadeias de caracteres de comprimento variável. O comprimento pode ser especificado como um valor de 0 a 65.535. O comprimento máximo efetivo de um `VARCHAR` está sujeito ao tamanho máximo da linha (65.535 bytes, que é compartilhado entre todas as colunas) e ao conjunto de caracteres utilizado. Veja a Seção 8.4.7, “Limites sobre o Número de Colunas da Tabela e Tamanho da Linha”.
+Os valores nas colunas `VARCHAR` são cadeias de caracteres de comprimento variável. O comprimento pode ser especificado como um valor de 0 a 65.535. O comprimento máximo efetivo de um `VARCHAR` está sujeito ao tamanho máximo da string (65.535 bytes, que é compartilhado entre todas as colunas) e ao conjunto de caracteres utilizado. Veja a Seção 8.4.7, “Limites sobre o Número de Colunas da Tabela e Tamanho da String”.
 
 Em contraste com `CHAR`, os valores de `VARCHAR` são armazenados como um prefixo de comprimento de 1 byte ou 2 bytes mais dados. O prefixo de comprimento indica o número de bytes no valor. Uma coluna usa um byte de comprimento se os valores não exigirem mais de 255 bytes, dois bytes de comprimento se os valores podem exigir mais de 255 bytes.
 
@@ -185,7 +185,7 @@ A tabela a seguir ilustra as diferenças entre `CHAR` e `VARCHAR`, mostrando o r
 
 <table summary="Illustration of the difference between CHAR and VARCHAR storage requirements by showing the required storage for various string values in CHAR(4) and VARCHAR(4) columns."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 15%"/><col style="width: 20%"/><thead><tr> <th>Value</th> <th><code>CHAR(4)</code></th> <th>Storage Required</th> <th><code>VARCHAR(4)</code></th> <th>Storage Required</th> </tr></thead><tbody><tr> <th><code>''</code></th> <td><code>'    '</code></td> <td>4 bytes</td> <td><code>''</code></td> <td>1 byte</td> </tr><tr> <th><code>'ab'</code></th> <td><code>'ab  '</code></td> <td>4 bytes</td> <td><code>'ab'</code></td> <td>3 bytes</td> </tr><tr> <th><code>'abcd'</code></th> <td><code>'abcd'</code></td> <td>4 bytes</td> <td><code>'abcd'</code></td> <td>5 bytes</td> </tr><tr> <th><code>'abcdefgh'</code></th> <td><code>'abcd'</code></td> <td>4 bytes</td> <td><code>'abcd'</code></td> <td>5 bytes</td> </tr></tbody></table>
 
-Os valores mostrados como armazenados na última linha da tabela aplicam-se *apenas quando não se está usando o modo SQL rigoroso*; se o modo rigoroso estiver ativado, os valores que excedem o comprimento da coluna *não são armazenados* e ocorre um erro.
+Os valores mostrados como armazenados na última string da tabela aplicam-se *apenas quando não se está usando o modo SQL rigoroso*; se o modo rigoroso estiver ativado, os valores que excedem o comprimento da coluna *não são armazenados* e ocorre um erro.
 
 `InnoDB` codifica campos de comprimento fixo com comprimento igual ou superior a 768 bytes como campos de comprimento variável, que podem ser armazenados fora da página. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o comprimento máximo de byte do conjunto de caracteres for maior que 3, como é o caso de `utf8mb4`.
 
@@ -283,7 +283,7 @@ Se o valor recuperado deve ser o mesmo que o valor especificado para armazenamen
 
 Nota
 
-Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 ### 11.3.4 Os tipos BLOB e TEXTO
 
@@ -323,7 +323,7 @@ Como os valores de `BLOB` e `TEXT` podem ser extremamente longos, você pode enc
 
 * Instâncias das colunas `BLOB` ou `TEXT` no resultado de uma consulta que é processada usando uma tabela temporária fazem com que o servidor use uma tabela em disco em vez de na memória, porque o mecanismo de armazenamento `MEMORY` não suporta esses tipos de dados (consulte Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL”). O uso de disco acarreta uma penalidade de desempenho, então inclua as colunas `BLOB` ou [[PH_342]] no resultado da consulta apenas se elas realmente forem necessárias. Por exemplo, evite usar `SELECT *`, que seleciona todas as colunas.
 
-* O tamanho máximo de um objeto `BLOB` ou `TEXT` é determinado por seu tipo, mas o maior valor que você realmente pode transmitir entre o cliente e o servidor é determinado pela quantidade de memória disponível e pelo tamanho dos buffers de comunicação. Você pode alterar o tamanho do buffer de mensagem alterando o valor da variável `max_allowed_packet`, mas você deve fazer isso tanto para o servidor quanto para seu programa de cliente. Por exemplo, o **mysql** e o **mysqldump** permitem que você altere o valor do `max_allowed_packet` do lado do cliente. Veja a Seção 5.1.1, “Configurando o Servidor”, a Seção 4.5.1, “mysql — O Cliente de Linha de Comando do MySQL”, e a Seção 4.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”. Você também pode querer comparar os tamanhos dos pacotes e o tamanho dos objetos de dados que você está armazenando com os requisitos de armazenamento, veja a Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”
+* O tamanho máximo de um objeto `BLOB` ou `TEXT` é determinado por seu tipo, mas o maior valor que você realmente pode transmitir entre o cliente e o servidor é determinado pela quantidade de memória disponível e pelo tamanho dos buffers de comunicação. Você pode alterar o tamanho do buffer de mensagem alterando o valor da variável `max_allowed_packet`, mas você deve fazer isso tanto para o servidor quanto para seu programa de cliente. Por exemplo, o **mysql** e o **mysqldump** permitem que você altere o valor do `max_allowed_packet` do lado do cliente. Veja a Seção 5.1.1, “Configurando o Servidor”, a Seção 4.5.1, “mysql — O Cliente de String de Comando do MySQL”, e a Seção 4.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”. Você também pode querer comparar os tamanhos dos pacotes e o tamanho dos objetos de dados que você está armazenando com os requisitos de armazenamento, veja a Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”
 
 Cada valor de `BLOB` ou `TEXT` é representado internamente por um objeto alocado separadamente. Isso contrasta com todos os outros tipos de dados, para os quais o armazenamento é alocado uma vez por coluna quando a tabela é aberta.
 
@@ -331,7 +331,7 @@ Em alguns casos, pode ser desejável armazenar dados binários, como arquivos de
 
 Nota
 
-Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 ### 11.3.5 Tipo ENUM
 
@@ -379,7 +379,7 @@ UPDATE shirts SET size = 'small' WHERE size = 'large';
 COMMIT;
 ```
 
-Inserindo 1 milhão de linhas nesta tabela com um valor de `'medium'`, seria necessário 1 milhão de bytes de armazenamento, em oposição a 6 milhões de bytes se você armazenasse a string real `'medium'` em uma coluna `VARCHAR`.
+Inserindo 1 milhão de strings nesta tabela com um valor de `'medium'`, seria necessário 1 milhão de bytes de armazenamento, em oposição a 6 milhões de bytes se você armazenasse a string real `'medium'` em uma coluna `VARCHAR`.
 
 #### Valores do índice para literais de enumeração
 
@@ -387,7 +387,7 @@ Cada valor de enumeração tem um índice:
 
 * Os elementos listados na especificação da coluna recebem números de índice, começando com 1.
 
-* O valor do índice do valor de erro de string vazia é 0. Isso significa que você pode usar a seguinte declaração `SELECT` para encontrar linhas nas quais valores inválidos de `ENUM` foram atribuídos:
+* O valor do índice do valor de erro de string vazia é 0. Isso significa que você pode usar a seguinte declaração `SELECT` para encontrar strings nas quais valores inválidos de `ENUM` foram atribuídos:
 
   ```sql
   mysql> SELECT * FROM tbl_name WHERE enum_col=0;
@@ -596,7 +596,7 @@ mysql> SELECT * FROM tbl_name WHERE FIND_IN_SET('value',set_col)>0;
 mysql> SELECT * FROM tbl_name WHERE set_col LIKE '%value%';
 ```
 
-A primeira afirmação encontra linhas onde *`set_col`* contém o membro do conjunto *`value`*. A segunda é semelhante, mas não a mesma: encontra linhas onde *`set_col`* contém *`value`* em qualquer lugar, mesmo como uma subcadeia de outro membro do conjunto.
+A primeira afirmação encontra strings onde *`set_col`* contém o membro do conjunto *`value`*. A segunda é semelhante, mas não a mesma: encontra strings onde *`set_col`* contém *`value`* em qualquer lugar, mesmo como uma subcadeia de outro membro do conjunto.
 
 As seguintes declarações também são permitidas:
 

@@ -58,7 +58,7 @@ Um erro `Access denied` pode ter muitas causas. Muitas vezes, o problema está r
 
 Um cliente MySQL no Unix pode se conectar ao servidor `mysqld` de duas maneiras diferentes: usando um arquivo de soquete Unix para se conectar através de um arquivo no sistema de arquivos (`/tmp/mysql.sock` padrão), ou usando TCP/IP, que se conecta através de um número de porta. Uma conexão com arquivo de soquete Unix é mais rápida que TCP/IP, mas pode ser usada apenas ao se conectar a um servidor no mesmo computador. Um arquivo de soquete Unix é usado se você não especificar um nome de host ou se especificar o nome de host especial `localhost`.
 
-Se o servidor MySQL estiver em execução no Windows, você pode se conectar usando TCP/IP. Se o servidor estiver iniciado com a variável de sistema `named_pipe` habilitada, você também pode se conectar com tubos nomeados se executar o cliente no host onde o servidor está em execução. O nome do tubo nomeado é `MySQL` por padrão. Se você não fornecer um nome de host ao se conectar ao `mysqld`, um cliente MySQL tentará primeiro se conectar ao tubo nomeado. Se isso não funcionar, ele se conecta à porta TCP/IP. Você pode forçar o uso de tubos nomeados no Windows usando `.` como o nome do host.
+Se o servidor MySQL estiver em execução no Windows, você pode se conectar usando TCP/IP. Se o servidor estiver iniciado com a variável de sistema `named_pipe` habilitada, você também pode se conectar com pipes nomeados se executar o cliente no host onde o servidor está em execução. O nome do pipe nomeado é `MySQL` por padrão. Se você não fornecer um nome de host ao se conectar ao `mysqld`, um cliente MySQL tentará primeiro se conectar ao pipe nomeado. Se isso não funcionar, ele se conecta à porta TCP/IP. Você pode forçar o uso de pipes nomeados no Windows usando `.` como o nome do host.
 
 O erro (2002) `Can't connect to ...` normalmente significa que não há servidor MySQL em execução no sistema ou que você está usando um nome de arquivo de soquete Unix incorreto ou número de porta TCP/IP incorreto ao tentar se conectar ao servidor. Você também deve verificar se a porta TCP/IP que você está usando não foi bloqueada por um firewall ou serviço de bloqueio de porta.
 
@@ -99,7 +99,7 @@ Aqui estão algumas razões pelas quais o erro `Can't connect to local MySQL ser
 
 Veja a Seção B.3.3.6, “Como proteger ou alterar o arquivo de soquete Unix do MySQL”.
 
-* Você está usando o Linux e um fio do servidor morreu (dumpou o núcleo). Nesse caso, você deve matar os outros `mysqld` fios (por exemplo, com **kill**) antes de poder reiniciar o servidor MySQL. Veja a Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”.
+* Você está usando o Linux e um thread do servidor morreu (dumpou o núcleo). Nesse caso, você deve matar os outros `mysqld` threads (por exemplo, com **kill**) antes de poder reiniciar o servidor MySQL. Veja a Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”.
 
 * O servidor ou o programa cliente pode não ter os privilégios de acesso adequados para o diretório que contém o arquivo de soquete Unix ou o próprio arquivo de soquete. Neste caso, você deve alterar os privilégios de acesso para o diretório ou o arquivo de soquete para que o servidor e os clientes possam acessá-los, ou reinicie o `mysqld` com uma opção `--socket` que especifique um nome de arquivo de soquete em um diretório onde o servidor pode criá-lo e onde os programas de cliente podem acessá-lo.
 
@@ -173,7 +173,7 @@ Existem três causas prováveis para essa mensagem de erro.
 
 Normalmente, isso indica problemas de conectividade de rede e você deve verificar a condição da sua rede se esse erro ocorrer com frequência. Se a mensagem de erro incluir "durante a consulta", provavelmente é esse o caso que você está enfrentando.
 
-Às vezes, o formulário "durante a consulta" acontece quando milhões de linhas estão sendo enviadas como parte de uma ou mais consultas. Se você sabe que isso está acontecendo, você deve tentar aumentar `net_read_timeout` de seu valor padrão de 30 segundos para 60 segundos ou mais, suficiente para que a transferência de dados seja concluída.
+Às vezes, o formulário "durante a consulta" acontece quando milhões de strings estão sendo enviadas como parte de uma ou mais consultas. Se você sabe que isso está acontecendo, você deve tentar aumentar `net_read_timeout` de seu valor padrão de 30 segundos para 60 segundos ou mais, suficiente para que a transferência de dados seja concluída.
 
 Mais raramente, isso pode acontecer quando o cliente está tentando a conexão inicial com o servidor. Neste caso, se o seu valor `connect_timeout` estiver definido apenas para alguns segundos, você pode ser capaz de resolver o problema aumentando-o para dez segundos, talvez mais se você tiver uma distância muito longa ou uma conexão lenta. Você pode determinar se está experimentando essa causa menos comum usando `SHOW GLOBAL STATUS LIKE 'Aborted_connects'`. Ele aumenta em um para cada tentativa de conexão inicial que o servidor aborrece. Você pode ver “leitura de pacote de autorização” como parte da mensagem de erro; se assim for, isso também sugere que essa é a solução que você precisa.
 
@@ -188,7 +188,7 @@ $> mysql -u user_name -p
 Enter password:
 ```
 
-Em alguns sistemas, você pode descobrir que sua senha funciona quando especificada em um arquivo de opções ou na linha de comando, mas não quando você a digita interativamente no prompt do `Enter password:`. Isso ocorre quando a biblioteca fornecida pelo sistema para ler senhas limita os valores das senhas a um pequeno número de caracteres (tipicamente oito). Esse é um problema com a biblioteca do sistema, não com o MySQL. Para contornar isso, mude sua senha do MySQL para um valor que tenha oito ou menos caracteres, ou coloque sua senha em um arquivo de opções.
+Em alguns sistemas, você pode descobrir que sua senha funciona quando especificada em um arquivo de opções ou na string de comando, mas não quando você a digita interativamente no prompt do `Enter password:`. Isso ocorre quando a biblioteca fornecida pelo sistema para ler senhas limita os valores das senhas a um pequeno número de caracteres (tipicamente oito). Esse é um problema com a biblioteca do sistema, não com o MySQL. Para contornar isso, mude sua senha do MySQL para um valor que tenha oito ou menos caracteres, ou coloque sua senha em um arquivo de opções.
 
 #### B.3.2.5 Muitas conexões
 
@@ -212,7 +212,7 @@ mysql: needed 8136 byte (8k), memory in use: 12481367 bytes (12189k)
 ERROR 2008: MySQL client ran out of memory
 ```
 
-Para remediar o problema, primeiro verifique se sua consulta está correta. É razoável que ela retorne tantas linhas? Se não for, corrija a consulta e tente novamente. Caso contrário, você pode invocar o **mysql** com a opção `--quick`. Isso faz com que ele use a função C API `mysql_use_result()` para recuperar o conjunto de resultados, o que coloca menos carga no cliente (mas mais no servidor).
+Para remediar o problema, primeiro verifique se sua consulta está correta. É razoável que ela retorne tantas strings? Se não for, corrija a consulta e tente novamente. Caso contrário, você pode invocar o **mysql** com a opção `--quick`. Isso faz com que ele use a função C API `mysql_use_result()` para recuperar o conjunto de resultados, o que coloca menos carga no cliente (mas mais no servidor).
 
 #### B.3.2.7 O servidor MySQL desapareceu
 
@@ -224,7 +224,7 @@ A razão mais comum para o erro `MySQL server has gone away` é que o servidor e
 
 Por padrão, o servidor fecha a conexão após oito horas, se nada tiver acontecido. Você pode alterar o limite de tempo definindo a variável `wait_timeout` quando você iniciar o `mysqld`. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 
-Se você tiver um script, basta emitir a consulta novamente para que o cliente faça uma reconexão automática. Isso pressupõe que você tenha a reconexão automática habilitada no cliente (o que é o padrão para o cliente de linha de comando `mysql`).
+Se você tiver um script, basta emitir a consulta novamente para que o cliente faça uma reconexão automática. Isso pressupõe que você tenha a reconexão automática habilitada no cliente (o que é o padrão para o cliente de string de comando `mysql`).
 
 Alguns outros motivos comuns para o erro `MySQL server has gone away` são:
 
@@ -246,7 +246,7 @@ A solução para isso é realizar uma `mysql_ping()` na conexão se há muito te
 
 * Você também pode receber esses erros se enviar uma consulta ao servidor que está incorreta ou muito grande. Se o `mysqld` receber um pacote que é muito grande ou fora de ordem, ele assume que algo deu errado com o cliente e fecha a conexão. Se você precisar de grandes consultas (por exemplo, se você está trabalhando com grandes colunas `BLOB`, você pode aumentar o limite da consulta definindo a variável `max_allowed_packet` do servidor, que tem um valor padrão de 4 MB. Você também pode precisar aumentar o tamanho máximo do pacote no cliente. Mais informações sobre a definição do tamanho do pacote estão fornecidas na Seção B.3.2.8, “Pacote muito grande”.
 
-Uma declaração `INSERT` ou `REPLACE` que insere um grande número de linhas também pode causar esse tipo de erro. Uma dessas declarações envia um único pedido ao servidor, independentemente do número de linhas a serem inseridas; assim, você pode frequentemente evitar o erro reduzindo o número de linhas enviadas por `INSERT` ou `REPLACE`.
+Uma declaração `INSERT` ou `REPLACE` que insere um grande número de strings também pode causar esse tipo de erro. Uma dessas declarações envia um único pedido ao servidor, independentemente do número de strings a serem inseridas; assim, você pode frequentemente evitar o erro reduzindo o número de strings enviadas por `INSERT` ou `REPLACE`.
 
 * É também possível ver este erro se as consultas de nome de host falharem (por exemplo, se o servidor DNS em que o seu servidor ou rede depende falhar). Isso ocorre porque o MySQL depende do sistema de nome para a resolução de nomes, mas não tem como saber se está funcionando — do ponto de vista do MySQL, o problema é indistinguível de qualquer outro tempo de espera de rede.
 
@@ -276,7 +276,7 @@ Veja também a Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas�
 
 #### B.3.2.8 Pacote muito grande
 
-Um pacote de comunicação é uma única instrução SQL enviada ao servidor MySQL, uma única linha enviada ao cliente ou um evento de registro binário enviado de um servidor de origem de replicação para uma réplica.
+Um pacote de comunicação é uma única instrução SQL enviada ao servidor MySQL, uma única string enviada ao cliente ou um evento de registro binário enviado de um servidor de origem de replicação para uma réplica.
 
 O pacote maior possível que pode ser transmitido para ou a partir de um servidor ou cliente MySQL 5.7 é de 1 GB.
 
@@ -298,14 +298,14 @@ O valor padrão do servidor `max_allowed_packet` é de 4 MB. Você pode aumentá
 $> mysqld --max_allowed_packet=16M
 ```
 
-Você também pode usar um arquivo de opção para definir `max_allowed_packet`. Por exemplo, para definir o tamanho do servidor para 16 MB, adicione as seguintes linhas em um arquivo de opção:
+Você também pode usar um arquivo de opção para definir `max_allowed_packet`. Por exemplo, para definir o tamanho do servidor para 16 MB, adicione as seguintes strings em um arquivo de opção:
 
 ```sql
 [mysqld]
 max_allowed_packet=16M
 ```
 
-É seguro aumentar o valor desta variável, pois a memória extra é alocada apenas quando necessário. Por exemplo, `mysqld` aloca mais memória apenas quando você emite uma consulta longa ou quando `mysqld` deve retornar uma grande linha de resultado. O pequeno valor padrão da variável é uma precaução para capturar pacotes incorretos entre o cliente e o servidor e também para garantir que você não se esgote de memória ao usar pacotes grandes acidentalmente.
+É seguro aumentar o valor desta variável, pois a memória extra é alocada apenas quando necessário. Por exemplo, `mysqld` aloca mais memória apenas quando você emite uma consulta longa ou quando `mysqld` deve retornar uma grande string de resultado. O pequeno valor padrão da variável é uma precaução para capturar pacotes incorretos entre o cliente e o servidor e também para garantir que você não se esgote de memória ao usar pacotes grandes acidentalmente.
 
 Você também pode ter problemas estranhos com pacotes grandes se estiver usando grandes valores de `BLOB`, mas não tiver dado ao `mysqld` acesso a memória suficiente para lidar com a consulta. Se você suspeitar que seja esse o caso, tente adicionar **ulimit -d 256000** no início do script de `mysqld_safe` e reinicie o `mysqld`.
 
@@ -369,7 +369,7 @@ Can't create/write to file '\\sqla3fe_0.ism'.
 
 O erro anterior é uma mensagem típica do Windows; a mensagem do Unix é semelhante.
 
-Uma solução é começar com `mysqld` com a opção `--tmpdir` ou adicionar a opção à seção `[mysqld]` do seu arquivo de opções. Por exemplo, para especificar um diretório de `C:\temp`, use essas linhas:
+Uma solução é começar com `mysqld` com a opção `--tmpdir` ou adicionar a opção à seção `[mysqld]` do seu arquivo de opções. Por exemplo, para especificar um diretório de `C:\temp`, use essas strings:
 
 ```sql
 [mysqld]
@@ -478,7 +478,7 @@ O problema aqui é que o `mysqld` está tentando manter abertos muitos arquivos 
 
 Para dizer ao `mysqld` que mantenha abertos menos arquivos de cada vez, você pode tornar a tabela de cache menor, reduzindo o valor da variável de sistema `table_open_cache` (o valor padrão é 64). Isso pode não impedir totalmente a escassez de descritores de arquivo, porque, em algumas circunstâncias, o servidor pode tentar estender o tamanho da cache temporariamente, conforme descrito na Seção 8.4.3.1, “Como o MySQL Abre e Fecha Tabelas”. Reduzir o valor de `max_connections` também reduz o número de arquivos abertos (o valor padrão é 100).
 
-Para alterar o número de descritores de arquivo disponíveis para `mysqld`, você pode usar a opção `--open-files-limit` para `mysqld_safe` ou definir a variável de sistema `open_files_limit`. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”. A maneira mais fácil de definir esses valores é adicionar uma opção ao seu arquivo de opções. Veja a Seção 4.2.2.2, “Usando Arquivos de Opções”. Se você tiver uma versão antiga do `mysqld` que não suporta a definição do limite de arquivos abertos, você pode editar o script `mysqld_safe`. Há uma linha comentada **ulimit -n 256** no script. Você pode remover o caractere `#` para desfazer a comissão dessa linha e alterar o número `256` para definir o número de descritores de arquivo que serão disponibilizados para `mysqld`.
+Para alterar o número de descritores de arquivo disponíveis para `mysqld`, você pode usar a opção `--open-files-limit` para `mysqld_safe` ou definir a variável de sistema `open_files_limit`. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”. A maneira mais fácil de definir esses valores é adicionar uma opção ao seu arquivo de opções. Veja a Seção 4.2.2.2, “Usando Arquivos de Opções”. Se você tiver uma versão antiga do `mysqld` que não suporta a definição do limite de arquivos abertos, você pode editar o script `mysqld_safe`. Há uma string comentada **ulimit -n 256** no script. Você pode remover o caractere `#` para desfazer a comissão dessa string e alterar o número `256` para definir o número de descritores de arquivo que serão disponibilizados para `mysqld`.
 
 `--open-files-limit` e **ulimit** podem aumentar o número de descritores de arquivo, mas apenas até o limite imposto pelo sistema operacional. Há também um limite "sólido" que pode ser ignorado apenas se você iniciar `mysqld_safe` ou `mysqld` como `root` (lembre-se apenas de que você também precisa iniciar o servidor com a opção `--user` neste caso, para que ele não continue a funcionar como `root` após o início). Se você precisar aumentar o limite do sistema operacional sobre o número de descritores de arquivo disponíveis para cada processo, consulte a documentação do seu sistema.
 
@@ -490,7 +490,7 @@ Se você executar o shell **tcsh**, o **ulimit** não funciona! O **tcsh** tamb�
 
 Se você iniciou `mysqld` com a variável de sistema `myisam_recover_options` definida, o MySQL verifica automaticamente e tenta reparar as tabelas `MyISAM` se elas estiverem marcadas como 'não fechadas corretamente' ou 'quebradas'. Se isso acontecer, o MySQL escreve uma entrada no arquivo `hostname.err` `'Warning: Checking table ...'` que é seguida por `Warning: Repairing table` se a tabela precisar ser reparada. Se você receber muitos desses erros, sem que `mysqld` tenha morrido inesperadamente pouco antes, então algo está errado e precisa ser investigado mais a fundo.
 
-Quando o servidor detecta a corrupção da tabela `MyISAM`, ele escreve informações adicionais no log de erro, como o nome e o número da linha do arquivo de origem e a lista de threads acessando a tabela. Exemplo: `Got an error from thread_id=1, mi_dynrec.c:368`. Essas são informações úteis para incluir em relatórios de bugs.
+Quando o servidor detecta a corrupção da tabela `MyISAM`, ele escreve informações adicionais no log de erro, como o nome e o número da string do arquivo de origem e a lista de threads acessando a tabela. Exemplo: `Got an error from thread_id=1, mi_dynrec.c:368`. Essas são informações úteis para incluir em relatórios de bugs.
 
 Veja também a Seção 5.1.6, “Opções de comando do servidor”, e a Seção 5.8.1.7, “Criando um caso de teste se você experimentar corrupção de tabela”.
 
@@ -544,7 +544,7 @@ Em Windows, use o procedimento a seguir para redefinir a senha da conta MySQL `'
 
 Se o seu servidor não estiver rodando como um serviço, você pode precisar usar o Gerenciador de Tarefas para forçá-lo a parar.
 
-3. Crie um arquivo de texto contendo a declaração de atribuição de senha em uma única linha. Substitua a senha pela senha que você deseja usar.
+3. Crie um arquivo de texto contendo a declaração de atribuição de senha em uma única string. Substitua a senha pela senha que você deseja usar.
 
    ```sql
    ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
@@ -608,7 +608,7 @@ Pare o servidor MySQL enviando um `kill` normal (não `kill -9`) para o processo
 
 Utilize backticks (não aspas simples) com o comando `cat`. Esses causam a substituição da saída do `cat` no comando `kill`.
 
-3. Crie um arquivo de texto contendo a declaração de atribuição de senha em uma única linha. Substitua a senha pela senha que você deseja usar.
+3. Crie um arquivo de texto contendo a declaração de atribuição de senha em uma única string. Substitua a senha pela senha que você deseja usar.
 
    ```sql
    ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
@@ -739,9 +739,9 @@ Com o **gdb**, você também pode examinar quais threads existem com `info threa
 
 * Envie um relatório de erro normal. Veja a Seção 1.5, “Como relatar erros ou problemas”. Seja ainda mais detalhado do que o habitual. Como o MySQL funciona para muitas pessoas, o travamento pode resultar de algo que existe apenas no seu computador (por exemplo, um erro relacionado às suas bibliotecas de sistema específicas).
 
-* Se você tem um problema com tabelas que contêm linhas de comprimento dinâmico e está usando apenas as colunas `VARCHAR` (não as colunas `BLOB` ou `TEXT`), você pode tentar alterar todas as `VARCHAR` para `CHAR` com `ALTER TABLE`. Isso força o MySQL a usar linhas de tamanho fixo. As linhas de tamanho fixo ocupam um pouco mais de espaço, mas são muito mais tolerantes à corrupção.
+* Se você tem um problema com tabelas que contêm strings de comprimento dinâmico e está usando apenas as colunas `VARCHAR` (não as colunas `BLOB` ou `TEXT`), você pode tentar alterar todas as `VARCHAR` para `CHAR` com `ALTER TABLE`. Isso força o MySQL a usar strings de tamanho fixo. As strings de tamanho fixo ocupam um pouco mais de espaço, mas são muito mais tolerantes à corrupção.
 
-O código dinâmico atual de linha tem sido usado por vários anos com poucos problemas, mas as linhas de comprimento dinâmico são, por natureza, mais propensas a erros, então pode ser uma boa ideia tentar essa estratégia para ver se ajuda.
+O código dinâmico atual de string tem sido usado por vários anos com poucos problemas, mas as strings de comprimento dinâmico são, por natureza, mais propensas a erros, então pode ser uma boa ideia tentar essa estratégia para ver se ajuda.
 
 * Considere a possibilidade de falhas de hardware ao diagnosticar problemas. O hardware defeituoso pode ser a causa da corrupção de dados. Preste atenção especial à sua memória e aos subsistemas de disco ao solucionar problemas de hardware.
 
@@ -749,11 +749,11 @@ O código dinâmico atual de linha tem sido usado por vários anos com poucos pr
 
 Esta seção descreve como o MySQL responde a erros de disco cheio (como "não há espaço disponível no dispositivo") e a erros de excedente de quota (como "escrita falhou" ou "limite de bloqueio do usuário atingido").
 
-Esta seção é relevante para gravações em tabelas `MyISAM`. Ela também se aplica para gravações em arquivos de log binário e arquivo de índice de log binário, exceto que as referências a “linha” e “registro” devem ser entendidas como “evento”.
+Esta seção é relevante para gravações em tabelas `MyISAM`. Ela também se aplica para gravações em arquivos de log binário e arquivo de índice de log binário, exceto que as referências a “string” e “registro” devem ser entendidas como “evento”.
 
 Quando ocorre uma condição de disco cheio, o MySQL faz o seguinte:
 
-* Verifica uma vez por minuto para verificar se há espaço suficiente para escrever a linha atual. Se houver espaço suficiente, continua como se nada tivesse acontecido.
+* Verifica uma vez por minuto para verificar se há espaço suficiente para escrever a string atual. Se houver espaço suficiente, continua como se nada tivesse acontecido.
 
 * a cada 10 minutos, escreve uma entrada no arquivo de registro, alertando sobre a condição de disco cheio.
 
@@ -761,7 +761,7 @@ Para aliviar o problema, tome as seguintes ações:
 
 * Para continuar, você só precisa liberar espaço de disco suficiente para inserir todos os registros.
 
-* Alternativamente, para abortar o fio, use **mysqladmin kill**. O fio é abortado na próxima vez que verificar o disco (em um minuto).
+* Alternativamente, para abortar o thread, use **mysqladmin kill**. O thread é abortado na próxima vez que verificar o disco (em um minuto).
 
 * Outros threads podem estar esperando pela tabela que causou a condição de disco cheio. Se você tiver vários threads "bloqueadas", matar o thread que está esperando a condição de disco cheio permite que os outros threads continuem.
 
@@ -793,7 +793,7 @@ Ao fazer uma classificação (`ORDER BY` ou `GROUP BY`, o MySQL normalmente usa 
 * 2
 ```
 
-O tamanho do ponteiro de linha geralmente é de quatro bytes, mas pode aumentar no futuro para tabelas muito grandes.
+O tamanho do ponteiro de string geralmente é de quatro bytes, mas pode aumentar no futuro para tabelas muito grandes.
 
 Para algumas declarações, o MySQL cria tabelas SQL temporárias que não são ocultas e têm nomes que começam com `#sql`.
 
@@ -823,7 +823,7 @@ Você pode verificar se o bit `sticky` está definido executando `ls -ld /tmp`. 
 
 Outra abordagem é alterar o local onde o servidor cria o arquivo de soquete Unix. Se você fizer isso, também deve informar aos programas cliente a nova localização do arquivo. Você pode especificar a localização do arquivo de várias maneiras:
 
-* Especifique o caminho em um arquivo de opção global ou local. Por exemplo, coloque as seguintes linhas em `/etc/my.cnf`:
+* Especifique o caminho em um arquivo de opção global ou local. Por exemplo, coloque as seguintes strings em `/etc/my.cnf`:
 
   ```sql
   [mysqld]
@@ -835,7 +835,7 @@ Outra abordagem é alterar o local onde o servidor cria o arquivo de soquete Uni
 
 Veja a Seção 4.2.2.2, “Usando arquivos de opção”.
 
-* Especifique uma opção `--socket` na linha de comando para `mysqld_safe` e quando você executar programas de cliente.
+* Especifique uma opção `--socket` na string de comando para `mysqld_safe` e quando você executar programas de cliente.
 
 * Defina a variável de ambiente `MYSQL_UNIX_PORT` para o caminho do arquivo de socket Unix.
 
@@ -1011,7 +1011,7 @@ Em SQL, o valor `NULL` nunca é verdadeiro em comparação com qualquer outro va
 mysql> SELECT NULL, 1+NULL, CONCAT('Invisible',NULL);
 ```
 
-Para procurar valores de coluna que sejam `NULL`, você não pode usar um teste `expr = NULL`. A seguinte declaração não retorna nenhuma linha, porque `expr = NULL` nunca é verdadeiro para qualquer expressão:
+Para procurar valores de coluna que sejam `NULL`, você não pode usar um teste `expr = NULL`. A seguinte declaração não retorna nenhuma string, porque `expr = NULL` nunca é verdadeiro para qualquer expressão:
 
 ```sql
 mysql> SELECT * FROM my_table WHERE phone = NULL;
@@ -1034,7 +1034,7 @@ Ao usar `DISTINCT`, `GROUP BY` ou `ORDER BY`, todos os valores de `NULL` são co
 
 Ao usar `ORDER BY`, os valores de `NULL` são apresentados primeiro, ou por último, se você especificar `DESC` para ordenar em ordem decrescente.
 
-As funções agregadas (de grupo), como `COUNT()`, `MIN()` e `SUM()`, ignoram os valores de `NULL`. A exceção a isso é `COUNT(*)`, que conta linhas e não valores individuais de coluna. Por exemplo, a seguinte declaração produz dois contagem. A primeira é uma contagem do número de linhas na tabela, e a segunda é uma contagem do número de valores que não são `NULL` na coluna `age`:
+As funções agregadas (de grupo), como `COUNT()`, `MIN()` e `SUM()`, ignoram os valores de `NULL`. A exceção a isso é `COUNT(*)`, que conta strings e não valores individuais de coluna. Por exemplo, a seguinte declaração produz dois contagem. A primeira é uma contagem do número de strings na tabela, e a segunda é uma contagem do número de valores que não são `NULL` na coluna `age`:
 
 ```sql
 mysql> SELECT COUNT(*), COUNT(age) FROM person;
@@ -1061,7 +1061,7 @@ SELECT id, COUNT(*) AS cnt FROM tbl_name
   WHERE cnt > 0 GROUP BY id;
 ```
 
-A cláusula `WHERE` determina quais linhas devem ser incluídas na cláusula `GROUP BY`, mas ela se refere ao alias de um valor de coluna que não é conhecido até que as linhas tenham sido selecionadas e agrupadas pelo `GROUP BY`.
+A cláusula `WHERE` determina quais strings devem ser incluídas na cláusula `GROUP BY`, mas ela se refere ao alias de um valor de coluna que não é conhecido até que as strings tenham sido selecionadas e agrupadas pelo `GROUP BY`.
 
 Na lista selecionada de uma consulta, um alias de coluna com citação pode ser especificado usando caracteres de citação de identificador ou cadeia:
 
@@ -1112,25 +1112,25 @@ SHOW ENGINES;
 
 Consulte a Seção 13.7.5.16, “Declaração de MOTORES DE EXIBIÇÃO”, para obter detalhes completos.
 
-#### B.3.4.6 Excluindo Linhas de Tabelas Relacionadas
+#### B.3.4.6 Excluindo Strings de Tabelas Relacionadas
 
 Se o comprimento total da declaração `DELETE` para `related_table` for superior a 1 MB (o valor padrão da variável de sistema `max_allowed_packet`), você deve dividi-la em partes menores e executar várias declarações `DELETE`. Provavelmente, obterá o `DELETE` mais rápido, especificando apenas 100 a 1.000 valores de `related_column` por declaração, se o `related_column` estiver indexado. Se o `related_column` não estiver indexado, a velocidade é independente do número de argumentos na cláusula `IN`.
 
-#### B.3.4.7 Resolvendo problemas sem linhas correspondentes
+#### B.3.4.7 Resolvendo problemas sem strings correspondentes
 
-Se você tiver uma consulta complicada que usa muitas tabelas, mas que não retorna nenhuma linha, você deve usar o procedimento a seguir para descobrir o que está errado:
+Se você tiver uma consulta complicada que usa muitas tabelas, mas que não retorna nenhuma string, você deve usar o procedimento a seguir para descobrir o que está errado:
 
 1. Teste a consulta com `EXPLAIN` para verificar se você pode encontrar algo que é obviamente errado. Veja a Seção 13.8.2, “Instrução EXPLAIN”.
 
 2. Selecione apenas as colunas que são utilizadas na cláusula `WHERE`.
 
-3. Remova uma tabela de cada vez da consulta até que ela retorne algumas linhas. Se as tabelas forem grandes, é uma boa ideia usar `LIMIT 10` com a consulta.
+3. Remova uma tabela de cada vez da consulta até que ela retorne algumas strings. Se as tabelas forem grandes, é uma boa ideia usar `LIMIT 10` com a consulta.
 
-4. Emitir um `SELECT` para a coluna que deve ter correspondido a uma linha contra a tabela que foi removida da consulta.
+4. Emitir um `SELECT` para a coluna que deve ter correspondido a uma string contra a tabela que foi removida da consulta.
 
 5. Se você estiver comparando as colunas `FLOAT` - FLOAT, DOUBLE") ou `DOUBLE` - FLOAT, DOUBLE") com números que têm decimais, não pode usar comparações de igualdade (`=`). Esse problema é comum na maioria dos idiomas de computador, pois nem todos os valores de ponto flutuante podem ser armazenados com precisão exata. Em alguns casos, alterar o `FLOAT` - FLOAT, DOUBLE") para um `DOUBLE` - FLOAT, DOUBLE") resolve esse problema. Veja a Seção B.3.4.8, “Problemas com Valores de Ponto Flutuante”.
 
-6. Se você ainda não consegue descobrir o que está errado, crie um teste mínimo que possa ser executado com `mysql test < query.sql` que mostre seus problemas. Você pode criar um arquivo de teste drenando as tabelas com **mysqldump --quick db\_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**. Abra o arquivo em um editor, remova algumas linhas de inserção (se houver mais do que o necessário para demonstrar o problema) e adicione sua declaração `SELECT` no final do arquivo.
+6. Se você ainda não consegue descobrir o que está errado, crie um teste mínimo que possa ser executado com `mysql test < query.sql` que mostre seus problemas. Você pode criar um arquivo de teste drenando as tabelas com **mysqldump --quick db\_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**. Abra o arquivo em um editor, remova algumas strings de inserção (se houver mais do que o necessário para demonstrar o problema) e adicione sua declaração `SELECT` no final do arquivo.
 
 Verifique se o arquivo de teste demonstra o problema executando esses comandos:
 
@@ -1173,7 +1173,7 @@ mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b
 
 O resultado está correto. Embora os primeiros cinco registros pareçam não deverem satisfazer a comparação (os valores de `a` e `b` não parecem ser diferentes), eles podem fazê-lo porque a diferença entre os números aparece por volta do décimo decimal ou mais, dependendo de fatores como a arquitetura do computador ou a versão do compilador ou o nível de otimização. Por exemplo, diferentes CPUs podem avaliar números de ponto flutuante de maneira diferente.
 
-Se as colunas `d1` e `d2` tivessem sido definidas como `DECIMAL` - DECIMAL, NUMERIC") em vez de `DOUBLE` - FLOAT, DOUBLE"), o resultado da consulta `SELECT` teria contido apenas uma linha — a última mostrada acima.
+Se as colunas `d1` e `d2` tivessem sido definidas como `DECIMAL` - DECIMAL, NUMERIC") em vez de `DOUBLE` - FLOAT, DOUBLE"), o resultado da consulta `SELECT` teria contido apenas uma string — a última mostrada acima.
 
 A maneira correta de fazer a comparação de números em ponto flutuante é decidir primeiro sobre uma tolerância aceitável para as diferenças entre os números e, em seguida, fazer a comparação contra o valor da tolerância. Por exemplo, se concordamos que os números em ponto flutuante devem ser considerados iguais se forem iguais dentro de uma precisão de um em dez mil (0,0001), a comparação deve ser escrita para encontrar diferenças maiores que o valor da tolerância:
 
@@ -1188,7 +1188,7 @@ mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b FROM t1
 1 row in set (0.00 sec)
 ```
 
-Por outro lado, para obter linhas onde os números são os mesmos, o teste deve encontrar diferenças dentro do valor de tolerância:
+Por outro lado, para obter strings onde os números são os mesmos, o teste deve encontrar diferenças dentro do valor de tolerância:
 
 ```sql
 mysql> SELECT i, SUM(d1) AS a, SUM(d2) AS b FROM t1
@@ -1244,7 +1244,7 @@ Para os casos em que o MySQL não faz a coisa "certa", as ferramentas que você 
 
 * `STRAIGHT_JOIN` global e de nível de tabela. Veja a Seção 13.2.9, “Instrução SELECT”.
 
-* Você pode ajustar variáveis de sistema globais ou específicas de fio. Por exemplo, inicie `mysqld` com a opção `--max-seeks-for-key=1000` ou use `SET max_seeks_for_key=1000` para informar ao otimizador que nenhuma varredura de chave causa mais de 1.000 buscas de chave. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+* Você pode ajustar variáveis de sistema globais ou específicas de thread. Por exemplo, inicie `mysqld` com a opção `--max-seeks-for-key=1000` ou use `SET max_seeks_for_key=1000` para informar ao otimizador que nenhuma varredura de chave causa mais de 1.000 buscas de chave. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 
 ### B.3.6 Questões relacionadas à definição de tabela
 
@@ -1265,7 +1265,7 @@ Nesse caso, vá até o diretório de dados do MySQL e exclua todos os arquivos q
 
 * Crie uma nova tabela chamada `A-xxx` com as alterações estruturais solicitadas.
 
-* Copie todas as linhas da tabela original para `A-xxx`.
+* Copie todas as strings da tabela original para `A-xxx`.
 
 * Renomeie a tabela original para `B-xxx`.
 
@@ -1335,13 +1335,13 @@ Por exemplo:
 
 `CREATE TABLE ... SELECT` ou `INSERT ... SELECT` declarações que inserem valores nulos ou `NULL` em uma coluna `AUTO_INCREMENT`.
 
-+ `DELETE` se você estiver excluindo linhas de uma tabela que tem chaves estrangeiras com propriedades `ON DELETE CASCADE`.
++ `DELETE` se você estiver excluindo strings de uma tabela que tem chaves estrangeiras com propriedades `ON DELETE CASCADE`.
 
 + `REPLACE ... SELECT`, `INSERT IGNORE ... SELECT` se você tiver valores de chave duplicados nos dados inseridos.
 
 **Se e somente se as consultas anteriores não tiverem cláusula `ORDER BY` garantindo uma ordem determinística**.
 
-Por exemplo, para `INSERT ... SELECT` sem `ORDER BY`, o `SELECT` pode retornar linhas em uma ordem diferente (o que resulta em uma linha com diferentes classificações, e, portanto, recebe um número diferente na coluna `AUTO_INCREMENT`), dependendo das escolhas feitas pelos otimizadores na fonte e na replica.
+Por exemplo, para `INSERT ... SELECT` sem `ORDER BY`, o `SELECT` pode retornar strings em uma ordem diferente (o que resulta em uma string com diferentes classificações, e, portanto, recebe um número diferente na coluna `AUTO_INCREMENT`), dependendo das escolhas feitas pelos otimizadores na fonte e na replica.
 
 Uma consulta é otimizada de maneira diferente na fonte e na replica apenas se:
 
@@ -1353,7 +1353,7 @@ Os tamanhos dos buffers do MySQL (`key_buffer_size`, e assim por diante) são di
 
 Esse problema também pode afetar a restauração de bancos de dados usando **mysqlbinlog|mysql**.
 
-A maneira mais fácil de evitar esse problema é adicionar uma cláusula `ORDER BY` às consultas não determinísticas mencionadas anteriormente para garantir que as linhas sejam sempre armazenadas ou modificadas na mesma ordem. O uso de formato de registro baseado em linha ou misto também evita o problema.
+A maneira mais fácil de evitar esse problema é adicionar uma cláusula `ORDER BY` às consultas não determinísticas mencionadas anteriormente para garantir que as strings sejam sempre armazenadas ou modificadas na mesma ordem. O uso de formato de registro baseado em string ou misto também evita o problema.
 
 * Os nomes dos arquivos de registro são baseados no nome do host do servidor, se você não especificar um nome de arquivo com a opção de inicialização. Para manter os mesmos nomes de arquivo de registro se você alterar o nome do seu host para algo mais, você deve usar explicitamente opções como `--log-bin=old_host_name-bin`. Veja a Seção 5.1.6, “Opções de comando do servidor”. Alternativamente, renomeie os arquivos antigos para refletir a mudança do nome do seu host. Se esses forem logs binários, você deve editar o arquivo de índice do log binário e corrigir os nomes dos arquivos de log binário lá também. (O mesmo vale para os logs de releio em uma replica.)
 
@@ -1405,7 +1405,7 @@ e
          ORDER BY band_downloads.id DESC;
   ```
 
-No segundo caso, você pode obter duas linhas idênticas no conjunto de resultados (porque os valores na coluna oculta `id` podem diferir).
+No segundo caso, você pode obter duas strings idênticas no conjunto de resultados (porque os valores na coluna oculta `id` podem diferir).
 
 Observe que isso acontece apenas para consultas que não possuem as colunas `ORDER BY` no resultado.
 

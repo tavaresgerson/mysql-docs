@@ -22,7 +22,7 @@ Nota
 
 `InnoDB` é o mecanismo de armazenamento padrão para novas tabelas. Na prática, as características avançadas de desempenho de `InnoDB` significam que as tabelas de `InnoDB` frequentemente superam as tabelas mais simples de `MyISAM`, especialmente para um banco de dados ocupado.
 
-* Cada tabela usa um formato de linha apropriado? Essa escolha também depende do mecanismo de armazenamento usado para a tabela. Em particular, as tabelas compactadas usam menos espaço em disco e, portanto, requerem menos I/O de disco para ler e escrever os dados. A compressão está disponível para todos os tipos de cargas de trabalho com tabelas `InnoDB`, e para tabelas `MyISAM` somente de leitura.
+* Cada tabela usa um formato de string apropriado? Essa escolha também depende do mecanismo de armazenamento usado para a tabela. Em particular, as tabelas compactadas usam menos espaço em disco e, portanto, requerem menos I/O de disco para ler e escrever os dados. A compressão está disponível para todos os tipos de cargas de trabalho com tabelas `InnoDB`, e para tabelas `MyISAM` somente de leitura.
 
 * O aplicativo utiliza uma estratégia de bloqueio apropriada? Por exemplo, permitindo acesso compartilhado quando possível, para que as operações de banco de dados possam ser executadas concorrentemente, e solicitando acesso exclusivo quando apropriado, para que as operações críticas recebam a prioridade máxima. Novamente, a escolha do mecanismo de armazenamento é significativa. O mecanismo de armazenamento `InnoDB` lida com a maioria dos problemas de bloqueio sem a necessidade de sua intervenção, permitindo uma melhor concorrência no banco de dados e reduzindo a quantidade de experimentação e ajuste para seu código.
 

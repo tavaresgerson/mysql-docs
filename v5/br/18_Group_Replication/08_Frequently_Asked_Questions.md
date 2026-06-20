@@ -24,9 +24,9 @@ Você pré-configura as credenciais do canal de recuperação da replicação de
 
 Não diretamente, mas a replicação do MySQL Group é uma solução de replicação completa sem compartilhamento, onde todos os servidores do grupo replicam a mesma quantidade de dados. Portanto, se um membro do grupo escreve N bytes no armazenamento como resultado de uma operação de commit de transação, então aproximadamente N bytes são escritos no armazenamento em outros membros também, porque a transação é replicada em todos os lugares.
 
-No entanto, dado que outros membros não precisam fazer a mesma quantidade de processamento que o membro original teve que fazer quando executou a transação originalmente, eles aplicam as mudanças mais rapidamente. As transações são replicadas em um formato que é usado para aplicar transformações de linha apenas, sem precisar reexecutar as transações novamente (formato baseado em linha).
+No entanto, dado que outros membros não precisam fazer a mesma quantidade de processamento que o membro original teve que fazer quando executou a transação originalmente, eles aplicam as mudanças mais rapidamente. As transações são replicadas em um formato que é usado para aplicar transformações de string apenas, sem precisar reexecutar as transações novamente (formato baseado em string).
 
-Além disso, dado que as alterações são propagadas e aplicadas em formato de linha, isso significa que elas são recebidas em um formato otimizado e compacto, e provavelmente reduzem o número de operações de E/S necessárias em comparação com o membro original.
+Além disso, dado que as alterações são propagadas e aplicadas em formato de string, isso significa que elas são recebidas em um formato otimizado e compacto, e provavelmente reduzem o número de operações de E/S necessárias em comparação com o membro original.
 
 Para resumir, você pode escalar o processamento, espalhando transações livres de conflitos por diferentes membros do grupo. E você provavelmente pode escalar uma pequena fração de suas operações de IO, uma vez que os servidores remotos recebem apenas as alterações necessárias para as alterações de leitura-modificação-escrita para armazenamento estável.
 

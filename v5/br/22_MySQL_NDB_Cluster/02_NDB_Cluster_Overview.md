@@ -72,7 +72,7 @@ Aplicações Java específicas para `NDB` também podem ser escritas para o NDB 
 
 **Clientes de gerenciamento.** Esses clientes se conectam ao servidor de gerenciamento e fornecem comandos para iniciar e parar nós de forma graciosa, iniciar e parar o rastreamento de mensagens (apenas versões de depuração), mostrar versões e status dos nós, iniciar e parar backups, e assim por diante. Um exemplo desse tipo de programa é o cliente de gerenciamento **ndb\_mgm** fornecido com o NDB Cluster (consulte Seção 21.5.5, “ndb\_mgm — O Cliente de Gerenciamento do NDB Cluster”). Tais aplicativos podem ser escritos usando a API MGM, uma API em linguagem C que se comunica diretamente com um ou mais servidores de gerenciamento do NDB Cluster. Para mais informações, consulte a API MGM.
 
-A Oracle também disponibiliza o MySQL Cluster Manager, que oferece uma interface avançada de linha de comando que simplifica muitas tarefas complexas de gerenciamento do NDB Cluster, como reiniciar um NDB Cluster com um grande número de nós. O cliente MySQL Cluster Manager também suporta comandos para obter e definir os valores da maioria dos parâmetros de configuração do nó, bem como as opções e variáveis do servidor `mysqld` relacionadas ao NDB Cluster. Consulte o Manual do Usuário do MySQL Cluster Manager 1.4.8 para obter mais informações.
+A Oracle também disponibiliza o MySQL Cluster Manager, que oferece uma interface avançada de string de comando que simplifica muitas tarefas complexas de gerenciamento do NDB Cluster, como reiniciar um NDB Cluster com um grande número de nós. O cliente MySQL Cluster Manager também suporta comandos para obter e definir os valores da maioria dos parâmetros de configuração do nó, bem como as opções e variáveis do servidor `mysqld` relacionadas ao NDB Cluster. Consulte o Manual do Usuário do MySQL Cluster Manager 1.4.8 para obter mais informações.
 
 **Registros de eventos.** Os registros de eventos do NDB Cluster registram eventos por categoria (inicialização, desligamento, erros, pontos de verificação, etc.), prioridade e gravidade. Uma lista completa de todos os eventos relatáveis pode ser encontrada na Seção 21.6.3, “Relatórios de eventos gerados no NDB Cluster”. Os registros de eventos são dos dois tipos listados aqui:
 
@@ -230,7 +230,7 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
 
 A tabela `config_params` foi transformada em apenas de leitura e foi aprimorada com colunas adicionais que fornecem informações sobre cada parâmetro de configuração, incluindo o tipo do parâmetro, o valor padrão, os valores máximo e mínimo (quando aplicável), uma breve descrição do parâmetro e se o parâmetro é obrigatório. Esta tabela também fornece a cada parâmetro um `param_number` único.
 
-Uma linha na tabela `config_values` mostra o valor atual de um parâmetro dado no nó que possui um ID especificado. O parâmetro é identificado pelo valor da coluna `config_param`, que corresponde ao `config_params` da tabela `param_number`.
+Uma string na tabela `config_values` mostra o valor atual de um parâmetro dado no nó que possui um ID especificado. O parâmetro é identificado pelo valor da coluna `config_param`, que corresponde ao `config_params` da tabela `param_number`.
 
 Usando essa relação, você pode escrever uma junção nessas duas tabelas para obter os valores padrão, máximo, mínimo e atual para um ou mais parâmetros de configuração do NDB Cluster por nome. Um exemplo de declaração SQL usando essa junção é mostrado aqui:
 
@@ -267,9 +267,9 @@ Várias novas tabelas `ndbinfo` foram introduzidas no NDB 7.5.4. Essas tabelas e
 
 Veja as descrições das tabelas individuais para mais informações.
 
-* Alterações no formato da linha e coluna padrão. A partir do NDB 7.5.1, o valor padrão tanto para a opção `ROW_FORMAT` quanto para a opção `COLUMN_FORMAT` para `CREATE TABLE` pode ser definido como `DYNAMIC`, em vez de `FIXED`, usando uma nova variável do servidor MySQL `ndb_default_column_format` é adicionada como parte dessa mudança; defina isso como `FIXED` ou `DYNAMIC` (ou comece com `mysqld` com a opção equivalente `--ndb-default-column-format=FIXED`) para forçar que esse valor seja usado para `COLUMN_FORMAT` e `ROW_FORMAT`. Antes do NDB 7.5.4, o padrão para essa variável era `DYNAMIC`; nesta e em versões posteriores, o padrão é `FIXED`, que oferece compatibilidade reversa com versões anteriores (Bug #24487363).
+* Alterações no formato da string e coluna padrão. A partir do NDB 7.5.1, o valor padrão tanto para a opção `ROW_FORMAT` quanto para a opção `COLUMN_FORMAT` para `CREATE TABLE` pode ser definido como `DYNAMIC`, em vez de `FIXED`, usando uma nova variável do servidor MySQL `ndb_default_column_format` é adicionada como parte dessa mudança; defina isso como `FIXED` ou `DYNAMIC` (ou comece com `mysqld` com a opção equivalente `--ndb-default-column-format=FIXED`) para forçar que esse valor seja usado para `COLUMN_FORMAT` e `ROW_FORMAT`. Antes do NDB 7.5.4, o padrão para essa variável era `DYNAMIC`; nesta e em versões posteriores, o padrão é `FIXED`, que oferece compatibilidade reversa com versões anteriores (Bug #24487363).
 
-O formato de linha e o formato de coluna usados pelas colunas de tabela existentes não são afetados por essa alteração. Novas colunas adicionadas a essas tabelas usam os novos padrões para essas colunas (possivelmente sobrescritos por `ndb_default_column_format`), e as colunas existentes são alteradas para usar essas colunas também, desde que a declaração `ALTER TABLE` que realiza essa operação especifique `ALGORITHM=COPY`.
+O formato de string e o formato de coluna usados pelas colunas de tabela existentes não são afetados por essa alteração. Novas colunas adicionadas a essas tabelas usam os novos padrões para essas colunas (possivelmente sobrescritos por `ndb_default_column_format`), e as colunas existentes são alteradas para usar essas colunas também, desde que a declaração `ALTER TABLE` que realiza essa operação especifique `ALGORITHM=COPY`.
 
 Nota
 
@@ -289,7 +289,7 @@ Outra alteração que afeta o uso dessa declaração é que `ALTER TABLE ... ALG
 
 + O otimizador agora escolhe planos de execução melhores em muitos casos em que um índice de junção menos ótimo ou uma ordem de junção de tabela anteriormente teria sido escolhida
 
-As estimativas de linha mostradas por `EXPLAIN` são mais precisas
+As estimativas de string mostradas por `EXPLAIN` são mais precisas
 
 As estimativas de cardinalidade mostradas por `SHOW INDEX` são aprimoradas
 
@@ -301,7 +301,7 @@ Você pode definir o tamanho do pool de conexão usando a opção `--ndb-cluster
 
 * **create\_old\_temporals removido.** A variável de sistema `create_old_temporals` foi descontinuada no NDB Cluster 7.4 e foi removida agora.
 
-* **Comando PROMPT do cliente ndb\_mgm.** O NDB Cluster 7.5 adiciona um novo comando para definir o prompt de linha de comando do cliente. O exemplo a seguir ilustra o uso do comando `PROMPT`:
+* **Comando PROMPT do cliente ndb\_mgm.** O NDB Cluster 7.5 adiciona um novo comando para definir o prompt de string de comando do cliente. O exemplo a seguir ilustra o uso do comando `PROMPT`:
 
   ```sql
   ndb_mgm> PROMPT mgm#1:
@@ -350,11 +350,11 @@ Os parâmetros descritos acima não são suportados no NDB 7.5. A tentativa de u
 
 * Melhorias no exame DBTC. Os exames foram aprimorados ao reduzir o número de sinais utilizados para a comunicação entre os blocos de kernel `DBTC` e `DBDIH` em `NDB`, permitindo uma maior escalabilidade dos nós de dados quando utilizados para operações de exame, diminuindo o uso de recursos da CPU para operações de exame, em alguns casos, em um percentual estimado de cinco por cento.
 
-Além disso, como resultado dessas mudanças, os tempos de resposta devem ser muito melhorados, o que poderia ajudar a prevenir problemas com sobrecarga dos principais fios. Além disso, as verificações feitas no bloco de kernel `BACKUP` também foram melhoradas e tornaram-se mais eficientes do que nas versões anteriores.
+Além disso, como resultado dessas mudanças, os tempos de resposta devem ser muito melhorados, o que poderia ajudar a prevenir problemas com sobrecarga dos principais threads. Além disso, as verificações feitas no bloco de kernel `BACKUP` também foram melhoradas e tornaram-se mais eficientes do que nas versões anteriores.
 
 * **Suporte para coluna JSON.** O NDB 7.5.2 e versões posteriores suportam o tipo de coluna `JSON` para tabelas `NDB` e as funções JSON encontradas no MySQL Server, sujeito à limitação de que uma tabela `NDB` pode ter no máximo 3 colunas `JSON`.
 
-* **Leia de qualquer fragmento de replica; especifique o número de fragmentos de partição do hashmap.** Anteriormente, todas as leituras eram direcionadas para a replica do fragmento primário, exceto para leituras simples. (Uma leitura simples é uma leitura que bloqueia a linha enquanto a lê.) A partir do NDB 7.5.2, é possível habilitar leituras de qualquer replica de fragmento. Isso é desativado por padrão, mas pode ser habilitado para um determinado nó SQL usando a variável de sistema `ndb_read_backup` adicionada nesta versão.
+* **Leia de qualquer fragmento de replica; especifique o número de fragmentos de partição do hashmap.** Anteriormente, todas as leituras eram direcionadas para a replica do fragmento primário, exceto para leituras simples. (Uma leitura simples é uma leitura que bloqueia a string enquanto a lê.) A partir do NDB 7.5.2, é possível habilitar leituras de qualquer replica de fragmento. Isso é desativado por padrão, mas pode ser habilitado para um determinado nó SQL usando a variável de sistema `ndb_read_backup` adicionada nesta versão.
 
 Anteriormente, era possível definir tabelas com apenas um tipo de mapeamento de partição, com uma partição primária em cada LDM em cada nó, mas no NDB 7.5.2 torna-se possível ser mais flexível quanto à atribuição de partições, definindo um equilíbrio de partição (tipo de contagem de fragmentos). Os esquemas de equilíbrio possíveis são um por nó, um por grupo de nós, um por LDM por nó e um por LDM por grupo de nós.
 
@@ -376,7 +376,7 @@ A priorização de thread está disponível agora, controlada pelo novo parâmet
 
 O parâmetro `realtime` é agora suportado em plataformas Windows.
 
-* **Partições maiores que 16 GB.** Devido a uma melhoria na implementação do índice de hash utilizada pelos nós de dados do NDB Cluster, as partições das tabelas `NDB` podem agora conter mais de 16 GB de dados para colunas fixas, e o tamanho máximo da partição para colunas fixas é agora elevado para 128 TB. A limitação anterior era devida ao fato de que o bloco `DBACC` no kernel `NDB` usava apenas referências de 32 bits para a parte de tamanho fixo de uma linha no bloco `DBTUP`, embora referências de 45 bits para esses dados sejam usadas no próprio `DBTUP` e em outros lugares no kernel fora de `DBACC`; todas essas referências nos dados tratados no bloco `DBACC` agora usam 45 bits.
+* **Partições maiores que 16 GB.** Devido a uma melhoria na implementação do índice de hash utilizada pelos nós de dados do NDB Cluster, as partições das tabelas `NDB` podem agora conter mais de 16 GB de dados para colunas fixas, e o tamanho máximo da partição para colunas fixas é agora elevado para 128 TB. A limitação anterior era devida ao fato de que o bloco `DBACC` no kernel `NDB` usava apenas referências de 32 bits para a parte de tamanho fixo de uma string no bloco `DBTUP`, embora referências de 45 bits para esses dados sejam usadas no próprio `DBTUP` e em outros lugares no kernel fora de `DBACC`; todas essas referências nos dados tratados no bloco `DBACC` agora usam 45 bits.
 
 * **Imprima declarações SQL do ndb_restore.** O NDB 7.5.4 adiciona a opção `--print-sql-log` para o utilitário **ndb_restore** fornecido com a distribuição do NDB Cluster. Esta opção permite o registro SQL para `stdout`. **Importante**: Toda tabela que será restaurada usando esta opção deve ter uma chave primária definida explicitamente.
 
@@ -398,11 +398,11 @@ Um nome do sistema baseado no momento em que o servidor de gerenciamento foi ini
 
 * **opções de ndb\_restore.** A partir do NDB 7.5.13, as opções `--nodeid` e `--backupid` são necessárias ao invocar **ndb\_restore**.
 
-* **Melhorias na ferramenta ndb\_blob\_tool.** A partir do NDB 7.5.18, a ferramenta **ndb\_blob\_tool** pode detectar partes de blob ausentes para as quais existem partes em linha e substituí-las com partes de blob de espaço (compostas por caracteres de espaço) do comprimento correto. Para verificar se há partes de blob ausentes, use a opção `--check-missing` com este programa. Para substituir quaisquer partes de blob ausentes com marcadores, use a opção `--add-missing`.
+* **Melhorias na ferramenta ndb\_blob\_tool.** A partir do NDB 7.5.18, a ferramenta **ndb\_blob\_tool** pode detectar partes de blob ausentes para as quais existem partes em string e substituí-las com partes de blob de espaço (compostas por caracteres de espaço) do comprimento correto. Para verificar se há partes de blob ausentes, use a opção `--check-missing` com este programa. Para substituir quaisquer partes de blob ausentes com marcadores, use a opção `--add-missing`.
 
 Para mais informações, consulte a Seção 21.5.6, “ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”.
 
-* **opção --ndb-log-fail-terminate.** A partir do NDB 7.5.18, você pode fazer com que o nó SQL termine sempre que não conseguir registrar todos os eventos de linha completamente. Isso pode ser feito iniciando `mysqld` com a opção `--ndb-log-fail-terminate`.
+* **opção --ndb-log-fail-terminate.** A partir do NDB 7.5.18, você pode fazer com que o nó SQL termine sempre que não conseguir registrar todos os eventos de string completamente. Isso pode ser feito iniciando `mysqld` com a opção `--ndb-log-fail-terminate`.
 
 * **Programas do NDB—remoção da dependência do NDBT.** A dependência de vários programas de utilitário `NDB` da biblioteca `NDBT` foi removida. Essa biblioteca é usada internamente para desenvolvimento e não é necessária para uso normal; sua inclusão nesses programas pode levar a problemas indesejados durante os testes.
 
@@ -426,7 +426,7 @@ O suporte para Node.js pelo NDB Cluster é mantido apenas no NDB 8.0.
 
 + Para restaurar uma coluna `NULL` como `NOT NULL`, use a opção `--lossy-conversions`.
 
-A coluna originalmente declarada como `NULL` não deve conter nenhuma linha `NULL`; se o fizer, o **ndb\_restore** sai com um erro.
+A coluna originalmente declarada como `NULL` não deve conter nenhuma string `NULL`; se o fizer, o **ndb\_restore** sai com um erro.
 
 + Para restaurar uma coluna `NOT NULL` como `NULL`, use a opção `--promote-attributes`.
 
@@ -436,7 +436,7 @@ Para mais informações, consulte as descrições das opções de **ndb\_restore
 
 O ClusterJPA não é mais suportado a partir do NDB 7.5.7; seu código-fonte e binário foram removidos da distribuição do NDB Cluster.
 
-O NDB Cluster 7.5 também é suportado pelo MySQL Cluster Manager, que oferece uma interface avançada de linha de comando que pode simplificar muitas tarefas complexas de gerenciamento do NDB Cluster. Consulte o Manual do Usuário do MySQL Cluster Manager 1.4.8 para obter mais informações.
+O NDB Cluster 7.5 também é suportado pelo MySQL Cluster Manager, que oferece uma interface avançada de string de comando que pode simplificar muitas tarefas complexas de gerenciamento do NDB Cluster. Consulte o Manual do Usuário do MySQL Cluster Manager 1.4.8 para obter mais informações.
 
 #### 21.2.4.2 O que há de novo no NDB Cluster 7.6
 
@@ -506,9 +506,9 @@ Para mais informações, consulte a Seção 21.5.29, “ndb\_top — Ver informa
 
 * **Limpeza do código.** Um número significativo de declarações de depuração e impressões não necessárias para operações normais foram movidas para código usado apenas durante testes ou depuração `NDB`, ou dispensadas completamente. Essa remoção de sobrecarga deve resultar em uma melhoria notável no desempenho dos threads LDM e TC na ordem de 10% em muitos casos.
 
-* Melhorias no fio LDM e no LCP. Anteriormente, quando um fio de gerenciamento de dados local sofria com atraso de I/O, ele escrevia para pontos de verificação locais mais lentamente. Isso poderia acontecer, por exemplo, durante uma condição de sobrecarga de disco. Problemas poderiam ocorrer porque outros fios LDM nem sempre observavam esse estado, ou não faziam. `NDB` agora rastreia o modo de atraso de I/O globalmente, de modo que esse estado é relatado assim que pelo menos um fio está escrevendo no modo de atraso de I/O; então, ele garante que a velocidade de escrita reduzida para este LCP seja aplicada para todos os fios LDM durante a duração da condição de desaceleração. Como a redução na velocidade de escrita agora é observada por outras instâncias LDM, a capacidade geral é aumentada; isso permite que a sobrecarga de disco (ou outra condição que induz atraso de I/O) seja superada mais rapidamente nesses casos do que era anteriormente.
+* Melhorias no thread LDM e no LCP. Anteriormente, quando um thread de gerenciamento de dados local sofria com atraso de I/O, ele escrevia para pontos de verificação locais mais lentamente. Isso poderia acontecer, por exemplo, durante uma condição de sobrecarga de disco. Problemas poderiam ocorrer porque outros threads LDM nem sempre observavam esse estado, ou não faziam. `NDB` agora rastreia o modo de atraso de I/O globalmente, de modo que esse estado é relatado assim que pelo menos um thread está escrevendo no modo de atraso de I/O; então, ele garante que a velocidade de escrita reduzida para este LCP seja aplicada para todos os threads LDM durante a duração da condição de desaceleração. Como a redução na velocidade de escrita agora é observada por outras instâncias LDM, a capacidade geral é aumentada; isso permite que a sobrecarga de disco (ou outra condição que induz atraso de I/O) seja superada mais rapidamente nesses casos do que era anteriormente.
 
-* **Identificação de erros do NDB.** Mensagens de erro e informações podem ser obtidas usando o cliente **mysql** no NDB 7.6 a partir de uma nova tabela `error_messages` no banco de dados de informações `ndbinfo`. Além disso, o NDB 7.6 introduz um novo cliente de linha de comando **ndb_perror** para obter informações dos códigos de erro do NDB; isso substitui o uso de **perror** com `--ndb`, que agora é desatualizado e sujeito à remoção em uma versão futura.
+* **Identificação de erros do NDB.** Mensagens de erro e informações podem ser obtidas usando o cliente **mysql** no NDB 7.6 a partir de uma nova tabela `error_messages` no banco de dados de informações `ndbinfo`. Além disso, o NDB 7.6 introduz um novo cliente de string de comando **ndb_perror** para obter informações dos códigos de erro do NDB; isso substitui o uso de **perror** com `--ndb`, que agora é desatualizado e sujeito à remoção em uma versão futura.
 
 Para mais informações, consulte a Seção 21.6.15.21, “A tabela ndbinfo error\_messages”, e a Seção 21.5.17, “ndb\_perror — Obtenha informações sobre mensagens de erro NDB”.
 
@@ -554,7 +554,7 @@ Para informações adicionais, consulte as descrições dos parâmetros.
 
 Para cada um dos parâmetros listados acima, o valor padrão é 64, o mínimo é 16 e o máximo é 512.
 
-Aumentar o tamanho ou os tamanhos apropriados do lote pode ajudar a amortizar as latências entre fios e entre nós e utilizar mais recursos paralelos (locais e remotos) para ajudar a escalar o desempenho do DDL. Em cada caso, pode haver um compromisso com o tráfego contínuo.
+Aumentar o tamanho ou os tamanhos apropriados do lote pode ajudar a amortizar as latências entre threads e entre nós e utilizar mais recursos paralelos (locais e remotos) para ajudar a escalar o desempenho do DDL. Em cada caso, pode haver um compromisso com o tráfego contínuo.
 
 * **LCPs parciais.** O NDB 7.6 implementa pontos de verificação locais parciais. Anteriormente, um LCP sempre fazia uma cópia de todo o banco de dados. Ao trabalhar com terabytes de dados, esse processo poderia exigir um grande tempo, com um impacto adverso, especialmente em reinicializações de nós e clusters, além de mais espaço para os registros de revisão. Agora, não é mais estritamente necessário que os LCPs façam isso — em vez disso, um LCP agora, por padrão, salva apenas um número de registros que é baseado na quantidade de dados alterados desde o LCP anterior. Isso pode variar entre um ponto de verificação completo e um ponto de verificação que não altera nada. No caso de o ponto de verificação refletir quaisquer alterações, o mínimo é escrever uma parte dos 2048 que compõem um LCP local.
 
@@ -598,7 +598,7 @@ O parâmetro `SigNum` não é utilizado na nova implementação do SHM, e quaisq
 
 Para mais informações, consulte a Seção 21.4.3.12, “Conexões de Memória Compartilhada do NDB Cluster”.
 
-* **Otimização da junção interna do bloco SPJ.** No NDB 7.6, o bloco de kernel `SPJ` pode levar em consideração quando está avaliando uma solicitação de junção na qual pelo menos algumas das tabelas são JOINADAS INTERNAS. Isso significa que ele pode eliminar solicitações para linhas, faixas ou ambas assim que se tornar conhecido que uma ou mais das solicitações anteriores não retornaram nenhum resultado para uma linha pai. Isso economiza tanto os nós de dados quanto o bloco `SPJ` de terem que lidar com solicitações e linhas de resultado que nunca participam de uma linha de resultado JOINADA INTERNA.
+* **Otimização da junção interna do bloco SPJ.** No NDB 7.6, o bloco de kernel `SPJ` pode levar em consideração quando está avaliando uma solicitação de junção na qual pelo menos algumas das tabelas são JOINADAS INTERNAS. Isso significa que ele pode eliminar solicitações para strings, faixas ou ambas assim que se tornar conhecido que uma ou mais das solicitações anteriores não retornaram nenhum resultado para uma string pai. Isso economiza tanto os nós de dados quanto o bloco `SPJ` de terem que lidar com solicitações e strings de resultado que nunca participam de uma string de resultado JOINADA INTERNA.
 
 Considere esta consulta de junção, onde `pk` é a chave primária nas tabelas t2, t3 e t4, e as colunas x, y e z são colunas não indexadas:
 
@@ -609,7 +609,7 @@ Considere esta consulta de junção, onde `pk` é a chave primária nas tabelas 
     JOIN t4 ON t4.pk = t1.z;
   ```
 
-Anteriormente, isso resultava em um pedido `SPJ` que incluía uma varredura na tabela `t1`, e pesquisas em cada uma das tabelas `t2`, `t3` e `t4`; essas foram avaliadas para cada linha retornada de `t1`. Para essas, `SPJ` criou pedidos `LQHKEYREQ` para as tabelas `t2`, `t3` e `t4`. Agora, `SPJ` leva em consideração a exigência de que, para produzir quaisquer linhas de resultado, uma junção interna deve encontrar uma correspondência em todas as tabelas juncionadas; assim que não forem encontradas correspondências para uma das tabelas, quaisquer pedidos adicionais para tabelas com o mesmo pai ou tabelas são ignorados.
+Anteriormente, isso resultava em um pedido `SPJ` que incluía uma varredura na tabela `t1`, e pesquisas em cada uma das tabelas `t2`, `t3` e `t4`; essas foram avaliadas para cada string retornada de `t1`. Para essas, `SPJ` criou pedidos `LQHKEYREQ` para as tabelas `t2`, `t3` e `t4`. Agora, `SPJ` leva em consideração a exigência de que, para produzir quaisquer strings de resultado, uma junção interna deve encontrar uma correspondência em todas as tabelas juncionadas; assim que não forem encontradas correspondências para uma das tabelas, quaisquer pedidos adicionais para tabelas com o mesmo pai ou tabelas são ignorados.
 
 Nota
 
@@ -617,7 +617,7 @@ Essa otimização não pode ser aplicada até que todos os nós de dados e todos
 
 * **Ferramenta de despertar do NDB.** `NDB` utiliza um receptor de sondagem para ler dos soquetes, executar mensagens dos soquetes e despertar outros threads. Ao fazer uso intermitente apenas de um thread de recepção, a propriedade do poll é dada em desuso antes de começar a despertar outros threads, o que proporciona algum grau de paralelismo no thread de recepção, mas, ao fazer uso constante do thread de recepção, o thread pode ser sobrecarregado por tarefas, incluindo o despertar de outros threads.
 
-O NDB 7.6 suporta a transferência de carga do fio receptor da tarefa de acordar outros fios para um novo fio que acorda outros fios mediante solicitação (e, de outra forma, simplesmente dorme), tornando possível melhorar a capacidade de uma conexão única de cluster em aproximadamente de dez a vinte por cento.
+O NDB 7.6 suporta a transferência de carga do thread receptor da tarefa de acordar outros threads para um novo thread que acorda outros threads mediante solicitação (e, de outra forma, simplesmente dorme), tornando possível melhorar a capacidade de uma conexão única de cluster em aproximadamente de dez a vinte por cento.
 
 * Controle adaptativo do LCP.
 
@@ -666,13 +666,13 @@ Para mais informações, consulte a descrição da opção **ndb\_restore** `--n
 
 * **ndb\_restore: mudanças no esquema da chave primária.** O NDB 7.6.14 (e versões posteriores) suporta diferentes definições de chave primária para as tabelas de origem e destino ao restaurar um backup nativo `NDB` com **ndb\_restore** quando executado com a opção `--allow-pk-changes`. Ambos os casos de aumento e diminuição do número de colunas que compõem a chave primária original são suportados.
 
-Quando a chave primária é estendida com uma ou mais colunas adicionais, todas as colunas adicionadas devem ser definidas como `NOT NULL`, e nenhum valor em quaisquer dessas colunas pode ser alterado durante o período em que o backup está sendo realizado. Como algumas aplicações definem todos os valores das colunas em uma linha ao atualizá-la, independentemente de todos os valores realmente serem alterados, isso pode causar o falha de uma operação de restauração, mesmo que nenhum valor na coluna que será adicionada à chave primária tenha sido alterado. Você pode sobrepor esse comportamento usando a opção `--ignore-extended-pk-updates` também adicionada no NDB 7.6.14; nesse caso, você deve garantir que nenhum desses valores seja alterado.
+Quando a chave primária é estendida com uma ou mais colunas adicionais, todas as colunas adicionadas devem ser definidas como `NOT NULL`, e nenhum valor em quaisquer dessas colunas pode ser alterado durante o período em que o backup está sendo realizado. Como algumas aplicações definem todos os valores das colunas em uma string ao atualizá-la, independentemente de todos os valores realmente serem alterados, isso pode causar o falha de uma operação de restauração, mesmo que nenhum valor na coluna que será adicionada à chave primária tenha sido alterado. Você pode sobrepor esse comportamento usando a opção `--ignore-extended-pk-updates` também adicionada no NDB 7.6.14; nesse caso, você deve garantir que nenhum desses valores seja alterado.
 
 Uma coluna pode ser removida da chave primária da tabela, independentemente de essa coluna permanecer ou não como parte da tabela.
 
 Para mais informações, consulte a descrição da opção `--allow-pk-changes` para **ndb_restore**.
 
-* **Melhorias na ferramenta ndb\_blob\_tool.** A partir do NDB 7.6.14, a ferramenta **ndb\_blob\_tool** pode detectar partes de blob ausentes para as quais existem partes em linha e substituí-las com partes de blob de espaço (compostas por caracteres de espaço) do comprimento correto. Para verificar se há partes de blob ausentes, use a opção `--check-missing` com este programa. Para substituir quaisquer partes de blob ausentes com marcadores, use a opção `--add-missing`.
+* **Melhorias na ferramenta ndb\_blob\_tool.** A partir do NDB 7.6.14, a ferramenta **ndb\_blob\_tool** pode detectar partes de blob ausentes para as quais existem partes em string e substituí-las com partes de blob de espaço (compostas por caracteres de espaço) do comprimento correto. Para verificar se há partes de blob ausentes, use a opção `--check-missing` com este programa. Para substituir quaisquer partes de blob ausentes com marcadores, use a opção `--add-missing`.
 
 Para mais informações, consulte a Seção 21.5.6, “ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”.
 
@@ -690,7 +690,7 @@ Além disso, duas novas opções são fornecidas para **ndb\_desc**, também com
 
 Para mais informações e exemplos, consulte a descrição da opção `--remap-column`.
 
-* **opção --ndb-log-fail-terminate.** A partir do NDB 7.6.14, você pode fazer com que o nó SQL termine sempre que não conseguir registrar todos os eventos de linha completamente. Isso pode ser feito iniciando `mysqld` com a opção `--ndb-log-fail-terminate`.
+* **opção --ndb-log-fail-terminate.** A partir do NDB 7.6.14, você pode fazer com que o nó SQL termine sempre que não conseguir registrar todos os eventos de string completamente. Isso pode ser feito iniciando `mysqld` com a opção `--ndb-log-fail-terminate`.
 
 * **Programas do NDB—remoção da dependência do NDBT.** A dependência de vários programas de utilitário `NDB` da biblioteca `NDBT` foi removida. Essa biblioteca é usada internamente para desenvolvimento e não é necessária para uso normal; sua inclusão nesses programas pode levar a problemas indesejados durante os testes.
 
@@ -714,7 +714,7 @@ O suporte para Node.js pelo NDB Cluster é mantido apenas no NDB 8.0.
 
 + Para restaurar uma coluna `NULL` como `NOT NULL`, use a opção `--lossy-conversions`.
 
-A coluna originalmente declarada como `NULL` não deve conter nenhuma linha `NULL`; se o fizer, o **ndb\_restore** sai com um erro.
+A coluna originalmente declarada como `NULL` não deve conter nenhuma string `NULL`; se o fizer, o **ndb\_restore** sai com um erro.
 
 + Para restaurar uma coluna `NOT NULL` como `NULL`, use a opção `--promote-attributes`.
 
@@ -789,13 +789,13 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `ndb-default-column-format`: Use este valor (FIXO ou DINÂMICO) como padrão para as opções COLUMN_FORMAT e ROW_FORMAT ao criar ou adicionar colunas de tabela. Adicionado em NDB 5.7.11-ndb-7.5.1.
 
-* `ndb-log-fail-terminate`: Finalize o processo mysqld se a registro completo de todos os eventos de linha encontrados não for possível. Adicionada no NDB 5.7.29-ndb-7.5.18.
+* `ndb-log-fail-terminate`: Finalize o processo mysqld se a registro completo de todos os eventos de string encontrados não for possível. Adicionada no NDB 5.7.29-ndb-7.5.18.
 
 * `ndb-log-update-minimal`: Atualizações de log em formato mínimo. Adicionada no NDB 5.7.18-ndb-7.5.7.
 
 * `ndb_data_node_neighbour`: Especifica o nó de dados do cluster "mais próximo" a este servidor MySQL, para indicação de transações e tabelas totalmente replicadas. Adicionado no NDB 5.7.12-ndb-7.5.2.
 
-* `ndb_default_column_format`: Define o formato de linha e o formato de coluna padrão (FIXO ou DINÂMICO) usado para novas tabelas NDB. Adicionado no NDB 5.7.11-ndb-7.5.1.
+* `ndb_default_column_format`: Define o formato de string e o formato de coluna padrão (FIXO ou DINÂMICO) usado para novas tabelas NDB. Adicionado no NDB 5.7.11-ndb-7.5.1.
 
 * `ndb_fully_replicated`: Se as novas tabelas NDB são totalmente replicadas. Adicionada no NDB 5.7.12-ndb-7.5.2.
 
@@ -830,7 +830,7 @@ Os seguintes parâmetros de configuração de nó foram adicionados no NDB 7.6.
 
 * `EnableRedoControl`: Habilitar a velocidade de verificação adaptativa para o controle do uso do log de revisão. Adicionado no NDB 7.6.7.
 
-* `InsertRecoveryWork`: Porcentagem de Trabalho de Recuperação usada para as linhas inseridas; não tem efeito a menos que os pontos de verificação locais parciais estejam em uso. Adicionada no NDB 7.6.5.
+* `InsertRecoveryWork`: Porcentagem de Trabalho de Recuperação usada para as strings inseridas; não tem efeito a menos que os pontos de verificação locais parciais estejam em uso. Adicionada no NDB 7.6.5.
 
 * `LocationDomainId`: Atribua este nó da API a um domínio ou zona de disponibilidade específica. 0 (padrão) deixa este campo não definido. Adicionado no NDB 7.6.4.
 
@@ -884,11 +884,11 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `Ndb_system_name`: Nome do sistema de clúster configurado; vazio se o servidor não estiver conectado ao NDB. Adicionado no NDB 5.7.18-ndb-7.6.2.
 
-* `ndb-log-fail-terminate`: Finalize o processo mysqld se a registro completo de todos os eventos de linha encontrados não for possível. Adicionada no NDB 5.7.29-ndb-7.6.14.
+* `ndb-log-fail-terminate`: Finalize o processo mysqld se a registro completo de todos os eventos de string encontrados não for possível. Adicionada no NDB 5.7.29-ndb-7.6.14.
 
 * `ndb-log-update-minimal`: Atualizações de log em formato mínimo. Adicionada no NDB 5.7.18-ndb-7.6.3.
 
-* `ndb_row_checksum`: Quando habilitado, defina verificações de checksum de linha; habilitado por padrão. Adicionado no NDB 5.7.23-ndb-7.6.8.
+* `ndb_row_checksum`: Quando habilitado, defina verificações de checksum de string; habilitado por padrão. Adicionado no NDB 5.7.23-ndb-7.6.8.
 
 ##### Opções e variáveis descontinuadas no NDB 7.6
 
@@ -918,7 +918,7 @@ O motor de armazenamento `NDB` é implementado usando uma arquitetura distribuí
 
 **Tabela 21.1 Diferenças entre os motores de armazenamento InnoDB e NDB**
 
-<table><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Feature</th> <th><code>InnoDB</code> (MySQL 5.7)</th> <th><code>NDB</code> 7.5/7.6</th> </tr></thead><tbody><tr> <th><em>MySQL Server Version</em></th> <td>5.7</td> <td>5.7</td> </tr><tr> <th><em><code>InnoDB</code> Version </em></th> <td><code>InnoDB</code> 5.7.44</td> <td><code>InnoDB</code> 5.7.44</td> </tr><tr> <th><em>NDB Cluster Version</em></th> <td>N/A</td> <td><code>NDB</code> 7.5.36/7.6.36</td> </tr><tr> <th><em>Limites de armazenamento</em></th> <td>64 TB</td> <td>128 TB (a partir da NDB 7.5.2)</td> </tr><tr> <th><em>Foreign Keys</em></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th><em>Transactions</em></th> <td>All standard types</td> <td><code>READ COMMITTED</code></td> </tr><tr> <th><em>MVCC</em></th> <td>Yes</td> <td>No</td> </tr><tr> <th><em>Compressão de dados</em></th> <td>Sim</td> <td>Não (os arquivos de verificação e de backup do NDB podem ser comprimidos)</td> </tr><tr> <th><em>Suporte para linhas grandes (&gt; 14K)</em></th> <td>Suportado para<code>VARBINARY</code>,<code>VARCHAR</code>,<code>BLOB</code>, e<code>TEXT</code>colunas</td> <td>Suportado para<code>BLOB</code>e<code>TEXT</code>colunas apenas (Usar esses tipos para armazenar grandes quantidades de dados pode reduzir o desempenho do NDB)</td> </tr><tr> <th><em>Suporte à replicação</em></th> <td>Replicação assíncrona e semiesincrônica usando MySQL Replication; MySQL<a class="link" href="group-replication.html" title="Chapter 17 Group Replication">Replicação em grupo</a></td> <td>Replicação síncrona automática dentro de um NDB Cluster; replicação assíncrona entre NDB Clusters, usando MySQL Replication (A replicação semi-síncrona não é suportada)</td> </tr><tr> <th><em>Escalabilidade para operações de leitura</em></th> <td>Sim (Replicação MySQL)</td> <td>Sim (partição automática no NDB Cluster; Replicação do NDB Cluster)</td> </tr><tr> <th><em>Escalabilidade para operações de escrita</em></th> <td>Requer particionamento de nível de aplicativo (arqueamento)</td> <td>Sim (a partição automática no NDB Cluster é transparente para as aplicações)</td> </tr><tr> <th><em>Disponibilidade Alta (HA)</em></th> <td>Incorporado, do clúster InnoDB</td> <td>Sim (Projetado para 99,999% de tempo de atividade)</td> </tr><tr> <th><em>Recuperação de falha no nó e failover</em></th> <td>Do Grupo de Replicação MySQL</td> <td>Automático (elemento chave na arquitetura NDB)</td> </tr><tr> <th><em>Tempo para recuperação em caso de falha no nó</em></th> <td>30 segundos ou mais</td> <td>Normalmente &lt; 1 segundo</td> </tr><tr> <th><em>Real-Time Performance</em></th> <td>No</td> <td>Yes</td> </tr><tr> <th><em>Tabelas de Memória</em></th> <td>Não</td> <td>Sim (alguns dados podem ser armazenados opcionalmente em disco; tanto o armazenamento de dados em memória quanto o armazenamento de dados em disco são duráveis)</td> </tr><tr> <th><em>Acesso a motores de armazenamento NoSQL</em></th> <td>Sim</td> <td>Sim (Múltiplas APIs, incluindo Memcached, Node.js/JavaScript, Java, JPA, C++ e HTTP/REST)</td> </tr><tr> <th><em>Escritas concorrentes e paralelas</em></th> <td>Sim</td> <td>Até 48 escritores, otimizados para gravações concorrentes</td> </tr><tr> <th><span class="emphasis"><em>Detecção e resolução de conflitos (Múltiplos recursos de replicação)</em></span></th> <td>Sim (Replicação do Grupo MySQL)</td> <td>Sim</td> </tr><tr> <th><em>Hash Indexes</em></th> <td>No</td> <td>Yes</td> </tr><tr> <th><em>Adição online de nós</em></th> <td>Leia/escreva réplicas usando o MySQL Group Replication</td> <td>Sim (todos os tipos de nó)</td> </tr><tr> <th><em>Online Upgrades</em></th> <td>Yes (using replication)</td> <td>Yes</td> </tr><tr> <th><em>Modificações de esquema online</em></th> <td>Sim, como parte do MySQL 5.7</td> <td>Sim</td> </tr></tbody></table>
+<table><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Feature</th> <th><code>InnoDB</code> (MySQL 5.7)</th> <th><code>NDB</code> 7.5/7.6</th> </tr></thead><tbody><tr> <th><em>MySQL Server Version</em></th> <td>5.7</td> <td>5.7</td> </tr><tr> <th><em><code>InnoDB</code> Version </em></th> <td><code>InnoDB</code> 5.7.44</td> <td><code>InnoDB</code> 5.7.44</td> </tr><tr> <th><em>NDB Cluster Version</em></th> <td>N/A</td> <td><code>NDB</code> 7.5.36/7.6.36</td> </tr><tr> <th><em>Limites de armazenamento</em></th> <td>64 TB</td> <td>128 TB (a partir da NDB 7.5.2)</td> </tr><tr> <th><em>Foreign Keys</em></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th><em>Transactions</em></th> <td>All standard types</td> <td><code>READ COMMITTED</code></td> </tr><tr> <th><em>MVCC</em></th> <td>Yes</td> <td>No</td> </tr><tr> <th><em>Compressão de dados</em></th> <td>Sim</td> <td>Não (os arquivos de verificação e de backup do NDB podem ser comprimidos)</td> </tr><tr> <th><em>Suporte para strings grandes (&gt; 14K)</em></th> <td>Suportado para<code>VARBINARY</code>,<code>VARCHAR</code>,<code>BLOB</code>, e<code>TEXT</code>colunas</td> <td>Suportado para<code>BLOB</code>e<code>TEXT</code>colunas apenas (Usar esses tipos para armazenar grandes quantidades de dados pode reduzir o desempenho do NDB)</td> </tr><tr> <th><em>Suporte à replicação</em></th> <td>Replicação assíncrona e semiesincrônica usando MySQL Replication; MySQL<a class="link" href="group-replication.html" title="Chapter 17 Group Replication">Replicação em grupo</a></td> <td>Replicação síncrona automática dentro de um NDB Cluster; replicação assíncrona entre NDB Clusters, usando MySQL Replication (A replicação semi-síncrona não é suportada)</td> </tr><tr> <th><em>Escalabilidade para operações de leitura</em></th> <td>Sim (Replicação MySQL)</td> <td>Sim (partição automática no NDB Cluster; Replicação do NDB Cluster)</td> </tr><tr> <th><em>Escalabilidade para operações de escrita</em></th> <td>Requer particionamento de nível de aplicativo (arqueamento)</td> <td>Sim (a partição automática no NDB Cluster é transparente para as aplicações)</td> </tr><tr> <th><em>Disponibilidade Alta (HA)</em></th> <td>Incorporado, do clúster InnoDB</td> <td>Sim (Projetado para 99,999% de tempo de atividade)</td> </tr><tr> <th><em>Recuperação de falha no nó e failover</em></th> <td>Do Grupo de Replicação MySQL</td> <td>Automático (elemento chave na arquitetura NDB)</td> </tr><tr> <th><em>Tempo para recuperação em caso de falha no nó</em></th> <td>30 segundos ou mais</td> <td>Normalmente &lt; 1 segundo</td> </tr><tr> <th><em>Real-Time Performance</em></th> <td>No</td> <td>Yes</td> </tr><tr> <th><em>Tabelas de Memória</em></th> <td>Não</td> <td>Sim (alguns dados podem ser armazenados opcionalmente em disco; tanto o armazenamento de dados em memória quanto o armazenamento de dados em disco são duráveis)</td> </tr><tr> <th><em>Acesso a motores de armazenamento NoSQL</em></th> <td>Sim</td> <td>Sim (Múltiplas APIs, incluindo Memcached, Node.js/JavaScript, Java, JPA, C++ e HTTP/REST)</td> </tr><tr> <th><em>Escritas concorrentes e paralelas</em></th> <td>Sim</td> <td>Até 48 escritores, otimizados para gravações concorrentes</td> </tr><tr> <th><span class="emphasis"><em>Detecção e resolução de conflitos (Múltiplos recursos de replicação)</em></span></th> <td>Sim (Replicação do Grupo MySQL)</td> <td>Sim</td> </tr><tr> <th><em>Hash Indexes</em></th> <td>No</td> <td>Yes</td> </tr><tr> <th><em>Adição online de nós</em></th> <td>Leia/escreva réplicas usando o MySQL Group Replication</td> <td>Sim (todos os tipos de nó)</td> </tr><tr> <th><em>Online Upgrades</em></th> <td>Yes (using replication)</td> <td>Yes</td> </tr><tr> <th><em>Modificações de esquema online</em></th> <td>Sim, como parte do MySQL 5.7</td> <td>Sim</td> </tr></tbody></table>
 
 #### 21.2.6.2 Cargas de trabalho NDB e InnoDB
 
@@ -936,7 +936,7 @@ A tabela a seguir lista as funcionalidades de aplicativos suportados de acordo c
 
 **Tabela 21.3 Características de aplicativos suportados de acordo com o mecanismo de armazenamento ao qual cada característica é tipicamente mais adequada**
 
-<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Requisitos de aplicação preferidos para<code>InnoDB</code></th> <th>Requisitos de aplicação preferidos para<code>NDB</code></th> </tr></thead><tbody><tr> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Chaves estrangeiras</p> <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"> <div class="admon-title">Nota</div> <p>O NDB Cluster 7.5 suporta chaves estrangeiras</p> </div> </li><li class="listitem"><p>Análises completas da tabela</p></li><li class="listitem"><p>Grandes bancos de dados, linhas ou transações muito grandes</p></li><li class="listitem"><p>Transações que não são<code>READ COMMITTED</code> </p></li></ul> </div> </td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Escreva escalonamento</p></li><li class="listitem"><p>99,999% de tempo de atividade</p></li><li class="listitem"><p>Adição online de nós e operações online de esquema</p></li><li class="listitem"><p>Múltiplas APIs SQL e NoSQL (consulte APIs do NDB Cluster: Visão geral e conceitos)</p></li><li class="listitem"><p>Desempenho em tempo real</p></li><li class="listitem"><p>Uso limitado de<code>BLOB</code>colunas</p></li><li class="listitem"><p>As chaves estrangeiras são suportadas, embora seu uso possa ter um impacto no desempenho em alta taxa de transferência.</p></li></ul> </div> </td> </tr></tbody></table>
+<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Requisitos de aplicação preferidos para<code>InnoDB</code></th> <th>Requisitos de aplicação preferidos para<code>NDB</code></th> </tr></thead><tbody><tr> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Chaves estrangeiras</p> <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"> <div class="admon-title">Nota</div> <p>O NDB Cluster 7.5 suporta chaves estrangeiras</p> </div> </li><li class="listitem"><p>Análises completas da tabela</p></li><li class="listitem"><p>Grandes bancos de dados, strings ou transações muito grandes</p></li><li class="listitem"><p>Transações que não são<code>READ COMMITTED</code> </p></li></ul> </div> </td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Escreva escalonamento</p></li><li class="listitem"><p>99,999% de tempo de atividade</p></li><li class="listitem"><p>Adição online de nós e operações online de esquema</p></li><li class="listitem"><p>Múltiplas APIs SQL e NoSQL (consulte APIs do NDB Cluster: Visão geral e conceitos)</p></li><li class="listitem"><p>Desempenho em tempo real</p></li><li class="listitem"><p>Uso limitado de<code>BLOB</code>colunas</p></li><li class="listitem"><p>As chaves estrangeiras são suportadas, embora seu uso possa ter um impacto no desempenho em alta taxa de transferência.</p></li></ul> </div> </td> </tr></tbody></table>
 
 ### 21.2.7 Limitações conhecidas do NDB Cluster
 
@@ -1026,7 +1026,7 @@ A seguinte declaração cria uma tabela com uma chave primária, uma coluna `AUT
 
 + `ON UPDATE CASCADE` não é suportado quando a referência é à chave primária da tabela pai.
 
-Isso ocorre porque uma atualização de uma chave primária é implementada como uma exclusão da linha antiga (contendo a chave primária antiga) mais uma inserção da nova linha (com uma nova chave primária). Isso não é visível para o kernel `NDB`, que considera essas duas linhas como sendo a mesma, e, portanto, não tem como saber que essa atualização deve ser cascada.
+Isso ocorre porque uma atualização de uma chave primária é implementada como uma exclusão da string antiga (contendo a chave primária antiga) mais uma inserção da nova string (com uma nova chave primária). Isso não é visível para o kernel `NDB`, que considera essas duas strings como sendo a mesma, e, portanto, não tem como saber que essa atualização deve ser cascada.
 
 + A partir do NDB 7.5.14 e do NDB 7.6.10: `ON DELETE CASCADE` não é suportado quando a tabela secundária contém uma ou mais colunas de qualquer um dos tipos `TEXT` ou `BLOB`. (Bug #89511, Bug #27484882)
 
@@ -1079,13 +1079,13 @@ A API do NDB não possui nenhuma disposição especial para trabalhar com os dad
 
 + `cpustat`: Fornece estatísticas de CPU por segundo e por thread
 
-+ `cpustat_50ms`: Dados brutos de estatísticas de CPU por fio, coletados a cada 50 ms
++ `cpustat_50ms`: Dados brutos de estatísticas de CPU por thread, coletados a cada 50 ms
 
-+ `cpustat_1sec`: Dados brutos de estatísticas de CPU por fio, coletados a cada segundo
++ `cpustat_1sec`: Dados brutos de estatísticas de CPU por thread, coletados a cada segundo
 
-+ `cpustat_20sec`: Dados brutos de estatísticas de CPU por fio, coletados a cada 20 segundos
++ `cpustat_20sec`: Dados brutos de estatísticas de CPU por thread, coletados a cada 20 segundos
 
-+ `threads`: Nomes e descrições dos tipos de fios
++ `threads`: Nomes e descrições dos tipos de threads
 
 Para mais informações sobre essas tabelas, consulte a Seção 21.6.15, “ndbinfo: The NDB Cluster Information Database”.
 
@@ -1103,9 +1103,9 @@ Nesta seção, listamos os limites encontrados no NDB Cluster que diferem dos li
 
 **Uso e recuperação da memória.** A memória consumida quando os dados são inseridos em uma tabela `NDB` não é recuperada automaticamente quando excluída, como acontece com outros motores de armazenamento. Em vez disso, as seguintes regras se aplicam:
 
-* Uma declaração `DELETE` em uma tabela `NDB` torna a memória anteriormente utilizada pelas linhas excluídas disponível para reutilização por inserções na mesma tabela apenas. No entanto, essa memória pode ser disponibilizada para reutilização geral realizando `OPTIMIZE TABLE`.
+* Uma declaração `DELETE` em uma tabela `NDB` torna a memória anteriormente utilizada pelas strings excluídas disponível para reutilização por inserções na mesma tabela apenas. No entanto, essa memória pode ser disponibilizada para reutilização geral realizando `OPTIMIZE TABLE`.
 
-Um reinício contínuo do clúster também libera toda a memória usada por linhas excluídas. Veja a Seção 21.6.5, “Realizando um Reinício Contínuo de um Clúster NDB”.
+Um reinício contínuo do clúster também libera toda a memória usada por strings excluídas. Veja a Seção 21.6.5, “Realizando um Reinício Contínuo de um Clúster NDB”.
 
 Uma operação `DROP TABLE` ou `TRUNCATE TABLE` em uma tabela `NDB` libera a memória que foi usada por esta tabela para reutilização por qualquer tabela `NDB`, seja pela mesma tabela ou por outra tabela `NDB`.
 
@@ -1147,11 +1147,11 @@ Há várias limitações no NDB Cluster em relação ao tratamento de transaçõ
 
 * Nível de isolamento de transação.
 
-O motor de armazenamento `NDBCLUSTER` suporta apenas o nível de isolamento de transação `READ COMMITTED`. (`InnoDB`, por exemplo, suporta `READ COMMITTED`, `READ UNCOMMITTED`, `REPEATABLE READ` e `SERIALIZABLE`). Você deve ter em mente que `NDB` implementa `READ COMMITTED` em uma base por linha; quando uma solicitação de leitura chega ao nó de dados que armazena a linha, o que é retornado é a última versão comprometida da linha naquela época.
+O motor de armazenamento `NDBCLUSTER` suporta apenas o nível de isolamento de transação `READ COMMITTED`. (`InnoDB`, por exemplo, suporta `READ COMMITTED`, `READ UNCOMMITTED`, `REPEATABLE READ` e `SERIALIZABLE`). Você deve ter em mente que `NDB` implementa `READ COMMITTED` em uma base por string; quando uma solicitação de leitura chega ao nó de dados que armazena a string, o que é retornado é a última versão comprometida da string naquela época.
 
 Os dados não comprometidos nunca são devolvidos, mas quando uma transação que modifica vários registros é comprometida simultaneamente com uma transação que lê os mesmos registros, a transação que realiza a leitura pode observar valores "antes", valores "depois" ou ambos, para diferentes registros entre esses, devido ao fato de que um pedido de leitura de um registro específico pode ser processado antes ou depois do comprometimento da outra transação.
 
-Para garantir que uma transação específica leia apenas antes ou depois dos valores, você pode impor bloqueios de linha usando `SELECT ... LOCK IN SHARE MODE`. Nesses casos, o bloqueio é mantido até que a transação proprietária seja comprometida. O uso de bloqueios de linha também pode causar os seguintes problemas:
+Para garantir que uma transação específica leia apenas antes ou depois dos valores, você pode impor bloqueios de string usando `SELECT ... LOCK IN SHARE MODE`. Nesses casos, o bloqueio é mantido até que a transação proprietária seja comprometida. O uso de bloqueios de string também pode causar os seguintes problemas:
 
 + Aumento da frequência de erros de tempo de espera de bloqueio e redução da concorrência
 
@@ -1206,9 +1206,9 @@ Isso ocorre porque, dessas quatro consultas, a primeira utiliza uma varredura de
 
 Você pode ajudar a minimizar problemas com bloqueios de leitura compartilhada evitando consultas que utilizam pesquisas de chave única que recuperam as colunas `BLOB` ou `TEXT`, ou, nos casos em que essas consultas não podem ser evitadas, realizando transações o mais rápido possível depois.
 
-* **Consultas de chave única e isolamento de transações.** Índices únicos são implementados em `NDB` usando uma tabela de índice oculta que é mantida internamente. Quando uma tabela criada pelo usuário `NDB` é acessada usando um índice único, a tabela de índice oculta é lida primeiro para encontrar a chave primária que é então usada para ler a tabela criada pelo usuário. Para evitar a modificação do índice durante essa operação de leitura dupla, a linha encontrada na tabela de índice oculta é bloqueada. Quando uma linha referenciada por um índice único na tabela `NDB` criada pelo usuário é atualizada, a tabela de índice oculta está sujeita a um bloqueio exclusivo pela transação na qual a atualização é realizada. Isso significa que qualquer operação de leitura na mesma tabela (criada pelo usuário) `NDB` deve esperar que a atualização seja concluída. Isso é verdade mesmo quando o nível de transação da operação de leitura é `READ COMMITTED`.
+* **Consultas de chave única e isolamento de transações.** Índices únicos são implementados em `NDB` usando uma tabela de índice oculta que é mantida internamente. Quando uma tabela criada pelo usuário `NDB` é acessada usando um índice único, a tabela de índice oculta é lida primeiro para encontrar a chave primária que é então usada para ler a tabela criada pelo usuário. Para evitar a modificação do índice durante essa operação de leitura dupla, a string encontrada na tabela de índice oculta é bloqueada. Quando uma string referenciada por um índice único na tabela `NDB` criada pelo usuário é atualizada, a tabela de índice oculta está sujeita a um bloqueio exclusivo pela transação na qual a atualização é realizada. Isso significa que qualquer operação de leitura na mesma tabela (criada pelo usuário) `NDB` deve esperar que a atualização seja concluída. Isso é verdade mesmo quando o nível de transação da operação de leitura é `READ COMMITTED`.
 
-Uma solução que pode ser usada para contornar leituras potencialmente bloqueadoras é forçar o nó SQL a ignorar o índice único ao realizar a leitura. Isso pode ser feito usando a dica de índice `IGNORE INDEX` como parte da declaração `SELECT` que lê a tabela (consulte Seção 8.9.4, “Dicas de índice”). Como o servidor MySQL cria um índice ordenado de sombra para cada índice único criado em `NDB`, isso permite que o índice ordenado seja lido em vez disso, e evita o bloqueio do acesso ao índice único. A leitura resultante é tão consistente quanto uma leitura comprometida por chave primária, retornando o último valor comprometido no momento em que a linha é lida.
+Uma solução que pode ser usada para contornar leituras potencialmente bloqueadoras é forçar o nó SQL a ignorar o índice único ao realizar a leitura. Isso pode ser feito usando a dica de índice `IGNORE INDEX` como parte da declaração `SELECT` que lê a tabela (consulte Seção 8.9.4, “Dicas de índice”). Como o servidor MySQL cria um índice ordenado de sombra para cada índice único criado em `NDB`, isso permite que o índice ordenado seja lido em vez disso, e evita o bloqueio do acesso ao índice único. A leitura resultante é tão consistente quanto uma leitura comprometida por chave primária, retornando o último valor comprometido no momento em que a string é lida.
 
 A leitura por meio de um índice ordenado utiliza menos recursos no clúster e pode ter maior latência.
 
@@ -1222,7 +1222,7 @@ Esse comportamento difere do de outros motores de armazenamento transacional, co
 
 + `TRUNCATE TABLE` não é transacional quando usado em tabelas `NDB`. Se um `TRUNCATE TABLE` não conseguir esvaziar a tabela, ele deve ser executado novamente até que seja bem-sucedido.
 
-+ `DELETE FROM` (mesmo sem a cláusula `WHERE`)* é* transacional. Para tabelas que contêm muitas linhas, você pode notar que o desempenho é melhorado ao usar várias declarações `DELETE FROM ... LIMIT ...` para "dividir" a operação de exclusão. Se o seu objetivo é esvaziar a tabela, então você pode querer usar `TRUNCATE TABLE` em vez disso.
++ `DELETE FROM` (mesmo sem a cláusula `WHERE`)* é* transacional. Para tabelas que contêm muitas strings, você pode notar que o desempenho é melhorado ao usar várias declarações `DELETE FROM ... LIMIT ...` para "dividir" a operação de exclusão. Se o seu objetivo é esvaziar a tabela, então você pode querer usar `TRUNCATE TABLE` em vez disso.
 
 + **declarações LOAD DATA.** `LOAD DATA` não é transacional quando usado em tabelas `NDB`.
 
@@ -1232,7 +1232,7 @@ Ao executar uma declaração `LOAD DATA`, o motor `NDB` realiza commits em inter
 
 + **ALTER TABLE e transações.** Ao copiar uma tabela `NDB` como parte de um `ALTER TABLE`, a criação da cópia não é transacional. (Em qualquer caso, essa operação é revertida quando a cópia é excluída.)
 
-* **Transações e a função COUNT().** Ao usar a Replicação do NDB Cluster, não é possível garantir a consistência transacional da função `COUNT()` na replica. Em outras palavras, ao realizar em fonte uma série de declarações (`INSERT`, `DELETE` ou ambas) que altera o número de linhas em uma tabela dentro de uma única transação, executar consultas `SELECT COUNT(*) FROM table` na replica pode gerar resultados intermediários. Isso ocorre porque `SELECT COUNT(...)` pode realizar leituras sujas e não é um bug no motor de armazenamento `NDB`. (Consulte o Bug #31321 para mais informações.)
+* **Transações e a função COUNT().** Ao usar a Replicação do NDB Cluster, não é possível garantir a consistência transacional da função `COUNT()` na replica. Em outras palavras, ao realizar em fonte uma série de declarações (`INSERT`, `DELETE` ou ambas) que altera o número de strings em uma tabela dentro de uma única transação, executar consultas `SELECT COUNT(*) FROM table` na replica pode gerar resultados intermediários. Isso ocorre porque `SELECT COUNT(...)` pode realizar leituras sujas e não é um bug no motor de armazenamento `NDB`. (Consulte o Bug #31321 para mais informações.)
 
 #### 21.2.7.4 Gerenciamento de Erros de Agrupamento NDB
 
@@ -1258,7 +1258,7 @@ Alguns objetos de banco de dados, como tabelas e índices, têm limitações dif
 
 * **Atributos por chave.** O número máximo de atributos por chave é de 32.
 
-* **Tamanho da linha.** O tamanho máximo permitido para qualquer uma das linhas é de 14000 bytes.
+* **Tamanho da string.** O tamanho máximo permitido para qualquer uma das strings é de 14000 bytes.
 
 Cada coluna `BLOB` ou `TEXT` contribui com 256 + 8 = 264 bytes para este total; isso inclui as colunas `JSON`. Consulte os Requisitos de Armazenamento de Tipo de String, bem como os Requisitos de Armazenamento de JSON, para obter mais informações relacionadas a esses tipos.
 

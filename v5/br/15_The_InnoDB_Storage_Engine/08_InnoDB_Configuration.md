@@ -24,7 +24,7 @@ Como o MySQL utiliza configurações de arquivo de dados, arquivo de registro e 
 
 Você pode colocar as configurações do `InnoDB` no grupo `[mysqld]` de qualquer arquivo de opção que seu servidor leia quando ele começa. Os locais dos arquivos de opção do MySQL são descritos na Seção 4.2.2.2, “Usando arquivos de opção”.
 
-Para garantir que `mysqld` leia opções apenas de um arquivo específico, use a opção `--defaults-file` como a primeira opção na linha de comando ao iniciar o servidor:
+Para garantir que `mysqld` leia opções apenas de um arquivo específico, use a opção `--defaults-file` como a primeira opção na string de comando ao iniciar o servidor:
 
 ```sql
 mysqld --defaults-file=path_to_option_file
@@ -190,7 +190,7 @@ Um arquivo de dados de espaço de tabela temporário que se autoexpande pode se 
 
 A opção `innodb_page_size` especifica o tamanho da página para todos os `InnoDB` espaços de tabela em uma instância do MySQL. Esse valor é definido quando a instância é criada e permanece constante posteriormente. Os valores válidos são 64KB, 32KB, 16KB (o padrão), 8KB e 4KB. Alternativamente, você pode especificar o tamanho da página em bytes (65536, 32768, 16384, 8192, 4096).
 
-O tamanho padrão de página de 16 KB é apropriado para uma ampla gama de cargas de trabalho, particularmente para consultas que envolvem varreduras de tabela e operações de manipulação de dados de massa (DML) que envolvem atualizações em massa. Tamanhos de página menores podem ser mais eficientes para cargas de trabalho OLTP que envolvem muitos pequenos escritos, onde a concorrência pode ser um problema quando uma única página contém muitas linhas. Páginas menores também podem ser mais eficientes para dispositivos de armazenamento SSD, que normalmente usam tamanhos de bloco pequenos. Manter o tamanho de página `InnoDB` próximo ao tamanho do bloco do dispositivo de armazenamento minimiza a quantidade de dados não alterados que são reescritos no disco.
+O tamanho padrão de página de 16 KB é apropriado para uma ampla gama de cargas de trabalho, particularmente para consultas que envolvem varreduras de tabela e operações de manipulação de dados de massa (DML) que envolvem atualizações em massa. Tamanhos de página menores podem ser mais eficientes para cargas de trabalho OLTP que envolvem muitos pequenos escritos, onde a concorrência pode ser um problema quando uma única página contém muitas strings. Páginas menores também podem ser mais eficientes para dispositivos de armazenamento SSD, que normalmente usam tamanhos de bloco pequenos. Manter o tamanho de página `InnoDB` próximo ao tamanho do bloco do dispositivo de armazenamento minimiza a quantidade de dados não alterados que são reescritos no disco.
 
 Importante
 
@@ -206,7 +206,7 @@ Os buffers específicos para `InnoDB` são configurados usando os seguintes par�
 
 Em sistemas com uma grande quantidade de memória, você pode melhorar a concorrência dividindo o conjunto de buffers em várias instâncias do conjunto de buffers. O número de instâncias do conjunto de buffers é controlado pela opção `innodb_buffer_pool_instances`. Por padrão, `InnoDB` cria uma instância do conjunto de buffers. O número de instâncias do conjunto de buffers pode ser configurado na inicialização. Para mais informações, consulte a Seção 14.8.3.2, “Configurando várias instâncias do conjunto de buffers”.
 
-* `innodb_log_buffer_size` define o tamanho do buffer que `InnoDB` usa para gravar os arquivos de log no disco. O tamanho padrão é de 16 MB. Um buffer de log grande permite que transações grandes sejam executadas sem gravar o log no disco antes do comprometimento das transações. Se você tiver transações que atualizam, inserem ou excluem muitas linhas, pode considerar aumentar o tamanho do buffer de log para economizar I/O de disco. `innodb_log_buffer_size` pode ser configurado na inicialização. Para informações relacionadas, consulte a Seção 8.5.4, “Otimizando o registro de refazer do InnoDB”.
+* `innodb_log_buffer_size` define o tamanho do buffer que `InnoDB` usa para gravar os arquivos de log no disco. O tamanho padrão é de 16 MB. Um buffer de log grande permite que transações grandes sejam executadas sem gravar o log no disco antes do comprometimento das transações. Se você tiver transações que atualizam, inserem ou excluem muitas strings, pode considerar aumentar o tamanho do buffer de log para economizar I/O de disco. `innodb_log_buffer_size` pode ser configurado na inicialização. Para informações relacionadas, consulte a Seção 8.5.4, “Otimizando o registro de refazer do InnoDB”.
 
 Aviso
 
@@ -221,7 +221,7 @@ innodb_buffer_pool_size
 + max_connections*2MB
 ```
 
-Cada fio usa uma pilha (frequentemente 2 MB, mas apenas 256 KB nos binários do MySQL fornecidos pela Oracle Corporation) e, no pior dos casos, também usa `sort_buffer_size + read_buffer_size` memória adicional.
+Cada thread usa uma pilha (frequentemente 2 MB, mas apenas 256 KB nos binários do MySQL fornecidos pela Oracle Corporation) e, no pior dos casos, também usa `sort_buffer_size + read_buffer_size` memória adicional.
 
 Em Linux, se o kernel estiver habilitado para suporte a páginas grandes, `InnoDB` pode usar páginas grandes para alocar memória para seu conjunto de buffers. Veja a Seção 8.12.4.3, “Habilitar suporte a páginas grandes”.
 
@@ -286,7 +286,7 @@ Esta seção fornece informações de configuração e ajuste para o pool de buf
 
 #### 14.8.3.1 Configurando o tamanho do pool de buffer do InnoDB
 
-Você pode configurar o tamanho do pool de tampão `InnoDB` offline ou enquanto o servidor está em execução. O comportamento descrito nesta seção se aplica a ambos os métodos. Para obter informações adicionais sobre a configuração do tamanho do pool de tampão online, consulte Configurando o tamanho do pool de tampão InnoDB online.
+Você pode configurar o tamanho do pool de buffer `InnoDB` offline ou enquanto o servidor está em execução. O comportamento descrito nesta seção se aplica a ambos os métodos. Para obter informações adicionais sobre a configuração do tamanho do pool de buffer online, consulte Configurando o tamanho do pool de buffer InnoDB online.
 
 Ao aumentar ou diminuir `innodb_buffer_pool_size`, a operação é realizada em partes. O tamanho do bloco é definido pela opção de configuração `innodb_buffer_pool_chunk_size`, que tem um padrão de `128M`. Para mais informações, consulte Configurando o tamanho do bloco do buffer do InnoDB.
 
@@ -326,9 +326,9 @@ mysql> SELECT @@innodb_buffer_pool_size/1024/1024/1024;
 
 ##### Configurando o tamanho do bloco do pool de buffer do InnoDB
 
-`innodb_buffer_pool_chunk_size` pode ser aumentado ou diminuído em unidades de 1 MB (1048576 bytes), mas só pode ser modificado no momento do arranque, numa cadeia de caracteres de linha de comando ou num ficheiro de configuração MySQL.
+`innodb_buffer_pool_chunk_size` pode ser aumentado ou diminuído em unidades de 1 MB (1048576 bytes), mas só pode ser modificado no momento do arranque, numa cadeia de caracteres de string de comando ou num ficheiro de configuração MySQL.
 
-Linha de comando:
+String de comando:
 
 ```sql
 $> mysqld --innodb-buffer-pool-chunk-size=134217728
@@ -502,17 +502,17 @@ mysql> SET GLOBAL innodb_buffer_pool_size=402653184;
 
 Nota
 
-O tamanho do pool de tampão deve ser igual a ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Para alterar esses ajustes de variáveis, é necessário reiniciar o servidor.
+O tamanho do pool de buffer deve ser igual a ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Para alterar esses ajustes de variáveis, é necessário reiniciar o servidor.
 
 As transações e operações ativas realizadas por meio das APIs do `InnoDB` devem ser concluídas antes de redimensionar o pool de buffer. Ao iniciar uma operação de redimensionamento, a operação não começa até que todas as transações ativas sejam concluídas. Uma vez que a operação de redimensionamento esteja em andamento, novas transações e operações que exigem acesso ao pool de buffer devem esperar até que a operação de redimensionamento termine. A exceção à regra é que o acesso concorrente ao pool de buffer é permitido enquanto o pool de buffer está sendo desfragmentado e as páginas são retiradas quando o tamanho do pool de buffer é reduzido. Uma desvantagem de permitir o acesso concorrente é que isso pode resultar em uma escassez temporária de páginas disponíveis enquanto as páginas estão sendo retiradas.
 
 Nota
 
-As transações aninhadas podem falhar se iniciadas após o início da operação de redimensionamento do pool de tampão.
+As transações aninhadas podem falhar se iniciadas após o início da operação de redimensionamento do pool de buffer.
 
 ##### Monitoramento do progresso de redimensionamento do Pool de Buffer online
 
-O relatório `Innodb_buffer_pool_resize_status` informa o progresso do redimensionamento do pool de tampão. Por exemplo:
+O relatório `Innodb_buffer_pool_resize_status` informa o progresso do redimensionamento do pool de buffer. Por exemplo:
 
 ```sql
 mysql> SHOW STATUS WHERE Variable_name='InnoDB_buffer_pool_resize_status';
@@ -580,9 +580,9 @@ Quando o pool de buffers `InnoDB` é grande, muitos pedidos de dados podem ser a
 
 Para habilitar múltiplas instâncias do pool de buffers, defina a opção de configuração `innodb_buffer_pool_instances` para um valor maior que 1 (o padrão) até 64 (o máximo). Esta opção só tem efeito quando você define `innodb_buffer_pool_size` para um tamanho de 1 GB ou mais. O tamanho total que você especifica é dividido entre todas as instâncias do pool de buffers. Para a melhor eficiência, especifique uma combinação de `innodb_buffer_pool_instances` e `innodb_buffer_pool_size` para que cada instância do pool de buffers seja de pelo menos 1 GB.
 
-Para obter informações sobre a modificação do tamanho do pool de tampão `InnoDB`, consulte a Seção 14.8.3.1, “Configurando o tamanho do pool de tampão InnoDB”.
+Para obter informações sobre a modificação do tamanho do pool de buffer `InnoDB`, consulte a Seção 14.8.3.1, “Configurando o tamanho do pool de buffer InnoDB”.
 
-#### 14.8.3.3 Tornar o escaneamento do Pool de tampão resistente
+#### 14.8.3.3 Tornar o escaneamento do Pool de buffer resistente
 
 Em vez de usar um algoritmo LRU rígido, `InnoDB` utiliza uma técnica para minimizar a quantidade de dados que são trazidos para o pool de buffer e nunca mais acessados. O objetivo é garantir que as páginas frequentemente acessadas (“quentes”) permaneçam no pool de buffer, mesmo quando os lemas de leitura e varreduras completas da tabela trazem novos blocos que podem ou não ser acessados posteriormente.
 
@@ -592,7 +592,7 @@ Para uma explicação sobre o funcionamento interno do pool de buffers `InnoDB` 
 
 Você pode controlar o ponto de inserção na lista LRU e escolher se o `InnoDB` aplica a mesma otimização aos blocos trazidos para o pool de buffer por varreduras de tabela ou índice. O parâmetro de configuração `innodb_old_blocks_pct` controla a porcentagem de blocos “antigos” na lista LRU. O valor padrão de `innodb_old_blocks_pct` é `37`, correspondendo à proporção fixa original de 3/8. A faixa de valores é `5` (as novas páginas no pool de buffer são descartadas rapidamente) a `95` (apenas 5% do pool de buffer é reservado para páginas quentes, fazendo com que o algoritmo se aproxime da estratégia LRU familiar).
 
-A otimização que impede que o pool de tampão seja removido devido a leituras antecipadas pode evitar problemas semelhantes devido a varreduras de tabelas ou índices. Nestas varreduras, uma página de dados é tipicamente acessada algumas vezes em rápida sucessão e nunca é tocada novamente. O parâmetro de configuração `innodb_old_blocks_time` especifica a janela de tempo (em milissegundos) após o primeiro acesso a uma página durante a qual ela pode ser acessada sem ser movida para a frente (extremo mais recentemente usado) da lista LRU. O valor padrão de `innodb_old_blocks_time` é `1000`. Aumentar este valor torna mais e mais blocos propensos a envelhecer mais rapidamente do pool de tampão.
+A otimização que impede que o pool de buffer seja removido devido a leituras antecipadas pode evitar problemas semelhantes devido a varreduras de tabelas ou índices. Nestas varreduras, uma página de dados é tipicamente acessada algumas vezes em rápida sucessão e nunca é tocada novamente. O parâmetro de configuração `innodb_old_blocks_time` especifica a janela de tempo (em milissegundos) após o primeiro acesso a uma página durante a qual ela pode ser acessada sem ser movida para a frente (extremo mais recentemente usado) da lista LRU. O valor padrão de `innodb_old_blocks_time` é `1000`. Aumentar este valor torna mais e mais blocos propensos a envelhecer mais rapidamente do pool de buffer.
 
 Tanto o `innodb_old_blocks_pct` quanto o `innodb_old_blocks_time` podem ser especificados no arquivo de opções do MySQL (`my.cnf` ou `my.ini`) ou alterados em tempo de execução com a declaração `SET GLOBAL`. Alterar o valor em tempo de execução requer privilégios suficientes para definir variáveis de sistema globais. Veja a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
 
@@ -640,7 +640,7 @@ O propósito do limite `innodb_max_dirty_pages_pct_lwm` é controlar a porcentag
 
 Ao configurar `innodb_max_dirty_pages_pct_lwm`, o valor deve sempre ser menor que o valor de `innodb_max_dirty_pages_pct`.
 
-Variáveis adicionais permitem o ajuste fino do comportamento de esvaziamento do pool de tampão:
+Variáveis adicionais permitem o ajuste fino do comportamento de esvaziamento do pool de buffer:
 
 * A variável `innodb_flush_neighbors` define se a limpeza de uma página do pool de buffer também limpa outras páginas sujas na mesma extensão.
 
@@ -656,7 +656,7 @@ Quando os dados da tabela são armazenados em um dispositivo de armazenamento HD
 
 Um ajuste menor que o padrão é geralmente adequado para a maioria das cargas de trabalho. Um valor significativamente maior que o necessário pode impactar o desempenho. Apenas considere aumentar o valor se você tiver capacidade de E/S disponível em uma carga de trabalho típica. Por outro lado, se uma carga de trabalho intensiva de escrita saturar sua capacidade de E/S, diminua o valor, especialmente no caso de um grande pool de buffers.
 
-Ao ajustar `innodb_lru_scan_depth`, comece com um valor baixo e configure o ajuste para cima, com o objetivo de raramente ver páginas livres em zero. Além disso, considere ajustar `innodb_lru_scan_depth` quando alterar o número de instâncias do buffer pool, uma vez que `innodb_lru_scan_depth` * `innodb_buffer_pool_instances` define a quantidade de trabalho realizada pelo fio de limpeza de página a cada segundo.
+Ao ajustar `innodb_lru_scan_depth`, comece com um valor baixo e configure o ajuste para cima, com o objetivo de raramente ver páginas livres em zero. Além disso, considere ajustar `innodb_lru_scan_depth` quando alterar o número de instâncias do buffer pool, uma vez que `innodb_lru_scan_depth` * `innodb_buffer_pool_instances` define a quantidade de trabalho realizada pelo thread de limpeza de página a cada segundo.
 
 As variáveis `innodb_flush_neighbors` e `innodb_lru_scan_depth` são projetadas principalmente para cargas de trabalho intensivas de escrita. Com uma atividade DML intensa, o esvaziamento pode ficar para trás se não for suficientemente agressivo, ou os escritos no disco podem saturar a capacidade de E/S se o esvaziamento for muito agressivo. As configurações ideais dependem do seu trabalho, dos padrões de acesso aos dados e da configuração de armazenamento (por exemplo, se os dados são armazenados em dispositivos HDD ou SSD).
 
@@ -678,21 +678,21 @@ Sistemas com cargas de trabalho consistentes, um grande tamanho de arquivo de re
 
 Tenha em atenção que, se o esvaziamento do buffer ficar para trás, a taxa de esvaziamento do buffer pode exceder a capacidade de E/S disponível para `InnoDB`, conforme definido pelo ajuste `innodb_io_capacity`. O valor `innodb_io_capacity_max` define um limite superior para a capacidade de E/S nessas situações, de modo que um aumento na atividade de E/S não consuma toda a capacidade de E/S do servidor.
 
-O ajuste `innodb_io_capacity` é aplicável a todas as instâncias do pool de tampão. Quando as páginas sujas são descarregadas, a capacidade de I/O é dividida igualmente entre as instâncias do pool de tampão.
+O ajuste `innodb_io_capacity` é aplicável a todas as instâncias do pool de buffer. Quando as páginas sujas são descarregadas, a capacidade de I/O é dividida igualmente entre as instâncias do pool de buffer.
 
 #### 14.8.3.6 Salvar e restaurar o estado do pool de buffer
 
 Para reduzir o período de aquecimento após o reinício do servidor, `InnoDB` salva uma porcentagem das páginas mais recentemente utilizadas para cada conjunto de buffers na parada do servidor e restaura essas páginas no início do servidor. A porcentagem de páginas recentemente utilizadas que é armazenada é definida pela opção de configuração `innodb_buffer_pool_dump_pct`.
 
-Após o reinício de um servidor ocupado, normalmente há um período de aquecimento com desempenho consistentemente crescente, à medida que as páginas do disco que estavam na piscina de buffer são trazidas de volta à memória (já que os mesmos dados são consultados, atualizados, etc.). A capacidade de restaurar a piscina de buffer no início do processo encurta o período de aquecimento, recarregando as páginas do disco que estavam na piscina de buffer antes do reinício, em vez de esperar que as operações de MDO acessem as linhas correspondentes. Além disso, as solicitações de E/S podem ser realizadas em grandes lotes, tornando o E/S como um todo mais rápido. O carregamento das páginas acontece em segundo plano e não retarda o início do banco de dados.
+Após o reinício de um servidor ocupado, normalmente há um período de aquecimento com desempenho consistentemente crescente, à medida que as páginas do disco que estavam na piscina de buffer são trazidas de volta à memória (já que os mesmos dados são consultados, atualizados, etc.). A capacidade de restaurar a piscina de buffer no início do processo encurta o período de aquecimento, recarregando as páginas do disco que estavam na piscina de buffer antes do reinício, em vez de esperar que as operações de MDO acessem as strings correspondentes. Além disso, as solicitações de E/S podem ser realizadas em grandes lotes, tornando o E/S como um todo mais rápido. O carregamento das páginas acontece em segundo plano e não retarda o início do banco de dados.
 
 Além de salvar o estado do buffer pool durante o desligamento e restaurá-lo durante o início, você pode salvar e restaurar o estado do buffer pool a qualquer momento, enquanto o servidor estiver em execução. Por exemplo, você pode salvar o estado do buffer pool após atingir um desempenho estável em uma carga de trabalho constante. Você também pode restaurar o estado anterior do buffer pool após executar relatórios ou trabalhos de manutenção que tragam páginas de dados para o buffer pool que são necessárias apenas para essas operações, ou após executar algum outro tipo de carga de trabalho não típico.
 
-Embora um pool de tampão possa ter vários gigabytes de tamanho, os dados do pool de tampão que o `InnoDB` salva em disco são pequenos em comparação. Apenas os IDs de espaço de tabela e IDs de página necessários para localizar as páginas apropriadas são salvos em disco. Essas informações são derivadas da tabela `INNODB_BUFFER_PAGE_LRU` `INFORMATION_SCHEMA`. Por padrão, os dados de IDs de espaço de tabela e IDs de página são salvos em um arquivo denominado `ib_buffer_pool`, que é salvo no diretório de dados `InnoDB`. O nome do arquivo e a localização podem ser modificados usando o parâmetro de configuração `innodb_buffer_pool_filename`.
+Embora um pool de buffer possa ter vários gigabytes de tamanho, os dados do pool de buffer que o `InnoDB` salva em disco são pequenos em comparação. Apenas os IDs de espaço de tabela e IDs de página necessários para localizar as páginas apropriadas são salvos em disco. Essas informações são derivadas da tabela `INNODB_BUFFER_PAGE_LRU` `INFORMATION_SCHEMA`. Por padrão, os dados de IDs de espaço de tabela e IDs de página são salvos em um arquivo denominado `ib_buffer_pool`, que é salvo no diretório de dados `InnoDB`. O nome do arquivo e a localização podem ser modificados usando o parâmetro de configuração `innodb_buffer_pool_filename`.
 
 Como os dados são armazenados e descartados do buffer pool, assim como nas operações regulares do banco de dados, não há problema se as páginas do disco forem recentemente atualizadas, ou se uma operação de DML envolver dados que ainda não foram carregados. O mecanismo de carregamento ignora as páginas solicitadas que não existem mais.
 
-O mecanismo subjacente envolve um fio de fundo que é enviado para realizar as operações de dump e carregamento.
+O mecanismo subjacente envolve um thread de fundo que é enviado para realizar as operações de dump e carregamento.
 
 As páginas de disco de tabelas compactadas são carregadas no pool de buffer em sua forma compactada. As páginas são descompactadas como de costume quando o conteúdo das páginas é acessado durante operações de DML. Como descompactuar páginas é um processo intensivo em CPU, é mais eficiente que a concorrência realize a operação em um thread de conexão em vez do único thread que realiza a operação de restauração do pool de buffer.
 
@@ -733,7 +733,7 @@ SET GLOBAL innodb_buffer_pool_dump_at_shutdown=ON;
 
 `innodb_buffer_pool_dump_at_shutdown` é ativado por padrão.
 
-Para restaurar o estado do pool de tampão no início da inicialização do servidor, especifique a opção `--innodb-buffer-pool-load-at-startup` ao iniciar o servidor:
+Para restaurar o estado do pool de buffer no início da inicialização do servidor, especifique a opção `--innodb-buffer-pool-load-at-startup` ao iniciar o servidor:
 
 ```sql
 mysqld --innodb-buffer-pool-load-at-startup=ON;
@@ -749,7 +749,7 @@ Para salvar o estado do pool de buffer enquanto o servidor MySQL estiver em exec
 SET GLOBAL innodb_buffer_pool_dump_now=ON;
 ```
 
-Para restaurar o estado do pool de tampão enquanto o MySQL estiver em execução, execute a seguinte instrução:
+Para restaurar o estado do pool de buffer enquanto o MySQL estiver em execução, execute a seguinte instrução:
 
 ```sql
 SET GLOBAL innodb_buffer_pool_load_now=ON;
@@ -785,11 +785,11 @@ SET GLOBAL innodb_buffer_pool_load_abort=ON;
 
 ##### Monitoramento do progresso do Pool de Buffer de Bufferamento Usando o Schema de Desempenho
 
-Você pode monitorar o progresso da carga do pool de tampão usando o Schema de desempenho.
+Você pode monitorar o progresso da carga do pool de buffer usando o Schema de desempenho.
 
-O exemplo a seguir demonstra como habilitar o instrumento de evento de estágio `stage/innodb/buffer pool load` e as tabelas relacionadas do consumidor para monitorar o progresso da carga do pool de tampão.
+O exemplo a seguir demonstra como habilitar o instrumento de evento de estágio `stage/innodb/buffer pool load` e as tabelas relacionadas do consumidor para monitorar o progresso da carga do pool de buffer.
 
-Para informações sobre os procedimentos de exclusão e carga do pool de tampão utilizados neste exemplo, consulte a Seção 14.8.3.6, “Salvar e restaurar o estado do pool de tampão”. Para informações sobre os instrumentos de evento de estágio do Schema de desempenho e os consumidores relacionados, consulte a Seção 25.12.5, “Tabelas de evento de estágio do Schema de desempenho”.
+Para informações sobre os procedimentos de exclusão e carga do pool de buffer utilizados neste exemplo, consulte a Seção 14.8.3.6, “Salvar e restaurar o estado do pool de buffer”. Para informações sobre os instrumentos de evento de estágio do Schema de desempenho e os consumidores relacionados, consulte a Seção 25.12.5, “Tabelas de evento de estágio do Schema de desempenho”.
 
 1. Ative o instrumento `stage/innodb/buffer pool load`:
 
@@ -888,9 +888,9 @@ O valor padrão para `innodb_thread_concurrency` e o limite padrão implícito s
 
 `InnoDB` faz com que os threads durmam apenas quando o número de threads concorrentes é limitado. Quando não há limite no número de threads, todos competem igualmente para ser agendados. Isso significa que, se `innodb_thread_concurrency` é `0`, o valor de `innodb_thread_sleep_delay` é ignorado.
 
-Quando há um limite no número de threads (quando `innodb_thread_concurrency` é > 0), `InnoDB` reduz o custo de alternância de contexto, permitindo que múltiplos pedidos feitos durante a execução de uma única declaração SQL entrem em `InnoDB` sem observar o limite definido por `innodb_thread_concurrency`. Como uma declaração SQL (como uma junção) pode incluir múltiplas operações de linha dentro de `InnoDB`, `InnoDB` atribui um número especificado de “ingressos” que permitem que um thread seja agendado repetidamente com mínimo custo.
+Quando há um limite no número de threads (quando `innodb_thread_concurrency` é > 0), `InnoDB` reduz o custo de alternância de contexto, permitindo que múltiplos pedidos feitos durante a execução de uma única declaração SQL entrem em `InnoDB` sem observar o limite definido por `innodb_thread_concurrency`. Como uma declaração SQL (como uma junção) pode incluir múltiplas operações de string dentro de `InnoDB`, `InnoDB` atribui um número especificado de “ingressos” que permitem que um thread seja agendado repetidamente com mínimo custo.
 
-Quando uma nova declaração SQL começa, um fio não tem ingressos e deve observar `innodb_thread_concurrency`. Uma vez que o fio tem direito a entrar em `InnoDB`, ele recebe um número de ingressos que pode usar para entrar subsequentemente em `InnoDB` para realizar operações de linha. Se os ingressos se esgotarem, o fio é expulsado e `innodb_thread_concurrency` é observado novamente, o que pode colocar o fio de volta na fila de fios em espera de entrada primeiro/primeiro para sair. Quando o fio tem direito a entrar novamente em `InnoDB`, ingressos são atribuídos novamente. O número de ingressos atribuídos é especificado pela opção global `innodb_concurrency_tickets`, que é 5000 por padrão. Um fio que está esperando por um bloqueio recebe um ingresso assim que o bloqueio se torna disponível.
+Quando uma nova declaração SQL começa, um thread não tem ingressos e deve observar `innodb_thread_concurrency`. Uma vez que o thread tem direito a entrar em `InnoDB`, ele recebe um número de ingressos que pode usar para entrar subsequentemente em `InnoDB` para realizar operações de string. Se os ingressos se esgotarem, o thread é expulsado e `innodb_thread_concurrency` é observado novamente, o que pode colocar o thread de volta na fila de threads em espera de entrada primeiro/primeiro para sair. Quando o thread tem direito a entrar novamente em `InnoDB`, ingressos são atribuídos novamente. O número de ingressos atribuídos é especificado pela opção global `innodb_concurrency_tickets`, que é 5000 por padrão. Um thread que está esperando por um bloqueio recebe um ingresso assim que o bloqueio se torna disponível.
 
 Os valores corretos dessas variáveis dependem do seu ambiente e da carga de trabalho. Experimente uma série de valores diferentes para determinar qual valor funciona para suas aplicações. Antes de limitar o número de threads que executam simultaneamente, revise as opções de configuração que podem melhorar o desempenho do `InnoDB` em computadores multicore e multiprocessador, como `innodb_adaptive_hash_index`.
 
@@ -922,13 +922,13 @@ Se um problema com o subsistema de E/S assíncrona no SO impedir que o `InnoDB` 
 
 ### 14.8.8 Configurando a Capacidade de I/O do InnoDB
 
-O fio mestre `InnoDB` e outros fios realizam várias tarefas em segundo plano, a maioria das quais está relacionada a I/O, como esvaziar páginas sujas do pool de buffer e escrever as alterações do buffer de alterações nos índices secundários apropriados. `InnoDB` tenta realizar essas tarefas de uma maneira que não afete negativamente o funcionamento normal do servidor. Ele tenta estimar a largura de banda de I/O disponível e ajustar suas atividades para aproveitar a capacidade disponível.
+O thread mestre `InnoDB` e outros threads realizam várias tarefas em segundo plano, a maioria das quais está relacionada a I/O, como esvaziar páginas sujas do pool de buffer e escrever as alterações do buffer de alterações nos índices secundários apropriados. `InnoDB` tenta realizar essas tarefas de uma maneira que não afete negativamente o funcionamento normal do servidor. Ele tenta estimar a largura de banda de I/O disponível e ajustar suas atividades para aproveitar a capacidade disponível.
 
 A variável `innodb_io_capacity` define a capacidade geral de E/S disponível para `InnoDB`. Deve ser definida aproximadamente no número de operações de E/S que o sistema pode realizar por segundo (IOPS). Quando `innodb_io_capacity` é definido, `InnoDB` estima a largura de banda de E/S disponível para tarefas de segundo plano com base no valor definido.
 
 Você pode definir `innodb_io_capacity` para um valor de 100 ou superior. O valor padrão é `200`. Normalmente, valores em torno de 100 são apropriados para dispositivos de armazenamento de nível de consumidor, como discos rígidos de até 7200 RPM. Disco rígido mais rápido, configurações RAID e unidades de estado sólido (SSDs) se beneficiam de valores mais altos.
 
-Idealmente, mantenha o valor o mais baixo possível, mas não tão baixo que as atividades de fundo fiquem para trás. Se o valor for muito alto, os dados são removidos do pool de buffer e o buffer de mudança é alterado muito rapidamente para que o cache forneça um benefício significativo. Para sistemas ocupados, capazes de taxas de I/O mais altas, você pode definir um valor mais alto para ajudar o servidor a lidar com o trabalho de manutenção de fundo associado a uma alta taxa de mudanças de linha. Geralmente, você pode aumentar o valor como uma função do número de unidades usadas para o I/O do `InnoDB`. Por exemplo, você pode aumentar o valor em sistemas que usam vários discos ou SSDs.
+Idealmente, mantenha o valor o mais baixo possível, mas não tão baixo que as atividades de fundo fiquem para trás. Se o valor for muito alto, os dados são removidos do pool de buffer e o buffer de mudança é alterado muito rapidamente para que o cache forneça um benefício significativo. Para sistemas ocupados, capazes de taxas de I/O mais altas, você pode definir um valor mais alto para ajudar o servidor a lidar com o trabalho de manutenção de fundo associado a uma alta taxa de mudanças de string. Geralmente, você pode aumentar o valor como uma função do número de unidades usadas para o I/O do `InnoDB`. Por exemplo, você pode aumentar o valor em sistemas que usam vários discos ou SSDs.
 
 O ajuste padrão de 200 é geralmente suficiente para um SSD de menor porte. Para um SSD com conexão em bus de maior porte, considere um valor mais alto, como 1000, por exemplo. Para sistemas com unidades individuais de 5400 RPM ou 7200 RPM, você pode reduzir o valor para 100, que representa uma proporção estimada das operações de entrada/saída por segundo (IOPS) disponíveis para unidades de disco de geração mais antiga, que podem realizar cerca de 100 IOPS.
 
@@ -960,7 +960,7 @@ Considere a carga de trabalho de escrita ao ajustar `innodb_io_capacity_max`. Si
 
 Definir `innodb_io_capacity_max` para `DEFAULT` usando uma declaração `SET` (`SET GLOBAL innodb_io_capacity_max=DEFAULT`) define `innodb_io_capacity_max` para o valor máximo.
 
-O limite `innodb_io_capacity_max` se aplica a todas as instâncias do pool de tampão. Não é uma configuração por instância do pool de tampão.
+O limite `innodb_io_capacity_max` se aplica a todas as instâncias do pool de buffer. Não é uma configuração por instância do pool de buffer.
 
 ### 14.8.9 Configurando a Pesquisa de Bloqueio Espiral
 
@@ -988,7 +988,7 @@ A variável `innodb_spin_wait_delay` é dinâmica. Ela pode ser especificada em 
 
 ### 14.8.10 Configuração de purga
 
-`InnoDB` não remove fisicamente uma linha do banco de dados imediatamente quando você a exclui com uma declaração SQL. Uma linha e seus registros de índice são removidos fisicamente apenas quando `InnoDB` descarta o registro do log de desfazer escrito para a exclusão. Essa operação de remoção, que ocorre apenas após a linha não ser mais necessária para o controle de concorrência de múltiplas versões (MVCC) ou rollback, é chamada de purga.
+`InnoDB` não remove fisicamente uma string do banco de dados imediatamente quando você a exclui com uma declaração SQL. Uma string e seus registros de índice são removidos fisicamente apenas quando `InnoDB` descarta o registro do log de desfazer escrito para a exclusão. Essa operação de remoção, que ocorre apenas após a string não ser mais necessária para o controle de concorrência de múltiplas versões (MVCC) ou rollback, é chamada de purga.
 
 A purga é executada em um cronograma periódico. Ela analisa e processa as páginas do registro de desfazer da lista de histórico, que é uma lista de páginas do registro de desfazer para transações comprometidas que é mantida pelo sistema de transação `InnoDB`. A purga libera as páginas do registro de desfazer da lista de histórico após processá-las.
 
@@ -1018,7 +1018,7 @@ O sistema de transação `InnoDB` mantém uma lista de transações que possuem 
 
 O atraso é calculado no início de um lote de purga
 
-Um ajuste típico para uma carga de trabalho problemática, como o `innodb_max_purge_lag`, pode ser 1.000.000 (1 milhão), assumindo que as transações são pequenas, com apenas 100 bytes de tamanho, e é permitido ter 100 MB de linhas de tabela não limpas.
+Um ajuste típico para uma carga de trabalho problemática, como o `innodb_max_purge_lag`, pode ser 1.000.000 (1 milhão), assumindo que as transações são pequenas, com apenas 100 bytes de tamanho, e é permitido ter 100 MB de strings de tabela não limpas.
 
 O atraso de purga é apresentado como o valor `History list length` na seção `TRANSACTIONS` do `SHOW ENGINE INNODB STATUS` de saída.
 
@@ -1081,7 +1081,7 @@ Se você preferir não persistir as estatísticas do otimizador no disco, consul
 
 ##### 14.8.11.1.1 Configurando o cálculo automático de estatísticas para estatísticas de otimizador persistente
 
-A variável `innodb_stats_auto_recalc`, que é ativada por padrão, controla se as estatísticas são calculadas automaticamente quando uma tabela sofre alterações em mais de 10% de suas linhas. Você também pode configurar a recálculo automático das estatísticas para tabelas individuais, especificando a cláusula `STATS_AUTO_RECALC` ao criar ou alterar uma tabela.
+A variável `innodb_stats_auto_recalc`, que é ativada por padrão, controla se as estatísticas são calculadas automaticamente quando uma tabela sofre alterações em mais de 10% de suas strings. Você também pode configurar a recálculo automático das estatísticas para tabelas individuais, especificando a cláusula `STATS_AUTO_RECALC` ao criar ou alterar uma tabela.
 
 Devido à natureza assíncrona da recálculo automático das estatísticas, que ocorre em segundo plano, as estatísticas podem não ser recálculado instantaneamente após a execução de uma operação de DML que afeta mais de 10% de uma tabela, mesmo quando o `innodb_stats_auto_recalc` está habilitado. A recálculo das estatísticas pode ser adiado por alguns segundos em alguns casos. Se estatísticas atualizadas são necessárias imediatamente, execute `ANALYZE TABLE` para iniciar um recálculo síncrono (em primeiro plano) das estatísticas.
 
@@ -1132,7 +1132,7 @@ Para informações relacionadas, consulte a Seção 14.8.11.3, “Estimativa da 
 
 ##### 14.8.11.1.4 Inclusão de registros marcados como excluídos em cálculos de estatísticas persistentes
 
-Por padrão, `InnoDB` lê dados não comprometidos ao calcular estatísticas. No caso de uma transação não comprometida que exclui linhas de uma tabela, os registros marcados para exclusão são excluídos ao calcular estimativas de linha e estatísticas de índice, o que pode levar a planos de execução não ótimos para outras transações que operam na tabela simultaneamente usando um nível de isolamento de transação diferente de `READ UNCOMMITTED`. Para evitar esse cenário, `innodb_stats_include_delete_marked` pode ser habilitado para garantir que os registros marcados para exclusão sejam incluídos ao calcular estatísticas de otimizador persistentes.
+Por padrão, `InnoDB` lê dados não comprometidos ao calcular estatísticas. No caso de uma transação não comprometida que exclui strings de uma tabela, os registros marcados para exclusão são excluídos ao calcular estimativas de string e estatísticas de índice, o que pode levar a planos de execução não ótimos para outras transações que operam na tabela simultaneamente usando um nível de isolamento de transação diferente de `READ UNCOMMITTED`. Para evitar esse cenário, `innodb_stats_include_delete_marked` pode ser habilitado para garantir que os registros marcados para exclusão sejam incluídos ao calcular estatísticas de otimizador persistentes.
 
 Quando o `innodb_stats_include_delete_marked` está habilitado, o `ANALYZE TABLE` considera os registros marcados para exclusão ao recalcular as estatísticas.
 
@@ -1146,11 +1146,11 @@ O recurso de estatísticas persistentes depende das tabelas gerenciadas internam
 
 **Tabela 14.4 Colunas de innodb\_table\_stats**
 
-<table summary="Columns of the mysql.innodb_table_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Nome do banco de dados</td> </tr><tr> <td><code>table_name</code></td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td><code>last_update</code></td> <td>Um marcador de tempo que indica a última vez que a linha foi atualizada</td> </tr><tr> <td><code>n_rows</code></td> <td>O número de linhas na tabela</td> </tr><tr> <td><code>clustered_index_size</code></td> <td>O tamanho do índice principal, em páginas</td> </tr><tr> <td><code>sum_of_other_index_sizes</code></td> <td>O tamanho total de outros índices (não primários), em páginas</td> </tr></tbody></table>
+<table summary="Columns of the mysql.innodb_table_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Nome do banco de dados</td> </tr><tr> <td><code>table_name</code></td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td><code>last_update</code></td> <td>Um marcador de tempo que indica a última vez que a string foi atualizada</td> </tr><tr> <td><code>n_rows</code></td> <td>O número de strings na tabela</td> </tr><tr> <td><code>clustered_index_size</code></td> <td>O tamanho do índice principal, em páginas</td> </tr><tr> <td><code>sum_of_other_index_sizes</code></td> <td>O tamanho total de outros índices (não primários), em páginas</td> </tr></tbody></table>
 
 **Tabela 14.5 Colunas de innodb\_index\_stats**
 
-<table summary="Columns of the mysql.innodb_index_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Nome do banco de dados</td> </tr><tr> <td><code>table_name</code></td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td><code>index_name</code></td> <td>Nome do índice</td> </tr><tr> <td><code>last_update</code></td> <td>Um marcador de tempo que indica a última vez que<code>InnoDB</code>atualizada esta linha</td> </tr><tr> <td><code>stat_name</code></td> <td>O nome da estatística, cujo valor é relatado no<code>stat_value</code>coluna</td> </tr><tr> <td><code>stat_value</code></td> <td>O valor da estatística que é nomeada em<code>stat_name</code>coluna</td> </tr><tr> <td><code>sample_size</code></td> <td>O número de páginas amostradas para a estimativa fornecida no<code>stat_value</code>coluna</td> </tr><tr> <td><code>stat_description</code></td> <td>Descrição da estatística que é nomeada no<code>stat_name</code>coluna</td> </tr></tbody></table>
+<table summary="Columns of the mysql.innodb_index_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Nome do banco de dados</td> </tr><tr> <td><code>table_name</code></td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td><code>index_name</code></td> <td>Nome do índice</td> </tr><tr> <td><code>last_update</code></td> <td>Um marcador de tempo que indica a última vez que<code>InnoDB</code>atualizada esta string</td> </tr><tr> <td><code>stat_name</code></td> <td>O nome da estatística, cujo valor é relatado no<code>stat_value</code>coluna</td> </tr><tr> <td><code>stat_value</code></td> <td>O valor da estatística que é nomeada em<code>stat_name</code>coluna</td> </tr><tr> <td><code>sample_size</code></td> <td>O número de páginas amostradas para a estimativa fornecida no<code>stat_value</code>coluna</td> </tr><tr> <td><code>stat_description</code></td> <td>Descrição da estatística que é nomeada no<code>stat_name</code>coluna</td> </tr></tbody></table>
 
 As tabelas `innodb_table_stats` e `innodb_index_stats` incluem uma coluna `last_update` que mostra quando as estatísticas do índice foram atualizadas pela última vez:
 
@@ -1185,7 +1185,7 @@ As estatísticas persistentes são consideradas informações locais, porque ela
 
 ##### 14.8.11.1.6 Tabelas de estatísticas persistentes do InnoDB Exemplo
 
-A tabela `innodb_table_stats` contém uma linha para cada tabela. O exemplo a seguir demonstra o tipo de dados coletados.
+A tabela `innodb_table_stats` contém uma string para cada tabela. O exemplo a seguir demonstra o tipo de dados coletados.
 
 A tabela `t1` contém um índice primário (colunas `a`, `b`) e um índice secundário (colunas `c`, `d`), além de um índice exclusivo (colunas `e`, `f`):
 
@@ -1196,7 +1196,7 @@ PRIMARY KEY (a, b), KEY i1 (c, d), UNIQUE KEY i2uniq (e, f)
 ) ENGINE=INNODB;
 ```
 
-Após inserir cinco linhas de dados de amostra, a tabela `t1` aparece da seguinte forma:
+Após inserir cinco strings de dados de amostra, a tabela `t1` aparece da seguinte forma:
 
 ```sql
 mysql> SELECT * FROM t1;
@@ -1211,7 +1211,7 @@ mysql> SELECT * FROM t1;
 +---+---+------+------+------+------+
 ```
 
-Para atualizar imediatamente as estatísticas, execute `ANALYZE TABLE` (se `innodb_stats_auto_recalc` estiver habilitado, as estatísticas são atualizadas automaticamente em poucos segundos, assumindo que o limite de 10% para linhas de tabela alteradas é atingido):
+Para atualizar imediatamente as estatísticas, execute `ANALYZE TABLE` (se `innodb_stats_auto_recalc` estiver habilitado, as estatísticas são atualizadas automaticamente em poucos segundos, assumindo que o limite de 10% para strings de tabela alteradas é atingido):
 
 ```sql
 mysql> ANALYZE TABLE t1;
@@ -1222,7 +1222,7 @@ mysql> ANALYZE TABLE t1;
 +---------+---------+----------+----------+
 ```
 
-As estatísticas da tabela para a tabela `t1` mostram a última vez que `InnoDB` atualizou as estatísticas da tabela (`2014-03-14 14:36:34`), o número de linhas na tabela (`5`), o tamanho do índice agrupado (`1` página) e o tamanho combinado dos outros índices (`2` páginas).
+As estatísticas da tabela para a tabela `t1` mostram a última vez que `InnoDB` atualizou as estatísticas da tabela (`2014-03-14 14:36:34`), o número de strings na tabela (`5`), o tamanho do índice agrupado (`1` página) e o tamanho combinado dos outros índices (`2` páginas).
 
 ```sql
 mysql> SELECT * FROM mysql.innodb_table_stats WHERE table_name like 't1'\G
@@ -1235,7 +1235,7 @@ mysql> SELECT * FROM mysql.innodb_table_stats WHERE table_name like 't1'\G
 sum_of_other_index_sizes: 2
 ```
 
-A tabela `innodb_index_stats` contém várias linhas para cada índice. Cada linha na tabela `innodb_index_stats` fornece dados relacionados a uma estatística de índice específica, que é nomeada na coluna `stat_name` e descrita na coluna `stat_description`. Por exemplo:
+A tabela `innodb_index_stats` contém várias strings para cada índice. Cada string na tabela `innodb_index_stats` fornece dados relacionados a uma estatística de índice específica, que é nomeada na coluna `stat_name` e descrita na coluna `stat_description`. Por exemplo:
 
 ```sql
 mysql> SELECT index_name, stat_name, stat_value, stat_description
@@ -1277,7 +1277,7 @@ CREATE TABLE t1 (
 ) ENGINE=INNODB;
 ```
 
-Após inserir cinco linhas de dados de amostra, a tabela `t1` aparece da seguinte forma:
+Após inserir cinco strings de dados de amostra, a tabela `t1` aparece da seguinte forma:
 
 ```sql
 mysql> SELECT * FROM t1;
@@ -1312,7 +1312,7 @@ mysql> SELECT index_name, stat_name, stat_value, stat_description
 +------------+--------------+------------+------------------+
 ```
 
-Para o índice `PRIMARY`, há duas linhas `n_diff%`. O número de linhas é igual ao número de colunas no índice.
+Para o índice `PRIMARY`, há duas strings `n_diff%`. O número de strings é igual ao número de colunas no índice.
 
 Nota
 
@@ -1322,7 +1322,7 @@ Para índices não únicos, `InnoDB` anexa as colunas da chave primária.
 
 * Onde `index_name`=`PRIMARY` e `stat_name`=`n_diff_pfx02`, o `stat_value` é `5`, o que indica que há cinco valores distintos nas duas colunas do índice (`a,b`). O número de valores distintos nas colunas `a` e `b` é confirmado ao visualizar os dados nas colunas `a` e `b` na tabela `t1`, na qual há cinco valores distintos: (`1,1`), (`1,2`), (`1,3`), (`1,4`) e (`1,5`). As colunas contadas (`a,b`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-Para o índice secundário (`i1`), há quatro linhas `n_diff%`. Apenas duas colunas são definidas para o índice secundário (`c,d`) mas há quatro linhas `n_diff%` para o índice secundário porque `InnoDB` sufixa todos os índices não únicos com a chave primária. Como resultado, há quatro linhas `n_diff%` em vez de duas para contabilizar tanto as colunas do índice secundário (`c,d`) quanto as colunas da chave primária (`a,b`).
+Para o índice secundário (`i1`), há quatro strings `n_diff%`. Apenas duas colunas são definidas para o índice secundário (`c,d`) mas há quatro strings `n_diff%` para o índice secundário porque `InnoDB` sufixa todos os índices não únicos com a chave primária. Como resultado, há quatro strings `n_diff%` em vez de duas para contabilizar tanto as colunas do índice secundário (`c,d`) quanto as colunas da chave primária (`a,b`).
 
 * Onde `index_name`=`i1` e `stat_name`=`n_diff_pfx01`, o `stat_value` é `1`, o que indica que há um único valor distinto na primeira coluna do índice (coluna `c`). O número de valores distintos na coluna `c` é confirmado ao visualizar os dados na coluna `c` da tabela `t1`, na qual há um único valor distinto: (`10`). A coluna contada (`c`) é mostrada na coluna `stat_description` do conjunto de resultados.
 
@@ -1332,7 +1332,7 @@ Para o índice secundário (`i1`), há quatro linhas `n_diff%`. Apenas duas colu
 
 * Onde `index_name`=`i1` e `stat_name`=`n_diff_pfx04`, o `stat_value` é `5`, o que indica que há cinco valores distintos nas quatro colunas do índice (`c,d,a,b`). O número de valores distintos nas colunas `c`, `d`, `a` e `b` é confirmado ao visualizar os dados nas colunas `c`, `d`, `a` e `b` na tabela `t1`, na qual há cinco valores distintos: (`10,11,1,1`), (`10,11,1,2`), (`10,11,1,3`), (`10,12,1,4`), e (`10,12,1,5`). As colunas contadas (`c,d,a,b`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-Para o índice único (`i2uniq`), há duas linhas `n_diff%`.
+Para o índice único (`i2uniq`), há duas strings `n_diff%`.
 
 * Onde `index_name`=`i2uniq` e `stat_name`=`n_diff_pfx01`, o `stat_value` é `2`, o que indica que há dois valores distintos na primeira coluna do índice (coluna `e`). O número de valores distintos na coluna `e` é confirmado ao visualizar os dados na coluna `e` da tabela `t1`, na qual há dois valores distintos: (`100`) e (`200`). A coluna contada (`e`) é mostrada na coluna `stat_description` do conjunto de resultados.
 
@@ -1528,7 +1528,7 @@ Todos os 4 `MiB` podem não ser lidos a partir do disco, pois algumas páginas d
 
 ### 14.8.12 Configurando o Limiar de Fusão para Páginas de Índice
 
-Você pode configurar o valor `MERGE_THRESHOLD` para páginas de índice. Se a porcentagem de “página cheia” para uma página de índice cair abaixo do valor `MERGE_THRESHOLD` quando uma linha é excluída ou quando uma linha é encurtada por uma operação `UPDATE`, o `InnoDB` tenta combinar a página de índice com uma página de índice vizinha. O valor padrão `MERGE_THRESHOLD` é 50, que é o valor pré-codificado. O valor mínimo `MERGE_THRESHOLD` é 1 e o valor máximo é 50.
+Você pode configurar o valor `MERGE_THRESHOLD` para páginas de índice. Se a porcentagem de “página cheia” para uma página de índice cair abaixo do valor `MERGE_THRESHOLD` quando uma string é excluída ou quando uma string é encurtada por uma operação `UPDATE`, o `InnoDB` tenta combinar a página de índice com uma página de índice vizinha. O valor padrão `MERGE_THRESHOLD` é 50, que é o valor pré-codificado. O valor mínimo `MERGE_THRESHOLD` é 1 e o valor máximo é 50.
 
 Quando a porcentagem de "página cheia" para uma página de índice cair abaixo de 50%, que é o ajuste padrão do `MERGE_THRESHOLD`, o `InnoDB` tenta combinar a página de índice com uma página vizinha. Se ambas as páginas estiverem próximas a 50% de cheia, uma divisão de página pode ocorrer logo após as páginas serem combinadas. Se esse comportamento de junção e divisão ocorrer frequentemente, pode ter um efeito adverso no desempenho. Para evitar junções frequentes, você pode diminuir o valor do `MERGE_THRESHOLD` para que o `InnoDB` tente fazer junções de página em uma porcentagem de "página cheia" mais baixa. A junção de páginas em uma porcentagem de "página cheia" mais baixa deixa mais espaço nas páginas de índice e ajuda a reduzir o comportamento de junção e divisão.
 

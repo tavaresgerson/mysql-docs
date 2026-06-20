@@ -2,7 +2,7 @@
 
 Um gatilho é um objeto de banco de dados com nome que está associado a uma tabela e que é ativado quando um evento específico ocorre para a tabela. Alguns usos dos gatilhos são realizar verificações de valores a serem inseridos em uma tabela ou realizar cálculos em valores envolvidos em uma atualização.
 
-Um gatilho é definido para ser ativado quando uma declaração insere, atualiza ou exclui linhas na tabela associada. Essas operações de linha são eventos de gatilho. Por exemplo, as linhas podem ser inseridas por declarações `INSERT` ou `LOAD DATA`, e um gatilho de inserção é ativado para cada linha inserida. Um gatilho pode ser configurado para ser ativado antes ou depois do evento do gatilho. Por exemplo, você pode ter um gatilho ativado antes de cada linha que é inserida em uma tabela ou depois de cada linha que é atualizada.
+Um gatilho é definido para ser ativado quando uma declaração insere, atualiza ou exclui strings na tabela associada. Essas operações de string são eventos de gatilho. Por exemplo, as strings podem ser inseridas por declarações `INSERT` ou `LOAD DATA`, e um gatilho de inserção é ativado para cada string inserida. Um gatilho pode ser configurado para ser ativado antes ou depois do evento do gatilho. Por exemplo, você pode ter um gatilho ativado antes de cada string que é inserida em uma tabela ou depois de cada string que é atualizada.
 
 Importante
 
@@ -39,11 +39,11 @@ Query OK, 0 rows affected (0.01 sec)
 
 A declaração `CREATE TRIGGER` cria um gatilho denominado `ins_sum` que está associado à tabela `account`. Ela também inclui cláusulas que especificam o tempo da ação do gatilho, o evento de ativação e o que fazer quando o gatilho é ativado:
 
-* A palavra-chave `BEFORE` indica o tempo de ação do gatilho. Neste caso, o gatilho é ativado antes de cada linha inserida na tabela. A outra palavra-chave permitida aqui é `AFTER`.
+* A palavra-chave `BEFORE` indica o tempo de ação do gatilho. Neste caso, o gatilho é ativado antes de cada string inserida na tabela. A outra palavra-chave permitida aqui é `AFTER`.
 
 * A palavra-chave `INSERT` indica o evento desencadeador, ou seja, o tipo de operação que ativa o gatilho. No exemplo, as operações `INSERT` causam a ativação do gatilho. Você também pode criar gatilhos para as operações `DELETE` e `UPDATE`.
 
-* A declaração após `FOR EACH ROW` define o corpo do gatilho; ou seja, a declaração a ser executada cada vez que o gatilho é ativado, o que ocorre uma vez para cada linha afetada pelo evento desencadeador. No exemplo, o corpo do gatilho é um simples `SET` que acumula em uma variável de usuário os valores inseridos na coluna `amount`. A declaração se refere à coluna como `NEW.amount`, o que significa “o valor da coluna `amount` a ser inserido na nova linha.”
+* A declaração após `FOR EACH ROW` define o corpo do gatilho; ou seja, a declaração a ser executada cada vez que o gatilho é ativado, o que ocorre uma vez para cada string afetada pelo evento desencadeador. No exemplo, o corpo do gatilho é um simples `SET` que acumula em uma variável de usuário os valores inseridos na coluna `amount`. A declaração se refere à coluna como `NEW.amount`, o que significa “o valor da coluna `amount` a ser inserido na nova string.”
 
 Para usar o gatilho, defina a variável acumuladora como zero, execute uma instrução `INSERT` e, em seguida, veja qual valor a variável tem depois disso:
 
@@ -87,15 +87,15 @@ Esse gatilho, `ins_transaction`, é semelhante ao `ins_sum`, mas acumula depósi
 
 Antes do MySQL 5.7.2, não pode haver múltiplos gatilhos para uma determinada tabela que tenham o mesmo evento de gatilho e hora de ação. Por exemplo, não pode haver dois gatilhos `BEFORE UPDATE` para uma tabela. Para contornar isso, você pode definir um gatilho que execute múltiplos comandos usando a construção de comando composto `BEGIN ... END` após `FOR EACH ROW`. (Um exemplo aparece mais tarde nesta seção.)
 
-Dentro do corpo do gatilho, as palavras-chave `OLD` e `NEW` permitem que você acesse as colunas nas linhas afetadas por um gatilho. `OLD` e `NEW` são extensões do MySQL para gatilhos; elas não são sensíveis ao caso.
+Dentro do corpo do gatilho, as palavras-chave `OLD` e `NEW` permitem que você acesse as colunas nas strings afetadas por um gatilho. `OLD` e `NEW` são extensões do MySQL para gatilhos; elas não são sensíveis ao caso.
 
-Em um gatilho `INSERT`, apenas `NEW.col_name` pode ser usado; não há linha antiga. Em um gatilho `DELETE`, apenas `OLD.col_name` pode ser usado; não há nova linha. Em um gatilho `UPDATE`, você pode usar `OLD.col_name` para referir-se às colunas de uma linha antes que ela seja atualizada e `NEW.col_name` para referir-se às colunas da linha após ela ser atualizada.
+Em um gatilho `INSERT`, apenas `NEW.col_name` pode ser usado; não há string antiga. Em um gatilho `DELETE`, apenas `OLD.col_name` pode ser usado; não há nova string. Em um gatilho `UPDATE`, você pode usar `OLD.col_name` para referir-se às colunas de uma string antes que ela seja atualizada e `NEW.col_name` para referir-se às colunas da string após ela ser atualizada.
 
-Uma coluna com o nome `OLD` é somente leitura. Você pode referenciá-la (se tiver o privilégio `SELECT`) , mas não modificá-la. Você pode referenciar uma coluna com o nome `NEW` se tiver o privilégio `SELECT` para ela. Em um gatilho `BEFORE`, você também pode alterar seu valor com `SET NEW.col_name = value` se tiver o privilégio `UPDATE` para ele. Isso significa que você pode usar um gatilho para modificar os valores a serem inseridos em uma nova linha ou usados para atualizar uma linha. (Tal declaração `SET` não tem efeito em um gatilho `AFTER` porque a alteração da linha já ocorreu.)
+Uma coluna com o nome `OLD` é somente leitura. Você pode referenciá-la (se tiver o privilégio `SELECT`) , mas não modificá-la. Você pode referenciar uma coluna com o nome `NEW` se tiver o privilégio `SELECT` para ela. Em um gatilho `BEFORE`, você também pode alterar seu valor com `SET NEW.col_name = value` se tiver o privilégio `UPDATE` para ele. Isso significa que você pode usar um gatilho para modificar os valores a serem inseridos em uma nova string ou usados para atualizar uma string. (Tal declaração `SET` não tem efeito em um gatilho `AFTER` porque a alteração da string já ocorreu.)
 
-Em um gatilho `BEFORE`, o valor `NEW` para uma coluna `AUTO_INCREMENT` é 0, não o número de sequência que é gerado automaticamente quando a nova linha é inserida.
+Em um gatilho `BEFORE`, o valor `NEW` para uma coluna `AUTO_INCREMENT` é 0, não o número de sequência que é gerado automaticamente quando a nova string é inserida.
 
-Usando o construtor `BEGIN ... END`, você pode definir um gatilho que executa múltiplas instruções. Dentro do bloco `BEGIN`, você também pode usar outras sintaxes permitidas em rotinas armazenadas, como condicionais e loops. No entanto, assim como para rotinas armazenadas, se você usar o programa **mysql** para definir um gatilho que executa múltiplas instruções, é necessário redefinir o delimitador da instrução **mysql** para que você possa usar o delimitador da instrução `;` dentro da definição do gatilho. O exemplo a seguir ilustra esses pontos. Ele define um gatilho `UPDATE` que verifica o novo valor a ser usado para atualizar cada linha e modifica o valor para estar dentro do intervalo de 0 a 100. Isso deve ser um gatilho [[`BEFORE`] porque o valor deve ser verificado antes de ser usado para atualizar a linha:
+Usando o construtor `BEGIN ... END`, você pode definir um gatilho que executa múltiplas instruções. Dentro do bloco `BEGIN`, você também pode usar outras sintaxes permitidas em rotinas armazenadas, como condicionais e loops. No entanto, assim como para rotinas armazenadas, se você usar o programa **mysql** para definir um gatilho que executa múltiplas instruções, é necessário redefinir o delimitador da instrução **mysql** para que você possa usar o delimitador da instrução `;` dentro da definição do gatilho. O exemplo a seguir ilustra esses pontos. Ele define um gatilho `UPDATE` que verifica o novo valor a ser usado para atualizar cada string e modifica o valor para estar dentro do intervalo de 0 a 100. Isso deve ser um gatilho [[`BEFORE`] porque o valor deve ser verificado antes de ser usado para atualizar a string:
 
 ```sql
 mysql> delimiter //
@@ -123,11 +123,11 @@ Veja também a Seção 23.8, “Restrições sobre programas armazenados”.
 
 O MySQL lida com erros durante a execução de gatilho da seguinte forma:
 
-* Se um gatilho `BEFORE` falhar, a operação na linha correspondente não é realizada.
+* Se um gatilho `BEFORE` falhar, a operação na string correspondente não é realizada.
 
-* Um gatilho `BEFORE` é ativado pela *tentativa* de inserir ou modificar a linha, independentemente de a tentativa ter sucesso posteriormente.
+* Um gatilho `BEFORE` é ativado pela *tentativa* de inserir ou modificar a string, independentemente de a tentativa ter sucesso posteriormente.
 
-* Um gatilho `AFTER` é executado apenas se houver algum gatilho `BEFORE` e a operação de linha for executada com sucesso.
+* Um gatilho `AFTER` é executado apenas se houver algum gatilho `BEFORE` e a operação de string for executada com sucesso.
 
 * Um erro durante um `BEFORE` ou `AFTER` resulta no fracasso de toda a declaração que causou a invocação do gatilho.
 

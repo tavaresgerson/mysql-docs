@@ -42,7 +42,7 @@ Os arquivos de dados que você define no arquivo de configuração usando a opç
 
 Para evitar os problemas que vêm com o armazenamento de todas as tabelas e índices dentro do espaço de tabelas do sistema, você pode habilitar a opção de configuração `innodb_file_per_table` (a padrão), que armazena cada tabela recém-criada em um arquivo de espaço de tabelas separado (com extensão `.ibd`). Para tabelas armazenadas dessa maneira, há menos fragmentação dentro do arquivo do disco, e quando a tabela é truncada, o espaço é devolvido ao sistema operacional em vez de ainda ser reservado pelo InnoDB dentro do espaço de tabelas do sistema. Para mais informações, consulte a Seção 14.6.3.2, “Espaços de tabelas por tabela por arquivo”.
 
-Você também pode armazenar tabelas em espaços de tabela gerais. Os espaços de tabela gerais são espaços de tabela compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas tabelas e suportam tabelas de todos os formatos de linha. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de Tabela Geral”.
+Você também pode armazenar tabelas em espaços de tabela gerais. Os espaços de tabela gerais são espaços de tabela compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas tabelas e suportam tabelas de todos os formatos de string. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de Tabela Geral”.
 
 #### Páginas, Extensões, Segmentos e Espaços de Tabela
 
@@ -58,23 +58,23 @@ Algumas páginas no espaço de tabelas contêm mapas de bits de outras páginas,
 
 Quando você solicita espaço disponível no espaço de tabelas, emitindo uma declaração `SHOW TABLE STATUS`, o `InnoDB` relata os extensões que estão definitivamente livres no espaço de tabelas. O `InnoDB` reserva sempre alguns extensões para limpeza e outros propósitos internos; essas extensões reservadas não estão incluídas no espaço livre.
 
-Quando você exclui dados de uma tabela, o `InnoDB` elimina os índices correspondentes do B-tree. Se o espaço liberado se torna disponível para outros usuários, depende do padrão de exclusões liberar páginas individuais ou se estender para o espaço de tabela. A eliminação de uma tabela ou a exclusão de todas as linhas dela é garantida para liberar o espaço para outros usuários, mas lembre-se de que as linhas excluídas são removidas fisicamente apenas pela operação de purga, que acontece automaticamente algum tempo depois de não serem mais necessárias para recuos de transação ou leituras consistentes. (Veja a Seção 14.3, “Multiversão InnoDB”.)
+Quando você exclui dados de uma tabela, o `InnoDB` elimina os índices correspondentes do B-tree. Se o espaço liberado se torna disponível para outros usuários, depende do padrão de exclusões liberar páginas individuais ou se estender para o espaço de tabela. A eliminação de uma tabela ou a exclusão de todas as strings dela é garantida para liberar o espaço para outros usuários, mas lembre-se de que as strings excluídas são removidas fisicamente apenas pela operação de purga, que acontece automaticamente algum tempo depois de não serem mais necessárias para recuos de transação ou leituras consistentes. (Veja a Seção 14.3, “Multiversão InnoDB”.)
 
-#### Como as Páginas se Relacionam com as Linhas da Tabela
+#### Como as Páginas se Relacionam com as Strings da Tabela
 
-O comprimento máximo da linha é ligeiramente menos de meio página de banco de dados para configurações de 4KB, 8KB, 16KB e 32KB `innodb_page_size`. Por exemplo, o comprimento máximo da linha é ligeiramente menos de 8KB para o tamanho de página padrão de 16KB `InnoDB`. Para páginas de 64KB, o comprimento máximo da linha é ligeiramente menos de 16KB.
+O comprimento máximo da string é ligeiramente menos de meio página de banco de dados para configurações de 4KB, 8KB, 16KB e 32KB `innodb_page_size`. Por exemplo, o comprimento máximo da string é ligeiramente menos de 8KB para o tamanho de página padrão de 16KB `InnoDB`. Para páginas de 64KB, o comprimento máximo da string é ligeiramente menos de 16KB.
 
-Se uma linha não exceder o comprimento máximo da linha, toda ela é armazenada localmente dentro da página. Se uma linha exceder o comprimento máximo da linha, colunas de comprimento variável são escolhidas para armazenamento externo fora da página até que a linha se encaixe no limite do comprimento máximo da linha. O armazenamento externo fora da página para colunas de comprimento variável difere pelo formato da linha:
+Se uma string não exceder o comprimento máximo da string, toda ela é armazenada localmente dentro da página. Se uma string exceder o comprimento máximo da string, colunas de comprimento variável são escolhidas para armazenamento externo fora da página até que a string se encaixe no limite do comprimento máximo da string. O armazenamento externo fora da página para colunas de comprimento variável difere pelo formato da string:
 
-*Formatos de linha COMPACT e REDUNDANT*
+*Formatos de string COMPACT e REDUNDANT*
 
-Quando uma coluna de comprimento variável é escolhida para armazenamento externo fora da página, `InnoDB` armazena os primeiros 768 bytes localmente na linha e o restante externamente em páginas de excesso. Cada coluna tem sua própria lista de páginas de excesso. O prefixo de 768 bytes é acompanhado por um valor de 20 bytes que armazena o verdadeiro comprimento da coluna e aponta para a lista de excesso onde o restante do valor é armazenado. Veja a Seção 14.11, “Formatos de linha InnoDB”.
+Quando uma coluna de comprimento variável é escolhida para armazenamento externo fora da página, `InnoDB` armazena os primeiros 768 bytes localmente na string e o restante externamente em páginas de excesso. Cada coluna tem sua própria lista de páginas de excesso. O prefixo de 768 bytes é acompanhado por um valor de 20 bytes que armazena o verdadeiro comprimento da coluna e aponta para a lista de excesso onde o restante do valor é armazenado. Veja a Seção 14.11, “Formatos de string InnoDB”.
 
-*Formatos de linha dinâmicos e compactados*
+*Formatos de string dinâmicos e compactados*
 
-Quando uma coluna de comprimento variável é escolhida para armazenamento externo fora da página, `InnoDB` armazena um ponteiro de 20 bytes localmente na linha e o restante externamente em páginas de excesso. Veja a Seção 14.11, “Formatos de linha InnoDB”.
+Quando uma coluna de comprimento variável é escolhida para armazenamento externo fora da página, `InnoDB` armazena um ponteiro de 20 bytes localmente na string e o restante externamente em páginas de excesso. Veja a Seção 14.11, “Formatos de string InnoDB”.
 
-As colunas `LONGBLOB` e `LONGTEXT` devem ter menos de 4 GB, e o comprimento total da linha, incluindo as colunas `BLOB` e `TEXT`, deve ter menos de 4 GB.
+As colunas `LONGBLOB` e `LONGTEXT` devem ter menos de 4 GB, e o comprimento total da string, incluindo as colunas `BLOB` e `TEXT`, deve ter menos de 4 GB.
 
 ### 14.12.3 Pontos de verificação do InnoDB
 

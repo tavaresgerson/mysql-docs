@@ -213,7 +213,7 @@ Se `log_syslog` estiver habilitado, as seguintes variáveis do sistema também p
 
 * `log_syslog_facility`: A instalação padrão para as mensagens de `syslog` é `daemon`. Estabeleça essa variável para especificar uma instalação diferente.
 
-* `log_syslog_include_pid`: Se deve incluir o ID do processo do servidor em cada linha do `syslog` de saída.
+* `log_syslog_include_pid`: Se deve incluir o ID do processo do servidor em cada string do `syslog` de saída.
 
 * `log_syslog_tag`: Esta variável define uma etiqueta a ser adicionada ao identificador do servidor (`mysqld`) nas mensagens de `syslog`. Se definida, a etiqueta é anexada ao identificador com um hífen inicial.
 
@@ -266,13 +266,13 @@ Se o servidor não estiver escrevendo em um arquivo de registro de erro nomeado,
 
 O log de consulta geral é um registro geral do que o `mysqld` está fazendo. O servidor escreve informações neste log quando os clientes se conectam ou desconectam, e ele registra cada declaração SQL recebida dos clientes. O log de consulta geral pode ser muito útil quando você suspeita de um erro em um cliente e quer saber exatamente o que o cliente enviou para o `mysqld`.
 
-Cada linha que mostra quando um cliente se conecta também inclui `using connection_type` para indicar o protocolo usado para estabelecer a conexão. *`connection_type`* é um dos `TCP/IP` (conexão TCP/IP estabelecida sem SSL), `SSL/TLS` (conexão TCP/IP estabelecida com SSL), `Socket` (conexão de arquivo de soquete Unix), `Named Pipe` (conexão de canal nomeado do Windows), ou `Shared Memory` (conexão de memória compartilhada do Windows).
+Cada string que mostra quando um cliente se conecta também inclui `using connection_type` para indicar o protocolo usado para estabelecer a conexão. *`connection_type`* é um dos `TCP/IP` (conexão TCP/IP estabelecida sem SSL), `SSL/TLS` (conexão TCP/IP estabelecida com SSL), `Socket` (conexão de arquivo de soquete Unix), `Named Pipe` (conexão de canal nomeado do Windows), ou `Shared Memory` (conexão de memória compartilhada do Windows).
 
 `mysqld` escreve declarações no log de consulta na ordem em que as recebe, o que pode diferir da ordem em que são executadas. Esse registro em ordem é em contraste com o log binário, para o qual as declarações são escritas após serem executadas, mas antes de quaisquer bloqueios serem liberados. Além disso, o log de consulta pode conter declarações que selecionam apenas dados, enquanto essas declarações nunca são escritas no log binário.
 
 Ao usar o registro binário baseado em declarações em um servidor de fonte de replicação, as declarações recebidas por suas réplicas são escritas no log de consulta de cada réplica. As declarações são escritas no log de consulta da fonte se um cliente ler eventos com o utilitário **mysqlbinlog** e os passar para o servidor.
 
-No entanto, ao usar o registro binário baseado em linhas, as atualizações são enviadas como alterações de linha, em vez de declarações SQL, e, portanto, essas declarações nunca são escritas no registro de consulta quando `binlog_format` está em `ROW`. Uma atualização dada também pode não ser escrita no registro de consulta quando essa variável está definida em `MIXED`, dependendo da declaração usada. Consulte a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”, para mais informações.
+No entanto, ao usar o registro binário baseado em strings, as atualizações são enviadas como alterações de string, em vez de declarações SQL, e, portanto, essas declarações nunca são escritas no registro de consulta quando `binlog_format` está em `ROW`. Uma atualização dada também pode não ser escrita no registro de consulta quando essa variável está definida em `MIXED`, dependendo da declaração usada. Consulte a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Strings”, para mais informações.
 
 Por padrão, o log de consulta geral é desativado. Para especificar explicitamente o estado inicial do log de consulta geral, use `--general_log[={0|1}]`. Sem argumento ou com um argumento de 1, `--general_log` habilita o log. Com um argumento de 0, esta opção desativa o log. Para especificar o nome do arquivo de log, use `--general_log_file=file_name`. Para especificar o destino do log, use a variável de sistema `log_output` (como descrito na Seção 5.4.1, “Selecionando destinos de saída de log de consulta geral e log de consulta lenta”).
 
@@ -302,7 +302,7 @@ Você também pode renomear o arquivo de log de consulta geral durante a execuç
 SET GLOBAL general_log = 'OFF';
 ```
 
-Com o registro desativado, renomeie o arquivo de registro externamente (por exemplo, a partir da linha de comando). Em seguida, ative o registro novamente:
+Com o registro desativado, renomeie o arquivo de registro externamente (por exemplo, a partir da string de comando). Em seguida, ative o registro novamente:
 
 ```sql
 SET GLOBAL general_log = 'ON';
@@ -322,11 +322,11 @@ A reescrita da senha ocorre apenas quando se espera senhas em texto simples. Par
 CREATE USER 'user1'@'localhost' IDENTIFIED BY PASSWORD 'not-so-secret';
 ```
 
-A variável de sistema `log_timestamps` controla a zona horária dos timestamps nas mensagens escritas no arquivo de log de consulta geral (assim como no arquivo de log de consultas lentas e no log de erros). Não afeta a zona horária das mensagens de log de consulta geral e log de consultas lentas escritas em tabelas de log, mas as linhas recuperadas dessas tabelas podem ser convertidas da zona horária do sistema local para qualquer zona horária desejada com `CONVERT_TZ()` ou definindo a variável de sessão `time_zone`.
+A variável de sistema `log_timestamps` controla a zona horária dos timestamps nas mensagens escritas no arquivo de log de consulta geral (assim como no arquivo de log de consultas lentas e no log de erros). Não afeta a zona horária das mensagens de log de consulta geral e log de consultas lentas escritas em tabelas de log, mas as strings recuperadas dessas tabelas podem ser convertidas da zona horária do sistema local para qualquer zona horária desejada com `CONVERT_TZ()` ou definindo a variável de sessão `time_zone`.
 
 ### 5.4.4 O Log Binário
 
-O log binário contém “eventos” que descrevem as mudanças no banco de dados, como operações de criação de tabelas ou alterações nos dados da tabela. Também contém eventos para declarações que potencialmente poderiam ter feito alterações (por exemplo, um `DELETE` que não encontrou nenhuma linha), a menos que o registro baseado em linha seja usado. O log binário também contém informações sobre quanto tempo cada declaração levou para atualizar os dados. O log binário tem dois propósitos importantes:
+O log binário contém “eventos” que descrevem as mudanças no banco de dados, como operações de criação de tabelas ou alterações nos dados da tabela. Também contém eventos para declarações que potencialmente poderiam ter feito alterações (por exemplo, um `DELETE` que não encontrou nenhuma string), a menos que o registro baseado em string seja usado. O log binário também contém informações sobre quanto tempo cada declaração levou para atualizar os dados. O log binário tem dois propósitos importantes:
 
 * Para a replicação, o log binário em um servidor de origem de replicação fornece um registro das alterações de dados que serão enviadas para as réplicas. A fonte envia os eventos contidos em seu log binário para suas réplicas, que executam esses eventos para realizar as mesmas alterações de dados que foram feitas na fonte. Veja a Seção 16.2, “Implementação de Replicação”.
 
@@ -358,9 +358,9 @@ O termo "arquivo de registro binário" geralmente denota um arquivo numerado ind
 
 Um cliente que possui privilégios suficientes para definir variáveis de sistema de sessão restritas (consulte a Seção 5.1.8.1, “Privilégios de variáveis de sistema”) pode desativar o registro binário de suas próprias declarações usando uma declaração `SET sql_log_bin=OFF`.
 
-Por padrão, o servidor registra o comprimento do evento, bem como o próprio evento e usa isso para verificar se o evento foi escrito corretamente. Você também pode fazer com que o servidor escreva verificações de checksums para os eventos, configurando a variável de sistema `binlog_checksum`. Ao ler de volta do log binário, a fonte usa o comprimento do evento por padrão, mas pode ser feito para usar verificações de checksums, se disponíveis, ao habilitar a variável de sistema `master_verify_checksum`. O fio de I/O de replicação também verifica eventos recebidos da fonte. Você pode fazer com que o fio de SQL de replicação use verificações de checksums, se disponíveis, ao ler do log de releio, ao habilitar a variável de sistema `slave_sql_verify_checksum`.
+Por padrão, o servidor registra o comprimento do evento, bem como o próprio evento e usa isso para verificar se o evento foi escrito corretamente. Você também pode fazer com que o servidor escreva verificações de checksums para os eventos, configurando a variável de sistema `binlog_checksum`. Ao ler de volta do log binário, a fonte usa o comprimento do evento por padrão, mas pode ser feito para usar verificações de checksums, se disponíveis, ao habilitar a variável de sistema `master_verify_checksum`. O thread de I/O de replicação também verifica eventos recebidos da fonte. Você pode fazer com que o thread de SQL de replicação use verificações de checksums, se disponíveis, ao ler do log de releio, ao habilitar a variável de sistema `slave_sql_verify_checksum`.
 
-O formato dos eventos registrados no log binário depende do formato de registro binário. Três tipos de formato são suportados: registro baseado em linha, registro baseado em declaração e registro de base mista. O formato de registro binário usado depende da versão do MySQL. Para descrições gerais dos formatos de registro, consulte a Seção 5.4.4.1, “Formatos de Registro Binário”. Para informações detalhadas sobre o formato do log binário, consulte MySQL Internals: The Binary Log.
+O formato dos eventos registrados no log binário depende do formato de registro binário. Três tipos de formato são suportados: registro baseado em string, registro baseado em declaração e registro de base mista. O formato de registro binário usado depende da versão do MySQL. Para descrições gerais dos formatos de registro, consulte a Seção 5.4.4.1, “Formatos de Registro Binário”. Para informações detalhadas sobre o formato do log binário, consulte MySQL Internals: The Binary Log.
 
 O servidor avalia as opções `--binlog-do-db` e `--binlog-ignore-db` da mesma maneira que as opções `--replicate-do-db` e `--replicate-ignore-db`. Para obter informações sobre como isso é feito, consulte a Seção 16.2.5.1, “Avaliação das opções de replicação e registro binário em nível de banco de dados”.
 
@@ -386,13 +386,13 @@ Dentro de uma transação não comprometida, todas as atualizações (`UPDATE`, 
 
 As modificações em tabelas não transacionais não podem ser revertidas. Se uma transação que é revertida incluir modificações em tabelas não transacionais, toda a transação é registrada com uma declaração `ROLLBACK` no final para garantir que as modificações nessas tabelas sejam replicadas.
 
-Quando um fio que lida com a transação começa, ele aloca um buffer de `binlog_cache_size` para bufferar as declarações. Se uma declaração for maior que este, o fio abre um arquivo temporário para armazenar a transação. O arquivo temporário é excluído quando o fio termina.
+Quando um thread que lida com a transação começa, ele aloca um buffer de `binlog_cache_size` para bufferar as declarações. Se uma declaração for maior que este, o thread abre um arquivo temporário para armazenar a transação. O arquivo temporário é excluído quando o thread termina.
 
 A variável de status `Binlog_cache_use` mostra o número de transações que utilizaram este buffer (e possivelmente um arquivo temporário) para armazenar declarações. A variável de status `Binlog_cache_disk_use` mostra quantos desses transações, na verdade, tiveram que usar um arquivo temporário. Essas duas variáveis podem ser usadas para ajustar `binlog_cache_size` a um valor suficientemente grande para evitar o uso de arquivos temporários.
 
 A variável de sistema `max_binlog_cache_size` (padrão 4 GB, que também é o máximo) pode ser usada para restringir o tamanho total usado para cachear uma transação com múltiplos comandos. Se uma transação for maior que esse número de bytes, ela falha e é revertida. O valor mínimo é 4096.
 
-Se você estiver usando o registro binário e o registro baseado em linha, as inserções concorrentes são convertidas em inserções normais para as declarações `CREATE ... SELECT` ou `INSERT ... SELECT`. Isso é feito para garantir que você possa recriar uma cópia exata de suas tabelas, aplicando o registro durante uma operação de backup. Se você estiver usando o registro baseado em declaração, a declaração original é escrita no registro.
+Se você estiver usando o registro binário e o registro baseado em string, as inserções concorrentes são convertidas em inserções normais para as declarações `CREATE ... SELECT` ou `INSERT ... SELECT`. Isso é feito para garantir que você possa recriar uma cópia exata de suas tabelas, aplicando o registro durante uma operação de backup. Se você estiver usando o registro baseado em declaração, a declaração original é escrita no registro.
 
 O formato de log binário tem algumas limitações conhecidas que podem afetar a recuperação a partir de backups. Veja a Seção 16.4.1, “Recursos e problemas de replicação”.
 
@@ -434,15 +434,15 @@ O servidor utiliza vários formatos de registro para registrar informações no 
 
 * As capacidades de replicação no MySQL originalmente eram baseadas na propagação de declarações SQL da fonte para a réplica. Isso é chamado de *registro baseado em declarações*. Você pode fazer com que esse formato seja usado iniciando o servidor com `--binlog-format=STATEMENT`.
 
-* No registro baseado em linha, a fonte escreve eventos no log binário que indicam como as linhas individuais da tabela são afetadas. Portanto, é importante que as tabelas sempre usem uma chave primária para garantir que as linhas possam ser identificadas de forma eficiente. Você pode fazer com que o servidor use registro baseado em linha iniciando-o com `--binlog-format=ROW`.
+* No registro baseado em string, a fonte escreve eventos no log binário que indicam como as strings individuais da tabela são afetadas. Portanto, é importante que as tabelas sempre usem uma chave primária para garantir que as strings possam ser identificadas de forma eficiente. Você pode fazer com que o servidor use registro baseado em string iniciando-o com `--binlog-format=ROW`.
 
-* Uma terceira opção também está disponível: *registros mistos*. Com registros mistos, o registro baseado em declarações é usado por padrão, mas o modo de registro muda automaticamente para baseado em linhas em certos casos, conforme descrito abaixo. Você pode fazer o MySQL usar registros mistos explicitamente, iniciando `mysqld` com a opção `--binlog-format=MIXED`.
+* Uma terceira opção também está disponível: *registros mistos*. Com registros mistos, o registro baseado em declarações é usado por padrão, mas o modo de registro muda automaticamente para baseado em strings em certos casos, conforme descrito abaixo. Você pode fazer o MySQL usar registros mistos explicitamente, iniciando `mysqld` com a opção `--binlog-format=MIXED`.
 
 O formato de registro também pode ser definido ou limitado pelo motor de armazenamento que está sendo usado. Isso ajuda a eliminar problemas ao replicar determinadas declarações entre uma fonte e uma replica que estão usando diferentes motores de armazenamento.
 
 Com a replicação baseada em declarações, pode haver problemas na replicação de declarações não determinísticas. Ao decidir se uma determinada declaração é segura para replicação baseada em declarações, o MySQL determina se pode garantir que a declaração possa ser replicada usando o registro baseada em declarações. Se o MySQL não puder fazer essa garantia, ele marca a declaração como potencialmente não confiável e emite o aviso, A declaração pode não ser segura para registro no formato de declaração.
 
-Você pode evitar esses problemas usando a replicação baseada em linha do MySQL, em vez disso.
+Você pode evitar esses problemas usando a replicação baseada em string do MySQL, em vez disso.
 
 #### 5.4.4.2 Configuração do formato de log binário
 
@@ -450,7 +450,7 @@ Você pode selecionar o formato de registro binário explicitamente, iniciando o
 
 * `STATEMENT` faz com que o registro seja baseado em declarações.
 
-* `ROW` faz com que o registro seja baseado em linha.
+* `ROW` faz com que o registro seja baseado em string.
 * `MIXED` faz com que o registro use formato misto.
 
 Definir o formato de registro binário não ativa o registro binário para o servidor. A configuração só tem efeito quando o registro binário está habilitado no servidor, o que ocorre quando a variável de sistema `log_bin` é definida como `ON`. No MySQL 5.7, o registro binário não é habilitado por padrão, e você o habilita usando a opção `--log-bin`.
@@ -475,31 +475,31 @@ Para alterar o valor global `binlog_format`, são necessários privilégios sufi
 
 Há várias razões pelas quais um cliente pode querer configurar o registro binário em uma base por sessão:
 
-Uma sessão que realiza muitas pequenas alterações no banco de dados pode querer usar o registro baseado em linha.
+Uma sessão que realiza muitas pequenas alterações no banco de dados pode querer usar o registro baseado em string.
 
-* Uma sessão que realiza atualizações que correspondem a muitas linhas na cláusula `WHERE` pode querer usar o registro baseado em declarações porque é mais eficiente registrar algumas declarações do que muitas linhas.
+* Uma sessão que realiza atualizações que correspondem a muitas strings na cláusula `WHERE` pode querer usar o registro baseado em declarações porque é mais eficiente registrar algumas declarações do que muitas strings.
 
-* Algumas declarações exigem muito tempo de execução na fonte, mas resultam em apenas algumas linhas sendo modificadas. Portanto, pode ser benéfico replicá-las usando registro baseado em linha.
+* Algumas declarações exigem muito tempo de execução na fonte, mas resultam em apenas algumas strings sendo modificadas. Portanto, pode ser benéfico replicá-las usando registro baseado em string.
 
 Existem exceções quando você não pode alternar o formato de replicação em tempo de execução:
 
 * a partir de uma função armazenada ou de um gatilho. * Se o motor de armazenamento `NDB` estiver habilitado.
 
-* Se a sessão estiver atualmente no modo de replicação baseada em linha e tiver tabelas temporárias abertas.
+* Se a sessão estiver atualmente no modo de replicação baseada em string e tiver tabelas temporárias abertas.
 
 Tentar mudar o formato em qualquer um desses casos resulta em um erro.
 
-Não é recomendado mudar o formato de replicação em tempo de execução quando houver tabelas temporárias, porque as tabelas temporárias são registradas apenas quando se usa replicação baseada em instruções, enquanto que com replicação baseada em linhas elas não são registradas. Com replicação mista, as tabelas temporárias geralmente são registradas; exceções acontecem com funções carregáveis e com a função `UUID()`.
+Não é recomendado mudar o formato de replicação em tempo de execução quando houver tabelas temporárias, porque as tabelas temporárias são registradas apenas quando se usa replicação baseada em instruções, enquanto que com replicação baseada em strings elas não são registradas. Com replicação mista, as tabelas temporárias geralmente são registradas; exceções acontecem com funções carregáveis e com a função `UUID()`.
 
 Mudar o formato de replicação enquanto a replicação está em andamento também pode causar problemas. Cada servidor MySQL pode definir seu próprio e apenas seu próprio formato de registro binário (verdadeiro se `binlog_format` está definido com escopo global ou de sessão). Isso significa que alterar o formato de registro em um servidor de fonte de replicação não faz com que a réplica mude seu formato de registro para corresponder. Ao usar o modo `STATEMENT`, a variável de sistema `binlog_format` não é replicada. Ao usar o modo de registro `MIXED` ou `ROW`, ele é replicado, mas ignorado pela réplica.
 
-Uma réplica não é capaz de converter entradas de registro binário recebidas no formato de registro `ROW` para o formato `STATEMENT` para uso em seu próprio registro binário. Portanto, a réplica deve usar o formato `ROW` ou `MIXED` se a fonte o fizer. Alterar o formato de registro binário na fonte de `STATEMENT` para `ROW` ou `MIXED` durante a replicação para uma réplica com formato `STATEMENT` pode causar o fracasso da replicação com erros como Erro executando evento de linha: 'Não é possível executar a declaração: impossível escrever no registro binário, uma vez que a declaração está em formato de linha e BINLOG\_FORMAT = DECLARAÇÃO.' Alterar o formato de registro binário na réplica para o formato `STATEMENT` quando a fonte ainda está usando o formato `MIXED` ou `ROW` também causa o mesmo tipo de falha de replicação. Para alterar o formato de forma segura, você deve parar a replicação e garantir que a mesma alteração seja feita tanto na fonte quanto na réplica.
+Uma réplica não é capaz de converter entradas de registro binário recebidas no formato de registro `ROW` para o formato `STATEMENT` para uso em seu próprio registro binário. Portanto, a réplica deve usar o formato `ROW` ou `MIXED` se a fonte o fizer. Alterar o formato de registro binário na fonte de `STATEMENT` para `ROW` ou `MIXED` durante a replicação para uma réplica com formato `STATEMENT` pode causar o fracasso da replicação com erros como Erro executando evento de string: 'Não é possível executar a declaração: impossível escrever no registro binário, uma vez que a declaração está em formato de string e BINLOG\_FORMAT = DECLARAÇÃO.' Alterar o formato de registro binário na réplica para o formato `STATEMENT` quando a fonte ainda está usando o formato `MIXED` ou `ROW` também causa o mesmo tipo de falha de replicação. Para alterar o formato de forma segura, você deve parar a replicação e garantir que a mesma alteração seja feita tanto na fonte quanto na réplica.
 
-Se você estiver usando as tabelas `InnoDB` e o nível de isolamento de transação é `READ COMMITTED` ou `READ UNCOMMITTED`, apenas o registro baseado em linha pode ser usado. É *possível* mudar o formato de registro para `STATEMENT`, mas fazer isso em tempo real rapidamente leva a erros porque `InnoDB` não pode mais realizar inserções.
+Se você estiver usando as tabelas `InnoDB` e o nível de isolamento de transação é `READ COMMITTED` ou `READ UNCOMMITTED`, apenas o registro baseado em string pode ser usado. É *possível* mudar o formato de registro para `STATEMENT`, mas fazer isso em tempo real rapidamente leva a erros porque `InnoDB` não pode mais realizar inserções.
 
-Com o formato de registro binário definido como `ROW`, muitas alterações são escritas no registro binário usando o formato baseado em linha. No entanto, algumas alterações ainda usam o formato baseado em declaração. Exemplos incluem todas as declarações de DDL (linguagem de definição de dados), como `CREATE TABLE`, `ALTER TABLE` ou `DROP TABLE`.
+Com o formato de registro binário definido como `ROW`, muitas alterações são escritas no registro binário usando o formato baseado em string. No entanto, algumas alterações ainda usam o formato baseado em declaração. Exemplos incluem todas as declarações de DDL (linguagem de definição de dados), como `CREATE TABLE`, `ALTER TABLE` ou `DROP TABLE`.
 
-A opção `--binlog-row-event-max-size` está disponível para servidores que são capazes de replicação baseada em linhas. As linhas são armazenadas no log binário em partes com um tamanho em bytes que não exceda o valor desta opção. O valor deve ser um múltiplo de 256. O valor padrão é 8192.
+A opção `--binlog-row-event-max-size` está disponível para servidores que são capazes de replicação baseada em strings. As strings são armazenadas no log binário em partes com um tamanho em bytes que não exceda o valor desta opção. O valor deve ser um múltiplo de 256. O valor padrão é 8192.
 
 Aviso
 
@@ -507,7 +507,7 @@ Ao usar o registro baseado em *declarações* para replicação, é possível qu
 
 #### 5.4.4.3 Formato misto de registro binário
 
-Ao executar no formato de registro `MIXED`, o servidor muda automaticamente do registro baseado em declarações para o baseado em linhas nas seguintes condições:
+Ao executar no formato de registro `MIXED`, o servidor muda automaticamente do registro baseado em declarações para o baseado em strings nas seguintes condições:
 
 * Quando uma declaração DML atualiza uma tabela `NDBCLUSTER`.
 
@@ -517,13 +517,13 @@ Ao executar no formato de registro `MIXED`, o servidor muda automaticamente do r
 
 Para mais informações, consulte a Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
 
-* Quando o corpo de uma visão requer replicação baseada em linha, a declaração que cria a visão também a utiliza. Por exemplo, isso ocorre quando a declaração que cria uma visão utiliza a função `UUID()`.
+* Quando o corpo de uma visão requer replicação baseada em string, a declaração que cria a visão também a utiliza. Por exemplo, isso ocorre quando a declaração que cria uma visão utiliza a função `UUID()`.
 
-* Quando uma chamada a uma função carregável está envolvida. * Se uma declaração é registrada por linha e a sessão que executou a declaração tem quaisquer tabelas temporárias, a registro por linha é usado para todas as declarações subsequentes (exceto aquelas que acessam tabelas temporárias) até que todas as tabelas temporárias em uso por essa sessão sejam descartadas.
+* Quando uma chamada a uma função carregável está envolvida. * Se uma declaração é registrada por string e a sessão que executou a declaração tem quaisquer tabelas temporárias, a registro por string é usado para todas as declarações subsequentes (exceto aquelas que acessam tabelas temporárias) até que todas as tabelas temporárias em uso por essa sessão sejam descartadas.
 
 Isso é verdade, independentemente de as tabelas temporárias serem ou não registradas.
 
-As tabelas temporárias não podem ser registradas usando o formato baseado em linha; portanto, uma vez que o registro baseado em linha é usado, todas as declarações subsequentes que utilizam essa tabela são inseguras. O servidor aproxima essa condição tratando todas as declarações executadas durante a sessão como inseguras até que a sessão não contenha mais nenhuma tabela temporária.
+As tabelas temporárias não podem ser registradas usando o formato baseado em string; portanto, uma vez que o registro baseado em string é usado, todas as declarações subsequentes que utilizam essa tabela são inseguras. O servidor aproxima essa condição tratando todas as declarações executadas durante a sessão como inseguras até que a sessão não contenha mais nenhuma tabela temporária.
 
 * Quando `FOUND_ROWS()` ou `ROW_COUNT()` é usado. (Bug #12092, Bug #30244)
 
@@ -562,11 +562,11 @@ Para informações sobre como a replicação trata `sql_mode`, consulte a Seçã
 
 Nota
 
-Um aviso é gerado se você tentar executar uma declaração usando o registro baseado em declaração que deve ser escrito usando o registro baseado em linha. O aviso é exibido tanto no cliente (na saída de `SHOW WARNINGS`) quanto através do `mysqld` log de erro. Um aviso é adicionado à tabela `SHOW WARNINGS` toda vez que tal declaração é executada. No entanto, apenas a primeira declaração que gerou o aviso para cada sessão do cliente é escrita no log de erro para evitar a saturação do log.
+Um aviso é gerado se você tentar executar uma declaração usando o registro baseado em declaração que deve ser escrito usando o registro baseado em string. O aviso é exibido tanto no cliente (na saída de `SHOW WARNINGS`) quanto através do `mysqld` log de erro. Um aviso é adicionado à tabela `SHOW WARNINGS` toda vez que tal declaração é executada. No entanto, apenas a primeira declaração que gerou o aviso para cada sessão do cliente é escrita no log de erro para evitar a saturação do log.
 
 Além das decisões acima, os motores individuais também podem determinar o formato de registro usado quando as informações em uma tabela são atualizadas. As capacidades de registro de um motor individual podem ser definidas da seguinte forma:
 
-* Se um motor suportar o registro baseado em linha, diz-se que o motor é capaz de registro baseado em linha.
+* Se um motor suportar o registro baseado em string, diz-se que o motor é capaz de registro baseado em string.
 
 * Se um motor suportar o registro baseado em declarações, diz-se que o motor é capaz de registro baseado em declarações.
 
@@ -576,7 +576,7 @@ Um motor de armazenamento específico pode suportar um ou ambos os formatos de r
 <thead>
 <tr>
 <th>Motor de Armazenamento</th>
-<th>Suportado o registro de linhas</th>
+<th>Suportado o registro de strings</th>
 <th>Suporte para registro de declarações</th>
 </tr>
 </thead>
@@ -634,9 +634,9 @@ Um motor de armazenamento específico pode suportar um ou ambos os formatos de r
 </tbody>
 </table>
 
-Se uma declaração deve ser registrada e o modo de registro a ser utilizado é determinado de acordo com o tipo de declaração (seguro, inseguro ou binário injetado), o formato de registro binário (`STATEMENT`, `ROW` ou `MIXED`) e as capacidades de registro do motor de armazenamento (capaz de declaração, capaz de linha, ambos ou nenhum). (Injeção binária refere-se ao registro de uma mudança que deve ser registrada usando o formato `ROW`.)
+Se uma declaração deve ser registrada e o modo de registro a ser utilizado é determinado de acordo com o tipo de declaração (seguro, inseguro ou binário injetado), o formato de registro binário (`STATEMENT`, `ROW` ou `MIXED`) e as capacidades de registro do motor de armazenamento (capaz de declaração, capaz de string, ambos ou nenhum). (Injeção binária refere-se ao registro de uma mudança que deve ser registrada usando o formato `ROW`.)
 
-As declarações podem ser registradas com ou sem um aviso; as declarações falhadas não são registradas, mas geram erros no log. Isso é mostrado na tabela de decisão a seguir. As colunas **Tipo**, **binlog\_format**, **SLC** e **RLC** definem as condições, e as colunas **Erro / Aviso** e **Registrado como** representam as ações correspondentes. **SLC** significa "capaz de registro de declarações", e **RLC** significa "capaz de registro de linhas".
+As declarações podem ser registradas com ou sem um aviso; as declarações falhadas não são registradas, mas geram erros no log. Isso é mostrado na tabela de decisão a seguir. As colunas **Tipo**, **binlog\_format**, **SLC** e **RLC** definem as condições, e as colunas **Erro / Aviso** e **Registrado como** representam as ações correspondentes. **SLC** significa "capaz de registro de declarações", e **RLC** significa "capaz de registro de strings".
 
 <table>
 <thead>
@@ -707,27 +707,27 @@ As declarações podem ser registradas com ou sem um aviso; as declarações fal
 <td>-</td>
 </tr>
 <tr>
-<th>Injeção de linha</th>
+<th>Injeção de string</th>
 <td><code>STATEMENT</code></td>
 <td>Sim</td>
 <td>Não</td>
-<td>Erro: Não é possível executar injeção de linha: o registro binário não é possível, uma vez que pelo menos uma tabela utiliza um mecanismo de armazenamento que não é capaz de registro baseado em linha.</td>
+<td>Erro: Não é possível executar injeção de string: o registro binário não é possível, uma vez que pelo menos uma tabela utiliza um mecanismo de armazenamento que não é capaz de registro baseado em string.</td>
 <td>-</td>
 </tr>
 <tr>
-<th>Injeção de linha</th>
+<th>Injeção de string</th>
 <td><code>MIXED</code></td>
 <td>Sim</td>
 <td>Não</td>
-<td>Erro: Não é possível executar injeção de linha: o registro binário não é possível, uma vez que pelo menos uma tabela utiliza um mecanismo de armazenamento que não é capaz de registro baseado em linha.</td>
+<td>Erro: Não é possível executar injeção de string: o registro binário não é possível, uma vez que pelo menos uma tabela utiliza um mecanismo de armazenamento que não é capaz de registro baseado em string.</td>
 <td>-</td>
 </tr>
 <tr>
-<th>Injeção de linha</th>
+<th>Injeção de string</th>
 <td><code>ROW</code></td>
 <td>Sim</td>
 <td>Não</td>
-<td>Erro: Não é possível executar injeção de linha: o registro binário não é possível, uma vez que pelo menos uma tabela utiliza um mecanismo de armazenamento que não é capaz de registro baseado em linha.</td>
+<td>Erro: Não é possível executar injeção de string: o registro binário não é possível, uma vez que pelo menos uma tabela utiliza um mecanismo de armazenamento que não é capaz de registro baseado em string.</td>
 <td>-</td>
 </tr>
 <tr>
@@ -893,7 +893,7 @@ Os conteúdos das tabelas de concessão no banco de dados `mysql` podem ser modi
 
 ### 5.4.5 O Log de Consultas Lentas
 
-O registro de consultas lentas consiste em instruções SQL que levam mais de `long_query_time` segundos para serem executadas e exigem pelo menos `min_examined_row_limit` linhas a serem examinadas. O registro de consultas lentas pode ser usado para encontrar consultas que levam um longo tempo para serem executadas e, portanto, são candidatas à otimização. No entanto, examinar um longo registro de consultas lentas pode ser uma tarefa demorada. Para facilitar isso, você pode usar o comando **mysqldumpslow** para processar um arquivo de registro de consultas lentas e resumir seu conteúdo. Veja a Seção 4.6.8, “mysqldumpslow — Resumir arquivos de registro de consultas lentas”.
+O registro de consultas lentas consiste em instruções SQL que levam mais de `long_query_time` segundos para serem executadas e exigem pelo menos `min_examined_row_limit` strings a serem examinadas. O registro de consultas lentas pode ser usado para encontrar consultas que levam um longo tempo para serem executadas e, portanto, são candidatas à otimização. No entanto, examinar um longo registro de consultas lentas pode ser uma tarefa demorada. Para facilitar isso, você pode usar o comando **mysqldumpslow** para processar um arquivo de registro de consultas lentas e resumir seu conteúdo. Veja a Seção 4.6.8, “mysqldumpslow — Resumir arquivos de registro de consultas lentas”.
 
 O tempo para adquirir as chaves iniciais não é contado como tempo de execução. `mysqld` escreve uma declaração no log de consulta lenta após ela ter sido executada e após todas as chaves terem sido liberadas, de modo que a ordem do log pode diferir da ordem de execução.
 
@@ -919,7 +919,7 @@ O servidor escreve menos informações no registro de consultas lentas se você 
 
 Para incluir declarações administrativas lentas no registro de consultas lentas, habilite a variável de sistema `log_slow_admin_statements`. As declarações administrativas incluem `ALTER TABLE`, `ANALYZE TABLE`, `CHECK TABLE`, `CREATE INDEX`, `DROP INDEX`, `OPTIMIZE TABLE` e `REPAIR TABLE`.
 
-Para incluir consultas que não utilizam índices para pesquisas de linha nas declarações escritas no log de consultas lentas, habilite a variável de sistema `log_queries_not_using_indexes`. (Mesmo com essa variável habilitada, o servidor não registra consultas que não se beneficiariam da presença de um índice devido à tabela ter menos de duas linhas.)
+Para incluir consultas que não utilizam índices para pesquisas de string nas declarações escritas no log de consultas lentas, habilite a variável de sistema `log_queries_not_using_indexes`. (Mesmo com essa variável habilitada, o servidor não registra consultas que não se beneficiariam da presença de um índice devido à tabela ter menos de duas strings.)
 
 Quando as consultas que não utilizam um índice são registradas, o registro de consultas lentas pode crescer rapidamente. É possível estabelecer um limite de taxa para essas consultas, definindo a variável de sistema `log_throttle_queries_not_using_indexes`. Por padrão, essa variável é 0, o que significa que não há limite. Valores positivos impõem um limite por minuto para o registro de consultas que não utilizam índices. A primeira consulta desse tipo abre uma janela de 60 segundos dentro da qual o servidor registra consultas até o limite dado, e depois suprime consultas adicionais. Se houver consultas suprimidas quando a janela termina, o servidor registra um resumo que indica quantos havia e o tempo agregado gasto nelas. A próxima janela de 60 segundos começa quando o servidor registra a próxima consulta que não utiliza índices.
 
@@ -927,23 +927,23 @@ O servidor utiliza os parâmetros de controle na seguinte ordem para determinar 
 
 1. A consulta não pode ser uma declaração administrativa, ou `log_slow_admin_statements` deve ser habilitado.
 
-2. A consulta deve ter levado pelo menos `long_query_time` segundos, ou `log_queries_not_using_indexes` deve estar habilitado e a consulta não deve ter usado índices para pesquisas de linha.
+2. A consulta deve ter levado pelo menos `long_query_time` segundos, ou `log_queries_not_using_indexes` deve estar habilitado e a consulta não deve ter usado índices para pesquisas de string.
 
-3. A consulta deve ter examinado pelo menos `min_examined_row_limit` linhas.
+3. A consulta deve ter examinado pelo menos `min_examined_row_limit` strings.
 
 4. A consulta não deve ser suprimida de acordo com a configuração `log_throttle_queries_not_using_indexes`.
 
-A variável de sistema `log_timestamps` controla a zona horária dos timestamps nas mensagens escritas no arquivo de registro de consultas lentas (assim como no arquivo de registro de consultas gerais e no registro de erros). Não afeta a zona horária das mensagens de registro de consultas gerais e de consultas lentas escritas em tabelas de registro, mas as linhas recuperadas dessas tabelas podem ser convertidas da zona horária do sistema local para qualquer zona horária desejada com `CONVERT_TZ()` ou definindo a variável de sessão `time_zone`.
+A variável de sistema `log_timestamps` controla a zona horária dos timestamps nas mensagens escritas no arquivo de registro de consultas lentas (assim como no arquivo de registro de consultas gerais e no registro de erros). Não afeta a zona horária das mensagens de registro de consultas gerais e de consultas lentas escritas em tabelas de registro, mas as strings recuperadas dessas tabelas podem ser convertidas da zona horária do sistema local para qualquer zona horária desejada com `CONVERT_TZ()` ou definindo a variável de sessão `time_zone`.
 
 O servidor não registra as consultas manipuladas pelo cache de consultas.
 
-Por padrão, uma replica não escreve consultas replicadas no log de consultas lentas. Para alterar isso, habilite a variável de sistema `log_slow_slave_statements`. Observe que, se a replicação baseada em linhas estiver em uso (`binlog_format=ROW`), `log_slow_slave_statements` não tem efeito. As consultas são adicionadas apenas ao log de consultas lentas da replica quando elas são registradas em formato de declaração no log binário, ou seja, quando `binlog_format=STATEMENT` está definido, ou quando `binlog_format=MIXED` está definido e a declaração é registrada em formato de declaração. As consultas lentas que são registradas em formato de linha quando `binlog_format=MIXED` está definido, ou que são registradas quando `binlog_format=ROW` está definido, não são adicionadas ao log de consultas lentas da replica, mesmo que `log_slow_slave_statements` esteja habilitado.
+Por padrão, uma replica não escreve consultas replicadas no log de consultas lentas. Para alterar isso, habilite a variável de sistema `log_slow_slave_statements`. Observe que, se a replicação baseada em strings estiver em uso (`binlog_format=ROW`), `log_slow_slave_statements` não tem efeito. As consultas são adicionadas apenas ao log de consultas lentas da replica quando elas são registradas em formato de declaração no log binário, ou seja, quando `binlog_format=STATEMENT` está definido, ou quando `binlog_format=MIXED` está definido e a declaração é registrada em formato de declaração. As consultas lentas que são registradas em formato de string quando `binlog_format=MIXED` está definido, ou que são registradas quando `binlog_format=ROW` está definido, não são adicionadas ao log de consultas lentas da replica, mesmo que `log_slow_slave_statements` esteja habilitado.
 
 #### Conteúdo do Log de Consultas Lentas
 
 Quando o registro de consultas lentas é habilitado, o servidor escreve a saída para quaisquer destinos especificados pela variável de sistema `log_output`. Se você habilitar o registro, o servidor abre o arquivo de registro e escreve mensagens de inicialização nele. No entanto, o registro adicional de consultas no arquivo não ocorre, a menos que o destino de registro `FILE` seja selecionado. Se o destino for `NONE`, o servidor não escreve nenhuma consulta, mesmo que o registro de consultas lentas seja habilitado. Definir o nome do arquivo de registro não tem efeito no registro se `FILE` não for selecionado como destino de saída.
 
-Se o registro de consultas lentas estiver habilitado e `FILE` estiver selecionado como destino de saída, cada declaração escrita no registro é precedida por uma linha que começa com um caractere `#` e possui esses campos (com todos os campos em uma única linha):
+Se o registro de consultas lentas estiver habilitado e `FILE` estiver selecionado como destino de saída, cada declaração escrita no registro é precedida por uma string que começa com um caractere `#` e possui esses campos (com todos os campos em uma única string):
 
 * `Query_time: duration`
 
@@ -955,11 +955,11 @@ O tempo para adquirir fechaduras em segundos.
 
 * `Rows_sent: N`
 
-O número de linhas enviadas ao cliente.
+O número de strings enviadas ao cliente.
 
 * `Rows_examined:`
 
-O número de linhas examinadas pela camada de servidor (não contando qualquer processamento interno dos motores de armazenamento).
+O número de strings examinadas pela camada de servidor (não contando qualquer processamento interno dos motores de armazenamento).
 
 Cada declaração escrita no arquivo de registro de consulta lenta é precedida por uma declaração `SET` que inclui um timestamp indicando quando a declaração lenta foi registrada (o que ocorre após a execução da declaração).
 
@@ -1005,7 +1005,7 @@ Uma operação de limpeza de registro tem os seguintes efeitos:
 
 A execução de declarações ou comandos de limpeza de logs requer a conexão com o servidor usando uma conta que tenha o privilégio `RELOAD`. Em sistemas Unix e Unix-like, outra maneira de limpar os logs é enviar um sinal `SIGHUP` para o servidor, o que pode ser feito por `root` ou pela conta que possui o processo do servidor. Os sinais permitem que a limpeza de logs seja realizada sem a necessidade de conexão com o servidor. No entanto, `SIGHUP` tem efeitos adicionais além da limpeza de logs que podem ser indesejáveis. Para detalhes, consulte a Seção 4.10, “Tratamento de Sinal Unix em MySQL”.
 
-Como mencionado anteriormente, o esvaziamento do log binário cria um novo arquivo de log binário, enquanto o esvaziamento do log de consulta geral, do log de consulta lenta ou do log de erro apenas fecha e reabre o arquivo de log. Para os últimos logs, para criar um novo arquivo de log no Unix, renomeie o arquivo de log atual primeiro antes de esvaziá-lo. No momento do esvaziamento, o servidor abre o novo arquivo de log com o nome original. Por exemplo, se os arquivos de log de consulta geral, consulta lenta e erro forem nomeados como `mysql.log`, `mysql-slow.log` e `err.log`, você pode usar uma série de comandos como este a partir da linha de comando:
+Como mencionado anteriormente, o esvaziamento do log binário cria um novo arquivo de log binário, enquanto o esvaziamento do log de consulta geral, do log de consulta lenta ou do log de erro apenas fecha e reabre o arquivo de log. Para os últimos logs, para criar um novo arquivo de log no Unix, renomeie o arquivo de log atual primeiro antes de esvaziá-lo. No momento do esvaziamento, o servidor abre o novo arquivo de log com o nome original. Por exemplo, se os arquivos de log de consulta geral, consulta lenta e erro forem nomeados como `mysql.log`, `mysql-slow.log` e `err.log`, você pode usar uma série de comandos como este a partir da string de comando:
 
 ```sql
 cd mysql-data-directory
@@ -1026,7 +1026,7 @@ SET GLOBAL general_log = 'OFF';
 SET GLOBAL slow_query_log = 'OFF';
 ```
 
-Com os registros desativados, renomeie os arquivos de registro externamente (por exemplo, a partir da linha de comando). Em seguida, ative os registros novamente:
+Com os registros desativados, renomeie os arquivos de registro externamente (por exemplo, a partir da string de comando). Em seguida, ative os registros novamente:
 
 ```sql
 SET GLOBAL general_log = 'ON';

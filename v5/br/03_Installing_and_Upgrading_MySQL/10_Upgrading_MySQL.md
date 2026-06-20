@@ -6,9 +6,9 @@ A atualização é um procedimento comum, pois você obtém correções de bugs 
 
 Nota
 
-Na discussão a seguir, os comandos do MySQL que devem ser executados usando uma conta do MySQL com privilégios administrativos incluem `-u root` na linha de comando para especificar o usuário do MySQL `root`. Os comandos que exigem uma senha para `root` também incluem uma opção `-p`. Como `-p` não é seguido por nenhum valor de opção, esses comandos solicitam a senha. Digite a senha quando solicitado e pressione Enter.
+Na discussão a seguir, os comandos do MySQL que devem ser executados usando uma conta do MySQL com privilégios administrativos incluem `-u root` na string de comando para especificar o usuário do MySQL `root`. Os comandos que exigem uma senha para `root` também incluem uma opção `-p`. Como `-p` não é seguido por nenhum valor de opção, esses comandos solicitam a senha. Digite a senha quando solicitado e pressione Enter.
 
-As instruções SQL podem ser executadas usando o cliente de linha de comando **mysql** (conecte-se como `root` para garantir que você tenha os privilégios necessários).
+As instruções SQL podem ser executadas usando o cliente de string de comando **mysql** (conecte-se como `root` para garantir que você tenha os privilégios necessários).
 
 ### 2.10.1 Antes de começar
 
@@ -158,7 +158,7 @@ Para verificar as tabelas que contêm colunas temporais e precisam de uma recons
 
 Para atualizar tabelas que contêm colunas temporais, desative `avoid_temporal_upgrade` antes de executar `REPAIR TABLE` ou `mysqld_upgrade`.
 
-* **Mudança incompatível**: a partir do MySQL 5.7.2, o servidor exige que as linhas de conta na tabela `mysql.user` do sistema tenham um valor não vazio na coluna `plugin` e desabilita as contas com um valor vazio. Isso exige que você atualize sua tabela `mysql.user` para preencher todos os valores de `plugin`. a partir do MySQL 5.7.6, use este procedimento:
+* **Mudança incompatível**: a partir do MySQL 5.7.2, o servidor exige que as strings de conta na tabela `mysql.user` do sistema tenham um valor não vazio na coluna `plugin` e desabilita as contas com um valor vazio. Isso exige que você atualize sua tabela `mysql.user` para preencher todos os valores de `plugin`. a partir do MySQL 5.7.6, use este procedimento:
 
 Se você planeja fazer uma atualização usando o diretório de dados da sua instalação MySQL existente:
 
@@ -226,7 +226,7 @@ Se a própria senha do `mysqld_upgrade` expirar, você deve redefinir a senha no
 
 Após seguir as instruções anteriores, os DBA são aconselhados a também converter contas que utilizam o plugin de autenticação `mysql_old_password` para utilizar `mysql_native_password` em vez disso, porque o suporte para `mysql_old_password` foi removido. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora da hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
 
-* **Mudança incompatível**: É possível que o valor da coluna `DEFAULT` seja válido para o valor `sql_mode` no momento da criação da tabela, mas inválido para o valor `sql_mode` quando as linhas são inseridas ou atualizadas. Exemplo:
+* **Mudança incompatível**: É possível que o valor da coluna `DEFAULT` seja válido para o valor `sql_mode` no momento da criação da tabela, mas inválido para o valor `sql_mode` quando as strings são inseridas ou atualizadas. Exemplo:
 
   ```sql
   SET sql_mode = '';
@@ -241,7 +241,7 @@ A partir do MySQL 5.7.2, o servidor aplica as verificações adequadas do `sql_m
 
 Uma incompatibilidade resultante para replicação se você usar o registro baseado em declarações (`binlog_format=STATEMENT`) é que, se uma réplica for atualizada, uma fonte que não foi atualizada executa o exemplo anterior sem erro, enquanto o `INSERT` falha na réplica e a replicação é interrompida.
 
-Para lidar com isso, pare todas as novas declarações na fonte e espere até que as réplicas recuperem o atraso. Em seguida, atualize as réplicas, seguido da fonte. Alternativamente, se você não puder parar as novas declarações, mude temporariamente para o registro baseado em linha na fonte (`binlog_format=ROW`) e espere até que todas as réplicas tenham processado todos os logs binários produzidos até o ponto desta mudança. Em seguida, atualize as réplicas, seguido da fonte e mude a fonte de volta para o registro baseado em declarações.
+Para lidar com isso, pare todas as novas declarações na fonte e espere até que as réplicas recuperem o atraso. Em seguida, atualize as réplicas, seguido da fonte. Alternativamente, se você não puder parar as novas declarações, mude temporariamente para o registro baseado em string na fonte (`binlog_format=ROW`) e espere até que todas as réplicas tenham processado todos os logs binários produzidos até o ponto desta mudança. Em seguida, atualize as réplicas, seguido da fonte e mude a fonte de volta para o registro baseado em declarações.
 
 * **Mudança incompatível**: Várias alterações foram feitas no plugin do registro de auditoria para melhor compatibilidade com o Oracle Audit Vault. Para fins de atualização, o principal problema é que o formato padrão do arquivo de registro de auditoria mudou: as informações dentro dos elementos `<AUDIT_RECORD>` que anteriormente eram escritas usando atributos agora são escritas usando subelementos.
 
@@ -295,9 +295,9 @@ Se o nível de atividade na fonte for tal que as atualizações no log binário 
 
 * a partir do MySQL 5.7.24, a versão da biblioteca zlib empacotada com o MySQL foi elevada da versão 1.2.3 para a versão 1.2.11.
 
-A função zlib `compressBound()` no zlib 1.2.11 retorna uma estimativa ligeiramente mais alta do tamanho do buffer necessário para comprimir um determinado comprimento de bytes do que a função zlib versão 1.2.3. A função `compressBound()` é chamada pelas funções `InnoDB` que determinam o tamanho máximo de linha permitido ao criar tabelas `InnoDB` comprimidas ou ao inserir linhas em tabelas `InnoDB` comprimidas. Como resultado, as operações `CREATE TABLE ... ROW_FORMAT=COMPRESSED` ou `INSERT` com tamanhos de linha muito próximos ao tamanho máximo de linha que foram bem-sucedidas em versões anteriores podem agora falhar.
+A função zlib `compressBound()` no zlib 1.2.11 retorna uma estimativa ligeiramente mais alta do tamanho do buffer necessário para comprimir um determinado comprimento de bytes do que a função zlib versão 1.2.3. A função `compressBound()` é chamada pelas funções `InnoDB` que determinam o tamanho máximo de string permitido ao criar tabelas `InnoDB` comprimidas ou ao inserir strings em tabelas `InnoDB` comprimidas. Como resultado, as operações `CREATE TABLE ... ROW_FORMAT=COMPRESSED` ou `INSERT` com tamanhos de string muito próximos ao tamanho máximo de string que foram bem-sucedidas em versões anteriores podem agora falhar.
 
-Se você tiver tabelas compactadas `InnoDB` com linhas grandes, é recomendável testar as declarações de tabela compactada `CREATE TABLE` em uma instância de teste MySQL 5.7 antes de fazer a atualização.
+Se você tiver tabelas compactadas `InnoDB` com strings grandes, é recomendável testar as declarações de tabela compactada `CREATE TABLE` em uma instância de teste MySQL 5.7 antes de fazer a atualização.
 
 * **Mudança incompatível**: Para simplificar a descoberta do espaço de tabelas `InnoDB` durante a recuperação em caso de falha, novos tipos de registro de log de refazer foram introduzidos no MySQL 5.7.5. Essa melhoria altera o formato do log de refazer. Antes de realizar uma atualização local, realize um desligamento limpo usando uma configuração `innodb_fast_shutdown` de `0` ou `1`. Um desligamento lento usando `innodb_fast_shutdown=0` é uma etapa recomendada na Atualização Local.
 
@@ -307,11 +307,11 @@ Se você tiver tabelas compactadas `InnoDB` com linhas grandes, é recomendável
 
 * **Mudança incompatível**: a partir do MySQL 5.7.9, o cabeçalho do log de refazer do primeiro arquivo de log de refazer (`ib_logfile0`) inclui um identificador de versão do formato e uma string de texto que identifica a versão do MySQL que criou os arquivos de log de refazer. Essa melhoria altera o formato do log de refazer, exigindo que o MySQL seja desligado corretamente usando uma configuração `innodb_fast_shutdown` de `0` ou `1` antes de realizar uma atualização local para o MySQL 5.7.9 ou superior. Um desligamento lento usando `innodb_fast_shutdown=0` é uma etapa recomendada na Atualização Local.
 
-* Em MySQL 5.7.9, `DYNAMIC` substitui `COMPACT` como o formato de linha padrão implícito para as tabelas `InnoDB`. Uma nova opção de configuração, `innodb_default_row_format`, especifica o formato de linha padrão `InnoDB`. Os valores permitidos incluem `DYNAMIC` (o padrão), `COMPACT` e `REDUNDANT`.
+* Em MySQL 5.7.9, `DYNAMIC` substitui `COMPACT` como o formato de string padrão implícito para as tabelas `InnoDB`. Uma nova opção de configuração, `innodb_default_row_format`, especifica o formato de string padrão `InnoDB`. Os valores permitidos incluem `DYNAMIC` (o padrão), `COMPACT` e `REDUNDANT`.
 
-Após a atualização para 5.7.9, todas as novas tabelas que você criar usarão o formato de linha definido por `innodb_default_row_format`, a menos que você defina explicitamente um formato de linha (`ROW_FORMAT`).
+Após a atualização para 5.7.9, todas as novas tabelas que você criar usarão o formato de string definido por `innodb_default_row_format`, a menos que você defina explicitamente um formato de string (`ROW_FORMAT`).
 
-Para tabelas existentes que não definem explicitamente uma opção `ROW_FORMAT` ou que utilizam `ROW_FORMAT=DEFAULT`, qualquer operação que reconstrua uma tabela também altera silenciosamente o formato da linha da tabela para o formato definido por `innodb_default_row_format`. Caso contrário, as tabelas existentes retêm seu ajuste atual de formato de linha. Para mais informações, consulte Definindo o Formato de Linha de uma Tabela.
+Para tabelas existentes que não definem explicitamente uma opção `ROW_FORMAT` ou que utilizam `ROW_FORMAT=DEFAULT`, qualquer operação que reconstrua uma tabela também altera silenciosamente o formato da string da tabela para o formato definido por `innodb_default_row_format`. Caso contrário, as tabelas existentes retêm seu ajuste atual de formato de string. Para mais informações, consulte Definindo o Formato de String de uma Tabela.
 
 * A partir do MySQL 5.7.6, o mecanismo de armazenamento `InnoDB` usa seu próprio manipulador de particionamento interno ("nativo") para quaisquer novas tabelas particionadas criadas usando `InnoDB`. As tabelas particionadas `InnoDB` criadas em versões anteriores do MySQL não são atualizadas automaticamente. Você pode facilmente atualizar essas tabelas para usar o particionamento nativo `InnoDB` no MySQL 5.7.9 ou posterior usando qualquer um dos seguintes métodos:
 
@@ -834,7 +834,7 @@ Você pode usar `REPAIR TABLE` se a operação de verificação de tabela indica
 REPAIR TABLE t1;
 ```
 
-O **mysqlcheck --repair** oferece acesso à linha de comando à declaração `REPAIR TABLE`. Isso pode ser uma maneira mais conveniente de reparar tabelas, pois você pode usar a opção `--databases` ou `--all-databases` para reparar todas as tabelas em bancos de dados específicos ou todos os bancos de dados, respectivamente:
+O **mysqlcheck --repair** oferece acesso à string de comando à declaração `REPAIR TABLE`. Isso pode ser uma maneira mais conveniente de reparar tabelas, pois você pode usar a opção `--databases` ou `--all-databases` para reparar todas as tabelas em bancos de dados específicos ou todos os bancos de dados, respectivamente:
 
 ```sql
 mysqlcheck --repair --databases db_name ...

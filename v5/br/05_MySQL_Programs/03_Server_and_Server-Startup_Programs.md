@@ -36,7 +36,7 @@ Uma implicação da não utilização de `mysqld_safe` em plataformas que utiliz
 
 Muitas das opções para `mysqld_safe` são as mesmas das opções para `mysqld`. Veja a Seção 5.1.6, “Opções de comando do servidor”.
 
-Opções desconhecidas para `mysqld_safe` são passadas para `mysqld` se elas forem especificadas na linha de comando, mas ignoradas se forem especificadas no grupo `[mysqld_safe]` de um arquivo de opções. Veja a Seção 4.2.2.2, “Usando arquivos de opções”.
+Opções desconhecidas para `mysqld_safe` são passadas para `mysqld` se elas forem especificadas na string de comando, mas ignoradas se forem especificadas no grupo `[mysqld_safe]` de um arquivo de opções. Veja a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 `mysqld_safe` lê todas as opções das seções `[mysqld]`, `[server]` e `[mysqld_safe]` nos arquivos de opções. Por exemplo, se você especificar uma seção `[mysqld]` assim, `mysqld_safe` encontra e usa a opção `--log-error`:
 
@@ -47,7 +47,7 @@ log-error=error.log
 
 Para compatibilidade reversa, `mysqld_safe` também lê as seções de `[safe_mysqld]`, mas para ser atual, você deve renomear essas seções para `[mysqld_safe]`.
 
-`mysqld_safe` aceita opções na linha de comando e em arquivos de opção, conforme descrito na tabela a seguir. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
+`mysqld_safe` aceita opções na string de comando e em arquivos de opção, conforme descrito na tabela a seguir. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
 
 **Tabela 4.6 `mysqld_safe` Opções**
 
@@ -256,17 +256,17 @@ O caminho para o diretório de dados.
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
-Leia este arquivo de opção em adição aos arquivos de opção usuais. Se o arquivo não existir ou não for acessível, o servidor sai com um erro. Se *`file_name`* não for um nome de caminho absoluto, ele é interpretado em relação ao diretório atual. Isso deve ser a primeira opção na linha de comando se for usada.
+Leia este arquivo de opção em adição aos arquivos de opção usuais. Se o arquivo não existir ou não for acessível, o servidor sai com um erro. Se *`file_name`* não for um nome de caminho absoluto, ele é interpretado em relação ao diretório atual. Isso deve ser a primeira opção na string de comando se for usada.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
-Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for acessível, o servidor sai com um erro. Se *`file_name`* não for um nome de caminho absoluto, ele é interpretado em relação ao diretório atual. Isso deve ser a primeira opção na linha de comando se for usada.
+Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for acessível, o servidor sai com um erro. Se *`file_name`* não for um nome de caminho absoluto, ele é interpretado em relação ao diretório atual. Isso deve ser a primeira opção na string de comando se for usada.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--ledir=dir_name`
 
@@ -274,7 +274,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Se o `mysqld_safe` não conseguir encontrar o servidor, use esta opção para indicar o nome do caminho para o diretório onde o servidor está localizado.
 
-A partir do MySQL 5.7.17, essa opção é aceita apenas na linha de comando, não em arquivos de opção. Em plataformas que utilizam o systemd, o valor pode ser especificado no valor de `MYSQLD_OPTS`. Veja a Seção 2.5.10, “Gerenciando o servidor MySQL com o systemd”.
+A partir do MySQL 5.7.17, essa opção é aceita apenas na string de comando, não em arquivos de opção. Em plataformas que utilizam o systemd, o valor pode ser especificado no valor de `MYSQLD_OPTS`. Veja a Seção 2.5.10, “Gerenciando o servidor MySQL com o systemd”.
 
 * `--log-error=file_name`
 
@@ -332,14 +332,14 @@ Nota
 
 Em sistemas que gerenciam o servidor usando systemd, `mysqld_safe` não está disponível. Em vez disso, especifique a biblioteca de alocação definindo `LD_PRELOAD` em `/etc/sysconfig/mysql`.
 
-Os usuários do Linux podem usar o `libtcmalloc_minimal.so` incluído em pacotes binários, adicionando essas linhas ao arquivo `my.cnf`:
+Os usuários do Linux podem usar o `libtcmalloc_minimal.so` incluído em pacotes binários, adicionando essas strings ao arquivo `my.cnf`:
 
   ```sql
   [mysqld_safe]
   malloc-lib=tcmalloc
   ```
 
-Essas linhas também são suficientes para usuários em qualquer plataforma que tenham instalado um pacote `tcmalloc` em `/usr/lib`. Para usar uma biblioteca específica `tcmalloc`, especifique seu nome completo. Exemplo:
+Essas strings também são suficientes para usuários em qualquer plataforma que tenham instalado um pacote `tcmalloc` em `/usr/lib`. Para usar uma biblioteca específica `tcmalloc`, especifique seu nome completo. Exemplo:
 
   ```sql
   [mysqld_safe]
@@ -352,7 +352,7 @@ Essas linhas também são suficientes para usuários em qualquer plataforma que 
 
 O nome do programa do servidor (no diretório `ledir`) que você deseja iniciar. Esta opção é necessária se você usar a distribuição binária do MySQL, mas tiver o diretório de dados fora da distribuição binária. Se o `mysqld_safe` não conseguir encontrar o servidor, use a opção `--ledir` para indicar o nome do caminho para o diretório onde o servidor está localizado.
 
-A partir do MySQL 5.7.15, essa opção é aceita apenas na linha de comando, não em arquivos de opção. Em plataformas que utilizam o systemd, o valor pode ser especificado no valor de `MYSQLD_OPTS`. Veja a Seção 2.5.10, “Gerenciando o servidor MySQL com o systemd”.
+A partir do MySQL 5.7.15, essa opção é aceita apenas na string de comando, não em arquivos de opção. Em plataformas que utilizam o systemd, o valor pode ser especificado no valor de `MYSQLD_OPTS`. Veja a Seção 2.5.10, “Gerenciando o servidor MySQL com o systemd”.
 
 * `--mysqld-version=suffix`
 
@@ -360,7 +360,7 @@ A partir do MySQL 5.7.15, essa opção é aceita apenas na linha de comando, nã
 
 Esta opção é semelhante à opção `--mysqld`, mas você especifica apenas o sufixo para o nome do programa do servidor. O nome base é assumido como sendo `mysqld`. Por exemplo, se você usar `--mysqld-version=debug`, `mysqld_safe` inicia o programa **mysqld-debug** no diretório `ledir`. Se o argumento para `--mysqld-version` estiver vazio, `mysqld_safe` usa `mysqld` no diretório `ledir`.
 
-A partir do MySQL 5.7.15, essa opção é aceita apenas na linha de comando, não em arquivos de opção. Em plataformas que utilizam o systemd, o valor pode ser especificado no valor de `MYSQLD_OPTS`. Veja a Seção 2.5.10, “Gerenciando o servidor MySQL com o systemd”.
+A partir do MySQL 5.7.15, essa opção é aceita apenas na string de comando, não em arquivos de opção. Em plataformas que utilizam o systemd, o valor pode ser especificado no valor de `MYSQLD_OPTS`. Veja a Seção 2.5.10, “Gerenciando o servidor MySQL com o systemd”.
 
 * `--nice=priority`
 
@@ -372,9 +372,9 @@ Use o programa `nice` para definir a prioridade de agendamento do servidor no va
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
-Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que sejam lidas. Isso deve ser a primeira opção na linha de comando se for usada.
+Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que sejam lidas. Isso deve ser a primeira opção na string de comando se for usada.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--open-files-limit=count`
 
@@ -450,7 +450,7 @@ Defina a variável de ambiente de fuso horário `TZ` para o valor da opção for
 
 Execute o servidor `mysqld` como o usuário com o nome *`user_name`* ou o ID de usuário numérico *`user_id`*. (“Usuário” neste contexto se refere a uma conta de login do sistema, não a um usuário MySQL listado nas tabelas de concessão.)
 
-Se você executar `mysqld_safe` com a opção `--defaults-file` ou `--defaults-extra-file` para nomear um arquivo de opção, a opção deve ser a primeira fornecida na linha de comando ou o arquivo de opção não é usado. Por exemplo, este comando não usa o arquivo de opção nomeado:
+Se você executar `mysqld_safe` com a opção `--defaults-file` ou `--defaults-extra-file` para nomear um arquivo de opção, a opção deve ser a primeira fornecida na string de comando ou o arquivo de opção não é usado. Por exemplo, este comando não usa o arquivo de opção nomeado:
 
 ```sql
 mysql> mysqld_safe --port=port_num --defaults-file=file_name
@@ -507,7 +507,7 @@ Nota
 
 Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, **mysql.server** e `mysqld_safe` não são instalados porque são desnecessários. Para mais informações, consulte a Seção 2.5.10, “Gerenciamento do servidor MySQL com o systemd”.
 
-Para iniciar ou parar o servidor manualmente usando o script **mysql.server**, invóvel-o a partir da linha de comando com os argumentos `start` ou `stop`:
+Para iniciar ou parar o servidor manualmente usando o script **mysql.server**, invóvel-o a partir da string de comando com os argumentos `start` ou `stop`:
 
 ```sql
 mysql.server start
@@ -566,7 +566,7 @@ user=mysql
 basedir=/usr/local/mysql
 ```
 
-O script **mysql.server** suporta as opções mostradas na tabela a seguir. Se especificadas, elas *devem* ser colocadas em um arquivo de opções, não na linha de comando. **mysql.server** suporta apenas `start` e `stop` como argumentos de linha de comando.
+O script **mysql.server** suporta as opções mostradas na tabela a seguir. Se especificadas, elas *devem* ser colocadas em um arquivo de opções, não na string de comando. **mysql.server** suporta apenas `start` e `stop` como argumentos de string de comando.
 
 **Tabela 4.7 Opções de arquivo de opção mysql.server**
 
@@ -608,7 +608,7 @@ mysqld_multi [options] {start|stop|reload|report} [GNR[,GNR] ...]
 
 `start`, `stop`, `reload` (parar e reiniciar) e `report` indicam qual operação realizar. Você pode realizar a operação designada para um único servidor ou múltiplos servidores, dependendo da lista *`GNR`* que segue o nome da opção. Se não houver lista, `mysqld_multi` realiza a operação para todos os servidores no arquivo de opção.
 
-Cada valor *`GNR`* representa um número de grupo de opções ou uma faixa de números de grupo. O valor deve ser o número no final do nome do grupo no arquivo de opções. Por exemplo, o *`GNR`* para um grupo com o nome `[mysqld17]` é `17`. Para especificar uma faixa de números, separe os primeiros e últimos números com uma barra. O valor *`GNR`* `10-13` representa os grupos `[mysqld10]` até `[mysqld13]`. Múltiplos grupos ou faixas de grupos podem ser especificados na linha de comando, separados por vírgulas. Não deve haver caracteres de espaço em branco (espaços ou tabs) na lista *`GNR`*; qualquer coisa após um caractere de espaço em branco é ignorada.
+Cada valor *`GNR`* representa um número de grupo de opções ou uma faixa de números de grupo. O valor deve ser o número no final do nome do grupo no arquivo de opções. Por exemplo, o *`GNR`* para um grupo com o nome `[mysqld17]` é `17`. Para especificar uma faixa de números, separe os primeiros e últimos números com uma barra. O valor *`GNR`* `10-13` representa os grupos `[mysqld10]` até `[mysqld13]`. Múltiplos grupos ou faixas de grupos podem ser especificados na string de comando, separados por vírgulas. Não deve haver caracteres de espaço em branco (espaços ou tabs) na lista *`GNR`*; qualquer coisa após um caractere de espaço em branco é ignorada.
 
 Este comando inicia um servidor único usando o grupo de opções `[mysqld17]`:
 
@@ -642,7 +642,7 @@ mysqld_multi --example
 
   <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-Para obter informações adicionais sobre essas e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para obter informações adicionais sobre essas e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 Os arquivos de opção lidos são pesquisados para os grupos de opções `[mysqld_multi]` e `[mysqldN]`. O grupo `[mysqld_multi]` pode ser usado para opções para o próprio `mysqld_multi`. Os grupos `[mysqldN]` podem ser usados para opções passadas para instâncias específicas de `mysqld`.
 

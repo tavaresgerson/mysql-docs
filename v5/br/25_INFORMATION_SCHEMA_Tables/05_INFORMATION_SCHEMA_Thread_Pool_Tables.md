@@ -1,14 +1,14 @@
-## 24.5 Tabelas do Pool de Fios do Schema de Informação
+## 24.5 Tabelas do Pool de Threads do Schema de Informação
 
 As seções a seguir descrevem as tabelas `INFORMATION_SCHEMA` associadas ao plugin de pool de threads (consulte a Seção 5.5.3, “MySQL Enterprise Thread Pool”). Elas fornecem informações sobre a operação do pool de threads:
 
 * `TP_THREAD_GROUP_STATE`: Informações sobre os estados do grupo de threads do pool de threads
 
-* `TP_THREAD_GROUP_STATS`: Estatísticas do grupo de fios
+* `TP_THREAD_GROUP_STATS`: Estatísticas do grupo de threads
 
 * `TP_THREAD_STATE`: Informações sobre os estados dos threads do pool de threads
 
-As linhas nessas tabelas representam instantâneos no tempo. No caso do `TP_THREAD_STATE`, todas as linhas de um grupo de threads compreendem um instantâneo no tempo. Assim, o servidor MySQL mantém o mutex do grupo de threads enquanto produz o instantâneo. Mas ele não mantém mutexes em todos os grupos de threads ao mesmo tempo, para evitar que uma declaração contra o `TP_THREAD_STATE` bloqueie todo o servidor MySQL.
+As strings nessas tabelas representam instantâneos no tempo. No caso do `TP_THREAD_STATE`, todas as strings de um grupo de threads compreendem um instantâneo no tempo. Assim, o servidor MySQL mantém o mutex do grupo de threads enquanto produz o instantâneo. Mas ele não mantém mutexes em todos os grupos de threads ao mesmo tempo, para evitar que uma declaração contra o `TP_THREAD_STATE` bloqueie todo o servidor MySQL.
 
 As tabelas do pool de threads `INFORMATION_SCHEMA` são implementadas por plugins individuais e a decisão de carregar uma delas pode ser feita independentemente das outras (consulte a Seção 5.5.3.2, “Instalação do Pool de Threads”). No entanto, o conteúdo de todas as tabelas depende do plugin do pool de threads estar habilitado. Se um plugin de tabela estiver habilitado, mas o plugin do pool de threads não estiver, a tabela se torna visível e pode ser acessada, mas está vazia.
 
@@ -18,17 +18,17 @@ A tabela a seguir resume as tabelas de pool de threads `INFORMATION_SCHEMA`. Par
 
 **Tabela 24.7 Tabelas do Pool de Fuso de Informação**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA thread pool tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>TP_THREAD_GROUP_STATE</code></td> <td>Estados do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_GROUP_STATS</code></td> <td>Estatísticas do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_STATE</code></td> <td>Informações sobre o fio do pool de threads</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA thread pool tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>TP_THREAD_GROUP_STATE</code></td> <td>Estados do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_GROUP_STATS</code></td> <td>Estatísticas do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_STATE</code></td> <td>Informações sobre o thread do pool de threads</td> </tr></tbody></table>
 
 ### 24.5.2 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE
 
-A tabela `TP_THREAD_GROUP_STATE` tem uma linha por grupo de thread no pool de threads. Cada linha fornece informações sobre o estado atual de um grupo.
+A tabela `TP_THREAD_GROUP_STATE` tem uma string por grupo de thread no pool de threads. Cada string fornece informações sobre o estado atual de um grupo.
 
 A tabela `TP_THREAD_GROUP_STATE` tem essas colunas:
 
 * `TP_GROUP_ID`
 
-O ID do grupo de fios. É uma chave única dentro da tabela.
+O ID do grupo de threads. É uma chave única dentro da tabela.
 
 * `CONSUMER THREADS`
 
@@ -46,7 +46,7 @@ Esta coluna foi adicionada no MySQL 5.7.18.
 
 * `CONNECTION_COUNT`
 
-O número de conexões que utilizam este grupo de fios.
+O número de conexões que utilizam este grupo de threads.
 
 * `QUEUED_QUERIES`
 
@@ -82,7 +82,7 @@ O número de declarações paralisadas no grupo de threads. Uma declaração par
 
 * `WAITING_THREAD_NUMBER`
 
-Se houver um fio que lida com a verificação de declarações no grupo de fios, isso especifica o número do fio dentro deste grupo de fios. É possível que este fio possa estar executando uma declaração.
+Se houver um thread que lida com a verificação de declarações no grupo de threads, isso especifica o número do thread dentro deste grupo de threads. É possível que este thread possa estar executando uma declaração.
 
 * `OLDEST_QUEUED`
 
@@ -90,7 +90,7 @@ Quanto tempo, em milissegundos, a declaração mais antiga na fila de espera est
 
 * `MAX_THREAD_IDS_IN_GROUP`
 
-O ID máximo do fio dos fios do grupo. Isso é o mesmo que `MAX(TP_THREAD_NUMBER)` para os fios quando selecionados da tabela `TP_THREAD_STATE`. Ou seja, essas duas consultas são equivalentes:
+O ID máximo do thread dos threads do grupo. Isso é o mesmo que `MAX(TP_THREAD_NUMBER)` para os threads quando selecionados da tabela `TP_THREAD_STATE`. Ou seja, essas duas consultas são equivalentes:
 
   ```sql
   SELECT TP_GROUP_ID, MAX_THREAD_IDS_IN_GROUP
@@ -102,13 +102,13 @@ O ID máximo do fio dos fios do grupo. Isso é o mesmo que `MAX(TP_THREAD_NUMBER
 
 ### 24.5.3 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS
 
-A tabela `TP_THREAD_GROUP_STATS` reporta estatísticas por grupo de fios. Há uma linha por grupo.
+A tabela `TP_THREAD_GROUP_STATS` reporta estatísticas por grupo de threads. Há uma string por grupo.
 
 A tabela `TP_THREAD_GROUP_STATS` tem essas colunas:
 
 * `TP_GROUP_ID`
 
-O ID do grupo de fios. É uma chave única dentro da tabela.
+O ID do grupo de threads. É uma chave única dentro da tabela.
 
 * `CONNECTIONS_STARTED`
 
@@ -140,7 +140,7 @@ O número de declarações que se tornaram definidas como travadas devido à exe
 
 * `BECOME_CONSUMER_THREAD`
 
-O número de vezes que o fio foi atribuído ao papel de fio consumidor.
+O número de vezes que o thread foi atribuído ao papel de thread consumidor.
 
 * `BECOME_RESERVE_THREAD`
 
@@ -164,7 +164,7 @@ O número de espera `THD_WAIT_DISKIO`. Esses ocorrem quando os threads realizam 
 
 * `ROW_LOCK_WAITS`
 
-O número de espera `THD_WAIT_ROW_LOCK` para a liberação de um bloqueio de linha por outra transação.
+O número de espera `THD_WAIT_ROW_LOCK` para a liberação de um bloqueio de string por outra transação.
 
 * `GLOBAL_LOCK_WAITS`
 
@@ -180,7 +180,7 @@ O número de espera `THD_WAIT_TABLE_LOCK` para que uma tabela seja desbloqueada 
 
 * `USER_LOCK_WAITS`
 
-O número de espera `THD_WAIT_USER_LOCK` aguarda um bloqueio especial construído pelo fio de usuário.
+O número de espera `THD_WAIT_USER_LOCK` aguarda um bloqueio especial construído pelo thread de usuário.
 
 * `BINLOG_WAITS`
 
@@ -196,28 +196,28 @@ O número de espera `THD_WAIT_SYNC` para uma operação de sincronização de ar
 
 ### 24.5.4 A tabela INFORMATION\_SCHEMA TP\_THREAD\_STATE
 
-A tabela `TP_THREAD_STATE` tem uma linha por fio criado pelo pool de threads para lidar com as conexões.
+A tabela `TP_THREAD_STATE` tem uma string por thread criado pelo pool de threads para lidar com as conexões.
 
 A tabela `TP_THREAD_STATE` tem essas colunas:
 
 * `TP_GROUP_ID`
 
-O ID do grupo de fios.
+O ID do grupo de threads.
 
 * `TP_THREAD_NUMBER`
 
-O ID do fio dentro de seu grupo de fios. `TP_GROUP_ID` e `TP_THREAD_NUMBER` fornecem juntos uma chave única na tabela.
+O ID do thread dentro de seu grupo de threads. `TP_GROUP_ID` e `TP_THREAD_NUMBER` fornecem juntos uma chave única na tabela.
 
 * `PROCESS_COUNT`
 
-O intervalo de 10 ms no qual a declaração que utiliza este fio está atualmente sendo executada. 0 significa que nenhuma declaração está sendo executada, 1 significa que está nos primeiros 10 ms, e assim por diante.
+O intervalo de 10 ms no qual a declaração que utiliza este thread está atualmente sendo executada. 0 significa que nenhuma declaração está sendo executada, 1 significa que está nos primeiros 10 ms, e assim por diante.
 
 * `WAIT_TYPE`
 
-O tipo de espera do fio. `NULL` significa que o fio não está bloqueado. Caso contrário, o fio está bloqueado por uma chamada para `thd_wait_begin()` e o valor especifica o tipo de espera. As colunas `xxx_WAIT` da tabela `TP_THREAD_GROUP_STATS` acumulam contagens para cada tipo de espera.
+O tipo de espera do thread. `NULL` significa que o thread não está bloqueado. Caso contrário, o thread está bloqueado por uma chamada para `thd_wait_begin()` e o valor especifica o tipo de espera. As colunas `xxx_WAIT` da tabela `TP_THREAD_GROUP_STATS` acumulam contagens para cada tipo de espera.
 
 O valor `WAIT_TYPE` é uma string que descreve o tipo de espera, conforme mostrado na tabela a seguir.
 
 **Tabela 24.8 Tabela TP\_THREAD\_STATE Valores WAIT\_TYPE**
 
-  <table summary="TP_THREAD_STATE table WAIT_TYPE values. The first column is the wait type. The second column describes the wait type."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Wait Type</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>THD_WAIT_SLEEP</code></td> <td>Esperando dormir</td> </tr><tr> <td><code>THD_WAIT_DISKIO</code></td> <td>Esperando por IO de disco</td> </tr><tr> <td><code>THD_WAIT_ROW_LOCK</code></td> <td>Esperando por bloqueio de linha</td> </tr><tr> <td><code>THD_WAIT_GLOBAL_LOCK</code></td> <td>Esperando por bloqueio global</td> </tr><tr> <td><code>THD_WAIT_META_DATA_LOCK</code></td> <td>Esperando por bloqueio de metadados</td> </tr><tr> <td><code>THD_WAIT_TABLE_LOCK</code></td> <td>Esperando por bloqueio de mesa</td> </tr><tr> <td><code>THD_WAIT_USER_LOCK</code></td> <td>Esperando bloqueio do usuário</td> </tr><tr> <td><code>THD_WAIT_BINLOG</code></td> <td>Esperando binlog</td> </tr><tr> <td><code>THD_WAIT_GROUP_COMMIT</code></td> <td>Esperando pelo commit do grupo</td> </tr><tr> <td><code>THD_WAIT_SYNC</code></td> <td>Esperando por fsync</td> </tr></tbody></table>
+  <table summary="TP_THREAD_STATE table WAIT_TYPE values. The first column is the wait type. The second column describes the wait type."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Wait Type</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>THD_WAIT_SLEEP</code></td> <td>Esperando dormir</td> </tr><tr> <td><code>THD_WAIT_DISKIO</code></td> <td>Esperando por IO de disco</td> </tr><tr> <td><code>THD_WAIT_ROW_LOCK</code></td> <td>Esperando por bloqueio de string</td> </tr><tr> <td><code>THD_WAIT_GLOBAL_LOCK</code></td> <td>Esperando por bloqueio global</td> </tr><tr> <td><code>THD_WAIT_META_DATA_LOCK</code></td> <td>Esperando por bloqueio de metadados</td> </tr><tr> <td><code>THD_WAIT_TABLE_LOCK</code></td> <td>Esperando por bloqueio de mesa</td> </tr><tr> <td><code>THD_WAIT_USER_LOCK</code></td> <td>Esperando bloqueio do usuário</td> </tr><tr> <td><code>THD_WAIT_BINLOG</code></td> <td>Esperando binlog</td> </tr><tr> <td><code>THD_WAIT_GROUP_COMMIT</code></td> <td>Esperando pelo commit do grupo</td> </tr><tr> <td><code>THD_WAIT_SYNC</code></td> <td>Esperando por fsync</td> </tr></tbody></table>

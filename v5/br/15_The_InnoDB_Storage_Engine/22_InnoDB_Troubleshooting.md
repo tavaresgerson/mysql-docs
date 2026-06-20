@@ -17,7 +17,7 @@ As seguintes diretrizes gerais se aplicam ao solução de problemas do `InnoDB`:
 + Uma longa espera de semaforo
   + `InnoDB` não consegue encontrar blocos livres no pool de buffer
 
-+ Mais de 67% do pool de tampão é ocupado por pilhas de bloqueio ou o índice de hash adaptativo
++ Mais de 67% do pool de buffer é ocupado por pilhas de bloqueio ou o índice de hash adaptativo
 
 * Se você suspeitar que uma tabela está corrompida, execute `CHECK TABLE` nessa tabela.
 
@@ -47,7 +47,7 @@ Se o `InnoDB` imprimir um erro de sistema operacional durante uma operação de 
 
 ### 14.22.2 Forçando a recuperação do InnoDB
 
-Para investigar a corrupção de páginas de banco de dados, você pode descartar suas tabelas do banco de dados com `SELECT ... INTO OUTFILE`. Geralmente, a maioria dos dados obtidos dessa maneira permanece intacta. A corrupção grave pode fazer com que as declarações `SELECT * FROM tbl_name` ou as operações de fundo `InnoDB` saiam inesperadamente ou afirmem, ou até mesmo fazer com que a recuperação por avanço `InnoDB` falhe. Nesses casos, você pode usar a opção `innodb_force_recovery` para forçar o motor de armazenamento `InnoDB` a iniciar enquanto impede que as operações de fundo sejam executadas, para que você possa descartar suas tabelas. Por exemplo, você pode adicionar a seguinte linha à seção `[mysqld]` do seu arquivo de opção antes de reiniciar o servidor:
+Para investigar a corrupção de páginas de banco de dados, você pode descartar suas tabelas do banco de dados com `SELECT ... INTO OUTFILE`. Geralmente, a maioria dos dados obtidos dessa maneira permanece intacta. A corrupção grave pode fazer com que as declarações `SELECT * FROM tbl_name` ou as operações de fundo `InnoDB` saiam inesperadamente ou afirmem, ou até mesmo fazer com que a recuperação por avanço `InnoDB` falhe. Nesses casos, você pode usar a opção `innodb_force_recovery` para forçar o motor de armazenamento `InnoDB` a iniciar enquanto impede que as operações de fundo sejam executadas, para que você possa descartar suas tabelas. Por exemplo, você pode adicionar a seguinte string à seção `[mysqld]` do seu arquivo de opção antes de reiniciar o servidor:
 
 ```sql
 [mysqld]
@@ -72,7 +72,7 @@ Permite que o servidor funcione mesmo se detectar uma página corrupta. Tenta fa
 
 * `2` (`SRV_FORCE_NO_BACKGROUND`)
 
-Previne que o fio mestre e quaisquer fios de purga sejam executados. Se uma saída inesperada ocorrer durante a operação de purga, esse valor de recuperação a impede.
+Previne que o thread mestre e quaisquer threads de purga sejam executados. Se uma saída inesperada ocorrer durante a operação de purga, esse valor de recuperação a impede.
 
 * `3` (`SRV_FORCE_NO_TRX_UNDO`)
 
@@ -331,7 +331,7 @@ Os itens a seguir descrevem como o `InnoDB` realiza o tratamento de erros. O `In
 
 Um timeout de espera de bloqueio faz com que `InnoDB` desconsidere a declaração atual (a declaração que estava esperando pelo bloqueio e encontrou o timeout). Para fazer com que toda a transação seja descartada, inicie o servidor com `--innodb-rollback-on-timeout` habilitado. Refaça a declaração se estiver usando o comportamento padrão, ou toda a transação se `--innodb-rollback-on-timeout` estiver habilitado.
 
-Ambos os deadlocks e os timeouts de espera de bloqueio são normais em servidores ocupados e é necessário que as aplicações estejam cientes de que isso pode acontecer e lidem com isso, tentando novamente. Você pode torná-los menos prováveis fazendo o menor trabalho possível entre a primeira alteração de dados durante uma transação e o commit, para que os bloqueios sejam mantidos pelo menor tempo possível e pelo menor número possível de linhas. Às vezes, dividir o trabalho entre diferentes transações pode ser prático e útil.
+Ambos os deadlocks e os timeouts de espera de bloqueio são normais em servidores ocupados e é necessário que as aplicações estejam cientes de que isso pode acontecer e lidem com isso, tentando novamente. Você pode torná-los menos prováveis fazendo o menor trabalho possível entre a primeira alteração de dados durante uma transação e o commit, para que os bloqueios sejam mantidos pelo menor tempo possível e pelo menor número possível de strings. Às vezes, dividir o trabalho entre diferentes transações pode ser prático e útil.
 
 * Um erro de chave duplicada retorna a declaração SQL, se você não tiver especificado a opção `IGNORE` em sua declaração.
 

@@ -11,7 +11,7 @@ Uma cadeia é uma sequência de bytes ou caracteres, encerrada entre aspas simpl
 "another string"
 ```
 
-As strings citadas colocadas uma ao lado da outra são concatenadas em uma única string. As linhas seguintes são equivalentes:
+As strings citadas colocadas uma ao lado da outra são concatenadas em uma única string. As strings seguintes são equivalentes:
 
 ```sql
 'a string'
@@ -26,7 +26,7 @@ Para ambos os tipos de strings, as comparações são baseadas nos valores numé
 
 Nota
 
-Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 Uma literal de cadeia de caracteres pode ter um introduzidor de conjunto de caracteres opcional e a cláusula `COLLATE`, para designá-la como uma cadeia de caracteres que usa um conjunto de caracteres e uma ordenação específicos:
 
@@ -56,7 +56,7 @@ Dentro de uma cadeia, certas sequências têm um significado especial, a menos q
 
 **Tabela 9.1 Sequências de Escape de Caracteres Especiais**
 
-<table summary="Escape sequences and the characters they represent."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Personagem representado por sequência</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>Um ASCII NUL (<code>X'00'</code>) personagem</td> </tr><tr> <td><code>\'</code></td> <td>Uma única citação (<code>'</code>) personagem</td> </tr><tr> <td><code>\"</code></td> <td>Uma citação dupla (<code>"</code>) personagem</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Ctrl+Z); veja a nota após a tabela</td> </tr><tr> <td><code>\\</code></td> <td>Um traço de barra (<code>\</code>) personagem</td> </tr><tr> <td><code>\%</code></td> <td>A<code>%</code>característica; ver nota após a tabela</td> </tr><tr> <td><code>\_</code></td> <td>A<code>_</code>característica; ver nota após a tabela</td> </tr></tbody></table>
+<table summary="Escape sequences and the characters they represent."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Personagem representado por sequência</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>Um ASCII NUL (<code>X'00'</code>) personagem</td> </tr><tr> <td><code>\'</code></td> <td>Uma única citação (<code>'</code>) personagem</td> </tr><tr> <td><code>\"</code></td> <td>Uma citação dupla (<code>"</code>) personagem</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova string (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Ctrl+Z); veja a nota após a tabela</td> </tr><tr> <td><code>\\</code></td> <td>Um traço de barra (<code>\</code>) personagem</td> </tr><tr> <td><code>\%</code></td> <td>A<code>%</code>característica; ver nota após a tabela</td> </tr><tr> <td><code>\_</code></td> <td>A<code>_</code>característica; ver nota após a tabela</td> </tr></tbody></table>
 
 O caractere ASCII 26 pode ser codificado como `\Z` para permitir que você trabalhe em torno do problema de que o ASCII 26 representa FIM DE ARQUIVO no Windows. ASCII 26 dentro de um arquivo causa problemas se você tentar usar `mysql db_name < file_name`.
 

@@ -28,6 +28,6 @@ O número atual de tentativas consecutivas de conexão falhadas para o valor `US
 
 * O plugin `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` deve ser ativado para que esta tabela esteja disponível, e o plugin `CONNECTION_CONTROL` deve ser ativado ou o conteúdo da tabela ficará sempre vazio. Veja a Seção 6.4.2, “Plugins de Controle de Conexão”.
 
-* A tabela contém linhas apenas para contas que tiveram uma ou mais tentativas consecutivas de conexão falha sem uma tentativa subsequente bem-sucedida. Quando uma conta se conecta com sucesso, seu contagem de conexão falha é zerada e o servidor remove qualquer linha correspondente à conta.
+* A tabela contém strings apenas para contas que tiveram uma ou mais tentativas consecutivas de conexão falha sem uma tentativa subsequente bem-sucedida. Quando uma conta se conecta com sucesso, seu contagem de conexão falha é zerada e o servidor remove qualquer string correspondente à conta.
 
 * Atribuir um valor à variável de sistema `connection_control_failed_connections_threshold` no momento da execução reescreve todos os contadores acumulados de falha de conexão para zero, o que faz com que a tabela fique vazia.

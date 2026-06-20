@@ -90,7 +90,7 @@ Essas variáveis do sistema do lado do servidor especificam os arquivos de certi
 
 * `ssl_key`: O nome do caminho do arquivo da chave privada do servidor.
 
-Por exemplo, para habilitar o servidor para conexões criptografadas, comece-o com essas linhas no arquivo `my.cnf`, alterando os nomes dos arquivos conforme necessário:
+Por exemplo, para habilitar o servidor para conexões criptografadas, comece-o com essas strings no arquivo `my.cnf`, alterando os nomes dos arquivos conforme necessário:
 
 ```sql
 [mysqld]
@@ -197,7 +197,7 @@ mysql --ssl-mode=REQUIRED
 
 Se a conta tiver requisitos de segurança mais rigorosos, outras opções devem ser especificadas para estabelecer uma conexão criptografada:
 
-* Para contas criadas com uma cláusula `REQUIRE X509`, os clientes devem especificar pelo menos `--ssl-cert` e `--ssl-key`. Além disso, `--ssl-ca` (ou `--ssl-capath`) é recomendado para que o certificado público fornecido pelo servidor possa ser verificado. Por exemplo (entre no comando em uma única linha):
+* Para contas criadas com uma cláusula `REQUIRE X509`, os clientes devem especificar pelo menos `--ssl-cert` e `--ssl-key`. Além disso, `--ssl-ca` (ou `--ssl-capath`) é recomendado para que o certificado público fornecido pelo servidor possa ser verificado. Por exemplo (entre no comando em uma única string):
 
   ```sql
   mysql --ssl-ca=ca.pem
@@ -232,7 +232,7 @@ mysql> SHOW SESSION STATUS LIKE 'Ssl_cipher';
 +---------------+---------------------------+
 ```
 
-Para o cliente **mysql**, uma alternativa é usar o comando `STATUS` ou `\s` e verificar a linha `SSL`:
+Para o cliente **mysql**, uma alternativa é usar o comando `STATUS` ou `\s` e verificar a string `SSL`:
 
 ```sql
 mysql> \s
@@ -260,7 +260,7 @@ Para algumas implantações do MySQL, pode não ser apenas desejável, mas obrig
 
 * Você pode configurar contas individuais do MySQL para serem utilizáveis apenas em conexões criptografadas.
 
-Para exigir que os clientes se conectem usando conexões criptografadas, habilite a variável de sistema `require_secure_transport`. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`:
+Para exigir que os clientes se conectem usando conexões criptografadas, habilite a variável de sistema `require_secure_transport`. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]
@@ -312,7 +312,7 @@ Suponha que a configuração do MySQL permita TLSv1, TLSv1.1 e TLSv1.2, mas a co
 
 As soluções para este problema incluem:
 
-+ Altere a configuração do host em todo o sistema para permitir protocolos TLS adicionais. Consulte a documentação do seu sistema operacional para obter instruções. Por exemplo, seu sistema pode ter um arquivo `/etc/ssl/openssl.cnf` que contém essas linhas para restringir os protocolos TLS a TLSv1.2 ou superior:
++ Altere a configuração do host em todo o sistema para permitir protocolos TLS adicionais. Consulte a documentação do seu sistema operacional para obter instruções. Por exemplo, seu sistema pode ter um arquivo `/etc/ssl/openssl.cnf` que contém essas strings para restringir os protocolos TLS a TLSv1.2 ou superior:
 
     ```sql
     [system_default_sect]
@@ -346,7 +346,7 @@ mysql> SHOW GLOBAL VARIABLES LIKE 'tls_version';
 +---------------+-----------------------+
 ```
 
-Para alterar o valor de `tls_version`, configure-o na inicialização do servidor. Por exemplo, para permitir conexões que utilizem o protocolo TLSv1.1 ou TLSv1.2, mas proibir conexões que utilizem o protocolo TLSv1 menos seguro, use essas linhas no arquivo do servidor `my.cnf`:
+Para alterar o valor de `tls_version`, configure-o na inicialização do servidor. Por exemplo, para permitir conexões que utilizem o protocolo TLSv1.1 ou TLSv1.2, mas proibir conexões que utilizem o protocolo TLSv1 menos seguro, use essas strings no arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]
@@ -749,7 +749,7 @@ mysql> SHOW STATUS LIKE 'Ssl_server_not%';
 
 #### 6.3.3.2 Criando certificados SSL e chaves usando o openssl
 
-Esta seção descreve como usar o comando **openssl** para configurar certificados SSL e arquivos de chave para uso por servidores e clientes MySQL. O primeiro exemplo mostra um procedimento simplificado, como você pode usar a partir da linha de comando. O segundo exemplo mostra um script que contém mais detalhes. Os dois primeiros exemplos são destinados ao uso em Unix e ambos usam o comando **openssl** que faz parte do OpenSSL. O terceiro exemplo descreve como configurar arquivos SSL no Windows.
+Esta seção descreve como usar o comando **openssl** para configurar certificados SSL e arquivos de chave para uso por servidores e clientes MySQL. O primeiro exemplo mostra um procedimento simplificado, como você pode usar a partir da string de comando. O segundo exemplo mostra um script que contém mais detalhes. Os dois primeiros exemplos são destinados ao uso em Unix e ambos usam o comando **openssl** que faz parte do OpenSSL. O terceiro exemplo descreve como configurar arquivos SSL no Windows.
 
 Nota
 
@@ -768,11 +768,11 @@ Importante
 
 Se um cliente que se conecta a uma instância do servidor MySQL usar um certificado SSL com a extensão `extendedKeyUsage` (uma extensão X.509 v3), o uso de chave estendido deve incluir autenticação de cliente (`clientAuth`). Se o certificado SSL for especificado apenas para autenticação do servidor (`serverAuth`) e para outros fins que não sejam certificados de cliente, a verificação do certificado falha e a conexão do cliente com a instância do servidor MySQL falha. Não há extensão `extendedKeyUsage` em certificados SSL criados usando o comando **openssl** seguindo as instruções neste tópico. Se você usar seu próprio certificado de cliente criado de outra maneira, certifique-se de que qualquer extensão `extendedKeyUsage` inclua autenticação de cliente.
 
-* Exemplo 1: Criação de arquivos SSL a partir da linha de comando no Unix
+* Exemplo 1: Criação de arquivos SSL a partir da string de comando no Unix
 * Exemplo 2: Criação de arquivos SSL usando um script no Unix
 * Exemplo 3: Criação de arquivos SSL no Windows
 
-##### Exemplo 1: Criação de arquivos SSL a partir da linha de comando no Unix
+##### Exemplo 1: Criação de arquivos SSL a partir da string de comando no Unix
 
 O exemplo a seguir mostra um conjunto de comandos para criar arquivos de certificado e chave do servidor MySQL e do cliente. Você deve responder a várias solicitações pelos comandos **openssl**. Para gerar arquivos de teste, você pode pressionar Enter em todas as solicitações. Para gerar arquivos para uso em produção, você deve fornecer respostas não vazias.
 
@@ -1104,7 +1104,7 @@ Em Windows, use esses comandos em vez disso:
   cd c:\newcerts
   ```
 
-* Quando um caractere `'\'` é exibido no final de uma linha de comando, este caractere `'\'` deve ser removido e as linhas de comando devem ser inseridas todas em uma única linha.
+* Quando um caractere `'\'` é exibido no final de uma string de comando, este caractere `'\'` deve ser removido e as strings de comando devem ser inseridas todas em uma única string.
 
 Após gerar os arquivos de certificado e chave, para usá-los em conexões SSL, consulte a Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”.
 
@@ -1170,7 +1170,7 @@ Algumas variáveis de sistema e status relacionadas ao OpenSSL estão presentes 
 * `sha256_password_public_key_path`
 * `Rsa_public_key`
 
-Para determinar se um servidor foi compilado usando OpenSSL, teste a existência de alguma dessas variáveis. Por exemplo, esta declaração retorna uma linha se OpenSSL foi usado e um resultado vazio se o yaSSL foi usado:
+Para determinar se um servidor foi compilado usando OpenSSL, teste a existência de alguma dessas variáveis. Por exemplo, esta declaração retorna uma string se OpenSSL foi usado e um resultado vazio se o yaSSL foi usado:
 
 ```sql
 SHOW STATUS LIKE 'Rsa_public_key';

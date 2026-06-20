@@ -84,7 +84,7 @@ Por padrão, `CHAR()` retorna uma string binária. Para produzir uma string em u
 
 Se `USING` for fornecido e a string de resultado for ilegal para o conjunto de caracteres fornecido, um aviso é emitido. Além disso, se o modo SQL rigoroso estiver habilitado, o resultado de `CHAR()` se torna `NULL`.
 
-Se `CHAR()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `CHAR()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `CHAR_LENGTH(str)`
 
@@ -129,7 +129,7 @@ Para strings citadas, a concatenação pode ser realizada colocando as strings u
           -> 'MySQL'
   ```
 
-Se `CONCAT()` for invocado dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `CONCAT()` for invocado dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `CONCAT_WS(separator,str1,str2,...)`
 
@@ -216,7 +216,7 @@ Toma uma string codificada com as regras de codificação base-64 usadas por `TO
           -> 'JWJj', 'abc'
   ```
 
-Se `FROM_BASE64()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `FROM_BASE64()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `HEX(str)`, `HEX(N)`
 
@@ -594,9 +594,9 @@ Existem diferentes esquemas de codificação base-64. São as regras de codifica
 
 + A saída codificada consiste em grupos de 4 caracteres imprimíveis. Cada 3 bytes dos dados de entrada são codificados usando 4 caracteres. Se o último grupo estiver incompleto, ele é preenchido com caracteres `'='` até atingir uma extensão de 4.
 
-+ Uma nova linha é adicionada após cada 76 caracteres de saída codificada para dividir a saída longa em várias linhas.
++ Uma nova string é adicionada após cada 76 caracteres de saída codificada para dividir a saída longa em várias strings.
 
-+ O Decoding reconhece e ignora nova linha, retorno de carro, tabulação e espaço.
++ O Decoding reconhece e ignora nova string, retorno de carro, tabulação e espaço.
 
 * `TRIM([{BOTH | LEADING | TRAILING} [remstr] FROM] str)`](string-functions.html#function_trim), [`TRIM([remstr FROM] str)`](string-functions.html#function_trim)
 
@@ -651,7 +651,7 @@ Um resultado de `NULL` pode ocorrer se o argumento de `UNHEX()` for uma coluna d
 
 Para um argumento numérico *`N`*, o inverso de `HEX(N)` não é realizado por `UNHEX()`. Use `CONV(HEX(N),16,10)` em vez disso. Veja a descrição de `HEX()`.
 
-Se `UNHEX()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `UNHEX()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `UPPER(str)`
 
@@ -846,7 +846,7 @@ Exemplos:
 
 A cláusula *`flags`* atualmente não é utilizada.
 
-Se `WEIGHT_STRING()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `WEIGHT_STRING()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 ### 12.8.1 Funções e operadores de comparação de strings
 
@@ -858,7 +858,7 @@ Se uma função de cadeia receber uma cadeia binária como argumento, a cadeia r
 
 Normalmente, se qualquer expressão em uma comparação de string for sensível ao caso, a comparação é realizada de forma sensível ao caso.
 
-Se uma função de cadeia for invocada dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se uma função de cadeia for invocada dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `expr LIKE pat [ESCAPE 'escape_char']`(string-comparison-functions.html#operator_like)
 
@@ -954,7 +954,7 @@ No caso de tais situações, o MySQL tenta realizar a conversão implícita da e
 
 Nota
 
-O MySQL utiliza a sintaxe de escape C em strings (por exemplo, `\n` para representar o caractere de nova linha). Se você deseja que uma string `LIKE` contenha um literal `\`, você deve duplicá-la. (A menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado, nesse caso, nenhum caractere de escape é usado.) Por exemplo, para procurar `\n`, especifique-o como `\\n`. Para procurar `\`, especifique-o como `\\\\`; isso ocorre porque os traços são removidos uma vez pelo analisador e novamente quando a correspondência do padrão é feita, deixando um único traço para ser correspondido.
+O MySQL utiliza a sintaxe de escape C em strings (por exemplo, `\n` para representar o caractere de nova string). Se você deseja que uma string `LIKE` contenha um literal `\`, você deve duplicá-la. (A menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado, nesse caso, nenhum caractere de escape é usado.) Por exemplo, para procurar `\n`, especifique-o como `\\n`. Para procurar `\`, especifique-o como `\\\\`; isso ocorre porque os traços são removidos uma vez pelo analisador e novamente quando a correspondência do padrão é feita, deixando um único traço para ser correspondido.
 
 Exceção: No final da string de padrão, a barra invertida pode ser especificada como `\\`. No final da string, a barra invertida representa a si mesma porque não há nada a seguir para escapar. Suponha que uma tabela contenha os seguintes valores:
 
@@ -1085,7 +1085,7 @@ O padrão pode ser uma expressão regular estendida, cuja sintaxe é discutida n
 
 Nota
 
-O MySQL utiliza a sintaxe de escape C em strings (por exemplo, `\n` para representar o caractere de nova linha). Se você deseja que seu *`expr`* ou *`pat`* argumento contenha um literal `\`, você deve duplicá-lo. (A menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado, nesse caso, nenhum caractere de escape é usado.)
+O MySQL utiliza a sintaxe de escape C em strings (por exemplo, `\n` para representar o caractere de nova string). Se você deseja que seu *`expr`* ou *`pat`* argumento contenha um literal `\`, você deve duplicá-lo. (A menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado, nesse caso, nenhum caractere de escape é usado.)
 
 As operações de expressão regular utilizam o conjunto de caracteres e a ordenação da expressão e do padrão de string quando decidem o tipo de um caractere e realizam a comparação. Se os argumentos tiverem conjuntos de caracteres ou ordenações diferentes, as regras de coercibilidade se aplicam conforme descrito na Seção 10.8.4, “Coercibilidade de ordenação em expressões”. Se qualquer argumento for uma string binária, os argumentos são tratados de forma sensível ao caso como strings binárias.
 
@@ -1144,7 +1144,7 @@ Conecte as extremidades de uma corda.
 
 * `.`
 
-Corresponda a qualquer caractere (incluindo retorno de carro e nova linha).
+Corresponda a qualquer caractere (incluindo retorno de carro e nova string).
 
   ```sql
   mysql> SELECT 'fofo' REGEXP '^f.*$';                    -> 1
@@ -1263,7 +1263,7 @@ Dentro de uma expressão em chaves (escrita usando `[` e `]`), `[=character_clas
 
 Dentro de uma expressão entre chaves (escrita usando `[` e `]`), `[:character_class:]` representa uma classe de caracteres que corresponde a todos os caracteres pertencentes a essa classe. O seguinte quadro lista os nomes padrão das classes. Esses nomes representam as classes de caracteres definidas na página do manual `ctype(3)`. Um local específico pode fornecer outros nomes de classe. Uma classe de caracteres não pode ser usada como um ponto final de uma faixa.
 
-  <table summary="Character class names and the meaning of each class."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Character Class Name</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>alnum</code></td> <td>Caracteres alfanuméricos</td> </tr><tr> <td><code>alpha</code></td> <td>Caracteres alfabéticos</td> </tr><tr> <td><code>blank</code></td> <td>Caracteres de espaço em branco</td> </tr><tr> <td><code>cntrl</code></td> <td>Caracteres de controle</td> </tr><tr> <td><code>digit</code></td> <td>Caracteres numéricos</td> </tr><tr> <td><code>graph</code></td> <td>Personagens gráficos</td> </tr><tr> <td><code>lower</code></td> <td>letras alfabéticas minúsculas</td> </tr><tr> <td><code>print</code></td> <td>Caracteres gráficos ou espaciais</td> </tr><tr> <td><code>punct</code></td> <td>Caracteres de pontuação</td> </tr><tr> <td><code>space</code></td> <td>Espaço, tabulação, nova linha e retorno de carro</td> </tr><tr> <td><code>upper</code></td> <td>Letras maiúsculas alfabéticas</td> </tr><tr> <td><code>xdigit</code></td> <td>Caracteres de dígitos hexadecimais</td> </tr></tbody></table>
+  <table summary="Character class names and the meaning of each class."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Character Class Name</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>alnum</code></td> <td>Caracteres alfanuméricos</td> </tr><tr> <td><code>alpha</code></td> <td>Caracteres alfabéticos</td> </tr><tr> <td><code>blank</code></td> <td>Caracteres de espaço em branco</td> </tr><tr> <td><code>cntrl</code></td> <td>Caracteres de controle</td> </tr><tr> <td><code>digit</code></td> <td>Caracteres numéricos</td> </tr><tr> <td><code>graph</code></td> <td>Personagens gráficos</td> </tr><tr> <td><code>lower</code></td> <td>letras alfabéticas minúsculas</td> </tr><tr> <td><code>print</code></td> <td>Caracteres gráficos ou espaciais</td> </tr><tr> <td><code>punct</code></td> <td>Caracteres de pontuação</td> </tr><tr> <td><code>space</code></td> <td>Espaço, tabulação, nova string e retorno de carro</td> </tr><tr> <td><code>upper</code></td> <td>Letras maiúsculas alfabéticas</td> </tr><tr> <td><code>xdigit</code></td> <td>Caracteres de dígitos hexadecimais</td> </tr></tbody></table>
 
   ```sql
   mysql> SELECT 'justalnums' REGEXP '[[:alnum:]]+';       -> 1

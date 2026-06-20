@@ -27,7 +27,7 @@ mysql> SELECT * FROM test;
 2 rows in set (0.00 sec)
 ```
 
-Criar uma tabela `CSV` também cria um metafile correspondente que armazena o estado da tabela e o número de linhas que existem na tabela. O nome deste arquivo é o mesmo que o nome da tabela com a extensão `CSM`.
+Criar uma tabela `CSV` também cria um metafile correspondente que armazena o estado da tabela e o número de strings que existem na tabela. O nome deste arquivo é o mesmo que o nome da tabela com a extensão `CSM`.
 
 Se você examinar o arquivo `test.CSV` no diretório do banco de dados criado ao executar as declarações anteriores, seu conteúdo deve parecer assim:
 
@@ -42,7 +42,7 @@ Esse formato pode ser lido e até mesmo escrito por aplicativos de planilha, com
 
 O motor de armazenamento `CSV` suporta as declarações `CHECK TABLE` e `REPAIR TABLE` para verificar e, se possível, reparar uma tabela `CSV` danificada.
 
-Ao executar a declaração `CHECK TABLE`, o arquivo `CSV` é verificado quanto à validade, procurando os separadores de campo corretos, campos escamados (com aspas correspondentes ou ausentes), o número correto de campos em comparação com a definição da tabela e a existência de um metafile correspondente `CSV`. A primeira linha inválida descoberta reporta um erro. A verificação de uma tabela válida produz uma saída como a mostrada abaixo:
+Ao executar a declaração `CHECK TABLE`, o arquivo `CSV` é verificado quanto à validade, procurando os separadores de campo corretos, campos escamados (com aspas correspondentes ou ausentes), o número correto de campos em comparação com a definição da tabela e a existência de um metafile correspondente `CSV`. A primeira string inválida descoberta reporta um erro. A verificação de uma tabela válida produz uma saída como a mostrada abaixo:
 
 ```sql
 mysql> CHECK TABLE csvtest;
@@ -64,7 +64,7 @@ mysql> CHECK TABLE csvtest;
 +--------------+-------+----------+----------+
 ```
 
-Para reparar uma tabela, use `REPAIR TABLE`(repair-table.html "13.7.2.5 REPAIR TABLE Statement"), que copia quantas linhas válidas possíveis das informações existentes no arquivo `CSV`, e depois substitui o arquivo existente `CSV` com as linhas recuperadas. Quaisquer linhas além dos dados corrompidos são perdidas.
+Para reparar uma tabela, use `REPAIR TABLE`(repair-table.html "13.7.2.5 REPAIR TABLE Statement"), que copia quantas strings válidas possíveis das informações existentes no arquivo `CSV`, e depois substitui o arquivo existente `CSV` com as strings recuperadas. Quaisquer strings além dos dados corrompidos são perdidas.
 
 ```sql
 mysql> REPAIR TABLE csvtest;
@@ -77,7 +77,7 @@ mysql> REPAIR TABLE csvtest;
 
 Aviso
 
-Durante a reparação, apenas as linhas do arquivo `CSV` até a primeira linha danificada são copiadas para a nova tabela. Todas as outras linhas, desde a primeira linha danificada até o final da tabela, são removidas, mesmo as linhas válidas.
+Durante a reparação, apenas as strings do arquivo `CSV` até a primeira string danificada são copiadas para a nova tabela. Todas as outras strings, desde a primeira string danificada até o final da tabela, são removidas, mesmo as strings válidas.
 
 ### 15.4.2 Limitações do CSV
 

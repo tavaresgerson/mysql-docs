@@ -54,7 +54,7 @@ Quando `show_compatibility_56` é `OFF`, a compatibilidade com o MySQL 5.6 é de
 
 Antes do MySQL 5.7.9, selecionar as tabelas `INFORMATION_SCHEMA` produz um conjunto de resultados vazio, além de um aviso de depreciação. Isso não foi um aviso suficiente para sinalizar a necessidade de migrar para as tabelas correspondentes do Sistema de Desempenho e das variáveis de status para o caso do `show_compatibility_56=OFF`. Produzir um erro no MySQL 5.7.9 e superior torna mais evidente que uma aplicação está operando sob condições que requerem modificação, bem como onde o problema está localizado.
 
-Em MySQL 5.7.6 e 5.7.7, as tabelas `session_variables` e `session_status` do Schema de Desempenho não refletem totalmente todos os valores de variáveis em vigor para a sessão atual; elas não incluem linhas para variáveis globais que não têm correspondência em sessão. Isso é corrigido no MySQL 5.7.8.
+Em MySQL 5.7.6 e 5.7.7, as tabelas `session_variables` e `session_status` do Schema de Desempenho não refletem totalmente todos os valores de variáveis em vigor para a sessão atual; elas não incluem strings para variáveis globais que não têm correspondência em sessão. Isso é corrigido no MySQL 5.7.8.
 
 * A saída para as declarações `SHOW` é produzida usando as tabelas do Schema de Desempenho subjacente. As aplicações que são escritas para usar essas declarações ainda podem usá-las, mas é melhor usar o MySQL 5.7.8 ou superior. No MySQL 5.7.6 e 5.7.7, os resultados podem diferir:
 

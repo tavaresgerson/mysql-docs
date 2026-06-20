@@ -61,7 +61,7 @@ mysql> SHOW CREATE FUNCTION sys.format_bytes;
 
 No entanto, essas declarações exibem as definições em uma forma relativamente não formatada. Para visualizar as definições dos objetos com formatação mais legível, acesse os arquivos individuais `.sql` encontrados sob o `scripts/sys_schema` nas distribuições de fonte MySQL. Antes do MySQL 5.7.28, as fontes são mantidas em uma distribuição separada disponível no site de desenvolvimento do esquema <https://github.com/mysql/mysql-sys> do esquema `sys`.
 
-Nem o **mysqldump** nem o **mysqlpump** excluem o esquema `sys` por padrão. Para gerar um arquivo de exclusão, nomeie explicitamente o esquema `sys` na linha de comando usando qualquer um desses comandos:
+Nem o **mysqldump** nem o **mysqlpump** excluem o esquema `sys` por padrão. Para gerar um arquivo de exclusão, nomeie explicitamente o esquema `sys` na string de comando usando qualquer um desses comandos:
 
 ```sql
 mysqldump --databases --routines sys > sys_dump.sql

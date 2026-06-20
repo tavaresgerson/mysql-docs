@@ -14,7 +14,7 @@ As instâncias do servidor que você deseja usar para a Replicação em Grupo de
   disabled_storage_engines="MyISAM,BLACKHOLE,FEDERATED,ARCHIVE,MEMORY"
   ```
 
-* **Chaves primárias.** Toda tabela que deve ser replicada pelo grupo deve ter uma chave primária definida, ou equivalente de chave primária, onde o equivalente é uma chave única não nula. Tais chaves são necessárias como um identificador único para cada linha dentro de uma tabela, permitindo que o sistema determine quais transações entram em conflito, identificando exatamente quais linhas cada transação modificou.
+* **Chaves primárias.** Toda tabela que deve ser replicada pelo grupo deve ter uma chave primária definida, ou equivalente de chave primária, onde o equivalente é uma chave única não nula. Tais chaves são necessárias como um identificador único para cada string dentro de uma tabela, permitindo que o sistema determine quais transações entram em conflito, identificando exatamente quais strings cada transação modificou.
 
 * **Rede IPv4.** O motor de comunicação em grupo utilizado pelo MySQL Group Replication suporta apenas IPv4. Portanto, o Grupo de Replicação requer uma infraestrutura de rede IPv4.
 
@@ -30,7 +30,7 @@ As seguintes opções devem ser configuradas nas instâncias do servidor que sã
 
 * **Atualizações de réplica registradas.** Defina `--log-slave-updates`. Os servidores precisam registrar logs binários que são aplicados através do aplicativo de aplicação de replicação. Os servidores do grupo precisam registrar todas as transações que recebem e aplicam do grupo. Isso é necessário porque a recuperação é conduzida confiando em logs binários dos participantes do grupo. Portanto, cópias de cada transação precisam existir em cada servidor, mesmo para aquelas transações que não foram iniciadas no próprio servidor.
 
-* **Formato de linha do registro binário.** Defina `--binlog-format=row`. A Replicação por grupo depende do formato de replicação baseado em linha para propagar as alterações de forma consistente entre os servidores do grupo. Depende de uma infraestrutura baseada em linha para poder extrair as informações necessárias para detectar conflitos entre as transações que são executadas simultaneamente em diferentes servidores do grupo. Consulte a Seção 16.2.1, “Formatos de replicação”.
+* **Formato de string do registro binário.** Defina `--binlog-format=row`. A Replicação por grupo depende do formato de replicação baseado em string para propagar as alterações de forma consistente entre os servidores do grupo. Depende de uma infraestrutura baseada em string para poder extrair as informações necessárias para detectar conflitos entre as transações que são executadas simultaneamente em diferentes servidores do grupo. Consulte a Seção 16.2.1, “Formatos de replicação”.
 
 * **Verificação de checksums de registro binário desativada.** Defina `--binlog-checksum=NONE`. Devido a uma limitação de design dos checksums de eventos de replicação, a Replicação em Grupo não pode utilizá-los, e eles devem ser desativados.
 
@@ -40,7 +40,7 @@ Além disso, se você precisar definir o valor de `gtid_purged`, você deve faze
 
 * **Repositórios de Informações de Replicação.** Defina `master_info_repository=TABLE` e `relay_log_info_repository=TABLE`. O aplicativo de replicação precisa ter os metadados da fonte e da replica escritos nas tabelas de sistema `mysql.slave_master_info` e `mysql.slave_relay_log_info`. Isso garante que o plugin de Replicação de Grupo tenha recuperação consistente e gerenciamento transacional dos metadados de replicação. Veja a Seção 16.2.4.2, “Repositórios de Metadados de Replicação”.
 
-* **Extração do Conjunto de Escrita de Transação.** Configure `--transaction-write-set-extraction=XXHASH64` para que, ao coletar linhas e registrá-las no log binário, o servidor também colete o conjunto de escrita. O conjunto de escrita é baseado nas chaves primárias de cada linha e é uma visão simplificada e compacta de uma etiqueta que identifica de forma única a linha que foi alterada. Essa etiqueta é, então, usada para detectar conflitos.
+* **Extração do Conjunto de Escrita de Transação.** Configure `--transaction-write-set-extraction=XXHASH64` para que, ao coletar strings e registrá-las no log binário, o servidor também colete o conjunto de escrita. O conjunto de escrita é baseado nas chaves primárias de cada string e é uma visão simplificada e compacta de uma etiqueta que identifica de forma única a string que foi alterada. Essa etiqueta é, então, usada para detectar conflitos.
 
 * **Tabelas com nomes em minúsculas.** Defina `--lower-case-table-names` com o mesmo valor em todos os membros do grupo. Um valor de 1 é correto para o uso do mecanismo de armazenamento `InnoDB`, que é necessário para a Replicação de Grupo. Observe que essa configuração não é a padrão em todas as plataformas.
 
@@ -50,7 +50,7 @@ Além disso, se você precisar definir o valor de `gtid_purged`, você deve faze
 
 `slave_parallel_type=LOGICAL_CLOCK` :   Este ajuste é necessário com `slave_preserve_commit_order=1`. Especifica a política usada para decidir quais transações são permitidas para executar em paralelo na replica.
 
-A definição de `slave_parallel_workers=0` desativa a execução paralela e dá à replica um único fio de aplicador e nenhum fio de coordenador. Com essa definição, as opções `slave_parallel_type` e `slave_preserve_commit_order` não têm efeito e são ignoradas.
+A definição de `slave_parallel_workers=0` desativa a execução paralela e dá à replica um único thread de aplicador e nenhum thread de coordenador. Com essa definição, as opções `slave_parallel_type` e `slave_preserve_commit_order` não têm efeito e são ignoradas.
 
 ### 17.3.2 Limitações da Replicação em Grupo
 

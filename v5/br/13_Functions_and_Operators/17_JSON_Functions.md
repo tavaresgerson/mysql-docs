@@ -1091,7 +1091,7 @@ Dentro de uma cadeia, certas sequências têm um significado especial, a menos q
 
 **Tabela 12.23 Sequências de Caracteres de Escape JSON\_UNQUOTE()**
 
-  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Personagem representado por sequência</th> </tr></thead><tbody><tr> <td><code>\"</code></td> <td>Uma citação dupla (<code>"</code>) personagem</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\f</code></td> <td>Um caractere de quebra de página</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\\</code></td> <td>Um traço de barra (<code>\</code>) personagem</td> </tr><tr> <td><code>\u<code>XXXX</code></code></td> <td>Bytes UTF-8 para valor Unicode<code>XXXX</code></td> </tr></tbody></table>
+  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Personagem representado por sequência</th> </tr></thead><tbody><tr> <td><code>\"</code></td> <td>Uma citação dupla (<code>"</code>) personagem</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\f</code></td> <td>Um caractere de quebra de página</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova string (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\\</code></td> <td>Um traço de barra (<code>\</code>) personagem</td> </tr><tr> <td><code>\u<code>XXXX</code></code></td> <td>Bytes UTF-8 para valor Unicode<code>XXXX</code></td> </tr></tbody></table>
 
 Dois exemplos simples do uso dessa função são mostrados aqui:
 
@@ -1322,18 +1322,18 @@ Esta seção documenta funções utilitárias que atuam em valores JSON, ou stri
 
 * `JSON_PRETTY(json_val)`
 
-Fornece impressão bonita dos valores JSON semelhantes àquela implementada em PHP e por outros idiomas e sistemas de banco de dados. O valor fornecido deve ser um valor JSON ou uma representação de string válida de um valor JSON. Espaços em branco e novas linhas excedentes presentes neste valor não têm efeito na saída. Para um valor `NULL`, a função retorna `NULL`. Se o valor não for um documento JSON ou não puder ser analisado como um, a função falha com um erro.
+Fornece impressão bonita dos valores JSON semelhantes àquela implementada em PHP e por outros idiomas e sistemas de banco de dados. O valor fornecido deve ser um valor JSON ou uma representação de string válida de um valor JSON. Espaços em branco e novas strings excedentes presentes neste valor não têm efeito na saída. Para um valor `NULL`, a função retorna `NULL`. Se o valor não for um documento JSON ou não puder ser analisado como um, a função falha com um erro.
 
 A formatação do resultado desta função segue as seguintes regras:
 
-+ Cada elemento de matriz ou membro de objeto aparece em uma linha separada, indentado em um nível adicional em comparação com seu pai.
++ Cada elemento de matriz ou membro de objeto aparece em uma string separada, indentado em um nível adicional em comparação com seu pai.
 
 + Cada nível de indentação adiciona dois espaços antes.  
-+ Uma vírgula que separa elementos de matriz individuais ou membros de objeto é impressa antes da nova linha que separa os dois elementos ou membros.
++ Uma vírgula que separa elementos de matriz individuais ou membros de objeto é impressa antes da nova string que separa os dois elementos ou membros.
 
 + A chave e o valor de um membro de objeto são separados por um colon seguido de um espaço (`:`).
 
-+ Um objeto ou array vazio é impresso em uma única linha. Não é impresso espaço entre a brace de abertura e fechamento.
++ Um objeto ou array vazio é impresso em uma única string. Não é impresso espaço entre a brace de abertura e fechamento.
 
 + Caracteres especiais em escalares de string e nomes de chave são escapados empregando as mesmas regras usadas pela função `JSON_QUOTE()`.
 

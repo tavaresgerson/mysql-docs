@@ -10,7 +10,7 @@ Esta seção descreve as funções usadas para manipular bloqueios de nível de 
 
 Tenta obter um bloqueio com um nome fornecido pela string *`str`*, usando um tempo de espera de *`timeout`* segundos. Um valor negativo *`timeout`* significa tempo de espera infinito. O bloqueio é exclusivo. Enquanto estiver sendo mantido por uma sessão, outras sessões não podem obter um bloqueio com o mesmo nome.
 
-Retorna `1` se a chave foi obtida com sucesso, `0` se a tentativa expirou (por exemplo, porque outro cliente já havia bloqueado o nome anteriormente), ou `NULL` se ocorreu um erro (como esgotar a memória ou o fio de execução foi interrompido com **mysqladmin kill**).
+Retorna `1` se a chave foi obtida com sucesso, `0` se a tentativa expirou (por exemplo, porque outro cliente já havia bloqueado o nome anteriormente), ou `NULL` se ocorreu um erro (como esgotar a memória ou o thread de execução foi interrompido com **mysqladmin kill**).
 
 Uma chave obtida com `GET_LOCK()` é liberada explicitamente ao executar `RELEASE_LOCK()` ou implicitamente quando sua sessão é encerrada (normalmente ou anormalmente). Chaves obtidas com `GET_LOCK()` não são liberadas quando as transações são confirmadas ou revertidas.
 
@@ -18,7 +18,7 @@ Em MySQL 5.7, `GET_LOCK()` foi reimplementado usando o subsistema de bloqueio de
 
 É possível que uma sessão específica adquira múltiplos locks para o mesmo nome. Outras sessões não podem adquirir um lock com esse nome até que a sessão que está adquirindo libere todos os seus locks para o nome.
 
-Como resultado da reimplementação do MDL, as chaves de acesso de nome único adquiridas com `GET_LOCK()` aparecem na tabela do Schema de Desempenho `metadata_locks`. A coluna `OBJECT_TYPE` diz `USER LEVEL LOCK` e a coluna `OBJECT_NAME` indica o nome da chave de acesso. No caso de múltiplas chaves de acesso serem adquiridas para o *mesmo* nome, apenas a primeira chave de acesso para o nome registra uma linha na tabela `metadata_locks`. As chaves de acesso subsequentes para o nome incrementam um contador na chave de acesso, mas não adquirem chaves de metadados adicionais. A linha `metadata_locks` da chave de acesso é excluída quando a última instância de chave de acesso no nome é liberada.
+Como resultado da reimplementação do MDL, as chaves de acesso de nome único adquiridas com `GET_LOCK()` aparecem na tabela do Schema de Desempenho `metadata_locks`. A coluna `OBJECT_TYPE` diz `USER LEVEL LOCK` e a coluna `OBJECT_NAME` indica o nome da chave de acesso. No caso de múltiplas chaves de acesso serem adquiridas para o *mesmo* nome, apenas a primeira chave de acesso para o nome registra uma string na tabela `metadata_locks`. As chaves de acesso subsequentes para o nome incrementam um contador na chave de acesso, mas não adquirem chaves de metadados adicionais. A string `metadata_locks` da chave de acesso é excluída quando a última instância de chave de acesso no nome é liberada.
 
 A capacidade de adquirir múltiplos bloqueios significa que há a possibilidade de um impasse entre os clientes. Quando isso acontece, o servidor escolhe um chamador e termina sua solicitação de aquisição de bloqueio com um erro `ER_USER_LOCK_DEADLOCK`. Esse erro não faz com que as transações sejam revertidas.
 
@@ -51,7 +51,7 @@ Com a capacidade de adquirir vários bloqueios nomeados, é possível que uma ú
   INSERT INTO ... SELECT GET_LOCK(t1.col_name) FROM t1;
   ```
 
-Esses tipos de declarações podem ter certos efeitos adversos. Por exemplo, se a declaração falhar em meio caminho e for revertida, as chaves adquiridas até o ponto de falha ainda existem. Se a intenção é que haja uma correspondência entre as linhas inseridas e as chaves adquiridas, essa intenção não é satisfeita. Além disso, se é importante que as chaves sejam concedidas em uma certa ordem, esteja ciente de que a ordem do conjunto de resultados pode diferir dependendo do plano de execução que o otimizador escolhe. Por essas razões, pode ser melhor limitar as aplicações a uma única chamada de aquisição de chave por declaração.
+Esses tipos de declarações podem ter certos efeitos adversos. Por exemplo, se a declaração falhar em meio caminho e for revertida, as chaves adquiridas até o ponto de falha ainda existem. Se a intenção é que haja uma correspondência entre as strings inseridas e as chaves adquiridas, essa intenção não é satisfeita. Além disso, se é importante que as chaves sejam concedidas em uma certa ordem, esteja ciente de que a ordem do conjunto de resultados pode diferir dependendo do plano de execução que o otimizador escolhe. Por essas razões, pode ser melhor limitar as aplicações a uma única chamada de aquisição de chave por declaração.
 
 Uma interface de bloqueio diferente está disponível como um serviço de plugin ou um conjunto de funções carregáveis. Essa interface fornece namespaces de bloqueio e bloqueios de leitura e escrita distintos, ao contrário da interface fornecida por `GET_LOCK()` e funções relacionadas. Para detalhes, consulte a Seção 5.5.6.1, “O Serviço de Bloqueio”.
 

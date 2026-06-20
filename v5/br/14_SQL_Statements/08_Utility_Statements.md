@@ -94,7 +94,7 @@ Para declarações complexas, a saída JSON pode ser bastante grande; em particu
 
 `EXPLAIN` exige os mesmos privilégios necessários para executar a declaração explicada. Além disso, `EXPLAIN` também exige o privilégio `SHOW VIEW` para qualquer visão explicada.
 
-Com a ajuda do `EXPLAIN`, você pode ver onde deve adicionar índices às tabelas para que a declaração execute mais rápido, usando índices para encontrar linhas. Você também pode usar o `EXPLAIN` para verificar se o otimizador está combinando as tabelas em uma ordem ótima. Para dar uma dica ao otimizador para usar uma ordem de junção correspondente à ordem em que as tabelas são nomeadas em uma declaração `SELECT`, comece a declaração com `SELECT STRAIGHT_JOIN` em vez de apenas `SELECT`. (Veja a Seção 13.2.9, “Declaração SELECT”.)
+Com a ajuda do `EXPLAIN`, você pode ver onde deve adicionar índices às tabelas para que a declaração execute mais rápido, usando índices para encontrar strings. Você também pode usar o `EXPLAIN` para verificar se o otimizador está combinando as tabelas em uma ordem ótima. Para dar uma dica ao otimizador para usar uma ordem de junção correspondente à ordem em que as tabelas são nomeadas em uma declaração `SELECT`, comece a declaração com `SELECT STRAIGHT_JOIN` em vez de apenas `SELECT`. (Veja a Seção 13.2.9, “Declaração SELECT”.)
 
 O rastreamento do otimizador pode, às vezes, fornecer informações complementares às do `EXPLAIN`. No entanto, o formato e o conteúdo do rastreamento do otimizador estão sujeitos a alterações entre as versões. Para detalhes, consulte a Seção 8.15, “Rastreamento do Otimizador”.
 
@@ -154,7 +154,7 @@ Rendimentos:
   Please try to run 'help contents' for a list of all accessible topics
   ```
 
-* Conjunto de resultados contendo uma única linha
+* Conjunto de resultados contendo uma única string
 
 Isso significa que a string de busca produziu um resultado para o tópico de ajuda. O resultado inclui os seguintes itens:
 
@@ -262,7 +262,7 @@ USE db2;
 SELECT COUNT(*) FROM mytable;   # selects from db2.mytable
 ```
 
-O nome do banco de dados deve ser especificado em uma única linha. As novas linhas nos nomes dos bancos de dados não são suportadas.
+O nome do banco de dados deve ser especificado em uma única string. As novas strings nos nomes dos bancos de dados não são suportadas.
 
 Tornar um banco de dados específico o padrão por meio da declaração `USE` não impede o acesso a tabelas em outros bancos de dados. O exemplo a seguir acessa a tabela `author` do banco de dados `db1` e a tabela `editor` do banco de dados `db2`:
 

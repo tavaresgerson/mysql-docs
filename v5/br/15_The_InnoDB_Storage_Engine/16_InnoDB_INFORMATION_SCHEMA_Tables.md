@@ -32,7 +32,7 @@ As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` fornecem informações de sta
 
 ##### Detalhes Internos
 
-`InnoDB` utiliza um sistema de alocador de amigos para gerenciar a memória alocada para páginas de vários tamanhos, de 1 KB a 16 KB. Cada linha das duas tabelas descritas aqui corresponde a um único tamanho de página.
+`InnoDB` utiliza um sistema de alocador de amigos para gerenciar a memória alocada para páginas de vários tamanhos, de 1 KB a 16 KB. Cada string das duas tabelas descritas aqui corresponde a um único tamanho de página.
 
 As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` têm conteúdos idênticos, mas a leitura de `INNODB_CMPMEM_RESET` redefiniu as estatísticas sobre operações de realocação. Por exemplo, se a cada 60 minutos você arquivasse o resultado de `INNODB_CMPMEM_RESET`, ele mostraria as estatísticas horárias. Se você nunca tivesse lido `INNODB_CMPMEM_RESET` e monitorado o resultado de `INNODB_CMPMEM` em vez disso, ele mostraria as estatísticas acumuladas desde que `InnoDB` foi iniciado.
 
@@ -60,9 +60,9 @@ Três tabelas `InnoDB` `INFORMATION_SCHEMA` permitem que você monitore transaç
 
 * `INNODB_TRX`: Fornece informações sobre cada transação que está sendo executada atualmente dentro de `InnoDB`, incluindo o estado da transação (por exemplo, se está em execução ou aguardando uma bloqueio), quando a transação começou e o enunciado SQL específico que a transação está executando.
 
-* `INNODB_LOCKS`: Cada transação em InnoDB que está esperando que outra transação libere um bloqueio (`INNODB_TRX.TRX_STATE` é `LOCK WAIT`) é bloqueada por exatamente uma solicitação de bloqueio. Essa solicitação de bloqueio é para um bloqueio de linha ou tabela mantido por outra transação em um modo incompatível. Um bloqueio que bloqueia uma transação é sempre mantido em um modo incompatível com o modo do bloqueio solicitado (leitura vs. escrita, compartilhada vs. exclusiva). A transação bloqueada não pode prosseguir até que a outra transação se comprometa ou desconsidere, liberando assim o bloqueio solicitado. Para cada transação bloqueada, `INNODB_LOCKS` contém uma linha que descreve cada bloqueio que a transação solicitou e para o qual está esperando. `INNODB_LOCKS` também contém uma linha para cada bloqueio que está bloqueando outra transação, independentemente do estado da transação que mantém o bloqueio (`INNODB_TRX.TRX_STATE` é `RUNNING`, `LOCK WAIT`, `ROLLING BACK` ou `COMMITTING`).
+* `INNODB_LOCKS`: Cada transação em InnoDB que está esperando que outra transação libere um bloqueio (`INNODB_TRX.TRX_STATE` é `LOCK WAIT`) é bloqueada por exatamente uma solicitação de bloqueio. Essa solicitação de bloqueio é para um bloqueio de string ou tabela mantido por outra transação em um modo incompatível. Um bloqueio que bloqueia uma transação é sempre mantido em um modo incompatível com o modo do bloqueio solicitado (leitura vs. escrita, compartilhada vs. exclusiva). A transação bloqueada não pode prosseguir até que a outra transação se comprometa ou desconsidere, liberando assim o bloqueio solicitado. Para cada transação bloqueada, `INNODB_LOCKS` contém uma string que descreve cada bloqueio que a transação solicitou e para o qual está esperando. `INNODB_LOCKS` também contém uma string para cada bloqueio que está bloqueando outra transação, independentemente do estado da transação que mantém o bloqueio (`INNODB_TRX.TRX_STATE` é `RUNNING`, `LOCK WAIT`, `ROLLING BACK` ou `COMMITTING`).
 
-* `INNODB_LOCK_WAITS`: Esta tabela indica quais transações estão aguardando um determinado bloqueio, ou para as quais uma determinada transação está aguardando um bloqueio. Esta tabela contém uma ou mais linhas para cada transação bloqueada, indicando o bloqueio que ela solicitou e quaisquer bloqueamentos que este bloqueio está impedindo. O valor `REQUESTED_LOCK_ID` refere-se ao bloqueio solicitado por uma transação, e o valor `BLOCKING_LOCK_ID` refere-se ao bloqueio (mantido por outra transação) que impede a primeira transação de prosseguir. Para qualquer transação bloqueada dada, todas as linhas em `INNODB_LOCK_WAITS` têm o mesmo valor para `REQUESTED_LOCK_ID` e valores diferentes para `BLOCKING_LOCK_ID`.
+* `INNODB_LOCK_WAITS`: Esta tabela indica quais transações estão aguardando um determinado bloqueio, ou para as quais uma determinada transação está aguardando um bloqueio. Esta tabela contém uma ou mais strings para cada transação bloqueada, indicando o bloqueio que ela solicitou e quaisquer bloqueamentos que este bloqueio está impedindo. O valor `REQUESTED_LOCK_ID` refere-se ao bloqueio solicitado por uma transação, e o valor `BLOCKING_LOCK_ID` refere-se ao bloqueio (mantido por outra transação) que impede a primeira transação de prosseguir. Para qualquer transação bloqueada dada, todas as strings em `INNODB_LOCK_WAITS` têm o mesmo valor para `REQUESTED_LOCK_ID` e valores diferentes para `BLOCKING_LOCK_ID`.
 
 Para mais informações sobre as tabelas anteriores, consulte a Seção 24.4.28, “A Tabela INFORMATION_SCHEMA INNODB_TRX”, a Seção 24.4.14, “A Tabela INFORMATION_SCHEMA INNODB_LOCKS” e a Seção 24.4.15, “A Tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS”.
 
@@ -72,7 +72,7 @@ Para mais informações sobre as tabelas anteriores, consulte a Seção 24.4.28,
 
 Às vezes, é útil identificar qual transação bloqueia outra. As tabelas que contêm informações sobre transações e bloqueios de dados de `InnoDB` permitem determinar qual transação está esperando por outra e qual recurso está sendo solicitado. (Para descrições dessas tabelas, consulte a Seção 14.16.2, “Informações de Transação e Bloqueio do InnoDB do Schema de Informações”.)
 
-Suponha que três sessões estejam em execução simultaneamente. Cada sessão corresponde a um fio do MySQL e executa uma transação após a outra. Considere o estado do sistema quando essas sessões emitiram as seguintes declarações, mas nenhuma ainda havia comprometido sua transação:
+Suponha que três sessões estejam em execução simultaneamente. Cada sessão corresponde a um thread do MySQL e executa uma transação após a outra. Considere o estado do sistema quando essas sessões emitiram as seguintes declarações, mas nenhuma ainda havia comprometido sua transação:
 
 * Sessão A:
 
@@ -130,7 +130,7 @@ Se um valor NULL for relatado para a consulta de bloqueio, consulte Identificand
 
 Na tabela anterior, você pode identificar as sessões pelas colunas "consulta em espera" ou "consulta bloqueada". Como você pode ver:
 
-* A sessão B (trx id `A4`, fio `6`) e a sessão C (trx id `A5`, fio `7`) estão ambas aguardando a sessão A (trx id `A3`, fio `5`).
+* A sessão B (trx id `A4`, thread `6`) e a sessão C (trx id `A5`, thread `7`) estão ambas aguardando a sessão A (trx id `A3`, thread `5`).
 
 * A sessão C está à espera da sessão B, assim como da sessão A.
 
@@ -220,11 +220,11 @@ A tabela a seguir mostra o conteúdo da tabela do esquema de informações `INNO
 
 #### 14.16.2.2 Informações de bloqueio e espera de bloqueio do InnoDB
 
-Quando uma transação atualiza uma linha em uma tabela, ou a bloqueia com `SELECT FOR UPDATE`, `InnoDB` estabelece uma lista ou fila de bloqueios sobre essa linha. Da mesma forma, `InnoDB` mantém uma lista de bloqueios em uma tabela para bloqueios de nível de tabela. Se uma segunda transação quiser atualizar uma linha ou bloquear uma tabela já bloqueada por uma transação anterior em um modo incompatível, `InnoDB` adiciona um pedido de bloqueio para a linha à fila correspondente. Para que um bloqueio seja adquirido por uma transação, todos os pedidos de bloqueio incompatíveis previamente inseridos na fila de bloqueio para essa linha ou tabela devem ser removidos (o que ocorre quando as transações que detêm ou solicitam esses bloqueios ou realizam um commit ou rollback).
+Quando uma transação atualiza uma string em uma tabela, ou a bloqueia com `SELECT FOR UPDATE`, `InnoDB` estabelece uma lista ou fila de bloqueios sobre essa string. Da mesma forma, `InnoDB` mantém uma lista de bloqueios em uma tabela para bloqueios de nível de tabela. Se uma segunda transação quiser atualizar uma string ou bloquear uma tabela já bloqueada por uma transação anterior em um modo incompatível, `InnoDB` adiciona um pedido de bloqueio para a string à fila correspondente. Para que um bloqueio seja adquirido por uma transação, todos os pedidos de bloqueio incompatíveis previamente inseridos na fila de bloqueio para essa string ou tabela devem ser removidos (o que ocorre quando as transações que detêm ou solicitam esses bloqueios ou realizam um commit ou rollback).
 
-Uma transação pode ter qualquer número de solicitações de bloqueio para diferentes linhas ou tabelas. Em qualquer momento, uma transação pode solicitar um bloqueio que é mantido por outra transação, no caso, é bloqueada por essa outra transação. A transação solicitante deve esperar que a transação que mantém o bloqueio se comprometa ou se desfaça. Se uma transação não está esperando por um bloqueio, ela está em um estado `RUNNING`. Se uma transação está esperando por um bloqueio, ela está em um estado `LOCK WAIT`. (A tabela `INFORMATION_SCHEMA` `INNODB_TRX` indica os valores do estado da transação.)
+Uma transação pode ter qualquer número de solicitações de bloqueio para diferentes strings ou tabelas. Em qualquer momento, uma transação pode solicitar um bloqueio que é mantido por outra transação, no caso, é bloqueada por essa outra transação. A transação solicitante deve esperar que a transação que mantém o bloqueio se comprometa ou se desfaça. Se uma transação não está esperando por um bloqueio, ela está em um estado `RUNNING`. Se uma transação está esperando por um bloqueio, ela está em um estado `LOCK WAIT`. (A tabela `INFORMATION_SCHEMA` `INNODB_TRX` indica os valores do estado da transação.)
 
-A tabela `INNODB_LOCKS` contém uma ou mais linhas para cada transação `LOCK WAIT`, indicando quaisquer solicitações de bloqueio que impeçam seu progresso. Esta tabela também contém uma linha que descreve cada bloqueio em uma fila de blocos pendentes para uma determinada linha ou tabela. A tabela `INNODB_LOCK_WAITS` mostra quais blocos já mantidos por uma transação estão bloqueando blocos solicitados por outras transações.
+A tabela `INNODB_LOCKS` contém uma ou mais strings para cada transação `LOCK WAIT`, indicando quaisquer solicitações de bloqueio que impeçam seu progresso. Esta tabela também contém uma string que descreve cada bloqueio em uma fila de blocos pendentes para uma determinada string ou tabela. A tabela `INNODB_LOCK_WAITS` mostra quais blocos já mantidos por uma transação estão bloqueando blocos solicitados por outras transações.
 
 #### 14.16.2.3 Persistência e Consistência das Informações de Transação e de Acionamento do InnoDB
 
@@ -238,7 +238,7 @@ Como o `InnoDB` deve ser temporariamente interrompido enquanto as transações e
 
 Como essas tabelas contêm informações sensíveis (pelo menos `INNODB_LOCKS.LOCK_DATA` e `INNODB_TRX.TRX_QUERY`), por razões de segurança, apenas os usuários com o privilégio `PROCESS` têm permissão para `SELECT` a partir delas.
 
-Como descrito anteriormente, os dados que preenchem as tabelas de transação e bloqueio (`INNODB_TRX`, `INNODB_LOCKS` e `INNODB_LOCK_WAITS`) são recuperados automaticamente e armazenados em um buffer intermediário que fornece um instantâneo “em um ponto no tempo”. Os dados em todas as três tabelas são consistentes quando consultados a partir do mesmo instantâneo. No entanto, os dados subjacentes mudam tão rapidamente que vislumbres semelhantes em outros dados que mudam de forma semelhante podem não estar em sincronia. Assim, você deve ter cuidado ao comparar dados na transação e tabelas de bloqueio `InnoDB` com dados na tabela `PROCESSLIST`. Os dados da tabela `PROCESSLIST` não vêm do mesmo instantâneo que os dados sobre bloqueio e transação. Mesmo que você emita um único `SELECT` (juntando `INNODB_TRX` e `PROCESSLIST`, por exemplo), o conteúdo dessas tabelas geralmente não é consistente. `INNODB_TRX` pode referenciar linhas que não estão presentes em `PROCESSLIST` ou a consulta SQL atualmente em execução de uma transação mostrada em `INNODB_TRX.TRX_QUERY` pode diferir daquela em `PROCESSLIST.INFO`.
+Como descrito anteriormente, os dados que preenchem as tabelas de transação e bloqueio (`INNODB_TRX`, `INNODB_LOCKS` e `INNODB_LOCK_WAITS`) são recuperados automaticamente e armazenados em um buffer intermediário que fornece um instantâneo “em um ponto no tempo”. Os dados em todas as três tabelas são consistentes quando consultados a partir do mesmo instantâneo. No entanto, os dados subjacentes mudam tão rapidamente que vislumbres semelhantes em outros dados que mudam de forma semelhante podem não estar em sincronia. Assim, você deve ter cuidado ao comparar dados na transação e tabelas de bloqueio `InnoDB` com dados na tabela `PROCESSLIST`. Os dados da tabela `PROCESSLIST` não vêm do mesmo instantâneo que os dados sobre bloqueio e transação. Mesmo que você emita um único `SELECT` (juntando `INNODB_TRX` e `PROCESSLIST`, por exemplo), o conteúdo dessas tabelas geralmente não é consistente. `INNODB_TRX` pode referenciar strings que não estão presentes em `PROCESSLIST` ou a consulta SQL atualmente em execução de uma transação mostrada em `INNODB_TRX.TRX_QUERY` pode diferir daquela em `PROCESSLIST.INFO`.
 
 ### 14.16.3 Tabelas do esquema de informação InnoDB
 
@@ -325,7 +325,7 @@ Este exemplo utiliza uma tabela simples (`t1`) com um único índice (`i1`) para
    ...
    ```
 
-A tabela `t1` tem um `TABLE_ID` de 71. O campo `FLAG` fornece informações em nível de bits sobre o formato da tabela e as características de armazenamento. Existem seis colunas, das quais três são colunas ocultas criadas por `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). O ID da tabela `SPACE` é 57 (um valor de 0 indicaria que a tabela reside no espaço de tabelas do sistema). O `FILE_FORMAT` é Antelope e o `ROW_FORMAT` é Compact. `ZIP_PAGE_SIZE` só se aplica a tabelas com um formato de linha `Compressed`.
+A tabela `t1` tem um `TABLE_ID` de 71. O campo `FLAG` fornece informações em nível de bits sobre o formato da tabela e as características de armazenamento. Existem seis colunas, das quais três são colunas ocultas criadas por `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). O ID da tabela `SPACE` é 57 (um valor de 0 indicaria que a tabela reside no espaço de tabelas do sistema). O `FILE_FORMAT` é Antelope e o `ROW_FORMAT` é Compact. `ZIP_PAGE_SIZE` só se aplica a tabelas com um formato de string `Compressed`.
 
 3. Usando as informações do `TABLE_ID` do `INNODB_SYS_TABLES`, consulte a tabela `INNODB_SYS_COLUMNS` para obter informações sobre as colunas da tabela.
 
@@ -382,7 +382,7 @@ Além do `TABLE_ID` e da coluna `NAME`, o `INNODB_SYS_COLUMNS` fornece a posiç�
 
 `INNODB_SYS_INDEXES` retorna dados para dois índices. O primeiro índice é `GEN_CLUST_INDEX`, que é um índice agrupado criado por `InnoDB` se a tabela não tiver um índice agrupado definido pelo usuário. O segundo índice (`i1`) é o índice secundário definido pelo usuário.
 
-O `INDEX_ID` é um identificador para o índice que é único em todas as bases de dados de uma instância. O `TABLE_ID` identifica a tabela com a qual o índice está associado. O valor do índice `TYPE` indica o tipo de índice (1 = Índice agrupado, 0 = Índice secundário). O valor do `N_FILEDS` é o número de campos que compõem o índice. O `PAGE_NO` é o número de página raiz do índice B-tree, e o `SPACE` é o ID do espaço de tabelas onde o índice reside. Um valor não nulo indica que o índice não reside no espaço de tabelas do sistema. O `MERGE_THRESHOLD` define um valor de limite percentual para a quantidade de dados em uma página de índice. Se a quantidade de dados em uma página de índice for menor que este valor (o padrão é 50%) quando uma linha é excluída ou quando uma linha é encurtada por uma operação de atualização, o `InnoDB` tenta combinar a página de índice com uma página de índice vizinha.
+O `INDEX_ID` é um identificador para o índice que é único em todas as bases de dados de uma instância. O `TABLE_ID` identifica a tabela com a qual o índice está associado. O valor do índice `TYPE` indica o tipo de índice (1 = Índice agrupado, 0 = Índice secundário). O valor do `N_FILEDS` é o número de campos que compõem o índice. O `PAGE_NO` é o número de página raiz do índice B-tree, e o `SPACE` é o ID do espaço de tabelas onde o índice reside. Um valor não nulo indica que o índice não reside no espaço de tabelas do sistema. O `MERGE_THRESHOLD` define um valor de limite percentual para a quantidade de dados em uma página de índice. Se a quantidade de dados em uma página de índice for menor que este valor (o padrão é 50%) quando uma string é excluída ou quando uma string é encurtada por uma operação de atualização, o `InnoDB` tenta combinar a página de índice com uma página de índice vizinha.
 
 5. Usando as informações do `INDEX_ID` do `INNODB_SYS_INDEXES`, consulte o `INNODB_SYS_FIELDS` para obter informações sobre os campos do índice `i1`.
 
@@ -423,7 +423,7 @@ Além do ID `SPACE` do tablespace e do `NAME` da tabela associada, o `INNODB_SYS
 
 O arquivo de dados está localizado no diretório `test` sob o diretório `data` do MySQL. Se um espaço de tabela por arquivo fosse criado em um local fora do diretório de dados do MySQL usando a cláusula `DATA DIRECTORY` da declaração `CREATE TABLE`, o espaço de tabelas `PATH` seria um caminho de diretório totalmente qualificado.
 
-Como último passo, insira uma linha na tabela `t1` (`TABLE_ID = 71`) e visualize os dados na tabela `INNODB_SYS_TABLESTATS`. Os dados desta tabela são utilizados pelo otimizador do MySQL para calcular qual índice usar ao consultar uma tabela `InnoDB`. Esta informação é derivada de estruturas de dados de memória. Não existe uma tabela interna correspondente do sistema `InnoDB`.
+Como último passo, insira uma string na tabela `t1` (`TABLE_ID = 71`) e visualize os dados na tabela `INNODB_SYS_TABLESTATS`. Os dados desta tabela são utilizados pelo otimizador do MySQL para calcular qual índice usar ao consultar uma tabela `InnoDB`. Esta informação é derivada de estruturas de dados de memória. Não existe uma tabela interna correspondente do sistema `InnoDB`.
 
    ```sql
    mysql> INSERT INTO t1 VALUES(5, 'abc', 'def');
@@ -442,7 +442,7 @@ Como último passo, insira uma linha na tabela `t1` (`TABLE_ID = 71`) e visualiz
            REF_COUNT: 1
    ```
 
-O campo `STATS_INITIALIZED` indica se as estatísticas foram coletadas para a tabela ou não. `NUM_ROWS` é o número atual estimado de linhas na tabela. Os campos `CLUST_INDEX_SIZE` e `OTHER_INDEX_SIZE` relatam o número de páginas no disco que armazenam índices agrupados e secundários para a tabela, respectivamente. O valor `MODIFIED_COUNTER` mostra o número de linhas modificadas por operações DML e operações em cascata a partir de chaves estrangeiras. O valor `AUTOINC` é o próximo número a ser emitido para qualquer operação baseada em autoincremento. Não há colunas de autoincremento definidas na tabela `t1`, então o valor é 0. O valor `REF_COUNT` é um contador. Quando o contador atingir 0, isso significa que os metadados da tabela podem ser expulsos do cache da tabela.
+O campo `STATS_INITIALIZED` indica se as estatísticas foram coletadas para a tabela ou não. `NUM_ROWS` é o número atual estimado de strings na tabela. Os campos `CLUST_INDEX_SIZE` e `OTHER_INDEX_SIZE` relatam o número de páginas no disco que armazenam índices agrupados e secundários para a tabela, respectivamente. O valor `MODIFIED_COUNTER` mostra o número de strings modificadas por operações DML e operações em cascata a partir de chaves estrangeiras. O valor `AUTOINC` é o próximo número a ser emitido para qualquer operação baseada em autoincremento. Não há colunas de autoincremento definidas na tabela `t1`, então o valor é 0. O valor `REF_COUNT` é um contador. Quando o contador atingir 0, isso significa que os metadados da tabela podem ser expulsos do cache da tabela.
 
 **Exemplo 14.3 Tabelas do Sistema INFORMATION_SCHEMA de Chave Estrangeira**
 
@@ -494,7 +494,7 @@ Os metadados incluem a chave estrangeira `ID` (`fk1`), que é nomeada para a cha
 
 **Exemplo 14.4: Conexão a tabelas do esquema de informação InnoDB**
 
-Este exemplo demonstra a junção de três tabelas do sistema `InnoDB` `INFORMATION_SCHEMA` (`INNODB_SYS_TABLES`, `INNODB_SYS_TABLESPACES` e `INNODB_SYS_TABLESTATS`) para coletar informações sobre o formato do arquivo, o formato da linha, o tamanho da página e o tamanho do índice sobre as tabelas no banco de dados de amostra de funcionários.
+Este exemplo demonstra a junção de três tabelas do sistema `InnoDB` `INFORMATION_SCHEMA` (`INNODB_SYS_TABLES`, `INNODB_SYS_TABLESPACES` e `INNODB_SYS_TABLESTATS`) para coletar informações sobre o formato do arquivo, o formato da string, o tamanho da página e o tamanho do índice sobre as tabelas no banco de dados de amostra de funcionários.
 
 Os seguintes aliases de nome de tabela são usados para encurtar a string de consulta:
 
@@ -557,7 +557,7 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_FT%';
 
 * `INNODB_FT_BEING_DELETED`: Fornece um instantâneo da tabela `INNODB_FT_DELETED`; é usado apenas durante uma operação de manutenção do `OPTIMIZE TABLE`. Quando o `OPTIMIZE TABLE` é executado, a tabela `INNODB_FT_BEING_DELETED` é esvaziada e os valores do `DOC_ID` são removidos da tabela `INNODB_FT_DELETED`. Como o conteúdo do `INNODB_FT_BEING_DELETED` geralmente tem uma vida curta, essa tabela tem utilidade limitada para monitoramento ou depuração. Para informações sobre como executar o `OPTIMIZE TABLE` em tabelas com índices `FULLTEXT`, consulte a Seção 12.9.6, “Ajustando o MySQL de Pesquisa de Texto Completo”.
 
-* `INNODB_FT_DELETED`: Armazena linhas que são excluídas do índice `FULLTEXT` para uma tabela `InnoDB`. Para evitar a reorganização cara do índice durante operações de MQL para um índice `InnoDB` `FULLTEXT`, as informações sobre palavras recém-excluídas são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal apenas quando você emite uma declaração `OPTIMIZE TABLE` para a tabela `InnoDB`.
+* `INNODB_FT_DELETED`: Armazena strings que são excluídas do índice `FULLTEXT` para uma tabela `InnoDB`. Para evitar a reorganização cara do índice durante operações de MQL para um índice `InnoDB` `FULLTEXT`, as informações sobre palavras recém-excluídas são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal apenas quando você emite uma declaração `OPTIMIZE TABLE` para a tabela `InnoDB`.
 
 * `INNODB_FT_DEFAULT_STOPWORD`: Contém uma lista de palavras-chave que são usadas por padrão ao criar um índice `FULLTEXT` em tabelas `InnoDB`.
 
@@ -565,7 +565,7 @@ Para informações sobre a tabela `INNODB_FT_DEFAULT_STOPWORD`, consulte a Seç�
 
 * `INNODB_FT_INDEX_TABLE`: Fornece informações sobre o índice invertido usado para processar pesquisas de texto contra o índice `FULLTEXT` de uma tabela `InnoDB`.
 
-* `INNODB_FT_INDEX_CACHE`: Fornece informações sobre tokens de novas linhas inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara de índice durante operações de DML, as informações sobre as palavras indexadas recentemente são armazenadas separadamente e combinadas com o índice de pesquisa principal apenas quando o `OPTIMIZE TABLE` é executado, quando o servidor é desligado ou quando o tamanho da cache excede um limite definido pela variável de sistema `innodb_ft_cache_size` ou `innodb_ft_total_cache_size`.
+* `INNODB_FT_INDEX_CACHE`: Fornece informações sobre tokens de novas strings inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara de índice durante operações de DML, as informações sobre as palavras indexadas recentemente são armazenadas separadamente e combinadas com o índice de pesquisa principal apenas quando o `OPTIMIZE TABLE` é executado, quando o servidor é desligado ou quando o tamanho da cache excede um limite definido pela variável de sistema `innodb_ft_cache_size` ou `innodb_ft_total_cache_size`.
 
 Nota
 
@@ -600,7 +600,7 @@ Este exemplo usa uma tabela com um índice `FULLTEXT` para demonstrar os dados c
    SET GLOBAL innodb_ft_aux_table = 'test/articles';
    ```
 
-3. Consulte a tabela `INNODB_FT_INDEX_CACHE`, que exibe informações sobre as linhas recém-inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara de índice durante operações de DML, os dados das linhas recém-inseridas permanecem no cache do índice `FULLTEXT` até que `OPTIMIZE TABLE` seja executado (ou até que o servidor seja desligado ou os limites de cache sejam excedidos).
+3. Consulte a tabela `INNODB_FT_INDEX_CACHE`, que exibe informações sobre as strings recém-inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara de índice durante operações de DML, os dados das strings recém-inseridas permanecem no cache do índice `FULLTEXT` até que `OPTIMIZE TABLE` seja executado (ou até que o servidor seja desligado ou os limites de cache sejam excedidos).
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_CACHE LIMIT 5;
@@ -656,7 +656,7 @@ A tabela `INNODB_FT_INDEX_CACHE` está agora vazia, uma vez que a operação `OP
    mysql> DELETE FROM test.articles WHERE id < 4;
    ```
 
-7. Consultar a tabela `INNODB_FT_DELETED`. Esta tabela registra as linhas que são excluídas do índice `FULLTEXT`. Para evitar a reorganização cara do índice durante operações de MQL, as informações sobre os registros recém-excluídos são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal quando você executa `OPTIMIZE TABLE`.
+7. Consultar a tabela `INNODB_FT_DELETED`. Esta tabela registra as strings que são excluídas do índice `FULLTEXT`. Para evitar a reorganização cara do índice durante operações de MQL, as informações sobre os registros recém-excluídos são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal quando você executa `OPTIMIZE TABLE`.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DELETED;
@@ -738,7 +738,7 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_BUFFER%';
 
 * `INNODB_BUFFER_PAGE_LRU`: Armazena informações sobre as páginas no `InnoDB` buffer pool, em particular, como elas estão ordenadas na lista LRU que determina quais páginas devem ser removidas do buffer pool quando ele se torna cheio. A tabela `INNODB_BUFFER_PAGE_LRU` tem as mesmas colunas que a tabela `INNODB_BUFFER_PAGE`, exceto que a tabela `INNODB_BUFFER_PAGE_LRU` tem uma coluna `LRU_POSITION` em vez de uma coluna `BLOCK_ID`.
 
-* `INNODB_BUFFER_POOL_STATS`: Fornece informações sobre o estado do pool de tampão. Grande parte das mesmas informações são fornecidas pelo `SHOW ENGINE INNODB STATUS` de saída, ou podem ser obtidas usando as variáveis de status do servidor do pool de tampão `InnoDB`.
+* `INNODB_BUFFER_POOL_STATS`: Fornece informações sobre o estado do pool de buffer. Grande parte das mesmas informações são fornecidas pelo `SHOW ENGINE INNODB STATUS` de saída, ou podem ser obtidas usando as variáveis de status do servidor do pool de buffer `InnoDB`.
 
 Aviso
 
@@ -898,7 +898,7 @@ mysql> SELECT COUNT(LRU_POSITION) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE_LRU
 
 **Exemplo 14.10: Consultando a tabela INNODB\_BUFFER\_POOL\_STATS**
 
-A tabela `INNODB_BUFFER_POOL_STATS` fornece informações semelhantes às variáveis de estado de `SHOW ENGINE INNODB STATUS` e `InnoDB` do pool de tampão.
+A tabela `INNODB_BUFFER_POOL_STATS` fornece informações semelhantes às variáveis de estado de `SHOW ENGINE INNODB STATUS` e `InnoDB` do pool de buffer.
 
 ```sql
 mysql> SELECT * FROM information_schema.INNODB_BUFFER_POOL_STATS \G
@@ -1051,14 +1051,14 @@ Você pode habilitar, desabilitar e redefinir contadores usando as seguintes var
   SET GLOBAL innodb_monitor_reset_all = [counter-name|module_name|pattern|all];
   ```
 
-Os contadores e módulos de contador também podem ser habilitados na inicialização usando o arquivo de configuração do servidor MySQL. Por exemplo, para habilitar o módulo `log`, os contadores `metadata_table_handles_opened` e `metadata_table_handles_closed`, insira a seguinte linha na seção `[mysqld]` do arquivo de configuração do servidor MySQL.
+Os contadores e módulos de contador também podem ser habilitados na inicialização usando o arquivo de configuração do servidor MySQL. Por exemplo, para habilitar o módulo `log`, os contadores `metadata_table_handles_opened` e `metadata_table_handles_closed`, insira a seguinte string na seção `[mysqld]` do arquivo de configuração do servidor MySQL.
 
 ```sql
 [mysqld]
 innodb_monitor_enable = module_recovery,metadata_table_handles_opened,metadata_table_handles_closed
 ```
 
-Ao habilitar vários contadores ou módulos em um arquivo de configuração, especifique a variável `innodb_monitor_enable` seguida pelos nomes do contador e do módulo separados por vírgula, conforme mostrado acima. Apenas a variável `innodb_monitor_enable` pode ser usada em um arquivo de configuração. As variáveis `innodb_monitor_disable` e `innodb_monitor_reset` são suportadas apenas na linha de comando.
+Ao habilitar vários contadores ou módulos em um arquivo de configuração, especifique a variável `innodb_monitor_enable` seguida pelos nomes do contador e do módulo separados por vírgula, conforme mostrado acima. Apenas a variável `innodb_monitor_enable` pode ser usada em um arquivo de configuração. As variáveis `innodb_monitor_disable` e `innodb_monitor_reset` são suportadas apenas na string de comando.
 
 Nota
 
@@ -1429,7 +1429,7 @@ Uma descrição do contador `dml_inserts` pode ser encontrada na coluna `COMMENT
            COMMENT: Number of rows inserted
    ```
 
-4. Insira três linhas de dados na tabela.
+4. Insira três strings de dados na tabela.
 
    ```sql
    mysql> INSERT INTO t1 values(1);

@@ -271,9 +271,9 @@ Uma coluna `TINYTEXT` pode conter até 255 bytes, portanto, pode conter até 85 
 
 Da mesma forma, uma coluna muito longa `VARCHAR` pode precisar ser alterada para um dos tipos mais longos `TEXT` se você quiser convertê-la de `utf8mb3` para `utf8mb4`.
 
-* `InnoDB` tem um comprimento máximo de índice de 767 bytes para tabelas que utilizam o formato de linha `COMPACT` ou `REDUNDANT`, portanto, para as colunas `utf8mb3` ou `utf8mb4`, você pode indexar um máximo de 255 ou 191 caracteres, respectivamente. Se você atualmente tem colunas `utf8mb3` com índices maiores que 191 caracteres, você deve indexar um número menor de caracteres.
+* `InnoDB` tem um comprimento máximo de índice de 767 bytes para tabelas que utilizam o formato de string `COMPACT` ou `REDUNDANT`, portanto, para as colunas `utf8mb3` ou `utf8mb4`, você pode indexar um máximo de 255 ou 191 caracteres, respectivamente. Se você atualmente tem colunas `utf8mb3` com índices maiores que 191 caracteres, você deve indexar um número menor de caracteres.
 
-Em uma tabela `InnoDB` que utiliza o formato de linha `COMPACT` ou `REDUNDANT`, essas definições de coluna e índice são legais:
+Em uma tabela `InnoDB` que utiliza o formato de string `COMPACT` ou `REDUNDANT`, essas definições de coluna e índice são legais:
 
   ```sql
   col1 VARCHAR(500) CHARACTER SET utf8, INDEX (col1(255))
@@ -287,7 +287,7 @@ Para usar `utf8mb4` em vez disso, o índice deve ser menor:
 
 Nota
 
-Para as tabelas `InnoDB` que utilizam o formato de linha `COMPRESSED` ou `DYNAMIC`, você pode habilitar a opção `innodb_large_prefix` para permitir prefixos de chave de índice (glossary.html#glos_index_prefix "index prefix") mais longos que 767 bytes (até 3072 bytes). A criação de tais tabelas também requer os valores de opção `innodb_file_format=barracuda` e `innodb_file_per_table=true`. Nesse caso, habilitar a opção `innodb_large_prefix` permite indexar um máximo de 1024 ou 768 caracteres para as colunas `utf8mb3` ou `utf8mb4`, respectivamente. Para informações relacionadas, consulte a Seção 14.23, “Limites do InnoDB”.
+Para as tabelas `InnoDB` que utilizam o formato de string `COMPRESSED` ou `DYNAMIC`, você pode habilitar a opção `innodb_large_prefix` para permitir prefixos de chave de índice (glossary.html#glos_index_prefix "index prefix") mais longos que 767 bytes (até 3072 bytes). A criação de tais tabelas também requer os valores de opção `innodb_file_format=barracuda` e `innodb_file_per_table=true`. Nesse caso, habilitar a opção `innodb_large_prefix` permite indexar um máximo de 1024 ou 768 caracteres para as colunas `utf8mb3` ou `utf8mb4`, respectivamente. Para informações relacionadas, consulte a Seção 14.23, “Limites do InnoDB”.
 
 Os tipos de alterações anteriores provavelmente só serão necessários se você tiver colunas ou índices muito longos. Caso contrário, você poderá converter suas tabelas de `utf8mb3` para `utf8mb4` sem problemas, usando `ALTER TABLE` conforme descrito anteriormente.
 

@@ -148,7 +148,7 @@ No such file or directory
 
 Se isso acontecer, você deve instalar as bibliotecas ausentes manualmente ou com o gerenciador de pacotes do seu sistema. Em seguida, tente novamente o comando de inicialização do diretório de dados.
 
-Pode ser necessário especificar outras opções, como `--basedir` ou `--datadir`, se o `mysqld` não conseguir identificar os locais corretos para o diretório de instalação ou o diretório de dados. Por exemplo (entre no comando em uma única linha):
+Pode ser necessário especificar outras opções, como `--basedir` ou `--datadir`, se o `mysqld` não conseguir identificar os locais corretos para o diretório de instalação ou o diretório de dados. Por exemplo (entre no comando em uma única string):
 
 ```sql
 bin/mysqld --initialize --user=mysql
@@ -156,7 +156,7 @@ bin/mysqld --initialize --user=mysql
   --datadir=/opt/mysql/mysql/data
 ```
 
-Alternativamente, coloque as configurações relevantes das opções em um arquivo de opções e passe o nome desse arquivo para `mysqld`. Para sistemas Unix e Unix-like, suponha que o nome do arquivo de opções é `/opt/mysql/mysql/etc/my.cnf`. Coloque essas linhas no arquivo:
+Alternativamente, coloque as configurações relevantes das opções em um arquivo de opções e passe o nome desse arquivo para `mysqld`. Para sistemas Unix e Unix-like, suponha que o nome do arquivo de opções é `/opt/mysql/mysql/etc/my.cnf`. Coloque essas strings no arquivo:
 
 ```sql
 [mysqld]
@@ -164,14 +164,14 @@ basedir=/opt/mysql/mysql
 datadir=/opt/mysql/mysql/data
 ```
 
-Em seguida, invoque `mysqld` da seguinte forma (entre no comando em uma única linha, com a opção `--defaults-file` primeiro):
+Em seguida, invoque `mysqld` da seguinte forma (entre no comando em uma única string, com a opção `--defaults-file` primeiro):
 
 ```sql
 bin/mysqld --defaults-file=/opt/mysql/mysql/etc/my.cnf
   --initialize --user=mysql
 ```
 
-Em Windows, suponha que `C:\my.ini` contenha essas linhas:
+Em Windows, suponha que `C:\my.ini` contenha essas strings:
 
 ```sql
 [mysqld]
@@ -179,7 +179,7 @@ basedir=C:\\Program Files\\MySQL\\MySQL Server 5.7
 datadir=D:\\MySQLdata
 ```
 
-Em seguida, invoque `mysqld` da seguinte forma (novamente, você deve inserir o comando em uma única linha, com a opção `--defaults-file` primeiro):
+Em seguida, invoque `mysqld` da seguinte forma (novamente, você deve inserir o comando em uma única string, com a opção `--defaults-file` primeiro):
 
 ```sql
 bin\mysqld --defaults-file=C:\my.ini
@@ -339,7 +339,7 @@ Esta seção fornece sugestões de solução de problemas para problemas de inic
 
 Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas que você pode tentar:
 
-* Verifique o log de erro para ver por que o servidor não inicia. Os arquivos de log estão localizados no diretório [data](glossary.html#glos_data_directory "data directory") (tipicamente `C:\Program Files\MySQL\MySQL Server 5.7\data` no Windows, `/usr/local/mysql/data` para uma distribuição binária Unix/Linux, e `/usr/local/var` para uma distribuição de código fonte Unix/Linux). Procure no diretório de dados por arquivos com nomes na forma `host_name.err` e `host_name.log`, onde *`host_name`* é o nome do seu host do servidor. Em seguida, examine as últimas linhas desses arquivos. Use `tail` para exibí-los:
+* Verifique o log de erro para ver por que o servidor não inicia. Os arquivos de log estão localizados no diretório [data](glossary.html#glos_data_directory "data directory") (tipicamente `C:\Program Files\MySQL\MySQL Server 5.7\data` no Windows, `/usr/local/mysql/data` para uma distribuição binária Unix/Linux, e `/usr/local/var` para uma distribuição de código fonte Unix/Linux). Procure no diretório de dados por arquivos com nomes na forma `host_name.err` e `host_name.log`, onde *`host_name`* é o nome do seu host do servidor. Em seguida, examine as últimas strings desses arquivos. Use `tail` para exibí-los:
 
   ```sql
   $> tail host_name.err
@@ -352,7 +352,7 @@ Embora as engines de armazenamento usem valores padrão para opções que você 
 
 * Certifique-se de que o servidor saiba onde encontrar o diretório de dados. O servidor `mysqld` usa este diretório como seu diretório atual. É aqui que ele espera encontrar bancos de dados e onde espera escrever arquivos de log. O servidor também escreve o arquivo pid (ID de processo) no diretório de dados.
 
-A localização padrão do diretório de dados é codificada em tempo de compilação do servidor. Para determinar quais são as configurações do caminho padrão, invoque `mysqld` com as opções `--verbose` e `--help`. Se o diretório de dados estiver localizado em outro lugar no seu sistema, especifique essa localização com a opção `--datadir` para `mysqld` ou `mysqld_safe`, na linha de comando ou em um arquivo de opção. Caso contrário, o servidor não funcionará corretamente. Como alternativa à opção `--datadir`, você pode especificar a localização do diretório base sob o qual o MySQL está instalado com a opção `--basedir`, e `mysqld` procura o diretório `data` lá.
+A localização padrão do diretório de dados é codificada em tempo de compilação do servidor. Para determinar quais são as configurações do caminho padrão, invoque `mysqld` com as opções `--verbose` e `--help`. Se o diretório de dados estiver localizado em outro lugar no seu sistema, especifique essa localização com a opção `--datadir` para `mysqld` ou `mysqld_safe`, na string de comando ou em um arquivo de opção. Caso contrário, o servidor não funcionará corretamente. Como alternativa à opção `--datadir`, você pode especificar a localização do diretório base sob o qual o MySQL está instalado com a opção `--basedir`, e `mysqld` procura o diretório `data` lá.
 
 Para verificar o efeito de especificar opções de caminho, invoque `mysqld` com essas opções seguidas pelas opções `--verbose` e `--help`. Por exemplo, se você alterar a localização para o diretório onde o `mysqld` está instalado e, em seguida, executar o seguinte comando, ele mostrará o efeito de iniciar o servidor com um diretório base de `/usr/local`:
 
@@ -433,7 +433,7 @@ $> bin/mysqladmin version
 $> bin/mysqladmin variables
 ```
 
-Se você não conseguir se conectar ao servidor, especifique uma opção `-u root` para se conectar como `root`. Se você já tiver atribuído uma senha para a conta `root`, também precisará especificar `-p` na linha de comando e inserir a senha quando solicitado. Por exemplo:
+Se você não conseguir se conectar ao servidor, especifique uma opção `-u root` para se conectar como `root`. Se você já tiver atribuído uma senha para a conta `root`, também precisará especificar `-p` na string de comando e inserir a senha quando solicitado. Por exemplo:
 
 ```sql
 $> bin/mysqladmin -u root -p version
@@ -547,7 +547,7 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 
 Neste ponto, o seu servidor está em execução e você pode acessá-lo. Para aumentar a segurança, se ainda não tiver atribuído uma senha à conta inicial, siga as instruções na Seção 2.9.4, “Segurando a Conta Inicial do MySQL”.
 
-Para mais informações sobre **mysql**, **mysqladmin** e **mysqlshow**, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”, a Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL” e a Seção 4.5.7, “mysqlshow — Exibir informações de banco de dados, tabela e coluna”.
+Para mais informações sobre **mysql**, **mysqladmin** e **mysqlshow**, consulte a Seção 4.5.1, “mysql — O cliente de string de comando do MySQL”, a Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL” e a Seção 4.5.7, “mysqlshow — Exibir informações de banco de dados, tabela e coluna”.
 
 ### 2.9.4 Asegurando a Conta Inicial do MySQL
 
@@ -561,7 +561,7 @@ Meios alternativos para realizar o processo descrito nesta seção:
 
 * Em Windows, você pode realizar o processo durante a instalação com o Instalador MySQL (consulte a Seção 2.3.3, “Instalador MySQL para Windows”).
 
-* Em todas as plataformas, a distribuição do MySQL inclui o `mysql_secure_installation`, uma ferramenta de linha de comando que automatiza grande parte do processo de segurança de uma instalação do MySQL.
+* Em todas as plataformas, a distribuição do MySQL inclui o `mysql_secure_installation`, uma ferramenta de string de comando que automatiza grande parte do processo de segurança de uma instalação do MySQL.
 
 * Em todas as plataformas, o MySQL Workbench está disponível e oferece a capacidade de gerenciar contas de usuário (consulte o Capítulo 29, *MySQL Workbench*).
 
@@ -579,7 +579,7 @@ Uma senha pode já estar atribuída à conta inicial nessas circunstâncias:
 
 A tabela de concessão `mysql.user` define a conta inicial do usuário MySQL e seus privilégios de acesso. A instalação do MySQL cria apenas uma conta de superusuário `'root'@'localhost'` que tem todos os privilégios e pode fazer qualquer coisa. Se a conta `root` tiver uma senha vazia, sua instalação do MySQL não está protegida: Qualquer pessoa pode se conectar ao servidor MySQL como `root` *sem uma senha* e receber todos os privilégios.
 
-A conta `'root'@'localhost'` também tem uma linha na tabela `mysql.proxies_priv` que permite conceder o privilégio `PROXY` para `''@''`, ou seja, para todos os usuários e todos os hosts. Isso permite que o `root` configure usuários proxy, bem como delegar a outras contas a autoridade para configurar usuários proxy. Veja a Seção 6.2.14, “Usuários Proxy”.
+A conta `'root'@'localhost'` também tem uma string na tabela `mysql.proxies_priv` que permite conceder o privilégio `PROXY` para `''@''`, ou seja, para todos os usuários e todos os hosts. Isso permite que o `root` configure usuários proxy, bem como delegar a outras contas a autoridade para configurar usuários proxy. Veja a Seção 6.2.14, “Usuários Proxy”.
 
 Para atribuir uma senha para a conta inicial do MySQL `root`, use o procedimento a seguir. Substitua *`root-password`* nos exemplos pela senha que você deseja usar.
 

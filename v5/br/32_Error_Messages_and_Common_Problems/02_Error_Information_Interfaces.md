@@ -4,12 +4,12 @@ Os erros podem ser gerados no lado do servidor ou no lado do cliente, e cada men
 
 Para verificação de erros dentro dos programas, use números ou símbolos de código de erro, não cadeias de mensagens de erro. As cadeias de mensagens não mudam com frequência, mas é possível. Além disso, se o administrador do banco de dados alterar a configuração de idioma, isso afeta o idioma das cadeias de mensagens; veja Seção 10.12, “Definindo o idioma da mensagem de erro”.
 
-As informações de erro no MySQL estão disponíveis no log de erro do servidor, no nível SQL, dentro dos programas de cliente e na linha de comando.
+As informações de erro no MySQL estão disponíveis no log de erro do servidor, no nível SQL, dentro dos programas de cliente e na string de comando.
 
 * Diário de erros
 * Interface de mensagem de erro SQL
 * Interface de mensagem de erro do cliente
-* Interface de mensagem de erro de linha de comando
+* Interface de mensagem de erro de string de comando
 
 ### Diário de Erros
 
@@ -58,9 +58,9 @@ $> mysql -h no-such-host
 ERROR 2005 (HY000): Unknown MySQL server host 'no-such-host' (0)
 ```
 
-### Interface de Mensagem de Erro de Linha de Comando
+### Interface de Mensagem de Erro de String de Comando
 
-O programa **perror** fornece informações da linha de comando sobre números de erro. Veja a Seção 4.8.2, “perror — Exibir informações de mensagem de erro do MySQL”.
+O programa **perror** fornece informações da string de comando sobre números de erro. Veja a Seção 4.8.2, “perror — Exibir informações de mensagem de erro do MySQL”.
 
 ```sql
 $> perror 1231

@@ -40,7 +40,7 @@ Ao realizar a recuperação de falhas, é importante entender que cada tabela `M
 
 Cada um desses três tipos de arquivo está sujeito a corrupção de várias maneiras, mas os problemas ocorrem com mais frequência em arquivos de dados e arquivos de índice.
 
-**myisamchk** funciona criando uma cópia da linha do arquivo de dados `.MYD` linha a linha. Ele termina a etapa de reparo removendo o arquivo antigo `.MYD` e renomeando o novo arquivo para o nome original do arquivo. Se você usar `--quick`, **myisamchk** não cria um arquivo temporário `.MYD`, mas, em vez disso, assume que o arquivo `.MYD` está correto e gera apenas um novo arquivo de índice sem tocar no arquivo `.MYD`. Isso é seguro, porque **myisamchk** detecta automaticamente se o arquivo `.MYD` está corrompido e aborta o reparo se estiver. Você também pode especificar a opção `--quick` duas vezes para **myisamchk**. Neste caso, **myisamchk** não aborta em alguns erros (como erros de chave duplicada) mas, em vez disso, tenta resolvê-los modificando o arquivo `.MYD`. Normalmente, o uso de duas opções `--quick` é útil apenas se você tem muito pouco espaço em disco livre para realizar um reparo normal. Neste caso, você deve, pelo menos, fazer um backup da tabela antes de executar **myisamchk**.
+**myisamchk** funciona criando uma cópia da string do arquivo de dados `.MYD` string a string. Ele termina a etapa de reparo removendo o arquivo antigo `.MYD` e renomeando o novo arquivo para o nome original do arquivo. Se você usar `--quick`, **myisamchk** não cria um arquivo temporário `.MYD`, mas, em vez disso, assume que o arquivo `.MYD` está correto e gera apenas um novo arquivo de índice sem tocar no arquivo `.MYD`. Isso é seguro, porque **myisamchk** detecta automaticamente se o arquivo `.MYD` está corrompido e aborta o reparo se estiver. Você também pode especificar a opção `--quick` duas vezes para **myisamchk**. Neste caso, **myisamchk** não aborta em alguns erros (como erros de chave duplicada) mas, em vez disso, tenta resolvê-los modificando o arquivo `.MYD`. Normalmente, o uso de duas opções `--quick` é útil apenas se você tem muito pouco espaço em disco livre para realizar um reparo normal. Neste caso, você deve, pelo menos, fazer um backup da tabela antes de executar **myisamchk**.
 
 ### 7.6.2 Como verificar as tabelas MyISAM em busca de erros
 
@@ -52,11 +52,11 @@ Isso encontra 99,99% de todos os erros. O que ele não consegue encontrar é cor
 
 * **myisamchk -m *`tbl_name`***
 
-Isso encontra 99,999% de todos os erros. Primeiro, ele verifica todas as entradas de índice em busca de erros e, em seguida, lê todas as linhas. Ele calcula um checksum para todos os valores de chave nas linhas e verifica se o checksum corresponde ao checksum das chaves na árvore de índice.
+Isso encontra 99,999% de todos os erros. Primeiro, ele verifica todas as entradas de índice em busca de erros e, em seguida, lê todas as strings. Ele calcula um checksum para todos os valores de chave nas strings e verifica se o checksum corresponde ao checksum das chaves na árvore de índice.
 
 * **myisamchk -e *`tbl_name`***
 
-Isso realiza uma verificação completa e minuciosa de todos os dados (`-e` significa “verificação estendida”). Ele realiza uma leitura de verificação de todas as chaves de cada linha para verificar se elas realmente apontam para a linha correta. Isso pode levar um longo tempo para uma tabela grande que tem muitos índices. Normalmente, **myisamchk** para após o primeiro erro que ele encontra. Se você deseja obter mais informações, pode adicionar a opção `-v` (verbose). Isso faz com que **myisamchk** continue, até um máximo de 20 erros.
+Isso realiza uma verificação completa e minuciosa de todos os dados (`-e` significa “verificação estendida”). Ele realiza uma leitura de verificação de todas as chaves de cada string para verificar se elas realmente apontam para a string correta. Isso pode levar um longo tempo para uma tabela grande que tem muitos índices. Normalmente, **myisamchk** para após o primeiro erro que ele encontra. Se você deseja obter mais informações, pode adicionar a opção `-v` (verbose). Isso faz com que **myisamchk** continue, até um máximo de 20 erros.
 
 * **myisamchk -e -i *`tbl_name`***
 
@@ -111,7 +111,7 @@ Esta seção é para os casos em que uma verificação de tabela falha (como os 
 
 As opções do **myisamchk** usadas para a manutenção de tabelas estão descritas na Seção 4.6.3, “myisamchk — Ferramenta de manutenção de tabelas MyISAM”. O **myisamchk** também tem variáveis que você pode definir para controlar a alocação de memória, o que pode melhorar o desempenho. Veja a Seção 4.6.3.6, “Uso de memória do **myisamchk”**.
 
-Se você vai reparar uma tabela a partir da linha de comando, você deve primeiro parar o servidor `mysqld`. Observe que, quando você faz **mysqladmin shutdown** em um servidor remoto, o servidor `mysqld` ainda está disponível por um tempo após o **mysqladmin** retornar, até que todo o processamento de declarações tenha sido interrompido e todas as alterações de índice tenham sido descarregadas no disco.
+Se você vai reparar uma tabela a partir da string de comando, você deve primeiro parar o servidor `mysqld`. Observe que, quando você faz **mysqladmin shutdown** em um servidor remoto, o servidor `mysqld` ainda está disponível por um tempo após o **mysqladmin** retornar, até que todo o processamento de declarações tenha sido interrompido e todas as alterações de índice tenham sido descarregadas no disco.
 
 **Etapa 1: Verificação de suas tabelas**
 
@@ -127,7 +127,7 @@ Se você receber erros inesperados ao verificar (como os erros `out of memory`),
 
 Primeiro, tente **myisamchk -r -q *`tbl_name`*** (`-r -q` significa “modo de recuperação rápida”). Isso tenta reparar o arquivo de índice sem tocar no arquivo de dados. Se o arquivo de dados contiver tudo o que deve e os links de exclusão apontarem para os locais corretos dentro do arquivo de dados, isso deve funcionar e a tabela será corrigida. Comece a reparar a próxima tabela. Caso contrário, use o procedimento a seguir:
 
-1. Faça um backup do arquivo de dados antes de continuar. 2. Use **myisamchk -r *`tbl_name`*** (`-r` significa “modo de recuperação”). Isso remove as linhas incorretas e as linhas excluídas do arquivo de dados e reconstrui o arquivo de índice.
+1. Faça um backup do arquivo de dados antes de continuar. 2. Use **myisamchk -r *`tbl_name`*** (`-r` significa “modo de recuperação”). Isso remove as strings incorretas e as strings excluídas do arquivo de dados e reconstrui o arquivo de índice.
 
 3. Se a etapa anterior falhar, use **myisamchk --safe-recover *`tbl_name`***. O modo de recuperação segura usa um método de recuperação antigo que lida com alguns casos que o modo de recuperação regular não lida (mas é mais lento).
 
@@ -174,7 +174,7 @@ Você deve chegar a essa etapa apenas se o arquivo de descrição `.frm` também
 
 ### 7.6.4 Otimização de Tabelas MyISAM
 
-Para coalescer linhas fragmentadas e eliminar o espaço desperdiçado que resulta da exclusão ou atualização de linhas, execute o **myisamchk** no modo de recuperação:
+Para coalescer strings fragmentadas e eliminar o espaço desperdiçado que resulta da exclusão ou atualização de strings, execute o **myisamchk** no modo de recuperação:
 
 ```sql
 $> myisamchk -r tbl_name
@@ -188,7 +188,7 @@ Você pode otimizar uma tabela da mesma maneira, usando a instrução SQL `OPTIM
 
 * `--sort-index` ou `-S`: Classifique os blocos do índice. Isso otimiza os buscas e torna os varreduras de tabela que utilizam índices mais rápidos.
 
-* `--sort-records=index_num` ou `-R index_num`: Classifique as linhas de dados de acordo com um índice dado. Isso torna seus dados muito mais localizados e pode acelerar as operações de `SELECT` e `ORDER BY` baseadas em intervalo que utilizam este índice.
+* `--sort-records=index_num` ou `-R index_num`: Classifique as strings de dados de acordo com um índice dado. Isso torna seus dados muito mais localizados e pode acelerar as operações de `SELECT` e `ORDER BY` baseadas em intervalo que utilizam este índice.
 
 Para uma descrição completa de todas as opções disponíveis, consulte a Seção 4.6.3, “myisamchk — Ferramenta de manutenção de tabelas MyISAM”.
 
@@ -200,7 +200,7 @@ Outra maneira de verificar as tabelas é usar o **myisamchk**. Para fins de manu
 
 Também é uma boa ideia habilitar o controle automático da tabela `MyISAM`. Por exemplo, sempre que a máquina tiver feito um reinício durante um processo de atualização, geralmente é necessário verificar cada tabela que poderia ter sido afetada antes de usá-la novamente. (Estas são as tabelas "esperadas a falhar"). Para fazer com que o servidor verifique as tabelas `MyISAM` automaticamente, inicie-o com a variável de sistema `myisam_recover_options` definida. Veja a Seção 5.1.7, "Variáveis do Sistema do Servidor".
 
-Você também deve verificar suas tabelas regularmente durante o funcionamento normal do sistema. Por exemplo, você pode executar um **cron** para verificar tabelas importantes uma vez por semana, usando uma linha como esta em um arquivo `crontab`:
+Você também deve verificar suas tabelas regularmente durante o funcionamento normal do sistema. Por exemplo, você pode executar um **cron** para verificar tabelas importantes uma vez por semana, usando uma string como esta em um arquivo `crontab`:
 
 ```sql
 35 0 * * 0 /path/to/myisamchk --fast --silent /path/to/datadir/*/*.MYI
@@ -210,7 +210,7 @@ Isso exibe informações sobre as tabelas que foram descartadas, para que você 
 
 Para começar, execute **myisamchk -s** todas as noites em todas as tabelas que foram atualizadas nas últimas 24 horas. Como você vê que os problemas ocorrem raramente, você pode reduzir a frequência de verificação para uma vez por semana ou assim.
 
-Normalmente, as tabelas do MySQL precisam de pouca manutenção. Se você está realizando muitas atualizações nas tabelas `MyISAM` com linhas de tamanho dinâmico (tabelas com colunas `VARCHAR`, `BLOB` ou `TEXT`) ou tem tabelas com muitas linhas excluídas, você pode querer defragmentar/recapturar espaço das tabelas de tempos em tempos. Você pode fazer isso usando `OPTIMIZE TABLE` nas tabelas em questão. Alternativamente, se você pode parar o servidor `mysqld` por um tempo, mude a localização para o diretório de dados e use este comando enquanto o servidor está parado:
+Normalmente, as tabelas do MySQL precisam de pouca manutenção. Se você está realizando muitas atualizações nas tabelas `MyISAM` com strings de tamanho dinâmico (tabelas com colunas `VARCHAR`, `BLOB` ou `TEXT`) ou tem tabelas com muitas strings excluídas, você pode querer defragmentar/recapturar espaço das tabelas de tempos em tempos. Você pode fazer isso usando `OPTIMIZE TABLE` nas tabelas em questão. Alternativamente, se você pode parar o servidor `mysqld` por um tempo, mude a localização para o diretório de dados e use este comando enquanto o servidor está parado:
 
 ```sql
 $> myisamchk -r -s --sort-index --myisam_sort_buffer_size=16M */*.MYI

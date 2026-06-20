@@ -4,13 +4,13 @@ Esta seção fornece mais detalhes técnicos sobre a Replicação de Grupo do My
 
 ### 17.9.1 Arquitetura do Plugin de Replicação em Grupo
 
-O MySQL Group Replication é um plugin do MySQL e se baseia na infraestrutura de replicação existente do MySQL, aproveitando recursos como o log binário, o registro baseado em linhas e os identificadores de transação global. Ele se integra a frameworks MySQL atuais, como o esquema de desempenho ou infraestruturas de plugins e serviços. A figura a seguir apresenta um diagrama de bloco que ilustra a arquitetura geral do MySQL Group Replication.
+O MySQL Group Replication é um plugin do MySQL e se baseia na infraestrutura de replicação existente do MySQL, aproveitando recursos como o log binário, o registro baseado em strings e os identificadores de transação global. Ele se integra a frameworks MySQL atuais, como o esquema de desempenho ou infraestruturas de plugins e serviços. A figura a seguir apresenta um diagrama de bloco que ilustra a arquitetura geral do MySQL Group Replication.
 
 **Figura 17.9 Diagrama de bloco do plugin de replicação de grupo**
 
 ![The text following the figure describes the content of the diagram.](images/gr-plugin-blocks.png)
 
-O plugin de replicação em grupo do MySQL inclui um conjunto de APIs para captura, aplicação e ciclo de vida, que controlam como o plugin interage com o MySQL Server. Existem interfaces para fazer o fluxo de informações do servidor para o plugin e vice-versa. Essas interfaces isolam o núcleo do MySQL Server do plugin de replicação em grupo e são, na maioria, pontos de conexão colocados na linha de execução da transação. Numa direção, do servidor para o plugin, há notificações para eventos como o servidor iniciando, o servidor recuperando, o servidor estando pronto para aceitar conexões e o servidor prestes a comprometer uma transação. Na outra direção, o plugin instrui o servidor a realizar ações como comprometer ou abortar transações em andamento ou agrupar transações no log de retransmissão.
+O plugin de replicação em grupo do MySQL inclui um conjunto de APIs para captura, aplicação e ciclo de vida, que controlam como o plugin interage com o MySQL Server. Existem interfaces para fazer o fluxo de informações do servidor para o plugin e vice-versa. Essas interfaces isolam o núcleo do MySQL Server do plugin de replicação em grupo e são, na maioria, pontos de conexão colocados na string de execução da transação. Numa direção, do servidor para o plugin, há notificações para eventos como o servidor iniciando, o servidor recuperando, o servidor estando pronto para aceitar conexões e o servidor prestes a comprometer uma transação. Na outra direção, o plugin instrui o servidor a realizar ações como comprometer ou abortar transações em andamento ou agrupar transações no log de retransmissão.
 
 A próxima camada da arquitetura do plugin de replicação de grupo é um conjunto de componentes que reagem quando uma notificação é encaminhada para eles. O componente de captura é responsável por manter o controle do contexto relacionado às transações que estão sendo executadas. O componente aplicável é responsável por executar transações remotas no banco de dados. O componente de recuperação gerencia a recuperação distribuída e é responsável por obter um servidor que está se juntando ao grupo atualizado, selecionando o doador, orquestrando o procedimento de recuperação e reagindo a falhas do doador.
 
@@ -30,7 +30,7 @@ Como não há servidores primários (fontes) para nenhum conjunto de dados espec
 
 Qualquer servidor pode executar uma transação sem qualquer *a priori* coordenação. Mas, no momento do commit, ele coordena com o resto dos servidores do grupo para tomar uma decisão sobre o destino dessa transação. Essa coordenação serve a dois propósitos: (i) verificar se a transação deve ser confirmada ou não; (ii) e propagar as alterações para que outros servidores também possam aplicar a transação.
 
-Como uma transação é enviada através de uma transmissão atômica, todos os servidores do grupo recebem a transação ou nenhum deles. Se eles a recebem, então todos recebem a transação na mesma ordem em relação a outras transações que foram enviadas anteriormente. A detecção de conflitos é realizada inspecionando e comparando os conjuntos de escrita das transações. Assim, elas são detectadas no nível da linha. A resolução de conflitos segue a regra de que o primeiro committer vence. Se t1 e t2 são executados concorrentemente em locais diferentes, porque t2 é ordenado antes de t1, e ambos alteraram a mesma linha, então t2 vence o conflito e t1 é abortado. Em outras palavras, t1 estava tentando alterar dados que haviam sido tornados obsoletos por t2.
+Como uma transação é enviada através de uma transmissão atômica, todos os servidores do grupo recebem a transação ou nenhum deles. Se eles a recebem, então todos recebem a transação na mesma ordem em relação a outras transações que foram enviadas anteriormente. A detecção de conflitos é realizada inspecionando e comparando os conjuntos de escrita das transações. Assim, elas são detectadas no nível da string. A resolução de conflitos segue a regra de que o primeiro committer vence. Se t1 e t2 são executados concorrentemente em locais diferentes, porque t2 é ordenado antes de t1, e ambos alteraram a mesma string, então t2 vence o conflito e t1 é abortado. Em outras palavras, t1 estava tentando alterar dados que haviam sido tornados obsoletos por t2.
 
 Nota
 
@@ -159,9 +159,9 @@ Há uma grande quantidade de automação embutida no plugin de Replicação de G
 
 Esta seção explica como usar as opções de configuração disponíveis para obter o melhor desempenho do seu grupo.
 
-#### 17.9.7.1 Ajustando o fio de comunicação do grupo
+#### 17.9.7.1 Ajustando o thread de comunicação do grupo
 
-O fio de comunicação de grupo (GCT) funciona em um loop enquanto o plugin de replicação de grupo está carregado. O GCT recebe mensagens do grupo e do plugin, lida com tarefas relacionadas ao quórum e detecção de falhas, envia algumas mensagens de manutenção em atividade e também lida com as transações de entrada e saída de/para o servidor/grupo. O GCT aguarda mensagens de entrada em uma fila. Quando não há mensagens, o GCT aguarda. Configurar essa espera para ser um pouco mais longa (fazendo uma espera ativa) antes de realmente dormir pode ser benéfico em alguns casos. Isso ocorre porque a alternativa é o sistema operacional trocar o GCT do processador e fazer uma troca de contexto.
+O thread de comunicação de grupo (GCT) funciona em um loop enquanto o plugin de replicação de grupo está carregado. O GCT recebe mensagens do grupo e do plugin, lida com tarefas relacionadas ao quórum e detecção de falhas, envia algumas mensagens de manutenção em atividade e também lida com as transações de entrada e saída de/para o servidor/grupo. O GCT aguarda mensagens de entrada em uma fila. Quando não há mensagens, o GCT aguarda. Configurar essa espera para ser um pouco mais longa (fazendo uma espera ativa) antes de realmente dormir pode ser benéfico em alguns casos. Isso ocorre porque a alternativa é o sistema operacional trocar o GCT do processador e fazer uma troca de contexto.
 
 Para forçar o GCT a realizar uma espera ativa, use a opção `group_replication_poll_spin_loops`, que faz o loop do GCT, sem realizar nada relevante para o número configurado de loops, antes de realmente coletar a fila para a próxima mensagem.
 
@@ -189,7 +189,7 @@ A Replicação em Grupo usa o algoritmo de compressão LZ4 para comprimir as men
 
 O valor de `group_replication_compression_threshold` não é necessário que seja o mesmo em todos os membros do grupo. No entanto, é aconselhável definir o mesmo valor em todos os membros do grupo para evitar o descarte desnecessário de transações, falha na entrega de mensagens ou falha na recuperação de mensagens.
 
-A compressão das mensagens enviadas no grupo ocorre no nível do motor de comunicação do grupo, antes de os dados serem entregues ao fio de comunicação do grupo, portanto, ocorre no contexto do fio de sessão do usuário `mysql`. Se o tamanho do payload da mensagem exceder o limite definido por `group_replication_compression_threshold`, o payload da transação é comprimido antes de ser enviado para o grupo e descomprimido quando é recebido. Ao receber uma mensagem, o membro verifica o envelope da mensagem para verificar se ela está comprimida ou não. Se necessário, o membro descomprime a transação, antes de entregá-la à camada superior. Esse processo é mostrado na figura a seguir.
+A compressão das mensagens enviadas no grupo ocorre no nível do motor de comunicação do grupo, antes de os dados serem entregues ao thread de comunicação do grupo, portanto, ocorre no contexto do thread de sessão do usuário `mysql`. Se o tamanho do payload da mensagem exceder o limite definido por `group_replication_compression_threshold`, o payload da transação é comprimido antes de ser enviado para o grupo e descomprimido quando é recebido. Ao receber uma mensagem, o membro verifica o envelope da mensagem para verificar se ela está comprimida ou não. Se necessário, o membro descomprime a transação, antes de entregá-la à camada superior. Esse processo é mostrado na figura a seguir.
 
 **Figura 17.15 Suporte à compressão**
 
@@ -241,7 +241,7 @@ Os dados de monitoramento são compartilhados com outros membros do grupo period
 
 Com base nas métricas coletadas em todos os servidores do grupo, um mecanismo de controle é ativado e decide se deve limitar a taxa na qual um membro pode executar/comprometer novas transações.
 
-Portanto, as métricas adquiridas de todos os membros são a base para calcular a capacidade de cada membro: se um membro tiver uma fila grande (para certificação ou para o fio de aplicação), então a capacidade para executar novas transações deve estar próxima àquelas certificadas ou aplicadas no último período.
+Portanto, as métricas adquiridas de todos os membros são a base para calcular a capacidade de cada membro: se um membro tiver uma fila grande (para certificação ou para o thread de aplicação), então a capacidade para executar novas transações deve estar próxima àquelas certificadas ou aplicadas no último período.
 
 A menor capacidade de todos os membros do grupo determina a capacidade real do grupo, enquanto o número de transações locais determina quantos membros estão escrevendo nela e, consequentemente, quantos membros essa capacidade disponível deve ser compartilhada.
 

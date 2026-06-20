@@ -20,7 +20,7 @@ As seguintes funcionalidades do MySQL para o Visual Studio estão disponíveis a
 
 + Visualização dos tipos de campo, onde são exibidas informações sobre as colunas de um conjunto de resultados, como nomes, tipos de dados, conjuntos de caracteres e mais.
 
-+ Visualização de estatísticas de consulta, exibindo informações sobre a consulta executada, como tempos de execução, linhas processadas, uso de tabelas indexadas e temporárias, entre outras.
++ Visualização de estatísticas de consulta, exibindo informações sobre a consulta executada, como tempos de execução, strings processadas, uso de tabelas indexadas e temporárias, entre outras.
 
 + Visualização do plano de execução, que exibe uma explicação da execução da consulta realizada internamente pelo servidor MySQL.
 

@@ -185,7 +185,7 @@ Metadados são “os dados sobre os dados”. Qualquer coisa que *descreva* o ba
 
 A representação dos metadados deve satisfazer esses requisitos:
 
-* Todos os metadados devem estar no mesmo conjunto de caracteres. Caso contrário, nem as declarações `SHOW` nem as declarações `SELECT` para tabelas em `INFORMATION_SCHEMA` funcionariam corretamente, porque diferentes linhas na mesma coluna dos resultados dessas operações seriam em diferentes conjuntos de caracteres.
+* Todos os metadados devem estar no mesmo conjunto de caracteres. Caso contrário, nem as declarações `SHOW` nem as declarações `SELECT` para tabelas em `INFORMATION_SCHEMA` funcionariam corretamente, porque diferentes strings na mesma coluna dos resultados dessas operações seriam em diferentes conjuntos de caracteres.
 
 * Os metadados devem incluir todos os caracteres em todos os idiomas. Caso contrário, os usuários não poderão nomear colunas e tabelas usando seus próprios idiomas.
 

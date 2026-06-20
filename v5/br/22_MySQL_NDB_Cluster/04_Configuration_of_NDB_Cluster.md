@@ -109,7 +109,7 @@ Comment: Alias for NDBCLUSTER
 ...
 ```
 
-Os números de linha mostrados na saída do exemplo anterior podem ser diferentes dos mostrados no seu sistema, dependendo da configuração do seu servidor.
+Os números de string mostrados na saída do exemplo anterior podem ser diferentes dos mostrados no seu sistema, dependendo da configuração do seu servidor.
 
 Tente criar uma tabela `NDBCLUSTER`:
 
@@ -158,7 +158,7 @@ Neste ponto, você configurou com sucesso um NDB Cluster funcional. Agora, você
 
 ### 21.4.2 Visão geral dos parâmetros, opções e variáveis de configuração do cluster NDB
 
-As próximas seções fornecem tabelas resumidas dos parâmetros de configuração do nó do NDB Cluster utilizados no arquivo `config.ini` para governar vários aspectos do comportamento do nó, bem como das opções e variáveis lidas pelo `mysqld` a partir de um arquivo `my.cnf` ou da linha de comando quando executado como um processo do NDB Cluster. Cada uma das tabelas de parâmetros do nó lista os parâmetros para um tipo específico (`ndbd`, `ndb_mgmd`, `mysqld`, `computer`, `tcp` ou `shm`). Todas as tabelas incluem o tipo de dados do parâmetro, opção ou variável, bem como seus valores padrão, mínimo e máximo, conforme aplicável.
+As próximas seções fornecem tabelas resumidas dos parâmetros de configuração do nó do NDB Cluster utilizados no arquivo `config.ini` para governar vários aspectos do comportamento do nó, bem como das opções e variáveis lidas pelo `mysqld` a partir de um arquivo `my.cnf` ou da string de comando quando executado como um processo do NDB Cluster. Cada uma das tabelas de parâmetros do nó lista os parâmetros para um tipo específico (`ndbd`, `ndb_mgmd`, `mysqld`, `computer`, `tcp` ou `shm`). Todas as tabelas incluem o tipo de dados do parâmetro, opção ou variável, bem como seus valores padrão, mínimo e máximo, conforme aplicável.
 
 **Considerações ao reiniciar nós.** Para os parâmetros dos nós, essas tabelas também indicam que tipo de reinício é necessário (reinício de nó ou reinício de sistema) e se o reinício deve ser feito com `--initial` para alterar o valor de um parâmetro de configuração dado. Ao realizar um reinício de nó ou um reinício inicial de nó, todos os nós de dados do clúster devem ser reiniciados em ordem (também referido como um reinício rotativo). É possível atualizar os parâmetros de configuração do clúster marcados como `node` online, ou seja, sem desligar o clúster. Um reinício inicial de nó requer o reinício de cada processo **ndbd** com a opção `--initial`.
 
@@ -226,7 +226,7 @@ Esses parâmetros também se aplicam a **ndbmtd**"), a versão multithread do **
 
 * `DictTrace`: Habilitar depuração do DBDICT; para o desenvolvimento do NDB.
 
-* `DiskIOThreadPool`: Número de fios não vinculados para acesso ao arquivo, aplica-se apenas aos dados do disco.
+* `DiskIOThreadPool`: Número de threads não vinculados para acesso ao arquivo, aplica-se apenas aos dados do disco.
 
 * `Diskless`: Execute sem usar disco.
 
@@ -288,7 +288,7 @@ Esses parâmetros também se aplicam a **ndbmtd**"), a versão multithread do **
 
 * `InitialTablespace`: Descreve o tablespace que é criado durante o início inicial. Consulte a documentação para o formato.
 
-* `InsertRecoveryWork`: Porcentagem de Trabalho de Recuperação usada para as linhas inseridas; não tem efeito a menos que os pontos de verificação locais parciais estejam em uso.
+* `InsertRecoveryWork`: Porcentagem de Trabalho de Recuperação usada para as strings inseridas; não tem efeito a menos que os pontos de verificação locais parciais estejam em uso.
 
 * `LateAlloc`: Atribua memória após a conexão com o servidor de gerenciamento ter sido estabelecida.
 
@@ -472,7 +472,7 @@ Esses parâmetros também se aplicam a **ndbmtd**"), a versão multithread do **
 
 * `TransactionInactiveTimeout`: Milisegundos que o aplicativo espera antes de executar outra parte da transação. Esse é o tempo que o coordenador da transação espera para que o aplicativo execute ou envie outra parte (consulta, declaração) da transação. Se o aplicativo leva muito tempo, então a transação é abortada. O tempo de espera = 0 significa que o aplicativo nunca perde o tempo.
 
-* `TwoPassInitialNodeRestartCopy`: Copie os dados em 2 passes durante o reinício inicial do nó, o que permite a construção de índices ordenados em múltiplos fios para tais reinicializações.
+* `TwoPassInitialNodeRestartCopy`: Copie os dados em 2 passes durante o reinício inicial do nó, o que permite a construção de índices ordenados em múltiplos threads para tais reinicializações.
 
 * `UndoDataBuffer`: Não utilizado; não tem efeito.
 
@@ -508,7 +508,7 @@ A listagem nesta seção fornece informações sobre os parâmetros utilizados n
 
 * `HeartbeatIntervalMgmdMgmd`: Tempo entre os batimentos cardíacos entre os nós de gerenciamento e os nós de gerenciamento; a conexão entre os nós de gerenciamento é considerada perdida após 3 batimentos cardíacos perdidos.
 
-* `HeartbeatThreadPriority`: Defina a política e a prioridade do fio de batimento cardíaco para os nós de gerenciamento; consulte o manual para os valores permitidos.
+* `HeartbeatThreadPriority`: Defina a política e a prioridade do thread de batimento cardíaco para os nós de gerenciamento; consulte o manual para os valores permitidos.
 
 * `HostName`: Nome de domínio ou endereço IP para este nó de gerenciamento.
 
@@ -562,7 +562,7 @@ A listagem nesta seção fornece informações sobre os parâmetros utilizados n
 
 * `ExtraSendBufferMemory`: Memória a ser usada para buffers de envio, além da memória alocada por TotalSendBufferMemory ou SendBufferMemory. O padrão (0) permite até 16 MB.
 
-* `HeartbeatThreadPriority`: Defina a política e a prioridade do fio de batimento cardíaco para os nós da API; consulte o manual para os valores permitidos.
+* `HeartbeatThreadPriority`: Defina a política e a prioridade do thread de batimento cardíaco para os nós da API; consulte o manual para os valores permitidos.
 
 * `HostName`: Nome de host ou endereço IP para este nó SQL ou API.
 
@@ -672,7 +672,7 @@ Os seguintes parâmetros se aplicam à seção `[shm]` do arquivo `config.ini`:
 
 #### 21.4.2.5 Referência à opção e variável do cluster NDB mysqld
 
-A lista a seguir inclui opções de linha de comando, variáveis de sistema e variáveis de status aplicáveis dentro de `mysqld` quando ele está sendo executado como um nó SQL em um NDB Cluster. Para uma referência a *todas* as opções de linha de comando, variáveis de sistema e variáveis de status usadas com ou relacionadas a `mysqld`, consulte a Seção 5.1.3, “Referência de Opção do Servidor, Variável de Sistema e Variável de Status”.
+A lista a seguir inclui opções de string de comando, variáveis de sistema e variáveis de status aplicáveis dentro de `mysqld` quando ele está sendo executado como um nó SQL em um NDB Cluster. Para uma referência a *todas* as opções de string de comando, variáveis de sistema e variáveis de status usadas com ou relacionadas a `mysqld`, consulte a Seção 5.1.3, “Referência de Opção do Servidor, Variável de Sistema e Variável de Status”.
 
 * `Com_show_ndb_status`: Contagem de declarações SHOW NDB STATUS.
 
@@ -704,7 +704,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `ndb-log-exclusive-reads`: Leia as chaves primárias de registro com bloqueios exclusivos; permita a resolução de conflitos com base em conflitos de leitura.
 
-* `ndb-log-fail-terminate`: Finalize o processo mysqld se não for possível registrar completamente todos os eventos das linhas encontradas.
+* `ndb-log-fail-terminate`: Finalize o processo mysqld se não for possível registrar completamente todos os eventos das strings encontradas.
 
 * `ndb-log-orig`: Registre o ID do servidor de origem e a época na tabela mysql.ndb_binlog_index.
 
@@ -712,7 +712,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `ndb-log-update-minimal`: Atualize os registros no formato mínimo.
 
-* `ndb-log-updated-only`: Atualizações de registro apenas (ATIVADO) ou linhas completas (DESATIVADO).
+* `ndb-log-updated-only`: Atualizações de registro apenas (ATIVADO) ou strings completas (DESATIVADO).
 
 * `ndb-log-update-as-write`: Ativa ou desativa o registro de atualizações na fonte entre atualizações (OFF) e escritas (ON).
 
@@ -764,13 +764,13 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_api_event_bytes_count_injector`: Número de bytes de dados de evento recebidos pelo NDB binary log injector thread.
 
-* `Ndb_api_event_data_count`: Número de eventos de mudança de linha recebidos por este servidor MySQL (nó SQL).
+* `Ndb_api_event_data_count`: Número de eventos de mudança de string recebidos por este servidor MySQL (nó SQL).
 
-* `Ndb_api_event_data_count_injector`: Número de eventos de alteração de linha recebidos pelo thread do injetor de log binário NDB.
+* `Ndb_api_event_data_count_injector`: Número de eventos de alteração de string recebidos pelo thread do injetor de log binário NDB.
 
-* `Ndb_api_event_nondata_count`: Número de eventos recebidos, exceto eventos de mudança de linha, por este servidor MySQL (nó SQL).
+* `Ndb_api_event_nondata_count`: Número de eventos recebidos, exceto eventos de mudança de string, por este servidor MySQL (nó SQL).
 
-* `Ndb_api_event_nondata_count_injector`: Número de eventos recebidos, exceto eventos de mudança de linha, pelo NDB binary log injector thread.
+* `Ndb_api_event_nondata_count_injector`: Número de eventos recebidos, exceto eventos de mudança de string, pelo NDB binary log injector thread.
 
 * `Ndb_api_pk_op_count`: Número de operações com base em ou que utilizam chaves primárias por este servidor MySQL (nó SQL).
 
@@ -790,17 +790,17 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_api_range_scan_count_slave`: Número de varreduras de intervalo que foram iniciadas por esta réplica.
 
-* `Ndb_api_read_row_count`: Número total de linhas que foram lidas por este servidor MySQL (nó SQL).
+* `Ndb_api_read_row_count`: Número total de strings que foram lidas por este servidor MySQL (nó SQL).
 
-* `Ndb_api_read_row_count_session`: Número total de linhas que foram lidas nesta sessão do cliente.
+* `Ndb_api_read_row_count_session`: Número total de strings que foram lidas nesta sessão do cliente.
 
-* `Ndb_api_read_row_count_slave`: Número total de linhas que foram lidas por esta réplica.
+* `Ndb_api_read_row_count_slave`: Número total de strings que foram lidas por esta réplica.
 
-* `Ndb_api_scan_batch_count`: Número de lotes de linhas recebidos por este servidor MySQL (nó SQL).
+* `Ndb_api_scan_batch_count`: Número de lotes de strings recebidos por este servidor MySQL (nó SQL).
 
-* `Ndb_api_scan_batch_count_session`: Número de lotes de linhas recebidos nesta sessão do cliente.
+* `Ndb_api_scan_batch_count_session`: Número de lotes de strings recebidos nesta sessão do cliente.
 
-* `Ndb_api_scan_batch_count_slave`: Número de lotes de linhas recebidos por esta réplica.
+* `Ndb_api_scan_batch_count_slave`: Número de lotes de strings recebidos por esta réplica.
 
 * `Ndb_api_table_scan_count`: Número de varreduras de tabela que foram iniciadas, incluindo varreduras de tabelas internas, por este servidor MySQL (nó SQL).
 
@@ -826,11 +826,11 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_api_trans_commit_count_slave`: Número de transações realizadas por esta réplica.
 
-* `Ndb_api_trans_local_read_row_count`: Número total de linhas que foram lidas por este servidor MySQL (nó SQL).
+* `Ndb_api_trans_local_read_row_count`: Número total de strings que foram lidas por este servidor MySQL (nó SQL).
 
-* `Ndb_api_trans_local_read_row_count_session`: Número total de linhas que foram lidas nesta sessão do cliente.
+* `Ndb_api_trans_local_read_row_count_session`: Número total de strings que foram lidas nesta sessão do cliente.
 
-* `Ndb_api_trans_local_read_row_count_slave`: Número total de linhas que foram lidas por esta réplica.
+* `Ndb_api_trans_local_read_row_count_slave`: Número total de strings que foram lidas por esta réplica.
 
 * `Ndb_api_trans_start_count`: Número de transações iniciadas por este servidor MySQL (nó SQL).
 
@@ -844,17 +844,17 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_api_uk_op_count_slave`: Número de operações com base em ou que utilizam chaves únicas por esta réplica.
 
-* `Ndb_api_wait_exec_complete_count`: Número de vezes que o fio foi bloqueado enquanto aguardava a conclusão da execução da operação por este servidor MySQL (nó SQL).
+* `Ndb_api_wait_exec_complete_count`: Número de vezes que o thread foi bloqueado enquanto aguardava a conclusão da execução da operação por este servidor MySQL (nó SQL).
 
-* `Ndb_api_wait_exec_complete_count_session`: Número de vezes que o fio foi bloqueado enquanto aguardava a conclusão da execução da operação nesta sessão do cliente.
+* `Ndb_api_wait_exec_complete_count_session`: Número de vezes que o thread foi bloqueado enquanto aguardava a conclusão da execução da operação nesta sessão do cliente.
 
-* `Ndb_api_wait_exec_complete_count_slave`: Número de vezes que o fio foi bloqueado enquanto aguardava a conclusão da execução da operação por esta réplica.
+* `Ndb_api_wait_exec_complete_count_slave`: Número de vezes que o thread foi bloqueado enquanto aguardava a conclusão da execução da operação por esta réplica.
 
-* `Ndb_api_wait_meta_request_count`: Número de vezes que o fio foi bloqueado esperando por um sinal baseado em metadados por este servidor MySQL (nó SQL).
+* `Ndb_api_wait_meta_request_count`: Número de vezes que o thread foi bloqueado esperando por um sinal baseado em metadados por este servidor MySQL (nó SQL).
 
-* `Ndb_api_wait_meta_request_count_session`: Número de vezes que o fio foi bloqueado esperando por um sinal baseado em metadados nesta sessão do cliente.
+* `Ndb_api_wait_meta_request_count_session`: Número de vezes que o thread foi bloqueado esperando por um sinal baseado em metadados nesta sessão do cliente.
 
-* `Ndb_api_wait_meta_request_count_slave`: Número de vezes que o fio foi bloqueado esperando por um sinal baseado em metadados por esta réplica.
+* `Ndb_api_wait_meta_request_count_slave`: Número de vezes que o thread foi bloqueado esperando por um sinal baseado em metadados por esta réplica.
 
 * `Ndb_api_wait_nanos_count`: Tempo total (em nanosegundos) gasto esperando algum tipo de sinal dos nós de dados por este servidor MySQL (nó SQL).
 
@@ -862,17 +862,17 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_api_wait_nanos_count_slave`: O tempo total (em nanosegundos) gasto esperando algum tipo de sinal dos nós de dados por esta réplica.
 
-* `Ndb_api_wait_scan_result_count`: Número de vezes que o fio foi bloqueado enquanto aguardava um sinal baseado em varredura por este servidor MySQL (nó SQL).
+* `Ndb_api_wait_scan_result_count`: Número de vezes que o thread foi bloqueado enquanto aguardava um sinal baseado em varredura por este servidor MySQL (nó SQL).
 
-* `Ndb_api_wait_scan_result_count_session`: Número de vezes que o fio foi bloqueado enquanto aguardava um sinal baseado em varredura nesta sessão do cliente.
+* `Ndb_api_wait_scan_result_count_session`: Número de vezes que o thread foi bloqueado enquanto aguardava um sinal baseado em varredura nesta sessão do cliente.
 
-* `Ndb_api_wait_scan_result_count_slave`: Número de vezes que o fio foi bloqueado enquanto aguardava um sinal baseado em varredura por esta réplica.
+* `Ndb_api_wait_scan_result_count_slave`: Número de vezes que o thread foi bloqueado enquanto aguardava um sinal baseado em varredura por esta réplica.
 
 * `ndb_autoincrement_prefetch_sz`: Tamanho pré-pré-enchimento de auto-incremento NDB.
 
 * `ndb_cache_check_time`: Número de milissegundos entre os verificações dos nós do SQL do cluster feitas pelo cache de consulta do MySQL.
 
-* `ndb_clear_apply_status`: Causa o RESET SLAVE/RESET REPLICA a limpar todas as linhas da tabela ndb\_apply\_status; ON por padrão.
+* `ndb_clear_apply_status`: Causa o RESET SLAVE/RESET REPLICA a limpar todas as strings da tabela ndb\_apply\_status; ON por padrão.
 
 * `Ndb_cluster_node_id`: ID do nó deste servidor quando atuando como nó SQL do NDB Cluster.
 
@@ -880,13 +880,13 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_config_from_port`: Porta para conexão com o servidor de gerenciamento do NDB Cluster.
 
-* `Ndb_conflict_fn_epoch`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos de replicação NDB$EPOCH().
+* `Ndb_conflict_fn_epoch`: Número de strings que foram encontradas em conflito pela função de detecção de conflitos de replicação NDB$EPOCH().
 
-* `Ndb_conflict_fn_epoch2`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos NDB$EPOCH2() da replicação NDB.
+* `Ndb_conflict_fn_epoch2`: Número de strings que foram encontradas em conflito pela função de detecção de conflitos NDB$EPOCH2() da replicação NDB.
 
-* `Ndb_conflict_fn_epoch2_trans`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos NDB$EPOCH2_TRANS() da replicação NDB.
+* `Ndb_conflict_fn_epoch2_trans`: Número de strings que foram encontradas em conflito pela função de detecção de conflitos NDB$EPOCH2_TRANS() da replicação NDB.
 
-* `Ndb_conflict_fn_epoch_trans`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos NDB$EPOCH_TRANS().
+* `Ndb_conflict_fn_epoch_trans`: Número de strings que foram encontradas em conflito pela função de detecção de conflitos NDB$EPOCH_TRANS().
 
 * `Ndb_conflict_fn_max`: Número de vezes em que a resolução de conflitos de replicação NDB com base na "maior marcação de tempo vence" foi aplicada em operações de atualização e exclusão.
 
@@ -910,19 +910,19 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_conflict_trans_reject_count`: Número de transações rejeitadas após serem encontradas em conflito pela função de conflito transacional.
 
-* `Ndb_conflict_trans_row_conflict_count`: Número de linhas encontradas em conflito pela função de conflito transacional. Inclui quaisquer linhas incluídas em transações conflitantes ou dependentes delas.
+* `Ndb_conflict_trans_row_conflict_count`: Número de strings encontradas em conflito pela função de conflito transacional. Inclui quaisquer strings incluídas em transações conflitantes ou dependentes delas.
 
-* `Ndb_conflict_trans_row_reject_count`: Número total de linhas realinhadas após serem encontradas em conflito pela função de conflito transacional. Inclui Ndb_conflict_trans_row_conflict_count e quaisquer linhas incluídas em transações conflitantes ou dependentes delas.
+* `Ndb_conflict_trans_row_reject_count`: Número total de strings realinhadas após serem encontradas em conflito pela função de conflito transacional. Inclui Ndb_conflict_trans_row_conflict_count e quaisquer strings incluídas em transações conflitantes ou dependentes delas.
 
 * `ndb_data_node_neighbour`: Especifica o nó de dados do cluster "mais próximo" a este servidor MySQL, para indicação de transações e tabelas totalmente replicadas.
 
-* `ndb_default_column_format`: Define o formato de linha e o formato de coluna padrão (FIXO ou DINÂMICO) usado para novas tabelas NDB.
+* `ndb_default_column_format`: Define o formato de string e o formato de coluna padrão (FIXO ou DINÂMICO) usado para novas tabelas NDB.
 
 * `ndb_deferred_constraints`: Especifica que os verificações de restrição devem ser diferidas (onde essas são suportadas). Normalmente não é necessário ou usado; apenas para fins de teste.
 
 * `ndb_distribution`: Distribuição padrão para novas tabelas em NDBCLUSTER (KEYHASH ou LINHASH, padrão é KEYHASH).
 
-* `Ndb_epoch_delete_delete_count`: Número de conflitos de delete-delete detectados (operação de delete é aplicada, mas a linha não existe).
+* `Ndb_epoch_delete_delete_count`: Número de conflitos de delete-delete detectados (operação de delete é aplicada, mas a string não existe).
 
 * `ndb_eventbuffer_free_percent`: Porcentagem de memória livre que deve estar disponível no buffer de eventos antes da retomada do buffer, após atingir o limite definido por ndb_eventbuffer_max_alloc.
 
@@ -964,7 +964,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_number_of_data_nodes`: Número de nós de dados neste clúster NDB; definido apenas se o servidor participa do clúster.
 
-* `ndb-optimization-delay`: Número de milissegundos para esperar entre o processamento de conjuntos de linhas por OPTIMIZE TABLE em tabelas NDB.
+* `ndb-optimization-delay`: Número de milissegundos para esperar entre o processamento de conjuntos de strings por OPTIMIZE TABLE em tabelas NDB.
 
 * `ndb_optimized_node_selection`: Determina como o nó SQL escolhe o nó de dados do cluster a ser usado como coordenador de transação.
 
@@ -980,7 +980,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `ndb_read_backup`: Habilitar a leitura de qualquer réplica para todas as tabelas NDB; use NDB_TABLE=READ_BACKUP={0|1} com CREATE TABLE ou ALTER TABLE para habilitar ou desabilitar para tabelas NDB individuais.
 
-* `ndb_recv_thread_activation_threshold`: Limiar de ativação quando o fio de recebimento assume a pesquisa da conexão do cluster (medido em threads ativas simultaneamente).
+* `ndb_recv_thread_activation_threshold`: Limiar de ativação quando o thread de recebimento assume a pesquisa da conexão do cluster (medido em threads ativas simultaneamente).
 
 * `ndb_recv_thread_cpu_mask`: Máscara de CPU para bloquear os threads do receptor em CPUs específicas; especificada como hexadecimal. Consulte a documentação para detalhes.
 
@@ -988,7 +988,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `ndb_report_thresh_binlog_mem_usage`: Limiar para a porcentagem de memória livre restante antes de relatar o status do log binário.
 
-* `ndb_row_checksum`: Quando ativado, defina os checksums de linha; ativado por padrão.
+* `ndb_row_checksum`: Quando ativado, defina os checksums de string; ativado por padrão.
 
 * `Ndb_scan_count`: Número total de varreduras executadas pelo NDB desde que o clúster foi iniciado pela última vez.
 
@@ -1022,7 +1022,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `ndbinfo_max_rows`: Usado apenas para depuração.
 
-* `ndbinfo_offline`: Coloque o banco de dados ndbinfo em modo offline, no qual nenhuma linha é devolvida das tabelas ou visualizações.
+* `ndbinfo_offline`: Coloque o banco de dados ndbinfo em modo offline, no qual nenhuma string é devolvida das tabelas ou visualizações.
 
 * `ndbinfo_show_hidden`: Se deve mostrar as tabelas de base internas ndbinfo no cliente mysql; o padrão é OFF.
 
@@ -1068,7 +1068,7 @@ Estamos continuamente melhorando a configuração do Cluster e tentando simplifi
 
 #### 21.4.3.1 Configuração do cluster NDB: Exemplo básico
 
-Para suportar o NDB Cluster, você deve atualizar `my.cnf` conforme mostrado no exemplo a seguir. Você também pode especificar esses parâmetros na linha de comando ao invocar os arquivos executáveis.
+Para suportar o NDB Cluster, você deve atualizar `my.cnf` conforme mostrado no exemplo a seguir. Você também pode especificar esses parâmetros na string de comando ao invocar os arquivos executáveis.
 
 Nota
 
@@ -1130,11 +1130,11 @@ ndb-connectstring=ndb_mgmd.mysql.com:1186
 
 Para variáveis adicionais de `NDB` que podem ser definidas no arquivo `my.cnf`, consulte a Seção 21.4.3.9.2, “Variáveis do Sistema de Agrupamento NDB”.
 
-O arquivo de configuração global do NDB Cluster é, por convenção, denominado `config.ini` (mas isso não é necessário). Se necessário, ele é lido pelo **ndb\_mgmd** no início e pode ser colocado em qualquer local que possa ser lido por ele. A localização e o nome da configuração são especificados usando `--config-file=path_name` com **ndb\_mgmd** na linha de comando. Esta opção não tem um valor padrão e é ignorada se o **ndb\_mgmd** usar o cache de configuração.
+O arquivo de configuração global do NDB Cluster é, por convenção, denominado `config.ini` (mas isso não é necessário). Se necessário, ele é lido pelo **ndb\_mgmd** no início e pode ser colocado em qualquer local que possa ser lido por ele. A localização e o nome da configuração são especificados usando `--config-file=path_name` com **ndb\_mgmd** na string de comando. Esta opção não tem um valor padrão e é ignorada se o **ndb\_mgmd** usar o cache de configuração.
 
 O arquivo de configuração global para o NDB Cluster usa o formato INI, que consiste em seções precedidas por títulos de seção (envolvidos por colchetes), seguidos pelos nomes e valores apropriados dos parâmetros. Uma exceção ao formato INI padrão é que o nome e o valor do parâmetro podem ser separados por um colon (`:`) e também pelo sinal de igual (`=`); no entanto, o sinal de igual é preferido. Outra exceção é que as seções não são identificadas de forma única pelo nome da seção. Em vez disso, as seções únicas (como dois nós diferentes do mesmo tipo) são identificadas por um ID único especificado como um parâmetro dentro da seção.
 
-Os valores padrão são definidos para a maioria dos parâmetros e também podem ser especificados em `config.ini`. Para criar uma seção de valor padrão, basta adicionar a palavra `default` ao nome da seção. Por exemplo, uma seção `[ndbd]` contém parâmetros que se aplicam a um nó de dados específico, enquanto uma seção `[ndbd default]` contém parâmetros que se aplicam a todos os nós de dados. Suponha que todos os nós de dados devam usar o mesmo tamanho de memória de dados. Para configurá-los todos, crie uma seção `[ndbd default]` que contenha uma linha `DataMemory` para especificar o tamanho da memória de dados.
+Os valores padrão são definidos para a maioria dos parâmetros e também podem ser especificados em `config.ini`. Para criar uma seção de valor padrão, basta adicionar a palavra `default` ao nome da seção. Por exemplo, uma seção `[ndbd]` contém parâmetros que se aplicam a um nó de dados específico, enquanto uma seção `[ndbd default]` contém parâmetros que se aplicam a todos os nós de dados. Suponha que todos os nós de dados devam usar o mesmo tamanho de memória de dados. Para configurá-los todos, crie uma seção `[ndbd default]` que contenha uma string `DataMemory` para especificar o tamanho da memória de dados.
 
 Se utilizado, a seção `[ndbd default]` deve preceder qualquer seção `[ndbd]` no arquivo de configuração. Isso também é válido para as seções `default` de qualquer outro tipo.
 
@@ -1178,7 +1178,7 @@ Cada nó tem sua própria seção no arquivo `config.ini`. Por exemplo, este cl�
 
 Nota
 
-Não coloque comentários na mesma linha que o cabeçalho de uma seção no arquivo `config.ini`; isso faz com que o servidor de gerenciamento não comece, porque ele não pode analisar o arquivo de configuração nesses casos.
+Não coloque comentários na mesma string que o cabeçalho de uma seção no arquivo `config.ini`; isso faz com que o servidor de gerenciamento não comece, porque ele não pode analisar o arquivo de configuração nesses casos.
 
 ##### Seções do arquivo config.ini
 
@@ -1366,7 +1366,7 @@ LockMaintThreadsToCPU=0
 # for cluster nodes.
 ```
 
-**Opções obrigatórias do my.cnf para nós SQL.** Servidores MySQL que atuam como nós SQL do NDB Cluster devem sempre ser iniciados com as opções `--ndbcluster` e `--ndb-connectstring`, na linha de comando ou em `my.cnf`.
+**Opções obrigatórias do my.cnf para nós SQL.** Servidores MySQL que atuam como nós SQL do NDB Cluster devem sempre ser iniciados com as opções `--ndbcluster` e `--ndb-connectstring`, na string de comando ou em `my.cnf`.
 
 #### 21.4.3.3 Estruturas de conexão do cluster NDB
 
@@ -1425,7 +1425,7 @@ bind-address=198.51.100.242,poseidon:1186;bind-address=localhost,perch:1186,orca
 
 Há várias maneiras diferentes de especificar a cadeia de conexão:
 
-* Cada executável tem sua própria opção de linha de comando que permite especificar o servidor de gerenciamento no início. (Consulte a documentação do respectivo executável.)
+* Cada executável tem sua própria opção de string de comando que permite especificar o servidor de gerenciamento no início. (Consulte a documentação do respectivo executável.)
 
 * É também possível definir a cadeia de conexão para todos os nós do clúster de uma vez, colocando-a em uma seção `[mysql_cluster]` no arquivo `my.cnf` do servidor de gerenciamento.
 
@@ -1437,7 +1437,7 @@ Há várias maneiras diferentes de especificar a cadeia de conexão:
 
 Esses devem ser considerados obsoletos e não devem ser usados em novas instalações.
 
-O método recomendado para especificar a cadeia de conexão é defini-la na linha de comando ou no arquivo `my.cnf` para cada executável.
+O método recomendado para especificar a cadeia de conexão é defini-la na string de comando ou no arquivo `my.cnf` para cada executável.
 
 #### 21.4.3.4 Definindo Computadores em um NDB Cluster
 
@@ -1692,7 +1692,7 @@ Informações sobre os parâmetros de configuração específicos para as tabela
 
 Todos esses parâmetros também se aplicam a **ndbmtd**") (a versão multithread de **ndbd**). Três parâmetros adicionais de configuração de nó de dados — `MaxNoOfExecutionThreads`, `ThreadConfig` e `NoOfFragmentLogParts` — se aplicam apenas a **ndbmtd**") e não têm efeito quando usados com **ndbd**. Para mais informações, consulte Parâmetros de configuração de multitarefa (ndbmtd)"). Veja também a Seção 21.5.3, “ndbmtd — O daemon de nó de dados do NDB Cluster (multithreadado)”).
 
-**Identificando nós de dados.** O valor `NodeId` ou `Id` (ou seja, o identificador do nó de dados) pode ser alocado na linha de comando quando o nó é iniciado ou no arquivo de configuração.
+**Identificando nós de dados.** O valor `NodeId` ou `Id` (ou seja, o identificador do nó de dados) pode ser alocado na string de comando quando o nó é iniciado ou no arquivo de configuração.
 
 * `NodeId`
 
@@ -1832,7 +1832,7 @@ Para atributos de tabela de tamanho variável, os dados são armazenados em pág
 
 O tamanho máximo do registro é de 14000 bytes.
 
-Em NDB 7.5 (e versões anteriores), o espaço de memória definido por `DataMemory` também é usado para armazenar índices ordenados, que utilizam cerca de 10 bytes por registro. Cada linha da tabela é representada no índice ordenado. Um erro comum entre os usuários é assumir que todos os índices são armazenados no espaço de memória alocado por `IndexMemory`, mas isso não é o caso: Apenas as chaves primárias e os índices de hash únicos utilizam esse espaço de memória; os índices ordenados utilizam o espaço de memória alocado por `DataMemory`. No entanto, criar uma chave primária ou um índice de hash único também cria um índice ordenado nas mesmas chaves, a menos que você especifique `USING HASH` na declaração de criação do índice. Isso pode ser verificado executando **ndb\_desc -d *`db_name`* *`table_name`***.
+Em NDB 7.5 (e versões anteriores), o espaço de memória definido por `DataMemory` também é usado para armazenar índices ordenados, que utilizam cerca de 10 bytes por registro. Cada string da tabela é representada no índice ordenado. Um erro comum entre os usuários é assumir que todos os índices são armazenados no espaço de memória alocado por `IndexMemory`, mas isso não é o caso: Apenas as chaves primárias e os índices de hash únicos utilizam esse espaço de memória; os índices ordenados utilizam o espaço de memória alocado por `DataMemory`. No entanto, criar uma chave primária ou um índice de hash único também cria um índice ordenado nas mesmas chaves, a menos que você especifique `USING HASH` na declaração de criação do índice. Isso pode ser verificado executando **ndb\_desc -d *`db_name`* *`table_name`***.
 
 No NDB 7.6, os recursos atribuídos a `DataMemory` são usados para armazenar *todos* os dados e índices; qualquer memória configurada como `IndexMemory` é automaticamente adicionada àquela usada por `DataMemory` para formar um conjunto de recursos comum.
 
@@ -1864,7 +1864,7 @@ Você pode estimar o tamanho de um índice de hash usando esta fórmula:
             * fragment_replicas
   ```
 
-*`fragments`* é o número de fragmentos, *`fragment_replicas`* é o número de réplicas de fragmentos (normalmente dois), e *`rows`* é o número de linhas. Se uma tabela tiver um milhão de linhas, oito fragmentos e duas réplicas de fragmentos, o uso esperado da memória do índice é calculado conforme mostrado aqui:
+*`fragments`* é o número de fragmentos, *`fragment_replicas`* é o número de réplicas de fragmentos (normalmente dois), e *`rows`* é o número de strings. Se uma tabela tiver um milhão de strings, oito fragmentos e duas réplicas de fragmentos, o uso esperado da memória do índice é calculado conforme mostrado aqui:
 
   ```sql
     ((8 * 32K) + (1000000 * 18)) * 2 = ((8 * 32768) + (1000000 * 18)) * 2
@@ -1872,7 +1872,7 @@ Você pode estimar o tamanho de um índice de hash usando esta fórmula:
     = 18262144 * 2 = 36524288 bytes = ~35MB
   ```
 
-As estatísticas de índice para índices ordenados (quando estes estão habilitados) são armazenadas na tabela `mysql.ndb_index_stat_sample`. Como esta tabela possui um índice de hash, isso aumenta o uso de memória do índice. Um limite superior para o número de linhas para um índice ordenado dado pode ser calculado da seguinte forma:
+As estatísticas de índice para índices ordenados (quando estes estão habilitados) são armazenadas na tabela `mysql.ndb_index_stat_sample`. Como esta tabela possui um índice de hash, isso aumenta o uso de memória do índice. Um limite superior para o número de strings para um índice ordenado dado pode ser calculado da seguinte forma:
 
   ```sql
     sample_size= key_size + ((key_attributes + 1) * 4)
@@ -1882,9 +1882,9 @@ As estatísticas de índice para índices ordenados (quando estes estão habilit
                   / sample_size
   ```
 
-Na fórmula anterior, *`key_size`* é o tamanho da chave de índice ordenada em bytes, *`key_attributes`* é o número de atributos na chave de índice ordenada e *`rows`* é o número de linhas na tabela base.
+Na fórmula anterior, *`key_size`* é o tamanho da chave de índice ordenada em bytes, *`key_attributes`* é o número de atributos na chave de índice ordenada e *`rows`* é o número de strings na tabela base.
 
-Suponha que a tabela `t1` tenha 1 milhão de linhas e um índice ordenado chamado `ix1` em dois inteiros de quatro bytes. Além disso, suponha que `IndexStatSaveSize` e `IndexStatSaveScale` estejam definidos com seus valores padrão (32K e 100, respectivamente). Usando as fórmulas anteriores, podemos calcular da seguinte forma:
+Suponha que a tabela `t1` tenha 1 milhão de strings e um índice ordenado chamado `ix1` em dois inteiros de quatro bytes. Além disso, suponha que `IndexStatSaveSize` e `IndexStatSaveScale` estejam definidos com seus valores padrão (32K e 100, respectivamente). Usando as fórmulas anteriores, podemos calcular da seguinte forma:
 
   ```sql
     sample_size = 8  + ((1 + 2) * 4) = 20 bytes
@@ -1945,7 +1945,7 @@ Uma proporção (padrão de 5%) dos recursos dos nós de dados, incluindo `DataM
 
 <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>3
 
-As atualizações não aumentam a quantidade de memória de índice utilizada. As inserções entram em vigor imediatamente; no entanto, as linhas não são de fato excluídas até que a transação seja comprometida.
+As atualizações não aumentam a quantidade de memória de índice utilizada. As inserções entram em vigor imediatamente; no entanto, as strings não são de fato excluídas até que a transação seja comprometida.
 
 **Parâmetros da transação.** Os próximos parâmetros `[ndbd]` que discutimos são importantes porque afetam o número de transações paralelas e os tamanhos das transações que podem ser manuseadas pelo sistema. `MaxNoOfConcurrentTransactions` define o número de transações paralelas possíveis em um nó. `MaxNoOfConcurrentOperations` define o número de registros que podem estar na fase de atualização ou bloqueados simultaneamente.
 
@@ -2015,7 +2015,7 @@ Este parâmetro limita o tamanho de uma transação. A transação é abortada s
 
 **Armazenamento temporário de transação.** O próximo conjunto de parâmetros `[ndbd]` é usado para determinar o armazenamento temporário ao executar uma declaração que faz parte de uma transação de cluster. Todos os registros são liberados quando a declaração é concluída e o cluster está aguardando o commit ou o rollback.
 
-Os valores padrão para esses parâmetros são adequados para a maioria das situações. No entanto, os usuários que precisam suportar transações que envolvem um grande número de linhas ou operações podem precisar aumentar esses valores para permitir um melhor paralelismo no sistema, enquanto os usuários cujas aplicações exigem transações relativamente pequenas podem diminuir os valores para economizar memória.
+Os valores padrão para esses parâmetros são adequados para a maioria das situações. No entanto, os usuários que precisam suportar transações que envolvem um grande número de strings ou operações podem precisar aumentar esses valores para permitir um melhor paralelismo no sistema, enquanto os usuários cujas aplicações exigem transações relativamente pequenas podem diminuir os valores para economizar memória.
 
 * `MaxNoOfConcurrentIndexOperations`
 
@@ -2167,7 +2167,7 @@ Dependendo do seu sistema operacional e do sistema de arquivos, definir `InitFra
 
   <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>5
 
-Quando `true`, habilite pontos de verificação locais parciais: Isso significa que cada LCP registra apenas parte do banco de dados completo, além de quaisquer registros que contenham linhas alteradas desde o último LCP; se nenhuma linha tiver sido alterada, o LCP atualiza apenas o arquivo de controle do LCP e não atualiza nenhum arquivo de dados.
+Quando `true`, habilite pontos de verificação locais parciais: Isso significa que cada LCP registra apenas parte do banco de dados completo, além de quaisquer registros que contenham strings alteradas desde o último LCP; se nenhuma string tiver sido alterada, o LCP atualiza apenas o arquivo de controle do LCP e não atualiza nenhum arquivo de dados.
 
 Se `EnablePartialLcp` estiver desativado (`false`), cada LCP usa apenas um único arquivo e escreve um ponto de verificação completo; isso requer a menor quantidade de espaço em disco para LCPs, mas aumenta a carga de escrita para cada LCP. O valor padrão está ativado (`true`). A proporção de espaço usada por LCPS parciais pode ser modificada pelo ajuste para o parâmetro de configuração `RecoveryWork`.
 
@@ -2256,7 +2256,7 @@ Este programa não tem outras dependências além de `stdio.h`, e não requer um
 
   <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema:</strong></span>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um backup, e, em seguida, reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>2
 
-Porcentagem de `RecoveryWork` usada para as linhas inseridas. Um valor mais alto aumenta o número de gravações durante um ponto de verificação local e diminui o tamanho total do LCP. Um valor mais baixo diminui o número de gravações durante um LCP, mas resulta em mais espaço sendo usado para o LCP, o que significa que a recuperação leva mais tempo. Este parâmetro tem efeito apenas quando `EnablePartialLcp` é verdadeiro, ou seja, apenas quando os pontos de verificação locais parciais são habilitados.
+Porcentagem de `RecoveryWork` usada para as strings inseridas. Um valor mais alto aumenta o número de gravações durante um ponto de verificação local e diminui o tamanho total do LCP. Um valor mais baixo diminui o número de gravações durante um LCP, mas resulta em mais espaço sendo usado para o LCP, o que significa que a recuperação leva mais tempo. Este parâmetro tem efeito apenas quando `EnablePartialLcp` é verdadeiro, ou seja, apenas quando os pontos de verificação locais parciais são habilitados.
 
 * `EnableRedoControl`
 
@@ -2430,7 +2430,7 @@ Em versões mais antigas do NDB Cluster, esse parâmetro era um Booleano. `0` ou
 
 Importante
 
-Começando com `glibc` 2.10, `glibc` utiliza arenas por fio para reduzir a disputa por bloqueio em um pool compartilhado, que consome memória real. Em geral, um processo de nó de dados não precisa de arenas por fio, uma vez que ele não realiza nenhuma alocação de memória após a inicialização. (Essa diferença nos alocadores não parece afetar significativamente o desempenho.)
+Começando com `glibc` 2.10, `glibc` utiliza arenas por thread para reduzir a disputa por bloqueio em um pool compartilhado, que consome memória real. Em geral, um processo de nó de dados não precisa de arenas por thread, uma vez que ele não realiza nenhuma alocação de memória após a inicialização. (Essa diferença nos alocadores não parece afetar significativamente o desempenho.)
 
 O comportamento `glibc` é destinado a ser configurável através da variável de ambiente `MALLOC_ARENA_MAX`, mas um erro nesse mecanismo antes do `glibc` 2.16 significou que essa variável não poderia ser definida para menos de 8, de modo que a memória desperdiçada não poderia ser recuperada. (Bug #15907219; veja também <http://sourceware.org/bugzilla/show_bug.cgi?id=13137> para mais informações sobre esse problema.)
 
@@ -2494,7 +2494,7 @@ Há vários parâmetros `[ndbd]` que especificam tempos de espera e intervalos e
 
   <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema:</strong></span>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um backup, e, em seguida, reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>2
 
-Para evitar que o fio principal fique preso em um loop infinito em algum momento, um fio "guarda-costas" verifica o fio principal. Este parâmetro especifica o número de milissegundos entre as verificações. Se o processo permanecer no mesmo estado após três verificações, o fio guarda-costas o termina.
+Para evitar que o thread principal fique preso em um loop infinito em algum momento, um thread "guarda-costas" verifica o thread principal. Este parâmetro especifica o número de milissegundos entre as verificações. Se o processo permanecer no mesmo estado após três verificações, o thread guarda-costas o termina.
 
 Esse parâmetro pode ser facilmente alterado para fins de experimentação ou para se adaptar às condições locais. Pode ser especificado por nó, embora pareça haver pouca razão para isso.
 
@@ -2909,7 +2909,7 @@ O nível padrão é 0.
 
 Este parâmetro controla a frequência com que os relatórios de uso da memória dos nós de dados são registrados no log do clúster; é um valor inteiro que representa o número de segundos entre os relatórios.
 
-O uso da memória de dados e da memória de índice de cada nó de dados é registrado tanto como uma porcentagem quanto como o número de páginas de 32 KB do `DataMemory` e (NDB 7.5 e versões anteriores) `IndexMemory`, respectivamente, definidos no arquivo `config.ini`. Por exemplo, se `DataMemory` for igual a 100 MB e um dado nó de dados estiver usando 50 MB para armazenamento de memória de dados, a linha correspondente no log do clúster pode parecer assim:
+O uso da memória de dados e da memória de índice de cada nó de dados é registrado tanto como uma porcentagem quanto como o número de páginas de 32 KB do `DataMemory` e (NDB 7.5 e versões anteriores) `IndexMemory`, respectivamente, definidos no arquivo `config.ini`. Por exemplo, se `DataMemory` for igual a 100 MB e um dado nó de dados estiver usando 50 MB para armazenamento de memória de dados, a string correspondente no log do clúster pode parecer assim:
 
   ```sql
   2006-12-24 01:18:16 [MgmSrvr] INFO -- Node 2: Data usage is 50%(1280 32K pages of total 2560)
@@ -2962,7 +2962,7 @@ Ao criar um backup, são utilizados dois buffers para enviar dados para o disco.
 
   <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>11
 
-Durante o funcionamento normal, os nós de dados tentam maximizar a velocidade de escrita no disco usada para pontos de verificação locais e backups, mantendo-se dentro dos limites estabelecidos por `MinDiskWriteSpeed` e `MaxDiskWriteSpeed`. O controle de escrita no disco dá a cada fio LDM uma parte igual do orçamento total. Isso permite que os LCPs paralelos ocorram sem exceder o orçamento de I/O do disco. Como um backup é executado por apenas um fio LDM, isso efetivamente causou um corte no orçamento, resultando em tempos de conclusão do backup mais longos e, se a taxa de mudança for suficientemente alta, na falha na conclusão do backup quando a taxa de enchimento do buffer de log de backup for maior que a taxa de escrita alcançável.
+Durante o funcionamento normal, os nós de dados tentam maximizar a velocidade de escrita no disco usada para pontos de verificação locais e backups, mantendo-se dentro dos limites estabelecidos por `MinDiskWriteSpeed` e `MaxDiskWriteSpeed`. O controle de escrita no disco dá a cada thread LDM uma parte igual do orçamento total. Isso permite que os LCPs paralelos ocorram sem exceder o orçamento de I/O do disco. Como um backup é executado por apenas um thread LDM, isso efetivamente causou um corte no orçamento, resultando em tempos de conclusão do backup mais longos e, se a taxa de mudança for suficientemente alta, na falha na conclusão do backup quando a taxa de enchimento do buffer de log de backup for maior que a taxa de escrita alcançável.
 
 Esse problema pode ser resolvido usando o parâmetro de configuração `BackupDiskWriteSpeedPct`, que aceita um valor no intervalo de 0 a 90 (inclusivo), que é interpretado como a porcentagem do orçamento máximo de taxa de escrita do nó que é reservada antes de compartilhar o restante do orçamento entre os threads LDM para LCPs. O thread LDM que executa o backup recebe todo o orçamento de taxa de escrita para o backup, mais sua (reduzida) participação no orçamento de taxa de escrita para pontos de verificação locais. (Isso faz com que o orçamento de taxa de escrita do disco se comporte de maneira semelhante àquela que foi tratada no NDB Cluster 7.3 e versões anteriores.)
 
@@ -3130,7 +3130,7 @@ Você também deve definir `BuildIndexThreads` para um valor não nulo.
 
 Este parâmetro controla diretamente o número de threads de execução usadas pelo **ndbmtd**"), até um máximo de 72. Embora este parâmetro seja definido nas seções `[ndbd]` ou `[ndbd default]` do arquivo `config.ini`, é exclusivo para **ndbmtd**") e não se aplica ao **ndbd**.
 
-A definição de `MaxNoOfExecutionThreads` define o número de fios para cada tipo, conforme determinado por uma matriz no arquivo `storage/ndb/src/kernel/vm/mt_thr_config.cpp`. Esta tabela mostra esses números de fios para os possíveis valores de `MaxNoOfExecutionThreads`.
+A definição de `MaxNoOfExecutionThreads` define o número de threads para cada tipo, conforme determinado por uma matriz no arquivo `storage/ndb/src/kernel/vm/mt_thr_config.cpp`. Esta tabela mostra esses números de threads para os possíveis valores de `MaxNoOfExecutionThreads`.
 
 **Tabela 21.11 Valores de MaxNoOfExecutionThreads e o número correspondente de threads por tipo de thread (LQH, TC, Enviar, Receber).**
 
@@ -3144,9 +3144,9 @@ O número de threads LDM também determina o número de partições usadas por u
 
 Adicionar grandes espaços de tabelas para tabelas de dados de disco ao usar mais do que o número padrão de threads do LDM pode causar problemas com o uso de recursos e CPU se o buffer de página do disco não for suficientemente grande; consulte a descrição do parâmetro de configuração `DiskPageBufferMemory` para obter mais informações.
 
-Os tipos de fios são descritos mais adiante nesta seção (ver `ThreadConfig`).
+Os tipos de threads são descritos mais adiante nesta seção (ver `ThreadConfig`).
 
-Definir este parâmetro fora do intervalo de valores permitido faz com que o servidor de gestão aborrecido no início com o erro Erro linha *`number`*: Valor ilegal *`value`* para o parâmetro MaxNoOfExecutionThreads.
+Definir este parâmetro fora do intervalo de valores permitido faz com que o servidor de gestão aborrecido no início com o erro Erro string *`number`*: Valor ilegal *`value`* para o parâmetro MaxNoOfExecutionThreads.
 
 Para `MaxNoOfExecutionThreads`, um valor de 0 ou 1 é arredondado para cima internamente por `NDB` para 2, de modo que 2 é considerado o valor padrão e mínimo deste parâmetro.
 
@@ -3166,7 +3166,7 @@ Antes da NDB 7.6, alterar o número de threads LDM sempre requer um reinício do
 
 + Caso contrário (ou seja, se o número de threads LDM mudar), ainda é possível efetuar a mudança usando um reinício inicial do nó (*NI*) desde que as duas condições seguintes sejam atendidas:
 
-1. Cada fio LDM lida com um máximo de 8 fragmentos, e
+1. Cada thread LDM lida com um máximo de 8 fragmentos, e
 
 2. O número total de fragmentos de tabela é um múltiplo inteiro do número de threads LDM.
 
@@ -3218,7 +3218,7 @@ As chaves espirais (`{`...`}`) que cercam a lista de parâmetros são necessári
 
 Um *`param`* (parâmetro) especifica qualquer ou todas as informações a seguir:
 
-+ O número de fios do tipo dado (`count`).
++ O número de threads do tipo dado (`count`).
 
 + O conjunto de CPUs para os quais os threads do tipo especificado devem ser vinculados de forma não exclusiva. Isso é determinado por um dos `cpubind` ou `cpuset`). `cpubind` faz com que cada thread seja vinculada (de forma não exclusiva) a uma CPU do conjunto; `cpuset` significa que cada thread é vinculada (de forma não exclusiva) ao conjunto de CPUs especificadas.
 
@@ -3242,7 +3242,7 @@ O parâmetro `realtime` é definido, por padrão, pelo valor do parâmetro de co
 
 + `thread_prio` é um nível de prioridade de thread que pode ser definido de 0 a 10, com 10 representando a maior prioridade. O padrão é 5. Os efeitos precisos deste parâmetro são específicos da plataforma e são descritos mais adiante nesta seção.
 
-O nível de prioridade do fio não pode ser definido para os fios de construção de índice offline.
+O nível de prioridade do thread não pode ser definido para os threads de construção de índice offline.
 
 **configurações e efeitos do thread\_prio por plataforma.** A implementação do `thread_prio` difere entre Linux/FreeBSD, Solaris e Windows. Na lista a seguir, discutimos seus efeitos em cada uma dessas plataformas, uma a uma:
 
@@ -3268,7 +3268,7 @@ Uma configuração `thread_prio` de 9 é mapeada no Solaris para o valor de prio
 
     <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>34
 
-O atributo *`type`* representa um tipo de fio NDB. Os tipos de fio suportados e a faixa de valores `count` permitidos para cada um deles estão fornecidos na lista a seguir:
+O atributo *`type`* representa um tipo de thread NDB. Os tipos de thread suportados e a faixa de valores `count` permitidos para cada um deles estão fornecidos na lista a seguir:
 
 + `ldm`: Manipulador de consulta local (`DBLQH` bloco do kernel) que manipula dados. Quanto mais threads LDM são usadas, mais altamente particionada a data se torna. Cada thread LDM mantém seus próprios conjuntos de dados e particionamentos de índice, bem como seu próprio log de refazer. O valor definido para `ldm` deve ser um dos valores 1, 2, 4, 6, 8, 12, 16, 24 ou 32.
 
@@ -3278,21 +3278,21 @@ Adicionar grandes espaços de tabelas (centenas de gigabytes ou mais) para tabel
 
 + `tc`: Fundo de thread do coordenador de transação (`DBTC` bloco do kernel) que contém o estado de uma transação em andamento. O número máximo de threads do TC é de 32.
 
-Idealmente, cada nova transação pode ser atribuída a um novo fio TC. Na maioria dos casos, 1 fio TC por 2 fios LDM é suficiente para garantir que isso possa acontecer. Nos casos em que o número de escritas é relativamente pequeno em comparação com o número de leituras, é possível que seja necessário apenas 1 fio TC por 4 fios LQH para manter os estados das transações. Por outro lado, em aplicações que realizam muitas atualizações, pode ser necessário que a proporção de fios TC em relação aos fios LDM se aproxime de 1 (por exemplo, 3 fios TC para 4 fios LDM).
+Idealmente, cada nova transação pode ser atribuída a um novo thread TC. Na maioria dos casos, 1 thread TC por 2 threads LDM é suficiente para garantir que isso possa acontecer. Nos casos em que o número de escritas é relativamente pequeno em comparação com o número de leituras, é possível que seja necessário apenas 1 thread TC por 4 threads LQH para manter os estados das transações. Por outro lado, em aplicações que realizam muitas atualizações, pode ser necessário que a proporção de threads TC em relação aos threads LDM se aproxime de 1 (por exemplo, 3 threads TC para 4 threads LDM).
 
 Definir `tc` para 0 faz com que o gerenciamento de TC seja feito pelo thread principal. Na maioria dos casos, isso é efetivamente o mesmo que definir para 1.
 
 Faixa: 0 - 32
 
-+ `main`: Dicionário de dados e blocos de coordenador de transação (`DBDIH` e `DBTC` do kernel), que fornecem gerenciamento de esquema. Isso é sempre tratado por um único fio dedicado.
++ `main`: Dicionário de dados e blocos de coordenador de transação (`DBDIH` e `DBTC` do kernel), que fornecem gerenciamento de esquema. Isso é sempre tratado por um único thread dedicado.
 
 Faixa: apenas 1.
 
-+ `recv`: Receba o fio (`CMVMI` bloco do kernel). Cada fio de recebimento lida com um ou mais sockets para comunicação com outros nós em um NDB Cluster, com um socket por nó. O NDB Cluster suporta vários fios de recebimento; o máximo é 16 desses fios.
++ `recv`: Receba o thread (`CMVMI` bloco do kernel). Cada thread de recebimento lida com um ou mais sockets para comunicação com outros nós em um NDB Cluster, com um socket por nó. O NDB Cluster suporta vários threads de recebimento; o máximo é 16 desses threads.
 
 Faixa: 1 - 16
 
-+ `send`: Envie o fio (`CMVMI` bloco do kernel). Para aumentar a taxa de transferência, é possível realizar envios a partir de um ou mais fios separados e dedicados (máximo de 8).
++ `send`: Envie o thread (`CMVMI` bloco do kernel). Para aumentar a taxa de transferência, é possível realizar envios a partir de um ou mais threads separados e dedicados (máximo de 8).
 
 Anteriormente, todos os threads manipulavam seu próprio envio diretamente; isso ainda pode ser feito, definindo o número de threads de envio para 0 (isso também acontece quando `MaxNoOfExecutionThreads` é definido em menos de 10). Embora isso possa ter um impacto negativo no desempenho, também pode, em alguns casos, proporcionar uma latência diminuída.
 
@@ -3322,7 +3322,7 @@ Se `idxbld` não for especificado, o comportamento padrão é o seguinte:
 
 Intervalo: 0 - 1.
 
-Este tipo de fio foi adicionado no NDB 7.6. (Bug #25835748, Bug #26928111)
+Este tipo de thread foi adicionado no NDB 7.6. (Bug #25835748, Bug #26928111)
 
 Antes da NDB 7.6, a alteração de `ThreadCOnfig` requer um reinício inicial do sistema. Na NDB 7.6 (e em versões posteriores), essa exigência pode ser relaxada em certas circunstâncias:
 
@@ -3330,15 +3330,15 @@ Antes da NDB 7.6, a alteração de `ThreadCOnfig` requer um reinício inicial do
 
 + Caso contrário (ou seja, se o número de threads LDM mudar), ainda é possível efetuar a mudança usando um reinício inicial do nó (*NI*) desde que as duas condições seguintes sejam atendidas:
 
-1. Cada fio LDM lida com um máximo de 8 fragmentos, e
+1. Cada thread LDM lida com um máximo de 8 fragmentos, e
 
 2. O número total de fragmentos de tabela é um múltiplo inteiro do número de threads LDM.
 
 Em qualquer outro caso, é necessário reiniciar o sistema para alterar esse parâmetro.
 
-O NDB 7.6 pode distinguir entre os tipos de fios com base nos seguintes critérios:
+O NDB 7.6 pode distinguir entre os tipos de threads com base nos seguintes critérios:
 
-+ Se o fio é um fio de execução. Os fios do tipo `main`, `ldm`, `recv`, `rep`, `tc` e `send` são fios de execução; os fios `io`, `watchdog` e `idxbld` não são considerados fios de execução.
++ Se o thread é um thread de execução. Os threads do tipo `main`, `ldm`, `recv`, `rep`, `tc` e `send` são threads de execução; os threads `io`, `watchdog` e `idxbld` não são considerados threads de execução.
 
 + Se a alocação de threads para uma tarefa dada é permanente ou temporária. Atualmente, todos os tipos de threads, exceto `idxbld` são considerados permanentes; os threads `idxbld` são considerados threads temporárias.
 
@@ -3362,7 +3362,7 @@ Exemplos simples:
   send{count=3,cpubind=18,19,20}
   ```
 
-Na maioria dos casos, é possível vincular o fio principal (gestão de esquema) e o fio de E/S à mesma CPU, como fizemos no exemplo que acabou de ser mostrado.
+Na maioria dos casos, é possível vincular o thread principal (gestão de esquema) e o thread de E/S à mesma CPU, como fizemos no exemplo que acabou de ser mostrado.
 
 O exemplo a seguir incorpora grupos de CPUs definidos usando tanto `cpuset` quanto `cpubind`, além do uso da priorização de threads.
 
@@ -3428,7 +3428,7 @@ O valor padrão para este parâmetro é `64M` (2000 páginas de 32 KB cada).
 
 Se o valor para `DiskPageBufferMemory` estiver definido muito baixo em conjunto com o uso de mais do que o número padrão de threads LDM em `ThreadConfig` (por exemplo, `{ldm=6...}`), problemas podem surgir ao tentar adicionar um arquivo de dados grande (por exemplo, 500G) a uma tabela `NDB` baseada em disco, onde o processo leva indefinidamente tempo e ocupa um dos núcleos da CPU.
 
-Isso ocorre porque, como parte da adição de um arquivo de dados a um espaço de tabelas, as páginas do extent são bloqueadas na memória em um fio de trabalhador PGMAN adicional, para acesso rápido aos metadados. Ao adicionar um arquivo grande, esse trabalhador tem memória insuficiente para todos os metadados do arquivo de dados. Nesses casos, você deve aumentar `DiskPageBufferMemory`, ou adicionar arquivos de espaço de tabelas menores. Você também pode precisar ajustar `DiskPageBufferEntries`.
+Isso ocorre porque, como parte da adição de um arquivo de dados a um espaço de tabelas, as páginas do extent são bloqueadas na memória em um thread de trabalhador PGMAN adicional, para acesso rápido aos metadados. Ao adicionar um arquivo grande, esse trabalhador tem memória insuficiente para todos os metadados do arquivo de dados. Nesses casos, você deve aumentar `DiskPageBufferMemory`, ou adicionar arquivos de espaço de tabelas menores. Você também pode precisar ajustar `DiskPageBufferEntries`.
 
 Você pode consultar a tabela `ndbinfo.diskpagebuffer` para ajudar a determinar se o valor para este parâmetro deve ser aumentado para minimizar buscas desnecessárias no disco. Consulte a Seção 21.6.15.20, “A tabela ndbinfo diskpagebuffer”, para obter mais informações.
 
@@ -3543,7 +3543,7 @@ Este parâmetro pode ser usado para especificar um espaço de dados de tabela de
 
 O `name` do espaço de tabela é opcional e tem como padrão `DEFAULT-TS`. O `extent_size` também é opcional; ele tem como padrão `1M`. O *`file-specification-list`* usa a mesma sintaxe mostrada com o parâmetro `InitialLogfileGroup`, a única diferença sendo que cada *`file-specification`* usado com `InitialTablespace` corresponde a um arquivo de dados. Pelo menos um deve ser especificado no *`file-specification-list`*. Os arquivos de dados são colocados de acordo com quaisquer valores que tenham sido definidos para `FileSystemPath`, `FileSystemPathDD` e `FileSystemPathDataFiles`, assim como se eles tivessem sido criados como resultado de uma declaração `CREATE TABLESPACE` ou `ALTER TABLESPACE`.
 
-Por exemplo, considere a seguinte linha que especifica `InitialTablespace` na seção `[ndbd default]` do arquivo `config.ini` (assim como com `InitialLogfileGroup`, este parâmetro deve ser sempre definido na seção `[ndbd default]`, pois o comportamento de um NDB Cluster quando diferentes valores são definidos em diferentes nós de dados não é definido):
+Por exemplo, considere a seguinte string que especifica `InitialTablespace` na seção `[ndbd default]` do arquivo `config.ini` (assim como com `InitialLogfileGroup`, este parâmetro deve ser sempre definido na seção `[ndbd default]`, pois o comportamento de um NDB Cluster quando diferentes valores são definidos em diferentes nós de dados não é definido):
 
     ```sql
     InitialTablespace = name=TS1; extent_size=8M; data1.dat:2G; data2.dat:4G
@@ -3952,7 +3952,7 @@ Para os parâmetros de configuração do NDB Cluster utilizados no arquivo de co
 
 Esta seção fornece descrições das opções do servidor `mysqld` relacionadas ao NDB Cluster. Para informações sobre as opções `mysqld` que não são específicas para o NDB Cluster, e para informações gerais sobre o uso de opções com `mysqld`, consulte a Seção 5.1.6, “Opções de comando do servidor”.
 
-Para informações sobre as opções de linha de comando usadas com outros processos do NDB Cluster, consulte a Seção 21.5, “Programas do NDB Cluster”.
+Para informações sobre as opções de string de comando usadas com outros processos do NDB Cluster, consulte a Seção 21.5, “Programas do NDB Cluster”.
 
 * `--ndbcluster`
 
@@ -4068,7 +4068,7 @@ Essa opção não tem efeito, a menos que o servidor MySQL seja iniciado com a o
 
 Causas épocas durante as quais não houve alterações a serem escritas nas tabelas `ndb_apply_status` e `ndb_binlog_index`, mesmo quando `log_slave_updates` está habilitado.
 
-Por padrão, essa opção está desativada. Desativar `--ndb-log-empty-epochs` faz com que as transações de época sem alterações não sejam escritas no log binário, embora uma linha ainda seja escrita mesmo para uma época vazia em `ndb_binlog_index`.
+Por padrão, essa opção está desativada. Desativar `--ndb-log-empty-epochs` faz com que as transações de época sem alterações não sejam escritas no log binário, embora uma string ainda seja escrita mesmo para uma época vazia em `ndb_binlog_index`.
 
 Como o `--ndb-log-empty-epochs=1` faz com que o tamanho da tabela `ndb_binlog_index` aumente independentemente do tamanho do log binário, os usuários devem estar preparados para gerenciar o crescimento dessa tabela, mesmo que esperem que o clúster esteja inativo grande parte do tempo.
 
@@ -4092,7 +4092,7 @@ Para mais informações, consulte a leitura de detecção e resolução de confl
 
   <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
 
-Quando esta opção é especificada e não é possível registrar completamente todos os eventos de linha encontrados, o processo `mysqld` é encerrado.
+Quando esta opção é especificada e não é possível registrar completamente todos os eventos de string encontrados, o processo `mysqld` é encerrado.
 
 * `--ndb-log-orig`
 
@@ -4102,7 +4102,7 @@ Registre o ID do servidor de origem e o período no `ndb_binlog_index` tabela.
 
 Nota
 
-Isso permite que uma determinada época tenha várias linhas no `ndb_binlog_index`, uma para cada época de origem.
+Isso permite que uma determinada época tenha várias strings no `ndb_binlog_index`, uma para cada época de origem.
 
 Para mais informações, consulte a Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”.
 
@@ -4110,7 +4110,7 @@ Para mais informações, consulte a Seção 21.7.4, “Esquema e tabelas de repl
 
   <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>7
 
-Faz com que a replica `mysqld` escreva o ID de transação NDB em cada linha do log binário. Esse registro requer o uso do formato de evento da Versão 2 para o log binário; portanto, a variável de sistema `log_bin_use_v1_row_events` deve ser desativada para usar essa opção.
+Faz com que a replica `mysqld` escreva o ID de transação NDB em cada string do log binário. Esse registro requer o uso do formato de evento da Versão 2 para o log binário; portanto, a variável de sistema `log_bin_use_v1_row_events` deve ser desativada para usar essa opção.
 
 É necessário `--ndb-log-transaction-id` para habilitar a detecção e resolução de conflitos da replicação do NDB Cluster usando a função `NDB$EPOCH_TRANS()` (consulte NDB$EPOCH_TRANS()")).
 
@@ -4134,7 +4134,7 @@ Essa opção pode ser usada para resolução de conflitos de replicação NDB em
 
   <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>9
 
-Se `mysqld` escreve atualizações apenas (`ON`) ou linhas completas (`OFF`) no log binário. Quando esta opção está habilitada e os `--ndb-log-update-as-write` e `--ndb-log-update-minimal` estão desativados, as operações de diferentes tipos são registradas conforme descrito na lista a seguir
+Se `mysqld` escreve atualizações apenas (`ON`) ou strings completas (`OFF`) no log binário. Quando esta opção está habilitada e os `--ndb-log-update-as-write` e `--ndb-log-update-minimal` estão desativados, as operações de diferentes tipos são registradas conforme descrito na lista a seguir
 
 + `INSERT`: Registrado como um evento `WRITE_ROW` sem imagem anterior; a imagem posterior é registrada com todas as colunas.
 
@@ -4174,7 +4174,7 @@ A opção `--ndb-nodeid` substitui qualquer ID de nó definido com `--ndb-connec
 
 Além disso, se o `--ndb-nodeid` for usado, então ou uma ID de nó correspondente deve ser encontrada em uma seção do `[mysqld]` ou `[api]` do `config.ini`, ou deve haver uma seção “aberta” do `[mysqld]` ou `[api]` no arquivo (ou seja, uma seção sem um parâmetro `NodeId` ou `Id` especificado). Isso também é verdadeiro se a ID do nó for especificada como parte da string de conexão.
 
-Independentemente de como o ID do nó é determinado, ele é mostrado como o valor da variável de status global `Ndb_cluster_node_id` na saída de `SHOW STATUS`, e como `cluster_node_id` na linha `connection` da saída de `SHOW ENGINE NDBCLUSTER STATUS`.
+Independentemente de como o ID do nó é determinado, ele é mostrado como o valor da variável de status global `Ndb_cluster_node_id` na saída de `SHOW STATUS`, e como `cluster_node_id` na string `connection` da saída de `SHOW ENGINE NDBCLUSTER STATUS`.
 
 Para obter mais informações sobre os IDs de nós para nós de SQL do NDB Cluster, consulte a Seção 21.4.3.7, “Definindo nós SQL e outros nós de API em um NDB Cluster”.
 
@@ -4182,7 +4182,7 @@ Para obter mais informações sobre os IDs de nós para nós de SQL do NDB Clust
 
   <table frame="box" rules="all" summary="Properties for ndb-batch-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>3
 
-Defina o número de milissegundos para esperar entre os conjuntos de linhas por meio das declarações `OPTIMIZE TABLE` em tabelas `NDB`. O padrão é 10.
+Defina o número de milissegundos para esperar entre os conjuntos de strings por meio das declarações `OPTIMIZE TABLE` em tabelas `NDB`. O padrão é 10.
 
 * `--ndb-optimized-node-selection`
 
@@ -4248,7 +4248,7 @@ O cache de consulta é descontinuado a partir do MySQL 5.7.20 e é removido no M
 
   <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>1
 
-Por padrão, a execução de `RESET SLAVE` faz com que uma replica do NDB Cluster elimine todas as linhas da sua tabela `ndb_apply_status`. Você pode desabilitar isso definindo `ndb_clear_apply_status=OFF`.
+Por padrão, a execução de `RESET SLAVE` faz com que uma replica do NDB Cluster elimine todas as strings da sua tabela `ndb_apply_status`. Você pode desabilitar isso definindo `ndb_clear_apply_status=OFF`.
 
 * `ndb_data_node_neighbour`
 
@@ -4360,7 +4360,7 @@ Isso significa que expressões como `t1.a = t2.a + constant` não podem ser empu
 
 2. As consultas que fazem referência às colunas `BLOB` ou `TEXT` não são suportadas.
 
-3. O bloqueio explícito não é suportado; no entanto, o mecanismo de armazenamento `NDB` com característica de bloqueio implícito baseado em linha é aplicado.
+3. O bloqueio explícito não é suportado; no entanto, o mecanismo de armazenamento `NDB` com característica de bloqueio implícito baseado em string é aplicado.
 
 Isso significa que uma junção usando `FOR UPDATE` não pode ser empurrada para baixo.
 
@@ -4432,7 +4432,7 @@ Você pode verificar se uma junção específica pode ser reduzida verificando-a
 
 Nota
 
-Se as tabelas filhas unidas internas são unidas por `ref`, *e* o resultado é ordenado ou agrupado por um índice ordenado, este índice não pode fornecer linhas ordenadas, o que força a escrita em um arquivo temporário ordenado.
+Se as tabelas filhas unidas internas são unidas por `ref`, *e* o resultado é ordenado ou agrupado por um índice ordenado, este índice não pode fornecer strings ordenadas, o que força a escrita em um arquivo temporário ordenado.
 
 Dois outros recursos de informação sobre o desempenho de junção empurrada estão disponíveis:
 
@@ -4462,7 +4462,7 @@ Faz com que a mapeo de épocas para posições no log binário seja inserido na 
 
   <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>8
 
-Quando essa variável é definida como 0, as transações de época sem alterações não são escritas no log binário, embora uma linha ainda seja escrita, mesmo para uma época vazia em `ndb_binlog_index`.
+Quando essa variável é definida como 0, as transações de época sem alterações não são escritas no log binário, embora uma string ainda seja escrita, mesmo para uma época vazia em `ndb_binlog_index`.
 
 * `ndb_log_empty_update`
 
@@ -4502,11 +4502,11 @@ Existem duas formas de seleção de nós otimizada, descritas aqui:
 
 1. O nó SQL utiliza promixity para determinar o coordenador de transação; ou seja, o nó de dados "mais próximo" ao nó SQL é escolhido como o coordenador de transação. Para esse propósito, um nó de dados que possui uma conexão de memória compartilhada com o nó SQL é considerado "mais próximo" ao nó SQL; os próximos mais próximos (em ordem decrescente de proximidade) são: conexão TCP para `localhost`, seguida por conexão TCP de um host que não seja `localhost`.
 
-2. O fio SQL utiliza o conhecimento da distribuição para selecionar o nó de dados. Ou seja, o nó de dados que abriga a partição do clúster a que o primeiro comando de uma transação dada tem acesso é utilizado como coordenador da transação para toda a transação. (Isso é eficaz apenas se o primeiro comando da transação não acessar mais de uma partição do clúster.)
+2. O thread SQL utiliza o conhecimento da distribuição para selecionar o nó de dados. Ou seja, o nó de dados que abriga a partição do clúster a que o primeiro comando de uma transação dada tem acesso é utilizado como coordenador da transação para toda a transação. (Isso é eficaz apenas se o primeiro comando da transação não acessar mais de uma partição do clúster.)
 
 Esta opção aceita um dos valores inteiros `0`, `1`, `2` ou `3`. `3` é o padrão. Esses valores afetam a seleção de nó da seguinte forma:
 
-+ `0`: A seleção do nó não é otimizada. Cada nó de dados é empregado como coordenador de transação 8 vezes antes de o fio SQL prosseguir para o próximo nó de dados.
++ `0`: A seleção do nó não é otimizada. Cada nó de dados é empregado como coordenador de transação 8 vezes antes de o thread SQL prosseguir para o próximo nó de dados.
 
 + `1`: A proximidade com o nó SQL é usada para determinar o coordenador da transação.
 
@@ -4570,7 +4570,7 @@ Este é um limite sobre a porcentagem de memória livre restante antes de relata
 
   <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>9
 
-Tradicionalmente, `NDB` criou tabelas com verificações de checksum de linha, que verifica problemas de hardware às custas do desempenho. Definir `ndb_row_checksum` para 0 significa que as verificações de checksum de linha *não* são usadas para novas ou alteradas tabelas, o que tem um impacto significativo no desempenho para todos os tipos de consultas. Esta variável é definida como 1 por padrão, para fornecer comportamento compatível com versões anteriores.
+Tradicionalmente, `NDB` criou tabelas com verificações de checksum de string, que verifica problemas de hardware às custas do desempenho. Definir `ndb_row_checksum` para 0 significa que as verificações de checksum de string *não* são usadas para novas ou alteradas tabelas, o que tem um impacto significativo no desempenho para todos os tipos de consultas. Esta variável é definida como 1 por padrão, para fornecer comportamento compatível com versões anteriores.
 
 * `ndb_show_foreign_key_mock_tables`
 
@@ -4582,7 +4582,7 @@ Mostre as tabelas simuladas usadas por `NDB` para suportar `foreign_key_checks=0
 
   <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>1
 
-Determine o papel deste nó SQL (e do NDB Cluster) em uma configuração de replicação circular (“ativa-ativa”). `ndb_slave_conflict_role` pode assumir qualquer um dos valores `PRIMARY`, `SECONDARY`, `PASS` ou `NULL` (o padrão). O fio de SQL da replica deve ser parado antes de você poder alterar `ndb_slave_conflict_role`. Além disso, não é possível alterar diretamente entre `PASS` e qualquer um dos valores `PRIMARY` ou `SECONDARY` diretamente; nesses casos, você deve garantir que o fio de SQL seja parado, em seguida, execute `SET @@GLOBAL.ndb_slave_conflict_role = 'NONE'` primeiro.
+Determine o papel deste nó SQL (e do NDB Cluster) em uma configuração de replicação circular (“ativa-ativa”). `ndb_slave_conflict_role` pode assumir qualquer um dos valores `PRIMARY`, `SECONDARY`, `PASS` ou `NULL` (o padrão). O thread de SQL da replica deve ser parado antes de você poder alterar `ndb_slave_conflict_role`. Além disso, não é possível alterar diretamente entre `PASS` e qualquer um dos valores `PRIMARY` ou `SECONDARY` diretamente; nesses casos, você deve garantir que o thread de SQL seja parado, em seguida, execute `SET @@GLOBAL.ndb_slave_conflict_role = 'NONE'` primeiro.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
@@ -4622,7 +4622,7 @@ Força a `NDB` a usar um contagem de registros durante o planejamento da consult
 
   <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>6
 
-Você pode desativar o suporte para transações `NDB` definindo o valor desta variável para `OFF`. Geralmente, isso não é recomendado, embora possa ser útil desativar o suporte para transações dentro de uma sessão de cliente específica quando essa sessão é usada para importar um ou mais arquivos de dump com transações grandes; isso permite que uma inserção de várias linhas seja executada em partes, em vez de como uma única transação. Nesses casos, uma vez que a importação tenha sido concluída, você deve ou redefinir o valor da variável para esta sessão para `ON`, ou simplesmente encerrar a sessão.
+Você pode desativar o suporte para transações `NDB` definindo o valor desta variável para `OFF`. Geralmente, isso não é recomendado, embora possa ser útil desativar o suporte para transações dentro de uma sessão de cliente específica quando essa sessão é usada para importar um ou mais arquivos de dump com transações grandes; isso permite que uma inserção de várias strings seja executada em partes, em vez de como uma única transação. Nesses casos, uma vez que a importação tenha sido concluída, você deve ou redefinir o valor da variável para esta sessão para `ON`, ou simplesmente encerrar a sessão.
 
 * `ndb_version`
 
@@ -4698,7 +4698,7 @@ Utilizado apenas para testes e depuração.
 
   <table frame="box" rules="all" summary="Properties for ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
-Coloque o banco de dados `ndbinfo` no modo offline, no qual as tabelas e visualizações podem ser abertas mesmo quando elas não existem na realidade, ou quando elas existem, mas têm definições diferentes em `NDB`. Não são retornadas linhas a partir dessas tabelas (ou visualizações).
+Coloque o banco de dados `ndbinfo` no modo offline, no qual as tabelas e visualizações podem ser abertas mesmo quando elas não existem na realidade, ou quando elas existem, mas têm definições diferentes em `NDB`. Não são retornadas strings a partir dessas tabelas (ou visualizações).
 
 * `ndbinfo_show_hidden`
 
@@ -4834,7 +4834,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_event_data_count_injector`
 
-O número de eventos de mudança de linha recebidos pelo thread do injetor binlog do NDB.
+O número de eventos de mudança de string recebidos pelo thread do injetor binlog do NDB.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -4842,7 +4842,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_event_data_count`
 
-O número de eventos de mudança de linha recebidos por este servidor MySQL (nó SQL).
+O número de eventos de mudança de string recebidos por este servidor MySQL (nó SQL).
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -4850,7 +4850,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_event_nondata_count_injector`
 
-O número de eventos recebidos, exceto eventos de mudança de linha, pelo fio de inserção de log binário do NDB.
+O número de eventos recebidos, exceto eventos de mudança de string, pelo thread de inserção de log binário do NDB.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -4858,7 +4858,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_event_nondata_count`
 
-O número de eventos recebidos, exceto eventos de mudança de linha, por este servidor MySQL (nó SQL).
+O número de eventos recebidos, exceto eventos de mudança de string, por este servidor MySQL (nó SQL).
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -4954,7 +4954,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_read_row_count_session`
 
-O número total de linhas que foram lidas nesta sessão do cliente. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
+O número total de strings que foram lidas nesta sessão do cliente. Isso inclui todas as strings lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste `mysqld`.
 
@@ -4962,7 +4962,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_read_row_count_slave`
 
-O número total de linhas que foram lidas por esta réplica. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada por esta réplica.
+O número total de strings que foram lidas por esta réplica. Isso inclui todas as strings lidas por qualquer chave primária, chave única ou operação de varredura realizada por esta réplica.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global. Se esse servidor MySQL não atuar como uma réplica ou não usar tabelas NDB, esse valor é sempre 0.
 
@@ -4970,9 +4970,9 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_read_row_count`
 
-O número total de linhas que foram lidas por este servidor MySQL (nó SQL). Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura feita por este servidor MySQL (nó SQL).
+O número total de strings que foram lidas por este servidor MySQL (nó SQL). Isso inclui todas as strings lidas por qualquer chave primária, chave única ou operação de varredura feita por este servidor MySQL (nó SQL).
 
-Você deve estar ciente de que esse valor pode não ser completamente preciso em relação às linhas lidas por consultas `SELECT` e `COUNT(*)`, devido ao fato de que, neste caso, o servidor MySQL realmente lê pseudo-linhas na forma `[table fragment ID]:[number of rows in fragment]` e soma as linhas por fragmento para todos os fragmentos na tabela para derivar um contagem estimada para todas as linhas. `Ndb_api_read_row_count` usa essa estimativa e não o número real de linhas na tabela.
+Você deve estar ciente de que esse valor pode não ser completamente preciso em relação às strings lidas por consultas `SELECT` e `COUNT(*)`, devido ao fato de que, neste caso, o servidor MySQL realmente lê pseudo-strings na forma `[table fragment ID]:[number of rows in fragment]` e soma as strings por fragmento para todos os fragmentos na tabela para derivar um contagem estimada para todas as strings. `Ndb_api_read_row_count` usa essa estimativa e não o número real de strings na tabela.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -4980,7 +4980,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_scan_batch_count_session`
 
-O número de lotes de linhas recebidos nesta sessão do cliente. Um lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
+O número de lotes de strings recebidos nesta sessão do cliente. Um lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste `mysqld`.
 
@@ -4988,7 +4988,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_scan_batch_count_slave`
 
-O número de lotes de linhas recebidos por esta réplica. 1 lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
+O número de lotes de strings recebidos por esta réplica. 1 lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global. Se esse servidor MySQL não atuar como uma réplica ou não usar tabelas NDB, esse valor é sempre 0.
 
@@ -4996,7 +4996,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_scan_batch_count`
 
-O número de lotes de linhas recebidos por este servidor MySQL (nó SQL). 1 lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
+O número de lotes de strings recebidos por este servidor MySQL (nó SQL). 1 lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -5100,7 +5100,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_trans_local_read_row_count_session`
 
-O número total de linhas que foram lidas nesta sessão do cliente. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
+O número total de strings que foram lidas nesta sessão do cliente. Isso inclui todas as strings lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste `mysqld`.
 
@@ -5108,7 +5108,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_trans_local_read_row_count_slave`
 
-O número total de linhas que foram lidas por esta réplica. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada por esta réplica.
+O número total de strings que foram lidas por esta réplica. Isso inclui todas as strings lidas por qualquer chave primária, chave única ou operação de varredura realizada por esta réplica.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global. Se esse servidor MySQL não atuar como uma réplica ou não usar tabelas NDB, esse valor é sempre 0.
 
@@ -5116,7 +5116,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_trans_local_read_row_count`
 
-O número total de linhas que foram lidas por este servidor MySQL (nó SQL). Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura feita por este servidor MySQL (nó SQL).
+O número total de strings que foram lidas por este servidor MySQL (nó SQL). Isso inclui todas as strings lidas por qualquer chave primária, chave única ou operação de varredura feita por este servidor MySQL (nó SQL).
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -5172,7 +5172,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_exec_complete_count_session`
 
-O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
+O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste `mysqld`.
 
@@ -5180,7 +5180,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_exec_complete_count_slave`
 
-O número de vezes que um fio foi bloqueado por esta replica enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
+O número de vezes que um thread foi bloqueado por esta replica enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global. Se esse servidor MySQL não atuar como uma réplica ou não usar tabelas NDB, esse valor é sempre 0.
 
@@ -5188,7 +5188,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_exec_complete_count`
 
-O número de vezes que um fio foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava a conclusão de uma operação. Isso inclui todas as chamadas `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
+O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava a conclusão de uma operação. Isso inclui todas as chamadas `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -5196,7 +5196,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_meta_request_count_session`
 
-O número de vezes que um fio foi bloqueado nesta sessão do cliente, aguardando um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
+O número de vezes que um thread foi bloqueado nesta sessão do cliente, aguardando um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste `mysqld`.
 
@@ -5204,7 +5204,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_meta_request_count_slave`
 
-O número de vezes que um fio foi bloqueado por esta réplica enquanto aguardava um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
+O número de vezes que um thread foi bloqueado por esta réplica enquanto aguardava um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global. Se esse servidor MySQL não atuar como uma réplica ou não usar tabelas NDB, esse valor é sempre 0.
 
@@ -5212,7 +5212,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_meta_request_count`
 
-O número de vezes que um fio foi bloqueado por este servidor MySQL (nó SQL) aguardando um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
+O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) aguardando um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -5244,7 +5244,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_scan_result_count_session`
 
-O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava um sinal baseado em varredura, como quando esperando mais resultados de uma varredura, ou quando esperando que a varredura se feche.
+O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava um sinal baseado em varredura, como quando esperando mais resultados de uma varredura, ou quando esperando que a varredura se feche.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste `mysqld`.
 
@@ -5252,7 +5252,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_scan_result_count_slave`
 
-O número de vezes que um fio foi bloqueado por esta réplica enquanto aguardava um sinal baseado em varredura, como quando esperando mais resultados de uma varredura, ou quando esperando que a varredura se feche.
+O número de vezes que um thread foi bloqueado por esta réplica enquanto aguardava um sinal baseado em varredura, como quando esperando mais resultados de uma varredura, ou quando esperando que a varredura se feche.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global. Se esse servidor MySQL não atuar como uma réplica ou não usar tabelas NDB, esse valor é sempre 0.
 
@@ -5260,7 +5260,7 @@ Para mais informações, consulte a Seção 21.6.14, “Contadores e variáveis 
 
 * `Ndb_api_wait_scan_result_count`
 
-O número de vezes que um fio foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava um sinal baseado em varredura, como quando esperando mais resultados de uma varredura, ou quando esperando que a varredura feche.
+O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava um sinal baseado em varredura, como quando esperando mais resultados de uma varredura, ou quando esperando que a varredura feche.
 
 Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela tem um escopo efetivamente global.
 
@@ -5286,43 +5286,43 @@ Se o servidor não faz parte de um NDB Cluster, então o valor desta variável �
 
 * `Ndb_conflict_fn_epoch`
 
-Utilizada na resolução de conflitos da replicação do NDB Cluster, essa variável mostra o número de linhas encontradas em conflito usando a resolução de conflitos `NDB$EPOCH()` em um determinado `mysqld` desde a última vez que foi reiniciado.
+Utilizada na resolução de conflitos da replicação do NDB Cluster, essa variável mostra o número de strings encontradas em conflito usando a resolução de conflitos `NDB$EPOCH()` em um determinado `mysqld` desde a última vez que foi reiniciado.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
 * `Ndb_conflict_fn_epoch_trans`
 
-Utilizada na resolução de conflitos da replicação do NDB Cluster, essa variável mostra o número de linhas encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS()` em um determinado `mysqld` desde a última vez que foi reiniciado.
+Utilizada na resolução de conflitos da replicação do NDB Cluster, essa variável mostra o número de strings encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS()` em um determinado `mysqld` desde a última vez que foi reiniciado.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
 * `Ndb_conflict_fn_epoch2`
 
-Mostra o número de linhas encontradas em conflito na resolução de conflitos da Replicação em NDB Cluster, quando se usa `NDB$EPOCH2()`, na fonte designada como a principal desde a última vez que foi reiniciado.
+Mostra o número de strings encontradas em conflito na resolução de conflitos da Replicação em NDB Cluster, quando se usa `NDB$EPOCH2()`, na fonte designada como a principal desde a última vez que foi reiniciado.
 
 Para mais informações, consulte NDB$EPOCH2()").
 
 * `Ndb_conflict_fn_epoch2_trans`
 
-Utilizada na resolução de conflitos da replicação do NDB Cluster, essa variável mostra o número de linhas encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS2()` em um determinado `mysqld` desde a última vez que foi reiniciado.
+Utilizada na resolução de conflitos da replicação do NDB Cluster, essa variável mostra o número de strings encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS2()` em um determinado `mysqld` desde a última vez que foi reiniciado.
 
 Para mais informações, consulte (NDB$EPOCH2\_TRANS()").
 
 * `Ndb_conflict_fn_max`
 
-Utilizada na resolução de conflitos de replicação de clúster NDB, essa variável mostra o número de vezes que uma linha não foi aplicada no nó SQL atual devido à resolução de conflitos "maior timestamp vence" desde a última vez que este `mysqld` foi iniciado.
+Utilizada na resolução de conflitos de replicação de clúster NDB, essa variável mostra o número de vezes que uma string não foi aplicada no nó SQL atual devido à resolução de conflitos "maior timestamp vence" desde a última vez que este `mysqld` foi iniciado.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
 * `Ndb_conflict_fn_max_del_win`
 
-Mostra o número de vezes que uma linha foi rejeitada no nó SQL atual devido à resolução de conflitos da Replicação do NDB Cluster usando `NDB$MAX_DELETE_WIN()`, desde a última vez que este `mysqld` foi iniciado.
+Mostra o número de vezes que uma string foi rejeitada no nó SQL atual devido à resolução de conflitos da Replicação do NDB Cluster usando `NDB$MAX_DELETE_WIN()`, desde a última vez que este `mysqld` foi iniciado.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
 * `Ndb_conflict_fn_old`
 
-Utilizada na resolução de conflitos de replicação de clúster NDB, essa variável mostra o número de vezes que uma linha não foi aplicada como resultado da resolução de conflitos "mesmo timestamp vence" em um dado `mysqld` desde a última vez que foi reiniciado.
+Utilizada na resolução de conflitos de replicação de clúster NDB, essa variável mostra o número de vezes que uma string não foi aplicada como resultado da resolução de conflitos "mesmo timestamp vence" em um dado `mysqld` desde a última vez que foi reiniciado.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
@@ -5352,13 +5352,13 @@ Consulte a Seção 21.7.11, “Resolução de conflitos de replicação de clust
 
 * `Ndb_conflict_last_stable_epoch`
 
-Número de linhas encontradas em conflito por uma função de conflito transacional
+Número de strings encontradas em conflito por uma função de conflito transacional
 
 Consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”, para obter mais informações.
 
 * `Ndb_conflict_trans_row_conflict_count`
 
-Utilizado na resolução de conflitos da replicação do NDB Cluster, essa variável de status mostra o número de linhas encontradas diretamente em conflito por uma função de conflito transacional em um dado `mysqld` desde a última vez que foi reiniciado.
+Utilizado na resolução de conflitos da replicação do NDB Cluster, essa variável de status mostra o número de strings encontradas diretamente em conflito por uma função de conflito transacional em um dado `mysqld` desde a última vez que foi reiniciado.
 
 Atualmente, a única função de detecção de conflitos transacionais suportada pelo NDB Cluster é NDB$EPOCH_TRANS(), então essa variável de status é efetivamente a mesma que `Ndb_conflict_fn_epoch_trans`.
 
@@ -5366,7 +5366,7 @@ Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos
 
 * `Ndb_conflict_trans_row_reject_count`
 
-Utilizado na resolução de conflitos da replicação do NDB Cluster, essa variável de status mostra o número total de linhas realinhadas porque foram determinadas como conflitantes por uma função de detecção de conflitos transacional. Isso inclui não apenas `Ndb_conflict_trans_row_conflict_count`, mas também quaisquer linhas em conflitos ou dependentes de transações conflitantes.
+Utilizado na resolução de conflitos da replicação do NDB Cluster, essa variável de status mostra o número total de strings realinhadas porque foram determinadas como conflitantes por uma função de detecção de conflitos transacional. Isso inclui não apenas `Ndb_conflict_trans_row_conflict_count`, mas também quaisquer strings em conflitos ou dependentes de transações conflitantes.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
@@ -5390,7 +5390,7 @@ Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos
 
 * `Ndb_epoch_delete_delete_count`
 
-Ao usar a detecção de conflitos delete-delete, este é o número de conflitos delete-delete detectados, onde uma operação de exclusão é aplicada, mas a linha indicada não existe.
+Ao usar a detecção de conflitos delete-delete, este é o número de conflitos delete-delete detectados, onde uma operação de exclusão é aplicada, mas a string indicada não existe.
 
 * `Ndb_execute_count`
 
@@ -5428,7 +5428,7 @@ O número de junções que foram com sucesso reduzidas para `NDB` e executadas l
 
 * `Ndb_pushed_reads`
 
-O número de linhas devolvidas a `mysqld` pelo kernel NDB através de junções que foram empurradas para baixo.
+O número de strings devolvidas a `mysqld` pelo kernel NDB através de junções que foram empurradas para baixo.
 
 Nota
 
@@ -5723,7 +5723,7 @@ Os parâmetros que afetam todos os transportadores de memória compartilhada sã
 
 Os nós da API para os quais não são definidos nomes de host utilizam o transportador TCP para se comunicar com nós de dados independentes dos hosts nos quais são iniciados; os parâmetros e valores definidos na seção `[tcp default]` do arquivo de configuração aplicam-se a todos os transportadores TCP do clúster.
 
-Para um desempenho ótimo, você pode definir um tempo de rotação para o transportador SHM (parâmetro `ShmSpinTime`). Isso afeta tanto o fio do receptor do nó de dados quanto o proprietário da pesquisa (fio de recepção ou fio do usuário) em `NDB`.
+Para um desempenho ótimo, você pode definir um tempo de rotação para o transportador SHM (parâmetro `ShmSpinTime`). Isso afeta tanto o thread do receptor do nó de dados quanto o proprietário da pesquisa (thread de recepção ou thread do usuário) em `NDB`.
 
 * `Checksum`
 

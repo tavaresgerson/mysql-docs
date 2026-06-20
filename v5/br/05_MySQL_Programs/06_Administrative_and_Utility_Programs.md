@@ -24,7 +24,7 @@ innochecksum [options] file_name
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
-Exibe ajuda na linha de comando. Exemplo de uso:
+Exibe ajuda na string de comando. Exemplo de uso:
 
   ```sql
   innochecksum --help
@@ -34,7 +34,7 @@ Exibe ajuda na linha de comando. Exemplo de uso:
 
   <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
-Sinônimo de `--help`. Exibe ajuda na linha de comando. Exemplo de uso:
+Sinônimo de `--help`. Exibe ajuda na string de comando. Exemplo de uso:
 
   ```sql
   innochecksum --info
@@ -477,7 +477,7 @@ Sem opções, o **myisamchk** simplesmente verifica sua tabela como operação p
 
 *`tbl_name`* é a tabela do banco de dados que você deseja verificar ou reparar. Se você executar **myisamchk** em algum lugar que não seja o diretório do banco de dados, você deve especificar o caminho para o diretório do banco de dados, porque o **myisamchk** não tem ideia de onde o banco de dados está localizado. Na verdade, o **myisamchk** não se importa realmente se os arquivos que você está trabalhando estão localizados em um diretório de banco de dados. Você pode copiar os arquivos que correspondem a uma tabela de banco de dados para algum outro local e realizar operações de recuperação neles.
 
-Você pode nomear várias tabelas na linha de comando **myisamchk** se desejar. Você também pode especificar uma tabela ao nomear seu arquivo de índice (o arquivo com o sufixo `.MYI`). Isso permite que você especifique todas as tabelas em um diretório usando o padrão `*.MYI`. Por exemplo, se você estiver em um diretório de banco de dados, você pode verificar todas as tabelas `MyISAM` nesse diretório da seguinte maneira:
+Você pode nomear várias tabelas na string de comando **myisamchk** se desejar. Você também pode especificar uma tabela ao nomear seu arquivo de índice (o arquivo com o sufixo `.MYI`). Isso permite que você especifique todas as tabelas em um diretório usando o padrão `*.MYI`. Por exemplo, se você estiver em um diretório de banco de dados, você pode verificar todas as tabelas `MyISAM` nesse diretório da seguinte maneira:
 
 ```sql
 myisamchk *.MYI
@@ -530,7 +530,7 @@ Se o `mysqld` estiver em execução, você deve forçar-o a limpar quaisquer mod
 
 No entanto, a maneira mais fácil de evitar esse problema é usar `CHECK TABLE` em vez de **myisamchk** para verificar tabelas. Veja a Seção 13.7.2.2, “Instrução CHECK TABLE”.
 
-O **myisamchk** suporta as seguintes opções, que podem ser especificadas na linha de comando ou no grupo `[myisamchk]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **myisamchk** suporta as seguintes opções, que podem ser especificadas na string de comando ou no grupo `[myisamchk]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.21 Opções do myisamchk**
 
@@ -602,7 +602,7 @@ O **myisamchk** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <td><code>--extend-check</code></td>
-<td>Faça uma verificação ou reparo muito detalhado da tabela que tenta recuperar todas as linhas possíveis do arquivo de dados</td>
+<td>Faça uma verificação ou reparo muito detalhado da tabela que tenta recuperar todas as strings possíveis do arquivo de dados</td>
 </tr>
 <tr>
 <td><code>--fast</code></td>
@@ -650,7 +650,7 @@ O **myisamchk** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <td><code>--max-record-length</code></td>
-<td>Ignorar linhas maiores que o comprimento dado se o myisamchk não conseguir alocar memória para mantê-las</td>
+<td>Ignorar strings maiores que o comprimento dado se o myisamchk não conseguir alocar memória para mantê-las</td>
 </tr>
 <tr>
 <td><code>--medium-check</code></td>
@@ -682,7 +682,7 @@ O **myisamchk** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <td><code>--read_buffer_size</code></td>
-<td>Cada fio que realiza uma varredura sequencial aloca um buffer desse tamanho para cada tabela que ele varre.</td>
+<td>Cada thread que realiza uma varredura sequencial aloca um buffer desse tamanho para cada tabela que ele varre.</td>
 </tr>
 <tr>
 <td><code>--read-only</code></td>
@@ -694,7 +694,7 @@ O **myisamchk** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <td><code>--safe-recover</code></td>
-<td>Faça uma reparação usando um método de recuperação antigo que lê todas as linhas em ordem e atualiza todas as árvores de índice com base nas linhas encontradas.</td>
+<td>Faça uma reparação usando um método de recuperação antigo que lê todas as strings em ordem e atualiza todas as árvores de índice com base nas strings encontradas.</td>
 </tr>
 <tr>
 <td><code>--set-auto-increment</code></td>
@@ -793,7 +793,7 @@ Essa opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -801,7 +801,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -809,7 +809,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **myisamchk** normalmente lê o grupo `[myisamchk]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **myisamchk** também lê o grupo [[`[myisamchk_other]`].
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--no-defaults`
 
@@ -817,9 +817,9 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--print-defaults`
 
@@ -827,7 +827,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--silent`, `-s`
 
@@ -861,7 +861,7 @@ As possíveis variáveis **myisamchk** e seus valores padrão podem ser examinad
 
 `myisam_sort_buffer_size` é usado quando as chaves são reparadas por meio de classificação de chaves, que é o caso normal quando você usa `--recover`. `sort_buffer_size` é um sinônimo descontinuado para `myisam_sort_buffer_size`.
 
-`key_buffer_size` é usado quando você está verificando a tabela com `--extend-check` ou quando as chaves são reparadas inserindo linhas de chave uma a uma na tabela (como ao fazer inserções normais). A reparação através do buffer de chave é usada nos seguintes casos:
+`key_buffer_size` é usado quando você está verificando a tabela com `--extend-check` ou quando as chaves são reparadas inserindo strings de chave uma a uma na tabela (como ao fazer inserções normais). A reparação através do buffer de chave é usada nos seguintes casos:
 
 * Você usa `--safe-recover`.
 * Os arquivos temporários necessários para ordenar as chaves seriam mais do que o dobro do tamanho quando o arquivo de chave é criado diretamente. Isso geralmente acontece quando você tem grandes valores de chave para as colunas `CHAR`, `VARCHAR` ou `TEXT`, porque a operação de ordenação precisa armazenar os valores completos da chave conforme o processo prossegue. Se você tem muito espaço temporário e pode forçar o **myisamchk** a ser reparado por ordenação, você pode usar a opção `--sort-recover`.
@@ -992,7 +992,7 @@ O comprimento máximo do arquivo de dados (quando o arquivo de dados é recriado
 
   <table frame="box" rules="all" summary="Properties for extend-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--extend-check</code></td> </tr></tbody></table>
 
-Faça uma reparação que tente recuperar todas as possíveis linhas do arquivo de dados. Normalmente, isso também encontra muitas linhas de lixo. Não use esta opção a menos que esteja desesperado.
+Faça uma reparação que tente recuperar todas as possíveis strings do arquivo de dados. Normalmente, isso também encontra muitas strings de lixo. Não use esta opção a menos que esteja desesperado.
 
 Veja também a descrição desta opção na tabela de opções de verificação.
 
@@ -1014,7 +1014,7 @@ Para **myisamchk**, o valor da opção é um valor binário que indica quais ín
 
   <table frame="box" rules="all" summary="Properties for max-record-length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--max-record-length=len</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
-Ignorar linhas maiores que o comprimento dado se o **myisamchk** não puder alocar memória para mantê-las.
+Ignorar strings maiores que o comprimento dado se o **myisamchk** não puder alocar memória para mantê-las.
 
 * `--parallel-recover`, `-p`
 
@@ -1044,7 +1044,7 @@ Se você tem muita memória, deve aumentar o valor de `myisam_sort_buffer_size`.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>1
 
-Faça uma reparação usando um método de recuperação antigo que lê todas as linhas em ordem e atualiza todas as árvores de índice com base nas linhas encontradas. Esse método é uma ordem de magnitude mais lento que `--recover`, mas pode lidar com alguns casos muito improváveis que `--recover` não pode. Esse método de recuperação também usa muito menos espaço em disco que `--recover`. Normalmente, você deve reparar primeiro usando `--recover`, e depois com `--safe-recover` apenas se `--recover` falhar.
+Faça uma reparação usando um método de recuperação antigo que lê todas as strings em ordem e atualiza todas as árvores de índice com base nas strings encontradas. Esse método é uma ordem de magnitude mais lento que `--recover`, mas pode lidar com alguns casos muito improváveis que `--recover` não pode. Esse método de recuperação também usa muito menos espaço em disco que `--recover`. Normalmente, você deve reparar primeiro usando `--recover`, e depois com `--safe-recover` apenas se `--recover` falhar.
 
 Se você tem muita memória, deve aumentar o valor de `key_buffer_size`.
 
@@ -1191,7 +1191,7 @@ Field Start Length Nullpos Nullbit Type
 6     51    3      1       2       no zeros
 ```
 
-Aqui estão as explicações para os tipos de informações que o **myisamchk** produz. “Keyfile” se refere ao arquivo de índice. “Registro” e “linha” são sinônimos, assim como “campo” e “coluna”.
+Aqui estão as explicações para os tipos de informações que o **myisamchk** produz. “Keyfile” se refere ao arquivo de índice. “Registro” e “string” são sinônimos, assim como “campo” e “coluna”.
 
 A parte inicial da descrição da tabela contém esses valores:
 
@@ -1201,7 +1201,7 @@ Nome do arquivo `MyISAM` (índice).
 
 * `Record format`
 
-O formato usado para armazenar linhas de tabela. Os exemplos anteriores usam `Fixed length`. Outros valores possíveis são `Compressed` e `Packed`. (`Packed` corresponde ao que `SHOW TABLE STATUS` relata como `Dynamic`.).
+O formato usado para armazenar strings de tabela. Os exemplos anteriores usam `Fixed length`. Outros valores possíveis são `Compressed` e `Packed`. (`Packed` corresponde ao que `SHOW TABLE STATUS` relata como `Dynamic`.).
 
 * `Chararacter set`
 
@@ -1229,7 +1229,7 @@ O número chave associado à coluna `AUTO_INCREMENT` da tabela e o valor mais re
 
 * `Data records`
 
-O número de linhas na tabela.
+O número de strings na tabela.
 
 * `Deleted blocks`
 
@@ -1237,7 +1237,7 @@ Quantos blocos excluídos ainda têm espaço reservado. Você pode otimizar sua 
 
 * `Datafile parts`
 
-Para o formato de linha dinâmica, isso indica quantos blocos de dados existem. Para uma tabela otimizada sem linhas fragmentadas, isso é o mesmo que `Data records`.
+Para o formato de string dinâmica, isso indica quantos blocos de dados existem. Para uma tabela otimizada sem strings fragmentadas, isso é o mesmo que `Data records`.
 
 * `Deleted data`
 
@@ -1245,7 +1245,7 @@ Quantos bytes de dados excluídos não recuperados existem. Você pode otimizar 
 
 * `Datafile pointer`
 
-O tamanho do ponteiro do arquivo de dados, em bytes. Geralmente é de 2, 3, 4 ou 5 bytes. A maioria das tabelas consegue lidar com 2 bytes, mas isso ainda não pode ser controlado pelo MySQL. Para tabelas fixas, este é um endereço de linha. Para tabelas dinâmicas, este é um endereço de byte.
+O tamanho do ponteiro do arquivo de dados, em bytes. Geralmente é de 2, 3, 4 ou 5 bytes. A maioria das tabelas consegue lidar com 2 bytes, mas isso ainda não pode ser controlado pelo MySQL. Para tabelas fixas, este é um endereço de string. Para tabelas dinâmicas, este é um endereço de byte.
 
 * `Keyfile pointer`
 
@@ -1261,17 +1261,17 @@ Quanto tempo o arquivo de índice da tabela pode se tornar, em bytes.
 
 * `Recordlength`
 
-Quanto espaço cada linha ocupa, em bytes.
+Quanto espaço cada string ocupa, em bytes.
 
 A parte `table description` do resultado inclui uma lista de todas as chaves na tabela. Para cada chave, **myisamchk** exibe algumas informações de nível baixo:
 
 * `Key`
 
-Este é o número da chave. Este valor é mostrado apenas para a primeira coluna da chave. Se este valor estiver ausente, a linha corresponde à segunda ou à coluna posterior de uma chave de múltiplas colunas. Para a tabela mostrada no exemplo, há duas linhas `table description` para o segundo índice. Isso indica que é um índice de várias partes com duas partes.
+Este é o número da chave. Este valor é mostrado apenas para a primeira coluna da chave. Se este valor estiver ausente, a string corresponde à segunda ou à coluna posterior de uma chave de múltiplas colunas. Para a tabela mostrada no exemplo, há duas strings `table description` para o segundo índice. Isso indica que é um índice de várias partes com duas partes.
 
 * `Start`
 
-Onde na linha essa parte do índice começa.
+Onde na string essa parte do índice começa.
 
 * `Len`
 
@@ -1295,7 +1295,7 @@ O tamanho de cada bloco do índice. Por padrão, esse valor é 1024, mas o valor
 
 * `Rec/key`
 
-Este é um valor estatístico usado pelo otimizador. Ele indica quantas linhas há por valor para este índice. Um índice único sempre tem um valor de 1. Este valor pode ser atualizado após uma tabela ser carregada (ou muito alterada) com **myisamchk -a**. Se este valor não for atualizado de forma alguma, é dado um valor padrão de 30.
+Este é um valor estatístico usado pelo otimizador. Ele indica quantas strings há por valor para este índice. Um índice único sempre tem um valor de 1. Este valor pode ser atualizado após uma tabela ser carregada (ou muito alterada) com **myisamchk -a**. Se este valor não for atualizado de forma alguma, é dado um valor padrão de 30.
 
 A última parte do resultado fornece informações sobre cada coluna:
 
@@ -1305,7 +1305,7 @@ O número da coluna.
 
 * `Start`
 
-A posição do byte da coluna dentro das linhas da tabela.
+A posição do byte da coluna dentro das strings da tabela.
 
 * `Length`
 
@@ -1315,9 +1315,9 @@ O comprimento da coluna em bytes.
 
 Para colunas que podem ser `NULL`, o `MyISAM` armazena os valores `NULL` como uma bandeira em um byte. Dependendo de quantas colunas nulos existem, pode haver um ou mais bytes usados para esse propósito. Os valores `Nullpos` e `Nullbit`, se não vazios, indicam qual byte e bit contém aquela bandeira que indica se a coluna é `NULL`.
 
-A posição e o número de bytes utilizados para armazenar as `NULL` são mostrados na linha do campo
+A posição e o número de bytes utilizados para armazenar as `NULL` são mostrados na string do campo
 
-1. É por isso que existem seis linhas `Field` para a tabela `person`, mesmo que ela tenha apenas cinco colunas.
+1. É por isso que existem seis strings `Field` para a tabela `person`, mesmo que ela tenha apenas cinco colunas.
 
 * `Type`
 
@@ -1325,7 +1325,7 @@ O tipo de dados. O valor pode conter qualquer um dos seguintes descritores:
 
 + `constant`
 
-Todas as linhas têm o mesmo valor.
+Todas as strings têm o mesmo valor.
 
 + `no endspace`
 
@@ -1405,7 +1405,7 @@ A saída do comando **myisamchk -eiv** inclui as seguintes informações:
 
 * `Data records`
 
-O número de linhas na tabela.
+O número de strings na tabela.
 
 * `Deleted blocks`
 
@@ -1429,11 +1429,11 @@ Quão profundo o B-tree para esta chave é. Grandes tabelas com valores de chave
 
 * `Records`
 
-Quantas linhas tem a tabela.
+Quantas strings tem a tabela.
 
 * `M.recordlength`
 
-O comprimento médio da linha. Este é o comprimento exato da linha para tabelas com linhas de comprimento fixo, porque todas as linhas têm o mesmo comprimento.
+O comprimento médio da string. Este é o comprimento exato da string para tabelas com strings de comprimento fixo, porque todas as strings têm o mesmo comprimento.
 
 * `Packed`
 
@@ -1449,11 +1449,11 @@ Que porcentagem do arquivo de dados está inutilizada.
 
 * `Blocks/Record`
 
-Número médio de blocos por linha (ou seja, quantos links uma linha fragmentada é composta). Isso é sempre 1,0 para tabelas de formato fixo. Esse valor deve ficar o mais próximo possível de 1,0. Se ficar muito grande, você pode reorganizar a tabela. Veja a Seção 7.6.4, “Otimização da Tabela MyISAM”.
+Número médio de blocos por string (ou seja, quantos links uma string fragmentada é composta). Isso é sempre 1,0 para tabelas de formato fixo. Esse valor deve ficar o mais próximo possível de 1,0. Se ficar muito grande, você pode reorganizar a tabela. Veja a Seção 7.6.4, “Otimização da Tabela MyISAM”.
 
 * `Recordblocks`
 
-Quantos blocos (links) são usados. Para tabelas de formato fixo, isso é o mesmo que o número de linhas.
+Quantos blocos (links) são usados. Para tabelas de formato fixo, isso é o mesmo que o número de strings.
 
 * `Deleteblocks`
 
@@ -1469,11 +1469,11 @@ Quantos bytes no arquivo de dados são excluídos (não utilizados).
 
 * `Lost space`
 
-Se uma linha for atualizada para um comprimento mais curto, alguns espaços são perdidos. Essa é a soma de todas essas perdas, em bytes.
+Se uma string for atualizada para um comprimento mais curto, alguns espaços são perdidos. Essa é a soma de todas essas perdas, em bytes.
 
 * `Linkdata`
 
-Quando o formato de tabela dinâmica é utilizado, os fragmentos de linha são vinculados com ponteiros (4 a 7 bytes cada). `Linkdata` é a soma da quantidade de armazenamento utilizada por todos esses ponteiros.
+Quando o formato de tabela dinâmica é utilizado, os fragmentos de string são vinculados com ponteiros (4 a 7 bytes cada). `Linkdata` é a soma da quantidade de armazenamento utilizada por todos esses ponteiros.
 
 #### 4.6.3.6 Uso de memória do myisamchk
 
@@ -1502,7 +1502,7 @@ Ao realizar operações de reparo, o **myisamchk** também precisa de muito espa
   (largest_key + row_pointer_length) * number_of_rows * 2
   ```
 
-Você pode verificar o comprimento das chaves e o *`row_pointer_length`* com **myisamchk -dv *`tbl_name`*** (consulte Seção 4.6.3.5, “Obtenção de Informações da Tabela com myisamchk”). Os valores de *`row_pointer_length`* e *`number_of_rows`* são os valores de `Datafile pointer` e `Data records` na descrição da tabela. Para determinar o valor de *`largest_key`*, verifique as linhas de `Key` na descrição da tabela. A coluna `Len` indica o número de bytes para cada parte da chave. Para um índice de múltiplas colunas, o tamanho da chave é a soma dos valores de `Len` para todas as partes da chave.
+Você pode verificar o comprimento das chaves e o *`row_pointer_length`* com **myisamchk -dv *`tbl_name`*** (consulte Seção 4.6.3.5, “Obtenção de Informações da Tabela com myisamchk”). Os valores de *`row_pointer_length`* e *`number_of_rows`* são os valores de `Datafile pointer` e `Data records` na descrição da tabela. Para determinar o valor de *`largest_key`*, verifique as strings de `Key` na descrição da tabela. A coluna `Len` indica o número de bytes para cada parte da chave. Para um índice de múltiplas colunas, o tamanho da chave é a soma dos valores de `Len` para todas as partes da chave.
 
 Se você tiver um problema com o espaço em disco durante a reparação, você pode tentar `--safe-recover` em vez de `--recover`.
 
@@ -1516,7 +1516,7 @@ Invoque **myisamlog** da seguinte forma:
 myisamlog [options] [file_name [tbl_name] ...]
 ```
 
-A operação padrão é a atualização (`-u`). Se uma recuperação for realizada (`-r`), todas as escritas e, possivelmente, atualizações e exclusões são realizadas e os erros são contados apenas. O nome do arquivo de registro padrão é `myisam.log` se não for fornecido o argumento *`log_file`*. Se as tabelas forem nomeadas na linha de comando, apenas essas tabelas serão atualizadas.
+A operação padrão é a atualização (`-u`). Se uma recuperação for realizada (`-r`), todas as escritas e, possivelmente, atualizações e exclusões são realizadas e os erros são contados apenas. O nome do arquivo de registro padrão é `myisam.log` se não for fornecido o argumento *`log_file`*. Se as tabelas forem nomeadas na string de comando, apenas essas tabelas serão atualizadas.
 
 **myisamlog** suporta as seguintes opções:
 
@@ -1576,7 +1576,7 @@ Exibir informações da versão.
 
 A utilidade **myisampack** comprime as tabelas `MyISAM`. **myisampack** funciona comprimindo cada coluna da tabela separadamente. Geralmente, **myisampack** compacta o arquivo de dados de 40% a 70%.
 
-Quando a tabela é usada posteriormente, o servidor lê na memória as informações necessárias para descomprimir as colunas. Isso resulta em um desempenho muito melhor ao acessar linhas individuais, porque você só precisa descomprimir exatamente uma linha.
+Quando a tabela é usada posteriormente, o servidor lê na memória as informações necessárias para descomprimir as colunas. Isso resulta em um desempenho muito melhor ao acessar strings individuais, porque você só precisa descomprimir exatamente uma string.
 
 O MySQL utiliza `mmap()` quando possível para realizar mapeamento de memória em tabelas compactadas. Se `mmap()` não funcionar, o MySQL recorre a operações normais de leitura/escrita de arquivos.
 
@@ -1598,7 +1598,7 @@ Cada argumento de nome de arquivo deve ser o nome de um arquivo de índice (`.MY
 
 Depois de comprimir uma tabela com **myisampack**, use **myisamchk -rq** para reconstruir seus índices. Seção 4.6.3, “myisamchk — Ferramenta de manutenção de tabela MyISAM”.
 
-O **myisampack** suporta as seguintes opções. Ele também lê arquivos de opções e suporta as opções para processá-las descritas na Seção 4.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opção”.
+O **myisampack** suporta as seguintes opções. Ele também lê arquivos de opções e suporta as opções para processá-las descritas na Seção 4.2.2.3, “Opções de string de comando que afetam o manuseio de arquivos de opção”.
 
 * `--help`, `-?`
 
@@ -1636,9 +1636,9 @@ Produza uma tabela compactada mesmo que ela se torne maior que a original ou se 
 
   <table frame="box" rules="all" summary="Properties for join"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--join=big_tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-Junte todas as tabelas nomeadas na linha de comando em uma única tabela compactada *`big_tbl_name`*. Todas as tabelas que devem ser combinadas *devem* ter estrutura idêntica (mesma nomes de colunas e tipos, mesmos índices, etc.).
+Junte todas as tabelas nomeadas na string de comando em uma única tabela compactada *`big_tbl_name`*. Todas as tabelas que devem ser combinadas *devem* ter estrutura idêntica (mesma nomes de colunas e tipos, mesmos índices, etc.).
 
-*`big_tbl_name`* não deve existir antes da operação de junção. Todas as tabelas de origem nomeadas na linha de comando a serem reunidas em *`big_tbl_name`* devem existir. As tabelas de origem são lidas para a operação de junção, mas não são modificadas.
+*`big_tbl_name`* não deve existir antes da operação de junção. Todas as tabelas de origem nomeadas na string de comando a serem reunidas em *`big_tbl_name`* devem existir. As tabelas de origem são lidas para a operação de junção, mas não são modificadas.
 
 * `--silent`, `-s`
 
@@ -1906,7 +1906,7 @@ O número inicial de árvores de Huffman.
 
 O número de árvores de Huffman distintas que restam após a junção de árvores para economizar espaço no cabeçalho.
 
-Após uma tabela ter sido comprimida, as linhas `Field` exibidas por **myisamchk -dvv** incluem informações adicionais sobre cada coluna:
+Após uma tabela ter sido comprimida, as strings `Field` exibidas por **myisamchk -dvv** incluem informações adicionais sobre cada coluna:
 
 * `Type`
 
@@ -1914,7 +1914,7 @@ O tipo de dados. O valor pode conter qualquer um dos seguintes descritores:
 
 + `constant`
 
-Todas as linhas têm o mesmo valor.
+Todas as strings têm o mesmo valor.
 
 + `no endspace`
 
@@ -1979,7 +1979,7 @@ password = myotherpass
 host = localhost
 ```
 
-Quando você invoca um programa cliente para se conectar ao servidor, o cliente usa `.mylogin.cnf` em conjunto com outros arquivos de opção. Sua precedência é maior do que outros arquivos de opção, mas menor do que as opções especificadas explicitamente na linha de comando do cliente. Para informações sobre a ordem em que os arquivos de opção são usados, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
+Quando você invoca um programa cliente para se conectar ao servidor, o cliente usa `.mylogin.cnf` em conjunto com outros arquivos de opção. Sua precedência é maior do que outros arquivos de opção, mas menor do que as opções especificadas explicitamente na string de comando do cliente. Para informações sobre a ordem em que os arquivos de opção são usados, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
 
 Para especificar um nome de arquivo de caminho de login alternativo, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`. Essa variável é reconhecida pelo **mysql\_config\_editor**, pelos clientes padrão do MySQL (**mysql**, **mysqladmin** e assim por diante) e pelo utilitário de teste **mysql-test-run.pl**.
 
@@ -2003,9 +2003,9 @@ Por padrão, o cliente **mysql** lê os grupos `[client]` e `[mysql]` de outros 
 
 O cliente **mysql** lê `[client]` e `[mysql]` de outros arquivos de opção, e `[client]`, `[mysql]` e `[mypath]` do arquivo de caminho de login.
 
-* Os programas do cliente leem o arquivo de caminho de login mesmo quando a opção `--no-defaults` é usada, a menos que `--no-login-paths` esteja definido. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo que `--no-defaults` esteja presente.
+* Os programas do cliente leem o arquivo de caminho de login mesmo quando a opção `--no-defaults` é usada, a menos que `--no-login-paths` esteja definido. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo que `--no-defaults` esteja presente.
 
-O **mysql\_config\_editor** ofusca o arquivo `.mylogin.cnf` para que ele não possa ser lido como texto claro, e seus conteúdos, quando não ofuscados por programas de cliente, são usados apenas na memória. Dessa forma, as senhas podem ser armazenadas em um arquivo em formato não claro e usadas posteriormente sem a necessidade de serem expostas na linha de comando ou em uma variável de ambiente. O **mysql\_config\_editor** fornece um comando `print` para exibir os conteúdos do arquivo do caminho de login, mas mesmo nesse caso, os valores das senhas são mascarados para que nunca apareçam de uma maneira que outros usuários possam vê-los.
+O **mysql\_config\_editor** ofusca o arquivo `.mylogin.cnf` para que ele não possa ser lido como texto claro, e seus conteúdos, quando não ofuscados por programas de cliente, são usados apenas na memória. Dessa forma, as senhas podem ser armazenadas em um arquivo em formato não claro e usadas posteriormente sem a necessidade de serem expostas na string de comando ou em uma variável de ambiente. O **mysql\_config\_editor** fornece um comando `print` para exibir os conteúdos do arquivo do caminho de login, mas mesmo nesse caso, os valores das senhas são mascarados para que nunca apareçam de uma maneira que outros usuários possam vê-los.
 
 A ofuscação usada pelo **mysql\_config\_editor** impede que as senhas apareçam no `.mylogin.cnf` como texto claro e oferece uma medida de segurança ao impedir a exposição acidental das senhas. Por exemplo, se você exibe um arquivo de opção `my.cnf` regular e não ofuscado na tela, quaisquer senhas que ele contém são visíveis para qualquer pessoa. Com o `.mylogin.cnf`, isso não é verdade, mas a ofuscação usada provavelmente não impedirá um invasor determinado e você não deve considerá-la inquebrável. Um usuário que pode obter privilégios de administração do sistema na sua máquina para acessar seus arquivos pode ofuscar o arquivo `.mylogin.cnf` com algum esforço.
 
@@ -2027,14 +2027,14 @@ Os argumentos do comando são fornecidos da seguinte forma:
 
 * *`command_options`* indica quaisquer opções adicionais específicas para o comando, como o nome do caminho de login e os valores a serem usados no caminho de login.
 
-A posição do nome do comando dentro do conjunto de argumentos do programa é significativa. Por exemplo, essas linhas de comando têm os mesmos argumentos, mas produzem resultados diferentes:
+A posição do nome do comando dentro do conjunto de argumentos do programa é significativa. Por exemplo, essas strings de comando têm os mesmos argumentos, mas produzem resultados diferentes:
 
 ```sql
 mysql_config_editor --help set
 mysql_config_editor set --help
 ```
 
-A primeira linha de comando exibe uma mensagem de ajuda geral do **mysql\_config\_editor** e ignora o comando `set`. A segunda linha de comando exibe uma mensagem de ajuda específica para o comando `set`.
+A primeira string de comando exibe uma mensagem de ajuda geral do **mysql\_config\_editor** e ignora o comando `set`. A segunda string de comando exibe uma mensagem de ajuda específica para o comando `set`.
 
 Suponha que você queira estabelecer um caminho de login `client` que defina seus parâmetros de conexão padrão e um caminho de login adicional chamado `remote` para se conectar ao servidor MySQL hospedado em `remote.example.com`. Você deseja fazer login da seguinte forma:
 
@@ -2042,7 +2042,7 @@ Suponha que você queira estabelecer um caminho de login `client` que defina seu
 
 * Para o servidor remoto com nome de usuário e senha de `remoteuser` e `remotepass`
 
-Para configurar as permissões de login no arquivo `.mylogin.cnf`, use os seguintes comandos `set`. Digite cada comando em uma única linha e, quando solicitado, insira as senhas apropriadas:
+Para configurar as permissões de login no arquivo `.mylogin.cnf`, use os seguintes comandos `set`. Digite cada comando em uma única string e, quando solicitado, insira as senhas apropriadas:
 
 ```sql
 $> mysql_config_editor set --login-path=client
@@ -2069,7 +2069,7 @@ password = *****
 host = remote.example.com
 ```
 
-O comando `print` exibe cada caminho de login como um conjunto de linhas que começam com um cabeçalho de grupo indicando o nome do caminho de login entre colchetes, seguido pelos valores das opções para o caminho de login. Os valores da senha são mascarados e não aparecem como texto claro.
+O comando `print` exibe cada caminho de login como um conjunto de strings que começam com um cabeçalho de grupo indicando o nome do caminho de login entre colchetes, seguido pelos valores das opções para o caminho de login. Os valores da senha são mascarados e não aparecem como texto claro.
 
 Se você não especificar `--all` para exibir todos os caminhos de login ou `--login-path=name` para exibir um caminho de login com nome, o comando `print` exibe o caminho de login `client` por padrão, se houver um.
 
@@ -2097,7 +2097,7 @@ As opções lidas do arquivo de caminho de login têm precedência sobre as opç
 
 O **mysql\_config\_editor** adiciona caminhos de login ao arquivo de caminhos de login na ordem em que os cria, então você deve criar caminhos de login mais gerais primeiro e caminhos mais específicos depois. Se você precisar mover um caminho de login dentro do arquivo, pode removê-lo e, em seguida, recriá-lo para adicioná-lo ao final. Por exemplo, um caminho de login `client` é mais geral, pois é lido por todos os programas cliente, enquanto um caminho de login `mysqldump` é lido apenas pelo **mysqldump**. As opções especificadas mais tarde substituem as opções especificadas anteriormente, então colocar os caminhos de login na ordem `client`, `mysqldump` permite que as opções específicas do **mysqldump** substituam as opções do `client`.
 
-Quando você usa o comando `set` com o **mysql\_config\_editor** para criar um caminho de login, você não precisa especificar todos os valores das opções possíveis (nome do host, nome do usuário, senha, porta, soquete). Apenas os valores fornecidos são escritos no caminho. Quaisquer valores faltantes necessários posteriormente podem ser especificados quando você invoca um caminho de cliente para se conectar ao servidor MySQL, seja em outros arquivos de opção ou na linha de comando. Quaisquer opções especificadas na linha de comando substituem aquelas especificadas no arquivo de caminho de login ou em outros arquivos de opção. Por exemplo, se as credenciais no caminho de login `remote` também se aplicam ao host `remote2.example.com`, conecte-se ao servidor nesse host da seguinte forma:
+Quando você usa o comando `set` com o **mysql\_config\_editor** para criar um caminho de login, você não precisa especificar todos os valores das opções possíveis (nome do host, nome do usuário, senha, porta, soquete). Apenas os valores fornecidos são escritos no caminho. Quaisquer valores faltantes necessários posteriormente podem ser especificados quando você invoca um caminho de cliente para se conectar ao servidor MySQL, seja em outros arquivos de opção ou na string de comando. Quaisquer opções especificadas na string de comando substituem aquelas especificadas no arquivo de caminho de login ou em outros arquivos de opção. Por exemplo, se as credenciais no caminho de login `remote` também se aplicam ao host `remote2.example.com`, conecte-se ao servidor nesse host da seguinte forma:
 
 ```sql
 mysql --login-path=remote --host=remote2.example.com
@@ -2105,7 +2105,7 @@ mysql --login-path=remote --host=remote2.example.com
 
 #### mysql\_config\_editor Opções gerais
 
-O **mysql\_config\_editor** suporta as seguintes opções gerais, que podem ser usadas antes de qualquer comando nomeado na linha de comando. Para descrições de opções específicas de comando, consulte os comandos e opções específicas de comando do mysql\_config\_editor.
+O **mysql\_config\_editor** suporta as seguintes opções gerais, que podem ser usadas antes de qualquer comando nomeado na string de comando. Para descrições de opções específicas de comando, consulte os comandos e opções específicas de comando do mysql\_config\_editor.
 
 **Tabela 4.22 mysql\_config\_editor Opções Gerais**
 
@@ -2145,7 +2145,7 @@ Exibir informações da versão e sair.
 
 #### mysql\_config\_editor Comandos e Opções Específicas de Comando
 
-Esta seção descreve os comandos permitidos do **mysql\_config\_editor** e, para cada um deles, as opções específicas do comando permitidas após o nome do comando na linha de comando.
+Esta seção descreve os comandos permitidos do **mysql\_config\_editor** e, para cada um deles, as opções específicas do comando permitidas após o nome do comando na string de comando.
 
 Além disso, o **mysql\_config\_editor** suporta opções gerais que podem ser usadas antes de qualquer comando. Para descrições dessas opções, consulte Opções gerais do mysql\_config\_editor.
 
@@ -2273,7 +2273,7 @@ O caminho de login para criar. O nome padrão do caminho de login é `client` se
 
 Solicitar uma senha para escrever no caminho de login. Após o **mysql\_config\_editor** exibir o prompt, digite a senha e pressione Enter. Para evitar que outros usuários vejam a senha, o **mysql\_config\_editor** não a exibe.
 
-Para especificar uma senha vazia, pressione Enter na prompt de senha. O caminho de login resultante, escrito no arquivo de caminho de login, inclui uma linha como esta:
+Para especificar uma senha vazia, pressione Enter na prompt de senha. O caminho de login resultante, escrito no arquivo de caminho de login, inclui uma string como esta:
 
     ```sql
     password =
@@ -2311,7 +2311,7 @@ Por exemplo, para exibir o conteúdo do arquivo de registro binário denominado 
 mysqlbinlog binlog.000003
 ```
 
-A saída inclui eventos contidos em `binlog.000003`. Para o registro baseado em declarações, as informações dos eventos incluem a declaração SQL, o ID do servidor em que ela foi executada, o timestamp quando a declaração foi executada, quanto tempo levou, e assim por diante. Para o registro baseado em linhas, o evento indica uma mudança de linha em vez de uma declaração SQL. Consulte a Seção 16.2.1, “Formatos de Replicação”, para informações sobre os modos de registro.
+A saída inclui eventos contidos em `binlog.000003`. Para o registro baseado em declarações, as informações dos eventos incluem a declaração SQL, o ID do servidor em que ela foi executada, o timestamp quando a declaração foi executada, quanto tempo levou, e assim por diante. Para o registro baseado em strings, o evento indica uma mudança de string em vez de uma declaração SQL. Consulte a Seção 16.2.1, “Formatos de Replicação”, para informações sobre os modos de registro.
 
 Os eventos são precedidos por comentários de cabeçalho que fornecem informações adicionais. Por exemplo:
 
@@ -2321,9 +2321,9 @@ Os eventos são precedidos por comentários de cabeçalho que fornecem informaç
   Query thread_id=3350  exec_time=11  error_code=0
 ```
 
-Na primeira linha, o número que segue `at` indica o deslocamento do arquivo, ou a posição inicial, do evento no arquivo de registro binário.
+Na primeira string, o número que segue `at` indica o deslocamento do arquivo, ou a posição inicial, do evento no arquivo de registro binário.
 
-A segunda linha começa com uma data e uma hora que indicam quando a declaração começou no servidor onde o evento se originou. Para a replicação, este timestamp é propagado para os servidores replicados. `server id` é o valor `server_id` do servidor onde o evento se originou. `end_log_pos` indica onde o próximo evento começa (ou seja, é a posição final do evento atual + 1). `thread_id` indica qual thread executou o evento. `exec_time` é o tempo gasto executando o evento, em um servidor de origem de replicação. Em uma replica, é a diferença do tempo de execução final na replica menos o tempo de início de execução na fonte. A diferença serve como um indicador de quanto a replicação fica para trás em relação à fonte. `error_code` indica o resultado da execução do evento. Zero significa que não ocorreu nenhum erro.
+A segunda string começa com uma data e uma hora que indicam quando a declaração começou no servidor onde o evento se originou. Para a replicação, este timestamp é propagado para os servidores replicados. `server id` é o valor `server_id` do servidor onde o evento se originou. `end_log_pos` indica onde o próximo evento começa (ou seja, é a posição final do evento atual + 1). `thread_id` indica qual thread executou o evento. `exec_time` é o tempo gasto executando o evento, em um servidor de origem de replicação. Em uma replica, é a diferença do tempo de execução final na replica menos o tempo de início de execução na fonte. A diferença serve como um indicador de quanto a replicação fica para trás em relação à fonte. `error_code` indica o resultado da execução do evento. Zero significa que não ocorreu nenhum erro.
 
 Nota
 
@@ -2337,7 +2337,7 @@ Ao executar o **mysqlbinlog** em um registro binário grande, tenha cuidado para
 
 O **mysqlbinlog** define o valor de `pseudo_slave_mode` como verdadeiro antes de executar quaisquer instruções SQL. Essa variável do sistema afeta o tratamento de transações XA.
 
-O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlbinlog]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqlbinlog]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.23 Opções do mysqlbinlog**
 
@@ -2579,7 +2579,7 @@ O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--rewrite-db</code></th>
-<td>Crie regras de reescrita para bancos de dados ao reproduzir dados de logs escritos em formato baseado em linha. Pode ser usado várias vezes</td>
+<td>Crie regras de reescrita para bancos de dados ao reproduzir dados de logs escritos em formato baseado em string. Pode ser usado várias vezes</td>
 <td></td>
 <td></td>
 </tr>
@@ -2633,7 +2633,7 @@ O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -2753,7 +2753,7 @@ O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--verbose</code></th>
-<td>Reconstrua eventos de linha como declarações SQL</td>
+<td>Reconstrua eventos de string como declarações SQL</td>
 <td></td>
 <td></td>
 </tr>
@@ -2784,17 +2784,17 @@ Exibir uma mensagem de ajuda e sair.
 
 Essa opção determina quando os eventos devem ser exibidos codificados como strings baseadas em 64 usando as declarações `BINLOG`. A opção tem esses valores permitidos (não sensíveis ao caso):
 
-+ `AUTO` ("automático") ou `UNSPEC` ("especificado") exibe as declarações `BINLOG` automaticamente quando necessário (ou seja, para eventos de descrição de formato e eventos de linha). Se não for dada a opção `--base64-output`, o efeito é o mesmo que `--base64-output=AUTO`.
++ `AUTO` ("automático") ou `UNSPEC` ("especificado") exibe as declarações `BINLOG` automaticamente quando necessário (ou seja, para eventos de descrição de formato e eventos de string). Se não for dada a opção `--base64-output`, o efeito é o mesmo que `--base64-output=AUTO`.
 
 Nota
 
 O display automático `BINLOG` é o único comportamento seguro se você pretende usar a saída do **mysqlbinlog** para reexecutar o conteúdo do arquivo de registro binário. Os outros valores das opções são destinados apenas para fins de depuração ou teste, pois podem produzir saída que não inclui todos os eventos na forma executável.
 
-+ `NEVER` faz com que as declarações `BINLOG` não sejam exibidas. **mysqlbinlog** sai com um erro se for encontrado um evento de linha que deve ser exibido usando `BINLOG`.
++ `NEVER` faz com que as declarações `BINLOG` não sejam exibidas. **mysqlbinlog** sai com um erro se for encontrado um evento de string que deve ser exibido usando `BINLOG`.
 
-+ `DECODE-ROWS` especifica para **mysqlbinlog** que você pretende que os eventos de linha sejam decodificados e exibidos como declarações SQL comentadas, especificando também a opção `--verbose`. Assim como `NEVER`, `DECODE-ROWS` suprime a exibição de declarações `BINLOG`, mas, ao contrário de `NEVER`, não sai com um erro se um evento de linha for encontrado.
++ `DECODE-ROWS` especifica para **mysqlbinlog** que você pretende que os eventos de string sejam decodificados e exibidos como declarações SQL comentadas, especificando também a opção `--verbose`. Assim como `NEVER`, `DECODE-ROWS` suprime a exibição de declarações `BINLOG`, mas, ao contrário de `NEVER`, não sai com um erro se um evento de string for encontrado.
 
-Para exemplos que mostram o efeito de `--base64-output` e `--verbose` na saída de eventos de linha, consulte a Seção 4.6.7.2, “Exibição de Eventos de Linha de mysqlbinlog”.
+Para exemplos que mostram o efeito de `--base64-output` e `--verbose` na saída de eventos de string, consulte a Seção 4.6.7.2, “Exibição de Eventos de String de mysqlbinlog”.
 
 * `--bind-address=ip_address`
 
@@ -2806,7 +2806,7 @@ Em um computador com várias interfaces de rede, use esta opção para seleciona
 
   <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
-Especifique o tamanho máximo de um evento de registro binário baseado em linha, em bytes. As linhas são agrupadas em eventos menores que este tamanho, se possível. O valor deve ser um múltiplo de 256. O padrão é 4 GB.
+Especifique o tamanho máximo de um evento de registro binário baseado em string, em bytes. As strings são agrupadas em eventos menores que este tamanho, se possível. O valor deve ser um múltiplo de 256. O padrão é 4 GB.
 
 * `--character-sets-dir=dir_name`
 
@@ -2830,7 +2830,7 @@ Essa opção faz com que o **mysqlbinlog** exiba entradas do log binário (apena
 
 A opção `--database` para o **mysqlbinlog** é semelhante à opção `--binlog-do-db` para o `mysqld`, mas pode ser usada para especificar apenas um banco de dados. Se `--database` for fornecido várias vezes, apenas a última instância será usada.
 
-Os efeitos desta opção dependem de se o formato de registro baseado em declaração ou baseado em linha está em uso, da mesma forma que os efeitos de `--binlog-do-db` dependem de se o registro baseado em declaração ou baseado em linha está em uso.
+Os efeitos desta opção dependem de se o formato de registro baseado em declaração ou baseado em string está em uso, da mesma forma que os efeitos de `--binlog-do-db` dependem de se o registro baseado em declaração ou baseado em string está em uso.
 
 **Registro baseado em declarações.** A opção `--database` funciona da seguinte forma:
 
@@ -2859,7 +2859,7 @@ Suponha que o log binário foi criado executando essas declarações usando o re
 
 **mysqlbinlog --database=db2** não exibe as duas primeiras declarações `INSERT` porque não há um banco de dados padrão. Não exibe as três declarações `INSERT` após `USE test`, mas exibe as três declarações `INSERT` após `USE db2`.
 
-**Registro baseado em linhas.** **mysqlbinlog** emite apenas entradas que alteram tabelas pertencentes a *`db_name`*. O banco de dados padrão não tem efeito sobre isso. Suponha que o registro binário recém-descrito tenha sido criado usando registro baseado em linhas, em vez de registro baseado em declarações. **mysqlbinlog --database=test** emite apenas aquelas entradas que modificam `t1` no banco de dados de teste, independentemente de `USE` ter sido emitido ou qual é o banco de dados padrão.
+**Registro baseado em strings.** **mysqlbinlog** emite apenas entradas que alteram tabelas pertencentes a *`db_name`*. O banco de dados padrão não tem efeito sobre isso. Suponha que o registro binário recém-descrito tenha sido criado usando registro baseado em strings, em vez de registro baseado em declarações. **mysqlbinlog --database=test** emite apenas aquelas entradas que modificam `t1` no banco de dados de teste, independentemente de `USE` ter sido emitido ou qual é o banco de dados padrão.
 
 Se um servidor estiver rodando com `binlog_format` definido como `MIXED` e você deseja que seja possível usar **mysqlbinlog** com a opção `--database`, você deve garantir que as tabelas que são modificadas estejam no banco de dados selecionado por `USE`. (Em particular, não devem ser usadas atualizações cruzadas entre bancos de dados.)
 
@@ -2901,7 +2901,7 @@ Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. 
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -2911,7 +2911,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -2919,7 +2919,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlbinlog** normalmente lê os grupos `[client]` e `[mysqlbinlog]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlbinlog** também lê os grupos `[client_other]` e `[mysqlbinlog_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--disable-log-bin`, `-D`
 
@@ -3001,7 +3001,7 @@ Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinl
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--no-defaults`
 
@@ -3009,9 +3009,9 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--offset=N`, `-o N`
 
@@ -3031,7 +3031,7 @@ Especifique o número de descritores de arquivo abertos a serem reservados.
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecida, o **mysqlbinlog** solicita uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de opção de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqlbinlog** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -3053,7 +3053,7 @@ O número do porto TCP/IP a ser usado para se conectar a um servidor remoto.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -3099,7 +3099,7 @@ Sem a opção `--raw`, esta opção indica o arquivo para o qual o **mysqlbinlog
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
 
-Ao ler de um log baseado em linha ou em declarações, reescreva todas as ocorrências de *`from_name`* para *`to_name`*. A reescrita é feita nas linhas, para logs baseados em linhas, bem como nas cláusulas `USE`, para logs baseados em declarações. Em versões do MySQL anteriores a 5.7.8, esta opção era apenas para uso ao restaurar tabelas registradas usando o formato baseado em linha.
+Ao ler de um log baseado em string ou em declarações, reescreva todas as ocorrências de *`from_name`* para *`to_name`*. A reescrita é feita nas strings, para logs baseados em strings, bem como nas cláusulas `USE`, para logs baseados em declarações. Em versões do MySQL anteriores a 5.7.8, esta opção era apenas para uso ao restaurar tabelas registradas usando o formato baseado em string.
 
 Aviso
 
@@ -3176,7 +3176,7 @@ Esta opção só se aplica se o servidor foi iniciado com a variável de sistema
 
   <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>5
 
-Exiba apenas as declarações contidas no log, sem nenhuma informação adicional ou eventos baseados em linhas. Isso é apenas para testes e não deve ser usado em sistemas de produção.
+Exiba apenas as declarações contidas no log, sem nenhuma informação adicional ou eventos baseados em strings. Isso é apenas para testes e não deve ser usado em sistemas de produção.
 
 * `--skip-gtids[=(true|false)]`
 
@@ -3195,7 +3195,7 @@ Normalmente, você não deve usar essa opção em produção ou em recuperação
 
   <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>7
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -3219,7 +3219,7 @@ Essa opção é útil para recuperação em ponto no tempo. Veja a Seção 7.5, 
 
   <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>9
 
-Comece a ler o log binário no primeiro evento com uma posição igual a ou maior que *`N`*. Esta opção se aplica ao primeiro arquivo de log nomeado na linha de comando.
+Comece a ler o log binário no primeiro evento com uma posição igual a ou maior que *`N`*. Esta opção se aplica ao primeiro arquivo de log nomeado na string de comando.
 
 Essa opção é útil para recuperação em ponto no tempo. Veja a Seção 7.5, “Recuperação em Ponto no Tempo (Incremental) (Recuperação)”.
 
@@ -3235,7 +3235,7 @@ Essa opção é útil para recuperação em ponto no tempo. Veja a Seção 7.5, 
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
 
-Esta opção é usada com `--read-from-remote-server`. Ela informa ao **mysqlbinlog** que deve permanecer conectado ao servidor. Caso contrário, o **mysqlbinlog** sai quando o último arquivo de registro tiver sido transferido do servidor. `--stop-never` implica em `--to-last-log`, portanto, apenas o primeiro arquivo de registro a ser transferido precisa ser nomeado na linha de comando.
+Esta opção é usada com `--read-from-remote-server`. Ela informa ao **mysqlbinlog** que deve permanecer conectado ao servidor. Caso contrário, o **mysqlbinlog** sai quando o último arquivo de registro tiver sido transferido do servidor. `--stop-never` implica em `--to-last-log`, portanto, apenas o primeiro arquivo de registro a ser transferido precisa ser nomeado na string de comando.
 
 `--stop-never` é comumente usado com `--raw` para fazer um backup de registro binário ao vivo, mas também pode ser usado sem `--raw` para manter uma exibição contínua de texto dos eventos do registro à medida que o servidor os gera.
 
@@ -3249,7 +3249,7 @@ Com `--stop-never`, o **mysqlbinlog** reporta um ID do servidor de 65535 quando 
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
 
-Pare de ler o log binário no primeiro evento com uma posição igual a ou maior que *`N`*. Esta opção se aplica ao último arquivo de log nomeado na linha de comando.
+Pare de ler o log binário no primeiro evento com uma posição igual a ou maior que *`N`*. Esta opção se aplica ao último arquivo de log nomeado na string de comando.
 
 Essa opção é útil para recuperação em ponto no tempo. Veja a Seção 7.5, “Recuperação em Ponto no Tempo (Incremental) (Recuperação)”.
 
@@ -3277,9 +3277,9 @@ O nome de usuário da conta MySQL a ser usado ao se conectar a um servidor remot
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
 
-Reconstrua os eventos da linha e exiba-os como declarações SQL comentadas. Se esta opção for dada duas vezes (através da passagem de "-vv" ou "--verbose --verbose"), a saída inclui comentários para indicar os tipos de dados das colunas e alguns metadados, e eventos de log de consulta de linha, se assim configurado.
+Reconstrua os eventos da string e exiba-os como declarações SQL comentadas. Se esta opção for dada duas vezes (através da passagem de "-vv" ou "--verbose --verbose"), a saída inclui comentários para indicar os tipos de dados das colunas e alguns metadados, e eventos de log de consulta de string, se assim configurado.
 
-Para exemplos que mostram o efeito de `--base64-output` e `--verbose` na saída de eventos de linha, consulte a Seção 4.6.7.2, “Exibição de Eventos de Linha de mysqlbinlog”.
+Para exemplos que mostram o efeito de `--base64-output` e `--verbose` na saída de eventos de string, consulte a Seção 4.6.7.2, “Exibição de Eventos de String de mysqlbinlog”.
 
 * `--verify-binlog-checksum`, `-c`
 
@@ -3358,7 +3358,7 @@ A opção `--hexdump` faz com que o **mysqlbinlog** produza um dump hexadecimal 
 mysqlbinlog --hexdump master-bin.000001
 ```
 
-A saída hex consiste em linhas de comentário que começam com `#`, então a saída pode parecer assim para o comando anterior:
+A saída hex consiste em strings de comentário que começam com `#`, então a saída pode parecer assim para o comando anterior:
 
 ```sql
 /*!40019 SET @@SESSION.max_insert_delayed_threads=0*/;
@@ -3392,11 +3392,11 @@ A saída de exibição de depuração hexadecimal atualmente contém os elemento
 
 * `Flags`: Valores de sinalização de evento.
 
-#### 4.6.7.2 Exibição de Eventos de Linha mysqlbinlog
+#### 4.6.7.2 Exibição de Eventos de String mysqlbinlog
 
-Os exemplos a seguir ilustram como o **mysqlbinlog** exibe eventos de linha que especificam modificações de dados. Esses correspondem a eventos com os códigos de tipo `WRITE_ROWS_EVENT`, `UPDATE_ROWS_EVENT` e `DELETE_ROWS_EVENT`. As opções `--base64-output=DECODE-ROWS` e `--verbose` podem ser usadas para afetar a saída de eventos de linha.
+Os exemplos a seguir ilustram como o **mysqlbinlog** exibe eventos de string que especificam modificações de dados. Esses correspondem a eventos com os códigos de tipo `WRITE_ROWS_EVENT`, `UPDATE_ROWS_EVENT` e `DELETE_ROWS_EVENT`. As opções `--base64-output=DECODE-ROWS` e `--verbose` podem ser usadas para afetar a saída de eventos de string.
 
-Suponha que o servidor esteja usando registro binário baseado em linha e que você execute a seguinte sequência de instruções:
+Suponha que o servidor esteja usando registro binário baseado em string e que você execute a seguinte sequência de instruções:
 
 ```sql
 CREATE TABLE t
@@ -3413,7 +3413,7 @@ DELETE FROM t WHERE id = 1;
 COMMIT;
 ```
 
-Por padrão, o **mysqlbinlog** exibe eventos de linha codificados como strings baseadas em 64 usando as declarações `BINLOG`. Omitindo linhas desnecessárias, a saída para os eventos de linha produzidos pela sequência de declarações anteriores parece assim:
+Por padrão, o **mysqlbinlog** exibe eventos de string codificados como strings baseadas em 64 usando as declarações `BINLOG`. Omitindo strings desnecessárias, a saída para os eventos de string produzidos pela sequência de declarações anteriores parece assim:
 
 ```sql
 $> mysqlbinlog log_file
@@ -3443,7 +3443,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 '/*!*/;
 ```
 
-Para ver os eventos da linha como comentários na forma de declarações de "pseudo-SQL", execute o **mysqlbinlog** com a opção `--verbose` ou `-v`. A saída contém linhas que começam com `###`:
+Para ver os eventos da string como comentários na forma de declarações de "pseudo-SQL", execute o **mysqlbinlog** com a opção `--verbose` ou `-v`. A saída contém strings que começam com `###`:
 
 ```sql
 $> mysqlbinlog -v log_file
@@ -3541,7 +3541,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 ###   @3='2009:01:01' /* DATE meta=0 nullable=1 is_null=0 */
 ```
 
-Você pode informar ao **mysqlbinlog** para suprimir as declarações `BINLOG` para eventos de linha usando a opção `--base64-output=DECODE-ROWS`. Isso é semelhante ao `--base64-output=NEVER`, mas não sai com um erro se um evento de linha for encontrado. A combinação de `--base64-output=DECODE-ROWS` e `--verbose` fornece uma maneira conveniente de ver eventos de linha apenas como declarações SQL:
+Você pode informar ao **mysqlbinlog** para suprimir as declarações `BINLOG` para eventos de string usando a opção `--base64-output=DECODE-ROWS`. Isso é semelhante ao `--base64-output=NEVER`, mas não sai com um erro se um evento de string for encontrado. A combinação de `--base64-output=DECODE-ROWS` e `--verbose` fornece uma maneira conveniente de ver eventos de string apenas como declarações SQL:
 
 ```sql
 $> mysqlbinlog -v --base64-output=DECODE-ROWS log_file
@@ -3579,7 +3579,7 @@ Nota
 
 Você não deve suprimir as declarações de `BINLOG` se você pretender reexecutar a saída do **mysqlbinlog**.
 
-As instruções SQL produzidas por `--verbose` para eventos de linha são muito mais legíveis do que as instruções correspondentes de `BINLOG`. No entanto, elas não correspondem exatamente às instruções SQL originais que geraram os eventos. As seguintes limitações se aplicam:
+As instruções SQL produzidas por `--verbose` para eventos de string são muito mais legíveis do que as instruções correspondentes de `BINLOG`. No entanto, elas não correspondem exatamente às instruções SQL originais que geraram os eventos. As seguintes limitações se aplicam:
 
 * Os nomes originais das colunas estão perdidos e substituídos por `@N`, onde *`N`* é um número de coluna.
 
@@ -3596,9 +3596,9 @@ Não há distinção feita entre os tipos de string binários e não binários c
 
 + Devido ao formato de armazenamento para eventos do tipo `UPDATE_ROWS_EVENT`, as declarações `UPDATE` são exibidas com a cláusula `WHERE` antes da cláusula `SET`.
 
-A interpretação adequada dos eventos de linha requer as informações da descrição do formato do evento no início do log binário. Como o **mysqlbinlog** não sabe antecipadamente se o resto do log contém eventos de linha, por padrão, ele exibe o evento de descrição do formato usando uma declaração `BINLOG` na parte inicial do resultado.
+A interpretação adequada dos eventos de string requer as informações da descrição do formato do evento no início do log binário. Como o **mysqlbinlog** não sabe antecipadamente se o resto do log contém eventos de string, por padrão, ele exibe o evento de descrição do formato usando uma declaração `BINLOG` na parte inicial do resultado.
 
-Se o log binário for conhecido por não conter quaisquer eventos que exijam uma declaração `BINLOG` (ou seja, sem eventos de linha), a opção `--base64-output=NEVER` pode ser usada para impedir que esse cabeçalho seja escrito.
+Se o log binário for conhecido por não conter quaisquer eventos que exijam uma declaração `BINLOG` (ou seja, sem eventos de string), a opção `--base64-output=NEVER` pode ser usada para impedir que esse cabeçalho seja escrito.
 
 #### 4.6.7.3 Usando mysqlbinlog para fazer backup de arquivos de log binário
 
@@ -3648,7 +3648,7 @@ mysql> SHOW BINARY LOGS;
 +---------------+-----------+
 ```
 
-Com essas informações, você pode usar o **mysqlbinlog** para fazer backup do log binário no diretório atual da seguinte forma (entre cada comando em uma única linha):
+Com essas informações, você pode usar o **mysqlbinlog** para fazer backup do log binário no diretório atual da seguinte forma (entre cada comando em uma única string):
 
 * Para fazer um backup estático de `binlog.000130` através de `binlog.000132`, use um dos seguintes comandos:
 
@@ -3681,7 +3681,7 @@ Suponha que um servidor atualmente tenha arquivos de registro binários com os n
 
 ##### Exemplo: mysqldump + mysqlbinlog para backup e restauração
 
-O exemplo a seguir descreve um cenário simples que mostra como usar **mysqldump** e **mysqlbinlog** juntos para fazer backup dos dados e do log binário de um servidor, e como usar o backup para restaurar o servidor se ocorrer perda de dados. O exemplo assume que o servidor está sendo executado no host *`host_name`* e que seu primeiro arquivo de log binário é chamado `binlog.000999`. Digite cada comando em uma única linha.
+O exemplo a seguir descreve um cenário simples que mostra como usar **mysqldump** e **mysqlbinlog** juntos para fazer backup dos dados e do log binário de um servidor, e como usar o backup para restaurar o servidor se ocorrer perda de dados. O exemplo assume que o servidor está sendo executado no host *`host_name`* e que seu primeiro arquivo de log binário é chamado `binlog.000999`. Digite cada comando em uma única string.
 
 Use **mysqlbinlog** para fazer um backup contínuo do log binário:
 

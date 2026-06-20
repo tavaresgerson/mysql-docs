@@ -231,7 +231,7 @@ No macOS, para usar o IDE do Xcode:
 $> cmake .. -G Xcode
 ```
 
-Quando você executa o **Cmake**, talvez queira adicionar opções à linha de comando. Aqui estão alguns exemplos:
+Quando você executa o **Cmake**, talvez queira adicionar opções à string de comando. Aqui estão alguns exemplos:
 
 * `-DBUILD_CONFIG=mysql_release`: Configure a fonte com as mesmas opções de compilação usadas pela Oracle para produzir distribuições binárias para as versões oficiais do MySQL.
 
@@ -308,7 +308,7 @@ $> make install
 
 Isso instala os arquivos sob o diretório de instalação configurado (por padrão, `/usr/local/mysql`). Você pode precisar executar o comando como `root`.
 
-Para instalar em um diretório específico, adicione um parâmetro `DESTDIR` à linha de comando:
+Para instalar em um diretório específico, adicione um parâmetro `DESTDIR` à string de comando:
 
 ```sql
 $> make install DESTDIR="/opt/mysql"
@@ -485,7 +485,7 @@ Para determinar se um servidor foi compilado com OpenSSL ou yaSSL, verifique a e
 
 ### 2.8.7 Opções de configuração de fonte do MySQL
 
-O programa **CMake** oferece um grande controle sobre como você configura uma distribuição de fonte MySQL. Normalmente, você faz isso usando opções na linha de comando do **CMake**. Para obter informações sobre as opções suportadas pelo **CMake**, execute qualquer um desses comandos no diretório de fonte de nível superior:
+O programa **CMake** oferece um grande controle sobre como você configura uma distribuição de fonte MySQL. Normalmente, você faz isso usando opções na string de comando do **CMake**. Para obter informações sobre as opções suportadas pelo **CMake**, execute qualquer um desses comandos no diretório de fonte de nível superior:
 
 ```sql
 $> cmake . -LH
@@ -687,7 +687,7 @@ A tabela a seguir mostra as opções disponíveis do **CMake**. Na coluna `Defau
 </tr>
 <tr>
 <th><code>DISABLE_PSI_THREAD</code></th>
-<td>Exclua a instrumentação de fio do esquema de desempenho</td>
+<td>Exclua a instrumentação de thread do esquema de desempenho</td>
 <td><code>OFF</code></td>
 <td></td>
 <td></td>
@@ -1727,7 +1727,7 @@ Exclua as instâncias de instrumentação de declarações do Schema de desempen
 
 * `-DDISABLE_PSI_THREAD=bool`
 
-Exclua a instrumentação do esquema de desempenho do fio. O padrão é `OFF` (inclua).
+Exclua a instrumentação do esquema de desempenho do thread. O padrão é `OFF` (inclua).
 
 Desative apenas os threads ao compilar sem qualquer instrumentação, pois outras instrumentações dependem dos threads.
 
@@ -2252,7 +2252,7 @@ Em alguns sistemas, os avisos podem ocorrer devido a diferenças nos arquivos de
   $> export CC CXX
   ```
 
-Embora isso possa ser feito na linha de comando, como mostrado acima, você pode preferir definir esses valores em um script de construção, nesse caso, o comando **export** não é necessário.
+Embora isso possa ser feito na string de comando, como mostrado acima, você pode preferir definir esses valores em um script de construção, nesse caso, o comando **export** não é necessário.
 
 Para especificar suas próprias opções de compilador C e C++, use as opções `CMAKE_C_FLAGS` e `CMAKE_CXX_FLAGS` do CMake. Veja Flags de compilador.
 

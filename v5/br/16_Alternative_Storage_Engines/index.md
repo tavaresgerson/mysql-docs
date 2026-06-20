@@ -54,11 +54,11 @@ Para respostas a perguntas comumente feitas sobre os motores de armazenamento do
 
 ## Motores de Armazenamento Compatíveis com o MySQL 5.7
 
-* `InnoDB`: O mecanismo de armazenamento padrão no MySQL 5.7. `InnoDB` é um mecanismo de armazenamento seguro em transação (compatível com ACID) para MySQL que possui capacidades de commit, rollback e recuperação em caso de falha para proteger os dados do usuário. `InnoDB` o bloqueio em nível de linha (sem escalonamento para blocos de granularidade mais grosseira) e leituras consistentes não bloqueantes ao estilo Oracle aumentam a concorrência e o desempenho multiusuário. `InnoDB` armazena dados do usuário em índices agrupados para reduzir o I/O para consultas comuns com base em chaves primárias. Para obter mais informações sobre `InnoDB`, consulte o Capítulo 14, *O Engenheiro de Armazenamento InnoDB*.
+* `InnoDB`: O mecanismo de armazenamento padrão no MySQL 5.7. `InnoDB` é um mecanismo de armazenamento seguro em transação (compatível com ACID) para MySQL que possui capacidades de commit, rollback e recuperação em caso de falha para proteger os dados do usuário. `InnoDB` o bloqueio em nível de string (sem escalonamento para blocos de granularidade mais grosseira) e leituras consistentes não bloqueantes ao estilo Oracle aumentam a concorrência e o desempenho multiusuário. `InnoDB` armazena dados do usuário em índices agrupados para reduzir o I/O para consultas comuns com base em chaves primárias. Para obter mais informações sobre `InnoDB`, consulte o Capítulo 14, *O Engenheiro de Armazenamento InnoDB*.
 
 * `MyISAM`: Essas tabelas têm uma pequena pegada. O bloqueio de nível de tabela limita o desempenho em cargas de trabalho de leitura/escrita, portanto, é frequentemente usado em cargas de trabalho de leitura ou quase exclusivamente de leitura em configurações de Web e armazenamento de dados.
 
-* `Memory`: Armazena todos os dados na RAM, para acesso rápido em ambientes que exigem pesquisas rápidas de dados não críticos. Este motor era anteriormente conhecido como o motor `HEAP`. Seus casos de uso estão diminuindo; `InnoDB`, com sua área de memória de pool de tampão, oferece uma maneira geral e durável para manter a maioria ou todos os dados na memória, e `NDBCLUSTER` oferece pesquisas rápidas de chave-valor para grandes conjuntos de dados distribuídos.
+* `Memory`: Armazena todos os dados na RAM, para acesso rápido em ambientes que exigem pesquisas rápidas de dados não críticos. Este motor era anteriormente conhecido como o motor `HEAP`. Seus casos de uso estão diminuindo; `InnoDB`, com sua área de memória de pool de buffer, oferece uma maneira geral e durável para manter a maioria ou todos os dados na memória, e `NDBCLUSTER` oferece pesquisas rápidas de chave-valor para grandes conjuntos de dados distribuídos.
 
 * `CSV`: Seus quadros são, na verdade, arquivos de texto com valores separados por vírgula. As tabelas CSV permitem importar ou exportar dados no formato CSV, para trocar dados com scripts e aplicativos que leem e escrevem esse mesmo formato. Como as tabelas CSV não são indexadas, você normalmente mantém os dados nas tabelas `InnoDB` durante o funcionamento normal e usa apenas as tabelas CSV durante a etapa de importação ou exportação.
 
@@ -88,7 +88,7 @@ Os vários motores de armazenamento fornecidos com o MySQL são projetados com d
 
 1. Implementado no servidor, e não no motor de armazenamento.
 
-2. As tabelas MyISAM compactadas são suportadas apenas quando se usa o formato de linha compactado. As tabelas que usam o formato de linha compactada com MyISAM são somente de leitura.
+2. As tabelas MyISAM compactadas são suportadas apenas quando se usa o formato de string compactado. As tabelas que usam o formato de string compactada com MyISAM são somente de leitura.
 
 3. Implementado no servidor através de funções de criptografia.
 

@@ -10,7 +10,7 @@ A tabela a seguir resume as tabelas `INFORMATION_SCHEMA` do InnoDB. Para mais de
 
 **Tabela 24.3 SCHEMA DE INFORMAÇÃO Tabelas InnoDB**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA InnoDB tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><code>INNODB_BUFFER_PAGE</code></th> <td>Páginas no buffer pool do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_PAGE_LRU</code></th> <td>Ordem de páginas em LRU no buffer pool do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_POOL_STATS</code></th> <td>Estatísticas do pool de buffers do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP</code></th> <td>Status para operações relacionadas a tabelas compactadas InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX</code></th> <td>Status para operações relacionadas a tabelas e índices compactados do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX_RESET</code></th> <td>Status para operações relacionadas a tabelas e índices compactados do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_RESET</code></th> <td>Status para operações relacionadas a tabelas compactadas InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM</code></th> <td>Status para páginas compactadas dentro do pool de buffer do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM_RESET</code></th> <td>Status para páginas compactadas dentro do pool de buffer do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_BEING_DELETED</code></th> <td>Snapshot of INNODB_FT_DELETED table</td> <td></td> </tr><tr><th><code>INNODB_FT_CONFIG</code></th> <td>Metadados para o índice FULLTEXT da tabela InnoDB e processamento associado</td> <td></td> </tr><tr><th><code>INNODB_FT_DEFAULT_STOPWORD</code></th> <td>Lista padrão de palavras irrelevantes para índices FULLTEXT do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_DELETED</code></th> <td>Linhas excluídas do índice FULLTEXT da tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_CACHE</code></th> <td>Informações sobre tokens para linhas recém-inseridas no índice FULLTEXT do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_TABLE</code></th> <td>Informações do índice invertido para processar pesquisas de texto contra o índice FULLTEXT da tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_LOCK_WAITS</code></th> <td>InnoDB transaction lock-wait information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_LOCKS</code></th> <td>InnoDB transaction lock information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_METRICS</code></th> <td>InnoDB performance information</td> <td></td> </tr><tr><th><code>INNODB_SYS_COLUMNS</code></th> <td>Colunas em cada tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_DATAFILES</code></th> <td>Informações sobre o caminho do arquivo de dados para InnoDB file-per-table e espaços de tabela gerais</td> <td></td> </tr><tr><th><code>INNODB_SYS_FIELDS</code></th> <td>Colunas-chave dos índices InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN</code></th> <td>InnoDB foreign-key metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN_COLS</code></th> <td>Informações sobre o status das colunas de chave estrangeira do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_INDEXES</code></th> <td>InnoDB index metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLES</code></th> <td>InnoDB table metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESPACES</code></th> <td>Metadados de InnoDB de arquivo por tabela, gerais e espaço de desfazer</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESTATS</code></th> <td>Informações de status de tabela de nível baixo do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_VIRTUAL</code></th> <td>Metadados de coluna virtual gerada por InnoDB</td> <td></td> </tr><tr><th><code>INNODB_TEMP_TABLE_INFO</code></th> <td>Informações sobre tabelas temporárias criadas por usuários ativos no InnoDB</td> <td></td> </tr><tr><th><code>INNODB_TRX</code></th> <td>Informações de transação ativa do InnoDB</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA InnoDB tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><code>INNODB_BUFFER_PAGE</code></th> <td>Páginas no buffer pool do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_PAGE_LRU</code></th> <td>Ordem de páginas em LRU no buffer pool do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_POOL_STATS</code></th> <td>Estatísticas do pool de buffers do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP</code></th> <td>Status para operações relacionadas a tabelas compactadas InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX</code></th> <td>Status para operações relacionadas a tabelas e índices compactados do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX_RESET</code></th> <td>Status para operações relacionadas a tabelas e índices compactados do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_RESET</code></th> <td>Status para operações relacionadas a tabelas compactadas InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM</code></th> <td>Status para páginas compactadas dentro do pool de buffer do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM_RESET</code></th> <td>Status para páginas compactadas dentro do pool de buffer do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_BEING_DELETED</code></th> <td>Snapshot of INNODB_FT_DELETED table</td> <td></td> </tr><tr><th><code>INNODB_FT_CONFIG</code></th> <td>Metadados para o índice FULLTEXT da tabela InnoDB e processamento associado</td> <td></td> </tr><tr><th><code>INNODB_FT_DEFAULT_STOPWORD</code></th> <td>Lista padrão de palavras irrelevantes para índices FULLTEXT do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_DELETED</code></th> <td>Strings excluídas do índice FULLTEXT da tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_CACHE</code></th> <td>Informações sobre tokens para strings recém-inseridas no índice FULLTEXT do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_TABLE</code></th> <td>Informações do índice invertido para processar pesquisas de texto contra o índice FULLTEXT da tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_LOCK_WAITS</code></th> <td>InnoDB transaction lock-wait information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_LOCKS</code></th> <td>InnoDB transaction lock information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_METRICS</code></th> <td>InnoDB performance information</td> <td></td> </tr><tr><th><code>INNODB_SYS_COLUMNS</code></th> <td>Colunas em cada tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_DATAFILES</code></th> <td>Informações sobre o caminho do arquivo de dados para InnoDB file-per-table e espaços de tabela gerais</td> <td></td> </tr><tr><th><code>INNODB_SYS_FIELDS</code></th> <td>Colunas-chave dos índices InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN</code></th> <td>InnoDB foreign-key metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN_COLS</code></th> <td>Informações sobre o status das colunas de chave estrangeira do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_INDEXES</code></th> <td>InnoDB index metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLES</code></th> <td>InnoDB table metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESPACES</code></th> <td>Metadados de InnoDB de arquivo por tabela, gerais e espaço de desfazer</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESTATS</code></th> <td>Informações de status de tabela de nível baixo do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_VIRTUAL</code></th> <td>Metadados de coluna virtual gerada por InnoDB</td> <td></td> </tr><tr><th><code>INNODB_TEMP_TABLE_INFO</code></th> <td>Informações sobre tabelas temporárias criadas por usuários ativos no InnoDB</td> <td></td> </tr><tr><th><code>INNODB_TRX</code></th> <td>Informações de transação ativa do InnoDB</td> <td></td> </tr></tbody></table>
 
 ### 24.4.2 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE
 
@@ -98,7 +98,7 @@ O estado da página. O quadro a seguir mostra os valores permitidos.
 
 **Tabela 24.5 Valores de INNODB\_BUFFER\_PAGE.PAGE\_STATE**
 
-  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_STATE values."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Page State</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>Uma página de arquivo com tampão</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contém um objeto de memória principal</td> </tr><tr> <td><code>NOT_USED</code></td> <td>Na lista gratuita</td> </tr><tr> <td><code>NULL</code></td> <td>Páginas compactadas limpas, páginas compactadas na lista de limpeza, páginas usadas como sentinelas de monitoramento do buffer pool</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>Uma página gratuita</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>O índice de hash deve ser removido antes de ser colocado na lista livre</td> </tr></tbody></table>
+  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_STATE values."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Page State</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>Uma página de arquivo com buffer</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contém um objeto de memória principal</td> </tr><tr> <td><code>NOT_USED</code></td> <td>Na lista gratuita</td> </tr><tr> <td><code>NULL</code></td> <td>Páginas compactadas limpas, páginas compactadas na lista de limpeza, páginas usadas como sentinelas de monitoramento do buffer pool</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>Uma página gratuita</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>O índice de hash deve ser removido antes de ser colocado na lista livre</td> </tr></tbody></table>
 
 * `IO_FIX`
 
@@ -147,7 +147,7 @@ OLDEST_MODIFICATION: 0
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-* Quando tabelas, linhas de tabela, partições ou índices são excluídos, as páginas associadas permanecem no buffer pool até que seja necessário espaço para outros dados. A tabela `INNODB_BUFFER_PAGE` reporta informações sobre essas páginas até que elas sejam expulsas do buffer pool. Para mais informações sobre como o `InnoDB` gerencia os dados do buffer pool, consulte a Seção 14.5.1, “Buffer Pool”.
+* Quando tabelas, strings de tabela, partições ou índices são excluídos, as páginas associadas permanecem no buffer pool até que seja necessário espaço para outros dados. A tabela `INNODB_BUFFER_PAGE` reporta informações sobre essas páginas até que elas sejam expulsas do buffer pool. Para mais informações sobre como o `InnoDB` gerencia os dados do buffer pool, consulte a Seção 14.5.1, “Buffer Pool”.
 
 ### 24.4.3 A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU
 
@@ -286,11 +286,11 @@ OLDEST_MODIFICATION: 0
 
 * Para consultar essa tabela, o MySQL precisa bloquear a estrutura de dados que representa o buffer pool durante a navegação na lista LRU, o que pode reduzir a concorrência, especialmente para sistemas com buffer pools de vários gigabytes.
 
-* Quando tabelas, linhas de tabela, partições ou índices são excluídos, as páginas associadas permanecem no buffer pool até que seja necessário espaço para outros dados. A tabela `INNODB_BUFFER_PAGE_LRU` reporta informações sobre essas páginas até que elas sejam expulsas do buffer pool. Para mais informações sobre como o `InnoDB` gerencia os dados do buffer pool, consulte a Seção 14.5.1, “Buffer Pool”.
+* Quando tabelas, strings de tabela, partições ou índices são excluídos, as páginas associadas permanecem no buffer pool até que seja necessário espaço para outros dados. A tabela `INNODB_BUFFER_PAGE_LRU` reporta informações sobre essas páginas até que elas sejam expulsas do buffer pool. Para mais informações sobre como o `InnoDB` gerencia os dados do buffer pool, consulte a Seção 14.5.1, “Buffer Pool”.
 
 ### 24.4.4 A tabela INFORMATION_SCHEMA.INNODB_BUFFER_POOL_STATS
 
-A tabela `INNODB_BUFFER_POOL_STATS` fornece muitas das mesmas informações do pool de tampão fornecidas na saída `SHOW ENGINE INNODB STATUS`. Muitas das mesmas informações também podem ser obtidas usando as variáveis de status do servidor do pool de tampão `InnoDB`.
+A tabela `INNODB_BUFFER_POOL_STATS` fornece muitas das mesmas informações do pool de buffer fornecidas na saída `SHOW ENGINE INNODB STATUS`. Muitas das mesmas informações também podem ser obtidas usando as variáveis de status do servidor do pool de buffer `InnoDB`.
 
 A ideia de fazer as páginas no buffer "jovens" ou "não jovens" refere-se à transferência entre as sublistas na cabeça e na cauda da estrutura de dados do buffer pool. As páginas feitas "jovens" demoram mais para sair do buffer pool, enquanto as páginas feitas "não jovens" são movidas muito mais perto do ponto de expulsão.
 
@@ -384,7 +384,7 @@ O número de solicitações de leitura lógica.
 
 * `HIT_RATE`
 
-Taxa de acerto do pool de tampão.
+Taxa de acerto do pool de buffer.
 
 * `YOUNG_MAKE_PER_THOUSAND_GETS`
 
@@ -723,7 +723,7 @@ A tabela `INNODB_FT_BEING_DELETED` tem essas colunas:
 
 * `DOC_ID`
 
-O ID do documento da linha que está em processo de ser excluída. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada. Esse valor é usado quando você realiza pesquisas de texto, para ignorar linhas na tabela `INNODB_FT_INDEX_TABLE` antes que os dados das linhas excluídas sejam removidos fisicamente do índice `FULLTEXT` por uma declaração `OPTIMIZE TABLE`. Para mais informações, consulte Otimização de índices full-text InnoDB.
+O ID do documento da string que está em processo de ser excluída. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada. Esse valor é usado quando você realiza pesquisas de texto, para ignorar strings na tabela `INNODB_FT_INDEX_TABLE` antes que os dados das strings excluídas sejam removidos fisicamente do índice `FULLTEXT` por uma declaração `OPTIMIZE TABLE`. Para mais informações, consulte Otimização de índices full-text InnoDB.
 
 #### Notas
 
@@ -854,7 +854,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
 
 ### 24.4.11 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED
 
-A tabela `INNODB_FT_DELETED` armazena linhas que são excluídas do índice `FULLTEXT` para uma tabela `InnoDB`. Para evitar a reorganização cara do índice durante operações de MQL para um índice `InnoDB` `FULLTEXT`, as informações sobre as palavras recém-excluídas são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal apenas quando você emite uma declaração `OPTIMIZE TABLE` para a tabela `InnoDB`. Para mais informações, consulte Otimizando índices de texto completo do InnoDB.
+A tabela `INNODB_FT_DELETED` armazena strings que são excluídas do índice `FULLTEXT` para uma tabela `InnoDB`. Para evitar a reorganização cara do índice durante operações de MQL para um índice `InnoDB` `FULLTEXT`, as informações sobre as palavras recém-excluídas são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal apenas quando você emite uma declaração `OPTIMIZE TABLE` para a tabela `InnoDB`. Para mais informações, consulte Otimizando índices de texto completo do InnoDB.
 
 Esta tabela está vazia inicialmente. Antes de fazer uma consulta, defina o valor da variável de sistema `innodb_ft_aux_table` para o nome (incluindo o nome do banco de dados) da tabela que contém o índice `FULLTEXT`; por exemplo, `test/articles`.
 
@@ -864,7 +864,7 @@ A tabela `INNODB_FT_DELETED` tem essas colunas:
 
 * `DOC_ID`
 
-O ID do documento da linha recentemente excluída. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada. Esse valor é usado quando você realiza pesquisas de texto, para ignorar linhas na tabela `INNODB_FT_INDEX_TABLE` antes que os dados das linhas excluídas sejam removidos fisicamente do índice `FULLTEXT` por uma declaração `OPTIMIZE TABLE`. Para mais informações, consulte Otimização de índices full-text InnoDB.
+O ID do documento da string recentemente excluída. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada. Esse valor é usado quando você realiza pesquisas de texto, para ignorar strings na tabela `INNODB_FT_INDEX_TABLE` antes que os dados das strings excluídas sejam removidos fisicamente do índice `FULLTEXT` por uma declaração `OPTIMIZE TABLE`. Para mais informações, consulte Otimização de índices full-text InnoDB.
 
 #### Exemplo
 
@@ -889,7 +889,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DELETED;
 
 ### 24.4.12 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE
 
-A tabela `INNODB_FT_INDEX_CACHE` fornece informações sobre tokens de novas linhas inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara do índice durante operações de DML, as informações sobre as palavras indexadas recentemente são armazenadas separadamente e combinadas com o índice de pesquisa principal apenas quando o `OPTIMIZE TABLE` é executado, quando o servidor é desligado ou quando o tamanho da cache excede um limite definido pela variável de sistema `innodb_ft_cache_size` ou `innodb_ft_total_cache_size`.
+A tabela `INNODB_FT_INDEX_CACHE` fornece informações sobre tokens de novas strings inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara do índice durante operações de DML, as informações sobre as palavras indexadas recentemente são armazenadas separadamente e combinadas com o índice de pesquisa principal apenas quando o `OPTIMIZE TABLE` é executado, quando o servidor é desligado ou quando o tamanho da cache excede um limite definido pela variável de sistema `innodb_ft_cache_size` ou `innodb_ft_total_cache_size`.
 
 Esta tabela está vazia inicialmente. Antes de fazer uma consulta, defina o valor da variável de sistema `innodb_ft_aux_table` para o nome (incluindo o nome do banco de dados) da tabela que contém o índice `FULLTEXT`; por exemplo, `test/articles`.
 
@@ -899,7 +899,7 @@ A tabela `INNODB_FT_INDEX_CACHE` tem essas colunas:
 
 * `WORD`
 
-Uma palavra extraída do texto de uma linha recém-inserida.
+Uma palavra extraída do texto de uma string recém-inserida.
 
 * `FIRST_DOC_ID`
 
@@ -911,11 +911,11 @@ O último ID de documento no qual essa palavra aparece no índice `FULLTEXT`.
 
 * `DOC_COUNT`
 
-O número de linhas em que essa palavra aparece no índice `FULLTEXT`. A mesma palavra pode ocorrer várias vezes na tabela de cache, uma vez para cada combinação de valores de `DOC_ID` e `POSITION`.
+O número de strings em que essa palavra aparece no índice `FULLTEXT`. A mesma palavra pode ocorrer várias vezes na tabela de cache, uma vez para cada combinação de valores de `DOC_ID` e `POSITION`.
 
 * `DOC_ID`
 
-O ID do documento da linha recém-inserida. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada.
+O ID do documento da string recém-inserida. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada.
 
 * `POSITION`
 
@@ -988,11 +988,11 @@ O último ID de documento no qual essa palavra aparece no índice `FULLTEXT`.
 
 * `DOC_COUNT`
 
-O número de linhas em que essa palavra aparece no índice `FULLTEXT`. A mesma palavra pode ocorrer várias vezes na tabela de cache, uma vez para cada combinação de valores de `DOC_ID` e `POSITION`.
+O número de strings em que essa palavra aparece no índice `FULLTEXT`. A mesma palavra pode ocorrer várias vezes na tabela de cache, uma vez para cada combinação de valores de `DOC_ID` e `POSITION`.
 
 * `DOC_ID`
 
-O ID do documento da linha que contém a palavra. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada.
+O ID do documento da string que contém a palavra. Esse valor pode refletir o valor de uma coluna de ID que você definiu para a tabela subjacente, ou pode ser um valor de sequência gerado por `InnoDB` quando a tabela não contém uma coluna adequada.
 
 * `POSITION`
 
@@ -1000,7 +1000,7 @@ A posição dessa instância específica da palavra dentro do documento relevant
 
 #### Notas
 
-* Esta tabela está vazia inicialmente. Antes de fazer uma consulta, defina o valor da variável de sistema `innodb_ft_aux_table` para o nome (incluindo o nome do banco de dados) da tabela que contém o índice `FULLTEXT`; por exemplo, `test/articles`. O exemplo a seguir demonstra como usar a variável de sistema `innodb_ft_aux_table` para exibir informações sobre um índice `FULLTEXT` para uma tabela especificada. Antes que as informações das linhas recém-inseridas apareçam em `INNODB_FT_INDEX_TABLE`, o cache do índice `FULLTEXT` deve ser apagado no disco. Isso é feito executando uma operação `OPTIMIZE TABLE` na tabela indexada com a variável de sistema `innodb_optimize_fulltext_only` habilitada. (O exemplo desabilita essa variável novamente no final, porque é destinado a ser habilitada apenas temporariamente.)
+* Esta tabela está vazia inicialmente. Antes de fazer uma consulta, defina o valor da variável de sistema `innodb_ft_aux_table` para o nome (incluindo o nome do banco de dados) da tabela que contém o índice `FULLTEXT`; por exemplo, `test/articles`. O exemplo a seguir demonstra como usar a variável de sistema `innodb_ft_aux_table` para exibir informações sobre um índice `FULLTEXT` para uma tabela especificada. Antes que as informações das strings recém-inseridas apareçam em `INNODB_FT_INDEX_TABLE`, o cache do índice `FULLTEXT` deve ser apagado no disco. Isso é feito executando uma operação `OPTIMIZE TABLE` na tabela indexada com a variável de sistema `innodb_optimize_fulltext_only` habilitada. (O exemplo desabilita essa variável novamente no final, porque é destinado a ser habilitada apenas temporariamente.)
 
   ```sql
   mysql> USE test;
@@ -1076,7 +1076,7 @@ Como o bloqueio é solicitado. Os descritores de modo de bloqueio permitidos sã
 
 * `LOCK_TYPE`
 
-O tipo de bloqueio. Os valores permitidos são `RECORD` para um bloqueio de nível de linha, `TABLE` para um bloqueio de nível de tabela.
+O tipo de bloqueio. Os valores permitidos são `RECORD` para um bloqueio de nível de string, `TABLE` para um bloqueio de nível de tabela.
 
 * `LOCK_TABLE`
 
@@ -1100,7 +1100,7 @@ O número de pilha do registro bloqueado dentro da página, se `LOCK_TYPE` é `R
 
 * `LOCK_DATA`
 
-Os dados associados ao bloqueio, se houver. Um valor é exibido se o `LOCK_TYPE` for `RECORD`, caso contrário, o valor é `NULL`. Os valores da chave primária do registro bloqueado são exibidos para um bloqueio colocado no índice da chave primária. Os valores do índice secundário do registro bloqueado são exibidos para um bloqueio colocado em um índice secundário único. Os valores do índice secundário são exibidos com os valores da chave primária anexados se o índice secundário não for único. Se não houver chave primária, o `LOCK_DATA` exibe os valores da chave de um índice único selecionado ou o número único de ID de linha interno `InnoDB`, de acordo com as regras que regem o uso do índice agrupado `InnoDB` (ver Seção 14.6.2.1, “Indizes Agrupados e Secundários”). O `LOCK_DATA` relata “pseudo-registro supremo” para um bloqueio tomado em um pseudo-registro supremo. Se a página contendo o registro bloqueado não estiver na piscina de buffer porque foi escrita no disco enquanto o bloqueio estava sendo mantido, o `InnoDB` não busca a página no disco. Em vez disso, o `LOCK_DATA` relata `NULL`.
+Os dados associados ao bloqueio, se houver. Um valor é exibido se o `LOCK_TYPE` for `RECORD`, caso contrário, o valor é `NULL`. Os valores da chave primária do registro bloqueado são exibidos para um bloqueio colocado no índice da chave primária. Os valores do índice secundário do registro bloqueado são exibidos para um bloqueio colocado em um índice secundário único. Os valores do índice secundário são exibidos com os valores da chave primária anexados se o índice secundário não for único. Se não houver chave primária, o `LOCK_DATA` exibe os valores da chave de um índice único selecionado ou o número único de ID de string interno `InnoDB`, de acordo com as regras que regem o uso do índice agrupado `InnoDB` (ver Seção 14.6.2.1, “Indizes Agrupados e Secundários”). O `LOCK_DATA` relata “pseudo-registro supremo” para um bloqueio tomado em um pseudo-registro supremo. Se a página contendo o registro bloqueado não estiver na piscina de buffer porque foi escrita no disco enquanto o bloqueio estava sendo mantido, o `InnoDB` não busca a página no disco. Em vez disso, o `LOCK_DATA` relata `NULL`.
 
 #### Exemplo
 
@@ -1142,7 +1142,7 @@ lock_trx_id: 3722
 
 ### 24.4.15 A tabela INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS
 
-A tabela `INNODB_LOCK_WAITS` contém uma ou mais linhas para cada transação bloqueada `InnoDB`, indicando o bloqueio que ela solicitou e quaisquer bloqueios que estão bloqueando essa solicitação.
+A tabela `INNODB_LOCK_WAITS` contém uma ou mais strings para cada transação bloqueada `InnoDB`, indicando o bloqueio que ela solicitou e quaisquer bloqueios que estão bloqueando essa solicitação.
 
 Nota
 
@@ -1560,7 +1560,7 @@ Um identificador para o tablespace onde o índice reside. 0 significa o tablespa
 
 * `MERGE_THRESHOLD`
 
-O valor do limite de fusão para páginas de índice. Se a quantidade de dados em uma página de índice cair abaixo do valor `MERGE_THRESHOLD` quando uma linha é excluída ou quando uma linha é encurtada por uma operação de atualização, `InnoDB` tenta fusão a página de índice com a página de índice vizinha. O valor padrão do limite é 50%. Para mais informações, consulte a Seção 14.8.12, “Configurando o Limite de Fusão para Páginas de Índice”.
+O valor do limite de fusão para páginas de índice. Se a quantidade de dados em uma página de índice cair abaixo do valor `MERGE_THRESHOLD` quando uma string é excluída ou quando uma string é encurtada por uma operação de atualização, `InnoDB` tenta fusão a página de índice com a página de índice vizinha. O valor padrão do limite é 50%. Para mais informações, consulte a Seção 14.8.12, “Configurando o Limite de Fusão para Páginas de Índice”.
 
 #### Exemplo
 
@@ -1626,11 +1626,11 @@ O formato de arquivo da tabela (`Antelope` ou `Barracuda`).
 
 * `ROW_FORMAT`
 
-O formato da linha da tabela (`Compact`, `Redundant`, `Dynamic` ou `Compressed`).
+O formato da string da tabela (`Compact`, `Redundant`, `Dynamic` ou `Compressed`).
 
 * `ZIP_PAGE_SIZE`
 
-O tamanho da página do zip. Aplica-se apenas a tabelas com um formato de linha de `Compressed`.
+O tamanho da página do zip. Aplica-se apenas a tabelas com um formato de string de `Compressed`.
 
 * `SPACE_TYPE`
 
@@ -1684,11 +1684,11 @@ Um valor numérico que representa informações de nível de bits sobre o format
 
 * `FILE_FORMAT`
 
-O formato do arquivo de tablespace. Por exemplo, Antelope, Barracuda ou `Any` (os espaços de tabelas gerais suportam qualquer formato de linha). Os dados neste campo são interpretados a partir das informações das bandeiras do tablespace que residem no arquivo .ibd. Para mais informações sobre os formatos de arquivo `InnoDB`, consulte a Seção 14.10, “Gestão do formato de arquivo InnoDB”.
+O formato do arquivo de tablespace. Por exemplo, Antelope, Barracuda ou `Any` (os espaços de tabelas gerais suportam qualquer formato de string). Os dados neste campo são interpretados a partir das informações das bandeiras do tablespace que residem no arquivo .ibd. Para mais informações sobre os formatos de arquivo `InnoDB`, consulte a Seção 14.10, “Gestão do formato de arquivo InnoDB”.
 
 * `ROW_FORMAT`
 
-O formato da linha do tablespace (`Compact or Redundant`, `Dynamic` ou `Compressed`). Os dados nesta coluna são interpretados a partir das informações das bandeiras do tablespace que residem no arquivo `.ibd`.
+O formato da string do tablespace (`Compact or Redundant`, `Dynamic` ou `Compressed`). Os dados nesta coluna são interpretados a partir das informações das bandeiras do tablespace que residem no arquivo `.ibd`.
 
 * `PAGE_SIZE`
 
@@ -1738,7 +1738,7 @@ ALLOCATED_SIZE: 65536
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-* Como as bandeiras do tablespace são sempre zero para todos os formatos de arquivo Antelope (ao contrário das bandeiras de tabela), não é possível determinar a partir dessa bandeira inteira se o formato de linha do tablespace é Redundante ou Compacto. Como resultado, os valores possíveis para o campo `ROW_FORMAT` são “Compacto ou Redundante”, “Compressão” ou “Dinâmico”.
+* Como as bandeiras do tablespace são sempre zero para todos os formatos de arquivo Antelope (ao contrário das bandeiras de tabela), não é possível determinar a partir dessa bandeira inteira se o formato de string do tablespace é Redundante ou Compacto. Como resultado, os valores possíveis para o campo `ROW_FORMAT` são “Compacto ou Redundante”, “Compressão” ou “Dinâmico”.
 
 * Com a introdução de tabelas gerais, os dados dos espaços de tabela do sistema `InnoDB` (para o ESPAÇO 0) são expostos em `INNODB_SYS_TABLESPACES`.
 
@@ -1770,7 +1770,7 @@ O valor é `Initialized` se as estatísticas já forem coletadas, `Uninitialized
 
 * `NUM_ROWS`
 
-O número atual estimado de linhas na tabela. Atualizado após cada operação DML. O valor pode ser impreciso se transações não confirmadas estão inserindo ou excluindo da tabela.
+O número atual estimado de strings na tabela. Atualizado após cada operação DML. O valor pode ser impreciso se transações não confirmadas estão inserindo ou excluindo da tabela.
 
 * `CLUST_INDEX_SIZE`
 
@@ -1782,7 +1782,7 @@ O número de páginas no disco que armazenam todos os índices secundários da t
 
 * `MODIFIED_COUNTER`
 
-O número de linhas modificadas por operações de DML, como `INSERT`, `UPDATE`, `DELETE`, e também operações de cascata a partir de chaves estrangeiras. Esta coluna é redefinida cada vez que as estatísticas da tabela são recalculadas
+O número de strings modificadas por operações de DML, como `INSERT`, `UPDATE`, `DELETE`, e também operações de cascata a partir de chaves estrangeiras. Esta coluna é redefinida cada vez que as estatísticas da tabela são recalculadas
 
 * `AUTOINC`
 
@@ -1820,7 +1820,7 @@ STATS_INITIALIZED: Initialized
 
 A tabela `INNODB_SYS_VIRTUAL` fornece metadados sobre as colunas virtuais geradas pelo `InnoDB` e as colunas nas quais as colunas geradas virtualmente são baseadas, equivalentes às informações da tabela `SYS_VIRTUAL` no dicionário de dados `InnoDB`.
 
-Uma linha aparece na tabela `INNODB_SYS_VIRTUAL` para cada coluna sobre a qual uma coluna virtual gerada é baseada.
+Uma string aparece na tabela `INNODB_SYS_VIRTUAL` para cada coluna sobre a qual uma coluna virtual gerada é baseada.
 
 A tabela `INNODB_SYS_VIRTUAL` tem essas colunas:
 
@@ -1950,7 +1950,7 @@ Um número de identificação de transação única, interno a `InnoDB`. Esses I
 
 * `TRX_WEIGHT`
 
-O peso de uma transação, que reflete (mas não necessariamente o número exato) do número de linhas alteradas e o número de linhas bloqueadas pela transação. Para resolver um impasse, `InnoDB` seleciona a transação com o menor peso como a “vítima” para ser revertida. As transações que alteraram tabelas não transacionais são consideradas mais pesadas do que outras, independentemente do número de linhas alteradas e bloqueadas.
+O peso de uma transação, que reflete (mas não necessariamente o número exato) do número de strings alteradas e o número de strings bloqueadas pela transação. Para resolver um impasse, `InnoDB` seleciona a transação com o menor peso como a “vítima” para ser revertida. As transações que alteraram tabelas não transacionais são consideradas mais pesadas do que outras, independentemente do número de strings alteradas e bloqueadas.
 
 * `TRX_STATE`
 
@@ -1970,7 +1970,7 @@ O tempo em que a transação começou a esperar na posição de bloqueio, se `TR
 
 * `TRX_MYSQL_THREAD_ID`
 
-O ID do fio do MySQL. Para obter detalhes sobre o fio, juntem esta coluna com a coluna `ID` da tabela `INFORMATION_SCHEMA` `PROCESSLIST`, mas veja a Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Acionamento do InnoDB”.
+O ID do thread do MySQL. Para obter detalhes sobre o thread, juntem esta coluna com a coluna `ID` da tabela `INFORMATION_SCHEMA` `PROCESSLIST`, mas veja a Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Acionamento do InnoDB”.
 
 * `TRX_QUERY`
 
@@ -1986,7 +1986,7 @@ O número de tabelas `InnoDB` utilizadas durante o processamento da declaração
 
 * `TRX_TABLES_LOCKED`
 
-O número de tabelas `InnoDB` que a declaração SQL atual tem bloqueios de linha. (Como esses são bloqueios de linha, e não de tabela, as tabelas geralmente ainda podem ser lidas e escritas por várias transações, apesar de algumas linhas estarem bloqueadas.)
+O número de tabelas `InnoDB` que a declaração SQL atual tem bloqueios de string. (Como esses são bloqueios de string, e não de tabela, as tabelas geralmente ainda podem ser lidas e escritas por várias transações, apesar de algumas strings estarem bloqueadas.)
 
 * `TRX_LOCK_STRUCTS`
 
@@ -1998,11 +1998,11 @@ O tamanho total ocupado pelas estruturas de bloqueio desta transação na memór
 
 * `TRX_ROWS_LOCKED`
 
-O número aproximado de linhas bloqueadas por essa transação. O valor pode incluir linhas marcadas para exclusão que estão fisicamente presentes, mas não são visíveis para a transação.
+O número aproximado de strings bloqueadas por essa transação. O valor pode incluir strings marcadas para exclusão que estão fisicamente presentes, mas não são visíveis para a transação.
 
 * `TRX_ROWS_MODIFIED`
 
-O número de linhas modificadas e inseridas nesta transação.
+O número de strings modificadas e inseridas nesta transação.
 
 * `TRX_CONCURRENCY_TICKETS`
 
@@ -2032,7 +2032,7 @@ Se o índice de hash adaptável está bloqueado pela transação atual. Quando o
 
 Descontinuado no MySQL 5.7.8. Sempre retorna 0.
 
-Se deve abandonar imediatamente o gatilho de busca para o índice de hash adaptável ou reservá-lo em todas as chamadas do MySQL. Quando não há concorrência de índice de hash adaptável, esse valor permanece zero e as declarações reservam o gatilho até que terminem. Durante períodos de concorrência, ele conta para zero e as declarações liberam o gatilho imediatamente após cada busca de linha. Quando o sistema de busca de índice de hash adaptável é particionado (controlado por `innodb_adaptive_hash_index_parts`), o valor permanece 0.
+Se deve abandonar imediatamente o gatilho de busca para o índice de hash adaptável ou reservá-lo em todas as chamadas do MySQL. Quando não há concorrência de índice de hash adaptável, esse valor permanece zero e as declarações reservam o gatilho até que terminem. Durante períodos de concorrência, ele conta para zero e as declarações liberam o gatilho imediatamente após cada busca de string. Quando o sistema de busca de índice de hash adaptável é particionado (controlado por `innodb_adaptive_hash_index_parts`), o valor permanece 0.
 
 * `TRX_IS_READ_ONLY`
 

@@ -26,8 +26,8 @@ Em cada iteração, a investigação deve levar cada vez mais perto da causa rai
 
 As colunas `mutex_instances.LOCKED_BY_THREAD_ID` e `rwlock_instances.WRITE_LOCKED_BY_THREAD_ID` são extremamente importantes para investigar gargalos de desempenho ou deadlocks. Isso é possível graças à instrumentação do Performance Schema, conforme descrito a seguir:
 
-1. Suponha que o fio 1 esteja preso, esperando por um mutex.
-2. Você pode determinar o que o fio está esperando:
+1. Suponha que o thread 1 esteja preso, esperando por um mutex.
+2. Você pode determinar o que o thread está esperando:
 
    ```sql
    SELECT * FROM performance_schema.events_waits_current
@@ -36,7 +36,7 @@ As colunas `mutex_instances.LOCKED_BY_THREAD_ID` e `rwlock_instances.WRITE_LOCKE
 
 Digamos que o resultado da consulta identifique que o thread está esperando pelo mutex A, encontrado em `events_waits_current.OBJECT_INSTANCE_BEGIN`.
 
-3. Você pode determinar qual fio está segurando o mutex A:
+3. Você pode determinar qual thread está segurando o mutex A:
 
    ```sql
    SELECT * FROM performance_schema.mutex_instances
@@ -45,7 +45,7 @@ Digamos que o resultado da consulta identifique que o thread está esperando pel
 
 Diga que o resultado da consulta indica que é o thread 2 que detém o mutex A, conforme encontrado em `mutex_instances.LOCKED_BY_THREAD_ID`.
 
-4. Você pode ver o que o fio 2 está fazendo:
+4. Você pode ver o que o thread 2 está fazendo:
 
    ```sql
    SELECT * FROM performance_schema.events_waits_current
@@ -71,7 +71,7 @@ O Schema de desempenho exibe informações do temporizador de eventos em picosse
    +------+------+------+---------+---------+
    ```
 
-Atualize a linha padrão na tabela `setup_actors` para desabilitar a coleta e monitoramento de eventos históricos para todos os threads de plano de fundo e insira uma nova linha que habilite o monitoramento e a coleta de eventos históricos para o usuário que está executando a consulta:
+Atualize a string padrão na tabela `setup_actors` para desabilitar a coleta e monitoramento de eventos históricos para todos os threads de plano de fundo e insira uma nova string que habilite o monitoramento e a coleta de eventos históricos para o usuário que está executando a consulta:
 
    ```sql
    mysql> UPDATE performance_schema.setup_actors

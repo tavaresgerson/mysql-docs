@@ -26,7 +26,7 @@ As tabelas criadas no banco de dados usam `utf8` e `utf8_general_ci` por padrão
 
 As aplicações que utilizam o banco de dados também devem configurar sua conexão com o servidor a cada vez que se conectam. Isso pode ser feito executando uma declaração `SET NAMES 'utf8'` após a conexão. A declaração pode ser usada independentemente do método de conexão (o cliente **mysql**, scripts PHP, etc.).
 
-Em alguns casos, pode ser possível configurar a conexão para usar o conjunto de caracteres desejado de outra maneira. Por exemplo, para se conectar usando **mysql**, você pode especificar a opção de linha de comando `--default-character-set=utf8` para obter o mesmo efeito que `SET NAMES 'utf8'`.
+Em alguns casos, pode ser possível configurar a conexão para usar o conjunto de caracteres desejado de outra maneira. Por exemplo, para se conectar usando **mysql**, você pode especificar a opção de string de comando `--default-character-set=utf8` para obter o mesmo efeito que `SET NAMES 'utf8'`.
 
 Para obter mais informações sobre a configuração das conexões do cliente, consulte a Seção 10.4, “Conjunto de caracteres de conexão e codificações”.
 
@@ -34,7 +34,7 @@ Nota
 
 Se você usar `ALTER DATABASE` para alterar o conjunto de caracteres ou a correção padrão do banco de dados, as rotinas armazenadas existentes no banco de dados que utilizam esses padrões devem ser excluídas e recriadas para que utilizem os novos padrões. (Em uma rotina armazenada, as variáveis com tipos de dados de caracteres utilizam os padrões do banco de dados se o conjunto de caracteres ou a correção não forem especificados explicitamente. Veja a Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”).
 
-* **Especifique as configurações de caracteres no início do servidor.** Para selecionar um conjunto de caracteres e uma codificação no início do servidor, use as opções `--character-set-server` e `--collation-server`. Por exemplo, para especificar as opções em um arquivo de opções, inclua essas linhas:
+* **Especifique as configurações de caracteres no início do servidor.** Para selecionar um conjunto de caracteres e uma codificação no início do servidor, use as opções `--character-set-server` e `--collation-server`. Por exemplo, para especificar as opções em um arquivo de opções, inclua essas strings:
 
   ```sql
   [mysqld]

@@ -64,7 +64,7 @@ Características do plugin `daemon_memcached`:
 
 * Suporte para múltiplos colunas. Você pode mapear múltiplas colunas na parte "valor" do armazenamento de chaves e valores, com os valores das colunas delimitados por um caractere de separador especificado pelo usuário.
 
-* Por padrão, o protocolo **memcached** é usado para ler e escrever dados diretamente em `InnoDB`, permitindo que o MySQL gerencie o cache em memória usando o pool de tampão `InnoDB`. As configurações padrão representam uma combinação de alta confiabilidade e o menor número de surpresas para aplicações de banco de dados. Por exemplo, as configurações padrão evitam dados não comprometidos no lado do banco de dados ou dados desatualizados retornados para solicitações **memcached** `get`.
+* Por padrão, o protocolo **memcached** é usado para ler e escrever dados diretamente em `InnoDB`, permitindo que o MySQL gerencie o cache em memória usando o pool de buffer `InnoDB`. As configurações padrão representam uma combinação de alta confiabilidade e o menor número de surpresas para aplicações de banco de dados. Por exemplo, as configurações padrão evitam dados não comprometidos no lado do banco de dados ou dados desatualizados retornados para solicitações **memcached** `get`.
 
 * Os usuários avançados podem configurar o sistema como um servidor tradicional de **memcached**, com todos os dados armazenados apenas no motor de **memcached** (cache de memória), ou usar uma combinação do motor de **memcached** (cache de memória) e do motor de **memcached** `InnoDB` (`InnoDB` como armazenamento persistente de back-end).
 
@@ -136,7 +136,7 @@ Executar o script `innodb_memcached_config.sql` é uma operação única. As tab
 
 Desses quadros, o quadro `innodb_memcache.containers` é o mais importante. As entradas no quadro `containers` fornecem uma mapeo para as colunas do quadro `InnoDB`. Cada quadro `InnoDB` usado com o plugin `daemon_memcached` requer uma entrada no quadro `containers`.
 
-O script `innodb_memcached_config.sql` insere uma única entrada na tabela `containers`, que fornece uma mapeo para a tabela `demo_test`. Ele também insere uma única linha de dados na tabela `demo_test`. Esses dados permitem que você verifique imediatamente a instalação após a configuração ser concluída.
+O script `innodb_memcached_config.sql` insere uma única entrada na tabela `containers`, que fornece uma mapeo para a tabela `demo_test`. Ele também insere uma única string de dados na tabela `demo_test`. Esses dados permitem que você verifique imediatamente a instalação após a configuração ser concluída.
 
    ```sql
    mysql> SELECT * FROM innodb_memcache.containers\G
@@ -173,7 +173,7 @@ Uma vez que o plugin é instalado, ele é automaticamente ativado toda vez que o
 
 Para verificar a configuração do plugin `daemon_memcached`, use uma sessão de **telnet** para emitir comandos do **memcached**. Por padrão, o daemon do **memcached** escuta na porta 11211.
 
-1. Recupere os dados da tabela `test.demo_test`. A única linha de dados na tabela `demo_test` tem um valor chave de `AA`.
+1. Recupere os dados da tabela `test.demo_test`. A única string de dados na tabela `demo_test` tem um valor chave de `AA`.
 
    ```sql
    telnet localhost 11211
@@ -472,7 +472,7 @@ Normalmente, escrever um aplicativo para o plugin `InnoDB` **memcached** envolve
 
 * Vindo de um ambiente de banco de dados, você pode estar acostumado com tabelas SQL de uso geral com muitas colunas. As tabelas acessadas pelo código **memcached** provavelmente têm apenas algumas ou até uma única coluna com valores de dados.
 
-* Você pode adaptar partes de sua aplicação que realizam consultas de uma única linha, inserções, atualizações ou exclusões, para melhorar o desempenho em seções críticas do código. Tanto as operações de consulta (leitura) quanto as DML (escrita) podem ser substancialmente mais rápidas quando realizadas através da interface `InnoDB` **memcached**. A melhoria de desempenho para escritas é tipicamente maior do que a melhoria de desempenho para leituras, então você pode focar em adaptar o código que realiza o registro ou registra escolhas interativas em um site.
+* Você pode adaptar partes de sua aplicação que realizam consultas de uma única string, inserções, atualizações ou exclusões, para melhorar o desempenho em seções críticas do código. Tanto as operações de consulta (leitura) quanto as DML (escrita) podem ser substancialmente mais rápidas quando realizadas através da interface `InnoDB` **memcached**. A melhoria de desempenho para escritas é tipicamente maior do que a melhoria de desempenho para leituras, então você pode focar em adaptar o código que realiza o registro ou registra escolhas interativas em um site.
 
 As seções a seguir exploram esses pontos com mais detalhes.
 
@@ -480,7 +480,7 @@ As seções a seguir exploram esses pontos com mais detalhes.
 
 Considere esses aspectos das aplicações do **memcached** ao adaptar um esquema ou aplicativo existente do MySQL para usar o plugin `daemon_memcached`:
 
-* As chaves do **memcached** não podem conter espaços ou novas linhas, porque esses caracteres são usados como separadores no protocolo ASCII. Se você está usando valores de busca que contêm espaços, transforme-os ou faça uma hash deles em valores sem espaços antes de usá-los como chaves em chamadas para `add()`, `set()`, `get()`, e assim por diante. Embora teoricamente esses caracteres sejam permitidos em chaves em programas que usam o protocolo binário, você deve restringir os caracteres usados em chaves para garantir compatibilidade com uma ampla gama de clientes.
+* As chaves do **memcached** não podem conter espaços ou novas strings, porque esses caracteres são usados como separadores no protocolo ASCII. Se você está usando valores de busca que contêm espaços, transforme-os ou faça uma hash deles em valores sem espaços antes de usá-los como chaves em chamadas para `add()`, `set()`, `get()`, e assim por diante. Embora teoricamente esses caracteres sejam permitidos em chaves em programas que usam o protocolo binário, você deve restringir os caracteres usados em chaves para garantir compatibilidade com uma ampla gama de clientes.
 
 * Se houver uma coluna primária numérica curta em uma tabela `InnoDB`, use-a como a chave de pesquisa única para o **memcached**, convertendo o inteiro em um valor de string. Se o servidor **memcached** for usado para múltiplas aplicações ou com mais de uma tabela `InnoDB`, considere modificar o nome para garantir que seja único. Por exemplo, adicione o nome da tabela ou o nome do banco de dados e o nome da tabela antes do valor numérico.
 
@@ -517,7 +517,7 @@ O plugin `daemon_memcached` suporta inserções e leituras em tabelas mapeadas `
 
 Nota
 
-Qualquer valor alfabético no conjunto de resultados é convertido em 0 pela chamada ao `CAST()`. Ao usar funções como `AVG()`, que dependem do número de linhas no conjunto de resultados, inclua cláusulas `WHERE` para filtrar valores não numéricos.
+Qualquer valor alfabético no conjunto de resultados é convertido em 0 pela chamada ao `CAST()`. Ao usar funções como `AVG()`, que dependem do número de strings no conjunto de resultados, inclua cláusulas `WHERE` para filtrar valores não numéricos.
 
 * Se a coluna `InnoDB` usada como chave pudesse ter valores mais longos que 250 bytes, faça o hash do valor para menos de 250 bytes.
 
@@ -525,7 +525,7 @@ Qualquer valor alfabético no conjunto de resultados é convertido em 0 pela cha
 
 Para um exemplo de uso de uma tabela diferente da tabela predefinida `test.demo_test`, veja o Exemplo 14.13, “Usando sua própria tabela com um aplicativo InnoDB memcached”. Para o layout da tabela necessário, veja a Seção 14.21.7, “Interiores do Plugin InnoDB memcached”.
 
-* Para usar múltiplos valores de coluna da tabela `InnoDB` com pares chave-valor do **memcached**, especifique os nomes das colunas separados por vírgula, ponto e vírgula, espaço ou caracteres de tubo no campo `value_columns` da entrada `innodb_memcache.containers` para a tabela `InnoDB`. Por exemplo, especifique `col1,col2,col3` ou `col1|col2|col3` no campo `value_columns`.
+* Para usar múltiplos valores de coluna da tabela `InnoDB` com pares chave-valor do **memcached**, especifique os nomes das colunas separados por vírgula, ponto e vírgula, espaço ou caracteres de pipe no campo `value_columns` da entrada `innodb_memcache.containers` para a tabela `InnoDB`. Por exemplo, especifique `col1,col2,col3` ou `col1|col2|col3` no campo `value_columns`.
 
 Concatenar os valores da coluna em uma única cadeia de caracteres usando o caractere de barra como separador antes de passar a cadeia de caracteres para as chamadas do **memcached** `add` ou `set`. A cadeia de caracteres é desempacotada automaticamente na coluna correta. Cada chamada do `get` retorna uma única cadeia de caracteres contendo os valores da coluna que também é delimitada pelo caractere de barra. Você pode desempacotar os valores usando a sintaxe do idioma apropriado da aplicação.
 
@@ -927,7 +927,7 @@ get key_value
 
 ##### Usando a Memória do Sistema
 
-Para obter o melhor desempenho, implante o plugin `daemon_memcached` em máquinas configuradas como servidores de banco de dados típicos, onde a maioria da RAM do sistema é dedicada ao conjunto de tampão `InnoDB`, através da opção de configuração `innodb_buffer_pool_size`. Para sistemas com conjuntos de tampão de vários gigabytes, considere aumentar o valor de `innodb_buffer_pool_instances` para obter o máximo desempenho quando a maioria das operações envolve dados que já estão cacheados na memória.
+Para obter o melhor desempenho, implante o plugin `daemon_memcached` em máquinas configuradas como servidores de banco de dados típicos, onde a maioria da RAM do sistema é dedicada ao conjunto de buffer `InnoDB`, através da opção de configuração `innodb_buffer_pool_size`. Para sistemas com conjuntos de buffer de vários gigabytes, considere aumentar o valor de `innodb_buffer_pool_instances` para obter o máximo desempenho quando a maioria das operações envolve dados que já estão cacheados na memória.
 
 ##### Reduzindo o I/O redundante
 
@@ -961,7 +961,7 @@ Ao contrário do **memcached** tradicional, o plugin `daemon_memcached` permite 
 
 Uma das compensações entre durabilidade e desempenho bruto é a frequência com que novos e alterados dados são comprometidos. Se os dados são críticos, eles devem ser comprometidos imediatamente para que estejam seguros em caso de uma saída ou interrupção inesperada. Se os dados são menos críticos, como contadores que são redefinidos após uma saída inesperada ou dados de registro que você pode permitir perder, você pode preferir um maior desempenho bruto disponível com menos compromissos frequentes.
 
-Quando uma operação de **memcached** insere, atualiza ou exclui dados na tabela subjacente `InnoDB`, a mudança pode ser comprometida na tabela `InnoDB` instantaneamente (se `daemon_memcached_w_batch_size=1`) ou em algum momento posterior (se o valor de `daemon_memcached_w_batch_size` for maior que 1). Em qualquer caso, a mudança não pode ser revertida. Se você aumentar o valor de `daemon_memcached_w_batch_size` para evitar alto custo de I/O durante períodos ocupados, os compromissos podem se tornar infrequentes quando a carga de trabalho diminui. Como uma medida de segurança, um fio de fundo automaticamente compromete as mudanças feitas através da API de **memcached** em intervalos regulares. O intervalo é controlado pela opção de configuração `innodb_api_bk_commit_interval`, que tem um ajuste padrão de `5` segundos.
+Quando uma operação de **memcached** insere, atualiza ou exclui dados na tabela subjacente `InnoDB`, a mudança pode ser comprometida na tabela `InnoDB` instantaneamente (se `daemon_memcached_w_batch_size=1`) ou em algum momento posterior (se o valor de `daemon_memcached_w_batch_size` for maior que 1). Em qualquer caso, a mudança não pode ser revertida. Se você aumentar o valor de `daemon_memcached_w_batch_size` para evitar alto custo de I/O durante períodos ocupados, os compromissos podem se tornar infrequentes quando a carga de trabalho diminui. Como uma medida de segurança, um thread de fundo automaticamente compromete as mudanças feitas através da API de **memcached** em intervalos regulares. O intervalo é controlado pela opção de configuração `innodb_api_bk_commit_interval`, que tem um ajuste padrão de `5` segundos.
 
 Quando uma operação de **memcached** insere ou atualiza dados na tabela subjacente `InnoDB`, os dados alterados ficam imediatamente visíveis para outras solicitações de **memcached**, pois o novo valor permanece no cache de memória, mesmo que ainda não tenha sido comprometido no lado MySQL.
 
@@ -971,9 +971,9 @@ Quando uma operação de **memcached**, como `get` ou `incr`, causa uma consulta
 
 Um nível de isolamento rigoroso garante que os dados que você recupera não sejam revertidos ou alterados de repente, o que pode fazer com que consultas subsequentes retornem valores diferentes. No entanto, níveis de isolamento rigorosos exigem maior sobrecarga de bloqueio, o que pode causar espera. Para um aplicativo estilo NoSQL que não utiliza transações de longa duração, você pode, normalmente, usar o nível de isolamento padrão ou mudar para um nível de isolamento menos rigoroso.
 
-##### Desabilitar bloqueios de linha para operações de DML do memcached
+##### Desabilitar bloqueios de string para operações de DML do memcached
 
-A opção `innodb_api_disable_rowlock` pode ser usada para desabilitar bloqueios de linha quando as solicitações do **memcached** através do plugin `daemon_memcached` causam operações de DML. Por padrão, `innodb_api_disable_rowlock` está definido como `OFF`, o que significa que as solicitações do **memcached** causam bloqueios de linha para as operações de `get` e `set`. Quando `innodb_api_disable_rowlock` está definido como `ON`, o **memcached** solicita um bloqueio de tabela em vez de bloqueios de linha.
+A opção `innodb_api_disable_rowlock` pode ser usada para desabilitar bloqueios de string quando as solicitações do **memcached** através do plugin `daemon_memcached` causam operações de DML. Por padrão, `innodb_api_disable_rowlock` está definido como `OFF`, o que significa que as solicitações do **memcached** causam bloqueios de string para as operações de `get` e `set`. Quando `innodb_api_disable_rowlock` está definido como `ON`, o **memcached** solicita um bloqueio de tabela em vez de bloqueios de string.
 
 A opção `innodb_api_disable_rowlock` não é dinâmica. Ela deve ser especificada na inicialização no comando `mysqld` ou inserida em um arquivo de configuração do MySQL.
 
@@ -1015,7 +1015,7 @@ mysql> INSTALL PLUGIN daemon_memcached soname "libmemcached.so";
 
 Os benchmarks sugerem que o plugin `daemon_memcached` acelera operações DML (inserções, atualizações e exclusões) mais do que acelera consultas. Portanto, considere focar os esforços de desenvolvimento inicial em aplicações intensivas em escrita que são limitadas por I/O, e procure oportunidades para usar o MySQL com o plugin `daemon_memcached` para novas aplicações intensivas em escrita.
 
-As declarações DML de uma única linha são os tipos de declarações mais fáceis de transformar em operações `memcached`. `INSERT` se torna `add`, `UPDATE` se torna `set`, `incr` ou `decr`, e `DELETE` se torna `delete`. Essas operações são garantidas para afetar apenas uma linha quando emitidas através da interface **memcached**, porque o *`key`* é único dentro da tabela.
+As declarações DML de uma única string são os tipos de declarações mais fáceis de transformar em operações `memcached`. `INSERT` se torna `add`, `UPDATE` se torna `set`, `incr` ou `decr`, e `DELETE` se torna `delete`. Essas operações são garantidas para afetar apenas uma string quando emitidas através da interface **memcached**, porque o *`key`* é único dentro da tabela.
 
 Nos exemplos SQL a seguir, `t1` se refere à tabela usada para operações de **memcached**, com base na configuração da tabela `innodb_memcache.containers`. `key` se refere à coluna listada em `key_columns`, e `val` se refere à coluna listada em `value_columns`.
 
@@ -1027,7 +1027,7 @@ UPDATE t1 SET val = val + x WHERE key = some_key;
 DELETE FROM t1 WHERE key = some_key;
 ```
 
-As seguintes declarações `TRUNCATE TABLE` e `DELETE`, que removem todas as linhas da tabela, correspondem à operação `flush_all`, onde `t1` é configurado como a tabela para operações de **memcached**, como no exemplo anterior.
+As seguintes declarações `TRUNCATE TABLE` e `DELETE`, que removem todas as strings da tabela, correspondem à operação `flush_all`, onde `t1` é configurado como a tabela para operações de **memcached**, como no exemplo anterior.
 
 ```sql
 TRUNCATE TABLE t1;
@@ -1038,7 +1038,7 @@ DELETE FROM t1;
 
 Você pode acessar a tabela subjacente `InnoDB` (que é `test.demo_test` por padrão) por meio de interfaces SQL padrão. No entanto, há algumas restrições:
 
-* Ao consultar uma tabela que também é acessada através da interface **memcached**, lembre-se de que as operações **memcached** podem ser configuradas para serem realizadas periodicamente, em vez de após cada operação de escrita. Esse comportamento é controlado pela opção `daemon_memcached_w_batch_size`. Se essa opção for definida com um valor maior que `1`, use consultas `READ UNCOMMITTED` para encontrar linhas que foram inseridas recentemente.
+* Ao consultar uma tabela que também é acessada através da interface **memcached**, lembre-se de que as operações **memcached** podem ser configuradas para serem realizadas periodicamente, em vez de após cada operação de escrita. Esse comportamento é controlado pela opção `daemon_memcached_w_batch_size`. Se essa opção for definida com um valor maior que `1`, use consultas `READ UNCOMMITTED` para encontrar strings que foram inseridas recentemente.
 
   ```sql
   mysql> SET SESSSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
@@ -1065,7 +1065,7 @@ As seções a seguir mostram como usar a capacidade de registro binário ao usar
 
 #### Habilitando o registro binário InnoDB memcached
 
-1. Para usar o plugin `daemon_memcached` com o log binário do MySQL, habilite a opção de configuração `innodb_api_enable_binlog` no servidor de origem. Esta opção só pode ser definida na inicialização do servidor. Você também deve habilitar o log binário do MySQL no servidor de origem usando a opção `--log-bin`. Você pode adicionar essas opções ao arquivo de configuração do MySQL ou na linha de comando `mysqld`.
+1. Para usar o plugin `daemon_memcached` com o log binário do MySQL, habilite a opção de configuração `innodb_api_enable_binlog` no servidor de origem. Esta opção só pode ser definida na inicialização do servidor. Você também deve habilitar o log binário do MySQL no servidor de origem usando a opção `--log-bin`. Você pode adicionar essas opções ao arquivo de configuração do MySQL ou na string de comando `mysqld`.
 
    ```sql
    mysqld ... --log-bin -–innodb_api_enable_binlog=1
@@ -1200,7 +1200,7 @@ Quando a operação `delete` é replicada para a réplica, o registro `test1` na
    +----+--------------+------+------+------+
    ```
 
-6. Remova todas as linhas da tabela usando o comando `flush_all`.
+6. Remova todas as strings da tabela usando o comando `flush_all`.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -1243,7 +1243,7 @@ Quando a operação `delete` é replicada para a réplica, o registro `test1` na
    +-------+--------------+------+------+------+
    ```
 
-9. Remova todas as linhas da tabela usando o comando `flush_all`.
+9. Remova todas as strings da tabela usando o comando `flush_all`.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -1265,7 +1265,7 @@ Notas de log binário do InnoDB memcached
 
 Formato de registro binário:
 
-* A maioria das operações do **memcached** é mapeada para declarações DML (análogo a inserir, excluir e atualizar). Como não há uma declaração SQL real sendo processada pelo servidor MySQL, todos os comandos do **memcached** (exceto o `flush_all`) utilizam o registro de Replicação Baseada em Linha (RBR), que é independente de qualquer configuração do servidor `binlog_format`.
+* A maioria das operações do **memcached** é mapeada para declarações DML (análogo a inserir, excluir e atualizar). Como não há uma declaração SQL real sendo processada pelo servidor MySQL, todos os comandos do **memcached** (exceto o `flush_all`) utilizam o registro de Replicação Baseada em String (RBR), que é independente de qualquer configuração do servidor `binlog_format`.
 
 * O comando **memcached** `flush_all` é mapeado para o comando `TRUNCATE TABLE`. Como os comandos DDL só podem usar registro baseado em declarações, o comando `flush_all` é replicado enviando uma declaração `TRUNCATE TABLE`.
 
@@ -1336,7 +1336,7 @@ A tabela `containers` contém uma entrada padrão para a tabela `test.demo_test`
 
 **Tabela 14.24 Contenedores Colunas**
 
-<table frame="all" summary="Columns of the containers table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>name</code></td> <td>O nome dado ao recipiente. Se um<code>InnoDB</code>A tabela não é solicitada pelo nome usando<code>@@</code>notação, a<code>daemon_memcached</code>o plugin utiliza<code>InnoDB</code>mesa com uma<code>containers.name</code>valor de<code>default</code>Se não houver tal entrada, a primeira entrada no<code>containers</code>tabela, ordenada alfabeticamente por<code>name</code>(ascendente), determina o padrão<code>InnoDB</code> table.</td> </tr><tr> <td><code>db_schema</code></td> <td>O nome do banco de dados onde o<code>InnoDB</code>A tabela reside. Este é um valor obrigatório.</td> </tr><tr> <td><code>db_table</code></td> <td>O nome do<code>InnoDB</code>tabela que armazena<strong>memcached</strong>valores. Este é um valor obrigatório.</td> </tr><tr> <td><code>key_columns</code></td> <td>A coluna no<code>InnoDB</code>uma tabela que contém valores de chave de busca para<strong>memcached</strong>operações. Este é um valor obrigatório.</td> </tr><tr> <td><code>value_columns</code></td> <td>O<code>InnoDB</code>colunas de tabela (uma ou mais) que armazenam<code>memcached</code>dados. Várias colunas podem ser especificadas usando o caractere de separador especificado no<code>innodb_memcached.config_options</code>tabela. Por padrão, o separador é um caractere de tubo (“|”). Para especificar várias colunas, separe-as com o caractere de separador definido. Por exemplo:<code>col1|col2|col3</code>. Este é um valor obrigatório.</td> </tr><tr> <td><code>flags</code></td> <td>O<code>InnoDB</code>colunas de tabela que são usadas como bandeiras (um valor numérico definido pelo usuário que é armazenado e recuperado juntamente com o valor principal) para<strong>memcached</strong>Um valor de bandeira pode ser usado como especificador de coluna para algumas operações (como<code>incr</code>,<code>prepend</code>) se um<strong>memcached</strong>O valor é mapeado para várias colunas, de modo que uma operação é realizada em uma coluna especificada. Por exemplo, se você tiver mapeado um<code>value_columns</code>para três<code>InnoDB</code>se você deseja apenas realizar a operação de incremento em uma coluna, use a tabela e apenas a coluna que deseja, e o comando:<code>flags</code>coluna para especificar a coluna. Se você não usar a<code>flags</code>coluna, defina um valor de<code>0</code>para indicar que não foi utilizada.</td> </tr><tr> <td><code>cas_column</code></td> <td>O<code>InnoDB</code>Uma coluna de tabela que armazena valores de comparação e troca (CAS). A<code>cas_column</code>o valor está relacionado à forma como<strong>memcached</strong>envolve a geração de hashes para diferentes servidores e o armazenamento de dados na memória. Como o<code>InnoDB</code> <strong>memcached</strong>O plugin é integrado de forma estreita com um único<strong>memcached</strong>daemon, e o mecanismo de cache de memória é gerenciado pelo MySQL e pelo<a class="link" href="glossary.html#glos_buffer_pool" title="buffer pool">Banco de buffers de InnoDB</a>, essa coluna raramente é necessária. Se você não usar essa coluna, defina um valor de<code>0</code>para indicar que não foi utilizada.</td> </tr><tr> <td><code>expire_time_column</code></td> <td>O<code>InnoDB</code>coluna de tabela que armazena valores de expiração. A<code>expire_time_column</code>o valor está relacionado à forma como<strong>memcached</strong>envolve a geração de hashes para diferentes servidores e o armazenamento de dados na memória. Como o<code>InnoDB</code> <strong>memcached</strong>O plugin é integrado de forma estreita com um único<strong>memcached</strong>daemon, e o mecanismo de cache de memória é gerenciado pelo MySQL e pelo<a class="link" href="glossary.html#glos_buffer_pool" title="buffer pool">Banco de buffers de InnoDB</a>, essa coluna raramente é necessária. Se você não usar essa coluna, defina um valor de<code>0</code>para indicar que a coluna não está sendo usada. O tempo máximo de expiração é definido como<code>INT_MAX32</code>ou 2147483647 segundos (aproximadamente 68 anos).</td> </tr><tr> <td><code>unique_idx_name_on_key</code></td> <td>O nome do índice na coluna chave. Deve ser um índice único. Pode ser<a class="link" href="glossary.html#glos_primary_key" title="primary key">chave primária</a>ou um<a class="link" href="glossary.html#glos_secondary_index" title="secondary index">índice secundário</a>. Preferencialmente, use a chave primária do<code>InnoDB</code>tabela. Utilizar a chave primária evita uma pesquisa que é realizada ao usar um índice secundário. Não é possível criar um índice coberto para<strong>memcached</strong>consultas;<code>InnoDB</code>retorna um erro se você tentar definir um índice secundário composto sobre as colunas chave e valor.</td> </tr></tbody></table>
+<table frame="all" summary="Columns of the containers table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>name</code></td> <td>O nome dado ao recipiente. Se um<code>InnoDB</code>A tabela não é solicitada pelo nome usando<code>@@</code>notação, a<code>daemon_memcached</code>o plugin utiliza<code>InnoDB</code>mesa com uma<code>containers.name</code>valor de<code>default</code>Se não houver tal entrada, a primeira entrada no<code>containers</code>tabela, ordenada alfabeticamente por<code>name</code>(ascendente), determina o padrão<code>InnoDB</code> table.</td> </tr><tr> <td><code>db_schema</code></td> <td>O nome do banco de dados onde o<code>InnoDB</code>A tabela reside. Este é um valor obrigatório.</td> </tr><tr> <td><code>db_table</code></td> <td>O nome do<code>InnoDB</code>tabela que armazena<strong>memcached</strong>valores. Este é um valor obrigatório.</td> </tr><tr> <td><code>key_columns</code></td> <td>A coluna no<code>InnoDB</code>uma tabela que contém valores de chave de busca para<strong>memcached</strong>operações. Este é um valor obrigatório.</td> </tr><tr> <td><code>value_columns</code></td> <td>O<code>InnoDB</code>colunas de tabela (uma ou mais) que armazenam<code>memcached</code>dados. Várias colunas podem ser especificadas usando o caractere de separador especificado no<code>innodb_memcached.config_options</code>tabela. Por padrão, o separador é um caractere de pipe (“|”). Para especificar várias colunas, separe-as com o caractere de separador definido. Por exemplo:<code>col1|col2|col3</code>. Este é um valor obrigatório.</td> </tr><tr> <td><code>flags</code></td> <td>O<code>InnoDB</code>colunas de tabela que são usadas como bandeiras (um valor numérico definido pelo usuário que é armazenado e recuperado juntamente com o valor principal) para<strong>memcached</strong>Um valor de bandeira pode ser usado como especificador de coluna para algumas operações (como<code>incr</code>,<code>prepend</code>) se um<strong>memcached</strong>O valor é mapeado para várias colunas, de modo que uma operação é realizada em uma coluna especificada. Por exemplo, se você tiver mapeado um<code>value_columns</code>para três<code>InnoDB</code>se você deseja apenas realizar a operação de incremento em uma coluna, use a tabela e apenas a coluna que deseja, e o comando:<code>flags</code>coluna para especificar a coluna. Se você não usar a<code>flags</code>coluna, defina um valor de<code>0</code>para indicar que não foi utilizada.</td> </tr><tr> <td><code>cas_column</code></td> <td>O<code>InnoDB</code>Uma coluna de tabela que armazena valores de comparação e troca (CAS). A<code>cas_column</code>o valor está relacionado à forma como<strong>memcached</strong>envolve a geração de hashes para diferentes servidores e o armazenamento de dados na memória. Como o<code>InnoDB</code> <strong>memcached</strong>O plugin é integrado de forma estreita com um único<strong>memcached</strong>daemon, e o mecanismo de cache de memória é gerenciado pelo MySQL e pelo<a class="link" href="glossary.html#glos_buffer_pool" title="buffer pool">Banco de buffers de InnoDB</a>, essa coluna raramente é necessária. Se você não usar essa coluna, defina um valor de<code>0</code>para indicar que não foi utilizada.</td> </tr><tr> <td><code>expire_time_column</code></td> <td>O<code>InnoDB</code>coluna de tabela que armazena valores de expiração. A<code>expire_time_column</code>o valor está relacionado à forma como<strong>memcached</strong>envolve a geração de hashes para diferentes servidores e o armazenamento de dados na memória. Como o<code>InnoDB</code> <strong>memcached</strong>O plugin é integrado de forma estreita com um único<strong>memcached</strong>daemon, e o mecanismo de cache de memória é gerenciado pelo MySQL e pelo<a class="link" href="glossary.html#glos_buffer_pool" title="buffer pool">Banco de buffers de InnoDB</a>, essa coluna raramente é necessária. Se você não usar essa coluna, defina um valor de<code>0</code>para indicar que a coluna não está sendo usada. O tempo máximo de expiração é definido como<code>INT_MAX32</code>ou 2147483647 segundos (aproximadamente 68 anos).</td> </tr><tr> <td><code>unique_idx_name_on_key</code></td> <td>O nome do índice na coluna chave. Deve ser um índice único. Pode ser<a class="link" href="glossary.html#glos_primary_key" title="primary key">chave primária</a>ou um<a class="link" href="glossary.html#glos_secondary_index" title="secondary index">índice secundário</a>. Preferencialmente, use a chave primária do<code>InnoDB</code>tabela. Utilizar a chave primária evita uma pesquisa que é realizada ao usar um índice secundário. Não é possível criar um índice coberto para<strong>memcached</strong>consultas;<code>InnoDB</code>retorna um erro se você tentar definir um índice secundário composto sobre as colunas chave e valor.</td> </tr></tbody></table>
 
 ##### Contenedores Tabela Restrições de coluna
 
@@ -1435,7 +1435,7 @@ A outra solução é reduzir o número de conexões concorrentes permitidas para
 
 * Se as colunas especificadas para armazenar valores de **memcached** tiverem o tipo de dados errado, como um tipo numérico em vez de um tipo de string, as tentativas de armazenar pares chave-valor falham sem nenhum código de erro ou mensagem específica.
 
-* Se o plugin `daemon_memcached` causar problemas de inicialização do servidor MySQL, você pode desativar temporariamente o plugin `daemon_memcached` enquanto resolve o problema, adicionando esta linha sob o grupo `[mysqld]` no arquivo de configuração do MySQL:
+* Se o plugin `daemon_memcached` causar problemas de inicialização do servidor MySQL, você pode desativar temporariamente o plugin `daemon_memcached` enquanto resolve o problema, adicionando esta string sob o grupo `[mysqld]` no arquivo de configuração do MySQL:
 
   ```sql
   daemon_memcached=OFF

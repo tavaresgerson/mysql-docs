@@ -67,7 +67,7 @@ Os códigos de erro são estáveis em todas as versões de disponibilidade geral
 
 + Classe = `'00'` indica sucesso.
   + Classe = `'01'` indica um aviso.
-  + Classe = `'02'` indica “não encontrado”. Isso é relevante no contexto de cursor e é usado para controlar o que acontece quando um cursor atinge o final de um conjunto de dados. Esta condição também ocorre para as declarações `SELECT ... INTO var_list` que não recuperam nenhuma linha.
+  + Classe = `'02'` indica “não encontrado”. Isso é relevante no contexto de cursor e é usado para controlar o que acontece quando um cursor atinge o final de um conjunto de dados. Esta condição também ocorre para as declarações `SELECT ... INTO var_list` que não recuperam nenhuma string.
 
 + Classe > `'02'` indica uma exceção.
 

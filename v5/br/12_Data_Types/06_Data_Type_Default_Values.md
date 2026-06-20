@@ -33,7 +33,7 @@ Se a coluna não puder aceitar `NULL` como um valor, o MySQL define a coluna sem
 
 Para a entrada de dados em uma coluna `NOT NULL` que não possui cláusula explícita `DEFAULT`, se uma declaração `INSERT` ou `REPLACE` não incluir valor para a coluna, ou uma declaração `UPDATE` definir a coluna como `NULL`, o MySQL lida com a coluna de acordo com o modo SQL em vigor naquela época:
 
-* Se o modo SQL rigoroso estiver habilitado, um erro ocorre para tabelas transacionais e a declaração é revertida. Para tabelas não transacionais, ocorre um erro, mas se isso acontecer na segunda ou nas demais linhas de uma declaração de várias linhas, todas as linhas que precedem o erro já foram inseridas.
+* Se o modo SQL rigoroso estiver habilitado, um erro ocorre para tabelas transacionais e a declaração é revertida. Para tabelas não transacionais, ocorre um erro, mas se isso acontecer na segunda ou nas demais strings de uma declaração de várias strings, todas as strings que precedem o erro já foram inseridas.
 
 * Se o modo estrito não estiver habilitado, o MySQL define a coluna para o valor padrão implícito para o tipo de dados da coluna.
 
@@ -43,7 +43,7 @@ Suponha que uma tabela `t` seja definida da seguinte forma:
 CREATE TABLE t (i INT NOT NULL);
 ```
 
-Neste caso, `i` não tem um padrão explícito, então, em modo estrito, cada uma das seguintes declarações produz um erro e nenhuma linha é inserida. Quando não se usa o modo estrito, apenas a terceira declaração produz um erro; o padrão implícito é inserido para as duas primeiras declarações, mas a terceira falha porque `DEFAULT(i)` não pode produzir um valor:
+Neste caso, `i` não tem um padrão explícito, então, em modo estrito, cada uma das seguintes declarações produz um erro e nenhuma string é inserida. Quando não se usa o modo estrito, apenas a terceira declaração produz um erro; o padrão implícito é inserido para as duas primeiras declarações, mas a terceira falha porque `DEFAULT(i)` não pode produzir um valor:
 
 ```sql
 INSERT INTO t VALUES();

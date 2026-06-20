@@ -25,7 +25,7 @@ SELECT fname, lname, region_code, dob
     WHERE region_code > 125 AND region_code < 130;
 ```
 
-É fácil perceber que nenhuma das linhas que deveriam ser devolvidas está em nenhuma das partições `p0` ou `p3`; ou seja, precisamos procurar apenas nas partições `p1` e `p2` para encontrar as linhas correspondentes. Ao fazer isso, é possível gastar muito menos tempo e esforço na busca de linhas correspondentes do que o necessário para digitalizar todas as partições na tabela. Esse "cortar" das partições desnecessárias é conhecido como poda. Quando o otimizador pode fazer uso da poda de partições ao realizar essa consulta, a execução da consulta pode ser uma ordem de magnitude mais rápida do que a mesma consulta em uma tabela não particionada que contenha as mesmas definições de coluna e dados.
+É fácil perceber que nenhuma das strings que deveriam ser devolvidas está em nenhuma das partições `p0` ou `p3`; ou seja, precisamos procurar apenas nas partições `p1` e `p2` para encontrar as strings correspondentes. Ao fazer isso, é possível gastar muito menos tempo e esforço na busca de strings correspondentes do que o necessário para digitalizar todas as partições na tabela. Esse "cortar" das partições desnecessárias é conhecido como poda. Quando o otimizador pode fazer uso da poda de partições ao realizar essa consulta, a execução da consulta pode ser uma ordem de magnitude mais rápida do que a mesma consulta em uma tabela não particionada que contenha as mesmas definições de coluna e dados.
 
 Nota
 
@@ -43,9 +43,9 @@ No primeiro caso, o otimizador simplesmente avalia a expressão de particionamen
 
 No segundo caso, o otimizador avalia a expressão de particionamento para cada valor na lista, cria uma lista de particionamentos correspondentes e, em seguida, examina apenas as particionamentos nessa lista de particionamentos.
 
-O MySQL pode aplicar o corte de partição aos `SELECT`, `DELETE` e `UPDATE` declarações. Uma declaração `INSERT` também acessa apenas uma partição por linha inserida; isso é verdadeiro mesmo para uma tabela que é particionada por `HASH` ou `KEY`, embora isso não seja atualmente mostrado na saída de `EXPLAIN`.
+O MySQL pode aplicar o corte de partição aos `SELECT`, `DELETE` e `UPDATE` declarações. Uma declaração `INSERT` também acessa apenas uma partição por string inserida; isso é verdadeiro mesmo para uma tabela que é particionada por `HASH` ou `KEY`, embora isso não seja atualmente mostrado na saída de `EXPLAIN`.
 
-A poda também pode ser aplicada em intervalos curtos, que o otimizador pode converter em listas equivalentes de valores. Por exemplo, no exemplo anterior, a cláusula `WHERE` pode ser convertida em `WHERE region_code IN (126, 127, 128, 129)`. Então, o otimizador pode determinar que os dois primeiros valores na lista são encontrados na partição `p1`, os dois valores restantes na partição `p2`, e que as outras partições não contêm valores relevantes e, portanto, não precisam ser pesquisadas em busca de linhas correspondentes.
+A poda também pode ser aplicada em intervalos curtos, que o otimizador pode converter em listas equivalentes de valores. Por exemplo, no exemplo anterior, a cláusula `WHERE` pode ser convertida em `WHERE region_code IN (126, 127, 128, 129)`. Então, o otimizador pode determinar que os dois primeiros valores na lista são encontrados na partição `p1`, os dois valores restantes na partição `p2`, e que as outras partições não contêm valores relevantes e, portanto, não precisam ser pesquisadas em busca de strings correspondentes.
 
 O otimizador também pode realizar poda para condições `WHERE` que envolvem comparações dos tipos anteriores em várias colunas para tabelas que utilizam `RANGE COLUMNS` ou `LIST COLUMNS` de particionamento.
 

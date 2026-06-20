@@ -123,7 +123,7 @@ cold_cache.key_buffer_size = 2G
 init_file=/path/to/data-directory/mysqld_init.sql
 ```
 
-As declarações em `mysqld_init.sql` são executadas sempre que o servidor é iniciado. O arquivo deve conter uma declaração SQL por linha. O exemplo a seguir atribui várias tabelas, cada uma para `hot_cache` e `cold_cache`:
+As declarações em `mysqld_init.sql` são executadas sempre que o servidor é iniciado. O arquivo deve conter uma declaração SQL por string. O exemplo a seguir atribui várias tabelas, cada uma para `hot_cache` e `cold_cache`:
 
 ```sql
 CACHE INDEX db1.t1, db1.t2, db2.t3 IN hot_cache
@@ -212,9 +212,9 @@ O cache de consulta não é suportado para tabelas particionadas e é automatica
 
 Segue-se alguns dados de desempenho do cache de consultas. Esses resultados foram gerados ao executar a suite de benchmarks do MySQL em um sistema Linux Alpha 2×500 MHz com 2 GB de RAM e um cache de consultas de 64 MB.
 
-* Se todas as consultas que você está realizando forem simples (como selecionar uma linha de uma tabela com uma única linha), mas ainda assim diferirem de tal forma que as consultas não possam ser armazenadas em cache, o custo de manter o cache de consultas ativo é de 13%. Isso pode ser considerado o cenário mais crítico. Na vida real, as consultas tendem a ser muito mais complicadas, então o custo normalmente é significativamente menor.
+* Se todas as consultas que você está realizando forem simples (como selecionar uma string de uma tabela com uma única string), mas ainda assim diferirem de tal forma que as consultas não possam ser armazenadas em cache, o custo de manter o cache de consultas ativo é de 13%. Isso pode ser considerado o cenário mais crítico. Na vida real, as consultas tendem a ser muito mais complicadas, então o custo normalmente é significativamente menor.
 
-* As pesquisas por uma única linha em uma tabela de uma única linha são 238% mais rápidas com o cache de consulta do que sem ele. Isso pode ser considerado próximo à velocidade mínima esperada para uma consulta que é cacheada.
+* As pesquisas por uma única string em uma tabela de uma única string são 238% mais rápidas com o cache de consulta do que sem ele. Isso pode ser considerado próximo à velocidade mínima esperada para uma consulta que é cacheada.
 
 Para desabilitar o cache de consulta na inicialização do servidor, defina a variável de sistema `query_cache_size` para 0. Ao desabilitar o código do cache de consulta, não há sobrecarga perceptível.
 
@@ -258,7 +258,7 @@ O cache de consulta também funciona dentro de transações ao usar as tabelas `
 
 O resultado de uma consulta `SELECT` em uma visualização é armazenado em cache.
 
-O cache de consulta funciona para consultas `SELECT SQL_CALC_FOUND_ROWS ...` e armazena um valor que é retornado por uma consulta subsequente `SELECT FOUND_ROWS()`. `FOUND_ROWS()` retorna o valor correto mesmo que a consulta anterior tenha sido obtida do cache, porque o número de linhas encontradas também é armazenado no cache. A própria consulta `SELECT FOUND_ROWS()` não pode ser armazenada no cache.
+O cache de consulta funciona para consultas `SELECT SQL_CALC_FOUND_ROWS ...` e armazena um valor que é retornado por uma consulta subsequente `SELECT FOUND_ROWS()`. `FOUND_ROWS()` retorna o valor correto mesmo que a consulta anterior tenha sido obtida do cache, porque o número de strings encontradas também é armazenado no cache. A própria consulta `SELECT FOUND_ROWS()` não pode ser armazenada no cache.
 
 As declarações preparadas que são emitidas usando o protocolo binário usando `mysql_stmt_prepare()` e `mysql_stmt_execute()` (ver C API Interface de Declaração Preparada), estão sujeitas a limitações de cache. A comparação com declarações no cache de consulta é baseada no texto da declaração após a expansão dos marcadores de parâmetros `?`. A declaração é comparada apenas com outras declarações em cache que foram executadas usando o protocolo binário. Isso significa que, para fins de cache de consulta, declarações preparadas emitidas usando o protocolo binário são distintas de declarações preparadas emitidas usando o protocolo de texto (ver Seção 13.5, “Declarações Preparadas”).
 
@@ -364,7 +364,7 @@ mysql> SHOW VARIABLES LIKE 'have_query_cache';
 
 Ao usar um binário padrão do MySQL, esse valor é sempre `YES`, mesmo se o cache de consulta estiver desativado.
 
-Várias outras variáveis do sistema controlam a operação do cache de consulta. Essas podem ser definidas em um arquivo de opções ou na linha de comando ao iniciar `mysqld`. Todas as variáveis do sistema de cache de consulta têm nomes que começam com `query_cache_`. Elas são descritas brevemente na Seção 5.1.7, “Variáveis do Sistema do Servidor”, com informações adicionais de configuração fornecidas aqui.
+Várias outras variáveis do sistema controlam a operação do cache de consulta. Essas podem ser definidas em um arquivo de opções ou na string de comando ao iniciar `mysqld`. Todas as variáveis do sistema de cache de consulta têm nomes que começam com `query_cache_`. Elas são descritas brevemente na Seção 5.1.7, “Variáveis do Sistema do Servidor”, com informações adicionais de configuração fornecidas aqui.
 
 Para definir o tamanho do cache de consulta, defina a variável de sistema `query_cache_size`. Definindo-a como 0, desativa o cache de consulta, assim como definir `query_cache_type=0`. Por padrão, o cache de consulta é desativado. Isso é alcançado usando um tamanho padrão de 1M, com um valor padrão para `query_cache_type` de 0.
 
@@ -441,7 +441,7 @@ Cuidado para não definir o tamanho do cache como muito grande. Devido à necess
 
 Nota
 
-Você pode definir o tamanho máximo que pode ser especificado para o cache de consulta no tempo de execução com a declaração `SET` usando a opção `--maximum-query_cache_size=32M` na linha de comando ou no arquivo de configuração.
+Você pode definir o tamanho máximo que pode ser especificado para o cache de consulta no tempo de execução com a declaração `SET` usando a opção `--maximum-query_cache_size=32M` na string de comando ou no arquivo de configuração.
 
 Quando uma consulta deve ser cacheada, seu resultado (os dados enviados ao cliente) é armazenado no cache da consulta durante a recuperação do resultado. Portanto, os dados geralmente não são manipulados em um grande bloco. O cache da consulta aloca blocos para armazenar esses dados sob demanda, então, quando um bloco é preenchido, um novo bloco é alocado. Como a operação de alocação de memória é custosa (em termos de tempo), o cache da consulta aloca blocos com um tamanho mínimo dado pela variável de sistema `query_cache_min_res_unit`. Quando uma consulta é executada, o último bloco de resultado é ajustado ao tamanho real dos dados, para que a memória não utilizada seja liberada. Dependendo dos tipos de consultas que seu servidor executa, você pode achar útil ajustar o valor de `query_cache_min_res_unit`:
 

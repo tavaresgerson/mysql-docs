@@ -82,7 +82,7 @@ mysql> SET @a='test';
 mysql> SELECT @a,(@a:=20) FROM tbl_name;
 ```
 
-Para esta declaração `SELECT`, o MySQL informa ao cliente que a coluna um é uma string e converte todos os acessos de `@a` em strings, mesmo que @a esteja definida como um número para a segunda linha. Após a execução da declaração `SELECT`, `@a` é considerado um número para a próxima declaração.
+Para esta declaração `SELECT`, o MySQL informa ao cliente que a coluna um é uma string e converte todos os acessos de `@a` em strings, mesmo que @a esteja definida como um número para a segunda string. Após a execução da declaração `SELECT`, `@a` é considerado um número para a próxima declaração.
 
 Para evitar problemas com esse comportamento, ou não atribua um valor e leia o valor da mesma variável em uma única declaração, ou, caso contrário, defina a variável como `0`, `0.0` ou `''` para definir seu tipo antes de usá-la.
 
@@ -92,7 +92,7 @@ Em uma declaração `SELECT`, cada expressão selecionada é avaliada apenas qua
 mysql> SELECT (@aa:=id) AS a, (@aa+3) AS b FROM tbl_name HAVING b=5;
 ```
 
-A referência a `b` na cláusula `HAVING` refere-se a um alias para uma expressão na lista de seleção que utiliza `@aa`. Isso não funciona conforme o esperado: `@aa` contém o valor de `id` da linha anterior selecionada, não da linha atual.
+A referência a `b` na cláusula `HAVING` refere-se a um alias para uma expressão na lista de seleção que utiliza `@aa`. Isso não funciona conforme o esperado: `@aa` contém o valor de `id` da string anterior selecionada, não da string atual.
 
 As variáveis de usuário são destinadas a fornecer valores de dados. Elas não podem ser usadas diretamente em uma declaração SQL como um identificador ou como parte de um identificador, como em contextos onde é esperado um nome de tabela ou banco de dados, ou como uma palavra reservada, como `SELECT`. Isso é verdadeiro mesmo que a variável seja citada, como mostrado no exemplo a seguir:
 

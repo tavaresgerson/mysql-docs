@@ -36,7 +36,7 @@ mysql> USE test
 Database changed
 ```
 
-`USE`, assim como `QUIT`, não exige ponto e vírgula. (Você pode terminar tais declarações com ponto e vírgula, se preferir; isso não faz mal a ninguém.) A declaração `USE` é especial de outra maneira também: ela deve ser dada em uma única linha.
+`USE`, assim como `QUIT`, não exige ponto e vírgula. (Você pode terminar tais declarações com ponto e vírgula, se preferir; isso não faz mal a ninguém.) A declaração `USE` é especial de outra maneira também: ela deve ser dada em uma única string.
 
 Você pode usar o banco de dados `test` (se você tiver acesso a ele) para os exemplos que se seguem, mas qualquer coisa que você criar nesse banco de dados pode ser removida por qualquer outra pessoa que tenha acesso a ele. Por esse motivo, você provavelmente deve pedir permissão ao administrador do MySQL para usar um banco de dados próprio. Suponha que você queira chamar o seu `menagerie`. O administrador precisa executar uma declaração como esta:
 
@@ -67,7 +67,7 @@ mysql> USE menagerie
 Database changed
 ```
 
-Seu banco de dados precisa ser criado apenas uma vez, mas você deve selecioná-lo para uso cada vez que iniciar uma sessão **mysql**. Você pode fazer isso emitindo uma declaração `USE` como mostrado no exemplo. Alternativamente, você pode selecionar o banco de dados na linha de comando quando invocar **mysql**. Basta especificar seu nome após quaisquer parâmetros de conexão que você possa precisar fornecer. Por exemplo:
+Seu banco de dados precisa ser criado apenas uma vez, mas você deve selecioná-lo para uso cada vez que iniciar uma sessão **mysql**. Você pode fazer isso emitindo uma declaração `USE` como mostrado no exemplo. Alternativamente, você pode selecionar o banco de dados na string de comando quando invocar **mysql**. Basta especificar seu nome após quaisquer parâmetros de conexão que você possa precisar fornecer. Por exemplo:
 
 ```sql
 $> mysql -h host -u user -p menagerie
@@ -76,7 +76,7 @@ Enter password: ********
 
 Importante
 
-`menagerie` no comando mostrado acima **não é** sua senha. Se você deseja fornecer sua senha na linha de comando após a opção `-p`, você deve fazê-lo sem espaço intermediário (por exemplo, como `-ppassword`, não como `-p password`). No entanto, colocar sua senha na linha de comando não é recomendado, pois isso a expõe a espiões de outros usuários conectados à sua máquina.
+`menagerie` no comando mostrado acima **não é** sua senha. Se você deseja fornecer sua senha na string de comando após a opção `-p`, você deve fazê-lo sem espaço intermediário (por exemplo, como `-ppassword`, não como `-p password`). No entanto, colocar sua senha na string de comando não é recomendado, pois isso a expõe a espiões de outros usuários conectados à sua máquina.
 
 Nota
 
@@ -232,9 +232,9 @@ Suponha que seus registros de animais de estimação possam ser descritos como m
 </tbody>
 </table>
 
-Como você está começando com uma tabela vazia, uma maneira fácil de preencher é criar um arquivo de texto contendo uma linha para cada um dos seus animais, e depois carregar o conteúdo do arquivo na tabela com uma única declaração.
+Como você está começando com uma tabela vazia, uma maneira fácil de preencher é criar um arquivo de texto contendo uma string para cada um dos seus animais, e depois carregar o conteúdo do arquivo na tabela com uma única declaração.
 
-Você pode criar um arquivo de texto `pet.txt` contendo um registro por linha, com valores separados por tabs, e fornecendo-os na ordem em que as colunas foram listadas na declaração `CREATE TABLE`. Para valores ausentes (como sexos desconhecidos ou datas de morte de animais que ainda estão vivos), você pode usar os valores de `NULL`. Para representá-los em seu arquivo de texto, use `\N` (barra invertida, N maiúsculo). Por exemplo, o registro para Whistler, o pássaro, ficaria assim (onde o espaço em branco entre os valores é um único caractere de tabulação):
+Você pode criar um arquivo de texto `pet.txt` contendo um registro por string, com valores separados por tabs, e fornecendo-os na ordem em que as colunas foram listadas na declaração `CREATE TABLE`. Para valores ausentes (como sexos desconhecidos ou datas de morte de animais que ainda estão vivos), você pode usar os valores de `NULL`. Para representá-los em seu arquivo de texto, use `\N` (barra invertida, N maiúsculo). Por exemplo, o registro para Whistler, o pássaro, ficaria assim (onde o espaço em branco entre os valores é um único caractere de tabulação):
 
 ```sql
 Whistler        Gwen    bird    \N      1997-12-09      \N
@@ -246,7 +246,7 @@ Para carregar o arquivo de texto `pet.txt` na tabela `pet`, use esta declaraçã
 mysql> LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
 ```
 
-Se você criou o arquivo no Windows com um editor que usa `\r\n` como terminador de linha, você deve usar esta declaração em vez disso:
+Se você criou o arquivo no Windows com um editor que usa `\r\n` como terminador de string, você deve usar esta declaração em vez disso:
 
 ```sql
 mysql> LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet
@@ -255,7 +255,7 @@ mysql> LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet
 
 (Em uma máquina Apple com macOS, você provavelmente vai querer usar `LINES TERMINATED BY '\r'`.
 
-Você pode especificar o separador de valor da coluna e o marcador de fim de linha explicitamente na declaração `LOAD DATA`, se desejar, mas os padrões são tabulação e retorno de linha. Estes são suficientes para que a declaração leia o arquivo `pet.txt` corretamente.
+Você pode especificar o separador de valor da coluna e o marcador de fim de string explicitamente na declaração `LOAD DATA`, se desejar, mas os padrões são tabulação e retorno de string. Estes são suficientes para que a declaração leia o arquivo `pet.txt` corretamente.
 
 Se a declaração falhar, é provável que sua instalação do MySQL não tenha a capacidade de arquivo local habilitada por padrão. Consulte a Seção 6.1.6, “Considerações de segurança para LOAD DATA LOCAL”, para obter informações sobre como alterar isso.
 
@@ -280,7 +280,7 @@ FROM which_table
 WHERE conditions_to_satisfy;
 ```
 
-*`what_to_select`* indica o que você deseja ver. Isso pode ser uma lista de colunas, ou `*` para indicar “todas as colunas”. *`which_table`* indica a tabela a partir da qual você deseja recuperar dados. A cláusula `WHERE` é opcional. Se estiver presente, *`conditions_to_satisfy`* especifica uma ou mais condições que as linhas devem satisfazer para se qualificar para recuperação.
+*`what_to_select`* indica o que você deseja ver. Isso pode ser uma lista de colunas, ou `*` para indicar “todas as colunas”. *`which_table`* indica a tabela a partir da qual você deseja recuperar dados. A cláusula `WHERE` é opcional. Se estiver presente, *`conditions_to_satisfy`* especifica uma ou mais condições que as strings devem satisfazer para se qualificar para recuperação.
 
 #### 3.3.4.1 Selecionando todos os dados
 
@@ -324,11 +324,11 @@ No entanto, se você fizer isso, também deve redigitar o registro para Puffball
 
 O `UPDATE` altera apenas o registro em questão e não exige que você recarregue a tabela.
 
-#### 3.3.4.2 Selecionando Linhas Específicas
+#### 3.3.4.2 Selecionando Strings Específicas
 
 Como mostrado na seção anterior, é fácil recuperar uma tabela inteira. Basta omitir a cláusula `WHERE` da declaração `SELECT`. Mas, normalmente, você não quer ver a tabela inteira, especialmente quando ela se torna grande. Em vez disso, você geralmente está mais interessado em responder a uma pergunta específica, caso em que você especifica algumas restrições sobre as informações que você deseja. Vamos analisar algumas consultas de seleção em termos de perguntas sobre seus animais de estimação que elas respondem.
 
-Você pode selecionar apenas determinadas linhas da sua tabela. Por exemplo, se você deseja verificar a alteração que você fez na data de nascimento de Bowser, selecione o registro de Bowser da seguinte forma:
+Você pode selecionar apenas determinadas strings da sua tabela. Por exemplo, se você deseja verificar a alteração que você fez na data de nascimento de Bowser, selecione o registro de Bowser da seguinte forma:
 
 ```sql
 mysql> SELECT * FROM pet WHERE name = 'Bowser';
@@ -394,7 +394,7 @@ mysql> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')
 
 #### 3.3.4.3 Selecionando Colunas Específicas
 
-Se você não quiser ver linhas inteiras da sua tabela, basta nomear as colunas nas quais você está interessado, separadas por vírgulas. Por exemplo, se você quiser saber quando seus animais nasceram, selecione as colunas `name` e `birth`:
+Se você não quiser ver strings inteiras da sua tabela, basta nomear as colunas nas quais você está interessado, separadas por vírgulas. Por exemplo, se você quiser saber quando seus animais nasceram, selecione as colunas `name` e `birth`:
 
 ```sql
 mysql> SELECT name, birth FROM pet;
@@ -446,7 +446,7 @@ mysql> SELECT DISTINCT owner FROM pet;
 +--------+
 ```
 
-Você pode usar uma cláusula `WHERE` para combinar a seleção de linha com a seleção de coluna. Por exemplo, para obter datas de nascimento apenas de cães e gatos, use esta consulta:
+Você pode usar uma cláusula `WHERE` para combinar a seleção de string com a seleção de coluna. Por exemplo, para obter datas de nascimento apenas de cães e gatos, use esta consulta:
 
 ```sql
 mysql> SELECT name, species, birth FROM pet
@@ -462,9 +462,9 @@ mysql> SELECT name, species, birth FROM pet
 +--------+---------+------------+
 ```
 
-#### 3.3.4.4 Ordenação de Linhas
+#### 3.3.4.4 Ordenação de Strings
 
-Você pode ter notado nos exemplos anteriores que as linhas de resultado são exibidas em nenhuma ordem específica. É muitas vezes mais fácil examinar a saída da consulta quando as linhas são ordenadas de alguma maneira significativa. Para ordenar um resultado, use uma cláusula `ORDER BY`.
+Você pode ter notado nos exemplos anteriores que as strings de resultado são exibidas em nenhuma ordem específica. É muitas vezes mais fácil examinar a saída da consulta quando as strings são ordenadas de alguma maneira significativa. Para ordenar um resultado, use uma cláusula `ORDER BY`.
 
 Aqui estão os aniversários dos animais, classificados por data:
 
@@ -553,7 +553,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-A consulta funciona, mas o resultado poderia ser analisado mais facilmente se as linhas fossem apresentadas em algum tipo de ordem. Isso pode ser feito adicionando uma cláusula `ORDER BY name` para ordenar a saída por nome:
+A consulta funciona, mas o resultado poderia ser analisado mais facilmente se as strings fossem apresentadas em algum tipo de ordem. Isso pode ser feito adicionando uma cláusula `ORDER BY name` para ordenar a saída por nome:
 
 ```sql
 mysql> SELECT name, birth, CURDATE(),
@@ -871,11 +871,11 @@ mysql> SELECT * FROM pet WHERE name REGEXP '^.{5}$';
 
 Para mais informações sobre a sintaxe de expressões regulares, consulte a Seção 12.8.2, “Expressões Regulares”.
 
-#### 3.3.4.8 Contagem de linhas
+#### 3.3.4.8 Contagem de strings
 
 Os bancos de dados são frequentemente usados para responder à pergunta: “Com que frequência um determinado tipo de dado ocorre em uma tabela?” Por exemplo, você pode querer saber quantos animais de estimação você tem, ou quantos animais de estimação cada proprietário tem, ou você pode querer realizar vários tipos de operações de censo em seus animais.
 
-Contar o número total de animais que você tem é a mesma pergunta que "Quantas linhas estão na tabela `pet`?", porque há um registro por animal. `COUNT(*)` conta o número de linhas, então a consulta para contar seus animais parece assim:
+Contar o número total de animais que você tem é a mesma pergunta que "Quantas strings estão na tabela `pet`?", porque há um registro por animal. `COUNT(*)` conta o número de strings, então a consulta para contar seus animais parece assim:
 
 ```sql
 mysql> SELECT COUNT(*) FROM pet;
@@ -999,7 +999,7 @@ Se você nomear colunas para selecionar além do valor `COUNT()`, deve haver uma
   this is incompatible with sql_mode=only_full_group_by
   ```
 
-* Se `ONLY_FULL_GROUP_BY` não estiver habilitado, a consulta é processada tratando todas as linhas como um único grupo, mas o valor selecionado para cada coluna nomeada é não determinístico. O servidor é livre para selecionar o valor de qualquer linha:
+* Se `ONLY_FULL_GROUP_BY` não estiver habilitado, a consulta é processada tratando todas as strings como um único grupo, mas o valor selecionado para cada coluna nomeada é não determinístico. O servidor é livre para selecionar o valor de qualquer string:
 
   ```sql
   mysql> SET sql_mode = '';
@@ -1138,7 +1138,7 @@ Há várias coisas a notar sobre essa consulta:
 
 * Ao combinar (juntar) informações de várias tabelas, você precisa especificar como os registros em uma tabela podem ser correspondidos com os registros da outra. Isso é fácil porque ambos têm uma coluna `name`. A consulta usa uma cláusula `ON` para corresponder os registros nas duas tabelas com base nos valores `name`.
 
-A consulta utiliza um `INNER JOIN` para combinar as tabelas. Um `INNER JOIN` permite que as linhas de uma das tabelas apareçam no resultado se e somente se ambas as tabelas atenderem às condições especificadas na cláusula `ON`. Neste exemplo, a cláusula `ON` especifica que a coluna `name` na tabela `pet` deve corresponder à coluna `name` na tabela `event`. Se um nome aparecer em uma tabela, mas não na outra, a linha não aparecerá no resultado porque a condição na cláusula `ON` falha.
+A consulta utiliza um `INNER JOIN` para combinar as tabelas. Um `INNER JOIN` permite que as strings de uma das tabelas apareçam no resultado se e somente se ambas as tabelas atenderem às condições especificadas na cláusula `ON`. Neste exemplo, a cláusula `ON` especifica que a coluna `name` na tabela `pet` deve corresponder à coluna `name` na tabela `event`. Se um nome aparecer em uma tabela, mas não na outra, a string não aparecerá no resultado porque a condição na cláusula `ON` falha.
 
 * Como a coluna `name` ocorre em ambas as tabelas, você deve ser específico sobre qual tabela você se refere quando se refere à coluna. Isso é feito ao prependere o nome da tabela ao nome da coluna.
 

@@ -2,11 +2,11 @@
 
 **Tabela 12.3 Operadores**
 
-<table frame="box" rules="all" summary="A reference that lists all operators."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>&amp;</code></th> <td> Bitwise AND </td> <td></td> </tr><tr><th><code>&gt;</code></th> <td> Greater than operator </td> <td></td> </tr><tr><th><code>&gt;&gt;</code></th> <td> Right shift </td> <td></td> </tr><tr><th><code>&gt;=</code></th> <td>Operador maior que ou igual a</td> <td></td> </tr><tr><th><code>&lt;</code></th> <td> Less than operator </td> <td></td> </tr><tr><th><code>&lt;&gt;</code>,<code>!=</code></th> <td>Operador não igual</td> <td></td> </tr><tr><th><code>&lt;&lt;</code></th> <td> Left shift </td> <td></td> </tr><tr><th><code>&lt;=</code></th> <td>Operador menor ou igual</td> <td></td> </tr><tr><th><code>&lt;=&gt;</code></th> <td>Igual a operador seguro para NULL</td> <td></td> </tr><tr><th><code>%</code>,<code>MOD</code></th> <td>Operador de módulo</td> <td></td> </tr><tr><th><code>*</code></th> <td> Multiplication operator </td> <td></td> </tr><tr><th><code>+</code></th> <td> Addition operator </td> <td></td> </tr><tr><th><code>-</code></th> <td> Minus operator </td> <td></td> </tr><tr><th><code>-</code></th> <td>Troque o sinal do argumento</td> <td></td> </tr><tr><th><code>-&gt;</code></th> <td> Return value from JSON column after evaluating path; equivalent to JSON_EXTRACT(). </td> <td></td> </tr><tr><th><code>-&gt;&gt;</code></th> <td> Return value from JSON column after evaluating path and unquoting the result; equivalent to JSON_UNQUOTE(JSON_EXTRACT()). </td> <td>5.7.13</td> </tr><tr><th><code>/</code></th> <td> Division operator </td> <td></td> </tr><tr><th><code>:=</code></th> <td> Assign a value </td> <td></td> </tr><tr><th><code>=</code></th> <td>Atribua um valor (como parte de<code>SET</code>declaração, ou como parte da<code>SET</code>cláusula em<code>UPDATE</code>declaração)</td> <td></td> </tr><tr><th><code>=</code></th> <td> Equal operator </td> <td></td> </tr><tr><th><code>^</code></th> <td> Bitwise XOR </td> <td></td> </tr><tr><th><code>AND</code>,<code>&amp;&amp;</code></th> <td>E lógico e</td> <td></td> </tr><tr><th><code>BETWEEN ... AND ...</code></th> <td>Se um valor está dentro de uma faixa de valores</td> <td></td> </tr><tr><th><code>BINARY</code></th> <td>Arremessar uma cadeia para uma cadeia binária</td> <td></td> </tr><tr><th><code>CASE</code></th> <td> Case operator </td> <td></td> </tr><tr><th><code>DIV</code></th> <td> Integer division </td> <td></td> </tr><tr><th><code>EXISTS()</code></th> <td>Se o resultado de uma consulta contém quaisquer linhas</td> <td></td> </tr><tr><th><code>IN()</code></th> <td>Se um valor está dentro de um conjunto de valores</td> <td></td> </tr><tr><th><code>IS</code></th> <td>Teste um valor contra um booleano</td> <td></td> </tr><tr><th><code>IS NOT</code></th> <td>Teste um valor contra um booleano</td> <td></td> </tr><tr><th><code>IS NOT NULL</code></th> <td>Teste de valor NOT NULL</td> <td></td> </tr><tr><th><code>IS NULL</code></th> <td>Teste de valor nulo</td> <td></td> </tr><tr><th><code>LIKE</code></th> <td> Simple pattern matching </td> <td></td> </tr><tr><th><code>NOT</code>,<code>!</code></th> <td>Nega o valor</td> <td></td> </tr><tr><th><code>NOT BETWEEN ... AND ...</code></th> <td>Se um valor não estiver dentro de uma faixa de valores</td> <td></td> </tr><tr><th><code>NOT EXISTS()</code></th> <td>Se o resultado de uma consulta não contiver nenhuma linha</td> <td></td> </tr><tr><th><code>NOT IN()</code></th> <td>Se um valor não estiver dentro de um conjunto de valores</td> <td></td> </tr><tr><th><code>NOT LIKE</code></th> <td>Negação de correspondência de padrão simples</td> <td></td> </tr><tr><th><code>NOT REGEXP</code></th> <td>Negación de REGEXP</td> <td></td> </tr><tr><th><code>OR</code>,<code>||</code></th> <td>OU lógico</td> <td></td> </tr><tr><th><code>REGEXP</code></th> <td>Se a cadeia corresponde à expressão regular</td> <td></td> </tr><tr><th><code>RLIKE</code></th> <td>Se a cadeia corresponde à expressão regular</td> <td></td> </tr><tr><th><code>SOUNDS LIKE</code></th> <td> Compare sounds </td> <td></td> </tr><tr><th><code>XOR</code></th> <td> Logical XOR </td> <td></td> </tr><tr><th><code>|</code></th> <td> Bitwise OR </td> <td></td> </tr><tr><th><code>~</code></th> <td> Bitwise inversion </td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all operators."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>&amp;</code></th> <td> Bitwise AND </td> <td></td> </tr><tr><th><code>&gt;</code></th> <td> Greater than operator </td> <td></td> </tr><tr><th><code>&gt;&gt;</code></th> <td> Right shift </td> <td></td> </tr><tr><th><code>&gt;=</code></th> <td>Operador maior que ou igual a</td> <td></td> </tr><tr><th><code>&lt;</code></th> <td> Less than operator </td> <td></td> </tr><tr><th><code>&lt;&gt;</code>,<code>!=</code></th> <td>Operador não igual</td> <td></td> </tr><tr><th><code>&lt;&lt;</code></th> <td> Left shift </td> <td></td> </tr><tr><th><code>&lt;=</code></th> <td>Operador menor ou igual</td> <td></td> </tr><tr><th><code>&lt;=&gt;</code></th> <td>Igual a operador seguro para NULL</td> <td></td> </tr><tr><th><code>%</code>,<code>MOD</code></th> <td>Operador de módulo</td> <td></td> </tr><tr><th><code>*</code></th> <td> Multiplication operator </td> <td></td> </tr><tr><th><code>+</code></th> <td> Addition operator </td> <td></td> </tr><tr><th><code>-</code></th> <td> Minus operator </td> <td></td> </tr><tr><th><code>-</code></th> <td>Troque o sinal do argumento</td> <td></td> </tr><tr><th><code>-&gt;</code></th> <td> Return value from JSON column after evaluating path; equivalent to JSON_EXTRACT(). </td> <td></td> </tr><tr><th><code>-&gt;&gt;</code></th> <td> Return value from JSON column after evaluating path and unquoting the result; equivalent to JSON_UNQUOTE(JSON_EXTRACT()). </td> <td>5.7.13</td> </tr><tr><th><code>/</code></th> <td> Division operator </td> <td></td> </tr><tr><th><code>:=</code></th> <td> Assign a value </td> <td></td> </tr><tr><th><code>=</code></th> <td>Atribua um valor (como parte de<code>SET</code>declaração, ou como parte da<code>SET</code>cláusula em<code>UPDATE</code>declaração)</td> <td></td> </tr><tr><th><code>=</code></th> <td> Equal operator </td> <td></td> </tr><tr><th><code>^</code></th> <td> Bitwise XOR </td> <td></td> </tr><tr><th><code>AND</code>,<code>&amp;&amp;</code></th> <td>E lógico e</td> <td></td> </tr><tr><th><code>BETWEEN ... AND ...</code></th> <td>Se um valor está dentro de uma faixa de valores</td> <td></td> </tr><tr><th><code>BINARY</code></th> <td>Arremessar uma cadeia para uma cadeia binária</td> <td></td> </tr><tr><th><code>CASE</code></th> <td> Case operator </td> <td></td> </tr><tr><th><code>DIV</code></th> <td> Integer division </td> <td></td> </tr><tr><th><code>EXISTS()</code></th> <td>Se o resultado de uma consulta contém quaisquer strings</td> <td></td> </tr><tr><th><code>IN()</code></th> <td>Se um valor está dentro de um conjunto de valores</td> <td></td> </tr><tr><th><code>IS</code></th> <td>Teste um valor contra um booleano</td> <td></td> </tr><tr><th><code>IS NOT</code></th> <td>Teste um valor contra um booleano</td> <td></td> </tr><tr><th><code>IS NOT NULL</code></th> <td>Teste de valor NOT NULL</td> <td></td> </tr><tr><th><code>IS NULL</code></th> <td>Teste de valor nulo</td> <td></td> </tr><tr><th><code>LIKE</code></th> <td> Simple pattern matching </td> <td></td> </tr><tr><th><code>NOT</code>,<code>!</code></th> <td>Nega o valor</td> <td></td> </tr><tr><th><code>NOT BETWEEN ... AND ...</code></th> <td>Se um valor não estiver dentro de uma faixa de valores</td> <td></td> </tr><tr><th><code>NOT EXISTS()</code></th> <td>Se o resultado de uma consulta não contiver nenhuma string</td> <td></td> </tr><tr><th><code>NOT IN()</code></th> <td>Se um valor não estiver dentro de um conjunto de valores</td> <td></td> </tr><tr><th><code>NOT LIKE</code></th> <td>Negação de correspondência de padrão simples</td> <td></td> </tr><tr><th><code>NOT REGEXP</code></th> <td>Negación de REGEXP</td> <td></td> </tr><tr><th><code>OR</code>,<code>||</code></th> <td>OU lógico</td> <td></td> </tr><tr><th><code>REGEXP</code></th> <td>Se a cadeia corresponde à expressão regular</td> <td></td> </tr><tr><th><code>RLIKE</code></th> <td>Se a cadeia corresponde à expressão regular</td> <td></td> </tr><tr><th><code>SOUNDS LIKE</code></th> <td> Compare sounds </td> <td></td> </tr><tr><th><code>XOR</code></th> <td> Logical XOR </td> <td></td> </tr><tr><th><code>|</code></th> <td> Bitwise OR </td> <td></td> </tr><tr><th><code>~</code></th> <td> Bitwise inversion </td> <td></td> </tr></tbody></table>
 
 ### 12.4.1 Prioridade do Operador
 
-As precedências dos operadores são mostradas na lista a seguir, da precedência mais alta para a mais baixa. Os operadores que são mostrados juntos em uma linha têm a mesma precedência.
+As precedências dos operadores são mostradas na lista a seguir, da precedência mais alta para a mais baixa. Os operadores que são mostrados juntos em uma string têm a mesma precedência.
 
 ```sql
 INTERVAL
@@ -53,17 +53,17 @@ mysql> SELECT (1+2)*3;
 
 **Tabela 12.4 Operadores de comparação**
 
-<table frame="box" rules="all" summary="A reference that lists comparison operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>&gt;</code></td> <td>Operador maior que</td> </tr><tr><td><code>&gt;=</code></td> <td>Operador maior que ou igual a</td> </tr><tr><td><code>&lt;</code></td> <td>Menos que operador</td> </tr><tr><td><code>&lt;&gt;</code>, <code>!=</code></td> <td>Operador não igual</td> </tr><tr><td><code>&lt;=</code></td> <td>Operador menor ou igual</td> </tr><tr><td><code>&lt;=&gt;</code></td> <td>Igual a operador seguro para NULL</td> </tr><tr><td><code>=</code></td> <td>Operador igual</td> </tr><tr><td><code>BETWEEN ... AND ...</code></td> <td>Se um valor está dentro de uma faixa de valores</td> </tr><tr><td><code>COALESCE()</code></td> <td>Retorne o primeiro argumento que não é NULL</td> </tr><tr><td><code>EXISTS()</code></td> <td>Se o resultado de uma consulta contém quaisquer linhas</td> </tr><tr><td><code>GREATEST()</code></td> <td>Retorne o maior argumento</td> </tr><tr><td><code>IN()</code></td> <td>Se um valor está dentro de um conjunto de valores</td> </tr><tr><td><code>INTERVAL()</code></td> <td>Retorne o índice do argumento que é menor que o primeiro argumento</td> </tr><tr><td><code>IS</code></td> <td>Teste um valor contra um booleano</td> </tr><tr><td><code>IS NOT</code></td> <td>Teste um valor contra um booleano</td> </tr><tr><td><code>IS NOT NULL</code></td> <td>Teste de valor NOT NULL</td> </tr><tr><td><code>IS NULL</code></td> <td>Teste de valor nulo</td> </tr><tr><td><code>ISNULL()</code></td> <td>Teste se o argumento é NULL</td> </tr><tr><td><code>LEAST()</code></td> <td>Retorne o menor argumento</td> </tr><tr><td><code>LIKE</code></td> <td>Encontre padrões simples</td> </tr><tr><td><code>NOT BETWEEN ... AND ...</code></td> <td>Se um valor não estiver dentro de uma faixa de valores</td> </tr><tr><td><code>NOT EXISTS()</code></td> <td>Se o resultado de uma consulta não contiver nenhuma linha</td> </tr><tr><td><code>NOT IN()</code></td> <td>Se um valor não estiver dentro de um conjunto de valores</td> </tr><tr><td><code>NOT LIKE</code></td> <td>Negação de correspondência de padrão simples</td> </tr><tr><td><code>STRCMP()</code></td> <td>Compare duas strings</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists comparison operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>&gt;</code></td> <td>Operador maior que</td> </tr><tr><td><code>&gt;=</code></td> <td>Operador maior que ou igual a</td> </tr><tr><td><code>&lt;</code></td> <td>Menos que operador</td> </tr><tr><td><code>&lt;&gt;</code>, <code>!=</code></td> <td>Operador não igual</td> </tr><tr><td><code>&lt;=</code></td> <td>Operador menor ou igual</td> </tr><tr><td><code>&lt;=&gt;</code></td> <td>Igual a operador seguro para NULL</td> </tr><tr><td><code>=</code></td> <td>Operador igual</td> </tr><tr><td><code>BETWEEN ... AND ...</code></td> <td>Se um valor está dentro de uma faixa de valores</td> </tr><tr><td><code>COALESCE()</code></td> <td>Retorne o primeiro argumento que não é NULL</td> </tr><tr><td><code>EXISTS()</code></td> <td>Se o resultado de uma consulta contém quaisquer strings</td> </tr><tr><td><code>GREATEST()</code></td> <td>Retorne o maior argumento</td> </tr><tr><td><code>IN()</code></td> <td>Se um valor está dentro de um conjunto de valores</td> </tr><tr><td><code>INTERVAL()</code></td> <td>Retorne o índice do argumento que é menor que o primeiro argumento</td> </tr><tr><td><code>IS</code></td> <td>Teste um valor contra um booleano</td> </tr><tr><td><code>IS NOT</code></td> <td>Teste um valor contra um booleano</td> </tr><tr><td><code>IS NOT NULL</code></td> <td>Teste de valor NOT NULL</td> </tr><tr><td><code>IS NULL</code></td> <td>Teste de valor nulo</td> </tr><tr><td><code>ISNULL()</code></td> <td>Teste se o argumento é NULL</td> </tr><tr><td><code>LEAST()</code></td> <td>Retorne o menor argumento</td> </tr><tr><td><code>LIKE</code></td> <td>Encontre padrões simples</td> </tr><tr><td><code>NOT BETWEEN ... AND ...</code></td> <td>Se um valor não estiver dentro de uma faixa de valores</td> </tr><tr><td><code>NOT EXISTS()</code></td> <td>Se o resultado de uma consulta não contiver nenhuma string</td> </tr><tr><td><code>NOT IN()</code></td> <td>Se um valor não estiver dentro de um conjunto de valores</td> </tr><tr><td><code>NOT LIKE</code></td> <td>Negação de correspondência de padrão simples</td> </tr><tr><td><code>STRCMP()</code></td> <td>Compare duas strings</td> </tr></tbody></table>
 
 As operações de comparação resultam em um valor de `1` (`TRUE`), `0` (`FALSE`), ou `NULL`. Essas operações funcionam tanto para números quanto para strings. As strings são automaticamente convertidas em números e os números em strings conforme necessário.
 
-Os seguintes operadores de comparação relacional podem ser usados para comparar não apenas operandos escalares, mas também operandos de linha:
+Os seguintes operadores de comparação relacional podem ser usados para comparar não apenas operandos escalares, mas também operandos de string:
 
 ```sql
 =  >  <  >=  <=  <>  !=
 ```
 
-As descrições para esses operadores mais adiante nesta seção detalham como eles funcionam com operadores de linha. Para exemplos adicionais de comparações de linha no contexto de subconsultas de linha, consulte a Seção 13.2.10.5, “Subconsultas de linha”.
+As descrições para esses operadores mais adiante nesta seção detalham como eles funcionam com operadores de string. Para exemplos adicionais de comparações de string no contexto de subconsultas de string, consulte a Seção 13.2.10.5, “Subconsultas de string”.
 
 Algumas das funções desta seção retornam valores diferentes de `1` (`TRUE`), `0` (`FALSE`), ou `NULL`. `LEAST()` e `GREATEST()` são exemplos de tais funções; a Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”, descreve as regras para operações de comparação realizadas por essas e funções semelhantes para determinar seus valores de retorno.
 
@@ -88,7 +88,7 @@ Igual:
           -> 1
   ```
 
-Para comparações de linhas, `(a, b) = (x, y)` é equivalente a:
+Para comparações de strings, `(a, b) = (x, y)` é equivalente a:
 
   ```sql
   (a = x) AND (b = y)
@@ -107,7 +107,7 @@ O operador `<=>` é equivalente ao operador padrão SQL `IS NOT DISTINCT FROM`.
           -> 1, NULL, NULL
   ```
 
-Para comparações de linha, `(a, b) <=> (x, y)` é equivalente a:
+Para comparações de string, `(a, b) <=> (x, y)` é equivalente a:
 
   ```sql
   (a <=> x) AND (b <=> y)
@@ -126,7 +126,7 @@ Não igual:
           -> 1
   ```
 
-Para comparações de linha, `(a, b) <> (x, y)` e `(a, b) != (x, y)` são equivalentes a:
+Para comparações de string, `(a, b) <> (x, y)` e `(a, b) != (x, y)` são equivalentes a:
 
   ```sql
   (a <> x) OR (b <> y)
@@ -141,7 +141,7 @@ Menos ou igual a:
           -> 1
   ```
 
-Para comparações de linha, `(a, b) <= (x, y)` é equivalente a:
+Para comparações de string, `(a, b) <= (x, y)` é equivalente a:
 
   ```sql
   (a < x) OR ((a = x) AND (b <= y))
@@ -156,7 +156,7 @@ Menos de:
           -> 0
   ```
 
-Para comparações de linha, `(a, b) < (x, y)` é equivalente a:
+Para comparações de string, `(a, b) < (x, y)` é equivalente a:
 
   ```sql
   (a < x) OR ((a = x) AND (b < y))
@@ -171,7 +171,7 @@ Maior que ou igual a:
           -> 1
   ```
 
-Para comparações de linha, `(a, b) >= (x, y)` é equivalente a:
+Para comparações de string, `(a, b) >= (x, y)` é equivalente a:
 
   ```sql
   (a > x) OR ((a = x) AND (b >= y))
@@ -186,7 +186,7 @@ Superior a:
           -> 0
   ```
 
-Para comparações de linha, `(a, b) > (x, y)` é equivalente a:
+Para comparações de string, `(a, b) > (x, y)` é equivalente a:
 
   ```sql
   (a > x) OR ((a = x) AND (b > y))
@@ -230,7 +230,7 @@ O tipo de retorno de `COALESCE()` é o tipo agregado dos tipos de argumento.
 
 * `EXISTS(query)`
 
-Se o resultado de uma consulta contém alguma linha.
+Se o resultado de uma consulta contém alguma string.
 
   ```sql
   CREATE TABLE t (col VARCHAR(3));
@@ -245,7 +245,7 @@ Se o resultado de uma consulta contém alguma linha.
 
 * `NOT EXISTS(query)`(comparison-operators.html#operator_not-exists)
 
-Se o resultado de uma consulta não contiver nenhuma linha:
+Se o resultado de uma consulta não contiver nenhuma string:
 
   ```sql
   SELECT NOT EXISTS (SELECT * FROM t WHERE col LIKE 'c%');
@@ -283,7 +283,7 @@ A conversão de tipo ocorre de acordo com as regras descritas na Seção 12.3, �
           -> 1
   ```
 
-`IN()` pode ser usado para comparar construtores de linha:
+`IN()` pode ser usado para comparar construtores de string:
 
   ```sql
   mysql> SELECT (3,4) IN ((1,2), (3,4));
@@ -371,7 +371,7 @@ Para funcionar bem com programas ODBC, o MySQL suporta as seguintes funcionalida
     SELECT * FROM tbl_name WHERE auto_col IS NULL
     ```
 
-Se a declaração retornar uma linha, o valor retornado é o mesmo se você tivesse invocado a função `LAST_INSERT_ID()`. Para detalhes, incluindo o valor de retorno após uma inserção de várias linhas, consulte a Seção 12.15, “Funções de Informação”. Se nenhuma linha do valor `AUTO_INCREMENT` foi inserida com sucesso, a declaração `SELECT` não retorna nenhuma linha.
+Se a declaração retornar uma string, o valor retornado é o mesmo se você tivesse invocado a função `LAST_INSERT_ID()`. Para detalhes, incluindo o valor de retorno após uma inserção de várias strings, consulte a Seção 12.15, “Funções de Informação”. Se nenhuma string do valor `AUTO_INCREMENT` foi inserida com sucesso, a declaração `SELECT` não retorna nenhuma string.
 
 O comportamento de recuperar um valor `AUTO_INCREMENT` usando uma comparação com `IS NULL` pode ser desativado definindo `sql_auto_is_null = 0`. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 

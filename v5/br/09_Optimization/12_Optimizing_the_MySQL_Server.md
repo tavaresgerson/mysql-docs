@@ -108,7 +108,7 @@ O manuseio de links simbólicos para as tabelas `MyISAM` funciona da seguinte fo
 
 * Você pode criar um symlink para o arquivo de dados e o arquivo de índice de forma independente em diretórios diferentes.
 
-* Para instruir um servidor MySQL em execução a realizar o symlink, use as opções `DATA DIRECTORY` e `INDEX DIRECTORY` para `CREATE TABLE`. Veja a Seção 13.1.18, “Instrução CREATE TABLE”. Alternativamente, se `mysqld` não estiver em execução, o symlink pode ser realizado manualmente usando **ln -s** a partir da linha de comando.
+* Para instruir um servidor MySQL em execução a realizar o symlink, use as opções `DATA DIRECTORY` e `INDEX DIRECTORY` para `CREATE TABLE`. Veja a Seção 13.1.18, “Instrução CREATE TABLE”. Alternativamente, se `mysqld` não estiver em execução, o symlink pode ser realizado manualmente usando **ln -s** a partir da string de comando.
 
 Nota
 
@@ -139,7 +139,7 @@ Essas operações de symlink de tabela não são suportadas:
   $> ln -s tbl1.MYI tbl2.MYI
   ```
 
-Há problemas se um fio de execução lê `db1.tbl1` e outro fio de execução atualiza `db1.tbl2`:
+Há problemas se um thread de execução lê `db1.tbl1` e outro thread de execução atualiza `db1.tbl2`:
 
 + O cache de consulta é "enganado" (não tem como saber que `tbl1` não foi atualizado, então ele retorna resultados desatualizados).
 
@@ -157,7 +157,7 @@ Em Windows, você pode criar um symlink usando o comando **mklink**. Esse comand
 
 2. Se o banco de dados ainda não existir, emita `CREATE DATABASE mydb` no cliente **mysql** para criá-lo.
 
-3. Parar o serviço MySQL. 4. Usando o Explorador do Windows ou a linha de comando, mova o diretório `mydb` do diretório de dados para `D:\data`, substituindo o diretório do mesmo nome.
+3. Parar o serviço MySQL. 4. Usando o Explorador do Windows ou a string de comando, mova o diretório `mydb` do diretório de dados para `D:\data`, substituindo o diretório do mesmo nome.
 
 5. Se você ainda não estiver usando o prompt de comando, abra-o e mude a localização para o diretório de dados, assim:
 
@@ -225,7 +225,7 @@ O MySQL aloca buffers e caches para melhorar o desempenho das operações do ban
 
 A lista a seguir descreve algumas das maneiras pelas quais o MySQL utiliza a memória. Quando aplicável, as variáveis do sistema relevantes são referenciadas. Alguns itens são específicos do mecanismo de armazenamento ou recursos.
 
-* O pool de memória `InnoDB` é uma área de memória que armazena dados `InnoDB` cacheados para tabelas, índices e outros buffers auxiliares. Para a eficiência de operações de leitura de alto volume, o pool de memória é dividido em páginas que podem potencialmente conter várias linhas. Para a eficiência da gestão de cache, o pool de memória é implementado como uma lista enlaçada de páginas; os dados que são raramente usados são eliminados da cache, usando uma variação do algoritmo LRU. Para mais informações, consulte a Seção 14.5.1, “Pool de Memória”.
+* O pool de memória `InnoDB` é uma área de memória que armazena dados `InnoDB` cacheados para tabelas, índices e outros buffers auxiliares. Para a eficiência de operações de leitura de alto volume, o pool de memória é dividido em páginas que podem potencialmente conter várias strings. Para a eficiência da gestão de cache, o pool de memória é implementado como uma lista enlaçada de páginas; os dados que são raramente usados são eliminados da cache, usando uma variação do algoritmo LRU. Para mais informações, consulte a Seção 14.5.1, “Pool de Memória”.
 
 O tamanho do pool de buffer é importante para o desempenho do sistema:
 
@@ -237,9 +237,9 @@ O tamanho do pool de buffer é importante para o desempenho do sistema:
 
 + Um pool de buffer que é muito grande pode causar troca devido à competição por memória.
 
-* Todos os fios compartilham o buffer de chave `MyISAM`. A variável de sistema `key_buffer_size` determina seu tamanho.
+* Todos os threads compartilham o buffer de chave `MyISAM`. A variável de sistema `key_buffer_size` determina seu tamanho.
 
-Para cada tabela `MyISAM` que o servidor abre, o arquivo de índice é aberto uma vez; o arquivo de dados é aberto uma vez para cada thread que acessa a tabela simultaneamente. Para cada thread concorrente, uma estrutura de tabela, estruturas de coluna para cada coluna e um buffer do tamanho `3 * N` são alocados (onde *`N`* é o comprimento máximo da linha, não contando as colunas `BLOB`). Uma coluna `BLOB` requer de cinco a oito bytes mais o comprimento dos dados `BLOB`. O mecanismo de armazenamento `MyISAM` mantém um buffer de linha extra para uso interno.
+Para cada tabela `MyISAM` que o servidor abre, o arquivo de índice é aberto uma vez; o arquivo de dados é aberto uma vez para cada thread que acessa a tabela simultaneamente. Para cada thread concorrente, uma estrutura de tabela, estruturas de coluna para cada coluna e um buffer do tamanho `3 * N` são alocados (onde *`N`* é o comprimento máximo da string, não contando as colunas `BLOB`). Uma coluna `BLOB` requer de cinco a oito bytes mais o comprimento dos dados `BLOB`. O mecanismo de armazenamento `MyISAM` mantém um buffer de string extra para uso interno.
 
 * A variável de sistema `myisam_use_mmap` pode ser definida como 1 para habilitar a mapeo de memória para todas as tabelas `MyISAM`.
 
@@ -249,7 +249,7 @@ Para as tabelas `MEMORY` explicitamente criadas com `CREATE TABLE`, apenas a var
 
 * O Schema de Desempenho do MySQL é uma funcionalidade para monitorar a execução do servidor MySQL em um nível baixo. O Schema de Desempenho aloca dinamicamente a memória incrementalmente, escalando seu uso de memória para a carga real do servidor, em vez de alocar a memória necessária durante o início do servidor. Uma vez que a memória é alocada, ela não é liberada até que o servidor seja reiniciado. Para mais informações, consulte a Seção 25.17, “O Modelo de Alocação de Memória do Schema de Desempenho”.
 
-* Cada fio que o servidor usa para gerenciar conexões de clientes requer algum espaço específico para fio. A lista a seguir indica esses e quais variáveis do sistema controlam seu tamanho:
+* Cada thread que o servidor usa para gerenciar conexões de clientes requer algum espaço específico para thread. A lista a seguir indica esses e quais variáveis do sistema controlam seu tamanho:
 
 + Uma pilha (`thread_stack`)
 
@@ -259,15 +259,15 @@ Para as tabelas `MEMORY` explicitamente criadas com `CREATE TABLE`, apenas a var
 
 O buffer de conexão e o buffer de resultado começam cada um com um tamanho igual a `net_buffer_length` bytes, mas são ampliados dinamicamente até `max_allowed_packet` bytes conforme necessário. O buffer de resultado encolhe para `net_buffer_length` bytes após cada declaração SQL. Enquanto uma declaração está sendo executada, uma cópia da string atual da declaração também é alocada.
 
-Cada fio de conexão usa memória para calcular os resumos das declarações. O servidor aloca `max_digest_length` bytes por sessão. Veja a Seção 25.10, “Resumo de declarações do Schema de desempenho”.
+Cada thread de conexão usa memória para calcular os resumos das declarações. O servidor aloca `max_digest_length` bytes por sessão. Veja a Seção 25.10, “Resumo de declarações do Schema de desempenho”.
 
-* Todos os fios compartilham a mesma memória básica. * Quando um fio não é mais necessário, a memória alocada para ele é liberada e devolvida ao sistema, a menos que o fio volte para a cache de fios. Nesse caso, a memória permanece alocada.
+* Todos os threads compartilham a mesma memória básica. * Quando um thread não é mais necessário, a memória alocada para ele é liberada e devolvida ao sistema, a menos que o thread volte para a cache de threads. Nesse caso, a memória permanece alocada.
 
 * Cada solicitação que realiza uma varredura sequencial de uma tabela aloca um buffer de leitura. A variável de sistema `read_buffer_size` determina o tamanho do buffer.
 
-* Ao ler linhas em uma sequência arbitrária (por exemplo, após uma ordenação), um buffer de leitura aleatória pode ser alocado para evitar buscas no disco. A variável de sistema `read_rnd_buffer_size` determina o tamanho do buffer.
+* Ao ler strings em uma sequência arbitrária (por exemplo, após uma ordenação), um buffer de leitura aleatória pode ser alocado para evitar buscas no disco. A variável de sistema `read_rnd_buffer_size` determina o tamanho do buffer.
 
-* Todos os junções são executados em uma única passagem, e a maioria das junções pode ser feita sem usar uma tabela temporária. A maioria das tabelas temporárias são tabelas de hash baseadas em memória. As tabelas temporárias com um comprimento de linha grande (calculado como a soma de todos os comprimentos das colunas) ou que contêm colunas `BLOB` são armazenadas em disco.
+* Todos os junções são executados em uma única passagem, e a maioria das junções pode ser feita sem usar uma tabela temporária. A maioria das tabelas temporárias são tabelas de hash baseadas em memória. As tabelas temporárias com um comprimento de string grande (calculado como a soma de todos os comprimentos das colunas) ou que contêm colunas `BLOB` são armazenadas em disco.
 
 * A maioria dos pedidos que realizam uma classificação aloca um buffer de classificação e de zero a dois arquivos temporários, dependendo do tamanho do conjunto de resultados. Veja a Seção B.3.3.5, “Onde o MySQL armazena arquivos temporários”.
 
@@ -426,7 +426,7 @@ O MySQL também suporta a implementação do Linux para suporte a páginas grand
 
 Antes que páginas grandes possam ser usadas no Linux, o kernel deve ser habilitado para suportá-las e é necessário configurar o pool de memória HugeTLB. Para referência, a API HugeTBL é documentada no arquivo `Documentation/vm/hugetlbpage.txt` de suas fontes do Linux.
 
-Os núcleos de alguns sistemas recentes, como o Red Hat Enterprise Linux, podem ter a funcionalidade de páginas grandes habilitada por padrão. Para verificar se isso é verdade para o seu núcleo, use o seguinte comando e procure por linhas de saída que contenham “huge”:
+Os núcleos de alguns sistemas recentes, como o Red Hat Enterprise Linux, podem ter a funcionalidade de páginas grandes habilitada por padrão. Para verificar se isso é verdade para o seu núcleo, use o seguinte comando e procure por strings de saída que contenham “huge”:
 
 ```sql
 $> grep -i huge /proc/meminfo
@@ -448,13 +448,13 @@ Supondo que seu kernel Linux tenha suporte a páginas grandes habilitado, config
 
 1. Determine o número de páginas grandes necessárias. Este é o tamanho do pool de buffers InnoDB dividido pelo tamanho da página grande, que podemos calcular como `innodb_buffer_pool_size` / `Hugepagesize`. Admitindo o valor padrão para o `innodb_buffer_pool_size` (128 MB) e usando o valor `Hugepagesize` obtido a partir de `/proc/meminfo` (2 MB), isso é 128 MB / 2 MB, ou 64 Páginas Imensa. Chamamos esse valor de *`P`*.
 
-2. Como raiz do sistema, abra o arquivo `/etc/sysctl.conf` em um editor de texto e adicione a linha mostrada aqui, onde *`P`* é o número de páginas grandes obtidas no passo anterior:
+2. Como raiz do sistema, abra o arquivo `/etc/sysctl.conf` em um editor de texto e adicione a string mostrada aqui, onde *`P`* é o número de páginas grandes obtidas no passo anterior:
 
    ```sql
    vm.nr_hugepages=P
    ```
 
-Usando o valor real obtido anteriormente, a linha adicional deve parecer assim:
+Usando o valor real obtido anteriormente, a string adicional deve parecer assim:
 
    ```sql
    vm.nr_hugepages=66
@@ -500,7 +500,7 @@ Consulte a documentação da sua plataforma operacional para obter mais informa�
 
 5. Verifique quaisquer arquivos de configuração, como `my.cnf`, usados pelo servidor, e certifique-se de que `innodb_buffer_pool_chunk_size` esteja definido maior que o tamanho enorme da página. O padrão para essa variável é 128 M.
 
-O suporte a páginas grandes no servidor MySQL é desativado por padrão. Para ativá-lo, inicie o servidor com `--large-pages`. Também pode fazer isso adicionando a seguinte linha à seção `[mysqld]` do arquivo do servidor `my.cnf`:
+O suporte a páginas grandes no servidor MySQL é desativado por padrão. Para ativá-lo, inicie o servidor com `--large-pages`. Também pode fazer isso adicionando a seguinte string à seção `[mysqld]` do arquivo do servidor `my.cnf`:
 
    ```sql
    large-pages=ON

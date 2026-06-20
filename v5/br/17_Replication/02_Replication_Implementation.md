@@ -20,13 +20,13 @@ A replicação funciona porque os eventos escritos no log binário são lidos da
 
 * Ao usar o registro binário baseado em declarações, a fonte escreve declarações SQL no log binário. A replicação da fonte para a replica funciona executando as declarações SQL na replica. Isso é chamado de replicação baseada em declarações (que pode ser abreviado como SBR), que corresponde ao formato de registro binário baseado em declarações do MySQL.
 
-* Ao usar o registro baseado em linhas, a fonte escreve eventos no log binário que indicam como as linhas individuais da tabela são alteradas. A replicação da fonte para a replica funciona copiando os eventos que representam as alterações nas linhas da tabela para a replica. Isso é chamado de replicação baseada em linhas (que pode ser abreviado como RBR).
+* Ao usar o registro baseado em strings, a fonte escreve eventos no log binário que indicam como as strings individuais da tabela são alteradas. A replicação da fonte para a replica funciona copiando os eventos que representam as alterações nas strings da tabela para a replica. Isso é chamado de replicação baseada em strings (que pode ser abreviado como RBR).
 
-* Você também pode configurar o MySQL para usar uma combinação de registro baseado em declarações e baseado em linhas, dependendo de qual é mais apropriado para a mudança ser registrada. Isso é chamado de registro de formato misto. Ao usar o registro de formato misto, um registro baseado em declarações é usado por padrão. Dependendo de certas declarações e também do mecanismo de armazenamento sendo usado, o registro é automaticamente alterado para baseado em linhas em casos específicos. A replicação usando o formato misto é referida como replicação baseada em formato misto ou replicação de formato misto. Para mais informações, consulte a Seção 5.4.4.3, “Formato de Registro Binário Misto”.
+* Você também pode configurar o MySQL para usar uma combinação de registro baseado em declarações e baseado em strings, dependendo de qual é mais apropriado para a mudança ser registrada. Isso é chamado de registro de formato misto. Ao usar o registro de formato misto, um registro baseado em declarações é usado por padrão. Dependendo de certas declarações e também do mecanismo de armazenamento sendo usado, o registro é automaticamente alterado para baseado em strings em casos específicos. A replicação usando o formato misto é referida como replicação baseada em formato misto ou replicação de formato misto. Para mais informações, consulte a Seção 5.4.4.3, “Formato de Registro Binário Misto”.
 
-Antes do MySQL 5.7.7, o formato baseado em declaração era o padrão. No MySQL 5.7.7 e versões posteriores, o formato baseado em linha é o padrão.
+Antes do MySQL 5.7.7, o formato baseado em declaração era o padrão. No MySQL 5.7.7 e versões posteriores, o formato baseado em string é o padrão.
 
-**Grupo NDB.** O formato de registro binário padrão no NDB Cluster MySQL 7.5 é `MIXED`. Você deve notar que a Replicação do NDB Cluster sempre usa replicação baseada em linha e que o mecanismo de armazenamento `NDB` é incompatível com replicação baseada em declaração. Consulte a Seção 21.7.2, “Requisitos gerais para a replicação do NDB Cluster”, para obter mais informações.
+**Grupo NDB.** O formato de registro binário padrão no NDB Cluster MySQL 7.5 é `MIXED`. Você deve notar que a Replicação do NDB Cluster sempre usa replicação baseada em string e que o mecanismo de armazenamento `NDB` é incompatível com replicação baseada em declaração. Consulte a Seção 21.7.2, “Requisitos gerais para a replicação do NDB Cluster”, para obter mais informações.
 
 Ao usar o formato `MIXED`, o formato de registro binário é determinado em parte pelo mecanismo de armazenamento que está sendo usado e pela declaração que está sendo executada. Para mais informações sobre registro de formato misto e as regras que regem o suporte a diferentes formatos de registro, consulte a Seção 5.4.4.3, “Formato de Registro Binário Misto”.
 
@@ -36,25 +36,25 @@ Existem condições em que você não pode alterar o formato de registro binári
 
 Para alterar o valor global `binlog_format`, são necessários privilégios suficientes para definir variáveis de sistema globais. Para alterar o valor da sessão `binlog_format`, são necessários privilégios suficientes para definir variáveis de sistema de sessão restritas. Consulte a Seção 5.1.8.1, “Privilégios de variáveis de sistema”.
 
-Os formatos de replicação baseados em declarações e baseados em linhas têm diferentes problemas e limitações. Para uma comparação de suas vantagens e desvantagens relativas, consulte a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”.
+Os formatos de replicação baseados em declarações e baseados em strings têm diferentes problemas e limitações. Para uma comparação de suas vantagens e desvantagens relativas, consulte a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em strings”.
 
-Com a replicação baseada em declarações, você pode encontrar problemas ao replicar rotinas ou gatilhos armazenados. Você pode evitar esses problemas usando a replicação baseada em linhas, em vez disso. Para mais informações, consulte a Seção 23.7, “Registro binário de programas armazenados”.
+Com a replicação baseada em declarações, você pode encontrar problemas ao replicar rotinas ou gatilhos armazenados. Você pode evitar esses problemas usando a replicação baseada em strings, em vez disso. Para mais informações, consulte a Seção 23.7, “Registro binário de programas armazenados”.
 
-#### 16.2.1.1 Vantagens e Desvantagens da Replicação Baseada em Declaração e Baseada em Linha
+#### 16.2.1.1 Vantagens e Desvantagens da Replicação Baseada em Declaração e Baseada em String
 
-Cada formato de registro binário tem vantagens e desvantagens. Para a maioria dos usuários, o formato de replicação mista deve oferecer a melhor combinação de integridade de dados e desempenho. No entanto, se você deseja aproveitar as características específicas do formato de replicação baseado em declarações ou baseado em linhas ao realizar certas tarefas, você pode usar as informações nesta seção, que fornece um resumo de suas vantagens e desvantagens relativas, para determinar qual é a melhor para suas necessidades.
+Cada formato de registro binário tem vantagens e desvantagens. Para a maioria dos usuários, o formato de replicação mista deve oferecer a melhor combinação de integridade de dados e desempenho. No entanto, se você deseja aproveitar as características específicas do formato de replicação baseado em declarações ou baseado em strings ao realizar certas tarefas, você pode usar as informações nesta seção, que fornece um resumo de suas vantagens e desvantagens relativas, para determinar qual é a melhor para suas necessidades.
 
 * Vantagens da replicação baseada em declarações
 
 * Desvantagens da replicação baseada em declarações
 
-* Vantagens da replicação baseada em linha
+* Vantagens da replicação baseada em string
 
-* Desvantagens da replicação baseada em linha
+* Desvantagens da replicação baseada em string
 
 ##### Vantagens da replicação baseada em declarações
 
-* Tecnologia comprovada. * Menos dados escritos em arquivos de registro. Quando as atualizações ou exclusões afetam muitas linhas, isso resulta em *muito* menos espaço de armazenamento necessário para os arquivos de registro. Isso também significa que a realização e a restauração de backups podem ser realizadas de forma mais rápida.
+* Tecnologia comprovada. * Menos dados escritos em arquivos de registro. Quando as atualizações ou exclusões afetam muitas strings, isso resulta em *muito* menos espaço de armazenamento necessário para os arquivos de registro. Isso também significa que a realização e a restauração de backups podem ser realizadas de forma mais rápida.
 
 * Os arquivos de registro contêm todas as declarações que fizeram alterações, portanto, podem ser usados para auditar o banco de dados.
 
@@ -62,7 +62,7 @@ Cada formato de registro binário tem vantagens e desvantagens. Para a maioria d
 
 * **Declarações que não são seguras para SBR.** Nem todas as declarações que modificam dados (como as declarações `INSERT`, `DELETE`, `UPDATE` e `REPLACE` `INSERT` e `DELETE`, `UPDATE` e `REPLACE` `INSERT` e `DELETE`, `UPDATE` e `REPLACE` podem ser replicadas usando replicação baseada em declarações. Qualquer comportamento não determinístico é difícil de replicar ao usar replicação baseada em declarações. Exemplos de tais declarações de Linguagem de Modificação de Dados (DML) incluem os seguintes:
 
-+ Uma declaração que depende de uma função carregável ou de um programa armazenado que é não determinístico, uma vez que o valor retornado por tal função ou programa armazenado depende de fatores que não os parâmetros fornecidos a ele. (A replicação baseada em linhas, no entanto, simplesmente replica o valor retornado pela função ou programa armazenado, portanto, seu efeito em linhas e dados da tabela é o mesmo tanto na fonte quanto na replica.) Consulte a Seção 16.4.1.16, “Replicação de Recursos Convocados”, para mais informações.
++ Uma declaração que depende de uma função carregável ou de um programa armazenado que é não determinístico, uma vez que o valor retornado por tal função ou programa armazenado depende de fatores que não os parâmetros fornecidos a ele. (A replicação baseada em strings, no entanto, simplesmente replica o valor retornado pela função ou programa armazenado, portanto, seu efeito em strings e dados da tabela é o mesmo tanto na fonte quanto na replica.) Consulte a Seção 16.4.1.16, “Replicação de Recursos Convocados”, para mais informações.
 
 As declarações `DELETE` e `UPDATE` que utilizam uma cláusula `LIMIT` sem uma `ORDER BY` são não determinísticas. Veja a Seção 16.4.1.17, “Replicação e LIMIT”.
 
@@ -98,21 +98,21 @@ As declarações que não podem ser replicadas corretamente usando replicação 
 
 Um aviso semelhante também é emitido ao cliente nesses casos. O cliente pode exibí-lo usando `SHOW WARNINGS`.
 
-* `INSERT ... SELECT` requer um número maior de bloqueios em nível de linha do que com replicação baseada em linha.
+* `INSERT ... SELECT` requer um número maior de bloqueios em nível de string do que com replicação baseada em string.
 
-* As declarações `UPDATE` que exigem uma varredura de tabela (porque nenhum índice é usado na cláusula `WHERE`) devem bloquear um número maior de linhas do que com replicação baseada em linha.
+* As declarações `UPDATE` que exigem uma varredura de tabela (porque nenhum índice é usado na cláusula `WHERE`) devem bloquear um número maior de strings do que com replicação baseada em string.
 
 * Para `InnoDB`: Uma declaração `INSERT` que usa blocos `AUTO_INCREMENT` exclui outras declarações `INSERT` que não estão em conflito.
 
-* Para declarações complexas, a declaração deve ser avaliada e executada na réplica antes de as linhas serem atualizadas ou inseridas. Com a replicação baseada em linhas, a réplica só precisa modificar as linhas afetadas, não executar a declaração completa.
+* Para declarações complexas, a declaração deve ser avaliada e executada na réplica antes de as strings serem atualizadas ou inseridas. Com a replicação baseada em strings, a réplica só precisa modificar as strings afetadas, não executar a declaração completa.
 
-* Se houver um erro na avaliação da réplica, especialmente ao executar instruções complexas, a replicação baseada em instruções pode aumentar lentamente a margem de erro nas linhas afetadas ao longo do tempo. Consulte a Seção 16.4.1.27, “Erros na Réplica Durante a Replicação”.
+* Se houver um erro na avaliação da réplica, especialmente ao executar instruções complexas, a replicação baseada em instruções pode aumentar lentamente a margem de erro nas strings afetadas ao longo do tempo. Consulte a Seção 16.4.1.27, “Erros na Réplica Durante a Replicação”.
 
 * As funções armazenadas são executadas com o mesmo valor `NOW()` que a instrução que as chama. No entanto, isso não é verdade para procedimentos armazenados.
 
 As definições da tabela devem ser (quase) idênticas na fonte e na réplica. Consulte a Seção 16.4.1.10, “Replicação com definições de tabela diferentes na fonte e na réplica”, para mais informações.
 
-##### Vantagens da replicação baseada em linha
+##### Vantagens da replicação baseada em string
 
 * Todas as alterações podem ser replicadas. Esta é a forma mais segura de replicação.
 
@@ -120,59 +120,59 @@ Nota
 
 As declarações que atualizam as informações no banco de dados do sistema `mysql`, como `GRANT`, `REVOKE` e a manipulação de gatilhos, rotinas armazenadas (incluindo procedimentos armazenados) e visualizações, são todas replicadas para réplicas usando replicação baseada em declarações.
 
-Para declarações como `CREATE TABLE ... SELECT`, uma declaração `CREATE` é gerada a partir da definição da tabela e replicada usando o formato baseado em declaração, enquanto as inserções de linha são replicadas usando o formato baseado em linha.
+Para declarações como `CREATE TABLE ... SELECT`, uma declaração `CREATE` é gerada a partir da definição da tabela e replicada usando o formato baseado em declaração, enquanto as inserções de string são replicadas usando o formato baseado em string.
 
-* São necessários menos bloqueios de linha na fonte, o que permite maior concorrência, para os seguintes tipos de declarações:
+* São necessários menos bloqueios de string na fonte, o que permite maior concorrência, para os seguintes tipos de declarações:
 
 + `INSERT ... SELECT`
 
 + `INSERT` com `AUTO_INCREMENT`
 
-+ `UPDATE` ou `DELETE` com cláusulas `WHERE` que não utilizam chaves ou que não alteram a maioria das linhas examinadas.
++ `UPDATE` ou `DELETE` com cláusulas `WHERE` que não utilizam chaves ou que não alteram a maioria das strings examinadas.
 
-* São necessários menos bloqueios de linha na replica para qualquer declaração `INSERT`, `UPDATE` ou `DELETE`.
+* São necessários menos bloqueios de string na replica para qualquer declaração `INSERT`, `UPDATE` ou `DELETE`.
 
-##### Desvantagens da replicação baseada em linha
+##### Desvantagens da replicação baseada em string
 
-* O RBR pode gerar mais dados que devem ser registrados. Para replicar uma declaração DML (como uma declaração `UPDATE` ou `DELETE`, a replicação baseada em declaração escreve apenas a declaração no log binário. Em contraste, a replicação baseada em linha escreve cada linha alterada no log binário. Se a declaração alterar muitas linhas, a replicação baseada em linha pode escrever significativamente mais dados no log binário; isso é verdadeiro mesmo para declarações que são revertidas. Isso também significa que fazer e restaurar um backup pode exigir mais tempo. Além disso, o log binário é bloqueado por um período de tempo mais longo para escrever os dados, o que pode causar problemas de concorrência. Use `binlog_row_image=minimal` para reduzir a desvantagem consideravelmente.
+* O RBR pode gerar mais dados que devem ser registrados. Para replicar uma declaração DML (como uma declaração `UPDATE` ou `DELETE`, a replicação baseada em declaração escreve apenas a declaração no log binário. Em contraste, a replicação baseada em string escreve cada string alterada no log binário. Se a declaração alterar muitas strings, a replicação baseada em string pode escrever significativamente mais dados no log binário; isso é verdadeiro mesmo para declarações que são revertidas. Isso também significa que fazer e restaurar um backup pode exigir mais tempo. Além disso, o log binário é bloqueado por um período de tempo mais longo para escrever os dados, o que pode causar problemas de concorrência. Use `binlog_row_image=minimal` para reduzir a desvantagem consideravelmente.
 
-* Funções carregáveis determinísticas que geram grandes valores de `BLOB` demoram mais para ser replicadas com replicação baseada em linha do que com replicação baseada em declaração. Isso ocorre porque o valor da coluna `BLOB` é registrado, em vez de a declaração gerando os dados.
+* Funções carregáveis determinísticas que geram grandes valores de `BLOB` demoram mais para ser replicadas com replicação baseada em string do que com replicação baseada em declaração. Isso ocorre porque o valor da coluna `BLOB` é registrado, em vez de a declaração gerando os dados.
 
 * Não é possível ver na réplica quais declarações foram recebidas da fonte e executadas. No entanto, é possível ver quais dados foram alterados usando **mysqlbinlog** com as opções `--base64-output=DECODE-ROWS` e `--verbose`.
 
 Alternativamente, use a variável `binlog_rows_query_log_events`, que, se habilitada, adiciona um evento `Rows_query` com a declaração para a saída do **mysqlbinlog** quando a opção `-vv` é usada.
 
-* Para tabelas que utilizam o mecanismo de armazenamento `MyISAM`, é necessário um bloqueio mais forte na replica para as declarações `INSERT` ao aplicá-las como eventos baseados em linha no log binário do que ao aplicá-las como declarações. Isso significa que inserções concorrentes em tabelas `MyISAM` não são suportadas ao usar replicação baseada em linha.
+* Para tabelas que utilizam o mecanismo de armazenamento `MyISAM`, é necessário um bloqueio mais forte na replica para as declarações `INSERT` ao aplicá-las como eventos baseados em string no log binário do que ao aplicá-las como declarações. Isso significa que inserções concorrentes em tabelas `MyISAM` não são suportadas ao usar replicação baseada em string.
 
-#### 16.2.1.2 Uso de Registro e Replicação Baseado em Linha
+#### 16.2.1.2 Uso de Registro e Replicação Baseado em String
 
-O MySQL utiliza o registro baseado em declarações (SBL), registro baseado em linhas (RBL) ou registro de formato misto. O tipo de registro binário utilizado afeta o tamanho e a eficiência do registro. Portanto, a escolha entre replicação baseada em linhas (RBR) ou replicação baseada em declarações (SBR) depende da sua aplicação e do ambiente. Esta seção descreve os problemas conhecidos ao usar um registro em formato baseado em linhas e descreve algumas melhores práticas ao usá-lo na replicação.
+O MySQL utiliza o registro baseado em declarações (SBL), registro baseado em strings (RBL) ou registro de formato misto. O tipo de registro binário utilizado afeta o tamanho e a eficiência do registro. Portanto, a escolha entre replicação baseada em strings (RBR) ou replicação baseada em declarações (SBR) depende da sua aplicação e do ambiente. Esta seção descreve os problemas conhecidos ao usar um registro em formato baseado em strings e descreve algumas melhores práticas ao usá-lo na replicação.
 
-Para informações adicionais, consulte a Seção 16.2.1, “Formatos de Replicação”, e a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declaração e Baseada em Linha”.
+Para informações adicionais, consulte a Seção 16.2.1, “Formatos de Replicação”, e a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declaração e Baseada em String”.
 
-Para informações sobre problemas específicos da Replicação de NDB Cluster (que depende da replicação baseada em linha), consulte a Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”.
+Para informações sobre problemas específicos da Replicação de NDB Cluster (que depende da replicação baseada em string), consulte a Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”.
 
-* **Registro baseado em linhas de tabelas temporárias.** Como observado na Seção 16.4.1.29, “Replicação e Tabelas Temporárias”, as tabelas temporárias não são replicadas quando se usa o formato baseado em linhas. Quando se usa o registro de formato misto, as declarações “seguras” que envolvem tabelas temporárias são registradas usando o formato baseado em declarações. Para mais informações, consulte a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”.
+* **Registro baseado em strings de tabelas temporárias.** Como observado na Seção 16.4.1.29, “Replicação e Tabelas Temporárias”, as tabelas temporárias não são replicadas quando se usa o formato baseado em strings. Quando se usa o registro de formato misto, as declarações “seguras” que envolvem tabelas temporárias são registradas usando o formato baseado em declarações. Para mais informações, consulte a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Strings”.
 
-As tabelas temporárias não são replicadas ao usar o formato baseado em linha, porque não há necessidade. Além disso, como as tabelas temporárias podem ser lidas apenas pelo thread que as criou, raramente, ou nunca, há algum benefício obtido ao replicá-las, mesmo quando usando o formato baseado em declaração.
+As tabelas temporárias não são replicadas ao usar o formato baseado em string, porque não há necessidade. Além disso, como as tabelas temporárias podem ser lidas apenas pelo thread que as criou, raramente, ou nunca, há algum benefício obtido ao replicá-las, mesmo quando usando o formato baseado em declaração.
 
-Você pode mudar do formato de registro binário baseado em declaração para o baseado em linha no tempo real, mesmo quando tabelas temporárias já foram criadas. A partir do MySQL 5.7.25, o servidor MySQL registra o modo de registro que estava em vigor quando cada tabela temporária foi criada. Quando uma sessão de cliente específica termina, o servidor registra uma declaração `DROP TEMPORARY TABLE IF EXISTS` para cada tabela temporária que ainda existe e foi criada quando o registro binário baseado em declaração estava em uso. Se o registro binário baseado em linha ou misto estava em uso quando a tabela foi criada, a declaração `DROP TEMPORARY TABLE IF EXISTS` não é registrada. Em versões anteriores, a declaração `DROP TEMPORARY TABLE IF EXISTS` era registrada independentemente do modo de registro que estava em vigor.
+Você pode mudar do formato de registro binário baseado em declaração para o baseado em string no tempo real, mesmo quando tabelas temporárias já foram criadas. A partir do MySQL 5.7.25, o servidor MySQL registra o modo de registro que estava em vigor quando cada tabela temporária foi criada. Quando uma sessão de cliente específica termina, o servidor registra uma declaração `DROP TEMPORARY TABLE IF EXISTS` para cada tabela temporária que ainda existe e foi criada quando o registro binário baseado em declaração estava em uso. Se o registro binário baseado em string ou misto estava em uso quando a tabela foi criada, a declaração `DROP TEMPORARY TABLE IF EXISTS` não é registrada. Em versões anteriores, a declaração `DROP TEMPORARY TABLE IF EXISTS` era registrada independentemente do modo de registro que estava em vigor.
 
 As declarações DML não transacionais que envolvem tabelas temporárias são permitidas ao usar `binlog_format=ROW`, desde que quaisquer tabelas não transacionais afetadas pelas declarações sejam tabelas temporárias (Bug #14272672).
 
-* **RBL e sincronização de tabelas não transacionais.** Quando muitas linhas são afetadas, o conjunto de alterações é dividido em vários eventos; quando a declaração é confirmada, todos esses eventos são escritos no log binário. Ao executar na replica, uma bloqueio de tabela é tomado em todas as tabelas envolvidas, e então as linhas são aplicadas em modo em lote. Dependendo do motor usado para a cópia da tabela da replica, isso pode ou não ser eficaz.
+* **RBL e sincronização de tabelas não transacionais.** Quando muitas strings são afetadas, o conjunto de alterações é dividido em vários eventos; quando a declaração é confirmada, todos esses eventos são escritos no log binário. Ao executar na replica, uma bloqueio de tabela é tomado em todas as tabelas envolvidas, e então as strings são aplicadas em modo em lote. Dependendo do motor usado para a cópia da tabela da replica, isso pode ou não ser eficaz.
 
-* **Latência e tamanho do log binário.** O RBL escreve as alterações para cada linha no log binário, e, portanto, seu tamanho pode aumentar rapidamente. Isso pode aumentar significativamente o tempo necessário para fazer alterações na replica que correspondem às do banco de dados fonte. Você deve estar ciente do potencial desse atraso em seus aplicativos.
+* **Latência e tamanho do log binário.** O RBL escreve as alterações para cada string no log binário, e, portanto, seu tamanho pode aumentar rapidamente. Isso pode aumentar significativamente o tempo necessário para fazer alterações na replica que correspondem às do banco de dados fonte. Você deve estar ciente do potencial desse atraso em seus aplicativos.
 
-* **Leitura do log binário.** O **mysqlbinlog** exibe eventos baseados em linhas no log binário usando a declaração `BINLOG` (consulte Seção 13.7.6.1, “Declaração BINLOG”). Esta declaração exibe um evento como uma string codificada em base 64, cujo significado não é evidente. Quando invocado com as opções `--base64-output=DECODE-ROWS` e `--verbose`, o **mysqlbinlog** formata o conteúdo do log binário para ser legível para humanos. Quando eventos de log binário foram escritos em formato baseado em linhas e você deseja ler ou recuperar de uma falha de replicação ou de banco de dados, pode usar este comando para ler o conteúdo do log binário. Para mais informações, consulte Seção 4.6.7.2, “Exibição de Evento de Linha mysqlbinlog”.
+* **Leitura do log binário.** O **mysqlbinlog** exibe eventos baseados em strings no log binário usando a declaração `BINLOG` (consulte Seção 13.7.6.1, “Declaração BINLOG”). Esta declaração exibe um evento como uma string codificada em base 64, cujo significado não é evidente. Quando invocado com as opções `--base64-output=DECODE-ROWS` e `--verbose`, o **mysqlbinlog** formata o conteúdo do log binário para ser legível para humanos. Quando eventos de log binário foram escritos em formato baseado em strings e você deseja ler ou recuperar de uma falha de replicação ou de banco de dados, pode usar este comando para ler o conteúdo do log binário. Para mais informações, consulte Seção 4.6.7.2, “Exibição de Evento de String mysqlbinlog”.
 
-* **Erros de execução de log binário e modo de execução de replica.** O uso de `slave_exec_mode=IDEMPOTENT` é geralmente útil apenas com replicação do MySQL NDB Cluster, para a qual `IDEMPOTENT` é o valor padrão. (Veja a Seção 21.7.10, “Replicação do NDB Cluster: Replicação Bidirecional e Circular”). Quando `slave_exec_mode` é `IDEMPOTENT`, a falha em aplicar alterações do RBL porque a linha original não pode ser encontrada não desencadeia um erro ou faz com que a replicação falhe. Isso significa que é possível que as atualizações não sejam aplicadas na replica, de modo que a fonte e a replica não sejam mais sincronizadas. Problemas de latência e uso de tabelas não transacionais com RBR quando `slave_exec_mode` é `IDEMPOTENT` podem fazer com que a fonte e a replica se desviem ainda mais. Para mais informações sobre `slave_exec_mode`, consulte a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+* **Erros de execução de log binário e modo de execução de replica.** O uso de `slave_exec_mode=IDEMPOTENT` é geralmente útil apenas com replicação do MySQL NDB Cluster, para a qual `IDEMPOTENT` é o valor padrão. (Veja a Seção 21.7.10, “Replicação do NDB Cluster: Replicação Bidirecional e Circular”). Quando `slave_exec_mode` é `IDEMPOTENT`, a falha em aplicar alterações do RBL porque a string original não pode ser encontrada não desencadeia um erro ou faz com que a replicação falhe. Isso significa que é possível que as atualizações não sejam aplicadas na replica, de modo que a fonte e a replica não sejam mais sincronizadas. Problemas de latência e uso de tabelas não transacionais com RBR quando `slave_exec_mode` é `IDEMPOTENT` podem fazer com que a fonte e a replica se desviem ainda mais. Para mais informações sobre `slave_exec_mode`, consulte a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 
 Para outros cenários, definir `slave_exec_mode` para `STRICT` é normalmente suficiente; esse é o valor padrão para motores de armazenamento que não são `NDB`.
 
-* **Filtragem com base no ID do servidor não é suportada.** Você pode filtrar com base no ID do servidor usando a opção `IGNORE_SERVER_IDS` para a declaração `CHANGE MASTER TO`. Esta opção funciona com formatos de registro baseados em declaração e baseados em linha. Outro método para excluir alterações em algumas réplicas é usar uma cláusula `WHERE` que inclui a cláusula de relação `@@server_id <> id_value` com as declarações `UPDATE` e `DELETE`. Por exemplo, `WHERE @@server_id <> 1`. No entanto, isso não funciona corretamente com registro baseado em linha. Para usar a variável de sistema `server_id` para filtragem de declaração, use o registro baseado em declaração.
+* **Filtragem com base no ID do servidor não é suportada.** Você pode filtrar com base no ID do servidor usando a opção `IGNORE_SERVER_IDS` para a declaração `CHANGE MASTER TO`. Esta opção funciona com formatos de registro baseados em declaração e baseados em string. Outro método para excluir alterações em algumas réplicas é usar uma cláusula `WHERE` que inclui a cláusula de relação `@@server_id <> id_value` com as declarações `UPDATE` e `DELETE`. Por exemplo, `WHERE @@server_id <> 1`. No entanto, isso não funciona corretamente com registro baseado em string. Para usar a variável de sistema `server_id` para filtragem de declaração, use o registro baseado em declaração.
 
-* **Tabelas RBL, não transacionais e réplicas paralisadas.** Ao usar o registro baseado em linha, se o servidor de réplica for parado enquanto um thread de replicação está atualizando uma tabela não transacional, o banco de dados da réplica pode atingir um estado inconsistente. Por esse motivo, é recomendável que você use um motor de armazenamento transacional, como `InnoDB`, para todas as tabelas replicadas usando o formato baseado em linha. O uso de `STOP SLAVE` ou `STOP SLAVE SQL_THREAD` antes de desligar o servidor de réplica ajuda a evitar problemas e é sempre recomendado, independentemente do formato de registro ou do motor de armazenamento que você usa.
+* **Tabelas RBL, não transacionais e réplicas paralisadas.** Ao usar o registro baseado em string, se o servidor de réplica for parado enquanto um thread de replicação está atualizando uma tabela não transacional, o banco de dados da réplica pode atingir um estado inconsistente. Por esse motivo, é recomendável que você use um motor de armazenamento transacional, como `InnoDB`, para todas as tabelas replicadas usando o formato baseado em string. O uso de `STOP SLAVE` ou `STOP SLAVE SQL_THREAD` antes de desligar o servidor de réplica ajuda a evitar problemas e é sempre recomendado, independentemente do formato de registro ou do motor de armazenamento que você usa.
 
 #### 16.2.1.3 Determinação de declarações seguras e inseguras em registro binário
 
@@ -182,9 +182,9 @@ Em geral, uma declaração é segura se for determinada, e insegura se não o fo
 
 **Tratamento de declarações seguras e inseguras.** Uma declaração é tratada de maneira diferente, dependendo se a declaração é considerada segura e em relação ao formato de registro binário (ou seja, o valor atual de `binlog_format`).
 
-* Ao usar o registro baseado em linha, não se faz distinção no tratamento de declarações seguras e inseguras.
+* Ao usar o registro baseado em string, não se faz distinção no tratamento de declarações seguras e inseguras.
 
-* Ao usar o registro de formato misto, as declarações marcadas como inseguras são registradas usando o formato baseado em linha; as declarações consideradas seguras são registradas usando o formato baseado em declaração.
+* Ao usar o registro de formato misto, as declarações marcadas como inseguras são registradas usando o formato baseado em string; as declarações consideradas seguras são registradas usando o formato baseado em declaração.
 
 * Ao usar o registro baseado em declarações, as declarações marcadas como inseguras geram um aviso nesse sentido. As declarações seguras são registradas normalmente.
 
@@ -206,17 +206,17 @@ Para mais informações, consulte a Seção 16.4.1.15, “Replicação e Funçõ
 
 * **Plugin de texto completo.** Este plugin pode se comportar de maneira diferente em diferentes servidores MySQL; portanto, as declarações que dependem dele podem ter resultados diferentes. Por essa razão, todas as declarações que dependem do plugin de texto completo são tratadas como inseguras (Bug #11756280, Bug #48183).
 
-* **Atualizações de programas armazenados ou desencadeadas em uma tabela com uma coluna AUTO_INCREMENT.** Isso é inseguro porque a ordem em que as linhas são atualizadas pode diferir entre a fonte e a réplica.
+* **Atualizações de programas armazenados ou desencadeadas em uma tabela com uma coluna AUTO_INCREMENT.** Isso é inseguro porque a ordem em que as strings são atualizadas pode diferir entre a fonte e a réplica.
 
 Além disso, uma `INSERT` em uma tabela que possui uma chave primária composta contendo uma coluna `AUTO_INCREMENT` que não é a primeira coluna dessa chave composta é insegura.
 
 Para mais informações, consulte a Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
 
-* **INSERIR ... ON DUPLICATE KEY UPDATE em tabelas com múltiplas chaves primárias ou únicas.** Quando executado em uma tabela que contém mais de uma chave primária ou única, essa declaração é considerada insegura, pois é sensível à ordem em que o motor de armazenamento verifica as chaves, que não é determinística, e na qual a escolha das linhas atualizadas pelo MySQL Server depende.
+* **INSERIR ... ON DUPLICATE KEY UPDATE em tabelas com múltiplas chaves primárias ou únicas.** Quando executado em uma tabela que contém mais de uma chave primária ou única, essa declaração é considerada insegura, pois é sensível à ordem em que o motor de armazenamento verifica as chaves, que não é determinística, e na qual a escolha das strings atualizadas pelo MySQL Server depende.
 
 Uma declaração `INSERT ... ON DUPLICATE KEY UPDATE` contra uma tabela que tem mais de uma chave única ou primária é marcada como insegura para replicação baseada em declaração. (Bug #11765650, Bug #58637)
 
-* **Atualizações usando LIMIT.** A ordem em que as linhas são recuperadas não é especificada e, portanto, é considerada insegura. Veja a Seção 16.4.1.17, “Replicação e LIMIT”.
+* **Atualizações usando LIMIT.** A ordem em que as strings são recuperadas não é especificada e, portanto, é considerada insegura. Veja a Seção 16.4.1.17, “Replicação e LIMIT”.
 
 * **Registros de acessos ou referências em tabelas de log.** O conteúdo da tabela de log do sistema pode diferir entre a fonte e a replica.
 
@@ -226,15 +226,15 @@ Para mais informações, consulte a Seção 16.4.1.33, “Replicação e Transa�
 
 * **Acesse ou faça referência a tabelas de autoregistro.** Todas as leituras e escritas em tabelas de autoregistro são consideradas inseguras. Dentro de uma transação, qualquer declaração que siga uma leitura ou escrita em tabelas de autoregistro também é considerada insegura.
 
-* **declarações LOAD DATA.** `LOAD DATA` é tratado como inseguro e, quando `binlog_format=mixed` a declaração é registrada no formato baseado em linha. Quando `binlog_format=statement` `LOAD DATA` não gera uma advertência, ao contrário de outras declarações inseguras.
+* **declarações LOAD DATA.** `LOAD DATA` é tratado como inseguro e, quando `binlog_format=mixed` a declaração é registrada no formato baseado em string. Quando `binlog_format=statement` `LOAD DATA` não gera uma advertência, ao contrário de outras declarações inseguras.
 
-* **Transações XA.** Se duas transações XA comprometidas em paralelo na fonte estão sendo preparadas na replica na ordem inversa, podem ocorrer dependências de bloqueio com replicação baseada em declarações que não podem ser resolvidas com segurança, e é possível que a replicação falhe com um impasse na replica. Quando `binlog_format=STATEMENT` está definido, as declarações DML dentro das transações XA são marcadas como inseguras e geram um aviso. Quando `binlog_format=MIXED` ou `binlog_format=ROW` está definido, as declarações DML dentro das transações XA são registradas usando replicação baseada em linhas, e o problema potencial não está presente.
+* **Transações XA.** Se duas transações XA comprometidas em paralelo na fonte estão sendo preparadas na replica na ordem inversa, podem ocorrer dependências de bloqueio com replicação baseada em declarações que não podem ser resolvidas com segurança, e é possível que a replicação falhe com um impasse na replica. Quando `binlog_format=STATEMENT` está definido, as declarações DML dentro das transações XA são marcadas como inseguras e geram um aviso. Quando `binlog_format=MIXED` ou `binlog_format=ROW` está definido, as declarações DML dentro das transações XA são registradas usando replicação baseada em strings, e o problema potencial não está presente.
 
 Para informações adicionais, consulte a Seção 16.4.1, “Recursos e problemas de replicação”.
 
 ### 16.2.2 Canais de Replicação
 
-Na replicação multifonte do MySQL, uma réplica abre vários canais de replicação, um para cada servidor de fonte de replicação. Os canais de replicação representam o caminho das transações que fluem de uma fonte para a réplica. Cada canal de replicação tem seu próprio fio de receptor (I/O), um ou mais fios de aplicação (SQL) e um log de releio. Quando as transações de uma fonte são recebidas pelo fio de receptor de um canal, elas são adicionadas ao arquivo de log de releio do canal e passadas para os fios de aplicação do canal. Isso permite que cada canal funcione de forma independente.
+Na replicação multifonte do MySQL, uma réplica abre vários canais de replicação, um para cada servidor de fonte de replicação. Os canais de replicação representam o caminho das transações que fluem de uma fonte para a réplica. Cada canal de replicação tem seu próprio thread de receptor (I/O), um ou mais threads de aplicação (SQL) e um log de releio. Quando as transações de uma fonte são recebidas pelo thread de receptor de um canal, elas são adicionadas ao arquivo de log de releio do canal e passadas para os threads de aplicação do canal. Isso permite que cada canal funcione de forma independente.
 
 Esta seção descreve como os canais podem ser usados em uma topologia de replicação e o impacto que eles têm na replicação de fonte única. Para obter instruções sobre como configurar fontes e réplicas para replicação de múltiplas fontes, iniciar, parar e reiniciar réplicas de múltiplas fontes, e monitorar a replicação de múltiplas fontes, consulte a Seção 16.1.5, “Replicação de Múltiplas Fontes MySQL”.
 
@@ -284,9 +284,9 @@ Quando uma réplica tem vários canais e a opção `FOR CHANNEL channel` não é
 
 Por exemplo, as seguintes declarações se comportam conforme o esperado para todos, exceto para certos canais de Replicação de Grupo:
 
-* `START SLAVE` inicia os fios de replicação para todos os canais, exceto os canais `group_replication_recovery` e `group_replication_applier`.
+* `START SLAVE` inicia os threads de replicação para todos os canais, exceto os canais `group_replication_recovery` e `group_replication_applier`.
 
-* `STOP SLAVE` para de replicar os fios para todos os canais, exceto os canais `group_replication_recovery` e `group_replication_applier`.
+* `STOP SLAVE` para de replicar os threads para todos os canais, exceto os canais `group_replication_recovery` e `group_replication_applier`.
 
 * `SHOW SLAVE STATUS` reporta o status para todos os canais, exceto o canal `group_replication_applier`.
 
@@ -333,11 +333,11 @@ Quando configurado, cada canal limpa seu próprio registro de relé automaticame
 
 * `--slave_transaction_retries`
 
-Aplique fios de todos os canais para repetir as transações.
+Aplique threads de todos os canais para repetir as transações.
 
 * `--skip-slave-start`
 
-Nenhum fio de replicação é iniciado em nenhum canal.
+Nenhum thread de replicação é iniciado em nenhum canal.
 
 * `--slave-skip-errors`
 
@@ -355,7 +355,7 @@ Limite superior para o tamanho total de todos os registros de relé combinados, 
 
 * `--slave-parallel-workers=value`
 
-Número de fios de trabalho por canal.
+Número de threads de trabalho por canal.
 
 * `slave_checkpoint_group`
 
@@ -388,9 +388,9 @@ Cada canal de replicação tem um nome único, que é uma cadeia com um comprime
 
 O nome que você escolhe para um canal de replicação também influencia os nomes dos arquivos usados por uma replica de várias fontes. Os arquivos de registro de releio e os arquivos de índice para cada canal são nomeados `relay_log_basename-channel.xxxxxx`, onde *`relay_log_basename`* é um nome base especificado usando a variável de sistema `relay_log`, e *`channel`* é o nome do canal registrado neste arquivo. Se você não especificar a variável de sistema `relay_log`, um nome de arquivo padrão é usado que também inclui o nome do canal.
 
-### 16.2.3 Ferramentas de replicação de fios
+### 16.2.3 Ferramentas de replicação de threads
 
-As capacidades de replicação do MySQL são implementadas usando três fios principais, um no servidor fonte e dois na replica:
+As capacidades de replicação do MySQL são implementadas usando três threads principais, um no servidor fonte e dois na replica:
 
 * **Spool de dados do log binário.** A fonte cria um thread para enviar o conteúdo do log binário para uma réplica quando a réplica se conecta. Esse thread pode ser identificado na saída do `SHOW PROCESSLIST` na fonte como o thread `Binlog Dump`.
 
@@ -398,13 +398,13 @@ O thread de exclusão binária do log adquire um bloqueio no log binário da fon
 
 * **Ferramenta de I/O de replicação.** Quando uma declaração `START SLAVE` é emitida em um servidor de replicação, a replicação cria uma thread de I/O, que se conecta à fonte e pede-lhe para enviar as atualizações registradas nos seus logs binários.
 
-O fio de I/O de replicação lê as atualizações que o fio [[`Binlog Dump`] da fonte envia (veja o item anterior) e as copia para arquivos locais que compõem o log de retransmissão da replica.
+O thread de I/O de replicação lê as atualizações que o thread [[`Binlog Dump`] da fonte envia (veja o item anterior) e as copia para arquivos locais que compõem o log de retransmissão da replica.
 
-O estado deste fio é mostrado como `Slave_IO_running` na saída de `SHOW SLAVE STATUS`.
+O estado deste thread é mostrado como `Slave_IO_running` na saída de `SHOW SLAVE STATUS`.
 
 * **Fuso de replicação SQL.** A replica cria um fuso de SQL para ler o log de retransmissão que é escrito pelo fuso de I/O de replicação e executar as transações contidas nele.
 
-Há três fios principais para cada conexão de fonte/replica. Uma fonte que tem múltiplas réplicas cria um fio de exibição de dados binários para cada replica conectada atualmente, e cada replica tem seus próprios fios de I/O de replicação e SQL.
+Há três threads principais para cada conexão de fonte/replica. Uma fonte que tem múltiplas réplicas cria um thread de exibição de dados binários para cada replica conectada atualmente, e cada replica tem seus próprios threads de I/O de replicação e SQL.
 
 Uma replica usa dois threads para separar as atualizações de leitura da fonte e executá-las em tarefas independentes. Assim, a tarefa de leitura das transações não é retardada se o processo de aplicação delas for lento. Por exemplo, se o servidor de replica não estiver em execução há algum tempo, seu thread de I/O pode rapidamente obter todos os conteúdos do log binário da fonte quando a replica começa, mesmo que o thread de SQL esteja muito atrasado. Se a replica parar antes de o thread de SQL ter executado todas as declarações obtidas, o thread de I/O pelo menos obteve tudo, de modo que uma cópia segura das transações seja armazenada localmente nos logs de relevo da replica, pronta para execução na próxima vez que a replica começar.
 
@@ -418,7 +418,7 @@ As réplicas multithread não são atualmente suportadas pelo NDB Cluster, que i
 
 A declaração `SHOW PROCESSLIST` fornece informações que informam o que está acontecendo na fonte e na réplica em relação à replicação. Para informações sobre os estados da fonte, consulte a Seção 8.14.5, “Estados de Fuso de Replicação da Fonte”. Para estados da réplica, consulte a Seção 8.14.6, “Estados de E/S de Replicação da Réplica”, e a Seção 8.14.7, “Estados de E/S de Replicação SQL da Réplica”.
 
-O exemplo a seguir ilustra como os três principais fios de replicação, o fio de exclusão binária, o fio de I/O de replicação e o fio de SQL de replicação aparecem na saída do `SHOW PROCESSLIST`.
+O exemplo a seguir ilustra como os três principais threads de replicação, o thread de exclusão binária, o thread de I/O de replicação e o thread de SQL de replicação aparecem na saída do `SHOW PROCESSLIST`.
 
 No servidor de origem, a saída do `SHOW PROCESSLIST` parece assim:
 
@@ -436,7 +436,7 @@ Command: Binlog Dump
    Info: NULL
 ```
 
-Aqui, o fio 2 é um fio `Binlog Dump` que atende a uma replica conectada. As informações `State` indicam que todas as atualizações pendentes foram enviadas para a replica e que a fonte está esperando por mais atualizações. Se você não ver nenhum fio `Binlog Dump` em um servidor de origem, isso significa que a replicação não está sendo executada; ou seja, nenhuma replica está conectada atualmente.
+Aqui, o thread 2 é um thread `Binlog Dump` que atende a uma replica conectada. As informações `State` indicam que todas as atualizações pendentes foram enviadas para a replica e que a fonte está esperando por mais atualizações. Se você não ver nenhum thread `Binlog Dump` em um servidor de origem, isso significa que a replicação não está sendo executada; ou seja, nenhuma replica está conectada atualmente.
 
 Em um servidor de replicação, a saída do `SHOW PROCESSLIST` parece assim:
 
@@ -463,9 +463,9 @@ Command: Connect
    Info: NULL
 ```
 
-A informação `State` indica que o fio 10 é o fio de I/O de replicação que está se comunicando com o servidor de origem, e o fio 11 é o fio de SQL de replicação que está processando as atualizações armazenadas nos registros do relé. No momento em que o `SHOW PROCESSLIST` foi executado, ambos os fios estavam inativos, aguardando atualizações adicionais.
+A informação `State` indica que o thread 10 é o thread de I/O de replicação que está se comunicando com o servidor de origem, e o thread 11 é o thread de SQL de replicação que está processando as atualizações armazenadas nos registros do relé. No momento em que o `SHOW PROCESSLIST` foi executado, ambos os threads estavam inativos, aguardando atualizações adicionais.
 
-O valor na coluna `Time` pode mostrar o quão atrasada a replica está em relação à fonte. Veja a Seção A.14, “Perguntas Frequentes do MySQL 5.7: Replicação”. Se passar tempo suficiente no lado da fonte sem atividade no fio `Binlog Dump`, a fonte determina que a replica não está mais conectada. Quanto a qualquer outra conexão do cliente, os tempos de espera para isso dependem dos valores de `net_write_timeout` e `net_retry_count`; para mais informações sobre esses valores, veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+O valor na coluna `Time` pode mostrar o quão atrasada a replica está em relação à fonte. Veja a Seção A.14, “Perguntas Frequentes do MySQL 5.7: Replicação”. Se passar tempo suficiente no lado da fonte sem atividade no thread `Binlog Dump`, a fonte determina que a replica não está mais conectada. Quanto a qualquer outra conexão do cliente, os tempos de espera para isso dependem dos valores de `net_write_timeout` e `net_retry_count`; para mais informações sobre esses valores, veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 
 A declaração `SHOW SLAVE STATUS` fornece informações adicionais sobre o processamento de replicação em um servidor de replicação. Veja a Seção 16.1.7.1, “Verificar o status da replicação”.
 
@@ -473,23 +473,23 @@ A declaração `SHOW SLAVE STATUS` fornece informações adicionais sobre o proc
 
 Em uma replica multithread, as tabelas do Schema de desempenho `replication_applier_status_by_coordinator` e `replication_applier_status_by_worker` mostram informações de status para os threads do coordenador da replica e, respectivamente, os threads do trabalhador do aplicador. Para uma replica com vários canais, os threads de cada canal são identificados.
 
-O fio de coordenação de uma replica multithread também imprime estatísticas no log de erro da replica regularmente, se a configuração de verbosidade estiver definida para exibir mensagens informativas. As estatísticas são impressas dependendo do volume de eventos que o fio de coordenação atribuiu aos fios de trabalhador do aplicável, com uma frequência máxima de uma vez a cada 120 segundos. A mensagem lista as seguintes estatísticas para o canal de replicação relevante, ou o canal de replicação padrão (que não é nomeado):
+O thread de coordenação de uma replica multithread também imprime estatísticas no log de erro da replica regularmente, se a configuração de verbosidade estiver definida para exibir mensagens informativas. As estatísticas são impressas dependendo do volume de eventos que o thread de coordenação atribuiu aos threads de trabalhador do aplicável, com uma frequência máxima de uma vez a cada 120 segundos. A mensagem lista as seguintes estatísticas para o canal de replicação relevante, ou o canal de replicação padrão (que não é nomeado):
 
 Segundos decorridos: A diferença em segundos entre a hora atual e a última vez que essas informações foram impressas no log de erro.
 
-Eventos atribuídos: O número total de eventos que o fio do coordenador colocou em fila para todos os threads do trabalhador aplicável desde que o fio do coordenador foi iniciado.
+Eventos atribuídos: O número total de eventos que o thread do coordenador colocou em fila para todos os threads do trabalhador aplicável desde que o thread do coordenador foi iniciado.
 
 As filas de trabalhadores estão cheias acima do nível de sobreposição: O número atual de eventos que estão em fila em qualquer um dos threads de trabalhadores do aplicador, em excesso do nível de sobreposição, que é definido em 90% do comprimento máximo da fila de 16.384 eventos. Se esse valor for zero, nenhum thread de trabalhadores do aplicador está operando no limite superior de sua capacidade.
 
-Esperou devido à fila de trabalhadores cheia:   O número de vezes que o fio de coordenação teve que esperar para agendar um evento porque a fila de um fio de trabalhador aplicando estava cheia. Se esse valor for zero, nenhum fio de trabalhador aplicando esgotou sua capacidade.
+Esperou devido à fila de trabalhadores cheia:   O número de vezes que o thread de coordenação teve que esperar para agendar um evento porque a fila de um thread de trabalhador aplicando estava cheia. Se esse valor for zero, nenhum thread de trabalhador aplicando esgotou sua capacidade.
 
-Esperou devido ao tamanho total:   O número de vezes que o fio do coordenador teve que esperar para agendar um evento porque o limite `slave_pending_jobs_size_max` havia sido atingido. Esta variável do sistema define a quantidade máxima de memória (em bytes) disponível para as filas de threads de trabalhador do aplicador que retêm eventos ainda não aplicados. Se um evento excepcionalmente grande exceder esse tamanho, a transação é suspensa até que todas as threads de trabalhador do aplicador tenham filas vazias, e então processada. Todas as transações subsequentes são suspensas até que a grande transação tenha sido concluída.
+Esperou devido ao tamanho total:   O número de vezes que o thread do coordenador teve que esperar para agendar um evento porque o limite `slave_pending_jobs_size_max` havia sido atingido. Esta variável do sistema define a quantidade máxima de memória (em bytes) disponível para as filas de threads de trabalhador do aplicador que retêm eventos ainda não aplicados. Se um evento excepcionalmente grande exceder esse tamanho, a transação é suspensa até que todas as threads de trabalhador do aplicador tenham filas vazias, e então processada. Todas as transações subsequentes são suspensas até que a grande transação tenha sido concluída.
 
-Esperou em conflitos de relógio:   O número de nanosegundos que o fio do coordenador teve que esperar para agendar um evento porque uma transação da qual o evento dependia ainda não havia sido comprometida. Se `slave_parallel_type` está definido como `DATABASE` (em vez de `LOGICAL_CLOCK`), esse valor é sempre zero.
+Esperou em conflitos de relógio:   O número de nanosegundos que o thread do coordenador teve que esperar para agendar um evento porque uma transação da qual o evento dependia ainda não havia sido comprometida. Se `slave_parallel_type` está definido como `DATABASE` (em vez de `LOGICAL_CLOCK`), esse valor é sempre zero.
 
-Esperou (contar) quando os trabalhadores estavam ocupados: O número de vezes que o fio de coordenador dormiu por um curto período, o que ele poderia fazer em duas situações. A primeira situação é quando o fio de coordenador atribui um evento e descobre que a fila do fio de trabalhador aplicante está cheia além do nível de não-derramamento de 10% do comprimento máximo da fila, nesse caso, ele dorme por um máximo de 1 milissegundo. A segunda situação é quando `slave_parallel_type` está definido como `LOGICAL_CLOCK` e o fio de coordenador precisa atribuir o primeiro evento de uma transação para a fila de um fio de trabalhador aplicante, ele só faz isso com um trabalhador com uma fila vazia, então, se nenhuma fila estiver vazia, o fio de coordenador dorme até que uma fique vazia.
+Esperou (contar) quando os trabalhadores estavam ocupados: O número de vezes que o thread de coordenador dormiu por um curto período, o que ele poderia fazer em duas situações. A primeira situação é quando o thread de coordenador atribui um evento e descobre que a fila do thread de trabalhador aplicante está cheia além do nível de não-derramamento de 10% do comprimento máximo da fila, nesse caso, ele dorme por um máximo de 1 milissegundo. A segunda situação é quando `slave_parallel_type` está definido como `LOGICAL_CLOCK` e o thread de coordenador precisa atribuir o primeiro evento de uma transação para a fila de um thread de trabalhador aplicante, ele só faz isso com um trabalhador com uma fila vazia, então, se nenhuma fila estiver vazia, o thread de coordenador dorme até que uma fique vazia.
 
-Esperou quando os trabalhadores ocuparam: O número de nanosegundos que o fio de coordenação dormiu enquanto aguardava uma fila de trabalhadores de aplicação de aplicativo vazia (ou seja, na segunda situação descrita acima, onde `slave_parallel_type` é definido como `LOGICAL_CLOCK` e o primeiro evento de uma transação precisa ser atribuído).
+Esperou quando os trabalhadores ocuparam: O número de nanosegundos que o thread de coordenação dormiu enquanto aguardava uma fila de trabalhadores de aplicação de aplicativo vazia (ou seja, na segunda situação descrita acima, onde `slave_parallel_type` é definido como `LOGICAL_CLOCK` e o primeiro evento de uma transação precisa ser atribuído).
 
 ### 16.2.4 Repositórios de metadados do log e replicação de relé
 
@@ -536,7 +536,7 @@ Um servidor replicador cria um novo arquivo de registro de retransmissão nas se
 
 + Se o valor de `max_relay_log_size` for 0, `max_binlog_size` determina o tamanho máximo do arquivo de registro do relé.
 
-O fio de SQL de replicação exclui automaticamente cada arquivo de registro do relé após executar todos os eventos no arquivo e não precisar mais dele. Não há um mecanismo explícito para excluir logs de relé, porque o fio de SQL de replicação cuida disso. No entanto, `FLUSH LOGS` rola logs de relé, o que influencia quando o fio de SQL de replicação os exclui.
+O thread de SQL de replicação exclui automaticamente cada arquivo de registro do relé após executar todos os eventos no arquivo e não precisar mais dele. Não há um mecanismo explícito para excluir logs de relé, porque o thread de SQL de replicação cuida disso. No entanto, `FLUSH LOGS` rola logs de relé, o que influencia quando o thread de SQL de replicação os exclui.
 
 #### 16.2.4.2 Repositórios de metadados de replicação
 
@@ -550,7 +550,7 @@ Por padrão, os repositórios de metadados de replicação são criados como arq
 
 Importante
 
-1. Não tente atualizar ou inserir linhas nas tabelas `mysql.slave_master_info` ou `mysql.slave_relay_log_info` manualmente. Fazer isso pode causar comportamento indefinido e não é suportado. A execução de qualquer declaração que exija um bloqueio de escrita em uma das tabelas `slave_master_info` ou `slave_relay_log_info` ou em ambas é desaconselhada enquanto a replicação estiver em andamento (embora declarações que realizam apenas leituras sejam permitidas a qualquer momento).
+1. Não tente atualizar ou inserir strings nas tabelas `mysql.slave_master_info` ou `mysql.slave_relay_log_info` manualmente. Fazer isso pode causar comportamento indefinido e não é suportado. A execução de qualquer declaração que exija um bloqueio de escrita em uma das tabelas `slave_master_info` ou `slave_relay_log_info` ou em ambas é desaconselhada enquanto a replicação estiver em andamento (embora declarações que realizam apenas leituras sejam permitidas a qualquer momento).
 
 2. O acesso ao arquivo ou tabela do repositório de metadados de conexão da réplica deve ser restrito ao administrador do banco de dados, pois ele contém o nome da conta de usuário de replicação e a senha para se conectar à fonte. Use um modo de acesso restrito para proteger os backups do banco de dados que incluem esse repositório.
 
@@ -564,21 +564,21 @@ Um repositório adicional, o repositório de metadados do trabalhador aplicável
 
 Os repositórios de metadados de replicação originalmente continham informações semelhantes às mostradas na saída da declaração `SHOW SLAVE STATUS`, que é discutida na Seção 13.4.2, “Declarações SQL para controle de servidores de replicação”. Posteriormente, foram adicionadas informações adicionais aos repositórios de metadados de replicação que não são exibidas pela declaração `SHOW SLAVE STATUS`.
 
-Para o repositório de metadados de conexão, a tabela a seguir mostra a correspondência entre as colunas da tabela `mysql.slave_master_info`, as colunas exibidas por `SHOW SLAVE STATUS` e as linhas no arquivo `master.info`.
+Para o repositório de metadados de conexão, a tabela a seguir mostra a correspondência entre as colunas da tabela `mysql.slave_master_info`, as colunas exibidas por `SHOW SLAVE STATUS` e as strings no arquivo `master.info`.
 
-<table summary="The correspondence between the lines in the master.info file, the columns in the mysql.slave_master_info table, and the columns displayed by SHOW SLAVE STATUS."><col style="width: 16%"/><col style="width: 31%"/><col style="width: 40%"/><col style="width: 18%"/><thead><tr> <th><code>master.info</code>Linha de arquivo</th> <th><code>slave_master_info</code>Coluna da tabela</th> <th><code>SHOW SLAVE STATUS</code>Coluna</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>1</th> <td><code>Number_of_lines</code></td> <td>[None]</td> <td>Number of lines in the file, or columns in the table</td> </tr><tr> <th>2</th> <td><code>Master_log_name</code></td> <td><code>Master_Log_File</code></td> <td>The name of the binary log currently being read from the source</td> </tr><tr> <th>3</th> <td><code>Master_log_pos</code></td> <td><code>Read_Master_Log_Pos</code></td> <td>The current position within the binary log that has been read from the source</td> </tr><tr> <th>4</th> <td><code>Host</code></td> <td><code>Master_Host</code></td> <td>The host name of the source server</td> </tr><tr> <th>5</th> <td><code>User_name</code></td> <td><code>Master_User</code></td> <td>The replication user name used to connect to the source</td> </tr><tr> <th>6</th> <td><code>User_password</code></td> <td>Senha (não mostrada por<code>SHOW SLAVE STATUS</code>)</td> <td>A senha usada para se conectar à fonte</td> </tr><tr> <th>7</th> <td><code>Port</code></td> <td><code>Master_Port</code></td> <td>The network port used to connect to the source</td> </tr><tr> <th>8</th> <td><code>Connect_retry</code></td> <td><code>Connect_Retry</code></td> <td>The period (in seconds) that the replica waits before trying to reconnect to the source</td> </tr><tr> <th>9</th> <td><code>Enabled_ssl</code></td> <td><code>Master_SSL_Allowed</code></td> <td>Indicates whether the server supports SSL connections</td> </tr><tr> <th>10</th> <td><code>Ssl_ca</code></td> <td><code>Master_SSL_CA_File</code></td> <td>The file used for the Certificate Authority (CA) certificate</td> </tr><tr> <th>11</th> <td><code>Ssl_capath</code></td> <td><code>Master_SSL_CA_Path</code></td> <td>The path to the Certificate Authority (CA) certificates</td> </tr><tr> <th>12</th> <td><code>Ssl_cert</code></td> <td><code>Master_SSL_Cert</code></td> <td>The name of the SSL certificate file</td> </tr><tr> <th>13</th> <td><code>Ssl_cipher</code></td> <td><code>Master_SSL_Cipher</code></td> <td>The list of possible ciphers used in the handshake for the SSL connection</td> </tr><tr> <th>14</th> <td><code>Ssl_key</code></td> <td><code>Master_SSL_Key</code></td> <td>The name of the SSL key file</td> </tr><tr> <th>15</th> <td><code>Ssl_verify_server_cert</code></td> <td><code>Master_SSL_Verify_Server_Cert</code></td> <td>Whether to verify the server certificate</td> </tr><tr> <th>16</th> <td><code>Heartbeat</code></td> <td>[None]</td> <td>Interval between replication heartbeats, in seconds</td> </tr><tr> <th>17</th> <td><code>Bind</code></td> <td><code>Master_Bind</code></td> <td>Which of the replica's network interfaces should be used for connecting to the source</td> </tr><tr> <th>18</th> <td><code>Ignored_server_ids</code></td> <td><code>Replicate_Ignore_Server_Ids</code></td> <td>The list of server IDs to be ignored. Note that for <code>Ignored_server_ids</code> the list of server IDs is preceded by the total number of server IDs to ignore.</td> </tr><tr> <th>19</th> <td><code>Uuid</code></td> <td><code>Master_UUID</code></td> <td>The source's unique ID</td> </tr><tr> <th>20</th> <td><code>Retry_count</code></td> <td><code>Master_Retry_Count</code></td> <td>Maximum number of reconnection attempts permitted</td> </tr><tr> <th>21</th> <td><code>Ssl_crl</code></td> <td>[None]</td> <td>Path to an SSL certificate revocation-list file</td> </tr><tr> <th>22</th> <td><code>Ssl_crlpath</code></td> <td>[None]</td> <td>Path to a directory containing SSL certificate revocation-list files</td> </tr><tr> <th>23</th> <td><code>Enabled_auto_position</code></td> <td><code>Auto_position</code></td> <td>If autopositioning is in use or not</td> </tr><tr> <th>24</th> <td><code>Channel_name</code></td> <td><code>Channel_name</code></td> <td>The name of the replication channel</td> </tr><tr> <th>25</th> <td><code>Tls_version</code></td> <td><code>Master_TLS_Version</code></td> <td>TLS version on source</td> </tr></tbody></table>
+<table summary="The correspondence between the lines in the master.info file, the columns in the mysql.slave_master_info table, and the columns displayed by SHOW SLAVE STATUS."><col style="width: 16%"/><col style="width: 31%"/><col style="width: 40%"/><col style="width: 18%"/><thead><tr> <th><code>master.info</code>String de arquivo</th> <th><code>slave_master_info</code>Coluna da tabela</th> <th><code>SHOW SLAVE STATUS</code>Coluna</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>1</th> <td><code>Number_of_lines</code></td> <td>[None]</td> <td>Number of lines in the file, or columns in the table</td> </tr><tr> <th>2</th> <td><code>Master_log_name</code></td> <td><code>Master_Log_File</code></td> <td>The name of the binary log currently being read from the source</td> </tr><tr> <th>3</th> <td><code>Master_log_pos</code></td> <td><code>Read_Master_Log_Pos</code></td> <td>The current position within the binary log that has been read from the source</td> </tr><tr> <th>4</th> <td><code>Host</code></td> <td><code>Master_Host</code></td> <td>The host name of the source server</td> </tr><tr> <th>5</th> <td><code>User_name</code></td> <td><code>Master_User</code></td> <td>The replication user name used to connect to the source</td> </tr><tr> <th>6</th> <td><code>User_password</code></td> <td>Senha (não mostrada por<code>SHOW SLAVE STATUS</code>)</td> <td>A senha usada para se conectar à fonte</td> </tr><tr> <th>7</th> <td><code>Port</code></td> <td><code>Master_Port</code></td> <td>The network port used to connect to the source</td> </tr><tr> <th>8</th> <td><code>Connect_retry</code></td> <td><code>Connect_Retry</code></td> <td>The period (in seconds) that the replica waits before trying to reconnect to the source</td> </tr><tr> <th>9</th> <td><code>Enabled_ssl</code></td> <td><code>Master_SSL_Allowed</code></td> <td>Indicates whether the server supports SSL connections</td> </tr><tr> <th>10</th> <td><code>Ssl_ca</code></td> <td><code>Master_SSL_CA_File</code></td> <td>The file used for the Certificate Authority (CA) certificate</td> </tr><tr> <th>11</th> <td><code>Ssl_capath</code></td> <td><code>Master_SSL_CA_Path</code></td> <td>The path to the Certificate Authority (CA) certificates</td> </tr><tr> <th>12</th> <td><code>Ssl_cert</code></td> <td><code>Master_SSL_Cert</code></td> <td>The name of the SSL certificate file</td> </tr><tr> <th>13</th> <td><code>Ssl_cipher</code></td> <td><code>Master_SSL_Cipher</code></td> <td>The list of possible ciphers used in the handshake for the SSL connection</td> </tr><tr> <th>14</th> <td><code>Ssl_key</code></td> <td><code>Master_SSL_Key</code></td> <td>The name of the SSL key file</td> </tr><tr> <th>15</th> <td><code>Ssl_verify_server_cert</code></td> <td><code>Master_SSL_Verify_Server_Cert</code></td> <td>Whether to verify the server certificate</td> </tr><tr> <th>16</th> <td><code>Heartbeat</code></td> <td>[None]</td> <td>Interval between replication heartbeats, in seconds</td> </tr><tr> <th>17</th> <td><code>Bind</code></td> <td><code>Master_Bind</code></td> <td>Which of the replica's network interfaces should be used for connecting to the source</td> </tr><tr> <th>18</th> <td><code>Ignored_server_ids</code></td> <td><code>Replicate_Ignore_Server_Ids</code></td> <td>The list of server IDs to be ignored. Note that for <code>Ignored_server_ids</code> the list of server IDs is preceded by the total number of server IDs to ignore.</td> </tr><tr> <th>19</th> <td><code>Uuid</code></td> <td><code>Master_UUID</code></td> <td>The source's unique ID</td> </tr><tr> <th>20</th> <td><code>Retry_count</code></td> <td><code>Master_Retry_Count</code></td> <td>Maximum number of reconnection attempts permitted</td> </tr><tr> <th>21</th> <td><code>Ssl_crl</code></td> <td>[None]</td> <td>Path to an SSL certificate revocation-list file</td> </tr><tr> <th>22</th> <td><code>Ssl_crlpath</code></td> <td>[None]</td> <td>Path to a directory containing SSL certificate revocation-list files</td> </tr><tr> <th>23</th> <td><code>Enabled_auto_position</code></td> <td><code>Auto_position</code></td> <td>If autopositioning is in use or not</td> </tr><tr> <th>24</th> <td><code>Channel_name</code></td> <td><code>Channel_name</code></td> <td>The name of the replication channel</td> </tr><tr> <th>25</th> <td><code>Tls_version</code></td> <td><code>Master_TLS_Version</code></td> <td>TLS version on source</td> </tr></tbody></table>
 
-Para o repositório de metadados do aplicativo, a tabela a seguir mostra a correspondência entre as colunas da tabela `mysql.slave_relay_log_info`, as colunas exibidas pelo `SHOW SLAVE STATUS` e as linhas no arquivo `relay-log.info`.
+Para o repositório de metadados do aplicativo, a tabela a seguir mostra a correspondência entre as colunas da tabela `mysql.slave_relay_log_info`, as colunas exibidas pelo `SHOW SLAVE STATUS` e as strings no arquivo `relay-log.info`.
 
-<table summary="The correspondence between the lines in the relay-log.info file, the columns in the mysql.slave_relay_log_info table, and the columns displayed by SHOW SLAVE STATUS."><col style="width: 15%"/><col style="width: 30%"/><col style="width: 40%"/><col style="width: 20%"/><thead><tr> <th>Linha em<code>relay-log.info</code></th> <th><code>slave_relay_log_info</code>Coluna da tabela</th> <th><code>SHOW SLAVE STATUS</code>Coluna</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>1</th> <td><code>Number_of_lines</code></td> <td>[None]</td> <td>Number of lines in the file or columns in the table</td> </tr><tr> <th>2</th> <td><code>Relay_log_name</code></td> <td><code>Relay_Log_File</code></td> <td>The name of the current relay log file</td> </tr><tr> <th>3</th> <td><code>Relay_log_pos</code></td> <td><code>Relay_Log_Pos</code></td> <td>The current position within the relay log file; events up to this position have been executed on the replica database</td> </tr><tr> <th>4</th> <td><code>Master_log_name</code></td> <td><code>Relay_Master_Log_File</code></td> <td>The name of the source's binary log file from which the events in the relay log file were read</td> </tr><tr> <th>5</th> <td><code>Master_log_pos</code></td> <td><code>Exec_Master_Log_Pos</code></td> <td>The equivalent position within the source's binary log file of events that have already been executed</td> </tr><tr> <th>6</th> <td><code>Sql_delay</code></td> <td><code>SQL_Delay</code></td> <td>The number of seconds that the replica must lag the source</td> </tr><tr> <th>7</th> <td><code>Number_of_workers</code></td> <td>[None]</td> <td>The number of worker threads on the replica for executing replication events (transactions) in parallel</td> </tr><tr> <th>8</th> <td><code>Id</code></td> <td>[None]</td> <td>ID used for internal purposes; currently this is always 1</td> </tr><tr> <th>9</th> <td><code>Channel_name</code></td> <td>Channel_name</td> <td>The name of the replication channel</td> </tr></tbody></table>
+<table summary="The correspondence between the lines in the relay-log.info file, the columns in the mysql.slave_relay_log_info table, and the columns displayed by SHOW SLAVE STATUS."><col style="width: 15%"/><col style="width: 30%"/><col style="width: 40%"/><col style="width: 20%"/><thead><tr> <th>String em<code>relay-log.info</code></th> <th><code>slave_relay_log_info</code>Coluna da tabela</th> <th><code>SHOW SLAVE STATUS</code>Coluna</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>1</th> <td><code>Number_of_lines</code></td> <td>[None]</td> <td>Number of lines in the file or columns in the table</td> </tr><tr> <th>2</th> <td><code>Relay_log_name</code></td> <td><code>Relay_Log_File</code></td> <td>The name of the current relay log file</td> </tr><tr> <th>3</th> <td><code>Relay_log_pos</code></td> <td><code>Relay_Log_Pos</code></td> <td>The current position within the relay log file; events up to this position have been executed on the replica database</td> </tr><tr> <th>4</th> <td><code>Master_log_name</code></td> <td><code>Relay_Master_Log_File</code></td> <td>The name of the source's binary log file from which the events in the relay log file were read</td> </tr><tr> <th>5</th> <td><code>Master_log_pos</code></td> <td><code>Exec_Master_Log_Pos</code></td> <td>The equivalent position within the source's binary log file of events that have already been executed</td> </tr><tr> <th>6</th> <td><code>Sql_delay</code></td> <td><code>SQL_Delay</code></td> <td>The number of seconds that the replica must lag the source</td> </tr><tr> <th>7</th> <td><code>Number_of_workers</code></td> <td>[None]</td> <td>The number of worker threads on the replica for executing replication events (transactions) in parallel</td> </tr><tr> <th>8</th> <td><code>Id</code></td> <td>[None]</td> <td>ID used for internal purposes; currently this is always 1</td> </tr><tr> <th>9</th> <td><code>Channel_name</code></td> <td>Channel_name</td> <td>The name of the replication channel</td> </tr></tbody></table>
 
-Em versões do MySQL anteriores ao MySQL 5.6, o arquivo `relay-log.info` não inclui uma contagem de linhas ou um valor de atraso (e a tabela `slave_relay_log_info` não está disponível).
+Em versões do MySQL anteriores ao MySQL 5.6, o arquivo `relay-log.info` não inclui uma contagem de strings ou um valor de atraso (e a tabela `slave_relay_log_info` não está disponível).
 
 <table summary="The correspondence between lines in the relay-log.info file and items that appear in the Status column."><col style="width: 15%"/><col style="width: 35%"/><col style="width: 50%"/><thead><tr> <th>Line</th> <th>Status Column</th> <th>Description</th> </tr></thead><tbody><tr> <th>1</th> <td><code>Relay_Log_File</code></td> <td>O nome do arquivo de registro atual do relé</td> </tr><tr> <th>2</th> <td><code>Relay_Log_Pos</code></td> <td>A posição atual dentro do arquivo de registro do relé; os eventos até essa posição foram executados no banco de dados replica.</td> </tr><tr> <th>3</th> <td><code>Relay_Master_Log_File</code></td> <td>O nome do arquivo de registro binário da fonte a partir do qual os eventos no arquivo de registro do relé foram lidos</td> </tr><tr> <th>4</th> <td><code>Exec_Master_Log_Pos</code></td> <td>A posição equivalente dentro do arquivo de registro binário da fonte de eventos que já foram executados</td> </tr></tbody></table>
 
 Nota
 
-Se você desfazer uma réplica do servidor para uma versão mais antiga do MySQL 5.6, o servidor mais antigo não lê o arquivo `relay-log.info` corretamente. Para resolver isso, modifique o arquivo em um editor de texto, excluindo a linha inicial que contém o número de linhas.
+Se você desfazer uma réplica do servidor para uma versão mais antiga do MySQL 5.6, o servidor mais antigo não lê o arquivo `relay-log.info` corretamente. Para resolver isso, modifique o arquivo em um editor de texto, excluindo a string inicial que contém o número de strings.
 
 Os conteúdos do arquivo `relay-log.info` e os estados mostrados pela declaração `SHOW SLAVE STATUS` podem não corresponder se o arquivo `relay-log.info` não tiver sido descarregado no disco. Idealmente, você deve visualizar apenas `relay-log.info` em uma replica que esteja offline (ou seja, `mysqld` não esteja em execução). Para um sistema em execução, você pode usar `SHOW SLAVE STATUS`, ou consultar as tabelas `mysql.slave_master_info` e `mysql.slave_relay_log_info` se você estiver escrevendo os repositórios de metadados de replicação em tabelas.
 
@@ -608,11 +608,11 @@ Todas as opções de filtragem de replicação seguem as mesmas regras de sensib
 
 Ao avaliar as opções de replicação, a replicação começa verificando se existem quaisquer opções de `--replicate-do-db` ou `--replicate-ignore-db` que se aplicam. Ao usar `--binlog-do-db` ou `--binlog-ignore-db`, o processo é semelhante, mas as opções são verificadas na fonte.
 
-O banco de dados que é verificado para uma correspondência depende do formato do log binário da declaração que está sendo tratada. Se a declaração tiver sido registrada usando o formato de linha, o banco de dados onde os dados devem ser alterados é o banco de dados que é verificado. Se a declaração tiver sido registrada usando o formato de declaração, o banco de dados padrão (especificado com uma declaração `USE`) é o banco de dados que é verificado.
+O banco de dados que é verificado para uma correspondência depende do formato do log binário da declaração que está sendo tratada. Se a declaração tiver sido registrada usando o formato de string, o banco de dados onde os dados devem ser alterados é o banco de dados que é verificado. Se a declaração tiver sido registrada usando o formato de declaração, o banco de dados padrão (especificado com uma declaração `USE`) é o banco de dados que é verificado.
 
 Nota
 
-Somente as declarações DML podem ser registradas usando o formato de linha. As declarações DDL são sempre registradas como declarações, mesmo quando `binlog_format=ROW`. Portanto, todas as declarações DDL são sempre filtradas de acordo com as regras para replicação baseada em declarações. Isso significa que você deve selecionar o banco de dados padrão explicitamente com uma declaração `USE` para que uma declaração DDL seja aplicada.
+Somente as declarações DML podem ser registradas usando o formato de string. As declarações DDL são sempre registradas como declarações, mesmo quando `binlog_format=ROW`. Portanto, todas as declarações DDL são sempre filtradas de acordo com as regras para replicação baseada em declarações. Isso significa que você deve selecionar o banco de dados padrão explicitamente com uma declaração `USE` para que uma declaração DDL seja aplicada.
 
 Para a replicação, os passos envolvidos estão listados aqui:
 
@@ -682,7 +682,7 @@ Importante
 
 Para o registro baseado em declarações, uma exceção é feita nas regras fornecidas apenas para as declarações `CREATE DATABASE`, `ALTER DATABASE` e `DROP DATABASE`. Nesses casos, o banco de dados que está sendo *criado, alterado ou descartado* substitui o banco de dados padrão ao determinar se deve registrar ou ignorar as atualizações.
 
-`--binlog-do-db` pode, às vezes, significar “ignorar outros bancos de dados”. Por exemplo, ao usar o registro baseado em declarações, um servidor que funciona apenas com `--binlog-do-db=sales` não escreve as declarações do registro binário para as quais o banco de dados padrão difere de `sales`. Ao usar o registro baseado em linhas com a mesma opção, o servidor registra apenas as atualizações que alteram dados em `sales`.
+`--binlog-do-db` pode, às vezes, significar “ignorar outros bancos de dados”. Por exemplo, ao usar o registro baseado em declarações, um servidor que funciona apenas com `--binlog-do-db=sales` não escreve as declarações do registro binário para as quais o banco de dados padrão difere de `sales`. Ao usar o registro baseado em strings com a mesma opção, o servidor registra apenas as atualizações que alteram dados em `sales`.
 
 #### 16.2.5.2 Avaliação das Opções de Replicação de Nível de Tabela
 
@@ -690,11 +690,11 @@ A replica verifica e avalia as opções de tabela apenas se uma das duas condiç
 
 * Não foram encontradas opções de banco de dados correspondentes. * Foram encontradas uma ou mais opções de banco de dados e avaliadas para chegar a uma condição de "executar" de acordo com as regras descritas na seção anterior (ver Seção 16.2.5.1, "Avaliação das opções de replicação e registro binário de nível de banco de dados").
 
-Primeiro, como uma condição preliminar, a replica verifica se a replicação baseada em declarações está habilitada. Se sim, e a declaração ocorre dentro de uma função armazenada, a replica executa a declaração e sai. Se a replicação baseada em linhas está habilitada, a replica não sabe se uma declaração ocorreu dentro de uma função armazenada na fonte, então essa condição não se aplica.
+Primeiro, como uma condição preliminar, a replica verifica se a replicação baseada em declarações está habilitada. Se sim, e a declaração ocorre dentro de uma função armazenada, a replica executa a declaração e sai. Se a replicação baseada em strings está habilitada, a replica não sabe se uma declaração ocorreu dentro de uma função armazenada na fonte, então essa condição não se aplica.
 
 Nota
 
-Para a replicação baseada em declarações, os eventos de replicação representam declarações (todas as alterações que compõem um determinado evento estão associadas a uma única declaração SQL); para a replicação baseada em linhas, cada evento representa uma alteração em uma única linha de tabela (assim, uma única declaração, como `UPDATE mytable SET mycol = 1`, pode gerar muitos eventos baseados em linhas). Quando analisada em termos de eventos, o processo de verificação das opções da tabela é o mesmo para a replicação baseada em linhas e baseada em declarações.
+Para a replicação baseada em declarações, os eventos de replicação representam declarações (todas as alterações que compõem um determinado evento estão associadas a uma única declaração SQL); para a replicação baseada em strings, cada evento representa uma alteração em uma única string de tabela (assim, uma única declaração, como `UPDATE mytable SET mycol = 1`, pode gerar muitos eventos baseados em strings). Quando analisada em termos de eventos, o processo de verificação das opções da tabela é o mesmo para a replicação baseada em strings e baseada em declarações.
 
 Chegando a este ponto, se não houver opções de tabela, a replica simplesmente executa todos os eventos. Se houver quaisquer opções `--replicate-do-table` ou `--replicate-wild-do-table`, o evento deve corresponder a uma dessas opções se quiser ser executado; caso contrário, é ignorado. Se houver quaisquer opções `--replicate-ignore-table` ou `--replicate-wild-ignore-table`, todos os eventos são executados, exceto aqueles que correspondem a qualquer uma dessas opções.
 
@@ -714,7 +714,7 @@ Os passos a seguir descrevem essa avaliação com mais detalhes. O ponto de part
 
 * **DECLARAÇÃO.** Realize os passos restantes para cada declaração que realiza uma atualização.
 
-* **LINHA.** Realize os passos restantes para cada atualização de uma linha de tabela.
+* **LINHA.** Realize os passos restantes para cada atualização de uma string de tabela.
 
 3. Há alguma opção de `--replicate-do-table`?
 
@@ -770,13 +770,13 @@ Os passos a seguir descrevem essa avaliação com mais detalhes. O ponto de part
 
 Nota
 
-A replicação baseada em declarações é interrompida se uma única declaração SQL opera em uma tabela que é incluída por uma opção `--replicate-do-table` ou `--replicate-wild-do-table`, e em outra tabela que é ignorada por uma opção `--replicate-ignore-table` ou `--replicate-wild-ignore-table`. A replicação deve executar ou ignorar a declaração completa (que forma um evento de replicação), e não pode logicamente fazer isso. Isso também se aplica à replicação baseada em linhas para declarações DDL, porque as declarações DDL são sempre registradas como declarações, sem considerar o formato de registro em vigor. O único tipo de declaração que pode atualizar uma tabela incluída e uma tabela ignorada e ainda ser replicada com sucesso é uma declaração DML que foi registrada com `binlog_format=ROW`.
+A replicação baseada em declarações é interrompida se uma única declaração SQL opera em uma tabela que é incluída por uma opção `--replicate-do-table` ou `--replicate-wild-do-table`, e em outra tabela que é ignorada por uma opção `--replicate-ignore-table` ou `--replicate-wild-ignore-table`. A replicação deve executar ou ignorar a declaração completa (que forma um evento de replicação), e não pode logicamente fazer isso. Isso também se aplica à replicação baseada em strings para declarações DDL, porque as declarações DDL são sempre registradas como declarações, sem considerar o formato de registro em vigor. O único tipo de declaração que pode atualizar uma tabela incluída e uma tabela ignorada e ainda ser replicada com sucesso é uma declaração DML que foi registrada com `binlog_format=ROW`.
 
 #### 16.2.5.3 Interações entre as Opções de Filtragem de Replicação
 
-Se você usar uma combinação de opções de filtragem de nível de banco de dados e nível de tabela, a replica primeiro aceita ou ignora eventos usando as opções do banco de dados, depois avalia todos os eventos permitidos por essas opções de acordo com as opções da tabela. Isso às vezes pode levar a resultados que parecem contraintuitivos. Também é importante notar que os resultados variam dependendo se a operação é registrada usando o formato de registro binário baseado em declaração ou baseado em linha. Se você deseja ter certeza de que seus filtros de replicação sempre operam da mesma maneira, independentemente do formato de registro binário, o que é particularmente importante se você estiver usando um formato de registro binário misto, siga as orientações neste tópico.
+Se você usar uma combinação de opções de filtragem de nível de banco de dados e nível de tabela, a replica primeiro aceita ou ignora eventos usando as opções do banco de dados, depois avalia todos os eventos permitidos por essas opções de acordo com as opções da tabela. Isso às vezes pode levar a resultados que parecem contraintuitivos. Também é importante notar que os resultados variam dependendo se a operação é registrada usando o formato de registro binário baseado em declaração ou baseado em string. Se você deseja ter certeza de que seus filtros de replicação sempre operam da mesma maneira, independentemente do formato de registro binário, o que é particularmente importante se você estiver usando um formato de registro binário misto, siga as orientações neste tópico.
 
-O efeito das opções de filtragem de replicação difere entre os formatos de registro binário devido à maneira como o nome do banco de dados é identificado. Com o formato baseado em declaração, as declarações DML são manipuladas com base no banco de dados atual, conforme especificado pela declaração `USE`. Com o formato baseado em linha, as declarações DML são manipuladas com base no banco de dados onde a tabela modificada existe. As declarações DDL são sempre filtradas com base no banco de dados atual, conforme especificado pela declaração `USE`, independentemente do formato de registro binário.
+O efeito das opções de filtragem de replicação difere entre os formatos de registro binário devido à maneira como o nome do banco de dados é identificado. Com o formato baseado em declaração, as declarações DML são manipuladas com base no banco de dados atual, conforme especificado pela declaração `USE`. Com o formato baseado em string, as declarações DML são manipuladas com base no banco de dados onde a tabela modificada existe. As declarações DDL são sempre filtradas com base no banco de dados atual, conforme especificado pela declaração `USE`, independentemente do formato de registro binário.
 
 Uma operação que envolve várias tabelas também pode ser afetada de maneira diferente pelas opções de filtragem de replicação, dependendo do formato de registro binário. As operações a serem observadas incluem transações que envolvem declarações multi-tabela `UPDATE`, gatilhos, chaves estrangeiras em cascata, funções armazenadas que atualizam várias tabelas e declarações DML que invocam funções armazenadas que atualizam uma ou mais tabelas. Se essas operações atualizarem tanto as tabelas filtradas quanto as tabelas filtradas, os resultados podem variar com o formato de registro binário.
 
@@ -784,7 +784,7 @@ Se você precisa garantir que seus filtros de replicação funcionem de forma co
 
 Se você precisar usar uma combinação de filtros de replicação de nível de banco de dados e de nível de tabela e quiser que esses operem o mais consistentemente possível, escolha uma das seguintes estratégias:
 
-1. Se você usa o formato de registro binário baseado em linha (`binlog_format=ROW`), para declarações de DDL, confie na declaração `USE` para definir o banco de dados e não especifique o nome do banco de dados. Você pode considerar a mudança para o formato de registro binário baseado em linha para melhorar a consistência com o filtro de replicação. Consulte a Seção 5.4.4.2, “Definindo o Formato do Registro Binário”, para as condições que se aplicam à mudança do formato de registro binário.
+1. Se você usa o formato de registro binário baseado em string (`binlog_format=ROW`), para declarações de DDL, confie na declaração `USE` para definir o banco de dados e não especifique o nome do banco de dados. Você pode considerar a mudança para o formato de registro binário baseado em string para melhorar a consistência com o filtro de replicação. Consulte a Seção 5.4.4.2, “Definindo o Formato do Registro Binário”, para as condições que se aplicam à mudança do formato de registro binário.
 
 2. Se você estiver usando o formato de registro binário baseado em declarações ou misto (`binlog_format=STATEMENT` ou `MIXED`), para tanto DML quanto DDL, confie na declaração `USE` e não use o nome do banco de dados. Além disso, não use DML de várias tabelas que atualizem tanto as tabelas filtradas quanto as tabelas filtradas.
 
@@ -807,7 +807,7 @@ replicate-do-table = db2.t3
 
 A declaração DDL `CREATE TABLE` cria a tabela em `db1`, conforme especificado pela declaração anterior `USE`. O filtro de replicação exclui essa declaração de acordo com sua opção `--replicate-ignore-db = db1`, porque `db1` é o banco de dados atual. Esse resultado é o mesmo, independentemente do formato de registro binário na fonte. No entanto, o resultado da declaração DML `INSERT` é diferente, dependendo do formato de registro binário:
 
-* Se o formato de registro binário baseado em linha estiver em uso na fonte (`binlog_format=ROW`), a replica avalia a operação `INSERT` usando o banco de dados onde a tabela existe, que é nomeado como `db2`. A opção de nível de banco de dados `--replicate-ignore-db = db1`, que é avaliada primeiro, portanto, não se aplica. A opção de nível de tabela `--replicate-do-table = db2.t3` se aplica, portanto, a replica aplica a mudança à tabela `t3`.
+* Se o formato de registro binário baseado em string estiver em uso na fonte (`binlog_format=ROW`), a replica avalia a operação `INSERT` usando o banco de dados onde a tabela existe, que é nomeado como `db2`. A opção de nível de banco de dados `--replicate-ignore-db = db1`, que é avaliada primeiro, portanto, não se aplica. A opção de nível de tabela `--replicate-do-table = db2.t3` se aplica, portanto, a replica aplica a mudança à tabela `t3`.
 
 * Se o formato de registro binário baseado em declarações estiver em uso na fonte (`binlog_format=STATEMENT`), a replica avalia a operação `INSERT` usando o banco de dados padrão, que foi definido pela declaração `USE` para `db1` e não foi alterado. De acordo com sua opção de nível de banco de dados `--replicate-ignore-db = db1`, portanto, ignora a operação e não aplica a mudança à tabela `t3`. A opção de nível de tabela `--replicate-do-table = db2.t3` não é verificada, porque a declaração já correspondeu a uma opção de nível de banco de dados e foi ignorada.
 
@@ -820,4 +820,4 @@ USE db2;
 INSERT INTO t3 VALUES (1);
 ```
 
-Neste caso, a replica sempre avalia a declaração `INSERT` com base no banco de dados `db2`. Se a operação for registrada no formato binário baseado em declaração ou baseado em linha, os resultados permanecem os mesmos.
+Neste caso, a replica sempre avalia a declaração `INSERT` com base no banco de dados `db2`. Se a operação for registrada no formato binário baseado em declaração ou baseado em string, os resultados permanecem os mesmos.

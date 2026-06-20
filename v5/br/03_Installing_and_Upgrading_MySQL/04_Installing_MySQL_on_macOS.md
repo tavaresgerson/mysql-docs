@@ -26,7 +26,7 @@ Se anteriormente não permitido, a correção habilita o *System Events.app* par
 
 * Como o instalador do pacote MySQL instala o conteúdo do MySQL em um diretório específico para a versão e a plataforma, você pode usar isso para atualizar e migrar seu banco de dados entre versões. Você precisa copiar o diretório `data` da versão antiga para a nova versão, ou especificar um valor alternativo `datadir` para definir a localização do diretório de dados. Por padrão, os diretórios do MySQL são instalados em `/usr/local/`.
 
-* Você pode querer adicionar aliases ao arquivo de recursos do seu shell para facilitar o acesso a programas comumente usados, como **mysql** e **mysqladmin**, a partir da linha de comando. A sintaxe para **bash** é:
+* Você pode querer adicionar aliases ao arquivo de recursos do seu shell para facilitar o acesso a programas comumente usados, como **mysql** e **mysqladmin**, a partir da string de comando. A sintaxe para **bash** é:
 
   ```sql
   alias mysql=/usr/local/mysql/bin/mysql
@@ -50,7 +50,7 @@ O pacote está localizado dentro de um arquivo de imagem de disco (`.dmg`) que v
 
 Nota
 
-Antes de prosseguir com a instalação, certifique-se de parar todas as instâncias do servidor MySQL em execução usando o Aplicativo do Gestor MySQL (no macOS Server), o painel de preferências ou **mysqladmin shutdown** na linha de comando.
+Antes de prosseguir com a instalação, certifique-se de parar todas as instâncias do servidor MySQL em execução usando o Aplicativo do Gestor MySQL (no macOS Server), o painel de preferências ou **mysqladmin shutdown** na string de comando.
 
 Para instalar o MySQL usando o instalador de pacotes:
 
@@ -102,7 +102,7 @@ O MySQL expira essa senha de raiz temporária após o login inicial e exige que 
 
    ![Shows that the installation was a success, and includes links to the MySQL manual, mysql.com, and oracle.com.](images/mac-installer-summary.png)
 
-O servidor MySQL está instalado, mas não é carregado (ou iniciado) por padrão. Use o launchctl a partir da linha de comando ou inicie o MySQL clicando em "Iniciar" usando o painel de preferências do MySQL. Para informações adicionais, consulte a Seção 2.4.3, “Instalando um daemon de inicialização do MySQL”, e a Seção 2.4.4, “Instalando e usando o painel de preferências do MySQL”. Use o painel de preferências do MySQL ou o launchd para configurar o MySQL para iniciar automaticamente no momento do boot.
+O servidor MySQL está instalado, mas não é carregado (ou iniciado) por padrão. Use o launchctl a partir da string de comando ou inicie o MySQL clicando em "Iniciar" usando o painel de preferências do MySQL. Para informações adicionais, consulte a Seção 2.4.3, “Instalando um daemon de inicialização do MySQL”, e a Seção 2.4.4, “Instalando e usando o painel de preferências do MySQL”. Use o painel de preferências do MySQL ou o launchd para configurar o MySQL para iniciar automaticamente no momento do boot.
 
 Ao instalar usando o instalador de pacotes, os arquivos são instalados em um diretório dentro de `/usr/local` que corresponde ao nome da versão de instalação e da plataforma. Por exemplo, o arquivo do instalador `mysql-5.7.44-macos10.13-x86_64.dmg` instala o MySQL em `/usr/local/mysql-5.7.44-macos10.13-x86_64/`. O seguinte quadro mostra o layout do diretório de instalação.
 
@@ -235,9 +235,9 @@ A atualização também substitui seu arquivo existente **launchd** com o mesmo 
 
 Informações adicionais relacionadas ao **launchd**:
 
-* As entradas `plist` substituem as entradas `my.cnf`, porque são passadas como argumentos na linha de comando. Para informações adicionais sobre como passar opções de programa, consulte a Seção 4.2.2, “Especificação de Opções de Programa”.
+* As entradas `plist` substituem as entradas `my.cnf`, porque são passadas como argumentos na string de comando. Para informações adicionais sobre como passar opções de programa, consulte a Seção 4.2.2, “Especificação de Opções de Programa”.
 
-* A seção **ProgramArguments** define as opções de linha de comando que são passadas para o programa, que é o binário `mysqld` neste caso.
+* A seção **ProgramArguments** define as opções de string de comando que são passadas para o programa, que é o binário `mysqld` neste caso.
 
 * A definição padrão `plist` é escrita com casos de uso menos sofisticados em mente. Para configurações mais complicadas, você pode querer remover alguns dos argumentos e, em vez disso, confiar em um arquivo de configuração do MySQL, como `my.cnf`.
 

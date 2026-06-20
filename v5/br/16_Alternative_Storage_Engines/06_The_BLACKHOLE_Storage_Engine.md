@@ -38,7 +38,7 @@ A fonte escreve para seu log binário. O processo "fantoche" `mysqld` atua como 
 
 O processo fictício não armazena, na verdade, nenhum dado, portanto, há pouco sobrecarga de processamento ao executar o processo adicional `mysqld` no host da fonte de replicação. Esse tipo de configuração pode ser repetido com réplicas adicionais de replicação.
 
-Os gatilhos para as tabelas `INSERT` funcionam conforme o esperado. No entanto, como a tabela `BLACKHOLE` não armazena dados reais, os gatilhos `UPDATE` e `DELETE` não são ativados: A cláusula `FOR EACH ROW` na definição do gatilho não se aplica porque não há linhas.
+Os gatilhos para as tabelas `INSERT` funcionam conforme o esperado. No entanto, como a tabela `BLACKHOLE` não armazena dados reais, os gatilhos `UPDATE` e `DELETE` não são ativados: A cláusula `FOR EACH ROW` na definição do gatilho não se aplica porque não há strings.
 
 Outros usos possíveis para o mecanismo de armazenamento `BLACKHOLE` incluem:
 
@@ -60,13 +60,13 @@ Considere o seguinte cenário de replicação, onde todas as três condições a
 
 Nesse cenário, a replicação falha com um erro de entrada duplicada na coluna da chave primária.
 
-Na replicação com valor baseado em declaração, o valor de `INSERT_ID` no evento de contexto é sempre o mesmo. Portanto, a replicação falha porque tenta inserir uma linha com um valor duplicado para uma coluna de chave primária.
+Na replicação com valor baseado em declaração, o valor de `INSERT_ID` no evento de contexto é sempre o mesmo. Portanto, a replicação falha porque tenta inserir uma string com um valor duplicado para uma coluna de chave primária.
 
-Na replicação baseada em linha, o valor que o motor retorna para a linha sempre será o mesmo para cada inserção. Isso resulta na replicação tentando refazer duas entradas de registro de inserção usando o mesmo valor para a coluna da chave primária, e, portanto, a replicação falha.
+Na replicação baseada em string, o valor que o motor retorna para a string sempre será o mesmo para cada inserção. Isso resulta na replicação tentando refazer duas entradas de registro de inserção usando o mesmo valor para a coluna da chave primária, e, portanto, a replicação falha.
 
 **Filtragem de Coluna**
 
-Ao usar a replicação baseada em linhas (`binlog_format=ROW`), é suportada uma replica onde as últimas colunas estão ausentes de uma tabela, conforme descrito na seção 16.4.1.10, “Replicação com definições de tabela diferentes na fonte e na replica”.
+Ao usar a replicação baseada em strings (`binlog_format=ROW`), é suportada uma replica onde as últimas colunas estão ausentes de uma tabela, conforme descrito na seção 16.4.1.10, “Replicação com definições de tabela diferentes na fonte e na replica”.
 
 Esse filtro funciona no lado da réplica, ou seja, as colunas são copiadas para a réplica antes de serem filtradas. Há pelo menos dois casos em que não é desejável copiar as colunas para a réplica:
 

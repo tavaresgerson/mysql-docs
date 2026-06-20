@@ -69,7 +69,7 @@ O uso de `CHARACTER SET binary` na definição de uma coluna de `CHAR`, `VARCHAR
   BLOB
   ```
 
-Se `BINARY` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `BINARY` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `CAST(expr AS type)`](cast-functions.html#function_cast)
 

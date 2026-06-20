@@ -60,7 +60,7 @@ As seguintes declarações ou operações adicionais não são permitidas dentro
 
 Para os gatilhos, as seguintes restrições adicionais se aplicam:
 
-* Os gatilhos não são ativados por ações de chave estrangeira. * Ao usar replicação baseada em linha, os gatilhos na replica não são ativados por declarações que têm origem na fonte. Os gatilhos na replica são ativados ao usar replicação baseada em declaração. Para mais informações, consulte a Seção 16.4.1.34, “Replicação e gatilhos”.
+* Os gatilhos não são ativados por ações de chave estrangeira. * Ao usar replicação baseada em string, os gatilhos na replica não são ativados por declarações que têm origem na fonte. Os gatilhos na replica são ativados ao usar replicação baseada em declaração. Para mais informações, consulte a Seção 16.4.1.34, “Replicação e gatilhos”.
 
 * A declaração `RETURN` não é permitida em gatilhos, que não podem retornar um valor. Para sair de um gatilho imediatamente, use a declaração `LEAVE`.
 
@@ -125,7 +125,7 @@ As seguintes limitações são específicas para o Agendamento de Eventos:
 
 * As declarações DDL sobre eventos são proibidas enquanto uma declaração `LOCK TABLES` estiver em vigor.
 
-* Os horários dos eventos utilizando os intervalos `YEAR`, `QUARTER`, `MONTH` e `YEAR_MONTH` são resolvidos em meses; aqueles que utilizam qualquer outro intervalo são resolvidos em segundos. Não há como fazer com que eventos agendados para ocorrer no mesmo segundo sejam executados em uma ordem específica. Além disso, devido à arredondamento, à natureza das aplicações em fio e ao fato de que é necessário um tempo não nulo para criar eventos e sinalizar sua execução, os eventos podem ser atrasados em até 1 ou 2 segundos. No entanto, o tempo mostrado na coluna `LAST_EXECUTED` da tabela do Schema de Informações `EVENTS` ou na coluna `last_executed` da tabela `mysql.event` é sempre preciso dentro de um segundo do tempo real de execução do evento. (Veja também o Bug #16522.)
+* Os horários dos eventos utilizando os intervalos `YEAR`, `QUARTER`, `MONTH` e `YEAR_MONTH` são resolvidos em meses; aqueles que utilizam qualquer outro intervalo são resolvidos em segundos. Não há como fazer com que eventos agendados para ocorrer no mesmo segundo sejam executados em uma ordem específica. Além disso, devido à arredondamento, à natureza das aplicações em thread e ao fato de que é necessário um tempo não nulo para criar eventos e sinalizar sua execução, os eventos podem ser atrasados em até 1 ou 2 segundos. No entanto, o tempo mostrado na coluna `LAST_EXECUTED` da tabela do Schema de Informações `EVENTS` ou na coluna `last_executed` da tabela `mysql.event` é sempre preciso dentro de um segundo do tempo real de execução do evento. (Veja também o Bug #16522.)
 
 * Cada execução das declarações contidas no corpo de um evento ocorre em uma nova conexão; portanto, essas declarações não têm efeito em uma sessão de usuário dada nas contagens de declarações do servidor, como `Com_select` e `Com_insert` que são exibidas por `SHOW STATUS`. No entanto, tais contagens *são* atualizadas no escopo global. (Bug #16422)
 

@@ -10,7 +10,7 @@ Um método mais flexível para otimização de consultas permite que o usuário 
 
 O comportamento do otimizador em relação ao número de planos que ele avalia pode ser controlado usando duas variáveis do sistema:
 
-* A variável `optimizer_prune_level` indica ao otimizador que ignore certos planos com base em estimativas do número de linhas acessadas para cada tabela. Nossa experiência mostra que esse tipo de "gasto educado" raramente perde planos ótimos e pode reduzir drasticamente os tempos de compilação das consultas. É por isso que essa opção está ativada (`optimizer_prune_level=1`) por padrão. No entanto, se você acredita que o otimizador perdeu um plano de consulta melhor, essa opção pode ser desativada (`optimizer_prune_level=0`) com o risco de que a compilação da consulta possa levar muito mais tempo. Note que, mesmo com o uso dessa heurística, o otimizador ainda explora um número aproximadamente exponencial de planos.
+* A variável `optimizer_prune_level` indica ao otimizador que ignore certos planos com base em estimativas do número de strings acessadas para cada tabela. Nossa experiência mostra que esse tipo de "gasto educado" raramente perde planos ótimos e pode reduzir drasticamente os tempos de compilação das consultas. É por isso que essa opção está ativada (`optimizer_prune_level=1`) por padrão. No entanto, se você acredita que o otimizador perdeu um plano de consulta melhor, essa opção pode ser desativada (`optimizer_prune_level=0`) com o risco de que a compilação da consulta possa levar muito mais tempo. Note que, mesmo com o uso dessa heurística, o otimizador ainda explora um número aproximadamente exponencial de planos.
 
 * A variável `optimizer_search_depth` indica até que ponto no "futuro" de cada plano incompleto o otimizador deve procurar para avaliar se ele deve ser expandido ainda mais. Valores menores de `optimizer_search_depth` podem resultar em tempos de compilação de consultas de ordem de magnitude menores. Por exemplo, consultas com 12, 13 ou mais tabelas podem facilmente exigir horas e até dias para compilação, se `optimizer_search_depth` estiver próximo ao número de tabelas na consulta. Ao mesmo tempo, se compilada com `optimizer_search_depth` igual a 3 ou 4, o otimizador pode compilar em menos de um minuto para a mesma consulta. Se você não tem certeza do que é um valor razoável para `optimizer_search_depth`, essa variável pode ser definida como 0 para indicar ao otimizador que determine o valor automaticamente.
 
@@ -406,7 +406,7 @@ Uma dica de nível de tabela se aplica a tabelas que recebem registros de tabela
 SELECT /*+ BNL(t2) */ FROM t1, t2;
 ```
 
-Se o otimizador optar por processar `t1` primeiro, ele aplica uma junção Bloco em Nó Envolto a `t2` ao bufferizar as linhas de `t1` antes de começar a ler a partir de `t2`. Se, em vez disso, o otimizador optar por processar `t2` primeiro, a dica não tem efeito porque `t2` é uma tabela de emissor.
+Se o otimizador optar por processar `t1` primeiro, ele aplica uma junção Bloco em Nó Envolto a `t2` ao bufferizar as strings de `t1` antes de começar a ler a partir de `t2`. Se, em vez disso, o otimizador optar por processar `t2` primeiro, a dica não tem efeito porque `t2` é uma tabela de emissor.
 
 #### Dicas de otimização de nível de índice
 
@@ -609,9 +609,9 @@ index_list:
     index_name [, index_name] ...
 ```
 
-O `USE INDEX (index_list)` indica ao MySQL que use apenas um dos índices nomeados para encontrar as linhas na tabela. A sintaxe alternativa `IGNORE INDEX (index_list)` indica ao MySQL que não use algum índice ou índices específicos. Esses indicativos são úteis se `EXPLAIN` mostrar que o MySQL está usando o índice errado da lista de índices possíveis.
+O `USE INDEX (index_list)` indica ao MySQL que use apenas um dos índices nomeados para encontrar as strings na tabela. A sintaxe alternativa `IGNORE INDEX (index_list)` indica ao MySQL que não use algum índice ou índices específicos. Esses indicativos são úteis se `EXPLAIN` mostrar que o MySQL está usando o índice errado da lista de índices possíveis.
 
-O `FORCE INDEX` atua como o `USE INDEX (index_list)`, com a adição de que uma varredura de tabela é considerada *muito* cara. Em outras palavras, uma varredura de tabela é usada apenas se não houver nenhuma maneira de usar um dos índices nomeados para encontrar linhas na tabela.
+O `FORCE INDEX` atua como o `USE INDEX (index_list)`, com a adição de que uma varredura de tabela é considerada *muito* cara. Em outras palavras, uma varredura de tabela é usada apenas se não houver nenhuma maneira de usar um dos índices nomeados para encontrar strings na tabela.
 
 Cada pista requer nomes de índice, não de colunas. Para se referir a uma chave primária, use o nome `PRIMARY`. Para ver os nomes dos índices de uma tabela, use a declaração `SHOW INDEX` ou a tabela do Esquema de Informações `STATISTICS`.
 
@@ -631,7 +631,7 @@ A sintaxe para dicas de índice tem as seguintes características:
 
 * É sintaticamente válido omitir *`index_list`* para `USE INDEX`, o que significa “não usar índices”. Omitir *`index_list`* para `FORCE INDEX` ou `IGNORE INDEX` é um erro de sintaxe.
 
-* Você pode especificar o escopo de uma dica de índice adicionando uma cláusula `FOR` à dica. Isso oferece um controle mais detalhado sobre a seleção do plano de execução do otimizador para várias fases do processamento de consultas. Para afetar apenas os índices usados quando o MySQL decide como encontrar as linhas na tabela e como processar junções, use `FOR JOIN`. Para influenciar o uso do índice para ordenação ou agrupamento de linhas, use `FOR ORDER BY` ou `FOR GROUP BY`.
+* Você pode especificar o escopo de uma dica de índice adicionando uma cláusula `FOR` à dica. Isso oferece um controle mais detalhado sobre a seleção do plano de execução do otimizador para várias fases do processamento de consultas. Para afetar apenas os índices usados quando o MySQL decide como encontrar as strings na tabela e como processar junções, use `FOR JOIN`. Para influenciar o uso do índice para ordenação ou agrupamento de strings, use `FOR ORDER BY` ou `FOR GROUP BY`.
 
 * Você pode especificar várias dicas de índice:
 
@@ -665,7 +665,7 @@ IGNORE INDEX FOR ORDER BY (i1)
 IGNORE INDEX FOR GROUP BY (i1)
 ```
 
-Em MySQL 5.0, o escopo do indicador sem a cláusula `FOR` era aplicável apenas à recuperação de linhas. Para fazer com que o servidor use esse comportamento mais antigo quando não houver a cláusula `FOR`, habilite a variável de sistema `old` na inicialização do servidor. Tenha cuidado ao habilitar essa variável em uma configuração de replicação. Com o registro binário baseado em declarações, ter diferentes modos para a fonte e réplicas pode levar a erros de replicação.
+Em MySQL 5.0, o escopo do indicador sem a cláusula `FOR` era aplicável apenas à recuperação de strings. Para fazer com que o servidor use esse comportamento mais antigo quando não houver a cláusula `FOR`, habilite a variável de sistema `old` na inicialização do servidor. Tenha cuidado ao habilitar essa variável em uma configuração de replicação. Com o registro binário baseado em declarações, ter diferentes modos para a fonte e réplicas pode levar a erros de replicação.
 
 Quando os indicadores são processados, eles são coletados em uma única lista por tipo (`USE`, `FORCE`, `IGNORE`) e por escopo (`FOR JOIN`, `FOR ORDER BY`, `FOR GROUP BY`). Por exemplo:
 
@@ -697,7 +697,7 @@ Para as pesquisas de `FULLTEXT`, as dicas de índice funcionam da seguinte forma
 
 * Para pesquisas em modo de linguagem natural, as dicas de índice são ignoradas silenciosamente. Por exemplo, `IGNORE INDEX(i1)` é ignorado sem aviso e o índice ainda é usado.
 
-* Para pesquisas em modo booleano, as dicas de índice com `FOR ORDER BY` ou `FOR GROUP BY` são ignoradas silenciosamente. As dicas de índice com `FOR JOIN` ou sem o modificador `FOR` são respeitadas. Em contraste com a forma como as dicas se aplicam para pesquisas que não são `FULLTEXT`, a dica é usada para todas as fases da execução da consulta (encontrar linhas e recuperação, agrupamento e ordenamento). Isso é verdadeiro mesmo que a dica seja dada para um índice que não é `FULLTEXT`.
+* Para pesquisas em modo booleano, as dicas de índice com `FOR ORDER BY` ou `FOR GROUP BY` são ignoradas silenciosamente. As dicas de índice com `FOR JOIN` ou sem o modificador `FOR` são respeitadas. Em contraste com a forma como as dicas se aplicam para pesquisas que não são `FULLTEXT`, a dica é usada para todas as fases da execução da consulta (encontrar strings e recuperação, agrupamento e ordenamento). Isso é verdadeiro mesmo que a dica seja dada para um índice que não é `FULLTEXT`.
 
 Por exemplo, as seguintes duas consultas são equivalentes:
 
@@ -786,11 +786,11 @@ Para substituir uma estimativa de custo padrão (para uma entrada que especifica
 
 * `last_update`
 
-O horário da última atualização da última linha.
+O horário da última atualização da última string.
 
 * `comment`
 
-Um comentário descritivo associado à estimativa de custo. Os DBA podem usar essa coluna para fornecer informações sobre por que uma linha de estimativa de custo armazena um valor específico.
+Um comentário descritivo associado à estimativa de custo. Os DBA podem usar essa coluna para fornecer informações sobre por que uma string de estimativa de custo armazena um valor específico.
 
 A chave primária da tabela `server_cost` é a coluna `cost_name`, portanto, não é possível criar várias entradas para qualquer estimativa de custo.
 
@@ -814,7 +814,7 @@ Os valores padrão menores para esses parâmetros de memória em comparação co
 
 * `row_evaluate_cost` (padrão 0,2)
 
-O custo de avaliar condições de registro. Aumentar esse valor faz com que um plano de consulta que examina muitas linhas se torne mais caro em comparação com um plano de consulta que examina menos linhas. Por exemplo, uma varredura de tabela se torna relativamente mais cara em comparação com uma varredura de intervalo que lê menos linhas.
+O custo de avaliar condições de registro. Aumentar esse valor faz com que um plano de consulta que examina muitas strings se torne mais caro em comparação com um plano de consulta que examina menos strings. Por exemplo, uma varredura de tabela se torna relativamente mais cara em comparação com uma varredura de intervalo que lê menos strings.
 
 A tabela `engine_cost` contém essas colunas:
 

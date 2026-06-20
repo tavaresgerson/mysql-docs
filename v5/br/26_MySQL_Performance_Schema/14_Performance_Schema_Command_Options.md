@@ -1,6 +1,6 @@
 ## 25.14 Opções de comando do Schema de desempenho
 
-Os parâmetros do esquema de desempenho podem ser especificados na linha de comando ou em arquivos de opção durante a inicialização do servidor para configurar os instrumentos e os consumidores do Performance Schema. A configuração de tempo de execução também é possível em muitos casos (ver Seção 25.4, “Configuração de tempo de execução do Performance Schema”), mas a configuração de inicialização deve ser usada quando a configuração de tempo de execução é tarde demais para afetar os instrumentos que já foram inicializados durante o processo de inicialização.
+Os parâmetros do esquema de desempenho podem ser especificados na string de comando ou em arquivos de opção durante a inicialização do servidor para configurar os instrumentos e os consumidores do Performance Schema. A configuração de tempo de execução também é possível em muitos casos (ver Seção 25.4, “Configuração de tempo de execução do Performance Schema”), mas a configuração de inicialização deve ser usada quando a configuração de tempo de execução é tarde demais para afetar os instrumentos que já foram inicializados durante o processo de inicialização.
 
 Os consumidores e instrumentos do Schema de desempenho podem ser configurados na inicialização usando a seguinte sintaxe. Para obter detalhes adicionais, consulte a Seção 25.3, “Configuração de inicialização do Schema de desempenho”.
 

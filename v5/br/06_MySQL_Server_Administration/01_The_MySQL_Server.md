@@ -2,7 +2,7 @@
 
 `mysqld` é o servidor MySQL. A discussão a seguir abrange esses tópicos de configuração do servidor MySQL:
 
-* Opções de inicialização que o servidor suporta. Você pode especificar essas opções na linha de comando, através de arquivos de configuração ou em ambos.
+* Opções de inicialização que o servidor suporta. Você pode especificar essas opções na string de comando, através de arquivos de configuração ou em ambos.
 
 * Variáveis do sistema do servidor. Essas variáveis refletem o estado atual e os valores das opções de inicialização, algumas das quais podem ser modificadas enquanto o servidor está em execução.
 
@@ -113,13 +113,13 @@ Ou até mesmo:
              --net_buffer_length=1K &
   ```
 
-Se você estiver realizando operações `GROUP BY` ou `ORDER BY` em tabelas que são muito maiores do que a sua memória disponível, aumente o valor de `read_rnd_buffer_size` para acelerar a leitura de linhas após operações de ordenação.
+Se você estiver realizando operações `GROUP BY` ou `ORDER BY` em tabelas que são muito maiores do que a sua memória disponível, aumente o valor de `read_rnd_buffer_size` para acelerar a leitura de strings após operações de ordenação.
 
-Se você especificar uma opção na linha de comando para `mysqld` ou `mysqld_safe`, ela permanecerá em vigor apenas para essa invocação do servidor. Para usar a opção toda vez que o servidor for executado, coloque-a em um arquivo de opção. Veja a Seção 4.2.2.2, “Usando arquivos de opção”.
+Se você especificar uma opção na string de comando para `mysqld` ou `mysqld_safe`, ela permanecerá em vigor apenas para essa invocação do servidor. Para usar a opção toda vez que o servidor for executado, coloque-a em um arquivo de opção. Veja a Seção 4.2.2.2, “Usando arquivos de opção”.
 
 ### 5.1.2 Configurações Padrão do Servidor
 
-O servidor MySQL tem muitos parâmetros de operação, que você pode alterar na inicialização do servidor usando opções de linha de comando ou arquivos de configuração (arquivos de opção). Também é possível alterar muitos parâmetros em tempo de execução. Para instruções gerais sobre a configuração de parâmetros na inicialização ou em tempo de execução, consulte a Seção 5.1.6, “Opções de comando do servidor”, e a Seção 5.1.7, “Variáveis do sistema do servidor”.
+O servidor MySQL tem muitos parâmetros de operação, que você pode alterar na inicialização do servidor usando opções de string de comando ou arquivos de configuração (arquivos de opção). Também é possível alterar muitos parâmetros em tempo de execução. Para instruções gerais sobre a configuração de parâmetros na inicialização ou em tempo de execução, consulte a Seção 5.1.6, “Opções de comando do servidor”, e a Seção 5.1.7, “Variáveis do sistema do servidor”.
 
 No Windows, o Instalador do MySQL interage com o usuário e cria um arquivo chamado `my.ini` no diretório de instalação básica como o arquivo de opção padrão. Se você instalar no Windows a partir de um arquivo Zip, pode copiar o arquivo de modelo `my-default.ini` no diretório de instalação básica para `my.ini` e usar este último como o arquivo de opção padrão.
 
@@ -131,7 +131,7 @@ Nota
 
 Em Windows, a extensão de arquivo da opção `.ini` ou `.cnf` pode não ser exibida.
 
-Após completar o processo de instalação, você pode editar o arquivo de opção padrão a qualquer momento para modificar os parâmetros usados pelo servidor. Por exemplo, para usar um ajuste de parâmetro no arquivo que está comentado com um caractere `#` no início da linha, remova o `#`, e modifique o valor do parâmetro, se necessário. Para desabilitar um ajuste, adicione um `#` ao início da linha ou remova-o.
+Após completar o processo de instalação, você pode editar o arquivo de opção padrão a qualquer momento para modificar os parâmetros usados pelo servidor. Por exemplo, para usar um ajuste de parâmetro no arquivo que está comentado com um caractere `#` no início da string, remova o `#`, e modifique o valor do parâmetro, se necessário. Para desabilitar um ajuste, adicione um `#` ao início da string ou remova-o.
 
 Para plataformas que não são do Windows, não é criado um arquivo de opção padrão durante a instalação do servidor ou o processo de inicialização do diretório de dados. Crie seu arquivo de opção seguindo as instruções fornecidas na Seção 4.2.2.2, “Usando arquivos de opção”. Sem um arquivo de opção, o servidor apenas começa com suas configurações padrão — veja a Seção 5.1.2, “Configurações padrão de servidor” sobre como verificar essas configurações.
 
@@ -139,13 +139,13 @@ Para obter informações adicionais sobre o formato e a sintaxe do arquivo de op
 
 ### 5.1.3 Referência à opção do servidor, variável do sistema e variável de status
 
-A tabela a seguir lista todas as opções de linha de comando, variáveis de sistema e variáveis de status aplicáveis dentro de `mysqld`.
+A tabela a seguir lista todas as opções de string de comando, variáveis de sistema e variáveis de status aplicáveis dentro de `mysqld`.
 
-A tabela lista as opções de linha de comando (Cmd-line), as opções válidas em arquivos de configuração (Arquivo de opção), as variáveis do sistema do servidor (Var do sistema) e as variáveis de status (Var de status) em uma lista unificada, com indicação de onde cada opção ou variável é válida. Se uma opção do servidor definida na linha de comando ou em um arquivo de opção difere do nome da variável do sistema correspondente, o nome da variável é indicado imediatamente abaixo da opção correspondente. Para variáveis de sistema e de status, o escopo da variável (Var Scope) é Global, Sessão ou ambos. Consulte as descrições dos itens correspondentes para obter detalhes sobre a configuração e uso das opções e variáveis. Quando apropriado, são fornecidos links diretos para informações adicionais sobre os itens.
+A tabela lista as opções de string de comando (Cmd-line), as opções válidas em arquivos de configuração (Arquivo de opção), as variáveis do sistema do servidor (Var do sistema) e as variáveis de status (Var de status) em uma lista unificada, com indicação de onde cada opção ou variável é válida. Se uma opção do servidor definida na string de comando ou em um arquivo de opção difere do nome da variável do sistema correspondente, o nome da variável é indicado imediatamente abaixo da opção correspondente. Para variáveis de sistema e de status, o escopo da variável (Var Scope) é Global, Sessão ou ambos. Consulte as descrições dos itens correspondentes para obter detalhes sobre a configuração e uso das opções e variáveis. Quando apropriado, são fornecidos links diretos para informações adicionais sobre os itens.
 
 Para uma versão desta tabela específica para o NDB Cluster, consulte a Seção 21.4.2.5, “Referência de opção e variável do NDB Cluster mysqld”.
 
-**Tabela 5.1 Resumo das opções de linha de comando, variáveis de sistema e variáveis de status**
+**Tabela 5.1 Resumo das opções de string de comando, variáveis de sistema e variáveis de status**
 
 <table>
 <thead>
@@ -13167,7 +13167,7 @@ Para uma versão desta tabela específica para o NDB Cluster, consulte a Seção
 
 A tabela a seguir lista todas as variáveis do sistema aplicáveis dentro de `mysqld`.
 
-A tabela lista as opções de linha de comando (Cmd-line), as opções válidas em arquivos de configuração (Arquivo de opção), as variáveis do sistema do servidor (Var do sistema) e as variáveis de status (Var de status) em uma lista unificada, com indicação de onde cada opção ou variável é válida. Se uma opção do servidor definida na linha de comando ou em um arquivo de opção difere do nome da variável correspondente do sistema, o nome da variável é indicado imediatamente abaixo da opção correspondente. O escopo da variável (Var Scope) é Global, Sessão ou ambos. Consulte as descrições dos itens correspondentes para obter detalhes sobre a configuração e uso das variáveis. Quando apropriado, são fornecidos links diretos para informações adicionais sobre os itens.
+A tabela lista as opções de string de comando (Cmd-line), as opções válidas em arquivos de configuração (Arquivo de opção), as variáveis do sistema do servidor (Var do sistema) e as variáveis de status (Var de status) em uma lista unificada, com indicação de onde cada opção ou variável é válida. Se uma opção do servidor definida na string de comando ou em um arquivo de opção difere do nome da variável correspondente do sistema, o nome da variável é indicado imediatamente abaixo da opção correspondente. O escopo da variável (Var Scope) é Global, Sessão ou ambos. Consulte as descrições dos itens correspondentes para obter detalhes sobre a configuração e uso das variáveis. Quando apropriado, são fornecidos links diretos para informações adicionais sobre os itens.
 
 **Tabela 5.2 Resumo das variáveis do sistema**
 
@@ -22116,7 +22116,7 @@ A tabela lista o tipo de dados e o escopo de cada variável. A última coluna in
 
 ### 5.1.6 Opções de comando do servidor
 
-Quando você iniciar o servidor `mysqld`, pode especificar as opções do programa usando qualquer um dos métodos descritos na Seção 4.2.2, “Especificação de Opções do Programa”. Os métodos mais comuns são fornecer opções em um arquivo de opções ou na linha de comando. No entanto, na maioria dos casos, é desejável garantir que o servidor use as mesmas opções cada vez que é executado. A melhor maneira de garantir isso é listá-las em um arquivo de opções. Veja a Seção 4.2.2.2, “Uso de Arquivos de Opções”. Essa seção também descreve o formato e a sintaxe do arquivo de opções.
+Quando você iniciar o servidor `mysqld`, pode especificar as opções do programa usando qualquer um dos métodos descritos na Seção 4.2.2, “Especificação de Opções do Programa”. Os métodos mais comuns são fornecer opções em um arquivo de opções ou na string de comando. No entanto, na maioria dos casos, é desejável garantir que o servidor use as mesmas opções cada vez que é executado. A melhor maneira de garantir isso é listá-las em um arquivo de opções. Veja a Seção 4.2.2.2, “Uso de Arquivos de Opções”. Essa seção também descreve o formato e a sintaxe do arquivo de opções.
 
 `mysqld` lê opções dos grupos `[mysqld]` e `[server]`. `mysqld_safe` lê opções dos grupos `[mysqld]`, `[server]`, `[mysqld_safe]` e `[safe_mysqld]`. **mysql.server** lê opções dos grupos `[mysqld]` e `[mysql.server]`.
 
@@ -22276,9 +22276,9 @@ A variável `system_time_zone` difere da `time_zone`. Embora possam ter o mesmo 
 
 * `--defaults-extra-file=file_name`
 
-Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual. Isso deve ser a primeira opção na linha de comando se for usada.
+Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual. Isso deve ser a primeira opção na string de comando se for usada.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -22286,15 +22286,15 @@ Leia apenas o arquivo de opção fornecido. Se o arquivo não existir ou não fo
 
 Nota
 
-Esta deve ser a primeira opção na linha de comando, se for usada, exceto que se o servidor for iniciado com as opções `--defaults-file` e `--install` (ou `--install-manual`) `--install` (ou `--install-manual`) deve ser primeiro.
+Esta deve ser a primeira opção na string de comando, se for usada, exceto que se o servidor for iniciado com as opções `--defaults-file` e `--install` (ou `--install-manual`) `--install` (ou `--install-manual`) deve ser primeiro.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, `mysqld` normalmente lê o grupo `[mysqld]`. Se esta opção for dada como `--defaults-group-suffix=_other`, `mysqld` também lê o grupo `[mysqld_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--des-key-file=file_name`
 
@@ -22544,7 +22544,7 @@ O tamanho em bytes do log do coordenador de transação mapeado à memória. Os 
 
 Nota
 
-A variável de sistema `log_error_verbosity` é preferida e deve ser usada em vez da opção `--log-warnings` ou da variável de sistema `log_warnings`. Para mais informações, consulte as descrições de `log_error_verbosity` e `log_warnings`. A opção de linha de comando `--log-warnings` e a variável de sistema `log_warnings` são desatualizadas; espere que elas sejam removidas em uma versão futura do MySQL.
+A variável de sistema `log_error_verbosity` é preferida e deve ser usada em vez da opção `--log-warnings` ou da variável de sistema `log_warnings`. Para mais informações, consulte as descrições de `log_error_verbosity` e `log_warnings`. A opção de string de comando `--log-warnings` e a variável de sistema `log_warnings` são desatualizadas; espere que elas sejam removidas em uma versão futura do MySQL.
 
 Se deve produzir mensagens de alerta adicionais no log de erro. Esta opção é ativada por padrão. Para desativá-la, use `--log-warnings=0`. Especificar a opção sem um valor de *`level`* incrementa o valor atual em 1. Os logs do servidor registram mensagens sobre declarações que são inseguras para o registro baseado em declarações se o valor for maior que 0. Conexões aborridas e erros de acesso negado para novas tentativas de conexão são registrados se o valor for maior que 1. Veja a Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”.
 
@@ -22582,15 +22582,15 @@ O tamanho do bloco a ser utilizado para as páginas do índice `MyISAM`.
 
 * `--no-defaults`
 
-Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que sejam lidas. Isso deve ser a primeira opção na linha de comando se for usado.
+Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que sejam lidas. Isso deve ser a primeira opção na string de comando se for usado.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--old-style-user-limits`
 
   <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>0
 
-Ative os limites de recursos de usuário de estilo antigo. (Antes do MySQL 5.0.3, os limites de recursos das contas eram contados separadamente para cada host do qual um usuário se conecta, em vez de por linha de conta na tabela `user`. Veja a Seção 6.2.16, “Definindo Limites de Recursos de Conta”.
+Ative os limites de recursos de usuário de estilo antigo. (Antes do MySQL 5.0.3, os limites de recursos das contas eram contados separadamente para cada host do qual um usuário se conecta, em vez de por string de conta na tabela `user`. Veja a Seção 6.2.16, “Definindo Limites de Recursos de Conta”.
 
 * `--partition[=value]`
 
@@ -22684,9 +22684,9 @@ Em alguns sistemas, quando o servidor é parado, a porta TCP/IP pode não ficar 
 
 * `--print-defaults`
 
-Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção. Os valores da senha são mascarados. Isso deve ser a primeira opção na linha de comando, se for usada, exceto que ela pode ser usada imediatamente após `--defaults-file` ou `--defaults-extra-file`.
+Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção. Os valores da senha são mascarados. Isso deve ser a primeira opção na string de comando, se for usada, exceto que ela pode ser usada imediatamente após `--defaults-file` ou `--defaults-extra-file`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--remove [service_name]`
 
@@ -22718,7 +22718,7 @@ Para fazer com que um servidor iniciado com `--skip-grant-tables` carregue as ta
 
 - Emita uma declaração MySQL `FLUSH PRIVILEGES` após se conectar ao servidor.
 
-- Execute o comando **mysqladmin flush-privileges** ou **mysqladmin reload** a partir da linha de comando.
+- Execute o comando **mysqladmin flush-privileges** ou **mysqladmin reload** a partir da string de comando.
 
 O esvaziamento de privilégios também pode ocorrer implicitamente como resultado de outras ações realizadas após a inicialização, causando assim que o servidor comece a usar as tabelas de concessão. Por exemplo, `mysqld_upgrade` esvazia os privilégios durante o procedimento de atualização.
 
@@ -22794,7 +22794,7 @@ Esta opção controla o tempo de espera do gerenciador de controle de serviço d
 
   <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
 
-Em Unix, esta opção especifica o arquivo de socket Unix a ser usado ao ouvir conexões locais. O valor padrão é `/tmp/mysql.sock`. Se esta opção for fornecida, o servidor cria o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. Em Windows, a opção especifica o nome do tubo a ser usado ao ouvir conexões locais que usam um tubo nomeado. O valor padrão é `MySQL` (não sensível ao caso).
+Em Unix, esta opção especifica o arquivo de socket Unix a ser usado ao ouvir conexões locais. O valor padrão é `/tmp/mysql.sock`. Se esta opção for fornecida, o servidor cria o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. Em Windows, a opção especifica o nome do pipe a ser usado ao ouvir conexões locais que usam um pipe nomeado. O valor padrão é `MySQL` (não sensível ao caso).
 
 * `--sql-mode=value[,value[,value...]]`(server-options.html#option_mysqld_sql-mode)
 
@@ -22900,7 +22900,7 @@ Execute o servidor `mysqld` como o usuário com o nome *`user_name`* ou o ID de 
 
 Esta opção é *obrigatória* ao iniciar `mysqld` como `root`. O servidor muda seu ID de usuário durante sua sequência de inicialização, fazendo com que ele seja executado como aquele usuário em particular, em vez de como `root`. Veja a Seção 6.1.1, “Diretrizes de Segurança”.
 
-Para evitar uma possível lacuna de segurança onde um usuário adiciona uma opção `--user=root` a um arquivo `my.cnf` (causando assim o servidor a rodar como `root`, `mysqld` usa apenas a primeira opção `--user` especificada e produz um aviso se houver várias opções `--user`. As opções em `/etc/my.cnf` e `$MYSQL_HOME/my.cnf` são processadas antes das opções de linha de comando, portanto, é recomendável que você coloque uma opção `--user` em `/etc/my.cnf` e especifique um valor diferente de `root`. A opção em `/etc/my.cnf` é encontrada antes de qualquer outra opção `--user`, o que garante que o servidor execute como um usuário diferente de `root`, e que um aviso resulte se qualquer outra opção `--user` for encontrada.
+Para evitar uma possível lacuna de segurança onde um usuário adiciona uma opção `--user=root` a um arquivo `my.cnf` (causando assim o servidor a rodar como `root`, `mysqld` usa apenas a primeira opção `--user` especificada e produz um aviso se houver várias opções `--user`. As opções em `/etc/my.cnf` e `$MYSQL_HOME/my.cnf` são processadas antes das opções de string de comando, portanto, é recomendável que você coloque uma opção `--user` em `/etc/my.cnf` e especifique um valor diferente de `root`. A opção em `/etc/my.cnf` é encontrada antes de qualquer outra opção `--user`, o que garante que o servidor execute como um usuário diferente de `root`, e que um aviso resulte se qualquer outra opção `--user` for encontrada.
 
 * `--validate-user-plugins[={OFF|ON}]`
 
@@ -22924,7 +22924,7 @@ Exibir informações da versão e sair.
 
 ### 5.1.7 Variáveis do sistema do servidor
 
-O servidor MySQL mantém muitas variáveis de sistema que afetam sua operação. A maioria das variáveis de sistema pode ser definida na inicialização do servidor usando opções na linha de comando ou em um arquivo de opções. A maioria delas pode ser alterada dinamicamente durante a execução usando a declaração `SET`, que permite modificar a operação do servidor sem precisar parar e reiniciar. Algumas variáveis são somente leitura, e seus valores são determinados pelo ambiente do sistema, pela forma como o MySQL está instalado no sistema ou, possivelmente, pelas opções usadas para compilar o MySQL. A maioria das variáveis de sistema tem um valor padrão, mas há exceções, incluindo variáveis somente leitura. Você também pode usar os valores das variáveis de sistema em expressões.
+O servidor MySQL mantém muitas variáveis de sistema que afetam sua operação. A maioria das variáveis de sistema pode ser definida na inicialização do servidor usando opções na string de comando ou em um arquivo de opções. A maioria delas pode ser alterada dinamicamente durante a execução usando a declaração `SET`, que permite modificar a operação do servidor sem precisar parar e reiniciar. Algumas variáveis são somente leitura, e seus valores são determinados pelo ambiente do sistema, pela forma como o MySQL está instalado no sistema ou, possivelmente, pelas opções usadas para compilar o MySQL. A maioria das variáveis de sistema tem um valor padrão, mas há exceções, incluindo variáveis somente leitura. Você também pode usar os valores das variáveis de sistema em expressões.
 
 Durante a execução, definir o valor de uma variável de sistema global requer o privilégio `SUPER`. Definir o valor de uma variável de sistema de sessão normalmente não requer privilégios especiais e pode ser feito por qualquer usuário, embora haja exceções. Para mais informações, consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
 
@@ -23008,7 +23008,7 @@ Se o servidor não conseguir obter seu UPN (o que ocorre principalmente em ambie
 
 O modo de autocommit. Se definido como 1, todas as alterações em uma tabela entram em vigor imediatamente. Se definido como 0, você deve usar `COMMIT` para aceitar uma transação ou `ROLLBACK` para cancelá-la. Se `autocommit` é 0 e você o altera para 1, o MySQL realiza um `COMMIT` automático de qualquer transação aberta. Outra maneira de iniciar uma transação é usar uma declaração `START TRANSACTION` ou `BEGIN`. Veja a Seção 13.3.1, “Declarações START TRANSACTION, COMMIT e ROLLBACK”.
 
-Por padrão, as conexões dos clientes começam com `autocommit` definido como 1. Para fazer com que os clientes comecem com um valor padrão de 0, defina o valor global `autocommit` iniciando o servidor com a opção `--autocommit=0`. Para definir a variável usando um arquivo de opção, inclua essas linhas:
+Por padrão, as conexões dos clientes começam com `autocommit` definido como 1. Para fazer com que os clientes comecem com um valor padrão de 0, defina o valor global `autocommit` iniciando o servidor com a opção `--autocommit=0`. Para definir a variável usando um arquivo de opção, inclua essas strings:
 
   ```sql
   [mysqld]
@@ -23053,7 +23053,7 @@ Essa variável é desatualizada; espere que ela seja removida em uma versão fut
 
   <table frame="box" rules="all" summary="Properties for back_log"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code>back_log</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code>(significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-O número de solicitações de conexão pendentes que o MySQL pode ter. Isso entra em jogo quando o principal fio do MySQL recebe muitas solicitações de conexão em um curto período de tempo. Em seguida, leva algum tempo (embora muito pouco) para o principal fio verificar a conexão e iniciar um novo fio. O valor `back_log` indica quantos pedidos podem ser empilhados durante esse curto período de tempo antes de o MySQL parar momentaneamente de responder a novos pedidos. Você precisa aumentar isso apenas se espera um grande número de conexões em um curto período de tempo.
+O número de solicitações de conexão pendentes que o MySQL pode ter. Isso entra em jogo quando o principal thread do MySQL recebe muitas solicitações de conexão em um curto período de tempo. Em seguida, leva algum tempo (embora muito pouco) para o principal thread verificar a conexão e iniciar um novo thread. O valor `back_log` indica quantos pedidos podem ser empilhados durante esse curto período de tempo antes de o MySQL parar momentaneamente de responder a novos pedidos. Você precisa aumentar isso apenas se espera um grande número de conexões em um curto período de tempo.
 
 Em outras palavras, esse valor é o tamanho da fila de espera para conexões TCP/IP recebidas. Seu sistema operacional tem seu próprio limite para o tamanho dessa fila. A página manual da chamada de sistema Unix `listen()` deve ter mais detalhes. Verifique a documentação do seu sistema operacional para o valor máximo para essa variável. `back_log` não pode ser definido como maior que o limite do seu sistema operacional.
 
@@ -23453,7 +23453,7 @@ Essa variável do sistema é desatualizada (porque as inserções `DELAYED` não
 
   <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>automatic_sp_privileges</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>4
 
-Essa variável indica quais motores de armazenamento não podem ser usados para criar tabelas ou espaços de tabela. Por exemplo, para impedir que novas tabelas `MyISAM` ou `FEDERATED` sejam criadas, inicie o servidor com essas linhas no arquivo de opção do servidor:
+Essa variável indica quais motores de armazenamento não podem ser usados para criar tabelas ou espaços de tabela. Por exemplo, para impedir que novas tabelas `MyISAM` ou `FEDERATED` sejam criadas, inicie o servidor com essas strings no arquivo de opção do servidor:
 
   ```sql
   [mysqld]
@@ -23520,14 +23520,14 @@ Se o output JSON do otimizador deve adicionar marcadores finais. Veja a Seção 
 
   <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>automatic_sp_privileges</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>8
 
-Essa variável indica o número de intervalos de igualdade em uma condição de comparação de igualdade quando o otimizador deve mudar de usar mergulhos de índice para estatísticas de índice na estimativa do número de linhas qualificadas. Ela se aplica à avaliação de expressões que têm uma das seguintes formas equivalentes, onde o otimizador usa um índice não único para procurar valores de *`col_name`*:
+Essa variável indica o número de intervalos de igualdade em uma condição de comparação de igualdade quando o otimizador deve mudar de usar mergulhos de índice para estatísticas de índice na estimativa do número de strings qualificadas. Ela se aplica à avaliação de expressões que têm uma das seguintes formas equivalentes, onde o otimizador usa um índice não único para procurar valores de *`col_name`*:
 
   ```sql
   col_name IN(val1, ..., valN)
   col_name = val1 OR ... OR col_name = valN
   ```
 
-Em ambos os casos, a expressão contém intervalos de igualdade *`N`*. O otimizador pode fazer estimativas de linha usando mergulhos de índice ou estatísticas de índice. Se `eq_range_index_dive_limit` for maior que 0, o otimizador usa estatísticas de índice existentes em vez de mergulhos de índice se houver `eq_range_index_dive_limit` ou mais intervalos de igualdade. Assim, para permitir o uso de mergulhos de índice para até *`N`* intervalos de igualdade, defina `eq_range_index_dive_limit` para *`N`* + 1. Para desabilitar o uso de estatísticas de índice e usar sempre mergulhos de índice, independentemente de *`N`*, defina `eq_range_index_dive_limit` para 0.
+Em ambos os casos, a expressão contém intervalos de igualdade *`N`*. O otimizador pode fazer estimativas de string usando mergulhos de índice ou estatísticas de índice. Se `eq_range_index_dive_limit` for maior que 0, o otimizador usa estatísticas de índice existentes em vez de mergulhos de índice se houver `eq_range_index_dive_limit` ou mais intervalos de igualdade. Assim, para permitir o uso de mergulhos de índice para até *`N`* intervalos de igualdade, defina `eq_range_index_dive_limit` para *`N`* + 1. Para desabilitar o uso de estatísticas de índice e usar sempre mergulhos de índice, independentemente de *`N`*, defina `eq_range_index_dive_limit` para 0.
 
 Para mais informações, consulte a seção Otimização da faixa de igualdade da comparação de muitos valores.
 
@@ -23555,7 +23555,7 @@ As colunas que não são explicitamente declaradas com o atributo `NULL` são au
 
 + A primeira coluna `TIMESTAMP` em uma tabela, se não for explicitamente declarada com o atributo `NULL` ou um atributo explícito `DEFAULT` ou `ON UPDATE`, é automaticamente declarada com os atributos `DEFAULT CURRENT_TIMESTAMP` e `ON UPDATE CURRENT_TIMESTAMP`.
 
-+ As colunas que seguem a primeira, se não forem explicitamente declaradas com o atributo `NULL` ou um atributo explícito `DEFAULT`, são automaticamente declaradas como `DEFAULT '0000-00-00 00:00:00'` (o timestamp “zero”). Para as linhas inseridas que não especificam um valor explícito para uma dessas colunas, a coluna é atribuída a `'0000-00-00 00:00:00'` e não ocorre nenhum aviso.
++ As colunas que seguem a primeira, se não forem explicitamente declaradas com o atributo `NULL` ou um atributo explícito `DEFAULT`, são automaticamente declaradas como `DEFAULT '0000-00-00 00:00:00'` (o timestamp “zero”). Para as strings inseridas que não especificam um valor explícito para uma dessas colunas, a coluna é atribuída a `'0000-00-00 00:00:00'` e não ocorre nenhum aviso.
 
 Dependendo se o modo SQL rigoroso ou o modo SQL `NO_ZERO_DATE` está habilitado, um valor padrão de `'0000-00-00 00:00:00'` pode ser inválido. Esteja ciente de que o modo SQL `TRADITIONAL` inclui o modo rigoroso e `NO_ZERO_DATE`. Veja a Seção 5.1.10, “Modos SQL do servidor”.
 
@@ -23567,9 +23567,9 @@ Se `explicit_defaults_for_timestamp` estiver habilitado, o servidor desativa os 
 
 As colunas que não são explicitamente declaradas com o atributo `NOT NULL` são automaticamente declaradas com o atributo `NULL` e permitem valores de `NULL`. Atribuir a uma coluna um valor de `NULL` a ela atribui `NULL`, e não o timestamp atual.
 
-As colunas declaradas com o atributo `NOT NULL` não permitem valores de `NULL`. Para inserções que especificam `NULL` para tal coluna, o resultado é um erro para uma inserção de uma única linha se o modo SQL rigoroso estiver habilitado, ou `'0000-00-00 00:00:00'` é inserido para inserções de várias linhas com o modo SQL rigoroso desativado. Em nenhum caso, atribuir ao valor da coluna `NULL` o valor do timestamp atual.
+As colunas declaradas com o atributo `NOT NULL` não permitem valores de `NULL`. Para inserções que especificam `NULL` para tal coluna, o resultado é um erro para uma inserção de uma única string se o modo SQL rigoroso estiver habilitado, ou `'0000-00-00 00:00:00'` é inserido para inserções de várias strings com o modo SQL rigoroso desativado. Em nenhum caso, atribuir ao valor da coluna `NULL` o valor do timestamp atual.
 
-As colunas `TIMESTAMP` explicitamente declaradas com o atributo `NOT NULL` e sem um atributo explícito `DEFAULT` são tratadas como não tendo um valor padrão. Para as linhas inseridas que não especificam um valor explícito para tal coluna, o resultado depende do modo SQL. Se o modo SQL rigoroso estiver habilitado, ocorre um erro. Se o modo SQL rigoroso não estiver habilitado, a coluna é declarada com o valor padrão implícito de `'0000-00-00 00:00:00'` e ocorre um aviso. Isso é semelhante à forma como o MySQL trata outros tipos temporais, como `DATETIME`.
+As colunas `TIMESTAMP` explicitamente declaradas com o atributo `NOT NULL` e sem um atributo explícito `DEFAULT` são tratadas como não tendo um valor padrão. Para as strings inseridas que não especificam um valor explícito para tal coluna, o resultado depende do modo SQL. Se o modo SQL rigoroso estiver habilitado, ocorre um erro. Se o modo SQL rigoroso não estiver habilitado, a coluna é declarada com o valor padrão implícito de `'0000-00-00 00:00:00'` e ocorre um aviso. Isso é semelhante à forma como o MySQL trata outros tipos temporais, como `DATETIME`.
 
 + Não há coluna `TIMESTAMP` declarada automaticamente com os atributos `DEFAULT CURRENT_TIMESTAMP` ou `ON UPDATE CURRENT_TIMESTAMP`. Esses atributos devem ser especificados explicitamente.
 
@@ -23629,7 +23629,7 @@ Definir `foreign_key_checks` para 0 também afeta as declarações de definiçã
 
 Nota
 
-Definir `foreign_key_checks` para 1 não aciona uma varredura dos dados da tabela existente. Portanto, as linhas adicionadas à tabela enquanto `foreign_key_checks=0` não são verificadas quanto à consistência.
+Definir `foreign_key_checks` para 1 não aciona uma varredura dos dados da tabela existente. Portanto, as strings adicionadas à tabela enquanto `foreign_key_checks=0` não são verificadas quanto à consistência.
 
 Não é permitido excluir um índice exigido por uma restrição de chave estrangeira, mesmo com `foreign_key_checks=0`. A restrição de chave estrangeira deve ser removida antes de excluir o índice (Bug #70260).
 
@@ -23820,7 +23820,7 @@ O servidor descarta quaisquer conjuntos de resultados produzidos por declaraçõ
 
   <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>avoid_temporal_upgrade</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>9
 
-Se especificado, essa variável nomeia um arquivo que contém declarações SQL a serem lidas e executadas durante o processo de inicialização. Cada declaração deve estar em uma única linha e não deve incluir comentários.
+Se especificado, essa variável nomeia um arquivo que contém declarações SQL a serem lidas e executadas durante o processo de inicialização. Cada declaração deve estar em uma única string e não deve incluir comentários.
 
 Se o servidor for iniciado com qualquer uma das opções `--bootstrap`, `--initialize` ou `--initialize-insecure`, ele opera no modo bootstap e algumas funcionalidades não estão disponíveis, o que limita as declarações permitidas no arquivo. Essas incluem declarações relacionadas à gestão de contas (como `CREATE USER` ou `GRANT`), replicação e identificadores de transação global. Veja a Seção 16.1.3, “Replicação com Identificadores de Transação Global”.
 
@@ -23846,7 +23846,7 @@ O mecanismo de armazenamento para tabelas internas temporárias em disco (consul
 
 O otimizador utiliza o mecanismo de armazenamento definido por `internal_tmp_disk_storage_engine` para tabelas temporárias internas em disco.
 
-Quando usa `internal_tmp_disk_storage_engine=INNODB` (o padrão), as consultas que geram tabelas internas temporárias no disco que excedem os limites de linha ou coluna de `InnoDB` retornam erros de Tamanho de linha muito grande ou Muitas colunas. A solução é definir `internal_tmp_disk_storage_engine` para `MYISAM`.
+Quando usa `internal_tmp_disk_storage_engine=INNODB` (o padrão), as consultas que geram tabelas internas temporárias no disco que excedem os limites de string ou coluna de `InnoDB` retornam erros de Tamanho de string muito grande ou Muitas colunas. A solução é definir `internal_tmp_disk_storage_engine` para `MYISAM`.
 
 * `join_buffer_size`
 
@@ -23856,9 +23856,9 @@ O tamanho mínimo do buffer que é usado para varreduras de índice simples, var
 
 O padrão é de 256 KB. O ajuste máximo permitido para `join_buffer_size` é de 4 GB−1. Valores maiores são permitidos para plataformas de 64 bits (exceto o Windows de 64 bits, para o qual valores grandes são truncados para 4 GB−1 com um aviso). O tamanho do bloco é de 128, e um valor que não é um múltiplo exato do tamanho do bloco é arredondado para o próximo múltiplo inferior do tamanho do bloco pelo MySQL Server antes de armazenar o valor para a variável do sistema. O analisador permite valores até o valor máximo de inteiro não assinado para a plataforma (4294967295 ou 232−1 para um sistema de 32 bits, 18446744073709551615 ou 264−1 para um sistema de 64 bits) mas o máximo real é um tamanho de bloco menor.
 
-A menos que um algoritmo de Bloco em Nó Fechado ou Acesso a Chave em Massa seja usado, não há ganho em definir o buffer maior do que o necessário para conter cada linha correspondente, e todas as junções alocam pelo menos o tamanho mínimo, então use cautela ao definir essa variável para um valor grande globalmente. É melhor manter a configuração global pequena e alterar a configuração da sessão para um valor maior apenas em sessões que estão realizando junções grandes. O tempo de alocação de memória pode causar quedas substanciais de desempenho se o tamanho global for maior do que o necessário pela maioria das consultas que o utilizam.
+A menos que um algoritmo de Bloco em Nó Fechado ou Acesso a Chave em Massa seja usado, não há ganho em definir o buffer maior do que o necessário para conter cada string correspondente, e todas as junções alocam pelo menos o tamanho mínimo, então use cautela ao definir essa variável para um valor grande globalmente. É melhor manter a configuração global pequena e alterar a configuração da sessão para um valor maior apenas em sessões que estão realizando junções grandes. O tempo de alocação de memória pode causar quedas substanciais de desempenho se o tamanho global for maior do que o necessário pela maioria das consultas que o utilizam.
 
-Quando o Bloco de Busca Envolvente é usado, um buffer de junção maior pode ser benéfico até o ponto em que todas as colunas necessárias de todas as linhas da primeira tabela são armazenadas no buffer de junção. Isso depende da consulta; o tamanho ótimo pode ser menor do que manter todas as linhas das primeiras tabelas.
+Quando o Bloco de Busca Envolvente é usado, um buffer de junção maior pode ser benéfico até o ponto em que todas as colunas necessárias de todas as strings da primeira tabela são armazenadas no buffer de junção. Isso depende da consulta; o tamanho ótimo pode ser menor do que manter todas as strings das primeiras tabelas.
 
 Quando o Batched Key Access é usado, o valor de `join_buffer_size` define o tamanho do lote de chaves em cada solicitação ao motor de armazenamento. Quanto maior o buffer, mais acesso sequencial é feito à tabela direita de uma operação de junção, o que pode melhorar significativamente o desempenho.
 
@@ -23886,9 +23886,9 @@ O ajuste máximo permitido para `key_buffer_size` é 4GB−1 em plataformas de 3
 
 Você pode aumentar o valor para obter uma melhor manipulação do índice para todas as leituras e múltiplos escritos; em um sistema cuja função principal é executar o MySQL usando o mecanismo de armazenamento `MyISAM`, 25% da memória total da máquina é um valor aceitável para esta variável. No entanto, você deve estar ciente de que, se você fizer o valor muito grande (por exemplo, mais de 50% da memória total da máquina), seu sistema pode começar a fazer paginação e tornar-se extremamente lento. Isso ocorre porque o MySQL depende do sistema operacional para realizar o cache do sistema de arquivos para leituras de dados, então você deve deixar algum espaço para o cache do sistema de arquivos. Você também deve considerar os requisitos de memória de quaisquer outros mecanismos de armazenamento que você possa estar usando além de `MyISAM`.
 
-Para obter ainda mais velocidade ao escrever muitas linhas ao mesmo tempo, use `LOCK TABLES`. Veja a Seção 8.2.4.1, “Otimizando os comandos INSERT”.
+Para obter ainda mais velocidade ao escrever muitas strings ao mesmo tempo, use `LOCK TABLES`. Veja a Seção 8.2.4.1, “Otimizando os comandos INSERT”.
 
-Você pode verificar o desempenho do buffer principal emitindo uma declaração `SHOW STATUS` e examinando as variáveis de status `Key_read_requests`, `Key_reads`, `Key_write_requests` e `Key_writes`. (Veja a Seção 13.7.5, “Declarações SHOW”.) A proporção `Key_reads/Key_read_requests` normalmente deve ser menor que 0,01. A proporção `Key_writes/Key_write_requests` geralmente está próxima de 1 se você estiver usando principalmente atualizações e exclusões, mas pode ser muito menor se você tende a fazer atualizações que afetam muitas linhas ao mesmo tempo ou se estiver usando a opção de tabela `DELAY_KEY_WRITE`.
+Você pode verificar o desempenho do buffer principal emitindo uma declaração `SHOW STATUS` e examinando as variáveis de status `Key_read_requests`, `Key_reads`, `Key_write_requests` e `Key_writes`. (Veja a Seção 13.7.5, “Declarações SHOW”.) A proporção `Key_reads/Key_read_requests` normalmente deve ser menor que 0,01. A proporção `Key_writes/Key_write_requests` geralmente está próxima de 1 se você estiver usando principalmente atualizações e exclusões, mas pode ser muito menor se você tende a fazer atualizações que afetam muitas strings ao mesmo tempo ou se estiver usando a opção de tabela `DELAY_KEY_WRITE`.
 
 A fração do buffer de chave em uso pode ser determinada usando `key_buffer_size` em conjunto com a variável de status `Key_blocks_unused` e o tamanho do bloco do buffer, que está disponível a partir da variável de sistema `key_cache_block_size`:
 
@@ -24020,7 +24020,7 @@ Essa variável seleciona destinos de saída de log, mas não habilita a saída d
 
   <table frame="box" rules="all" summary="Properties for big_tables"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>big_tables</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
 
-Se você ativar essa variável com o registro de consultas lentas ativado, as consultas que devem recuperar todas as linhas serão registradas. Veja a Seção 5.4.5, “O Registro de Consultas Lentas”. Esta opção não significa necessariamente que nenhum índice é usado. Por exemplo, uma consulta que usa uma varredura de índice completo usa um índice, mas seria registrada porque o índice não limitaria o número de linhas.
+Se você ativar essa variável com o registro de consultas lentas ativado, as consultas que devem recuperar todas as strings serão registradas. Veja a Seção 5.4.5, “O Registro de Consultas Lentas”. Esta opção não significa necessariamente que nenhum índice é usado. Por exemplo, uma consulta que usa uma varredura de índice completo usa um índice, mas seria registrada porque o índice não limitaria o número de strings.
 
 * `log_slow_admin_statements`
 
@@ -24055,7 +24055,7 @@ Essa variável não existe no Windows.
 
   <table frame="box" rules="all" summary="Properties for big_tables"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>big_tables</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
 
-Se deve incluir o ID do processo do servidor em cada linha de saída do log de erro escrito em `syslog`. Essa variável não tem efeito a menos que a variável de sistema `log_syslog` esteja habilitada. Veja a Seção 5.4.2.3, “Registro de Erros no Log do Sistema”.
+Se deve incluir o ID do processo do servidor em cada string de saída do log de erro escrito em `syslog`. Essa variável não tem efeito a menos que a variável de sistema `log_syslog` esteja habilitada. Veja a Seção 5.4.2.3, “Registro de Erros no Log do Sistema”.
 
 Essa variável não existe no Windows.
 
@@ -24073,7 +24073,7 @@ Em Windows, para usar uma etiqueta que não existe, o servidor deve ser executad
 
   <table frame="box" rules="all" summary="Properties for big_tables"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>big_tables</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>8
 
-Essa variável controla o fuso horário dos timestamps em mensagens escritas no log de erro e, em geral, em mensagens de log de consulta e log de consulta lenta escritas em arquivos. Não afeta o fuso horário dos timestamps de mensagens de log de consulta geral e log de consulta lenta escritas em tabelas (`mysql.general_log`, `mysql.slow_log`). As linhas recuperadas dessas tabelas podem ser convertidas do fuso horário do sistema local para qualquer fuso horário desejado com `CONVERT_TZ()` ou definindo a variável de sistema de sessão `time_zone`.
+Essa variável controla o fuso horário dos timestamps em mensagens escritas no log de erro e, em geral, em mensagens de log de consulta e log de consulta lenta escritas em arquivos. Não afeta o fuso horário dos timestamps de mensagens de log de consulta geral e log de consulta lenta escritas em tabelas (`mysql.general_log`, `mysql.slow_log`). As strings recuperadas dessas tabelas podem ser convertidas do fuso horário do sistema local para qualquer fuso horário desejado com `CONVERT_TZ()` ou definindo a variável de sistema de sessão `time_zone`.
 
 Os valores permitidos `log_timestamps` são `UTC` (padrão) e `SYSTEM` (fuso horário do sistema local).
 
@@ -24089,7 +24089,7 @@ Se `log_queries_not_using_indexes` estiver habilitado, a variável `log_throttle
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>00
 
-Se deve produzir mensagens de alerta adicionais no log de erro. A partir do MySQL 5.7.2, os itens de informações anteriormente regidos por `log_warnings` são regidos por `log_error_verbosity`, que é preferido e deve ser usado em vez do sistema de variável mais antigo `log_warnings`. (A variável de sistema `log_warnings` e a opção de linha de comando `--log-warnings` são desatualizadas; espera-se que elas sejam removidas em uma versão futura do MySQL.)
+Se deve produzir mensagens de alerta adicionais no log de erro. A partir do MySQL 5.7.2, os itens de informações anteriormente regidos por `log_warnings` são regidos por `log_error_verbosity`, que é preferido e deve ser usado em vez do sistema de variável mais antigo `log_warnings`. (A variável de sistema `log_warnings` e a opção de string de comando `--log-warnings` são desatualizadas; espera-se que elas sejam removidas em uma versão futura do MySQL.)
 
 `log_warnings` é habilitado por padrão (o padrão é 1 antes do MySQL 5.7.2, 2 a partir do 5.7.2). Para desabilitá-lo, configure-o para 0. Se o valor for maior que 0, o servidor registra mensagens sobre declarações que são inseguras para o registro baseado em declarações. Se o valor for maior que 1, o servidor registra conexões abortadas e erros de negação de acesso para novas tentativas de conexão. Veja a Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”.
 
@@ -24159,7 +24159,7 @@ O buffer de mensagens de pacote é inicializado com `net_buffer_length` bytes, m
 
 Você deve aumentar esse valor se estiver usando colunas grandes `BLOB` ou strings longas. Devem ser tão grandes quanto o maior `BLOB` que você deseja usar. O limite do protocolo para `max_allowed_packet` é de 1 GB. O valor deve ser um múltiplo de 1024; os não múltiplos são arredondados para o próximo múltiplo.
 
-Quando você altera o tamanho do buffer de mensagem alterando o valor da variável `max_allowed_packet`, você também deve alterar o tamanho do buffer no lado do cliente, se o seu programa de cliente permitir. O valor padrão `max_allowed_packet` embutido na biblioteca do cliente é de 1 GB, mas os programas individuais do cliente podem sobrepor isso. Por exemplo, **mysql** e **mysqldump** têm valores padrão de 16 MB e 24 MB, respectivamente. Eles também permitem que você altere o valor do lado do cliente, definindo `max_allowed_packet` na linha de comando ou em um arquivo de opção.
+Quando você altera o tamanho do buffer de mensagem alterando o valor da variável `max_allowed_packet`, você também deve alterar o tamanho do buffer no lado do cliente, se o seu programa de cliente permitir. O valor padrão `max_allowed_packet` embutido na biblioteca do cliente é de 1 GB, mas os programas individuais do cliente podem sobrepor isso. Por exemplo, **mysql** e **mysqldump** têm valores padrão de 16 MB e 24 MB, respectivamente. Eles também permitem que você altere o valor do lado do cliente, definindo `max_allowed_packet` na string de comando ou em um arquivo de opção.
 
 O valor da sessão desta variável é somente de leitura. O cliente pode receber até tantos bytes quanto o valor da sessão. No entanto, o servidor não pode enviar ao cliente mais bytes do que o valor atual do global `max_allowed_packet`. (O valor global pode ser menor que o valor da sessão se o valor global for alterado após a conexão do cliente.)
 
@@ -24245,7 +24245,7 @@ Essa variável do sistema é desatualizada (porque as inserções `DELAYED` não
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>14
 
-Não permita declarações que provavelmente precisem examinar mais de `max_join_size` linhas (para declarações de tabela única) ou combinações de linhas (para declarações de múltiplas tabelas) ou que provavelmente façam mais de `max_join_size` buscas em disco. Ao definir esse valor, você pode detectar declarações em que as chaves não são usadas corretamente e que provavelmente levarão muito tempo. Defina-o se seus usuários tendem a realizar junções que não possuem uma cláusula de `WHERE`, que levam muito tempo ou que retornam milhões de linhas. Para mais informações, consulte "Usando o modo de Safe-Updates (--safe-updates)").
+Não permita declarações que provavelmente precisem examinar mais de `max_join_size` strings (para declarações de tabela única) ou combinações de strings (para declarações de múltiplas tabelas) ou que provavelmente façam mais de `max_join_size` buscas em disco. Ao definir esse valor, você pode detectar declarações em que as chaves não são usadas corretamente e que provavelmente levarão muito tempo. Defina-o se seus usuários tendem a realizar junções que não possuem uma cláusula de `WHERE`, que levam muito tempo ou que retornam milhões de strings. Para mais informações, consulte "Usando o modo de Safe-Updates (--safe-updates)").
 
 Definir essa variável para um valor diferente de `DEFAULT` redefinirá o valor de `sql_big_selects` para `0`. Se você definir o valor de `sql_big_selects` novamente, a variável `max_join_size` será ignorada.
 
@@ -24273,7 +24273,7 @@ Essa variável limita o número total de declarações preparadas no servidor. E
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>18
 
-Limite o número máximo de buscas assumido ao procurar linhas com base em uma chave. O otimizador do MySQL assume que não são necessários mais que esse número de buscas de chave ao procurar linhas correspondentes em uma tabela, fazendo uma varredura em um índice, independentemente da cardinalidade real do índice (veja Seção 13.7.5.22, “Declaração SHOW INDEX”). Ao definir esse valor para um valor baixo (digamos, 100), você pode forçar o MySQL a preferir índices em vez de varreduras de tabela.
+Limite o número máximo de buscas assumido ao procurar strings com base em uma chave. O otimizador do MySQL assume que não são necessários mais que esse número de buscas de chave ao procurar strings correspondentes em uma tabela, fazendo uma varredura em um índice, independentemente da cardinalidade real do índice (veja Seção 13.7.5.22, “Declaração SHOW INDEX”). Ao definir esse valor para um valor baixo (digamos, 100), você pode forçar o MySQL a preferir índices em vez de varreduras de tabela.
 
 * `max_sort_length`
 
@@ -24347,7 +24347,7 @@ Em MySQL 5.7.4, as mudanças na implementação de bloqueio de metadados tornam 
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>26
 
-As consultas que examinam menos que esse número de linhas não são registradas no registro de consultas lentas.
+As consultas que examinam menos que esse número de strings não são registradas no registro de consultas lentas.
 
 * `multi_range_count`
 
@@ -24385,7 +24385,7 @@ As opções a seguir afetam o funcionamento da reparação.
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>32
 
-Antes que o servidor repare automaticamente uma tabela, ele escreve uma nota sobre a reparação no log de erro. Se você deseja ser capaz de recuperar a maioria dos problemas sem intervenção do usuário, você deve usar as opções `BACKUP,FORCE`. Isso força a reparação de uma tabela, mesmo que algumas linhas sejam excluídas, mas mantém o arquivo de dados antigo como um backup para que você possa examinar mais tarde o que aconteceu.
+Antes que o servidor repare automaticamente uma tabela, ele escreve uma nota sobre a reparação no log de erro. Se você deseja ser capaz de recuperar a maioria dos problemas sem intervenção do usuário, você deve usar as opções `BACKUP,FORCE`. Isso força a reparação de uma tabela, mesmo que algumas strings sejam excluídas, mas mantém o arquivo de dados antigo como um backup para que você possa examinar mais tarde o que aconteceu.
 
 Veja a Seção 15.2.1, “Opções de inicialização do MyISAM”.
 
@@ -24399,7 +24399,7 @@ Essa variável do sistema é desatualizada no MySQL 5.7; espere que ela seja rem
 
 A partir do MySQL 5.7.38, valores que não sejam 1 produzem um aviso.
 
-Se esse valor for maior que 1, os índices da tabela `MyISAM` são criados em paralelo (cada índice em seu próprio fio) durante o processo `Repair by sorting`. O valor padrão é 1.
+Se esse valor for maior que 1, os índices da tabela `MyISAM` são criados em paralelo (cada índice em seu próprio thread) durante o processo `Repair by sorting`. O valor padrão é 1.
 
 Nota
 
@@ -24437,13 +24437,13 @@ Essa variável controla se o plugin de autenticação embutido `mysql_native_pas
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>38
 
-(Apenas para Windows.) Indica se o servidor suporta conexões por tubos nomeados.
+(Apenas para Windows.) Indica se o servidor suporta conexões por pipes nomeados.
 
 * `named_pipe_full_access_group`
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>39
 
-(Apenas para Windows.) O controle de acesso concedido aos clientes no tubo nomeado criado pelo servidor MySQL é definido para o mínimo necessário para uma comunicação bem-sucedida quando a variável de sistema `named_pipe` é habilitada para suportar conexões de tubo nomeado. Alguns softwares de cliente MySQL podem abrir conexões de tubo nomeado sem qualquer configuração adicional; no entanto, outros softwares de cliente ainda podem exigir acesso total para abrir uma conexão de tubo nomeado.
+(Apenas para Windows.) O controle de acesso concedido aos clientes no pipe nomeado criado pelo servidor MySQL é definido para o mínimo necessário para uma comunicação bem-sucedida quando a variável de sistema `named_pipe` é habilitada para suportar conexões de pipe nomeado. Alguns softwares de cliente MySQL podem abrir conexões de pipe nomeado sem qualquer configuração adicional; no entanto, outros softwares de cliente ainda podem exigir acesso total para abrir uma conexão de pipe nomeado.
 
 Essa variável define o nome de um grupo local do Windows cujos membros recebem acesso suficiente do servidor MySQL para usar clientes de canal nomeado. A partir do MySQL 5.7.34, o valor padrão é definido como uma string vazia, o que significa que nenhum usuário do Windows recebe acesso total ao canal nomeado.
 
@@ -24455,7 +24455,7 @@ Definir o valor para `'*everyone*'` fornece uma maneira independente da linguage
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>40
 
-Cada fio de cliente está associado a um buffer de conexão e um buffer de resultado. Ambos começam com um tamanho dado por `net_buffer_length`, mas são ampliados dinamicamente até `max_allowed_packet` bytes conforme necessário. O buffer de resultado encolhe para `net_buffer_length` após cada declaração SQL.
+Cada thread de cliente está associado a um buffer de conexão e um buffer de resultado. Ambos começam com um tamanho dado por `net_buffer_length`, mas são ampliados dinamicamente até `max_allowed_packet` bytes conforme necessário. O buffer de resultado encolhe para `net_buffer_length` após cada declaração SQL.
 
 Essa variável normalmente não deve ser alterada, mas se você tiver muito pouco espaço de memória, pode configurá-la para o comprimento esperado das declarações enviadas pelos clientes. Se as declarações excederem esse comprimento, o buffer de conexão será automaticamente ampliado. O valor máximo para o qual `net_buffer_length` pode ser configurado é de 1 MB.
 
@@ -24505,7 +24505,7 @@ Se o servidor estiver no modo "offline", que possui essas características:
 
 + Usuários de clientes conectados que possuem o privilégio `SUPER` não são desconectados e podem iniciar novas conexões para gerenciar o servidor.
 
-Os fios replicados têm permissão para continuar aplicando dados ao servidor.
+Os threads replicados têm permissão para continuar aplicando dados ao servidor.
 
 Apenas os usuários que possuem o privilégio `SUPER` podem controlar o modo offline. Para colocar um servidor em modo offline, altere o valor da variável de sistema `OFF` para `ON`. Para retomar as operações normais, altere `offline_mode` de `ON` para `OFF`. No modo offline, os clientes que são recusados recebem um erro `ER_SERVER_OFFLINE_MODE`.
 
@@ -24515,7 +24515,7 @@ Apenas os usuários que possuem o privilégio `SUPER` podem controlar o modo off
 
 `old` é uma variável de compatibilidade. Ela é desativada por padrão, mas pode ser ativada na inicialização para reverter o comportamento do servidor para o comportamento presente em versões anteriores.
 
-Quando o `old` é habilitado, ele altera o escopo padrão das dicas de índice para o usado antes do MySQL 5.1.17. Ou seja, as dicas de índice sem a cláusula `FOR` se aplicam apenas à forma como os índices são usados para recuperação de linhas e não à resolução das cláusulas `ORDER BY` ou `GROUP BY` (Veja Seção 8.9.4, “Dicas de Índice”). Tenha cuidado ao habilitar isso em uma configuração de replicação. Com o registro binário baseado em declarações, ter modos diferentes para a fonte e réplicas pode levar a erros de replicação.
+Quando o `old` é habilitado, ele altera o escopo padrão das dicas de índice para o usado antes do MySQL 5.1.17. Ou seja, as dicas de índice sem a cláusula `FOR` se aplicam apenas à forma como os índices são usados para recuperação de strings e não à resolução das cláusulas `ORDER BY` ou `GROUP BY` (Veja Seção 8.9.4, “Dicas de Índice”). Tenha cuidado ao habilitar isso em uma configuração de replicação. Com o registro binário baseado em declarações, ter modos diferentes para a fonte e réplicas pode levar a erros de replicação.
 
 * `old_alter_table`
 
@@ -24574,7 +24574,7 @@ Em Unix, o valor não pode ser definido maior que o valor exibido pelo comando *
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>52
 
-Controla as heurísticas aplicadas durante a otimização da consulta para eliminar planos parciais menos promissores do espaço de busca do otimizador. Um valor de 0 desativa as heurísticas para que o otimizador realize uma busca exhaustiva. Um valor de 1 faz com que o otimizador elimine planos com base no número de linhas recuperadas pelos planos intermediários.
+Controla as heurísticas aplicadas durante a otimização da consulta para eliminar planos parciais menos promissores do espaço de busca do otimizador. Um valor de 0 desativa as heurísticas para que o otimizador realize uma busca exhaustiva. Um valor de 1 faz com que o otimizador elimine planos com base no número de strings recuperadas pelos planos intermediários.
 
 * `optimizer_search_depth`
 
@@ -24828,7 +24828,7 @@ O limite de consumo de memória para o otimizador de intervalo. Um valor de 0 si
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>80
 
-Para uso interno pelo **mysqlbinlog**. Esta variável troca o servidor entre os modos `IDEMPOTENT` e `STRICT`. O modo `IDEMPOTENT` causa a supressão de erros de chave duplicada e sem chave encontrada nas declarações `BINLOG` geradas pelo **mysqlbinlog**. Este modo é útil ao refazer um log binário baseado em linha em um servidor que causa conflitos com dados existentes. O **mysqlbinlog** define este modo quando você especifica a opção `--idempotent` escrevendo o seguinte na saída:
+Para uso interno pelo **mysqlbinlog**. Esta variável troca o servidor entre os modos `IDEMPOTENT` e `STRICT`. O modo `IDEMPOTENT` causa a supressão de erros de chave duplicada e sem chave encontrada nas declarações `BINLOG` geradas pelo **mysqlbinlog**. Este modo é útil ao refazer um log binário baseado em string em um servidor que causa conflitos com dados existentes. O **mysqlbinlog** define este modo quando você especifica a opção `--idempotent` escrevendo o seguinte na saída:
 
   ```sql
   SET SESSION RBR_EXEC_MODE=IDEMPOTENT;
@@ -24838,11 +24838,11 @@ Para uso interno pelo **mysqlbinlog**. Esta variável troca o servidor entre os 
 
   <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registre apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível 1 de log e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível 2 de log e notas de informação</td> </tr><tr> <td>4</td> <td>Mensagens de nível 3 de log e mensagens de depuração</td> </tr></tbody></table>81
 
-Cada fio que realiza uma varredura sequencial para uma tabela `MyISAM` aloca um buffer desse tamanho (em bytes) para cada tabela que ele varre. Se você fizer muitas varreduras sequenciais, você pode querer aumentar esse valor, que tem como padrão 131072. O valor dessa variável deve ser um múltiplo de 4KB. Se estiver definido para um valor que não é um múltiplo de 4KB, seu valor é arredondado para o próximo múltiplo de 4KB.
+Cada thread que realiza uma varredura sequencial para uma tabela `MyISAM` aloca um buffer desse tamanho (em bytes) para cada tabela que ele varre. Se você fizer muitas varreduras sequenciais, você pode querer aumentar esse valor, que tem como padrão 131072. O valor dessa variável deve ser um múltiplo de 4KB. Se estiver definido para um valor que não é um múltiplo de 4KB, seu valor é arredondado para o próximo múltiplo de 4KB.
 
 Essa opção também é usada no seguinte contexto para todos os motores de armazenamento:
 
-+ Para o armazenamento de índices em um arquivo temporário (não em uma tabela temporária), ao ordenar as linhas para `ORDER BY`.
++ Para o armazenamento de índices em um arquivo temporário (não em uma tabela temporária), ao ordenar as strings para `ORDER BY`.
 
 + Para inserção em massa em partições.
 + Para cache de resultados de consultas aninhadas.
@@ -24895,7 +24895,7 @@ As seguintes condições se aplicam às tentativas de habilitar `read_only` (inc
 
 Essa variável é usada para leituras de tabelas de `MyISAM`, e, para qualquer mecanismo de armazenamento, para otimização de leitura de Multi-Range.
 
-Ao ler linhas de uma tabela `MyISAM` em ordem ordenada após uma operação de classificação por chave, as linhas são lidas através deste buffer para evitar buscas em disco. Veja a Seção 8.2.1.14, “Otimização de ORDER BY”. Definir a variável em um valor grande pode melhorar muito o desempenho do `ORDER BY`. No entanto, esta é uma buffer alocada para cada cliente, portanto, você não deve definir a variável global em um valor grande. Em vez disso, altere a variável de sessão apenas dentro dos clientes que precisam executar consultas grandes.
+Ao ler strings de uma tabela `MyISAM` em ordem ordenada após uma operação de classificação por chave, as strings são lidas através deste buffer para evitar buscas em disco. Veja a Seção 8.2.1.14, “Otimização de ORDER BY”. Definir a variável em um valor grande pode melhorar muito o desempenho do `ORDER BY`. No entanto, esta é uma buffer alocada para cada cliente, portanto, você não deve definir a variável global em um valor grande. Em vez disso, altere a variável de sessão apenas dentro dos clientes que precisam executar consultas grandes.
 
 Para mais informações sobre o uso da memória durante diferentes operações, consulte a Seção 8.12.4.1, “Como o MySQL usa memória”. Para informações sobre otimização de leitura de vários intervalos, consulte a Seção 8.2.1.10, “Otimização de leitura de vários intervalos”.
 
@@ -25133,7 +25133,7 @@ Para obter informações sobre variáveis de sistema e status. Quando `show_comp
 
 Nota
 
-Quando as declarações `show_compatibility_56=OFF`, `SHOW VARIABLES` e `SHOW STATUS` exibem linhas das tabelas do Schema de Desempenho `global_variables`, `session_variables`, `global_status` e `session_status`.
+Quando as declarações `show_compatibility_56=OFF`, `SHOW VARIABLES` e `SHOW STATUS` exibem strings das tabelas do Schema de Desempenho `global_variables`, `session_variables`, `global_status` e `session_status`.
 
 A partir do MySQL 5.7.9, essas tabelas são legíveis e acessíveis mundialmente sem o privilégio `SELECT`, o que significa que `SELECT` também não é necessário para usar as declarações `SHOW`. Antes do MySQL 5.7.9, o privilégio `SELECT` é necessário para acessar essas tabelas do Gerador de Desempenho, seja diretamente ou indiretamente por meio das declarações `SHOW`.
 
@@ -25150,24 +25150,24 @@ As descrições a seguir detalham o efeito de definir `show_compatibility_56` pa
 `SHOW GLOBAL VARIABLES` declaração:
 
 + `ON`: Saída do MySQL 5.6.  
-  + `OFF`: A saída exibe as linhas da tabela do Gerador de Desempenho `global_variables`.
+  + `OFF`: A saída exibe as strings da tabela do Gerador de Desempenho `global_variables`.
 
 `SHOW [SESSION | LOCAL] VARIABLES` declaração:
 
 + `ON`: Saída do MySQL 5.6.  
-  + `OFF`: A saída do esquema de desempenho da tabela `session_variables` exibe as linhas. (Nos MySQL 5.7.6 e 5.7.7, a saída `OFF` não reflete totalmente todos os valores das variáveis do sistema em vigor para a sessão atual; não inclui linhas para as variáveis globais que não têm correspondência em sessão. Isso é corrigido no MySQL 5.7.8.)
+  + `OFF`: A saída do esquema de desempenho da tabela `session_variables` exibe as strings. (Nos MySQL 5.7.6 e 5.7.7, a saída `OFF` não reflete totalmente todos os valores das variáveis do sistema em vigor para a sessão atual; não inclui strings para as variáveis globais que não têm correspondência em sessão. Isso é corrigido no MySQL 5.7.8.)
 
 `SHOW GLOBAL STATUS` declaração:
 
 + `ON`: Saída do MySQL 5.6.  
-  + `OFF`: A saída exibe as linhas da tabela do Gerador de Desempenho `global_status` e os contadores de execução da instrução `Com_xxx`.
+  + `OFF`: A saída exibe as strings da tabela do Gerador de Desempenho `global_status` e os contadores de execução da instrução `Com_xxx`.
 
-A saída `OFF` não inclui nenhuma linha para variáveis de sessão que não têm correspondência global, ao contrário da saída `ON`.
+A saída `OFF` não inclui nenhuma string para variáveis de sessão que não têm correspondência global, ao contrário da saída `ON`.
 
 `SHOW [SESSION | LOCAL] STATUS` declaração:
 
 + `ON`: Saída do MySQL 5.6.  
-  + `OFF`: A saída exibe as linhas da tabela do Gerador de Desempenho `session_status`, além dos contadores de execução da declaração `Com_xxx`. (No MySQL 5.7.6 e 5.7.7, a saída `OFF` não reflete totalmente todos os valores das variáveis de status em vigor para a sessão atual; não inclui linhas para variáveis globais que não têm correspondência de sessão. Isso é corrigido no MySQL 5.7.8.)
+  + `OFF`: A saída exibe as strings da tabela do Gerador de Desempenho `session_status`, além dos contadores de execução da declaração `Com_xxx`. (No MySQL 5.7.6 e 5.7.7, a saída `OFF` não reflete totalmente todos os valores das variáveis de status em vigor para a sessão atual; não inclui strings para variáveis globais que não têm correspondência de sessão. Isso é corrigido no MySQL 5.7.8.)
 
 Em MySQL 5.7.6 e 5.7.7, para cada uma das declarações `SHOW` descritas acima, o uso de uma cláusula `WHERE` produz um aviso quando `show_compatibility_56=ON` e um erro quando `show_compatibility_56=OFF`. (Isso se aplica a cláusulas `WHERE` que não são otimizadas. Por exemplo, `WHERE 1` é trivialmente verdadeiro, é otimizado e, portanto, não produz aviso ou erro.) Esse comportamento não ocorre a partir do MySQL 5.7.8; `WHERE` é suportado como antes do 5.7.6.
 
@@ -25187,7 +25187,7 @@ Tabelas de variáveis do sistema do esquema de desempenho:
 
 - `global_variables`: Apenas variáveis de sistema global.
 
-- `session_variables`: Variáveis do sistema em vigor para a sessão atual: uma linha para cada variável de sessão e uma linha para cada variável global que não tenha correspondência em sessão.
+- `session_variables`: Variáveis do sistema em vigor para a sessão atual: uma string para cada variável de sessão e uma string para cada variável global que não tenha correspondência em sessão.
 
 - `variables_by_thread`: Apenas variáveis do sistema de sessão, para cada sessão ativa.
 
@@ -25199,7 +25199,7 @@ Tabelas de variáveis de status do Schema de desempenho:
 
 - `global_status`: Variáveis de status globais apenas.
 
-- `session_status`: Variáveis de status em vigor na sessão atual: uma linha para cada variável de sessão e uma linha para cada variável global que não tenha correspondência em sessão.
+- `session_status`: Variáveis de status em vigor na sessão atual: uma string para cada variável de sessão e uma string para cada variável global que não tenha correspondência em sessão.
 
 - `status_by_account` Apenas variáveis de status de sessão, agregadas por conta.
 
@@ -25235,7 +25235,7 @@ Variáveis de status de réplica:
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>01
 
-`SHOW CREATE TABLE` normalmente não exibe a opção da tabela `ROW_FORMAT` se o formato da linha for o formato padrão. Ativação desta variável faz com que `SHOW CREATE TABLE` exiba `ROW_FORMAT`, independentemente de ser o formato padrão.
+`SHOW CREATE TABLE` normalmente não exibe a opção da tabela `ROW_FORMAT` se o formato da string for o formato padrão. Ativação desta variável faz com que `SHOW CREATE TABLE` exiba `ROW_FORMAT`, independentemente de ser o formato padrão.
 
 * `show_old_temporals`
 
@@ -25284,7 +25284,7 @@ Uma tentativa de se conectar ao host `127.0.0.1` normalmente resolve para a cont
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>05
 
-Essa variável controla se o servidor permite conexões TCP/IP. Por padrão, ela está desativada (permite conexões TCP). Se ativada, o servidor permite apenas conexões locais (não TCP/IP) e toda interação com `mysqld` deve ser feita usando tubos nomeados ou memória compartilhada (em Windows) ou arquivos de soquete Unix (em Unix). Esta opção é altamente recomendada para sistemas onde apenas clientes locais são permitidos. Veja a Seção 5.1.11.2, “Consultas DNS e Cache de Anfitrião”.
+Essa variável controla se o servidor permite conexões TCP/IP. Por padrão, ela está desativada (permite conexões TCP). Se ativada, o servidor permite apenas conexões locais (não TCP/IP) e toda interação com `mysqld` deve ser feita usando pipes nomeados ou memória compartilhada (em Windows) ou arquivos de soquete Unix (em Unix). Esta opção é altamente recomendada para sistemas onde apenas clientes locais são permitidos. Veja a Seção 5.1.11.2, “Consultas DNS e Cache de Anfitrião”.
 
 * `skip_show_database`
 
@@ -25322,7 +25322,7 @@ O nome do arquivo de registro de consultas lentas. O valor padrão é `host_name
 
 Nas plataformas Unix, essa variável é o nome do arquivo de soquete que é usado para conexões de clientes locais. O padrão é `/tmp/mysql.sock`. (Para alguns formatos de distribuição, o diretório pode ser diferente, como `/var/lib/mysql` para RPMs.)
 
-Em Windows, essa variável é o nome do tubo nomeado que é usado para conexões de clientes locais. O valor padrão é `MySQL` (não sensível ao caso).
+Em Windows, essa variável é o nome do pipe nomeado que é usado para conexões de clientes locais. O valor padrão é `MySQL` (não sensível ao caso).
 
 * `sort_buffer_size`
 
@@ -25346,7 +25346,7 @@ Se essa variável estiver habilitada, após uma declaração que insere com suce
   SELECT * FROM tbl_name WHERE auto_col IS NULL
   ```
 
-Se a declaração retornar uma linha, o valor retornado é o mesmo se você tivesse invocado a função `LAST_INSERT_ID()`. Para detalhes, incluindo o valor de retorno após uma inserção de várias linhas, consulte a Seção 12.15, “Funções de Informação”. Se nenhuma linha do valor `AUTO_INCREMENT` foi inserida com sucesso, a declaração `SELECT` não retorna nenhuma linha.
+Se a declaração retornar uma string, o valor retornado é o mesmo se você tivesse invocado a função `LAST_INSERT_ID()`. Para detalhes, incluindo o valor de retorno após uma inserção de várias strings, consulte a Seção 12.15, “Funções de Informação”. Se nenhuma string do valor `AUTO_INCREMENT` foi inserida com sucesso, a declaração `SELECT` não retorna nenhuma string.
 
 O comportamento de recuperar um valor de `AUTO_INCREMENT` usando uma comparação de `IS NULL` é utilizado por alguns programas ODBC, como o Access. Veja Obtenção de Valores de Auto-Incremento. Esse comportamento pode ser desativado definindo `sql_auto_is_null` como `OFF`.
 
@@ -25356,7 +25356,7 @@ O valor padrão de `sql_auto_is_null` é `OFF`.
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>13
 
-Se configurado como `OFF`, o MySQL interrompe as instruções `SELECT` que provavelmente levarão muito tempo para serem executadas (ou seja, instruções para as quais o otimizador estima que o número de linhas examinadas exceda o valor de `max_join_size`). Isso é útil quando uma instrução `WHERE` inadmissível foi emitida. O valor padrão para uma nova conexão é `ON`, que permite todas as instruções `SELECT`.
+Se configurado como `OFF`, o MySQL interrompe as instruções `SELECT` que provavelmente levarão muito tempo para serem executadas (ou seja, instruções para as quais o otimizador estima que o número de strings examinadas exceda o valor de `max_join_size`). Isso é útil quando uma instrução `WHERE` inadmissível foi emitida. O valor padrão para uma nova conexão é `ON`, que permite todas as instruções `SELECT`.
 
 Se você definir a variável de sistema `max_join_size` para um valor diferente de `DEFAULT`, `sql_big_selects` é definido como `OFF`.
 
@@ -25400,7 +25400,7 @@ Se habilitada (padrão), o servidor cita identificadores para as declarações `
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>19
 
-Se essa variável estiver habilitada, as declarações `UPDATE` e `DELETE` que não utilizam uma chave na cláusula `WHERE` ou uma cláusula `LIMIT` produzem um erro. Isso permite detectar as declarações `UPDATE` e `DELETE` onde as chaves não são usadas corretamente e que provavelmente mudariam ou deleteiam um grande número de linhas. O valor padrão é `OFF`.
+Se essa variável estiver habilitada, as declarações `UPDATE` e `DELETE` que não utilizam uma chave na cláusula `WHERE` ou uma cláusula `LIMIT` produzem um erro. Isso permite detectar as declarações `UPDATE` e `DELETE` onde as chaves não são usadas corretamente e que provavelmente mudariam ou deleteiam um grande número de strings. O valor padrão é `OFF`.
 
 Para o cliente **mysql**, `sql_safe_updates` pode ser habilitado usando a opção `--safe-updates`. Para mais informações, consulte "Usando o modo de atualizações seguras (--safe-updates)".
 
@@ -25408,9 +25408,9 @@ Para o cliente **mysql**, `sql_safe_updates` pode ser habilitado usando a opçã
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>20
 
-O número máximo de linhas a serem retornadas a partir das declarações `SELECT`. Para mais informações, consulte "Usando o modo de atualizações seguras (--safe-updates)".
+O número máximo de strings a serem retornadas a partir das declarações `SELECT`. Para mais informações, consulte "Usando o modo de atualizações seguras (--safe-updates)".
 
-O valor padrão para uma nova conexão é o número máximo de linhas que o servidor permite por tabela. Os valores padrão típicos são (232)−1 ou (264)−1. Se você alterou o limite, o valor padrão pode ser restaurado atribuindo um valor de `DEFAULT`.
+O valor padrão para uma nova conexão é o número máximo de strings que o servidor permite por tabela. Os valores padrão típicos são (232)−1 ou (264)−1. Se você alterou o limite, o valor padrão pode ser restaurado atribuindo um valor de `DEFAULT`.
 
 Se um `SELECT` tiver uma cláusula `LIMIT`, o `LIMIT` terá precedência sobre o valor de `sql_select_limit`.
 
@@ -25418,7 +25418,7 @@ Se um `SELECT` tiver uma cláusula `LIMIT`, o `LIMIT` terá precedência sobre o
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>21
 
-Essa variável controla se as declarações de uma única linha `INSERT` produzem uma string de informações se houver avisos. O padrão é `OFF`. Defina o valor para `ON` para produzir uma string de informações.
+Essa variável controla se as declarações de uma única string `INSERT` produzem uma string de informações se houver avisos. O padrão é `OFF`. Defina o valor para `ON` para produzir uma string de informações.
 
 * `ssl_ca`
 
@@ -25568,7 +25568,7 @@ Um valor de 8 ou 16 é recomendado em sistemas que usam rotineiramente 16 ou mai
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>36
 
-Quantas linhas de execução o servidor deve armazenar para reutilização. Quando um cliente se desconecta, as linhas de execução do cliente são colocadas no cache se houver menos de `thread_cache_size` linhas de execução. As solicitações de linhas de execução são atendidas reutilizando linhas de execução retiradas do cache, se possível, e apenas quando o cache estiver vazio, uma nova linha de execução é criada. Essa variável pode ser aumentada para melhorar o desempenho se você tiver muitas novas conexões. Normalmente, isso não proporciona uma melhoria notável no desempenho se você tiver uma boa implementação de linhas de execução. No entanto, se seu servidor receber centenas de conexões por segundo, você deve normalmente definir `thread_cache_size` alta o suficiente para que a maioria das novas conexões use linhas de execução armazenadas no cache. Ao examinar a diferença entre as variáveis de status `Connections` e `Threads_created`, você pode ver quão eficiente é o cache de linhas de execução. Para detalhes, consulte a Seção 5.1.9, “Variáveis de Status do Servidor”.
+Quantas strings de execução o servidor deve armazenar para reutilização. Quando um cliente se desconecta, as strings de execução do cliente são colocadas no cache se houver menos de `thread_cache_size` strings de execução. As solicitações de strings de execução são atendidas reutilizando strings de execução retiradas do cache, se possível, e apenas quando o cache estiver vazio, uma nova string de execução é criada. Essa variável pode ser aumentada para melhorar o desempenho se você tiver muitas novas conexões. Normalmente, isso não proporciona uma melhoria notável no desempenho se você tiver uma boa implementação de strings de execução. No entanto, se seu servidor receber centenas de conexões por segundo, você deve normalmente definir `thread_cache_size` alta o suficiente para que a maioria das novas conexões use strings de execução armazenadas no cache. Ao examinar a diferença entre as variáveis de status `Connections` e `Threads_created`, você pode ver quão eficiente é o cache de strings de execução. Para detalhes, consulte a Seção 5.1.9, “Variáveis de Status do Servidor”.
 
 O valor padrão é baseado na seguinte fórmula, limitada a um limite de 100:
 
@@ -25582,7 +25582,7 @@ Essa variável não tem efeito para o servidor incorporado (`libmysqld`) e, a pa
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>37
 
-O modelo de manipulação de fios usado pelo servidor para os fios de conexão. Os valores permitidos são `no-threads` (o servidor usa um único fio para manipular uma conexão), `one-thread-per-connection` (o servidor usa um fio para manipular cada conexão de cliente) e `loaded-dynamically` (definido pelo plugin de pool de fios quando ele é inicializado). `no-threads` é útil para depuração sob Linux; veja Seção 5.8, “Depuração do MySQL”.
+O modelo de manipulação de threads usado pelo servidor para os threads de conexão. Os valores permitidos são `no-threads` (o servidor usa um único thread para manipular uma conexão), `one-thread-per-connection` (o servidor usa um thread para manipular cada conexão de cliente) e `loaded-dynamically` (definido pelo plugin de pool de threads quando ele é inicializado). `no-threads` é útil para depuração sob Linux; veja Seção 5.8, “Depuração do MySQL”.
 
 Essa variável não tem efeito para o servidor incorporado (`libmysqld`) e, a partir do MySQL 5.7.2, ela não é mais visível dentro do servidor incorporado.
 
@@ -25614,7 +25614,7 @@ O número máximo permitido de threads não utilizadas na pilha de threads. Essa
 
 Um valor de 0 (padrão) significa que não há limite no número de threads em espera. Um valor de *`N`* onde *`N`* é maior que 0 significa 1 thread de consumo e *`N`−1 threads de reserva. Neste caso, se uma thread estiver pronta para dormir, mas o número de threads em espera já estiver no máximo, a thread sai em vez de dormir.
 
-Um fio de sono está dormindo como um fio de consumidor ou um fio de reserva. O conjunto de fios permite que um fio esteja como fio de consumidor quando está dormindo. Se um fio for colocado em sono e não houver um fio de consumidor existente, ele dorme como um fio de consumidor. Quando um fio precisa ser acordado, um fio de consumidor é selecionado, se houver um. Um fio de reserva é selecionado apenas quando não há um fio de consumidor para ser acordado.
+Um thread de sono está dormindo como um thread de consumidor ou um thread de reserva. O conjunto de threads permite que um thread esteja como thread de consumidor quando está dormindo. Se um thread for colocado em sono e não houver um thread de consumidor existente, ele dorme como um thread de consumidor. Quando um thread precisa ser acordado, um thread de consumidor é selecionado, se houver um. Um thread de reserva é selecionado apenas quando não há um thread de consumidor para ser acordado.
 
 Essa variável está disponível apenas se o plugin de pool de threads estiver habilitado. Veja a Seção 5.5.3, “MySQL Enterprise Thread Pool”.
 
@@ -25630,7 +25630,7 @@ Essa variável está disponível apenas se o plugin de pool de threads estiver h
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>42
 
-O número de grupos de fios no pool de fios. Este é o parâmetro mais importante que controla o desempenho do pool de fios. Isso afeta quantas instruções podem ser executadas simultaneamente. Se um valor fora do intervalo de valores permitidos for especificado, o plugin do pool de fios não é carregado e o servidor escreve uma mensagem no log de erro.
+O número de grupos de threads no pool de threads. Este é o parâmetro mais importante que controla o desempenho do pool de threads. Isso afeta quantas instruções podem ser executadas simultaneamente. Se um valor fora do intervalo de valores permitidos for especificado, o plugin do pool de threads não é carregado e o servidor escreve uma mensagem no log de erro.
 
 Essa variável está disponível apenas se o plugin de pool de threads estiver habilitado. Veja a Seção 5.5.3, “MySQL Enterprise Thread Pool”.
 
@@ -25666,7 +25666,7 @@ Se configurado como `SYSTEM`, cada chamada de função MySQL que requer um cálc
 
   <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>46
 
-Defina o horário para este cliente. Isso é usado para obter o timestamp original se você usar o log binário para restaurar linhas. *`timestamp_value`* deve ser um timestamp de época Unix (um valor como o retornado por `UNIX_TIMESTAMP()`, não um valor no formato `'YYYY-MM-DD hh:mm:ss'` ou `DEFAULT`).
+Defina o horário para este cliente. Isso é usado para obter o timestamp original se você usar o log binário para restaurar strings. *`timestamp_value`* deve ser um timestamp de época Unix (um valor como o retornado por `UNIX_TIMESTAMP()`, não um valor no formato `'YYYY-MM-DD hh:mm:ss'` ou `DEFAULT`).
 
 Definir `timestamp` com um valor constante faz com que ele retorne esse valor até que seja alterado novamente. Definir `timestamp` com `DEFAULT` faz com que seu valor seja a data e a hora atuais na data em que é acessado. O valor máximo corresponde a `'2038-01-19 03:14:07'` UTC, o mesmo que para o tipo de dados `TIMESTAMP`.
 
@@ -25967,19 +25967,19 @@ O número de erros, avisos e notas que resultaram da última declaração que ge
 
 ### 5.1.8 Usando variáveis do sistema
 
-O servidor MySQL mantém muitas variáveis de sistema que configuram sua operação. A Seção 5.1.7, “Variáveis de sistema do servidor”, descreve o significado dessas variáveis. Cada variável de sistema tem um valor padrão. As variáveis de sistema podem ser definidas na inicialização do servidor usando opções na linha de comando ou em um arquivo de opções. A maioria delas pode ser alterada dinamicamente enquanto o servidor está em execução, por meio da declaração `SET`, que permite modificar a operação do servidor sem precisar parar e reiniciar. Você também pode usar os valores das variáveis de sistema em expressões.
+O servidor MySQL mantém muitas variáveis de sistema que configuram sua operação. A Seção 5.1.7, “Variáveis de sistema do servidor”, descreve o significado dessas variáveis. Cada variável de sistema tem um valor padrão. As variáveis de sistema podem ser definidas na inicialização do servidor usando opções na string de comando ou em um arquivo de opções. A maioria delas pode ser alterada dinamicamente enquanto o servidor está em execução, por meio da declaração `SET`, que permite modificar a operação do servidor sem precisar parar e reiniciar. Você também pode usar os valores das variáveis de sistema em expressões.
 
 Muitas variáveis do sistema são incorporadas. As variáveis do sistema implementadas por um plugin do servidor são expostas quando o plugin é instalado e têm nomes que começam com o nome do plugin. Por exemplo, o plugin `audit_log` implementa uma variável do sistema chamada `audit_log_policy`.
 
 Existem dois escopos em que as variáveis do sistema existem. As variáveis globais afetam o funcionamento geral do servidor. As variáveis de sessão afetam seu funcionamento para conexões individuais de clientes. Uma variável de sistema dada pode ter tanto um valor global quanto um valor de sessão. As variáveis de sistema globais e de sessão estão relacionadas da seguinte forma:
 
-* Quando o servidor é iniciado, ele inicializa cada variável global com seu valor padrão. Esses valores padrão podem ser alterados por opções especificadas na linha de comando ou em um arquivo de opções. (Veja a Seção 4.2.2, “Especificação de Opções do Programa”.)
+* Quando o servidor é iniciado, ele inicializa cada variável global com seu valor padrão. Esses valores padrão podem ser alterados por opções especificadas na string de comando ou em um arquivo de opções. (Veja a Seção 4.2.2, “Especificação de Opções do Programa”.)
 
 * O servidor também mantém um conjunto de variáveis de sessão para cada cliente que se conecta. As variáveis de sessão do cliente são inicializadas no momento da conexão, usando os valores atuais das variáveis globais correspondentes. Por exemplo, o modo SQL de um cliente é controlado pelo valor da sessão `sql_mode`, que é inicializado quando o cliente se conecta ao valor do global `sql_mode`.
 
 Para algumas variáveis do sistema, o valor da sessão não é inicializado a partir do valor global correspondente; se assim for, isso é indicado na descrição da variável.
 
-Os valores das variáveis do sistema podem ser definidos globalmente na inicialização do servidor usando opções na linha de comando ou em um arquivo de opções. Na inicialização, a sintaxe para as variáveis do sistema é a mesma para as opções de comando, então, dentro dos nomes das variáveis, travessões e sublinhados podem ser usados de forma intercambiável. Por exemplo, `--general_log=ON` e `--general-log=ON` são equivalentes.
+Os valores das variáveis do sistema podem ser definidos globalmente na inicialização do servidor usando opções na string de comando ou em um arquivo de opções. Na inicialização, a sintaxe para as variáveis do sistema é a mesma para as opções de comando, então, dentro dos nomes das variáveis, travessões e sublinhados podem ser usados de forma intercambiável. Por exemplo, `--general_log=ON` e `--general-log=ON` são equivalentes.
 
 Quando você usa uma opção de inicialização para definir uma variável que recebe um valor numérico, o valor pode ser dado com um sufixo de `K`, `M` ou `G` (seja maiúscula ou minúscula) para indicar um multiplicador de 1024, 10242 ou 10243; ou seja, unidades de kilobytes, megabytes ou gigabytes, respectivamente. Assim, o seguinte comando inicia o servidor com um tamanho de arquivo de log `InnoDB` de 16 megabytes e um tamanho máximo de pacote de um gigabyte:
 
@@ -26018,14 +26018,14 @@ Muitas variáveis do sistema são dinâmicas e podem ser alteradas durante a exe
 
 Para obter detalhes completos sobre a sintaxe do `SET`, consulte a Seção 13.7.4.1, “Sintaxe de definição de variáveis”. Para uma descrição dos requisitos de privilégio para definir variáveis do sistema, consulte a Seção 5.1.8.1, “Privilégios de variáveis do sistema”.
 
-Sufixos para especificar um multiplicador de valor podem ser usados ao definir uma variável na inicialização do servidor, mas não para definir o valor com `SET` no tempo de execução. Por outro lado, com `SET`, você pode atribuir o valor de uma variável usando uma expressão, o que não é verdade quando você define uma variável na inicialização do servidor. Por exemplo, a primeira das linhas a seguir é legal na inicialização do servidor, mas a segunda não é:
+Sufixos para especificar um multiplicador de valor podem ser usados ao definir uma variável na inicialização do servidor, mas não para definir o valor com `SET` no tempo de execução. Por outro lado, com `SET`, você pode atribuir o valor de uma variável usando uma expressão, o que não é verdade quando você define uma variável na inicialização do servidor. Por exemplo, a primeira das strings a seguir é legal na inicialização do servidor, mas a segunda não é:
 
 ```sql
 $> mysql --max_allowed_packet=16M
 $> mysql --max_allowed_packet=16*1024*1024
 ```
 
-Por outro lado, a segunda das linhas a seguir é legal durante a execução, mas a primeira não é:
+Por outro lado, a segunda das strings a seguir é legal durante a execução, mas a primeira não é:
 
 ```sql
 mysql> SET GLOBAL max_allowed_packet=16M;
@@ -28699,7 +28699,7 @@ As instâncias e componentes variáveis estruturadas seguem essas regras de nome
 
 Atualmente, as duas primeiras regras não têm possibilidade de serem violadas, pois o único tipo de variável estruturada é o destinado a caches de chave. Essas regras podem assumir maior importância se algum outro tipo de variável estruturada for criado no futuro.
 
-Com uma exceção, você pode se referir a componentes de variáveis estruturadas usando nomes compostos em qualquer contexto onde nomes de variáveis simples podem ocorrer. Por exemplo, você pode atribuir um valor a uma variável estruturada usando uma opção de linha de comando:
+Com uma exceção, você pode se referir a componentes de variáveis estruturadas usando nomes compostos em qualquer contexto onde nomes de variáveis simples podem ocorrer. Por exemplo, você pode atribuir um valor a uma variável estruturada usando uma opção de string de comando:
 
 ```sql
 $> mysqld --hot_cache.key_buffer_size=64K
@@ -28933,7 +28933,7 @@ O número de declarações internas `COMMIT`.
 
 * `Handler_delete`
 
-O número de vezes que as linhas foram excluídas das tabelas.
+O número de vezes que as strings foram excluídas das tabelas.
 
 * `Handler_external_lock`
 
@@ -28953,7 +28953,7 @@ O número de vezes que a primeira entrada em um índice foi lida. Se esse valor 
 
 * `Handler_read_key`
 
-O número de solicitações para ler uma linha com base em uma chave. Se esse valor for alto, é uma boa indicação de que suas tabelas estão corretamente indexadas para suas consultas.
+O número de solicitações para ler uma string com base em uma chave. Se esse valor for alto, é uma boa indicação de que suas tabelas estão corretamente indexadas para suas consultas.
 
 * `Handler_read_last`
 
@@ -28961,19 +28961,19 @@ O número de solicitações para ler a última chave em um índice. Com `ORDER B
 
 * `Handler_read_next`
 
-O número de solicitações para ler a próxima linha na ordem da chave. Esse valor é incrementado se você estiver consultando uma coluna de índice com uma restrição de intervalo ou se estiver realizando uma varredura de índice.
+O número de solicitações para ler a próxima string na ordem da chave. Esse valor é incrementado se você estiver consultando uma coluna de índice com uma restrição de intervalo ou se estiver realizando uma varredura de índice.
 
 * `Handler_read_prev`
 
-O número de solicitações para ler a linha anterior na ordem chave. Esse método de leitura é usado principalmente para otimizar `ORDER BY ... DESC`.
+O número de solicitações para ler a string anterior na ordem chave. Esse método de leitura é usado principalmente para otimizar `ORDER BY ... DESC`.
 
 * `Handler_read_rnd`
 
-O número de solicitações para ler uma linha com base em uma posição fixa. Esse valor é alto se você está fazendo muitas consultas que exigem ordenação dos resultados. Provavelmente, você tem muitas consultas que exigem que o MySQL escaneie tabelas inteiras ou você tem junções que não usam chaves corretamente.
+O número de solicitações para ler uma string com base em uma posição fixa. Esse valor é alto se você está fazendo muitas consultas que exigem ordenação dos resultados. Provavelmente, você tem muitas consultas que exigem que o MySQL escaneie tabelas inteiras ou você tem junções que não usam chaves corretamente.
 
 * `Handler_read_rnd_next`
 
-O número de solicitações para ler a próxima linha no arquivo de dados. Esse valor é alto se você está fazendo muitas varreduras de tabela. Geralmente, isso sugere que suas tabelas não estão corretamente indexadas ou que suas consultas não foram escritas para aproveitar os índices que você tem.
+O número de solicitações para ler a próxima string no arquivo de dados. Esse valor é alto se você está fazendo muitas varreduras de tabela. Geralmente, isso sugere que suas tabelas não estão corretamente indexadas ou que suas consultas não foram escritas para aproveitar os índices que você tem.
 
 * `Handler_rollback`
 
@@ -28989,11 +28989,11 @@ O número de solicitações para que um motor de armazenamento volte a um ponto 
 
 * `Handler_update`
 
-O número de solicitações para atualizar uma linha em uma tabela.
+O número de solicitações para atualizar uma string em uma tabela.
 
 * `Handler_write`
 
-O número de solicitações para inserir uma linha em uma tabela.
+O número de solicitações para inserir uma string em uma tabela.
 
 * `Innodb_available_undo_logs`
 
@@ -29049,7 +29049,7 @@ O número de páginas abertas no pool de buffer `InnoDB`. São páginas que est�
 
 * `Innodb_buffer_pool_pages_misc`
 
-O número de páginas no pool de buffer `InnoDB` que estão ocupadas porque foram alocadas para overhead administrativo, como bloqueios de linha ou índice de hash adaptativo. Esse valor também pode ser calculado como `Innodb_buffer_pool_pages_total` − `Innodb_buffer_pool_pages_free` − `Innodb_buffer_pool_pages_data`. Ao usar tabelas compactadas, `Innodb_buffer_pool_pages_misc` pode reportar um valor fora dos limites (Bug #59550).
+O número de páginas no pool de buffer `InnoDB` que estão ocupadas porque foram alocadas para overhead administrativo, como bloqueios de string ou índice de hash adaptativo. Esse valor também pode ser calculado como `Innodb_buffer_pool_pages_total` − `Innodb_buffer_pool_pages_free` − `Innodb_buffer_pool_pages_data`. Ao usar tabelas compactadas, `Innodb_buffer_pool_pages_misc` pode reportar um valor fora dos limites (Bug #59550).
 
 * `Innodb_buffer_pool_pages_total`
 
@@ -29181,39 +29181,39 @@ O número de páginas escritas por operações nas tabelas `InnoDB`.
 
 * `Innodb_row_lock_current_waits`
 
-O número de bloqueios de linha atualmente aguardados por operações nas tabelas `InnoDB`.
+O número de bloqueios de string atualmente aguardados por operações nas tabelas `InnoDB`.
 
 * `Innodb_row_lock_time`
 
-O tempo total gasto na aquisição de bloqueios de linha para as tabelas `InnoDB`, em milissegundos.
+O tempo total gasto na aquisição de bloqueios de string para as tabelas `InnoDB`, em milissegundos.
 
 * `Innodb_row_lock_time_avg`
 
-O tempo médio para adquirir um bloqueio de linha para as tabelas `InnoDB`, em milissegundos.
+O tempo médio para adquirir um bloqueio de string para as tabelas `InnoDB`, em milissegundos.
 
 * `Innodb_row_lock_time_max`
 
-O tempo máximo para adquirir um bloqueio de linha para as tabelas `InnoDB`, em milissegundos.
+O tempo máximo para adquirir um bloqueio de string para as tabelas `InnoDB`, em milissegundos.
 
 * `Innodb_row_lock_waits`
 
-O número de vezes em que as operações nas tabelas `InnoDB` tiveram que esperar por um bloqueio de linha.
+O número de vezes em que as operações nas tabelas `InnoDB` tiveram que esperar por um bloqueio de string.
 
 * `Innodb_rows_deleted`
 
-O número de linhas excluídas das tabelas `InnoDB`.
+O número de strings excluídas das tabelas `InnoDB`.
 
 * `Innodb_rows_inserted`
 
-O número de linhas inseridas nas tabelas `InnoDB`.
+O número de strings inseridas nas tabelas `InnoDB`.
 
 * `Innodb_rows_read`
 
-O número de linhas lidas das tabelas `InnoDB`.
+O número de strings lidas das tabelas `InnoDB`.
 
 * `Innodb_rows_updated`
 
-O número estimado de linhas atualizadas nas tabelas `InnoDB`.
+O número estimado de strings atualizadas nas tabelas `InnoDB`.
 
 Nota
 
@@ -29309,7 +29309,7 @@ Essa variável de status só está disponível em builds de depuração. Mostra 
 
 * `Open_files`
 
-O número de arquivos abertos. Esse contagem inclui arquivos regulares abertos pelo servidor. Não inclui outros tipos de arquivos, como soquetes ou tubos. Além disso, o contagem não inclui arquivos que os motores de armazenamento abrem usando suas próprias funções internas, em vez de pedir ao nível do servidor para fazer isso.
+O número de arquivos abertos. Esse contagem inclui arquivos regulares abertos pelo servidor. Não inclui outros tipos de arquivos, como soquetes ou pipes. Além disso, o contagem não inclui arquivos que os motores de armazenamento abrem usando suas próprias funções internas, em vez de pedir ao nível do servidor para fazer isso.
 
 * `Open_streams`
 
@@ -29507,7 +29507,7 @@ Essa variável está disponível apenas se o plugin de replicação semi-sincron
 
 * `Rpl_semi_sync_slave_status`
 
-Se a replicação semi-sincronizada está atualmente operacional na replica. Isso é `ON` se o plugin tiver sido habilitado e o fio de I/O da replica estiver em execução, `OFF` caso contrário.
+Se a replicação semi-sincronizada está atualmente operacional na replica. Isso é `ON` se o plugin tiver sido habilitado e o thread de I/O da replica estiver em execução, `OFF` caso contrário.
 
 Essa variável está disponível apenas se o plugin de replicação semi-sincronizada do lado do replicador estiver instalado.
 
@@ -29531,7 +29531,7 @@ O número de junções que utilizaram intervalos na primeira tabela. Normalmente
 
 * `Select_range_check`
 
-O número de junções sem chaves que verificam o uso de chave após cada linha. Se este número não for 0, você deve verificar cuidadosamente os índices de suas tabelas.
+O número de junções sem chaves que verificam o uso de chave após cada string. Se este número não for 0, você deve verificar cuidadosamente os índices de suas tabelas.
 
 * `Select_scan`
 
@@ -29583,7 +29583,7 @@ Essa variável apenas mostra o status do canal de replicação padrão. Para mon
 
 * `Slave_rows_last_search_algorithm_used`
 
-O algoritmo de busca que foi mais recentemente utilizado por esta réplica para localizar linhas para replicação baseada em linha. O resultado mostra se a réplica utilizou índices, uma varredura de tabela ou hashing como o algoritmo de busca para a última transação executada em qualquer canal.
+O algoritmo de busca que foi mais recentemente utilizado por esta réplica para localizar strings para replicação baseada em string. O resultado mostra se a réplica utilizou índices, uma varredura de tabela ou hashing como o algoritmo de busca para a última transação executada em qualquer canal.
 
 O método utilizado depende do ambiente da variável de sistema `slave_rows_search_algorithms` e das chaves disponíveis na tabela relevante.
 
@@ -29619,7 +29619,7 @@ O número de tipos que foram feitos usando faixas.
 
 * `Sort_rows`
 
-O número de linhas ordenadas.
+O número de strings ordenadas.
 
 * `Sort_scan`
 
@@ -29828,7 +29828,7 @@ O modo SQL padrão no MySQL 5.7 inclui esses modos: `ONLY_FULL_GROUP_BY`, `STRIC
 
 Esses modos foram adicionados ao modo SQL padrão no MySQL 5.7: Os modos `ONLY_FULL_GROUP_BY` e `STRICT_TRANS_TABLES` foram adicionados no MySQL 5.7.5. O modo `NO_AUTO_CREATE_USER` foi adicionado no MySQL 5.7.7. Os modos `ERROR_FOR_DIVISION_BY_ZERO`, `NO_ZERO_DATE` e `NO_ZERO_IN_DATE` foram adicionados no MySQL 5.7.8. Para uma discussão adicional sobre essas mudanças no valor do modo SQL padrão, consulte Mudanças no Modo SQL no MySQL 5.7.
 
-Para definir o modo SQL na inicialização do servidor, use a opção `--sql-mode="modes"` na linha de comando, ou `sql-mode="modes"` em um arquivo de opção, como `my.cnf` (sistemas operacionais Unix) ou `my.ini` (Windows). *`modes`* é uma lista de diferentes modos separados por vírgulas. Para limpar explicitamente o modo SQL, configure-o como uma string vazia usando `--sql-mode=""` na linha de comando, ou `sql-mode=""` em um arquivo de opção.
+Para definir o modo SQL na inicialização do servidor, use a opção `--sql-mode="modes"` na string de comando, ou `sql-mode="modes"` em um arquivo de opção, como `my.cnf` (sistemas operacionais Unix) ou `my.ini` (Windows). *`modes`* é uma lista de diferentes modos separados por vírgulas. Para limpar explicitamente o modo SQL, configure-o como uma string vazia usando `--sql-mode=""` na string de comando, ou `sql-mode=""` em um arquivo de opção.
 
 Nota
 
@@ -29868,7 +29868,7 @@ Esse modo altera a sintaxe e o comportamento para se conformar mais de perto com
 
 * `STRICT_TRANS_TABLES`
 
-Se um valor não puder ser inserido conforme especificado em uma tabela transacional, interrompa a declaração. Para uma tabela não transacional, interrompa a declaração se o valor ocorrer em uma declaração de uma única linha ou na primeira linha de uma declaração de várias linhas. Mais detalhes são fornecidos mais adiante nesta seção.
+Se um valor não puder ser inserido conforme especificado em uma tabela transacional, interrompa a declaração. Para uma tabela não transacional, interrompa a declaração se o valor ocorrer em uma declaração de uma única string ou na primeira string de uma declaração de várias strings. Mais detalhes são fornecidos mais adiante nesta seção.
 
 A partir do MySQL 5.7.5, o modo SQL padrão inclui `STRICT_TRANS_TABLES`.
 
@@ -30236,7 +30236,7 @@ De MySQL 5.7.4 a 5.7.7, `TRADITIONAL` é equivalente a `STRICT_TRANS_TABLES`, `S
 
 #### Modo SQL rigoroso
 
-O modo estrito controla como o MySQL lida com valores inválidos ou ausentes em declarações de alteração de dados, como `INSERT` ou `UPDATE`. Um valor pode ser inválido por várias razões. Por exemplo, ele pode ter o tipo de dados errado para a coluna, ou pode estar fora do intervalo. Um valor está ausente quando uma nova linha a ser inserida não contém um valor para uma coluna que não é `NULL` e que não tem uma cláusula explícita de `DEFAULT` em sua definição. (Para uma coluna `NULL`, `NULL` é inserido se o valor estiver ausente.) O modo estrito também afeta declarações DDL, como `CREATE TABLE`.
+O modo estrito controla como o MySQL lida com valores inválidos ou ausentes em declarações de alteração de dados, como `INSERT` ou `UPDATE`. Um valor pode ser inválido por várias razões. Por exemplo, ele pode ter o tipo de dados errado para a coluna, ou pode estar fora do intervalo. Um valor está ausente quando uma nova string a ser inserida não contém um valor para uma coluna que não é `NULL` e que não tem uma cláusula explícita de `DEFAULT` em sua definição. (Para uma coluna `NULL`, `NULL` é inserido se o valor estiver ausente.) O modo estrito também afeta declarações DDL, como `CREATE TABLE`.
 
 Se o modo estrito não estiver em vigor, o MySQL insere valores ajustados para valores inválidos ou ausentes e produz avisos (consulte a Seção 13.7.5.40, “Declaração SHOW WARNINGS”). No modo estrito, você pode produzir esse comportamento usando `INSERT IGNORE` ou `UPDATE IGNORE`.
 
@@ -30250,9 +30250,9 @@ O modo SQL rigoroso está em vigor se `STRICT_ALL_TABLES` ou `STRICT_TRANS_TABLE
 
 * Para tabelas transacionais, ocorre um erro para valores inválidos ou ausentes em uma declaração de alteração de dados quando o `STRICT_ALL_TABLES` ou o `STRICT_TRANS_TABLES` está habilitado. A declaração é interrompida e revertida.
 
-* Para tabelas não transacionais, o comportamento é o mesmo em qualquer modo, se o valor ruim ocorrer na primeira linha a ser inserida ou atualizada: a declaração é abortada e a tabela permanece inalterada. Se a declaração inserir ou modificar várias linhas e o valor ruim ocorrer na segunda ou linha posterior, o resultado depende do modo rigoroso habilitado:
+* Para tabelas não transacionais, o comportamento é o mesmo em qualquer modo, se o valor ruim ocorrer na primeira string a ser inserida ou atualizada: a declaração é abortada e a tabela permanece inalterada. Se a declaração inserir ou modificar várias strings e o valor ruim ocorrer na segunda ou string posterior, o resultado depende do modo rigoroso habilitado:
 
-+ Para `STRICT_ALL_TABLES`, o MySQL retorna um erro e ignora o resto das linhas. No entanto, como as linhas anteriores foram inseridas ou atualizadas, o resultado é uma atualização parcial. Para evitar isso, use declarações de uma única linha, que podem ser interrompidas sem alterar a tabela.
++ Para `STRICT_ALL_TABLES`, o MySQL retorna um erro e ignora o resto das strings. No entanto, como as strings anteriores foram inseridas ou atualizadas, o resultado é uma atualização parcial. Para evitar isso, use declarações de uma única string, que podem ser interrompidas sem alterar a tabela.
 
 + Para `STRICT_TRANS_TABLES`, o MySQL converte um valor inválido no valor válido mais próximo para a coluna e insere o valor ajustado. Se um valor estiver ausente, o MySQL insere o valor padrão implícito para o tipo de dados da coluna. Em qualquer caso, o MySQL gera um aviso em vez de um erro e continua processando a declaração. Os valores padrão implícitos são descritos na Seção 11.6, “Valores padrão de tipo de dados”.
 
@@ -30299,9 +30299,9 @@ Uma conclusão a retirar da tabela é que, quando a palavra-chave `IGNORE` e o m
 
 ##### O efeito do IGNORE na execução da declaração
 
-Várias declarações no MySQL suportam uma palavra-chave opcional `IGNORE`. Esta palavra-chave faz com que o servidor desvalorize certos tipos de erros e gere avisos em vez disso. Para uma declaração de várias linhas, desvalorizar um erro para um aviso pode permitir que uma linha seja processada. Caso contrário, `IGNORE` faz com que a declaração passe para a próxima linha em vez de abortar. (Para erros não ignoráveis, um erro ocorre independentemente da palavra-chave `IGNORE`.)
+Várias declarações no MySQL suportam uma palavra-chave opcional `IGNORE`. Esta palavra-chave faz com que o servidor desvalorize certos tipos de erros e gere avisos em vez disso. Para uma declaração de várias strings, desvalorizar um erro para um aviso pode permitir que uma string seja processada. Caso contrário, `IGNORE` faz com que a declaração passe para a próxima string em vez de abortar. (Para erros não ignoráveis, um erro ocorre independentemente da palavra-chave `IGNORE`.)
 
-Exemplo: Se a tabela `t` tiver uma coluna de chave primária `i` contendo valores únicos, tentar inserir o mesmo valor de `i` em várias linhas normalmente produz um erro de chave duplicada:
+Exemplo: Se a tabela `t` tiver uma coluna de chave primária `i` contendo valores únicos, tentar inserir o mesmo valor de `i` em várias strings normalmente produz um erro de chave duplicada:
 
 ```sql
 mysql> CREATE TABLE t (i INT NOT NULL PRIMARY KEY);
@@ -30309,7 +30309,7 @@ mysql> INSERT INTO t (i) VALUES(1),(1);
 ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
 ```
 
-Com `IGNORE`, a linha contendo a chave duplicada ainda não é inserida, mas ocorre um aviso em vez de um erro:
+Com `IGNORE`, a string contendo a chave duplicada ainda não é inserida, mas ocorre um aviso em vez de um erro:
 
 ```sql
 mysql> INSERT IGNORE INTO t (i) VALUES(1),(1);
@@ -30335,7 +30335,7 @@ mysql> SELECT * FROM t2;
 Empty set (0.00 sec)
 ```
 
-Se o modo SQL não for estrito, `IGNORE` faz com que `NULL` seja inserido como o valor padrão implícito da coluna (0 neste caso), o que permite que a linha seja tratada sem ignorá-la:
+Se o modo SQL não for estrito, `IGNORE` faz com que `NULL` seja inserido como o valor padrão implícito da coluna (0 neste caso), o que permite que a string seja tratada sem ignorá-la:
 
 ```sql
 mysql> INSERT INTO t2 (id) VALUES(1),(NULL),(3);
@@ -30351,17 +30351,17 @@ mysql> SELECT * FROM t2;
 
 Essas declarações dão suporte à palavra-chave `IGNORE`:
 
-* `CREATE TABLE ... SELECT`: `IGNORE` não se aplica às partes `CREATE TABLE` ou `SELECT` da declaração, mas sim aos insertos na tabela de linhas produzidos pelo `SELECT`. As linhas que duplicam uma linha existente em um valor de chave única são descartadas.
+* `CREATE TABLE ... SELECT`: `IGNORE` não se aplica às partes `CREATE TABLE` ou `SELECT` da declaração, mas sim aos insertos na tabela de strings produzidos pelo `SELECT`. As strings que duplicam uma string existente em um valor de chave única são descartadas.
 
-* `DELETE`: `IGNORE` faz com que o MySQL ignore erros durante o processo de exclusão de linhas.
+* `DELETE`: `IGNORE` faz com que o MySQL ignore erros durante o processo de exclusão de strings.
 
-* `INSERT`: Com `IGNORE`, as linhas que duplicam uma linha existente em um valor de chave única são descartadas. As linhas definidas com valores que causariam erros de conversão de dados são definidas com os valores mais próximos dos válidos, em vez disso.
+* `INSERT`: Com `IGNORE`, as strings que duplicam uma string existente em um valor de chave única são descartadas. As strings definidas com valores que causariam erros de conversão de dados são definidas com os valores mais próximos dos válidos, em vez disso.
 
-Para tabelas particionadas onde não é encontrado um particionamento que corresponda a um valor dado, `IGNORE` faz com que a operação de inserção falhe silenciosamente para as linhas que contêm o valor não correspondente.
+Para tabelas particionadas onde não é encontrado um particionamento que corresponda a um valor dado, `IGNORE` faz com que a operação de inserção falhe silenciosamente para as strings que contêm o valor não correspondente.
 
-* `LOAD DATA`, `LOAD XML`: Com `IGNORE`, as linhas que duplicam uma linha existente em um valor de chave única são descartadas.
+* `LOAD DATA`, `LOAD XML`: Com `IGNORE`, as strings que duplicam uma string existente em um valor de chave única são descartadas.
 
-* `UPDATE`: Com `IGNORE`, as linhas para as quais conflitos de chave duplicada ocorrem em um valor de chave única não são atualizadas. As linhas atualizadas para valores que causariam erros de conversão de dados são atualizadas para os valores mais próximos dos válidos, em vez disso.
+* `UPDATE`: Com `IGNORE`, as strings para as quais conflitos de chave duplicada ocorrem em um valor de chave única não são atualizadas. As strings atualizadas para valores que causariam erros de conversão de dados são atualizadas para os valores mais próximos dos válidos, em vez disso.
 
 A palavra-chave `IGNORE` se aplica aos seguintes erros ignoráveis:
 
@@ -30411,7 +30411,7 @@ ERROR 1366 (HY000): Incorrect integer value: 'abc' for column 'i' at row 1
 
 Para mais informações sobre as possíveis configurações da variável de sistema `sql_mode`, consulte a Seção 5.1.10, “Modos SQL do servidor”.
 
-O modo SQL rigoroso se aplica às seguintes declarações em condições nas quais algum valor pode estar fora do intervalo ou uma linha inválida pode ser inserida ou excluída de uma tabela:
+O modo SQL rigoroso se aplica às seguintes declarações em condições nas quais algum valor pode estar fora do intervalo ou uma string inválida pode ser inserida ou excluída de uma tabela:
 
 * `ALTER TABLE`
 * `CREATE TABLE`
@@ -30428,7 +30428,7 @@ O modo SQL rigoroso se aplica às seguintes declarações em condições nas qua
 
 Dentro dos programas armazenados, as declarações individuais dos tipos listados acima são executadas no modo SQL estrito se o programa foi definido enquanto o modo estrito estava em vigor.
 
-O modo SQL rigoroso se aplica aos seguintes erros, que representam uma classe de erros em que um valor de entrada é inválido ou está ausente. Um valor é inválido se tiver o tipo de dados errado para a coluna ou pode estar fora do intervalo. Um valor está ausente se uma nova linha a ser inserida não contiver um valor para uma coluna `NOT NULL` que não tenha uma cláusula `DEFAULT` explícita em sua definição.
+O modo SQL rigoroso se aplica aos seguintes erros, que representam uma classe de erros em que um valor de entrada é inválido ou está ausente. Um valor é inválido se tiver o tipo de dados errado para a coluna ou pode estar fora do intervalo. Um valor está ausente se uma nova string a ser inserida não contiver um valor para uma coluna `NOT NULL` que não tenha uma cláusula `DEFAULT` explícita em sua definição.
 
 ```sql
 ER_BAD_NULL_ERROR
@@ -30488,11 +30488,11 @@ Esta seção descreve aspectos sobre como o servidor MySQL gerencia as conexões
 
 O servidor é capaz de ouvir conexões de clientes em várias interfaces de rede. Os threads do gerenciador de conexão lidam com solicitações de conexão de clientes nas interfaces de rede que o servidor escuta:
 
-* Em todas as plataformas, um fio de gerenciamento lida com os pedidos de conexão TCP/IP.
+* Em todas as plataformas, um thread de gerenciamento lida com os pedidos de conexão TCP/IP.
 
-* No Unix, o mesmo fio do gerenciador também lida com solicitações de conexão de arquivos de soquete Unix.
+* No Unix, o mesmo thread do gerenciador também lida com solicitações de conexão de arquivos de soquete Unix.
 
-* No Windows, um fio de gerenciamento lida com os pedidos de conexão de memória compartilhada, e outro lida com os pedidos de conexão de canal nomeado.
+* No Windows, um thread de gerenciamento lida com os pedidos de conexão de memória compartilhada, e outro lida com os pedidos de conexão de canal nomeado.
 
 O servidor não cria threads para lidar com interfaces que ele não escuta. Por exemplo, um servidor Windows que não tem suporte para conexões de canal nomeado habilitado não cria uma thread para lidar com elas.
 
@@ -30500,11 +30500,11 @@ Os plugins ou componentes de servidor individual podem implementar sua própria 
 
 * O X Plugin permite que o MySQL Server se comunique com clientes usando o Protocolo X. Veja a Seção 19.4, “X Plugin”.
 
-##### Gerenciamento de Fios de Conexão do Cliente
+##### Gerenciamento de Threads de Conexão do Cliente
 
 Os threads do gerenciador de conexão associam cada conexão do cliente a um thread dedicado a ela que lida com a autenticação e o processamento de solicitações para essa conexão. Os threads do gerenciador criam um novo thread quando necessário, mas tentam evitar fazer isso consultando primeiro o cache de threads para ver se ele contém um thread que pode ser usado para a conexão. Quando uma conexão termina, seu thread é devolvido ao cache de threads se o cache não estiver cheio.
 
-Nesse modelo de fio de conexão, há tantos fios quanto clientes atualmente conectados, o que tem algumas desvantagens quando a carga de trabalho do servidor deve escalar para lidar com um grande número de conexões. Por exemplo, a criação e a eliminação de threads se tornam caras. Além disso, cada thread requer recursos do servidor e do kernel, como espaço de pilha. Para acomodar um grande número de conexões simultâneas, o tamanho da pilha por thread deve ser mantido pequeno, levando a uma situação em que ela é ou muito pequena ou o servidor consome grandes quantidades de memória. A exaustão de outros recursos também pode ocorrer, e o custo de escalonamento pode se tornar significativo.
+Nesse modelo de thread de conexão, há tantos threads quanto clientes atualmente conectados, o que tem algumas desvantagens quando a carga de trabalho do servidor deve escalar para lidar com um grande número de conexões. Por exemplo, a criação e a eliminação de threads se tornam caras. Além disso, cada thread requer recursos do servidor e do kernel, como espaço de pilha. Para acomodar um grande número de conexões simultâneas, o tamanho da pilha por thread deve ser mantido pequeno, levando a uma situação em que ela é ou muito pequena ou o servidor consome grandes quantidades de memória. A exaustão de outros recursos também pode ocorrer, e o custo de escalonamento pode se tornar significativo.
 
 A Edição Empresarial do MySQL inclui um plugin de pool de threads que oferece um modelo alternativo de manipulação de threads, projetado para reduzir o custo e melhorar o desempenho. Ele implementa um pool de threads que aumenta o desempenho do servidor, gerenciando eficientemente os threads de execução de instruções para um grande número de conexões de clientes. Veja a Seção 5.5.3, “MySQL Enterprise Thread Pool”.
 
@@ -30528,7 +30528,7 @@ Se o servidor recusar uma conexão porque o limite `max_connections` é atingido
 
 O número máximo de conexões que o MySQL suporta (ou seja, o valor máximo ao qual `max_connections` pode ser ajustado) depende de vários fatores:
 
-* A qualidade da biblioteca de fios em uma plataforma específica.
+* A qualidade da biblioteca de threads em uma plataforma específica.
 * A quantidade de RAM disponível.
 * A quantidade de RAM utilizada para cada conexão.
 * A carga de trabalho de cada conexão.
@@ -30587,7 +30587,7 @@ Alguns erros de conexão não estão associados a conexões TCP, ocorrem muito c
 
 ##### Configurando o Cache do Host
 
-O cache do host é ativado por padrão. A variável de sistema `host_cache_size` controla seu tamanho, bem como o tamanho da tabela do Schema de Desempenho `host_cache` que expõe o conteúdo do cache. O tamanho do cache pode ser definido na inicialização do servidor e alterado em tempo real. Por exemplo, para definir o tamanho para 100 na inicialização, coloque essas linhas no arquivo do servidor `my.cnf`:
+O cache do host é ativado por padrão. A variável de sistema `host_cache_size` controla seu tamanho, bem como o tamanho da tabela do Schema de Desempenho `host_cache` que expõe o conteúdo do cache. O tamanho do cache pode ser definido na inicialização do servidor e alterado em tempo real. Por exemplo, para definir o tamanho para 100 na inicialização, coloque essas strings no arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]
@@ -30606,13 +30606,13 @@ Alterar o tamanho do cache em tempo de execução causa uma operação de esvazi
 
 Usar a opção `--skip-host-cache` é semelhante a definir a variável de sistema `host_cache_size` como 0, mas `host_cache_size` é mais flexível porque também pode ser usado para redimensionar, habilitar e desabilitar o cache do host em tempo de execução, não apenas na inicialização do servidor. Iniciar o servidor com `--skip-host-cache` não impede alterações em tempo de execução no valor de `host_cache_size`, mas tais alterações não têm efeito e o cache não é reativado mesmo se `host_cache_size` for definido maior que 0.
 
-Para desabilitar as pesquisas de nomes de host DNS, inicie o servidor com a variável de sistema `skip_name_resolve` habilitada. Neste caso, o servidor usa apenas endereços IP e não nomes de host para corresponder os hosts de conexão a linhas nas tabelas de concessão do MySQL. Apenas as contas especificadas nessas tabelas que usam endereços IP podem ser usadas. (Um cliente pode não ser capaz de se conectar se não existir uma conta que especifique o endereço IP do cliente.)
+Para desabilitar as pesquisas de nomes de host DNS, inicie o servidor com a variável de sistema `skip_name_resolve` habilitada. Neste caso, o servidor usa apenas endereços IP e não nomes de host para corresponder os hosts de conexão a strings nas tabelas de concessão do MySQL. Apenas as contas especificadas nessas tabelas que usam endereços IP podem ser usadas. (Um cliente pode não ser capaz de se conectar se não existir uma conta que especifique o endereço IP do cliente.)
 
 Se você tem um DNS muito lento e muitos hosts, poderá melhorar o desempenho habilitando `skip_name_resolve` para desabilitar consultas DNS ou aumentando o valor de `host_cache_size` para tornar o cache do host maior.
 
 Para não permitir conexões TCP/IP, inicie o servidor com a variável de sistema `skip_networking` habilitada.
 
-Para ajustar o número permitido de erros de conexão consecutivos antes que ocorra o bloqueio do host, defina a variável de sistema `max_connect_errors`. Por exemplo, para definir o valor no início, coloque essas linhas no arquivo do servidor `my.cnf`:
+Para ajustar o número permitido de erros de conexão consecutivos antes que ocorra o bloqueio do host, defina a variável de sistema `max_connect_errors`. Por exemplo, para definir o valor no início, coloque essas strings no arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]
@@ -30637,7 +30637,7 @@ Descartar o cache do host pode ser aconselhável ou desejável nessas condiçõe
 
 A limpeza do cache do host tem esses efeitos:
 
-* Limpa o cache do host de memória. * Remove todas as linhas da tabela do Schema de desempenho `host_cache` que exibe o conteúdo do cache.
+* Limpa o cache do host de memória. * Remove todas as strings da tabela do Schema de desempenho `host_cache` que exibe o conteúdo do cache.
 
 * Desbloqueia qualquer host bloqueado. Isso permite que novas tentativas de conexão sejam feitas a partir desses hosts.
 
@@ -30724,7 +30724,7 @@ O servidor MySQL escuta em um único soquete de rede para conexões TCP/IP. Esse
 
 O procedimento a seguir mostra como configurar o MySQL para permitir conexões IPv6 por clientes que se conectam ao servidor local usando o endereço de host local `::1`. As instruções aqui fornecidas pressupem que seu sistema suporta IPv6.
 
-1. Inicie o servidor MySQL com uma configuração apropriada `bind_address` para permitir que ele aceite conexões IPv6. Por exemplo, coloque as seguintes linhas no arquivo de opção do servidor e reinicie o servidor:
+1. Inicie o servidor MySQL com uma configuração apropriada `bind_address` para permitir que ele aceite conexões IPv6. Por exemplo, coloque as seguintes strings no arquivo de opção do servidor e reinicie o servidor:
 
    ```sql
    [mysqld]
@@ -30774,7 +30774,7 @@ Client host: 2001:db8:0:f101::2
 
 Esses endereços são escolhidos da faixa de endereços não roteáveis recomendada pela IANA para fins de documentação e são suficientes para testes na sua rede local. Para aceitar conexões IPv6 de clientes externos à rede local, o host do servidor deve ter um endereço público. Se o seu provedor de rede lhe atribuir um endereço IPv6, você pode usá-lo. Caso contrário, outra maneira de obter um endereço é usar um intermediário IPv6; veja Seção 5.1.12.5, “Obtenção de um endereço IPv6 de um intermediário”.
 
-1. Inicie o servidor MySQL com uma configuração apropriada `bind_address` para permitir que ele aceite conexões IPv6. Por exemplo, coloque as seguintes linhas no arquivo de opção do servidor e reinicie o servidor:
+1. Inicie o servidor MySQL com uma configuração apropriada `bind_address` para permitir que ele aceite conexões IPv6. Por exemplo, coloque as seguintes strings no arquivo de opção do servidor e reinicie o servidor:
 
    ```sql
    [mysqld]
@@ -30815,7 +30815,7 @@ Como alternativa, você pode vincular o servidor ao `2001:db8:0:f101::1`, mas is
 
 Se você não tem um endereço IPv6 público que permita que seu sistema se comunique via IPv6 fora da sua rede local, você pode obtê-lo de um intermediário de túnel IPv6. A página do intermediário de túnel IPv6 da Wikipedia lista vários intermediários e suas características, como se eles forneçam endereços estáticos e os protocolos de roteamento suportados.
 
-Depois de configurar o seu servidor host para usar um endereço IPv6 fornecido pelo intermediário, inicie o servidor MySQL com uma configuração apropriada `bind_address` para permitir que o servidor aceite conexões IPv6. Por exemplo, coloque as seguintes linhas no arquivo de opção do servidor e reinicie o servidor:
+Depois de configurar o seu servidor host para usar um endereço IPv6 fornecido pelo intermediário, inicie o servidor MySQL com uma configuração apropriada `bind_address` para permitir que o servidor aceite conexões IPv6. Por exemplo, coloque as seguintes strings no arquivo de opção do servidor e reinicie o servidor:
 
 ```sql
 [mysqld]
@@ -30900,7 +30900,7 @@ Nota
 
 Se configurado em `SYSTEM`, cada chamada de função MySQL que requer um cálculo de fuso horário faz uma chamada de biblioteca do sistema para determinar o fuso horário do sistema atual. Essa chamada pode ser protegida por um mutex global, resultando em concorrência.
 
-O valor inicial do fuso horário do servidor global pode ser especificado explicitamente na inicialização com a opção `--default-time-zone` na linha de comando, ou você pode usar a seguinte linha em um arquivo de opções:
+O valor inicial do fuso horário do servidor global pode ser especificado explicitamente na inicialização com a opção `--default-time-zone` na string de comando, ou você pode usar a seguinte string em um arquivo de opções:
 
   ```sql
   default-time-zone='timezone'
@@ -30957,7 +30957,7 @@ Carregar as informações sobre o fuso horário não é necessariamente uma oper
 
 Se o seu sistema tiver seu próprio banco de dados de zoneinfo (o conjunto de arquivos que descrevem as zonas horárias), use o programa `mysql_tzinfo_to_sql` para carregar as tabelas de zona horária. Exemplos de sistemas desse tipo são Linux, macOS, FreeBSD e Solaris. Um local provável para esses arquivos é o diretório `/usr/share/zoneinfo`. Se o seu sistema não tiver um banco de dados de zoneinfo, você pode usar um pacote para download, conforme descrito mais adiante nesta seção.
 
-Para carregar as tabelas de fuso horário a partir da linha de comando, passe o nome do caminho do diretório zoneinfo para `mysql_tzinfo_to_sql` e envie a saída para o programa **mysql**. Por exemplo:
+Para carregar as tabelas de fuso horário a partir da string de comando, passe o nome do caminho do diretório zoneinfo para `mysql_tzinfo_to_sql` e envie a saída para o programa **mysql**. Por exemplo:
 
 ```sql
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
@@ -31023,7 +31023,7 @@ Quando as regras de fuso horário mudam, os aplicativos que usam as regras antig
 
 Para obter instruções para ambos os métodos, consulte a seção Populando as tabelas de fuso horário. `mysqld` armazena as informações de fuso horário que ele consulta, portanto, após atualizar as tabelas de fuso horário, reinicie `mysqld` para garantir que ele não continue a fornecer dados de fuso horário desatualizados.
 
-Se você não tiver certeza se os fusos horários nomeados estão disponíveis, para uso como configuração do fuso horário do servidor ou por clientes que definem seu próprio fuso horário, verifique se suas tabelas de fuso horário estão vazias. A consulta a seguir determina se a tabela que contém os nomes dos fusos horários tem alguma linha:
+Se você não tiver certeza se os fusos horários nomeados estão disponíveis, para uso como configuração do fuso horário do servidor ou por clientes que definem seu próprio fuso horário, verifique se suas tabelas de fuso horário estão vazias. A consulta a seguir determina se a tabela que contém os nomes dos fusos horários tem alguma string:
 
 ```sql
 mysql> SELECT COUNT(*) FROM mysql.time_zone_name;
@@ -31227,7 +31227,7 @@ Para permitir que os aplicativos do cliente extraiam informações sobre mudanç
 
 #### Suporte ao Rastreador de Estado de Sessão da Unidade de Teste
 
-O programa **mysqltest** possui os comandos `disable_session_track_info` e `enable_session_track_info` que controlam se as notificações do rastreador de sessão ocorrem. Você pode usar esses comandos para ver, a partir da linha de comando, quais notificações as instruções SQL produzem. Suponha que um arquivo `testscript` contenha o seguinte script do **mysqltest**:
+O programa **mysqltest** possui os comandos `disable_session_track_info` e `enable_session_track_info` que controlam se as notificações do rastreador de sessão ocorrem. Você pode usar esses comandos para ver, a partir da string de comando, quais notificações as instruções SQL produzem. Suponha que um arquivo `testscript` contenha o seguinte script do **mysqltest**:
 
 ```sql
 DROP TABLE IF EXISTS test.t1;
@@ -31351,7 +31351,7 @@ O processo de desligamento do servidor ocorre da seguinte forma:
 
 Isso pode ocorrer de várias maneiras. Por exemplo, um usuário com o privilégio `SHUTDOWN` pode executar o comando **mysqladmin shutdown**. O **mysqladmin** pode ser usado em qualquer plataforma suportada pelo MySQL. Outros métodos de iniciação de desligamento específicos para o sistema operacional também são possíveis: o servidor é desligado no Unix quando recebe um sinal [[`SIGTERM`]. Um servidor que funciona como um serviço no Windows é desligado quando o gerente de serviços o informa.
 
-2. O servidor cria um fio de desligamento, se necessário.
+2. O servidor cria um thread de desligamento, se necessário.
 
 Dependendo de como o desligamento foi iniciado, o servidor pode criar um thread para lidar com o processo de desligamento. Se o desligamento foi solicitado por um cliente, um thread de desligamento é criado. Se o desligamento for o resultado da recepção de um sinal `SIGTERM`, o thread do sinal pode lidar com o desligamento em si, ou pode criar um thread separado para fazer isso. Se o servidor tentar criar um thread de desligamento e não conseguir (por exemplo, se a memória estiver esgotada), ele emite uma mensagem de diagnóstico que aparece no log de erro:
 
@@ -31361,11 +31361,11 @@ Dependendo de como o desligamento foi iniciado, o servidor pode criar um thread 
 
 3. O servidor para de aceitar novas conexões.
 
-Para impedir que uma nova atividade seja iniciada durante o desligamento, o servidor para de aceitar novas conexões de clientes fechando os manipuladores das interfaces de rede para as quais ele normalmente escuta conexões: a porta TCP/IP, o arquivo de soquete Unix, o tubo nomeado do Windows e a memória compartilhada no Windows.
+Para impedir que uma nova atividade seja iniciada durante o desligamento, o servidor para de aceitar novas conexões de clientes fechando os manipuladores das interfaces de rede para as quais ele normalmente escuta conexões: a porta TCP/IP, o arquivo de soquete Unix, o pipe nomeado do Windows e a memória compartilhada no Windows.
 
 4. O servidor termina a atividade atual.
 
-Para cada fio associado a uma conexão com um cliente, o servidor quebra a conexão com o cliente e marca o fio como morto. Os fios morrem quando percebem que foram marcados como tal. Os fios de conexões ociosas morrem rapidamente. Os fios que estão atualmente processando declarações verificam seu estado periodicamente e demoram mais para morrer. Para informações adicionais sobre a terminação de fios, consulte a Seção 13.7.6.4, “Declaração KILL”, em particular para as instruções sobre operações `REPAIR TABLE` ou `OPTIMIZE TABLE` mortas nas tabelas `MyISAM`.
+Para cada thread associado a uma conexão com um cliente, o servidor quebra a conexão com o cliente e marca o thread como morto. Os threads morrem quando percebem que foram marcados como tal. Os threads de conexões ociosas morrem rapidamente. Os threads que estão atualmente processando declarações verificam seu estado periodicamente e demoram mais para morrer. Para informações adicionais sobre a terminação de threads, consulte a Seção 13.7.6.4, “Declaração KILL”, em particular para as instruções sobre operações `REPAIR TABLE` ou `OPTIMIZE TABLE` mortas nas tabelas `MyISAM`.
 
 Para os threads que têm uma transação aberta, a transação é revertida. Se um thread está atualizando uma tabela não transacional, uma operação como uma multipla `UPDATE` ou `INSERT` pode deixar a tabela parcialmente atualizada, porque a operação pode terminar antes de ser concluída.
 

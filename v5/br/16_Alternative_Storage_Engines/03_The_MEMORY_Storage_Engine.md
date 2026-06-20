@@ -29,7 +29,7 @@ Os desenvolvedores que pretendem implantar aplicativos que utilizam o motor de a
 
 O NDB Cluster oferece as mesmas funcionalidades do motor `MEMORY`, com níveis de desempenho mais elevados, e fornece funcionalidades adicionais que não estão disponíveis no `MEMORY`:
 
-* Bloqueio em nível de linha e operação em múltiplos threads para baixa concorrência entre clientes.
+* Bloqueio em nível de string e operação em múltiplos threads para baixa concorrência entre clientes.
 
 * Escalabilidade mesmo com misturas de declarações que incluem gravações. * Operação opcional com suporte a disco para durabilidade dos dados. * Arquitetura não compartilhada e operação em múltiplos hosts sem um único ponto de falha, permitindo uma disponibilidade de 99,999%.
 
@@ -39,7 +39,7 @@ O NDB Cluster oferece as mesmas funcionalidades do motor `MEMORY`, com níveis d
 
 ### Características de desempenho
 
-O desempenho do `MEMORY` é limitado pela concorrência resultante da execução em único fio e pelo custo de bloqueio de tabela ao processar atualizações. Isso limita a escalabilidade quando a carga aumenta, especialmente para misturas de instruções que incluem escritas.
+O desempenho do `MEMORY` é limitado pela concorrência resultante da execução em único thread e pelo custo de bloqueio de tabela ao processar atualizações. Isso limita a escalabilidade quando a carga aumenta, especialmente para misturas de instruções que incluem escritas.
 
 Apesar do processamento em memória para as tabelas `MEMORY`, elas não são necessariamente mais rápidas do que as tabelas `InnoDB` em um servidor ocupado, para consultas de propósito geral ou sob uma carga de trabalho de leitura/escrita. Em particular, o bloqueio de tabela envolvido na realização de atualizações pode atrasar o uso concorrente das tabelas `MEMORY` de várias sessões.
 
@@ -51,7 +51,7 @@ O motor de armazenamento `MEMORY` associa cada tabela a um arquivo de disco, que
 
 As tabelas `MEMORY` têm as seguintes características:
 
-* O espaço para as tabelas `MEMORY` é alocado em blocos pequenos. As tabelas utilizam hashing dinâmico 100% para inserções. Não é necessário espaço de overflow ou espaço de chave extra. Não é necessário espaço extra para listas livres. As linhas excluídas são colocadas em uma lista vinculada e reutilizadas quando você insere novos dados na tabela. As tabelas `MEMORY` também não apresentam nenhum dos problemas comumente associados a excluírem e inserirem em tabelas com hashing.
+* O espaço para as tabelas `MEMORY` é alocado em blocos pequenos. As tabelas utilizam hashing dinâmico 100% para inserções. Não é necessário espaço de overflow ou espaço de chave extra. Não é necessário espaço extra para listas livres. As strings excluídas são colocadas em uma lista vinculada e reutilizadas quando você insere novos dados na tabela. As tabelas `MEMORY` também não apresentam nenhum dos problemas comumente associados a excluírem e inserirem em tabelas com hashing.
 
 * As tabelas `MEMORY` utilizam um formato de armazenamento de fila de comprimento fixo. Tipos de comprimento variável, como `VARCHAR`, são armazenados com um comprimento fixo.
 
@@ -69,7 +69,7 @@ Para criar uma tabela `MEMORY`, especifique a cláusula `ENGINE=MEMORY` na decla
 CREATE TABLE t (i INT) ENGINE = MEMORY;
 ```
 
-Como indicado pelo nome do motor, as tabelas `MEMORY` são armazenadas na memória. Elas usam índices de hash por padrão, o que as torna muito rápidas para consultas de valor único e muito úteis para criar tabelas temporárias. No entanto, quando o servidor é desligado, todas as linhas armazenadas nas tabelas `MEMORY` são perdidas. As próprias tabelas continuam a existir porque suas definições são armazenadas em arquivos `.frm` no disco, mas elas estão vazias quando o servidor é reiniciado.
+Como indicado pelo nome do motor, as tabelas `MEMORY` são armazenadas na memória. Elas usam índices de hash por padrão, o que as torna muito rápidas para consultas de valor único e muito úteis para criar tabelas temporárias. No entanto, quando o servidor é desligado, todas as strings armazenadas nas tabelas `MEMORY` são perdidas. As próprias tabelas continuam a existir porque suas definições são armazenadas em arquivos `.frm` no disco, mas elas estão vazias quando o servidor é reiniciado.
 
 Este exemplo mostra como você pode criar, usar e remover uma tabela `MEMORY`:
 
@@ -128,9 +128,9 @@ Quando você usa as tabelas `MEMORY` em uma topologia de replicação, em alguma
 
 O servidor precisa de memória suficiente para manter todas as tabelas `MEMORY` que estão em uso ao mesmo tempo.
 
-A memória não é recuperada se você excluir linhas individuais de uma tabela `MEMORY`. A memória é recuperada apenas quando toda a tabela é excluída. A memória que foi previamente usada para as linhas excluídas é reutilizada para novas linhas na mesma tabela. Para liberar toda a memória usada por uma tabela `MEMORY` quando você não precisa mais de seu conteúdo, execute `DELETE` ou `TRUNCATE TABLE` para remover todas as linhas, ou exclua a tabela como um todo usando [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"). Para liberar a memória usada por linhas excluídas, use `ALTER TABLE ENGINE=MEMORY` para forçar a reconstrução de uma tabela.
+A memória não é recuperada se você excluir strings individuais de uma tabela `MEMORY`. A memória é recuperada apenas quando toda a tabela é excluída. A memória que foi previamente usada para as strings excluídas é reutilizada para novas strings na mesma tabela. Para liberar toda a memória usada por uma tabela `MEMORY` quando você não precisa mais de seu conteúdo, execute `DELETE` ou `TRUNCATE TABLE` para remover todas as strings, ou exclua a tabela como um todo usando [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"). Para liberar a memória usada por strings excluídas, use `ALTER TABLE ENGINE=MEMORY` para forçar a reconstrução de uma tabela.
 
-A memória necessária para uma linha em uma tabela `MEMORY` é calculada usando a seguinte expressão:
+A memória necessária para uma string em uma tabela `MEMORY` é calculada usando a seguinte expressão:
 
 ```sql
 SUM_OVER_ALL_BTREE_KEYS(max_length_of_key + sizeof(char*) * 4)
@@ -138,7 +138,7 @@ SUM_OVER_ALL_BTREE_KEYS(max_length_of_key + sizeof(char*) * 4)
 + ALIGN(length_of_row+1, sizeof(char*))
 ```
 
-`ALIGN()` representa um fator de agregação para fazer com que o comprimento da linha seja um múltiplo exato do tamanho do ponteiro `char`. `sizeof(char*)` é 4 em máquinas de 32 bits e 8 em máquinas de 64 bits.
+`ALIGN()` representa um fator de agregação para fazer com que o comprimento da string seja um múltiplo exato do tamanho do ponteiro `char`. `sizeof(char*)` é 4 em máquinas de 32 bits e 8 em máquinas de 64 bits.
 
 Como mencionado anteriormente, a variável de sistema `max_heap_table_size` define o limite do tamanho máximo das tabelas `MEMORY`. Para controlar o tamanho máximo para tabelas individuais, defina o valor da sessão desta variável antes de criar cada tabela. (Não altere o valor global `max_heap_table_size` a menos que pretenda que o valor seja usado para tabelas `MEMORY` criadas por todos os clientes.) O exemplo a seguir cria duas tabelas `MEMORY`, com um tamanho máximo de 1 MB e 2 MB, respectivamente:
 
@@ -158,7 +158,7 @@ Query OK, 0 rows affected (0.00 sec)
 
 Ambas as tabelas retornam ao valor global `max_heap_table_size` do servidor se o servidor for reiniciado.
 
-Você também pode especificar uma opção de tabela `MAX_ROWS` em declarações `CREATE TABLE` para tabelas `MEMORY` para fornecer uma dica sobre o número de linhas que você planeja armazenar nelas. Isso não permite que a tabela cresça além do valor `max_heap_table_size`, que ainda atua como uma restrição sobre o tamanho máximo da tabela. Para máxima flexibilidade na capacidade de usar `MAX_ROWS`, defina `max_heap_table_size` pelo menos tão alto quanto o valor ao qual cada tabela `MEMORY` deve ser capaz de crescer.
+Você também pode especificar uma opção de tabela `MAX_ROWS` em declarações `CREATE TABLE` para tabelas `MEMORY` para fornecer uma dica sobre o número de strings que você planeja armazenar nelas. Isso não permite que a tabela cresça além do valor `max_heap_table_size`, que ainda atua como uma restrição sobre o tamanho máximo da tabela. Para máxima flexibilidade na capacidade de usar `MAX_ROWS`, defina `max_heap_table_size` pelo menos tão alto quanto o valor ao qual cada tabela `MEMORY` deve ser capaz de crescer.
 
 ### Recursos adicionais
 

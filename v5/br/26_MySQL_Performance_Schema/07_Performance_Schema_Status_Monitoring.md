@@ -97,7 +97,7 @@ A instrumentação ainda funciona e coleta (parcial) dados para `plugin_b`.
 
 Quando o servidor não consegue criar um instrumento de mutex, esses resultados ocorrem:
 
-* Não há linha para o instrumento inserida na tabela `setup_instruments`.
+* Não há string para o instrumento inserida na tabela `setup_instruments`.
 
 * `Performance_schema_mutex_classes_lost` aumenta em 1.
 

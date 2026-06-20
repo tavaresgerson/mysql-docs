@@ -2,7 +2,7 @@
 
 **Tabela 12.20 Funções de Informação**
 
-<table frame="box" rules="all" summary="A reference that lists information functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>BENCHMARK()</code></td> <td>Execute repetidamente uma expressão</td> </tr><tr><td><code>CHARSET()</code></td> <td>Retorne o conjunto de caracteres do argumento</td> </tr><tr><td><code>COERCIBILITY()</code></td> <td>Retorne o valor de coercitividade de ordenação do argumento de string</td> </tr><tr><td><code>COLLATION()</code></td> <td>Retorne a ordenação do argumento de string</td> </tr><tr><td><code>CONNECTION_ID()</code></td> <td>Retorne o ID de conexão (ID de thread) para a conexão</td> </tr><tr><td><code>CURRENT_USER()</code>, <code>CURRENT_USER</code></td> <td>O nome do usuário autenticado e o nome do host</td> </tr><tr><td><code>DATABASE()</code></td> <td>Retorne o nome do banco de dados padrão (atual)</td> </tr><tr><td><code>FOUND_ROWS()</code></td> <td>Para um SELECT com uma cláusula LIMIT, o número de linhas que seriam devolvidas se não houvesse cláusula LIMIT</td> </tr><tr><td><code>LAST_INSERT_ID()</code></td> <td>Valor da coluna AUTOINCREMENT para a última inserção</td> </tr><tr><td><code>ROW_COUNT()</code></td> <td>O número de linhas atualizadas</td> </tr><tr><td><code>SCHEMA()</code></td> <td>Sinônimo de DATABASE()</td> </tr><tr><td><code>SESSION_USER()</code></td> <td>Sinônimo de USER()</td> </tr><tr><td><code>SYSTEM_USER()</code></td> <td>Sinônimo de USER()</td> </tr><tr><td><code>USER()</code></td> <td>O nome de usuário e o nome do host fornecidos pelo cliente</td> </tr><tr><td><code>VERSION()</code></td> <td>Retorne uma string que indique a versão do servidor MySQL</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists information functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>BENCHMARK()</code></td> <td>Execute repetidamente uma expressão</td> </tr><tr><td><code>CHARSET()</code></td> <td>Retorne o conjunto de caracteres do argumento</td> </tr><tr><td><code>COERCIBILITY()</code></td> <td>Retorne o valor de coercitividade de ordenação do argumento de string</td> </tr><tr><td><code>COLLATION()</code></td> <td>Retorne a ordenação do argumento de string</td> </tr><tr><td><code>CONNECTION_ID()</code></td> <td>Retorne o ID de conexão (ID de thread) para a conexão</td> </tr><tr><td><code>CURRENT_USER()</code>, <code>CURRENT_USER</code></td> <td>O nome do usuário autenticado e o nome do host</td> </tr><tr><td><code>DATABASE()</code></td> <td>Retorne o nome do banco de dados padrão (atual)</td> </tr><tr><td><code>FOUND_ROWS()</code></td> <td>Para um SELECT com uma cláusula LIMIT, o número de strings que seriam devolvidas se não houvesse cláusula LIMIT</td> </tr><tr><td><code>LAST_INSERT_ID()</code></td> <td>Valor da coluna AUTOINCREMENT para a última inserção</td> </tr><tr><td><code>ROW_COUNT()</code></td> <td>O número de strings atualizadas</td> </tr><tr><td><code>SCHEMA()</code></td> <td>Sinônimo de DATABASE()</td> </tr><tr><td><code>SESSION_USER()</code></td> <td>Sinônimo de USER()</td> </tr><tr><td><code>SYSTEM_USER()</code></td> <td>Sinônimo de USER()</td> </tr><tr><td><code>USER()</code></td> <td>O nome de usuário e o nome do host fornecidos pelo cliente</td> </tr><tr><td><code>VERSION()</code></td> <td>Retorne uma string que indique a versão do servidor MySQL</td> </tr></tbody></table>
 
 * `BENCHMARK(count,expr)`
 
@@ -24,7 +24,7 @@ O tempo relatado é o tempo gasto no cliente, não o tempo da CPU no servidor. �
 
 `BENCHMARK()` é destinado a medir o desempenho do runtime de expressões escalares, o que tem algumas implicações significativas sobre a forma como você o usa e interpreta os resultados:
 
-+ Apenas expressões escalares podem ser usadas. Embora a expressão possa ser uma subconsulta, ela deve retornar uma única coluna e, no máximo, uma única linha. Por exemplo, `BENCHMARK(10, (SELECT * FROM t))`(information-functions.html#function_benchmark) falha se a tabela `t` tiver mais de uma coluna ou mais de uma linha.
++ Apenas expressões escalares podem ser usadas. Embora a expressão possa ser uma subconsulta, ela deve retornar uma única coluna e, no máximo, uma única string. Por exemplo, `BENCHMARK(10, (SELECT * FROM t))`(information-functions.html#function_benchmark) falha se a tabela `t` tiver mais de uma coluna ou mais de uma string.
 
 Executar uma declaração `SELECT expr` *`N`* vezes difere da execução de `SELECT BENCHMARK(N, expr)` em termos da quantidade de sobrecarga envolvida. Os dois têm perfis de execução muito diferentes e você não deve esperar que eles levem o mesmo tempo. O primeiro envolve o analisador, otimizador, bloqueio de tabela e avaliação de tempo de execução *`N`* vezes cada. O segundo envolve apenas a avaliação de tempo de execução *`N`* vezes, e todos os outros componentes apenas uma vez. As estruturas de memória já alocadas são reutilizadas, e otimizações de tempo de execução, como o cache local de resultados já avaliados para funções agregadas, podem alterar os resultados. O uso de `BENCHMARK()` mede, portanto, o desempenho do componente de tempo de execução, dando mais peso a esse componente e removendo o "ruído" introduzido pela rede, analisador, otimizador e assim por diante.
 
@@ -140,7 +140,7 @@ Se não houver um banco de dados padrão, `DATABASE()` retorna `NULL`.
 
 * `FOUND_ROWS()`
 
-Uma declaração `SELECT` pode incluir uma cláusula `LIMIT` para restringir o número de linhas que o servidor retorna ao cliente. Em alguns casos, é desejável saber quantas linhas a declaração teria retornado sem o `LIMIT`, mas sem executar a declaração novamente. Para obter esse número de linhas, inclua uma opção `SQL_CALC_FOUND_ROWS` na declaração `SELECT`, e então invoque `FOUND_ROWS()` posteriormente:
+Uma declaração `SELECT` pode incluir uma cláusula `LIMIT` para restringir o número de strings que o servidor retorna ao cliente. Em alguns casos, é desejável saber quantas strings a declaração teria retornado sem o `LIMIT`, mas sem executar a declaração novamente. Para obter esse número de strings, inclua uma opção `SQL_CALC_FOUND_ROWS` na declaração `SELECT`, e então invoque `FOUND_ROWS()` posteriormente:
 
   ```sql
   mysql> SELECT SQL_CALC_FOUND_ROWS * FROM tbl_name
@@ -148,51 +148,51 @@ Uma declaração `SELECT` pode incluir uma cláusula `LIMIT` para restringir o n
   mysql> SELECT FOUND_ROWS();
   ```
 
-A segunda `SELECT` retorna um número que indica quantas linhas a primeira `SELECT` teria retornado se tivesse sido escrita sem a cláusula `LIMIT`.
+A segunda `SELECT` retorna um número que indica quantas strings a primeira `SELECT` teria retornado se tivesse sido escrita sem a cláusula `LIMIT`.
 
-Na ausência da opção `SQL_CALC_FOUND_ROWS` na declaração mais recente bem-sucedida `SELECT`, `FOUND_ROWS()` retorna o número de linhas no conjunto de resultados retornado por essa declaração. Se a declaração incluir uma cláusula `LIMIT`, `FOUND_ROWS()` retorna o número de linhas até o limite. Por exemplo, `FOUND_ROWS()` retorna 10 ou 60, respectivamente, se a declaração incluir `LIMIT 10` ou `LIMIT 50, 10`.
+Na ausência da opção `SQL_CALC_FOUND_ROWS` na declaração mais recente bem-sucedida `SELECT`, `FOUND_ROWS()` retorna o número de strings no conjunto de resultados retornado por essa declaração. Se a declaração incluir uma cláusula `LIMIT`, `FOUND_ROWS()` retorna o número de strings até o limite. Por exemplo, `FOUND_ROWS()` retorna 10 ou 60, respectivamente, se a declaração incluir `LIMIT 10` ou `LIMIT 50, 10`.
 
-O número de linhas disponível através de `FOUND_ROWS()` é transitório e não deve ser disponível após a declaração após a declaração de `SELECT SQL_CALC_FOUND_ROWS`. Se você precisar referir-se ao valor posteriormente, salve-o:
+O número de strings disponível através de `FOUND_ROWS()` é transitório e não deve ser disponível após a declaração após a declaração de `SELECT SQL_CALC_FOUND_ROWS`. Se você precisar referir-se ao valor posteriormente, salve-o:
 
   ```sql
   mysql> SELECT SQL_CALC_FOUND_ROWS * FROM ... ;
   mysql> SET @rows = FOUND_ROWS();
   ```
 
-Se você estiver usando `SELECT SQL_CALC_FOUND_ROWS`, o MySQL deve calcular quantas linhas estão no conjunto de resultados completo. No entanto, isso é mais rápido do que executar a consulta novamente sem `LIMIT`, porque o conjunto de resultados não precisa ser enviado ao cliente.
+Se você estiver usando `SELECT SQL_CALC_FOUND_ROWS`, o MySQL deve calcular quantas strings estão no conjunto de resultados completo. No entanto, isso é mais rápido do que executar a consulta novamente sem `LIMIT`, porque o conjunto de resultados não precisa ser enviado ao cliente.
 
-`SQL_CALC_FOUND_ROWS` e `FOUND_ROWS()` podem ser úteis em situações em que você deseja restringir o número de linhas que uma consulta retorna, mas também determinar o número de linhas no conjunto de resultados completo sem executar a consulta novamente. Um exemplo é um script da Web que apresenta um display em páginas contendo links para as páginas que mostram outras seções de um resultado de pesquisa. Usando `FOUND_ROWS()`, você pode determinar quantas outras páginas são necessárias para o restante do resultado.
+`SQL_CALC_FOUND_ROWS` e `FOUND_ROWS()` podem ser úteis em situações em que você deseja restringir o número de strings que uma consulta retorna, mas também determinar o número de strings no conjunto de resultados completo sem executar a consulta novamente. Um exemplo é um script da Web que apresenta um display em páginas contendo links para as páginas que mostram outras seções de um resultado de pesquisa. Usando `FOUND_ROWS()`, você pode determinar quantas outras páginas são necessárias para o restante do resultado.
 
 O uso de `SQL_CALC_FOUND_ROWS` e `FOUND_ROWS()` é mais complexo para as declarações `UNION` do que para declarações simples `SELECT`, porque `LIMIT` pode ocorrer em vários lugares em um `UNION`. Pode ser aplicado a declarações individuais `SELECT` no `UNION`, ou global para o `UNION` como um todo.
 
-A intenção do `SQL_CALC_FOUND_ROWS` para o `UNION` é que ele retorne o número de linhas que seria retornado sem um global `LIMIT`. As condições para o uso do `SQL_CALC_FOUND_ROWS` com o `UNION` são:
+A intenção do `SQL_CALC_FOUND_ROWS` para o `UNION` é que ele retorne o número de strings que seria retornado sem um global `LIMIT`. As condições para o uso do `SQL_CALC_FOUND_ROWS` com o `UNION` são:
 
 + A palavra-chave `SQL_CALC_FOUND_ROWS` deve aparecer no primeiro `SELECT` do `UNION`.
 
 + O valor de `FOUND_ROWS()` é exato apenas se `UNION ALL` for usado. Se `UNION` sem `ALL` for usado, a remoção de duplicatas ocorre e o valor de `FOUND_ROWS()` é apenas aproximado.
 
-+ Se não houver `LIMIT` no `UNION`, o `SQL_CALC_FOUND_ROWS` é ignorado e retorna o número de linhas na tabela temporária que é criada para processar o `UNION`.
++ Se não houver `LIMIT` no `UNION`, o `SQL_CALC_FOUND_ROWS` é ignorado e retorna o número de strings na tabela temporária que é criada para processar o `UNION`.
 
 Além dos casos descritos aqui, o comportamento de `FOUND_ROWS()` é indefinido (por exemplo, seu valor após uma declaração `SELECT` que falha com um erro).
 
 Importante
 
-`FOUND_ROWS()` não é replicado de forma confiável usando replicação baseada em declarações. Essa função é replicada automaticamente usando replicação baseada em linhas.
+`FOUND_ROWS()` não é replicado de forma confiável usando replicação baseada em declarações. Essa função é replicada automaticamente usando replicação baseada em strings.
 
 * `LAST_INSERT_ID()`, `LAST_INSERT_ID(expr)`
 
-Sem argumento, `LAST_INSERT_ID()` retorna um valor `BIGINT UNSIGNED` (64 bits) que representa o primeiro valor gerado automaticamente inserido com sucesso para uma coluna `AUTO_INCREMENT` como resultado da declaração `INSERT` executada mais recentemente. O valor de `LAST_INSERT_ID()` permanece inalterado se nenhuma linha for inserida com sucesso.
+Sem argumento, `LAST_INSERT_ID()` retorna um valor `BIGINT UNSIGNED` (64 bits) que representa o primeiro valor gerado automaticamente inserido com sucesso para uma coluna `AUTO_INCREMENT` como resultado da declaração `INSERT` executada mais recentemente. O valor de `LAST_INSERT_ID()` permanece inalterado se nenhuma string for inserida com sucesso.
 
 Com um argumento, `LAST_INSERT_ID()` retorna um inteiro não assinado.
 
-Por exemplo, após inserir uma linha que gera um valor `AUTO_INCREMENT`, você pode obter o valor da seguinte forma:
+Por exemplo, após inserir uma string que gera um valor `AUTO_INCREMENT`, você pode obter o valor da seguinte forma:
 
   ```sql
   mysql> SELECT LAST_INSERT_ID();
           -> 195
   ```
 
-A declaração atualmente em execução não afeta o valor de `LAST_INSERT_ID()`. Suponha que você gere um valor de `AUTO_INCREMENT` com uma declaração e, em seguida, faça referência a `LAST_INSERT_ID()` em uma declaração múltipla de `INSERT` que insere linhas em uma tabela com sua própria coluna `AUTO_INCREMENT`. O valor de `LAST_INSERT_ID()` permanece estável na segunda declaração; seu valor para as segunda e as linhas subsequentes não é afetado pelas inserções das linhas anteriores. (No entanto, se você misturar referências a `LAST_INSERT_ID()` e `LAST_INSERT_ID(expr)`, o efeito é indefinido.)
+A declaração atualmente em execução não afeta o valor de `LAST_INSERT_ID()`. Suponha que você gere um valor de `AUTO_INCREMENT` com uma declaração e, em seguida, faça referência a `LAST_INSERT_ID()` em uma declaração múltipla de `INSERT` que insere strings em uma tabela com sua própria coluna `AUTO_INCREMENT`. O valor de `LAST_INSERT_ID()` permanece estável na segunda declaração; seu valor para as segunda e as strings subsequentes não é afetado pelas inserções das strings anteriores. (No entanto, se você misturar referências a `LAST_INSERT_ID()` e `LAST_INSERT_ID(expr)`, o efeito é indefinido.)
 
 Se a declaração anterior tiver retornado um erro, o valor de `LAST_INSERT_ID()` é indefinido. Para tabelas transacionais, se a declaração for revertida devido a um erro, o valor de `LAST_INSERT_ID()` é deixado indefinido. Para `ROLLBACK` manual, o valor de `LAST_INSERT_ID()` não é restaurado para o anterior à transação; permanece como estava no ponto do `ROLLBACK`.
 
@@ -204,11 +204,11 @@ Dentro do corpo de uma rotina armazenada (procedimento ou função) ou de um gat
 
 O ID que foi gerado é mantido no servidor em uma base *por conexão*. Isso significa que o valor retornado pela função para um cliente específico é o primeiro valor `AUTO_INCREMENT` gerado para a declaração mais recente que afeta uma coluna `AUTO_INCREMENT` *por aquele cliente*. Esse valor não pode ser afetado por outros clientes, mesmo que eles gerem valores `AUTO_INCREMENT` próprios. Esse comportamento garante que cada cliente possa recuperar seu próprio ID sem preocupação com a atividade de outros clientes, e sem a necessidade de bloqueios ou transações.
 
-O valor de `LAST_INSERT_ID()` não é alterado se você definir a coluna `AUTO_INCREMENT` de uma linha para um valor não "mágico" (ou seja, um valor que não é `NULL` e não `0`).
+O valor de `LAST_INSERT_ID()` não é alterado se você definir a coluna `AUTO_INCREMENT` de uma string para um valor não "mágico" (ou seja, um valor que não é `NULL` e não `0`).
 
 Importante
 
-Se você inserir várias linhas usando uma única declaração `INSERT`, `LAST_INSERT_ID()` retorna o valor gerado para a *primeira* linha inserida *apenas*. A razão para isso é permitir que você possa facilmente reproduzir a mesma declaração `INSERT` contra algum outro servidor.
+Se você inserir várias strings usando uma única declaração `INSERT`, `LAST_INSERT_ID()` retorna o valor gerado para a *primeira* string inserida *apenas*. A razão para isso é permitir que você possa facilmente reproduzir a mesma declaração `INSERT` contra algum outro servidor.
 
 Por exemplo:
 
@@ -257,9 +257,9 @@ Por exemplo:
   +------------------+
   ```
 
-Embora a segunda declaração `INSERT` tenha inserido três novas linhas em `t`, o ID gerado para a primeira dessas linhas foi `2`, e é esse valor que é retornado por `LAST_INSERT_ID()` para a declaração seguinte `SELECT`.
+Embora a segunda declaração `INSERT` tenha inserido três novas strings em `t`, o ID gerado para a primeira dessas strings foi `2`, e é esse valor que é retornado por `LAST_INSERT_ID()` para a declaração seguinte `SELECT`.
 
-Se você usar `INSERT IGNORE` e a linha for ignorada, o (insert.html "13.2.5 INSERT Statement") permanece inalterado do valor atual (ou é retornado 0 se a conexão ainda não realizou uma conexão bem-sucedida `INSERT`) e, para tabelas não transacionais, o contador `AUTO_INCREMENT` não é incrementado. Para tabelas `InnoDB`, o contador `AUTO_INCREMENT` é incrementado se `innodb_autoinc_lock_mode` estiver definido como `1` ou `2`, como demonstrado no exemplo a seguir:
+Se você usar `INSERT IGNORE` e a string for ignorada, o (insert.html "13.2.5 INSERT Statement") permanece inalterado do valor atual (ou é retornado 0 se a conexão ainda não realizou uma conexão bem-sucedida `INSERT`) e, para tabelas não transacionais, o contador `AUTO_INCREMENT` não é incrementado. Para tabelas `InnoDB`, o contador `AUTO_INCREMENT` é incrementado se `innodb_autoinc_lock_mode` estiver definido como `1` ou `2`, como demonstrado no exemplo a seguir:
 
   ```sql
   mysql> USE test;
@@ -364,19 +364,19 @@ Observe que `mysql_insert_id()` é atualizado apenas após as declarações `INS
 
 + Declarações DDL: 0. Isso se aplica a declarações como `CREATE TABLE` ou `DROP TABLE`.
 
-+ Declarações DML, exceto `SELECT`: O número de linhas afetadas. Isso se aplica a declarações como `UPDATE`, `INSERT` ou `DELETE` (como antes), mas agora também a declarações como `ALTER TABLE`(alter-table.html "13.1.8 ALTER TABLE Statement") e `LOAD DATA`(load-data.html "13.2.6 LOAD DATA Statement").
++ Declarações DML, exceto `SELECT`: O número de strings afetadas. Isso se aplica a declarações como `UPDATE`, `INSERT` ou `DELETE` (como antes), mas agora também a declarações como `ALTER TABLE`(alter-table.html "13.1.8 ALTER TABLE Statement") e `LOAD DATA`(load-data.html "13.2.6 LOAD DATA Statement").
 
-+ `SELECT`: -1 se a declaração retornar um conjunto de resultados, ou o número de linhas "afetadas" se não o fizer. Por exemplo, para `SELECT * FROM t1`, `ROW_COUNT()` retorna -1. Para `SELECT * FROM t1 INTO OUTFILE 'file_name'`, `ROW_COUNT()` retorna o número de linhas escritas no arquivo.
++ `SELECT`: -1 se a declaração retornar um conjunto de resultados, ou o número de strings "afetadas" se não o fizer. Por exemplo, para `SELECT * FROM t1`, `ROW_COUNT()` retorna -1. Para `SELECT * FROM t1 INTO OUTFILE 'file_name'`, `ROW_COUNT()` retorna o número de strings escritas no arquivo.
 
 + `SIGNAL` declarações: 0.
 
-Para as declarações `UPDATE`, o valor de linhas afetadas, por padrão, é o número de linhas que realmente foram alteradas. Se você especificar a bandeira `CLIENT_FOUND_ROWS` para `mysql_real_connect()` ao se conectar a `mysqld`, o valor de linhas afetadas é o número de linhas “encontradas”; ou seja, correspondentes à cláusula `WHERE`.
+Para as declarações `UPDATE`, o valor de strings afetadas, por padrão, é o número de strings que realmente foram alteradas. Se você especificar a bandeira `CLIENT_FOUND_ROWS` para `mysql_real_connect()` ao se conectar a `mysqld`, o valor de strings afetadas é o número de strings “encontradas”; ou seja, correspondentes à cláusula `WHERE`.
 
-Para as declarações `REPLACE`, o valor de rows afetadas é 2 se a nova linha substituiu uma linha antiga, porque, neste caso, uma linha foi inserida após a duplicata ter sido excluída.
+Para as declarações `REPLACE`, o valor de rows afetadas é 2 se a nova string substituiu uma string antiga, porque, neste caso, uma string foi inserida após a duplicata ter sido excluída.
 
-Para as declarações `INSERT ... ON DUPLICATE KEY UPDATE`(insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"), o valor de linhas afetadas por linha é 1 se a linha for inserida como uma nova linha, 2 se uma linha existente for atualizada e 0 se uma linha existente for definida com seus valores atuais. Se você especificar a bandeira `CLIENT_FOUND_ROWS`, o valor de linhas afetadas é 1 (não 0) se uma linha existente for definida com seus valores atuais.
+Para as declarações `INSERT ... ON DUPLICATE KEY UPDATE`(insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"), o valor de strings afetadas por string é 1 se a string for inserida como uma nova string, 2 se uma string existente for atualizada e 0 se uma string existente for definida com seus valores atuais. Se você especificar a bandeira `CLIENT_FOUND_ROWS`, o valor de strings afetadas é 1 (não 0) se uma string existente for definida com seus valores atuais.
 
-O valor `ROW_COUNT()` é semelhante ao valor da função C API `mysql_affected_rows()` e ao número de linhas que o cliente **mysql** exibe após a execução da declaração.
+O valor `ROW_COUNT()` é semelhante ao valor da função C API `mysql_affected_rows()` e ao número de strings que o cliente **mysql** exibe após a execução da declaração.
 
   ```sql
   mysql> INSERT INTO t VALUES(1),(2),(3);
@@ -405,7 +405,7 @@ O valor `ROW_COUNT()` é semelhante ao valor da função C API `mysql_affected_r
 
 Importante
 
-`ROW_COUNT()` não é replicado de forma confiável usando replicação baseada em declarações. Essa função é replicada automaticamente usando replicação baseada em linhas.
+`ROW_COUNT()` não é replicado de forma confiável usando replicação baseada em declarações. Essa função é replicada automaticamente usando replicação baseada em strings.
 
 * `SCHEMA()`
 

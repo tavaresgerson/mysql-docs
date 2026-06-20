@@ -492,15 +492,15 @@ Uma implicação desse comportamento é que, para valores de argumento iguais, `
   3 rows in set (0.01 sec)
   ```
 
-`RAND()` em uma cláusula `WHERE` é avaliada para cada linha (ao selecionar de uma única tabela) ou combinação de linhas (ao selecionar de uma junção de múltiplas tabelas). Assim, para fins de otimizador, `RAND()` não é um valor constante e não pode ser usado para otimizações de índice. Para mais informações, consulte a Seção 8.2.1.18, “Otimização de Chamada de Função”.
+`RAND()` em uma cláusula `WHERE` é avaliada para cada string (ao selecionar de uma única tabela) ou combinação de strings (ao selecionar de uma junção de múltiplas tabelas). Assim, para fins de otimizador, `RAND()` não é um valor constante e não pode ser usado para otimizações de índice. Para mais informações, consulte a Seção 8.2.1.18, “Otimização de Chamada de Função”.
 
-O uso de uma coluna com valores de `RAND()` em uma cláusula de `ORDER BY` ou `GROUP BY` pode resultar em resultados inesperados, pois, para qualquer uma dessas cláusulas, uma expressão de `RAND()` pode ser avaliada várias vezes para a mesma linha, retornando um resultado diferente cada vez. Se o objetivo é recuperar linhas em ordem aleatória, você pode usar uma declaração como esta:
+O uso de uma coluna com valores de `RAND()` em uma cláusula de `ORDER BY` ou `GROUP BY` pode resultar em resultados inesperados, pois, para qualquer uma dessas cláusulas, uma expressão de `RAND()` pode ser avaliada várias vezes para a mesma string, retornando um resultado diferente cada vez. Se o objetivo é recuperar strings em ordem aleatória, você pode usar uma declaração como esta:
 
   ```sql
   SELECT * FROM tbl_name ORDER BY RAND();
   ```
 
-Para selecionar uma amostra aleatória de um conjunto de linhas, combine `ORDER BY RAND()` com `LIMIT`:
+Para selecionar uma amostra aleatória de um conjunto de strings, combine `ORDER BY RAND()` com `LIMIT`:
 
   ```sql
   SELECT * FROM table1, table2 WHERE a=b AND c<d ORDER BY RAND() LIMIT 1000;

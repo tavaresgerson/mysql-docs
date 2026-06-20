@@ -37,7 +37,7 @@ As variáveis de status do esquema de desempenho têm os seguintes significados:
 
 * `Performance_schema_accounts_lost`
 
-O número de vezes em que uma linha não pôde ser adicionada à tabela `accounts` porque estava cheia.
+O número de vezes em que uma string não pôde ser adicionada à tabela `accounts` porque estava cheia.
 
 * `Performance_schema_cond_classes_lost`
 
@@ -65,7 +65,7 @@ Quantas instâncias de instrumento de arquivo não puderam ser criadas.
 
 * `Performance_schema_hosts_lost`
 
-O número de vezes em que uma linha não pôde ser adicionada à tabela `hosts` porque estava cheia.
+O número de vezes em que uma string não pôde ser adicionada à tabela `hosts` porque estava cheia.
 
 * `Performance_schema_index_stat_lost`
 
@@ -153,12 +153,12 @@ O número de tabelas para as quais as estatísticas de bloqueio foram perdidas. 
 
 * `Performance_schema_thread_classes_lost`
 
-Quantos instrumentos de fio não puderam ser carregados.
+Quantos instrumentos de thread não puderam ser carregados.
 
 * `Performance_schema_thread_instances_lost`
 
-O número de instâncias de fio que não puderam ser instrumentadas na tabela `threads`. Isso pode ser não nulo se o valor de `performance_schema_max_thread_instances` for muito pequeno.
+O número de instâncias de thread que não puderam ser instrumentadas na tabela `threads`. Isso pode ser não nulo se o valor de `performance_schema_max_thread_instances` for muito pequeno.
 
 * `Performance_schema_users_lost`
 
-O número de vezes em que uma linha não pôde ser adicionada à tabela `users` porque estava cheia.
+O número de vezes em que uma string não pôde ser adicionada à tabela `users` porque estava cheia.

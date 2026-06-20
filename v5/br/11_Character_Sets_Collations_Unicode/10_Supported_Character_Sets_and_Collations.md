@@ -330,7 +330,7 @@ O resultado é:
 
 `0E33` e `0E4A` são pesos primários, conforme mencionado em [UCA 4.0.0](ftp://www.unicode.org/Public/UCA/4.0.0/allkeys-4.0.0.txt). `FFFD` é o peso para KAB e também para KISH.
 
-A regra de que todos os caracteres suplementares são iguais entre si não é ótima, mas não se espera que cause problemas. Esses caracteres são muito raros, então é muito raro que uma string de vários caracteres consista inteiramente de caracteres suplementares. No Japão, como os caracteres suplementares são ideogramas Kanji obscuros, o usuário típico não se importa com a ordem, de qualquer maneira. Se você realmente quer as linhas ordenadas de acordo com a regra do MySQL e secundariamente pelo valor do ponto de código, é fácil:
+A regra de que todos os caracteres suplementares são iguais entre si não é ótima, mas não se espera que cause problemas. Esses caracteres são muito raros, então é muito raro que uma string de vários caracteres consista inteiramente de caracteres suplementares. No Japão, como os caracteres suplementares são ideogramas Kanji obscuros, o usuário típico não se importa com a ordem, de qualquer maneira. Se você realmente quer as strings ordenadas de acordo com a regra do MySQL e secundariamente pelo valor do ponto de código, é fácil:
 
   ```sql
   ORDER BY s1 COLLATE utf32_unicode_ci, s1 COLLATE utf32_bin
@@ -752,4 +752,4 @@ Para mais informações sobre introdutores, consulte a Seção 10.3.8, “Introd
 
 Nota
 
-Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.

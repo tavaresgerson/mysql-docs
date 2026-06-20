@@ -40,7 +40,7 @@ Para a ordenação `binary` do conjunto de caracteres `binary`, as comparações
 
 ### 10.3.2 Conjunto de caracteres e codificação do servidor
 
-O MySQL Server tem um conjunto de caracteres do servidor e uma correção de dados do servidor. Por padrão, esses são `latin1` e `latin1_swedish_ci`, mas eles podem ser definidos explicitamente na inicialização do servidor na linha de comando ou em um arquivo de opção e alterados em tempo de execução.
+O MySQL Server tem um conjunto de caracteres do servidor e uma correção de dados do servidor. Por padrão, esses são `latin1` e `latin1_swedish_ci`, mas eles podem ser definidos explicitamente na inicialização do servidor na string de comando ou em um arquivo de opção e alterados em tempo de execução.
 
 Inicialmente, o conjunto de caracteres do servidor e a correção dependem das opções que você usa ao iniciar `mysqld`. Você pode usar `--character-set-server` para o conjunto de caracteres. Junto com isso, você pode adicionar `--collation-server` para a correção. Se você não especificar um conjunto de caracteres, isso é o mesmo que dizer `--character-set-server=latin1`. Se você especificar apenas um conjunto de caracteres (por exemplo, `latin1`) mas não uma correção, isso é o mesmo que dizer `--character-set-server=latin1` `--collation-server=latin1_swedish_ci` porque `latin1_swedish_ci` é a correção padrão para `latin1`. Portanto, os seguintes três comandos têm o mesmo efeito:
 
@@ -330,7 +330,7 @@ mysql> SELECT HEX('à\n'), HEX(_sjis'à\n');
 +------------+-----------------+
 ```
 
-Aqui, `à` (valor hexadecimal `E0`) é seguido por `\n`, a sequência de escape para nova linha. A sequência de escape é interpretada usando o valor `character_set_connection` de `latin1` para produzir uma nova linha literal (valor hexadecimal `0A`). Isso acontece mesmo para a segunda string. Ou seja, o `_sjis` introducer não afeta o processamento de escape do analisador.
+Aqui, `à` (valor hexadecimal `E0`) é seguido por `\n`, a sequência de escape para nova string. A sequência de escape é interpretada usando o valor `character_set_connection` de `latin1` para produzir uma nova string literal (valor hexadecimal `0A`). Isso acontece mesmo para a segunda string. Ou seja, o `_sjis` introducer não afeta o processamento de escape do analisador.
 
 Exemplo 2:
 

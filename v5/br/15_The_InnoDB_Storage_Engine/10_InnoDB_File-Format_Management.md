@@ -2,13 +2,13 @@
 
 À medida que o `InnoDB` evolui, os formatos de arquivo de dados que não são compatíveis com versões anteriores do `InnoDB` são, às vezes, necessários para suportar novos recursos. Para ajudar a gerenciar a compatibilidade em situações de atualização e downgrade, e em sistemas que executam diferentes versões do MySQL, o `InnoDB` utiliza formatos de arquivo com nomes. O `InnoDB` atualmente suporta dois formatos de arquivo com nomes, Antelope e Barracuda.
 
-* O Antelope é o formato original de arquivo `InnoDB`, que anteriormente não tinha um nome. Ele suporta os formatos de linha COMPACT e REDUNDANT para tabelas `InnoDB`.
+* O Antelope é o formato original de arquivo `InnoDB`, que anteriormente não tinha um nome. Ele suporta os formatos de string COMPACT e REDUNDANT para tabelas `InnoDB`.
 
-* O Barracuda é o formato de arquivo mais recente. Ele suporta todos os formatos de linha `InnoDB`, incluindo os novos formatos COMPRESSED e DYNAMIC. As características associadas aos formatos de linha COMPRESSED e DYNAMIC incluem tabelas compactadas, armazenamento eficiente de colunas fora da página e prefixos de chave de índice de até 3072 bytes (`innodb_large_prefix`). Veja a Seção 14.11, “Formatos de linha InnoDB”.
+* O Barracuda é o formato de arquivo mais recente. Ele suporta todos os formatos de string `InnoDB`, incluindo os novos formatos COMPRESSED e DYNAMIC. As características associadas aos formatos de string COMPRESSED e DYNAMIC incluem tabelas compactadas, armazenamento eficiente de colunas fora da página e prefixos de chave de índice de até 3072 bytes (`innodb_large_prefix`). Veja a Seção 14.11, “Formatos de string InnoDB”.
 
 Esta seção discute a habilitação dos formatos de arquivo `InnoDB` para novas tabelas `InnoDB`, verificando a compatibilidade dos diferentes formatos de arquivo entre as versões do MySQL e identificando o formato de arquivo em uso.
 
-As configurações do formato de arquivo InnoDB não se aplicam a tabelas armazenadas em espaços de tabela gerais. Os espaços de tabela gerais fornecem suporte para todos os formatos de linha e recursos associados. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de tabela geral”.
+As configurações do formato de arquivo InnoDB não se aplicam a tabelas armazenadas em espaços de tabela gerais. Os espaços de tabela gerais fornecem suporte para todos os formatos de string e recursos associados. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de tabela geral”.
 
 Nota
 
@@ -37,7 +37,7 @@ Nota
 
 A opção de configuração `innodb_file_format` é desatualizada e pode ser removida em uma versão futura. Para mais informações, consulte a Seção 14.10, “Gestão do formato de arquivo InnoDB”.
 
-Você pode definir o valor de `innodb_file_format` na linha de comando quando você inicia o `mysqld`, ou no arquivo de opções (`my.cnf` em Unix, `my.ini` em Windows). Você também pode alterá-lo dinamicamente com uma declaração `SET GLOBAL`.
+Você pode definir o valor de `innodb_file_format` na string de comando quando você inicia o `mysqld`, ou no arquivo de opções (`my.cnf` em Unix, `my.ini` em Windows). Você também pode alterá-lo dinamicamente com uma declaração `SET GLOBAL`.
 
 ```sql
 SET GLOBAL innodb_file_format=Barracuda;
@@ -45,11 +45,11 @@ SET GLOBAL innodb_file_format=Barracuda;
 
 #### Notas de uso
 
-* As configurações do formato de arquivo `InnoDB` não se aplicam a tabelas armazenadas em espaços de tabela gerais. Os espaços de tabela gerais fornecem suporte para todos os formatos de linha e recursos associados. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de Tabela Geral”.
+* As configurações do formato de arquivo `InnoDB` não se aplicam a tabelas armazenadas em espaços de tabela gerais. Os espaços de tabela gerais fornecem suporte para todos os formatos de string e recursos associados. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de Tabela Geral”.
 
 * O ajuste `innodb_file_format` não é aplicável ao usar a opção de tabela `TABLESPACE [=] innodb_system` com `CREATE TABLE` ou `ALTER TABLE` para armazenar uma tabela `DYNAMIC` no espaço de tabelas do sistema.
 
-* O ajuste `innodb_file_format` é ignorado ao criar tabelas que utilizam o formato de linha `DYNAMIC`. Para mais informações, consulte o formato de linha dinâmico.
+* O ajuste `innodb_file_format` é ignorado ao criar tabelas que utilizam o formato de string `DYNAMIC`. Para mais informações, consulte o formato de string dinâmico.
 
 ### 14.10.1 Verificar a compatibilidade do formato de arquivo
 
@@ -149,9 +149,9 @@ Os usuários são **fortemente** incentivados a não usar arquivos de banco de d
 
 ### 14.10.3 Identificando o formato de arquivo em uso
 
-Se você ativar um formato de arquivo diferente usando a opção de configuração `innodb_file_format`, a mudança só se aplica a tabelas recém-criadas. Além disso, quando você cria uma nova tabela, o espaço de tabelas que contém a tabela é marcado com o formato de arquivo “mais antigo” ou “mais simples” que é necessário para suportar as características da tabela. Por exemplo, se você ativar o formato de arquivo `Barracuda`, e criar uma nova tabela que não use o formato de linha Dinâmico ou Compressa, o novo espaço de tabelas que contém a tabela é marcado como usando o formato de arquivo `Antelope`.
+Se você ativar um formato de arquivo diferente usando a opção de configuração `innodb_file_format`, a mudança só se aplica a tabelas recém-criadas. Além disso, quando você cria uma nova tabela, o espaço de tabelas que contém a tabela é marcado com o formato de arquivo “mais antigo” ou “mais simples” que é necessário para suportar as características da tabela. Por exemplo, se você ativar o formato de arquivo `Barracuda`, e criar uma nova tabela que não use o formato de string Dinâmico ou Compressa, o novo espaço de tabelas que contém a tabela é marcado como usando o formato de arquivo `Antelope`.
 
-É fácil identificar o formato de arquivo utilizado por uma tabela específica. A tabela utiliza o formato de arquivo `Antelope` se o formato de linha relatado por `SHOW TABLE STATUS` for `Compact` ou `Redundant`. A tabela utiliza o formato de arquivo `Barracuda` se o formato de linha relatado por `SHOW TABLE STATUS` for `Compressed` ou `Dynamic`.
+É fácil identificar o formato de arquivo utilizado por uma tabela específica. A tabela utiliza o formato de arquivo `Antelope` se o formato de string relatado por `SHOW TABLE STATUS` for `Compact` ou `Redundant`. A tabela utiliza o formato de arquivo `Barracuda` se o formato de string relatado por `SHOW TABLE STATUS` for `Compressed` ou `Dynamic`.
 
 ```sql
 mysql> SHOW TABLE STATUS\G

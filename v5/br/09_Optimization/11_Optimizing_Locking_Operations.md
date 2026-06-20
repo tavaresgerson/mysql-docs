@@ -10,23 +10,23 @@ O MySQL gerencia a disputa pelo conteúdo da tabela usando bloqueio:
 
 Esta seção discute o bloqueio interno; ou seja, o bloqueio realizado dentro do próprio servidor MySQL para gerenciar a concorrência por conteúdo de tabela por várias sessões. Esse tipo de bloqueio é interno porque é realizado inteiramente pelo servidor e não envolve outros programas. Para o bloqueio realizado em arquivos MySQL por outros programas, consulte a Seção 8.11.5, “Bloqueio Externo”.
 
-* Fechamento de nível de linha
+* Fechamento de nível de string
 * Fechamento de nível de tabela
 * Escolhendo o tipo de fechamento
 
-#### Bloqueio de Nível de Linha
+#### Bloqueio de Nível de String
 
-O MySQL utiliza o bloqueio em nível de linha para as tabelas `InnoDB` para suportar acesso de escrita simultâneo por múltiplas sessões, tornando-as adequadas para aplicações multiusuário, altamente concorrentes e OLTP.
+O MySQL utiliza o bloqueio em nível de string para as tabelas `InnoDB` para suportar acesso de escrita simultâneo por múltiplas sessões, tornando-as adequadas para aplicações multiusuário, altamente concorrentes e OLTP.
 
-Para evitar bloqueios quando realiza várias operações de escrita concorrentes em uma única tabela `InnoDB`, adquira as chaves necessárias no início da transação, emitindo uma declaração `SELECT ... FOR UPDATE` para cada grupo de linhas que espera ser modificado, mesmo que as declarações de alteração de dados venham mais tarde na transação. Se as transações modificam ou bloqueiam mais de uma tabela, emita as declarações aplicáveis na mesma ordem dentro de cada transação. Os bloqueios afetam o desempenho e não representam um erro grave, porque `InnoDB` detecta automaticamente as condições de bloqueio e desfaz uma das transações afetadas.
+Para evitar bloqueios quando realiza várias operações de escrita concorrentes em uma única tabela `InnoDB`, adquira as chaves necessárias no início da transação, emitindo uma declaração `SELECT ... FOR UPDATE` para cada grupo de strings que espera ser modificado, mesmo que as declarações de alteração de dados venham mais tarde na transação. Se as transações modificam ou bloqueiam mais de uma tabela, emita as declarações aplicáveis na mesma ordem dentro de cada transação. Os bloqueios afetam o desempenho e não representam um erro grave, porque `InnoDB` detecta automaticamente as condições de bloqueio e desfaz uma das transações afetadas.
 
 Em sistemas de alta concorrência, a detecção de bloqueio pode causar um atraso quando vários threads aguardam o mesmo bloqueio. Às vezes, pode ser mais eficiente desabilitar a detecção de bloqueio e confiar na configuração `innodb_lock_wait_timeout` para o rollback de transações quando ocorre um bloqueio. A detecção de bloqueio pode ser desativada usando a opção de configuração `innodb_deadlock_detect`.
 
-Vantagens do bloqueio em nível de linha:
+Vantagens do bloqueio em nível de string:
 
-* Menos conflitos de bloqueio quando diferentes sessões acessam diferentes linhas.
+* Menos conflitos de bloqueio quando diferentes sessões acessam diferentes strings.
 
-* Menos mudanças para rollbacks. * Possível bloquear uma única linha por um longo período de tempo.
+* Menos mudanças para rollbacks. * Possível bloquear uma única string por um longo período de tempo.
 
 #### Bloqueio em nível de tabela
 
@@ -36,7 +36,7 @@ Esses motores de armazenamento evitam deadlocks ao solicitar sempre todas as cha
 
 Vantagens do bloqueio em nível de tabela:
 
-* Necessita de uma memória relativamente pequena (o bloqueio de linha requer memória por linha ou grupo de linhas bloqueadas)
+* Necessita de uma memória relativamente pequena (o bloqueio de string requer memória por string ou grupo de strings bloqueadas)
 
 * Rápido quando usado em uma grande parte da mesa, pois apenas um único bloqueio é envolvido.
 
@@ -72,11 +72,11 @@ mysql> SHOW STATUS LIKE 'Table%';
 
 As tabelas de bloqueio do Schema de Desempenho também fornecem informações de bloqueio. Veja a Seção 25.12.12, “Tabelas de Bloqueio do Schema de Desempenho”.
 
-O motor de armazenamento `MyISAM` suporta inserções concorrentes para reduzir a concorrência entre leitores e escritores para uma determinada tabela: Se uma tabela `MyISAM` não tiver blocos livres no meio do arquivo de dados, as linhas são sempre inseridas no final do arquivo de dados. Nesse caso, você pode misturar livremente as declarações concorrentes `INSERT` e `SELECT` para uma tabela `MyISAM` sem bloqueios. Ou seja, você pode inserir linhas em uma tabela `MyISAM` ao mesmo tempo em que outros clientes estão lendo dela. Há possibilidade de haver lacunas devido a linhas que foram excluídas ou atualizadas no meio da tabela. Se houver lacunas, as inserções concorrentes são desativadas, mas são ativadas novamente automaticamente quando todos os buracos são preenchidos com novos dados. Para controlar esse comportamento, use a variável de sistema `concurrent_insert`. Veja a Seção 8.11.3, “Inserções Concorrentes”.
+O motor de armazenamento `MyISAM` suporta inserções concorrentes para reduzir a concorrência entre leitores e escritores para uma determinada tabela: Se uma tabela `MyISAM` não tiver blocos livres no meio do arquivo de dados, as strings são sempre inseridas no final do arquivo de dados. Nesse caso, você pode misturar livremente as declarações concorrentes `INSERT` e `SELECT` para uma tabela `MyISAM` sem bloqueios. Ou seja, você pode inserir strings em uma tabela `MyISAM` ao mesmo tempo em que outros clientes estão lendo dela. Há possibilidade de haver lacunas devido a strings que foram excluídas ou atualizadas no meio da tabela. Se houver lacunas, as inserções concorrentes são desativadas, mas são ativadas novamente automaticamente quando todos os buracos são preenchidos com novos dados. Para controlar esse comportamento, use a variável de sistema `concurrent_insert`. Veja a Seção 8.11.3, “Inserções Concorrentes”.
 
 Se você adquirir um bloqueio de tabela explicitamente com `LOCK TABLES`, pode solicitar um bloqueio de `READ LOCAL` em vez de um bloqueio de `READ` para permitir que outras sessões realizem inserções concorrentes enquanto você mantém o bloqueio da tabela.
 
-Para realizar muitas operações `INSERT` e `SELECT` em uma tabela `t1`, quando inserções concorrentes não são possíveis, você pode inserir linhas em uma tabela temporária `temp_t1` e atualizar a tabela real com as linhas da tabela temporária:
+Para realizar muitas operações `INSERT` e `SELECT` em uma tabela `t1`, quando inserções concorrentes não são possíveis, você pode inserir strings em uma tabela temporária `temp_t1` e atualizar a tabela real com as strings da tabela temporária:
 
 ```sql
 mysql> LOCK TABLES t1 WRITE, temp_t1 WRITE;
@@ -87,10 +87,10 @@ mysql> UNLOCK TABLES;
 
 #### Escolhendo o Tipo de Fechamento
 
-Geralmente, as bloqueadoras de tabela são superiores às bloqueadoras de nível de linha nos seguintes casos:
+Geralmente, as bloqueadoras de tabela são superiores às bloqueadoras de nível de string nos seguintes casos:
 
 * A maioria das declarações para a tabela são leituras.
-* As declarações para a tabela são uma mistura de leituras e escritas, onde as escritas são atualizações ou exclusões para uma única linha que podem ser obtidas com uma única leitura de chave:
+* As declarações para a tabela são uma mistura de leituras e escritas, onde as escritas são atualizações ou exclusões para uma única string que podem ser obtidas com uma única leitura de chave:
 
   ```sql
   UPDATE tbl_name SET column=value WHERE unique_key_col=key_value;
@@ -101,21 +101,21 @@ Geralmente, as bloqueadoras de tabela são superiores às bloqueadoras de nível
 
 * Muitas varreduras ou `GROUP BY` de operações em toda a mesa sem nenhum escritor.
 
-Com bloqueios de nível superior, é mais fácil ajustar as aplicações, pois os bloqueios de diferentes tipos são suportados, pois o overhead do bloqueio é menor do que o de bloqueios de nível de linha.
+Com bloqueios de nível superior, é mais fácil ajustar as aplicações, pois os bloqueios de diferentes tipos são suportados, pois o overhead do bloqueio é menor do que o de bloqueios de nível de string.
 
-Outras opções além do bloqueio de nível de linha:
+Outras opções além do bloqueio de nível de string:
 
 * Versionamento (como o utilizado no MySQL para inserções concorrentes), onde é possível ter um escritor ao mesmo tempo que muitos leitores. Isso significa que o banco de dados ou a tabela suporta diferentes visualizações dos dados dependendo de quando o acesso começa. Outros termos comuns para isso são “viagem no tempo”, “cópia no momento da escrita” ou “cópia sob demanda”.
 
-* A cópia sob demanda é, em muitos casos, superior ao bloqueio de nível de linha. No entanto, no pior dos casos, pode consumir muito mais memória do que usar bloqueios normais.
+* A cópia sob demanda é, em muitos casos, superior ao bloqueio de nível de string. No entanto, no pior dos casos, pode consumir muito mais memória do que usar bloqueios normais.
 
-* Em vez de usar bloqueios de nível de linha, você pode empregar bloqueios de nível de aplicativo, como os fornecidos por `GET_LOCK()` e `RELEASE_LOCK()` no MySQL. Estes são bloqueios consultivos, portanto, eles funcionam apenas com aplicativos que cooperam entre si. Veja a Seção 12.14, “Funções de bloqueio”.
+* Em vez de usar bloqueios de nível de string, você pode empregar bloqueios de nível de aplicativo, como os fornecidos por `GET_LOCK()` e `RELEASE_LOCK()` no MySQL. Estes são bloqueios consultivos, portanto, eles funcionam apenas com aplicativos que cooperam entre si. Veja a Seção 12.14, “Funções de bloqueio”.
 
 ### 8.11.2 Problemas com o bloqueio de tabelas
 
-As tabelas `InnoDB` utilizam bloqueio a nível de linha, de modo que múltiplas sessões e aplicações possam ler e escrever na mesma tabela simultaneamente, sem fazer com que uma espere a outra ou produzir resultados inconsistentes. Para este mecanismo de armazenamento, evite usar a declaração `LOCK TABLES`, porque ela não oferece nenhuma proteção extra, mas, em vez disso, reduz a concorrência. O bloqueio automático a nível de linha torna essas tabelas adequadas para seus bancos de dados mais movimentados com seus dados mais importantes, ao mesmo tempo em que simplifica a lógica da aplicação, uma vez que você não precisa bloquear e desbloquear tabelas. Consequentemente, o mecanismo de armazenamento `InnoDB` é o padrão no MySQL.
+As tabelas `InnoDB` utilizam bloqueio a nível de string, de modo que múltiplas sessões e aplicações possam ler e escrever na mesma tabela simultaneamente, sem fazer com que uma espere a outra ou produzir resultados inconsistentes. Para este mecanismo de armazenamento, evite usar a declaração `LOCK TABLES`, porque ela não oferece nenhuma proteção extra, mas, em vez disso, reduz a concorrência. O bloqueio automático a nível de string torna essas tabelas adequadas para seus bancos de dados mais movimentados com seus dados mais importantes, ao mesmo tempo em que simplifica a lógica da aplicação, uma vez que você não precisa bloquear e desbloquear tabelas. Consequentemente, o mecanismo de armazenamento `InnoDB` é o padrão no MySQL.
 
-O MySQL utiliza bloqueio de tabela (em vez de bloqueio de página, linha ou coluna) para todos os motores de armazenamento, exceto `InnoDB`. As próprias operações de bloqueio não têm muito sobrecarregamento. Mas, como apenas uma sessão pode escrever em uma tabela de cada vez, para obter o melhor desempenho com esses outros motores de armazenamento, use-os principalmente para tabelas que são consultadas frequentemente e raramente inseridas ou atualizadas.
+O MySQL utiliza bloqueio de tabela (em vez de bloqueio de página, string ou coluna) para todos os motores de armazenamento, exceto `InnoDB`. As próprias operações de bloqueio não têm muito sobrecarregamento. Mas, como apenas uma sessão pode escrever em uma tabela de cada vez, para obter o melhor desempenho com esses outros motores de armazenamento, use-os principalmente para tabelas que são consultadas frequentemente e raramente inseridas ou atualizadas.
 
 * Considerações de desempenho que favorecem o InnoDB
 * Soluções alternativas para problemas de desempenho relacionados a bloqueio
@@ -158,9 +158,9 @@ Para dar uma declaração específica de `INSERT`, `UPDATE` ou `DELETE` menor pr
 
 ### 8.11.3 Inserções Concorrentes
 
-O motor de armazenamento `MyISAM` suporta inserções concorrentes para reduzir a concorrência entre leitores e escritores para uma determinada tabela: Se uma tabela `MyISAM` não tiver buracos no arquivo de dados (linhas excluídas no meio), uma declaração `INSERT` pode ser executada para adicionar linhas à extremidade da tabela ao mesmo tempo em que as declarações `SELECT` estão lendo linhas da tabela. Se houver várias declarações `INSERT`, elas são colocadas em fila e executadas sequencialmente, concorrentemente com as declarações `SELECT`. Os resultados de uma `INSERT` concorrente podem não ser visíveis imediatamente.
+O motor de armazenamento `MyISAM` suporta inserções concorrentes para reduzir a concorrência entre leitores e escritores para uma determinada tabela: Se uma tabela `MyISAM` não tiver buracos no arquivo de dados (strings excluídas no meio), uma declaração `INSERT` pode ser executada para adicionar strings à extremidade da tabela ao mesmo tempo em que as declarações `SELECT` estão lendo strings da tabela. Se houver várias declarações `INSERT`, elas são colocadas em fila e executadas sequencialmente, concorrentemente com as declarações `SELECT`. Os resultados de uma `INSERT` concorrente podem não ser visíveis imediatamente.
 
-A variável de sistema `concurrent_insert` pode ser definida para modificar o processamento de inserção concorrente. Por padrão, a variável é definida como `AUTO` (ou 1) e as inserções concorrentes são tratadas como descrito acima. Se `concurrent_insert` for definido como `NEVER` (ou 0), as inserções concorrentes são desativadas. Se a variável for definida como `ALWAYS` (ou 2), as inserções concorrentes no final da tabela são permitidas mesmo para tabelas que possuem linhas excluídas. Veja também a descrição da variável de sistema `concurrent_insert`.
+A variável de sistema `concurrent_insert` pode ser definida para modificar o processamento de inserção concorrente. Por padrão, a variável é definida como `AUTO` (ou 1) e as inserções concorrentes são tratadas como descrito acima. Se `concurrent_insert` for definido como `NEVER` (ou 0), as inserções concorrentes são desativadas. Se a variável for definida como `ALWAYS` (ou 2), as inserções concorrentes no final da tabela são permitidas mesmo para tabelas que possuem strings excluídas. Veja também a descrição da variável de sistema `concurrent_insert`.
 
 Se você estiver usando o log binário, as inserções concorrentes são convertidas em inserções normais para as declarações `CREATE ... SELECT` ou `INSERT ... SELECT`. Isso é feito para garantir que você possa recriar uma cópia exata de suas tabelas, aplicando o log durante uma operação de backup. Veja a Seção 5.4.4, “O Log Binário”. Além disso, para essas declarações, uma restrição de leitura é colocada na tabela selecionada de modo que as inserções nessa tabela sejam bloqueadas. O efeito é que as inserções concorrentes para essa tabela também devem esperar.
 

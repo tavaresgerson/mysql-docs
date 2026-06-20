@@ -12,7 +12,7 @@ A replicação normal (não agrupada) envolve um servidor de origem (anteriormen
 
 ![Much of the content is described in the surrounding text. It visualizes how a MySQL source is replicated. The replica differs in that it shows an I/O thread pointing to a relay binary log which points to an SQL thread. In addition, while the binary log points to and from the NDBCLUSTER engine on the source server, on the replica it points directly to an SQL node (MySQL server).](images/cluster-replication-overview.png)
 
-Nesse cenário, o processo de replicação é aquele em que os estados sucessivos de um cluster fonte são registrados e salvos em um cluster replica. Esse processo é realizado por um fio especial conhecido como fio de inserção do log binário NDB, que é executado em cada servidor MySQL e produz um log binário (`binlog`). Esse fio garante que todas as alterações no cluster que produz o log binário — e não apenas as alterações que são efetuadas através do MySQL Server — sejam inseridas no log binário com a ordem de serialização correta. Referimos aos servidores fonte e replica do MySQL como servidores de replicação ou nós de replicação, e ao fluxo de dados ou linha de comunicação entre eles como um canal de replicação.
+Nesse cenário, o processo de replicação é aquele em que os estados sucessivos de um cluster fonte são registrados e salvos em um cluster replica. Esse processo é realizado por um thread especial conhecido como thread de inserção do log binário NDB, que é executado em cada servidor MySQL e produz um log binário (`binlog`). Esse thread garante que todas as alterações no cluster que produz o log binário — e não apenas as alterações que são efetuadas através do MySQL Server — sejam inseridas no log binário com a ordem de serialização correta. Referimos aos servidores fonte e replica do MySQL como servidores de replicação ou nós de replicação, e ao fluxo de dados ou string de comunicação entre eles como um canal de replicação.
 
 Para obter informações sobre a realização de recuperação em um ponto no tempo com o NDB Cluster e a Replicação do NDB Cluster, consulte a Seção 21.7.9.2, “Recuperação em um Ponto no Tempo Usando a Replicação do NDB Cluster”.
 
@@ -32,7 +32,7 @@ Ao longo desta seção, usamos as seguintes abreviações ou símbolos para se r
 
 Um canal de replicação requer dois servidores MySQL atuando como servidores de replicação (um para cada fonte e replica). Por exemplo, isso significa que, no caso de uma configuração de replicação com dois canais de replicação (para fornecer um canal extra para redundância), deve haver um total de quatro nós de replicação, dois por clúster.
 
-A replicação de um NDB Cluster conforme descrito nesta seção e nas seguintes é dependente da replicação baseada em linhas. Isso significa que o servidor MySQL da fonte de replicação deve estar em execução com `--binlog-format=ROW` ou `--binlog-format=MIXED`, conforme descrito na Seção 21.7.6, “Começando a replicação do NDB Cluster (Canal de replicação único”)”). Para informações gerais sobre a replicação baseada em linhas, consulte a Seção 16.2.1, “Formatos de replicação”.
+A replicação de um NDB Cluster conforme descrito nesta seção e nas seguintes é dependente da replicação baseada em strings. Isso significa que o servidor MySQL da fonte de replicação deve estar em execução com `--binlog-format=ROW` ou `--binlog-format=MIXED`, conforme descrito na Seção 21.7.6, “Começando a replicação do NDB Cluster (Canal de replicação único”)”). Para informações gerais sobre a replicação baseada em strings, consulte a Seção 16.2.1, “Formatos de replicação”.
 
 Importante
 
@@ -52,13 +52,13 @@ Nota
 
 É possível replicar um NDB Cluster usando replicação baseada em declarações. No entanto, neste caso, as seguintes restrições se aplicam:
 
-* Todas as atualizações das linhas de dados no clúster que atuam como fonte devem ser direcionadas a um único servidor MySQL.
+* Todas as atualizações das strings de dados no clúster que atuam como fonte devem ser direcionadas a um único servidor MySQL.
 
 * Não é possível replicar um clúster usando vários processos de replicação MySQL simultâneos.
 
 * Apenas as alterações feitas no nível SQL são replicadas.
 
-Estes são adicionais às outras limitações da replicação baseada em declarações, em oposição à replicação baseada em linhas; consulte a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”, para informações mais específicas sobre as diferenças entre os dois formatos de replicação.
+Estes são adicionais às outras limitações da replicação baseada em declarações, em oposição à replicação baseada em strings; consulte a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em strings”, para informações mais específicas sobre as diferenças entre os dois formatos de replicação.
 
 ### 21.7.3 Problemas conhecidos na replicação do NDB Cluster
 
@@ -72,7 +72,7 @@ O nó SQL de origem emite um evento de "lacuna" ao se conectar ou reconectar ao 
 
 Importante
 
-Como o NDB Cluster não é projetado para monitorar o status da replicação ou fornecer falha de replicação por si só, se a alta disponibilidade é uma exigência para o servidor ou cluster de replicação, você deve configurar várias linhas de replicação, monitorar a fonte `mysqld` na linha de replicação primária e estar preparado para fazer a transição para uma linha secundária, se e quando necessário. Isso deve ser feito manualmente, ou possivelmente por meio de uma aplicação de terceiros. Para obter informações sobre a implementação desse tipo de configuração, consulte a Seção 21.7.7, “Usando Dois Canais de Replicação para a Replicação do NDB Cluster”, e a Seção 21.7.8, “Implementando Falha de Replicação com a Replicação do NDB Cluster”.
+Como o NDB Cluster não é projetado para monitorar o status da replicação ou fornecer falha de replicação por si só, se a alta disponibilidade é uma exigência para o servidor ou cluster de replicação, você deve configurar várias strings de replicação, monitorar a fonte `mysqld` na string de replicação primária e estar preparado para fazer a transição para uma string secundária, se e quando necessário. Isso deve ser feito manualmente, ou possivelmente por meio de uma aplicação de terceiros. Para obter informações sobre a implementação desse tipo de configuração, consulte a Seção 21.7.7, “Usando Dois Canais de Replicação para a Replicação do NDB Cluster”, e a Seção 21.7.8, “Implementando Falha de Replicação com a Replicação do NDB Cluster”.
 
 Se você estiver replicando de um servidor MySQL autônomo para um NDB Cluster, um canal geralmente é suficiente.
 
@@ -90,7 +90,7 @@ Esse tipo de configuração de replicação circular é mostrado no diagrama a s
 
 ![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that all sources are also replicas.](images/cluster-circular-replication-1.png)
 
-Nesse cenário, o nó SQL A do Cluster 1 replica para o nó SQL C do Cluster 2; o nó SQL C replica para o nó SQL E do Cluster 3; o nó SQL E replica para o nó SQL A. Em outras palavras, a linha de replicação (indicada pelas setas curvas no diagrama) conecta diretamente todos os nós SQL usados como fontes e réplicas.
+Nesse cenário, o nó SQL A do Cluster 1 replica para o nó SQL C do Cluster 2; o nó SQL C replica para o nó SQL E do Cluster 3; o nó SQL E replica para o nó SQL A. Em outras palavras, a string de replicação (indicada pelas setas curvas no diagrama) conecta diretamente todos os nós SQL usados como fontes e réplicas.
 
 Também deve ser possível configurar a replicação circular, na qual nem todos os nós SQL de origem são também réplicas, como mostrado aqui:
 
@@ -98,7 +98,7 @@ Também deve ser possível configurar a replicação circular, na qual nem todos
 
 ![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that not all sources are replicas.](images/cluster-circular-replication-2.png)
 
-Neste caso, diferentes nós SQL em cada clúster são usados como fontes e réplicas. No entanto, você *não* deve iniciar nenhum dos nós SQL com a variável de sistema `log_slave_updates` habilitada. Este tipo de esquema de replicação circular para o NDB Cluster, no qual a linha de replicação (novamente indicada pelas setas curvas no diagrama) é descontínua, deve ser possível, mas deve-se notar que ainda não foi completamente testado e, portanto, ainda deve ser considerado experimental.
+Neste caso, diferentes nós SQL em cada clúster são usados como fontes e réplicas. No entanto, você *não* deve iniciar nenhum dos nós SQL com a variável de sistema `log_slave_updates` habilitada. Este tipo de esquema de replicação circular para o NDB Cluster, no qual a string de replicação (novamente indicada pelas setas curvas no diagrama) é descontínua, deve ser possível, mas deve-se notar que ainda não foi completamente testado e, portanto, ainda deve ser considerado experimental.
 
 Nota
 
@@ -106,11 +106,11 @@ O motor de armazenamento `NDB` utiliza o modo de execução idempotente, que sup
 
 **Replicação do cluster NDB e chaves primárias.**
 
-Em caso de falha de um nó, podem ocorrer erros na replicação das tabelas `NDB` sem chaves primárias, devido à possibilidade de inserção de linhas duplicadas nesses casos. Por essa razão, é altamente recomendável que todas as tabelas `NDB` que estão sendo replicadas tenham chaves primárias explícitas.
+Em caso de falha de um nó, podem ocorrer erros na replicação das tabelas `NDB` sem chaves primárias, devido à possibilidade de inserção de strings duplicadas nesses casos. Por essa razão, é altamente recomendável que todas as tabelas `NDB` que estão sendo replicadas tenham chaves primárias explícitas.
 
 **Reprodução em cluster do NDB e chaves únicas.**
 
-Em versões mais antigas do NDB Cluster, as operações que atualizaram os valores das colunas de chave única das tabelas `NDB` poderiam resultar em erros de chave duplicada durante a replicação. Esse problema é resolvido para a replicação entre as tabelas `NDB`, diferindo os verificações de chave única até que todas as atualizações das linhas da tabela tenham sido realizadas.
+Em versões mais antigas do NDB Cluster, as operações que atualizaram os valores das colunas de chave única das tabelas `NDB` poderiam resultar em erros de chave duplicada durante a replicação. Esse problema é resolvido para a replicação entre as tabelas `NDB`, diferindo os verificações de chave única até que todas as atualizações das strings da tabela tenham sido realizadas.
 
 A adiamento de restrições dessa forma é atualmente suportado apenas por `NDB`. Assim, as atualizações de chaves únicas ao replicar de `NDB` para um motor de armazenamento diferente, como `InnoDB` ou `MyISAM`, ainda não são suportadas.
 
@@ -127,13 +127,13 @@ INSERT INTO t
     VALUES (1,1), (2,2), (3,3), (4,4), (5,5);
 ```
 
-A seguinte declaração `UPDATE` sobre `t` é válida na fonte, uma vez que as linhas afetadas são processadas na ordem determinada pela opção `ORDER BY`, realizada sobre toda a tabela:
+A seguinte declaração `UPDATE` sobre `t` é válida na fonte, uma vez que as strings afetadas são processadas na ordem determinada pela opção `ORDER BY`, realizada sobre toda a tabela:
 
 ```sql
 UPDATE t SET c = c - 1 ORDER BY p;
 ```
 
-A mesma declaração falha com um erro de chave duplicada ou outra violação de restrição na replica, porque a ordenação das atualizações de linha é realizada para uma partição de cada vez, em vez de para a tabela como um todo.
+A mesma declaração falha com um erro de chave duplicada ou outra violação de restrição na replica, porque a ordenação das atualizações de string é realizada para uma partição de cada vez, em vez de para a tabela como um todo.
 
 Nota
 
@@ -213,7 +213,7 @@ Como atualmente não há suporte nas APIs NDB e MGM para IPv6, quaisquer aplicat
 
 **Atribuição de promoção e demissão de atributos.** A Replicação do NDB Cluster inclui suporte para promoção e demissão de atributos. A implementação da última opção faz a distinção entre conversões de tipos com perda e sem perda, e seu uso na replica pode ser controlado definindo a variável global do sistema de servidor `slave_type_conversions`.
 
-Para mais informações sobre promoção e demissão de atributos no NDB Cluster, consulte Replicação baseada em linha: promoção e demissão de atributos.
+Para mais informações sobre promoção e demissão de atributos no NDB Cluster, consulte Replicação baseada em string: promoção e demissão de atributos.
 
 `NDB`, ao contrário de `InnoDB` ou `MyISAM`, não escreve alterações em colunas virtuais no log binário; no entanto, isso não tem efeitos prejudiciais na Replicação do NDB Cluster ou na replicação entre `NDB` e outros motores de armazenamento. Alterações em colunas geradas armazenadas são registradas.
 
@@ -254,7 +254,7 @@ CREATE TABLE `ndb_apply_status` (
 ) ENGINE=NDBCLUSTER   DEFAULT CHARSET=latin1;
 ```
 
-A tabela `ndb_apply_status` é preenchida apenas em réplicas, o que significa que, na fonte, essa tabela nunca contém nenhuma linha; portanto, não é necessário alocar nenhum `DataMemory` para `ndb_apply_status` lá.
+A tabela `ndb_apply_status` é preenchida apenas em réplicas, o que significa que, na fonte, essa tabela nunca contém nenhuma string; portanto, não é necessário alocar nenhum `DataMemory` para `ndb_apply_status` lá.
 
 Como esta tabela é preenchida com dados originários da fonte, deve ser permitido que ela seja replicada; quaisquer regras de filtragem de replicação ou de filtragem de registro binário que, inadvertidamente, impeçam a atualização do `ndb_apply_status` da replica, ou que impeçam a fonte de escrever no registro binário, podem impedir que a replicação entre clusters funcione corretamente. Para obter mais informações sobre os problemas potenciais decorrentes dessas regras de filtragem, consulte Replicação e regras de filtragem de registro binário com replicação entre NDB Clusters.
 
@@ -294,7 +294,7 @@ O tamanho da tabela `ndb_binlog_index` depende do número de épocas por arquivo
 [number of epochs per file] = [time spent per file] / TimeBetweenEpochs
 ```
 
-Um NDB Cluster ocupado escreve no log binário regularmente e, presumivelmente, rola os arquivos de log binário mais rapidamente do que um tranquilo. Isso significa que um NDB Cluster “tranquilo” com `--ndb-log-empty-epochs=ON` pode, na verdade, ter um número muito maior de `ndb_binlog_index` de linhas por arquivo do que um com muita atividade.
+Um NDB Cluster ocupado escreve no log binário regularmente e, presumivelmente, rola os arquivos de log binário mais rapidamente do que um tranquilo. Isso significa que um NDB Cluster “tranquilo” com `--ndb-log-empty-epochs=ON` pode, na verdade, ter um número muito maior de `ndb_binlog_index` de strings por arquivo do que um com muita atividade.
 
 Quando o `mysqld` é iniciado com a opção `--ndb-log-orig`, as colunas `orig_server_id` e `orig_epoch` armazenam, respectivamente, o ID do servidor em que o evento se originou e a época em que o evento ocorreu no servidor de origem, o que é útil em configurações de replicação do NDB Cluster que empregam múltiplas fontes. A declaração `SELECT` usada para encontrar a posição mais próxima do log binário à época mais aplicada na replica em uma configuração de múltiplas fontes (ver Seção 21.7.10, “Replicação do NDB Cluster: Replicação Bidirecional e Circular”) emprega essas duas colunas, que não são indexadas. Isso pode levar a problemas de desempenho ao tentar falhar, pois a consulta deve realizar uma varredura na tabela, especialmente quando a fonte tem sido executada com `--ndb-log-empty-epochs=ON`. Você pode melhorar os tempos de falha em múltiplas fontes adicionando um índice a essas colunas, como mostrado aqui:
 
@@ -307,7 +307,7 @@ A adição deste índice não oferece nenhum benefício ao replicar de uma únic
 
 Consulte a Seção 21.7.8, “Implementando Failover com Replicação do NDB Cluster”, para obter mais informações sobre o uso das colunas `next_position` e `next_file`.
 
-A figura a seguir mostra a relação entre o servidor de origem de replicação do NDB Cluster, seu fio de injetor de log binário e a tabela `mysql.ndb_binlog_index`.
+A figura a seguir mostra a relação entre o servidor de origem de replicação do NDB Cluster, seu thread de injetor de log binário e a tabela `mysql.ndb_binlog_index`.
 
 **Figura 21.16. O clúster de fonte de replicação**
 
@@ -315,7 +315,7 @@ A figura a seguir mostra a relação entre o servidor de origem de replicação 
 
 #### Tabela ndb_replication
 
-A tabela `ndb_replication` é usada para controlar o registro binário e a resolução de conflitos, e atua em uma base por tabela. Cada linha desta tabela corresponde a uma tabela que está sendo replicada, determina como registrar as alterações na tabela e, se uma função de resolução de conflitos for especificada, e determina como resolver conflitos para essa tabela.
+A tabela `ndb_replication` é usada para controlar o registro binário e a resolução de conflitos, e atua em uma base por tabela. Cada string desta tabela corresponde a uma tabela que está sendo replicada, determina como registrar as alterações na tabela e, se uma função de resolução de conflitos for especificada, e determina como resolver conflitos para essa tabela.
 
 Ao contrário das tabelas `ndb_apply_status` e `ndb_replication`, a tabela `ndb_replication` deve ser criada manualmente, usando a declaração SQL mostrada aqui:
 
@@ -369,7 +369,7 @@ A tabela `ndb_replication` permite o controle de nível de tabela sobre o regist
 
 **Tabela 21.64 valores binlog\_type, com valores e descrições**
 
-<table><col width="10%"/><col width="55%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Use o padrão do servidor</td> </tr><tr> <td>1</td> <td>Não registre esta tabela no log binário (mesmo efeito que<code>sql_log_bin = 0</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>2</td> <td>Atualize os atributos apenas quando necessário; registre-os como<code>WRITE_ROW</code>eventos</td> </tr><tr> <td>3</td> <td>Registre a linha completa, mesmo que não seja atualizada (comportamento padrão do servidor MySQL)</td> </tr><tr> <td>6</td> <td>Utilize atributos atualizados, mesmo que os valores não tenham mudado</td> </tr><tr> <td>7</td> <td>Registre a linha completa, mesmo que nenhum valor seja alterado; registre as atualizações como<code>UPDATE_ROW</code>eventos</td> </tr><tr> <td>8</td> <td>Atualize o log<code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e apenas as colunas atualizadas na imagem posterior (o mesmo efeito que<code>--ndb-log-update-minimal</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>9</td> <td>Atualize o log<code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e todas as colunas, exceto as colunas da chave primária, na imagem posterior</td> </tr></tbody></table>
+<table><col width="10%"/><col width="55%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Use o padrão do servidor</td> </tr><tr> <td>1</td> <td>Não registre esta tabela no log binário (mesmo efeito que<code>sql_log_bin = 0</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>2</td> <td>Atualize os atributos apenas quando necessário; registre-os como<code>WRITE_ROW</code>eventos</td> </tr><tr> <td>3</td> <td>Registre a string completa, mesmo que não seja atualizada (comportamento padrão do servidor MySQL)</td> </tr><tr> <td>6</td> <td>Utilize atributos atualizados, mesmo que os valores não tenham mudado</td> </tr><tr> <td>7</td> <td>Registre a string completa, mesmo que nenhum valor seja alterado; registre as atualizações como<code>UPDATE_ROW</code>eventos</td> </tr><tr> <td>8</td> <td>Atualize o log<code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e apenas as colunas atualizadas na imagem posterior (o mesmo efeito que<code>--ndb-log-update-minimal</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>9</td> <td>Atualize o log<code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e todas as colunas, exceto as colunas da chave primária, na imagem posterior</td> </tr></tbody></table>
 
 Nota
 
@@ -381,7 +381,7 @@ Vários valores de `binlog_type` são equivalentes a várias combinações das o
 
 <table><col width="10%"/><col width="30%"/><col width="30%"/><col width="30%"/><thead><tr> <th>Value</th> <th><code>--ndb-log-updated-only</code> Value</th> <th><code>--ndb-log-update-as-write</code> Value</th> <th><code>--ndb-log-update-minimal</code> Value</th> </tr></thead><tbody><tr> <td>0</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>1</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>2</td> <td>ON</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>3</td> <td>OFF</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>6</td> <td>ON</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>7</td> <td>OFF</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>8</td> <td>ON</td> <td>OFF</td> <td>ON</td> </tr><tr> <td>9</td> <td>OFF</td> <td>OFF</td> <td>ON</td> </tr></tbody></table>
 
-O registro binário pode ser configurado em diferentes formatos para diferentes tabelas, inserindo linhas na tabela `ndb_replication` usando os valores apropriados das colunas `db`, `table_name` e `binlog_type`. O valor inteiro interno mostrado na tabela anterior deve ser usado ao configurar o formato de registro binário. As duas seguintes declarações configuram o registro binário para registro de linhas completas (valor 3) para a tabela `test.a`, e para registro de atualizações apenas (valor 2) para a tabela `test.b`:
+O registro binário pode ser configurado em diferentes formatos para diferentes tabelas, inserindo strings na tabela `ndb_replication` usando os valores apropriados das colunas `db`, `table_name` e `binlog_type`. O valor inteiro interno mostrado na tabela anterior deve ser usado ao configurar o formato de registro binário. As duas seguintes declarações configuram o registro binário para registro de strings completas (valor 3) para a tabela `test.a`, e para registro de atualizações apenas (valor 2) para a tabela `test.b`:
 
 ```sql
 # Table test.a: Log full rows
@@ -401,7 +401,7 @@ INSERT INTO mysql.ndb_replication VALUES("test", "t1", 0, 1, NULL);
 INSERT INTO mysql.ndb_replication VALUES("test", "t%", 0, 1, NULL);
 ```
 
-Desabilitar o registro para uma tabela específica é equivalente a definir `sql_log_bin = 0`, exceto que isso se aplica a uma ou mais tabelas individualmente. Se um nó SQL não estiver realizando o registro binário para uma tabela específica, não serão enviados os eventos de alteração de linha para essas tabelas. Isso significa que ele não está recebendo todas as alterações e descartando algumas, mas sim não está se subscrendo a essas alterações.
+Desabilitar o registro para uma tabela específica é equivalente a definir `sql_log_bin = 0`, exceto que isso se aplica a uma ou mais tabelas individualmente. Se um nó SQL não estiver realizando o registro binário para uma tabela específica, não serão enviados os eventos de alteração de string para essas tabelas. Isso significa que ele não está recebendo todas as alterações e descartando algumas, mas sim não está se subscrendo a essas alterações.
 
 Desabilitar o registro pode ser útil por várias razões, incluindo as listadas aqui:
 
@@ -413,7 +413,7 @@ Desabilitar o registro pode ser útil por várias razões, incluindo as listadas
 
 * A divisão dos fluxos de replicação em dois (ou mais) logs binários pode ser feita por razões de desempenho, necessidade de replicar diferentes bancos de dados para diferentes locais, uso de diferentes tipos de registro binário para diferentes bancos de dados, e assim por diante.
 
-**Compatibilidade com caracteres curinga.** Para não ser necessário inserir uma linha na tabela `ndb_replication` para cada combinação de banco de dados, tabela e nó SQL no seu conjunto de replicação, o `NDB` suporta a compatibilidade com caracteres curinga na coluna `db`, `table_name` e `server_id` da tabela. Os nomes de banco de dados e tabela utilizados, respectivamente, em `db` e `table_name` podem conter um ou ambos dos seguintes caracteres curinga:
+**Compatibilidade com caracteres curinga.** Para não ser necessário inserir uma string na tabela `ndb_replication` para cada combinação de banco de dados, tabela e nó SQL no seu conjunto de replicação, o `NDB` suporta a compatibilidade com caracteres curinga na coluna `db`, `table_name` e `server_id` da tabela. Os nomes de banco de dados e tabela utilizados, respectivamente, em `db` e `table_name` podem conter um ou ambos dos seguintes caracteres curinga:
 
 * `_` (caractere sublinhado): corresponde a zero ou mais caracteres
 
@@ -423,28 +423,28 @@ Desabilitar o registro pode ser útil por várias razões, incluindo as listadas
 
 A coluna `server_id` suporta `0` como um equivalente wildcard para `_` (encaixa qualquer coisa). Isso é usado nos exemplos mostrados anteriormente.
 
-Uma linha específica da tabela `ndb_replication` pode usar caracteres curinga para corresponder a qualquer um dos nomes do banco de dados, nomes de tabela e ID do servidor em qualquer combinação. Quando houver várias combinações potenciais na tabela, a melhor combinação é escolhida, de acordo com a tabela mostrada aqui, onde *W* representa uma correspondência com caracteres curinga, *E* uma correspondência exata e quanto maior o valor na coluna *Qualidade*, melhor a correspondência:
+Uma string específica da tabela `ndb_replication` pode usar caracteres curinga para corresponder a qualquer um dos nomes do banco de dados, nomes de tabela e ID do servidor em qualquer combinação. Quando houver várias combinações potenciais na tabela, a melhor combinação é escolhida, de acordo com a tabela mostrada aqui, onde *W* representa uma correspondência com caracteres curinga, *E* uma correspondência exata e quanto maior o valor na coluna *Qualidade*, melhor a correspondência:
 
 **Tabela 21.66 Pesos de diferentes combinações de correspondências com asterisco e correspondências exatas em colunas na tabela mysql.ndb_replication**
 
 <table><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th><code>db</code></th> <th><code>table_name</code></th> <th><code>server_id</code></th> <th>Quality</th> </tr></thead><tbody><tr> <td>W</td> <td>W</td> <td>W</td> <td>1</td> </tr><tr> <td>W</td> <td>W</td> <td>E</td> <td>2</td> </tr><tr> <td>W</td> <td>E</td> <td>W</td> <td>3</td> </tr><tr> <td>W</td> <td>E</td> <td>E</td> <td>4</td> </tr><tr> <td>E</td> <td>W</td> <td>W</td> <td>5</td> </tr><tr> <td>E</td> <td>W</td> <td>E</td> <td>6</td> </tr><tr> <td>E</td> <td>E</td> <td>W</td> <td>7</td> </tr><tr> <td>E</td> <td>E</td> <td>E</td> <td>8</td> </tr></tbody></table>
 
-Assim, uma correspondência exata no nome do banco de dados, no nome da tabela e no ID do servidor é considerada a melhor (mais forte), enquanto a correspondência mais fraca (pior) é uma correspondência com um caractere curinga em todas as três colunas. Apenas a força da correspondência é considerada ao escolher qual regra aplicar; a ordem em que as linhas ocorrem na tabela não tem efeito nessa determinação.
+Assim, uma correspondência exata no nome do banco de dados, no nome da tabela e no ID do servidor é considerada a melhor (mais forte), enquanto a correspondência mais fraca (pior) é uma correspondência com um caractere curinga em todas as três colunas. Apenas a força da correspondência é considerada ao escolher qual regra aplicar; a ordem em que as strings ocorrem na tabela não tem efeito nessa determinação.
 
-**Registro de linhas completas ou parciais.**
+**Registro de strings completas ou parciais.**
 
-Existem dois métodos básicos de registro de linhas, conforme determinado pela configuração da opção `--ndb-log-updated-only` para `mysqld`:
+Existem dois métodos básicos de registro de strings, conforme determinado pela configuração da opção `--ndb-log-updated-only` para `mysqld`:
 
-* Registre linhas completas (opção definida como `ON`)
+* Registre strings completas (opção definida como `ON`)
 * Registre apenas os dados da coluna que foram atualizados, ou seja, os dados da coluna cujos valores foram definidos, independentemente de o valor ter sido alterado ou não. Esse é o comportamento padrão (opção definida como `OFF`).
 
-Geralmente é suficiente — e mais eficiente — registrar apenas as colunas atualizadas; no entanto, se você precisar registrar linhas completas, pode fazê-lo definindo `--ndb-log-updated-only` para `0` ou `OFF`.
+Geralmente é suficiente — e mais eficiente — registrar apenas as colunas atualizadas; no entanto, se você precisar registrar strings completas, pode fazê-lo definindo `--ndb-log-updated-only` para `0` ou `OFF`.
 
 **Registro de dados alterados como atualizações.**
 
 A definição da opção `--ndb-log-update-as-write` do MySQL Server determina se o registro é realizado com ou sem a imagem “antes”.
 
-Como a resolução de conflitos para operações de atualização e exclusão é realizada no manipulador de atualização do MySQL Server, é necessário controlar o registro realizado pela fonte de replicação de modo que as atualizações sejam atualizações e não escritas; ou seja, de modo que as atualizações sejam tratadas como alterações em linhas existentes, em vez da escrita de novas linhas, mesmo que estas substituam as linhas existentes.
+Como a resolução de conflitos para operações de atualização e exclusão é realizada no manipulador de atualização do MySQL Server, é necessário controlar o registro realizado pela fonte de replicação de modo que as atualizações sejam atualizações e não escritas; ou seja, de modo que as atualizações sejam tratadas como alterações em strings existentes, em vez da escrita de novas strings, mesmo que estas substituam as strings existentes.
 
 Essa opção está ativada por padrão; em outras palavras, as atualizações são tratadas como escritas. Isso significa que, por padrão, as atualizações são escritas como eventos `write_row` no log binário, em vez de como eventos `update_row`.
 
@@ -530,9 +530,9 @@ Para uma lista completa das opções que podem ser usadas com o **mysqldump**, c
 
 Nota
 
-Se você copiar os dados para a replica dessa maneira, certifique-se de que a replica seja iniciada com a opção `--skip-slave-start` na linha de comando, caso contrário, inclua `skip-slave-start` no arquivo `my.cnf` da replica para evitar que ela tente se conectar à fonte para começar a replicar antes que todos os dados tenham sido carregados. Uma vez que o carregamento dos dados tenha sido concluído, siga as etapas adicionais descritas nas próximas duas seções.
+Se você copiar os dados para a replica dessa maneira, certifique-se de que a replica seja iniciada com a opção `--skip-slave-start` na string de comando, caso contrário, inclua `skip-slave-start` no arquivo `my.cnf` da replica para evitar que ela tente se conectar à fonte para começar a replicar antes que todos os dados tenham sido carregados. Uma vez que o carregamento dos dados tenha sido concluído, siga as etapas adicionais descritas nas próximas duas seções.
 
-5. Certifique-se de que cada servidor MySQL que atua como fonte de replicação seja atribuído um ID de servidor único e que tenha o registro binário habilitado, usando o formato baseado em linha. (Veja a Seção 16.2.1, “Formatos de Replicação”.) Além disso, recomendamos habilitar a variável de sistema `slave_allow_batching`; a partir do NDB 7.6.23, uma advertência é emitida se essa variável for definida como `OFF`. Você também deve considerar aumentar os valores usados com as opções `--ndb-batch-size` e `--ndb-blob-write-batch-bytes` também. Todas essas opções podem ser definidas no arquivo `my.cnf` do servidor fonte, ou na linha de comando ao iniciar o processo de replicação do NDB Cluster (Canal de Replicação Único)”, para mais informações.
+5. Certifique-se de que cada servidor MySQL que atua como fonte de replicação seja atribuído um ID de servidor único e que tenha o registro binário habilitado, usando o formato baseado em string. (Veja a Seção 16.2.1, “Formatos de Replicação”.) Além disso, recomendamos habilitar a variável de sistema `slave_allow_batching`; a partir do NDB 7.6.23, uma advertência é emitida se essa variável for definida como `OFF`. Você também deve considerar aumentar os valores usados com as opções `--ndb-batch-size` e `--ndb-blob-write-batch-bytes` também. Todas essas opções podem ser definidas no arquivo `my.cnf` do servidor fonte, ou na string de comando ao iniciar o processo de replicação do NDB Cluster (Canal de Replicação Único)”, para mais informações.
 
 ### 21.7.6 Início da replicação do cluster NDB (canal de replicação único)
 
@@ -549,7 +549,7 @@ Isso inicia o processo `mysqld` do servidor com registro binário habilitado, us
 
 Nota
 
-Você também pode iniciar a fonte com `--binlog-format=MIXED`, nesse caso, a replicação baseada em linha é usada automaticamente ao replicar entre clústeres. O registro binário baseado em declaração não é suportado para a Replicação de NDB Cluster (consulte Seção 21.7.2, “Requisitos Gerais para Replicação de NDB Cluster”).
+Você também pode iniciar a fonte com `--binlog-format=MIXED`, nesse caso, a replicação baseada em string é usada automaticamente ao replicar entre clústeres. O registro binário baseado em declaração não é suportado para a Replicação de NDB Cluster (consulte Seção 21.7.2, “Requisitos Gerais para Replicação de NDB Cluster”).
 
 2. Inicie o servidor de réplica do MySQL conforme mostrado aqui:
 
@@ -685,7 +685,7 @@ Caso o processo primário de replicação do grupo falhe, é possível alternar 
 
 Em uma topologia de replicação circular, com uma fonte e uma réplica em cada host, quando você está usando `ndb_log_apply_status=1`, as épocas do NDB Cluster são escritas nos logs binários das réplicas. Isso significa que a tabela `ndb_apply_status` contém informações para a réplica neste host, bem como para qualquer outro host que atue como réplica do servidor de fonte de replicação que está em execução neste host.
 
-Neste caso, você precisa determinar a última época nesta réplica, excluindo quaisquer épocas de quaisquer outras réplicas neste log binário da réplica que não foram listadas nas opções `IGNORE_SERVER_IDS` da declaração `CHANGE MASTER TO` usada para configurar esta réplica. A razão para excluir tais épocas é que as linhas na tabela `mysql.ndb_apply_status` cujos IDs de servidor têm uma correspondência na lista `IGNORE_SERVER_IDS` da declaração `CHANGE MASTER TO` usada para preparar a fonte desta réplica também são consideradas de servidores locais, além daqueles que têm o próprio ID de servidor da réplica. Você pode recuperar esta lista como `Replicate_Ignore_Server_Ids` da saída de `SHOW SLAVE STATUS`. Assumemos que você obteve esta lista e está substituindo-a por *`ignore_server_ids`* na consulta mostrada aqui, que, como a versão anterior da consulta, seleciona a maior época em uma variável chamada `@latest`:
+Neste caso, você precisa determinar a última época nesta réplica, excluindo quaisquer épocas de quaisquer outras réplicas neste log binário da réplica que não foram listadas nas opções `IGNORE_SERVER_IDS` da declaração `CHANGE MASTER TO` usada para configurar esta réplica. A razão para excluir tais épocas é que as strings na tabela `mysql.ndb_apply_status` cujos IDs de servidor têm uma correspondência na lista `IGNORE_SERVER_IDS` da declaração `CHANGE MASTER TO` usada para preparar a fonte desta réplica também são consideradas de servidores locais, além daqueles que têm o próprio ID de servidor da réplica. Você pode recuperar esta lista como `Replicate_Ignore_Server_Ids` da saída de `SHOW SLAVE STATUS`. Assumemos que você obteve esta lista e está substituindo-a por *`ignore_server_ids`* na consulta mostrada aqui, que, como a versão anterior da consulta, seleciona a maior época em uma variável chamada `@latest`:
 
    ```sql
    mysqlR'> SELECT @latest:=MAX(epoch)
@@ -751,7 +751,7 @@ Esta seção discute a realização de backups e a restauração a partir deles 
 
 1. Existem dois métodos diferentes pelos quais o backup pode ser iniciado.
 
-* **Método A.** Este método exige que o processo de backup do clúster tenha sido habilitado previamente no servidor de origem, antes de iniciar o processo de replicação. Isso pode ser feito incluindo a seguinte linha em uma seção `[mysql_cluster]` no `my.cnf file`, onde *`management_host`* é o endereço IP ou nome de host do servidor de gerenciamento `NDB` para o clúster de origem, e *`port`* é o número da porta do servidor de gerenciamento:
+* **Método A.** Este método exige que o processo de backup do clúster tenha sido habilitado previamente no servidor de origem, antes de iniciar o processo de replicação. Isso pode ser feito incluindo a seguinte string em uma seção `[mysql_cluster]` no `my.cnf file`, onde *`management_host`* é o endereço IP ou nome de host do servidor de gerenciamento `NDB` para o clúster de origem, e *`port`* é o número da porta do servidor de gerenciamento:
 
      ```sql
      ndb-connectstring=management_host[:port]
@@ -779,7 +779,7 @@ No nosso cenário, conforme descrito anteriormente (ver Seção 21.7.5, “Prepa
      shellS> ndb_mgm rep-source:1186 -e "START BACKUP"
      ```
 
-2. Copie os arquivos de backup do clúster para a replica que está sendo colocada em linha. Cada sistema que executa um processo **ndbd** para o clúster de origem tem arquivos de backup do clúster localizados nele, e *todos* desses arquivos devem ser copiados para a replica para garantir um restabelecimento bem-sucedido. Os arquivos de backup podem ser copiados em qualquer diretório do computador onde o host de gerenciamento da replica reside, desde que os binários MySQL e NDB tenham permissões de leitura nesse diretório. Neste caso, assumimos que esses arquivos tenham sido copiados para o diretório `/var/BACKUPS/BACKUP-1`.
+2. Copie os arquivos de backup do clúster para a replica que está sendo colocada em string. Cada sistema que executa um processo **ndbd** para o clúster de origem tem arquivos de backup do clúster localizados nele, e *todos* desses arquivos devem ser copiados para a replica para garantir um restabelecimento bem-sucedido. Os arquivos de backup podem ser copiados em qualquer diretório do computador onde o host de gerenciamento da replica reside, desde que os binários MySQL e NDB tenham permissões de leitura nesse diretório. Neste caso, assumimos que esses arquivos tenham sido copiados para o diretório `/var/BACKUPS/BACKUP-1`.
 
 Embora não seja necessário que o clúster de replicação tenha o mesmo número de processos **ndbd** (nós de dados) que a fonte, é altamente recomendável que esse número seja o mesmo. É necessário que a replicação seja iniciada com a opção `--skip-slave-start`, para evitar o início prematuro do processo de replicação.
 
@@ -1104,7 +1104,7 @@ Esse tipo de configuração de replicação circular é mostrado no diagrama a s
 
 ![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that all sources are also replicas.](images/cluster-circular-replication-1.png)
 
-Nesse cenário, o nó SQL A do Cluster 1 replica para o nó SQL C do Cluster 2; o nó SQL C replica para o nó SQL E do Cluster 3; o nó SQL E replica para o nó SQL A. Em outras palavras, a linha de replicação (indicada pelas setas curvas no diagrama) conecta diretamente todos os nós SQL usados como fontes e réplicas de replicação.
+Nesse cenário, o nó SQL A do Cluster 1 replica para o nó SQL C do Cluster 2; o nó SQL C replica para o nó SQL E do Cluster 3; o nó SQL E replica para o nó SQL A. Em outras palavras, a string de replicação (indicada pelas setas curvas no diagrama) conecta diretamente todos os nós SQL usados como fontes e réplicas de replicação.
 
 Também é possível configurar a replicação circular de forma que nem todos os nós SQL de origem sejam também réplicas, como mostrado aqui:
 
@@ -1112,7 +1112,7 @@ Também é possível configurar a replicação circular de forma que nem todos o
 
 ![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that not all sources are replicas.](images/cluster-circular-replication-2.png)
 
-Neste caso, diferentes nós SQL em cada clúster são usados como fontes e réplicas de replicação. Você *não* deve iniciar nenhum dos nós SQL com a variável de sistema `log_slave_updates` habilitada. Este tipo de esquema de replicação circular para o NDB Cluster, no qual a linha de replicação (novamente indicada pelas setas curvas no diagrama) é descontínua, deve ser possível, mas deve-se notar que ainda não foi completamente testado e, portanto, ainda deve ser considerado experimental.
+Neste caso, diferentes nós SQL em cada clúster são usados como fontes e réplicas de replicação. Você *não* deve iniciar nenhum dos nós SQL com a variável de sistema `log_slave_updates` habilitada. Este tipo de esquema de replicação circular para o NDB Cluster, no qual a string de replicação (novamente indicada pelas setas curvas no diagrama) é descontínua, deve ser possível, mas deve-se notar que ainda não foi completamente testado e, portanto, ainda deve ser considerado experimental.
 
 **Usando backup e restauração nativa do NDB para inicializar um cluster de replica.**
 
@@ -1183,9 +1183,9 @@ A declaração `CHANGE MASTER TO` também suporta uma opção `IGNORE_SERVER_IDS
 * Variáveis de Status de Detecção de Conflitos
 * Exemplos
 
-Ao usar uma configuração de replicação que envolve múltiplas fontes (incluindo replicação circular), é possível que diferentes fontes tentem atualizar a mesma linha na replica com dados diferentes. A resolução de conflitos na Replicação do NDB Cluster fornece um meio de resolver tais conflitos, permitindo que uma coluna de resolução definida pelo usuário seja usada para determinar se uma atualização em uma fonte específica deve ser aplicada na replica ou
+Ao usar uma configuração de replicação que envolve múltiplas fontes (incluindo replicação circular), é possível que diferentes fontes tentem atualizar a mesma string na replica com dados diferentes. A resolução de conflitos na Replicação do NDB Cluster fornece um meio de resolver tais conflitos, permitindo que uma coluna de resolução definida pelo usuário seja usada para determinar se uma atualização em uma fonte específica deve ser aplicada na replica ou
 
-Alguns tipos de resolução de conflitos suportados pelo NDB Cluster (`NDB$OLD()`, `NDB$MAX()`, `NDB$MAX_DELETE_WIN()`) implementam essa coluna definida pelo usuário como uma coluna de “timestamp” (embora seu tipo não possa ser `TIMESTAMP`, conforme explicado mais adiante nesta seção). Esses tipos de resolução de conflitos são sempre aplicados linha a linha, em vez de uma base transacional. As funções de resolução de conflitos baseadas em época `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` comparam a ordem em que as épocas são replicadas (e, portanto, essas funções são transacionais). Diferentes métodos podem ser usados para comparar os valores da coluna de resolução na replica quando ocorrem conflitos, conforme explicado mais adiante nesta seção; o método usado pode ser definido para agir em uma única tabela, banco de dados ou servidor, ou em um conjunto de uma ou mais tabelas usando correspondência de padrões. Consulte Correspondência com caracteres curinga, para informações sobre o uso de correspondências de padrões nas colunas `db`, `table_name` e `server_id` da tabela `mysql.ndb_replication`.
+Alguns tipos de resolução de conflitos suportados pelo NDB Cluster (`NDB$OLD()`, `NDB$MAX()`, `NDB$MAX_DELETE_WIN()`) implementam essa coluna definida pelo usuário como uma coluna de “timestamp” (embora seu tipo não possa ser `TIMESTAMP`, conforme explicado mais adiante nesta seção). Esses tipos de resolução de conflitos são sempre aplicados string a string, em vez de uma base transacional. As funções de resolução de conflitos baseadas em época `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` comparam a ordem em que as épocas são replicadas (e, portanto, essas funções são transacionais). Diferentes métodos podem ser usados para comparar os valores da coluna de resolução na replica quando ocorrem conflitos, conforme explicado mais adiante nesta seção; o método usado pode ser definido para agir em uma única tabela, banco de dados ou servidor, ou em um conjunto de uma ou mais tabelas usando correspondência de padrões. Consulte Correspondência com caracteres curinga, para informações sobre o uso de correspondências de padrões nas colunas `db`, `table_name` e `server_id` da tabela `mysql.ndb_replication`.
 
 Você também deve ter em mente que é responsabilidade do aplicativo garantir que a coluna de resolução esteja corretamente preenchida com valores relevantes, para que a função de resolução possa fazer a escolha apropriada ao determinar se deve aplicar uma atualização.
 
@@ -1203,9 +1203,9 @@ Veja a Seção 16.4.1.19, “Replicação e max\_allowed\_packet”, para mais i
 
 * Na replica, você deve determinar que tipo de resolução de conflitos aplicar (“último timestamp vence”, “mesmo timestamp vence”, “primário vence”, “primário vence, transação completa” ou nenhum). Isso é feito usando a tabela do sistema `mysql.ndb_replication`, e se aplica a uma ou mais tabelas específicas (veja a tabela ndb\_replication).
 
-* O NDB Cluster também suporta detecção de conflitos de leitura, ou seja, a detecção de conflitos entre leituras de uma determinada linha em um cluster e atualizações ou exclusões da mesma linha em outro cluster. Isso requer bloqueios de leitura exclusivos obtidos ao definir `ndb_log_exclusive_reads` igual a 1 na replica. Todas as linhas lidas por uma leitura em conflito são registradas na tabela de exceções. Para mais informações, consulte Detecção e resolução de conflitos de leitura.
+* O NDB Cluster também suporta detecção de conflitos de leitura, ou seja, a detecção de conflitos entre leituras de uma determinada string em um cluster e atualizações ou exclusões da mesma string em outro cluster. Isso requer bloqueios de leitura exclusivos obtidos ao definir `ndb_log_exclusive_reads` igual a 1 na replica. Todas as strings lidas por uma leitura em conflito são registradas na tabela de exceções. Para mais informações, consulte Detecção e resolução de conflitos de leitura.
 
-* `NDB` aplica os eventos `WRITE_ROW` estritamente como inserções, exigindo que não haja já nenhuma linha desse tipo; ou seja, uma escrita de entrada é sempre rejeitada se a linha já existir.
+* `NDB` aplica os eventos `WRITE_ROW` estritamente como inserções, exigindo que não haja já nenhuma string desse tipo; ou seja, uma escrita de entrada é sempre rejeitada se a string já existir.
 
 Ao usar as funções `NDB$OLD()`, `NDB$MAX()` e `NDB$MAX_DELETE_WIN()` para resolução de conflitos baseada em marcação de tempo, frequentemente referimos a coluna usada para determinar as atualizações como uma coluna de “marcação de tempo”. No entanto, o tipo de dados dessa coluna nunca é `TIMESTAMP`; em vez disso, seu tipo de dados deve ser `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (`INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) ou `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). A coluna de “marcação de tempo” também deve ser `UNSIGNED` e `NOT NULL`.
 
@@ -1217,7 +1217,7 @@ Podemos ver as operações de atualização em termos de imagens de “antes” 
 
 Importante
 
-A decisão de registrar linhas completas ou apenas colunas atualizadas é tomada quando o servidor MySQL é iniciado e não pode ser alterada online; você deve reiniciar o `mysqld` ou iniciar uma nova instância do `mysqld` com opções de registro diferentes.
+A decisão de registrar strings completas ou apenas colunas atualizadas é tomada quando o servidor MySQL é iniciado e não pode ser alterada online; você deve reiniciar o `mysqld` ou iniciar uma nova instância do `mysqld` com opções de registro diferentes.
 
 #### Controle de Resolução de Conflitos
 
@@ -1256,14 +1256,14 @@ O valor da coluna da imagem "antes" da fonte é usado por esta função.
 
 ##### NDB$MAX()
 
-Se o valor da coluna “timestamp” para uma determinada linha proveniente da fonte for maior que o da réplica, ele é aplicado; caso contrário, não é aplicado na réplica. Isso é ilustrado pelo seguinte pseudocodigo:
+Se o valor da coluna “timestamp” para uma determinada string proveniente da fonte for maior que o da réplica, ele é aplicado; caso contrário, não é aplicado na réplica. Isso é ilustrado pelo seguinte pseudocodigo:
 
 ```sql
 if (source_new_column_value > replica_current_column_value)
   apply_update();
 ```
 
-Essa função pode ser usada para resolução de conflitos de "maior timestamp vencedor". Esse tipo de resolução de conflitos garante que, em caso de conflito, a versão da linha que foi atualizada mais recentemente é a versão que persiste.
+Essa função pode ser usada para resolução de conflitos de "maior timestamp vencedor". Esse tipo de resolução de conflitos garante que, em caso de conflito, a versão da string que foi atualizada mais recentemente é a versão que persiste.
 
 Importante
 
@@ -1271,7 +1271,7 @@ O valor da coluna da imagem "after" das fontes é utilizado por esta função.
 
 ##### NDB$MAX_DELETE_WIN()
 
-Esta é uma variação de `NDB$MAX()`. Devido ao fato de que não há marcação de tempo disponível para uma operação de exclusão, uma exclusão usando `NDB$MAX()` é, na verdade, processada como `NDB$OLD`, mas, para alguns casos de uso, isso não é ótimo. Para `NDB$MAX_DELETE_WIN()`, se o valor da coluna “marcação de tempo” para uma determinada linha que adiciona ou atualiza uma linha existente proveniente da fonte for maior que o da replica, ele é aplicado. No entanto, as operações de exclusão são tratadas como sempre tendo o valor mais alto. Isso é ilustrado pelo seguinte pseudocodigo:
+Esta é uma variação de `NDB$MAX()`. Devido ao fato de que não há marcação de tempo disponível para uma operação de exclusão, uma exclusão usando `NDB$MAX()` é, na verdade, processada como `NDB$OLD`, mas, para alguns casos de uso, isso não é ótimo. Para `NDB$MAX_DELETE_WIN()`, se o valor da coluna “marcação de tempo” para uma determinada string que adiciona ou atualiza uma string existente proveniente da fonte for maior que o da replica, ele é aplicado. No entanto, as operações de exclusão são tratadas como sempre tendo o valor mais alto. Isso é ilustrado pelo seguinte pseudocodigo:
 
 ```sql
 if ( (source_new_column_value > replica_current_column_value)
@@ -1280,7 +1280,7 @@ if ( (source_new_column_value > replica_current_column_value)
   apply_update();
 ```
 
-Essa função pode ser usada para resolução de conflitos de "maior timestamp, exclua vitórias". Esse tipo de resolução de conflitos garante que, em caso de conflito, a versão da linha que foi excluída ou (de outra forma) mais recentemente atualizada é a versão que persiste.
+Essa função pode ser usada para resolução de conflitos de "maior timestamp, exclua vitórias". Esse tipo de resolução de conflitos garante que, em caso de conflito, a versão da string que foi excluída ou (de outra forma) mais recentemente atualizada é a versão que persiste.
 
 Nota
 
@@ -1302,9 +1302,9 @@ Quando a réplica no primário detecta conflitos, ela injeta eventos em seu pró
 
 * As operações que alteram dados no secundário podem ser revertidas posteriormente, se o primário determinar que elas estão em conflito.
 
-* As linhas individuais lidas no secundário são consistentes em todos os momentos, cada linha sempre refletindo um estado comprometido pelo secundário ou um comprometido pelo primário.
+* As strings individuais lidas no secundário são consistentes em todos os momentos, cada string sempre refletindo um estado comprometido pelo secundário ou um comprometido pelo primário.
 
-* Os conjuntos de linhas lidos no secundário não são necessariamente consistentes em um único ponto de tempo. Para `NDB$EPOCH_TRANS()`, esse é um estado transitório; para `NDB$EPOCH()`, pode ser um estado persistente.
+* Os conjuntos de strings lidos no secundário não são necessariamente consistentes em um único ponto de tempo. Para `NDB$EPOCH_TRANS()`, esse é um estado transitório; para `NDB$EPOCH()`, pode ser um estado persistente.
 
 * Supondo um período de duração suficiente sem quaisquer conflitos, todos os dados do NDB Cluster secundário (eventualmente) se tornam consistentes com os dados do primário.
 
@@ -1318,7 +1318,7 @@ CEIL( LOG2( TimeBetweenGlobalCheckpoints / TimeBetweenEpochs ), 1)
 
 Para os valores padrão desses parâmetros de configuração (2000 e 100 milissegundos, respectivamente), isso resulta em um valor de 5 bits, portanto, o valor padrão (6) deve ser suficiente, a menos que outros valores sejam usados para `TimeBetweenGlobalCheckpoints`, `TimeBetweenEpochs` ou ambos. Um valor que é muito pequeno pode resultar em falsos positivos, enquanto um valor muito grande pode levar a um espaço excessivamente desperdiçado no banco de dados.
 
-Tanto o `NDB$EPOCH()` quanto o `NDB$EPOCH_TRANS()` inserem entradas para linhas conflitantes nas tabelas de exceções relevantes, desde que essas tabelas tenham sido definidas de acordo com as mesmas regras do esquema de tabela de exceções, conforme descrito em outras partes desta seção (ver NDB$OLD()")). Você deve criar qualquer tabela de exceções antes de criar a tabela de dados com a qual ela deve ser usada.
+Tanto o `NDB$EPOCH()` quanto o `NDB$EPOCH_TRANS()` inserem entradas para strings conflitantes nas tabelas de exceções relevantes, desde que essas tabelas tenham sido definidas de acordo com as mesmas regras do esquema de tabela de exceções, conforme descrito em outras partes desta seção (ver NDB$OLD()")). Você deve criar qualquer tabela de exceções antes de criar a tabela de dados com a qual ela deve ser usada.
 
 Assim como as outras funções de detecção de conflitos discutidas nesta seção, `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são ativadas ao incluir entradas relevantes na tabela `mysql.ndb_replication` (ver ndb\_replication Table). Os papéis dos NDB Clusters primário e secundário neste cenário são totalmente determinados pelas entradas da tabela `mysql.ndb_replication`.
 
@@ -1332,11 +1332,11 @@ As seguintes limitações atualmente se aplicam ao uso de `NDB$EPOCH()` para rea
 
 * Os conflitos são detectados usando limites de época do NDB Cluster, com granularidade proporcional a `TimeBetweenEpochs` (padrão: 100 milissegundos). A janela mínima de conflito é o tempo mínimo durante o qual atualizações concorrentes dos mesmos dados em ambos os clusters sempre relatam um conflito. Isso é sempre um tempo não nulo, e é aproximadamente proporcional a `2 * (latency + queueing + TimeBetweenEpochs)`. Isso implica que, assumindo o padrão para `TimeBetweenEpochs` e ignorando qualquer latência entre os clusters (assim como quaisquer atrasos em filas), o tamanho da janela mínima de conflito é aproximadamente 200 milissegundos. Essa janela mínima deve ser considerada ao analisar os padrões esperados de "race" do aplicativo.
 
-* Armazenamento adicional é necessário para tabelas que utilizam as funções `NDB$EPOCH()` e `NDB$EPOCH_TRANS()`; de 1 a 32 bits de espaço extra por linha são necessários, dependendo do valor passado para a função.
+* Armazenamento adicional é necessário para tabelas que utilizam as funções `NDB$EPOCH()` e `NDB$EPOCH_TRANS()`; de 1 a 32 bits de espaço extra por string são necessários, dependendo do valor passado para a função.
 
-* Conflitos entre operações de exclusão podem resultar em divergência entre o primário e o secundário. Quando uma linha é excluída em ambos os clusters simultaneamente, o conflito pode ser detectado, mas não é registrado, uma vez que a linha é excluída. Isso significa que conflitos adicionais durante a propagação de quaisquer operações subsequentes de realinhamento não são detectados, o que pode levar a divergência.
+* Conflitos entre operações de exclusão podem resultar em divergência entre o primário e o secundário. Quando uma string é excluída em ambos os clusters simultaneamente, o conflito pode ser detectado, mas não é registrado, uma vez que a string é excluída. Isso significa que conflitos adicionais durante a propagação de quaisquer operações subsequentes de realinhamento não são detectados, o que pode levar a divergência.
 
-As exclusões devem ser serializadas externamente ou encaminhadas para apenas um clúster. Alternativamente, uma linha separada deve ser atualizada transacionalmente com essas exclusões e quaisquer inserções que as sigam, para que os conflitos possam ser rastreados em exclusões de linha. Isso pode exigir mudanças nos aplicativos.
+As exclusões devem ser serializadas externamente ou encaminhadas para apenas um clúster. Alternativamente, uma string separada deve ser atualizada transacionalmente com essas exclusões e quaisquer inserções que as sigam, para que os conflitos possam ser rastreados em exclusões de string. Isso pode exigir mudanças nos aplicativos.
 
 * Apenas dois NDB Clusters em uma configuração bidirecional "ativa-ativa" são atualmente suportados ao usar `NDB$EPOCH()` ou `NDB$EPOCH_TRANS()` para detecção de conflitos.
 
@@ -1344,11 +1344,11 @@ As exclusões devem ser serializadas externamente ou encaminhadas para apenas um
 
 ##### NDB$EPOCH_TRANS()
 
-`NDB$EPOCH_TRANS()` estende a função `NDB$EPOCH()`. Os conflitos são detectados e tratados da mesma maneira, usando a regra “o primário vence sempre” (ver NDB$EPOCH()”), mas com a condição adicional de que quaisquer outras linhas atualizadas na mesma transação em que ocorreu o conflito também são consideradas em conflito. Em outras palavras, onde `NDB$EPOCH()` realinha as linhas individuais em conflito no secundário, `NDB$EPOCH_TRANS()` realinha as transações em conflito.
+`NDB$EPOCH_TRANS()` estende a função `NDB$EPOCH()`. Os conflitos são detectados e tratados da mesma maneira, usando a regra “o primário vence sempre” (ver NDB$EPOCH()”), mas com a condição adicional de que quaisquer outras strings atualizadas na mesma transação em que ocorreu o conflito também são consideradas em conflito. Em outras palavras, onde `NDB$EPOCH()` realinha as strings individuais em conflito no secundário, `NDB$EPOCH_TRANS()` realinha as transações em conflito.
 
 Além disso, quaisquer transações que sejam detectabilmente dependentes de uma transação conflitante também são consideradas conflitantes, essas dependências sendo determinadas pelo conteúdo do log binário do cluster secundário. Como o log binário contém apenas operações de modificação de dados (inserções, atualizações e exclusões), apenas as modificações de dados que se sobrepõem são usadas para determinar as dependências entre as transações.
 
-`NDB$EPOCH_TRANS()` está sujeito às mesmas condições e limitações que `NDB$EPOCH()`, e, além disso, exige que sejam usadas as versões binárias de eventos de linha de registro `log_bin_use_v1_row_events` iguais a 0, o que adiciona um custo de armazenamento de 2 bytes por evento no registro binário. Além disso, todos os IDs de transação devem ser registrados no registro binário do secundário, usando `--ndb-log-transaction-id` definido como `ON`. Isso adiciona uma quantidade variável de sobrecarga (até 13 bytes por linha).
+`NDB$EPOCH_TRANS()` está sujeito às mesmas condições e limitações que `NDB$EPOCH()`, e, além disso, exige que sejam usadas as versões binárias de eventos de string de registro `log_bin_use_v1_row_events` iguais a 0, o que adiciona um custo de armazenamento de 2 bytes por evento no registro binário. Além disso, todos os IDs de transação devem ser registrados no registro binário do secundário, usando `--ndb-log-transaction-id` definido como `ON`. Isso adiciona uma quantidade variável de sobrecarga (até 13 bytes por string).
 
 Veja NDB$EPOCH()").
 
@@ -1358,23 +1358,23 @@ A função `NDB$EPOCH2()` é semelhante à `NDB$EPOCH()`, exceto que `NDB$EPOCH2
 
 ##### NDB$EPOCH2_TRANS()
 
-`NDB$EPOCH2_TRANS()` estende a função `NDB$EPOCH2()`. Conflitos são detectados e tratados da mesma maneira, e atribuindo papéis primários e secundários aos clústeres replicados, mas com a condição adicional de que quaisquer outras linhas atualizadas na mesma transação na qual o conflito ocorreu também são consideradas em conflito. Isso significa que `NDB$EPOCH2()` realinha as linhas conflitantes individuais no secundário, enquanto `NDB$EPOCH_TRANS()` realinha as transações conflitantes.
+`NDB$EPOCH2_TRANS()` estende a função `NDB$EPOCH2()`. Conflitos são detectados e tratados da mesma maneira, e atribuindo papéis primários e secundários aos clústeres replicados, mas com a condição adicional de que quaisquer outras strings atualizadas na mesma transação na qual o conflito ocorreu também são consideradas em conflito. Isso significa que `NDB$EPOCH2()` realinha as strings conflitantes individuais no secundário, enquanto `NDB$EPOCH_TRANS()` realinha as transações conflitantes.
 
-Quando `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` utilizam metadados especificados por linha, por última modificação, para determinar se uma mudança de linha replicada recebida do secundário é concorrente com uma mudança comprometida localmente; as mudanças concorrentes são consideradas conflitantes, com tabelas de exceções subseqüentes e realinhamento do secundário. Surge um problema quando uma linha é excluída no primário, não havendo mais nenhuma última modificação disponível para determinar se alguma operação replicada é conflitante, o que significa que as operações de exclusão conflitantes não são detectadas. Isso pode resultar em divergência, um exemplo sendo uma exclusão em um clúster que é concorrente com uma exclusão e inserção em outro; é por isso que as operações de exclusão podem ser encaminhadas apenas para um clúster ao usar `NDB$EPOCH()` e `NDB$EPOCH_TRANS()`.
+Quando `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` utilizam metadados especificados por string, por última modificação, para determinar se uma mudança de string replicada recebida do secundário é concorrente com uma mudança comprometida localmente; as mudanças concorrentes são consideradas conflitantes, com tabelas de exceções subseqüentes e realinhamento do secundário. Surge um problema quando uma string é excluída no primário, não havendo mais nenhuma última modificação disponível para determinar se alguma operação replicada é conflitante, o que significa que as operações de exclusão conflitantes não são detectadas. Isso pode resultar em divergência, um exemplo sendo uma exclusão em um clúster que é concorrente com uma exclusão e inserção em outro; é por isso que as operações de exclusão podem ser encaminhadas apenas para um clúster ao usar `NDB$EPOCH()` e `NDB$EPOCH_TRANS()`.
 
-`NDB$EPOCH2()` contorna o problema descrito acima, armazenando informações sobre as linhas excluídas no PRIMARY, ignorando qualquer conflito de exclusão-exclusão e evitando qualquer divergência potencial resultante também. Isso é feito refletindo qualquer operação aplicada com sucesso e replicada do secundário de volta ao secundário. Ao retornar ao secundário, ele pode ser usado para reaplicar uma operação no secundário que foi excluída por uma operação originada do primário.
+`NDB$EPOCH2()` contorna o problema descrito acima, armazenando informações sobre as strings excluídas no PRIMARY, ignorando qualquer conflito de exclusão-exclusão e evitando qualquer divergência potencial resultante também. Isso é feito refletindo qualquer operação aplicada com sucesso e replicada do secundário de volta ao secundário. Ao retornar ao secundário, ele pode ser usado para reaplicar uma operação no secundário que foi excluída por uma operação originada do primário.
 
-Ao usar `NDB$EPOCH2()`, você deve ter em mente que o secundário aplica a exclusão do primário, removendo a nova linha até que ela seja restaurada por uma operação refletida. Teoricamente, a subsequente inserção ou atualização no secundário entra em conflito com a exclusão do primário, mas, neste caso, escolhemos ignorar isso e permitir que o secundário "ganhe", no interesse de prevenir a divergência entre os clusters. Em outras palavras, após uma exclusão, o primário não detecta conflitos e, em vez disso, adota as seguintes alterações do secundário imediatamente. Por isso, o estado do secundário pode revisar vários estados anteriores comprometidos à medida que progride para um estado final (estável), e alguns desses podem ser visíveis.
+Ao usar `NDB$EPOCH2()`, você deve ter em mente que o secundário aplica a exclusão do primário, removendo a nova string até que ela seja restaurada por uma operação refletida. Teoricamente, a subsequente inserção ou atualização no secundário entra em conflito com a exclusão do primário, mas, neste caso, escolhemos ignorar isso e permitir que o secundário "ganhe", no interesse de prevenir a divergência entre os clusters. Em outras palavras, após uma exclusão, o primário não detecta conflitos e, em vez disso, adota as seguintes alterações do secundário imediatamente. Por isso, o estado do secundário pode revisar vários estados anteriores comprometidos à medida que progride para um estado final (estável), e alguns desses podem ser visíveis.
 
 Você também deve estar ciente de que refletir todas as operações do secundário para o primário aumenta o tamanho do logbinary do log do primário, além de exigir largura de banda, uso de CPU e I/O de disco.
 
-A aplicação de operações refletidas no secundário depende do estado da linha-alvo no secundário. Se as alterações refletidas são aplicadas no secundário ou não, pode ser verificado verificando as variáveis de status `Ndb_conflict_reflected_op_prepare_count` e `Ndb_conflict_reflected_op_discard_count`. O número de alterações aplicadas é simplesmente a diferença entre esses dois valores (note que `Ndb_conflict_reflected_op_prepare_count` é sempre maior ou igual a `Ndb_conflict_reflected_op_discard_count`).
+A aplicação de operações refletidas no secundário depende do estado da string-alvo no secundário. Se as alterações refletidas são aplicadas no secundário ou não, pode ser verificado verificando as variáveis de status `Ndb_conflict_reflected_op_prepare_count` e `Ndb_conflict_reflected_op_discard_count`. O número de alterações aplicadas é simplesmente a diferença entre esses dois valores (note que `Ndb_conflict_reflected_op_prepare_count` é sempre maior ou igual a `Ndb_conflict_reflected_op_discard_count`).
 
 Os eventos são aplicados se e somente se ambas as seguintes condições forem verdadeiras:
 
-* A existência da linha — ou seja, se ela existe ou não — está de acordo com o tipo de operação. Para operações de exclusão e atualização, a linha já deve existir. Para operações de inserção, a linha *não* deve existir.
+* A existência da string — ou seja, se ela existe ou não — está de acordo com o tipo de operação. Para operações de exclusão e atualização, a string já deve existir. Para operações de inserção, a string *não* deve existir.
 
-* A linha foi modificada pela última vez pelo primário. É possível que a modificação tenha sido realizada através da execução de uma operação refletida.
+* A string foi modificada pela última vez pelo primário. É possível que a modificação tenha sido realizada através da execução de uma operação refletida.
 
 Se nenhuma dessas condições for atendida, a operação refletida é descartada pelo secundário.
 
@@ -1422,7 +1422,7 @@ NDB$OP_TYPE ENUM('WRITE_ROW', 'UPDATE_ROW', 'DELETE_ROW',
     'REFRESH_ROW', 'READ_ROW') NOT NULL
 ```
 
-Os tipos de operações `WRITE_ROW`, `UPDATE_ROW` e `DELETE_ROW` representam operações iniciadas pelo usuário. As operações `REFRESH_ROW` são operações geradas pela resolução de conflitos em transações compensatórias enviadas de volta ao clúster de origem do clúster que detectou o conflito. As operações `READ_ROW` são operações de rastreamento de leitura iniciadas pelo usuário, definidas com bloqueios exclusivos de linha.
+Os tipos de operações `WRITE_ROW`, `UPDATE_ROW` e `DELETE_ROW` representam operações iniciadas pelo usuário. As operações `REFRESH_ROW` são operações geradas pela resolução de conflitos em transações compensatórias enviadas de volta ao clúster de origem do clúster que detectou o conflito. As operações `READ_ROW` são operações de rastreamento de leitura iniciadas pelo usuário, definidas com bloqueios exclusivos de string.
 
 `NDB$CFT_CAUSE`: Você pode definir uma coluna opcional `NDB$CFT_CAUSE` que fornece a causa do conflito registrado. Essa coluna, se usada, é definida conforme mostrado aqui:
 
@@ -1431,7 +1431,7 @@ NDB$CFT_CAUSE ENUM('ROW_DOES_NOT_EXIST', 'ROW_ALREADY_EXISTS',
     'DATA_IN_CONFLICT', 'TRANS_IN_CONFLICT') NOT NULL
 ```
 
-`ROW_DOES_NOT_EXIST` pode ser relatado como a causa para as operações de `UPDATE_ROW` e `WRITE_ROW`; `ROW_ALREADY_EXISTS` pode ser relatado para eventos de `WRITE_ROW`. `DATA_IN_CONFLICT` é relatado quando uma função de conflito baseada em linha detecta um conflito; `TRANS_IN_CONFLICT` é relatado quando uma função de conflito transacional rejeita todas as operações pertencentes a uma transação completa.
+`ROW_DOES_NOT_EXIST` pode ser relatado como a causa para as operações de `UPDATE_ROW` e `WRITE_ROW`; `ROW_ALREADY_EXISTS` pode ser relatado para eventos de `WRITE_ROW`. `DATA_IN_CONFLICT` é relatado quando uma função de conflito baseada em string detecta um conflito; `TRANS_IN_CONFLICT` é relatado quando uma função de conflito transacional rejeita todas as operações pertencentes a uma transação completa.
 
 `NDB$ORIG_TRANSID`: A coluna `NDB$ORIG_TRANSID`, se utilizada, contém o ID da transação de origem. Esta coluna deve ser definida da seguinte forma:
 
@@ -1441,21 +1441,21 @@ NDB$ORIG_TRANSID BIGINT UNSIGNED NOT NULL
 
 `NDB$ORIG_TRANSID` é um valor de 64 bits gerado por `NDB`. Esse valor pode ser usado para correlacionar várias entradas da tabela de exceções que pertencem à mesma transação conflitante, provenientes das mesmas tabelas de exceções ou de tabelas diferentes.
 
-Colunas de referência adicionais que não fazem parte da chave primária da tabela original podem ser nomeadas `colname$OLD` ou `colname$NEW`. `colname$OLD` refere-se a valores antigos em operações de atualização e exclusão — ou seja, operações que contêm eventos `DELETE_ROW`. `colname$NEW` pode ser usado para referenciar novos valores em operações de inserção e atualização — em outras palavras, operações que utilizam eventos `WRITE_ROW`, `UPDATE_ROW` ou ambos os tipos de eventos. Quando uma operação conflitante não fornece um valor para uma coluna de referência específica que não é uma chave primária, a linha da tabela de exceções contém `NULL`, ou um valor padrão definido para essa coluna.
+Colunas de referência adicionais que não fazem parte da chave primária da tabela original podem ser nomeadas `colname$OLD` ou `colname$NEW`. `colname$OLD` refere-se a valores antigos em operações de atualização e exclusão — ou seja, operações que contêm eventos `DELETE_ROW`. `colname$NEW` pode ser usado para referenciar novos valores em operações de inserção e atualização — em outras palavras, operações que utilizam eventos `WRITE_ROW`, `UPDATE_ROW` ou ambos os tipos de eventos. Quando uma operação conflitante não fornece um valor para uma coluna de referência específica que não é uma chave primária, a string da tabela de exceções contém `NULL`, ou um valor padrão definido para essa coluna.
 
 Importante
 
-A tabela `mysql.ndb_replication` é lida quando uma tabela de dados é configurada para replicação, portanto, a linha correspondente a uma tabela a ser replicada deve ser inserida em `mysql.ndb_replication` *antes* de a tabela a ser replicada ser criada.
+A tabela `mysql.ndb_replication` é lida quando uma tabela de dados é configurada para replicação, portanto, a string correspondente a uma tabela a ser replicada deve ser inserida em `mysql.ndb_replication` *antes* de a tabela a ser replicada ser criada.
 
 #### Variáveis de Status de Detecção de Conflitos
 
-Várias variáveis de status podem ser usadas para monitorar a detecção de conflitos. Você pode ver quantas linhas foram encontradas em conflito por `NDB$EPOCH()` desde que essa replica foi reiniciada pela última vez a partir do valor atual da variável de status do sistema `Ndb_conflict_fn_epoch`.
+Várias variáveis de status podem ser usadas para monitorar a detecção de conflitos. Você pode ver quantas strings foram encontradas em conflito por `NDB$EPOCH()` desde que essa replica foi reiniciada pela última vez a partir do valor atual da variável de status do sistema `Ndb_conflict_fn_epoch`.
 
-`Ndb_conflict_fn_epoch_trans` fornece o número de linhas que foram encontradas diretamente em conflito por `NDB$EPOCH_TRANS()`. `Ndb_conflict_fn_epoch2` e `Ndb_conflict_fn_epoch2_trans` mostram o número de linhas encontradas em conflito por `NDB$EPOCH2()`, respectivamente. O número de linhas que foram efetivamente realinhadas, incluindo aquelas afetadas devido à sua pertença ou dependência das mesmas transações que outras linhas em conflito, é dado por `Ndb_conflict_trans_row_reject_count`.
+`Ndb_conflict_fn_epoch_trans` fornece o número de strings que foram encontradas diretamente em conflito por `NDB$EPOCH_TRANS()`. `Ndb_conflict_fn_epoch2` e `Ndb_conflict_fn_epoch2_trans` mostram o número de strings encontradas em conflito por `NDB$EPOCH2()`, respectivamente. O número de strings que foram efetivamente realinhadas, incluindo aquelas afetadas devido à sua pertença ou dependência das mesmas transações que outras strings em conflito, é dado por `Ndb_conflict_trans_row_reject_count`.
 
-Outra variável de status do servidor `Ndb_conflict_fn_max` fornece um contador do número de vezes que uma linha não foi aplicada no nó SQL atual devido à resolução de conflitos de maior timestamp desde a última vez que `mysqld` foi iniciado. `Ndb_conflict_fn_max_del_win` fornece um contador do número de vezes que a resolução de conflitos com base no resultado de `NDB$MAX_DELETE_WIN()` foi aplicada.
+Outra variável de status do servidor `Ndb_conflict_fn_max` fornece um contador do número de vezes que uma string não foi aplicada no nó SQL atual devido à resolução de conflitos de maior timestamp desde a última vez que `mysqld` foi iniciado. `Ndb_conflict_fn_max_del_win` fornece um contador do número de vezes que a resolução de conflitos com base no resultado de `NDB$MAX_DELETE_WIN()` foi aplicada.
 
-O número de vezes que uma linha não foi aplicada como resultado da resolução de conflitos de "mesma marcação de tempo" em um dado `mysqld` desde a última vez que foi reiniciado é dado pela variável de status global `Ndb_conflict_fn_old`. Além de incrementar `Ndb_conflict_fn_old`, a chave primária da linha que não foi usada é inserida em uma tabela de exceções, conforme explicado em outra parte desta seção.
+O número de vezes que uma string não foi aplicada como resultado da resolução de conflitos de "mesma marcação de tempo" em um dado `mysqld` desde a última vez que foi reiniciado é dado pela variável de status global `Ndb_conflict_fn_old`. Além de incrementar `Ndb_conflict_fn_old`, a chave primária da string que não foi usada é inserida em uma tabela de exceções, conforme explicado em outra parte desta seção.
 
 Veja também a Seção 21.4.3.9.3, “Variáveis de Status do Aglomerado NDB”.
 
@@ -1492,11 +1492,11 @@ Inserir `NULL` na coluna `binlog_type` tem o mesmo efeito que inserir 0 (`NBT_DE
    ) ENGINE=NDB;
    ```
 
-Agora, quando as atualizações são realizadas nesta tabela, a resolução de conflitos é aplicada e a versão da linha com o maior valor para `mycol` é escrita na replica.
+Agora, quando as atualizações são realizadas nesta tabela, a resolução de conflitos é aplicada e a versão da string com o maior valor para `mycol` é escrita na replica.
 
 Nota
 
-Outras opções do `binlog_type`, como `NBT_UPDATED_ONLY_USE_UPDATE` (`6`, devem ser usadas para controlar o registro na fonte usando a tabela `ndb_replication`, em vez de usar opções de linha de comando.
+Outras opções do `binlog_type`, como `NBT_UPDATED_ONLY_USE_UPDATE` (`6`, devem ser usadas para controlar o registro na fonte usando a tabela `ndb_replication`, em vez de usar opções de string de comando.
 
 **Exemplo de NDB$OLD().** Suponha que uma tabela `NDB` como a definida aqui esteja sendo replicada e você deseja habilitar a resolução de conflitos de "mesmo timestamp vence" para atualizações nesta tabela:
 
@@ -1513,7 +1513,7 @@ CREATE TABLE test.t2  (
 
 Os seguintes passos são necessários, na ordem mostrada:
 
-1. Primeiro — e *antes* de criar `test.t2` — você deve inserir uma linha na tabela `mysql.ndb_replication`, conforme mostrado aqui:
+1. Primeiro — e *antes* de criar `test.t2` — você deve inserir uma string na tabela `mysql.ndb_replication`, conforme mostrado aqui:
 
    ```sql
    INSERT INTO mysql.ndb_replication
@@ -1567,11 +1567,11 @@ O prefixo `NDB$` é necessário para as quatro colunas necessárias, pois inclu�
 
 3. Crie a tabela `test.t2` conforme mostrado anteriormente.
 
-Esses passos devem ser seguidos para cada tabela para a qual você deseja realizar a resolução de conflitos usando `NDB$OLD()`. Para cada tabela desse tipo, deve haver uma linha correspondente em `mysql.ndb_replication`, e deve haver uma tabela de exceções no mesmo banco de dados que a tabela que está sendo replicada.
+Esses passos devem ser seguidos para cada tabela para a qual você deseja realizar a resolução de conflitos usando `NDB$OLD()`. Para cada tabela desse tipo, deve haver uma string correspondente em `mysql.ndb_replication`, e deve haver uma tabela de exceções no mesmo banco de dados que a tabela que está sendo replicada.
 
 **Leia sobre detecção e resolução de conflitos.**
 
-O NDB Cluster também suporta o rastreamento de operações de leitura, o que permite, em configurações de replicação circular, gerenciar conflitos entre leituras de uma determinada linha em um cluster e atualizações ou exclusões da mesma linha em outro. Este exemplo utiliza as tabelas `employee` e `department` para modelar um cenário em que um funcionário é movido de um departamento para outro no cluster de origem (a que nos referimos a seguir como cluster *A*) enquanto o cluster de replica (a seguir *B*) atualiza o número de funcionários do departamento anterior do funcionário em uma transação intercalada.
+O NDB Cluster também suporta o rastreamento de operações de leitura, o que permite, em configurações de replicação circular, gerenciar conflitos entre leituras de uma determinada string em um cluster e atualizações ou exclusões da mesma string em outro. Este exemplo utiliza as tabelas `employee` e `department` para modelar um cenário em que um funcionário é movido de um departamento para outro no cluster de origem (a que nos referimos a seguir como cluster *A*) enquanto o cluster de replica (a seguir *B*) atualiza o número de funcionários do departamento anterior do funcionário em uma transação intercalada.
 
 As tabelas de dados foram criadas usando os seguintes comandos SQL:
 
@@ -1591,7 +1591,7 @@ CREATE TABLE department (
 )   ENGINE=NDB;
 ```
 
-Os conteúdos das duas tabelas incluem as linhas mostradas na saída (parcial) das seguintes declarações `SELECT`:
+Os conteúdos das duas tabelas incluem as strings mostradas na saída (parcial) das seguintes declarações `SELECT`:
 
 ```sql
 mysql> SELECT id, name, dept FROM employee;
@@ -1655,7 +1655,7 @@ BEGIN;
 commit;
 ```
 
-As transações conflitantes normalmente não são detectadas pelo mecanismo de resolução de conflitos, uma vez que o conflito está entre uma operação de leitura (`SELECT`) e uma operação de atualização. Você pode contornar esse problema executando `SET` `ndb_log_exclusive_reads` `= 1` no clúster de replica. Adquirir bloqueios de leitura exclusivos dessa maneira faz com que quaisquer linhas lidas na fonte sejam marcadas como necessitando de resolução de conflito no clúster de replica. Se habilitarmos leituras exclusivas dessa maneira antes da logagem dessas transações, a leitura no clúster *B* é rastreada e enviada para o clúster *A* para resolução; o conflito na linha do empregado é subsequentemente detectado e a transação no clúster *B* é abortada.
+As transações conflitantes normalmente não são detectadas pelo mecanismo de resolução de conflitos, uma vez que o conflito está entre uma operação de leitura (`SELECT`) e uma operação de atualização. Você pode contornar esse problema executando `SET` `ndb_log_exclusive_reads` `= 1` no clúster de replica. Adquirir bloqueios de leitura exclusivos dessa maneira faz com que quaisquer strings lidas na fonte sejam marcadas como necessitando de resolução de conflito no clúster de replica. Se habilitarmos leituras exclusivas dessa maneira antes da logagem dessas transações, a leitura no clúster *B* é rastreada e enviada para o clúster *A* para resolução; o conflito na string do empregado é subsequentemente detectado e a transação no clúster *B* é abortada.
 
 O conflito está registrado na tabela de exceções (no grupo *A*) como uma operação `READ_ROW` (consulte a Tabela de Exceções de Resolução de Conflitos, para uma descrição dos tipos de operações), conforme mostrado aqui:
 
@@ -1669,7 +1669,7 @@ mysql> SELECT id, NDB$OP_TYPE, NDB$CFT_CAUSE FROM employee$EX;
 +-------+-------------+-------------------+
 ```
 
-Quaisquer linhas existentes encontradas na operação de leitura são marcadas. Isso significa que várias linhas resultantes do mesmo conflito podem ser registradas na tabela de exceção, conforme demonstrado ao examinar os efeitos de um conflito entre uma atualização no clúster *A* e uma leitura de várias linhas no clúster *B* da mesma tabela em transações simultâneas. A transação executada no clúster *A* é mostrada aqui:
+Quaisquer strings existentes encontradas na operação de leitura são marcadas. Isso significa que várias strings resultantes do mesmo conflito podem ser registradas na tabela de exceção, conforme demonstrado ao examinar os efeitos de um conflito entre uma atualização no clúster *A* e uma leitura de várias strings no clúster *B* da mesma tabela em transações simultâneas. A transação executada no clúster *A* é mostrada aqui:
 
 ```sql
 BEGIN;
@@ -1691,7 +1691,7 @@ BEGIN;
 COMMIT;
 ```
 
-Neste caso, todas as três linhas que correspondem à condição `WHERE` na segunda transação no `SELECT` são lidas e, portanto, marcadas na tabela de exceções, conforme mostrado aqui:
+Neste caso, todas as três strings que correspondem à condição `WHERE` na segunda transação no `SELECT` são lidas e, portanto, marcadas na tabela de exceções, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT id, NDB$OP_TYPE, NDB$CFT_CAUSE FROM employee$EX;
@@ -1706,4 +1706,4 @@ mysql> SELECT id, NDB$OP_TYPE, NDB$CFT_CAUSE FROM employee$EX;
 +-------+-------------+-------------------+
 ```
 
-A leitura de rastreamento é realizada com base em linhas existentes apenas. Uma leitura baseada em uma condição dada conflitam apenas com quaisquer linhas que são *encontradas* e não com quaisquer linhas que são inseridas em uma transação interligada. Isso é semelhante à forma como o bloqueio exclusivo de linha é realizado em uma única instância do NDB Cluster.
+A leitura de rastreamento é realizada com base em strings existentes apenas. Uma leitura baseada em uma condição dada conflitam apenas com quaisquer strings que são *encontradas* e não com quaisquer strings que são inseridas em uma transação interligada. Isso é semelhante à forma como o bloqueio exclusivo de string é realizado em uma única instância do NDB Cluster.

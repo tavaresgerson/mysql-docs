@@ -11,7 +11,7 @@ $> my_print_defaults client mysql
 --no-auto-rehash
 ```
 
-Nota para desenvolvedores: O tratamento de arquivos de opções é implementado na biblioteca de clientes em C simplesmente processando todas as opções no grupo ou grupos apropriados antes de quaisquer argumentos de linha de comando. Isso funciona bem para programas que usam a última instância de uma opção que é especificada várias vezes. Se você tem um programa em C ou C++ que trata opções especificadas várias vezes dessa maneira, mas que não lê arquivos de opções, você precisa adicionar apenas duas linhas para dar a ele essa capacidade. Verifique o código-fonte de qualquer um dos clientes padrão do MySQL para ver como fazer isso.
+Nota para desenvolvedores: O tratamento de arquivos de opções é implementado na biblioteca de clientes em C simplesmente processando todas as opções no grupo ou grupos apropriados antes de quaisquer argumentos de string de comando. Isso funciona bem para programas que usam a última instância de uma opção que é especificada várias vezes. Se você tem um programa em C ou C++ que trata opções especificadas várias vezes dessa maneira, mas que não lê arquivos de opções, você precisa adicionar apenas duas strings para dar a ele essa capacidade. Verifique o código-fonte de qualquer um dos clientes padrão do MySQL para ver como fazer isso.
 
 Várias outras interfaces de linguagem para o MySQL são baseadas na biblioteca de clientes C, e algumas delas fornecem uma maneira de acessar o conteúdo do arquivo de opções. Isso inclui Perl e Python. Para obter detalhes, consulte a documentação da interface que você prefere.
 
@@ -55,7 +55,7 @@ Bibliotecas e opções necessárias para vincular com a biblioteca do cliente My
 
 * `--libs_r`
 
-Bibliotecas e opções necessárias para vincular com a biblioteca de cliente MySQL segura para múltiplos fios. No MySQL 5.7, todas as bibliotecas de cliente são seguras para múltiplos fios, portanto, essa opção não precisa ser usada. A opção `--libs` pode ser usada em todos os casos.
+Bibliotecas e opções necessárias para vincular com a biblioteca de cliente MySQL segura para múltiplos threads. No MySQL 5.7, todas as bibliotecas de cliente são seguras para múltiplos threads, portanto, essa opção não precisa ser usada. A opção `--libs` pode ser usada em todos os casos.
 
 * `--plugindir`
 
@@ -102,7 +102,7 @@ Options:
           plugindir     [/usr/local/mysql/lib/plugin]
 ```
 
-Você pode usar **mysql\_config** em uma linha de comando usando barras duplas para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use **mysql\_config** da seguinte forma:
+Você pode usar **mysql\_config** em uma string de comando usando barras duplas para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use **mysql\_config** da seguinte forma:
 
 ```sql
 gcc -c `mysql_config --cflags` progname.c
@@ -120,7 +120,7 @@ $> my_print_defaults mysqlcheck client
 --host=localhost
 ```
 
-A saída consiste em opções, uma por linha, na forma como elas seriam especificadas na linha de comando.
+A saída consiste em opções, uma por string, na forma como elas seriam especificadas na string de comando.
 
 **my_print_defaults** suporta as seguintes opções.
 
@@ -140,25 +140,25 @@ Escreva um registro de depuração. Uma string típica *`debug_options`* é `d:t
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=suffix`, `-g suffix`
 
-Além dos grupos mencionados na linha de comando, leia grupos que tenham o sufixo especificado.
+Além dos grupos mencionados na string de comando, leia grupos que tenham o sufixo especificado.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--login-path=name`, `-l name`
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--no-defaults`, `-n`
 
 Retorne uma string vazia.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--show`, `-s`
 
@@ -186,7 +186,7 @@ Invoque **resolve\_stack\_dump** da seguinte forma:
 resolve_stack_dump [options] symbols_file [numeric_dump_file]
 ```
 
-O arquivo de símbolos deve incluir a saída do comando **nm --numeric-sort mysqld**. O arquivo de depuração numérica deve conter uma trilha de pilha numérica a partir de `mysqld`. Se nenhum arquivo de depuração numérica estiver nomeado na linha de comando, a depuração de pilha é lida a partir da entrada padrão.
+O arquivo de símbolos deve incluir a saída do comando **nm --numeric-sort mysqld**. O arquivo de depuração numérica deve conter uma trilha de pilha numérica a partir de `mysqld`. Se nenhum arquivo de depuração numérica estiver nomeado na string de comando, a depuração de pilha é lida a partir da entrada padrão.
 
 **resolve\_stack\_dump** suporta as seguintes opções.
 

@@ -8,7 +8,7 @@ A replicação baseada em declarações depende da compatibilidade no nível SQL
 
 Se você planeja usar replicação baseada em declarações entre MySQL 5.7 e uma série anterior de lançamentos do MySQL, é uma boa ideia consultar a edição do *Manual de Referência do MySQL* correspondente à série de lançamentos anterior para obter informações sobre as características de replicação dessa série.
 
-Com a replicação baseada em declarações do MySQL, pode haver problemas na replicação de rotinas ou gatilhos armazenados. Você pode evitar esses problemas usando a replicação baseada em linhas do MySQL. Para uma lista detalhada dos problemas, consulte a Seção 23.7, “Registro binário de programas armazenados”. Para mais informações sobre o registro baseado em linhas e replicação baseada em linhas, consulte a Seção 5.4.4.1, “Formatos de registro binário”, e a Seção 16.2.1, “Formatos de replicação”.
+Com a replicação baseada em declarações do MySQL, pode haver problemas na replicação de rotinas ou gatilhos armazenados. Você pode evitar esses problemas usando a replicação baseada em strings do MySQL. Para uma lista detalhada dos problemas, consulte a Seção 23.7, “Registro binário de programas armazenados”. Para mais informações sobre o registro baseado em strings e replicação baseada em strings, consulte a Seção 5.4.4.1, “Formatos de registro binário”, e a Seção 16.2.1, “Formatos de replicação”.
 
 Para informações adicionais específicas sobre replicação e `InnoDB`, consulte a Seção 14.20, “InnoDB e replicação do MySQL”. Para informações relacionadas à replicação com NDB Cluster, consulte a Seção 21.7, “Replicação do NDB Cluster”.
 
@@ -24,7 +24,7 @@ A replicação baseada em declarações dos valores de `AUTO_INCREMENT`, `LAST_I
 
 Este problema não afeta tabelas que utilizam o mecanismo de armazenamento `InnoDB`, uma vez que uma tabela `InnoDB` com uma coluna AUTO\_INCREMENT requer pelo menos uma chave onde a coluna de auto-incremento é a única ou a coluna mais à esquerda.
 
-* Adicionar uma coluna `AUTO_INCREMENT` a uma tabela com `ALTER TABLE` pode não produzir a mesma ordem das linhas na réplica e na fonte. Isso ocorre porque a ordem em que as linhas são numeradas depende do motor de armazenamento específico usado para a tabela e da ordem em que as linhas foram inseridas. Se é importante ter a mesma ordem na fonte e na réplica, as linhas devem ser ordenadas antes de atribuir um número `AUTO_INCREMENT`. Supondo que você queira adicionar uma coluna `AUTO_INCREMENT` a uma tabela `t1` que tem colunas `col1` e `col2`, as seguintes declarações produzem uma nova tabela `t2` idêntica a `t1`, mas com uma coluna `AUTO_INCREMENT`:
+* Adicionar uma coluna `AUTO_INCREMENT` a uma tabela com `ALTER TABLE` pode não produzir a mesma ordem das strings na réplica e na fonte. Isso ocorre porque a ordem em que as strings são numeradas depende do motor de armazenamento específico usado para a tabela e da ordem em que as strings foram inseridas. Se é importante ter a mesma ordem na fonte e na réplica, as strings devem ser ordenadas antes de atribuir um número `AUTO_INCREMENT`. Supondo que você queira adicionar uma coluna `AUTO_INCREMENT` a uma tabela `t1` que tem colunas `col1` e `col2`, as seguintes declarações produzem uma nova tabela `t2` idêntica a `t1`, mas com uma coluna `AUTO_INCREMENT`:
 
   ```sql
   CREATE TABLE t2 LIKE t1;
@@ -49,7 +49,7 @@ Veja também a Seção B.3.6.1, “Problemas com ALTER TABLE”.
 
 #### 16.4.1.2 Replicação e tabelas BLACKHOLE
 
-O motor de armazenamento `BLACKHOLE` aceita dados, mas os descarta e não os armazena. Ao realizar o registro binário, todas as inserções nessas tabelas são sempre registradas, independentemente do formato de registro utilizado. As atualizações e exclusões são tratadas de maneira diferente, dependendo se o registro baseado em declarações ou em linhas está sendo utilizado. Com o formato de registro baseado em declarações, todas as declarações que afetam as tabelas `BLACKHOLE` são registradas, mas seus efeitos são ignorados. Ao usar o registro baseado em linhas, as atualizações e exclusões nessas tabelas são simplesmente ignoradas — elas não são escritas no registro binário. Um aviso é registrado sempre que isso ocorre (Bug #13004581).
+O motor de armazenamento `BLACKHOLE` aceita dados, mas os descarta e não os armazena. Ao realizar o registro binário, todas as inserções nessas tabelas são sempre registradas, independentemente do formato de registro utilizado. As atualizações e exclusões são tratadas de maneira diferente, dependendo se o registro baseado em declarações ou em strings está sendo utilizado. Com o formato de registro baseado em declarações, todas as declarações que afetam as tabelas `BLACKHOLE` são registradas, mas seus efeitos são ignorados. Ao usar o registro baseado em strings, as atualizações e exclusões nessas tabelas são simplesmente ignoradas — elas não são escritas no registro binário. Um aviso é registrado sempre que isso ocorre (Bug #13004581).
 
 Por essa razão, recomendamos que, ao replicar tabelas usando o mecanismo de armazenamento `BLACKHOLE`, você defina a variável de servidor `binlog_format` para `STATEMENT`, e não para `ROW` ou `MIXED`.
 
@@ -61,7 +61,7 @@ O que se segue se aplica à replicação entre servidores MySQL que utilizam dif
 
 #### 16.4.1.4 Replicação e CHECKSUM TABLE
 
-`CHECKSUM TABLE` retorna um checksum que é calculado linha por linha, usando um método que depende do formato de armazenamento da linha da tabela. O formato de armazenamento não é garantido para permanecer o mesmo entre as versões do MySQL, então o valor do checksum pode mudar após uma atualização.
+`CHECKSUM TABLE` retorna um checksum que é calculado string por string, usando um método que depende do formato de armazenamento da string da tabela. O formato de armazenamento não é garantido para permanecer o mesmo entre as versões do MySQL, então o valor do checksum pode mudar após uma atualização.
 
 #### 16.4.1.5 Replicação de declarações CREATE ... IF NOT EXISTS
 
@@ -77,7 +77,7 @@ O MySQL aplica essas regras quando várias declarações `CREATE ... IF NOT EXIS
 
 Esta seção discute como o MySQL replica as declarações `CREATE TABLE ... SELECT`.
 
-O MySQL 5.7 não permite que uma declaração `CREATE TABLE ... SELECT` faça quaisquer alterações em tabelas que não sejam as tabelas criadas pela declaração. Algumas versões mais antigas do MySQL permitiam que essas declarações fizessem isso; isso significa que, ao usar replicação entre uma réplica do MySQL 5.6 ou posterior e uma fonte que executa uma versão anterior do MySQL, uma declaração `CREATE TABLE ... SELECT` que causa alterações em outras tabelas na fonte falha na réplica, fazendo com que a replicação pare. Para evitar que isso aconteça, você deve usar replicação baseada em linhas, reescrever a declaração que causa problemas antes de executá-la na fonte ou atualizar a fonte para o MySQL 5.7. (Se você optar por atualizar a fonte, tenha em mente que tal declaração `CREATE TABLE ... SELECT` falha após a atualização, a menos que seja reescrita para remover quaisquer efeitos colaterais em outras tabelas.)
+O MySQL 5.7 não permite que uma declaração `CREATE TABLE ... SELECT` faça quaisquer alterações em tabelas que não sejam as tabelas criadas pela declaração. Algumas versões mais antigas do MySQL permitiam que essas declarações fizessem isso; isso significa que, ao usar replicação entre uma réplica do MySQL 5.6 ou posterior e uma fonte que executa uma versão anterior do MySQL, uma declaração `CREATE TABLE ... SELECT` que causa alterações em outras tabelas na fonte falha na réplica, fazendo com que a replicação pare. Para evitar que isso aconteça, você deve usar replicação baseada em strings, reescrever a declaração que causa problemas antes de executá-la na fonte ou atualizar a fonte para o MySQL 5.7. (Se você optar por atualizar a fonte, tenha em mente que tal declaração `CREATE TABLE ... SELECT` falha após a atualização, a menos que seja reescrita para remover quaisquer efeitos colaterais em outras tabelas.)
 
 Esses comportamentos não dependem da versão do MySQL:
 
@@ -87,7 +87,7 @@ Esses comportamentos não dependem da versão do MySQL:
 
 + `STATEMENT` ou `MIXED` formato: A declaração é registrada conforme escrito.
 
-+ `ROW` formato: A declaração é registrada como uma declaração `CREATE TABLE`, seguida por uma série de eventos de inserção de linha.
++ `ROW` formato: A declaração é registrada como uma declaração `CREATE TABLE`, seguida por uma série de eventos de inserção de string.
 
 * Se a declaração falhar, nada é registrado. Isso inclui o caso em que a tabela de destino existe e `IF NOT EXISTS` não é fornecida.
 
@@ -233,17 +233,17 @@ Colunas correspondentes nas cópias da mesma tabela do original e da réplica de
 
 Geralmente é possível replicar de uma coluna de um determinado tipo de dados para outra coluna do mesmo tipo e do mesmo tamanho ou largura, quando aplicável, ou maior. Por exemplo, é possível replicar de uma coluna `CHAR(10)` para outra `CHAR(10)`, ou de uma coluna `CHAR(10)` para uma coluna `CHAR(25)`, sem problemas. Em certos casos, também é possível replicar de uma coluna que tem um tipo de dados (na versão da fonte) para uma coluna que tem um tipo de dados diferente (na replica); quando o tipo de dados da versão da fonte da coluna é promovido para um tipo que tem o mesmo tamanho ou maior na replica, isso é conhecido como promoção de atributo.
 
-A atribuição de promoção pode ser usada com replicação baseada em declaração e baseada em linha, e não depende do mecanismo de armazenamento usado pelo banco de dados fonte ou da replica. No entanto, a escolha do formato de registro tem um efeito sobre os tipos de conversão permitidos; os detalhes são discutidos mais adiante nesta seção.
+A atribuição de promoção pode ser usada com replicação baseada em declaração e baseada em string, e não depende do mecanismo de armazenamento usado pelo banco de dados fonte ou da replica. No entanto, a escolha do formato de registro tem um efeito sobre os tipos de conversão permitidos; os detalhes são discutidos mais adiante nesta seção.
 
 Importante
 
-Se você usar replicação baseada em declarações ou baseada em linhas, a cópia da tabela da replica não pode conter mais colunas do que a cópia da fonte, se você deseja empregar promoção de atributos.
+Se você usar replicação baseada em declarações ou baseada em strings, a cópia da tabela da replica não pode conter mais colunas do que a cópia da fonte, se você deseja empregar promoção de atributos.
 
 **Replicação baseada em declarações.** Ao usar a replicação baseada em declarações, uma regra simples a seguir é: “Se a declaração executada na fonte também executar com sucesso na réplica, ela também deve ser replicada com sucesso”. Em outras palavras, se a declaração usa um valor que é compatível com o tipo de uma coluna dada na réplica, a declaração pode ser replicada. Por exemplo, você pode inserir qualquer valor que se encaixe em uma coluna `TINYINT` em uma coluna `BIGINT` também; segue-se que, mesmo que você mude o tipo de uma coluna `TINYINT` na cópia da tabela da réplica para `BIGINT`, qualquer inserção nessa coluna na fonte que seja bem-sucedida também deve ser bem-sucedida na réplica, uma vez que é impossível ter um valor legal `TINYINT` grande o suficiente para exceder uma coluna `BIGINT`.
 
 Antes do MySQL 5.7.1, quando se usava a replicação baseada em declarações, as colunas `AUTO_INCREMENT` eram obrigatórias para serem as mesmas tanto na fonte quanto na replica; caso contrário, as atualizações poderiam ser aplicadas na tabela errada na replica. (Bug #12669186)
 
-**Replicação baseada em linhas: promoção e demissão de atributos.** A replicação baseada em linhas suporta promoção e demissão de atributos entre tipos de dados menores e tipos maiores. Também é possível especificar se é permitido ou não a conversão não-perda (atrasada) ou perda (trunc) de valores de coluna demitida, conforme explicado mais adiante nesta seção.
+**Replicação baseada em strings: promoção e demissão de atributos.** A replicação baseada em strings suporta promoção e demissão de atributos entre tipos de dados menores e tipos maiores. Também é possível especificar se é permitido ou não a conversão não-perda (atrasada) ou perda (trunc) de valores de coluna demitida, conforme explicado mais adiante nesta seção.
 
 **Conversões sem perdas e com perdas.** No caso em que o tipo de destino não possa representar o valor sendo inserido, deve-se tomar uma decisão sobre como lidar com a conversão. Se permitir a conversão, mas truncar (ou modificar de outra forma) o valor da fonte para obter um "ajuste" na coluna de destino, realizamos o que é conhecido como uma conversão com perdas. Uma conversão que não requer truncamento ou modificações semelhantes para ajustar o valor da coluna de origem na coluna de destino é uma conversão sem perdas.
 
@@ -307,7 +307,7 @@ Pode haver problemas ao replicar de um servidor fonte que entende segundos fraci
 
 * Para declarações `CREATE TABLE` que contêm colunas com um valor *`fsp`* (precisão de frações de segundo) maior que 0, a replicação falha devido a erros do analisador.
 
-* As declarações que utilizam tipos de dados temporais com um valor *`fsp`* de 0 funcionam com o registro baseado em declarações, mas não com o registro baseado em linhas. No último caso, os tipos de dados têm formatos binários e códigos de tipo na fonte que diferem daqueles na replica.
+* As declarações que utilizam tipos de dados temporais com um valor *`fsp`* de 0 funcionam com o registro baseado em declarações, mas não com o registro baseado em strings. No último caso, os tipos de dados têm formatos binários e códigos de tipo na fonte que diferem daqueles na replica.
 
 * Alguns resultados de expressão diferem na fonte e na replica. Exemplos: Na fonte, a variável de sistema `timestamp` retorna um valor que inclui uma parte fracionária em microsegundos; na replica, ela retorna um inteiro. Na fonte, as funções que retornam um resultado que inclui a hora atual (como `CURTIME()`, `SYSDATE()` ou `UTC_TIMESTAMP()`) interpretam um argumento como um valor *`fsp`* e o valor de retorno inclui uma parte de segundos fracionários de tantos dígitos. Na replica, essas funções permitem um argumento, mas o ignoram.
 
@@ -321,9 +321,9 @@ No entanto, esse comportamento pode causar dificuldades em determinadas circunst
 
 Algumas funções não se replicam bem em algumas condições:
 
-As funções `USER()`, `CURRENT_USER()` (ou `CURRENT_USER`), `UUID()`, `VERSION()` e `LOAD_FILE()` são replicadas sem alterações e, portanto, não funcionam de forma confiável na replica, a menos que a replicação baseada em linha seja habilitada. (Veja a Seção 16.2.1, “Formatos de Replicação”.)
+As funções `USER()`, `CURRENT_USER()` (ou `CURRENT_USER`), `UUID()`, `VERSION()` e `LOAD_FILE()` são replicadas sem alterações e, portanto, não funcionam de forma confiável na replica, a menos que a replicação baseada em string seja habilitada. (Veja a Seção 16.2.1, “Formatos de Replicação”.)
 
-`USER()` e `CURRENT_USER()` são replicados automaticamente usando replicação baseada em linha quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT`. (Veja também a Seção 16.4.1.8, “Replicação de CURRENT\_USER()”).) Isso também é válido para `VERSION()` e `RAND()`.
+`USER()` e `CURRENT_USER()` são replicados automaticamente usando replicação baseada em string quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT`. (Veja também a Seção 16.4.1.8, “Replicação de CURRENT\_USER()”).) Isso também é válido para `VERSION()` e `RAND()`.
 
 * Para `NOW()`, o log binário inclui o timestamp. Isso significa que o valor *como retornado pela chamada a esta função na fonte* é replicado na replica. Para evitar resultados inesperados ao replicar entre servidores MySQL em diferentes fusos horários, defina o fuso horário tanto na fonte quanto na replica. Para mais informações, consulte a Seção 16.4.1.31, “Replicação e Fusos Horários”.
 
@@ -357,19 +357,19 @@ A hora local em Estocolmo é 6 horas mais tarde que em Nova York; portanto, se v
   1 row in set (0.00 sec)
   ```
 
-Ao contrário de `NOW()`, a função `SYSDATE()` não é segura para replicação, pois não é afetada por declarações `SET TIMESTAMP` no log binário e é não determinística se o registro baseado em declarações for usado. Isso não é um problema se o registro baseado em linhas for usado.
+Ao contrário de `NOW()`, a função `SYSDATE()` não é segura para replicação, pois não é afetada por declarações `SET TIMESTAMP` no log binário e é não determinística se o registro baseado em declarações for usado. Isso não é um problema se o registro baseado em strings for usado.
 
 Uma alternativa é usar a opção `--sysdate-is-now` para fazer com que `SYSDATE()` seja um alias para `NOW()`. Isso deve ser feito na fonte e na replica para funcionar corretamente. Nesses casos, uma advertência ainda é emitida por essa função, mas pode ser ignorada com segurança, desde que `--sysdate-is-now` seja usado tanto na fonte quanto na replica.
 
-`SYSDATE()` é automaticamente replicado usando replicação baseada em linha quando se usa o modo `MIXED`, e gera um aviso no modo `STATEMENT`.
+`SYSDATE()` é automaticamente replicado usando replicação baseada em string quando se usa o modo `MIXED`, e gera um aviso no modo `STATEMENT`.
 
 Veja também a Seção 16.4.1.31, “Replicação e Fuso Horário”.
 
-*A restrição a seguir se aplica apenas à replicação baseada em declarações, e não à replicação baseada em linhas.* As funções `GET_LOCK()`, `RELEASE_LOCK()`, `IS_FREE_LOCK()` e `IS_USED_LOCK()` que lidam com bloqueios de nível de usuário são replicadas sem que a réplica saiba o contexto de concorrência na fonte. Portanto, essas funções não devem ser usadas para inserir em uma tabela de origem porque o conteúdo na réplica seria diferente. Por exemplo, não emita uma declaração como `INSERT INTO mytable VALUES(GET_LOCK(...))`.
+*A restrição a seguir se aplica apenas à replicação baseada em declarações, e não à replicação baseada em strings.* As funções `GET_LOCK()`, `RELEASE_LOCK()`, `IS_FREE_LOCK()` e `IS_USED_LOCK()` que lidam com bloqueios de nível de usuário são replicadas sem que a réplica saiba o contexto de concorrência na fonte. Portanto, essas funções não devem ser usadas para inserir em uma tabela de origem porque o conteúdo na réplica seria diferente. Por exemplo, não emita uma declaração como `INSERT INTO mytable VALUES(GET_LOCK(...))`.
 
-Essas funções são replicadas automaticamente usando replicação baseada em linha quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT`.
+Essas funções são replicadas automaticamente usando replicação baseada em string quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT`.
 
-Como uma solução para as limitações anteriores quando a replicação baseada em declarações está em vigor, você pode usar a estratégia de salvar o resultado da função problemática em uma variável do usuário e referenciar a variável em uma declaração posterior. Por exemplo, o seguinte `INSERT` de uma única linha é problemático devido à referência à função `UUID()`:
+Como uma solução para as limitações anteriores quando a replicação baseada em declarações está em vigor, você pode usar a estratégia de salvar o resultado da função problemática em uma variável do usuário e referenciar a variável em uma declaração posterior. Por exemplo, o seguinte `INSERT` de uma única string é problemático devido à referência à função `UUID()`:
 
 ```sql
 INSERT INTO t VALUES(UUID());
@@ -384,14 +384,14 @@ INSERT INTO t VALUES(@my_uuid);
 
 Essa sequência de declarações é repetida porque o valor de `@my_uuid` é armazenado no log binário como um evento de variável do usuário antes da declaração `INSERT` e está disponível para uso no `INSERT`.
 
-A mesma ideia se aplica a inserções de várias linhas, mas é mais complicada de usar. Para uma inserção de duas linhas, você pode fazer o seguinte:
+A mesma ideia se aplica a inserções de várias strings, mas é mais complicada de usar. Para uma inserção de duas strings, você pode fazer o seguinte:
 
 ```sql
 SET @my_uuid1 = UUID(); @my_uuid2 = UUID();
 INSERT INTO t VALUES(@my_uuid1),(@my_uuid2);
 ```
 
-No entanto, se o número de linhas for grande ou desconhecido, a solução é difícil ou inviável. Por exemplo, não é possível converter a seguinte declaração em uma em que uma variável de usuário específica é associada a cada linha:
+No entanto, se o número de strings for grande ou desconhecido, a solução é difícil ou inviável. Por exemplo, não é possível converter a seguinte declaração em uma em que uma variável de usuário específica é associada a cada string:
 
 ```sql
 INSERT INTO t2 SELECT UUID(), * FROM t1;
@@ -415,7 +415,7 @@ INSERT INTO mytable VALUES(@found_rows);
 
 Dessa forma, a variável do usuário é replicada como parte do contexto e aplicada corretamente na replica.
 
-Essas funções são replicadas automaticamente usando replicação baseada em linha quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT` (Bug #12092, Bug #30244).
+Essas funções são replicadas automaticamente usando replicação baseada em string quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT` (Bug #12092, Bug #30244).
 
 Antes do MySQL 5.7.3, o valor de `LAST_INSERT_ID()` não era replicado corretamente se quaisquer opções de filtragem, como `--replicate-ignore-db` e `--replicate-do-table`, estivessem habilitadas na replica. (Bug #17234370, BUG# 69861)
 
@@ -436,7 +436,7 @@ A replicação de recursos invocados, como funções carregáveis e programas ar
   + `CREATE TRIGGER`
   + `DROP TRIGGER`
 
-No entanto, os *efeitos* dos recursos criados, modificados ou descartados usando essas declarações são replicados usando replicação baseada em linha.
+No entanto, os *efeitos* dos recursos criados, modificados ou descartados usando essas declarações são replicados usando replicação baseada em string.
 
 Nota
 
@@ -498,27 +498,27 @@ SELECT CONCAT(EVENT_SCHEMA, '.', EVENT_NAME) AS 'Db.Event'
 
 #### 16.4.1.17 Replicação e LIMITE
 
-A replicação baseada em declarações das cláusulas de `LIMIT` nas declarações de `DELETE`, `UPDATE` e `INSERT ... SELECT` não é segura, pois a ordem das linhas afetadas não é definida. (Tais declarações podem ser replicadas corretamente com replicação baseada em declarações apenas se elas também contiverem uma cláusula de `ORDER BY`.) Quando tal declaração é encontrada:
+A replicação baseada em declarações das cláusulas de `LIMIT` nas declarações de `DELETE`, `UPDATE` e `INSERT ... SELECT` não é segura, pois a ordem das strings afetadas não é definida. (Tais declarações podem ser replicadas corretamente com replicação baseada em declarações apenas se elas também contiverem uma cláusula de `ORDER BY`.) Quando tal declaração é encontrada:
 
 * Ao usar o modo `STATEMENT`, um aviso é emitido de que a declaração não é segura para replicação baseada em declaração.
 
 Quando se usa o modo `STATEMENT`, os avisos são emitidos para declarações DML que contêm `LIMIT`, mesmo quando elas também têm uma cláusula `ORDER BY` (e, portanto, são feitas determinísticas). Esse é um problema conhecido. (Bug #42851)
 
-* Ao usar o modo `MIXED`, a declaração agora é automaticamente replicada usando o modo baseado em linha.
+* Ao usar o modo `MIXED`, a declaração agora é automaticamente replicada usando o modo baseado em string.
 
 #### 16.4.1.18 Replicação e LOAD DATA
 
-`LOAD DATA` é considerado inseguro para registro baseado em declarações (consulte Seção 16.2.1.3, “Determinação de Declarações Seguras e Inseguras em Registro Binário”). Quando `binlog_format=MIXED` é definido, a declaração é registrada no formato baseado em linha. Quando `binlog_format=STATEMENT` é definido, observe que `LOAD DATA` não gera um aviso, ao contrário de outras declarações inseguras.
+`LOAD DATA` é considerado inseguro para registro baseado em declarações (consulte Seção 16.2.1.3, “Determinação de Declarações Seguras e Inseguras em Registro Binário”). Quando `binlog_format=MIXED` é definido, a declaração é registrada no formato baseado em string. Quando `binlog_format=STATEMENT` é definido, observe que `LOAD DATA` não gera um aviso, ao contrário de outras declarações inseguras.
 
 Quando o **mysqlbinlog** lê eventos de log para declarações `LOAD DATA` registradas em formato baseado em declaração, um arquivo local gerado é criado em um diretório temporário. Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinlog** ou por qualquer outro programa do MySQL. Se você usar declarações `LOAD DATA` com registro binário baseado em declaração, você deve excluir os arquivos temporários você mesmo depois de não precisar mais do registro da declaração. Para mais informações, consulte a Seção 4.6.7, “mysqlbinlog — Utilitário para Processamento de Arquivos de Log Binário”.
 
 #### 16.4.1.19 Replicação e max\_allowed\_packet
 
-`max_allowed_packet` estabelece um limite superior para o tamanho de qualquer mensagem única entre o servidor MySQL e os clientes, incluindo réplicas. Se você estiver replicando valores de coluna grandes (como os encontrados nas colunas `TEXT` ou `BLOB`) e `max_allowed_packet` estiver muito pequeno na fonte, a fonte falha com um erro, e a réplica interrompe o fio de I/O de replicação. Se `max_allowed_packet` estiver muito pequeno na réplica, isso também faz com que a réplica pare o fio de I/O de replicação.
+`max_allowed_packet` estabelece um limite superior para o tamanho de qualquer mensagem única entre o servidor MySQL e os clientes, incluindo réplicas. Se você estiver replicando valores de coluna grandes (como os encontrados nas colunas `TEXT` ou `BLOB`) e `max_allowed_packet` estiver muito pequeno na fonte, a fonte falha com um erro, e a réplica interrompe o thread de I/O de replicação. Se `max_allowed_packet` estiver muito pequeno na réplica, isso também faz com que a réplica pare o thread de I/O de replicação.
 
-A replicação baseada em linhas envia todas as colunas e os valores das colunas das linhas atualizadas da fonte para a replica, incluindo os valores das colunas que não foram realmente alterados pela atualização. Isso significa que, quando você está replicando grandes valores de coluna usando replicação baseada em linhas, você deve ter cuidado para definir `max_allowed_packet` grande o suficiente para acomodar a linha maior em qualquer tabela a ser replicada, mesmo que você esteja replicando atualizações apenas, ou esteja inserindo apenas valores relativamente pequenos.
+A replicação baseada em strings envia todas as colunas e os valores das colunas das strings atualizadas da fonte para a replica, incluindo os valores das colunas que não foram realmente alterados pela atualização. Isso significa que, quando você está replicando grandes valores de coluna usando replicação baseada em strings, você deve ter cuidado para definir `max_allowed_packet` grande o suficiente para acomodar a string maior em qualquer tabela a ser replicada, mesmo que você esteja replicando atualizações apenas, ou esteja inserindo apenas valores relativamente pequenos.
 
-Em uma replica multi-threaded (`slave_parallel_workers > 0`), certifique-se de que a variável de sistema `slave_pending_jobs_size_max` esteja definida com um valor igual ou maior que o da variável de sistema `max_allowed_packet` na fonte. O ajuste padrão para `slave_pending_jobs_size_max`, 128M, é o dobro do ajuste padrão para `max_allowed_packet`, que é 64M. `max_allowed_packet` limita o tamanho do pacote que a fonte pode enviar, mas a adição de um cabeçalho de evento pode produzir um evento de log binário que excede esse tamanho. Além disso, na replicação baseada em linha, um único evento pode ser significativamente maior que o tamanho de `max_allowed_packet`, porque o valor de `max_allowed_packet` limita apenas cada coluna da tabela.
+Em uma replica multi-threaded (`slave_parallel_workers > 0`), certifique-se de que a variável de sistema `slave_pending_jobs_size_max` esteja definida com um valor igual ou maior que o da variável de sistema `max_allowed_packet` na fonte. O ajuste padrão para `slave_pending_jobs_size_max`, 128M, é o dobro do ajuste padrão para `max_allowed_packet`, que é 64M. `max_allowed_packet` limita o tamanho do pacote que a fonte pode enviar, mas a adição de um cabeçalho de evento pode produzir um evento de log binário que excede esse tamanho. Além disso, na replicação baseada em string, um único evento pode ser significativamente maior que o tamanho de `max_allowed_packet`, porque o valor de `max_allowed_packet` limita apenas cada coluna da tabela.
 
 A réplica, na verdade, aceita pacotes até o limite definido pela configuração `slave_max_allowed_packet`, que por padrão é a configuração máxima de 1 GB, para evitar uma falha de replicação devido a um pacote grande. No entanto, o valor de `slave_pending_jobs_size_max` controla a memória que é disponibilizada na réplica para manter os pacotes recebidos. A memória especificada é compartilhada entre todas as filas de trabalho da réplica.
 
@@ -530,13 +530,13 @@ Quando um servidor de fonte de replicação é desligado e reiniciado, suas tabe
 
 Quando um servidor replicador é desligado e reiniciado, suas tabelas `MEMORY` ficam vazias. Isso faz com que a replica esteja fora de sincronia com a fonte e pode levar a outras falhas ou fazer com que a replica pare:
 
-* As atualizações e exclusões em formato de linha recebidas da fonte podem falhar com `Can't find record in 'memory_table'`.
+* As atualizações e exclusões em formato de string recebidas da fonte podem falhar com `Can't find record in 'memory_table'`.
 
-* Declarações como `INSERT INTO ... SELECT FROM memory_table` podem inserir um conjunto diferente de linhas na fonte e na replica.
+* Declarações como `INSERT INTO ... SELECT FROM memory_table` podem inserir um conjunto diferente de strings na fonte e na replica.
 
 A replica também escreve uma declaração `DELETE` ou (a partir do MySQL 5.7.32) `TRUNCATE TABLE` em seu próprio log binário, que é passado para quaisquer réplicas subsequentes, fazendo com que elas limpem suas próprias tabelas `MEMORY`.
 
-A maneira segura de reiniciar uma réplica que está replicando as tabelas `MEMORY` é primeiro descartar ou excluir todas as linhas das tabelas `MEMORY` na fonte e esperar até que essas alterações tenham sido replicadas para a réplica. Em seguida, é seguro reiniciar a réplica.
+A maneira segura de reiniciar uma réplica que está replicando as tabelas `MEMORY` é primeiro descartar ou excluir todas as strings das tabelas `MEMORY` na fonte e esperar até que essas alterações tenham sido replicadas para a réplica. Em seguida, é seguro reiniciar a réplica.
 
 Um método alternativo de reinício pode ser aplicado em alguns casos. Quando `binlog_format=ROW`, você pode impedir que a replica seja parada se você definir `slave_exec_mode=IDEMPOTENT` antes de começar a replica novamente. Isso permite que a replica continue a se replicar, mas suas tabelas de `MEMORY` ainda diferem das do fonte. Isso é aceitável se a lógica da aplicação for tal que o conteúdo das tabelas de `MEMORY` possa ser perdido com segurança (por exemplo, se as tabelas de `MEMORY` forem usadas para cache). `slave_exec_mode=IDEMPOTENT` se aplica globalmente a todas as tabelas, então pode ocultar outros erros de replicação em tabelas que não são `MEMORY`.
 
@@ -548,7 +548,7 @@ Consulte a Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”, para obter 
 
 #### 16.4.1.21 Replicação do banco de dados do sistema mysql
 
-As declarações de modificação de dados feitas em tabelas no banco de dados `mysql` são replicadas de acordo com o valor de `binlog_format`; se esse valor for `MIXED`, essas declarações são replicadas usando o formato baseado em linha. No entanto, as declarações que normalmente atualizariam essas informações indiretamente — como `GRANT`, `REVOKE` e declarações que manipulam gatilhos, rotinas armazenadas e visualizações — são replicadas para réplicas usando replicação baseada em declaração.
+As declarações de modificação de dados feitas em tabelas no banco de dados `mysql` são replicadas de acordo com o valor de `binlog_format`; se esse valor for `MIXED`, essas declarações são replicadas usando o formato baseado em string. No entanto, as declarações que normalmente atualizariam essas informações indiretamente — como `GRANT`, `REVOKE` e declarações que manipulam gatilhos, rotinas armazenadas e visualizações — são replicadas para réplicas usando replicação baseada em declaração.
 
 #### 16.4.1.22 Replicação e o Otimizador de Consulta
 
@@ -564,7 +564,7 @@ Devido a esses perigos de causar o fracasso total da replicação (devido a decl
 
 #### 16.4.1.24 Replicação e REPARAÇÃO DE TÁBUA
 
-Quando usado em uma tabela corrompida ou danificada, é possível que a declaração `REPAIR TABLE` elimine linhas que não podem ser recuperadas. No entanto, quaisquer modificações realizadas por esta declaração no dados da tabela não são replicadas, o que pode causar a perda de sincronização entre a fonte e a réplica. Por esse motivo, no caso de uma tabela na fonte ser danificada e você usar `REPAIR TABLE` para repará-la, você deve primeiro parar a replicação (se ainda estiver em execução) antes de usar `REPAIR TABLE`, e, em seguida, comparar as cópias da fonte e da réplica da tabela e estar preparado para corrigir quaisquer discrepâncias manualmente, antes de reiniciar a replicação.
+Quando usado em uma tabela corrompida ou danificada, é possível que a declaração `REPAIR TABLE` elimine strings que não podem ser recuperadas. No entanto, quaisquer modificações realizadas por esta declaração no dados da tabela não são replicadas, o que pode causar a perda de sincronização entre a fonte e a réplica. Por esse motivo, no caso de uma tabela na fonte ser danificada e você usar `REPAIR TABLE` para repará-la, você deve primeiro parar a replicação (se ainda estiver em execução) antes de usar `REPAIR TABLE`, e, em seguida, comparar as cópias da fonte e da réplica da tabela e estar preparado para corrigir quaisquer discrepâncias manualmente, antes de reiniciar a replicação.
 
 #### 16.4.1.25 Replicação e Palavras Reservadas
 
@@ -596,7 +596,7 @@ A tolerância à falha do seu sistema para esses tipos de problemas é muito mai
 
 Se uma declaração produzir o mesmo erro (código de erro idêntico) tanto na fonte quanto na réplica, o erro é registrado, mas a replicação continua.
 
-Se uma declaração produzir diferentes erros na fonte e na réplica, o fio de replicação é encerrado e a réplica escreve uma mensagem em seu log de erro e espera que o administrador do banco de dados decida o que fazer com o erro. Isso inclui o caso em que uma declaração produz um erro na fonte ou na réplica, mas não em ambas. Para resolver o problema, conecte-se manualmente à réplica e determine a causa do problema. `SHOW SLAVE STATUS` é útil para isso. Em seguida, corrija o problema e execute `START SLAVE`. Por exemplo, você pode precisar criar uma tabela inexistente antes de poder iniciar a réplica novamente.
+Se uma declaração produzir diferentes erros na fonte e na réplica, o thread de replicação é encerrado e a réplica escreve uma mensagem em seu log de erro e espera que o administrador do banco de dados decida o que fazer com o erro. Isso inclui o caso em que uma declaração produz um erro na fonte ou na réplica, mas não em ambas. Para resolver o problema, conecte-se manualmente à réplica e determine a causa do problema. `SHOW SLAVE STATUS` é útil para isso. Em seguida, corrija o problema e execute `START SLAVE`. Por exemplo, você pode precisar criar uma tabela inexistente antes de poder iniciar a réplica novamente.
 
 Nota
 
@@ -604,13 +604,13 @@ Se um erro temporário for registrado no log de erros da replica, você não pre
 
 Se esse comportamento de validação de código de erro não for desejado, alguns ou todos os erros podem ser ocultados (ignorados) com a opção `--slave-skip-errors`.
 
-Para motores de armazenamento não transacionais, como `MyISAM`, é possível ter uma declaração que atualiza apenas parcialmente uma tabela e retorna um código de erro. Isso pode acontecer, por exemplo, em uma inserção de várias linhas que tem uma linha que viola uma restrição de chave, ou se uma declaração de atualização longa é interrompida após a atualização de algumas das linhas. Se isso acontecer na fonte, a replica espera que a execução da declaração resulte no mesmo código de erro. Se não, o thread de SQL da replicação para de execução como descrito anteriormente.
+Para motores de armazenamento não transacionais, como `MyISAM`, é possível ter uma declaração que atualiza apenas parcialmente uma tabela e retorna um código de erro. Isso pode acontecer, por exemplo, em uma inserção de várias strings que tem uma string que viola uma restrição de chave, ou se uma declaração de atualização longa é interrompida após a atualização de algumas das strings. Se isso acontecer na fonte, a replica espera que a execução da declaração resulte no mesmo código de erro. Se não, o thread de SQL da replicação para de execução como descrito anteriormente.
 
 Se você estiver replicando entre tabelas que usam diferentes motores de armazenamento na fonte e na replica, tenha em mente que a mesma declaração pode produzir um erro diferente quando executada contra uma versão da tabela, mas não a outra, ou pode causar um erro para uma versão da tabela, mas não a outra. Por exemplo, como o `MyISAM` ignora as restrições de chave estrangeira, uma declaração `INSERT` ou `UPDATE` acessando uma tabela `InnoDB` na fonte pode causar uma violação de chave estrangeira, mas a mesma declaração realizada em uma versão `MyISAM` da mesma tabela na replica não produziria tal erro, fazendo com que a replicação pare.
 
 #### 16.4.1.28 Replicação e modo SQL do servidor
 
-Usar diferentes configurações de modo SQL do servidor na fonte e na replica pode fazer com que as mesmas declarações `INSERT` sejam tratadas de maneira diferente na fonte e na replica, levando à divergência entre a fonte e a replica. Para obter os melhores resultados, você deve sempre usar o mesmo modo SQL do servidor na fonte e na replica. Esse conselho se aplica, independentemente de você estar usando replicação baseada em declarações ou baseada em linhas.
+Usar diferentes configurações de modo SQL do servidor na fonte e na replica pode fazer com que as mesmas declarações `INSERT` sejam tratadas de maneira diferente na fonte e na replica, levando à divergência entre a fonte e a replica. Para obter os melhores resultados, você deve sempre usar o mesmo modo SQL do servidor na fonte e na replica. Esse conselho se aplica, independentemente de você estar usando replicação baseada em declarações ou baseada em strings.
 
 Se você estiver replicando tabelas particionadas, usar diferentes modos SQL na fonte e na replica provavelmente causará problemas. No mínimo, isso provavelmente fará com que a distribuição dos dados entre as partições nas cópias da fonte e da replica de uma determinada tabela seja diferente. Isso também pode causar inserções em tabelas particionadas que têm sucesso na fonte, mas falham na replica.
 
@@ -618,14 +618,14 @@ Para mais informações, consulte a Seção 5.1.10, “Modos SQL do servidor”.
 
 #### 16.4.1.29 Replicação e tabelas temporárias
 
-A discussão nos parágrafos a seguir não se aplica quando `binlog_format=ROW`, porque, nesse caso, as tabelas temporárias não são replicadas; isso significa que nunca há tabelas temporárias na replica que possam ser perdidas em caso de uma interrupção não planejada pela replica. O restante desta seção se aplica apenas quando se usa replicação baseada em declarações ou formato misto. A perda de tabelas temporárias replicadas na replica pode ser um problema, sempre que `binlog_format` ou `STATEMENT` ou `MIXED`, para declarações que envolvem tabelas temporárias que podem ser registradas com segurança usando o formato baseado em declaração. Para mais informações sobre registro baseado em linha e tabelas temporárias, consulte Registro baseado em linha de tabelas temporárias.
+A discussão nos parágrafos a seguir não se aplica quando `binlog_format=ROW`, porque, nesse caso, as tabelas temporárias não são replicadas; isso significa que nunca há tabelas temporárias na replica que possam ser perdidas em caso de uma interrupção não planejada pela replica. O restante desta seção se aplica apenas quando se usa replicação baseada em declarações ou formato misto. A perda de tabelas temporárias replicadas na replica pode ser um problema, sempre que `binlog_format` ou `STATEMENT` ou `MIXED`, para declarações que envolvem tabelas temporárias que podem ser registradas com segurança usando o formato baseado em declaração. Para mais informações sobre registro baseado em string e tabelas temporárias, consulte Registro baseado em string de tabelas temporárias.
 
 **Desativação segura da replica quando se usa tabelas temporárias.** As tabelas temporárias são replicadas, exceto no caso em que você para o servidor de replicação (não apenas os threads de replicação) e você já replicou tabelas temporárias que estão abertas para uso em atualizações que ainda não foram executadas na replica. Se você parar o servidor de replicação, as tabelas temporárias necessárias para essas atualizações não estarão mais disponíveis quando a replica for reiniciada. Para evitar esse problema, não desative a replica enquanto ela tiver tabelas temporárias abertas. Em vez disso, use o seguinte procedimento:
 
 1. Emitir uma declaração `STOP SLAVE SQL_THREAD`.  
 2. Usar `SHOW STATUS` para verificar o valor da variável `Slave_open_temp_tables`.
 
-3. Se o valor não for 0, reinicie o fio de replicação SQL com `START SLAVE SQL_THREAD` e repita o procedimento mais tarde.
+3. Se o valor não for 0, reinicie o thread de replicação SQL com `START SLAVE SQL_THREAD` e repita o procedimento mais tarde.
 
 4. Quando o valor for 0, execute o comando **mysqladmin shutdown** para parar a replica.
 
@@ -669,7 +669,7 @@ Os seguintes cenários são relevantes para a existência de transações parcia
 
 2. `mysqld` é desligado. Tanto o desligamento limpo quanto o não limpo abortam as transações em andamento e podem deixar lacunas e transações meio aplicadas.
 
-3. `KILL` de fios de replicação (o fio SQL ao usar uma replicação de fio único, o fio coordenador ao usar uma replicação de vários fios). Isso interrompe as transações em andamento e pode deixar lacunas e transações meio aplicadas.
+3. `KILL` de threads de replicação (o thread SQL ao usar uma replicação de thread único, o thread coordenador ao usar uma replicação de vários threads). Isso interrompe as transações em andamento e pode deixar lacunas e transações meio aplicadas.
 
 4. Erro nos threads do aplicador. Isso pode deixar lacunas. Se o erro estiver em uma transação mista, essa transação é parcialmente aplicada. Ao usar uma replica multithread, os trabalhadores que não receberam um erro completam suas filas, então pode levar algum tempo para parar todos os threads.
 
@@ -687,7 +687,7 @@ Se um canal de replicação tiver lacunas, isso tem as seguintes consequências:
 
 2. O campo `Exec_master_log_pos` em `SHOW SLAVE STATUS` é apenas um "limite mínimo". Em outras palavras, as transações que aparecem antes da posição são garantidas como tendo sido realizadas, mas as transações que aparecem depois da posição podem ter sido realizadas ou
 
-As declarações `CHANGE MASTER TO` para esse canal falham com um erro, a menos que os fios do aplicador estejam em funcionamento e a declaração `CHANGE MASTER TO` apenas defina as opções do receptor.
+As declarações `CHANGE MASTER TO` para esse canal falham com um erro, a menos que os threads do aplicador estejam em funcionamento e a declaração `CHANGE MASTER TO` apenas defina as opções do receptor.
 
 4. Se o `mysqld` for iniciado com o `--relay-log-recovery`, não será realizada recuperação para esse canal e será exibido um aviso.
 
@@ -713,7 +713,7 @@ O servidor utiliza essas regras para o registro binário:
 
 * Se as declarações iniciais em uma transação não forem transacionais, elas são escritas no log binário imediatamente. As declarações restantes na transação são armazenadas em cache e não são escritas no log binário até que a transação seja comprometida. (Se a transação for revertida, as declarações armazenadas em cache são escritas no log binário apenas se elas fizerem alterações não transacionais que não possam ser revertidas. Caso contrário, elas são descartadas.)
 
-* Para o registro baseado em declarações, o registro de declarações não transacionais é afetado pela variável de sistema `binlog_direct_non_transactional_updates`. Quando essa variável é `OFF` (o padrão), o registro ocorre conforme descrito acima. Quando essa variável é `ON`, o registro ocorre imediatamente para declarações não transacionais que ocorrem em qualquer lugar da transação (não apenas declarações não transacionais iniciais). Outras declarações são mantidas no cache da transação e registradas quando a transação é confirmada. `binlog_direct_non_transactional_updates` não tem efeito para o registro binário de formato de linha ou misto.
+* Para o registro baseado em declarações, o registro de declarações não transacionais é afetado pela variável de sistema `binlog_direct_non_transactional_updates`. Quando essa variável é `OFF` (o padrão), o registro ocorre conforme descrito acima. Quando essa variável é `ON`, o registro ocorre imediatamente para declarações não transacionais que ocorrem em qualquer lugar da transação (não apenas declarações não transacionais iniciais). Outras declarações são mantidas no cache da transação e registradas quando a transação é confirmada. `binlog_direct_non_transactional_updates` não tem efeito para o registro binário de formato de string ou misto.
 
 **Declarações transacionais, não transacionais e mistas.** Para aplicar essas regras, o servidor considera uma declaração não transacional se ela alterar apenas tabelas não transacionais, e transacional se ela alterar apenas tabelas transacionais. Uma declaração que faz referência tanto a tabelas não transacionais quanto a tabelas transacionais e atualiza *qualquer* das tabelas envolvidas é considerada uma declaração "mista". (Em algumas versões anteriores do MySQL, apenas uma declaração que atualizava *ambas* as tabelas não transacionais e transacionais era considerada mista.) As declarações mistas, como as declarações transacionais, são armazenadas em cache e registradas quando a transação é confirmada.
 
@@ -750,11 +750,11 @@ Para as restrições que se aplicam especificamente às transações XA, consult
 
 #### 16.4.1.34 Replicação e gatilhos
 
-Com a replicação baseada em declarações, os gatilhos executados na fonte também são executados na replica. Com a replicação baseada em linhas, os gatilhos executados na fonte não são executados na replica. Em vez disso, as alterações de linha na fonte resultantes da execução do gatilho são replicadas e aplicadas na replica.
+Com a replicação baseada em declarações, os gatilhos executados na fonte também são executados na replica. Com a replicação baseada em strings, os gatilhos executados na fonte não são executados na replica. Em vez disso, as alterações de string na fonte resultantes da execução do gatilho são replicadas e aplicadas na replica.
 
-Esse comportamento é proposital. Se, na replicação baseada em linha, a replica aplicasse os gatilhos, bem como as alterações de linha causadas por eles, as alterações seriam, na verdade, aplicadas duas vezes na replica, levando a dados diferentes na fonte e na replica.
+Esse comportamento é proposital. Se, na replicação baseada em string, a replica aplicasse os gatilhos, bem como as alterações de string causadas por eles, as alterações seriam, na verdade, aplicadas duas vezes na replica, levando a dados diferentes na fonte e na replica.
 
-Se você deseja que os gatilhos sejam executados tanto na fonte quanto na replica, talvez porque você tenha gatilhos diferentes na fonte e na replica, você deve usar a replicação baseada em declarações. No entanto, para habilitar gatilhos no lado da replica, não é necessário usar a replicação baseada em declarações exclusivamente. É suficiente alternar para a replicação baseada em declarações apenas para as declarações onde você deseja esse efeito e usar a replicação baseada em linhas o resto do tempo.
+Se você deseja que os gatilhos sejam executados tanto na fonte quanto na replica, talvez porque você tenha gatilhos diferentes na fonte e na replica, você deve usar a replicação baseada em declarações. No entanto, para habilitar gatilhos no lado da replica, não é necessário usar a replicação baseada em declarações exclusivamente. É suficiente alternar para a replicação baseada em declarações apenas para as declarações onde você deseja esse efeito e usar a replicação baseada em strings o resto do tempo.
 
 Uma declaração que invoca um gatilho (ou função) que causa uma atualização em uma coluna `AUTO_INCREMENT` não é replicada corretamente usando a replicação baseada em declaração. O MySQL 5.7 marca tais declarações como inseguras. (Bug #45677)
 
@@ -778,7 +778,7 @@ Para evitar esses problemas, modifique seus gatilhos antes de fazer a desativaç
 
 #### 16.4.1.35 Replicação e TRUNCATE TABLE
 
-Normalmente, `TRUNCATE TABLE` é considerado uma declaração DML, e, portanto, espera-se que seja registrada e replicada usando o formato baseado em linha quando o modo de registro binário é `ROW` ou `MIXED`. No entanto, isso causou problemas ao registrar ou replicar, no modo `STATEMENT` ou `MIXED`, tabelas que usavam motores de armazenamento transacional, como `InnoDB`, quando o nível de isolamento de transação era `READ COMMITTED` ou `READ UNCOMMITTED`, o que exclui o registro baseado em declaração.
+Normalmente, `TRUNCATE TABLE` é considerado uma declaração DML, e, portanto, espera-se que seja registrada e replicada usando o formato baseado em string quando o modo de registro binário é `ROW` ou `MIXED`. No entanto, isso causou problemas ao registrar ou replicar, no modo `STATEMENT` ou `MIXED`, tabelas que usavam motores de armazenamento transacional, como `InnoDB`, quando o nível de isolamento de transação era `READ COMMITTED` ou `READ UNCOMMITTED`, o que exclui o registro baseado em declaração.
 
 `TRUNCATE TABLE` é tratado para fins de registro e replicação como DDL em vez de DML, para que possa ser registrado e replicado como uma declaração. No entanto, os efeitos da declaração, conforme aplicável a `InnoDB` e outras tabelas transacionais em réplicas, ainda seguem as regras descritas na Seção 13.1.34, “Declaração de TRUNCATE TABLE” que governam tais tabelas. (Bug #36763)
 
@@ -809,7 +809,7 @@ As variáveis do sistema não são replicadas corretamente ao usar o modo `STATE
 * `timestamp`
 * `unique_checks`
 
-Quando o modo `MIXED` é utilizado, as variáveis na lista anterior, quando usadas com escopo de sessão, causam uma mudança de registro baseado em declarações para registro baseado em linhas. Veja a Seção 5.4.4.3, “Formato de Registro Binário Misto”.
+Quando o modo `MIXED` é utilizado, as variáveis na lista anterior, quando usadas com escopo de sessão, causam uma mudança de registro baseado em declarações para registro baseado em strings. Veja a Seção 5.4.4.3, “Formato de Registro Binário Misto”.
 
 `sql_mode` também é replicado, exceto no modo `NO_DIR_IN_CREATE`; a replica sempre preserva seu próprio valor para `NO_DIR_IN_CREATE`, independentemente das alterações nela realizadas na fonte. Isso é válido para todos os formatos de replicação.
 
@@ -835,7 +835,7 @@ SET time_zone=...;
 INSERT INTO mytable VALUES(CONVERT_TZ(..., ..., @@time_zone));
 ```
 
-A replicação de variáveis de sessão não é um problema quando a replicação baseada em linha está sendo usada, nesse caso, as variáveis de sessão são sempre replicadas com segurança. Veja a Seção 16.2.1, “Formatos de replicação”.
+A replicação de variáveis de sessão não é um problema quando a replicação baseada em string está sendo usada, nesse caso, as variáveis de sessão são sempre replicadas com segurança. Veja a Seção 16.2.1, “Formatos de replicação”.
 
 As seguintes variáveis de sessão são escritas no log binário e respeitadas pela replica ao analisar o log binário, independentemente do formato de registro:
 
@@ -858,7 +858,7 @@ Para ajudar a reduzir possíveis confusões, recomendamos que você use sempre o
 
 As visualizações são sempre replicadas para réplicas. As visualizações são filtradas pelo seu próprio nome, não pelos tabelas a que se referem. Isso significa que uma visualização pode ser replicada para a réplica, mesmo que a visualização contenha uma tabela que normalmente seria filtrada pelas regras do `replication-ignore-table`. Portanto, deve-se ter cuidado para garantir que as visualizações não repliquem dados de tabela que normalmente seriam filtrados por razões de segurança.
 
-A replicação de uma tabela para uma visão com o mesmo nome é suportada usando o registro baseado em declarações, mas não quando se usa o registro baseado em linhas. Tentar fazer isso quando o registro baseado em linhas está em vigor causa um erro. (Bug #11752707, Bug #43975)
+A replicação de uma tabela para uma visão com o mesmo nome é suportada usando o registro baseado em declarações, mas não quando se usa o registro baseado em strings. Tentar fazer isso quando o registro baseado em strings está em vigor causa um erro. (Bug #11752707, Bug #43975)
 
 ### 16.4.2 Compatibilidade de replicação entre as versões do MySQL
 
@@ -876,11 +876,11 @@ A replicação de fontes mais recentes para réplicas mais antigas pode ser poss
 
 Isso também tem implicações significativas para a atualização dos servidores de replicação; consulte a Seção 16.4.3, “Atualizando uma topologia de replicação”, para mais informações.
 
-* Para mais informações sobre replicação baseada em linha, consulte a Seção 16.2.1, “Formatos de replicação”.
+* Para mais informações sobre replicação baseada em string, consulte a Seção 16.2.1, “Formatos de replicação”.
 
 * **Incompatibilidades SQL.** Você não pode replicar de uma fonte mais recente para uma réplica mais antiga usando replicação baseada em declarações se as declarações a serem replicadas utilizarem recursos SQL disponíveis na fonte, mas não na réplica.
 
-No entanto, se tanto a fonte quanto a réplica suportam replicação baseada em linha e não há declarações de definição de dados a serem replicadas que dependem de recursos SQL encontrados na fonte, mas não na réplica, você pode usar a replicação baseada em linha para replicar os efeitos das declarações de modificação de dados, mesmo que o DDL executado na fonte não seja suportado na réplica.
+No entanto, se tanto a fonte quanto a réplica suportam replicação baseada em string e não há declarações de definição de dados a serem replicadas que dependem de recursos SQL encontrados na fonte, mas não na réplica, você pode usar a replicação baseada em string para replicar os efeitos das declarações de modificação de dados, mesmo que o DDL executado na fonte não seja suportado na réplica.
 
 Para mais informações sobre possíveis problemas de replicação, consulte a Seção 16.4.1, “Recursos e problemas de replicação”.
 
@@ -900,9 +900,9 @@ Embora essa sequência de atualização seja correta, ainda é possível encontr
 
 Se você está atualizando uma configuração de replicação existente de uma versão do MySQL que não suporta identificadores de transação global (GTIDs) para uma versão que o faz, só habilite GTIDs na fonte e nas réplicas quando você tiver certeza de que a configuração atende a todos os requisitos para replicação baseada em GTIDs. Consulte a Seção 16.1.3.4, “Configurando a Replicação Usando GTIDs”, para obter informações sobre a conversão de configurações de replicação com base em posições de arquivo de registro binário para uso de replicação baseada em GTIDs.
 
-Alterações que afetam as operações no modo SQL estrito (`STRICT_TRANS_TABLES` ou `STRICT_ALL_TABLES`) podem resultar em falha na replicação em uma replica atualizada. Se você usar o registro baseado em declarações (`binlog_format=STATEMENT`), se uma replica for atualizada antes da fonte, a fonte executa declarações que têm sucesso nela, mas que podem falhar na replica e, assim, causar o fim da replicação. Para lidar com isso, pare todas as novas declarações na fonte e espere até que as réplicas se atualizem, depois atualize as réplicas. Alternativamente, se você não pode parar novas declarações, mude temporariamente para o registro baseado em linhas na fonte (`binlog_format=ROW`) e espere até que todas as réplicas tenham processado todos os logs binários produzidos até o ponto desta mudança, depois atualize as réplicas.
+Alterações que afetam as operações no modo SQL estrito (`STRICT_TRANS_TABLES` ou `STRICT_ALL_TABLES`) podem resultar em falha na replicação em uma replica atualizada. Se você usar o registro baseado em declarações (`binlog_format=STATEMENT`), se uma replica for atualizada antes da fonte, a fonte executa declarações que têm sucesso nela, mas que podem falhar na replica e, assim, causar o fim da replicação. Para lidar com isso, pare todas as novas declarações na fonte e espere até que as réplicas se atualizem, depois atualize as réplicas. Alternativamente, se você não pode parar novas declarações, mude temporariamente para o registro baseado em strings na fonte (`binlog_format=ROW`) e espere até que todas as réplicas tenham processado todos os logs binários produzidos até o ponto desta mudança, depois atualize as réplicas.
 
-O conjunto de caracteres padrão mudou de `latin1` para `utf8mb4` no MySQL 8.0. Em um ambiente replicado, ao fazer a atualização do MySQL 5.7 para 8.0, é aconselhável alterar o conjunto de caracteres padrão de volta ao conjunto de caracteres usado no MySQL 5.7 antes da atualização. Após a conclusão da atualização, o conjunto de caracteres padrão pode ser alterado para `utf8mb4`. Supondo que os padrões anteriores foram usados, uma maneira de preservá-los é iniciar o servidor com essas linhas no arquivo `my.cnf`:
+O conjunto de caracteres padrão mudou de `latin1` para `utf8mb4` no MySQL 8.0. Em um ambiente replicado, ao fazer a atualização do MySQL 5.7 para 8.0, é aconselhável alterar o conjunto de caracteres padrão de volta ao conjunto de caracteres usado no MySQL 5.7 antes da atualização. Após a conclusão da atualização, o conjunto de caracteres padrão pode ser alterado para `utf8mb4`. Supondo que os padrões anteriores foram usados, uma maneira de preservá-los é iniciar o servidor com essas strings no arquivo `my.cnf`:
 
 ```sql
 [mysqld]
@@ -927,7 +927,7 @@ Para atualizar uma topologia de replicação, siga as instruções na Seção 2.
 
 * Reinicie a replicação usando uma declaração `START REPLICA` ou `START SLAVE`.
 
-2. Quando todas as réplicas tiverem sido atualizadas, siga os mesmos passos para atualizar e reiniciar o servidor de origem, com exceção da declaração `START REPLICA` ou `START SLAVE`. Se você fez uma mudança temporária na log de base de linha ou no conjunto de caracteres padrão, você pode reverter a mudança agora.
+2. Quando todas as réplicas tiverem sido atualizadas, siga os mesmos passos para atualizar e reiniciar o servidor de origem, com exceção da declaração `START REPLICA` ou `START SLAVE`. Se você fez uma mudança temporária na log de base de string ou no conjunto de caracteres padrão, você pode reverter a mudança agora.
 
 #### Procedimento de Atualização com Reparo ou Reestruturação de Tabela
 
@@ -994,7 +994,7 @@ Quando você tiver determinado que não há erro do usuário envolvido e a repli
 
 Se você tiver um caso de teste repetiível que demonstre o bug, por favor, insira-o em nosso banco de dados de bugs usando as instruções fornecidas na Seção 1.5, “Como relatar bugs ou problemas”. Se você tiver um problema “fantasma” (um que você não pode duplicar à vontade), use o seguinte procedimento:
 
-1. Verifique se não há erro do usuário envolvido. Por exemplo, se você atualizar a replicação fora do fio de replicação, os dados saem de sincronia, e você pode ter violações de chave única em atualizações. Neste caso, o fio de SQL de replicação para e espera que você limpe as tabelas manualmente para trazê-las em sincronia. *Isso não é um problema de replicação. É um problema de interferência externa que faz com que a replicação falhe.*
+1. Verifique se não há erro do usuário envolvido. Por exemplo, se você atualizar a replicação fora do thread de replicação, os dados saem de sincronia, e você pode ter violações de chave única em atualizações. Neste caso, o thread de SQL de replicação para e espera que você limpe as tabelas manualmente para trazê-las em sincronia. *Isso não é um problema de replicação. É um problema de interferência externa que faz com que a replicação falhe.*
 
 2. Execute a replica com as opções `--log-slave-updates` e `--log-bin`. Essas opções fazem com que a replica registre as atualizações que recebe da fonte em seus próprios logs binários.
 

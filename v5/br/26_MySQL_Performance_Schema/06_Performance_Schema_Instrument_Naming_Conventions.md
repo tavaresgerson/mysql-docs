@@ -67,7 +67,7 @@ Os instrumentos com o prefixo `memory/performance_schema/` mostram quanto memór
 
 ### Elementos de Instrumento de Estágio
 
-Os instrumentos de estágio têm nomes na forma `stage/code_area/stage_name`, onde *`code_area`* é um valor como `sql` ou `myisam`, e *`stage_name`* indica o estágio do processamento de declaração, como `Sorting result` ou `Sending data`. Os estágios correspondem aos estados de fio exibidos por `SHOW PROCESSLIST` ou que são visíveis na tabela do Esquema de Informações `PROCESSLIST`.
+Os instrumentos de estágio têm nomes na forma `stage/code_area/stage_name`, onde *`code_area`* é um valor como `sql` ou `myisam`, e *`stage_name`* indica o estágio do processamento de declaração, como `Sorting result` ou `Sending data`. Os estágios correspondem aos estados de thread exibidos por `SHOW PROCESSLIST` ou que são visíveis na tabela do Esquema de Informações `PROCESSLIST`.
 
 ### Instrumentos de declaração Elementos do instrumento
 
@@ -93,15 +93,15 @@ Uma operação de E/S de arquivo instrumentada. Para arquivos, a espera é o tem
 
 + `wait/io/socket`
 
-Uma operação de soquete instrumentado. Os instrumentos de soquete têm nomes na forma `wait/io/socket/sql/socket_type`. O servidor tem um soquete de escuta para cada protocolo de rede que ele suporta. Os instrumentos associados a soquetes de escuta para conexões de arquivo de soquete TCP/IP ou Unix têm um valor *`socket_type`* de `server_tcpip_socket`, respectivamente. Quando um soquete de escuta detecta uma conexão, o servidor transfere a conexão para um novo soquete gerenciado por um fio separado. O instrumento para o novo fio de conexão tem um valor *`socket_type`* de `client_connection`.
+Uma operação de soquete instrumentado. Os instrumentos de soquete têm nomes na forma `wait/io/socket/sql/socket_type`. O servidor tem um soquete de escuta para cada protocolo de rede que ele suporta. Os instrumentos associados a soquetes de escuta para conexões de arquivo de soquete TCP/IP ou Unix têm um valor *`socket_type`* de `server_tcpip_socket`, respectivamente. Quando um soquete de escuta detecta uma conexão, o servidor transfere a conexão para um novo soquete gerenciado por um thread separado. O instrumento para o novo thread de conexão tem um valor *`socket_type`* de `client_connection`.
 
 + `wait/io/table`
 
-Uma operação de I/O de tabela instrumentada. Estas incluem acessos de nível de linha a tabelas de base persistentes ou tabelas temporárias. As operações que afetam as linhas são buscar, inserir, atualizar e excluir. Para uma visão, as espera são associadas a tabelas de base referenciadas pela visão.
+Uma operação de I/O de tabela instrumentada. Estas incluem acessos de nível de string a tabelas de base persistentes ou tabelas temporárias. As operações que afetam as strings são buscar, inserir, atualizar e excluir. Para uma visão, as espera são associadas a tabelas de base referenciadas pela visão.
 
-Ao contrário da maioria das espera, uma espera de I/O de tabela pode incluir outras espera. Por exemplo, o I/O de tabela pode incluir operações de arquivo ou de memória. Assim, `events_waits_current` para uma espera de I/O de tabela geralmente tem duas linhas. Para mais informações, consulte a Seção 25.8, “Eventos de átomo e molécula do Schema de desempenho”.
+Ao contrário da maioria das espera, uma espera de I/O de tabela pode incluir outras espera. Por exemplo, o I/O de tabela pode incluir operações de arquivo ou de memória. Assim, `events_waits_current` para uma espera de I/O de tabela geralmente tem duas strings. Para mais informações, consulte a Seção 25.8, “Eventos de átomo e molécula do Schema de desempenho”.
 
-Algumas operações de linha podem causar múltiplos aguamentos de E/S de tabela. Por exemplo, uma inserção pode ativar um gatilho que causa uma atualização.
+Algumas operações de string podem causar múltiplos aguamentos de E/S de tabela. Por exemplo, uma inserção pode ativar um gatilho que causa uma atualização.
 
 * `wait/lock`
 
@@ -121,7 +121,7 @@ Um objeto de sincronização instrumentado. Para objetos de sincronização, o t
 
 + `wait/synch/cond`
 
-Uma condição é usada por um fio para sinalizar para outros fios que algo pelo qual eles estavam esperando aconteceu. Se um único fio estava esperando por uma condição, ele pode acordar e prosseguir com sua execução. Se vários fios estavam esperando, todos eles podem acordar e competir pelo recurso pelo qual estavam esperando.
+Uma condição é usada por um thread para sinalizar para outros threads que algo pelo qual eles estavam esperando aconteceu. Se um único thread estava esperando por uma condição, ele pode acordar e prosseguir com sua execução. Se vários threads estavam esperando, todos eles podem acordar e competir pelo recurso pelo qual estavam esperando.
 
 + `wait/synch/mutex`
 

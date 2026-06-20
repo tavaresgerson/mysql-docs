@@ -54,7 +54,7 @@ A partir do MySQL 5.7.40, essas funções suportam o uso de uma função de deri
 
 As declarações que utilizam `AES_ENCRYPT()` ou `AES_DECRYPT()` não são seguras para replicação baseada em declarações.
 
-Se `AES_ENCRYPT()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `AES_ENCRYPT()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 Os argumentos para as funções `AES_ENCRYPT()` e `AES_DECRYPT()` são os seguintes:
 
@@ -173,7 +173,7 @@ O conteúdo comprimido da string é armazenado da seguinte maneira:
 Cadeias vazias são armazenadas como cadeias vazias.  
 Cadeias não vazias são armazenadas como uma extensão de 4 bytes da cadeia não comprimida (baixo byte primeiro), seguida pela cadeia comprimida. Se a cadeia terminar com espaço, um caractere extra `.` é adicionado para evitar problemas com o corte de espaço final, caso o resultado seja armazenado em uma coluna `CHAR` ou `VARCHAR`. (No entanto, o uso de tipos de dados de cadeia não binários, como `CHAR` ou `VARCHAR` para armazenar cadeias comprimidas não é recomendado de qualquer forma, pois pode ocorrer conversão de conjunto de caracteres. Use uma coluna de cadeia binária `VARBINARY` ou `BLOB` em vez disso.)
 
-Se `COMPRESS()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `COMPRESS()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `DECODE(crypt_str,pass_str)`
 
@@ -219,13 +219,13 @@ O comprimento da cadeia para o resultado é dado por esta fórmula:
   new_len = orig_len + (8 - (orig_len % 8)) + 1
   ```
 
-Cada linha no arquivo de chave DES tem o seguinte formato:
+Cada string no arquivo de chave DES tem o seguinte formato:
 
   ```sql
   key_num des_key_str
   ```
 
-Cada valor *`key_num`* deve ser um número no intervalo de `0` a `9`. As linhas no arquivo podem estar em qualquer ordem. *`des_key_str`* é a string que é usada para criptografar a mensagem. Deve haver pelo menos um espaço entre o número e a chave. A primeira chave é a chave padrão que é usada se você não especificar nenhum argumento de chave para `DES_ENCRYPT()`.
+Cada valor *`key_num`* deve ser um número no intervalo de `0` a `9`. As strings no arquivo podem estar em qualquer ordem. *`des_key_str`* é a string que é usada para criptografar a mensagem. Deve haver pelo menos um espaço entre o número e a chave. A primeira chave é a chave padrão que é usada se você não especificar nenhum argumento de chave para `DES_ENCRYPT()`.
 
 Você pode informar ao MySQL que leia novos valores de chave do arquivo de chave com a declaração `FLUSH DES_KEY_FILE`. Isso requer o privilégio `RELOAD`.
 
@@ -240,7 +240,7 @@ As funções `DES_ENCRYPT()` e `DES_DECRYPT()` são descontinuadas no MySQL 5.7,
        > WHERE crypted_credit_card = DES_ENCRYPT('credit_card_number');
   ```
 
-Se `DES_ENCRYPT()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `DES_ENCRYPT()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `ENCODE(str,pass_str)`
 
@@ -258,7 +258,7 @@ Se você ainda precisar usar `ENCODE()`, um valor de sal deve ser usado com ele 
 
 Um novo valor aleatório de sal deve ser usado sempre que uma senha for atualizada.
 
-Se `ENCODE()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `ENCODE()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `ENCRYPT(str[,salt])`
 
@@ -279,7 +279,7 @@ O uso de `ENCRYPT()` com os conjuntos de caracteres multiletra `ucs2`, `utf16`, 
 
 Se `crypt()` não estiver disponível no seu sistema (como é o caso do Windows), `ENCRYPT()` sempre retorna `NULL`.
 
-Se `ENCRYPT()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `ENCRYPT()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `MD5(str)`
 
@@ -330,7 +330,7 @@ Essa função retorna uma string binária de *`len`* bytes aleatórios gerados u
 
 `RANDOM_BYTES()` gera um valor aleatório, o que torna seu resultado não determinístico. Consequentemente, as declarações que utilizam essa função não são seguras para replicação baseada em declarações e não podem ser armazenadas no cache de consulta.
 
-Se `RANDOM_BYTES()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `RANDOM_BYTES()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 * `SHA1(str)`, `SHA(str)`
 

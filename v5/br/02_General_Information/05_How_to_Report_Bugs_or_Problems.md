@@ -30,7 +30,7 @@ De preferência, você deve testar o problema usando a versão mais recente de p
 
 É muito útil quando uma boa descrição do problema é incluída no relatório do erro. Ou seja, dê um bom exemplo de tudo o que você fez que levou ao problema e descreva, com exatidão, o problema em si. Os melhores relatórios são aqueles que incluem um exemplo completo mostrando como reproduzir o erro ou problema. Veja a Seção 5.8, “Depuração do MySQL”.
 
-Lembre-se de que é possível que possamos responder a um relatório que contém muitas informações, mas não a um que contém poucas. As pessoas frequentemente omitem fatos porque pensam que conhecem a causa de um problema e assumem que alguns detalhes não importam. Um bom princípio a seguir é que, se você estiver em dúvida sobre algo, mencione-o. É mais rápido e menos problemático escrever algumas linhas adicionais em seu relatório do que esperar mais tempo pela resposta se tivermos que pedir que você forneça informações que estavam ausentes do relatório inicial.
+Lembre-se de que é possível que possamos responder a um relatório que contém muitas informações, mas não a um que contém poucas. As pessoas frequentemente omitem fatos porque pensam que conhecem a causa de um problema e assumem que alguns detalhes não importam. Um bom princípio a seguir é que, se você estiver em dúvida sobre algo, mencione-o. É mais rápido e menos problemático escrever algumas strings adicionais em seu relatório do que esperar mais tempo pela resposta se tivermos que pedir que você forneça informações que estavam ausentes do relatório inicial.
 
 Os erros mais comuns cometidos em relatórios de bugs são (a) não incluir o número da versão da distribuição MySQL que você usa e (b) não descrever completamente a plataforma na qual o servidor MySQL está instalado (incluindo o tipo de plataforma e o número da versão). Essas são informações altamente relevantes, e em 99 casos em cada 100, o relatório de bug é inútil sem elas. Muitas vezes, recebemos perguntas como, “Por que isso não funciona para mim?” Então, descobrimos que a funcionalidade solicitada não foi implementada naquela versão do MySQL, ou que um bug descrito em um relatório foi corrigido em versões mais recentes do MySQL. Os erros são frequentemente dependentes da plataforma. Nesses casos, é quase impossível para nós corrigirmos algo sem saber o sistema operacional e o número da versão da plataforma.
 
@@ -40,7 +40,7 @@ Se um programa produzir uma mensagem de erro, é muito importante incluir a mens
 
 Se você tiver um problema com o Connector/ODBC (MyODBC), tente gerar um arquivo de rastreamento e envie-o com seu relatório. Veja Como relatar problemas ou bugs do Connector/ODBC.
 
-Se o seu relatório incluir longas linhas de saída de consultas de casos de teste que você executa com a ferramenta de linha de comando **mysql**, você pode tornar a saída mais legível usando a opção `--vertical` ou o terminador de declaração `\G`. O exemplo `EXPLAIN SELECT` mais adiante nesta seção demonstra o uso de `\G`.
+Se o seu relatório incluir longas strings de saída de consultas de casos de teste que você executa com a ferramenta de string de comando **mysql**, você pode tornar a saída mais legível usando a opção `--vertical` ou o terminador de declaração `\G`. O exemplo `EXPLAIN SELECT` mais adiante nesta seção demonstra o uso de `\G`.
 
 Por favor, inclua as seguintes informações em seu relatório:
 
@@ -56,7 +56,7 @@ Por favor, inclua as seguintes informações em seu relatório:
 
 * Se você estiver usando uma distribuição de fonte do software MySQL, inclua o nome e o número da versão do compilador que você usou. Se você tiver uma distribuição binária, inclua o nome da distribuição.
 
-* Se o problema ocorrer durante a compilação, inclua as mensagens de erro exatas e também algumas linhas de contexto em torno do código ofensor no arquivo onde o erro ocorre.
+* Se o problema ocorrer durante a compilação, inclua as mensagens de erro exatas e também algumas strings de contexto em torno do código ofensor no arquivo onde o erro ocorre.
 
 * Se o `mysqld` morrer, você também deve relatar a declaração que fez o `mysqld` sair inesperadamente. Geralmente, você pode obter essas informações executando o `mysqld` com o registro de consulta habilitado e, em seguida, olhando no log após o `mysqld` sair. Veja a Seção 5.8, “Depuração do MySQL”.
 
@@ -76,9 +76,9 @@ Para gatilhos, você pode usar esta declaração:
   FROM INFORMATION_SCHEMA.TRIGGERS;
   ```
 
-* Para bugs ou problemas relacionados ao desempenho das declarações `SELECT`, você deve sempre incluir a saída da `EXPLAIN SELECT ...`, e pelo menos o número de linhas que a declaração `SELECT` produz. Você também deve incluir a saída da `SHOW CREATE TABLE tbl_name` para cada tabela envolvida. Quanto mais informações você fornecer sobre sua situação, mais provável é que alguém possa ajudá-lo.
+* Para bugs ou problemas relacionados ao desempenho das declarações `SELECT`, você deve sempre incluir a saída da `EXPLAIN SELECT ...`, e pelo menos o número de strings que a declaração `SELECT` produz. Você também deve incluir a saída da `SHOW CREATE TABLE tbl_name` para cada tabela envolvida. Quanto mais informações você fornecer sobre sua situação, mais provável é que alguém possa ajudá-lo.
 
-O que se segue é um exemplo de um relatório de bug muito bom. As declarações são executadas usando a ferramenta de linha de comando **mysql**. Observe o uso do terminador de declaração `\G` para declarações que, de outra forma, forneceria linhas de saída muito longas e difíceis de ler.
+O que se segue é um exemplo de um relatório de bug muito bom. As declarações são executadas usando a ferramenta de string de comando **mysql**. Observe o uso do terminador de declaração `\G` para declarações que, de outra forma, forneceria strings de saída muito longas e difíceis de ler.
 
   ```sql
   mysql> SHOW VARIABLES;
@@ -98,7 +98,7 @@ O que se segue é um exemplo de um relatório de bug muito bom. As declarações
 
 Se você não puder fornecer um script, deve, pelo menos, incluir a saída do processo **mysqladmin variables extended-status** em seu relatório para fornecer alguma informação sobre o desempenho do seu sistema.
 
-* Se você não puder produzir um caso de teste com apenas algumas linhas, ou se a tabela de teste for muito grande para ser incluída no relatório de bug (mais de 10 linhas), você deve drenar suas tabelas usando **mysqldump** e criar um arquivo `README` que descreva seu problema. Crie um arquivo compactado de seus arquivos usando **tar** e **gzip** ou **zip**. Após iniciar um relatório de bug para nossa base de bugs em <http://bugs.mysql.com/>, clique na guia Arquivos no relatório de bug para obter instruções sobre como fazer o upload do arquivo para a base de bugs.
+* Se você não puder produzir um caso de teste com apenas algumas strings, ou se a tabela de teste for muito grande para ser incluída no relatório de bug (mais de 10 strings), você deve drenar suas tabelas usando **mysqldump** e criar um arquivo `README` que descreva seu problema. Crie um arquivo compactado de seus arquivos usando **tar** e **gzip** ou **zip**. Após iniciar um relatório de bug para nossa base de bugs em <http://bugs.mysql.com/>, clique na guia Arquivos no relatório de bug para obter instruções sobre como fazer o upload do arquivo para a base de bugs.
 
 * Se você acredita que o servidor MySQL está produzindo um resultado estranho a partir de uma declaração, inclua não apenas o resultado, mas também sua opinião sobre o que o resultado deveria ser, e uma explicação que descreva a base para sua opinião.
 

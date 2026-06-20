@@ -10,7 +10,7 @@ Essas tabelas de replicação do Schema de desempenho também mostram informaç�
 
 * `replication_connection_status` mostra informações sobre a Replicação em Grupo, como as transações recebidas do grupo e colocadas na fila de aplicador (registro de relevo).
 
-* `replication_applier_status` mostra os estados dos canais e dos fios relacionados à Replicação por Grupo. Esses também podem ser usados para monitorar o que os fios individuais dos trabalhadores estão fazendo.
+* `replication_applier_status` mostra os estados dos canais e dos threads relacionados à Replicação por Grupo. Esses também podem ser usados para monitorar o que os threads individuais dos trabalhadores estão fazendo.
 
 Os canais de replicação criados pelo plugin de replicação do grupo estão listados aqui:
 

@@ -31,11 +31,11 @@ As tabelas `InnoDB` são criadas por padrão em espaços de tabela por arquivo. 
 
 O MySQL armazena informações do dicionário de dados para tabelas em arquivos .frm nos diretórios do banco de dados. Ao contrário de outros motores de armazenamento do MySQL, o `InnoDB` também codifica informações sobre a tabela em seu próprio dicionário de dados interno dentro do espaço de tabela do sistema. Quando o MySQL elimina uma tabela ou um banco de dados, ele exclui um ou mais arquivos `.frm` e as entradas correspondentes no dicionário de dados `InnoDB`. Você não pode mover tabelas `InnoDB` entre bancos simplesmente movendo os arquivos `.frm`. Para informações sobre mover tabelas `InnoDB`, consulte a Seção 14.6.1.4, “Movendo ou copiando tabelas InnoDB”.
 
-##### Formatos de linha
+##### Formatos de string
 
-O formato de linha de uma tabela `InnoDB` determina como suas linhas são armazenadas fisicamente no disco. `InnoDB` suporta quatro formatos de linha, cada um com diferentes características de armazenamento. Os formatos de linha suportados incluem `REDUNDANT`, `COMPACT`, `DYNAMIC` e `COMPRESSED`. O formato de linha `DYNAMIC` é o padrão. Para informações sobre as características dos formatos de linha, consulte a Seção 14.11, “Formatos de linha InnoDB”.
+O formato de string de uma tabela `InnoDB` determina como suas strings são armazenadas fisicamente no disco. `InnoDB` suporta quatro formatos de string, cada um com diferentes características de armazenamento. Os formatos de string suportados incluem `REDUNDANT`, `COMPACT`, `DYNAMIC` e `COMPRESSED`. O formato de string `DYNAMIC` é o padrão. Para informações sobre as características dos formatos de string, consulte a Seção 14.11, “Formatos de string InnoDB”.
 
-A variável `innodb_default_row_format` define o formato de linha padrão. O formato de linha de uma tabela também pode ser definido explicitamente usando a opção de tabela `ROW_FORMAT` em uma declaração `CREATE TABLE` ou `ALTER TABLE`. Veja Definindo o Formato de Linha de uma Tabela.
+A variável `innodb_default_row_format` define o formato de string padrão. O formato de string de uma tabela também pode ser definido explicitamente usando a opção de tabela `ROW_FORMAT` em uma declaração `CREATE TABLE` ou `ALTER TABLE`. Veja Definindo o Formato de String de uma Tabela.
 
 ##### Chaves primárias
 
@@ -43,7 +43,7 @@ Recomenda-se que você defina uma chave primária para cada tabela que você cri
 
 * Colunas que são referenciadas pelas consultas mais importantes. * Colunas que nunca ficam em branco. * Colunas que nunca têm valores duplicados. * Colunas que raramente, ou nunca, alteram seu valor uma vez inseridas.
 
-Por exemplo, em uma tabela que contém informações sobre pessoas, você não criaria uma chave primária em `(firstname, lastname)`, porque mais de uma pessoa pode ter o mesmo nome, uma coluna de nome pode ser deixada em branco e, às vezes, as pessoas mudam seus nomes. Com tantas restrições, muitas vezes não há um conjunto óbvio de colunas para usar como chave primária, então você cria uma nova coluna com um ID numérico para servir como toda ou parte da chave primária. Você pode declarar uma coluna de auto-incremento para que os valores ascendentes sejam preenchidos automaticamente à medida que as linhas são inseridas:
+Por exemplo, em uma tabela que contém informações sobre pessoas, você não criaria uma chave primária em `(firstname, lastname)`, porque mais de uma pessoa pode ter o mesmo nome, uma coluna de nome pode ser deixada em branco e, às vezes, as pessoas mudam seus nomes. Com tantas restrições, muitas vezes não há um conjunto óbvio de colunas para usar como chave primária, então você cria uma nova coluna com um ID numérico para servir como toda ou parte da chave primária. Você pode declarar uma coluna de auto-incremento para que os valores ascendentes sejam preenchidos automaticamente à medida que as strings são inseridas:
 
 ```sql
 # The value of ID can act like a pointer between related items in different tables.
@@ -227,7 +227,7 @@ O recurso *Tabelas Espaços Transportadoras* é descrito nos seguintes tópicos 
 
 * Se a tabela foi criada em um diretório externo, especificando a cláusula `DATA DIRECTORY` na declaração `CREATE TABLE`, a tabela que você substitui na instância de destino deve ser definida com a mesma cláusula `DATA DIRECTORY`. Um erro de incompatibilidade de esquema é relatado se as cláusulas não corresponderem. Para determinar se a tabela de origem foi definida com uma cláusula `DATA DIRECTORY`, use `SHOW CREATE TABLE` para visualizar a definição da tabela. Para informações sobre o uso da cláusula `DATA DIRECTORY`, consulte a Seção 14.6.1.2, “Criando Tabelas Externamente”.
 
-* Se uma opção `ROW_FORMAT` não for definida explicitamente na definição da tabela ou se for usado `ROW_FORMAT=DEFAULT`, o ajuste `innodb_default_row_format` deve ser o mesmo nas instâncias de origem e destino. Caso contrário, um erro de desalinhamento de esquema será relatado quando você tentar a operação de importação. Use `SHOW CREATE TABLE` para verificar a definição da tabela. Use `SHOW VARIABLES` para verificar o ajuste `innodb_default_row_format`. Para informações relacionadas, consulte Definindo o Formato de Linha de uma Tabela.
+* Se uma opção `ROW_FORMAT` não for definida explicitamente na definição da tabela ou se for usado `ROW_FORMAT=DEFAULT`, o ajuste `innodb_default_row_format` deve ser o mesmo nas instâncias de origem e destino. Caso contrário, um erro de desalinhamento de esquema será relatado quando você tentar a operação de importação. Use `SHOW CREATE TABLE` para verificar a definição da tabela. Use `SHOW VARIABLES` para verificar o ajuste `innodb_default_row_format`. Para informações relacionadas, consulte Definindo o Formato de String de uma Tabela.
 
 ##### Importar tabelas
 
@@ -484,7 +484,7 @@ Quando o `ALTER TABLE ... DISCARD TABLESPACE` é executado na instância de dest
 
 Quando o `FLUSH TABLES ... FOR EXPORT` é executado na instância de origem:
 
-* A tabela que está sendo limpa para exportação está bloqueada no modo compartilhado. * O fio do coordenador de purga foi interrompido. * As páginas sujas são sincronizadas com o disco. * Os metadados da tabela são escritos no arquivo binário `.cfg`.
+* A tabela que está sendo limpa para exportação está bloqueada no modo compartilhado. * O thread do coordenador de purga foi interrompido. * As páginas sujas são sincronizadas com o disco. * Os metadados da tabela são escritos no arquivo binário `.cfg`.
 
 Mensagens esperadas de registro de erro para esta operação:
 
@@ -497,7 +497,7 @@ Mensagens esperadas de registro de erro para esta operação:
 
 Quando o `UNLOCK TABLES` é executado na instância de origem:
 
-* O arquivo binário `.cfg` é excluído. * O bloqueio compartilhado na(s) tabela(s) que está(ão) sendo importada(s) é liberado e o fio do coordenador de purga é reiniciado.
+* O arquivo binário `.cfg` é excluído. * O bloqueio compartilhado na(s) tabela(s) que está(ão) sendo importada(s) é liberado e o thread do coordenador de purga é reiniciado.
 
 Mensagens esperadas de registro de erro para esta operação:
 
@@ -539,7 +539,7 @@ http://dev.mysql.com/doc/refman/5.7/en/innodb-troubleshooting.html
 
 Esta seção descreve técnicas para mover ou copiar algumas ou todas as tabelas do `InnoDB` para um servidor ou instância diferente. Por exemplo, você pode mover uma instância inteira do MySQL para um servidor maior e mais rápido; você pode clonar uma instância inteira do MySQL para um novo servidor de replica; você pode copiar tabelas individuais para outra instância para desenvolver e testar uma aplicação, ou para um servidor de armazém de dados para produzir relatórios.
 
-Em Windows, `InnoDB` armazena sempre os nomes dos bancos de dados e das tabelas internamente em minúsculas. Para mover bancos de dados em formato binário de Unix para Windows ou de Windows para Unix, crie todos os bancos de dados e tabelas usando nomes em minúsculas. Uma maneira conveniente para realizar isso é adicionar a seguinte linha à seção `[mysqld]` do seu arquivo `my.cnf` ou `my.ini` antes de criar quaisquer bancos de dados ou tabelas:
+Em Windows, `InnoDB` armazena sempre os nomes dos bancos de dados e das tabelas internamente em minúsculas. Para mover bancos de dados em formato binário de Unix para Windows ou de Windows para Unix, crie todos os bancos de dados e tabelas usando nomes em minúsculas. Uma maneira conveniente para realizar isso é adicionar a seguinte string à seção `[mysqld]` do seu arquivo `my.cnf` ou `my.ini` antes de criar quaisquer bancos de dados ou tabelas:
 
 ```sql
 [mysqld]
@@ -610,7 +610,7 @@ Você pode fazer um backup limpo do arquivo `.ibd` usando o seguinte método:
 
 1. Parar toda atividade do servidor `mysqld` e confirmar todas as transações.
 
-2. Aguarde até que `SHOW ENGINE INNODB STATUS` mostre que não há transações ativas no banco de dados e que o estado do fio principal de `InnoDB` é `Waiting for server activity`. Em seguida, você pode fazer uma cópia do arquivo `.ibd`.
+2. Aguarde até que `SHOW ENGINE INNODB STATUS` mostre que não há transações ativas no banco de dados e que o estado do thread principal de `InnoDB` é `Waiting for server activity`. Em seguida, você pode fazer uma cópia do arquivo `.ibd`.
 
 Outro método para fazer uma cópia limpa de um arquivo `.ibd` é usar o produto MySQL Enterprise Backup:
 
@@ -648,19 +648,19 @@ Em um servidor ocupado, execute benchmarks com o cache de consulta desativado. O
 
 Como as tabelas `MyISAM` não suportam transações, você pode não ter prestado muita atenção à opção de configuração `autocommit` e às declarações `COMMIT` e `ROLLBACK`. Essas palavras-chave são importantes para permitir que múltiplas sessões leiam e escrevam em tabelas `InnoDB` de forma concorrente, proporcionando benefícios substanciais em termos de escalabilidade em cargas de trabalho com muitos escritos.
 
-Enquanto uma transação está aberta, o sistema mantém um instantâneo dos dados conforme visto no início da transação, o que pode causar um custo substancial se o sistema inserir, atualizar e excluir milhões de linhas enquanto uma transação perdida continua em execução. Portanto, tome cuidado para evitar transações que duram por muito tempo:
+Enquanto uma transação está aberta, o sistema mantém um instantâneo dos dados conforme visto no início da transação, o que pode causar um custo substancial se o sistema inserir, atualizar e excluir milhões de strings enquanto uma transação perdida continua em execução. Portanto, tome cuidado para evitar transações que duram por muito tempo:
 
 * Se você estiver usando uma sessão de **mysql** para experimentos interativos, sempre `COMMIT` (para finalizar as alterações) ou `ROLLBACK` (para desfazer as alterações) quando terminar. Feche as sessões interativas em vez de deixá-las abertas por longos períodos, para evitar manter as transações abertas por longos períodos por acidente.
 
 * Certifique-se de que qualquer manipulador de erro em sua aplicação também `ROLLBACK` alterações incompletas ou `COMMIT` alterações completas.
 
-* `ROLLBACK` é uma operação relativamente cara, porque as operações `INSERT`, `UPDATE` e `DELETE` são escritas nas tabelas `InnoDB` antes da `COMMIT`, com a expectativa de que a maioria das alterações seja comprometida com sucesso e que os rollback sejam raros. Ao experimentar com grandes volumes de dados, evite fazer alterações em um grande número de linhas e, em seguida, reverter essas alterações.
+* `ROLLBACK` é uma operação relativamente cara, porque as operações `INSERT`, `UPDATE` e `DELETE` são escritas nas tabelas `InnoDB` antes da `COMMIT`, com a expectativa de que a maioria das alterações seja comprometida com sucesso e que os rollback sejam raros. Ao experimentar com grandes volumes de dados, evite fazer alterações em um grande número de strings e, em seguida, reverter essas alterações.
 
 * Ao carregar grandes volumes de dados com uma sequência de declarações `INSERT`, periodicamente `COMMIT` os resultados para evitar ter transações que duram horas. Em operações de carregamento típicas para armazenamento de dados, se algo der errado, você corta a tabela (usando `TRUNCATE TABLE`) e começa tudo de novo do início, em vez de fazer um `ROLLBACK`.
 
 As dicas anteriores economizam memória e espaço em disco que podem ser desperdiçados durante transações muito longas. Quando as transações são mais curtas do que deveriam ser, o problema é o I/O excessivo. Com cada `COMMIT`, o MySQL garante que cada alteração seja registrada com segurança no disco, o que envolve algum I/O.
 
-* Para a maioria das operações nas tabelas `InnoDB`, você deve usar o ajuste `autocommit=0`. Do ponto de vista de eficiência, isso evita o I/O desnecessário quando você emite um grande número de declarações consecutivas `INSERT`, `UPDATE` ou `DELETE`. Do ponto de vista de segurança, isso permite que você emita uma declaração `ROLLBACK` para recuperar dados perdidos ou distorcidos se você cometer um erro na linha de comando do **mysql**, ou em um manipulador de exceção em sua aplicação.
+* Para a maioria das operações nas tabelas `InnoDB`, você deve usar o ajuste `autocommit=0`. Do ponto de vista de eficiência, isso evita o I/O desnecessário quando você emite um grande número de declarações consecutivas `INSERT`, `UPDATE` ou `DELETE`. Do ponto de vista de segurança, isso permite que você emita uma declaração `ROLLBACK` para recuperar dados perdidos ou distorcidos se você cometer um erro na string de comando do **mysql**, ou em um manipulador de exceção em sua aplicação.
 
 * `autocommit=1` é adequado para tabelas `InnoDB` ao executar uma sequência de consultas para gerar relatórios ou analisar estatísticas. Nessa situação, não há penalização de I/O relacionada a `COMMIT` ou `ROLLBACK`, e `InnoDB` pode otimizar automaticamente o trabalho de leitura somente.
 
@@ -710,7 +710,7 @@ Crie uma tabela `InnoDB` vazia com definições de coluna e índice idênticas. 
 
 ##### Transferindo dados
 
-Para transferir um grande volume de dados em uma tabela `InnoDB` vazia criada conforme mostrado na seção anterior, insira as linhas com `INSERT INTO innodb_table SELECT * FROM myisam_table ORDER BY primary_key_columns`.
+Para transferir um grande volume de dados em uma tabela `InnoDB` vazia criada conforme mostrado na seção anterior, insira as strings com `INSERT INTO innodb_table SELECT * FROM myisam_table ORDER BY primary_key_columns`.
 
 Você também pode criar os índices para a tabela `InnoDB` após inserir os dados. Historicamente, criar novos índices secundários era uma operação lenta para `InnoDB`, mas agora você pode criar os índices após os dados serem carregados com um custo relativamente baixo em relação à etapa de criação do índice.
 
@@ -745,11 +745,11 @@ No caso de um rollback descontrolado, se você não tiver dados valiosos em seu 
 
 ##### Definindo Chaves Primárias
 
-A cláusula `PRIMARY KEY` é um fator crítico que afeta o desempenho das consultas do MySQL e o uso de espaço para tabelas e índices. A chave primária identifica de forma única uma linha em uma tabela. Cada linha da tabela deve ter um valor de chave primária, e nenhuma das duas linhas pode ter o mesmo valor de chave primária.
+A cláusula `PRIMARY KEY` é um fator crítico que afeta o desempenho das consultas do MySQL e o uso de espaço para tabelas e índices. A chave primária identifica de forma única uma string em uma tabela. Cada string da tabela deve ter um valor de chave primária, e nenhuma das duas strings pode ter o mesmo valor de chave primária.
 
 Estas são as diretrizes para a chave primária, seguidas por explicações mais detalhadas.
 
-* Declare um `PRIMARY KEY` para cada tabela. Tipicamente, é a coluna mais importante que você se refere nas cláusulas `WHERE` ao procurar uma única linha.
+* Declare um `PRIMARY KEY` para cada tabela. Tipicamente, é a coluna mais importante que você se refere nas cláusulas `WHERE` ao procurar uma única string.
 
 * Declare a cláusula `PRIMARY KEY` na declaração original `CREATE TABLE`, em vez de adicioná-la posteriormente por meio de uma declaração `ALTER TABLE`.
 
@@ -759,7 +759,7 @@ Estas são as diretrizes para a chave primária, seguidas por explicações mais
 
 * Uma coluna de autoincremento também é uma boa escolha se houver alguma dúvida sobre se o valor da coluna da chave primária poderá mudar alguma vez. Alterar o valor de uma coluna da chave primária é uma operação cara, que pode envolver a reorganização de dados dentro da tabela e em cada índice secundário.
 
-Considere adicionar uma chave primária a qualquer tabela que ainda não a tenha. Use o menor tipo numérico prático possível, com base no tamanho máximo projetado da tabela. Isso pode tornar cada linha um pouco mais compacta, o que pode resultar em economia de espaço substancial para tabelas grandes. A economia de espaço é multiplicada se a tabela tiver quaisquer índices secundários, porque o valor da chave primária é repetido em cada entrada do índice secundário. Além de reduzir o tamanho dos dados no disco, uma chave primária pequena também permite que mais dados se encaixem na piscina de buffer, acelerando todos os tipos de operações e melhorando a concorrência.
+Considere adicionar uma chave primária a qualquer tabela que ainda não a tenha. Use o menor tipo numérico prático possível, com base no tamanho máximo projetado da tabela. Isso pode tornar cada string um pouco mais compacta, o que pode resultar em economia de espaço substancial para tabelas grandes. A economia de espaço é multiplicada se a tabela tiver quaisquer índices secundários, porque o valor da chave primária é repetido em cada entrada do índice secundário. Além de reduzir o tamanho dos dados no disco, uma chave primária pequena também permite que mais dados se encaixem na piscina de buffer, acelerando todos os tipos de operações e melhorando a concorrência.
 
 Se a tabela já tiver uma chave primária em uma coluna mais longa, como `VARCHAR`, considere adicionar uma nova coluna não assinada `AUTO_INCREMENT` e mudar a chave primária para essa coluna, mesmo que essa coluna não seja referenciada em consultas. Essa mudança de projeto pode produzir economias substanciais de espaço nos índices secundários. Você pode designar as colunas antigas da chave primária como `UNIQUE NOT NULL` para impor as mesmas restrições que a cláusula `PRIMARY KEY`, ou seja, para evitar valores duplicados ou nulos em todas essas colunas.
 
@@ -783,7 +783,7 @@ Os arquivos `InnoDB` exigem mais cuidados e planejamento do que os arquivos `MyI
 
 #### 14.6.1.6 Gerenciamento de AUTO\_INCREMENT no InnoDB
 
-`InnoDB` fornece um mecanismo de bloqueio configurável que pode melhorar significativamente a escalabilidade e o desempenho das declarações SQL que adicionam linhas a tabelas com colunas `AUTO_INCREMENT`. Para usar o mecanismo `AUTO_INCREMENT` com uma tabela `InnoDB`, uma coluna `AUTO_INCREMENT` deve ser definida como a primeira ou única coluna de algum índice, de modo que seja possível realizar o equivalente a uma pesquisa `SELECT MAX(ai_col)` indexada na tabela para obter o valor máximo da coluna. O índice não precisa ser um `PRIMARY KEY` ou `UNIQUE`, mas para evitar valores duplicados na coluna `AUTO_INCREMENT`, esses tipos de índice são recomendados.
+`InnoDB` fornece um mecanismo de bloqueio configurável que pode melhorar significativamente a escalabilidade e o desempenho das declarações SQL que adicionam strings a tabelas com colunas `AUTO_INCREMENT`. Para usar o mecanismo `AUTO_INCREMENT` com uma tabela `InnoDB`, uma coluna `AUTO_INCREMENT` deve ser definida como a primeira ou única coluna de algum índice, de modo que seja possível realizar o equivalente a uma pesquisa `SELECT MAX(ai_col)` indexada na tabela para obter o valor máximo da coluna. O índice não precisa ser um `PRIMARY KEY` ou `UNIQUE`, mas para evitar valores duplicados na coluna `AUTO_INCREMENT`, esses tipos de índice são recomendados.
 
 Esta seção descreve os modos de bloqueio do `AUTO_INCREMENT`, as implicações do uso de diferentes configurações dos modos de bloqueio do `AUTO_INCREMENT` e como o `InnoDB` inicializa o contador do `AUTO_INCREMENT`.
 
@@ -800,19 +800,19 @@ Os seguintes termos são utilizados na descrição dos ajustes do `innodb_autoin
 
 * Declarações semelhantes a `INSERT`
 
-Todas as declarações que geram novas linhas em uma tabela, incluindo `INSERT`, `INSERT ... SELECT`, `REPLACE`, `REPLACE ... SELECT` e `LOAD DATA`. Inclui inserções “simples”, “em massa” e inserções em modo misto.
+Todas as declarações que geram novas strings em uma tabela, incluindo `INSERT`, `INSERT ... SELECT`, `REPLACE`, `REPLACE ... SELECT` e `LOAD DATA`. Inclui inserções “simples”, “em massa” e inserções em modo misto.
 
 * “insertos simples”
 
-Declarações para as quais o número de linhas a serem inseridas pode ser determinado antecipadamente (quando a declaração é processada inicialmente). Isso inclui declarações de uma única linha e declarações de várias linhas `INSERT` e `REPLACE` que não possuem uma subconsulta aninhada, mas não `INSERT ... ON DUPLICATE KEY UPDATE`.
+Declarações para as quais o número de strings a serem inseridas pode ser determinado antecipadamente (quando a declaração é processada inicialmente). Isso inclui declarações de uma única string e declarações de várias strings `INSERT` e `REPLACE` que não possuem uma subconsulta aninhada, mas não `INSERT ... ON DUPLICATE KEY UPDATE`.
 
 * “insertos em massa”
 
-Declarações para as quais o número de linhas a serem inseridas (e o número de valores de auto-incremento necessários) não é conhecido antecipadamente. Isso inclui as declarações `INSERT ... SELECT`, `REPLACE ... SELECT` e `LOAD DATA`, mas não a simples `INSERT`. `InnoDB` atribui novos valores para a coluna `AUTO_INCREMENT` uma de cada vez, à medida que cada linha é processada.
+Declarações para as quais o número de strings a serem inseridas (e o número de valores de auto-incremento necessários) não é conhecido antecipadamente. Isso inclui as declarações `INSERT ... SELECT`, `REPLACE ... SELECT` e `LOAD DATA`, mas não a simples `INSERT`. `InnoDB` atribui novos valores para a coluna `AUTO_INCREMENT` uma de cada vez, à medida que cada string é processada.
 
 * Inserções em modo misto
 
-Estas são declarações de "inserção simples" que especificam o valor de autoincremento para algumas (mas não todas) das novas linhas. Um exemplo segue, onde `c1` é uma coluna `AUTO_INCREMENT` da tabela `t1`:
+Estas são declarações de "inserção simples" que especificam o valor de autoincremento para algumas (mas não todas) das novas strings. Um exemplo segue, onde `c1` é uma coluna `AUTO_INCREMENT` da tabela `t1`:
 
   ```sql
   INSERT INTO t1 (c1,c2) VALUES (1,'a'), (NULL,'b'), (5,'c'), (NULL,'d');
@@ -840,7 +840,7 @@ Para esclarecer isso, considere um exemplo que usa essa tabela:
   ) ENGINE=InnoDB;
   ```
 
-Suponha que haja duas transações em execução, cada uma inserindo linhas em uma tabela com uma coluna `AUTO_INCREMENT`. Uma transação está usando uma declaração `INSERT ... SELECT` que insere 1000 linhas, e outra está usando uma declaração simples `INSERT` que insere uma linha:
+Suponha que haja duas transações em execução, cada uma inserindo strings em uma tabela com uma coluna `AUTO_INCREMENT`. Uma transação está usando uma declaração `INSERT ... SELECT` que insere 1000 strings, e outra está usando uma declaração simples `INSERT` que insere uma string:
 
   ```sql
   Tx1: INSERT INTO t1 (c2) SELECT 1000 rows from another table ...
@@ -853,29 +853,29 @@ Enquanto as instruções SQL executarem na mesma ordem quando reexecutadas a par
 
 No exemplo anterior, se não houvesse bloqueio em nível de tabela, o valor da coluna de autoincremento usada para o `INSERT` em Tx2 depende exatamente de quando a declaração é executada. Se o `INSERT` de Tx2 é executado enquanto o `INSERT` de Tx1 está em execução (em vez de antes de começar ou depois de completar), os valores específicos de autoincremento atribuídos pelas duas declarações de `INSERT` são não determinísticos e podem variar de uma execução para outra.
 
-No modo de bloqueio consecutivo, `InnoDB` pode evitar o uso de bloqueios de nível de tabela `AUTO-INC` para declarações de "inserção simples" onde o número de linhas é conhecido antecipadamente, e ainda preservar a execução determinística e a segurança para a replicação baseada em declarações.
+No modo de bloqueio consecutivo, `InnoDB` pode evitar o uso de bloqueios de nível de tabela `AUTO-INC` para declarações de "inserção simples" onde o número de strings é conhecido antecipadamente, e ainda preservar a execução determinística e a segurança para a replicação baseada em declarações.
 
 Se você não estiver usando o log binário para reproduzir instruções SQL como parte da recuperação ou replicação, o modo de bloqueio entrelaçado pode ser usado para eliminar todo o uso de bloqueios de nível de tabela `AUTO-INC`, garantindo ainda maior concorrência e desempenho, ao custo de permitir lacunas nos números de autoincremento atribuídos por uma declaração e, potencialmente, ter os números atribuídos por declarações executadas simultaneamente entrelaçados.
 
 * `innodb_autoinc_lock_mode = 1` (modo de bloqueio "consecutivo")
 
-Este é o modo de bloqueio padrão. Neste modo, as "inserções em massa" utilizam o bloqueio especial da tabela `AUTO-INC` e o mantêm até o final da declaração. Isso se aplica a todas as declarações `INSERT ... SELECT`, `REPLACE ... SELECT` e `LOAD DATA`. Apenas uma declaração que mantém o bloqueio `AUTO-INC` pode ser executada de cada vez. Se a tabela de origem da operação de inserção em massa for diferente da tabela de destino, o bloqueio `AUTO-INC` na tabela de destino é tomado após uma bloqueio compartilhado ser tomado na primeira linha selecionada da tabela de origem. Se a fonte e o destino da operação de inserção em massa são a mesma tabela, o bloqueio `AUTO-INC` é tomado após blocos compartilhados serem tomados em todas as linhas selecionadas.
+Este é o modo de bloqueio padrão. Neste modo, as "inserções em massa" utilizam o bloqueio especial da tabela `AUTO-INC` e o mantêm até o final da declaração. Isso se aplica a todas as declarações `INSERT ... SELECT`, `REPLACE ... SELECT` e `LOAD DATA`. Apenas uma declaração que mantém o bloqueio `AUTO-INC` pode ser executada de cada vez. Se a tabela de origem da operação de inserção em massa for diferente da tabela de destino, o bloqueio `AUTO-INC` na tabela de destino é tomado após uma bloqueio compartilhado ser tomado na primeira string selecionada da tabela de origem. Se a fonte e o destino da operação de inserção em massa são a mesma tabela, o bloqueio `AUTO-INC` é tomado após blocos compartilhados serem tomados em todas as strings selecionadas.
 
-Os “insertos simples” (para os quais o número de linhas a serem inseridas é conhecido antecipadamente) evitam os bloqueios de nível de tabela `AUTO-INC` ao obter o número necessário de valores de autoincremento sob o controle de um mutex (um bloqueio leve) que é mantido apenas durante a duração do processo de alocação, *não* até que a declaração seja concluída. Não é usado um bloqueio de nível de tabela `AUTO-INC` a menos que outra transação mantenha um bloqueio `AUTO-INC`. Se outra transação mantém um bloqueio `AUTO-INC`, um “inserto simples” espera pelo bloqueio `AUTO-INC`, como se fosse um “inserto em massa”.
+Os “insertos simples” (para os quais o número de strings a serem inseridas é conhecido antecipadamente) evitam os bloqueios de nível de tabela `AUTO-INC` ao obter o número necessário de valores de autoincremento sob o controle de um mutex (um bloqueio leve) que é mantido apenas durante a duração do processo de alocação, *não* até que a declaração seja concluída. Não é usado um bloqueio de nível de tabela `AUTO-INC` a menos que outra transação mantenha um bloqueio `AUTO-INC`. Se outra transação mantém um bloqueio `AUTO-INC`, um “inserto simples” espera pelo bloqueio `AUTO-INC`, como se fosse um “inserto em massa”.
 
-Este modo de bloqueio garante que, na presença de declarações `INSERT` onde o número de linhas não é conhecido antecipadamente (e onde números de auto-incremento são atribuídos à medida que a declaração progride), todos os valores de auto-incremento atribuídos por qualquer declaração "`INSERT`-like" sejam consecutivos, e as operações sejam seguras para replicação baseada em declaração.
+Este modo de bloqueio garante que, na presença de declarações `INSERT` onde o número de strings não é conhecido antecipadamente (e onde números de auto-incremento são atribuídos à medida que a declaração progride), todos os valores de auto-incremento atribuídos por qualquer declaração "`INSERT`-like" sejam consecutivos, e as operações sejam seguras para replicação baseada em declaração.
 
 Simplificando, esse modo de bloqueio melhora significativamente a escalabilidade, sendo seguro para uso com replicação baseada em declarações. Além disso, assim como no modo "tradicional", os números de autoincremento atribuídos por qualquer declaração são *consecutivos*. Não há *nenhuma mudança* na semântica em comparação com o modo "tradicional" para qualquer declaração que use autoincremento, com uma exceção importante.
 
-A exceção é para os "insertos em modo misto", onde o usuário fornece valores explícitos para uma coluna `AUTO_INCREMENT` para algumas, mas não para todas, linhas em um "inserto simples" de várias linhas. Para esses insertos, `InnoDB` aloca mais valores de autoincremento do que o número de linhas a serem inseridas. No entanto, todos os valores automaticamente atribuídos são gerados consecutivamente (e, portanto, são maiores que) o valor de autoincremento gerado pelo último comando executado anteriormente. Os números "excedentes" são perdidos.
+A exceção é para os "insertos em modo misto", onde o usuário fornece valores explícitos para uma coluna `AUTO_INCREMENT` para algumas, mas não para todas, strings em um "inserto simples" de várias strings. Para esses insertos, `InnoDB` aloca mais valores de autoincremento do que o número de strings a serem inseridas. No entanto, todos os valores automaticamente atribuídos são gerados consecutivamente (e, portanto, são maiores que) o valor de autoincremento gerado pelo último comando executado anteriormente. Os números "excedentes" são perdidos.
 
 * `innodb_autoinc_lock_mode = 2` (modo de bloqueio "entrelaçado")
 
 Neste modo de bloqueio, nenhuma das declarações semelhantes ao `INSERT` usa o bloqueio de nível de tabela `AUTO-INC`, e várias declarações podem ser executadas ao mesmo tempo. Este é o modo de bloqueio mais rápido e escalável, mas *não é seguro* quando se usa replicação ou cenários de recuperação baseados em declarações, quando as declarações SQL são regravadas a partir do log binário.
 
-Neste modo de bloqueio, os valores de auto-incremento são garantidos como únicos e aumentam de forma monótona em todas as declarações que são executadas simultaneamente semelhantes ao `INSERT`]. No entanto, como múltiplas declarações podem estar gerando números ao mesmo tempo (ou seja, a alocação de números é *intercalada* entre as declarações), os valores gerados para as linhas inseridas por qualquer declaração dada podem não ser consecutivos.
+Neste modo de bloqueio, os valores de auto-incremento são garantidos como únicos e aumentam de forma monótona em todas as declarações que são executadas simultaneamente semelhantes ao `INSERT`]. No entanto, como múltiplas declarações podem estar gerando números ao mesmo tempo (ou seja, a alocação de números é *intercalada* entre as declarações), os valores gerados para as strings inseridas por qualquer declaração dada podem não ser consecutivos.
 
-Se as únicas declarações que executam são "inserções simples" onde o número de linhas a serem inseridas é conhecido antecipadamente, não há lacunas nos números gerados para uma única declaração, exceto para "inserções em modo misto". No entanto, quando "inserções em massa" são executadas, pode haver lacunas nos valores de auto-incremento atribuídos por qualquer declaração dada.
+Se as únicas declarações que executam são "inserções simples" onde o número de strings a serem inseridas é conhecido antecipadamente, não há lacunas nos números gerados para uma única declaração, exceto para "inserções em modo misto". No entanto, quando "inserções em massa" são executadas, pode haver lacunas nos valores de auto-incremento atribuídos por qualquer declaração dada.
 
 ##### Implicações do uso do modo de bloqueio AUTO\_INCREMENT do InnoDB
 
@@ -883,7 +883,7 @@ Se as únicas declarações que executam são "inserções simples" onde o núme
 
 Se você estiver usando replicação baseada em declaração, defina `innodb_autoinc_lock_mode` para 0 ou 1 e use o mesmo valor na fonte e em suas réplicas. Os valores de auto-incremento não são garantidos para serem os mesmos nas réplicas e na fonte se você usar `innodb_autoinc_lock_mode` = 2 (“interligado”) ou configurações onde a fonte e as réplicas não usam o mesmo modo de bloqueio.
 
-Se você estiver usando replicação baseada em linha ou de formato misto, todos os modos de bloqueio de autoincremento são seguros, uma vez que a replicação baseada em linha não é sensível à ordem de execução das instruções SQL (e o formato misto usa replicação baseada em linha para quaisquer instruções que não sejam seguras para replicação baseada em declaração).
+Se você estiver usando replicação baseada em string ou de formato misto, todos os modos de bloqueio de autoincremento são seguros, uma vez que a replicação baseada em string não é sensível à ordem de execução das instruções SQL (e o formato misto usa replicação baseada em string para quaisquer instruções que não sejam seguras para replicação baseada em declaração).
 
 * Valores de autoincremento "perdidos" e lacunas na sequência
 
@@ -891,7 +891,7 @@ Em todos os modos de bloqueio (0, 1 e 2), se uma transação que gerou valores d
 
 * Especificar NULL ou 0 para a coluna `AUTO_INCREMENT`
 
-Em todos os modos de bloqueio (0, 1 e 2), se um usuário especificar NULL ou 0 para a coluna `AUTO_INCREMENT` em um `INSERT`, o `InnoDB` trata a linha como se o valor não tivesse sido especificado e gera um novo valor para ela.
+Em todos os modos de bloqueio (0, 1 e 2), se um usuário especificar NULL ou 0 para a coluna `AUTO_INCREMENT` em um `INSERT`, o `InnoDB` trata a string como se o valor não tivesse sido especificado e gera um novo valor para ela.
 
 * Atribuir um valor negativo à coluna `AUTO_INCREMENT`
 
@@ -911,7 +911,7 @@ Para os modos de bloqueio 1 ou 2, podem ocorrer lacunas entre as declarações s
 
 * Valores de autoincremento atribuídos por inserções em modo misto
 
-Considere um "inserto em modo misto", onde um "inserto simples" especifica o valor de autoincremento para algumas (mas não todas) das linhas resultantes. Tal declaração se comporta de maneira diferente nos modos de bloqueio 0, 1 e 2. Por exemplo, suponha que `c1` seja uma coluna `AUTO_INCREMENT` da tabela `t1`, e que o número de sequência gerado automaticamente mais recente seja 100.
+Considere um "inserto em modo misto", onde um "inserto simples" especifica o valor de autoincremento para algumas (mas não todas) das strings resultantes. Tal declaração se comporta de maneira diferente nos modos de bloqueio 0, 1 e 2. Por exemplo, suponha que `c1` seja uma coluna `AUTO_INCREMENT` da tabela `t1`, e que o número de sequência gerado automaticamente mais recente seja 100.
 
   ```sql
   mysql> CREATE TABLE t1 (
@@ -926,7 +926,7 @@ Agora, considere a seguinte declaração de "inserção em modo misto":
   mysql> INSERT INTO t1 (c1,c2) VALUES (1,'a'), (NULL,'b'), (5,'c'), (NULL,'d');
   ```
 
-Com `innodb_autoinc_lock_mode` definido como 0 (“tradicional”), as quatro novas linhas são:
+Com `innodb_autoinc_lock_mode` definido como 0 (“tradicional”), as quatro novas strings são:
 
   ```sql
   mysql> SELECT c1, c2 FROM t1 ORDER BY c2;
@@ -942,7 +942,7 @@ Com `innodb_autoinc_lock_mode` definido como 0 (“tradicional”), as quatro no
 
 O próximo valor de autoincremento disponível é 103, porque os valores de autoincremento são alocados um de cada vez, não todos de uma vez no início da execução da declaração. Esse resultado é verdadeiro, independentemente de haver declarações "`INSERT`-like" (de qualquer tipo) sendo executadas simultaneamente ou
 
-Com `innodb_autoinc_lock_mode` definido como 1 (“consecutivo”), as quatro novas linhas também são:
+Com `innodb_autoinc_lock_mode` definido como 1 (“consecutivo”), as quatro novas strings também são:
 
   ```sql
   mysql> SELECT c1, c2 FROM t1 ORDER BY c2;
@@ -958,7 +958,7 @@ Com `innodb_autoinc_lock_mode` definido como 1 (“consecutivo”), as quatro no
 
 No entanto, neste caso, o próximo valor de autoincremento disponível é 105, não 103, porque quatro valores de autoincremento são alocados no momento em que a declaração é processada, mas apenas dois são usados. Esse resultado é verdadeiro, independentemente de haver ou não declarações "`INSERT`-like" (de qualquer tipo) sendo executadas simultaneamente.
 
-Com `innodb_autoinc_lock_mode` definido em 2 (“interligado”), as quatro novas linhas são:
+Com `innodb_autoinc_lock_mode` definido em 2 (“interligado”), as quatro novas strings são:
 
   ```sql
   mysql> SELECT c1, c2 FROM t1 ORDER BY c2;
@@ -972,7 +972,7 @@ Com `innodb_autoinc_lock_mode` definido em 2 (“interligado”), as quatro nova
   +-----+------+
   ```
 
-Os valores de *`x`* e *`y`* são únicos e maiores do que quaisquer linhas geradas anteriormente. No entanto, os valores específicos de *`x`* e *`y`* dependem do número de valores de auto-incremento gerados ao executar instruções simultaneamente.
+Os valores de *`x`* e *`y`* são únicos e maiores do que quaisquer strings geradas anteriormente. No entanto, os valores específicos de *`x`* e *`y`* dependem do número de valores de auto-incremento gerados ao executar instruções simultaneamente.
 
 Por fim, considere a seguinte declaração, emitida quando o número de sequência gerado mais recentemente é 100:
 
@@ -980,7 +980,7 @@ Por fim, considere a seguinte declaração, emitida quando o número de sequênc
   mysql> INSERT INTO t1 (c1,c2) VALUES (1,'a'), (NULL,'b'), (101,'c'), (NULL,'d');
   ```
 
-Com qualquer configuração do `innodb_autoinc_lock_mode`, esta declaração gera um erro de chave duplicada 23000 (`Can't write; duplicate key in table`) porque 101 é alocado para a linha `(NULL, 'b')` e a inserção da linha `(101, 'c')` falha.
+Com qualquer configuração do `innodb_autoinc_lock_mode`, esta declaração gera um erro de chave duplicada 23000 (`Can't write; duplicate key in table`) porque 101 é alocado para a string `(NULL, 'b')` e a inserção da string `(101, 'c')` falha.
 
 * Modificando os valores da coluna `AUTO_INCREMENT` no meio de uma sequência de declarações `INSERT`
 
@@ -1038,7 +1038,7 @@ Se a tabela estiver vazia, `InnoDB` usa o valor `1`. Esse padrão pode ser subst
 
 Se uma declaração `SHOW TABLE STATUS` examinar a tabela antes que o contador de autoincremento seja inicializado, `InnoDB` inicializa, mas não incrementa o valor. O valor é armazenado para uso em inserções posteriores. Essa inicialização usa uma leitura de bloqueio exclusivo normal na tabela e o bloqueio dura até o final da transação. `InnoDB` segue o mesmo procedimento para inicializar o contador de autoincremento para uma tabela recém-criada.
 
-Após o contador de auto-incremento ter sido inicializado, se você não especificar explicitamente um valor para uma coluna `AUTO_INCREMENT`, `InnoDB` incrementa o contador e atribui o novo valor à coluna. Se você inserir uma linha que especifique explicitamente o valor da coluna, e o valor for maior que o valor atual do contador, o contador é definido para o valor da coluna especificado.
+Após o contador de auto-incremento ter sido inicializado, se você não especificar explicitamente um valor para uma coluna `AUTO_INCREMENT`, `InnoDB` incrementa o contador e atribui o novo valor à coluna. Se você inserir uma string que especifique explicitamente o valor da coluna, e o valor for maior que o valor atual do contador, o contador é definido para o valor da coluna especificado.
 
 `InnoDB` utiliza o contador de autoincremento de memória enquanto o servidor estiver em funcionamento. Quando o servidor é desligado e reiniciado, `InnoDB` reiniicia o contador para cada tabela para o primeiro `INSERT` a tabela, conforme descrito anteriormente.
 
@@ -1056,21 +1056,21 @@ Esta seção abrange tópicos relacionados aos índices `InnoDB`.
 
 #### 14.6.2.1 Índices agrupados e secundários
 
-Cada tabela `InnoDB` possui um índice especial chamado índice agrupado que armazena os dados das linhas. Tipicamente, o índice agrupado é sinônimo da chave primária. Para obter o melhor desempenho em consultas, inserções e outras operações de banco de dados, é importante entender como o `InnoDB` utiliza o índice agrupado para otimizar as operações de busca comum e DML.
+Cada tabela `InnoDB` possui um índice especial chamado índice agrupado que armazena os dados das strings. Tipicamente, o índice agrupado é sinônimo da chave primária. Para obter o melhor desempenho em consultas, inserções e outras operações de banco de dados, é importante entender como o `InnoDB` utiliza o índice agrupado para otimizar as operações de busca comum e DML.
 
-* Quando você define um `PRIMARY KEY` em uma tabela, o `InnoDB` usa ele como índice agrupado. Uma chave primária deve ser definida para cada tabela. Se não houver uma coluna única lógica e não nula ou um conjunto de colunas para usar como chave primária, adicione uma coluna de auto-incremento. Os valores das colunas de auto-incremento são únicos e são adicionados automaticamente à medida que novas linhas são inseridas.
+* Quando você define um `PRIMARY KEY` em uma tabela, o `InnoDB` usa ele como índice agrupado. Uma chave primária deve ser definida para cada tabela. Se não houver uma coluna única lógica e não nula ou um conjunto de colunas para usar como chave primária, adicione uma coluna de auto-incremento. Os valores das colunas de auto-incremento são únicos e são adicionados automaticamente à medida que novas strings são inseridas.
 
 * Se você não definir um `PRIMARY KEY` para uma tabela, o `InnoDB` usa o primeiro índice `UNIQUE` com todas as colunas chave definidas como `NOT NULL` como índice agrupado.
 
-* Se uma tabela não tiver o índice `PRIMARY KEY` ou um índice adequado `UNIQUE`, o `InnoDB` gera um índice agrupado oculto chamado `GEN_CLUST_INDEX` em uma coluna sintética que contém valores de ID de linha. As linhas são ordenadas pelo ID de linha que o `InnoDB` atribui. O ID de linha é um campo de 6 bytes que aumenta de forma monótona à medida que novas linhas são inseridas. Assim, as linhas ordenadas pelo ID de linha estão fisicamente em ordem de inserção.
+* Se uma tabela não tiver o índice `PRIMARY KEY` ou um índice adequado `UNIQUE`, o `InnoDB` gera um índice agrupado oculto chamado `GEN_CLUST_INDEX` em uma coluna sintética que contém valores de ID de string. As strings são ordenadas pelo ID de string que o `InnoDB` atribui. O ID de string é um campo de 6 bytes que aumenta de forma monótona à medida que novas strings são inseridas. Assim, as strings ordenadas pelo ID de string estão fisicamente em ordem de inserção.
 
 ##### Como o Índice Agrupado Acelera as Consultas
 
-Aceder a uma linha através do índice agrupado é rápido, pois a pesquisa do índice leva diretamente à página que contém os dados da linha. Se uma tabela for grande, a arquitetura do índice agrupado frequentemente economiza uma operação de E/S de disco em comparação com organizações de armazenamento que armazenam os dados da linha usando uma página diferente do registro do índice.
+Aceder a uma string através do índice agrupado é rápido, pois a pesquisa do índice leva diretamente à página que contém os dados da string. Se uma tabela for grande, a arquitetura do índice agrupado frequentemente economiza uma operação de E/S de disco em comparação com organizações de armazenamento que armazenam os dados da string usando uma página diferente do registro do índice.
 
 ##### Como os índices secundários se relacionam com o índice agrupado
 
-Os índices que não são indexados em agrupamento são conhecidos como índices secundários. Em `InnoDB`, cada registro em um índice secundário contém as colunas da chave primária da linha, além das colunas especificadas para o índice secundário. `InnoDB` usa esse valor da chave primária para procurar a linha no índice em agrupamento.
+Os índices que não são indexados em agrupamento são conhecidos como índices secundários. Em `InnoDB`, cada registro em um índice secundário contém as colunas da chave primária da string, além das colunas especificadas para o índice secundário. `InnoDB` usa esse valor da chave primária para procurar a string no índice em agrupamento.
 
 Se a chave primária for longa, os índices secundários utilizam mais espaço, portanto é vantajoso ter uma chave primária curta.
 
@@ -1209,13 +1209,13 @@ Armazena informações sobre o estado interno do índice de texto completo. Mais
 
 ##### Cache de índice de texto completo InnoDB
 
-Quando um documento é inserido, ele é tokenizado e as palavras individuais e os dados associados são inseridos no índice de texto completo. Esse processo, mesmo para documentos pequenos, pode resultar em inúmeras inserções pequenas nas tabelas de índice auxiliar, tornando o acesso concorrente a essas tabelas um ponto de contenção. Para evitar esse problema, `InnoDB` usa uma cache de índice de texto completo para armazenar temporariamente as inserções das tabelas de índice para as linhas recentemente inseridas. Essa estrutura de cache de memória mantém as inserções até que a cache esteja cheia e, em seguida, as descarta em lote no disco (para as tabelas de índice auxiliar). Você pode consultar a tabela do esquema de informações `INNODB_FT_INDEX_CACHE` para visualizar os dados tokenizados para as linhas recentemente inseridas.
+Quando um documento é inserido, ele é tokenizado e as palavras individuais e os dados associados são inseridos no índice de texto completo. Esse processo, mesmo para documentos pequenos, pode resultar em inúmeras inserções pequenas nas tabelas de índice auxiliar, tornando o acesso concorrente a essas tabelas um ponto de contenção. Para evitar esse problema, `InnoDB` usa uma cache de índice de texto completo para armazenar temporariamente as inserções das tabelas de índice para as strings recentemente inseridas. Essa estrutura de cache de memória mantém as inserções até que a cache esteja cheia e, em seguida, as descarta em lote no disco (para as tabelas de índice auxiliar). Você pode consultar a tabela do esquema de informações `INNODB_FT_INDEX_CACHE` para visualizar os dados tokenizados para as strings recentemente inseridas.
 
 O comportamento de cache e limpeza em lote evita atualizações frequentes em tabelas de índice auxiliares, o que poderia resultar em problemas de acesso concorrente durante períodos de inserção e atualização ocupados. A técnica de agrupamento também evita múltiplas inserções para a mesma palavra e minimiza entradas duplicadas. Em vez de limpar cada palavra individualmente, as inserções para a mesma palavra são unidas e limpadas para o disco como uma única entrada, melhorando a eficiência da inserção enquanto mantém as tabelas de índice auxiliares o mais pequenas possível.
 
 A variável `innodb_ft_cache_size` é usada para configurar o tamanho do cache do índice de texto completo (em uma base por tabela), o que afeta quantas vezes o cache do índice de texto completo é esvaziado. Você também pode definir um limite global de tamanho do cache de índice de texto completo para todas as tabelas em uma instância específica usando a variável `innodb_ft_total_cache_size`.
 
-O cache do índice de texto completo armazena as mesmas informações que as tabelas de índice auxiliares. No entanto, o cache do índice de texto completo armazena apenas dados tokenizados para linhas inseridas recentemente. Os dados que já foram descarregados no disco (para as tabelas de índice auxiliares) não são trazidos de volta para o cache do índice de texto completo quando solicitado. Os dados das tabelas de índice auxiliares são consultados diretamente, e os resultados das tabelas de índice auxiliares são mesclados com os resultados do cache do índice de texto completo antes de serem retornados.
+O cache do índice de texto completo armazena as mesmas informações que as tabelas de índice auxiliares. No entanto, o cache do índice de texto completo armazena apenas dados tokenizados para strings inseridas recentemente. Os dados que já foram descarregados no disco (para as tabelas de índice auxiliares) não são trazidos de volta para o cache do índice de texto completo quando solicitado. Os dados das tabelas de índice auxiliares são consultados diretamente, e os resultados das tabelas de índice auxiliares são mesclados com os resultados do cache do índice de texto completo antes de serem retornados.
 
 ##### Índice de Texto Completo InnoDB DOC_ID e FTS_DOC_ID Coluna
 
@@ -1284,7 +1284,7 @@ A exclusão de um registro que possui uma coluna de índice de texto completo po
 
 ##### Manipulação de transações de índice de texto completo InnoDB
 
-Os índices de texto completo `InnoDB` têm características especiais de manipulação de transações devido ao seu comportamento de cache e processamento em lote. Especificamente, as atualizações e inserções em um índice de texto completo são processadas no momento do commit da transação, o que significa que uma pesquisa de texto completo só pode ver dados comprometidos. O exemplo a seguir demonstra esse comportamento. A pesquisa de texto completo só retorna um resultado após as linhas inseridas serem comprometidas.
+Os índices de texto completo `InnoDB` têm características especiais de manipulação de transações devido ao seu comportamento de cache e processamento em lote. Especificamente, as atualizações e inserções em um índice de texto completo são processadas no momento do commit da transação, o que significa que uma pesquisa de texto completo só pode ver dados comprometidos. O exemplo a seguir demonstra esse comportamento. A pesquisa de texto completo só retorna um resultado após as strings inseridas serem comprometidas.
 
 ```sql
 mysql> CREATE TABLE opening_lines (
@@ -1557,7 +1557,7 @@ O espaço em disco é devolvido ao sistema operacional após a truncagem ou elim
 
 * Você pode importar uma tabela que reside em um espaço de tabela por arquivo de tabelas de outra instância do MySQL. Veja a Seção 14.6.1.3, “Importando tabelas InnoDB”.
 
-* As tabelas criadas em espaços de tabela por arquivo utilizam o formato de arquivo Barracuda. Consulte a Seção 14.10, “Gestão do formato de arquivo InnoDB”. O formato de arquivo Barracuda permite recursos associados aos formatos de linha `DYNAMIC` e `COMPRESSED`. Consulte a Seção 14.11, “Formatos de linha InnoDB”.
+* As tabelas criadas em espaços de tabela por arquivo utilizam o formato de arquivo Barracuda. Consulte a Seção 14.10, “Gestão do formato de arquivo InnoDB”. O formato de arquivo Barracuda permite recursos associados aos formatos de string `DYNAMIC` e `COMPRESSED`. Consulte a Seção 14.11, “Formatos de string InnoDB”.
 
 * As tabelas armazenadas em arquivos de dados de espaço de tabela individual podem economizar tempo e melhorar as chances de recuperação bem-sucedida quando ocorre corrupção de dados, quando os backups ou logs binários estão indisponíveis ou quando a instância do servidor MySQL não pode ser reiniciada.
 
@@ -1573,7 +1573,7 @@ Desvantagens do espaço de armazenamento por tabela ##### File-Per-Table Tablesp
 
 Os espaços de tabela por arquivo têm as seguintes desvantagens em comparação com os espaços de tabela compartilhados, como o espaço de tabelas do sistema ou os espaços de tabelas gerais.
 
-* Com espaços de tabela por arquivo, cada tabela pode ter espaço não utilizado que só pode ser utilizado por linhas da mesma tabela, o que pode levar a desperdício de espaço se não for gerenciado adequadamente.
+* Com espaços de tabela por arquivo, cada tabela pode ter espaço não utilizado que só pode ser utilizado por strings da mesma tabela, o que pode levar a desperdício de espaço se não for gerenciado adequadamente.
 
 * As operações `fsync` são realizadas em múltiplos arquivos por tabela, em vez de um único arquivo de dados de espaço de tabela compartilhado. Como as operações `fsync` são por arquivo, as operações de escrita para múltiplas tabelas não podem ser combinadas, o que pode resultar em um número total maior de operações `fsync`.
 
@@ -1594,7 +1594,7 @@ Um espaço de tabela geral é um espaço de tabela `InnoDB` compartilhado que é
 * Capacidades gerais do espaço de tabelas
 * Criando um espaço de tabelas geral
 * Adicionando tabelas a um espaço de tabelas geral
-* Suporte ao formato de linha de um espaço de tabelas geral
+* Suporte ao formato de string de um espaço de tabelas geral
 * Movendo tabelas entre espaços de tabelas usando ALTER TABLE
 * Retirando um espaço de tabelas geral
 * Limitações do espaço de tabelas geral
@@ -1609,7 +1609,7 @@ Os espaços de tabela gerais oferecem as seguintes funcionalidades:
 
 * Os arquivos de dados de espaço de tabela geral podem ser colocados em um diretório relativo ao diretório de dados do MySQL ou independente dele, o que lhe oferece muitas das capacidades de gerenciamento de arquivos e armazenamento de espaços de tabela por tabela. Assim como os espaços de tabela por tabela, a capacidade de colocar arquivos de dados fora do diretório de dados do MySQL permite que você gerencie o desempenho de tabelas críticas separadamente, configure RAID ou DRBD para tabelas específicas ou vincule tabelas a discos específicos, por exemplo.
 
-* Os espaços de tabela gerais suportam tanto os formatos de arquivo Antelope quanto Barracuda, e, portanto, suportam todos os formatos de linha de tabela e recursos associados. Com suporte para ambos os formatos de arquivo, os espaços de tabela gerais não dependem de configurações de `innodb_file_format` ou `innodb_file_per_table`, e essas variáveis também não têm efeito nos espaços de tabela gerais.
+* Os espaços de tabela gerais suportam tanto os formatos de arquivo Antelope quanto Barracuda, e, portanto, suportam todos os formatos de string de tabela e recursos associados. Com suporte para ambos os formatos de arquivo, os espaços de tabela gerais não dependem de configurações de `innodb_file_format` ou `innodb_file_per_table`, e essas variáveis também não têm efeito nos espaços de tabela gerais.
 
 * A opção `TABLESPACE` pode ser usada com `CREATE TABLE` para criar tabelas em um espaço de tabelas geral, espaço de tabelas por arquivo ou no espaço de tabelas de sistema.
 
@@ -1676,9 +1676,9 @@ O suporte para adicionar partições de tabela a espaços de tabela compartilhad
 
 Para informações detalhadas sobre sintaxe, consulte `CREATE TABLE` e `ALTER TABLE`.
 
-##### Suporte ao formato de linha do espaço de tabela geral
+##### Suporte ao formato de string do espaço de tabela geral
 
-Os espaços de tabelas gerais suportam todos os formatos de linha de tabela (`REDUNDANT`, `COMPACT`, `DYNAMIC`, `COMPRESSED`) com a ressalva de que tabelas comprimidas e não comprimidas não podem coexistir no mesmo espaço de tabelas gerais devido aos tamanhos diferentes das páginas físicas.
+Os espaços de tabelas gerais suportam todos os formatos de string de tabela (`REDUNDANT`, `COMPACT`, `DYNAMIC`, `COMPRESSED`) com a ressalva de que tabelas comprimidas e não comprimidas não podem coexistir no mesmo espaço de tabelas gerais devido aos tamanhos diferentes das páginas físicas.
 
 Para que um espaço de tabelas geral possa conter tabelas comprimidas (`ROW_FORMAT=COMPRESSED`), a opção `FILE_BLOCK_SIZE` deve ser especificada, e o valor `FILE_BLOCK_SIZE` deve ser um tamanho de página comprimida válido em relação ao valor `innodb_page_size`. Além disso, o tamanho de página física da tabela comprimida (`KEY_BLOCK_SIZE`) deve ser igual a `FILE_BLOCK_SIZE/1024`. Por exemplo, se `innodb_page_size=16KB` e `FILE_BLOCK_SIZE=8K`, o `KEY_BLOCK_SIZE` da tabela deve ser 8.
 
@@ -1696,7 +1696,7 @@ mysql> CREATE TABLESPACE `ts2` ADD DATAFILE 'ts2.ibd' FILE_BLOCK_SIZE = 8192 Eng
 mysql> CREATE TABLE t4 (c1 INT PRIMARY KEY) TABLESPACE ts2 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 ```
 
-Se você não especificar `FILE_BLOCK_SIZE` ao criar um espaço de tabela geral, `FILE_BLOCK_SIZE` por padrão é `innodb_page_size`. Quando `FILE_BLOCK_SIZE` é igual a `innodb_page_size`, o espaço de tabela pode conter apenas tabelas com um formato de linha não compactado (formatos de linha `COMPACT`, `REDUNDANT` e `DYNAMIC`).
+Se você não especificar `FILE_BLOCK_SIZE` ao criar um espaço de tabela geral, `FILE_BLOCK_SIZE` por padrão é `innodb_page_size`. Quando `FILE_BLOCK_SIZE` é igual a `innodb_page_size`, o espaço de tabela pode conter apenas tabelas com um formato de string não compactado (formatos de string `COMPACT`, `REDUNDANT` e `DYNAMIC`).
 
 ##### Mover tabelas entre tabelaspaces usando ALTER TABLE
 
@@ -1878,7 +1878,7 @@ Os segmentos de recuo são reativados para que possam ser atribuídos a novas tr
 
 ###### Agilizando a Truncagem de Espaços de Tabela Undo
 
-O fio de purga é responsável por esvaziar e truncar espaços de tabelas de desfazer. Por padrão, o fio de purga procura espaços de tabelas de desfazer para truncar uma vez a cada 128 vezes em que a purga é invocada. A frequência com a qual o fio de purga procura espaços de tabelas de desfazer para truncar é controlada pela variável `innodb_purge_rseg_truncate_frequency`, que tem um ajuste padrão de 128.
+O thread de purga é responsável por esvaziar e truncar espaços de tabelas de desfazer. Por padrão, o thread de purga procura espaços de tabelas de desfazer para truncar uma vez a cada 128 vezes em que a purga é invocada. A frequência com a qual o thread de purga procura espaços de tabelas de desfazer para truncar é controlada pela variável `innodb_purge_rseg_truncate_frequency`, que tem um ajuste padrão de 128.
 
 ```sql
 mysql> SELECT @@innodb_purge_rseg_truncate_frequency;
@@ -1895,7 +1895,7 @@ Para aumentar a frequência, diminua o ajuste `innodb_purge_rseg_truncate_freque
 mysql> SET GLOBAL innodb_purge_rseg_truncate_frequency=32;
 ```
 
-Quando o fio de purga encontra um espaço de tabelas que requer truncação, o fio de purga retorna com maior frequência para rapidamente esvaziar e truncar o espaço de tabelas de desfazer.
+Quando o thread de purga encontra um espaço de tabelas que requer truncação, o thread de purga retorna com maior frequência para rapidamente esvaziar e truncar o espaço de tabelas de desfazer.
 
 ###### Impacto no desempenho de truncar arquivos do Undo Tablespace
 

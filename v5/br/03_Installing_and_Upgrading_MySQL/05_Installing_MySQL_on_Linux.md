@@ -1299,7 +1299,7 @@ A variável não tem efeito se um arquivo de configuração do servidor do host 
 
 Aviso
 
-Definir a senha do usuário raiz do MySQL na linha de comando é inseguro. Como alternativa para especificar a senha explicitamente, você pode definir a variável com um caminho de arquivo de contêiner para um arquivo de senha, e então montar um arquivo do seu host que contenha a senha no caminho do arquivo de contêiner. Isso ainda não é muito seguro, pois a localização do arquivo de senha ainda está exposta. É preferível usar as configurações padrão de `MYSQL_RANDOM_ROOT_PASSWORD` e `MYSQL_ONETIME_PASSWORD`, ambas sendo verdadeiras.
+Definir a senha do usuário raiz do MySQL na string de comando é inseguro. Como alternativa para especificar a senha explicitamente, você pode definir a variável com um caminho de arquivo de contêiner para um arquivo de senha, e então montar um arquivo do seu host que contenha a senha no caminho do arquivo de contêiner. Isso ainda não é muito seguro, pois a localização do arquivo de senha ainda está exposta. É preferível usar as configurações padrão de `MYSQL_RANDOM_ROOT_PASSWORD` e `MYSQL_ONETIME_PASSWORD`, ambas sendo verdadeiras.
 
 * `MYSQL_ALLOW_EMPTY_PASSWORD`. Defina-o como verdadeiro para permitir que o contêiner seja iniciado com uma senha em branco para o usuário root.
 
@@ -1638,7 +1638,7 @@ Alguns parâmetros do MySQL são configurados usando variáveis de ambiente:
 
 Existem várias maneiras de especificar os valores das variáveis de ambiente para uso pelo processo do servidor MySQL gerenciado pelo systemd:
 
-* Use as linhas `Environment` no arquivo `override.conf`. Para a sintaxe, consulte o exemplo na discussão anterior que descreve como usar este arquivo.
+* Use as strings `Environment` no arquivo `override.conf`. Para a sintaxe, consulte o exemplo na discussão anterior que descreve como usar este arquivo.
 
 * Especifique os valores no arquivo `/etc/sysconfig/mysql` (crie o arquivo se ele não existir). Atribua os valores usando a seguinte sintaxe:
 
@@ -1670,7 +1670,7 @@ systemctl restart mysqld  # RPM platforms
 systemctl restart mysql   # Debian platforms
 ```
 
-Para plataformas que utilizam systemd, o diretório de dados é inicializado se estiver vazio no início do servidor. Isso pode ser um problema se o diretório de dados for um montagem remota que desapareceu temporariamente: o ponto de montagem pareceria ser um diretório de dados vazio, que então seria inicializado como um novo diretório de dados. A partir do MySQL 5.7.20, para suprimir esse comportamento de inicialização automática, especifique a seguinte linha no arquivo `/etc/sysconfig/mysql` (crie o arquivo se ele não existir):
+Para plataformas que utilizam systemd, o diretório de dados é inicializado se estiver vazio no início do servidor. Isso pode ser um problema se o diretório de dados for um montagem remota que desapareceu temporariamente: o ponto de montagem pareceria ser um diretório de dados vazio, que então seria inicializado como um novo diretório de dados. A partir do MySQL 5.7.20, para suprimir esse comportamento de inicialização automática, especifique a seguinte string no arquivo `/etc/sysconfig/mysql` (crie o arquivo se ele não existir):
 
 ```sql
 NO_INIT=true

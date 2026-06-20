@@ -138,7 +138,7 @@ INSERT INTO t SET i = 1/0;
 
 Isso é o que acontece para combinações de modos estritos e `ERROR_FOR_DIVISION_BY_ZERO`.
 
-<table summary="What happens for combinations of strict and ERROR_FOR_DIVISION_BY_ZERO modes."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><code>sql_mode</code> Value</th> <th>Resultado</th> </tr></thead><tbody><tr> <td><code>''</code> (Default)</td> <td>Sem aviso, sem erro;<code>i</code>está previsto<code>NULL</code>.</td> </tr><tr> <td>strict</td> <td>Sem aviso, sem erro;<code>i</code>está previsto<code>NULL</code>.</td> </tr><tr> <td><code>ERROR_FOR_DIVISION_BY_ZERO</code></td> <td>Aviso, sem erro;<code>i</code>está previsto<code>NULL</code>.</td> </tr><tr> <td>strict,<code>ERROR_FOR_DIVISION_BY_ZERO</code></td> <td>Condição de erro; nenhuma linha foi inserida.</td> </tr></tbody></table>
+<table summary="What happens for combinations of strict and ERROR_FOR_DIVISION_BY_ZERO modes."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><code>sql_mode</code> Value</th> <th>Resultado</th> </tr></thead><tbody><tr> <td><code>''</code> (Default)</td> <td>Sem aviso, sem erro;<code>i</code>está previsto<code>NULL</code>.</td> </tr><tr> <td>strict</td> <td>Sem aviso, sem erro;<code>i</code>está previsto<code>NULL</code>.</td> </tr><tr> <td><code>ERROR_FOR_DIVISION_BY_ZERO</code></td> <td>Aviso, sem erro;<code>i</code>está previsto<code>NULL</code>.</td> </tr><tr> <td>strict,<code>ERROR_FOR_DIVISION_BY_ZERO</code></td> <td>Condição de erro; nenhuma string foi inserida.</td> </tr></tbody></table>
 
 ### 12.21.4 Comportamento de arredondamento
 

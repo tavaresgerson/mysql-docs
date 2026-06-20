@@ -30,7 +30,7 @@ As regras a seguir descrevem como a conversão ocorre para operações de compar
 
 * Se um dos argumentos for uma coluna `TIMESTAMP` ou `DATETIME` e o outro argumento for uma constante, a constante é convertida em um timestamp antes de a comparação ser realizada. Isso é feito para ser mais compatível com o ODBC. Isso não é feito para os argumentos de `IN()`. Para ser seguro, sempre use strings completas de data, data ou hora ao fazer comparações. Por exemplo, para obter os melhores resultados ao usar `BETWEEN` com valores de data ou hora, use `CAST()` para converter explicitamente os valores no tipo de dados desejado.
 
-Uma subconsulta de uma única linha de uma tabela ou tabelas não é considerada uma constante. Por exemplo, se uma subconsulta retorna um inteiro a ser comparado com um valor de `DATETIME`, a comparação é feita como dois inteiros. O inteiro não é convertido em um valor temporal. Para comparar os operandos como valores de `DATETIME`, use `CAST()` para converter explicitamente o valor da subconsulta em `DATETIME`.
+Uma subconsulta de uma única string de uma tabela ou tabelas não é considerada uma constante. Por exemplo, se uma subconsulta retorna um inteiro a ser comparado com um valor de `DATETIME`, a comparação é feita como dois inteiros. O inteiro não é convertido em um valor temporal. Para comparar os operandos como valores de `DATETIME`, use `CAST()` para converter explicitamente o valor da subconsulta em `DATETIME`.
 
 * Se um dos argumentos for um valor decimal, a comparação depende do outro argumento. Os argumentos são comparados como valores decimais se o outro argumento for um valor decimal ou inteiro, ou como valores de ponto flutuante se o outro argumento for um valor de ponto flutuante.
 
@@ -109,7 +109,7 @@ mysql> CREATE TABLE t2 SELECT * FROM t1 WHERE c3 = 0;
 ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'grape'
 ```
 
-Quando o `0` é citado, a declaração é bem-sucedida, mas a tabela criada não contém nenhuma linha porque não havia nenhuma correspondência com `'0'`, conforme mostrado aqui:
+Quando o `0` é citado, a declaração é bem-sucedida, mas a tabela criada não contém nenhuma string porque não havia nenhuma correspondência com `'0'`, conforme mostrado aqui:
 
 ```sql
 mysql> CREATE TABLE t2 SELECT * FROM t1 WHERE c3 = '0';

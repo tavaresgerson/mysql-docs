@@ -9,9 +9,9 @@ Esta seção descreve as restrições e limitações do motor de armazenamento `
   ERROR 1166 (42000): Incorrect column name 'db_row_id'
   ```
 
-* `SHOW TABLE STATUS` não fornece estatísticas precisas para as tabelas `InnoDB`, exceto pelo tamanho físico reservado pela tabela. O número de linhas é apenas uma estimativa grosseira usada na otimização do SQL.
+* `SHOW TABLE STATUS` não fornece estatísticas precisas para as tabelas `InnoDB`, exceto pelo tamanho físico reservado pela tabela. O número de strings é apenas uma estimativa grosseira usada na otimização do SQL.
 
-* `InnoDB` não mantém um contador interno de linhas em uma tabela, porque transações concorrentes podem "ver" diferentes números de linhas ao mesmo tempo. Consequentemente, as declarações `SELECT COUNT(*)` contam apenas as linhas visíveis para a transação atual.
+* `InnoDB` não mantém um contador interno de strings em uma tabela, porque transações concorrentes podem "ver" diferentes números de strings ao mesmo tempo. Consequentemente, as declarações `SELECT COUNT(*)` contam apenas as strings visíveis para a transação atual.
 
 Para informações sobre como o `InnoDB` processa as declarações do `SELECT COUNT(*)`, consulte a descrição do `COUNT()` na Seção 12.19.1, “Descritores de função agregada”.
 

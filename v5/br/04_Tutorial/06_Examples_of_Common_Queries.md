@@ -4,7 +4,7 @@ Aqui estão exemplos de como resolver alguns problemas comuns com o MySQL.
 
 Alguns dos exemplos utilizam a tabela `shop` para armazenar o preço de cada artigo (número de item) para certos comerciantes (distribuidores). Supondo que cada comerciante tenha um preço fixo único por artigo, então (`article`, `dealer`) é uma chave primária para os registros.
 
-Inicie a ferramenta de linha de comando **mysql** e selecione um banco de dados:
+Inicie a ferramenta de string de comando **mysql** e selecione um banco de dados:
 
 ```sql
 $> mysql your-database-name
@@ -55,7 +55,7 @@ SELECT MAX(article) AS article FROM shop;
 +---------+
 ```
 
-### 3.6.2 A linha que contém o máximo de uma determinada coluna
+### 3.6.2 A string que contém o máximo de uma determinada coluna
 
 *Tarefa: Encontre o número, o revendedor e o preço do artigo mais caro.*
 
@@ -82,7 +82,7 @@ LEFT JOIN shop s2 ON s1.price < s2.price
 WHERE s2.article IS NULL;
 ```
 
-Você também pode fazer isso, classificando todas as linhas em ordem decrescente de preço e obtendo apenas a primeira linha usando a cláusula específica do MySQL `LIMIT`, como este:
+Você também pode fazer isso, classificando todas as strings em ordem decrescente de preço e obtendo apenas a primeira string usando a cláusula específica do MySQL `LIMIT`, como este:
 
 ```sql
 SELECT article, dealer, price
@@ -115,7 +115,7 @@ ORDER BY article;
 +---------+-------+
 ```
 
-### 3.6.4 As linhas que retêm o máximo por grupo de uma determinada coluna
+### 3.6.4 As strings que retêm o máximo por grupo de uma determinada coluna
 
 *Tarefa: Para cada artigo, encontre o revendedor ou revendedores com o preço mais caro.*
 
@@ -213,13 +213,13 @@ CREATE TABLE child (
 ) ENGINE=INNODB;
 ```
 
-Insira uma linha na tabela principal, assim:
+Insira uma string na tabela principal, assim:
 
 ```sql
 mysql> INSERT INTO parent (id) VALUES (1);
 ```
 
-Verifique se os dados foram inseridos. Isso pode ser feito simplesmente selecionando todas as linhas de `parent`, como mostrado aqui:
+Verifique se os dados foram inseridos. Isso pode ser feito simplesmente selecionando todas as strings de `parent`, como mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM parent;
@@ -230,7 +230,7 @@ mysql> SELECT * FROM parent;
 +----+
 ```
 
-Insira uma linha na tabela secundária usando a seguinte declaração SQL:
+Insira uma string na tabela secundária usando a seguinte declaração SQL:
 
 ```sql
 mysql> INSERT INTO child (id,parent_id) VALUES (1,1);
@@ -238,7 +238,7 @@ mysql> INSERT INTO child (id,parent_id) VALUES (1,1);
 
 A operação de inserção foi bem-sucedida porque `parent_id` 1 está presente na tabela principal.
 
-A inserção de uma linha na tabela de crianças com um valor `parent_id` que não está presente na tabela principal é rejeitada com um erro, como você pode ver aqui:
+A inserção de uma string na tabela de crianças com um valor `parent_id` que não está presente na tabela principal é rejeitada com um erro, como você pode ver aqui:
 
 ```sql
 mysql> INSERT INTO child (id,parent_id) VALUES(2,2);
@@ -249,7 +249,7 @@ REFERENCES `parent` (`id`))
 
 A operação falha porque o valor especificado `parent_id` não existe na tabela principal.
 
-Tentar excluir a linha inserida anteriormente da tabela pai também falha, conforme mostrado aqui:
+Tentar excluir a string inserida anteriormente da tabela pai também falha, conforme mostrado aqui:
 
 ```sql
 mysql> DELETE FROM parent WHERE id = 1;
@@ -260,9 +260,9 @@ REFERENCES `parent` (`id`))
 
 Esta operação falha porque o registro na tabela de crianças contém o valor do ID referenciado (`parent_id`).
 
-Quando uma operação afeta um valor chave na tabela principal que tem linhas correspondentes na tabela secundária, o resultado depende da ação referencial especificada pelos subcláusulas `ON UPDATE` e `ON DELETE` da cláusula `FOREIGN KEY`. O omitindo das cláusulas `ON DELETE` e `ON UPDATE` (como na definição atual da tabela secundária) é o mesmo que especificar a opção `RESTRICT`, que rejeita operações que afetam um valor chave na tabela principal que tem linhas correspondentes na tabela principal.
+Quando uma operação afeta um valor chave na tabela principal que tem strings correspondentes na tabela secundária, o resultado depende da ação referencial especificada pelos subcláusulas `ON UPDATE` e `ON DELETE` da cláusula `FOREIGN KEY`. O omitindo das cláusulas `ON DELETE` e `ON UPDATE` (como na definição atual da tabela secundária) é o mesmo que especificar a opção `RESTRICT`, que rejeita operações que afetam um valor chave na tabela principal que tem strings correspondentes na tabela principal.
 
-Para demonstrar as ações referenciais `ON DELETE` e `ON UPDATE`, descarte a tabela de filhos e recriá-la para incluir as subcláusulas `ON UPDATE` e `ON DELETE` com a opção `CASCADE`. A opção `CASCADE` exclui ou atualiza automaticamente as linhas correspondentes na tabela de filhos ao excluir ou atualizar as linhas na tabela principal.
+Para demonstrar as ações referenciais `ON DELETE` e `ON UPDATE`, descarte a tabela de filhos e recriá-la para incluir as subcláusulas `ON UPDATE` e `ON DELETE` com a opção `CASCADE`. A opção `CASCADE` exclui ou atualiza automaticamente as strings correspondentes na tabela de filhos ao excluir ou atualizar as strings na tabela principal.
 
 ```sql
 DROP TABLE child;
@@ -278,7 +278,7 @@ CREATE TABLE child (
 ) ENGINE=INNODB;
 ```
 
-Insira algumas linhas na tabela de filhos usando a declaração mostrada aqui:
+Insira algumas strings na tabela de filhos usando a declaração mostrada aqui:
 
 ```sql
 mysql> INSERT INTO child (id,parent_id) VALUES(1,1),(2,1),(3,1);
@@ -303,7 +303,7 @@ Atualize o ID na tabela principal, alterando-o de 1 para 2, usando a declaraçã
 mysql> UPDATE parent SET id = 2 WHERE id = 1;
 ```
 
-Verifique se a atualização foi bem-sucedida, selecionando todas as linhas da tabela principal, conforme mostrado aqui:
+Verifique se a atualização foi bem-sucedida, selecionando todas as strings da tabela principal, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM parent;
@@ -398,7 +398,7 @@ A consulta calcula quantos dias diferentes aparecem na tabela para cada combina�
 
 ### 3.6.9 Usando AUTO\_INCREMENT
 
-O atributo `AUTO_INCREMENT` pode ser usado para gerar uma identidade única para novas linhas:
+O atributo `AUTO_INCREMENT` pode ser usado para gerar uma identidade única para novas strings:
 
 ```sql
 CREATE TABLE animals (
@@ -471,7 +471,7 @@ Use o menor tipo de dado inteiro para a coluna `AUTO_INCREMENT` que seja grande 
 
 Nota
 
-Para uma inserção de várias linhas, `LAST_INSERT_ID()` e `mysql_insert_id()` de fato retornam a chave `AUTO_INCREMENT` do *primeiro* das linhas inseridas. Isso permite que as inserções de várias linhas sejam reproduzidas corretamente em outros servidores em uma configuração de replicação.
+Para uma inserção de várias strings, `LAST_INSERT_ID()` e `mysql_insert_id()` de fato retornam a chave `AUTO_INCREMENT` do *primeiro* das strings inseridas. Isso permite que as inserções de várias strings sejam reproduzidas corretamente em outros servidores em uma configuração de replicação.
 
 Para começar com um valor de `AUTO_INCREMENT` diferente de 1, defina esse valor com `CREATE TABLE` ou `ALTER TABLE`, da seguinte forma:
 
@@ -520,7 +520,7 @@ Que retornos:
   +--------+----+---------+
   ```
 
-Neste caso (quando a coluna `AUTO_INCREMENT` faz parte de um índice de múltiplas colunas), os valores de `AUTO_INCREMENT` são reutilizados se você excluir a linha com o maior valor de `AUTO_INCREMENT` em qualquer grupo. Isso acontece mesmo para as tabelas `MyISAM`, para as quais os valores de `AUTO_INCREMENT` normalmente não são reutilizados.
+Neste caso (quando a coluna `AUTO_INCREMENT` faz parte de um índice de múltiplas colunas), os valores de `AUTO_INCREMENT` são reutilizados se você excluir a string com o maior valor de `AUTO_INCREMENT` em qualquer grupo. Isso acontece mesmo para as tabelas `MyISAM`, para as quais os valores de `AUTO_INCREMENT` normalmente não são reutilizados.
 
 * Se a coluna `AUTO_INCREMENT` faz parte de vários índices, o MySQL gera valores de sequência usando o índice que começa com a coluna `AUTO_INCREMENT`, se houver uma. Por exemplo, se a tabela `animals` contivesse índices `PRIMARY KEY (grp, id)` e `INDEX (id)`, o MySQL ignoraria o `PRIMARY KEY` para gerar valores de sequência. Como resultado, a tabela conterá uma única sequência, não uma sequência por valor de `grp`.
 
@@ -532,7 +532,7 @@ Mais informações sobre `AUTO_INCREMENT` estão disponíveis aqui:
 
 * Como o `AUTO_INCREMENT` se comporta dependendo do modo SQL `NO_AUTO_VALUE_ON_ZERO`: Seção 5.1.10, “Modos SQL do servidor”.
 
-* Como usar a função `LAST_INSERT_ID()` para encontrar a linha que contém o valor mais recente do `AUTO_INCREMENT`: Seção 12.15, “Funções de Informação”.
+* Como usar a função `LAST_INSERT_ID()` para encontrar a string que contém o valor mais recente do `AUTO_INCREMENT`: Seção 12.15, “Funções de Informação”.
 
 * Definindo o valor `AUTO_INCREMENT` a ser utilizado: Seção 5.1.7, “Variáveis do sistema do servidor”.
 

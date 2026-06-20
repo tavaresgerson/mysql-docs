@@ -174,7 +174,7 @@ O `mysql_install_db` cria uma conta administrativa chamada `'root'@'localhost'` 
 
 Para mais informações, consulte as descrições dessas opções.
 
-`mysql_install_db` atribui às linhas da tabela do sistema `mysql.user` um valor de coluna `plugin` não vazio para definir o plugin de autenticação. O valor padrão é `mysql_native_password`. O valor pode ser alterado usando a opção `--admin-auth-plugin`.
+`mysql_install_db` atribui às strings da tabela do sistema `mysql.user` um valor de coluna `plugin` não vazio para definir o plugin de autenticação. O valor padrão é `mysql_native_password`. O valor pode ser alterado usando a opção `--admin-auth-plugin`.
 
 #### Arquivo padrão my.cnf
 
@@ -188,7 +188,7 @@ Com uma exceção, as configurações no arquivo de opção padrão estão comen
 
 #### Opções de Comando
 
-`mysql_install_db` suporta as seguintes opções, que podem ser especificadas na linha de comando ou no grupo `[mysql_install_db]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+`mysql_install_db` suporta as seguintes opções, que podem ser especificadas na string de comando ou no grupo `[mysql_install_db]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.8 Opções de mysql_install_db**
 
@@ -371,7 +371,7 @@ Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) an
 
 Essa opção é passada por `mysql_install_db` para `mysqld`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -381,13 +381,13 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Essa opção é passada por `mysql_install_db` para `mysqld`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--extra-sql-file=file_name`, `-f file_name`
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
-Esta opção nomeia um arquivo que contém declarações SQL adicionais a serem executadas após as declarações padrão de inicialização. A sintaxe de declaração aceita no arquivo é semelhante à do cliente de linha de comando **mysql**, incluindo suporte para comentários em C de várias linhas e manipulação de delimitadores para permitir a definição de programas armazenados.
+Esta opção nomeia um arquivo que contém declarações SQL adicionais a serem executadas após as declarações padrão de inicialização. A sintaxe de declaração aceita no arquivo é semelhante à do cliente de string de comando **mysql**, incluindo suporte para comentários em C de várias strings e manipulação de delimitadores para permitir a definição de programas armazenados.
 
 * `--insecure`
 
@@ -423,7 +423,7 @@ Leia opções do caminho de login nomeado no arquivo de caminho de login `.mylog
 
 Se a opção `--login-path` for especificada, os valores do usuário, do host e da senha são tomados do caminho de login e usados para criar a conta administrativa. A senha deve ser definida no caminho de login ou ocorrerá um erro, a menos que a opção `--insecure` também seja especificada. Além disso, com `--login-path`, quaisquer opções `--admin-host` e `--admin-user` são ignoradas.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--mysqld-file=file_name`
 
@@ -449,7 +449,7 @@ Se essa opção não for fornecida, `mysql_install_db` procura por `mysqld` ness
 
 Para o comportamento desta opção, consulte a descrição de `--defaults`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--random-password-file=file_name`
 
@@ -495,7 +495,7 @@ O **mysql\_plugin** é descontinuado a partir do MySQL 5.7.11 e removido no MySQ
 
 O utilitário **mysql\_plugin** permite que os administradores do MySQL gerenciem quais plugins um servidor MySQL carrega. Ele oferece uma alternativa para especificar manualmente a opção `--plugin-load` no início da inicialização do servidor ou usar as declarações `INSTALL PLUGIN` e `UNINSTALL PLUGIN` no runtime.
 
-Dependendo se o **mysql\_plugin** é invocado para habilitar ou desabilitar plugins, ele insere ou exclui linhas na tabela `mysql.plugin` que serve como um registro de plugins. (Para realizar essa operação, o **mysql\_plugin** invoca o servidor MySQL no modo de inicialização. Isso significa que o servidor não deve estar em execução.) Para inicializações normais do servidor, o servidor carrega e habilita plugins listados em `mysql.plugin` automaticamente. Para controle adicional sobre a ativação do plugin, use as opções de `--plugin_name` nomeadas para plugins específicos, conforme descrito na Seção 5.5.1, “Instalando e Desinstalando Plugins”.
+Dependendo se o **mysql\_plugin** é invocado para habilitar ou desabilitar plugins, ele insere ou exclui strings na tabela `mysql.plugin` que serve como um registro de plugins. (Para realizar essa operação, o **mysql\_plugin** invoca o servidor MySQL no modo de inicialização. Isso significa que o servidor não deve estar em execução.) Para inicializações normais do servidor, o servidor carrega e habilita plugins listados em `mysql.plugin` automaticamente. Para controle adicional sobre a ativação do plugin, use as opções de `--plugin_name` nomeadas para plugins específicos, conforme descrito na Seção 5.5.1, “Instalando e Desinstalando Plugins”.
 
 Cada invocação do **mysql_plugin** lê um arquivo de configuração para determinar como configurar os plugins contidos em um único arquivo de biblioteca de plugins. Para invocar o **mysql_plugin**, use a seguinte sintaxe:
 
@@ -514,7 +514,7 @@ plugin2
 plugin3
 ```
 
-A primeira linha do arquivo `myplugins.ini` é o nome do arquivo da biblioteca, sem qualquer extensão, como `.so` ou `.dll`. As linhas restantes são os nomes dos componentes que devem ser habilitados ou desabilitados. Cada valor no arquivo deve estar em uma linha separada. As linhas nas quais o primeiro caractere é `'#'` são consideradas comentários e ignoradas.
+A primeira string do arquivo `myplugins.ini` é o nome do arquivo da biblioteca, sem qualquer extensão, como `.so` ou `.dll`. As strings restantes são os nomes dos componentes que devem ser habilitados ou desabilitados. Cada valor no arquivo deve estar em uma string separada. As strings nas quais o primeiro caractere é `'#'` são consideradas comentários e ignoradas.
 
 Para habilitar os plugins listados no arquivo de configuração, invoque o **mysql\_plugin** da seguinte maneira:
 
@@ -526,7 +526,7 @@ Para desativar os plugins, use `DISABLE` em vez de `ENABLE`.
 
 Um erro ocorre se o **mysql_plugin** não conseguir encontrar o arquivo de configuração ou o arquivo da biblioteca do plugin, ou se o **mysql_plugin** não conseguir iniciar o servidor MySQL.
 
-O **mysql\_plugin** suporta as seguintes opções, que podem ser especificadas na linha de comando ou no grupo `[mysqld]` de qualquer arquivo de opção. Para opções especificadas em um grupo `[mysqld]`, o **mysql\_plugin** reconhece as opções `--basedir`, `--datadir` e `--plugin-dir` e ignora outras. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
+O **mysql\_plugin** suporta as seguintes opções, que podem ser especificadas na string de comando ou no grupo `[mysqld]` de qualquer arquivo de opção. Para opções especificadas em um grupo `[mysqld]`, o **mysql\_plugin** reconhece as opções `--basedir`, `--datadir` e `--plugin-dir` e ignora outras. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
 
 **Tabela 4.9 Opções do mysql_plugin**
 
@@ -568,7 +568,7 @@ O caminho para o servidor `mysqld`.
 
 Não leia valores do arquivo de configuração. Esta opção permite que um administrador ignore a leitura dos valores padrão do arquivo de configuração.
 
-Com o **mysql_plugin**, essa opção não precisa ser dada primeiro na linha de comando, ao contrário da maioria dos outros programas MySQL que suportam `--no-defaults`.
+Com o **mysql_plugin**, essa opção não precisa ser dada primeiro na string de comando, ao contrário da maioria dos outros programas MySQL que suportam `--no-defaults`.
 
 * `--plugin-dir=dir_name`, `-p dir_name`
 
@@ -580,7 +580,7 @@ O diretório de plugins do servidor.
 
   <table frame="box" rules="all" summary="Properties for plugin-ini"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-ini=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
-O arquivo de configuração do **mysql\_plugin**. Os nomes de caminho relativos são interpretados em relação ao diretório atual. Se esta opção não for fornecida, o padrão é `plugin.ini` no diretório do plugin, onde *`plugin`* é o argumento *`plugin`* na linha de comando.
+O arquivo de configuração do **mysql\_plugin**. Os nomes de caminho relativos são interpretados em relação ao diretório atual. Se esta opção não for fornecida, o padrão é `plugin.ini` no diretório do plugin, onde *`plugin`* é o argumento *`plugin`* na string de comando.
 
 * `--print-defaults`, `-P`
 
@@ -588,7 +588,7 @@ O arquivo de configuração do **mysql\_plugin**. Os nomes de caminho relativos 
 
 Exibir os valores padrão do arquivo de configuração. Esta opção faz com que o **mysql\_plugin** imprima os padrões para `--basedir`, `--datadir` e `--plugin-dir` se forem encontrados no arquivo de configuração. Se não for encontrado nenhum valor para uma variável, nada é mostrado.
 
-Com o **mysql_plugin**, essa opção não precisa ser dada primeiro na linha de comando, ao contrário da maioria dos outros programas MySQL que suportam `--print-defaults`.
+Com o **mysql_plugin**, essa opção não precisa ser dada primeiro na string de comando, ao contrário da maioria dos outros programas MySQL que suportam `--print-defaults`.
 
 * `--verbose`, `-v`
 
@@ -622,13 +622,13 @@ Quando executado, `mysql_secure_installation` solicita que você determine quais
 
 O plugin `validate_password` pode ser usado para verificar a força da senha. Se o plugin não estiver instalado, o `mysql_secure_installation` solicita ao usuário se ele deve instalá-lo. Quaisquer senhas inseridas posteriormente são verificadas usando o plugin se ele estiver habilitado.
 
-A maioria das opções do cliente MySQL padrão, como `--host` e `--port`, pode ser usada na linha de comando e em arquivos de opção. Por exemplo, para se conectar ao servidor local via IPv6 usando a porta 3307, use este comando:
+A maioria das opções do cliente MySQL padrão, como `--host` e `--port`, pode ser usada na string de comando e em arquivos de opção. Por exemplo, para se conectar ao servidor local via IPv6 usando a porta 3307, use este comando:
 
 ```sql
 mysql_secure_installation --host=::1 --port=3307
 ```
 
-`mysql_secure_installation` suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql_secure_installation]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+`mysql_secure_installation` suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysql_secure_installation]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.10 Opções de mysql_secure_installation**
 
@@ -696,7 +696,7 @@ mysql_secure_installation --host=::1 --port=3307
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 </tr>
 <tr>
@@ -779,7 +779,7 @@ Exibir uma mensagem de ajuda e sair.
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -787,7 +787,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -795,7 +795,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, `mysql_secure_installation` normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for dada como `--defaults-group-suffix=_other`, `mysql_secure_installation` também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--host=host_name`, `-h host_name`
 
@@ -809,9 +809,9 @@ Conecte-se ao servidor MySQL no host fornecido.
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--password=password`, `-p password`
 
@@ -831,7 +831,7 @@ Para conexões TCP/IP, o número de porta a ser utilizado.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -843,7 +843,7 @@ O protocolo de transporte a ser usado para se conectar ao servidor. É útil qua
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -951,7 +951,7 @@ Se os arquivos SSL usados para uma instalação do MySQL expiraram, você pode u
 
 4. Reinicie o servidor.
 
-`mysql_ssl_rsa_setup` suporta as seguintes opções de linha de comando, que podem ser especificadas na linha de comando ou nos grupos `[mysql_ssl_rsa_setup]`, `[mysql_install_db]` e `[mysqld]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+`mysql_ssl_rsa_setup` suporta as seguintes opções de string de comando, que podem ser especificadas na string de comando ou nos grupos `[mysql_ssl_rsa_setup]`, `[mysql_install_db]` e `[mysqld]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.11 Opções de mysql_ssl_rsa_setup**
 
@@ -1153,9 +1153,9 @@ A menos que invocado com a opção `--upgrade-system-tables`, o `mysqld_upgrade`
 
 `mysqld_upgrade` salva o número da versão do MySQL em um arquivo chamado `mysql_upgrade_info` no diretório de dados. Isso é usado para verificar rapidamente se todas as tabelas foram verificadas para esta versão, para que o verificação de tabela possa ser ignorada. Para ignorar este arquivo e realizar a verificação independentemente, use a opção `--force`.
 
-`mysqld_upgrade` verifica as linhas da tabela do sistema `mysql.user` e, para qualquer linha com uma coluna `plugin` vazia, define essa coluna para `'mysql_native_password'` ou `'mysql_old_password'`, dependendo do formato de hash do valor da coluna `Password`.
+`mysqld_upgrade` verifica as strings da tabela do sistema `mysql.user` e, para qualquer string com uma coluna `plugin` vazia, define essa coluna para `'mysql_native_password'` ou `'mysql_old_password'`, dependendo do formato de hash do valor da coluna `Password`.
 
-O suporte para hashing de senha pré-4.1 e `mysql_old_password` foi removido, então `mysqld_upgrade` define valores vazios de `plugin` para `'mysql_native_password'` se as credenciais utilizarem um formato de hash compatível com esse plugin. As linhas com um hash de senha pré-4.1 devem ser atualizadas manualmente. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+O suporte para hashing de senha pré-4.1 e `mysql_old_password` foi removido, então `mysqld_upgrade` define valores vazios de `plugin` para `'mysql_native_password'` se as credenciais utilizarem um formato de hash compatível com esse plugin. As strings com um hash de senha pré-4.1 devem ser atualizadas manualmente. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
 
 `mysqld_upgrade` não atualiza os conteúdos das tabelas de fuso horário ou das tabelas de ajuda. Para obter instruções de atualização, consulte a Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”, e a Seção 5.1.14, “Suporte de Ajuda do Servidor”.
 
@@ -1171,7 +1171,7 @@ Para fazer uma atualização neste caso, remova ou renomeie primeiro o esquema e
 
 `mysqld_upgrade` verifica tabelas `InnoDB` particionadas que foram criadas usando o manipulador de particionamento genérico e tenta atualizá-las para particionamento nativo `InnoDB`. (Bug #76734, Bug #20727344) Você pode atualizar essas tabelas individualmente no cliente **mysql** usando a declaração SQL `ALTER TABLE ... UPGRADE PARTITIONING`.
 
-`mysqld_upgrade` suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql_upgrade]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+`mysqld_upgrade` suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysql_upgrade]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.12 Opções de mysql_upgrade**
 
@@ -1284,7 +1284,7 @@ Para fazer uma atualização neste caso, remova ou renomeie primeiro o esquema e
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 </tr>
 <tr>
@@ -1319,7 +1319,7 @@ Para fazer uma atualização neste caso, remova ou renomeie primeiro o esquema e
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 </tr>
 <tr>
@@ -1465,7 +1465,7 @@ Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -1473,7 +1473,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -1481,7 +1481,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, `mysqld_upgrade` normalmente lê os grupos `[client]` e `[mysql_upgrade]`. Se esta opção for dada como `--defaults-group-suffix=_other`, `mysqld_upgrade` também lê os grupos `[client_other]` e `[mysql_upgrade_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--force`
 
@@ -1501,7 +1501,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--max-allowed-packet=value`
 
@@ -1521,9 +1521,9 @@ O tamanho inicial do buffer para comunicação cliente/servidor. O valor padrão
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--password[=password]`, `-p[password]`
 
@@ -1531,7 +1531,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, `mysqld_upgrade` solicita uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que `mysqld_upgrade` não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -1539,7 +1539,7 @@ Para especificar explicitamente que não há senha e que `mysqld_upgrade` não d
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -1583,7 +1583,7 @@ Por padrão, `mysqld_upgrade` instala o esquema `sys` se ele não estiver instal
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 

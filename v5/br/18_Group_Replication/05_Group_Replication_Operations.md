@@ -77,7 +77,7 @@ Esse comportamento foi estendido para cobrir outros cenários de falha:
 
 Pode-se argumentar que a recuperação deve falhar em vez de mudar para outro doador, mas em grupos heterogêneos há a chance de outros membros compartilharem as transações conflitantes e outros não. Por esse motivo, em caso de erro, a recuperação seleciona outro doador do grupo.
 
-* *Outros erros* - Se qualquer um dos fios de recuperação falhar (os fios do receptor ou do aplicador falharem), então ocorre um erro e a recuperação passa para um novo doador.
+* *Outros erros* - Se qualquer um dos threads de recuperação falhar (os threads do receptor ou do aplicador falharem), então ocorre um erro e a recuperação passa para um novo doador.
 
 Nota
 

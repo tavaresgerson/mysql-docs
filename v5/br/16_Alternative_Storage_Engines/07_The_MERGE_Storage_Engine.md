@@ -61,7 +61,7 @@ Para remapeamento de uma tabela `MERGE` para uma coleção diferente de tabelas 
 
 * Use `ALTER TABLE tbl_name UNION=(...)` para alterar a lista de tabelas subjacentes.
 
-É também possível usar `ALTER TABLE ... UNION=()` (ou seja, com uma cláusula `UNION` vazia) para remover todas as tabelas subjacentes. No entanto, neste caso, a tabela está efetivamente vazia e as inserções falham porque não há uma tabela subjacente para receber novas linhas. Tal tabela pode ser útil como um modelo para criar novas tabelas `MERGE` com [`CREATE TABLE ... LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement").
+É também possível usar `ALTER TABLE ... UNION=()` (ou seja, com uma cláusula `UNION` vazia) para remover todas as tabelas subjacentes. No entanto, neste caso, a tabela está efetivamente vazia e as inserções falham porque não há uma tabela subjacente para receber novas strings. Tal tabela pode ser útil como um modelo para criar novas tabelas `MERGE` com [`CREATE TABLE ... LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement").
 
 As definições e índices subjacentes da tabela devem estar de acordo com a definição da tabela `MERGE`. A conformidade é verificada quando uma tabela que faz parte de uma tabela `MERGE` é aberta, e não quando a tabela `MERGE` é criada. Se qualquer tabela não atender às verificações de conformidade, a operação que desencadeou a abertura da tabela falha. Isso significa que as alterações nas definições das tabelas dentro de uma tabela `MERGE` podem causar uma falha quando a tabela `MERGE` é acessada. As verificações de conformidade aplicadas a cada tabela são:
 
@@ -140,9 +140,9 @@ Os problemas conhecidos com as tabelas `MERGE` são os seguintes:
 
 * As tabelas de crianças `MERGE` são bloqueadas através da tabela pai. Se o pai for uma tabela temporária, ela não é bloqueada, e, portanto, as tabelas de crianças também não são bloqueadas; isso significa que o uso paralelo das tabelas subjacentes `MyISAM` as corrompe.
 
-* Se você usar `ALTER TABLE` para alterar uma tabela `MERGE` para outro mecanismo de armazenamento, o mapeamento para as tabelas subjacentes é perdido. Em vez disso, as linhas das tabelas subjacentes `MyISAM` são copiadas para a tabela alterada, que então usa o mecanismo de armazenamento especificado.
+* Se você usar `ALTER TABLE` para alterar uma tabela `MERGE` para outro mecanismo de armazenamento, o mapeamento para as tabelas subjacentes é perdido. Em vez disso, as strings das tabelas subjacentes `MyISAM` são copiadas para a tabela alterada, que então usa o mecanismo de armazenamento especificado.
 
-* A opção de tabela `INSERT_METHOD` para uma tabela `MERGE` indica qual tabela subjacente `MyISAM` deve ser usada para inserções na tabela `MERGE`. No entanto, o uso da opção de tabela `AUTO_INCREMENT` para aquela tabela `MyISAM` não tem efeito para inserções na tabela `MERGE` até que pelo menos uma linha tenha sido inserida diretamente na tabela `MyISAM`.
+* A opção de tabela `INSERT_METHOD` para uma tabela `MERGE` indica qual tabela subjacente `MyISAM` deve ser usada para inserções na tabela `MERGE`. No entanto, o uso da opção de tabela `AUTO_INCREMENT` para aquela tabela `MyISAM` não tem efeito para inserções na tabela `MERGE` até que pelo menos uma string tenha sido inserida diretamente na tabela `MyISAM`.
 
 * Uma tabela `MERGE` não pode manter restrições de unicidade sobre toda a tabela. Quando você realiza uma `INSERT`, os dados vão para a primeira ou última tabela `MyISAM` (conforme determinado pela opção `INSERT_METHOD`). O MySQL garante que os valores de chave únicos permaneçam únicos dentro daquela tabela `MyISAM`, mas não sobre todas as tabelas subjacentes na coleção.
 
@@ -150,7 +150,7 @@ Os problemas conhecidos com as tabelas `MERGE` são os seguintes:
 
 + `REPLACE` pode detectar violações de chave única apenas na tabela subjacente para a qual ele vai escrever (que é determinada pela opção `INSERT_METHOD`). Isso difere das violações na própria tabela `MERGE`.
 
-+ Se o `REPLACE` detectar uma violação de chave única, ele altera apenas a linha correspondente na tabela subjacente para a qual está escrevendo; ou seja, a primeira ou a última tabela, conforme determinado pela opção `INSERT_METHOD`.
++ Se o `REPLACE` detectar uma violação de chave única, ele altera apenas a string correspondente na tabela subjacente para a qual está escrevendo; ou seja, a primeira ou a última tabela, conforme determinado pela opção `INSERT_METHOD`.
 
 Considerações semelhantes se aplicam para `INSERT ... ON DUPLICATE KEY UPDATE`(insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement").
 
@@ -168,9 +168,9 @@ Os resultados inesperados incluem a possibilidade de que a operação na tabela 
 
 * Se você encontrar uma mensagem de erro semelhante ao ERRO 1017 (HY000): Não é possível encontrar o arquivo: '*`tbl_name`*.MRG' (errno: 2), geralmente isso indica que algumas das tabelas subjacentes não utilizam o mecanismo de armazenamento `MyISAM`. Confirme que todas essas tabelas são `MyISAM`.
 
-* O número máximo de linhas em uma tabela `MERGE` é de 264 (~1,844E+19; o mesmo que para uma tabela `MyISAM`). Não é possível combinar várias tabelas `MyISAM` em uma única tabela `MERGE` que teria mais do que este número de linhas.
+* O número máximo de strings em uma tabela `MERGE` é de 264 (~1,844E+19; o mesmo que para uma tabela `MyISAM`). Não é possível combinar várias tabelas `MyISAM` em uma única tabela `MERGE` que teria mais do que este número de strings.
 
-* O uso de tabelas subjacentes `MyISAM` com formatos de linha diferentes, com uma tabela `MERGE` pai, atualmente é conhecido por falhar. Veja o Bug #32364.
+* O uso de tabelas subjacentes `MyISAM` com formatos de string diferentes, com uma tabela `MERGE` pai, atualmente é conhecido por falhar. Veja o Bug #32364.
 
 * Não é possível alterar a lista de união de uma tabela não temporária `MERGE` quando o [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") está em vigor. O seguinte *não* funciona:
 

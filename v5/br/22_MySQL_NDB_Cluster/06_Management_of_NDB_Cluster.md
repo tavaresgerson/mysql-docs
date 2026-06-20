@@ -16,17 +16,17 @@ Os contadores de estatísticas do NDB fornecem monitoramento aprimorado usando o
 
 `mysqld` expõe os contadores de estatísticas da API NDB como variáveis de status do sistema, que podem ser identificados a partir do prefixo comum a todos os seus nomes (`Ndb_api_`). Os valores dessas variáveis podem ser lidos no cliente **mysql** a partir da saída de uma declaração `SHOW STATUS`, ou consultando a tabela `SESSION_STATUS` ou a tabela `GLOBAL_STATUS` (no banco de dados `INFORMATION_SCHEMA`). Ao comparar os valores das variáveis de status antes e depois da execução de uma declaração SQL que atua nas tabelas `NDB`, você pode observar as ações realizadas no nível da API NDB que correspondem a essa declaração, o que pode ser benéfico para o monitoramento e o ajuste de desempenho do NDB Cluster.
 
-O MySQL Cluster Manager oferece uma interface avançada de linha de comando que simplifica muitas tarefas de gerenciamento do NDB Cluster que, de outra forma, seriam complexas, como iniciar, parar ou reiniciar um NDB Cluster com um grande número de nós. O cliente do MySQL Cluster Manager também suporta comandos para obter e definir os valores da maioria dos parâmetros de configuração do nó, bem como as opções e variáveis do servidor `mysqld` relacionadas ao NDB Cluster. Consulte o Manual do Usuário do MySQL Cluster Manager 1.4.8 para obter mais informações.
+O MySQL Cluster Manager oferece uma interface avançada de string de comando que simplifica muitas tarefas de gerenciamento do NDB Cluster que, de outra forma, seriam complexas, como iniciar, parar ou reiniciar um NDB Cluster com um grande número de nós. O cliente do MySQL Cluster Manager também suporta comandos para obter e definir os valores da maioria dos parâmetros de configuração do nó, bem como as opções e variáveis do servidor `mysqld` relacionadas ao NDB Cluster. Consulte o Manual do Usuário do MySQL Cluster Manager 1.4.8 para obter mais informações.
 
 ### 21.6.1 Comandos no Cliente de Gerenciamento do NDB Cluster
 
-Além do arquivo de configuração central, um clúster também pode ser controlado através de uma interface de linha de comando disponível através do cliente de gerenciamento **ndb\_mgm**. Esta é a principal interface administrativa de um clúster em execução.
+Além do arquivo de configuração central, um clúster também pode ser controlado através de uma interface de string de comando disponível através do cliente de gerenciamento **ndb\_mgm**. Esta é a principal interface administrativa de um clúster em execução.
 
 Os comandos para os registros de eventos estão descritos na Seção 21.6.3, "Relatórios de eventos gerados no NDB Cluster"; os comandos para criar backups e restaurá-los estão fornecidos na Seção 21.6.8, "Backup online do NDB Cluster".
 
 **Usando ndb\_mgm com o MySQL Cluster Manager.**
 
-O MySQL Cluster Manager controla o início e o término dos processos e acompanha seus estados internamente, portanto, não é necessário usar o **ndb\_mgm** para essas tarefas em um NDB Cluster que está sob controle do MySQL Cluster Manager. É recomendável *não* usar o cliente de linha de comando **ndb\_mgm** que vem com a distribuição do NDB Cluster para realizar operações que envolvam o início ou término de nós. Isso inclui, mas não está limitado aos comandos `START`, `STOP`, `RESTART` e `SHUTDOWN`. Para mais informações, consulte os comandos de processo do MySQL Cluster Manager.
+O MySQL Cluster Manager controla o início e o término dos processos e acompanha seus estados internamente, portanto, não é necessário usar o **ndb\_mgm** para essas tarefas em um NDB Cluster que está sob controle do MySQL Cluster Manager. É recomendável *não* usar o cliente de string de comando **ndb\_mgm** que vem com a distribuição do NDB Cluster para realizar operações que envolvam o início ou término de nós. Isso inclui, mas não está limitado aos comandos `START`, `STOP`, `RESTART` e `SHUTDOWN`. Para mais informações, consulte os comandos de processo do MySQL Cluster Manager.
 
 O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir, *`node_id`* denota ou o ID do nó de dados ou a palavra-chave `ALL`, que indica que o comando deve ser aplicado a todos os nós de dados do clúster.
 
@@ -316,7 +316,7 @@ Possíveis mensagens de inicialização com descrições estão fornecidas na li
 
 #### 21.6.2.3 Relatório do buffer de eventos no log do cluster
 
-`NDB` utiliza um ou mais buffers de memória para eventos recebidos dos nós de dados. Há um buffer para cada objeto `Ndb` que se submete a eventos de tabela, o que significa que geralmente há dois buffers para cada `mysqld` que realiza registro binário (um buffer para eventos de esquema e outro para eventos de dados). Cada buffer contém épocas compostas por eventos. Esses eventos consistem em tipos de operação (inserir, atualizar, excluir) e dados de linha (imagens antes e depois, além de metadados).
+`NDB` utiliza um ou mais buffers de memória para eventos recebidos dos nós de dados. Há um buffer para cada objeto `Ndb` que se submete a eventos de tabela, o que significa que geralmente há dois buffers para cada `mysqld` que realiza registro binário (um buffer para eventos de esquema e outro para eventos de dados). Cada buffer contém épocas compostas por eventos. Esses eventos consistem em tipos de operação (inserir, atualizar, excluir) e dados de string (imagens antes e depois, além de metadados).
 
 `NDB` gera mensagens no log do clúster para descrever o estado desses buffers. Embora esses relatórios apareçam no log do clúster, eles se referem a buffers em nós da API (ao contrário da maioria das outras mensagens do log do clúster, que são geradas por nós de dados). Essas mensagens e as estruturas de dados que as sustentam foram significativamente alteradas no NDB 7.5.1, com a adição do tipo de evento `NDB_LE_EventBufferStatus2` e da estrutura de dados `ndb_logevent_EventBufferStatus2` (veja o tipo The Ndb\_logevent\_type). O restante desta discussão foca na implementação baseada em `NDB_LE_EventBufferStatus2`.
 
@@ -524,7 +524,7 @@ O formato utilizado no log do cluster é o mostrado aqui:
 2007-01-26 19:59:22 [MgmSrvr] ALERT    -- Node 2: Node 7 Disconnected
 ```
 
-Cada linha no log do clúster contém as seguintes informações:
+Cada string no log do clúster contém as seguintes informações:
 
 * Um marcador de tempo no formato `YYYY-MM-DD HH:MM:SS`.
 
@@ -1108,7 +1108,7 @@ CREATE TABLE ips (
 )   ENGINE NDBCLUSTER;
 ```
 
-O uso da memória e as informações relacionadas mostradas mais adiante nesta seção foram geradas após inserir aproximadamente 50.000 linhas nesta tabela.
+O uso da memória e as informações relacionadas mostradas mais adiante nesta seção foram geradas após inserir aproximadamente 50.000 strings nesta tabela.
 
 Nota
 
@@ -1602,7 +1602,7 @@ O procedimento para criar um backup consiste nos seguintes passos:
 
 1. Inicie o cliente de gerenciamento (**ndb\_mgm**), se ainda não estiver em execução.
 
-2. Execute o comando **`START BACKUP`**. Isso produz várias linhas de saída indicando o progresso do backup, conforme mostrado aqui:
+2. Execute o comando **`START BACKUP`**. Isso produz várias strings de saída indicando o progresso do backup, conforme mostrado aqui:
 
    ```sql
    ndb_mgm> START BACKUP
@@ -1751,7 +1751,7 @@ Você também deve garantir que haja espaço suficiente na partição do disco r
 
 * Um backup nativo `NDB` produzido usando `START BACKUP` no cliente de gerenciamento `NDB`. Para importar um backup nativo, você deve usar o programa **ndb\_restore** que vem como parte do NDB Cluster. Consulte a Seção 21.5.24, “ndb\_restore — Restaurar um backup de NDB Cluster”, para mais informações sobre o uso deste programa.
 
-Ao importar dados de um arquivo SQL, muitas vezes não é necessário impor transações ou chaves estrangeiras, e desabilitar temporariamente esses recursos pode acelerar muito o processo de importação. Isso pode ser feito usando o cliente **mysql**, seja em uma sessão de cliente, ou invocando-o na linha de comando. Dentro de uma sessão do cliente **mysql**, você pode realizar a importação usando as seguintes instruções SQL:
+Ao importar dados de um arquivo SQL, muitas vezes não é necessário impor transações ou chaves estrangeiras, e desabilitar temporariamente esses recursos pode acelerar muito o processo de importação. Isso pode ser feito usando o cliente **mysql**, seja em uma sessão de cliente, ou invocando-o na string de comando. Dentro de uma sessão do cliente **mysql**, você pode realizar a importação usando as seguintes instruções SQL:
 
 ```sql
 SET ndb_use_transactions=0;
@@ -1765,7 +1765,7 @@ SET foreign_key_checks=1;
 
 Ao realizar a importação dessa forma, você *deve* habilitar novamente `ndb_use_transaction` e `foreign_key_checks` após a execução do comando `source` do cliente **mysql**. Caso contrário, é possível que declarações posteriores na mesma sessão também sejam executadas sem impor transações ou restrições de chave estrangeira, o que pode levar a inconsistências nos dados.
 
-Na linha de comandos do sistema, você pode importar o arquivo SQL enquanto desabilita a aplicação de transações e chaves estrangeiras usando o cliente `--init-command` do **mysql**, da seguinte forma:
+Na string de comandos do sistema, você pode importar o arquivo SQL enquanto desabilita a aplicação de transações e chaves estrangeiras usando o cliente `--init-command` do **mysql**, da seguinte forma:
 
 ```sql
 $> mysql --init-command='SET ndb_use_transactions=0; SET foreign_key_checks=0' < path/to/dumpfile
@@ -1789,11 +1789,11 @@ Para obter mais informações sobre a compilação do NDB Cluster a partir de fo
 
 Se o binário `mysqld` foi construído com suporte a Cluster, o mecanismo de armazenamento `NDBCLUSTER` ainda é desativado por padrão. Você pode usar uma das duas opções possíveis para ativar esse motor:
 
-* Use `--ndbcluster` como uma opção de inicialização na linha de comando ao iniciar `mysqld`.
+* Use `--ndbcluster` como uma opção de inicialização na string de comando ao iniciar `mysqld`.
 
-* Insira uma linha contendo `ndbcluster` na seção `[mysqld]` do seu arquivo `my.cnf`.
+* Insira uma string contendo `ndbcluster` na seção `[mysqld]` do seu arquivo `my.cnf`.
 
-Uma maneira fácil de verificar se seu servidor está rodando com o motor de armazenamento `NDBCLUSTER` habilitado é emitir a declaração `SHOW ENGINES` no Monitor MySQL (**mysql**). Você deve ver o valor `YES` como o valor `Support` na linha para `NDBCLUSTER`. Se você ver `NO` nesta linha ou se não houver uma linha desse tipo exibida na saída, você não está executando uma versão do MySQL habilitada para `NDB`. Se você ver `DISABLED` nesta linha, você precisa habilitá-la de uma das duas maneiras descritas acima.
+Uma maneira fácil de verificar se seu servidor está rodando com o motor de armazenamento `NDBCLUSTER` habilitado é emitir a declaração `SHOW ENGINES` no Monitor MySQL (**mysql**). Você deve ver o valor `YES` como o valor `Support` na string para `NDBCLUSTER`. Se você ver `NO` nesta string ou se não houver uma string desse tipo exibida na saída, você não está executando uma versão do MySQL habilitada para `NDB`. Se você ver `DISABLED` nesta string, você precisa habilitá-la de uma das duas maneiras descritas acima.
 
 Para ler os dados de configuração do clúster, o servidor MySQL requer, no mínimo, três informações:
 
@@ -1803,7 +1803,7 @@ Para ler os dados de configuração do clúster, o servidor MySQL requer, no mí
 
 Os IDs dos nós podem ser alocados dinamicamente, portanto, não é estritamente necessário especificá-los explicitamente.
 
-O parâmetro `mysqld` `ndb-connectstring` é usado para especificar a string de conexão, seja na linha de comando ao iniciar `mysqld` ou em `my.cnf`. A string de conexão contém o nome do host ou endereço IP onde o servidor de gerenciamento pode ser encontrado, bem como a porta TCP/IP que ele utiliza.
+O parâmetro `mysqld` `ndb-connectstring` é usado para especificar a string de conexão, seja na string de comando ao iniciar `mysqld` ou em `my.cnf`. A string de conexão contém o nome do host ou endereço IP onde o servidor de gerenciamento pode ser encontrado, bem como a porta TCP/IP que ele utiliza.
 
 No exemplo a seguir, `ndb_mgmd.mysql.com` é o host onde o servidor de gerenciamento reside, e o servidor de gerenciamento escuta mensagens de cluster na porta 1186:
 
@@ -1815,7 +1815,7 @@ Consulte a Seção 21.4.3.3, “Strings de Conexão de Agrupamento NDB”, para 
 
 Dada essa informação, o servidor MySQL pode atuar como um participante completo no clúster. (Frequentemente, referimos a um processo `mysqld` que funciona dessa maneira como um nó SQL.) Ele está totalmente ciente de todos os nós de dados do clúster, bem como de seu status, e estabelece conexões a todos os nós de dados. Neste caso, é capaz de usar qualquer nó de dados como um coordenador de transação e ler e atualizar dados do nó.
 
-Você pode ver no cliente **mysql** se um servidor MySQL está conectado ao clúster usando `SHOW PROCESSLIST`. Se o servidor MySQL estiver conectado ao clúster e você tiver o privilégio `PROCESS`, a primeira linha do resultado será a seguinte:
+Você pode ver no cliente **mysql** se um servidor MySQL está conectado ao clúster usando `SHOW PROCESSLIST`. Se o servidor MySQL estiver conectado ao clúster e você tiver o privilégio `PROCESS`, a primeira string do resultado será a seguinte:
 
 ```sql
 mysql> SHOW PROCESSLIST \G
@@ -2099,7 +2099,7 @@ O desempenho de um NDB Cluster que utiliza o armazenamento de Dados de Disco pod
 
 Os seguintes itens se aplicam aos requisitos de armazenamento de dados em disco:
 
-* Colunas de comprimento variável de tabelas de Dados de disco ocupam um espaço fixo. Para cada linha, isso é igual ao espaço necessário para armazenar o valor maior possível para essa coluna.
+* Colunas de comprimento variável de tabelas de Dados de disco ocupam um espaço fixo. Para cada string, isso é igual ao espaço necessário para armazenar o valor maior possível para essa coluna.
 
 Para informações gerais sobre o cálculo desses valores, consulte a Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”.
 
@@ -2111,7 +2111,7 @@ A declaração `OPTIMIZE TABLE` não tem efeito sobre as tabelas de Dados de dis
 
 * Em uma tabela de dados em disco, os primeiros 256 bytes de uma coluna `TEXT` ou `BLOB` são armazenados na memória; apenas o restante é armazenado em disco.
 
-* Cada linha de uma tabela de Dados de disco usa 8 bytes de memória para apontar para os dados armazenados no disco. Isso significa que, em alguns casos, a conversão de uma coluna em memória para o formato baseado em disco pode resultar na utilização de mais memória. Por exemplo, a conversão de uma coluna `CHAR(4)` de memória para o formato baseado em disco aumenta a quantidade de `DataMemory` usada por linha de 4 para 8 bytes.
+* Cada string de uma tabela de Dados de disco usa 8 bytes de memória para apontar para os dados armazenados no disco. Isso significa que, em alguns casos, a conversão de uma coluna em memória para o formato baseado em disco pode resultar na utilização de mais memória. Por exemplo, a conversão de uma coluna `CHAR(4)` de memória para o formato baseado em disco aumenta a quantidade de `DataMemory` usada por string de 4 para 8 bytes.
 
 Importante
 
@@ -2127,7 +2127,7 @@ Para `ALGORITHM=COPY`, o manipulador de NDB Cluster `mysqld` realiza as seguinte
 
 * Diz aos nós de dados que criem uma cópia vazia da tabela e que façam as alterações necessárias no esquema nesta cópia.
 
-* Lê as linhas da tabela original e as escreve na cópia.
+* Lê as strings da tabela original e as escreve na cópia.
 
 * Diz aos nós de dados que descartem a tabela original e, em seguida, renomeiem a cópia.
 
@@ -2135,7 +2135,7 @@ Para `ALGORITHM=COPY`, o manipulador de NDB Cluster `mysqld` realiza as seguinte
 
 As operações de DML não são permitidas simultaneamente com uma cópia `ALTER TABLE`.
 
-O `mysqld` em que a declaração de cópia `ALTER TABLE` é emitida assume uma restrição de metadados, mas isso ocorre apenas nesse `mysqld`. Outros clientes `NDB` podem modificar os dados da linha durante uma cópia `ALTER TABLE`, resultando em inconsistência.
+O `mysqld` em que a declaração de cópia `ALTER TABLE` é emitida assume uma restrição de metadados, mas isso ocorre apenas nesse `mysqld`. Outros clientes `NDB` podem modificar os dados da string durante uma cópia `ALTER TABLE`, resultando em inconsistência.
 
 Para `ALGORITHM=INPLACE`, o manipulador do cluster NDB informa aos nós de dados que devem realizar as alterações necessárias e não realiza nenhuma cópia de dados.
 
@@ -2382,7 +2382,7 @@ mysql> CALL mysql.mysql_cluster_move_privileges();
 Query OK, 0 rows affected (22.32 sec)
 ```
 
-Dependendo do número de linhas nas tabelas de privilégios, este procedimento pode levar algum tempo para ser executado. Se algumas das tabelas de privilégios estiverem vazias, você pode ver um ou mais avisos de "Nenhum dado - zero linhas obtidas, selecionadas ou processadas" quando o `mysql_cluster_move_privileges` retornar. Nesses casos, os avisos podem ser ignorados com segurança. Para verificar se a conversão foi bem-sucedida, você pode usar a função armazenada `mysql_cluster_privileges_are_distributed` como mostrado aqui:
+Dependendo do número de strings nas tabelas de privilégios, este procedimento pode levar algum tempo para ser executado. Se algumas das tabelas de privilégios estiverem vazias, você pode ver um ou mais avisos de "Nenhum dado - zero strings obtidas, selecionadas ou processadas" quando o `mysql_cluster_move_privileges` retornar. Nesses casos, os avisos podem ser ignorados com segurança. Para verificar se a conversão foi bem-sucedida, você pode usar a função armazenada `mysql_cluster_privileges_are_distributed` como mostrado aqui:
 
 ```sql
 mysql> SELECT CONCAT(
@@ -2709,7 +2709,7 @@ Para minimizar a confusão com as variáveis de sessão padrão do MySQL, refere
 
 *Contas de réplica (global)*
 
-Este conjunto de contagem está relacionado aos objetos `Ndb` usados pelo fio de replicação SQL, se houver. Se este `mysqld` não atuar como replica, ou não usar as tabelas `NDB`, então todos esses contagem são 0.
+Este conjunto de contagem está relacionado aos objetos `Ndb` usados pelo thread de replicação SQL, se houver. Se este `mysqld` não atuar como replica, ou não usar as tabelas `NDB`, então todos esses contagem são 0.
 
 Referimos às variáveis de status relacionadas como “`_slave`” (com uma sublinhadura no início).
 
@@ -2721,7 +2721,7 @@ Nos referimos às variáveis de status que correspondem aos contadores do injeto
 
 * Contadores de servidor (Global) (global)
 
-Este conjunto de contadores está relacionado a todos os objetos `Ndb` atualmente utilizados por este `mysqld`. Isso inclui todas as aplicações de cliente MySQL, o fio de replicação SQL (se houver), o injetor binlog e o fio de utilitário `NDB`.
+Este conjunto de contadores está relacionado a todos os objetos `Ndb` atualmente utilizados por este `mysqld`. Isso inclui todas as aplicações de cliente MySQL, o thread de replicação SQL (se houver), o injetor binlog e o thread de utilitário `NDB`.
 
 Referimos às variáveis de status que correspondem a esses contadores como “variáveis de nível global” ou “`mysqld`”.
 
@@ -2822,7 +2822,7 @@ Os nomes das variáveis de status podem ser facilmente associados aos nomes dos 
 
 **Tabela 21.61 Contadores de estatísticas da API do NDB**
 
-<table><col style="width: 30%"/><col style="width: 35%"/><col style="width: 40%"/><thead><tr> <th>Nome do caixa</th> <th>Descrição</th> <th>Variáveis de status (por tipo estatístico):<div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Sessão</p></li><li class="listitem"><p>Escravo (replica)</p></li><li class="listitem"><p>Injetor</p></li><li class="listitem"><p>Servidor</p></li></ul> </div> </th> </tr></thead><tbody><tr> <th><code>WaitExecCompleteCount</code></th> <td>Número de vezes que o fio foi bloqueado enquanto aguardava a execução de uma operação para ser concluída. Inclui todos<code>execute()</code>chamadas, bem como execuções implícitas para operações de blob e auto-incremento não visíveis para os clientes.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_exec_complete_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_exec_complete_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_exec_complete_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>WaitScanResultCount</code></th> <td>Número de vezes que o fio foi bloqueado enquanto aguardava um sinal baseado em varredura, como aguardar resultados adicionais ou para que a varredura seja concluída.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_scan_result_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_scan_result_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_scan_result_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>WaitMetaRequestCount</code></th> <td>Número de vezes que o fio foi bloqueado esperando por um sinal baseado em metadados; isso pode ocorrer quando está esperando uma operação de DDL ou para que uma época seja iniciada (ou encerrada).</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_meta_request_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_meta_request_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_meta_request_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>WaitNanosCount</code></th> <td>Tempo total (em nanosegundos) gasto esperando algum tipo de sinal dos nós de dados.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_nanos_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_nanos_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_nanos_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>BytesSentCount</code></th> <td>Quantidade de dados (em bytes) enviados para os nós de dados</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_bytes_sent_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_bytes_sent_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_bytes_sent_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>BytesRecvdCount</code></th> <td>Quantidade de dados (em bytes) recebidos dos nós de dados</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_bytes_received_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_bytes_received_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_bytes_received_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransStartCount</code></th> <td>Número de transações iniciadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_start_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_start_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_start_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransCommitCount</code></th> <td>Número de transações realizadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_commit_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_commit_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_commit_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransAbortCount</code></th> <td>Número de transações abortadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_abort_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_abort_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_abort_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransCloseCount</code></th> <td>Número de transações abortadas. (Esse valor pode ser maior que a soma<code>TransCommitCount</code>e<code>TransAbortCount</code>.)</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_close_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_close_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_close_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>PkOpCount</code></th> <td>Número de operações com base em ou que utilizam chaves primárias. Esse contagem inclui operações de tabela blob-part, operações de desbloqueio implícitas e operações de auto-incremento, além das operações de chave primária normalmente visíveis aos clientes do MySQL.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_pk_op_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_pk_op_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_pk_op_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>UkOpCount</code></th> <td>Número de operações baseadas em ou que utilizam chaves únicas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_uk_op_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_uk_op_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_uk_op_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TableScanCount</code></th> <td>Número de varreduras de tabela que foram iniciadas. Isso inclui varreduras de tabelas internas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_table_scan_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_table_scan_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_table_scan_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>RangeScanCount</code></th> <td>Número de varreduras de alcance que foram iniciadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_range_scan_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_range_scan_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_range_scan_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>PrunedScanCount</code></th> <td>Número de varreduras que foram reduzidas a uma única partição.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_pruned_scan_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_pruned_scan_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_pruned_scan_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>ScanBatchCount</code></th> <td>Número de lotes de linhas recebidos. (Um lote, neste contexto, é um conjunto de resultados de varredura de um único fragmento.)</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_scan_batch_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_scan_batch_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_scan_batch_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>ReadRowCount</code></th> <td>Número total de linhas que foram lidas. Inclui linhas lidas usando chave primária, chave única e operações de varredura.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_read_row_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_read_row_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_read_row_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransLocalReadRowCount</code></th> <td>Número de linhas lidas a partir do mesmo nó de dados no qual a transação estava sendo executada.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_local_read_row_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_local_read_row_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_local_read_row_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>DataEventsRecvdCount</code></th> <td>Número de eventos de mudança de linha recebidos.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_event_data_count_injector</code> </p></li><li class="listitem"><p> <code>Ndb_api_event_data_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>NondataEventsRecvdCount</code></th> <td>Número de eventos recebidos, exceto eventos de mudança de linha.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_event_nondata_count_injector</code> </p></li><li class="listitem"><p> <code>Ndb_api_event_nondata_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>EventBytesRecvdCount</code></th> <td>Número de bytes de eventos recebidos.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_event_bytes_count_injector</code> </p></li><li class="listitem"><p> <code>Ndb_api_event_bytes_count</code> </p></li></ul> </div> </td> </tr></tbody></table>
+<table><col style="width: 30%"/><col style="width: 35%"/><col style="width: 40%"/><thead><tr> <th>Nome do caixa</th> <th>Descrição</th> <th>Variáveis de status (por tipo estatístico):<div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Sessão</p></li><li class="listitem"><p>Escravo (replica)</p></li><li class="listitem"><p>Injetor</p></li><li class="listitem"><p>Servidor</p></li></ul> </div> </th> </tr></thead><tbody><tr> <th><code>WaitExecCompleteCount</code></th> <td>Número de vezes que o thread foi bloqueado enquanto aguardava a execução de uma operação para ser concluída. Inclui todos<code>execute()</code>chamadas, bem como execuções implícitas para operações de blob e auto-incremento não visíveis para os clientes.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_exec_complete_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_exec_complete_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_exec_complete_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>WaitScanResultCount</code></th> <td>Número de vezes que o thread foi bloqueado enquanto aguardava um sinal baseado em varredura, como aguardar resultados adicionais ou para que a varredura seja concluída.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_scan_result_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_scan_result_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_scan_result_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>WaitMetaRequestCount</code></th> <td>Número de vezes que o thread foi bloqueado esperando por um sinal baseado em metadados; isso pode ocorrer quando está esperando uma operação de DDL ou para que uma época seja iniciada (ou encerrada).</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_meta_request_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_meta_request_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_meta_request_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>WaitNanosCount</code></th> <td>Tempo total (em nanosegundos) gasto esperando algum tipo de sinal dos nós de dados.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_wait_nanos_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_wait_nanos_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_wait_nanos_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>BytesSentCount</code></th> <td>Quantidade de dados (em bytes) enviados para os nós de dados</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_bytes_sent_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_bytes_sent_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_bytes_sent_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>BytesRecvdCount</code></th> <td>Quantidade de dados (em bytes) recebidos dos nós de dados</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_bytes_received_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_bytes_received_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_bytes_received_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransStartCount</code></th> <td>Número de transações iniciadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_start_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_start_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_start_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransCommitCount</code></th> <td>Número de transações realizadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_commit_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_commit_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_commit_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransAbortCount</code></th> <td>Número de transações abortadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_abort_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_abort_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_abort_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransCloseCount</code></th> <td>Número de transações abortadas. (Esse valor pode ser maior que a soma<code>TransCommitCount</code>e<code>TransAbortCount</code>.)</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_close_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_close_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_close_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>PkOpCount</code></th> <td>Número de operações com base em ou que utilizam chaves primárias. Esse contagem inclui operações de tabela blob-part, operações de desbloqueio implícitas e operações de auto-incremento, além das operações de chave primária normalmente visíveis aos clientes do MySQL.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_pk_op_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_pk_op_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_pk_op_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>UkOpCount</code></th> <td>Número de operações baseadas em ou que utilizam chaves únicas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_uk_op_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_uk_op_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_uk_op_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TableScanCount</code></th> <td>Número de varreduras de tabela que foram iniciadas. Isso inclui varreduras de tabelas internas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_table_scan_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_table_scan_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_table_scan_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>RangeScanCount</code></th> <td>Número de varreduras de alcance que foram iniciadas.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_range_scan_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_range_scan_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_range_scan_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>PrunedScanCount</code></th> <td>Número de varreduras que foram reduzidas a uma única partição.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_pruned_scan_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_pruned_scan_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_pruned_scan_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>ScanBatchCount</code></th> <td>Número de lotes de strings recebidos. (Um lote, neste contexto, é um conjunto de resultados de varredura de um único fragmento.)</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_scan_batch_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_scan_batch_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_scan_batch_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>ReadRowCount</code></th> <td>Número total de strings que foram lidas. Inclui strings lidas usando chave primária, chave única e operações de varredura.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_read_row_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_read_row_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_read_row_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>TransLocalReadRowCount</code></th> <td>Número de strings lidas a partir do mesmo nó de dados no qual a transação estava sendo executada.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> <code>Ndb_api_trans_local_read_row_count_session</code> </p></li><li class="listitem"><p> <code>Ndb_api_trans_local_read_row_count_slave</code> </p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_trans_local_read_row_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>DataEventsRecvdCount</code></th> <td>Número de eventos de mudança de string recebidos.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_event_data_count_injector</code> </p></li><li class="listitem"><p> <code>Ndb_api_event_data_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>NondataEventsRecvdCount</code></th> <td>Número de eventos recebidos, exceto eventos de mudança de string.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_event_nondata_count_injector</code> </p></li><li class="listitem"><p> <code>Ndb_api_event_nondata_count</code> </p></li></ul> </div> </td> </tr><tr> <th><code>EventBytesRecvdCount</code></th> <td>Número de bytes de eventos recebidos.</td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p>[nenhum]</p></li><li class="listitem"><p> <code>Ndb_api_event_bytes_count_injector</code> </p></li><li class="listitem"><p> <code>Ndb_api_event_bytes_count</code> </p></li></ul> </div> </td> </tr></tbody></table>
 
 Para ver todas as contagens de transações comprometidas, ou seja, todas as variáveis de status de contagem `TransCommitCount`, você pode filtrar os resultados de `SHOW STATUS` para a subcadeia `trans_commit_count`, da seguinte forma:
 
@@ -2874,7 +2874,7 @@ mysql> CREATE TABLE t (c INT) ENGINE NDBCLUSTER;
 Query OK, 0 rows affected (0.85 sec)
 ```
 
-Agora você pode executar uma nova declaração `SHOW STATUS` e observar as mudanças, conforme mostrado aqui (com as linhas alteradas destacadas na saída):
+Agora você pode executar uma nova declaração `SHOW STATUS` e observar as mudanças, conforme mostrado aqui (com as strings alteradas destacadas na saída):
 
 ```sql
 mysql> SHOW STATUS LIKE 'ndb_api%session%';
@@ -2903,7 +2903,7 @@ mysql> SHOW STATUS LIKE 'ndb_api%session%';
 18 rows in set (0.00 sec)
 ```
 
-Da mesma forma, você pode ver as mudanças nos contadores de estatísticas da API NDB causadas pela inserção de uma linha no `t`: Insira a linha, em seguida, execute a mesma declaração `SHOW STATUS` usada no exemplo anterior, conforme mostrado aqui:
+Da mesma forma, você pode ver as mudanças nos contadores de estatísticas da API NDB causadas pela inserção de uma string no `t`: Insira a string, em seguida, execute a mesma declaração `SHOW STATUS` usada no exemplo anterior, conforme mostrado aqui:
 
 ```sql
 mysql> INSERT INTO t VALUES (100);
@@ -2951,7 +2951,7 @@ Em plataformas sem resolução de tempo (nanosegundos) suficiente, pequenas muda
 
 Este banco de dados contém vários quadros, cada um dos quais fornece um tipo diferente de dados sobre o estado do nó do NDB Cluster, o uso de recursos e as operações. Você pode encontrar informações mais detalhadas sobre cada um desses quadros nas próximas seções.
 
-`ndbinfo` está incluído com suporte ao NDB Cluster no MySQL Server; não são necessários passos de compilação ou configuração especiais; as tabelas são criadas pelo MySQL Server quando ele se conecta ao clúster. Você pode verificar que o suporte ao `ndbinfo` está ativo em uma instância específica do MySQL Server usando `SHOW PLUGINS`; se o suporte ao `ndbinfo` estiver habilitado, você deve ver uma linha contendo `ndbinfo` na coluna `Name` e `ACTIVE` na coluna `Status`, conforme mostrado aqui (texto destacado):
+`ndbinfo` está incluído com suporte ao NDB Cluster no MySQL Server; não são necessários passos de compilação ou configuração especiais; as tabelas são criadas pelo MySQL Server quando ele se conecta ao clúster. Você pode verificar que o suporte ao `ndbinfo` está ativo em uma instância específica do MySQL Server usando `SHOW PLUGINS`; se o suporte ao `ndbinfo` estiver habilitado, você deve ver uma string contendo `ndbinfo` na coluna `Name` e `ACTIVE` na coluna `Status`, conforme mostrado aqui (texto destacado):
 
 ```sql
 mysql> SHOW PLUGINS;
@@ -3008,7 +3008,7 @@ mysql> SHOW PLUGINS;
 46 rows in set (0.00 sec)
 ```
 
-Você também pode fazer isso verificando a saída de `SHOW ENGINES` para uma linha que inclua `ndbinfo` na coluna `Engine` e `YES` na coluna `Support`, conforme mostrado aqui (texto destacado):
+Você também pode fazer isso verificando a saída de `SHOW ENGINES` para uma string que inclua `ndbinfo` na coluna `Engine` e `YES` na coluna `Support`, conforme mostrado aqui (texto destacado):
 
 ```sql
 mysql> SHOW ENGINES\G
@@ -3302,7 +3302,7 @@ Número de nós de dados que veem este nó como árbitro
 
 ##### Notas
 
-Em operações normais, esta tabela deve ter apenas 1 linha por um período apreciável de tempo. Se tiver mais de 1 linha por mais de alguns momentos, então ou não todos os nós estão conectados ao árbitro, ou todos os nós estão conectados, mas não concordam no mesmo árbitro.
+Em operações normais, esta tabela deve ter apenas 1 string por um período apreciável de tempo. Se tiver mais de 1 string por mais de alguns momentos, então ou não todos os nós estão conectados ao árbitro, ou todos os nós estão conectados, mas não concordam no mesmo árbitro.
 
 A coluna `arbitrator` mostra o ID do nó do árbitro.
 
@@ -3344,15 +3344,15 @@ ID da instância do LDM que reporta
 
 * `tableid`
 
-ID da tabela que contém esta linha
+ID da tabela que contém esta string
 
 * `fragmentid`
 
-ID do fragmento que contém a linha bloqueada
+ID do fragmento que contém a string bloqueada
 
 * `rowid`
 
-ID da linha bloqueada
+ID da string bloqueada
 
 * `transid`
 
@@ -3368,7 +3368,7 @@ Estado de bloqueio
 
 * `detail`
 
-Se esta é a primeira retenção de bloqueio na fila de bloqueio de linha
+Se esta é a primeira retenção de bloqueio na fila de bloqueio de string
 
 * `op`
 
@@ -3392,11 +3392,11 @@ A coluna ID da tabela (`tableid`) é atribuída internamente e é a mesma que a 
 
 O ID da transação (coluna `transid`) é o identificador gerado pela API NDB para a transação que solicita ou mantém o bloqueio atual.
 
-A coluna `mode` mostra o modo de bloqueio; este é sempre um dos `S` (indicando um bloqueio compartilhado) ou `X` (um bloqueio exclusivo). Se uma transação mantém um bloqueio exclusivo em uma determinada linha, todos os outros bloqueios nessa linha têm o mesmo ID de transação.
+A coluna `mode` mostra o modo de bloqueio; este é sempre um dos `S` (indicando um bloqueio compartilhado) ou `X` (um bloqueio exclusivo). Se uma transação mantém um bloqueio exclusivo em uma determinada string, todos os outros bloqueios nessa string têm o mesmo ID de transação.
 
 A coluna `state` mostra o estado do bloqueio. Seu valor é sempre um dos `H` (mantendo) ou `W` (esperando). Um pedido de bloqueio em espera aguarda um bloqueio mantido por uma transação diferente.
 
-Quando a coluna `detail` contém um `*` (caractere estrela), isso significa que este bloqueio é o primeiro bloqueio de retenção na fila de bloqueio da linha afetada; caso contrário, esta coluna está vazia. Esta informação pode ser usada para ajudar a identificar as entradas únicas em uma lista de solicitações de bloqueio.
+Quando a coluna `detail` contém um `*` (caractere estrela), isso significa que este bloqueio é o primeiro bloqueio de retenção na fila de bloqueio da string afetada; caso contrário, esta coluna está vazia. Esta informação pode ser usada para ajudar a identificar as entradas únicas em uma lista de solicitações de bloqueio.
 
 A coluna `op` mostra o tipo de operação que solicita o bloqueio. Isso é sempre um dos valores `READ`, `INSERT`, `UPDATE`, `DELETE`, `SCAN` ou `REFRESH`.
 
@@ -3404,7 +3404,7 @@ A coluna `duration_millis` mostra o número de milissegundos em que este pedido 
 
 O ID do bloqueio (coluna `lockid`) é único para este nó e para a instância do bloco.
 
-O estado do bloqueio é mostrado na coluna `lock_state`; se este é `W`, o bloqueio está à espera de ser concedido, e a coluna `waiting_for` mostra o ID do bloqueio do objeto para o qual este pedido está à espera. Caso contrário, a coluna `waiting_for` está vazia. `waiting_for` pode se referir apenas a bloqueios na mesma linha, conforme identificado por `node_id`, `block_instance`, `tableid`, `fragmentid` e `rowid`.
+O estado do bloqueio é mostrado na coluna `lock_state`; se este é `W`, o bloqueio está à espera de ser concedido, e a coluna `waiting_for` mostra o ID do bloqueio do objeto para o qual este pedido está à espera. Caso contrário, a coluna `waiting_for` está vazia. `waiting_for` pode se referir apenas a bloqueios na mesma string, conforme identificado por `node_id`, `block_instance`, `tableid`, `fragmentid` e `rowid`.
 
 A tabela `cluster_locks` foi adicionada no NDB 7.5.3.
 
@@ -3534,7 +3534,7 @@ A coluna `tc_block_instance` fornece o número da instância do bloco `DBTC`. Vo
 
 #### 21.6.15.7 A tabela ndbinfo config_nodes
 
-A tabela `config_nodes` mostra os nós configurados em um arquivo de NDB Cluster `config.ini`. Para cada nó, a tabela exibe uma linha contendo o ID do nó, o tipo de nó (nó de gerenciamento, nó de dados ou nó de API) e o nome ou endereço IP do host no qual o nó está configurado para ser executado.
+A tabela `config_nodes` mostra os nós configurados em um arquivo de NDB Cluster `config.ini`. Para cada nó, a tabela exibe uma string contendo o ID do nó, o tipo de nó (nó de gerenciamento, nó de dados ou nó de API) e o nome ou endereço IP do host no qual o nó está configurado para ser executado.
 
 Esta tabela não indica se um nó está realmente em execução ou se está conectado atualmente ao clúster. Informações sobre os nós conectados a um NDB Cluster podem ser obtidas a partir das tabelas `nodes` e `processes`.
 
@@ -3616,7 +3616,7 @@ Embora se trate de uma tabela estática, seu conteúdo pode variar entre as inst
 
 #### 21.6.15.9 A tabela ndbinfo config\_values
 
-A tabela `config_values`, implementada no NDB 7.5.0, fornece informações sobre o estado atual dos valores dos parâmetros de configuração do nó. Cada linha da tabela corresponde ao valor atual de um parâmetro em um nó específico.
+A tabela `config_values`, implementada no NDB 7.5.0, fornece informações sobre o estado atual dos valores dos parâmetros de configuração do nó. Cada string da tabela corresponde ao valor atual de um parâmetro em um nó específico.
 
 * `node_id`
 
@@ -3852,7 +3852,7 @@ Vários contadores fornecem informações sobre sobrecarga do transportador e en
 
 #### 21.6.15.11 Tabela ndbinfo cpustat
 
-A tabela `cpustat` fornece estatísticas de CPU por fio coletadas a cada segundo, para cada fio que está em execução no kernel `NDB`.
+A tabela `cpustat` fornece estatísticas de CPU por thread coletadas a cada segundo, para cada thread que está em execução no kernel `NDB`.
 
 A tabela `cpustat` contém as seguintes colunas:
 
@@ -3862,7 +3862,7 @@ ID do nó onde o thread está sendo executado
 
 * `thr_no`
 
-ID do fio (específico para este nó)
+ID do thread (específico para este nó)
 
 * `OS_user`
 
@@ -3878,23 +3878,23 @@ Tempo de inatividade
 
 * `thread_exec`
 
-Tempo de execução do fio
+Tempo de execução do thread
 
 * `thread_sleeping`
 
-Tempo de sono do fio
+Tempo de sono do thread
 
 * `thread_spinning`
 
-Tempo de rotação do fio
+Tempo de rotação do thread
 
 * `thread_send`
 
-Tempo de envio do fio
+Tempo de envio do thread
 
 * `thread_buffer_full`
 
-Buffer de fio cheio em tempo integral
+Buffer de thread cheio em tempo integral
 
 * `elapsed_time`
 
@@ -3906,9 +3906,9 @@ Essa tabela foi adicionada no NDB 7.5.2.
 
 #### 21.6.15.12 Tabela ndbinfo cpustat_50ms
 
-A tabela `cpustat_50ms` fornece dados brutos de CPU por fio obtidos a cada 50 milissegundos para cada fio que está em execução no kernel `NDB`.
+A tabela `cpustat_50ms` fornece dados brutos de CPU por thread obtidos a cada 50 milissegundos para cada thread que está em execução no kernel `NDB`.
 
-Assim como `cpustat_1sec` e `cpustat_20sec`, esta tabela mostra 20 conjuntos de medição por fio, cada um referenciando um período da duração indicada. Assim, `cpsustat_50ms` fornece 1 segundo de histórico.
+Assim como `cpustat_1sec` e `cpustat_20sec`, esta tabela mostra 20 conjuntos de medição por thread, cada um referenciando um período da duração indicada. Assim, `cpsustat_50ms` fornece 1 segundo de histórico.
 
 A tabela `cpustat_50ms` contém as seguintes colunas:
 
@@ -3918,7 +3918,7 @@ ID do nó onde o thread está sendo executado
 
 * `thr_no`
 
-ID do fio (específico para este nó)
+ID do thread (específico para este nó)
 
 * `OS_user_time`
 
@@ -3934,23 +3934,23 @@ Tempo de inatividade
 
 * `exec_time`
 
-Tempo de execução do fio
+Tempo de execução do thread
 
 * `sleep_time`
 
-Tempo de sono do fio
+Tempo de sono do thread
 
 * `spin_time`
 
-Tempo de rotação do fio
+Tempo de rotação do thread
 
 * `send_time`
 
-Tempo de envio do fio
+Tempo de envio do thread
 
 * `buffer_full_time`
 
-Buffer de fio cheio em tempo integral
+Buffer de thread cheio em tempo integral
 
 * `elapsed_time`
 
@@ -3962,9 +3962,9 @@ Essa tabela foi adicionada no NDB 7.5.2.
 
 #### 21.6.15.13 Tabela ndbinfo cpustat_1sec
 
-A tabela `cpustat-1sec` fornece dados brutos de CPU por fio obtidos a cada segundo para cada fio que está em execução no kernel `NDB`.
+A tabela `cpustat-1sec` fornece dados brutos de CPU por thread obtidos a cada segundo para cada thread que está em execução no kernel `NDB`.
 
-Assim como `cpustat_50ms` e `cpustat_20sec`, esta tabela mostra 20 conjuntos de medição por fio, cada um referenciando um período da duração indicada. Assim, `cpsustat_1sec` fornece 20 segundos de histórico.
+Assim como `cpustat_50ms` e `cpustat_20sec`, esta tabela mostra 20 conjuntos de medição por thread, cada um referenciando um período da duração indicada. Assim, `cpsustat_1sec` fornece 20 segundos de histórico.
 
 A tabela `cpustat_1sec` contém as seguintes colunas:
 
@@ -3974,7 +3974,7 @@ ID do nó onde o thread está sendo executado
 
 * `thr_no`
 
-ID do fio (específico para este nó)
+ID do thread (específico para este nó)
 
 * `OS_user_time`
 
@@ -3990,23 +3990,23 @@ Tempo de inatividade
 
 * `exec_time`
 
-Tempo de execução do fio
+Tempo de execução do thread
 
 * `sleep_time`
 
-Tempo de sono do fio
+Tempo de sono do thread
 
 * `spin_time`
 
-Tempo de rotação do fio
+Tempo de rotação do thread
 
 * `send_time`
 
-Tempo de envio do fio
+Tempo de envio do thread
 
 * `buffer_full_time`
 
-Buffer de fio cheio em tempo integral
+Buffer de thread cheio em tempo integral
 
 * `elapsed_time`
 
@@ -4018,9 +4018,9 @@ Essa tabela foi adicionada no NDB 7.5.2.
 
 #### 21.6.15.14 Tabela ndbinfo cpustat\_20sec
 
-A tabela `cpustat_20sec` fornece dados brutos de CPU por fio obtidos a cada 20 segundos, para cada fio que está em execução no kernel `NDB`.
+A tabela `cpustat_20sec` fornece dados brutos de CPU por thread obtidos a cada 20 segundos, para cada thread que está em execução no kernel `NDB`.
 
-Assim como `cpustat_50ms` e `cpustat_1sec`, esta tabela mostra 20 conjuntos de medição por fio, cada um referenciando um período da duração indicada. Assim, `cpsustat_20sec` fornece 400 segundos de histórico.
+Assim como `cpustat_50ms` e `cpustat_1sec`, esta tabela mostra 20 conjuntos de medição por thread, cada um referenciando um período da duração indicada. Assim, `cpsustat_20sec` fornece 400 segundos de histórico.
 
 A tabela `cpustat_20sec` contém as seguintes colunas:
 
@@ -4030,7 +4030,7 @@ ID do nó onde o thread está sendo executado
 
 * `thr_no`
 
-ID do fio (específico para este nó)
+ID do thread (específico para este nó)
 
 * `OS_user_time`
 
@@ -4046,23 +4046,23 @@ Tempo de inatividade
 
 * `exec_time`
 
-Tempo de execução do fio
+Tempo de execução do thread
 
 * `sleep_time`
 
-Tempo de sono do fio
+Tempo de sono do thread
 
 * `spin_time`
 
-Tempo de rotação do fio
+Tempo de rotação do thread
 
 * `send_time`
 
-Tempo de envio do fio
+Tempo de envio do thread
 
 * `buffer_full_time`
 
-Buffer de fio cheio em tempo integral
+Buffer de thread cheio em tempo integral
 
 * `elapsed_time`
 
@@ -4136,7 +4136,7 @@ ID do nó deste nó
 
 * `thr_no`
 
-ID do fio deste fio LDM
+ID do thread deste thread LDM
 
 * `millis_ago`
 
@@ -4156,7 +4156,7 @@ Número de bytes escritos no log REDO durante este período
 
 * `target_disk_write_speed`
 
-Velocidade real de escrita de disco por fio LDM (dados básicos)
+Velocidade real de escrita de disco por thread LDM (dados básicos)
 
 #### 21.6.15.18 Tabela ndbinfo disk\_write\_speed\_aggregate
 
@@ -4170,7 +4170,7 @@ ID do nó deste nó
 
 * `thr_no`
 
-ID do fio deste fio LDM
+ID do thread deste thread LDM
 
 * `backup_lcp_speed_last_sec`
 
@@ -4319,7 +4319,7 @@ SELECT
 FROM ndbinfo.diskpagebuffer;
 ```
 
-O resultado dessa consulta deve ser semelhante ao que é mostrado aqui, com uma linha para cada nó de dados no clúster (neste exemplo, o clúster tem 4 nós de dados):
+O resultado dessa consulta deve ser semelhante ao que é mostrado aqui, com uma string para cada nó de dados no clúster (neste exemplo, o clúster tem 4 nós de dados):
 
 ```sql
 +---------+-----------+
@@ -4575,7 +4575,7 @@ Espaço utilizado por este log
 
 ##### Notas
 
-O NDB 7.6.6 disponibiliza as linhas da tabela `logbuffers` que refletem dois tipos adicionais de log ao realizar um backup do NDB. Uma dessas linhas tem o tipo de log `BACKUP-DATA`, que mostra a quantidade de buffer de dados usado durante o backup para copiar fragmentos para arquivos de backup. A outra linha tem o tipo de log `BACKUP-LOG`, que exibe a quantidade de buffer de log usado durante o backup para registrar as alterações feitas após o início do backup. Cada uma dessas linhas `log_type` é mostrada na tabela `logbuffers` para cada nó de dados no clúster. Essas linhas não estão presentes a menos que um backup do NDB esteja sendo realizado atualmente. (Bug #25822988)
+O NDB 7.6.6 disponibiliza as strings da tabela `logbuffers` que refletem dois tipos adicionais de log ao realizar um backup do NDB. Uma dessas strings tem o tipo de log `BACKUP-DATA`, que mostra a quantidade de buffer de dados usado durante o backup para copiar fragmentos para arquivos de backup. A outra string tem o tipo de log `BACKUP-LOG`, que exibe a quantidade de buffer de log usado durante o backup para registrar as alterações feitas após o início do backup. Cada uma dessas strings `log_type` é mostrada na tabela `logbuffers` para cada nó de dados no clúster. Essas strings não estão presentes a menos que um backup do NDB esteja sendo realizado atualmente. (Bug #25822988)
 
 #### 21.6.15.24 Tabela ndbinfo logspaces
 
@@ -4838,7 +4838,7 @@ Número de elementos de tamanho fixo
 
 * `fixed_elem_free_count`
 
-Número de linhas livres para elementos de tamanho fixo
+Número de strings livres para elementos de tamanho fixo
 
 * `var_elem_alloc_bytes`
 
@@ -4858,7 +4858,7 @@ Número de bytes alocados para índices de hash
 
 Tabela ##### memory\_per\_fragment: Notas
 
-A tabela `memory_per_fragment` contém uma linha para cada réplica de fragmento de tabela e cada réplica de fragmento de índice no sistema; isso significa, por exemplo, que, quando `NoOfReplicas=2`, normalmente existem duas réplicas de fragmento para cada fragmento. Isso é verdade enquanto todos os nós de dados estão em execução e conectados ao clúster; para um nó de dados que está faltando, não existem linhas para as réplicas de fragmento que ele hospeda.
+A tabela `memory_per_fragment` contém uma string para cada réplica de fragmento de tabela e cada réplica de fragmento de índice no sistema; isso significa, por exemplo, que, quando `NoOfReplicas=2`, normalmente existem duas réplicas de fragmento para cada fragmento. Isso é verdade enquanto todos os nós de dados estão em execução e conectados ao clúster; para um nó de dados que está faltando, não existem strings para as réplicas de fragmento que ele hospeda.
 
 As colunas da tabela `memory_per_fragment` podem ser agrupadas de acordo com sua função ou propósito da seguinte forma:
 
@@ -4876,13 +4876,13 @@ As colunas `parent_fq_name` e `fq_name` podem ser usadas para identificar índic
 
 As réplicas de fragmentos de tabela e índice alocam `DataMemory` em páginas de 32 KB. Essas páginas de memória são gerenciadas conforme listado aqui:
 
-*Páginas de tamanho fixo*: Elas armazenam as partes de tamanho fixo das linhas armazenadas em um fragmento dado. Cada linha tem uma parte de tamanho fixo.
+*Páginas de tamanho fixo*: Elas armazenam as partes de tamanho fixo das strings armazenadas em um fragmento dado. Cada string tem uma parte de tamanho fixo.
 
-*Páginas de tamanho variável*: Elas armazenam partes de tamanho variável para as linhas no fragmento. Cada linha que possui uma ou mais colunas dinâmicas de tamanho variável (ou ambas) tem uma parte de tamanho variável.
+*Páginas de tamanho variável*: Elas armazenam partes de tamanho variável para as strings no fragmento. Cada string que possui uma ou mais colunas dinâmicas de tamanho variável (ou ambas) tem uma parte de tamanho variável.
 
 *Páginas de índice de hash*: Elas são alocadas como subpáginas de 8 KB e armazenam a estrutura do índice de hash da chave primária.
 
-Cada linha de uma tabela `NDB` tem uma parte de tamanho fixo, composta por um cabeçalho de linha e uma ou mais colunas de tamanho fixo. A linha também pode conter uma ou mais referências de parte de tamanho variável, uma ou mais referências de parte de disco ou ambas. Cada linha também tem uma entrada de índice de hash de chave primária (correspondente à chave primária oculta que faz parte de cada tabela `NDB`).
+Cada string de uma tabela `NDB` tem uma parte de tamanho fixo, composta por um cabeçalho de string e uma ou mais colunas de tamanho fixo. A string também pode conter uma ou mais referências de parte de tamanho variável, uma ou mais referências de parte de disco ou ambas. Cada string também tem uma entrada de índice de hash de chave primária (correspondente à chave primária oculta que faz parte de cada tabela `NDB`).
 
 A partir do que foi dito acima, podemos ver que cada fragmento de tabela e cada fragmento de índice alocam juntos a quantidade de `DataMemory`, calculada conforme mostrado aqui:
 
@@ -4894,7 +4894,7 @@ DataMemory =
 
 Como `fixed_elem_alloc_bytes` e `var_elem_alloc_bytes` são sempre múltiplos de 32768 bytes, podemos determinar ainda que `number_of_fixed_pages = fixed_elem_alloc_bytes / 32768` e `number_of_var_pages = var_elem_alloc_bytes / 32768`. `hash_index_alloc_bytes` é sempre um múltiplo de 8192 bytes, então `number_of_hash_pages = hash_index_alloc_bytes / 8192`.
 
-Uma página de tamanho fixo possui um cabeçalho interno e um número de faixas de tamanho fixo, cada uma das quais pode conter a parte de tamanho fixo de uma linha. O tamanho da parte de tamanho fixo de uma determinada linha depende do esquema e é fornecido pela coluna `fixed_elem_size_bytes`; o número de faixas de tamanho fixo por página pode ser determinado calculando o número total de faixas e o número total de páginas, da seguinte forma:
+Uma página de tamanho fixo possui um cabeçalho interno e um número de faixas de tamanho fixo, cada uma das quais pode conter a parte de tamanho fixo de uma string. O tamanho da parte de tamanho fixo de uma determinada string depende do esquema e é fornecido pela coluna `fixed_elem_size_bytes`; o número de faixas de tamanho fixo por página pode ser determinado calculando o número total de faixas e o número total de páginas, da seguinte forma:
 
 ```sql
 fixed_slots = fixed_elem_count + fixed_elem_free_count
@@ -4904,9 +4904,9 @@ fixed_pages = fixed_elem_alloc_bytes / 32768
 slots_per_page = total_slots / total_pages
 ```
 
-`fixed_elem_count` é, na verdade, o número de linhas de um fragmento de tabela dado, já que cada linha possui 1 elemento fixo, `fixed_elem_free_count` é o número total de slots livres de tamanho fixo em todas as páginas alocadas. `fixed_elem_free_bytes` é igual a `fixed_elem_free_count * fixed_elem_size_bytes`.
+`fixed_elem_count` é, na verdade, o número de strings de um fragmento de tabela dado, já que cada string possui 1 elemento fixo, `fixed_elem_free_count` é o número total de slots livres de tamanho fixo em todas as páginas alocadas. `fixed_elem_free_bytes` é igual a `fixed_elem_free_count * fixed_elem_size_bytes`.
 
-Um fragmento pode ter qualquer número de páginas de tamanho fixo; quando a última linha em uma página de tamanho fixo é excluída, a página é liberada para o pool de páginas `DataMemory`. Páginas de tamanho fixo podem ser fragmentadas, com mais páginas alocadas do que o necessário pelo número de slots de tamanho fixo em uso. Você pode verificar se este é o caso, comparando as páginas necessárias com as páginas alocadas, que você pode calcular da seguinte forma:
+Um fragmento pode ter qualquer número de páginas de tamanho fixo; quando a última string em uma página de tamanho fixo é excluída, a página é liberada para o pool de páginas `DataMemory`. Páginas de tamanho fixo podem ser fragmentadas, com mais páginas alocadas do que o necessário pelo número de slots de tamanho fixo em uso. Você pode verificar se este é o caso, comparando as páginas necessárias com as páginas alocadas, que você pode calcular da seguinte forma:
 
 ```sql
 fixed_pages_required = 1 + (fixed_elem_count / slots_per_page)
@@ -4914,7 +4914,7 @@ fixed_pages_required = 1 + (fixed_elem_count / slots_per_page)
 fixed_page_utilization = fixed_pages_required / fixed_pages
 ```
 
-Uma página de tamanho variável tem um cabeçalho interno e utiliza o espaço restante para armazenar uma ou mais partes de linha de tamanho variável; o número de partes armazenadas depende do esquema e dos dados reais armazenados. Como nem todos os esquemas ou linhas têm uma parte de tamanho variável, `var_elem_count` pode ser menor que `fixed_elem_count`. O espaço livre total disponível em todas as páginas de tamanho variável no fragmento é mostrado pela coluna `var_elem_free_bytes`; porque esse espaço pode ser espalhado por várias páginas, ele não pode necessariamente ser usado para armazenar uma entrada de um tamanho específico. Cada página de tamanho variável é reorganizada conforme necessário para se ajustar ao tamanho variável das partes de linha à medida que são inseridas, atualizadas e excluídas; se uma parte de linha dada se torna muito grande para a página em que está, ela pode ser movida para uma página diferente.
+Uma página de tamanho variável tem um cabeçalho interno e utiliza o espaço restante para armazenar uma ou mais partes de string de tamanho variável; o número de partes armazenadas depende do esquema e dos dados reais armazenados. Como nem todos os esquemas ou strings têm uma parte de tamanho variável, `var_elem_count` pode ser menor que `fixed_elem_count`. O espaço livre total disponível em todas as páginas de tamanho variável no fragmento é mostrado pela coluna `var_elem_free_bytes`; porque esse espaço pode ser espalhado por várias páginas, ele não pode necessariamente ser usado para armazenar uma entrada de um tamanho específico. Cada página de tamanho variável é reorganizada conforme necessário para se ajustar ao tamanho variável das partes de string à medida que são inseridas, atualizadas e excluídas; se uma parte de string dada se torna muito grande para a página em que está, ela pode ser movida para uma página diferente.
 
 A utilização de páginas de tamanho variável pode ser calculada conforme mostrado aqui:
 
@@ -4926,7 +4926,7 @@ var_page_utilisation = var_page_used_bytes / var_elem_alloc_bytes
 avg_row_var_part_size = var_page_used_bytes / fixed_elem_count
 ```
 
-Podemos obter o tamanho médio da parte variável por linha da seguinte forma:
+Podemos obter o tamanho médio da parte variável por string da seguinte forma:
 
 ```sql
 avg_row_var_part_size = var_page_used_bytes / fixed_elem_count
@@ -4940,7 +4940,7 @@ Os índices únicos secundários são implementados internamente como tabelas in
 
 Essas tabelas são distribuídas e fragmentadas normalmente. Isso significa que suas réplicas de fragmento utilizam páginas de índice fixo, variável e hash, como qualquer outra tabela `NDB`.
 
-Os índices ordenados secundários são fragmentados e distribuídos da mesma maneira que a tabela base. Os fragmentos de índice ordenados são estruturas de T-tree que mantêm uma árvore equilibrada contendo referências de linha na ordem implícita pelas colunas indexadas. Como a árvore contém referências em vez de dados reais, o custo de armazenamento do T-tree não depende do tamanho ou número de colunas indexadas, mas é uma função do número de linhas. A árvore é construída usando estruturas de nó de tamanho fixo, cada uma das quais pode conter um número de referências de linha; o número de nós necessários depende do número de linhas na tabela, e da estrutura de árvore necessária para representar a ordenação. Na tabela `memory_per_fragment`, podemos ver que os índices ordenados alocam apenas páginas de tamanho fixo, portanto, como de costume, as colunas relevantes desta tabela estão listadas aqui:
+Os índices ordenados secundários são fragmentados e distribuídos da mesma maneira que a tabela base. Os fragmentos de índice ordenados são estruturas de T-tree que mantêm uma árvore equilibrada contendo referências de string na ordem implícita pelas colunas indexadas. Como a árvore contém referências em vez de dados reais, o custo de armazenamento do T-tree não depende do tamanho ou número de colunas indexadas, mas é uma função do número de strings. A árvore é construída usando estruturas de nó de tamanho fixo, cada uma das quais pode conter um número de referências de string; o número de nós necessários depende do número de strings na tabela, e da estrutura de árvore necessária para representar a ordenação. Na tabela `memory_per_fragment`, podemos ver que os índices ordenados alocam apenas páginas de tamanho fixo, portanto, como de costume, as colunas relevantes desta tabela estão listadas aqui:
 
 * `fixed_elem_alloc_bytes`: Isso é igual a 32768 vezes o número de páginas de tamanho fixo.
 
@@ -4952,7 +4952,7 @@ Os índices ordenados secundários são fragmentados e distribuídos da mesma ma
 
 * `fixed_elem_free_bytes`: Isso é igual a `fixed_elem_free_count * fixed_elem_size_bytes`.
 
-Se o espaço livre em uma página estiver fragmentado, a página será desfragmentada. `OPTIMIZE TABLE` pode ser usado para desfragmentar páginas de variável tamanho de uma tabela; isso move partes variáveis de tamanho de linha entre páginas, de modo que algumas páginas inteiras possam ser liberadas para reutilização.
+Se o espaço livre em uma página estiver fragmentado, a página será desfragmentada. `OPTIMIZE TABLE` pode ser usado para desfragmentar páginas de variável tamanho de uma tabela; isso move partes variáveis de tamanho de string entre páginas, de modo que algumas páginas inteiras possam ser liberadas para reutilização.
 
 Tabela ##### memória\_per\_fragment: Exemplos
 
@@ -4960,17 +4960,17 @@ Tabela ##### memória\_per\_fragment: Exemplos
 * Encontrar uma tabela e seus índices
 * Encontrar a memória alocada por elementos do esquema
 * Encontrar a memória alocada para uma tabela e todos os índices
-* Encontrar a memória alocada por linha
-* Encontrar a memória alocada por linha
+* Encontrar a memória alocada por string
+* Encontrar a memória alocada por string
 * Encontrar a memória alocada por tabela
 * Encontrar a memória em uso por cada elemento do esquema
-* Encontrar a memória média alocada por linha, por elemento
-* Encontrar a memória média alocada por linha
-* Encontrar a memória média alocada por linha para uma tabela
+* Encontrar a memória média alocada por string, por elemento
+* Encontrar a memória média alocada por string
+* Encontrar a memória média alocada por string para uma tabela
 * Encontrar a memória em uso por cada elemento do esquema
 * Encontrar a memória média em uso por cada elemento do esquema
-* Encontrar a memória média em uso por linha, por elemento
-* Encontrar a média total de memória em uso por linha
+* Encontrar a memória média em uso por string, por elemento
+* Encontrar a média total de memória em uso por string
 
 Para os exemplos a seguir, criamos uma tabela simples com três colunas inteiras, uma das quais tem uma chave primária, outra com um índice único e outra sem índices, além de uma coluna `VARCHAR` sem índices, conforme mostrado aqui:
 
@@ -4989,7 +4989,7 @@ mysql> CREATE TABLE t1 (
 Query OK, 0 rows affected (0.27 sec)
 ```
 
-Após a criação da tabela, inserimos 50.000 linhas contendo dados aleatórios; o método preciso de gerar e inserir essas linhas não faz diferença prática, e deixamos o método de realização como um exercício para o usuário.
+Após a criação da tabela, inserimos 50.000 strings contendo dados aleatórios; o método preciso de gerar e inserir essas strings não faz diferença prática, e deixamos o método de realização como um exercício para o usuário.
 
 ###### Obtenha informações gerais sobre fragmentos e uso de memória
 
@@ -5146,9 +5146,9 @@ mysql> SELECT
 1 row in set (0.12 sec)
 ```
 
-###### Encontrando a memória alocada por linha
+###### Encontrando a memória alocada por string
 
-A consulta a seguir mostra a memória total alocada por linha (em todas as réplicas):
+A consulta a seguir mostra a memória total alocada por string (em todas as réplicas):
 
 ```sql
 mysql> SELECT
@@ -5165,9 +5165,9 @@ mysql> SELECT
 1 row in set (0.12 sec)
 ```
 
-###### Encontrar a memória total em uso por linha
+###### Encontrar a memória total em uso por string
 
-Para obter a memória total em uso por linha (em todas as réplicas), precisamos do total de memória usada dividido pelo número de linhas, que é o `fixed_elem_count` para a tabela base, da seguinte forma:
+Para obter a memória total em uso por string (em todas as réplicas), precisamos do total de memória usada dividido pelo número de strings, que é o `fixed_elem_count` para a tabela base, da seguinte forma:
 
 ```sql
 mysql> SELECT
@@ -5215,9 +5215,9 @@ mysql> SELECT
 4 rows in set (0.11 sec)
 ```
 
-###### Encontrar a memória média alocada por linha, por elemento
+###### Encontrar a memória média alocada por string, por elemento
 
-Para obter a memória média alocada por linha de cada elemento do esquema (no total em todas as réplicas), usamos uma subconsulta para obter o número fixo de elementos da tabela base cada vez que se deseja obter uma média por linha, já que `fixed_elem_count` para os índices não é necessariamente o mesmo que para a tabela base, como mostrado aqui:
+Para obter a memória média alocada por string de cada elemento do esquema (no total em todas as réplicas), usamos uma subconsulta para obter o número fixo de elementos da tabela base cada vez que se deseja obter uma média por string, já que `fixed_elem_count` para os índices não é necessariamente o mesmo que para a tabela base, como mostrado aqui:
 
 ```sql
 mysql> SELECT
@@ -5264,9 +5264,9 @@ mysql> SELECT
 4 rows in set (0.70 sec)
 ```
 
-###### Encontrando a memória média alocada por linha
+###### Encontrando a memória média alocada por string
 
-Média de memória alocada por linha (total em todas as réplicas):
+Média de memória alocada por string (total em todas as réplicas):
 
 ```sql
 mysql> SELECT
@@ -5308,9 +5308,9 @@ mysql> SELECT
 1 row in set (0.71 sec)
 ```
 
-###### Encontrar a memória média alocada por linha para uma tabela
+###### Encontrar a memória média alocada por string para uma tabela
 
-Para obter o valor médio de memória alocada por linha para toda a tabela em todas as réplicas, podemos usar a consulta mostrada aqui:
+Para obter o valor médio de memória alocada por string para toda a tabela em todas as réplicas, podemos usar a consulta mostrada aqui:
 
 ```sql
 mysql> SELECT
@@ -5413,9 +5413,9 @@ mysql> SELECT
 4 rows in set (0.72 sec)
 ```
 
-###### Encontrar a memória média em uso por linha, por elemento
+###### Encontrar a memória média em uso por string, por elemento
 
-Essa consulta obtém a memória média em uso por linha, por elemento, em todas as réplicas:
+Essa consulta obtém a memória média em uso por string, por elemento, em todas as réplicas:
 
 ```sql
 mysql> SELECT
@@ -5460,9 +5460,9 @@ mysql> SELECT
 1 row in set (0.68 sec)
 ```
 
-###### Encontrar a média total de memória em uso por linha
+###### Encontrar a média total de memória em uso por string
 
-Essa consulta obtém a média total de memória em uso, por linha:
+Essa consulta obtém a média total de memória em uso, por string:
 
 ```sql
 mysql> SELECT
@@ -5487,7 +5487,7 @@ mysql> SELECT
 
 #### 21.6.15.28 Tabela de nós ndbinfo
 
-Esta tabela contém informações sobre o status dos nós de dados. Para cada nó de dados que está em execução no clúster, uma linha correspondente nesta tabela fornece o ID do nó, o status e o tempo de atividade. Para nós que estão começando, também mostra a fase atual de início.
+Esta tabela contém informações sobre o status dos nós de dados. Para cada nó de dados que está em execução no clúster, uma string correspondente nesta tabela fornece o ID do nó, o status e o tempo de atividade. Para nós que estão começando, também mostra a fase atual de início.
 
 A tabela `nodes` contém as seguintes colunas:
 
@@ -5538,7 +5538,7 @@ mysql> SELECT * FROM nodes;
 
 Portanto, para o caso que acabamos de mostrar, você deve reiniciar o nó 3 para completar o reinício contínuo do clúster.
 
-Os nós que estão parados não são contabilizados nesta tabela. Suponha que você tenha um NDB Cluster com 4 nós de dados (IDs de nó 1, 2, 3 e 4), e todos os nós estão funcionando normalmente, então esta tabela contém 4 linhas, 1 para cada nó de dados:
+Os nós que estão parados não são contabilizados nesta tabela. Suponha que você tenha um NDB Cluster com 4 nós de dados (IDs de nó 1, 2, 3 e 4), e todos os nós estão funcionando normalmente, então esta tabela contém 4 strings, 1 para cada nó de dados:
 
 ```sql
 mysql> USE ndbinfo;
@@ -5660,11 +5660,11 @@ Número total de varreduras realizadas neste fragmento de réplica
 
 * `tot_scan_rows_examined`
 
-Número total de linhas examinadas por varreduras
+Número total de strings examinadas por varreduras
 
 * `tot_scan_rows_returned`
 
-Número total de linhas devolvidas ao cliente
+Número total de strings devolvidas ao cliente
 
 * `tot_scan_bytes_returned`
 
@@ -5696,7 +5696,7 @@ Número de varreduras atualmente em fila para esta réplica do fragmento
 
 * `tot_commits`
 
-Número total de alterações de linha comprometidas nesta replica do fragmento
+Número total de alterações de string comprometidas nesta replica do fragmento
 
 ##### Notas
 
@@ -5754,15 +5754,15 @@ Como o `NDB` não utiliza acesso de chave única para índices ordenados, as con
 
 Nota
 
-Ao usar `tot_key_writes`, você deve ter em mente que uma operação de escrita neste contexto atualiza a linha se a chave existir e insere uma nova linha caso contrário. (Uma utilização desta é na implementação `NDB` da declaração SQL `REPLACE`.
+Ao usar `tot_key_writes`, você deve ter em mente que uma operação de escrita neste contexto atualiza a string se a chave existir e insere uma nova string caso contrário. (Uma utilização desta é na implementação `NDB` da declaração SQL `REPLACE`.
 
-A coluna `tot_key_refs` mostra o número de operações-chave recusadas pelo LDM. Geralmente, essa recusa ocorre devido a chaves duplicadas (inserções), erros de chave não encontrada (atualizações, exclusões e leituras), ou a operação foi rejeitada por um programa interpretado usado como um predicado na linha que corresponde à chave.
+A coluna `tot_key_refs` mostra o número de operações-chave recusadas pelo LDM. Geralmente, essa recusa ocorre devido a chaves duplicadas (inserções), erros de chave não encontrada (atualizações, exclusões e leituras), ou a operação foi rejeitada por um programa interpretado usado como um predicado na string que corresponde à chave.
 
 Os atributos `attrinfo` e `keyinfo` contados pelas colunas `tot_key_attrinfo_bytes` e `tot_key_keyinfo_bytes` são atributos de um sinal `LQHKEYREQ` (ver O Protocolo de Comunicação NDB) usado para iniciar uma operação chave pelo LDM. Um `attrinfo` contém tipicamente valores de campos tupla (inserções e atualizações) ou especificações de projeção (para leituras); `keyinfo` contém a chave primária ou única necessária para localizar uma tupla dada neste objeto do esquema.
 
-O valor exibido por `tot_frag_scans` inclui tanto varreduras completas (que examinam cada linha) quanto varreduras de subconjuntos. Índices únicos e as tabelas `BLOB` nunca são varridas, portanto, esse valor, assim como outros contagem relacionadas a varredura, é 0 para réplicas de fragmentos dessas.
+O valor exibido por `tot_frag_scans` inclui tanto varreduras completas (que examinam cada string) quanto varreduras de subconjuntos. Índices únicos e as tabelas `BLOB` nunca são varridas, portanto, esse valor, assim como outros contagem relacionadas a varredura, é 0 para réplicas de fragmentos dessas.
 
-`tot_scan_rows_examined` pode exibir menos que o número total de linhas em um fragmento de replica, uma vez que as consultas de índice ordenadas podem ser limitadas por limites. Além disso, um cliente pode optar por encerrar uma consulta antes que todas as linhas que podem corresponder tenham sido examinadas; isso ocorre quando se usa uma declaração SQL que contém uma cláusula `LIMIT` ou `EXISTS`, por exemplo. `tot_scan_rows_returned` é sempre igual a ou menor que `tot_scan_rows_examined`.
+`tot_scan_rows_examined` pode exibir menos que o número total de strings em um fragmento de replica, uma vez que as consultas de índice ordenadas podem ser limitadas por limites. Além disso, um cliente pode optar por encerrar uma consulta antes que todas as strings que podem corresponder tenham sido examinadas; isso ocorre quando se usa uma declaração SQL que contém uma cláusula `LIMIT` ou `EXISTS`, por exemplo. `tot_scan_rows_returned` é sempre igual a ou menor que `tot_scan_rows_examined`.
 
 `tot_scan_bytes_returned` inclui, no caso de junções empurradas, projeções devolvidas ao bloco `DBSPJ` no kernel NDB.
 
@@ -5770,7 +5770,7 @@ O valor exibido por `tot_frag_scans` inclui tanto varreduras completas (que exam
 
 #### 21.6.15.30 Os processos ndbinfo processam tabela
 
-Esta tabela contém informações sobre os processos dos nós do NDB Cluster; cada nó é representado pela linha da tabela. Apenas os nós que estão conectados ao cluster são mostrados nesta tabela. Você pode obter informações sobre nós que estão configurados, mas não conectados ao cluster, nas tabelas `nodes` e `config_nodes`.
+Esta tabela contém informações sobre os processos dos nós do NDB Cluster; cada nó é representado pela string da tabela. Apenas os nós que estão conectados ao cluster são mostrados nesta tabela. Você pode obter informações sobre nós que estão configurados, mas não conectados ao cluster, nas tabelas `nodes` e `config_nodes`.
 
 A tabela `processes` contém as seguintes colunas:
 
@@ -6090,15 +6090,15 @@ ID da instância do LDM que reporta
 
 * `tableid`
 
-ID da tabela que contém esta linha
+ID da tabela que contém esta string
 
 * `fragmentid`
 
-ID do fragmento que contém a linha bloqueada
+ID do fragmento que contém a string bloqueada
 
 * `rowid`
 
-ID da linha bloqueada
+ID da string bloqueada
 
 * `transid`
 
@@ -6114,7 +6114,7 @@ Estado de bloqueio
 
 * `detail`
 
-Se esta é a primeira retenção de bloqueio na fila de bloqueio de linha
+Se esta é a primeira retenção de bloqueio na fila de bloqueio de string
 
 * `op`
 
@@ -6134,7 +6134,7 @@ Esperando bloqueio com este ID
 
 ##### Notas
 
-A coluna `mysql_connection_id` mostra a identificação da conexão ou do fio MySQL conforme mostrado por `SHOW PROCESSLIST`.
+A coluna `mysql_connection_id` mostra a identificação da conexão ou do thread MySQL conforme mostrado por `SHOW PROCESSLIST`.
 
 `block_instance` refere-se a uma instância de um bloco do kernel. Junto com o nome do bloco, este número pode ser usado para procurar uma instância específica na tabela `threadblocks`.
 
@@ -6142,11 +6142,11 @@ O `tableid` é atribuído à tabela pelo `NDB`; o mesmo ID é usado para esta ta
 
 O ID de transação mostrado na coluna `transid` é o identificador gerado pela API NDB para a transação que solicita ou mantém o bloqueio atual.
 
-A coluna `mode` mostra o modo de bloqueio, que é sempre um dos `S` (bloqueio compartilhado) ou `X` (bloqueio exclusivo). Se uma transação tiver um bloqueio exclusivo em uma determinada linha, todos os outros bloqueios nessa linha terão o mesmo ID de transação.
+A coluna `mode` mostra o modo de bloqueio, que é sempre um dos `S` (bloqueio compartilhado) ou `X` (bloqueio exclusivo). Se uma transação tiver um bloqueio exclusivo em uma determinada string, todos os outros bloqueios nessa string terão o mesmo ID de transação.
 
 A coluna `state` mostra o estado do bloqueio. Seu valor é sempre um dos `H` (mantendo) ou `W` (esperando). Um pedido de bloqueio em espera aguarda um bloqueio mantido por uma transação diferente.
 
-A coluna `detail` indica se este bloqueio é o primeiro bloqueio de retenção na fila de bloqueio da linha afetada, no caso, ela contém um `*` (caractere estrela); caso contrário, essa coluna está vazia. Essa informação pode ser usada para ajudar a identificar as entradas únicas em uma lista de solicitações de bloqueio.
+A coluna `detail` indica se este bloqueio é o primeiro bloqueio de retenção na fila de bloqueio da string afetada, no caso, ela contém um `*` (caractere estrela); caso contrário, essa coluna está vazia. Essa informação pode ser usada para ajudar a identificar as entradas únicas em uma lista de solicitações de bloqueio.
 
 A coluna `op` mostra o tipo de operação que solicita o bloqueio. Isso é sempre um dos valores `READ`, `INSERT`, `UPDATE`, `DELETE`, `SCAN` ou `REFRESH`.
 
@@ -6154,7 +6154,7 @@ A coluna `duration_millis` mostra o número de milissegundos em que este pedido 
 
 O ID do bloqueio (coluna `lockid`) é único para este nó e para a instância do bloco.
 
-Se o valor da coluna `lock_state` for `W`, este bloqueio está à espera de ser concedido, e a coluna `waiting_for` mostra o ID do bloqueio do objeto para o qual este pedido está à espera. Caso contrário, `waiting_for` está vazio. `waiting_for` pode se referir apenas a bloqueios na mesma linha (identificados por `node_id`, `block_instance`, `tableid`, `fragmentid` e `rowid`).
+Se o valor da coluna `lock_state` for `W`, este bloqueio está à espera de ser concedido, e a coluna `waiting_for` mostra o ID do bloqueio do objeto para o qual este pedido está à espera. Caso contrário, `waiting_for` está vazio. `waiting_for` pode se referir apenas a bloqueios na mesma string (identificados por `node_id`, `block_instance`, `tableid`, `fragmentid` e `rowid`).
 
 A tabela `server_locks` foi adicionada no NDB 7.5.3.
 
@@ -6440,11 +6440,11 @@ Se a tabela está registrada (1) ou não (0)
 
 * `row_contains_gci`
 
-Se as linhas da tabela contêm GCI (1 verdadeiro, 0 falso)
+Se as strings da tabela contêm GCI (1 verdadeiro, 0 falso)
 
 * `row_contains_checksum`
 
-Se as linhas da tabela contêm checksum (1 verdadeiro, 0 falso)
+Se as strings da tabela contêm checksum (1 verdadeiro, 0 falso)
 
 * `read_backup`
 
@@ -6552,7 +6552,7 @@ A tabela `table_replicas` foi adicionada no NDB 7.5.4.
 
 A tabela `tc_time_track_stats` fornece informações de rastreamento de tempo obtidas das instâncias do bloco (TC) `DBTC` nos nós de dados, através do acesso aos nós da API `NDB`. Cada instância de TC rastrea latências para um conjunto de atividades que ela realiza em nome dos nós da API ou outros nós de dados; essas atividades incluem transações, erros de transação, leituras de chave, escritas de chave, operações de índice único, operações de chave falhadas de qualquer tipo, varreduras, varreduras falhadas, varreduras de fragmento e varreduras de fragmento falhadas.
 
-Um conjunto de contadores é mantido para cada atividade, cada contador cobrindo uma faixa de latências de menos ou igual a um limite superior. Ao término de cada atividade, sua latência é determinada e o contador apropriado é incrementado. `tc_time_track_stats` apresenta essas informações como linhas, com uma linha para cada instância dos seguintes itens:
+Um conjunto de contadores é mantido para cada atividade, cada contador cobrindo uma faixa de latências de menos ou igual a um limite superior. Ao término de cada atividade, sua latência é determinada e o contador apropriado é incrementado. `tc_time_track_stats` apresenta essas informações como strings, com uma string para cada instância dos seguintes itens:
 
 * Nó de dados, usando seu ID
 * Instância de bloco TC
@@ -6561,7 +6561,7 @@ Um conjunto de contadores é mantido para cada atividade, cada contador cobrindo
 
 ##### Notas
 
-Cada linha contém um valor para cada tipo de atividade. Esse é o número de vezes que essa atividade ocorreu com uma latência dentro do intervalo especificado pela linha (ou seja, onde a latência não excede o limite superior).
+Cada string contém um valor para cada tipo de atividade. Esse é o número de vezes que essa atividade ocorreu com uma latência dentro do intervalo especificado pela string (ou seja, onde a latência não excede o limite superior).
 
 A tabela `tc_time_track_stats` contém as seguintes colunas:
 
@@ -6639,7 +6639,7 @@ ID do nó
 
 * `thr_no`
 
-ID do fio
+ID do thread
 
 * `block_name`
 
@@ -6667,15 +6667,15 @@ ID do nó onde o thread está sendo executado
 
 * `thr_no`
 
-ID do fio (específico para este nó)
+ID do thread (específico para este nó)
 
 * `thread_name`
 
-Nome do fio (tipo de fio)
+Nome do thread (tipo de thread)
 
 * `thread_description`
 
-Descrição do fio (tipo)
+Descrição do thread (tipo)
 
 ##### Notas
 
@@ -6712,7 +6712,7 @@ ID do nó
 
 * `thr_no`
 
-ID do fio
+ID do thread
 
 * `thr_nm`
 
@@ -6748,7 +6748,7 @@ Número de sinais de prioridade B enviados ao nó remoto
 
 * `os_tid`
 
-ID do fio do sistema operacional
+ID do thread do sistema operacional
 
 * `os_now`
 
@@ -6838,9 +6838,9 @@ Número de vezes que esse transportador entrou no estado de redução de velocid
 
 ##### Notas
 
-Para cada nó de dados em execução no clúster, a tabela `transporters` exibe uma linha que mostra o status de cada uma das conexões desse nó com todos os nós no clúster, *incluindo o próprio*. Essas informações são exibidas na coluna *status* da tabela, que pode ter qualquer um dos seguintes valores: `CONNECTING`, `CONNECTED`, `DISCONNECTING` ou `DISCONNECTED`.
+Para cada nó de dados em execução no clúster, a tabela `transporters` exibe uma string que mostra o status de cada uma das conexões desse nó com todos os nós no clúster, *incluindo o próprio*. Essas informações são exibidas na coluna *status* da tabela, que pode ter qualquer um dos seguintes valores: `CONNECTING`, `CONNECTED`, `DISCONNECTING` ou `DISCONNECTED`.
 
-As conexões aos nós de API e de gerenciamento que estão configurados, mas atualmente não conectados ao clúster, são exibidas com o status `DISCONNECTED`. As linhas onde o `node_id` é o de um nó de dados que atualmente não está conectado não são exibidas nesta tabela. (Essa é uma omissão semelhante de nós desconectados na tabela `ndbinfo.nodes`.
+As conexões aos nós de API e de gerenciamento que estão configurados, mas atualmente não conectados ao clúster, são exibidas com o status `DISCONNECTED`. As strings onde o `node_id` é o de um nó de dados que atualmente não está conectado não são exibidas nesta tabela. (Essa é uma omissão semelhante de nós desconectados na tabela `ndbinfo.nodes`.
 
 O `remote_address` é o nome de host ou endereço do nó cuja ID é mostrado na coluna `remote_node_id`. Os `bytes_sent` deste nó e `bytes_received` por este nó são, respectivamente, os números de bytes enviados e recebidos pelo nó usando esta conexão desde que foi estabelecida. Para nós cujo status é `CONNECTING` ou `DISCONNECTED`, estas colunas sempre exibem `0`.
 
@@ -6863,7 +6863,7 @@ id=20   @10.100.10.20  (5.7.44-ndb-7.6.36)
 id=21   @10.100.10.21  (5.7.44-ndb-7.6.36)
 ```
 
-Há 10 linhas na tabela `transporters` — 5 para o primeiro nó de dados e 5 para o segundo — assumindo que todos os nós de dados estão em execução, conforme mostrado aqui:
+Há 10 strings na tabela `transporters` — 5 para o primeiro nó de dados e 5 para o segundo — assumindo que todos os nós de dados estão em execução, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT node_id, remote_node_id, status
@@ -6885,7 +6885,7 @@ mysql> SELECT node_id, remote_node_id, status
 10 rows in set (0.04 sec)
 ```
 
-Se você desligar um dos nós de dados neste clúster usando o comando `2 STOP` no cliente **ndb\_mgm**, então repita a consulta anterior (novamente usando o cliente **mysql**), esta tabela agora mostra apenas 5 linhas — 1 linha para cada conexão do nó de gerenciamento restante para outro nó, incluindo tanto a si mesmo quanto o nó de dados que está atualmente fora de linha — e exibe `CONNECTING` para o status de cada conexão restante ao nó de dados que está atualmente fora de linha, conforme mostrado aqui:
+Se você desligar um dos nós de dados neste clúster usando o comando `2 STOP` no cliente **ndb\_mgm**, então repita a consulta anterior (novamente usando o cliente **mysql**), esta tabela agora mostra apenas 5 strings — 1 string para cada conexão do nó de gerenciamento restante para outro nó, incluindo tanto a si mesmo quanto o nó de dados que está atualmente fora de string — e exibe `CONNECTING` para o status de cada conexão restante ao nó de dados que está atualmente fora de string, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT node_id, remote_node_id, status
@@ -6914,7 +6914,7 @@ As causas comuns de lentidão ou sobrecarga do buffer de envio incluem as seguin
 
 * Ter um nó de dados (ndbd ou ndbmtd) no mesmo host que um nó SQL que está envolvido em registro binário
 
-* Grande número de linhas por transação ou lote de transação * Problemas de configuração, como insuficiente `SendBufferMemory`
+* Grande número de strings por transação ou lote de transação * Problemas de configuração, como insuficiente `SendBufferMemory`
 
 Problemas de hardware, como RAM insuficiente ou conectividade de rede ruim
 
@@ -7385,7 +7385,7 @@ Essa declaração mostra, de uma só vez, se o servidor MySQL está atuando como
   +----------------------------------------------+-------------------------------+
   ```
 
-Se o servidor MySQL foi construído com suporte a clustering, mas não está conectado a um cluster, todas as linhas no resultado desta declaração contêm um zero ou uma string vazia.
+Se o servidor MySQL foi construído com suporte a clustering, mas não está conectado a um cluster, todas as strings no resultado desta declaração contêm um zero ou uma string vazia.
 
 Veja também a Seção 13.7.5.35, “Declaração de Status”.
 
@@ -7633,7 +7633,7 @@ mysql    10512  0.2  2.5  58528 26636 pts/3    Sl   11:53   0:00 \
 jon      10579  0.0  0.0   2736   688 pts/0    S+   11:54   0:00 grep mysql
 ```
 
-Se o processo `mysqld` estiver rodando como qualquer outro usuário que não seja `mysql`, você deve imediatamente desligá-lo e reiniciá-lo como o usuário `mysql`. Se esse usuário não existir no sistema, a conta de usuário `mysql` deve ser criada, e esse usuário deve fazer parte do grupo de usuários `mysql`; nesse caso, você também deve garantir que o diretório de dados do MySQL neste sistema (conforme definido usando a opção `--datadir` para `mysqld`) seja de propriedade do usuário `mysql`, e que o arquivo `my.cnf` do nó SQL `user=mysql` inclua `[mysqld]` na seção. Alternativamente, você pode iniciar o processo do servidor MySQL com `--user=mysql` na linha de comando, mas é preferível usar a opção `my.cnf`, pois você pode esquecer de usar a opção de linha de comando e, assim, ter `mysqld` rodando como outro usuário sem intenção. O script de inicialização `mysqld_safe` força o MySQL a rodar como o usuário `mysql`.
+Se o processo `mysqld` estiver rodando como qualquer outro usuário que não seja `mysql`, você deve imediatamente desligá-lo e reiniciá-lo como o usuário `mysql`. Se esse usuário não existir no sistema, a conta de usuário `mysql` deve ser criada, e esse usuário deve fazer parte do grupo de usuários `mysql`; nesse caso, você também deve garantir que o diretório de dados do MySQL neste sistema (conforme definido usando a opção `--datadir` para `mysqld`) seja de propriedade do usuário `mysql`, e que o arquivo `my.cnf` do nó SQL `user=mysql` inclua `[mysqld]` na seção. Alternativamente, você pode iniciar o processo do servidor MySQL com `--user=mysql` na string de comando, mas é preferível usar a opção `my.cnf`, pois você pode esquecer de usar a opção de string de comando e, assim, ter `mysqld` rodando como outro usuário sem intenção. O script de inicialização `mysqld_safe` força o MySQL a rodar como o usuário `mysql`.
 
 Importante
 

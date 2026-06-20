@@ -18,7 +18,7 @@ Uma tabela `FEDERATED` é composta por dois elementos:
 
 * Um * servidor local * com uma tabela de banco de dados, onde a definição da tabela corresponde à tabela correspondente no servidor remoto. A definição da tabela é armazenada dentro do arquivo `.frm`. No entanto, não há um arquivo de dados no servidor local. Em vez disso, a definição da tabela inclui uma string de conexão que aponta para a tabela remota.
 
-Ao executar consultas e declarações em uma tabela `FEDERATED` no servidor local, as operações que normalmente inseririam, atualizassem ou excluiriam informações de um arquivo de dados local são, em vez disso, enviadas ao servidor remoto para execução, onde elas atualizam o arquivo de dados no servidor remoto ou retornam linhas correspondentes do servidor remoto.
+Ao executar consultas e declarações em uma tabela `FEDERATED` no servidor local, as operações que normalmente inseririam, atualizassem ou excluiriam informações de um arquivo de dados local são, em vez disso, enviadas ao servidor remoto para execução, onde elas atualizam o arquivo de dados no servidor remoto ou retornam strings correspondentes do servidor remoto.
 
 A estrutura básica de uma configuração de tabela `FEDERATED` é mostrada na Figura 15.2, “Estrutura da tabela FEDERATED”.
 
@@ -32,11 +32,11 @@ Quando um cliente emite uma declaração SQL que se refere a uma tabela `FEDERAT
 
 2. A declaração é enviada ao servidor remoto usando a API do cliente MySQL.
 
-3. O servidor remoto processa a declaração e o servidor local recupera qualquer resultado que a declaração produza (um contador de linhas afetadas ou um conjunto de resultados).
+3. O servidor remoto processa a declaração e o servidor local recupera qualquer resultado que a declaração produza (um contador de strings afetadas ou um conjunto de resultados).
 
 4. Se a declaração produzir um conjunto de resultados, cada coluna é convertida para o formato do motor de armazenamento interno que o motor `FEDERATED` espera e pode usar para exibir o resultado ao cliente que emitiu a declaração original.
 
-O servidor local comunica-se com o servidor remoto usando as funções do cliente C da MySQL. Ele invoca `mysql_real_query()` para enviar a declaração. Para ler um conjunto de resultados, ele usa `mysql_store_result()` e obtém linhas uma de cada vez usando `mysql_fetch_row()`.
+O servidor local comunica-se com o servidor remoto usando as funções do cliente C da MySQL. Ele invoca `mysql_real_query()` para enviar a declaração. Para ler um conjunto de resultados, ele usa `mysql_store_result()` e obtém strings uma de cada vez usando `mysql_fetch_row()`.
 
 ### 15.8.2 Como criar tabelas FEDERATED
 
@@ -176,7 +176,7 @@ O nome da conexão neste exemplo contém o nome da conexão (`fedlink`) e o nome
 
 Para mais informações sobre `CREATE SERVER`(create-server.html "13.1.17 CREATE SERVER Statement"), consulte a Seção 13.1.17, “Instrução CREATE SERVER”.
 
-A declaração `CREATE SERVER` aceita os mesmos argumentos que a string `CONNECTION`. A declaração `CREATE SERVER` atualiza as linhas na tabela `mysql.servers`. Consulte a tabela a seguir para obter informações sobre a correspondência entre os parâmetros em uma string de conexão, as opções na declaração [`CREATE SERVER`(create-server.html "13.1.17 CREATE SERVER Statement") e as colunas na tabela `mysql.servers`. Para referência, o formato da string `CONNECTION` é o seguinte:
+A declaração `CREATE SERVER` aceita os mesmos argumentos que a string `CONNECTION`. A declaração `CREATE SERVER` atualiza as strings na tabela `mysql.servers`. Consulte a tabela a seguir para obter informações sobre a correspondência entre os parâmetros em uma string de conexão, as opções na declaração [`CREATE SERVER`(create-server.html "13.1.17 CREATE SERVER Statement") e as colunas na tabela `mysql.servers`. Para referência, o formato da string `CONNECTION` é o seguinte:
 
 ```sql
 scheme://user_name[:password]@host_name[:port_num]/db_name/tbl_name
@@ -188,7 +188,7 @@ scheme://user_name[:password]@host_name[:port_num]/db_name/tbl_name
 
 Você deve estar ciente dos seguintes pontos ao usar o motor de armazenamento `FEDERATED`:
 
-As tabelas `FEDERATED` podem ser replicadas para outros servidores replicados, mas você deve garantir que os servidores replicados sejam capazes de usar a combinação de usuário/senha definida na string `CONNECTION` (ou na linha da tabela `mysql.servers` para se conectar ao servidor remoto.
+As tabelas `FEDERATED` podem ser replicadas para outros servidores replicados, mas você deve garantir que os servidores replicados sejam capazes de usar a combinação de usuário/senha definida na string `CONNECTION` (ou na string da tabela `mysql.servers` para se conectar ao servidor remoto.
 
 Os itens a seguir indicam as funcionalidades que o motor de armazenamento `FEDERATED` suporta e as que não suporta:
 
@@ -196,9 +196,9 @@ Os itens a seguir indicam as funcionalidades que o motor de armazenamento `FEDER
 
 * É possível que uma tabela `FEDERATED` aponte para outra, mas você deve ter cuidado para não criar um laço.
 
-* Uma tabela `FEDERATED` não suporta índices no sentido usual; porque o acesso aos dados da tabela é gerenciado remotamente, é na verdade a tabela remota que faz uso de índices. Isso significa que, para uma consulta que não pode usar nenhum índice e, portanto, requer uma varredura completa da tabela, o servidor obtém todas as linhas da tabela remota e as filtra localmente. Isso ocorre independentemente de qualquer `WHERE` ou `LIMIT` usado com esta declaração `SELECT`; essas cláusulas são aplicadas localmente às linhas devolvidas.
+* Uma tabela `FEDERATED` não suporta índices no sentido usual; porque o acesso aos dados da tabela é gerenciado remotamente, é na verdade a tabela remota que faz uso de índices. Isso significa que, para uma consulta que não pode usar nenhum índice e, portanto, requer uma varredura completa da tabela, o servidor obtém todas as strings da tabela remota e as filtra localmente. Isso ocorre independentemente de qualquer `WHERE` ou `LIMIT` usado com esta declaração `SELECT`; essas cláusulas são aplicadas localmente às strings devolvidas.
 
-As consultas que não utilizam índices podem, portanto, causar um desempenho ruim e sobrecarga na rede. Além disso, uma vez que as linhas devolvidas devem ser armazenadas na memória, essa consulta também pode levar ao swap do servidor local, ou até mesmo ao bloqueio.
+As consultas que não utilizam índices podem, portanto, causar um desempenho ruim e sobrecarga na rede. Além disso, uma vez que as strings devolvidas devem ser armazenadas na memória, essa consulta também pode levar ao swap do servidor local, ou até mesmo ao bloqueio.
 
 * Deve-se ter cuidado ao criar uma tabela `FEDERATED`, pois a definição do índice de uma tabela equivalente `MyISAM` ou outra tabela pode não ser suportada. Por exemplo, criar uma tabela `FEDERATED` com um prefixo de índice falha para as colunas `VARCHAR`, `TEXT` ou `BLOB`. A definição seguinte em `MyISAM` é válida:
 
@@ -222,7 +222,7 @@ Se possível, você deve tentar separar a definição da coluna e do índice ao 
 * `FEDERATED` aceita declarações `INSERT ... ON DUPLICATE KEY UPDATE`(insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement"), mas se ocorrer uma violação de chave duplicada, a declaração falha com um erro.
 
 * As transações não são suportadas.
-* `FEDERATED` realiza o tratamento de inserção em massa de forma que várias linhas são enviadas para a tabela remota em um lote, o que melhora o desempenho. Além disso, se a tabela remota for transacional, permite que o motor de armazenamento remoto realize o rollback de declaração corretamente caso ocorra um erro. Essa capacidade tem as seguintes limitações:
+* `FEDERATED` realiza o tratamento de inserção em massa de forma que várias strings são enviadas para a tabela remota em um lote, o que melhora o desempenho. Além disso, se a tabela remota for transacional, permite que o motor de armazenamento remoto realize o rollback de declaração corretamente caso ocorra um erro. Essa capacidade tem as seguintes limitações:
 
 + O tamanho do inserto não pode exceder o tamanho máximo do pacote entre os servidores. Se o inserto exceder esse tamanho, ele é dividido em vários pacotes e o problema de rollback pode ocorrer.
 

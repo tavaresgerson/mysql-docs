@@ -40,7 +40,7 @@ Importante
 
 Apenas uma única cláusula `PARTITION BY`, `ADD PARTITION`, `DROP PARTITION`, `REORGANIZE PARTITION` ou `COALESCE PARTITION` pode ser usada em uma declaração específica `ALTER TABLE`. Se você (por exemplo) deseja descartar uma partição e reorganizar as partições restantes de uma tabela, você deve fazer isso em duas declarações separadas `ALTER TABLE` (uma usando `DROP PARTITION` e, em seguida, uma segunda usando `REORGANIZE PARTITION`).
 
-Em MySQL 5.7, é possível excluir todas as linhas de uma ou mais partições selecionadas usando `ALTER TABLE ... TRUNCATE PARTITION`.
+Em MySQL 5.7, é possível excluir todas as strings de uma ou mais partições selecionadas usando `ALTER TABLE ... TRUNCATE PARTITION`.
 
 ### 22.3.1 Gestão de Partições RANGE e LIST
 
@@ -149,7 +149,7 @@ Create Table: CREATE TABLE `tr` (
 1 row in set (0.00 sec)
 ```
 
-Quando você inserir novas linhas na tabela alterada com os valores da coluna `purchased` entre `'1995-01-01'` e `'2004-12-31'`, essas linhas são armazenadas na partição `p3`. Você pode verificar isso da seguinte forma:
+Quando você inserir novas strings na tabela alterada com os valores da coluna `purchased` entre `'1995-01-01'` e `'2004-12-31'`, essas strings são armazenadas na partição `p3`. Você pode verificar isso da seguinte forma:
 
 ```sql
 mysql> INSERT INTO tr VALUES (11, 'pencil holder', '1995-07-12');
@@ -173,9 +173,9 @@ mysql> SELECT * FROM tr WHERE purchased
 Empty set (0.00 sec)
 ```
 
-O número de linhas que caíram da tabela como resultado do `ALTER TABLE ... DROP PARTITION` não é reportado pelo servidor, como seria no caso da consulta equivalente `DELETE`.
+O número de strings que caíram da tabela como resultado do `ALTER TABLE ... DROP PARTITION` não é reportado pelo servidor, como seria no caso da consulta equivalente `DELETE`.
 
-A remoção das partições `LIST` usa exatamente a mesma sintaxe `ALTER TABLE ... DROP PARTITION` usada para a remoção das partições `RANGE`. No entanto, há uma diferença importante no efeito que isso tem no uso da tabela posteriormente: você não pode mais inserir na tabela quaisquer linhas que tenham algum dos valores que foram incluídos na lista de valores que definem a partição excluída. (Veja a Seção 22.2.2, “LIST Partitioning”, para um exemplo.)
+A remoção das partições `LIST` usa exatamente a mesma sintaxe `ALTER TABLE ... DROP PARTITION` usada para a remoção das partições `RANGE`. No entanto, há uma diferença importante no efeito que isso tem no uso da tabela posteriormente: você não pode mais inserir na tabela quaisquer strings que tenham algum dos valores que foram incluídos na lista de valores que definem a partição excluída. (Veja a Seção 22.2.2, “LIST Partitioning”, para um exemplo.)
 
 Para adicionar uma nova faixa ou partição de lista a uma tabela previamente particionada, use a declaração `ALTER TABLE ... ADD PARTITION`. Para tabelas que são particionadas por `RANGE`, isso pode ser usado para adicionar uma nova faixa ao final da lista de partições existentes. Suponha que você tenha uma tabela particionada que contém dados de filiação para sua organização, definida da seguinte forma:
 
@@ -255,7 +255,7 @@ PARTITION BY LIST(data) (
 );
 ```
 
-Você pode adicionar uma nova partição para armazenar linhas com os valores da coluna `data` `7`, `14` e `21`, conforme mostrado:
+Você pode adicionar uma nova partição para armazenar strings com os valores da coluna `data` `7`, `14` e `21`, conforme mostrado:
 
 ```sql
 ALTER TABLE tt ADD PARTITION (PARTITION p2 VALUES IN (7, 14, 21));
@@ -270,7 +270,7 @@ ERROR 1465 (HY000): Multiple definition of same constant »
                     in list partitioning
 ```
 
-Como todas as linhas com o valor da coluna `data` `12` já foram atribuídas à partição `p1`, você não pode criar uma nova partição na tabela `tt` que inclua `12` na sua lista de valores. Para realizar isso, você pode descartar `p1`, e adicionar `np` e, em seguida, uma nova `p1` com uma definição modificada. No entanto, como discutido anteriormente, isso resultaria na perda de todos os dados armazenados em `p1`—e muitas vezes é o caso de que isso não é o que você realmente quer fazer. Outra solução pode parecer ser fazer uma cópia da tabela com a nova partição e copiar os dados nela usando `CREATE TABLE ... SELECT ...`, em seguida, descartar a tabela antiga e renomear a nova, mas isso pode ser muito demorado ao lidar com grandes quantidades de dados. Isso também pode não ser viável em situações onde a alta disponibilidade é um requisito.
+Como todas as strings com o valor da coluna `data` `12` já foram atribuídas à partição `p1`, você não pode criar uma nova partição na tabela `tt` que inclua `12` na sua lista de valores. Para realizar isso, você pode descartar `p1`, e adicionar `np` e, em seguida, uma nova `p1` com uma definição modificada. No entanto, como discutido anteriormente, isso resultaria na perda de todos os dados armazenados em `p1`—e muitas vezes é o caso de que isso não é o que você realmente quer fazer. Outra solução pode parecer ser fazer uma cópia da tabela com a nova partição e copiar os dados nela usando `CREATE TABLE ... SELECT ...`, em seguida, descartar a tabela antiga e renomear a nova, mas isso pode ser muito demorado ao lidar com grandes quantidades de dados. Isso também pode não ser viável em situações onde a alta disponibilidade é um requisito.
 
 Você pode adicionar várias partições em uma única declaração `ALTER TABLE ... ADD PARTITION` como mostrado aqui:
 
@@ -315,7 +315,7 @@ Create Table: CREATE TABLE `members` (
 1 row in set (0.00 sec)
 ```
 
-Suponha que você queira mover todas as linhas que representam membros nascidos antes de 1960 para uma partição separada. Como já vimos, isso não pode ser feito usando `ALTER TABLE ... ADD PARTITION`. No entanto, você pode usar outra extensão relacionada a partições para `ALTER TABLE` para realizar isso:
+Suponha que você queira mover todas as strings que representam membros nascidos antes de 1960 para uma partição separada. Como já vimos, isso não pode ser feito usando `ALTER TABLE ... ADD PARTITION`. No entanto, você pode usar outra extensão relacionada a partições para `ALTER TABLE` para realizar isso:
 
 ```sql
 ALTER TABLE members REORGANIZE PARTITION n0 INTO (
@@ -324,7 +324,7 @@ ALTER TABLE members REORGANIZE PARTITION n0 INTO (
 );
 ```
 
-Na verdade, este comando divide a partição `n0` em duas novas partições `s0` e `s1`. Também move os dados que estavam armazenados em `n0` para as novas partições de acordo com as regras contidas nas duas cláusulas `PARTITION ... VALUES ...`, de modo que `s0` contenha apenas aqueles registros para os quais `YEAR(dob)` é menor que 1960 e `s1` contenha as linhas nas quais `YEAR(dob)` é maior ou igual a 1960, mas menor que 1970.
+Na verdade, este comando divide a partição `n0` em duas novas partições `s0` e `s1`. Também move os dados que estavam armazenados em `n0` para as novas partições de acordo com as regras contidas nas duas cláusulas `PARTITION ... VALUES ...`, de modo que `s0` contenha apenas aqueles registros para os quais `YEAR(dob)` é menor que 1960 e `s1` contenha as strings nas quais `YEAR(dob)` é maior ou igual a 1960, mas menor que 1970.
 
 Uma cláusula `REORGANIZE PARTITION` também pode ser usada para mesclar partições adjacentes. Você pode reverter o efeito da declaração anterior na tabela `members` como mostrado aqui:
 
@@ -454,10 +454,10 @@ A tabela *`nt`* não é ela mesma particionada.
 
 4. A tabela `nt` não contém referências de chave estrangeira, e nenhuma outra tabela possui chaves estrangeiras que se referem a `nt`.
 
-5. Não há linhas em *`nt`* que estejam fora dos limites da definição de partição para *`p`*. Esta condição não se aplica se a opção `WITHOUT VALIDATION` for usada. A opção `[{WITH|WITHOUT} VALIDATION]` foi adicionada no MySQL 5.7.5.
+5. Não há strings em *`nt`* que estejam fora dos limites da definição de partição para *`p`*. Esta condição não se aplica se a opção `WITHOUT VALIDATION` for usada. A opção `[{WITH|WITHOUT} VALIDATION]` foi adicionada no MySQL 5.7.5.
 
 6. Ambas as tabelas devem usar o mesmo conjunto de caracteres e ordenação.
-7. Para as tabelas `InnoDB`, ambas as tabelas devem usar o mesmo formato de linha. Para determinar o formato de linha de uma tabela `InnoDB`, consulte a tabela do esquema de informações `INNODB_SYS_TABLES`.
+7. Para as tabelas `InnoDB`, ambas as tabelas devem usar o mesmo formato de string. Para determinar o formato de string de uma tabela `InnoDB`, consulte a tabela do esquema de informações `INNODB_SYS_TABLES`.
 
 8. Qualquer configuração de nível de partição `MAX_ROWS` para `p` deve ser a mesma que o valor de nível de tabela `MAX_ROWS` definido para `nt`. A configuração de qualquer configuração de nível de partição `MIN_ROWS` para `p` também deve ser a mesma que qualquer valor de nível de tabela `MIN_ROWS` definido para `nt`.
 
@@ -489,7 +489,7 @@ ALTER TABLE pt
     WITH TABLE nt;
 ```
 
-Opcionalmente, você pode adicionar uma cláusula `WITH VALIDATION` ou `WITHOUT VALIDATION`. Quando `WITHOUT VALIDATION` é especificado, a operação `ALTER TABLE ... EXCHANGE PARTITION` não realiza validação linha a linha ao trocar uma tabela não particionada, permitindo que os administradores de banco de dados assumam a responsabilidade de garantir que as linhas estejam dentro dos limites da definição da partição. `WITH VALIDATION` é o comportamento padrão e não precisa ser especificado explicitamente. A opção `[{WITH|WITHOUT} VALIDATION]` foi adicionada no MySQL 5.7.5.
+Opcionalmente, você pode adicionar uma cláusula `WITH VALIDATION` ou `WITHOUT VALIDATION`. Quando `WITHOUT VALIDATION` é especificado, a operação `ALTER TABLE ... EXCHANGE PARTITION` não realiza validação string a string ao trocar uma tabela não particionada, permitindo que os administradores de banco de dados assumam a responsabilidade de garantir que as strings estejam dentro dos limites da definição da partição. `WITH VALIDATION` é o comportamento padrão e não precisa ser especificado explicitamente. A opção `[{WITH|WITHOUT} VALIDATION]` foi adicionada no MySQL 5.7.5.
 
 Uma e apenas uma partição ou subpartição pode ser trocada com uma e apenas uma tabela não particionada em uma única declaração `ALTER TABLE EXCHANGE PARTITION`. Para trocar múltiplas partições ou subpartições, use múltiplas declarações `ALTER TABLE EXCHANGE PARTITION`. `EXCHANGE PARTITION` não pode ser combinado com outras opções `ALTER TABLE`. A partição e (se aplicável) a subpartição usadas pela tabela particionada podem ser de qualquer tipo ou tipos suportados no MySQL 5.7.
 
@@ -528,7 +528,7 @@ Query OK, 0 rows affected (0.90 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-Você pode ver quais partições na tabela `e` contêm linhas fazendo uma consulta à tabela do esquema de informações `PARTITIONS`, assim:
+Você pode ver quais partições na tabela `e` contêm strings fazendo uma consulta à tabela do esquema de informações `PARTITIONS`, assim:
 
 ```sql
 mysql> SELECT PARTITION_NAME, TABLE_ROWS
@@ -547,7 +547,7 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS
 
 Nota
 
-Para tabelas `InnoDB` particionadas, o número de linhas fornecido na coluna `TABLE_ROWS` da tabela do Esquema de Informações `PARTITIONS` é apenas um valor estimado utilizado na otimização do SQL e nem sempre é exato.
+Para tabelas `InnoDB` particionadas, o número de strings fornecido na coluna `TABLE_ROWS` da tabela do Esquema de Informações `PARTITIONS` é apenas um valor estimado utilizado na otimização do SQL e nem sempre é exato.
 
 Para trocar a partição `p0` na tabela `e` com a tabela `e2`, você pode usar a declaração `ALTER TABLE` mostrada aqui:
 
@@ -556,7 +556,7 @@ mysql> ALTER TABLE e EXCHANGE PARTITION p0 WITH TABLE e2;
 Query OK, 0 rows affected (0.28 sec)
 ```
 
-Mais precisamente, a declaração que acabou de ser emitida faz com que as linhas encontradas na partição sejam trocadas com as encontradas na tabela. Você pode observar como isso aconteceu consultando a tabela do esquema de informações `PARTITIONS`, como antes. A linha da tabela que estava anteriormente encontrada na partição `p0` não está mais presente:
+Mais precisamente, a declaração que acabou de ser emitida faz com que as strings encontradas na partição sejam trocadas com as encontradas na tabela. Você pode observar como isso aconteceu consultando a tabela do esquema de informações `PARTITIONS`, como antes. A string da tabela que estava anteriormente encontrada na partição `p0` não está mais presente:
 
 ```sql
 mysql> SELECT PARTITION_NAME, TABLE_ROWS
@@ -573,7 +573,7 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS
 4 rows in set (0.00 sec)
 ```
 
-Se você consultar a tabela `e2`, poderá ver que a linha “desaparecida” agora pode ser encontrada lá:
+Se você consultar a tabela `e2`, poderá ver que a string “desaparecida” agora pode ser encontrada lá:
 
 ```sql
 mysql> SELECT * FROM e2;
@@ -585,7 +585,7 @@ mysql> SELECT * FROM e2;
 1 row in set (0.00 sec)
 ```
 
-A tabela que será trocada com a partição não precisa necessariamente estar vazia. Para demonstrar isso, primeiro inserimos uma nova linha na tabela `e`, garantindo que essa linha seja armazenada na partição `p0` escolhendo um valor da coluna `id` que seja menor que 50, e verificando isso posteriormente, fazendo uma consulta à tabela `PARTITIONS`:
+A tabela que será trocada com a partição não precisa necessariamente estar vazia. Para demonstrar isso, primeiro inserimos uma nova string na tabela `e`, garantindo que essa string seja armazenada na partição `p0` escolhendo um valor da coluna `id` que seja menor que 50, e verificando isso posteriormente, fazendo uma consulta à tabela `PARTITIONS`:
 
 ```sql
 mysql> INSERT INTO e VALUES (41, "Michael", "Green");
@@ -612,7 +612,7 @@ mysql> ALTER TABLE e EXCHANGE PARTITION p0 WITH TABLE e2;
 Query OK, 0 rows affected (0.28 sec)
 ```
 
-A saída das seguintes consultas mostra que a linha da tabela que foi armazenada na partição `p0` e a linha da tabela que foi armazenada na tabela `e2`, antes de emitir a declaração `ALTER TABLE`, agora trocou de lugar:
+A saída das seguintes consultas mostra que a string da tabela que foi armazenada na partição `p0` e a string da tabela que foi armazenada na tabela `e2`, antes de emitir a declaração `ALTER TABLE`, agora trocou de lugar:
 
 ```sql
 mysql> SELECT * FROM e;
@@ -648,9 +648,9 @@ mysql> SELECT * FROM e2;
 1 row in set (0.00 sec)
 ```
 
-#### Linhas não correspondentes
+#### Strings não correspondentes
 
-Você deve ter em mente que quaisquer linhas encontradas na tabela não particionada antes de emitir a declaração `ALTER TABLE ... EXCHANGE PARTITION` devem atender às condições necessárias para que elas sejam armazenadas na partição de destino; caso contrário, a declaração falha. Para ver como isso ocorre, primeiro insira uma linha no `e2` que esteja fora dos limites da definição de partição para a partição `p0` da tabela `e`. Por exemplo, insira uma linha com um valor na coluna `id` que seja muito grande; então, tente trocar a tabela com a partição novamente:
+Você deve ter em mente que quaisquer strings encontradas na tabela não particionada antes de emitir a declaração `ALTER TABLE ... EXCHANGE PARTITION` devem atender às condições necessárias para que elas sejam armazenadas na partição de destino; caso contrário, a declaração falha. Para ver como isso ocorre, primeiro insira uma string no `e2` que esteja fora dos limites da definição de partição para a partição `p0` da tabela `e`. Por exemplo, insira uma string com um valor na coluna `id` que seja muito grande; então, tente trocar a tabela com a partição novamente:
 
 ```sql
 mysql> INSERT INTO e2 VALUES (51, "Ellen", "McDonald");
@@ -667,13 +667,13 @@ mysql> ALTER TABLE e EXCHANGE PARTITION p0 WITH TABLE e2 WITHOUT VALIDATION;
 Query OK, 0 rows affected (0.02 sec)
 ```
 
-Quando uma partição é trocada por uma tabela que contém linhas que não correspondem à definição da partição, é responsabilidade do administrador do banco de dados corrigir as linhas que não correspondem, o que pode ser feito usando `REPAIR TABLE` ou `ALTER TABLE ... REPAIR PARTITION`.
+Quando uma partição é trocada por uma tabela que contém strings que não correspondem à definição da partição, é responsabilidade do administrador do banco de dados corrigir as strings que não correspondem, o que pode ser feito usando `REPAIR TABLE` ou `ALTER TABLE ... REPAIR PARTITION`.
 
-#### Trocando Partições sem Validação Linha a Linha
+#### Trocando Partições sem Validação String a String
 
-Para evitar a validação demorada ao trocar uma partição com uma tabela que tem muitas linhas, é possível pular a etapa de validação linha por linha, anexando `WITHOUT VALIDATION` à declaração `ALTER TABLE ... EXCHANGE PARTITION`.
+Para evitar a validação demorada ao trocar uma partição com uma tabela que tem muitas strings, é possível pular a etapa de validação string por string, anexando `WITHOUT VALIDATION` à declaração `ALTER TABLE ... EXCHANGE PARTITION`.
 
-O exemplo a seguir compara a diferença nos tempos de execução ao trocar uma partição com uma tabela não particionada, com e sem validação. A tabela particionada (tabela `e`) contém duas partições de 1 milhão de linhas cada uma. As linhas de p0 da tabela e são removidas e p0 é trocado por uma tabela não particionada de 1 milhão de linhas. A operação `WITH VALIDATION` leva 0,74 segundos. Em comparação, a operação `WITHOUT VALIDATION` leva 0,01 segundos.
+O exemplo a seguir compara a diferença nos tempos de execução ao trocar uma partição com uma tabela não particionada, com e sem validação. A tabela particionada (tabela `e`) contém duas partições de 1 milhão de strings cada uma. As strings de p0 da tabela e são removidas e p0 é trocado por uma tabela não particionada de 1 milhão de strings. A operação `WITH VALIDATION` leva 0,74 segundos. Em comparação, a operação `WITHOUT VALIDATION` leva 0,01 segundos.
 
 ```sql
 # Create a partitioned table with 1 million rows in each partition
@@ -803,7 +803,7 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS FROM INFORMATION_SCHEMA.PARTITIONS WHER
 2 rows in set (0.00 sec)
 ```
 
-Se uma partição for trocada por uma tabela que contém linhas que não correspondem à definição da partição, é responsabilidade do administrador do banco de dados corrigir as linhas que não correspondem, o que pode ser feito usando `REPAIR TABLE` ou `ALTER TABLE ... REPAIR PARTITION`.
+Se uma partição for trocada por uma tabela que contém strings que não correspondem à definição da partição, é responsabilidade do administrador do banco de dados corrigir as strings que não correspondem, o que pode ser feito usando `REPAIR TABLE` ou `ALTER TABLE ... REPAIR PARTITION`.
 
 #### Trocando uma subpartição com uma tabela não particionada
 
@@ -869,7 +869,7 @@ mysql> ALTER TABLE es EXCHANGE PARTITION p3sp0 WITH TABLE es2;
 Query OK, 0 rows affected (0.29 sec)
 ```
 
-Você pode verificar se as linhas foram trocadas executando as seguintes consultas:
+Você pode verificar se as strings foram trocadas executando as seguintes consultas:
 
 ```sql
 mysql> SELECT PARTITION_NAME, SUBPARTITION_NAME, TABLE_ROWS
@@ -951,7 +951,7 @@ Exemplo:
   ALTER TABLE t1 REBUILD PARTITION p0, p1;
   ```
 
-* **Otimização de partições.** Se você tiver excluído um grande número de linhas de uma partição ou se tiver feito muitas alterações em uma tabela particionada com linhas de comprimento variável (ou seja, com colunas `VARCHAR`, `BLOB` ou `TEXT`), você pode usar `ALTER TABLE ... OPTIMIZE PARTITION` para recuperar qualquer espaço não utilizado e para defragmentar o arquivo de dados da partição.
+* **Otimização de partições.** Se você tiver excluído um grande número de strings de uma partição ou se tiver feito muitas alterações em uma tabela particionada com strings de comprimento variável (ou seja, com colunas `VARCHAR`, `BLOB` ou `TEXT`), você pode usar `ALTER TABLE ... OPTIMIZE PARTITION` para recuperar qualquer espaço não utilizado e para defragmentar o arquivo de dados da partição.
 
 Exemplo:
 
@@ -979,7 +979,7 @@ Exemplo:
   ALTER TABLE t1 REPAIR PARTITION p0,p1;
   ```
 
-Normalmente, `REPAIR PARTITION` falha quando a partição contém erros de chave duplicada. No MySQL 5.7.2 e versões posteriores, você pode usar `ALTER IGNORE TABLE` com essa opção, caso em que todas as linhas que não podem ser movidas devido à presença de chaves duplicadas são removidas da partição (Bug #16900947).
+Normalmente, `REPAIR PARTITION` falha quando a partição contém erros de chave duplicada. No MySQL 5.7.2 e versões posteriores, você pode usar `ALTER IGNORE TABLE` com essa opção, caso em que todas as strings que não podem ser movidas devido à presença de chaves duplicadas são removidas da partição (Bug #16900947).
 
 * **Verifique as partições.** Você pode verificar as partições em busca de erros da mesma maneira que pode usar `CHECK TABLE` com tabelas não particionadas.
 
@@ -991,13 +991,13 @@ Exemplo:
 
 Este comando informa se os dados ou índices na partição `p1` da tabela `t1` estão corrompidos. Se este for o caso, use `ALTER TABLE ... REPAIR PARTITION` para reparar a partição.
 
-Normalmente, `CHECK PARTITION` falha quando a partição contém erros de chave duplicada. No MySQL 5.7.2 e versões posteriores, você pode usar `ALTER IGNORE TABLE` com essa opção, nesse caso, a declaração retorna o conteúdo de cada linha na partição onde é encontrada uma violação de chave duplicada. Apenas os valores das colunas na expressão de particionamento da tabela são relatados. (Bug #16900947)
+Normalmente, `CHECK PARTITION` falha quando a partição contém erros de chave duplicada. No MySQL 5.7.2 e versões posteriores, você pode usar `ALTER IGNORE TABLE` com essa opção, nesse caso, a declaração retorna o conteúdo de cada string na partição onde é encontrada uma violação de chave duplicada. Apenas os valores das colunas na expressão de particionamento da tabela são relatados. (Bug #16900947)
 
 Cada uma das declarações na lista mostrada acima também suporta a palavra-chave `ALL` no lugar da lista de nomes de partição. Usar `ALL` faz com que a declaração atue em todas as partições da tabela.
 
 O uso de **mysqlcheck** e **myisamchk** não é suportado com tabelas particionadas.
 
-No MySQL 5.7, você também pode truncar partições usando `ALTER TABLE ... TRUNCATE PARTITION`. Essa declaração pode ser usada para excluir todas as linhas de uma ou mais partições da mesma maneira que `TRUNCATE TABLE` exclui todas as linhas de uma tabela.
+No MySQL 5.7, você também pode truncar partições usando `ALTER TABLE ... TRUNCATE PARTITION`. Essa declaração pode ser usada para excluir todas as strings de uma ou mais partições da mesma maneira que `TRUNCATE TABLE` exclui todas as strings de uma tabela.
 
 `ALTER TABLE ... TRUNCATE PARTITION ALL` trunca todas as partições na tabela.
 
@@ -1126,6 +1126,6 @@ possible_keys: PRIMARY
 
 Se o `EXPLAIN PARTITIONS` for usado para examinar uma consulta em uma tabela não particionada, não será gerado nenhum erro, mas o valor da coluna `partitions` será sempre `NULL`.
 
-A coluna `rows` do `EXPLAIN` de saída exibe o número total de linhas na tabela.
+A coluna `rows` do `EXPLAIN` de saída exibe o número total de strings na tabela.
 
 Veja também a Seção 13.8.2, “Instrução EXPLAIN”.

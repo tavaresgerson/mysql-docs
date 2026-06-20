@@ -6,7 +6,7 @@ Esta seção descreve como configurar os diferentes tipos de replicação dispon
 
 * Para um guia sobre como configurar dois ou mais servidores para replicação usando transações GTID, a Seção 16.1.3, “Replicação com Identificadores de Transação Global”, trata da configuração dos servidores.
 
-* Os eventos no log binário são registrados usando vários formatos. Esses são referidos como replicação baseada em declarações (SBR) ou replicação baseada em linhas (RBR). Um terceiro tipo, replicação de formatos mistos (MIXED), usa a replicação SBR ou RBR automaticamente para aproveitar os benefícios dos formatos SBR e RBR quando apropriado. Os diferentes formatos são discutidos na Seção 16.2.1, "Formatos de replicação".
+* Os eventos no log binário são registrados usando vários formatos. Esses são referidos como replicação baseada em declarações (SBR) ou replicação baseada em strings (RBR). Um terceiro tipo, replicação de formatos mistos (MIXED), usa a replicação SBR ou RBR automaticamente para aproveitar os benefícios dos formatos SBR e RBR quando apropriado. Os diferentes formatos são discutidos na Seção 16.2.1, "Formatos de replicação".
 
 * Informações detalhadas sobre as diferentes opções de configuração e variáveis que se aplicam à replicação estão fornecidas na Seção 16.1.6, “Opções e variáveis de replicação e registro binário”.
 
@@ -71,7 +71,7 @@ SET GLOBAL server_id = 2;
 
 Com o ID do servidor padrão de 0, uma fonte recusa quaisquer conexões de réplicas, e uma réplica recusa-se a se conectar a uma fonte, portanto, esse valor não pode ser usado em uma topologia de replicação. Além disso, a forma como você organiza e seleciona os IDs do servidor é sua escolha, desde que cada ID de servidor seja diferente de todas as outras IDs de servidor em uso por qualquer outro servidor na topologia de replicação. Note que, se um valor de 0 foi definido anteriormente para o ID do servidor, você deve reiniciar o servidor para inicializar a fonte com seu novo ID de servidor não nulo. Caso contrário, um reinício do servidor não é necessário, a menos que você precise habilitar o registro binário ou fazer outras alterações de configuração que exijam um reinício.
 
-O registro binário *deve* ser habilitado na fonte, pois o registro binário é a base para a replicação das alterações da fonte para suas réplicas. Se o registro binário não for habilitado na fonte usando a opção `log-bin`, a replicação não é possível. Para habilitar o registro binário em um servidor onde ele ainda não está habilitado, você deve reiniciar o servidor. Neste caso, desligue o servidor MySQL e edite o arquivo `my.cnf` ou `my.ini`. Na seção `[mysqld]` do arquivo de configuração, adicione as opções `log-bin` e `server-id`. Se essas opções já existirem, mas estiverem comentadas, descomente as opções e altere-as de acordo com suas necessidades. Por exemplo, para habilitar o registro binário usando um prefixo de nome de arquivo de registro de `mysql-bin`, e configure um ID de servidor de 1, use essas linhas:
+O registro binário *deve* ser habilitado na fonte, pois o registro binário é a base para a replicação das alterações da fonte para suas réplicas. Se o registro binário não for habilitado na fonte usando a opção `log-bin`, a replicação não é possível. Para habilitar o registro binário em um servidor onde ele ainda não está habilitado, você deve reiniciar o servidor. Neste caso, desligue o servidor MySQL e edite o arquivo `my.cnf` ou `my.ini`. Na seção `[mysqld]` do arquivo de configuração, adicione as opções `log-bin` e `server-id`. Se essas opções já existirem, mas estiverem comentadas, descomente as opções e altere-as de acordo com suas necessidades. Por exemplo, para habilitar o registro binário usando um prefixo de nome de arquivo de registro de `mysql-bin`, e configure um ID de servidor de 1, use essas strings:
 
 ```sql
 [mysqld]
@@ -116,7 +116,7 @@ Se você está planejando desligar a fonte para criar um instantâneo de dados, 
 
 Para obter as coordenadas do log binário da fonte, siga estes passos:
 
-1. Inicie uma sessão na fonte conectando-se a ela com o cliente de linha de comando e limpe todas as tabelas e declarações de escrita de bloco executando a declaração `FLUSH TABLES WITH READ LOCK`:
+1. Inicie uma sessão na fonte conectando-se a ela com o cliente de string de comando e limpe todas as tabelas e declarações de escrita de bloco executando a declaração `FLUSH TABLES WITH READ LOCK`:
 
    ```sql
    mysql> FLUSH TABLES WITH READ LOCK;
@@ -350,7 +350,7 @@ Você pode precisar definir permissões e propriedade dos arquivos para que o se
 
 2. Configure a replica com as coordenadas de replicação da fonte. Isso informa à replica o arquivo de log binário e a posição dentro do arquivo onde a replicação deve começar. Além disso, configure a replica com as credenciais de login e o nome de host da fonte. Para mais informações sobre a declaração `CHANGE MASTER TO` necessária, consulte a Seção 16.1.2.5.2, “Definindo a Configuração da Fonte na Replica”.
 
-3. Inicie os fios de replicação:
+3. Inicie os threads de replicação:
 
    ```sql
    mysql> START SLAVE;
@@ -372,7 +372,7 @@ A replica armazena informações sobre a fonte que você configurou em seu repos
 
 Nota
 
-O conteúdo do repositório de metadados de conexão substitui algumas das opções do servidor especificadas na linha de comando ou em `my.cnf`. Consulte a Seção 16.1.6, “Opções e variáveis de replicação e registro binário”, para mais detalhes.
+O conteúdo do repositório de metadados de conexão substitui algumas das opções do servidor especificadas na string de comando ou em `my.cnf`. Consulte a Seção 16.1.6, “Opções e variáveis de replicação e registro binário”, para mais detalhes.
 
 Um único instantâneo da fonte é suficiente para múltiplas réplicas. Para configurar réplicas adicionais, use o mesmo instantâneo da fonte e siga a parte da réplica do procedimento descrito anteriormente.
 
@@ -443,7 +443,7 @@ A nova réplica agora usa as informações em seu repositório de metadados de c
 
 ### 16.1.3 Replicação com Identificadores de Transação Global
 
-Esta seção explica a replicação baseada em transações usando identificadores de transação global (GTIDs). Ao usar GTIDs, cada transação pode ser identificada e rastreada à medida que é comprometida no servidor de origem e aplicada por quaisquer réplicas; isso significa que não é necessário, ao usar GTIDs, referir-se a arquivos de registro ou posições dentro desses arquivos ao iniciar uma nova réplica ou falhar para uma nova fonte, o que simplifica muito essas tarefas. Como a replicação baseada em GTID é completamente baseada em transações, é simples determinar se as fontes e réplicas são consistentes; desde que todas as transações comprometidas em uma fonte também sejam comprometidas em uma réplica, a consistência entre as duas é garantida. Você pode usar a replicação baseada em declarações ou baseada em linhas com GTIDs (consulte Seção 16.2.1, “Formatos de Replicação”); no entanto, para obter os melhores resultados, recomendamos que você use o formato baseado em linhas.
+Esta seção explica a replicação baseada em transações usando identificadores de transação global (GTIDs). Ao usar GTIDs, cada transação pode ser identificada e rastreada à medida que é comprometida no servidor de origem e aplicada por quaisquer réplicas; isso significa que não é necessário, ao usar GTIDs, referir-se a arquivos de registro ou posições dentro desses arquivos ao iniciar uma nova réplica ou falhar para uma nova fonte, o que simplifica muito essas tarefas. Como a replicação baseada em GTID é completamente baseada em transações, é simples determinar se as fontes e réplicas são consistentes; desde que todas as transações comprometidas em uma fonte também sejam comprometidas em uma réplica, a consistência entre as duas é garantida. Você pode usar a replicação baseada em declarações ou baseada em strings com GTIDs (consulte Seção 16.2.1, “Formatos de Replicação”); no entanto, para obter os melhores resultados, recomendamos que você use o formato baseado em strings.
 
 Os GTIDs são sempre preservados entre a fonte e a réplica. Isso significa que você sempre pode determinar a fonte de qualquer transação aplicada em qualquer réplica, examinando seu log binário. Além disso, uma vez que uma transação com um GTID dado seja comprometida em um servidor dado, qualquer transação subsequente com o mesmo GTID é ignorada por esse servidor. Assim, uma transação comprometida na fonte pode ser aplicada no máximo uma vez na réplica, o que ajuda a garantir a consistência.
 
@@ -541,7 +541,7 @@ interval:
 
 ##### tabela mysql.gtid_executed
 
-Os GTIDs são armazenados em uma tabela denominada `gtid_executed`, no banco de dados `mysql`. Uma linha nesta tabela contém, para cada GTID ou conjunto de GTIDs que representa, o UUID do servidor de origem e os IDs de transação inicial e final do conjunto; para uma linha que faz referência a apenas um único GTID, esses dois últimos valores são os mesmos.
+Os GTIDs são armazenados em uma tabela denominada `gtid_executed`, no banco de dados `mysql`. Uma string nesta tabela contém, para cada GTID ou conjunto de GTIDs que representa, o UUID do servidor de origem e os IDs de transação inicial e final do conjunto; para uma string que faz referência a apenas um único GTID, esses dois últimos valores são os mesmos.
 
 A tabela `mysql.gtid_executed` é criada (se ainda não existir) quando o MySQL Server é instalado ou atualizado, usando uma declaração `CREATE TABLE` semelhante àquela mostrada aqui:
 
@@ -572,7 +572,7 @@ Quando o registro binário está habilitado, a tabela `mysql.gtid_executed` não
 
 ##### Tabela de compressão mysql.gtid_executed
 
-Ao longo do tempo, a tabela `mysql.gtid_executed` pode ficar cheia de muitas linhas que se referem a GTIDs individuais que se originam no mesmo servidor, e cujos IDs de transação formam uma faixa, semelhante ao que é mostrado aqui:
+Ao longo do tempo, a tabela `mysql.gtid_executed` pode ficar cheia de muitas strings que se referem a GTIDs individuais que se originam no mesmo servidor, e cujos IDs de transação formam uma faixa, semelhante ao que é mostrado aqui:
 
 ```sql
 +--------------------------------------+----------------+--------------+
@@ -588,7 +588,7 @@ Ao longo do tempo, a tabela `mysql.gtid_executed` pode ficar cheia de muitas lin
 ...
 ```
 
-Para economizar espaço, o servidor MySQL comprime a tabela `mysql.gtid_executed` periodicamente, substituindo cada conjunto de linhas por uma única linha que abrange todo o intervalo de identificadores de transação, da seguinte forma:
+Para economizar espaço, o servidor MySQL comprime a tabela `mysql.gtid_executed` periodicamente, substituindo cada conjunto de strings por uma única string que abrange todo o intervalo de identificadores de transação, da seguinte forma:
 
 ```sql
 +--------------------------------------+----------------+--------------+
@@ -604,7 +604,7 @@ Nota
 
 Quando o registro binário está habilitado, o valor de `gtid_executed_compression_period` *não* é usado e a tabela `mysql.gtid_executed` é comprimida em cada rotação do registro binário.
 
-A compressão da tabela `mysql.gtid_executed` é realizada por um fio de primeiro plano dedicado chamado `thread/sql/compress_gtid_table`. Este fio não está listado na saída de `SHOW PROCESSLIST`, mas pode ser visto como uma linha na tabela `threads`, conforme mostrado aqui:
+A compressão da tabela `mysql.gtid_executed` é realizada por um thread de primeiro plano dedicado chamado `thread/sql/compress_gtid_table`. Este thread não está listado na saída de `SHOW PROCESSLIST`, mas pode ser visto como uma string na tabela `threads`, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM performance_schema.threads WHERE NAME LIKE '%gtid%'\G
@@ -628,7 +628,7 @@ PROCESSLIST_COMMAND: Daemon
        THREAD_OS_ID: 18677
 ```
 
-O fio `thread/sql/compress_gtid_table` normalmente dorme até que as transações `gtid_executed_compression_period` tenham sido executadas, e então acorda para realizar a compressão da tabela `mysql.gtid_executed`, conforme descrito anteriormente. Em seguida, dorme até que outras transações `gtid_executed_compression_period` ocorram, e então acorda para realizar a compressão novamente, repetindo esse loop indefinidamente. Definir esse valor para 0 quando o registro binário está desativado significa que o fio sempre dorme e nunca acorda, o que significa que esse método de compressão explícito não é usado. Em vez disso, a compressão ocorre implicitamente conforme necessário.
+O thread `thread/sql/compress_gtid_table` normalmente dorme até que as transações `gtid_executed_compression_period` tenham sido executadas, e então acorda para realizar a compressão da tabela `mysql.gtid_executed`, conforme descrito anteriormente. Em seguida, dorme até que outras transações `gtid_executed_compression_period` ocorram, e então acorda para realizar a compressão novamente, repetindo esse loop indefinidamente. Definir esse valor para 0 quando o registro binário está desativado significa que o thread sempre dorme e nunca acorda, o que significa que esse método de compressão explícito não é usado. Em vez disso, a compressão ocorre implicitamente conforme necessário.
 
 #### 16.1.3.2 Ciclo de Vida do GTID
 
@@ -642,7 +642,7 @@ O ciclo de vida de um GTID consiste nas seguintes etapas:
 
 4. Após os dados do log binário serem transmitidos para a replica e armazenados no log de relevo da replica (usando mecanismos estabelecidos para esse processo, consulte a Seção 16.2, “Implementação de Replicação”, para detalhes), a replica lê o GTID e define o valor da variável de sistema `gtid_next` como este GTID. Isso indica à replica que a próxima transação deve ser registrada usando este GTID. É importante notar que a replica define `gtid_next` em um contexto de sessão.
 
-5. A replica verifica que nenhum fio ainda tenha tomado posse do GTID em `gtid_next` para processar a transação. Ao ler e verificar o GTID da transação replicada primeiro, antes de processar a própria transação, a replica garante não apenas que nenhuma transação anterior com este GTID tenha sido aplicada na replica, mas também que nenhuma outra sessão já tenha lido este GTID, mas ainda não tenha comprometido a transação associada. Assim, se vários clientes tentarem aplicar a mesma transação simultaneamente, o servidor resolve isso, permitindo que apenas um deles execute. A variável de sistema `gtid_owned` (`@@GLOBAL.gtid_owned`) para a replica mostra cada GTID que está atualmente em uso e o ID do fio que a possui. Se o GTID já tiver sido usado, não é gerado nenhum erro, e a função de auto-skip é usada para ignorar a transação.
+5. A replica verifica que nenhum thread ainda tenha tomado posse do GTID em `gtid_next` para processar a transação. Ao ler e verificar o GTID da transação replicada primeiro, antes de processar a própria transação, a replica garante não apenas que nenhuma transação anterior com este GTID tenha sido aplicada na replica, mas também que nenhuma outra sessão já tenha lido este GTID, mas ainda não tenha comprometido a transação associada. Assim, se vários clientes tentarem aplicar a mesma transação simultaneamente, o servidor resolve isso, permitindo que apenas um deles execute. A variável de sistema `gtid_owned` (`@@GLOBAL.gtid_owned`) para a replica mostra cada GTID que está atualmente em uso e o ID do thread que a possui. Se o GTID já tiver sido usado, não é gerado nenhum erro, e a função de auto-skip é usada para ignorar a transação.
 
 6. Se o GTID não tiver sido utilizado, a replica aplica a transação replicada. Como `gtid_next` está configurado com o GTID já atribuído pela fonte, a replica não tenta gerar um novo GTID para essa transação, mas, em vez disso, utiliza o GTID armazenado em `gtid_next`.
 
@@ -664,9 +664,9 @@ Cada alteração de banco de dados (DDL ou DML) que é escrita no log binário �
 
 As atualizações não transacionais, assim como as transacionais, recebem GTIDs. Além disso, para uma atualização não transacional, se ocorrer uma falha de escrita em disco ao tentar escrever no cache do log binário e, portanto, uma lacuna for criada no log binário, o evento de registro de incidente resultante recebe um GTID.
 
-Quando uma tabela é automaticamente descartada por uma declaração gerada no log binário, um GTID é atribuído à declaração. As tabelas temporárias são descartadas automaticamente quando uma réplica começa a aplicar eventos de uma fonte que acabou de ser iniciada, e quando a replicação baseada em declarações está em uso (`binlog_format=STATEMENT`) e uma sessão de usuário que tem tabelas temporárias abertas se desconecta. As tabelas que usam o mecanismo de armazenamento `MEMORY` são excluídas automaticamente na primeira vez que são acessadas após o servidor ser iniciado, porque as linhas podem ter sido perdidas durante o desligamento.
+Quando uma tabela é automaticamente descartada por uma declaração gerada no log binário, um GTID é atribuído à declaração. As tabelas temporárias são descartadas automaticamente quando uma réplica começa a aplicar eventos de uma fonte que acabou de ser iniciada, e quando a replicação baseada em declarações está em uso (`binlog_format=STATEMENT`) e uma sessão de usuário que tem tabelas temporárias abertas se desconecta. As tabelas que usam o mecanismo de armazenamento `MEMORY` são excluídas automaticamente na primeira vez que são acessadas após o servidor ser iniciado, porque as strings podem ter sido perdidas durante o desligamento.
 
-Quando uma transação não é escrita no log binário no servidor de origem, o servidor não atribui um GTID a ela. Isso inclui transações que são revertidas e transações que são executadas enquanto o registro binário está desativado no servidor de origem, seja globalmente (com `--skip-log-bin` especificado na configuração do servidor) ou para a sessão (`SET @@SESSION.sql_log_bin = 0`). Isso também inclui transações sem operação quando a replicação baseada em linha está em uso (`binlog_format=ROW`).
+Quando uma transação não é escrita no log binário no servidor de origem, o servidor não atribui um GTID a ela. Isso inclui transações que são revertidas e transações que são executadas enquanto o registro binário está desativado no servidor de origem, seja globalmente (com `--skip-log-bin` especificado na configuração do servidor) ou para a sessão (`SET @@SESSION.sql_log_bin = 0`). Isso também inclui transações sem operação quando a replicação baseada em string está em uso (`binlog_format=ROW`).
 
 As transações XA recebem GTIDs separados para a fase `XA PREPARE` da transação e para a fase `XA COMMIT` ou `XA ROLLBACK` da transação. As transações XA são preparadas de forma persistente, de modo que os usuários possam comprometer ou desfazer elas no caso de uma falha (o que, em uma topologia de replicação, pode incluir uma transição para outro servidor). As duas partes da transação são, portanto, replicadas separadamente, portanto, devem ter seus próprios GTIDs, mesmo que uma transação que não é XA e que é desfeita não tenha um GTID.
 
@@ -676,7 +676,7 @@ Nos seguintes casos especiais, uma única declaração pode gerar várias transa
 
 * Uma declaração multi-tabela `DROP TABLE` exclui tabelas de diferentes tipos.
 
-* Uma declaração `CREATE TABLE ... SELECT` é emitida quando a replicação baseada em linha está em uso (`binlog_format=ROW`). Um GTID é gerado para a ação `CREATE TABLE` e um GTID é gerado para as ações de inserção de linha.
+* Uma declaração `CREATE TABLE ... SELECT` é emitida quando a replicação baseada em string está em uso (`binlog_format=ROW`). Um GTID é gerado para a ação `CREATE TABLE` e um GTID é gerado para as ações de inserção de string.
 
 ##### A variável de sistema `gtid_next`
 
@@ -913,7 +913,7 @@ Assim como o método que utiliza transações vazias, este método cria um servi
 
 **Restauração de réplicas no modo GTID.** Ao restaurar uma réplica em uma configuração de replicação baseada em GTID que encontrou um erro, a injeção de uma transação vazia pode não resolver o problema, pois um evento não tem um GTID.
 
-Use o **mysqlbinlog** para encontrar a próxima transação, que provavelmente é a primeira transação no próximo arquivo de registro após o evento. Copie tudo até o `COMMIT` para essa transação, garantindo que inclua o `SET @@SESSION.GTID_NEXT`. Mesmo que você não esteja usando replicação baseada em linha, ainda pode executar eventos de linha de registro binário no cliente de linha de comando.
+Use o **mysqlbinlog** para encontrar a próxima transação, que provavelmente é a primeira transação no próximo arquivo de registro após o evento. Copie tudo até o `COMMIT` para essa transação, garantindo que inclua o `SET @@SESSION.GTID_NEXT`. Mesmo que você não esteja usando replicação baseada em string, ainda pode executar eventos de string de registro binário no cliente de string de comando.
 
 Pare a replica e execute a transação que você copiou. A saída do **mysqlbinlog** define o delimitador como `/*!*/;`, então configure-o novamente:
 
@@ -1531,7 +1531,7 @@ O resultado em cada caso deve ser um conjunto de GTID, por exemplo:
    source2:   224DA167-0C0C-11E8-8442-00059A3C7B00:1-2695
    ```
 
-3. Remova a linha de cada arquivo de dump que contém a declaração `SET @@GLOBAL.gtid_purged`. Por exemplo:
+3. Remova a string de cada arquivo de dump que contém a declaração `SET @@GLOBAL.gtid_purged`. Por exemplo:
 
    ```sql
    sed '/GTID_PURGED/d' dumpM1.sql > dumpM1_nopurge.sql
@@ -1650,7 +1650,7 @@ Para monitorar o status dos canais de replicação, existem as seguintes opçõe
 
 * Usando as tabelas do Schema de desempenho de replicação. A primeira coluna dessas tabelas é `Channel_Name`. Isso permite que você escreva consultas complexas com base em `Channel_Name` como chave. Veja a Seção 25.12.11, “Tabelas de replicação do Schema de desempenho”.
 
-* Usando `SHOW SLAVE STATUS FOR CHANNEL channel`. Por padrão, se a cláusula `FOR CHANNEL channel` não for usada, esta declaração mostra o status da replicação para todos os canais com uma linha por canal. O identificador `Channel_name` é adicionado como uma coluna no conjunto de resultados. Se for fornecida uma cláusula `FOR CHANNEL channel`, os resultados mostram o status apenas do canal de replicação nomeado.
+* Usando `SHOW SLAVE STATUS FOR CHANNEL channel`. Por padrão, se a cláusula `FOR CHANNEL channel` não for usada, esta declaração mostra o status da replicação para todos os canais com uma string por canal. O identificador `Channel_name` é adicionado como uma coluna no conjunto de resultados. Se for fornecida uma cláusula `FOR CHANNEL channel`, os resultados mostram o status apenas do canal de replicação nomeado.
 
 Nota
 
@@ -1773,11 +1773,11 @@ Ao iniciar, o thread de I/O de replicação gera um erro e é abortado se o UUID
 
 #### 16.1.6.1 Opção de replicação e registro binário e referência de variáveis
 
-As duas seções seguintes fornecem informações básicas sobre as opções de linha de comando do MySQL e as variáveis do sistema aplicáveis à replicação e ao log binário.
+As duas seções seguintes fornecem informações básicas sobre as opções de string de comando do MySQL e as variáveis do sistema aplicáveis à replicação e ao log binário.
 
 ##### Opções e variáveis de replicação
 
-As opções de linha de comando e as variáveis do sistema na lista a seguir se relacionam aos servidores de origem de replicação e réplicas. A Seção 16.1.6.2, “Opções e Variáveis de Origem de Replicação”, fornece informações mais detalhadas sobre as opções e variáveis relacionadas aos servidores de origem de replicação. Para mais informações sobre as opções e variáveis relacionadas às réplicas, consulte a Seção 16.1.6.3, “Opções e Variáveis de Servidor de Replicação”.
+As opções de string de comando e as variáveis do sistema na lista a seguir se relacionam aos servidores de origem de replicação e réplicas. A Seção 16.1.6.2, “Opções e Variáveis de Origem de Replicação”, fornece informações mais detalhadas sobre as opções e variáveis relacionadas aos servidores de origem de replicação. Para mais informações sobre as opções e variáveis relacionadas às réplicas, consulte a Seção 16.1.6.3, “Opções e Variáveis de Servidor de Replicação”.
 
 * `abort-slave-event-count`: Opção usada pelo mysql-test para depuração e teste de replicação.
 
@@ -1811,7 +1811,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `gtid_next`: Especifica GTID para transação ou transações subsequentes; consulte a documentação para detalhes.
 
-* `gtid_owned`: Conjunto de GTIDs de propriedade deste cliente (sessão), ou de todos os clientes, juntamente com o ID de fio do proprietário (global). Apenas para leitura.
+* `gtid_owned`: Conjunto de GTIDs de propriedade deste cliente (sessão), ou de todos os clientes, juntamente com o ID de thread do proprietário (global). Apenas para leitura.
 
 * `gtid_purged`: Conjunto de todos os GTIDs que foram eliminados do log binário.
 
@@ -1823,7 +1823,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `log_statements_unsafe_for_binlog`: Desabilita as advertências do erro 1592 que estão sendo escritas no log de erro.
 
-* `master-info-file`: Local e nome do arquivo que lembra a origem e onde o fio de replicação de E/S está no log binário da origem.
+* `master-info-file`: Local e nome do arquivo que lembra a origem e onde o thread de replicação de E/S está no log binário da origem.
 
 * `master-retry-count`: Número de tentativas que a réplica faz para se conectar à fonte antes de desistir.
 
@@ -1839,7 +1839,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `relay_log_info_file`: Nome do arquivo para o repositório de metadados do aplicativo, no qual os registros replicam informações sobre os registros de retransmissão.
 
-* `relay_log_info_repository`: Se deve escrever a localização do fio de replicação SQL nos logs do relé em arquivo ou tabela.
+* `relay_log_info_repository`: Se deve escrever a localização do thread de replicação SQL nos logs do relé em arquivo ou tabela.
 
 * `relay_log_purge`: Determina se os registros de relevo são limpos.
 
@@ -1937,7 +1937,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `slave_compressed_protocol`: Use compressão do protocolo de fonte/replica.
 
-* `slave_exec_mode`: Permite alternar o fio de replicação entre o modo IDEMPOTENT (chave e alguns outros erros suprimidos) e o modo STRICT; o modo STRICT é o padrão, exceto para o NDB Cluster, onde o IDEMPOTENT é sempre usado.
+* `slave_exec_mode`: Permite alternar o thread de replicação entre o modo IDEMPOTENT (chave e alguns outros erros suprimidos) e o modo STRICT; o modo STRICT é o padrão, exceto para o NDB Cluster, onde o IDEMPOTENT é sempre usado.
 
 * `Slave_heartbeat_period`: Intervalo de batida de replicação da réplica, em segundos.
 
@@ -1961,15 +1961,15 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `Slave_received_heartbeats`: Número de batimentos cardíacos recebidos pela réplica desde o último reajuste.
 
-* `Slave_retried_transactions`: Número total de vezes desde a inicialização em que o fio de replicação SQL refez as transações.
+* `Slave_retried_transactions`: Número total de vezes desde a inicialização em que o thread de replicação SQL refez as transações.
 
-* `Slave_rows_last_search_algorithm_used`: Algoritmo de pesquisa mais recentemente utilizado por esta replica para localizar linhas para replicação baseada em linha (índice, tabela ou varredura hash).
+* `Slave_rows_last_search_algorithm_used`: Algoritmo de pesquisa mais recentemente utilizado por esta replica para localizar strings para replicação baseada em string (índice, tabela ou varredura hash).
 
 * `slave_rows_search_algorithms`: Determina os algoritmos de busca utilizados para o agrupamento de lotes de atualização de réplica. Qualquer um dos itens 2 ou 3 desta lista: INDEX_SEARCH, TABLE_SCAN, HASH_SCAN.
 
 * `Slave_running`: Estado deste servidor como replica (status de thread de I/O de replicação).
 
-* `slave_transaction_retries`: Número de vezes que o fio de replicação SQL refaz a transação no caso de ela falhar com bloqueio ou timeout de espera de bloqueio, antes de desistir e parar.
+* `slave_transaction_retries`: Número de vezes que o thread de replicação SQL refaz a transação no caso de ela falhar com bloqueio ou timeout de espera de bloqueio, antes de desistir e parar.
 
 * `slave_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL\_LOSSY, ALL\_NON\_LOSSY. Defina uma string vazia para não permitir conversões de tipo entre a fonte e a replica.
 
@@ -1985,11 +1985,11 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `transaction_write_set_extraction`: Define o algoritmo usado para hash os registros extraídos durante a transação.
 
-Para uma lista de todas as opções de linha de comando, variáveis de sistema e variáveis de status usadas com `mysqld`, consulte a Seção 5.1.3, “Referência de Opção do Servidor, Variável de Sistema e Variável de Status”.
+Para uma lista de todas as opções de string de comando, variáveis de sistema e variáveis de status usadas com `mysqld`, consulte a Seção 5.1.3, “Referência de Opção do Servidor, Variável de Sistema e Variável de Status”.
 
 ##### Opções e variáveis de registro binário
 
-As opções de linha de comando e as variáveis do sistema na lista a seguir se relacionam ao log binário. A Seção 16.1.6.4, “Opções e variáveis de registro binário”, fornece informações mais detalhadas sobre as opções e variáveis relacionadas ao registro binário. Para informações gerais adicionais sobre o log binário, consulte a Seção 5.4.4, “O log binário”.
+As opções de string de comando e as variáveis do sistema na lista a seguir se relacionam ao log binário. A Seção 16.1.6.4, “Opções e variáveis de registro binário”, fornece informações mais detalhadas sobre as opções e variáveis relacionadas ao registro binário. Para informações gerais adicionais sobre o log binário, consulte a Seção 5.4.4, “O log binário”.
 
 * `binlog-checksum`: Habilitar ou desabilitar verificações de checksums de registro binário.
 
@@ -2023,9 +2023,9 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `binlog_order_commits`: Se deve comprometer na mesma ordem que as escritas no log binário.
 
-* `binlog_row_image`: Use imagens completas ou mínimas ao registrar mudanças de linha.
+* `binlog_row_image`: Use imagens completas ou mínimas ao registrar mudanças de string.
 
-* `binlog_rows_query_log_events`: Quando ativado, habilita o registro de eventos de log de consulta de linhas quando o registro é baseado em linhas. Desativado por padrão.
+* `binlog_rows_query_log_events`: Quando ativado, habilita o registro de eventos de log de consulta de strings quando o registro é baseado em strings. Desativado por padrão.
 
 * `Binlog_stmt_cache_disk_use`: Número de declarações não transacionais que utilizaram arquivo temporário em vez de cache de declaração de registro binário.
 
@@ -2033,7 +2033,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `Binlog_stmt_cache_use`: Número de declarações que utilizaram cache temporário de declaração de log binário.
 
-* `binlog_transaction_dependency_history_size`: Número de hashes de linha mantidos para procurar transações que foram atualizadas recentemente em alguma linha.
+* `binlog_transaction_dependency_history_size`: Número de hashes de string mantidos para procurar transações que foram atualizadas recentemente em alguma string.
 
 * `binlog_transaction_dependency_tracking`: Fonte de informações sobre a dependência (marcadores de commit ou conjuntos de escrita de transação) a partir da qual se pode avaliar quais transações podem ser executadas em paralelo pelo aplicativo multithread do replica.
 
@@ -2049,7 +2049,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `log_bin_basename`: Caminho e nome de base para arquivos de log binários.
 
-* `log_bin_use_v1_row_events`: Se o servidor está usando eventos de linha de registro binário da versão 1.
+* `log_bin_use_v1_row_events`: Se o servidor está usando eventos de string de registro binário da versão 1.
 
 * `log_slave_updates`: Se a replica deve registrar as atualizações realizadas pelo seu próprio thread de replicação SQL no seu próprio log binário.
 
@@ -2071,11 +2071,11 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir se 
 
 * `sync_binlog`: Limpe o log binário de forma síncrona no disco após cada evento do #º evento.
 
-Para uma lista de todas as opções de linha de comando, variáveis de sistema e de status usadas com `mysqld`, consulte a Seção 5.1.3, “Referência de variáveis de opção do servidor, variáveis de sistema e variáveis de status”.
+Para uma lista de todas as opções de string de comando, variáveis de sistema e de status usadas com `mysqld`, consulte a Seção 5.1.3, “Referência de variáveis de opção do servidor, variáveis de sistema e variáveis de status”.
 
 #### 16.1.6.2 Opções e variáveis de fonte de replicação
 
-Esta seção descreve as opções do servidor e as variáveis do sistema que você pode usar nos servidores de origem de replicação. Você pode especificar as opções na linha de comando ou em um arquivo de opções. Você pode especificar os valores das variáveis do sistema usando `SET`.
+Esta seção descreve as opções do servidor e as variáveis do sistema que você pode usar nos servidores de origem de replicação. Você pode especificar as opções na string de comando ou em um arquivo de opções. Você pode especificar os valores das variáveis do sistema usando `SET`.
 
 Na fonte e em cada réplica, você deve definir a variável de sistema `server_id` para estabelecer um ID de replicação único. Para cada servidor, você deve escolher um número inteiro positivo único na faixa de 1 a 232 − 1, e cada ID deve ser diferente de todas as outras IDs em uso por qualquer outra fonte ou réplica na topologia de replicação. Exemplo: `server-id=3`.
 
@@ -2190,7 +2190,7 @@ Quando a Replicação em Grupo é iniciada em um servidor, o valor de `auto_incr
 
 Quando o valor de `auto_increment_offset` for maior que o de `auto_increment_increment`, o valor de `auto_increment_offset` é ignorado.
 
-Se alguma dessas variáveis for alterada e, em seguida, novas linhas forem inseridas em uma tabela que contenha uma coluna `AUTO_INCREMENT`, os resultados podem parecer contra-intuitivos, porque a série de valores `AUTO_INCREMENT` é calculada sem considerar quaisquer valores já presentes na coluna, e o próximo valor inserido é o menor valor da série que é maior que o valor máximo existente na coluna `AUTO_INCREMENT`. A série é calculada da seguinte forma:
+Se alguma dessas variáveis for alterada e, em seguida, novas strings forem inseridas em uma tabela que contenha uma coluna `AUTO_INCREMENT`, os resultados podem parecer contra-intuitivos, porque a série de valores `AUTO_INCREMENT` é calculada sem considerar quaisquer valores já presentes na coluna, e o próximo valor inserido é o menor valor da série que é maior que o valor máximo existente na coluna `AUTO_INCREMENT`. A série é calculada da seguinte forma:
 
 `auto_increment_offset` + *`N`* × `auto_increment_increment`
 
@@ -2239,7 +2239,7 @@ onde *`N`* é um valor inteiro positivo na série [1, 2, 3, ...]. Por exemplo:
 
 Os valores mostrados para `auto_increment_increment` e `auto_increment_offset` geram a série 5 + *`N`* × 10, ou seja, [5, 15, 25, 35, 45, ...] O valor mais alto presente na coluna `col` antes do `INSERT` é 31, e o próximo valor disponível na série `AUTO_INCREMENT` é 35, então os valores inseridos para `col` começam nesse ponto e os resultados são conforme mostrado para a consulta `SELECT`.
 
-Não é possível restringir os efeitos dessas duas variáveis a uma única tabela; essas variáveis controlam o comportamento de todas as colunas do `AUTO_INCREMENT` em *todas* as tabelas no servidor MySQL. Se o valor global de qualquer uma dessas variáveis for definido, seus efeitos persistem até que o valor global seja alterado ou substituído pela definição do valor da sessão, ou até que o `mysqld` seja reiniciado. Se o valor local for definido, o novo valor afeta as colunas do `AUTO_INCREMENT` para todas as tabelas nas quais novas linhas são inseridas pelo usuário atual durante a duração da sessão, a menos que os valores sejam alterados durante essa sessão.
+Não é possível restringir os efeitos dessas duas variáveis a uma única tabela; essas variáveis controlam o comportamento de todas as colunas do `AUTO_INCREMENT` em *todas* as tabelas no servidor MySQL. Se o valor global de qualquer uma dessas variáveis for definido, seus efeitos persistem até que o valor global seja alterado ou substituído pela definição do valor da sessão, ou até que o `mysqld` seja reiniciado. Se o valor local for definido, o novo valor afeta as colunas do `AUTO_INCREMENT` para todas as tabelas nas quais novas strings são inseridas pelo usuário atual durante a duração da sessão, a menos que os valores sejam alterados durante essa sessão.
 
 O valor padrão de `auto_increment_increment` é
 
@@ -2345,7 +2345,7 @@ Esta seção explica as opções do servidor e as variáveis do sistema que se a
 * Opções para registrar o status da réplica em tabelas
 * Variáveis do sistema usadas em réplicas
 
-Especifique as opções na linha de comando ou em um arquivo de opções. Muitas das opções podem ser definidas enquanto o servidor está em execução, usando a declaração `CHANGE MASTER TO`. Especifique os valores das variáveis do sistema usando `SET`.
+Especifique as opções na string de comando ou em um arquivo de opções. Muitas das opções podem ser definidas enquanto o servidor está em execução, usando a declaração `CHANGE MASTER TO`. Especifique os valores das variáveis do sistema usando `SET`.
 
 **ID do servidor.** No ponto de origem e em cada réplica, você deve definir a variável de sistema `server_id` para estabelecer um ID de replicação único no intervalo de 1 a 232 − 1. “Único” significa que cada ID deve ser diferente de todas as outras IDs em uso por qualquer outra fonte ou réplica na topologia de replicação. Exemplo de arquivo `my.cnf`:
 
@@ -2364,9 +2364,9 @@ Esta seção explica as opções de inicialização para o controle de servidore
 
 Nota
 
-A variável de sistema `log_error_verbosity` é preferida e deve ser usada em vez da opção `--log-warnings` ou da variável de sistema `log_warnings`. Para mais informações, consulte as descrições de `log_error_verbosity` e `log_warnings`. A opção de linha de comando `--log-warnings` e a variável de sistema `log_warnings` são desatualizadas; espera-se que elas sejam removidas em uma versão futura do MySQL.
+A variável de sistema `log_error_verbosity` é preferida e deve ser usada em vez da opção `--log-warnings` ou da variável de sistema `log_warnings`. Para mais informações, consulte as descrições de `log_error_verbosity` e `log_warnings`. A opção de string de comando `--log-warnings` e a variável de sistema `log_warnings` são desatualizadas; espera-se que elas sejam removidas em uma versão futura do MySQL.
 
-Faz com que o servidor registre mais mensagens no log de erro sobre o que está fazendo. Em relação à replicação, o servidor gera avisos de que conseguiu reconectar após uma falha de rede ou conexão, e fornece informações sobre como cada fio de replicação foi iniciado. Esta variável é definida como 2 por padrão. Para desabilitar, defina-a como 0. O servidor registra mensagens sobre declarações que são inseguras para o registro baseado em declarações se o valor for maior que 0. Conexões aborridas e erros de negação de acesso para novas tentativas de conexão são registrados se o valor for maior que
+Faz com que o servidor registre mais mensagens no log de erro sobre o que está fazendo. Em relação à replicação, o servidor gera avisos de que conseguiu reconectar após uma falha de rede ou conexão, e fornece informações sobre como cada thread de replicação foi iniciado. Esta variável é definida como 2 por padrão. Para desabilitar, defina-a como 0. O servidor registra mensagens sobre declarações que são inseguras para o registro baseado em declarações se o valor for maior que 0. Conexões aborridas e erros de negação de acesso para novas tentativas de conexão são registrados se o valor for maior que
 
 1. Veja a Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”.
 
@@ -2404,13 +2404,13 @@ Desative ou ative a limpeza automática dos registros do relé assim que eles n�
 
   <table frame="box" rules="all" summary="Properties for relay_log_space_limit"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-Esta opção estabelece um limite superior para o tamanho total em bytes de todos os registros de relé na replica. Um valor de 0 significa “sem limite”. Isso é útil para um servidor de replica que tem espaço em disco limitado. Quando o limite é atingido, o fio de I/O de replicação para de ler eventos de log binário da fonte até que o fio de SQL de replicação tenha atualizado e excluído alguns logs de relé não utilizados. Observe que esse limite não é absoluto: Há casos em que o fio de SQL precisa de mais eventos antes de poder excluir logs de relé. Nesse caso, o fio de I/O excede o limite até que seja possível para o fio de SQL excluir alguns logs de relé, pois não fazer isso causaria um impasse. Você não deve definir `--relay-log-space-limit` para menos que o dobro do valor de `--max-relay-log-size` (ou `--max-binlog-size` se `--max-relay-log-size` for 0). Nesse caso, há uma chance de que o fio de I/O espere espaço livre porque `--relay-log-space-limit` é excedido, mas o fio de SQL não tem nenhum log de relé para purgar e é incapaz de satisfazer o fio de I/O. Isso obriga o fio de I/O a ignorar `--relay-log-space-limit` temporariamente.
+Esta opção estabelece um limite superior para o tamanho total em bytes de todos os registros de relé na replica. Um valor de 0 significa “sem limite”. Isso é útil para um servidor de replica que tem espaço em disco limitado. Quando o limite é atingido, o thread de I/O de replicação para de ler eventos de log binário da fonte até que o thread de SQL de replicação tenha atualizado e excluído alguns logs de relé não utilizados. Observe que esse limite não é absoluto: Há casos em que o thread de SQL precisa de mais eventos antes de poder excluir logs de relé. Nesse caso, o thread de I/O excede o limite até que seja possível para o thread de SQL excluir alguns logs de relé, pois não fazer isso causaria um impasse. Você não deve definir `--relay-log-space-limit` para menos que o dobro do valor de `--max-relay-log-size` (ou `--max-binlog-size` se `--max-relay-log-size` for 0). Nesse caso, há uma chance de que o thread de I/O espere espaço livre porque `--relay-log-space-limit` é excedido, mas o thread de SQL não tem nenhum log de relé para purgar e é incapaz de satisfazer o thread de I/O. Isso obriga o thread de I/O a ignorar `--relay-log-space-limit` temporariamente.
 
 * `--replicate-do-db=db_name`
 
   <table frame="box" rules="all" summary="Properties for replicate-do-db"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--replicate-do-db=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-Cria um filtro de replicação usando o nome de um banco de dados. Esses filtros também podem ser criados usando `CHANGE REPLICATION FILTER REPLICATE_DO_DB`. O efeito preciso desse filtro depende se a replicação baseada em declaração ou baseada em linha está sendo usada, e isso é descrito nos próximos parágrafos.
+Cria um filtro de replicação usando o nome de um banco de dados. Esses filtros também podem ser criados usando `CHANGE REPLICATION FILTER REPLICATE_DO_DB`. O efeito preciso desse filtro depende se a replicação baseada em declaração ou baseada em string está sendo usada, e isso é descrito nos próximos parágrafos.
 
 Importante
 
@@ -2431,14 +2431,14 @@ Um exemplo do que não funciona conforme o esperado ao usar a replicação basea
 
 A principal razão para esse comportamento de "verifique apenas o banco de dados padrão" é que, a partir da declaração sozinha, é difícil saber se ele deve ser replicado (por exemplo, se você está usando declarações `DELETE` de várias tabelas ou declarações `UPDATE` de várias tabelas que atuam em vários bancos de dados). Também é mais rápido verificar apenas o banco de dados padrão em vez de todos os bancos de dados, se não houver necessidade.
 
-**Replicação baseada em linhas.** Diz ao thread SQL de replicação que restrinja a replicação ao banco de dados *`db_name`*. Somente as tabelas pertencentes a *`db_name`* são alteradas; o banco de dados atual não tem efeito sobre isso. Suponha que a replicação seja iniciada com `--replicate-do-db=sales` e a replicação baseada em linhas esteja em vigor, e então as seguintes instruções são executadas na fonte:
+**Replicação baseada em strings.** Diz ao thread SQL de replicação que restrinja a replicação ao banco de dados *`db_name`*. Somente as tabelas pertencentes a *`db_name`* são alteradas; o banco de dados atual não tem efeito sobre isso. Suponha que a replicação seja iniciada com `--replicate-do-db=sales` e a replicação baseada em strings esteja em vigor, e então as seguintes instruções são executadas na fonte:
 
   ```sql
   USE prices;
   UPDATE sales.february SET amount=amount+100;
   ```
 
-A tabela `february` no banco de dados `sales` na replica é alterada de acordo com a declaração `UPDATE`; isso ocorre independentemente de a declaração `USE` ter sido emitida ou não. No entanto, emitir as seguintes declarações na fonte não tem efeito na replica quando se usa replicação baseada em linha e `--replicate-do-db=sales`:
+A tabela `february` no banco de dados `sales` na replica é alterada de acordo com a declaração `UPDATE`; isso ocorre independentemente de a declaração `USE` ter sido emitida ou não. No entanto, emitir as seguintes declarações na fonte não tem efeito na replica quando se usa replicação baseada em string e `--replicate-do-db=sales`:
 
   ```sql
   USE prices;
@@ -2447,21 +2447,21 @@ A tabela `february` no banco de dados `sales` na replica é alterada de acordo c
 
 Mesmo que a declaração `USE prices` fosse alterada para `USE sales`, os efeitos da declaração `UPDATE` ainda não seriam replicados.
 
-Outra diferença importante na forma como o `--replicate-do-db` é tratado na replicação baseada em declarações, em oposição à replicação baseada em linhas, ocorre em relação às declarações que se referem a múltiplas bases de dados. Suponha que a replicação seja iniciada com `--replicate-do-db=db1`, e as seguintes declarações sejam executadas na fonte:
+Outra diferença importante na forma como o `--replicate-do-db` é tratado na replicação baseada em declarações, em oposição à replicação baseada em strings, ocorre em relação às declarações que se referem a múltiplas bases de dados. Suponha que a replicação seja iniciada com `--replicate-do-db=db1`, e as seguintes declarações sejam executadas na fonte:
 
   ```sql
   USE db1;
   UPDATE db1.table1, db2.table2 SET db1.table1.col1 = 10, db2.table2.col2 = 20;
   ```
 
-Se você estiver usando replicação baseada em declarações, então ambas as tabelas são atualizadas na replica. No entanto, ao usar replicação baseada em linhas, apenas `table1` é afetado na replica; uma vez que `table2` está em um banco de dados diferente, `table2` na replica não é alterado pelo `UPDATE`. Agora, suponha que, em vez da declaração `USE db1`, tivesse sido usada uma declaração `USE db4`:
+Se você estiver usando replicação baseada em declarações, então ambas as tabelas são atualizadas na replica. No entanto, ao usar replicação baseada em strings, apenas `table1` é afetado na replica; uma vez que `table2` está em um banco de dados diferente, `table2` na replica não é alterado pelo `UPDATE`. Agora, suponha que, em vez da declaração `USE db1`, tivesse sido usada uma declaração `USE db4`:
 
   ```sql
   USE db4;
   UPDATE db1.table1, db2.table2 SET db1.table1.col1 = 10, db2.table2.col2 = 20;
   ```
 
-Neste caso, a declaração `UPDATE` não teria efeito na réplica ao usar replicação baseada em declaração. No entanto, se você estiver usando replicação baseada em linha, a declaração `UPDATE` mudaria `table1` na réplica, mas não `table2` — em outras palavras, apenas as tabelas no banco de dados nomeado por `--replicate-do-db` são alteradas, e a escolha do banco de dados padrão não tem efeito sobre esse comportamento.
+Neste caso, a declaração `UPDATE` não teria efeito na réplica ao usar replicação baseada em declaração. No entanto, se você estiver usando replicação baseada em string, a declaração `UPDATE` mudaria `table1` na réplica, mas não `table2` — em outras palavras, apenas as tabelas no banco de dados nomeado por `--replicate-do-db` são alteradas, e a escolha do banco de dados padrão não tem efeito sobre esse comportamento.
 
 Se você precisa que as atualizações entre bancos de dados funcionem, use `--replicate-wild-do-table=db_name.%` em vez disso. Veja a Seção 16.2.5, “Como os servidores avaliam os filtros de replicação”.
 
@@ -2475,15 +2475,15 @@ Esta opção não afeta as declarações `BEGIN`, `COMMIT` ou `ROLLBACK`.
 
   <table frame="box" rules="all" summary="Properties for replicate-ignore-db"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--replicate-ignore-db=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-Cria um filtro de replicação usando o nome de um banco de dados. Têm também sido criados filtros utilizando `CHANGE REPLICATION FILTER REPLICATE_IGNORE_DB`. Tal como com `--replicate-do-db`, o efeito preciso deste filtragem depende se a replicação baseada em declarações ou baseada em linhas está em uso, e são descritos nos próximos parágrafos.
+Cria um filtro de replicação usando o nome de um banco de dados. Têm também sido criados filtros utilizando `CHANGE REPLICATION FILTER REPLICATE_IGNORE_DB`. Tal como com `--replicate-do-db`, o efeito preciso deste filtragem depende se a replicação baseada em declarações ou baseada em strings está em uso, e são descritos nos próximos parágrafos.
 
 Importante
 
 Os filtros de replicação não podem ser usados em uma instância do servidor MySQL configurada para Replicação por Grupo, porque filtrar as transações em alguns servidores tornaria o grupo incapaz de chegar a um acordo sobre um estado consistente.
 
-**Replicação baseada em declarações.** Diz ao fio de replicação SQL que não replique nenhuma declaração onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*.
+**Replicação baseada em declarações.** Diz ao thread de replicação SQL que não replique nenhuma declaração onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*.
 
-**Replicação baseada em linha.** Diz ao thread de SQL de replicação que não deve atualizar nenhuma tabela no banco de dados *`db_name`*. O banco de dados padrão não tem efeito.
+**Replicação baseada em string.** Diz ao thread de SQL de replicação que não deve atualizar nenhuma tabela no banco de dados *`db_name`*. O banco de dados padrão não tem efeito.
 
 Ao usar a replicação baseada em declarações, o exemplo a seguir não funciona conforme o esperado. Suponha que a replicação seja iniciada com `--replicate-ignore-db=sales` e você emita as seguintes declarações na fonte:
 
@@ -2492,7 +2492,7 @@ Ao usar a replicação baseada em declarações, o exemplo a seguir não funcion
   UPDATE sales.january SET amount=amount+1000;
   ```
 
-A declaração `UPDATE` *é* replicada em tal caso porque a declaração `--replicate-ignore-db` se aplica apenas ao banco de dados padrão (determinado pela declaração `USE`). Como o banco de dados `sales` foi especificado explicitamente na declaração, a declaração não foi filtrada. No entanto, ao usar replicação baseada em linha, os efeitos da declaração `UPDATE` *não* são propagados para a réplica, e a cópia da tabela `sales.january` da réplica permanece inalterada; nessa instância, `--replicate-ignore-db=sales` faz com que *todas as* alterações feitas nas tabelas na cópia da fonte do banco de dados `sales` sejam ignoradas pela réplica.
+A declaração `UPDATE` *é* replicada em tal caso porque a declaração `--replicate-ignore-db` se aplica apenas ao banco de dados padrão (determinado pela declaração `USE`). Como o banco de dados `sales` foi especificado explicitamente na declaração, a declaração não foi filtrada. No entanto, ao usar replicação baseada em string, os efeitos da declaração `UPDATE` *não* são propagados para a réplica, e a cópia da tabela `sales.january` da réplica permanece inalterada; nessa instância, `--replicate-ignore-db=sales` faz com que *todas as* alterações feitas nas tabelas na cópia da fonte do banco de dados `sales` sejam ignoradas pela réplica.
 
 Para especificar mais de um banco de dados a ser ignorado, use esta opção várias vezes, uma vez para cada banco de dados. Como os nomes dos bancos de dados podem conter vírgulas, se você fornecer uma lista separada por vírgula, a lista é tratada como o nome de um único banco de dados.
 
@@ -2538,13 +2538,13 @@ Diz à replica que crie um filtro de replicação que traduza o banco de dados e
 
 Para especificar múltiplos reescritos, use esta opção várias vezes. O servidor usa a primeira com um valor *`from_name`* que corresponda. A tradução do nome do banco de dados é feita *antes* das regras do `--replicate-*` serem testadas. Você também pode criar um filtro desse tipo emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_REWRITE_DB`.
 
-Se você usar a opção `--replicate-rewrite-db` na linha de comando e o caractere `>` é especial para o interpretador de comandos, cite o valor da opção. Por exemplo:
+Se você usar a opção `--replicate-rewrite-db` na string de comando e o caractere `>` é especial para o interpretador de comandos, cite o valor da opção. Por exemplo:
 
   ```sql
   $> mysqld --replicate-rewrite-db="olddb->newdb"
   ```
 
-O efeito da opção `--replicate-rewrite-db` difere dependendo se o formato de registro binário baseado em declaração ou baseado em linha é usado para a consulta. Com o formato baseado em declaração, as declarações DML são traduzidas com base no banco de dados atual, conforme especificado pela declaração `USE`. Com o formato baseado em linha, as declarações DML são traduzidas com base no banco de dados onde a tabela modificada existe. As declarações DDL são sempre filtradas com base no banco de dados atual, conforme especificado pela declaração `USE`, independentemente do formato de registro binário.
+O efeito da opção `--replicate-rewrite-db` difere dependendo se o formato de registro binário baseado em declaração ou baseado em string é usado para a consulta. Com o formato baseado em declaração, as declarações DML são traduzidas com base no banco de dados atual, conforme especificado pela declaração `USE`. Com o formato baseado em string, as declarações DML são traduzidas com base no banco de dados onde a tabela modificada existe. As declarações DDL são sempre filtradas com base no banco de dados atual, conforme especificado pela declaração `USE`, independentemente do formato de registro binário.
 
 Para garantir que a reescrita produza os resultados esperados, especialmente em combinação com outras opções de filtragem de replicação, siga essas recomendações ao usar a opção `--replicate-rewrite-db`:
 
@@ -2552,7 +2552,7 @@ Para garantir que a reescrita produza os resultados esperados, especialmente em 
 
 + Se você usar o formato de registro binário baseado em declaração ou misto, não use consultas entre bancos de dados e não especifique nomes de banco de dados nas consultas. Para declarações DDL e DML, confie na declaração `USE` para especificar o banco de dados atual e use apenas o nome da tabela nas consultas.
 
-+ Se você usa o formato de registro binário baseado em linha exclusivamente, para declarações DDL, confie na declaração `USE` para especificar o banco de dados atual e use apenas o nome da tabela em consultas. Para declarações DML, você pode usar um nome de tabela totalmente qualificado (*`db`*.*`table`*) se desejar.
++ Se você usa o formato de registro binário baseado em string exclusivamente, para declarações DDL, confie na declaração `USE` para especificar o banco de dados atual e use apenas o nome da tabela em consultas. Para declarações DML, você pode usar um nome de tabela totalmente qualificado (*`db`*.*`table`*) se desejar.
 
 Se essas recomendações forem seguidas, é seguro usar a opção `--replicate-rewrite-db` em combinação com opções de filtragem de replicação em nível de tabela, como `--replicate-do-table`.
 
@@ -2564,7 +2564,7 @@ Os filtros de replicação global não podem ser usados em uma instância do ser
 
   <table frame="box" rules="all" summary="Properties for master-info-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--master-info-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>master.info</code></td> </tr></tbody></table>1
 
-Para ser usado em servidores replicados. Geralmente, você deve usar a configuração padrão de 0, para evitar laços infinitos causados pela replicação circular. Se definido como 1, a replica não pula eventos que têm seu próprio ID de servidor. Normalmente, isso é útil apenas em configurações raras. Não pode ser definido como 1 se `log_slave_updates` estiver habilitado. Por padrão, o fio de I/O de replicação não escreve eventos de log binário no log de releio se eles tiverem o ID de servidor da replica (esta otimização ajuda a economizar o uso do disco). Se você deseja usar `--replicate-same-server-id`, certifique-se de iniciar a replica com essa opção antes de fazer a replica ler seus próprios eventos que você deseja que o fio de SQL de replicação execute.
+Para ser usado em servidores replicados. Geralmente, você deve usar a configuração padrão de 0, para evitar laços infinitos causados pela replicação circular. Se definido como 1, a replica não pula eventos que têm seu próprio ID de servidor. Normalmente, isso é útil apenas em configurações raras. Não pode ser definido como 1 se `log_slave_updates` estiver habilitado. Por padrão, o thread de I/O de replicação não escreve eventos de log binário no log de releio se eles tiverem o ID de servidor da replica (esta otimização ajuda a economizar o uso do disco). Se você deseja usar `--replicate-same-server-id`, certifique-se de iniciar a replica com essa opção antes de fazer a replica ler seus próprios eventos que você deseja que o thread de SQL de replicação execute.
 
 * `--replicate-wild-do-table=db_name.tbl_name`
 
@@ -2586,7 +2586,7 @@ Importante
 
 Os filtros de replicação de nível de tabela são aplicados apenas a tabelas que são explicitamente mencionadas e operadas na consulta. Eles não se aplicam a tabelas que são atualizadas implicitamente pela consulta. Por exemplo, uma declaração `GRANT`, que atualiza a tabela `mysql.user` do sistema, mas não menciona essa tabela, não é afetada por um filtro que especifica `mysql.%` como o padrão de comodínio.
 
-Para incluir caracteres curinga literais nos padrões de nomes de banco de dados ou tabela, escape-os com uma barra invertida. Por exemplo, para replicar todas as tabelas de um banco de dados que é denominado `my_own%db`, mas não replicar tabelas do banco de dados `my1ownAABCdb`, você deve escapar os caracteres `_` e `%` assim: `--replicate-wild-do-table=my\_own\%db`. Se você usar a opção na linha de comando, você pode precisar duplicar as barras invertidas ou citar o valor da opção, dependendo do seu interpretador de comandos. Por exemplo, com o shell **bash**, você precisaria digitar `--replicate-wild-do-table=my\\_own\\%db`.
+Para incluir caracteres curinga literais nos padrões de nomes de banco de dados ou tabela, escape-os com uma barra invertida. Por exemplo, para replicar todas as tabelas de um banco de dados que é denominado `my_own%db`, mas não replicar tabelas do banco de dados `my1ownAABCdb`, você deve escapar os caracteres `_` e `%` assim: `--replicate-wild-do-table=my\_own\%db`. Se você usar a opção na string de comando, você pode precisar duplicar as barras invertidas ou citar o valor da opção, dependendo do seu interpretador de comandos. Por exemplo, com o shell **bash**, você precisaria digitar `--replicate-wild-do-table=my\\_own\\%db`.
 
 * `--replicate-wild-ignore-table=db_name.tbl_name`
 
@@ -2625,7 +2625,7 @@ Diz ao servidor de replicação que não inicie os threads de replicação quand
 
   <table frame="box" rules="all" summary="Properties for master-info-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--master-info-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>master.info</code></td> </tr></tbody></table>5
 
-Normalmente, a replicação para de quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta opção faz com que o fio de replicação SQL continue a replicação quando uma declaração retorna qualquer um dos erros listados no valor da opção.
+Normalmente, a replicação para de quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta opção faz com que o thread de replicação SQL continue a replicação quando uma declaração retorna qualquer um dos erros listados no valor da opção.
 
 Não use esta opção a menos que você entenda completamente por que está recebendo erros. Se não houver erros em sua configuração de replicação e em programas de cliente, e nenhum erro no próprio MySQL, um erro que interrompa a replicação nunca deve ocorrer. O uso indiscriminado desta opção resulta em réplicas ficando desesperadamente fora de sincronia com a fonte, sem você ter ideia do porquê isso ocorreu.
 
@@ -2635,7 +2635,7 @@ O valor abreviado `ddl_exist_errors` é equivalente à lista de códigos de erro
 
 Você também pode (mas não deve) usar o valor muito não recomendado de `all` para fazer com que a replica ignore todas as mensagens de erro e continue indo, independentemente do que acontece. Desnecessário dizer que, se você usar `all`, não há garantias quanto à integridade dos seus dados. Por favor, não se queixe (ou faça relatórios de bugs) neste caso, se os dados da replica não estiverem nem perto do que estão na fonte. *Você foi avisado*.
 
-Essa opção não funciona da mesma maneira ao replicar entre NDB Clusters, devido ao mecanismo interno `NDB` para verificar os números de sequência de época; assim que o `NDB` detecta um número de época que está ausente ou fora de sequência, ele imediatamente para o fio do aplicável de réplica.
+Essa opção não funciona da mesma maneira ao replicar entre NDB Clusters, devido ao mecanismo interno `NDB` para verificar os números de sequência de época; assim que o `NDB` detecta um número de época que está ausente ou fora de sequência, ele imediatamente para o thread do aplicável de réplica.
 
 Exemplos:
 
@@ -2694,13 +2694,13 @@ Essa variável é semelhante a `init_connect`, mas é uma string que deve ser ex
 
 Nota
 
-O fio de replicação SQL envia um reconhecimento ao cliente antes de executar `init_slave`. Portanto, não é garantido que `init_slave` tenha sido executado quando `START SLAVE` retorna. Consulte a Seção 13.4.2.5, “Instrução START SLAVE”, para obter mais informações.
+O thread de replicação SQL envia um reconhecimento ao cliente antes de executar `init_slave`. Portanto, não é garantido que `init_slave` tenha sido executado quando `START SLAVE` retorna. Consulte a Seção 13.4.2.5, “Instrução START SLAVE”, para obter mais informações.
 
 * `log_slow_slave_statements`
 
   <table frame="box" rules="all" summary="Properties for master-retry-count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--master-retry-count=#</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>86400</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (plataformas de 64 bits)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Valor máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr></tbody></table>0
 
-Quando o registro de consultas lentas é habilitado, essa variável habilita o registro de consultas que levaram mais de `long_query_time` segundos para serem executadas na replica. Note que, se a replicação baseada em linhas estiver em uso (`binlog_format=ROW`), `log_slow_slave_statements` não tem efeito. As consultas são adicionadas apenas ao registro de consultas lentas da replica quando são registradas em formato de declaração no log binário, ou seja, quando `binlog_format=STATEMENT` está definido, ou quando `binlog_format=MIXED` está definido e a declaração é registrada em formato de declaração. As consultas lentas que são registradas em formato de linha quando `binlog_format=MIXED` está definido, ou que são registradas quando `binlog_format=ROW` está definido, não são adicionadas ao registro de consultas lentas da replica, mesmo que `log_slow_slave_statements` esteja habilitado.
+Quando o registro de consultas lentas é habilitado, essa variável habilita o registro de consultas que levaram mais de `long_query_time` segundos para serem executadas na replica. Note que, se a replicação baseada em strings estiver em uso (`binlog_format=ROW`), `log_slow_slave_statements` não tem efeito. As consultas são adicionadas apenas ao registro de consultas lentas da replica quando são registradas em formato de declaração no log binário, ou seja, quando `binlog_format=STATEMENT` está definido, ou quando `binlog_format=MIXED` está definido e a declaração é registrada em formato de declaração. As consultas lentas que são registradas em formato de string quando `binlog_format=MIXED` está definido, ou que são registradas quando `binlog_format=ROW` está definido, não são adicionadas ao registro de consultas lentas da replica, mesmo que `log_slow_slave_statements` esteja habilitado.
 
 A definição de `log_slow_slave_statements` não tem efeito imediato. O estado da variável se aplica em todas as declarações subsequentes de `START SLAVE`. Além disso, observe que o ajuste global para `long_query_time` se aplica durante a vida útil do thread de replicação SQL. Se você alterar essa definição, deve parar e reiniciar o thread de replicação SQL para implementar a mudança (por exemplo, emitindo as declarações `STOP SLAVE` e `START SLAVE` com a opção `SQL_THREAD`).
 
@@ -2732,7 +2732,7 @@ O nome de base para os arquivos de registro do relé. Para o canal de replicaç�
 
 O servidor escreve o arquivo no diretório de dados, a menos que o nome de base seja fornecido com um nome de caminho absoluto inicial para especificar um diretório diferente. O servidor cria arquivos de registro de retransmissão em sequência, adicionando um sufixo numérico ao nome de base.
 
-Devido à maneira como o MySQL analisa as opções do servidor, se você especificar essa variável na inicialização do servidor, você deve fornecer um valor; o nome de base padrão é usado apenas se a opção não for especificada na verdade. Se você especificar a variável de sistema `relay_log` na inicialização do servidor sem especificar um valor, é provável que ocorra comportamento inesperado; esse comportamento depende das outras opções usadas, da ordem em que são especificadas e se elas são especificadas na linha de comando ou em um arquivo de opção. Para mais informações sobre como o MySQL lida com as opções do servidor, consulte a Seção 4.2.2, “Especificando opções de programa”.
+Devido à maneira como o MySQL analisa as opções do servidor, se você especificar essa variável na inicialização do servidor, você deve fornecer um valor; o nome de base padrão é usado apenas se a opção não for especificada na verdade. Se você especificar a variável de sistema `relay_log` na inicialização do servidor sem especificar um valor, é provável que ocorra comportamento inesperado; esse comportamento depende das outras opções usadas, da ordem em que são especificadas e se elas são especificadas na string de comando ou em um arquivo de opção. Para mais informações sobre como o MySQL lida com as opções do servidor, consulte a Seção 4.2.2, “Especificando opções de programa”.
 
 Se você especificar essa variável, o valor especificado também será usado como o nome base do arquivo de índice do log do relé. Você pode sobrepor esse comportamento especificando um nome de base diferente para o arquivo de índice do log do relé usando a variável de sistema `relay_log_index`.
 
@@ -2762,7 +2762,7 @@ O nome do arquivo de índice do registro de relé. O comprimento máximo é de 2
 
 O servidor escreve o arquivo no diretório de dados, a menos que o nome seja fornecido com um nome de caminho absoluto inicial para especificar um diretório diferente.
 
-Devido à maneira como o MySQL analisa as opções do servidor, se você especificar essa variável na inicialização do servidor, você deve fornecer um valor; o nome de base padrão é usado apenas se a opção não for especificada na verdade. Se você especificar a variável de sistema `relay_log_index` na inicialização do servidor sem especificar um valor, é provável que ocorra comportamento inesperado; esse comportamento depende das outras opções usadas, da ordem em que são especificadas e se elas são especificadas na linha de comando ou em um arquivo de opção. Para mais informações sobre como o MySQL lida com as opções do servidor, consulte a Seção 4.2.2, “Especificando opções de programa”.
+Devido à maneira como o MySQL analisa as opções do servidor, se você especificar essa variável na inicialização do servidor, você deve fornecer um valor; o nome de base padrão é usado apenas se a opção não for especificada na verdade. Se você especificar a variável de sistema `relay_log_index` na inicialização do servidor sem especificar um valor, é provável que ocorra comportamento inesperado; esse comportamento depende das outras opções usadas, da ordem em que são especificadas e se elas são especificadas na string de comando ou em um arquivo de opção. Para mais informações sobre como o MySQL lida com as opções do servidor, consulte a Seção 4.2.2, “Especificando opções de programa”.
 
 * `relay_log_info_file`
 
@@ -2800,7 +2800,7 @@ Essa variável global é somente de leitura durante a execução. Seu valor pode
 
 Essa variável também interage com a variável `relay_log_purge`, que controla a limpeza dos registros quando eles não são mais necessários. Habilitar `relay_log_recovery` quando `relay_log_purge` está desativado pode expor o registro do relé a arquivos que não foram limpos, levando a inconsistências nos dados.
 
-Para uma replica multithread (onde `slave_parallel_workers` é maior que 0), a partir do MySQL 5.7.13, definir `relay_log_recovery = ON` automaticamente lida com quaisquer inconsistências e lacunas na sequência de transações que foram executadas a partir do log de relevo. Essas lacunas podem ocorrer quando a replicação baseada em posição de arquivo está em uso. (Para mais detalhes, consulte a Seção 16.4.1.32, “Replicação e Inconsistências de Transações”.) O processo de recuperação do log de relevo lida com lacunas usando o mesmo método que a declaração `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` faria. Quando a replica atinge um estado consistente sem lacunas, o processo de recuperação do log de relevo continua a buscar transações adicionais a partir da fonte, começando na posição do fio de SQL de replicação. Nas versões do MySQL anteriores ao MySQL 5.7.13, esse processo não era automático e exigia iniciar o servidor com `relay_log_recovery=0`, iniciar a replica com `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` para corrigir quaisquer inconsistências de transação, e depois reiniciar a replica com `relay_log_recovery=1`. Quando a replicação baseada em GTID está em uso, a partir do MySQL 5.7.28, uma replica multithread verifica primeiro se `MASTER_AUTO_POSITION` está definida para `ON`, e se estiver, omite o passo de calcular as transações que devem ser ignoradas ou não ignoradas, para que os logs de relevo antigos não sejam necessários para o processo de recuperação.
+Para uma replica multithread (onde `slave_parallel_workers` é maior que 0), a partir do MySQL 5.7.13, definir `relay_log_recovery = ON` automaticamente lida com quaisquer inconsistências e lacunas na sequência de transações que foram executadas a partir do log de relevo. Essas lacunas podem ocorrer quando a replicação baseada em posição de arquivo está em uso. (Para mais detalhes, consulte a Seção 16.4.1.32, “Replicação e Inconsistências de Transações”.) O processo de recuperação do log de relevo lida com lacunas usando o mesmo método que a declaração `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` faria. Quando a replica atinge um estado consistente sem lacunas, o processo de recuperação do log de relevo continua a buscar transações adicionais a partir da fonte, começando na posição do thread de SQL de replicação. Nas versões do MySQL anteriores ao MySQL 5.7.13, esse processo não era automático e exigia iniciar o servidor com `relay_log_recovery=0`, iniciar a replica com `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` para corrigir quaisquer inconsistências de transação, e depois reiniciar a replica com `relay_log_recovery=1`. Quando a replicação baseada em GTID está em uso, a partir do MySQL 5.7.28, uma replica multithread verifica primeiro se `MASTER_AUTO_POSITION` está definida para `ON`, e se estiver, omite o passo de calcular as transações que devem ser ignoradas ou não ignoradas, para que os logs de relevo antigos não sejam necessários para o processo de recuperação.
 
 Nota
 
@@ -2931,7 +2931,7 @@ Se deve usar a compressão do protocolo de origem/replica se tanto a origem quan
 
   <table frame="box" rules="all" summary="Properties for relay_log_purge"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-purge[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_purge</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
 
-Controla como um fio de replicação resolve conflitos e erros durante a replicação. O modo `IDEMPOTENT` causa a supressão de erros de chave duplicada e sem chave encontrada; o `STRICT` significa que tal supressão não ocorre.
+Controla como um thread de replicação resolve conflitos e erros durante a replicação. O modo `IDEMPOTENT` causa a supressão de erros de chave duplicada e sem chave encontrada; o `STRICT` significa que tal supressão não ocorre.
 
 O modo `IDEMPOTENT` é destinado ao uso em replicação de múltiplas fontes, replicação circular e alguns outros cenários de replicação especiais para a Replicação de NDB Cluster. (Consulte a Seção 21.7.10, “Replicação de NDB Cluster: Replicação Bidirecional e Circular”, e a Seção 21.7.11, “Resolução de Conflitos de Replicação de NDB Cluster”, para obter mais informações.) O NDB Cluster ignora qualquer valor explicitamente definido para `slave_exec_mode`, e sempre o trata como `IDEMPOTENT`.
 
@@ -2953,7 +2953,7 @@ O diretório especificado por esta opção deve estar localizado em um sistema d
 
   <table frame="box" rules="all" summary="Properties for relay_log_purge"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-purge[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_purge</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
 
-Esta variável define o tamanho máximo do pacote para as threads de replicação SQL e de E/S, de modo que grandes atualizações utilizando replicação baseada em linha não causem falha na replicação porque uma atualização excede `max_allowed_packet`. Definir esta variável tem efeito imediatamente em todos os canais de replicação, incluindo os canais em execução.
+Esta variável define o tamanho máximo do pacote para as threads de replicação SQL e de E/S, de modo que grandes atualizações utilizando replicação baseada em string não causem falha na replicação porque uma atualização excede `max_allowed_packet`. Definir esta variável tem efeito imediatamente em todos os canais de replicação, incluindo os canais em execução.
 
 Essa variável global sempre tem um valor que é um múltiplo inteiro positivo de 1024; se você defini-la para um valor que não é, o valor é arredondado para o próximo múltiplo mais alto de 1024 para ser armazenado ou usado; definir `slave_max_allowed_packet` para 0 faz com que 1024 seja usado. (Um aviso de truncação é emitido em todos esses casos.) O valor padrão e máximo é 1073741824 (1 GB); o mínimo é 1024.
 
@@ -2993,7 +2993,7 @@ Nota
 
 As réplicas multithread não são atualmente suportadas pelo NDB Cluster, que ignora silenciosamente a configuração para essa variável. Consulte a Seção 21.7.3, “Problemas conhecidos na replicação do NDB Cluster”, para obter mais informações.
 
-Uma replica multithreading oferece execução paralela usando um fio coordenador e o número de fios aplicadores configurados por esta variável. A maneira pela qual as transações são distribuídas entre os fios aplicadores é configurada por `slave_parallel_type`. As transações que a replica aplica em paralelo podem ser confirmadas fora de ordem, a menos que `slave_preserve_commit_order=1`. Portanto, verificar a transação mais recentemente executada não garante que todas as transações anteriores da fonte tenham sido executadas na replica. Isso tem implicações para o registro e recuperação ao usar uma replica multithreading. Por exemplo, em uma replica multithreading, a declaração `START SLAVE UNTIL` só suporta o uso de `SQL_AFTER_MTS_GAPS`.
+Uma replica multithreading oferece execução paralela usando um thread coordenador e o número de threads aplicadores configurados por esta variável. A maneira pela qual as transações são distribuídas entre os threads aplicadores é configurada por `slave_parallel_type`. As transações que a replica aplica em paralelo podem ser confirmadas fora de ordem, a menos que `slave_preserve_commit_order=1`. Portanto, verificar a transação mais recentemente executada não garante que todas as transações anteriores da fonte tenham sido executadas na replica. Isso tem implicações para o registro e recuperação ao usar uma replica multithreading. Por exemplo, em uma replica multithreading, a declaração `START SLAVE UNTIL` só suporta o uso de `SQL_AFTER_MTS_GAPS`.
 
 Em MySQL 5.7, o reprocessamento de transações é suportado quando o multithreading é habilitado em uma replica. Em versões anteriores, `slave_transaction_retries` era tratado como igual a 0 ao usar replicas multithread.
 
@@ -3017,7 +3017,7 @@ Para réplicas multithread, o ajuste 1 para essa variável garante que as transa
 
 `slave_preserve_commit_order=1` exige que `--log-bin` e `--log-slave-updates` estejam habilitados na replica, e `slave_parallel_type` esteja configurado para `LOGICAL_CLOCK`. Antes de alterar essa variável, todos os threads do aplicativo de replicação (para todos os canais de replicação, se você estiver usando vários canais de replicação) devem ser interrompidos.
 
-Com `slave_preserve_commit_order` habilitado, o fio executando aguarda até que todas as transações anteriores sejam comprometidas antes de comprometer. Enquanto o fio está esperando que outros trabalhadores comprometam suas transações, ele reporta seu status como `Waiting for preceding transaction to commit`. (Antes do MySQL 5.7.8, isso era mostrado como `Waiting for its turn to commit`.) Habilitar este modo em uma replica multithread garante que ele nunca entre em um estado que a fonte não estava. Isso suporta o uso da replicação para escala de leitura. Veja a Seção 16.3.4, “Usando Replicação para Escala de Leitura”.
+Com `slave_preserve_commit_order` habilitado, o thread executando aguarda até que todas as transações anteriores sejam comprometidas antes de comprometer. Enquanto o thread está esperando que outros trabalhadores comprometam suas transações, ele reporta seu status como `Waiting for preceding transaction to commit`. (Antes do MySQL 5.7.8, isso era mostrado como `Waiting for its turn to commit`.) Habilitar este modo em uma replica multithread garante que ele nunca entre em um estado que a fonte não estava. Isso suporta o uso da replicação para escala de leitura. Veja a Seção 16.3.4, “Usando Replicação para Escala de Leitura”.
 
 Se `slave_preserve_commit_order` for `0`, as transações que a replica aplica em paralelo podem ser confirmadas fora de ordem. Portanto, verificar a transação mais recentemente executada não garante que todas as transações anteriores da fonte tenham sido executadas na replica. Há uma chance de lacunas na sequência de transações que foram executadas a partir do log de relevo da replica. Isso tem implicações para o registro e recuperação ao usar uma replica multithread. Note que a configuração `slave_preserve_commit_order=1` previne lacunas, mas não previne o atraso da posição do log binário da fonte (onde `Exec_master_log_pos` está atrás da posição até a qual as transações foram executadas). Consulte a Seção 16.4.1.32, “Replicação e Inconsistências de Transação”, para obter mais informações.
 
@@ -3025,7 +3025,7 @@ Se `slave_preserve_commit_order` for `0`, as transações que a replica aplica e
 
   <table frame="box" rules="all" summary="Properties for relay_log_space_limit"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>1
 
-Ao preparar lotes de linhas para registro e replicação baseada em linhas, essa variável controla como as linhas são pesquisadas para correspondências, em particular se varreduras de hash são usadas. Definir essa variável tem efeito imediatamente em todos os canais de replicação, incluindo canais em execução.
+Ao preparar lotes de strings para registro e replicação baseada em strings, essa variável controla como as strings são pesquisadas para correspondências, em particular se varreduras de hash são usadas. Definir essa variável tem efeito imediatamente em todos os canais de replicação, incluindo canais em execução.
 
 Especifique uma lista de vírgulas separadas das seguintes combinações de 2 valores da lista `INDEX_SCAN`, `TABLE_SCAN`, `HASH_SCAN`. O valor é esperado como uma string, portanto, se definido em tempo de execução em vez de na inicialização do servidor, o valor deve ser citado. Além disso, o valor não deve conter espaços. As combinações (listas) recomendadas e seus efeitos são mostrados na tabela a seguir:
 
@@ -3035,23 +3035,23 @@ Especifique uma lista de vírgulas separadas das seguintes combinações de 2 va
 
 + Para usar hashing em qualquer pesquisa que não utilize uma chave primária ou única, defina `INDEX_SCAN,HASH_SCAN`. Especificar `INDEX_SCAN,HASH_SCAN` tem o mesmo efeito que especificar `INDEX_SCAN,TABLE_SCAN,HASH_SCAN`, que é permitido.
 
-+ Não use a combinação `TABLE_SCAN,HASH_SCAN`. Esta configuração força a geração de hash para todas as pesquisas. Não oferece vantagem em relação a `INDEX_SCAN,HASH_SCAN`, e pode levar a erros de "registro não encontrado" ou erros de chave duplicada no caso de um único evento que contenha múltiplas atualizações na mesma linha, ou atualizações que dependem da ordem.
++ Não use a combinação `TABLE_SCAN,HASH_SCAN`. Esta configuração força a geração de hash para todas as pesquisas. Não oferece vantagem em relação a `INDEX_SCAN,HASH_SCAN`, e pode levar a erros de "registro não encontrado" ou erros de chave duplicada no caso de um único evento que contenha múltiplas atualizações na mesma string, ou atualizações que dependem da ordem.
 
 A ordem em que os algoritmos são especificados na lista não faz diferença para a ordem em que eles são exibidos por uma declaração `SELECT` ou `SHOW VARIABLES`.
 
-É possível especificar um único valor, mas isso não é ótimo, porque definir um único valor limita as pesquisas a usar apenas esse algoritmo. Em particular, definir `INDEX_SCAN` sozinho não é recomendado, pois, nesse caso, as pesquisas não conseguem encontrar linhas de forma alguma se não houver índice presente.
+É possível especificar um único valor, mas isso não é ótimo, porque definir um único valor limita as pesquisas a usar apenas esse algoritmo. Em particular, definir `INDEX_SCAN` sozinho não é recomendado, pois, nesse caso, as pesquisas não conseguem encontrar strings de forma alguma se não houver índice presente.
 
 * `slave_skip_errors`
 
   <table frame="box" rules="all" summary="Properties for relay_log_space_limit"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>3
 
-Normalmente, a replicação para de quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta variável faz com que o fio de replicação SQL continue a replicação quando uma declaração retorna qualquer um dos erros listados no valor da variável.
+Normalmente, a replicação para de quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta variável faz com que o thread de replicação SQL continue a replicação quando uma declaração retorna qualquer um dos erros listados no valor da variável.
 
 * `slave_sql_verify_checksum`
 
   <table frame="box" rules="all" summary="Properties for relay_log_space_limit"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>4
 
-Faça com que o fio de replicação SQL verifique os dados usando os checksums lidos do log do relé. No caso de uma discrepância, a replica pára com um erro. A definição desta variável entra em vigor imediatamente para todos os canais de replicação, incluindo os canais em execução.
+Faça com que o thread de replicação SQL verifique os dados usando os checksums lidos do log do relé. No caso de uma discrepância, a replica pára com um erro. A definição desta variável entra em vigor imediatamente para todos os canais de replicação, incluindo os canais em execução.
 
 Nota
 
@@ -3061,7 +3061,7 @@ A thread de I/O de replicação sempre lê os checksums, se possível, ao aceita
 
   <table frame="box" rules="all" summary="Properties for relay_log_space_limit"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>5
 
-Se um fio de replicação SQL não conseguir executar uma transação devido a um `InnoDB` deadlock ou porque o tempo de execução da transação excedeu o `InnoDB` do `innodb_lock_wait_timeout` ou `NDB` do `TransactionDeadlockDetectionTimeout` ou `TransactionInactiveTimeout`, ele recomeça automaticamente `slave_transaction_retries` vezes antes de parar com um erro. As transações com um erro não temporário não são recomeçadas.
+Se um thread de replicação SQL não conseguir executar uma transação devido a um `InnoDB` deadlock ou porque o tempo de execução da transação excedeu o `InnoDB` do `innodb_lock_wait_timeout` ou `NDB` do `TransactionDeadlockDetectionTimeout` ou `TransactionInactiveTimeout`, ele recomeça automaticamente `slave_transaction_retries` vezes antes de parar com um erro. As transações com um erro não temporário não são recomeçadas.
 
 O valor padrão para `slave_transaction_retries` é 10. Definir a variável para 0 desativa o reprocessamento automático de transações. A definição da variável entra em vigor imediatamente em todos os canais de replicação, incluindo os canais em execução.
 
@@ -3073,9 +3073,9 @@ A tabela do Schema de Desempenho `replication_applier_status` mostra o número d
 
   <table frame="box" rules="all" summary="Properties for relay_log_space_limit"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>System Variable</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>6
 
-Controla o modo de conversão de tipo em vigor na replica quando se usa replicação baseada em linha. Em MySQL 5.7.2 e superior, seu valor é um conjunto separado por vírgula de zero ou mais elementos da lista: `ALL_LOSSY`, `ALL_NON_LOSSY`, `ALL_SIGNED`, `ALL_UNSIGNED`. Estabeleça esta variável em uma string vazia para não permitir conversões de tipo entre a fonte e a replica. Estabelecer esta variável tem efeito imediatamente em todos os canais de replicação, incluindo canais em execução.
+Controla o modo de conversão de tipo em vigor na replica quando se usa replicação baseada em string. Em MySQL 5.7.2 e superior, seu valor é um conjunto separado por vírgula de zero ou mais elementos da lista: `ALL_LOSSY`, `ALL_NON_LOSSY`, `ALL_SIGNED`, `ALL_UNSIGNED`. Estabeleça esta variável em uma string vazia para não permitir conversões de tipo entre a fonte e a replica. Estabelecer esta variável tem efeito imediatamente em todos os canais de replicação, incluindo canais em execução.
 
-`ALL_SIGNED` e `ALL_UNSIGNED` foram adicionados no MySQL 5.7.2 (Bug#15831300). Para informações adicionais sobre os modos de conversão de tipo aplicáveis à promoção e demissão de atributos na replicação baseada em linha, consulte Replicação baseada em linha: promoção e demissão de atributos.
+`ALL_SIGNED` e `ALL_UNSIGNED` foram adicionados no MySQL 5.7.2 (Bug#15831300). Para informações adicionais sobre os modos de conversão de tipo aplicáveis à promoção e demissão de atributos na replicação baseada em string, consulte Replicação baseada em string: promoção e demissão de atributos.
 
 * `sql_slave_skip_counter`
 
@@ -3148,7 +3148,7 @@ A lista a seguir descreve as opções de inicialização para habilitar e config
 
   <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>8192</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Valor máximo (plataformas de 64 bits)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Valor máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-Especifique o tamanho máximo de um evento de registro binário baseado em linha, em bytes. As linhas são agrupadas em eventos menores que este tamanho, se possível. O valor deve ser um múltiplo de 256. O padrão é 8192. Veja a Seção 16.2.1, “Formatos de Replicação”.
+Especifique o tamanho máximo de um evento de registro binário baseado em string, em bytes. As strings são agrupadas em eventos menores que este tamanho, se possível. O valor deve ser um múltiplo de 256. O padrão é 8192. Veja a Seção 16.2.1, “Formatos de Replicação”.
 
 * `--log-bin[=base_name]`
 
@@ -3184,7 +3184,7 @@ Para informações sobre o formato e a gestão do log binário, consulte a Seç�
 
 Esta opção afeta o registro binário de uma maneira semelhante à forma como `--replicate-do-db` afeta a replicação.
 
-Os efeitos desta opção dependem de se o formato de registro baseado em declaração ou baseado em linha está em uso, da mesma forma que os efeitos de `--replicate-do-db` dependem de se a replicação baseada em declaração ou baseada em linha está em uso. Você deve ter em mente que o formato usado para registrar uma declaração dada não é necessariamente o mesmo que o indicado pelo valor de `binlog_format`. Por exemplo, declarações DDL como `CREATE TABLE` e `ALTER TABLE` são sempre registradas como declarações, sem considerar o formato de registro em vigor, então as seguintes regras baseadas em declarações para `--binlog-do-db` sempre se aplicam na determinação de se a declaração é registrada ou
+Os efeitos desta opção dependem de se o formato de registro baseado em declaração ou baseado em string está em uso, da mesma forma que os efeitos de `--replicate-do-db` dependem de se a replicação baseada em declaração ou baseada em string está em uso. Você deve ter em mente que o formato usado para registrar uma declaração dada não é necessariamente o mesmo que o indicado pelo valor de `binlog_format`. Por exemplo, declarações DDL como `CREATE TABLE` e `ALTER TABLE` são sempre registradas como declarações, sem considerar o formato de registro em vigor, então as seguintes regras baseadas em declarações para `--binlog-do-db` sempre se aplicam na determinação de se a declaração é registrada ou
 
 **Registro baseado em declarações.** Apenas as declarações são escritas no log binário onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*. Para especificar mais de um banco de dados, use esta opção várias vezes, uma vez para cada banco de dados; no entanto, fazer isso *não* causa declarações entre bancos, como `UPDATE some_db.some_table SET foo='bar'`, a serem registradas enquanto um banco de dados diferente (ou nenhum banco de dados) é selecionado.
 
@@ -3210,14 +3210,14 @@ Outro caso que pode não ser evidente é quando um banco de dados é replicado, 
 
 Como o `sales` é o banco de dados padrão quando a declaração `UPDATE` é emitida, o `UPDATE` é registrado.
 
-**Registro baseado em linhas.** O registro é restrito ao banco de dados *`db_name`*. Apenas as alterações nas tabelas pertencentes a *`db_name`* são registradas; o banco de dados padrão não tem efeito sobre isso. Suponha que o servidor seja iniciado com `--binlog-do-db=sales` e o registro baseado em linhas esteja em vigor, e então as seguintes declarações sejam executadas:
+**Registro baseado em strings.** O registro é restrito ao banco de dados *`db_name`*. Apenas as alterações nas tabelas pertencentes a *`db_name`* são registradas; o banco de dados padrão não tem efeito sobre isso. Suponha que o servidor seja iniciado com `--binlog-do-db=sales` e o registro baseado em strings esteja em vigor, e então as seguintes declarações sejam executadas:
 
   ```sql
   USE prices;
   UPDATE sales.february SET amount=amount+100;
   ```
 
-As alterações na tabela `february` no banco de dados `sales` são registradas de acordo com a declaração `UPDATE`; isso ocorre independentemente de a declaração `USE` ter sido emitida ou não. No entanto, ao usar o formato de registro baseado em linha e `--binlog-do-db=sales`, as alterações feitas pelos seguintes `UPDATE` não são registradas:
+As alterações na tabela `february` no banco de dados `sales` são registradas de acordo com a declaração `UPDATE`; isso ocorre independentemente de a declaração `USE` ter sido emitida ou não. No entanto, ao usar o formato de registro baseado em string e `--binlog-do-db=sales`, as alterações feitas pelos seguintes `UPDATE` não são registradas:
 
   ```sql
   USE prices;
@@ -3226,21 +3226,21 @@ As alterações na tabela `february` no banco de dados `sales` são registradas 
 
 Mesmo que a declaração `USE prices` fosse alterada para `USE sales`, os efeitos da declaração `UPDATE` ainda não seriam escritos no log binário.
 
-Outra diferença importante na manipulação do `--binlog-do-db` para o registro baseado em declarações, em oposição ao registro baseado em linhas, ocorre em relação às declarações que se referem a múltiplas bases de dados. Suponha que o servidor seja iniciado com `--binlog-do-db=db1`, e as seguintes declarações sejam executadas:
+Outra diferença importante na manipulação do `--binlog-do-db` para o registro baseado em declarações, em oposição ao registro baseado em strings, ocorre em relação às declarações que se referem a múltiplas bases de dados. Suponha que o servidor seja iniciado com `--binlog-do-db=db1`, e as seguintes declarações sejam executadas:
 
   ```sql
   USE db1;
   UPDATE db1.table1, db2.table2 SET db1.table1.col1 = 10, db2.table2.col2 = 20;
   ```
 
-Se você estiver usando o registro baseado em declarações, as atualizações em ambas as tabelas são escritas no log binário. No entanto, ao usar o formato baseado em linhas, apenas as alterações em `table1` são registradas; `table2` está em um banco de dados diferente, então não é alterado pelo `UPDATE`. Agora, suponha que, em vez da declaração `USE db1`, tivesse sido usada uma declaração `USE db4`:
+Se você estiver usando o registro baseado em declarações, as atualizações em ambas as tabelas são escritas no log binário. No entanto, ao usar o formato baseado em strings, apenas as alterações em `table1` são registradas; `table2` está em um banco de dados diferente, então não é alterado pelo `UPDATE`. Agora, suponha que, em vez da declaração `USE db1`, tivesse sido usada uma declaração `USE db4`:
 
   ```sql
   USE db4;
   UPDATE db1.table1, db2.table2 SET db1.table1.col1 = 10, db2.table2.col2 = 20;
   ```
 
-Neste caso, a declaração `UPDATE` não é escrita no log binário quando se usa o registro baseado em declarações. No entanto, quando se usa o registro baseado em linhas, a mudança para `table1` é registrada, mas não para `table2` — em outras palavras, apenas as alterações nas tabelas do banco de dados denominado por `--binlog-do-db` são registradas, e a escolha do banco de dados padrão não tem efeito sobre esse comportamento.
+Neste caso, a declaração `UPDATE` não é escrita no log binário quando se usa o registro baseado em declarações. No entanto, quando se usa o registro baseado em strings, a mudança para `table1` é registrada, mas não para `table2` — em outras palavras, apenas as alterações nas tabelas do banco de dados denominado por `--binlog-do-db` são registradas, e a escolha do banco de dados padrão não tem efeito sobre esse comportamento.
 
 * `--binlog-ignore-db=db_name`
 
@@ -3248,13 +3248,13 @@ Neste caso, a declaração `UPDATE` não é escrita no log binário quando se us
 
 Esta opção afeta o registro binário de uma maneira semelhante à forma como `--replicate-ignore-db` afeta a replicação.
 
-Os efeitos desta opção dependem de se o formato de registro baseado em declaração ou baseado em linha está em uso, da mesma forma que os efeitos de `--replicate-ignore-db` dependem de se a replicação baseada em declaração ou baseada em linha está em uso. Você deve ter em mente que o formato usado para registrar uma declaração dada não é necessariamente o mesmo que o indicado pelo valor de `binlog_format`. Por exemplo, declarações DDL como `CREATE TABLE` e `ALTER TABLE` são sempre registradas como declarações, sem considerar o formato de registro em vigor, portanto, as seguintes regras baseadas em declarações para `--binlog-ignore-db` sempre se aplicam na determinação de se a declaração é registrada ou
+Os efeitos desta opção dependem de se o formato de registro baseado em declaração ou baseado em string está em uso, da mesma forma que os efeitos de `--replicate-ignore-db` dependem de se a replicação baseada em declaração ou baseada em string está em uso. Você deve ter em mente que o formato usado para registrar uma declaração dada não é necessariamente o mesmo que o indicado pelo valor de `binlog_format`. Por exemplo, declarações DDL como `CREATE TABLE` e `ALTER TABLE` são sempre registradas como declarações, sem considerar o formato de registro em vigor, portanto, as seguintes regras baseadas em declarações para `--binlog-ignore-db` sempre se aplicam na determinação de se a declaração é registrada ou
 
 **Registro baseado em declarações.** Diga ao servidor que não registre nenhuma declaração onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*.
 
 Antes do MySQL 5.7.2, essa opção fazia com que quaisquer declarações que contenham nomes de tabela totalmente qualificados não fossem registrados se não houvesse um banco de dados padrão especificado (ou seja, quando `SELECT` `DATABASE()` retornava `NULL`). No MySQL 5.7.2 e versões posteriores, quando não há um banco de dados padrão, nenhuma opção `--binlog-ignore-db` é aplicada e tais declarações são sempre registradas. (Bug #11829838, Bug #60188)
 
-**Formato baseado em linha.** Diz ao servidor que não registre atualizações em nenhuma tabela no banco de dados *`db_name`*. O banco de dados atual não tem efeito.
+**Formato baseado em string.** Diz ao servidor que não registre atualizações em nenhuma tabela no banco de dados *`db_name`*. O banco de dados atual não tem efeito.
 
 Ao usar o registro baseado em declarações, o exemplo a seguir não funciona conforme o esperado. Suponha que o servidor seja iniciado com `--binlog-ignore-db=sales` e você emita as seguintes declarações:
 
@@ -3263,7 +3263,7 @@ Ao usar o registro baseado em declarações, o exemplo a seguir não funciona co
   UPDATE sales.january SET amount=amount+1000;
   ```
 
-A declaração `UPDATE` *é* registrada nesse caso, porque `--binlog-ignore-db` se aplica apenas ao banco de dados padrão (determinado pela declaração `USE`). Como o banco de dados `sales` foi especificado explicitamente na declaração, a declaração não foi filtrada. No entanto, ao usar o registro baseado em linha, os efeitos da declaração `UPDATE` *não* são escritos no log binário, o que significa que nenhuma alteração na tabela `sales.january` é registrada; nessa instância, `--binlog-ignore-db=sales` faz com que *todas as* alterações feitas em tabelas na cópia da fonte do banco de dados `sales` sejam ignoradas para fins de registro binário.
+A declaração `UPDATE` *é* registrada nesse caso, porque `--binlog-ignore-db` se aplica apenas ao banco de dados padrão (determinado pela declaração `USE`). Como o banco de dados `sales` foi especificado explicitamente na declaração, a declaração não foi filtrada. No entanto, ao usar o registro baseado em string, os efeitos da declaração `UPDATE` *não* são escritos no log binário, o que significa que nenhuma alteração na tabela `sales.january` é registrada; nessa instância, `--binlog-ignore-db=sales` faz com que *todas as* alterações feitas em tabelas na cópia da fonte do banco de dados `sales` sejam ignoradas para fins de registro binário.
 
 Para especificar mais de um banco de dados a ser ignorado, use esta opção várias vezes, uma vez para cada banco de dados. Como os nomes dos bancos de dados podem conter vírgulas, a lista é tratada como o nome de um único banco de dados se você fornecer uma lista separada por vírgula.
 
@@ -3327,7 +3327,7 @@ Devido a problemas de concorrência, uma replica pode se tornar inconsistente qu
 
 A variável `binlog_direct_non_transactional_updates` oferece uma solução possível para este problema. Por padrão, essa variável está desativada. Ativação de `binlog_direct_non_transactional_updates` faz com que as atualizações de tabelas não transacionais sejam escritas diretamente no log binário, em vez de no cache de transação.
 
-*`binlog_direct_non_transactional_updates` funciona apenas para declarações que são replicadas usando o formato de registro binário baseado em declarações*; ou seja, funciona apenas quando o valor de `binlog_format` é `STATEMENT`, ou quando `binlog_format` é `MIXED` e uma determinada declaração está sendo replicada usando o formato baseado em declarações. Esta variável não tem efeito quando o formato de registro binário é `ROW`, ou quando `binlog_format` está definido como `MIXED` e uma determinada declaração está sendo replicada usando o formato baseado em linhas.
+*`binlog_direct_non_transactional_updates` funciona apenas para declarações que são replicadas usando o formato de registro binário baseado em declarações*; ou seja, funciona apenas quando o valor de `binlog_format` é `STATEMENT`, ou quando `binlog_format` é `MIXED` e uma determinada declaração está sendo replicada usando o formato baseado em declarações. Esta variável não tem efeito quando o formato de registro binário é `ROW`, ou quando `binlog_format` está definido como `MIXED` e uma determinada declaração está sendo replicada usando o formato baseado em strings.
 
 Importante
 
@@ -3361,14 +3361,14 @@ Definir o valor da sessão desta variável do sistema é uma operação restrita
 
 As regras que regem quando as alterações nesta variável entram em vigor e por quanto tempo o efeito dura são as mesmas que para outras variáveis do sistema do servidor MySQL. Para mais informações, consulte a Seção 13.7.4.1, "Sintaxe SET para atribuição de variáveis".
 
-Quando `MIXED` é especificado, a replicação baseada em declarações é usada, exceto nos casos em que apenas a replicação baseada em linhas garante resultados adequados. Por exemplo, isso acontece quando as declarações contêm funções carregáveis ou a função `UUID()`.
+Quando `MIXED` é especificado, a replicação baseada em declarações é usada, exceto nos casos em que apenas a replicação baseada em strings garante resultados adequados. Por exemplo, isso acontece quando as declarações contêm funções carregáveis ou a função `UUID()`.
 
 Para obter detalhes sobre como os programas armazenados (procedimentos e funções armazenados, gatilhos e eventos) são tratados quando cada formato de registro binário é definido, consulte a Seção 23.7, “Registro binário de programas armazenados”.
 
 Existem exceções quando você não pode alternar o formato de replicação em tempo de execução:
 
 + De dentro de uma função armazenada ou de um gatilho.  
-+ Se a sessão estiver atualmente no modo de replicação baseada em linha e tiver tabelas temporárias abertas.
++ Se a sessão estiver atualmente no modo de replicação baseada em string e tiver tabelas temporárias abertas.
 
 + De dentro de uma transação.
 
@@ -3417,7 +3417,7 @@ Anteriormente, isso controlava o tempo em microssegundos para continuar lendo tr
 
   <table frame="box" rules="all" summary="Properties for log-bin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>6
 
-Quando essa variável é habilitada em um servidor de fonte de replicação (que é o padrão), as instruções de comprovação de transações emitidas para os motores de armazenamento são serializadas em um único fio, de modo que as transações são sempre comprometidas na mesma ordem em que são escritas no log binário. Desabilitar essa variável permite que as instruções de comprovação de transações sejam emitidas usando vários fios. Usada em combinação com o compromisso de grupo de log binário, isso impede que a taxa de comprometimento de uma única transação seja um gargalo para o desempenho e, portanto, pode produzir uma melhoria de desempenho.
+Quando essa variável é habilitada em um servidor de fonte de replicação (que é o padrão), as instruções de comprovação de transações emitidas para os motores de armazenamento são serializadas em um único thread, de modo que as transações são sempre comprometidas na mesma ordem em que são escritas no log binário. Desabilitar essa variável permite que as instruções de comprovação de transações sejam emitidas usando vários threads. Usada em combinação com o compromisso de grupo de log binário, isso impede que a taxa de comprometimento de uma única transação seja um gargalo para o desempenho e, portanto, pode produzir uma melhoria de desempenho.
 
 As transações são escritas no log binário no ponto em que todos os motores de armazenamento envolvidos confirmaram que a transação está preparada para ser confirmada. A lógica de commit do grupo de log binário então confirma um grupo de transações após a escrita no log binário ter ocorrido. Quando o `binlog_order_commits` é desativado, porque vários threads são usados para este processo, as transações em um grupo de commit podem ser confirmadas em uma ordem diferente da ordem em que estão no log binário. (As transações de um único cliente sempre são confirmadas em ordem cronológica.) Em muitos casos, isso não importa, pois as operações realizadas em transações separadas devem produzir resultados consistentes, e se isso não for o caso, uma única transação deve ser usada em vez disso.
 
@@ -3427,23 +3427,23 @@ Se você deseja garantir que o histórico de transações no banco de origem e n
 
   <table frame="box" rules="all" summary="Properties for log-bin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>7
 
-Para a replicação baseada em linha do MySQL, essa variável determina como as imagens de linha são escritas no log binário.
+Para a replicação baseada em string do MySQL, essa variável determina como as imagens de string são escritas no log binário.
 
-Na replicação baseada em linha do MySQL, cada evento de mudança de linha contém duas imagens, uma imagem “antes” cujos campos são correspondidos quando se busca a linha a ser atualizada, e uma imagem “depois” contendo as mudanças. Normalmente, o MySQL registra linhas completas (ou seja, todos os campos) tanto para as imagens antes quanto depois. No entanto, não é estritamente necessário incluir todos os campos em ambas as imagens, e muitas vezes podemos economizar disco, memória e uso de rede ao registrar apenas os campos que são realmente necessários.
+Na replicação baseada em string do MySQL, cada evento de mudança de string contém duas imagens, uma imagem “antes” cujos campos são correspondidos quando se busca a string a ser atualizada, e uma imagem “depois” contendo as mudanças. Normalmente, o MySQL registra strings completas (ou seja, todos os campos) tanto para as imagens antes quanto depois. No entanto, não é estritamente necessário incluir todos os campos em ambas as imagens, e muitas vezes podemos economizar disco, memória e uso de rede ao registrar apenas os campos que são realmente necessários.
 
 Nota
 
-Ao excluir uma linha, apenas a imagem anterior é registrada, uma vez que não há valores alterados para propagar após a exclusão. Ao inserir uma linha, apenas a imagem posterior é registrada, uma vez que não há uma linha existente para ser correspondida. Somente ao atualizar uma linha, as imagens anterior e posterior são necessárias e ambas são escritas no log binário.
+Ao excluir uma string, apenas a imagem anterior é registrada, uma vez que não há valores alterados para propagar após a exclusão. Ao inserir uma string, apenas a imagem posterior é registrada, uma vez que não há uma string existente para ser correspondida. Somente ao atualizar uma string, as imagens anterior e posterior são necessárias e ambas são escritas no log binário.
 
-Para a imagem anterior, é necessário apenas registrar o conjunto mínimo de colunas necessárias para identificar de forma única as linhas. Se a tabela que contém a linha tiver uma chave primária, então apenas a(s) coluna(s) da chave primária são escritas no log binário. Caso contrário, se a tabela tiver uma chave única cujas colunas são todas `NOT NULL`, então apenas as colunas da chave única precisam ser registradas. (Se a tabela não tiver uma chave primária nem uma chave única sem quaisquer colunas `NULL`, então todas as colunas devem ser usadas na imagem anterior e registradas.) Na imagem posterior, é necessário registrar apenas as colunas que realmente mudaram.
+Para a imagem anterior, é necessário apenas registrar o conjunto mínimo de colunas necessárias para identificar de forma única as strings. Se a tabela que contém a string tiver uma chave primária, então apenas a(s) coluna(s) da chave primária são escritas no log binário. Caso contrário, se a tabela tiver uma chave única cujas colunas são todas `NOT NULL`, então apenas as colunas da chave única precisam ser registradas. (Se a tabela não tiver uma chave primária nem uma chave única sem quaisquer colunas `NULL`, então todas as colunas devem ser usadas na imagem anterior e registradas.) Na imagem posterior, é necessário registrar apenas as colunas que realmente mudaram.
 
-Você pode fazer com que o servidor registre linhas completas ou mínimas usando a variável de sistema `binlog_row_image`. Essa variável, na verdade, assume um dos três valores possíveis, conforme mostrado na lista a seguir:
+Você pode fazer com que o servidor registre strings completas ou mínimas usando a variável de sistema `binlog_row_image`. Essa variável, na verdade, assume um dos três valores possíveis, conforme mostrado na lista a seguir:
 
 + `full`: Registre todas as colunas na imagem antes e na imagem depois.
 
-+ `minimal`: Registre apenas as colunas da imagem anterior que são necessárias para identificar a linha que será alterada; registre apenas as colunas da imagem final onde um valor foi especificado pelo SQL ou gerado por auto-incremento.
++ `minimal`: Registre apenas as colunas da imagem anterior que são necessárias para identificar a string que será alterada; registre apenas as colunas da imagem final onde um valor foi especificado pelo SQL ou gerado por auto-incremento.
 
-+ `noblob`: Registre todas as colunas (mesma que `full`), exceto as colunas `BLOB` e `TEXT` que não são necessárias para identificar as linhas, ou que não foram alteradas.
++ `noblob`: Registre todas as colunas (mesma que `full`), exceto as colunas `BLOB` e `TEXT` que não são necessárias para identificar as strings, ou que não foram alteradas.
 
 Nota
 
@@ -3461,7 +3461,7 @@ Ao usar `minimal` ou `noblob`, as operações de exclusão e atualização são 
 
 Se essas condições não forem atendidas, é possível que os valores das colunas da chave primária na tabela de destino possam se provar insuficientes para fornecer uma correspondência única para uma exclusão ou atualização. Nesse caso, nenhum aviso ou erro é emitido; a fonte e a réplica divergem silenciosamente, rompendo assim a consistência.
 
-Esta variável não tem efeito quando o formato de registro binário é `STATEMENT`. Quando `binlog_format` é `MIXED`, o ajuste para `binlog_row_image` é aplicado a alterações que são registradas usando o formato baseado em linha, mas este ajuste não tem efeito em alterações registradas como declarações.
+Esta variável não tem efeito quando o formato de registro binário é `STATEMENT`. Quando `binlog_format` é `MIXED`, o ajuste para `binlog_row_image` é aplicado a alterações que são registradas usando o formato baseado em string, mas este ajuste não tem efeito em alterações registradas como declarações.
 
 Definir `binlog_row_image` em nível global ou de sessão não causa um compromisso implícito; isso significa que essa variável pode ser alterada enquanto uma transação está em andamento sem afetar a transação.
 
@@ -3469,7 +3469,7 @@ Definir `binlog_row_image` em nível global ou de sessão não causa um compromi
 
   <table frame="box" rules="all" summary="Properties for log-bin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>8
 
-Essa variável de sistema afeta apenas o registro baseado em linha. Quando habilitada, ela faz com que o servidor escreva eventos de registro informativos, como eventos de registro de consulta de linha, em seu log binário. Essas informações podem ser usadas para depuração e propósitos relacionados, como obter a consulta original emitida na fonte quando não puder ser reconstruída a partir das atualizações de linha.
+Essa variável de sistema afeta apenas o registro baseado em string. Quando habilitada, ela faz com que o servidor escreva eventos de registro informativos, como eventos de registro de consulta de string, em seu log binário. Essas informações podem ser usadas para depuração e propósitos relacionados, como obter a consulta original emitida na fonte quando não puder ser reconstruída a partir das atualizações de string.
 
 Esses eventos informativos são normalmente ignorados pelos programas do MySQL que leem o log binário e, portanto, não causam problemas ao replicar ou restaurar a partir de um backup. Para visualizá-los, aumente o nível de verbosidade usando a opção `--verbose` do mysqlbinlog duas vezes, como `-vv` ou `--verbose --verbose`.
 
@@ -3501,13 +3501,13 @@ Para algumas transações, os modos `WRITESET` e `WRITESET_SESSION` não podem m
 
 O valor desta variável não pode ser definido para nada além de `COMMIT_ORDER` se `transaction_write_set_extraction` estiver em `OFF`. Você também deve notar que o valor de `transaction_write_set_extraction` não pode ser alterado se o valor atual de `binlog_transaction_dependency_tracking` estiver em `WRITESET` ou `WRITESET_SESSION`. Se você alterar o valor, o novo valor não terá efeito nas réplicas até que a réplica tenha sido parada e reiniciada com as declarações de `STOP SLAVE` e `START SLAVE`.
 
-O número de hashes de linha a serem mantidos e verificados para que a última transação tenha alterado uma determinada linha é determinado pelo valor de `binlog_transaction_dependency_history_size`.
+O número de hashes de string a serem mantidos e verificados para que a última transação tenha alterado uma determinada string é determinado pelo valor de `binlog_transaction_dependency_history_size`.
 
 * `binlog_transaction_dependency_history_size`
 
   <table frame="box" rules="all" summary="Properties for log-bin-index"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-bin-index=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>log_bin_index</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>1
 
-Define um limite superior para o número de hashes de linha que são mantidos na memória e usados para procurar a transação que modificou a última linha. Assim que esse número de hashes é atingido, o histórico é apagado.
+Define um limite superior para o número de hashes de string que são mantidos na memória e usados para procurar a transação que modificou a última string. Assim que esse número de hashes é atingido, o histórico é apagado.
 
 * `expire_logs_days`
 
@@ -3549,15 +3549,15 @@ Esta variável é aplicada quando o registro binário está habilitado. Ela cont
 
 Se a versão binária de registro 2 estiver em uso. Se esta variável for 0 (desativada, padrão), os eventos de registro binário da versão 2 estão em uso. Se esta variável for 1 (ativada), o servidor escreve o registro binário usando eventos de registro da versão 1 (a única versão de eventos de registro binário usada em versões anteriores) e, assim, produz um registro binário que pode ser lido por réplicas mais antigas.
 
-O MySQL 5.7 usa eventos de linha de registro binário da Versão 2 por padrão. No entanto, os eventos da Versão 2 não podem ser lidos por versões do MySQL Server anteriores ao MySQL 5.6.6. Ativação de `log_bin_use_v1_row_events` faz com que `mysqld` escreva o registro binário usando eventos de registro da Versão 1.
+O MySQL 5.7 usa eventos de string de registro binário da Versão 2 por padrão. No entanto, os eventos da Versão 2 não podem ser lidos por versões do MySQL Server anteriores ao MySQL 5.6.6. Ativação de `log_bin_use_v1_row_events` faz com que `mysqld` escreva o registro binário usando eventos de registro da Versão 1.
 
 Essa variável é somente de leitura durante a execução. Para alternar entre o registro binário de eventos da Versão 1 e a Versão 2, é necessário definir `log_bin_use_v1_row_events` no início do servidor.
 
-Exceto quando se realiza uma atualização do NDB Cluster Replication, `log_bin_use_v1_row_events` é principalmente de interesse ao configurar a detecção e resolução de conflitos de replicação usando `NDB$EPOCH_TRANS()` como a função de detecção de conflitos, o que requer eventos de linha de registro binário da Versão 2. Assim, essa variável e `--ndb-log-transaction-id` não são compatíveis.
+Exceto quando se realiza uma atualização do NDB Cluster Replication, `log_bin_use_v1_row_events` é principalmente de interesse ao configurar a detecção e resolução de conflitos de replicação usando `NDB$EPOCH_TRANS()` como a função de detecção de conflitos, o que requer eventos de string de registro binário da Versão 2. Assim, essa variável e `--ndb-log-transaction-id` não são compatíveis.
 
 Nota
 
-O MySQL NDB Cluster 7.5 usa eventos de linha de registro binário da Versão 2 por padrão. Você deve ter isso em mente ao planejar atualizações ou reduções, e para configurações que utilizam a Replicação do NDB Cluster.
+O MySQL NDB Cluster 7.5 usa eventos de string de registro binário da Versão 2 por padrão. Você deve ter isso em mente ao planejar atualizações ou reduções, e para configurações que utilizam a Replicação do NDB Cluster.
 
 Para mais informações, consulte a Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
@@ -3935,13 +3935,13 @@ Os campos-chave do relatório de status a serem examinados são:
 
 * `Slave_IO_Running`: Se a thread de E/S para leitura do log binário da fonte está em execução. Normalmente, você deseja que isso seja `Yes` a menos que você ainda não tenha iniciado a replicação ou a tenha interrompido explicitamente com `STOP SLAVE`.
 
-* `Slave_SQL_Running`: Se o fio SQL para executar eventos no log de relé está em execução. Assim como o fio de E/S, isso normalmente deve ser `Yes`.
+* `Slave_SQL_Running`: Se o thread SQL para executar eventos no log de relé está em execução. Assim como o thread de E/S, isso normalmente deve ser `Yes`.
 
 * `Last_IO_Error`, `Last_SQL_Error`: Os últimos erros registrados pelos threads de I/O e SQL ao processar o log de relé. Idealmente, esses devem estar em branco, indicando ausência de erros.
 
 * `Seconds_Behind_Master`: O número de segundos que o thread de replicação SQL está atrasado no processamento do log binário da fonte. Um número elevado (ou um número crescente) pode indicar que a replica não consegue lidar com eventos da fonte de forma oportuna.
 
-Um valor de 0 para `Seconds_Behind_Master` geralmente pode ser interpretado como indicando que a réplica alcançou a fonte, mas há alguns casos em que isso não é estritamente verdadeiro. Por exemplo, isso pode ocorrer se a conexão de rede entre a fonte e a réplica for interrompida, mas o fio de I/O de replicação ainda não notou isso — ou seja, `slave_net_timeout` ainda não passou.
+Um valor de 0 para `Seconds_Behind_Master` geralmente pode ser interpretado como indicando que a réplica alcançou a fonte, mas há alguns casos em que isso não é estritamente verdadeiro. Por exemplo, isso pode ocorrer se a conexão de rede entre a fonte e a réplica for interrompida, mas o thread de I/O de replicação ainda não notou isso — ou seja, `slave_net_timeout` ainda não passou.
 
 É também possível que os valores transitórios para `Seconds_Behind_Master` não reflitam a situação com precisão. Quando o thread de replicação SQL alcança o I/O, `Seconds_Behind_Master` exibe 0; mas quando o thread de I/O de replicação ainda está em fila para um novo evento, `Seconds_Behind_Master` pode mostrar um valor grande até que o thread SQL termine a execução do novo evento. Isso é especialmente provável quando os eventos têm timestamps antigos; nesses casos, se você executar `SHOW SLAVE STATUS` várias vezes em um período relativamente curto, você pode ver esse valor mudar para frente e para trás repetidamente entre 0 e um valor relativamente grande.
 
@@ -3992,7 +3992,7 @@ Para parar o processamento do log binário da fonte, use `STOP SLAVE`:
 mysql> STOP SLAVE;
 ```
 
-Quando a replicação é interrompida, o fio de I/O de replicação para de ler eventos do log binário da fonte e de escrevê-los no log de relevo, e o fio de SQL de replicação para de ler eventos do log de relevo e de executá-los. Você pode pausar os fios de I/O e SQL de replicação individualmente, especificando o tipo de fio:
+Quando a replicação é interrompida, o thread de I/O de replicação para de ler eventos do log binário da fonte e de escrevê-los no log de relevo, e o thread de SQL de replicação para de ler eventos do log de relevo e de executá-los. Você pode pausar os threads de I/O e SQL de replicação individualmente, especificando o tipo de thread:
 
 ```sql
 mysql> STOP SLAVE IO_THREAD;
@@ -4005,20 +4005,20 @@ Para iniciar a execução novamente, use a declaração `START SLAVE`:
 mysql> START SLAVE;
 ```
 
-Para iniciar um determinado fio, especifique o tipo de fio:
+Para iniciar um determinado thread, especifique o tipo de thread:
 
 ```sql
 mysql> START SLAVE IO_THREAD;
 mysql> START SLAVE SQL_THREAD;
 ```
 
-Para uma replica que realiza atualizações apenas processando eventos da fonte, parar apenas o fio de replicação SQL pode ser útil se você quiser realizar um backup ou outra tarefa. O fio de I/O de replicação continua a ler eventos da fonte, mas eles não são executados. Isso facilita para a replica se atualizar quando você reiniciar o fio de replicação SQL.
+Para uma replica que realiza atualizações apenas processando eventos da fonte, parar apenas o thread de replicação SQL pode ser útil se você quiser realizar um backup ou outra tarefa. O thread de I/O de replicação continua a ler eventos da fonte, mas eles não são executados. Isso facilita para a replica se atualizar quando você reiniciar o thread de replicação SQL.
 
 Parar apenas a thread de I/O de replicação permite que os eventos no log de releio sejam executados pela thread de replicação SQL até o ponto em que o log de releio termina. Isso pode ser útil quando você deseja pausar a execução para acompanhar eventos já recebidos da fonte, quando deseja realizar administração na replica, mas também garantir que ela tenha processado todas as atualizações até um ponto específico. Esse método também pode ser usado para pausar a recepção de eventos na replica enquanto você realiza a administração na fonte. Parar a thread de I/O, mas permitir que a thread SQL seja executada, ajuda a garantir que não haja um grande acúmulo de eventos a serem executados quando a replicação for iniciada novamente.
 
 #### 16.1.7.3 Saltar transações
 
-Se a replicação parar devido a um problema com um evento em uma transação replicada, você pode retomar a replicação ignorando a transação falha na replica. Antes de ignorar uma transação, certifique-se de que o fio de I/O de replicação também esteja parado, assim como o fio de SQL de replicação.
+Se a replicação parar devido a um problema com um evento em uma transação replicada, você pode retomar a replicação ignorando a transação falha na replica. Antes de ignorar uma transação, certifique-se de que o thread de I/O de replicação também esteja parado, assim como o thread de SQL de replicação.
 
 Primeiro, você precisa identificar o evento replicado que causou o erro. Os detalhes do erro e a última transação aplicada com sucesso são registrados na tabela do Schema de Desempenho `replication_applier_status_by_worker`. Você pode usar **mysqlbinlog** para recuperar e exibir os eventos que foram registrados na época do erro. Para obter instruções sobre como fazer isso, consulte a Seção 7.5, “Recuperação Ponto no Tempo (Incremental)”). Alternativamente, você pode emitir `SHOW RELAYLOG EVENTS` na replica ou `SHOW BINLOG EVENTS` na fonte.
 
@@ -4098,7 +4098,7 @@ A declaração `SET GLOBAL sql_slave_skip_counter` não tem efeito imediato. Qua
 
 ###### 16.1.7.3.2.2 Ignorar transações com `CHANGE MASTER TO`
 
-Quando você tiver avaliado a transação falha para quaisquer outras ações apropriadas, conforme descrito anteriormente (como considerações de segurança), identifique as coordenadas (arquivo e posição) no log binário da fonte que representam uma posição adequada para reiniciar a replicação. Isso pode ser o início do grupo de eventos após o evento que causou o problema, ou o início da próxima transação. O fio de I/O de replicação começa a ler a partir da fonte nessas coordenadas na próxima vez que o fio começa, ignorando o evento falha. Certifique-se de que você identificou a posição com precisão, porque essa declaração não leva em conta grupos de eventos.
+Quando você tiver avaliado a transação falha para quaisquer outras ações apropriadas, conforme descrito anteriormente (como considerações de segurança), identifique as coordenadas (arquivo e posição) no log binário da fonte que representam uma posição adequada para reiniciar a replicação. Isso pode ser o início do grupo de eventos após o evento que causou o problema, ou o início da próxima transação. O thread de I/O de replicação começa a ler a partir da fonte nessas coordenadas na próxima vez que o thread começa, ignorando o evento falha. Certifique-se de que você identificou a posição com precisão, porque essa declaração não leva em conta grupos de eventos.
 
 Emita a declaração `CHANGE MASTER TO` da seguinte forma, onde *`source_log_name`* é o arquivo de registro binário que contém a posição de reinício, e *`source_log_pos`* é o número que representa a posição de reinício conforme declarado no arquivo de registro binário:
 

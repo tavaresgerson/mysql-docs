@@ -12,7 +12,7 @@ Um banco de dados é uma coleção estruturada de dados. Pode ser qualquer coisa
 
 * **Os bancos de dados MySQL são relacionais.**
 
-Um banco de dados relacional armazena dados em tabelas separadas, em vez de colocar todos os dados em um grande depósito. As estruturas do banco de dados são organizadas em arquivos físicos otimizados para velocidade. O modelo lógico, com objetos como bancos de dados, tabelas, visualizações, linhas e colunas, oferece um ambiente de programação flexível. Você define regras que governam as relações entre diferentes campos de dados, como um para um, um para muitos, único, obrigatório ou opcional, e "pontuações" entre diferentes tabelas. O banco de dados aplica essas regras, para que, com um banco de dados bem projetado, sua aplicação nunca veja dados inconsistentes, duplicados, órfãos, desatualizados ou faltantes.
+Um banco de dados relacional armazena dados em tabelas separadas, em vez de colocar todos os dados em um grande depósito. As estruturas do banco de dados são organizadas em arquivos físicos otimizados para velocidade. O modelo lógico, com objetos como bancos de dados, tabelas, visualizações, strings e colunas, oferece um ambiente de programação flexível. Você define regras que governam as relações entre diferentes campos de dados, como um para um, um para muitos, único, obrigatório ou opcional, e "pontuações" entre diferentes tabelas. O banco de dados aplica essas regras, para que, com um banco de dados bem projetado, sua aplicação nunca veja dados inconsistentes, duplicados, órfãos, desatualizados ou faltantes.
 
 A parte SQL de “MySQL” significa “Structured Query Language”. O SQL é a linguagem padronizada mais comum usada para acessar bancos de dados. Dependendo do seu ambiente de programação, você pode inserir SQL diretamente (por exemplo, para gerar relatórios), incorporar declarações SQL em código escrito em outro idioma ou usar uma API específica para a linguagem que oculta a sintaxe SQL.
 
@@ -40,9 +40,9 @@ O MySQL Server possui um conjunto prático de recursos desenvolvidos em estreita
 
 * **MySQL HeatWave.**
 
-MySQL HeatWave é um serviço de banco de dados totalmente gerenciado, impulsionado pelo acelerador de consultas em memória MySQL HeatWave. É o único serviço na nuvem que combina transações, análise em tempo real em armazéns de dados e lagos de dados, e aprendizado de máquina em um único banco de dados MySQL; sem a complexidade, latência, riscos e custo da duplicação de ETL. Está disponível em OCI, AWS e Azure. Saiba mais em: <https://www.oracle.com/mysql/>.
+MySQL HeatWave é um serviço de banco de dados totalmente gerenciado, impulsionado pelo acelerador de consultas em memória MySQL HeatWave. É o único serviço na nuvem que combina transações, análise em tempo real em armazéns de dados e pools de dados, e aprendizado de máquina em um único banco de dados MySQL; sem a complexidade, latência, riscos e custo da duplicação de ETL. Está disponível em OCI, AWS e Azure. Saiba mais em: <https://www.oracle.com/mysql/>.
 
-A maneira oficial de pronunciar "MySQL" é "My Ess Que Ell" (não "minha sequência"), mas não nos importamos se você a pronunciar como "minha sequência" ou de alguma outra maneira localizada.
+A maneira oficial de pronunciar "MySQL" é "My Ess Que Ell" (não "My Sequel"), mas não nos importamos se você a pronunciar como "My Sequel" ou de alguma outra maneira localizada.
 
 ### 1.2.2 As principais características do MySQL
 
@@ -64,7 +64,7 @@ Esta seção descreve algumas das características importantes do Software de Ba
 
 * Projetado para tornar relativamente fácil adicionar outros motores de armazenamento. Isso é útil se você deseja fornecer uma interface SQL para um banco de dados interno.
 
-* Usa um sistema de alocação de memória baseado em fios muito rápido. * Realiza junções muito rápidas usando uma junção otimizada de laço aninhado. * Implementa tabelas de hash em memória, que são usadas como tabelas temporárias.
+* Usa um sistema de alocação de memória baseado em threads muito rápido. * Realiza junções muito rápidas usando uma junção otimizada de laço aninhado. * Implementa tabelas de hash em memória, que são usadas como tabelas temporárias.
 
 * Implementa funções SQL usando uma biblioteca de classes altamente otimizada que deve ser o mais rápida possível. Geralmente, não há alocação de memória alguma após a inicialização da consulta.
 
@@ -92,7 +92,7 @@ Esta seção descreve algumas das características importantes do Software de Ba
 
 * Suporte para aliases em tabelas e colunas, conforme exigido pelo SQL padrão.
 
-* Suporte para `DELETE`, `INSERT`, `REPLACE` e `UPDATE` para retornar o número de linhas que foram alteradas (afetadas), ou para retornar o número de linhas correspondidas, ao definir uma bandeira ao se conectar ao servidor.
+* Suporte para `DELETE`, `INSERT`, `REPLACE` e `UPDATE` para retornar o número de strings que foram alteradas (afetadas), ou para retornar o número de strings correspondidas, ao definir uma bandeira ao se conectar ao servidor.
 
 * Suporte para declarações `SHOW` específicas para MySQL que recuperam informações sobre bancos de dados, motores de armazenamento, tabelas e índices. Suporte para o banco de dados `INFORMATION_SCHEMA`, implementado de acordo com o SQL padrão.
 
@@ -110,7 +110,7 @@ Esta seção descreve algumas das características importantes do Software de Ba
 
 #### Escalabilidade e Limites
 
-* Suporte para grandes bancos de dados. Usamos o MySQL Server com bancos de dados que contêm 50 milhões de registros. Também conhecemos usuários que usam o MySQL Server com 200.000 tabelas e cerca de 5.000.000.000 de linhas.
+* Suporte para grandes bancos de dados. Usamos o MySQL Server com bancos de dados que contêm 50 milhões de registros. Também conhecemos usuários que usam o MySQL Server com 200.000 tabelas e cerca de 5.000.000.000 de strings.
 
 * Suporte para até 64 índices por tabela. Cada índice pode consistir em 1 a 16 colunas ou partes de colunas. O comprimento máximo do índice para as tabelas `InnoDB` é de 767 bytes ou 3072 bytes. Veja a Seção 14.23, “Limites do InnoDB”. O comprimento máximo do índice para as tabelas `MyISAM` é de 1000 bytes. Veja a Seção 15.2, “O motor de armazenamento MyISAM”. Um índice pode usar um prefixo de uma coluna para os tipos de coluna `CHAR`, `VARCHAR`, `BLOB` ou `TEXT`.
 
@@ -118,7 +118,7 @@ Esta seção descreve algumas das características importantes do Software de Ba
 
 * Os clientes podem se conectar ao MySQL Server usando vários protocolos:
 
-+ Os clientes podem se conectar usando soquetes TCP/IP em qualquer plataforma. + Nos sistemas Windows, os clientes podem se conectar usando tubos nomeados se o servidor for iniciado com a variável de sistema `named_pipe` habilitada. Os servidores Windows também suportam conexões de memória compartilhada se iniciados com a variável de sistema `shared_memory` habilitada. Os clientes podem se conectar através da memória compartilhada usando a opção `--protocol=memory`.
++ Os clientes podem se conectar usando soquetes TCP/IP em qualquer plataforma. + Nos sistemas Windows, os clientes podem se conectar usando pipes nomeados se o servidor for iniciado com a variável de sistema `named_pipe` habilitada. Os servidores Windows também suportam conexões de memória compartilhada se iniciados com a variável de sistema `shared_memory` habilitada. Os clientes podem se conectar através da memória compartilhada usando a opção `--protocol=memory`.
 
 + Em sistemas Unix, os clientes podem se conectar usando arquivos de soquete de domínio Unix.
 
@@ -144,9 +144,9 @@ Esta seção descreve algumas das características importantes do Software de Ba
 
 #### Clientes e Ferramentas
 
-* O MySQL inclui vários programas de cliente e utilitários. Esses incluem tanto programas de linha de comando, como **mysqldump** e **mysqladmin**, quanto programas gráficos, como o MySQL Workbench.
+* O MySQL inclui vários programas de cliente e utilitários. Esses incluem tanto programas de string de comando, como **mysqldump** e **mysqladmin**, quanto programas gráficos, como o MySQL Workbench.
 
-* O MySQL Server tem suporte integrado para declarações SQL para verificar, otimizar e reparar tabelas. Essas declarações estão disponíveis na linha de comando através do cliente **mysqlcheck**. O MySQL também inclui **myisamchk**, uma ferramenta de linha de comando muito rápida para realizar essas operações em tabelas `MyISAM`. Veja o Capítulo 4, *Programas MySQL*.
+* O MySQL Server tem suporte integrado para declarações SQL para verificar, otimizar e reparar tabelas. Essas declarações estão disponíveis na string de comando através do cliente **mysqlcheck**. O MySQL também inclui **myisamchk**, uma ferramenta de string de comando muito rápida para realizar essas operações em tabelas `MyISAM`. Veja o Capítulo 4, *Programas MySQL*.
 
 * Os programas do MySQL podem ser invocados com as opções `--help` ou `-?` para obter assistência online.
 

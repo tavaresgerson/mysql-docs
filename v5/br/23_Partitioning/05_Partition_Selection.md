@@ -1,6 +1,6 @@
 ## 22.5 Seleção de Partição
 
-O MySQL 5.7 suporta a seleção explícita de partições e subpartições que, ao executar uma declaração, devem ser verificadas quanto às linhas que correspondem a uma condição `WHERE` dada. A seleção de partições é semelhante à poda de partições, na medida em que apenas partições específicas são verificadas quanto às correspondências, mas difere em dois aspectos-chave:
+O MySQL 5.7 suporta a seleção explícita de partições e subpartições que, ao executar uma declaração, devem ser verificadas quanto às strings que correspondem a uma condição `WHERE` dada. A seleção de partições é semelhante à poda de partições, na medida em que apenas partições específicas são verificadas quanto às correspondências, mas difere em dois aspectos-chave:
 
 1. As partições a serem verificadas são especificadas pelo emissor da declaração, ao contrário da poda de partições, que é automática.
 
@@ -29,7 +29,7 @@ A seleção explícita de partições é implementada usando a opção `PARTITIO
 
 Esta opção sempre segue o nome da tabela à qual a partição ou partições pertencem. *`partition_names`* é uma lista de partições ou subpartições separadas por vírgula a serem utilizadas. Cada nome nesta lista deve ser o nome de uma partição ou subpartição existente da tabela especificada; se alguma das partições ou subpartições não for encontrada, a declaração falha com um erro (a partição '*`partition_name`*' não existe). As partições e subpartições nomeadas em *`partition_names`* podem ser listadas em qualquer ordem e podem se sobrepor.
 
-Quando a opção `PARTITION` é usada, apenas as partições e subpartições listadas são verificadas quanto às linhas correspondentes. Esta opção pode ser usada em uma declaração `SELECT` para determinar quais linhas pertencem a uma determinada partição. Considere uma tabela particionada denominada `employees`, criada e preenchida usando as declarações mostradas aqui:
+Quando a opção `PARTITION` é usada, apenas as partições e subpartições listadas são verificadas quanto às strings correspondentes. Esta opção pode ser usada em uma declaração `SELECT` para determinar quais strings pertencem a uma determinada partição. Considere uma tabela particionada denominada `employees`, criada e preenchida usando as declarações mostradas aqui:
 
 ```sql
 SET @@SQL_MODE = '';
@@ -60,7 +60,7 @@ INSERT INTO employees VALUES
     ('', 'Mark', 'Morgan', 3, 3), ('', 'Karen', 'Cole', 3, 2);
 ```
 
-Você pode ver quais linhas estão armazenadas na partição `p1` da seguinte forma:
+Você pode ver quais strings estão armazenadas na partição `p1` da seguinte forma:
 
 ```sql
 mysql> SELECT * FROM employees PARTITION (p1);
@@ -78,7 +78,7 @@ mysql> SELECT * FROM employees PARTITION (p1);
 
 O resultado é o mesmo obtido pela consulta `SELECT * FROM employees WHERE id BETWEEN 5 AND 9`.
 
-Para obter linhas de múltiplas partições, forneça seus nomes como uma lista delimitada por vírgula. Por exemplo, `SELECT * FROM employees PARTITION (p1, p2)` retorna todas as linhas das partições `p1` e `p2`, excluindo as linhas das partições restantes.
+Para obter strings de múltiplas partições, forneça seus nomes como uma lista delimitada por vírgula. Por exemplo, `SELECT * FROM employees PARTITION (p1, p2)` retorna todas as strings das partições `p1` e `p2`, excluindo as strings das partições restantes.
 
 Qualquer consulta válida contra uma tabela particionada pode ser reescrita com a opção `PARTITION` para restringir o resultado a uma ou mais partições desejadas. Você pode usar as condições `WHERE`, `ORDER BY` e `LIMIT`, e assim por diante. Você também pode usar funções agregadas com as opções `HAVING` e `GROUP BY`. Cada uma das seguintes consultas produz um resultado válido quando executada na tabela `employees` conforme definido anteriormente:
 
@@ -228,7 +228,7 @@ mysql> SELECT
 
 Para informações gerais sobre junções no MySQL, consulte a Seção 13.2.9.2, “Cláusula JOIN”.
 
-Quando a opção `PARTITION` é usada com as declarações `DELETE`, apenas as partições (e subpartições, se houver) listadas com a opção são verificadas quanto às linhas a serem excluídas. Qualquer outra partição é ignorada, como mostrado aqui:
+Quando a opção `PARTITION` é usada com as declarações `DELETE`, apenas as partições (e subpartições, se houver) listadas com a opção são verificadas quanto às strings a serem excluídas. Qualquer outra partição é ignorada, como mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM employees WHERE fname LIKE 'j%';
@@ -254,9 +254,9 @@ mysql> SELECT * FROM employees WHERE fname LIKE 'j%';
 1 row in set (0.00 sec)
 ```
 
-Apenas as duas linhas nas partições `p0` e `p1` que correspondem à condição `WHERE` foram excluídas. Como você pode ver no resultado quando o `SELECT` é executado uma segunda vez, permanece uma linha na tabela que corresponde à condição `WHERE`, mas que reside em uma partição diferente (`p2`).
+Apenas as duas strings nas partições `p0` e `p1` que correspondem à condição `WHERE` foram excluídas. Como você pode ver no resultado quando o `SELECT` é executado uma segunda vez, permanece uma string na tabela que corresponde à condição `WHERE`, mas que reside em uma partição diferente (`p2`).
 
-As declarações `UPDATE` que utilizam seleção explícita de partições se comportam da mesma maneira; apenas as linhas nas partições referenciadas pela opção `PARTITION` são consideradas ao determinar as linhas a serem atualizadas, como pode ser visto ao executar as seguintes declarações:
+As declarações `UPDATE` que utilizam seleção explícita de partições se comportam da mesma maneira; apenas as strings nas partições referenciadas pela opção `PARTITION` são consideradas ao determinar as strings a serem atualizadas, como pode ser visto ao executar as seguintes declarações:
 
 ```sql
 mysql> UPDATE employees PARTITION (p0)
@@ -286,9 +286,9 @@ mysql> SELECT * FROM employees WHERE fname = 'Jill';
 1 row in set (0.00 sec)
 ```
 
-Da mesma forma, quando `PARTITION` é usado com `DELETE`, apenas as linhas na partição ou nas partições nomeadas na lista de partições são verificadas para exclusão.
+Da mesma forma, quando `PARTITION` é usado com `DELETE`, apenas as strings na partição ou nas partições nomeadas na lista de partições são verificadas para exclusão.
 
-Para declarações que inserem linhas, o comportamento difere, pois a falha em encontrar uma partição adequada faz com que a declaração falhe. Isso é verdadeiro tanto para as declarações `INSERT` quanto `REPLACE`, conforme mostrado aqui:
+Para declarações que inserem strings, o comportamento difere, pois a falha em encontrar uma partição adequada faz com que a declaração falhe. Isso é verdadeiro tanto para as declarações `INSERT` quanto `REPLACE`, conforme mostrado aqui:
 
 ```sql
 mysql> INSERT INTO employees PARTITION (p2) VALUES (20, 'Jan', 'Jones', 1, 3);
@@ -303,7 +303,7 @@ mysql> REPLACE INTO employees PARTITION (p3) VALUES (20, 'Jan', 'Jones', 3, 2);
 Query OK, 2 rows affected (0.09 sec)
 ```
 
-Para declarações que escrevem múltiplas linhas em uma tabela particionada que usa o mecanismo de armazenamento `InnoDB`: Se qualquer linha na lista que segue `VALUES` não puder ser escrita em uma das partições especificadas na lista *`partition_names`*, a declaração inteira falha e nenhuma linha é escrita. Isso é mostrado para declarações `INSERT` no exemplo a seguir, reutilizando a tabela `employees` criada anteriormente:
+Para declarações que escrevem múltiplas strings em uma tabela particionada que usa o mecanismo de armazenamento `InnoDB`: Se qualquer string na lista que segue `VALUES` não puder ser escrita em uma das partições especificadas na lista *`partition_names`*, a declaração inteira falha e nenhuma string é escrita. Isso é mostrado para declarações `INSERT` no exemplo a seguir, reutilizando a tabela `employees` criada anteriormente:
 
 ```sql
 mysql> ALTER TABLE employees
@@ -345,6 +345,6 @@ Query OK, 2 rows affected (0.06 sec)
 Records: 2  Duplicates: 0  Warnings: 0
 ```
 
-O que foi dito anteriormente é válido tanto para as declarações `INSERT` quanto para as declarações `REPLACE` que escrevem múltiplas linhas.
+O que foi dito anteriormente é válido tanto para as declarações `INSERT` quanto para as declarações `REPLACE` que escrevem múltiplas strings.
 
 Em MySQL 5.7.1 e versões posteriores, a seleção de partições é desativada para tabelas que utilizam um mecanismo de armazenamento que fornece partição automática, como `NDB`. (Bug #14827952)

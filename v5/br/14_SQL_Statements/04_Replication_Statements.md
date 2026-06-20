@@ -189,7 +189,7 @@ Se você especificar a opção `MASTER_HOST` ou `MASTER_PORT`, a replica assume 
 
 Definir `MASTER_HOST=''` (ou seja, definir explicitamente seu valor para uma string vazia) *não* é o mesmo que não definir `MASTER_HOST` de forma alguma. A partir do MySQL 5.5, tentar definir `MASTER_HOST` para uma string vazia falha com um erro. Anteriormente, definir `MASTER_HOST` para uma string vazia fazia com que `START SLAVE` falhasse posteriormente. (Bug #28796)
 
-Os valores usados para `MASTER_HOST` e outras opções de `CHANGE MASTER TO` são verificados quanto a caracteres de retorno de linha (`\n` ou `0x0A`) e a presença desses caracteres nesses valores faz com que a declaração falhe com `ER_MASTER_INFO`. (Bug #11758581, Bug #50801)
+Os valores usados para `MASTER_HOST` e outras opções de `CHANGE MASTER TO` são verificados quanto a caracteres de retorno de string (`\n` ou `0x0A`) e a presença desses caracteres nesses valores faz com que a declaração falhe com `ER_MASTER_INFO`. (Bug #11758581, Bug #50801)
 
 * `MASTER_USER` e `MASTER_PASSWORD` são o nome de usuário e a senha da conta a ser usada para se conectar à fonte. Se você especificar `MASTER_PASSWORD`, `MASTER_USER` também é necessário. A senha usada para uma conta de usuário de replicação em uma declaração `CHANGE MASTER TO` é limitada a 32 caracteres de comprimento; antes do MySQL 5.7.5, se a senha fosse mais longa, a declaração teria sucesso, mas quaisquer caracteres em excesso seriam truncados silenciosamente. No MySQL 5.7.5 e posterior, tentar usar uma senha de mais de 32 caracteres faz com que `CHANGE MASTER TO` falhe. (Bug #11752299, Bug #43439)
 
@@ -233,7 +233,7 @@ A partir do MySQL 5.7, uma declaração `CHANGE MASTER TO` que emprega `RELAY_LO
 
 `RELAY_LOG_FILE` pode usar um caminho absoluto ou relativo e usa o mesmo nome de base que `MASTER_LOG_FILE`. (Bug #12190)
 
-Quando o `MASTER_AUTO_POSITION = 1` é usado com o `CHANGE MASTER TO`, a replica tenta se conectar à fonte usando o recurso de autoposicionamento da replicação baseada em GTID, em vez de uma posição baseada em arquivo de log binário. A partir do MySQL 5.7, esta opção só pode ser empregada pelo `CHANGE MASTER TO` se o fio de SQL de replicação e o fio de I/O de replicação forem interrompidos. Tanto a replica quanto a fonte devem ter GTIDs habilitados (`GTID_MODE=ON`, `ON_PERMISSIVE,` ou `OFF_PERMISSIVE` na replica, e `GTID_MODE=ON` na fonte). O `MASTER_LOG_FILE`, `MASTER_LOG_POS`, `RELAY_LOG_FILE` e `RELAY_LOG_POS` não podem ser especificados juntamente com o `MASTER_AUTO_POSITION = 1`. Se a replicação de múltiplas fontes estiver habilitada na replica, é necessário definir a opção `MASTER_AUTO_POSITION = 1` para cada canal de replicação aplicável.
+Quando o `MASTER_AUTO_POSITION = 1` é usado com o `CHANGE MASTER TO`, a replica tenta se conectar à fonte usando o recurso de autoposicionamento da replicação baseada em GTID, em vez de uma posição baseada em arquivo de log binário. A partir do MySQL 5.7, esta opção só pode ser empregada pelo `CHANGE MASTER TO` se o thread de SQL de replicação e o thread de I/O de replicação forem interrompidos. Tanto a replica quanto a fonte devem ter GTIDs habilitados (`GTID_MODE=ON`, `ON_PERMISSIVE,` ou `OFF_PERMISSIVE` na replica, e `GTID_MODE=ON` na fonte). O `MASTER_LOG_FILE`, `MASTER_LOG_POS`, `RELAY_LOG_FILE` e `RELAY_LOG_POS` não podem ser especificados juntamente com o `MASTER_AUTO_POSITION = 1`. Se a replicação de múltiplas fontes estiver habilitada na replica, é necessário definir a opção `MASTER_AUTO_POSITION = 1` para cada canal de replicação aplicável.
 
 Com `MASTER_AUTO_POSITION = 1` definido, na mão de aperto inicial da conexão, a replica envia um GTID definido contendo as transações que ela já recebeu, comprometeu ou ambas. A fonte responde enviando todas as transações registradas em seu log binário cujos GTID não estão incluídos no GTID definido enviado pela replica. Essa troca garante que a fonte só envie as transações com um GTID que a replica não tenha registrado ou comprometido já. Se a replica receber transações de mais de uma fonte, como no caso de uma topologia de diamante, a função de auto-salto garante que as transações não sejam aplicadas duas vezes. Para detalhes sobre como o GTID definido enviado pela replica é calculado, consulte a Seção 16.1.3.3, “Posicionamento Automático do GTID”.
 
@@ -259,13 +259,13 @@ Invocar `CHANGE MASTER TO` faz com que os valores anteriores para `MASTER_HOST`,
 
 `CHANGE MASTER TO` causa um compromisso implícito de uma transação em andamento. Veja a Seção 13.3.3, “Declarações que causam um compromisso implícito”.
 
-Em MySQL 5.7.4 e versões posteriores, a exigência estrita de executar `STOP SLAVE` antes de emitir qualquer declaração `CHANGE MASTER TO` (e `START SLAVE` posteriormente) é removida. Em vez de depender se a replica está parada, o comportamento de `CHANGE MASTER TO` depende (em MySQL 5.7.4 e versões posteriores) dos estados do fio de SQL de replicação e do fio de I/O de replicação; qual desses fios está parado ou em execução agora determina as opções que podem ou não ser usadas com uma declaração `CHANGE MASTER TO` em um determinado momento. As regras para fazer essa determinação estão listadas aqui:
+Em MySQL 5.7.4 e versões posteriores, a exigência estrita de executar `STOP SLAVE` antes de emitir qualquer declaração `CHANGE MASTER TO` (e `START SLAVE` posteriormente) é removida. Em vez de depender se a replica está parada, o comportamento de `CHANGE MASTER TO` depende (em MySQL 5.7.4 e versões posteriores) dos estados do thread de SQL de replicação e do thread de I/O de replicação; qual desses threads está parado ou em execução agora determina as opções que podem ou não ser usadas com uma declaração `CHANGE MASTER TO` em um determinado momento. As regras para fazer essa determinação estão listadas aqui:
 
-* Se o fio SQL estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer combinação que, de outra forma, seja permitida das opções `RELAY_LOG_FILE`, `RELAY_LOG_POS` e `MASTER_DELAY`, mesmo que o fio de I/O de replicação esteja em execução. Nenhuma outra opção pode ser usada com essa declaração quando o fio de I/O estiver em execução.
+* Se o thread SQL estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer combinação que, de outra forma, seja permitida das opções `RELAY_LOG_FILE`, `RELAY_LOG_POS` e `MASTER_DELAY`, mesmo que o thread de I/O de replicação esteja em execução. Nenhuma outra opção pode ser usada com essa declaração quando o thread de I/O estiver em execução.
 
-* Se o fio de I/O estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer uma das opções para essa declaração (em qualquer combinação permitida) *exceto* `RELAY_LOG_FILE`, `RELAY_LOG_POS`, `MASTER_DELAY` ou `MASTER_AUTO_POSITION = 1`, mesmo quando o fio de SQL estiver em execução.
+* Se o thread de I/O estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer uma das opções para essa declaração (em qualquer combinação permitida) *exceto* `RELAY_LOG_FILE`, `RELAY_LOG_POS`, `MASTER_DELAY` ou `MASTER_AUTO_POSITION = 1`, mesmo quando o thread de SQL estiver em execução.
 
-* Tanto o fio SQL quanto o fio de E/S devem ser interrompidos antes de emitir uma declaração `CHANGE MASTER TO` que emprega `MASTER_AUTO_POSITION = 1`.
+* Tanto o thread SQL quanto o thread de E/S devem ser interrompidos antes de emitir uma declaração `CHANGE MASTER TO` que emprega `MASTER_AUTO_POSITION = 1`.
 
 Você pode verificar o estado atual do thread de replicação SQL e do thread de I/O de replicação usando `SHOW SLAVE STATUS`. Observe que o canal do aplicativo de replicação de grupo (`group_replication_applier`) não tem um thread de I/O, apenas um thread SQL.
 
@@ -288,7 +288,7 @@ CHANGE MASTER TO
   MASTER_CONNECT_RETRY=10;
 ```
 
-O próximo exemplo mostra uma operação que é empregada com menos frequência. É usada quando a replica tem arquivos de registro de relevo que você deseja que ela execute novamente por algum motivo. Para fazer isso, a fonte não precisa ser acessível. Você só precisa usar `CHANGE MASTER TO` e iniciar o fio SQL (`START SLAVE SQL_THREAD`):
+O próximo exemplo mostra uma operação que é empregada com menos frequência. É usada quando a replica tem arquivos de registro de relevo que você deseja que ela execute novamente por algum motivo. Para fazer isso, a fonte não precisa ser acessível. Você só precisa usar `CHANGE MASTER TO` e iniciar o thread SQL (`START SLAVE SQL_THREAD`):
 
 ```sql
 CHANGE MASTER TO
@@ -333,7 +333,7 @@ db_pair:
 
 `CHANGE REPLICATION FILTER` define uma ou mais regras de filtragem de replicação no replica no mesmo modo em que se inicia a replica `mysqld` com opções de filtragem de replicação, como `--replicate-do-db` ou `--replicate-wild-ignore-table`. Os filtros definidos usando esta declaração diferem daqueles definidos usando as opções do servidor em dois aspectos-chave:
 
-1. A declaração não exige o reinício do servidor para entrar em vigor, apenas que o fio de replicação SQL seja parado usando `STOP SLAVE SQL_THREAD` primeiro (e reiniciado com `START SLAVE SQL_THREAD` depois).
+1. A declaração não exige o reinício do servidor para entrar em vigor, apenas que o thread de replicação SQL seja parado usando `STOP SLAVE SQL_THREAD` primeiro (e reiniciado com `START SLAVE SQL_THREAD` depois).
 
 2. Os efeitos da declaração não são persistentes; quaisquer filtros definidos usando `CHANGE REPLICATION FILTER` são perdidos após o reinício da replica `mysqld`.
 
@@ -359,7 +359,7 @@ A lista a seguir mostra as opções do `CHANGE REPLICATION FILTER` e como elas s
 
 * `REPLICATE_REWRITE_DB`: Realize atualizações na replica após substituir o novo nome na replica pelo banco de dados especificado na fonte. É equivalente a `--replicate-rewrite-db`.
 
-Os efeitos precisos dos filtros `REPLICATE_DO_DB` e `REPLICATE_IGNORE_DB` dependem do fato de que a replicação baseada em declarações ou baseada em linhas esteja em vigor. Consulte a Seção 16.2.5, “Como os servidores avaliam as regras de filtragem de replicação”, para obter mais informações.
+Os efeitos precisos dos filtros `REPLICATE_DO_DB` e `REPLICATE_IGNORE_DB` dependem do fato de que a replicação baseada em declarações ou baseada em strings esteja em vigor. Consulte a Seção 16.2.5, “Como os servidores avaliam as regras de filtragem de replicação”, para obter mais informações.
 
 Várias regras de filtragem de replicação podem ser criadas em uma única declaração `CHANGE REPLICATION FILTER` ao separar as regras com vírgulas, como mostrado aqui:
 
@@ -414,7 +414,7 @@ CHANGE REPLICATION FILTER
     REPLICATE_DO_DB = (), REPLICATE_IGNORE_DB = ();
 ```
 
-Definir um filtro para ser vazio dessa maneira remove todas as regras existentes, não cria nenhuma nova e não restaura nenhuma regra definida na inicialização do mysqld usando as opções `--replicate-*` na linha de comando ou no arquivo de configuração.
+Definir um filtro para ser vazio dessa maneira remove todas as regras existentes, não cria nenhuma nova e não restaura nenhuma regra definida na inicialização do mysqld usando as opções `--replicate-*` na string de comando ou no arquivo de configuração.
 
 Os valores utilizados com `REPLICATE_WILD_DO_TABLE` e `REPLICATE_WILD_IGNORE_TABLE` devem estar no formato `db_name.tbl_name`. Antes do MySQL 5.7.5, isso não era rigorosamente aplicado, embora o uso de valores não conformes com essas opções possa levar a resultados errados (Bug #18095449).
 
@@ -453,7 +453,7 @@ Se você deseja redefinir os parâmetros de conexão intencionalmente, você pre
 
 `RESET SLAVE` causa um compromisso implícito de uma transação em andamento. Veja a Seção 13.3.3, “Declarações que causam um compromisso implícito”.
 
-Se o fio de replicação SQL estivesse em meio à replicação de tabelas temporárias quando foi interrompido e `RESET SLAVE` for emitido, essas tabelas temporárias replicadas serão excluídas na réplica.
+Se o thread de replicação SQL estivesse em meio à replicação de tabelas temporárias quando foi interrompido e `RESET SLAVE` for emitido, essas tabelas temporárias replicadas serão excluídas na réplica.
 
 Antes do MySQL 5.7.5, `RESET SLAVE` também tinha o efeito de redefinir tanto o período do batimento cardíaco (`Slave_heartbeat_period`) quanto `SSL_VERIFY_SERVER_CERT`. Esse problema é corrigido no MySQL 5.7.5 e versões posteriores. (Bug #18777899, Bug #18778485)
 
@@ -473,7 +473,7 @@ SET GLOBAL sql_slave_skip_counter = N
 
 Esta declaração omite os próximos eventos *`N`* do mestre. Isso é útil para recuperar de paradas de replicação causadas por uma declaração.
 
-Essa declaração é válida apenas quando os fios escravos não estão em execução. Caso contrário, ela produz um erro.
+Essa declaração é válida apenas quando os threads escravos não estão em execução. Caso contrário, ela produz um erro.
 
 Ao usar essa declaração, é importante entender que o log binário é, na verdade, organizado como uma sequência de grupos conhecidos como grupos de eventos. Cada grupo de eventos consiste em uma sequência de eventos.
 
@@ -532,13 +532,13 @@ interval:
 
 `START SLAVE` inicia as threads de replicação, juntas ou separadamente. A declaração requer o privilégio `SUPER`. `START SLAVE` causa um compromisso implícito de uma transação em andamento (consulte Seção 13.3.3, “Declarações que causam um compromisso implícito”).
 
-Para as opções de tipo de fio, você pode especificar `IO_THREAD`, `SQL_THREAD`, ambos, ou nenhum deles. Apenas os fios que estão sendo iniciados são afetados pela declaração.
+Para as opções de tipo de thread, você pode especificar `IO_THREAD`, `SQL_THREAD`, ambos, ou nenhum deles. Apenas os threads que estão sendo iniciados são afetados pela declaração.
 
-* `START SLAVE` sem opções de tipo de fio inicia todas as threads de replicação, assim como `START SLAVE` com ambas as opções de tipo de fio.
+* `START SLAVE` sem opções de tipo de thread inicia todas as threads de replicação, assim como `START SLAVE` com ambas as opções de tipo de thread.
 
-* `IO_THREAD` inicia o fio do receptor de replicação, que lê eventos do servidor fonte e os armazena no log de relevo.
+* `IO_THREAD` inicia o thread do receptor de replicação, que lê eventos do servidor fonte e os armazena no log de relevo.
 
-* `SQL_THREAD` inicia o fio do aplicador de replicação, que lê eventos do log do relé e os executa. Uma replica multithread (com `slave_parallel_workers` > 0) aplica transações usando um fio de coordenador e vários fios de aplicador, e `SQL_THREAD` inicia todos esses.
+* `SQL_THREAD` inicia o thread do aplicador de replicação, que lê eventos do log do relé e os executa. Uma replica multithread (com `slave_parallel_workers` > 0) aplica transações usando um thread de coordenador e vários threads de aplicador, e `SQL_THREAD` inicia todos esses.
 
 Importante
 
@@ -546,7 +546,7 @@ Importante
 
 A cláusula opcional `FOR CHANNEL channel` permite que você nomeie qual canal de replicação a declaração se aplica. A inclusão da cláusula `FOR CHANNEL channel` aplica a declaração `START SLAVE` a um canal de replicação específico. Se nenhuma cláusula for nomeada e não houver canais extras, a declaração se aplica ao canal padrão. Se uma declaração `START SLAVE` não tiver um canal definido ao usar vários canais, esta declaração inicia os threads especificados para todos os canais. Consulte a Seção 16.2.2, “Canais de Replicação”, para obter mais informações.
 
-Os canais de replicação para a Replicação de Grupo (`group_replication_applier` e `group_replication_recovery`) são gerenciados automaticamente pela instância do servidor. O único canal de Replicação de Grupo com o qual você pode interagir é o canal `group_replication_applier`. Esse canal tem apenas um fio de aplicador e não tem fio de receptor, portanto, ele pode ser iniciado usando a opção `SQL_THREAD` sem a opção `IO_THREAD`. O `START SLAVE` não pode ser usado de forma alguma com o canal `group_replication_recovery`.
+Os canais de replicação para a Replicação de Grupo (`group_replication_applier` e `group_replication_recovery`) são gerenciados automaticamente pela instância do servidor. O único canal de Replicação de Grupo com o qual você pode interagir é o canal `group_replication_applier`. Esse canal tem apenas um thread de aplicador e não tem thread de receptor, portanto, ele pode ser iniciado usando a opção `SQL_THREAD` sem a opção `IO_THREAD`. O `START SLAVE` não pode ser usado de forma alguma com o canal `group_replication_recovery`.
 
 O `START SLAVE` suporta autenticação de usuário e senha intercambiável (consulte a Seção 6.2.13, “Autenticação Intercambiável”) com as opções `USER`, `PASSWORD`, `DEFAULT_AUTH` e `PLUGIN_DIR`, conforme descrito na lista a seguir. Ao usar essas opções, você deve iniciar o thread do receptor (opção `IO_THREAD`), ou todos os threads de replicação; não pode iniciar o thread do aplicável de replicação (opção `SQL_THREAD` sozinho.
 
@@ -572,22 +572,22 @@ A cláusula `UNTIL` opera na thread do aplicador de replicação (opção `SQL_T
 
 O ponto que você especifica na cláusula `UNTIL` pode ser uma das seguintes opções (e apenas uma delas):
 
-`SOURCE_LOG_FILE` e `SOURCE_LOG_POS` : Essas opções fazem com que o processo de aplicação de replicação transfira transações até uma posição em seu log de relevo, identificada pelo nome do arquivo e pela posição do arquivo do ponto correspondente no log binário no servidor de origem. O fio de aplicação encontra o limite de transação mais próximo em ou após a posição especificada, termina a aplicação da transação e para ali.
+`SOURCE_LOG_FILE` e `SOURCE_LOG_POS` : Essas opções fazem com que o processo de aplicação de replicação transfira transações até uma posição em seu log de relevo, identificada pelo nome do arquivo e pela posição do arquivo do ponto correspondente no log binário no servidor de origem. O thread de aplicação encontra o limite de transação mais próximo em ou após a posição especificada, termina a aplicação da transação e para ali.
 
-`RELAY_LOG_FILE` e `RELAY_LOG_POS` : Essas opções fazem com que o processo de aplicação de replicação transfira transações até uma posição no log de relevo da replica, identificada pelo nome do arquivo do log de relevo e uma posição nesse arquivo. O fio do aplicável encontra o limite de transação mais próximo em ou após a posição especificada, termina a aplicação da transação e para ali.
+`RELAY_LOG_FILE` e `RELAY_LOG_POS` : Essas opções fazem com que o processo de aplicação de replicação transfira transações até uma posição no log de relevo da replica, identificada pelo nome do arquivo do log de relevo e uma posição nesse arquivo. O thread do aplicável encontra o limite de transação mais próximo em ou após a posição especificada, termina a aplicação da transação e para ali.
 
 `SQL_BEFORE_GTIDS` :   Essa opção faz com que o aplicativo de replicação comece a processar as transações e pare quando encontrar qualquer transação que esteja no conjunto especificado de GTID. A transação encontrada no conjunto de GTID não é aplicada, assim como nenhuma das outras transações no conjunto de GTID. A opção recebe um conjunto de GTID que contém um ou mais identificadores de transação global como argumento (consulte Conjuntos de GTID). As transações em um conjunto de GTID não aparecem necessariamente na corrente de replicação na ordem de seus GTIDs, então a transação antes da qual o aplicativo pára não é necessariamente a mais antiga.
 
 `SQL_AFTER_GTIDS` :   Essa opção faz com que o aplicativo de replicação comece a processar transações e pare quando tiver processado todas as transações em um conjunto especificado de GTID. A opção recebe um conjunto de GTID contendo um ou mais identificadores de transação global como argumento (consulte Conjuntos de GTID).
 
-Com `SQL_AFTER_GTIDS`, os fios de replicação param após terem processado todas as transações no conjunto GTID. As transações são processadas na ordem recebida, portanto, é possível que essas transações incluam aquelas que não fazem parte do conjunto GTID, mas que são recebidas (e processadas) antes de todas as transações do conjunto terem sido comprometidas. Por exemplo, a execução de `START SLAVE UNTIL SQL_AFTER_GTIDS = 3E11FA47-71CA-11E1-9E33-C80AA9429562:11-56` faz com que a replica obtenha (e processe) todas as transações da fonte até que todas as transações com os números de sequência de 11 a 56 tenham sido processadas, e então pare sem processar quaisquer transações adicionais após esse ponto ter sido alcançado.
+Com `SQL_AFTER_GTIDS`, os threads de replicação param após terem processado todas as transações no conjunto GTID. As transações são processadas na ordem recebida, portanto, é possível que essas transações incluam aquelas que não fazem parte do conjunto GTID, mas que são recebidas (e processadas) antes de todas as transações do conjunto terem sido comprometidas. Por exemplo, a execução de `START SLAVE UNTIL SQL_AFTER_GTIDS = 3E11FA47-71CA-11E1-9E33-C80AA9429562:11-56` faz com que a replica obtenha (e processe) todas as transações da fonte até que todas as transações com os números de sequência de 11 a 56 tenham sido processadas, e então pare sem processar quaisquer transações adicionais após esse ponto ter sido alcançado.
 
 `SQL_AFTER_GTIDS` não é compatível com escravos multi-threaded. Se esta opção for usada com um escravo multi-threaded, um aviso é exibido e o escravo muda para o modo de thread único. Dependendo do caso de uso, pode ser possível usar `START SLAVE UNTIL MASTER_LOG_POS` ou `START SLAVE UNTIL SQL_BEFORE_GTIDS` em vez disso. Você também pode usar `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`, que espera até que a posição correta seja alcançada, mas não para o thread do escravo.
 
 `SQL_AFTER_MTS_GAPS` :   Apenas para uma replica multithreading (com `slave_parallel_workers` > 0), esta opção faz com que o processo de replicação execute transações até o ponto em que não haja mais lacunas na sequência de transações executadas a partir do log de relevo. Ao usar uma replica multithreading, há uma chance de lacunas ocorrerem nas seguintes situações:
 
-* O fio do coordenador é interrompido.
-* Um erro ocorre nos fios do aplicador.
+* O thread do coordenador é interrompido.
+* Um erro ocorre nos threads do aplicador.
 * `mysqld` é desligado inesperadamente.
 
 Quando um canal de replicação tem lacunas, o banco de dados da replica está em um estado que nunca teria existido na fonte. A replica rastreia as lacunas internamente e não permite as declarações `CHANGE MASTER TO` que removeriam as informações da lacuna se fossem executadas.
@@ -616,11 +616,11 @@ channel_option:
     FOR CHANNEL channel
 ```
 
-Para interromper os fios de replicação. `STOP SLAVE` requer o privilégio `SUPER`. A melhor prática recomendada é executar `STOP SLAVE` na replica antes de interromper o servidor de replicação (consulte a Seção 5.1.16, “O processo de desligamento do servidor”, para mais informações).
+Para interromper os threads de replicação. `STOP SLAVE` requer o privilégio `SUPER`. A melhor prática recomendada é executar `STOP SLAVE` na replica antes de interromper o servidor de replicação (consulte a Seção 5.1.16, “O processo de desligamento do servidor”, para mais informações).
 
-*Ao usar o formato de registro baseado em linha*: Você deve executar `STOP SLAVE` ou `STOP SLAVE SQL_THREAD` na réplica antes de desligar o servidor de réplica, se você estiver replicando quaisquer tabelas que utilizem um motor de armazenamento não transacional (consulte a *Nota* mais adiante nesta seção).
+*Ao usar o formato de registro baseado em string*: Você deve executar `STOP SLAVE` ou `STOP SLAVE SQL_THREAD` na réplica antes de desligar o servidor de réplica, se você estiver replicando quaisquer tabelas que utilizem um motor de armazenamento não transacional (consulte a *Nota* mais adiante nesta seção).
 
-Assim como `START SLAVE`, esta declaração pode ser usada com as opções `IO_THREAD` e `SQL_THREAD` para nomear o(s) fio(s) a serem interrompido(s). Observe que o canal do aplicativo de replicação de grupo (`group_replication_applier`) não tem fio(s) de I/O de replicação, apenas um fio de SQL de replicação. Portanto, usando a opção `SQL_THREAD`, esse canal é interrompido completamente.
+Assim como `START SLAVE`, esta declaração pode ser usada com as opções `IO_THREAD` e `SQL_THREAD` para nomear o(s) thread(s) a serem interrompido(s). Observe que o canal do aplicativo de replicação de grupo (`group_replication_applier`) não tem thread(s) de I/O de replicação, apenas um thread de SQL de replicação. Portanto, usando a opção `SQL_THREAD`, esse canal é interrompido completamente.
 
 `STOP SLAVE` causa um compromisso implícito de uma transação em andamento. Veja a Seção 13.3.3, “Declarações que causam um compromisso implícito”.
 
@@ -628,7 +628,7 @@ Assim como `START SLAVE`, esta declaração pode ser usada com as opções `IO_T
 
 Você pode controlar o tempo que o `STOP SLAVE` espera antes de expirar, definindo a variável de sistema `rpl_stop_slave_timeout`. Isso pode ser usado para evitar deadlocks entre o `STOP SLAVE` e outros comandos SQL que utilizam diferentes conexões de cliente para a replica. Quando o valor do tempo de espera é alcançado, o cliente que emitiu o comando retorna uma mensagem de erro e para de esperar, mas a instrução `STOP SLAVE` permanece em vigor. Uma vez que os threads de replicação deixam de ser ocupados, a instrução `STOP SLAVE` é executada e a replica para.
 
-Algumas declarações `CHANGE MASTER TO` são permitidas enquanto a replica está em execução, dependendo dos estados do fio de SQL de replicação e do fio de E/S de replicação. No entanto, usar `STOP SLAVE` antes de executar `CHANGE MASTER TO` nesses casos ainda é suportado. Consulte a Seção 13.4.2.1, “Declaração CHANGE MASTER TO”, e a Seção 16.3.7, “Alternar fontes durante o failover”, para obter mais informações.
+Algumas declarações `CHANGE MASTER TO` são permitidas enquanto a replica está em execução, dependendo dos estados do thread de SQL de replicação e do thread de E/S de replicação. No entanto, usar `STOP SLAVE` antes de executar `CHANGE MASTER TO` nesses casos ainda é suportado. Consulte a Seção 13.4.2.1, “Declaração CHANGE MASTER TO”, e a Seção 16.3.7, “Alternar fontes durante o failover”, para obter mais informações.
 
 A cláusula opcional `FOR CHANNEL channel` permite que você nomeie qual canal de replicação a declaração se aplica. A inclusão da cláusula `FOR CHANNEL channel` aplica a declaração `STOP SLAVE` a um canal de replicação específico. Se nenhum canal for nomeado e não houver canais extras, a declaração se aplica ao canal padrão. Se uma declaração `STOP SLAVE` não nomear um canal ao usar vários canais, essa declaração interrompe os threads especificados para todos os canais. Esta declaração não pode ser usada com o canal `group_replication_recovery`. Consulte a Seção 16.2.2, “Canais de Replicação”, para obter mais informações.
 
@@ -636,7 +636,7 @@ A cláusula opcional `FOR CHANNEL channel` permite que você nomeie qual canal d
 
 Quando se usa uma replica multithread (`slave_parallel_workers` é um valor não nulo), quaisquer lacunas na sequência de transações executadas a partir do log de relevo são fechadas como parte do processo de parada dos threads do trabalhador. Se a replica for parada inesperadamente (por exemplo, devido a um erro em um thread do trabalhador ou outro thread emitindo `KILL`) enquanto uma declaração `STOP SLAVE` está sendo executada, a sequência de transações executadas a partir do log de relevo pode se tornar inconsistente. Consulte a Seção 16.4.1.32, “Replicação e Inconsistências de Transações”, para obter mais informações.
 
-Se o grupo atual de eventos de replicação tiver modificado uma ou mais tabelas não transacionais, o SLAVE para aguardar até 60 segundos para que o grupo de eventos seja concluído, a menos que você emita uma declaração `KILL QUERY` ou `KILL CONNECTION` para o fio de SQL de replicação. Se o grupo de eventos permanecer incompleto após o tempo limite, uma mensagem de erro é registrada.
+Se o grupo atual de eventos de replicação tiver modificado uma ou mais tabelas não transacionais, o SLAVE para aguardar até 60 segundos para que o grupo de eventos seja concluído, a menos que você emita uma declaração `KILL QUERY` ou `KILL CONNECTION` para o thread de SQL de replicação. Se o grupo de eventos permanecer incompleto após o tempo limite, uma mensagem de erro é registrada.
 
 ### 13.4.3 Esses são os comandos SQL para controlar a replicação de grupos
 

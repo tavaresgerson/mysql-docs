@@ -2,7 +2,7 @@
 
 Para usar o Schema de Desempenho do MySQL, ele deve ser habilitado na inicialização do servidor para permitir a coleta de eventos.
 
-Supondo que o Schema de Desempenho esteja disponível, ele é ativado por padrão. Para ativá-lo ou desativá-lo explicitamente, inicie o servidor com a variável `performance_schema` definida com um valor apropriado. Por exemplo, use essas linhas em seu arquivo `my.cnf`:
+Supondo que o Schema de Desempenho esteja disponível, ele é ativado por padrão. Para ativá-lo ou desativá-lo explicitamente, inicie o servidor com a variável `performance_schema` definida com um valor apropriado. Por exemplo, use essas strings em seu arquivo `my.cnf`:
 
 ```sql
 [mysqld]
@@ -87,13 +87,13 @@ mysql> SHOW VARIABLES LIKE 'perf%';
 ...
 ```
 
-A variável `performance_schema` é `ON` ou `OFF` para indicar se o Schema de Desempenho está habilitado ou desabilitado. As outras variáveis indicam tamanhos de tabela (número de linhas) ou valores de alocação de memória.
+A variável `performance_schema` é `ON` ou `OFF` para indicar se o Schema de Desempenho está habilitado ou desabilitado. As outras variáveis indicam tamanhos de tabela (número de strings) ou valores de alocação de memória.
 
 Nota
 
 Com o Schema de desempenho habilitado, o número de instâncias do Schema de desempenho afeta a pegada de memória do servidor, talvez em grande medida. O Schema de desempenho autoescala muitos parâmetros para usar memória apenas conforme necessário; veja a Seção 25.17, “O modelo de alocação de memória do Schema de desempenho”.
 
-Para alterar o valor das variáveis do sistema do Schema de desempenho, defina-as na inicialização do servidor. Por exemplo, coloque as seguintes linhas em um arquivo `my.cnf` para alterar os tamanhos das tabelas de histórico para eventos de espera:
+Para alterar o valor das variáveis do sistema do Schema de desempenho, defina-as na inicialização do servidor. Por exemplo, coloque as seguintes strings em um arquivo `my.cnf` para alterar os tamanhos das tabelas de histórico para eventos de espera:
 
 ```sql
 [mysqld]

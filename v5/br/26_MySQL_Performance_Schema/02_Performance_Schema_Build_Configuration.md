@@ -34,7 +34,7 @@ $> mysqld --verbose --help
 ...
 ```
 
-Você também pode se conectar ao servidor e procurar uma linha que nomeie o mecanismo de armazenamento `PERFORMANCE_SCHEMA` na saída do `SHOW ENGINES`:
+Você também pode se conectar ao servidor e procurar uma string que nomeie o mecanismo de armazenamento `PERFORMANCE_SCHEMA` na saída do `SHOW ENGINES`:
 
 ```sql
 mysql> SHOW ENGINES\G
@@ -48,6 +48,6 @@ Transactions: NO
 ...
 ```
 
-Se o Schema de desempenho não foi configurado no servidor na hora da construção, nenhuma linha para `PERFORMANCE_SCHEMA` aparece na saída do `SHOW ENGINES`. Você pode ver `performance_schema` listado na saída do `SHOW DATABASES`, mas ele não tem tabelas e não pode ser usado.
+Se o Schema de desempenho não foi configurado no servidor na hora da construção, nenhuma string para `PERFORMANCE_SCHEMA` aparece na saída do `SHOW ENGINES`. Você pode ver `performance_schema` listado na saída do `SHOW DATABASES`, mas ele não tem tabelas e não pode ser usado.
 
-Uma linha para `PERFORMANCE_SCHEMA` na saída `SHOW ENGINES` significa que o Schema de Desempenho está disponível, não que ele esteja habilitado. Para habilitá-lo, você deve fazê-lo na inicialização do servidor, conforme descrito na próxima seção.
+Uma string para `PERFORMANCE_SCHEMA` na saída `SHOW ENGINES` significa que o Schema de Desempenho está disponível, não que ele esteja habilitado. Para habilitá-lo, você deve fazê-lo na inicialização do servidor, conforme descrito na próxima seção.

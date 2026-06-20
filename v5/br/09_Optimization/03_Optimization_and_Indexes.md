@@ -1,12 +1,12 @@
 ## 8.3 Otimização e índices
 
-A melhor maneira de melhorar o desempenho das operações do `SELECT` é criar índices em uma ou mais das colunas que são testadas na consulta. As entradas do índice atuam como ponteiros para as linhas da tabela, permitindo que a consulta determine rapidamente quais linhas correspondem a uma condição na cláusula do `WHERE`, e retorne os outros valores das colunas para essas linhas. Todos os tipos de dados do MySQL podem ser indexados.
+A melhor maneira de melhorar o desempenho das operações do `SELECT` é criar índices em uma ou mais das colunas que são testadas na consulta. As entradas do índice atuam como ponteiros para as strings da tabela, permitindo que a consulta determine rapidamente quais strings correspondem a uma condição na cláusula do `WHERE`, e retorne os outros valores das colunas para essas strings. Todos os tipos de dados do MySQL podem ser indexados.
 
 Embora possa ser tentador criar índices para cada coluna possível usada em uma consulta, índices desnecessários desperdiçam espaço e perdem tempo para o MySQL determinar quais índices usar. Os índices também aumentam o custo de inserções, atualizações e exclusões, pois cada índice deve ser atualizado. Você deve encontrar o equilíbrio certo para obter consultas rápidas usando o conjunto ótimo de índices.
 
 ### 8.3.1 Como o MySQL usa índices
 
-Os índices são usados para encontrar linhas com valores específicos de coluna rapidamente. Sem um índice, o MySQL deve começar com a primeira linha e, em seguida, ler toda a tabela para encontrar as linhas relevantes. Quanto maior a tabela, mais isso custa. Se a tabela tiver um índice para as colunas em questão, o MySQL pode determinar rapidamente a posição a ser procurada no meio do arquivo de dados sem ter que olhar para todos os dados. Isso é muito mais rápido do que ler todas as linhas sequencialmente.
+Os índices são usados para encontrar strings com valores específicos de coluna rapidamente. Sem um índice, o MySQL deve começar com a primeira string e, em seguida, ler toda a tabela para encontrar as strings relevantes. Quanto maior a tabela, mais isso custa. Se a tabela tiver um índice para as colunas em questão, o MySQL pode determinar rapidamente a posição a ser procurada no meio do arquivo de dados sem ter que olhar para todos os dados. Isso é muito mais rápido do que ler todas as strings sequencialmente.
 
 A maioria dos índices do MySQL (`PRIMARY KEY`, `UNIQUE`, `INDEX` e `FULLTEXT`) são armazenados em árvores B. Exceções: índices em tipos de dados espaciais usam árvores R; as tabelas `MEMORY` também suportam índices de hash; `InnoDB` usa listas invertidas para índices de `FULLTEXT`.
 
@@ -14,13 +14,13 @@ Em geral, os índices são usados conforme descrito na discussão a seguir. As c
 
 O MySQL utiliza índices para essas operações:
 
-* Para encontrar as linhas que correspondem a uma cláusula `WHERE` rapidamente.
+* Para encontrar as strings que correspondem a uma cláusula `WHERE` rapidamente.
 
-* Para eliminar linhas da consideração. Se houver uma escolha entre vários índices, o MySQL normalmente usa o índice que encontra o menor número de linhas (o índice mais seletivo).
+* Para eliminar strings da consideração. Se houver uma escolha entre vários índices, o MySQL normalmente usa o índice que encontra o menor número de strings (o índice mais seletivo).
 
-* Se a tabela tiver um índice de múltiplas colunas, qualquer prefixo à esquerda do índice pode ser usado pelo otimizador para procurar linhas. Por exemplo, se você tiver um índice de três colunas em `(col1, col2, col3)`, você terá capacidades de busca indexadas em `(col1)`, `(col1, col2)` e `(col1, col2, col3)`. Para mais informações, consulte a Seção 8.3.5, “Indicações de Múltiplas Colunas”.
+* Se a tabela tiver um índice de múltiplas colunas, qualquer prefixo à esquerda do índice pode ser usado pelo otimizador para procurar strings. Por exemplo, se você tiver um índice de três colunas em `(col1, col2, col3)`, você terá capacidades de busca indexadas em `(col1)`, `(col1, col2)` e `(col1, col2, col3)`. Para mais informações, consulte a Seção 8.3.5, “Indicações de Múltiplas Colunas”.
 
-* Para recuperar linhas de outras tabelas ao realizar junções. O MySQL pode usar índices em colunas de forma mais eficiente se eles forem declarados como o mesmo tipo e tamanho. Neste contexto, `VARCHAR` e `CHAR` são considerados iguais se forem declarados com o mesmo tamanho. Por exemplo, `VARCHAR(10)` e `CHAR(10)` têm o mesmo tamanho, mas `VARCHAR(10)` e `CHAR(15)`
+* Para recuperar strings de outras tabelas ao realizar junções. O MySQL pode usar índices em colunas de forma mais eficiente se eles forem declarados como o mesmo tipo e tamanho. Neste contexto, `VARCHAR` e `CHAR` são considerados iguais se forem declarados com o mesmo tamanho. Por exemplo, `VARCHAR(10)` e `CHAR(10)` têm o mesmo tamanho, mas `VARCHAR(10)` e `CHAR(15)`
 
 Para comparações entre colunas de texto não binárias, ambas as colunas devem usar o mesmo conjunto de caracteres. Por exemplo, comparar uma coluna `utf8` com uma coluna `latin1` impede o uso de um índice.
 
@@ -35,28 +35,28 @@ A comparação de colunas diferentes (comparando uma coluna de texto com uma col
 
 * Para ordenar ou agrupar uma tabela se a ordenação ou agregação for feita em um prefixo à esquerda de um índice utilizável (por exemplo, `ORDER BY key_part1, key_part2`). Se todas as partes da chave forem seguidas por `DESC`, a chave é lida em ordem inversa. Veja Seção 8.2.1.14, “Otimização de ORDER BY”, e Seção 8.2.1.15, “Otimização de GROUP BY”.
 
-* Em alguns casos, uma consulta pode ser otimizada para recuperar valores sem consultar as linhas de dados. (Um índice que fornece todos os resultados necessários para uma consulta é chamado de índice coberto.) Se uma consulta usa apenas colunas de uma tabela que estão incluídas em algum índice, os valores selecionados podem ser recuperados da árvore de índice para maior velocidade:
+* Em alguns casos, uma consulta pode ser otimizada para recuperar valores sem consultar as strings de dados. (Um índice que fornece todos os resultados necessários para uma consulta é chamado de índice coberto.) Se uma consulta usa apenas colunas de uma tabela que estão incluídas em algum índice, os valores selecionados podem ser recuperados da árvore de índice para maior velocidade:
 
   ```sql
   SELECT key_part3 FROM tbl_name
     WHERE key_part1=1
   ```
 
-Os índices são menos importantes para consultas em tabelas pequenas ou grandes, onde as consultas de relatório processam a maioria ou todas as linhas. Quando uma consulta precisa acessar a maioria das linhas, a leitura sequencial é mais rápida do que trabalhar através de um índice. As leituras sequenciais minimizam os buscas no disco, mesmo que nem todas as linhas sejam necessárias para a consulta. Veja a Seção 8.2.1.20, “Evitando varreduras completas da tabela”, para detalhes.
+Os índices são menos importantes para consultas em tabelas pequenas ou grandes, onde as consultas de relatório processam a maioria ou todas as strings. Quando uma consulta precisa acessar a maioria das strings, a leitura sequencial é mais rápida do que trabalhar através de um índice. As leituras sequenciais minimizam os buscas no disco, mesmo que nem todas as strings sejam necessárias para a consulta. Veja a Seção 8.2.1.20, “Evitando varreduras completas da tabela”, para detalhes.
 
 ### 8.3.2 Otimização da Chave Primária
 
 A chave primária de uma tabela representa a coluna ou conjunto de colunas que você usa em suas consultas mais importantes. Ela tem um índice associado, para desempenho de consulta rápida. O desempenho da consulta se beneficia da otimização do `NOT NULL`, porque não pode incluir quaisquer valores do `NULL`. Com o mecanismo de armazenamento `InnoDB`, os dados da tabela são organizados fisicamente para fazer buscas e ordenamentos ultra-rápidos com base na coluna ou colunas da chave primária.
 
-Se a sua tabela for grande e importante, mas não tiver uma coluna ou um conjunto de colunas óbvias para usar como chave primária, você pode criar uma coluna separada com valores de auto-incremento para usar como chave primária. Esses IDs únicos podem servir como ponteiros para as linhas correspondentes em outras tabelas quando você realiza uma junção de tabelas usando chaves estrangeiras.
+Se a sua tabela for grande e importante, mas não tiver uma coluna ou um conjunto de colunas óbvias para usar como chave primária, você pode criar uma coluna separada com valores de auto-incremento para usar como chave primária. Esses IDs únicos podem servir como ponteiros para as strings correspondentes em outras tabelas quando você realiza uma junção de tabelas usando chaves estrangeiras.
 
 ### 8.3.3 Otimização da Chave Estrangeira
 
-Se uma tabela tiver muitas colunas e você fizer consultas em muitas combinações diferentes de colunas, pode ser eficiente dividir os dados menos frequentemente usados em tabelas separadas com algumas colunas cada, e relacioná-las de volta à tabela principal, duplicando a coluna de ID numérica da tabela principal. Dessa forma, cada pequena tabela pode ter uma chave primária para buscas rápidas de seus dados, e você pode fazer consultas apenas no conjunto de colunas que você precisa, usando uma operação de junção. Dependendo de como os dados estão distribuídos, as consultas podem realizar menos I/O e ocupar menos memória de cache, porque as colunas relevantes estão compactadas juntas no disco. (Para maximizar o desempenho, as consultas tentam ler o menor número possível de blocos de dados do disco; tabelas com apenas algumas colunas podem caber mais linhas em cada bloco de dados.)
+Se uma tabela tiver muitas colunas e você fizer consultas em muitas combinações diferentes de colunas, pode ser eficiente dividir os dados menos frequentemente usados em tabelas separadas com algumas colunas cada, e relacioná-las de volta à tabela principal, duplicando a coluna de ID numérica da tabela principal. Dessa forma, cada pequena tabela pode ter uma chave primária para buscas rápidas de seus dados, e você pode fazer consultas apenas no conjunto de colunas que você precisa, usando uma operação de junção. Dependendo de como os dados estão distribuídos, as consultas podem realizar menos I/O e ocupar menos memória de cache, porque as colunas relevantes estão compactadas juntas no disco. (Para maximizar o desempenho, as consultas tentam ler o menor número possível de blocos de dados do disco; tabelas com apenas algumas colunas podem caber mais strings em cada bloco de dados.)
 
 ### 8.3.4 Índices de coluna
 
-O tipo mais comum de índice envolve uma única coluna, armazenando cópias dos valores dessa coluna em uma estrutura de dados, permitindo pesquisas rápidas para as linhas com os valores correspondentes da coluna. A estrutura de dados B-tree permite que o índice encontre rapidamente um valor específico, um conjunto de valores ou uma faixa de valores, correspondendo a operadores como `=`, `>`, `≤`, `BETWEEN`, `IN`, e assim por diante, em uma cláusula `WHERE`.
+O tipo mais comum de índice envolve uma única coluna, armazenando cópias dos valores dessa coluna em uma estrutura de dados, permitindo pesquisas rápidas para as strings com os valores correspondentes da coluna. A estrutura de dados B-tree permite que o índice encontre rapidamente um valor específico, um conjunto de valores ou uma faixa de valores, correspondendo a operadores como `=`, `>`, `≤`, `BETWEEN`, `IN`, e assim por diante, em uma cláusula `WHERE`.
 
 O número máximo de índices por tabela e o comprimento máximo do índice são definidos por motor de armazenamento. Veja o Capítulo 14, *O motor de armazenamento InnoDB*, e o Capítulo 15, *Motores de armazenamento alternativos*. Todos os motores de armazenamento suportam pelo menos 16 índices por tabela e um comprimento total de índice de pelo menos 256 bytes. A maioria dos motores de armazenamento tem limites mais altos.
 
@@ -81,7 +81,7 @@ Nota
 
 Os limites de prefixo são medidos em bytes, enquanto o comprimento do prefixo nas declarações de `CREATE TABLE`, `ALTER TABLE` e `CREATE INDEX` é interpretado como número de caracteres para tipos de string não binários (`CHAR`, `VARCHAR`, `TEXT`) e número de bytes para tipos de string binários (`BINARY`, `VARBINARY`, `BLOB`). Tome isso em consideração ao especificar um comprimento de prefixo para uma coluna de string não binária que utiliza um conjunto de caracteres multibyte.
 
-Se um termo de busca exceder o comprimento do prefixo do índice, o índice é usado para excluir as linhas que não correspondem, e as linhas restantes são examinadas quanto a possíveis correspondências.
+Se um termo de busca exceder o comprimento do prefixo do índice, o índice é usado para excluir as strings que não correspondem, e as strings restantes são examinadas quanto a possíveis correspondências.
 
 Para informações adicionais sobre prefixos de índice, consulte a Seção 13.1.14, “Instrução CREATE INDEX”.
 
@@ -93,9 +93,9 @@ As otimizações são aplicadas a certos tipos de consultas `FULLTEXT` contra ta
 
 * `FULLTEXT` consultas que retornam apenas o ID do documento, ou o ID do documento e o ranking de pesquisa.
 
-* `FULLTEXT` solicita que as linhas correspondentes sejam ordenadas em ordem decrescente de pontuação e aplique uma cláusula `LIMIT` para obter as N primeiras linhas correspondentes. Para que essa otimização seja aplicada, não deve haver cláusulas `WHERE` e apenas uma única cláusula `ORDER BY` em ordem decrescente.
+* `FULLTEXT` solicita que as strings correspondentes sejam ordenadas em ordem decrescente de pontuação e aplique uma cláusula `LIMIT` para obter as N primeiras strings correspondentes. Para que essa otimização seja aplicada, não deve haver cláusulas `WHERE` e apenas uma única cláusula `ORDER BY` em ordem decrescente.
 
-* `FULLTEXT` consultas que recuperam apenas o valor `COUNT(*)` das linhas que correspondem a um termo de pesquisa, sem cláusulas adicionais de `WHERE`. O código da cláusula `WHERE` como `WHERE MATCH(text) AGAINST ('other_text')`, sem qualquer operador de comparação `> 0`.
+* `FULLTEXT` consultas que recuperam apenas o valor `COUNT(*)` das strings que correspondem a um termo de pesquisa, sem cláusulas adicionais de `WHERE`. O código da cláusula `WHERE` como `WHERE MATCH(text) AGAINST ('other_text')`, sem qualquer operador de comparação `> 0`.
 
 Para consultas que contêm expressões de texto completo, o MySQL avalia essas expressões durante a fase de otimização da execução da consulta. O otimizador não apenas analisa expressões de texto completo e faz estimativas, ele as avalia na verdade no processo de desenvolvimento de um plano de execução.
 
@@ -117,7 +117,7 @@ O MySQL pode criar índices compostos (ou seja, índices em múltiplos colunas).
 
 O MySQL pode usar índices de múltiplos colunas para consultas que testam todas as colunas do índice, ou consultas que testam apenas a primeira coluna, as primeiras duas colunas, as primeiras três colunas, e assim por diante. Se você especificar as colunas na ordem correta na definição do índice, um único índice composto pode acelerar vários tipos de consultas na mesma tabela.
 
-Um índice de múltiplos colunas pode ser considerado um array ordenado, cujas linhas contêm valores que são criados concatenando os valores das colunas indexadas.
+Um índice de múltiplos colunas pode ser considerado um array ordenado, cujas strings contêm valores que são criados concatenando os valores das colunas indexadas.
 
 Nota
 
@@ -174,9 +174,9 @@ SELECT * FROM tbl_name
   WHERE col1=val1 AND col2=val2;
 ```
 
-Se um índice de múltiplas colunas existir em `col1` e `col2`, as linhas apropriadas podem ser obtidas diretamente. Se índices separados de uma única coluna existirem em `col1` e `col2`, o otimizador tenta usar a otimização de junção de índices (ver Seção 8.2.1.3, “Otimização de Junção de Índices”), ou tenta encontrar o índice mais restritivo, decidindo qual índice exclui mais linhas e usando esse índice para obter as linhas.
+Se um índice de múltiplas colunas existir em `col1` e `col2`, as strings apropriadas podem ser obtidas diretamente. Se índices separados de uma única coluna existirem em `col1` e `col2`, o otimizador tenta usar a otimização de junção de índices (ver Seção 8.2.1.3, “Otimização de Junção de Índices”), ou tenta encontrar o índice mais restritivo, decidindo qual índice exclui mais strings e usando esse índice para obter as strings.
 
-Se a tabela tiver um índice de múltiplas colunas, qualquer prefixo à esquerda do índice pode ser usado pelo otimizador para procurar linhas. Por exemplo, se você tiver um índice de três colunas em `(col1, col2, col3)`, você terá capacidades de busca indexadas em `(col1)`, `(col1, col2)` e `(col1, col2, col3)`.
+Se a tabela tiver um índice de múltiplas colunas, qualquer prefixo à esquerda do índice pode ser usado pelo otimizador para procurar strings. Por exemplo, se você tiver um índice de três colunas em `(col1, col2, col3)`, você terá capacidades de busca indexadas em `(col1)`, `(col1, col2)` e `(col1, col2, col3)`.
 
 O MySQL não pode usar o índice para realizar pesquisas se as colunas não formarem um prefixo à esquerda do índice. Suponha que você tenha as declarações `SELECT` mostradas aqui:
 
@@ -196,21 +196,21 @@ Sempre verifique se todas as suas consultas realmente utilizam os índices que v
 
 ### 8.3.7 Coleta de estatísticas de índices InnoDB e MyISAM
 
-Os motores de armazenamento coletam estatísticas sobre as tabelas para uso pelo otimizador. As estatísticas da tabela são baseadas em grupos de valores, onde um grupo de valores é um conjunto de linhas com o mesmo valor de prefixo de chave. Para fins de otimizador, uma estatística importante é o tamanho médio do grupo de valores.
+Os motores de armazenamento coletam estatísticas sobre as tabelas para uso pelo otimizador. As estatísticas da tabela são baseadas em grupos de valores, onde um grupo de valores é um conjunto de strings com o mesmo valor de prefixo de chave. Para fins de otimizador, uma estatística importante é o tamanho médio do grupo de valores.
 
 O MySQL utiliza o tamanho médio do grupo de valores das seguintes maneiras:
 
-* Para estimar quantas linhas devem ser lidas para cada acesso ao `ref`
+* Para estimar quantas strings devem ser lidas para cada acesso ao `ref`
 
-* Para estimar quantas linhas uma junção parcial produz; ou seja, o número de linhas que uma operação desse tipo produz:
+* Para estimar quantas strings uma junção parcial produz; ou seja, o número de strings que uma operação desse tipo produz:
 
   ```sql
   (...) JOIN tbl_name ON tbl_name.key = expr
   ```
 
-À medida que o tamanho médio do grupo de valores para um índice aumenta, o índice é menos útil para esses dois propósitos, porque o número médio de linhas por busca aumenta: para que o índice seja útil para fins de otimização, é melhor que cada valor do índice atenda a um pequeno número de linhas na tabela. Quando um determinado valor do índice gera um grande número de linhas, o índice é menos útil e é menos provável que o MySQL o use.
+À medida que o tamanho médio do grupo de valores para um índice aumenta, o índice é menos útil para esses dois propósitos, porque o número médio de strings por busca aumenta: para que o índice seja útil para fins de otimização, é melhor que cada valor do índice atenda a um pequeno número de strings na tabela. Quando um determinado valor do índice gera um grande número de strings, o índice é menos útil e é menos provável que o MySQL o use.
 
-O tamanho médio do grupo de valores está relacionado à cardinalidade da tabela, que é o número de grupos de valores. A declaração `SHOW INDEX` exibe um valor de cardinalidade com base em *`N/S`*, onde *`N`* é o número de linhas na tabela e *`S`* é o tamanho médio do grupo de valores. Essa proporção fornece um número aproximado de grupos de valores na tabela.
+O tamanho médio do grupo de valores está relacionado à cardinalidade da tabela, que é o número de grupos de valores. A declaração `SHOW INDEX` exibe um valor de cardinalidade com base em *`N/S`*, onde *`N`* é o número de strings na tabela e *`S`* é o tamanho médio do grupo de valores. Essa proporção fornece um número aproximado de grupos de valores na tabela.
 
 Para uma junção baseada no operador de comparação `<=>`, `NULL` não é tratado de forma diferente de qualquer outro valor: `NULL <=> NULL`, assim como `N <=> N` para qualquer outro *`N`*.
 
@@ -238,7 +238,7 @@ Para regenerar as estatísticas da tabela `MyISAM`, você pode usar qualquer um 
 
 * Execute **myisamchk --stats_method=*`method_name`* --analyze**
 
-* Altere a tabela para fazer com que suas estatísticas deixem de ser atualizadas (por exemplo, insira uma linha e depois exclua-a), e, em seguida, defina `myisam_stats_method` e emita uma declaração `ANALYZE TABLE`
+* Altere a tabela para fazer com que suas estatísticas deixem de ser atualizadas (por exemplo, insira uma string e depois exclua-a), e, em seguida, defina `myisam_stats_method` e emita uma declaração `ANALYZE TABLE`
 
 Algumas ressalvas sobre o uso de `innodb_stats_method` e `myisam_stats_method`:
 
@@ -264,7 +264,7 @@ SELECT * FROM tbl_name WHERE key_col LIKE 'Patrick%';
 SELECT * FROM tbl_name WHERE key_col LIKE 'Pat%_ck%';
 ```
 
-Na primeira declaração, apenas as linhas com `'Patrick' <= key_col < 'Patricl'` são consideradas. Na segunda declaração, apenas as linhas com `'Pat' <= key_col < 'Pau'` são consideradas.
+Na primeira declaração, apenas as strings com `'Patrick' <= key_col < 'Patricl'` são consideradas. Na segunda declaração, apenas as strings com `'Pat' <= key_col < 'Pau'` são consideradas.
 
 As seguintes declarações `SELECT` não utilizam índices:
 
@@ -309,7 +309,7 @@ Essas cláusulas `WHERE` *não* usam índices:
 ... WHERE index_part1=1 OR index_part2=10
 ```
 
-Às vezes, o MySQL não usa um índice, mesmo que um esteja disponível. Uma circunstância em que isso ocorre é quando o otimizador estima que o uso do índice exigiria que o MySQL acessasse uma porcentagem muito grande das linhas da tabela. (Neste caso, uma varredura da tabela provavelmente será muito mais rápida, pois requer menos buscas.) No entanto, se tal consulta usa `LIMIT` para recuperar apenas algumas das linhas, o MySQL usa um índice de qualquer forma, porque pode encontrar muito mais rapidamente as poucas linhas a serem devolvidas no resultado.
+Às vezes, o MySQL não usa um índice, mesmo que um esteja disponível. Uma circunstância em que isso ocorre é quando o otimizador estima que o uso do índice exigiria que o MySQL acessasse uma porcentagem muito grande das strings da tabela. (Neste caso, uma varredura da tabela provavelmente será muito mais rápida, pois requer menos buscas.) No entanto, se tal consulta usa `LIMIT` para recuperar apenas algumas das strings, o MySQL usa um índice de qualquer forma, porque pode encontrar muito mais rapidamente as poucas strings a serem devolvidas no resultado.
 
 #### Características do Índice de Hash
 
@@ -319,9 +319,9 @@ Os índices de hash têm características um pouco diferentes das que foram disc
 
 * O otimizador não pode usar um índice de hash para acelerar as operações de `ORDER BY`. (Esse tipo de índice não pode ser usado para procurar a próxima entrada na ordem.)
 
-* O MySQL não pode determinar aproximadamente quantas linhas existem entre dois valores (isso é usado pelo otimizador de intervalo para decidir qual índice usar). Isso pode afetar algumas consultas se você alterar uma tabela `MyISAM` ou `InnoDB` para uma tabela indexada por hash `MEMORY`.
+* O MySQL não pode determinar aproximadamente quantas strings existem entre dois valores (isso é usado pelo otimizador de intervalo para decidir qual índice usar). Isso pode afetar algumas consultas se você alterar uma tabela `MyISAM` ou `InnoDB` para uma tabela indexada por hash `MEMORY`.
 
-* Apenas chaves inteiras podem ser usadas para pesquisar uma linha. (Com um índice de árvore B, qualquer prefixo mais à esquerda da chave pode ser usado para encontrar linhas.)
+* Apenas chaves inteiras podem ser usadas para pesquisar uma string. (Com um índice de árvore B, qualquer prefixo mais à esquerda da chave pode ser usado para encontrar strings.)
 
 ### 8.3.9 Uso de extensões de índice
 
@@ -343,7 +343,7 @@ O otimizador leva em consideração as colunas da chave primária do índice sec
 
 O otimizador pode usar índices secundários extensos para o acesso ao índice `ref`, `range` e `index_merge`, para acesso ao varredura de índice solto, para otimização de junção e ordenação, e para otimização de `MIN()`/`MAX()`.
 
-O exemplo a seguir mostra como os planos de execução são afetados pelo fato de o otimizador usar índices secundários extensos. Suponha que `t1` esteja preenchido com essas linhas:
+O exemplo a seguir mostra como os planos de execução são afetados pelo fato de o otimizador usar índices secundários extensos. Suponha que `t1` esteja preenchido com essas strings:
 
 ```sql
 INSERT INTO t1 VALUES
@@ -410,9 +410,9 @@ Em ambos os casos, `key` indica que o otimizador utiliza o índice secundário `
 
 * O valor `ref` muda de `const` para `const,const`, porque a pesquisa de chave usa duas partes de chave, não uma.
 
-* O contagem `rows` diminui de 5 para 1, indicando que `InnoDB` deve precisar examinar menos linhas para produzir o resultado.
+* O contagem `rows` diminui de 5 para 1, indicando que `InnoDB` deve precisar examinar menos strings para produzir o resultado.
 
-* O valor `Extra` muda de `Using where; Using index` para `Using index`. Isso significa que as linhas podem ser lidas usando apenas o índice, sem consultar as colunas na linha de dados.
+* O valor `Extra` muda de `Using where; Using index` para `Using index`. Isso significa que as strings podem ser lidas usando apenas o índice, sem consultar as colunas na string de dados.
 
 Diferenças no comportamento do otimizador para o uso de índices extensos também podem ser observadas com `SHOW STATUS`:
 
@@ -640,7 +640,7 @@ Devido à operação de otimizador diferente para buscas não indexadas e indexa
 
 * É realizada dentro do motor de armazenamento, que conhece apenas valores em UTC.
 
-* Para os dois valores distintos do fuso horário da sessão que correspondem ao mesmo valor UTC, a pesquisa indexada corresponde apenas à entrada correspondente do índice UTC e retorna apenas uma única linha.
+* Para os dois valores distintos do fuso horário da sessão que correspondem ao mesmo valor UTC, a pesquisa indexada corresponde apenas à entrada correspondente do índice UTC e retorna apenas uma única string.
 
 Na discussão anterior, o conjunto de dados armazenado em `tstable` por acaso consiste em valores distintos do UTC. Nesses casos, todas as consultas que utilizam índices na forma mostrada correspondem, no máximo, a uma entrada de índice.
 

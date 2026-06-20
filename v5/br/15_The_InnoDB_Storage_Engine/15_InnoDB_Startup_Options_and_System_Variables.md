@@ -1,8 +1,8 @@
 ## 14.15 Opções de inicialização do InnoDB e variáveis do sistema
 
-* As variáveis do sistema que são verdadeiras ou falsas podem ser habilitadas na inicialização do servidor ao nomeá-las, ou desabilitadas usando o prefixo `--skip-`. Por exemplo, para habilitar ou desabilitar o índice de hash adaptativo `InnoDB`, você pode usar `--innodb-adaptive-hash-index` ou `--skip-innodb-adaptive-hash-index` na linha de comando, ou `innodb_adaptive_hash_index` ou `skip_innodb_adaptive_hash_index` em um arquivo de opção.
+* As variáveis do sistema que são verdadeiras ou falsas podem ser habilitadas na inicialização do servidor ao nomeá-las, ou desabilitadas usando o prefixo `--skip-`. Por exemplo, para habilitar ou desabilitar o índice de hash adaptativo `InnoDB`, você pode usar `--innodb-adaptive-hash-index` ou `--skip-innodb-adaptive-hash-index` na string de comando, ou `innodb_adaptive_hash_index` ou `skip_innodb_adaptive_hash_index` em um arquivo de opção.
 
-* As variáveis do sistema que aceitam um valor numérico podem ser especificadas como `--var_name=value` na linha de comando ou como `var_name=value` em arquivos de opção.
+* As variáveis do sistema que aceitam um valor numérico podem ser especificadas como `--var_name=value` na string de comando ou como `var_name=value` em arquivos de opção.
 
 * Muitas variáveis do sistema podem ser alteradas em tempo de execução (consulte a Seção 5.1.8.2, “Variáveis de sistema dinâmicas”).
 
@@ -156,9 +156,9 @@ Com que frequência auto-commitar conexões ociosas que utilizam a interface `In
 
   <table frame="box" rules="all" summary="Properties for innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><code>OFF</code><code>ON</code><code>FORCE</code></td> </tr></tbody></table>6
 
-Use esta opção para desabilitar os bloqueios de linha quando o **memcached** `InnoDB` realiza operações DML. Por padrão, o `innodb_api_disable_rowlock` é desativado, o que significa que o **memcached** solicita bloqueios de linha para as operações de `get` e `set`. Quando o `innodb_api_disable_rowlock` é ativado, o **memcached** solicita um bloqueio de tabela em vez de bloqueios de linha.
+Use esta opção para desabilitar os bloqueios de string quando o **memcached** `InnoDB` realiza operações DML. Por padrão, o `innodb_api_disable_rowlock` é desativado, o que significa que o **memcached** solicita bloqueios de string para as operações de `get` e `set`. Quando o `innodb_api_disable_rowlock` é ativado, o **memcached** solicita um bloqueio de tabela em vez de bloqueios de string.
 
-`innodb_api_disable_rowlock` não é dinâmico. Ele deve ser especificado na linha de comando do comando `mysqld` ou inserido no arquivo de configuração do MySQL. A configuração entra em vigor quando o plugin é instalado, o que ocorre quando o servidor MySQL é iniciado.
+`innodb_api_disable_rowlock` não é dinâmico. Ele deve ser especificado na string de comando do comando `mysqld` ou inserido no arquivo de configuração do MySQL. A configuração entra em vigor quando o plugin é instalado, o que ocorre quando o servidor MySQL é iniciado.
 
 Para mais informações, consulte a Seção 14.21.5.4, “Controlar o comportamento transacional do plugin memcached do InnoDB”.
 
@@ -297,7 +297,7 @@ Para informações relacionadas, consulte a Seção 14.8.3.1, “Configurando o 
 
   <table frame="box" rules="all" summary="Properties for innodb-status-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>9
 
-Interrompe o processo de restauração dos conteúdos do pool de tampão `InnoDB`, desencadeado por `innodb_buffer_pool_load_at_startup` ou `innodb_buffer_pool_load_now`.
+Interrompe o processo de restauração dos conteúdos do pool de buffer `InnoDB`, desencadeado por `innodb_buffer_pool_load_at_startup` ou `innodb_buffer_pool_load_now`.
 
 Ativação de `innodb_buffer_pool_load_abort` desencadeia a ação de interrupção, mas não altera o ajuste da variável, que sempre permanece `OFF` ou `0`. Para visualizar o status da carga do pool de buffers após o desencadeamento de uma ação de interrupção, consulte a variável `Innodb_buffer_pool_load_status`.
 
@@ -329,7 +329,7 @@ Para mais informações, consulte a Seção 14.8.3.6, “Salvar e restaurar o es
 
 O tamanho em bytes do pool de buffer, a área de memória onde o `InnoDB` armazena tabelas e dados de índice. O valor padrão é de 134217728 bytes (128 MB). O valor máximo depende da arquitetura da CPU; o máximo é de 4294967295 (232-1) em sistemas de 32 bits e 18446744073709551615 (264-1) em sistemas de 64 bits. Em sistemas de 32 bits, a arquitetura da CPU e o sistema operacional podem impor um tamanho máximo prático menor que o máximo declarado. Quando o tamanho do pool de buffer é maior que 1 GB, definir `innodb_buffer_pool_instances` para um valor maior que 1 pode melhorar a escalabilidade em um servidor ocupado.
 
-Um pool de tampão maior requer menos I/O de disco para acessar os mesmos dados da tabela mais de uma vez. Em um servidor de banco de dados dedicado, você pode definir o tamanho do pool de tampão para 80% do tamanho da memória física da máquina. Esteja ciente dos seguintes problemas potenciais ao configurar o tamanho do pool de tampão e esteja preparado para reduzir o tamanho do pool de tampão, se necessário.
+Um pool de buffer maior requer menos I/O de disco para acessar os mesmos dados da tabela mais de uma vez. Em um servidor de banco de dados dedicado, você pode definir o tamanho do pool de buffer para 80% do tamanho da memória física da máquina. Esteja ciente dos seguintes problemas potenciais ao configurar o tamanho do pool de buffer e esteja preparado para reduzir o tamanho do pool de buffer, se necessário.
 
 + A competição pela memória física pode causar paginação no sistema operacional.
 
@@ -467,9 +467,9 @@ Para mais informações, consulte a Seção 14.9.1.6, “Compressão para cargas
 
 Determina o número de threads que podem entrar simultaneamente em `InnoDB`. Uma thread é colocada em uma fila quando tenta entrar em `InnoDB` se o número de threads já tiver atingido o limite de concorrência. Quando uma thread é permitida a entrar em `InnoDB`, recebe um número de "bilhetes" igual ao valor de `innodb_concurrency_tickets`, e a thread pode entrar e sair livremente em `InnoDB` até esgotar seus bilhetes. Após esse ponto, a thread novamente fica sujeita à verificação de concorrência (e possível fila) na próxima vez que tentar entrar em `InnoDB`. O valor padrão é 5000.
 
-Com um pequeno valor de `innodb_concurrency_tickets`, pequenas transações que precisam processar apenas algumas linhas competem de forma justa com transações maiores que processam muitas linhas. A desvantagem de um pequeno valor de `innodb_concurrency_tickets` é que grandes transações devem percorrer a fila muitas vezes antes de poderem ser concluídas, o que estende o tempo necessário para completar sua tarefa.
+Com um pequeno valor de `innodb_concurrency_tickets`, pequenas transações que precisam processar apenas algumas strings competem de forma justa com transações maiores que processam muitas strings. A desvantagem de um pequeno valor de `innodb_concurrency_tickets` é que grandes transações devem percorrer a fila muitas vezes antes de poderem ser concluídas, o que estende o tempo necessário para completar sua tarefa.
 
-Com um grande valor de `innodb_concurrency_tickets`, as grandes transações gastam menos tempo esperando uma posição no final da fila (controlada por `innodb_thread_concurrency`) e mais tempo recuperando linhas. As grandes transações também requerem menos viagens pela fila para completar sua tarefa. A desvantagem de um grande valor de `innodb_concurrency_tickets` é que muitas transações grandes rodando ao mesmo tempo podem deixar as menores famintas, fazendo com que elas precisem esperar um tempo mais longo antes de serem executadas.
+Com um grande valor de `innodb_concurrency_tickets`, as grandes transações gastam menos tempo esperando uma posição no final da fila (controlada por `innodb_thread_concurrency`) e mais tempo recuperando strings. As grandes transações também requerem menos viagens pela fila para completar sua tarefa. A desvantagem de um grande valor de `innodb_concurrency_tickets` é que muitas transações grandes rodando ao mesmo tempo podem deixar as menores famintas, fazendo com que elas precisem esperar um tempo mais longo antes de serem executadas.
 
 Com um valor não nulo de `innodb_thread_concurrency`, você pode precisar ajustar o valor de `innodb_concurrency_tickets` para cima ou para baixo para encontrar o equilíbrio ótimo entre transações maiores e menores. O relatório `SHOW ENGINE INNODB STATUS` mostra o número de ingressos restantes para uma transação em execução em sua passagem atual na fila. Esses dados também podem ser obtidos da coluna `TRX_CONCURRENCY_TICKETS` da tabela do Esquema de Informações `INNODB_TRX`.
 
@@ -520,13 +520,13 @@ Para informações relacionadas, consulte a Seção 14.7.5.2, “Detecção de d
 
   <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>0
 
-A opção `innodb_default_row_format` define o formato de linha padrão para as tabelas `InnoDB` e tabelas temporárias criadas pelo usuário. O ajuste padrão é `DYNAMIC`. Outros valores permitidos são `COMPACT` e `REDUNDANT`. O formato de linha `COMPRESSED`, que não é suportado para uso no espaço de tabela do sistema, não pode ser definido como padrão.
+A opção `innodb_default_row_format` define o formato de string padrão para as tabelas `InnoDB` e tabelas temporárias criadas pelo usuário. O ajuste padrão é `DYNAMIC`. Outros valores permitidos são `COMPACT` e `REDUNDANT`. O formato de string `COMPRESSED`, que não é suportado para uso no espaço de tabela do sistema, não pode ser definido como padrão.
 
-As tabelas recém-criadas utilizam o formato de linha definido por `innodb_default_row_format` quando uma opção `ROW_FORMAT` não é especificada explicitamente ou quando `ROW_FORMAT=DEFAULT` é utilizado.
+As tabelas recém-criadas utilizam o formato de string definido por `innodb_default_row_format` quando uma opção `ROW_FORMAT` não é especificada explicitamente ou quando `ROW_FORMAT=DEFAULT` é utilizado.
 
-Quando uma opção `ROW_FORMAT` não é especificada explicitamente ou quando `ROW_FORMAT=DEFAULT` é usado, qualquer operação que reconstrua uma tabela também muda silenciosamente o formato da linha da tabela para o formato definido por `innodb_default_row_format`. Para mais informações, consulte Definindo o Formato da Linha de uma Tabela.
+Quando uma opção `ROW_FORMAT` não é especificada explicitamente ou quando `ROW_FORMAT=DEFAULT` é usado, qualquer operação que reconstrua uma tabela também muda silenciosamente o formato da string da tabela para o formato definido por `innodb_default_row_format`. Para mais informações, consulte Definindo o Formato da String de uma Tabela.
 
-As tabelas temporárias internas `InnoDB` criadas pelo servidor para processar consultas utilizam o formato de linha `DYNAMIC`, independentemente da configuração `innodb_default_row_format`.
+As tabelas temporárias internas `InnoDB` criadas pelo servidor para processar consultas utilizam o formato de string `DYNAMIC`, independentemente da configuração `innodb_default_row_format`.
 
 * `innodb_disable_sort_file_cache`
 
@@ -570,17 +570,17 @@ Por padrão, definir `innodb_fil_make_page_dirty_debug` para o ID de um espaço 
 
   <table frame="box" rules="all" summary="Properties for daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-engine-lib-path=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_engine_lib_path</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>6
 
-Permite um formato de arquivo `InnoDB` para espaços de tabela por tabela. Os formatos de arquivo suportados são `Antelope` e `Barracuda`. `Antelope` é o formato de arquivo original `InnoDB`, que suporta os formatos de linha `REDUNDANT` e `COMPACT`. `Barracuda` é o formato de arquivo mais recente, que suporta os formatos de linha `COMPRESSED` e `DYNAMIC`.
+Permite um formato de arquivo `InnoDB` para espaços de tabela por tabela. Os formatos de arquivo suportados são `Antelope` e `Barracuda`. `Antelope` é o formato de arquivo original `InnoDB`, que suporta os formatos de string `REDUNDANT` e `COMPACT`. `Barracuda` é o formato de arquivo mais recente, que suporta os formatos de string `COMPRESSED` e `DYNAMIC`.
 
-Os formatos de linha `COMPRESSED` e `DYNAMIC` permitem recursos importantes de armazenamento para as tabelas `InnoDB`. Veja a Seção 14.11, “Formatos de linha InnoDB”.
+Os formatos de string `COMPRESSED` e `DYNAMIC` permitem recursos importantes de armazenamento para as tabelas `InnoDB`. Veja a Seção 14.11, “Formatos de string InnoDB”.
 
 A alteração do ajuste `innodb_file_format` não afeta o formato do arquivo dos espaços de tabela `InnoDB` existentes.
 
-O ajuste `innodb_file_format` não se aplica a tabelas gerais, que suportam tabelas de todos os formatos de linha. Veja a Seção 14.6.3.3, “Tabelas gerais”.
+O ajuste `innodb_file_format` não se aplica a tabelas gerais, que suportam tabelas de todos os formatos de string. Veja a Seção 14.6.3.3, “Tabelas gerais”.
 
 O valor padrão `innodb_file_format` foi alterado para `Barracuda` no MySQL 5.7.
 
-O ajuste `innodb_file_format` é ignorado ao criar tabelas que utilizam o formato de linha `DYNAMIC`. Uma tabela criada usando o formato de linha `DYNAMIC` sempre utiliza o formato de arquivo `Barracuda`, independentemente do ajuste `innodb_file_format`. Para usar o formato de linha `COMPRESSED`, `innodb_file_format` deve ser definido como `Barracuda`.
+O ajuste `innodb_file_format` é ignorado ao criar tabelas que utilizam o formato de string `DYNAMIC`. Uma tabela criada usando o formato de string `DYNAMIC` sempre utiliza o formato de arquivo `Barracuda`, independentemente do ajuste `innodb_file_format`. Para usar o formato de string `COMPRESSED`, `innodb_file_format` deve ser definido como `Barracuda`.
 
 A opção `innodb_file_format` é desatualizada; espere que ela seja removida em uma versão futura. O propósito da opção `innodb_file_format` era permitir que os usuários desçam para a versão embutida do `InnoDB` em versões anteriores do MySQL. Agora que essas versões do MySQL atingiram o fim de seus ciclos de vida do produto, o suporte para downgrade fornecido por esta opção não é mais necessário.
 
@@ -594,7 +594,7 @@ Essa variável pode ser definida como 1 ou 0 no início do servidor para habilit
 
 Nota
 
-Apesar do valor padrão às vezes ser exibido como `ON` ou `OFF`, sempre use os valores numéricos 1 ou 0 para ativar ou desativar essa opção em seu arquivo de configuração ou cadeia de caracteres da linha de comando.
+Apesar do valor padrão às vezes ser exibido como `ON` ou `OFF`, sempre use os valores numéricos 1 ou 0 para ativar ou desativar essa opção em seu arquivo de configuração ou cadeia de caracteres da string de comando.
 
 Para mais informações, consulte a Seção 14.10.2.1, “Verificação de compatibilidade quando o InnoDB é iniciado”.
 
@@ -616,7 +616,7 @@ A opção `innodb_file_format_max` é descontinuada juntamente com a opção `in
 
 Quando `innodb_file_per_table` está habilitado, as tabelas são criadas em espaços de tabelas por arquivo por padrão. Quando desabilitado, as tabelas são criadas no espaço de tabelas do sistema por padrão. Para informações sobre espaços de tabelas por arquivo, consulte a Seção 14.6.3.2, “Espaços de tabelas por arquivo”. Para informações sobre o espaço de tabelas do sistema `InnoDB`, consulte a Seção 14.6.3.1, “O espaço de tabelas do sistema”.
 
-A variável `innodb_file_per_table` pode ser configurada em tempo de execução usando uma declaração `SET GLOBAL`, especificada na linha de comando no início ou especificada em um arquivo de opção. A configuração em tempo de execução requer privilégios suficientes para definir variáveis de sistema globais (consulte Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta imediatamente o funcionamento de todas as conexões.
+A variável `innodb_file_per_table` pode ser configurada em tempo de execução usando uma declaração `SET GLOBAL`, especificada na string de comando no início ou especificada em um arquivo de opção. A configuração em tempo de execução requer privilégios suficientes para definir variáveis de sistema globais (consulte Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta imediatamente o funcionamento de todas as conexões.
 
 Quando uma tabela que reside em um espaço de tabela por arquivo é truncada ou eliminada, o espaço liberado é devolvido ao sistema operacional. Ao truncar ou eliminar uma tabela que reside no espaço de tabelas do sistema, apenas o espaço liberado no espaço de tabelas do sistema é liberado. O espaço liberado no espaço de tabelas do sistema pode ser usado novamente para dados do `InnoDB`, mas não é devolvido ao sistema operacional, pois os arquivos de dados do espaço de tabelas do sistema nunca encolhem.
 
@@ -744,7 +744,7 @@ Para obter informações sobre a configuração da variável `innodb_flush_sync`
 
 Número de iterações para as quais `InnoDB` mantém o instantâneo previamente calculado do estado de limpeza, controlando a rapidez com que a limpeza adaptativa responde às mudanças nas cargas de trabalho. Aumentar o valor faz com que a taxa de operações de limpeza mude de forma suave e gradual à medida que a carga de trabalho muda. Diminuir o valor faz com que a limpeza adaptativa ajuste-se rapidamente às mudanças na carga de trabalho, o que pode causar picos na atividade de limpeza se a carga de trabalho aumentar e diminuir de repente.
 
-Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o esvaziamento do Pool de tampão”.
+Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o esvaziamento do Pool de buffer”.
 
 * `innodb_force_load_corrupted`
 
@@ -856,7 +856,7 @@ Para mais informações, consulte a Seção 12.9.6, “Ajustando o Full-Text Sea
 
   <table frame="box" rules="all" summary="Properties for daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-r-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_r_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1073741824</code></td> </tr></tbody></table>6
 
-O limite de cache do resultado da consulta de pesquisa de texto completo `InnoDB` (definido em bytes) por consulta de pesquisa de texto completo ou por thread. Os resultados intermediários e finais da consulta de pesquisa de texto completo `InnoDB` são mantidos na memória. Use `innodb_ft_result_cache_limit` para definir um limite de tamanho no cache do resultado da consulta de pesquisa de texto completo para evitar o consumo excessivo de memória no caso de resultados muito grandes da consulta de pesquisa de texto completo `InnoDB` (por exemplo, milhões ou centenas de milhões de linhas). A memória é alocada conforme necessário quando uma consulta de pesquisa de texto completo é processada. Se o limite de tamanho do cache do resultado da consulta for atingido, um erro é retornado indicando que a consulta excede a memória máxima permitida.
+O limite de cache do resultado da consulta de pesquisa de texto completo `InnoDB` (definido em bytes) por consulta de pesquisa de texto completo ou por thread. Os resultados intermediários e finais da consulta de pesquisa de texto completo `InnoDB` são mantidos na memória. Use `innodb_ft_result_cache_limit` para definir um limite de tamanho no cache do resultado da consulta de pesquisa de texto completo para evitar o consumo excessivo de memória no caso de resultados muito grandes da consulta de pesquisa de texto completo `InnoDB` (por exemplo, milhões ou centenas de milhões de strings). A memória é alocada conforme necessário quando uma consulta de pesquisa de texto completo é processada. Se o limite de tamanho do cache do resultado da consulta for atingido, um erro é retornado indicando que a consulta excede a memória máxima permitida.
 
 O valor máximo de `innodb_ft_result_cache_limit` para todos os tipos de plataforma e tamanhos de bits é 2\*\*32-1.
 
@@ -924,11 +924,11 @@ Para obter informações sobre a configuração da variável `innodb_io_capacity
 
   <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>3
 
-Quando esta opção estiver habilitada, os prefixos de chave de índice mais longos que 767 bytes (até 3072 bytes) são permitidos para as tabelas `InnoDB` que utilizam o formato de linha `DYNAMIC` ou `COMPRESSED`. Consulte a Seção 14.23, “Limites do InnoDB”, para os máximos associados aos prefixos de chave de índice em várias configurações.
+Quando esta opção estiver habilitada, os prefixos de chave de índice mais longos que 767 bytes (até 3072 bytes) são permitidos para as tabelas `InnoDB` que utilizam o formato de string `DYNAMIC` ou `COMPRESSED`. Consulte a Seção 14.23, “Limites do InnoDB”, para os máximos associados aos prefixos de chave de índice em várias configurações.
 
-Para tabelas que utilizam o formato de linha `REDUNDANT` ou `COMPACT`, esta opção não afeta o comprimento permitido do prefixo da chave de índice.
+Para tabelas que utilizam o formato de string `REDUNDANT` ou `COMPACT`, esta opção não afeta o comprimento permitido do prefixo da chave de índice.
 
-`innodb_large_prefix` é habilitado por padrão no MySQL 5.7. Essa mudança coincide com a alteração do valor padrão para `innodb_file_format`, que é definido como `Barracuda` por padrão no MySQL 5.7. Juntas, essas mudanças nos valores padrão permitem que prefixos de chave de índice maiores sejam criados ao usar os formatos de linha `DYNAMIC` ou `COMPRESSED`. Se qualquer uma dessas opções for definida com um valor não padrão, os prefixos de chave de índice maiores que 767 bytes são silenciosamente truncados.
+`innodb_large_prefix` é habilitado por padrão no MySQL 5.7. Essa mudança coincide com a alteração do valor padrão para `innodb_file_format`, que é definido como `Barracuda` por padrão no MySQL 5.7. Juntas, essas mudanças nos valores padrão permitem que prefixos de chave de índice maiores sejam criados ao usar os formatos de string `DYNAMIC` ou `COMPRESSED`. Se qualquer uma dessas opções for definida com um valor não padrão, os prefixos de chave de índice maiores que 767 bytes são silenciosamente truncados.
 
 `innodb_large_prefix` é descontinuado; espere que ele seja removido em uma versão futura. `innodb_large_prefix` foi introduzido para desabilitar grandes prefixos de chave de índice para compatibilidade com versões anteriores de `InnoDB` que não suportam grandes prefixos de chave de índice.
 
@@ -942,7 +942,7 @@ Limita o número de registros por página de árvore B. Um valor padrão de 0 si
 
   <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>5
 
-O tempo em segundos que a transação `InnoDB` espera por um bloqueio de linha antes de desistir. O valor padrão é de 50 segundos. Uma transação que tenta acessar uma linha que está bloqueada por outra transação `InnoDB` espera no máximo esse número de segundos para obter acesso de escrita à linha antes de emitir o seguinte erro:
+O tempo em segundos que a transação `InnoDB` espera por um bloqueio de string antes de desistir. O valor padrão é de 50 segundos. Uma transação que tenta acessar uma string que está bloqueada por outra transação `InnoDB` espera no máximo esse número de segundos para obter acesso de escrita à string antes de emitir o seguinte erro:
 
   ```sql
   ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
@@ -952,7 +952,7 @@ Quando ocorre um timeout de espera de bloqueio, a declaração atual é revertid
 
 Você pode diminuir esse valor para aplicações altamente interativas ou sistemas OLTP, para exibir o feedback do usuário rapidamente ou colocar a atualização em uma fila para processamento mais tarde. Você pode aumentar esse valor para operações de back-end de longa duração, como uma etapa de transformação em um armazém de dados que espera que outras grandes operações de inserção ou atualização sejam concluídas.
 
-`innodb_lock_wait_timeout` se aplica apenas aos bloqueios de linha `InnoDB`. Um bloqueio de tabela MySQL não ocorre dentro de `InnoDB` e este tempo de espera não se aplica a espera por bloqueios de tabela.
+`innodb_lock_wait_timeout` se aplica apenas aos bloqueios de string `InnoDB`. Um bloqueio de tabela MySQL não ocorre dentro de `InnoDB` e este tempo de espera não se aplica a espera por bloqueios de tabela.
 
 O valor do tempo de espera da espera de bloqueio não se aplica a deadlocks quando `innodb_deadlock_detect` está habilitado (o padrão), porque `InnoDB` detecta deadlocks imediatamente e desfaz uma das transações em deadlock. Quando `innodb_deadlock_detect` está desativado, `InnoDB` depende de `innodb_lock_wait_timeout` para o rollback de transações quando ocorre um deadlock. Veja a Seção 14.7.5.2, “Detecção de Deadlock”.
 
@@ -964,7 +964,7 @@ O valor do tempo de espera da espera de bloqueio não se aplica a deadlocks quan
 
 Essa variável afeta a forma como o `InnoDB` usa o bloqueio de lacunas para pesquisas e varreduras de índice. `innodb_locks_unsafe_for_binlog` é descontinuada; espere que ela seja removida em uma versão futura do MySQL.
 
-Normalmente, `InnoDB` utiliza um algoritmo chamado bloqueio de próxima chave que combina o bloqueio de linha de índice com o bloqueio de lacuna. `InnoDB` realiza o bloqueio em nível de linha de forma que, ao pesquisar ou percorrer um índice de tabela, ele define bloqueios compartilhados ou exclusivos nos registros do índice que encontra. Assim, os bloqueios em nível de linha são, na verdade, bloqueios de registro de índice. Além disso, um bloqueio de próxima chave em um registro de índice também afeta a lacuna antes do registro de índice. Isso significa que um bloqueio de próxima chave é um bloqueio de registro de índice mais um bloqueio de lacuna na lacuna que precede o registro de índice. Se uma sessão tiver um bloqueio compartilhado ou exclusivo no registro `R` em um índice, outra sessão não pode inserir um novo registro de índice na lacuna imediatamente antes de `R` na ordem do índice. Veja a Seção 14.7.1, “Bloqueio InnoDB”.
+Normalmente, `InnoDB` utiliza um algoritmo chamado bloqueio de próxima chave que combina o bloqueio de string de índice com o bloqueio de lacuna. `InnoDB` realiza o bloqueio em nível de string de forma que, ao pesquisar ou percorrer um índice de tabela, ele define bloqueios compartilhados ou exclusivos nos registros do índice que encontra. Assim, os bloqueios em nível de string são, na verdade, bloqueios de registro de índice. Além disso, um bloqueio de próxima chave em um registro de índice também afeta a lacuna antes do registro de índice. Isso significa que um bloqueio de próxima chave é um bloqueio de registro de índice mais um bloqueio de lacuna na lacuna que precede o registro de índice. Se uma sessão tiver um bloqueio compartilhado ou exclusivo no registro `R` em um índice, outra sessão não pode inserir um novo registro de índice na lacuna imediatamente antes de `R` na ordem do índice. Veja a Seção 14.7.1, “Bloqueio InnoDB”.
 
 Por padrão, o valor de `innodb_locks_unsafe_for_binlog` é 0 (desativado), o que significa que o bloqueio de lacunas está habilitado: `InnoDB` usa bloqueios de próxima chave para pesquisas e varreduras de índice. Para habilitar a variável, configure-a para 1. Isso faz com que o bloqueio de lacunas seja desativado: `InnoDB` usa apenas bloqueios de registro de índice para pesquisas e varreduras de índice.
 
@@ -978,19 +978,19 @@ Os efeitos de habilitar `innodb_locks_unsafe_for_binlog` são os mesmos que defi
 
 `READ COMMITTED`, portanto, oferece um controle mais fino e flexível do que `innodb_locks_unsafe_for_binlog`. Para mais informações sobre o efeito do nível de isolamento no bloqueio de lacuna, consulte a Seção 14.7.2.1, “Níveis de Isolamento de Transação”.
 
-Ativação de `innodb_locks_unsafe_for_binlog` pode causar problemas fantasmas, pois outras sessões podem inserir novas linhas nos espaços vazios quando o bloqueio de espaços vazios está desativado. Suponha que haja um índice na coluna `id` da tabela `child` e que você queira ler e bloquear todas as linhas da tabela com um valor de identificador maior que 100, com a intenção de atualizar alguma coluna nas linhas selecionadas mais tarde:
+Ativação de `innodb_locks_unsafe_for_binlog` pode causar problemas fantasmas, pois outras sessões podem inserir novas strings nos espaços vazios quando o bloqueio de espaços vazios está desativado. Suponha que haja um índice na coluna `id` da tabela `child` e que você queira ler e bloquear todas as strings da tabela com um valor de identificador maior que 100, com a intenção de atualizar alguma coluna nas strings selecionadas mais tarde:
 
   ```sql
   SELECT * FROM child WHERE id > 100 FOR UPDATE;
   ```
 
-A consulta examina o índice a partir do primeiro registro onde o `id` é maior que 100. Se as chaves definidas nos registros do índice nessa faixa não bloqueiam inserções feitas nos intervalos, outra sessão pode inserir uma nova linha na tabela. Consequentemente, se você executar o mesmo `SELECT` novamente na mesma transação, verá uma nova linha no conjunto de resultados retornado pela consulta. Isso também significa que, se novos itens forem adicionados ao banco de dados, o `InnoDB` não garante serializabilidade. Portanto, se o `innodb_locks_unsafe_for_binlog` estiver habilitado, o `InnoDB` garante, no máximo, um nível de isolamento de `READ COMMITTED`. (A serializabilidade de conflito ainda é garantida.) Para mais informações sobre fantasmas, consulte a Seção 14.7.4, “Linhas Fantasma”.
+A consulta examina o índice a partir do primeiro registro onde o `id` é maior que 100. Se as chaves definidas nos registros do índice nessa faixa não bloqueiam inserções feitas nos intervalos, outra sessão pode inserir uma nova string na tabela. Consequentemente, se você executar o mesmo `SELECT` novamente na mesma transação, verá uma nova string no conjunto de resultados retornado pela consulta. Isso também significa que, se novos itens forem adicionados ao banco de dados, o `InnoDB` não garante serializabilidade. Portanto, se o `innodb_locks_unsafe_for_binlog` estiver habilitado, o `InnoDB` garante, no máximo, um nível de isolamento de `READ COMMITTED`. (A serializabilidade de conflito ainda é garantida.) Para mais informações sobre fantasmas, consulte a Seção 14.7.4, “Strings Fantasma”.
 
 Ativação de `innodb_locks_unsafe_for_binlog` tem efeitos adicionais:
 
-+ Para as declarações `UPDATE` ou `DELETE`, `InnoDB` mantém as chaves apenas para as linhas que ele atualiza ou exclui. As chaves de registro para linhas não correspondentes são liberadas após o MySQL ter avaliado a condição `WHERE`. Isso reduz significativamente a probabilidade de deadlocks, mas ainda podem ocorrer.
++ Para as declarações `UPDATE` ou `DELETE`, `InnoDB` mantém as chaves apenas para as strings que ele atualiza ou exclui. As chaves de registro para strings não correspondentes são liberadas após o MySQL ter avaliado a condição `WHERE`. Isso reduz significativamente a probabilidade de deadlocks, mas ainda podem ocorrer.
 
-+ Para as declarações `UPDATE`, se uma linha já estiver bloqueada, `InnoDB` realiza uma leitura "semi-consistente", retornando a versão mais recente comprometida ao MySQL para que o MySQL possa determinar se a linha corresponde à condição `WHERE` do `UPDATE`. Se a linha corresponder (deve ser atualizada), o MySQL lê a linha novamente e, desta vez, `InnoDB` a bloqueia ou aguarda um bloqueio nela.
++ Para as declarações `UPDATE`, se uma string já estiver bloqueada, `InnoDB` realiza uma leitura "semi-consistente", retornando a versão mais recente comprometida ao MySQL para que o MySQL possa determinar se a string corresponde à condição `WHERE` do `UPDATE`. Se a string corresponder (deve ser atualizada), o MySQL lê a string novamente e, desta vez, `InnoDB` a bloqueia ou aguarda um bloqueio nela.
 
 Considere o exemplo a seguir, começando com esta tabela:
 
@@ -1016,7 +1016,7 @@ Suponha também que um segundo cliente realize um `UPDATE` executando essas inst
   UPDATE t SET b = 4 WHERE b = 2;
   ```
 
-À medida que o `InnoDB` executa cada `UPDATE`, ele primeiro adquire um bloqueio exclusivo para cada linha e, em seguida, determina se deve modificá-la. Se o `InnoDB` não modifica a linha e o `innodb_locks_unsafe_for_binlog` está habilitado, ele libera o bloqueio. Caso contrário, o `InnoDB` retém o bloqueio até o final da transação. Isso afeta o processamento da transação da seguinte forma.
+À medida que o `InnoDB` executa cada `UPDATE`, ele primeiro adquire um bloqueio exclusivo para cada string e, em seguida, determina se deve modificá-la. Se o `InnoDB` não modifica a string e o `innodb_locks_unsafe_for_binlog` está habilitado, ele libera o bloqueio. Caso contrário, o `InnoDB` retém o bloqueio até o final da transação. Isso afeta o processamento da transação da seguinte forma.
 
 Se `innodb_locks_unsafe_for_binlog` estiver desativado, o primeiro `UPDATE` adquire x-locks e não libera nenhum deles:
 
@@ -1028,13 +1028,13 @@ Se `innodb_locks_unsafe_for_binlog` estiver desativado, o primeiro `UPDATE` adqu
   x-lock(5,2); retain x-lock
   ```
 
-O segundo bloco `UPDATE` bloqueia assim que tenta adquirir qualquer bloqueio (porque a primeira atualização retivou os bloqueios em todas as linhas), e não prossegue até que o primeiro `UPDATE` commit ou desconsidere:
+O segundo bloco `UPDATE` bloqueia assim que tenta adquirir qualquer bloqueio (porque a primeira atualização retivou os bloqueios em todas as strings), e não prossegue até que o primeiro `UPDATE` commit ou desconsidere:
 
   ```sql
   x-lock(1,2); block and wait for first UPDATE to commit or roll back
   ```
 
-Se `innodb_locks_unsafe_for_binlog` estiver habilitado, o primeiro `UPDATE` adquire x-locks e libera esses para as linhas que ele não modifica:
+Se `innodb_locks_unsafe_for_binlog` estiver habilitado, o primeiro `UPDATE` adquire x-locks e libera esses para as strings que ele não modifica:
 
   ```sql
   x-lock(1,2); unlock(1,2)
@@ -1044,7 +1044,7 @@ Se `innodb_locks_unsafe_for_binlog` estiver habilitado, o primeiro `UPDATE` adqu
   x-lock(5,2); unlock(5,2)
   ```
 
-Para o segundo `UPDATE`, o `InnoDB` realiza uma leitura “semi-consistente”, retornando a versão mais recente comprometida de cada linha para o MySQL, para que o MySQL possa determinar se a linha corresponde à condição do `WHERE` do `UPDATE`:
+Para o segundo `UPDATE`, o `InnoDB` realiza uma leitura “semi-consistente”, retornando a versão mais recente comprometida de cada string para o MySQL, para que o MySQL possa determinar se a string corresponde à condição do `WHERE` do `UPDATE`:
 
   ```sql
   x-lock(1,2); update(1,2) to (1,4); retain x-lock
@@ -1058,7 +1058,7 @@ Para o segundo `UPDATE`, o `InnoDB` realiza uma leitura “semi-consistente”, 
 
   <table frame="box" rules="all" summary="Properties for daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-w-batch-size=#</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_w_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>1048576</code></td> </tr></tbody></table>7
 
-O tamanho em bytes do buffer que o `InnoDB` usa para gravar nos arquivos de registro no disco. O valor padrão mudou de 8 MB para 16 MB com a introdução dos valores `innodb_page_size` de 32 KB e 64 KB. Um buffer de registro grande permite que transações grandes sejam executadas sem a necessidade de gravar o registro no disco antes do comprometimento das transações. Assim, se você tem transações que atualizam, inserem ou excluem muitas linhas, aumentar o buffer de registro salva o I/O do disco. Para informações relacionadas, consulte Configuração de Memória e Seção 8.5.4, “Otimizando o registro de refazer do InnoDB”. Para conselhos gerais sobre o ajuste de I/O, consulte Seção 8.5.8, “Otimizando o I/O de disco do InnoDB”.
+O tamanho em bytes do buffer que o `InnoDB` usa para gravar nos arquivos de registro no disco. O valor padrão mudou de 8 MB para 16 MB com a introdução dos valores `innodb_page_size` de 32 KB e 64 KB. Um buffer de registro grande permite que transações grandes sejam executadas sem a necessidade de gravar o registro no disco antes do comprometimento das transações. Assim, se você tem transações que atualizam, inserem ou excluem muitas strings, aumentar o buffer de registro salva o I/O do disco. Para informações relacionadas, consulte Configuração de Memória e Seção 8.5.4, “Otimizando o registro de refazer do InnoDB”. Para conselhos gerais sobre o ajuste de I/O, consulte Seção 8.5.8, “Otimizando o I/O de disco do InnoDB”.
 
 * `innodb_log_checkpoint_now`
 
@@ -1136,7 +1136,7 @@ Um parâmetro que influencia os algoritmos e heurísticas para a operação de e
 
 Um ajuste menor que o padrão é geralmente adequado para a maioria das cargas de trabalho. Um valor muito maior do que o necessário pode impactar o desempenho. Apenas considere aumentar o valor se você tiver capacidade de E/S disponível em uma carga de trabalho típica. Por outro lado, se uma carga de trabalho intensiva de escrita saturar sua capacidade de E/S, diminua o valor, especialmente no caso de um grande pool de buffers.
 
-Ao ajustar `innodb_lru_scan_depth`, comece com um valor baixo e configure o ajuste para cima, com o objetivo de raramente ver páginas livres em zero. Além disso, considere ajustar `innodb_lru_scan_depth` quando alterar o número de instâncias do buffer pool, pois `innodb_lru_scan_depth` * `innodb_buffer_pool_instances` define a quantidade de trabalho realizada pelo fio de limpeza de página a cada segundo.
+Ao ajustar `innodb_lru_scan_depth`, comece com um valor baixo e configure o ajuste para cima, com o objetivo de raramente ver páginas livres em zero. Além disso, considere ajustar `innodb_lru_scan_depth` quando alterar o número de instâncias do buffer pool, pois `innodb_lru_scan_depth` * `innodb_buffer_pool_instances` define a quantidade de trabalho realizada pelo thread de limpeza de página a cada segundo.
 
 Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o esvaziamento do buffer pool”. Para conselhos gerais sobre o ajuste de E/S, consulte a Seção 8.5.8, “Otimizando o E/S do disco InnoDB”.
 
@@ -1281,7 +1281,7 @@ A chamada de sistema `setpriority()` é usada em plataformas Linux onde é supor
   thread priority can be changed. See the man page of setpriority().
   ```
 
-Para sistemas onde o início e o término do servidor não são gerenciados pelo systemd, a autorização de usuário para execução `mysqld` pode ser configurada em `/etc/security/limits.conf`. Por exemplo, se `mysqld` for executado sob o usuário `mysql`, você pode autorizar o usuário `mysql` adicionando essas linhas em `/etc/security/limits.conf`:
+Para sistemas onde o início e o término do servidor não são gerenciados pelo systemd, a autorização de usuário para execução `mysqld` pode ser configurada em `/etc/security/limits.conf`. Por exemplo, se `mysqld` for executado sob o usuário `mysql`, você pode autorizar o usuário `mysql` adicionando essas strings em `/etc/security/limits.conf`:
 
   ```sql
   mysql              hard    nice       -20
@@ -1320,9 +1320,9 @@ Especifica o tamanho da página para os espaços de tabelas `InnoDB`. Os valores
 
 `innodb_page_size` só pode ser configurado antes de inicializar a instância do MySQL e não pode ser alterado posteriormente. Se não for especificado nenhum valor, a instância é inicializada usando o tamanho padrão da página. Veja a Seção 14.8.1, “Configuração de inicialização do InnoDB”.
 
-O suporte para tamanhos de página de 32 KB e 64 KB foi adicionado no MySQL 5.7. Para ambos os tamanhos de página de 32 KB e 64 KB, o comprimento máximo da linha é de aproximadamente 16000 bytes. `ROW_FORMAT=COMPRESSED` não é suportado quando `innodb_page_size` está definido para 32 KB ou 64 KB. Para `innodb_page_size=32k`, o tamanho do escopo é de 2 MB. Para `innodb_page_size=64KB`, o tamanho do escopo é de 4 MB. `innodb_log_buffer_size` deve ser definido como pelo menos 16 M (o padrão) ao usar tamanhos de página de 32 KB ou 64 KB.
+O suporte para tamanhos de página de 32 KB e 64 KB foi adicionado no MySQL 5.7. Para ambos os tamanhos de página de 32 KB e 64 KB, o comprimento máximo da string é de aproximadamente 16000 bytes. `ROW_FORMAT=COMPRESSED` não é suportado quando `innodb_page_size` está definido para 32 KB ou 64 KB. Para `innodb_page_size=32k`, o tamanho do escopo é de 2 MB. Para `innodb_page_size=64KB`, o tamanho do escopo é de 4 MB. `innodb_log_buffer_size` deve ser definido como pelo menos 16 M (o padrão) ao usar tamanhos de página de 32 KB ou 64 KB.
 
-O tamanho de página padrão de 16 KB ou maior é apropriado para uma ampla gama de cargas de trabalho, particularmente para consultas que envolvem varreduras de tabela e operações de manipulação de dados de massa (DML) que envolvem atualizações em massa. Tamanhos de página menores podem ser mais eficientes para cargas de trabalho OLTP que envolvem muitos pequenos escritos, onde a concorrência pode ser um problema quando páginas únicas contêm muitas linhas. Páginas menores também podem ser eficientes com dispositivos de armazenamento SSD, que geralmente usam tamanhos de bloco pequenos. Manter o tamanho de página `InnoDB` próximo ao tamanho do bloco do dispositivo de armazenamento minimiza a quantidade de dados não alterados que são reescritos no disco.
+O tamanho de página padrão de 16 KB ou maior é apropriado para uma ampla gama de cargas de trabalho, particularmente para consultas que envolvem varreduras de tabela e operações de manipulação de dados de massa (DML) que envolvem atualizações em massa. Tamanhos de página menores podem ser mais eficientes para cargas de trabalho OLTP que envolvem muitos pequenos escritos, onde a concorrência pode ser um problema quando páginas únicas contêm muitas strings. Páginas menores também podem ser eficientes com dispositivos de armazenamento SSD, que geralmente usam tamanhos de bloco pequenos. Manter o tamanho de página `InnoDB` próximo ao tamanho do bloco do dispositivo de armazenamento minimiza a quantidade de dados não alterados que são reescritos no disco.
 
 O tamanho mínimo do arquivo dos primeiros dados do espaço de tabela do sistema (`ibdata1`) difere dependendo do valor do `innodb_page_size`. Consulte a descrição da opção `innodb_data_file_path` para obter mais informações.
 
@@ -1404,7 +1404,7 @@ Começa `InnoDB` no modo somente leitura. Para distribuir aplicações de banco 
 
   <table frame="box" rules="all" summary="Properties for innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><code>OFF</code><code>ON</code><code>FORCE</code></td> </tr></tbody></table>22
 
-O atraso do fio de replicação em milissegundos em um servidor replica se o `innodb_thread_concurrency` for atingido.
+O atraso do thread de replicação em milissegundos em um servidor replica se o `innodb_thread_concurrency` for atingido.
 
 * `innodb_rollback_on_timeout`
 
@@ -1458,7 +1458,7 @@ O máximo atraso entre as pesquisas para um bloqueio de rotação. A implementa�
 
   <table frame="box" rules="all" summary="Properties for innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><code>OFF</code><code>ON</code><code>FORCE</code></td> </tr></tbody></table>28
 
-Faz com que `InnoDB` recálcule automaticamente as estatísticas persistentes após as alterações substanciais nos dados de uma tabela. O valor limite é de 10% das linhas da tabela. Esta configuração aplica-se a tabelas criadas quando a opção `innodb_stats_persistent` está habilitada. A recálculo automático das estatísticas também pode ser configurado especificando `STATS_AUTO_RECALC=1` em uma declaração de `CREATE TABLE` ou `ALTER TABLE`. A quantidade de dados amostrados para produzir as estatísticas é controlada pela variável `innodb_stats_persistent_sample_pages`.
+Faz com que `InnoDB` recálcule automaticamente as estatísticas persistentes após as alterações substanciais nos dados de uma tabela. O valor limite é de 10% das strings da tabela. Esta configuração aplica-se a tabelas criadas quando a opção `innodb_stats_persistent` está habilitada. A recálculo automático das estatísticas também pode ser configurado especificando `STATS_AUTO_RECALC=1` em uma declaração de `CREATE TABLE` ou `ALTER TABLE`. A quantidade de dados amostrados para produzir as estatísticas é controlada pela variável `innodb_stats_persistent_sample_pages`.
 
 Para mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Optimizer Persistente”.
 
@@ -1466,7 +1466,7 @@ Para mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetr
 
   <table frame="box" rules="all" summary="Properties for innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><code>OFF</code><code>ON</code><code>FORCE</code></td> </tr></tbody></table>29
 
-Por padrão, `InnoDB` lê dados não comprometidos ao calcular estatísticas. No caso de uma transação não comprometida que exclui linhas de uma tabela, `InnoDB` exclui registros que estão marcados para exclusão ao calcular estimativas de linha e estatísticas de índice, o que pode levar a planos de execução não ótimos para outras transações que operam na tabela simultaneamente usando um nível de isolamento de transação diferente de `READ UNCOMMITTED`. Para evitar esse cenário, `innodb_stats_include_delete_marked` pode ser habilitado para garantir que `InnoDB` inclua registros marcados para exclusão ao calcular estatísticas de otimizador persistente.
+Por padrão, `InnoDB` lê dados não comprometidos ao calcular estatísticas. No caso de uma transação não comprometida que exclui strings de uma tabela, `InnoDB` exclui registros que estão marcados para exclusão ao calcular estimativas de string e estatísticas de índice, o que pode levar a planos de execução não ótimos para outras transações que operam na tabela simultaneamente usando um nível de isolamento de transação diferente de `READ UNCOMMITTED`. Para evitar esse cenário, `innodb_stats_include_delete_marked` pode ser habilitado para garantir que `InnoDB` inclua registros marcados para exclusão ao calcular estatísticas de otimizador persistente.
 
 Quando `innodb_stats_include_delete_marked` está habilitado, `ANALYZE TABLE` considera os registros marcados para exclusão ao recalcular as estatísticas.
 
@@ -1552,9 +1552,9 @@ Quando o `innodb_strict_mode` está habilitado, o `InnoDB` retorna erros em vez 
 
 Verifica se as opções `KEY_BLOCK_SIZE`, `ROW_FORMAT`, `DATA DIRECTORY`, `TEMPORARY` e `TABLESPACE` são compatíveis entre si e com outras configurações.
 
-`innodb_strict_mode=ON` também permite uma verificação do tamanho da linha ao criar ou alterar uma tabela, para evitar que `INSERT` ou `UPDATE` falhem devido ao registro ser muito grande para o tamanho de página selecionado.
+`innodb_strict_mode=ON` também permite uma verificação do tamanho da string ao criar ou alterar uma tabela, para evitar que `INSERT` ou `UPDATE` falhem devido ao registro ser muito grande para o tamanho de página selecionado.
 
-Você pode habilitar ou desabilitar `innodb_strict_mode` na linha de comando ao iniciar `mysqld`, ou em um arquivo de configuração do MySQL. Você também pode habilitar ou desabilitar `innodb_strict_mode` em tempo real com a declaração `SET [GLOBAL|SESSION] innodb_strict_mode=mode`, onde `mode` é `ON` ou `OFF`. Alterar o ajuste de `GLOBAL` requer privilégios suficientes para definir variáveis de sistema globais (consulte Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta o funcionamento de todos os clientes que se conectam posteriormente. Qualquer cliente pode alterar o ajuste de `SESSION` para `innodb_strict_mode`, e o ajuste afeta apenas esse cliente.
+Você pode habilitar ou desabilitar `innodb_strict_mode` na string de comando ao iniciar `mysqld`, ou em um arquivo de configuração do MySQL. Você também pode habilitar ou desabilitar `innodb_strict_mode` em tempo real com a declaração `SET [GLOBAL|SESSION] innodb_strict_mode=mode`, onde `mode` é `ON` ou `OFF`. Alterar o ajuste de `GLOBAL` requer privilégios suficientes para definir variáveis de sistema globais (consulte Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”) e afeta o funcionamento de todos os clientes que se conectam posteriormente. Qualquer cliente pode alterar o ajuste de `SESSION` para `innodb_strict_mode`, e o ajuste afeta apenas esse cliente.
 
 * `innodb_support_xa`
 
@@ -1574,7 +1574,7 @@ Define o tamanho do array de espera do mutex/bloqueio. Aumentar o valor divide a
 
   <table frame="box" rules="all" summary="Properties for innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--innodb[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><code>OFF</code><code>ON</code><code>FORCE</code></td> </tr></tbody></table>41
 
-O número de vezes que um fio espera que um `InnoDB` mutex seja liberado antes de o fio ser suspenso.
+O número de vezes que um thread espera que um `InnoDB` mutex seja liberado antes de o thread ser suspenso.
 
 * `innodb_sync_debug`
 

@@ -144,8 +144,8 @@ Algumas funcionalidades do otimizador podem ser invocadas várias vezes durante 
 
 * *Pesquisa gananciosa*: Com uma junção da tabela *`N`*, isso poderia explorar planos de fatoração(*`N`*) .
 * *Otimizador de intervalo*
-* *Otimização dinâmica do intervalo*: Mostrado como `range checked for each record` na saída de `EXPLAIN`; cada linha externa causa uma nova execução do otimizador de intervalo.
-* *Subconsultas*: Uma subconsulta na qual a cláusula `WHERE` pode ser executada uma vez por linha.
+* *Otimização dinâmica do intervalo*: Mostrado como `range checked for each record` na saída de `EXPLAIN`; cada string externa causa uma nova execução do otimizador de intervalo.
+* *Subconsultas*: Uma subconsulta na qual a cláusula `WHERE` pode ser executada uma vez por string.
 
 Essas características podem ser excluídas do rastreamento ao definir um ou mais interruptores da variável de sistema `optimizer_trace_features` para `OFF`. Esses interruptores estão listados aqui:
 
@@ -393,7 +393,7 @@ Precisamos encontrar uma ordem ótima para as tabelas. Normalmente, a busca gana
 
 Como foi demonstrado na segunda parte da análise de intervalo, não é possível usar `GROUP_MIN_MAX`, pois ele aceita apenas uma tabela, e temos duas na junção. Isso significa que nenhum acesso de intervalo é possível.
 
-O otimizador estima que a leitura da primeira tabela e a aplicação de quaisquer condições necessárias a ela produzam 20 linhas:
+O otimizador estima que a leitura da primeira tabela e a aplicação de quaisquer condições necessárias a ela produzam 20 strings:
 
 ```sql
            {
@@ -468,7 +468,7 @@ Agora que a ordem das tabelas está definida, podemos dividir a condição `WHER
            },
 ```
 
-Essa condição pode ser testada em linhas de `alias1` sem ler linhas de `alias2`.
+Essa condição pode ser testada em strings de `alias1` sem ler strings de `alias2`.
 
 ```sql
                  {
@@ -914,7 +914,7 @@ MISSING_BYTES_BEYOND_MAX_MEM_SIZE: 0
 
 ### 8.15.13 Exibição de traços em outras aplicações
 
-Examinar uma traçada no cliente de linha de comando do **mysql** pode ser menos difícil usando o comando `pager less` (ou o equivalente da sua plataforma operacional). Uma alternativa é enviar a traçada para um arquivo, de forma semelhante à que é mostrada aqui:
+Examinar uma traçada no cliente de string de comando do **mysql** pode ser menos difícil usando o comando `pager less` (ou o equivalente da sua plataforma operacional). Uma alternativa é enviar a traçada para um arquivo, de forma semelhante à que é mostrada aqui:
 
 ```sql
 SELECT TRACE INTO DUMPFILE file
@@ -923,7 +923,7 @@ FROM INFORMATION_SCHEMA.OPTIMIZER_TRACE;
 
 Em seguida, você pode passar esse arquivo para um editor de texto sensível ao JSON ou outro visualizador, como o add-on [JsonView para Firefox e Chrome][(https://jsonview.com/)], que exibe os objetos em cores e permite que os objetos sejam expandidos ou colapsados.
 
-`INTO DUMPFILE` é preferível a `INTO OUTFILE` para esse propósito, uma vez que este último escapa de novas linhas. Como mencionado anteriormente, você deve garantir que `end_markers_in_json` seja `OFF` ao executar a declaração `SELECT INTO`, para que a saída seja um JSON válido.
+`INTO DUMPFILE` é preferível a `INTO OUTFILE` para esse propósito, uma vez que este último escapa de novas strings. Como mencionado anteriormente, você deve garantir que `end_markers_in_json` seja `OFF` ao executar a declaração `SELECT INTO`, para que a saída seja um JSON válido.
 
 ### 8.15.14 Prevenção do uso do rastreamento do otimizador
 

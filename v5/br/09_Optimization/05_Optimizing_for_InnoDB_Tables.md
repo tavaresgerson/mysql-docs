@@ -8,13 +8,13 @@
 
 `OPTIMIZE TABLE` copia a parte de dados da tabela e reconstrui os índices. Os benefícios vêm da melhor embalagem dos dados dentro dos índices e da redução da fragmentação dentro dos espaços de tabela e no disco. Os benefícios variam dependendo dos dados em cada tabela. Você pode descobrir que há ganhos significativos para alguns e não para outros, ou que os ganhos diminuem com o tempo até que você otimize a tabela novamente. Essa operação pode ser lenta se a tabela for grande ou se os índices que estão sendo reconstruídos não se encaixarem na piscina de buffer. A primeira execução após adicionar muitos dados a uma tabela é muitas vezes muito mais lenta do que as execuções posteriores.
 
-* Em `InnoDB`, ter um longo `PRIMARY KEY` (uma única coluna com um valor extenso ou várias colunas que formam um valor composto longo) desperdiça muito espaço em disco. O valor da chave primária de uma linha é duplicado em todos os registros de índice secundário que apontam para a mesma linha. (Veja a Seção 14.6.2.1, “Indekses Clusterizados e Secundários”). Crie uma coluna `AUTO_INCREMENT` como chave primária se sua chave primária for longa, ou indexe um prefixo de uma coluna `VARCHAR` longa em vez de toda a coluna.
+* Em `InnoDB`, ter um longo `PRIMARY KEY` (uma única coluna com um valor extenso ou várias colunas que formam um valor composto longo) desperdiça muito espaço em disco. O valor da chave primária de uma string é duplicado em todos os registros de índice secundário que apontam para a mesma string. (Veja a Seção 14.6.2.1, “Indekses Clusterizados e Secundários”). Crie uma coluna `AUTO_INCREMENT` como chave primária se sua chave primária for longa, ou indexe um prefixo de uma coluna `VARCHAR` longa em vez de toda a coluna.
 
 * Use o tipo de dados `VARCHAR` em vez de `CHAR` para armazenar strings de comprimento variável ou para colunas com muitos valores de `NULL`. Uma coluna `CHAR(N)` sempre leva *`N`* caracteres para armazenar dados, mesmo que a string seja mais curta ou seu valor seja `NULL`. Tabelas menores se encaixam melhor no pool de buffer e reduzem o I/O em disco.
 
-Quando se usa o formato de linha `COMPACT` (o formato padrão `InnoDB`) e conjuntos de caracteres de comprimento variável, como `utf8` ou `sjis`, as colunas `CHAR(N)` ocupam uma quantidade variável de espaço, mas ainda pelo menos *`N`* bytes.
+Quando se usa o formato de string `COMPACT` (o formato padrão `InnoDB`) e conjuntos de caracteres de comprimento variável, como `utf8` ou `sjis`, as colunas `CHAR(N)` ocupam uma quantidade variável de espaço, mas ainda pelo menos *`N`* bytes.
 
-* Para tabelas grandes, ou que contenham muitos textos repetitivos ou dados numéricos, considere usar o formato de linha `COMPRESSED`. Menos I/O de disco é necessário para trazer dados para o pool de buffer, ou para realizar varreduras completas da tabela. Antes de tomar uma decisão definitiva, meça a quantidade de compressão que pode ser alcançada usando o formato de linha `COMPRESSED` versus o formato de linha `COMPACT`.
+* Para tabelas grandes, ou que contenham muitos textos repetitivos ou dados numéricos, considere usar o formato de string `COMPRESSED`. Menos I/O de disco é necessário para trazer dados para o pool de buffer, ou para realizar varreduras completas da tabela. Antes de tomar uma decisão definitiva, meça a quantidade de compressão que pode ser alcançada usando o formato de string `COMPRESSED` versus o formato de string `COMPACT`.
 
 ### 8.5.2 Otimizando o Gerenciamento de Transações InnoDB
 
@@ -26,7 +26,7 @@ Para otimizar o processamento de transações do `InnoDB`, encontre o equilíbri
 
 * Alternativamente, para transações que consistem apenas em uma única declaração `SELECT`, ativar `AUTOCOMMIT` ajuda o `InnoDB` a reconhecer transações somente de leitura e otimizá-las. Consulte a Seção 8.5.3, “Otimizando Transações somente de Leitura do InnoDB”, para requisitos.
 
-* Evite realizar recuos após inserir, atualizar ou excluir um grande número de linhas. Se uma grande transação está prejudicando o desempenho do servidor, reverter o problema pode piorar o problema, podendo levar várias vezes mais tempo para ser realizado do que as operações originais de alteração de dados. Matar o processo do banco de dados não ajuda, porque o recuo começa novamente na inicialização do servidor.
+* Evite realizar recuos após inserir, atualizar ou excluir um grande número de strings. Se uma grande transação está prejudicando o desempenho do servidor, reverter o problema pode piorar o problema, podendo levar várias vezes mais tempo para ser realizado do que as operações originais de alteração de dados. Matar o processo do banco de dados não ajuda, porque o recuo começa novamente na inicialização do servidor.
 
 Para minimizar a chance de que essa questão ocorra:
 
@@ -34,7 +34,7 @@ Para minimizar a chance de que essa questão ocorra:
 
 + Defina `innodb_change_buffering=all` para que as operações de atualização e exclusão sejam armazenadas em buffer, além das inserções.
 
-+ Considere emitir declarações `COMMIT` periodicamente durante a operação de mudança de big data, possivelmente dividindo uma única exclusão ou atualização em várias declarações que operam em um número menor de linhas.
++ Considere emitir declarações `COMMIT` periodicamente durante a operação de mudança de big data, possivelmente dividindo uma única exclusão ou atualização em várias declarações que operam em um número menor de strings.
 
 Para se livrar de um rollback descontrolado uma vez que ocorre, aumente o pool de buffer para que o rollback se torne limitado pela CPU e execute rapidamente, ou mate o servidor e reinicie com `innodb_force_recovery=3`, conforme explicado na Seção 14.19.2, "Recuperação do InnoDB".
 
@@ -46,9 +46,9 @@ Nota
 
 `innodb_support_xa` é descontinuado; espere que ele seja removido em uma versão futura. A partir do MySQL 5.7.10, o suporte `InnoDB` para commit de duas fases em transações XA está sempre habilitado e desabilitar `innodb_support_xa` não é mais permitido.
 
-* Quando as linhas são modificadas ou excluídas, as linhas e os registros de desfazer associados não são removidos fisicamente imediatamente, ou mesmo imediatamente após a transação ser confirmada. Os dados antigos são preservados até que as transações que começaram anteriormente ou simultaneamente sejam concluídas, para que essas transações possam acessar o estado anterior das linhas modificadas ou excluídas. Assim, uma transação de longa duração pode impedir que `InnoDB` elimine dados que foram alterados por outra transação.
+* Quando as strings são modificadas ou excluídas, as strings e os registros de desfazer associados não são removidos fisicamente imediatamente, ou mesmo imediatamente após a transação ser confirmada. Os dados antigos são preservados até que as transações que começaram anteriormente ou simultaneamente sejam concluídas, para que essas transações possam acessar o estado anterior das strings modificadas ou excluídas. Assim, uma transação de longa duração pode impedir que `InnoDB` elimine dados que foram alterados por outra transação.
 
-* Quando as linhas são modificadas ou excluídas dentro de uma transação de longa duração, outras transações que utilizam os níveis de isolamento `READ COMMITTED` e `REPEATABLE READ` têm que fazer mais trabalho para reconstruir os dados mais antigos se elas leem essas mesmas linhas.
+* Quando as strings são modificadas ou excluídas dentro de uma transação de longa duração, outras transações que utilizam os níveis de isolamento `READ COMMITTED` e `REPEATABLE READ` têm que fazer mais trabalho para reconstruir os dados mais antigos se elas leem essas mesmas strings.
 
 * Quando uma transação de longa duração modifica uma tabela, as consultas feitas contra essa tabela por outras transações não utilizam a técnica de índice de cobertura. As consultas que normalmente poderiam recuperar todas as colunas do resultado de um índice secundário, em vez disso, procuram os valores apropriados nos dados da tabela.
 
@@ -70,7 +70,7 @@ Você ainda pode fazer alterações em tabelas temporárias específicas de sess
 
 * O ajuste `autocommit` está ativado, de modo que a transação é garantida como uma única declaração, e a única declaração que compõe a transação é uma declaração de "não bloqueio" `SELECT`. Ou seja, um `SELECT` que não utiliza uma cláusula de `FOR UPDATE` ou `LOCK IN SHARED MODE`.
 
-* A transação é iniciada sem a opção `READ ONLY`, mas ainda não foram executadas nenhuma atualização ou declaração que bloqueie explicitamente as linhas. Até que atualizações ou bloqueios explícitos sejam necessários, a transação permanece no modo de leitura somente.
+* A transação é iniciada sem a opção `READ ONLY`, mas ainda não foram executadas nenhuma atualização ou declaração que bloqueie explicitamente as strings. Até que atualizações ou bloqueios explícitos sejam necessários, a transação permanece no modo de leitura somente.
 
 Assim, para uma aplicação intensiva de leitura, como um gerador de relatórios, você pode ajustar uma sequência de consultas `InnoDB` agrupando-as dentro de `START TRANSACTION READ ONLY` e `COMMIT`, ou ativando a configuração `autocommit` antes de executar as instruções `SELECT`, ou simplesmente evitando qualquer declaração de alteração de dados intercalada com as consultas.
 
@@ -88,7 +88,7 @@ Considere as seguintes diretrizes para otimizar o registro de refazer:
 
 O tamanho e o número dos arquivos de registro de revisão são configurados usando as opções de configuração `innodb_log_file_size` e `innodb_log_files_in_group`. Para obter informações sobre a modificação de uma configuração de arquivo de registro de revisão existente, consulte Altere o número ou o tamanho dos arquivos de registro de revisão InnoDB.
 
-* Considere aumentar o tamanho do buffer de registro. Um buffer de registro grande permite que transações grandes sejam executadas sem a necessidade de gravar o registro no disco antes do compromisso das transações. Assim, se você tiver transações que atualizam, inserem ou excluem muitas linhas, aumentar o tamanho do buffer de registro economiza o I/O do disco. O tamanho do buffer de registro é configurado usando a opção de configuração `innodb_log_buffer_size`.
+* Considere aumentar o tamanho do buffer de registro. Um buffer de registro grande permite que transações grandes sejam executadas sem a necessidade de gravar o registro no disco antes do compromisso das transações. Assim, se você tiver transações que atualizam, inserem ou excluem muitas strings, aumentar o tamanho do buffer de registro economiza o I/O do disco. O tamanho do buffer de registro é configurado usando a opção de configuração `innodb_log_buffer_size`.
 
 * Configure a opção de configuração `innodb_log_write_ahead_size` para evitar a opção "leitura na escrita". Esta opção define o tamanho do bloco de pré-escrita para o log de refazer. Defina `innodb_log_write_ahead_size` para corresponder ao tamanho de bloco de cache do sistema operacional ou do sistema de arquivos. A leitura na escrita ocorre quando os blocos do log de refazer não são totalmente cacheados no sistema operacional ou no sistema de arquivos devido a uma incompatibilidade entre o tamanho do bloco de pré-escrita para o log de refazer e o tamanho de bloco de cache do sistema operacional ou do sistema de arquivos.
 
@@ -140,7 +140,7 @@ Essa dica é válida para inserções em qualquer tabela, não apenas as tabelas
 
 * Ao fazer inserções em massa em tabelas com colunas de auto-incremento, defina `innodb_autoinc_lock_mode` para 2 em vez do valor padrão 1. Consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”, para obter detalhes.
 
-* Ao realizar inserções em massa, é mais rápido inserir as linhas na ordem de `PRIMARY KEY`. As tabelas `InnoDB` utilizam um índice agrupado, o que torna relativamente rápido usar dados na ordem do `PRIMARY KEY`. Realizar inserções em massa na ordem de `PRIMARY KEY` é particularmente importante para tabelas que não se encaixam inteiramente no pool de buffer.
+* Ao realizar inserções em massa, é mais rápido inserir as strings na ordem de `PRIMARY KEY`. As tabelas `InnoDB` utilizam um índice agrupado, o que torna relativamente rápido usar dados na ordem do `PRIMARY KEY`. Realizar inserções em massa na ordem de `PRIMARY KEY` é particularmente importante para tabelas que não se encaixam inteiramente no pool de buffer.
 
 * Para obter o desempenho ótimo ao carregar dados em um índice `InnoDB` `FULLTEXT`, siga este conjunto de passos:
 
@@ -274,7 +274,7 @@ Se o desempenho cair periodicamente devido às operações de verificação `Inn
 Se o sistema não estiver atrasado com as operações de limpeza `InnoDB`, considere diminuir o valor da opção de configuração `innodb_io_capacity`. Normalmente, você mantém esse valor da opção o mais baixo possível, mas não tão baixo que cause quedas periódicas no desempenho, conforme mencionado na bala de texto anterior. Em um cenário típico em que você poderia diminuir o valor da opção, você pode ver uma combinação como esta na saída do `SHOW ENGINE INNODB STATUS`:
 
 + A lista de histórico tem comprimento baixo, abaixo de alguns milhares.
-+ O buffer de inserção combina perto de linhas inseridas.
++ O buffer de inserção combina perto de strings inseridas.
 + As páginas modificadas no buffer pool estão consistentemente bem abaixo de `innodb_max_dirty_pages_pct` do buffer pool. (Meça em um momento em que o servidor não está realizando inserções em massa; é normal durante inserções em massa que a porcentagem de páginas modificadas aumente significativamente.)
 
 + `Log sequence number - Last checkpoint` está em menos de 7/8 ou, idealmente, menos de 6/8 do tamanho total dos arquivos de registro `InnoDB`.

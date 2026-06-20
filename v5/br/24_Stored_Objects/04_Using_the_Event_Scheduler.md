@@ -34,7 +34,7 @@ Os eventos do MySQL possuem as seguintes características e propriedades princip
 
 * Um evento realiza uma ação específica de acordo com um cronograma. Essa ação consiste em uma declaração SQL, que pode ser uma declaração composta em um bloco `BEGIN ... END` se desejado (ver Seção 13.6, “Declarações compostas”). O cronograma de um evento pode ser único ou recorrente. Um evento único é executado apenas uma vez. Um evento recorrente repete sua ação em um intervalo regular, e o cronograma de um evento recorrente pode ser atribuído um dia e hora específicos de início, dia e hora de término, ambos ou nenhum deles. (Por padrão, o cronograma de um evento recorrente começa assim que é criado e continua indefinidamente, até que seja desativado ou excluído.)
 
-Se um evento repetitivo não terminar dentro do seu intervalo de programação, o resultado pode ser várias instâncias do evento executando simultaneamente. Se isso não for desejado, você deve instituir um mecanismo para impedir instâncias simultâneas. Por exemplo, você pode usar a função `GET_LOCK()` ou o bloqueio de linha ou tabela.
+Se um evento repetitivo não terminar dentro do seu intervalo de programação, o resultado pode ser várias instâncias do evento executando simultaneamente. Se isso não for desejado, você deve instituir um mecanismo para impedir instâncias simultâneas. Por exemplo, você pode usar a função `GET_LOCK()` ou o bloqueio de string ou tabela.
 
 * Os usuários podem criar, modificar e excluir eventos agendados usando instruções SQL destinadas a esses fins. As instruções de criação e modificação de eventos sintaticamente inválidas falham com uma mensagem de erro apropriada. * Um usuário pode incluir instruções na ação de um evento que exigem privilégios que o usuário não possui realmente. A declaração de criação ou modificação de evento é bem-sucedida, mas a ação do evento falha. Veja a Seção 23.4.6, “O Agendamento de Eventos e Privilégios MySQL” para detalhes.
 
@@ -46,17 +46,17 @@ O definidor padrão de um evento é o usuário que criou o evento, a menos que o
 
 ### 23.4.2 Configuração do Cronograma de Eventos
 
-Os eventos são executados por um fio especial do cronograma de eventos; quando nos referimos ao Cronograma de Eventos, na verdade, referimo-nos a este fio. Quando em execução, o fio do cronograma de eventos e seu estado atual podem ser vistos por usuários que possuem o privilégio `PROCESS` na saída de `SHOW PROCESSLIST`, conforme mostrado na discussão que segue.
+Os eventos são executados por um thread especial do cronograma de eventos; quando nos referimos ao Cronograma de Eventos, na verdade, referimo-nos a este thread. Quando em execução, o thread do cronograma de eventos e seu estado atual podem ser vistos por usuários que possuem o privilégio `PROCESS` na saída de `SHOW PROCESSLIST`, conforme mostrado na discussão que segue.
 
 A variável de sistema global `event_scheduler` determina se o Agendamento de Eventos está habilitado e em execução no servidor. Ela tem um dos seguintes valores, que afetam o agendamento de eventos conforme descrito:
 
-* `OFF`: O Agendamento de Eventos está parado. O fio do agendamento de eventos não é executado, não é mostrado na saída de `SHOW PROCESSLIST`, e nenhum evento agendado é executado. `OFF` é o valor padrão de `event_scheduler`.
+* `OFF`: O Agendamento de Eventos está parado. O thread do agendamento de eventos não é executado, não é mostrado na saída de `SHOW PROCESSLIST`, e nenhum evento agendado é executado. `OFF` é o valor padrão de `event_scheduler`.
 
 Quando o Agendamento de Eventos é interrompido (`event_scheduler` é `OFF`), ele pode ser iniciado definindo o valor de `event_scheduler` para `ON`. (Veja o próximo item.)
 
-* `ON`: O Agendamento de Eventos é iniciado; o fio do agendamento de eventos é executado e executa todos os eventos agendados.
+* `ON`: O Agendamento de Eventos é iniciado; o thread do agendamento de eventos é executado e executa todos os eventos agendados.
 
-Quando o Agendamento de Eventos é `ON`, o fio do agendamento de eventos é listado na saída de `SHOW PROCESSLIST` como um processo de daemon, e seu estado é representado como mostrado aqui:
+Quando o Agendamento de Eventos é `ON`, o thread do agendamento de eventos é listado na saída de `SHOW PROCESSLIST` como um processo de daemon, e seu estado é representado como mostrado aqui:
 
   ```sql
   mysql> SHOW PROCESSLIST\G
@@ -83,7 +83,7 @@ Quando o Agendamento de Eventos é `ON`, o fio do agendamento de eventos é list
 
 O agendamento de eventos pode ser interrompido ao definir o valor de `event_scheduler` para `OFF`.
 
-* `DISABLED`: Esse valor torna o Agendamento de Eventos inoperante. Quando o Agendamento de Eventos está em `DISABLED`, o fio do agendamento de eventos não é executado (e, portanto, não aparece na saída de `SHOW PROCESSLIST`). Além disso, o estado do Agendamento de Eventos não pode ser alterado em tempo real.
+* `DISABLED`: Esse valor torna o Agendamento de Eventos inoperante. Quando o Agendamento de Eventos está em `DISABLED`, o thread do agendamento de eventos não é executado (e, portanto, não aparece na saída de `SHOW PROCESSLIST`). Além disso, o estado do Agendamento de Eventos não pode ser alterado em tempo real.
 
 Se o status do Agendamento de Eventos não tiver sido definido como `DISABLED`, o `event_scheduler` pode ser alternado entre `ON` e `OFF` (usando `SET`). Também é possível usar `0` para `OFF`, e `1` para `ON` ao definir essa variável. Assim, qualquer uma das seguintes 4 declarações pode ser usada no cliente **mysql** para ativar o Agendamento de Eventos:
 
@@ -119,25 +119,25 @@ Importante
 
 Para desativar o cronograma de eventos, use um dos dois métodos a seguir:
 
-* Como opção de linha de comando ao iniciar o servidor:
+* Como opção de string de comando ao iniciar o servidor:
 
   ```sql
   --event-scheduler=DISABLED
   ```
 
-* No arquivo de configuração do servidor (`my.cnf`, ou `my.ini` em sistemas Windows), inclua a linha onde ela pode ser lida pelo servidor (por exemplo, em uma seção `[mysqld]`):
+* No arquivo de configuração do servidor (`my.cnf`, ou `my.ini` em sistemas Windows), inclua a string onde ela pode ser lida pelo servidor (por exemplo, em uma seção `[mysqld]`):
 
   ```sql
   event_scheduler=DISABLED
   ```
 
-Para habilitar o Agendamento de Eventos, reinicie o servidor sem a opção de linha de comando `--event-scheduler=DISABLED`, ou após remover ou comentar a linha que contém `event-scheduler=DISABLED` no arquivo de configuração do servidor, conforme apropriado. Alternativamente, você pode usar `ON` (ou `1`) ou `OFF` (ou `0`) no lugar do valor de `DISABLED` ao iniciar o servidor.
+Para habilitar o Agendamento de Eventos, reinicie o servidor sem a opção de string de comando `--event-scheduler=DISABLED`, ou após remover ou comentar a string que contém `event-scheduler=DISABLED` no arquivo de configuração do servidor, conforme apropriado. Alternativamente, você pode usar `ON` (ou `1`) ou `OFF` (ou `0`) no lugar do valor de `DISABLED` ao iniciar o servidor.
 
 Nota
 
-Você pode emitir declarações de manipulação de eventos quando `event_scheduler` está definido como `DISABLED`. Não são gerados avisos ou erros em tais casos (desde que as próprias declarações sejam válidas). No entanto, os eventos agendados não podem ser executados até que essa variável seja definida como `ON` (ou `1`). Uma vez que isso tenha sido feito, o fio do cronômetro de eventos executa todos os eventos cujas condições de agendamento são satisfeitas.
+Você pode emitir declarações de manipulação de eventos quando `event_scheduler` está definido como `DISABLED`. Não são gerados avisos ou erros em tais casos (desde que as próprias declarações sejam válidas). No entanto, os eventos agendados não podem ser executados até que essa variável seja definida como `ON` (ou `1`). Uma vez que isso tenha sido feito, o thread do cronômetro de eventos executa todos os eventos cujas condições de agendamento são satisfeitas.
 
-Iniciar o servidor MySQL com a opção `--skip-grant-tables` faz com que `event_scheduler` seja definido como `DISABLED`, substituindo qualquer outro valor definido na linha de comando ou no arquivo `my.cnf` ou `my.ini` (Bug #26807).
+Iniciar o servidor MySQL com a opção `--skip-grant-tables` faz com que `event_scheduler` seja definido como `DISABLED`, substituindo qualquer outro valor definido na string de comando ou no arquivo `my.cnf` ou `my.ini` (Bug #26807).
 
 Para declarações SQL usadas para criar, alterar e descartar eventos, consulte a Seção 23.4.3, “Sintaxe de evento”.
 
@@ -212,7 +212,7 @@ WOC             : NO
 Next activation : never
 ```
 
-Em declarações que ocorrem como parte de eventos executados pelo Cronômetro de Eventos, mensagens de diagnóstico (não apenas erros, mas também avisos) são escritas no log de erro e, no Windows, no log de eventos da aplicação. Para eventos executados com frequência, isso pode resultar em muitas mensagens registradas. Por exemplo, para declarações de `SELECT ... INTO var_list`, se a consulta não retornar nenhuma linha, ocorre um aviso com o código de erro 1329 (`No data`) e os valores das variáveis permanecem inalterados. Se a consulta retornar várias linhas, ocorre o erro 1172 (`Result consisted of more than one row`). Para qualquer uma dessas condições, é possível evitar que os avisos sejam registrados ao declarar um manipulador de condição; veja Seção 13.6.7.2, “Declaração ... HANDLER”. Para declarações que podem recuperar várias linhas, outra estratégia é usar `LIMIT 1` para limitar o conjunto de resultados a uma única linha.
+Em declarações que ocorrem como parte de eventos executados pelo Cronômetro de Eventos, mensagens de diagnóstico (não apenas erros, mas também avisos) são escritas no log de erro e, no Windows, no log de eventos da aplicação. Para eventos executados com frequência, isso pode resultar em muitas mensagens registradas. Por exemplo, para declarações de `SELECT ... INTO var_list`, se a consulta não retornar nenhuma string, ocorre um aviso com o código de erro 1329 (`No data`) e os valores das variáveis permanecem inalterados. Se a consulta retornar várias strings, ocorre o erro 1172 (`Result consisted of more than one row`). Para qualquer uma dessas condições, é possível evitar que os avisos sejam registrados ao declarar um manipulador de condição; veja Seção 13.6.7.2, “Declaração ... HANDLER”. Para declarações que podem recuperar várias strings, outra estratégia é usar `LIMIT 1` para limitar o conjunto de resultados a uma única string.
 
 ### 23.4.6 O Cronograma de Eventos e os Privilegios do MySQL
 
@@ -250,7 +250,7 @@ CREATE EVENT e_store_ts
       INSERT INTO myschema.mytable VALUES (UNIX_TIMESTAMP());
 ```
 
-O usuário espera por cerca de um minuto e, em seguida, realiza uma consulta `SELECT * FROM mytable;`, esperando ver várias novas linhas na tabela. Em vez disso, a tabela está vazia. Como o usuário não tem o privilégio `INSERT` para a tabela em questão, o evento não tem efeito.
+O usuário espera por cerca de um minuto e, em seguida, realiza uma consulta `SELECT * FROM mytable;`, esperando ver várias novas strings na tabela. Em vez disso, a tabela está vazia. Como o usuário não tem o privilégio `INSERT` para a tabela em questão, o evento não tem efeito.
 
 Se você examinar o registro de erro do MySQL (`hostname.err`), poderá ver que o evento está sendo executado, mas a ação que está tentando realizar falha:
 
@@ -326,14 +326,14 @@ CREATE EVENT e_insert
       INSERT INTO myschema.mytable;
 ```
 
-Após a criação deste evento, `root` revoga o privilégio `EVENT` para `jon@ghidora`. No entanto, `e_insert` continua a executar, inserindo uma nova linha em `mytable` a cada sete segundos. O mesmo aconteceria se `root` tivesse emitido qualquer uma dessas declarações:
+Após a criação deste evento, `root` revoga o privilégio `EVENT` para `jon@ghidora`. No entanto, `e_insert` continua a executar, inserindo uma nova string em `mytable` a cada sete segundos. O mesmo aconteceria se `root` tivesse emitido qualquer uma dessas declarações:
 
 * `DROP USER jon@ghidora;`
 * `RENAME USER jon@ghidora TO someotherguy@ghidora;`
 
 Você pode verificar que isso é verdade examinando a tabela `mysql.event` (discutida mais tarde nesta seção) ou a tabela do Esquema de Informação `EVENTS` antes e depois de emitir uma declaração `DROP USER` ou `RENAME USER`.
 
-As definições de eventos são armazenadas na tabela `mysql.event`. Para descartar um evento criado por outra conta de usuário, o usuário MySQL `root` (ou outro usuário com os privilégios necessários) pode excluir linhas desta tabela. Por exemplo, para remover o evento `e_insert` mostrado anteriormente, `root` pode usar a seguinte declaração:
+As definições de eventos são armazenadas na tabela `mysql.event`. Para descartar um evento criado por outra conta de usuário, o usuário MySQL `root` (ou outro usuário com os privilégios necessários) pode excluir strings desta tabela. Por exemplo, para remover o evento `e_insert` mostrado anteriormente, `root` pode usar a seguinte declaração:
 
 ```sql
 DELETE FROM mysql.event
@@ -341,9 +341,9 @@ DELETE FROM mysql.event
       AND name = 'e_insert';
 ```
 
-É muito importante corresponder o nome do evento e o nome do esquema do banco de dados ao excluir linhas da tabela `mysql.event`. Isso ocorre porque diferentes eventos com o mesmo nome podem existir em diferentes esquemas.
+É muito importante corresponder o nome do evento e o nome do esquema do banco de dados ao excluir strings da tabela `mysql.event`. Isso ocorre porque diferentes eventos com o mesmo nome podem existir em diferentes esquemas.
 
-Os privilégios dos usuários `EVENT` são armazenados nas colunas `Event_priv` das tabelas `mysql.user` e `mysql.db`. Em ambos os casos, essa coluna contém um dos valores '`Y`' ou '`N`'. '`N`' é o padrão. `mysql.user.Event_priv` é definido como '`Y`' para um usuário específico apenas se esse usuário tiver o privilégio global `EVENT` (ou seja, se o privilégio foi concedido usando `GRANT EVENT ON *.*`). Para um privilégio de nível de esquema `EVENT`, `GRANT` cria uma linha em `mysql.db` e define a coluna `Db` dessa linha para o nome do esquema, a coluna `User` para o nome do usuário e a coluna `Event_priv` para '`Y`'. Nunca haverá necessidade de manipular essas tabelas diretamente, uma vez que as instruções `GRANT EVENT` e `REVOKE EVENT` realizam as operações necessárias nelas.
+Os privilégios dos usuários `EVENT` são armazenados nas colunas `Event_priv` das tabelas `mysql.user` e `mysql.db`. Em ambos os casos, essa coluna contém um dos valores '`Y`' ou '`N`'. '`N`' é o padrão. `mysql.user.Event_priv` é definido como '`Y`' para um usuário específico apenas se esse usuário tiver o privilégio global `EVENT` (ou seja, se o privilégio foi concedido usando `GRANT EVENT ON *.*`). Para um privilégio de nível de esquema `EVENT`, `GRANT` cria uma string em `mysql.db` e define a coluna `Db` dessa string para o nome do esquema, a coluna `User` para o nome do usuário e a coluna `Event_priv` para '`Y`'. Nunca haverá necessidade de manipular essas tabelas diretamente, uma vez que as instruções `GRANT EVENT` e `REVOKE EVENT` realizam as operações necessárias nelas.
 
 Cinco variáveis de status fornecem contagens de operações relacionadas a eventos (mas *não* de declarações executadas por eventos; veja Seção 23.8, “Restrições sobre Programas Armazenados”). Estas são:
 

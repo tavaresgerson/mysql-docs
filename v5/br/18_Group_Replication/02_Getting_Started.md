@@ -56,7 +56,7 @@ log_bin=binlog
 binlog_format=ROW
 ```
 
-Essas configurações configuram o servidor para usar o número de identificador único 1, para habilitar identificadores de transação global e para armazenar metadados de replicação em tabelas do sistema em vez de arquivos. Além disso, instrui o servidor para ativar o registro binário, usar o formato baseado em linha e desabilitar as verificações de checksums de eventos de registro binário. Para mais detalhes, consulte a Seção 17.3.1, “Requisitos de Replicação de Grupo”.
+Essas configurações configuram o servidor para usar o número de identificador único 1, para habilitar identificadores de transação global e para armazenar metadados de replicação em tabelas do sistema em vez de arquivos. Além disso, instrui o servidor para ativar o registro binário, usar o formato baseado em string e desabilitar as verificações de checksums de eventos de registro binário. Para mais detalhes, consulte a Seção 17.3.1, “Requisitos de Replicação de Grupo”.
 
 Configurações de Replicação de Grupo
 
@@ -110,7 +110,7 @@ Criar um grupo e juntar vários membros ao mesmo tempo não é suportado. Pode f
 
 Importante
 
-A variável `group_replication_bootstrap_group` deve ser habilitada apenas em uma instância do servidor que pertence a um grupo a qualquer momento, geralmente na primeira vez que você inicializa o grupo (ou no caso de o grupo inteiro ser desligado e reiniciado). Se você inicializar o grupo várias vezes, por exemplo, quando várias instâncias do servidor têm essa opção definida, então eles podem criar um cenário de cérebro artificial, em que dois grupos distintos com o mesmo nome existem. Sempre defina `group_replication_bootstrap_group=off` após a primeira instância do servidor entrar em linha.
+A variável `group_replication_bootstrap_group` deve ser habilitada apenas em uma instância do servidor que pertence a um grupo a qualquer momento, geralmente na primeira vez que você inicializa o grupo (ou no caso de o grupo inteiro ser desligado e reiniciado). Se você inicializar o grupo várias vezes, por exemplo, quando várias instâncias do servidor têm essa opção definida, então eles podem criar um cenário de cérebro artificial, em que dois grupos distintos com o mesmo nome existem. Sempre defina `group_replication_bootstrap_group=off` após a primeira instância do servidor entrar em string.
 
 A configuração para todos os servidores do grupo é bastante semelhante. Você precisa alterar os detalhes de cada servidor (por exemplo, `server_id`, `datadir`, `group_replication_local_address`). Isso é ilustrado mais tarde neste tutorial.
 
@@ -515,7 +515,7 @@ Nota
 
 O porto não padrão de 24801 é usado porque, neste tutorial, as três instâncias do servidor utilizam o mesmo nome de host. Em uma configuração com três máquinas diferentes, isso não seria necessário.
 
-A Replicação em Grupo requer uma conexão de rede entre os membros, o que significa que cada membro deve ser capaz de resolver o endereço de rede de todos os outros membros. Por exemplo, neste tutorial, todas as três instâncias são executadas em uma máquina, então, para garantir que os membros possam se comunicar entre si, você pode adicionar uma linha ao arquivo de opções, como `report_host=127.0.0.1`.
+A Replicação em Grupo requer uma conexão de rede entre os membros, o que significa que cada membro deve ser capaz de resolver o endereço de rede de todos os outros membros. Por exemplo, neste tutorial, todas as três instâncias são executadas em uma máquina, então, para garantir que os membros possam se comunicar entre si, você pode adicionar uma string ao arquivo de opções, como `report_host=127.0.0.1`.
 
 Então, cada membro precisa ser capaz de se conectar aos outros membros em seu `group_replication_local_address`. Por exemplo, no arquivo de opções do membro s1, adicione:
 

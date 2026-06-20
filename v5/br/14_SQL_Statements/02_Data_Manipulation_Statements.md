@@ -11,7 +11,7 @@ A declaração `CALL` invoca um procedimento armazenado que foi definido anterio
 
 Procedimentos armazenados que não aceitam argumentos podem ser invocados sem parênteses. Ou seja, `CALL p()` e `CALL p` são equivalentes.
 
-`CALL` pode transmitir valores de volta para seu chamador usando parâmetros que são declarados como parâmetros `OUT` ou `INOUT`. Quando o procedimento retornar, um programa cliente também pode obter o número de linhas afetadas para a declaração final executada dentro da rotina: No nível SQL, chame a função `ROW_COUNT()`; a partir da API C, chame a função `mysql_affected_rows()`.
+`CALL` pode transmitir valores de volta para seu chamador usando parâmetros que são declarados como parâmetros `OUT` ou `INOUT`. Quando o procedimento retornar, um programa cliente também pode obter o número de strings afetadas para a declaração final executada dentro da rotina: No nível SQL, chame a função `ROW_COUNT()`; a partir da API C, chame a função `mysql_affected_rows()`.
 
 Para informações sobre o efeito das condições não tratadas nos parâmetros do procedimento, consulte a Seção 13.6.7.8, “Tratamento de condições e parâmetros OUT ou INOUT”.
 
@@ -70,7 +70,7 @@ Alterações de metadados em objetos referenciados por programas armazenados sã
 
 ### 13.2.2 Declaração DELETE
 
-`DELETE` é uma declaração DML que remove linhas de uma tabela.
+`DELETE` é uma declaração DML que remove strings de uma tabela.
 
 #### Sintaxe de tabela única
 
@@ -82,15 +82,15 @@ DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name
     [LIMIT row_count]
 ```
 
-A declaração `DELETE` exclui linhas de *`tbl_name`* e retorna o número de linhas excluídas. Para verificar o número de linhas excluídas, chame a função `ROW_COUNT()` descrita na Seção 12.15, “Funções de Informação”.
+A declaração `DELETE` exclui strings de *`tbl_name`* e retorna o número de strings excluídas. Para verificar o número de strings excluídas, chame a função `ROW_COUNT()` descrita na Seção 12.15, “Funções de Informação”.
 
 #### Cláusulas Principais
 
-As condições na cláusula opcional `WHERE` identificam quais linhas devem ser excluídas. Sem a cláusula `WHERE`, todas as linhas são excluídas.
+As condições na cláusula opcional `WHERE` identificam quais strings devem ser excluídas. Sem a cláusula `WHERE`, todas as strings são excluídas.
 
-*`where_condition`* é uma expressão que avalia como verdadeira para cada linha que será excluída. É especificado conforme descrito na Seção 13.2.9, "Instrução SELECT".
+*`where_condition`* é uma expressão que avalia como verdadeira para cada string que será excluída. É especificado conforme descrito na Seção 13.2.9, "Instrução SELECT".
 
-Se a cláusula `ORDER BY` for especificada, as linhas serão excluídas na ordem especificada. A cláusula `LIMIT` estabelece um limite para o número de linhas que podem ser excluídas. Essas cláusulas se aplicam a excluíções de uma única tabela, mas não a excluíções de várias tabelas.
+Se a cláusula `ORDER BY` for especificada, as strings serão excluídas na ordem especificada. A cláusula `LIMIT` estabelece um limite para o número de strings que podem ser excluídas. Essas cláusulas se aplicam a excluíções de uma única tabela, mas não a excluíções de várias tabelas.
 
 #### Sintaxe de Tabela Múltipla
 
@@ -112,11 +112,11 @@ Você precisa do privilégio `DELETE` em uma tabela para excluí-la. Você preci
 
 #### Desempenho
 
-Quando você não precisa saber o número de linhas excluídas, a declaração `TRUNCATE TABLE` é uma maneira mais rápida de esvaziar uma tabela do que uma declaração `DELETE` sem a cláusula `WHERE`. Ao contrário de `DELETE`, `TRUNCATE TABLE` não pode ser usado dentro de uma transação ou se você tiver um bloqueio na tabela. Veja Seção 13.1.34, “Declaração TRUNCATE TABLE” e Seção 13.3.5, “Declarações LOCK TABLES e UNLOCK TABLES”.
+Quando você não precisa saber o número de strings excluídas, a declaração `TRUNCATE TABLE` é uma maneira mais rápida de esvaziar uma tabela do que uma declaração `DELETE` sem a cláusula `WHERE`. Ao contrário de `DELETE`, `TRUNCATE TABLE` não pode ser usado dentro de uma transação ou se você tiver um bloqueio na tabela. Veja Seção 13.1.34, “Declaração TRUNCATE TABLE” e Seção 13.3.5, “Declarações LOCK TABLES e UNLOCK TABLES”.
 
 A velocidade das operações de exclusão também pode ser afetada por fatores discutidos na Seção 8.2.4.3, “Otimizando declarações DELETE”.
 
-Para garantir que uma declaração específica do `DELETE` não leve muito tempo, a cláusula específica do MySQL do `LIMIT row_count` para o `DELETE` especifica o número máximo de linhas a serem excluídas. Se o número de linhas a serem excluídas for maior que o limite, repita a declaração do `DELETE` até que o número de linhas afetadas seja menor que o valor do `LIMIT`.
+Para garantir que uma declaração específica do `DELETE` não leve muito tempo, a cláusula específica do MySQL do `LIMIT row_count` para o `DELETE` especifica o número máximo de strings a serem excluídas. Se o número de strings a serem excluídas for maior que o limite, repita a declaração do `DELETE` até que o número de strings afetadas seja menor que o valor do `LIMIT`.
 
 #### Subconsultas
 
@@ -124,9 +124,9 @@ Você não pode excluir de uma tabela e selecionar da mesma tabela em uma subcon
 
 #### Suporte para Tabela Partida
 
-`DELETE` suporta a seleção explícita de partições usando a cláusula `PARTITION`, que recebe uma lista de nomes separados por vírgula de uma ou mais partições ou subpartições (ou ambas) das quais selecionar as linhas a serem excluídas. Partições não incluídas na lista são ignoradas. Dado uma tabela particionada `t` com uma partição denominada `p0`, a execução da declaração `DELETE FROM t PARTITION (p0)` tem o mesmo efeito na tabela que a execução de `ALTER TABLE t TRUNCATE PARTITION (p0)`; em ambos os casos, todas as linhas na partição `p0` são excluídas.
+`DELETE` suporta a seleção explícita de partições usando a cláusula `PARTITION`, que recebe uma lista de nomes separados por vírgula de uma ou mais partições ou subpartições (ou ambas) das quais selecionar as strings a serem excluídas. Partições não incluídas na lista são ignoradas. Dado uma tabela particionada `t` com uma partição denominada `p0`, a execução da declaração `DELETE FROM t PARTITION (p0)` tem o mesmo efeito na tabela que a execução de `ALTER TABLE t TRUNCATE PARTITION (p0)`; em ambos os casos, todas as strings na partição `p0` são excluídas.
 
-`PARTITION` pode ser usado juntamente com uma condição `WHERE`, nesse caso, a condição é testada apenas nas linhas das partições listadas. Por exemplo, `DELETE FROM t PARTITION (p0) WHERE c < 5` exclui linhas apenas da partição `p0` para as quais a condição `c < 5` é verdadeira; as linhas de qualquer outra partição não são verificadas e, portanto, não são afetadas pelo `DELETE`.
+`PARTITION` pode ser usado juntamente com uma condição `WHERE`, nesse caso, a condição é testada apenas nas strings das partições listadas. Por exemplo, `DELETE FROM t PARTITION (p0) WHERE c < 5` exclui strings apenas da partição `p0` para as quais a condição `c < 5` é verdadeira; as strings de qualquer outra partição não são verificadas e, portanto, não são afetadas pelo `DELETE`.
 
 A cláusula `PARTITION` também pode ser usada em declarações `DELETE` de múltiplas tabelas. Você pode usar até uma dessas opções por tabela nomeada na opção `FROM`.
 
@@ -134,7 +134,7 @@ Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Par
 
 #### Colunas de Auto-Incremento
 
-Se você excluir a linha que contém o valor máximo para uma coluna de `AUTO_INCREMENT`, o valor não será reutilizado para uma tabela de `MyISAM` ou `InnoDB`. Se você excluir todas as linhas da tabela com `DELETE FROM tbl_name` (sem uma cláusula de `WHERE` em modo `autocommit`, a sequência será refeita para todos os motores de armazenamento, exceto `InnoDB` e `MyISAM`. Há algumas exceções a esse comportamento para tabelas de `InnoDB`, conforme discutido na Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Se você excluir a string que contém o valor máximo para uma coluna de `AUTO_INCREMENT`, o valor não será reutilizado para uma tabela de `MyISAM` ou `InnoDB`. Se você excluir todas as strings da tabela com `DELETE FROM tbl_name` (sem uma cláusula de `WHERE` em modo `autocommit`, a sequência será refeita para todos os motores de armazenamento, exceto `InnoDB` e `MyISAM`. Há algumas exceções a esse comportamento para tabelas de `InnoDB`, conforme discutido na Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
 
 Para as tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Nesse caso, a reutilização de valores excluídos do topo da sequência ocorre mesmo para as tabelas `MyISAM`. Veja a Seção 3.6.9, “Usando AUTO\_INCREMENT”.
 
@@ -146,24 +146,24 @@ A declaração `DELETE` suporta os seguintes modificadores:
 
 * Para as tabelas `MyISAM`, se você usar o modificador `QUICK`, o mecanismo de armazenamento não mescla folhas do índice durante a exclusão, o que pode acelerar alguns tipos de operações de exclusão.
 
-* O modificador `IGNORE` faz com que o MySQL ignore erros ignoráveis durante o processo de exclusão de linhas. (Os erros encontrados durante a fase de análise são processados da maneira usual.) Erros que são ignorados devido ao uso de `IGNORE` são retornados como avisos. Para mais informações, consulte O efeito de IGNORE na execução da declaração.
+* O modificador `IGNORE` faz com que o MySQL ignore erros ignoráveis durante o processo de exclusão de strings. (Os erros encontrados durante a fase de análise são processados da maneira usual.) Erros que são ignorados devido ao uso de `IGNORE` são retornados como avisos. Para mais informações, consulte O efeito de IGNORE na execução da declaração.
 
 #### Ordem de Deleção
 
-Se a declaração `DELETE` incluir uma cláusula `ORDER BY`, as linhas são excluídas na ordem especificada pela cláusula. Isso é útil principalmente em conjunto com `LIMIT`. Por exemplo, a seguinte declaração encontra linhas que correspondem à cláusula `WHERE`, as ordena por `timestamp_column` e exclui a primeira (mais antiga):
+Se a declaração `DELETE` incluir uma cláusula `ORDER BY`, as strings são excluídas na ordem especificada pela cláusula. Isso é útil principalmente em conjunto com `LIMIT`. Por exemplo, a seguinte declaração encontra strings que correspondem à cláusula `WHERE`, as ordena por `timestamp_column` e exclui a primeira (mais antiga):
 
 ```sql
 DELETE FROM somelog WHERE user = 'jcole'
 ORDER BY timestamp_column LIMIT 1;
 ```
 
-`ORDER BY` também ajuda a excluir linhas em uma ordem necessária para evitar violações de integridade referencial.
+`ORDER BY` também ajuda a excluir strings em uma ordem necessária para evitar violações de integridade referencial.
 
 #### Tabelas InnoDB
 
-Se você está excluindo muitas linhas de uma tabela grande, pode exceder o tamanho da tabela de bloqueio para uma tabela `InnoDB`. Para evitar esse problema, ou simplesmente para minimizar o tempo que a tabela permanece bloqueada, a seguinte estratégia (que não usa `DELETE` de forma alguma) pode ser útil:
+Se você está excluindo muitas strings de uma tabela grande, pode exceder o tamanho da tabela de bloqueio para uma tabela `InnoDB`. Para evitar esse problema, ou simplesmente para minimizar o tempo que a tabela permanece bloqueada, a seguinte estratégia (que não usa `DELETE` de forma alguma) pode ser útil:
 
-1. Selecione as linhas *que não* devem ser excluídas em uma tabela vazia que tenha a mesma estrutura que a tabela original:
+1. Selecione as strings *que não* devem ser excluídas em uma tabela vazia que tenha a mesma estrutura que a tabela original:
 
    ```sql
    INSERT INTO t_copy SELECT * FROM t WHERE ... ;
@@ -185,27 +185,27 @@ Nenhuma outra sessão pode acessar as tabelas envolvidas enquanto o `RENAME TABL
 
 #### Tabelas MyISAM
 
-Nas tabelas `MyISAM`, as linhas excluídas são mantidas em uma lista vinculada e as operações subsequentes `INSERT` reutilizam as posições de linha antigas. Para recuperar o espaço não utilizado e reduzir os tamanhos dos arquivos, use a declaração `OPTIMIZE TABLE` ou o utilitário **myisamchk** para reorganizar as tabelas. `OPTIMIZE TABLE` é mais fácil de usar, mas **myisamchk** é mais rápido. Veja a Seção 13.7.2.4, “Declaração OPTIMIZE TABLE”, e a Seção 4.6.3, “myisamchk — Utilitário de manutenção de tabelas MyISAM”.
+Nas tabelas `MyISAM`, as strings excluídas são mantidas em uma lista vinculada e as operações subsequentes `INSERT` reutilizam as posições de string antigas. Para recuperar o espaço não utilizado e reduzir os tamanhos dos arquivos, use a declaração `OPTIMIZE TABLE` ou o utilitário **myisamchk** para reorganizar as tabelas. `OPTIMIZE TABLE` é mais fácil de usar, mas **myisamchk** é mais rápido. Veja a Seção 13.7.2.4, “Declaração OPTIMIZE TABLE”, e a Seção 4.6.3, “myisamchk — Utilitário de manutenção de tabelas MyISAM”.
 
-O modificador `QUICK` afeta se as folhas de índice são unidas para operações de exclusão. `DELETE QUICK` é mais útil para aplicações onde os valores do índice para as linhas excluídas são substituídos por valores semelhantes de índice de linhas inseridas posteriormente. Nesse caso, os buracos deixados pelos valores excluídos são reutilizados.
+O modificador `QUICK` afeta se as folhas de índice são unidas para operações de exclusão. `DELETE QUICK` é mais útil para aplicações onde os valores do índice para as strings excluídas são substituídos por valores semelhantes de índice de strings inseridas posteriormente. Nesse caso, os buracos deixados pelos valores excluídos são reutilizados.
 
 `DELETE QUICK` não é útil quando os valores excluídos levam a blocos de índice com valores incompletos que abrangem uma faixa de valores de índice para os quais novos insertos ocorrem novamente. Neste caso, o uso de `QUICK` pode resultar em espaço desperdiçado no índice que permanece não recuperado. Aqui está um exemplo de tal cenário:
 
 1. Crie uma tabela que contenha uma coluna indexada `AUTO_INCREMENT`.
 
-2. Insira muitas linhas na tabela. Cada inserção resulta em um valor de índice que é adicionado à extremidade alta do índice.
+2. Insira muitas strings na tabela. Cada inserção resulta em um valor de índice que é adicionado à extremidade alta do índice.
 
-3. Exclua um bloco de linhas na extremidade inferior da faixa de colunas usando `DELETE QUICK`.
+3. Exclua um bloco de strings na extremidade inferior da faixa de colunas usando `DELETE QUICK`.
 
-Nesse cenário, os blocos de índice associados aos valores de índice excluídos ficam subcheios, mas não são mesclados com outros blocos de índice devido ao uso de `QUICK`. Eles permanecem subcheios quando ocorrem novas inserções, porque as novas linhas não têm valores de índice na faixa excluída. Além disso, eles permanecem subcheios mesmo se você usar posteriormente `DELETE` sem `QUICK`, a menos que alguns dos valores de índice excluídos aconteçam a cair em blocos de índice dentro ou adjacentes aos blocos subcheios. Para recuperar espaço de índice não utilizado nessas circunstâncias, use `OPTIMIZE TABLE`.
+Nesse cenário, os blocos de índice associados aos valores de índice excluídos ficam subcheios, mas não são mesclados com outros blocos de índice devido ao uso de `QUICK`. Eles permanecem subcheios quando ocorrem novas inserções, porque as novas strings não têm valores de índice na faixa excluída. Além disso, eles permanecem subcheios mesmo se você usar posteriormente `DELETE` sem `QUICK`, a menos que alguns dos valores de índice excluídos aconteçam a cair em blocos de índice dentro ou adjacentes aos blocos subcheios. Para recuperar espaço de índice não utilizado nessas circunstâncias, use `OPTIMIZE TABLE`.
 
-Se você vai excluir muitas linhas de uma tabela, pode ser mais rápido usar `DELETE QUICK` seguido por `OPTIMIZE TABLE`. Isso reconstrui o índice em vez de realizar muitas operações de fusão de blocos de índice.
+Se você vai excluir muitas strings de uma tabela, pode ser mais rápido usar `DELETE QUICK` seguido por `OPTIMIZE TABLE`. Isso reconstrui o índice em vez de realizar muitas operações de fusão de blocos de índice.
 
 #### Excluições de mesa múltipla
 
-Você pode especificar várias tabelas em uma declaração `DELETE` para excluir linhas de uma ou mais tabelas, dependendo da condição na cláusula `WHERE`. Você não pode usar `ORDER BY` ou `LIMIT` em uma `DELETE` de múltiplas tabelas. A cláusula *`table_references`* lista as tabelas envolvidas na junção, conforme descrito na Seção 13.2.9.2, “Cláusula de JUNÇÃO”.
+Você pode especificar várias tabelas em uma declaração `DELETE` para excluir strings de uma ou mais tabelas, dependendo da condição na cláusula `WHERE`. Você não pode usar `ORDER BY` ou `LIMIT` em uma `DELETE` de múltiplas tabelas. A cláusula *`table_references`* lista as tabelas envolvidas na junção, conforme descrito na Seção 13.2.9.2, “Cláusula de JUNÇÃO”.
 
-Para a primeira sintaxe de múltiplas tabelas, apenas as linhas que correspondem às tabelas listadas antes da cláusula `FROM` são excluídas. Para a segunda sintaxe de múltiplas tabelas, apenas as linhas que correspondem às tabelas listadas na cláusula `FROM` (antes da cláusula `USING`) são excluídas. O efeito é que você pode excluir linhas de muitas tabelas ao mesmo tempo e ter tabelas adicionais que são usadas apenas para pesquisa:
+Para a primeira sintaxe de múltiplas tabelas, apenas as strings que correspondem às tabelas listadas antes da cláusula `FROM` são excluídas. Para a segunda sintaxe de múltiplas tabelas, apenas as strings que correspondem às tabelas listadas na cláusula `FROM` (antes da cláusula `USING`) são excluídas. O efeito é que você pode excluir strings de muitas tabelas ao mesmo tempo e ter tabelas adicionais que são usadas apenas para pesquisa:
 
 ```sql
 DELETE t1, t2 FROM t1 INNER JOIN t2 INNER JOIN t3
@@ -219,9 +219,9 @@ DELETE FROM t1, t2 USING t1 INNER JOIN t2 INNER JOIN t3
 WHERE t1.id=t2.id AND t2.id=t3.id;
 ```
 
-Essas declarações utilizam todas as três tabelas ao pesquisar linhas para excluir, mas exclui as linhas correspondentes apenas das tabelas `t1` e `t2`.
+Essas declarações utilizam todas as três tabelas ao pesquisar strings para excluir, mas exclui as strings correspondentes apenas das tabelas `t1` e `t2`.
 
-Os exemplos anteriores usam `INNER JOIN`, mas as declarações de junção múltipla `DELETE` podem usar outros tipos de junção permitidos nas declarações de `SELECT`, como `LEFT JOIN`. Por exemplo, para excluir linhas que existem em `t1` que não têm correspondência em `t2`, use uma `LEFT JOIN`:
+Os exemplos anteriores usam `INNER JOIN`, mas as declarações de junção múltipla `DELETE` podem usar outros tipos de junção permitidos nas declarações de `SELECT`, como `LEFT JOIN`. Por exemplo, para excluir strings que existem em `t1` que não têm correspondência em `t2`, use uma `LEFT JOIN`:
 
 ```sql
 DELETE t1 FROM t1 LEFT JOIN t2 ON t1.id=t2.id WHERE t2.id IS NULL;
@@ -315,7 +315,7 @@ A declaração `HANDLER ... OPEN` abre uma tabela, tornando-a acessível usando 
 
 Se você abrir a tabela usando um alias, referências adicionais à tabela aberta com outras declarações `HANDLER` devem usar o alias em vez do nome da tabela. Se você não usar um alias, mas abrir a tabela usando um nome de tabela qualificado pelo nome do banco de dados, referências adicionais devem usar o nome da tabela não qualificada. Por exemplo, para uma tabela aberta usando `mydb.mytable`, referências adicionais devem usar `mytable`.
 
-A sintaxe `HANDLER ... READ` recupera uma linha onde o índice especificado satisfaz os valores fornecidos e a condição `WHERE` é atendida. Se você tiver um índice de múltiplas colunas, especifique os valores da coluna do índice como uma lista de valores separados por vírgula. Especifique valores para todas as colunas do índice ou especifique valores para um prefixo da esquerda das colunas do índice. Suponha que um índice `my_idx` inclua três colunas nomeadas `col_a`, `col_b` e `col_c`, nessa ordem. A declaração `HANDLER` pode especificar valores para todas as três colunas do índice ou para as colunas em um prefixo da esquerda. Por exemplo:
+A sintaxe `HANDLER ... READ` recupera uma string onde o índice especificado satisfaz os valores fornecidos e a condição `WHERE` é atendida. Se você tiver um índice de múltiplas colunas, especifique os valores da coluna do índice como uma lista de valores separados por vírgula. Especifique valores para todas as colunas do índice ou especifique valores para um prefixo da esquerda das colunas do índice. Suponha que um índice `my_idx` inclua três colunas nomeadas `col_a`, `col_b` e `col_c`, nessa ordem. A declaração `HANDLER` pode especificar valores para todas as três colunas do índice ou para as colunas em um prefixo da esquerda. Por exemplo:
 
 ```sql
 HANDLER ... READ my_idx = (col_a_val,col_b_val,col_c_val) ...
@@ -329,11 +329,11 @@ Para utilizar a interface `HANDLER` para referenciar uma tabela `PRIMARY KEY`, u
 HANDLER tbl_name READ `PRIMARY` ...
 ```
 
-A segunda sintaxe `HANDLER ... READ` recupera uma linha da tabela em ordem de índice que corresponde à condição `WHERE`.
+A segunda sintaxe `HANDLER ... READ` recupera uma string da tabela em ordem de índice que corresponde à condição `WHERE`.
 
-A sintaxe do terceiro `HANDLER ... READ` recupera uma linha da tabela em ordem natural de linha que corresponde à condição do `WHERE`. É mais rápido do que o `HANDLER tbl_name READ index_name` quando se deseja uma varredura completa da tabela. A ordem natural de linha é a ordem em que as linhas são armazenadas em um arquivo de dados de tabela do `MyISAM`. Esta declaração também funciona para tabelas do `InnoDB`, mas não há tal conceito porque não há um arquivo de dados separado.
+A sintaxe do terceiro `HANDLER ... READ` recupera uma string da tabela em ordem natural de string que corresponde à condição do `WHERE`. É mais rápido do que o `HANDLER tbl_name READ index_name` quando se deseja uma varredura completa da tabela. A ordem natural de string é a ordem em que as strings são armazenadas em um arquivo de dados de tabela do `MyISAM`. Esta declaração também funciona para tabelas do `InnoDB`, mas não há tal conceito porque não há um arquivo de dados separado.
 
-Sem uma cláusula `LIMIT`, todas as formas de `HANDLER ... READ` buscam uma única linha se estiver disponível. Para retornar um número específico de linhas, inclua uma cláusula [[`LIMIT`]. Ela tem a mesma sintaxe que para a declaração `SELECT`. Veja a Seção 13.2.9, “Declaração SELECT”.
+Sem uma cláusula `LIMIT`, todas as formas de `HANDLER ... READ` buscam uma única string se estiver disponível. Para retornar um número específico de strings, inclua uma cláusula [[`LIMIT`]. Ela tem a mesma sintaxe que para a declaração `SELECT`. Veja a Seção 13.2.9, “Declaração SELECT”.
 
 `HANDLER ... CLOSE` fecha uma tabela que foi aberta com `HANDLER ... OPEN`.
 
@@ -399,7 +399,7 @@ assignment_list:
     assignment [, assignment] ...
 ```
 
-`INSERT` insere novas linhas em uma tabela existente. As formas `INSERT ... VALUES` e `INSERT ... SET` do pedido inserem linhas com base em valores explicitamente especificados. A forma `INSERT ... SELECT` insere linhas selecionadas de outra tabela ou tabelas. `INSERT` com uma cláusula `ON DUPLICATE KEY UPDATE` permite que as linhas existentes sejam atualizadas se uma linha a ser inserida causasse um valor duplicado em um índice `UNIQUE` ou `PRIMARY KEY`.
+`INSERT` insere novas strings em uma tabela existente. As formas `INSERT ... VALUES` e `INSERT ... SET` do pedido inserem strings com base em valores explicitamente especificados. A forma `INSERT ... SELECT` insere strings selecionadas de outra tabela ou tabelas. `INSERT` com uma cláusula `ON DUPLICATE KEY UPDATE` permite que as strings existentes sejam atualizadas se uma string a ser inserida causasse um valor duplicado em um índice `UNIQUE` ou `PRIMARY KEY`.
 
 Para informações adicionais sobre `INSERT ... SELECT` e `INSERT ... ON DUPLICATE KEY UPDATE`, consulte a Seção 13.2.5.1, “Instrução INSERT ... SELECT”, e a Seção 13.2.5.2, “Instrução INSERT ... ON DUPLICATE KEY UPDATE”.
 
@@ -407,9 +407,9 @@ Em MySQL 5.7, a palavra-chave `DELAYED` é aceita, mas ignorada pelo servidor. A
 
 Para inserir em uma tabela, é necessário o privilégio `INSERT` para a tabela. Se a cláusula `ON DUPLICATE KEY UPDATE` for usada e uma chave duplicada causar a execução de um `UPDATE`, a declaração requer o privilégio `UPDATE` para as colunas serem atualizadas. Para colunas que são lidas, mas não modificadas, você precisa apenas do privilégio `SELECT` (como para uma coluna referenciada apenas no lado direito de uma atribuição *`col_name`=*`expr`* em uma cláusula `ON DUPLICATE KEY UPDATE`).
 
-Ao inserir em uma tabela particionada, você pode controlar quais particionações e subparticionações aceitam novas linhas. A cláusula `PARTITION` recebe uma lista de nomes separados por vírgula de uma ou mais particionações ou subparticionações (ou ambas) da tabela. Se alguma das linhas a serem inseridas por uma declaração `INSERT` não corresponder a uma das particionações listadas, a declaração `INSERT` falha com o erro "Foi encontrada uma linha que não corresponde ao conjunto de particionações dado". Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de particionações”.
+Ao inserir em uma tabela particionada, você pode controlar quais particionações e subparticionações aceitam novas strings. A cláusula `PARTITION` recebe uma lista de nomes separados por vírgula de uma ou mais particionações ou subparticionações (ou ambas) da tabela. Se alguma das strings a serem inseridas por uma declaração `INSERT` não corresponder a uma das particionações listadas, a declaração `INSERT` falha com o erro "Foi encontrada uma string que não corresponde ao conjunto de particionações dado". Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de particionações”.
 
-*`tbl_name`* é a tabela na qual as linhas devem ser inseridas. Especifique as colunas para as quais a declaração fornece valores da seguinte forma:
+*`tbl_name`* é a tabela na qual as strings devem ser inseridas. Especifique as colunas para as quais a declaração fornece valores da seguinte forma:
 
 * Forneça uma lista entre parênteses com nomes de colunas separados por vírgula após o nome da tabela. Nesse caso, um valor para cada coluna nomeada deve ser fornecido pela lista `VALUES` ou a declaração `SELECT`.
 
@@ -423,7 +423,7 @@ Os valores das colunas podem ser fornecidos de várias maneiras:
 
 Se o modo SQL rigoroso estiver habilitado, uma declaração `INSERT` gera um erro se não especificar um valor explícito para cada coluna que não tenha um valor padrão. Veja a Seção 5.1.10, “Modos SQL do servidor”.
 
-* Se a lista de colunas e a lista `VALUES` estiverem vazias, o `INSERT` cria uma linha com cada coluna definida com seu valor padrão:
+* Se a lista de colunas e a lista `VALUES` estiverem vazias, o `INSERT` cria uma string com cada coluna definida com seu valor padrão:
 
   ```sql
   INSERT INTO tbl_name () VALUES();
@@ -453,13 +453,13 @@ Mas o que se segue não é legal, porque o valor para `col1` refere-se a `col2`,
 
 Uma exceção ocorre para as colunas que contêm valores de `AUTO_INCREMENT`. Como os valores de `AUTO_INCREMENT` são gerados após outras atribuições de valores, qualquer referência a uma coluna de `AUTO_INCREMENT` na atribuição retorna um `0`.
 
-As declarações `INSERT` que utilizam a sintaxe `VALUES` podem inserir várias linhas. Para fazer isso, inclua várias listas de valores de coluna separados por vírgula, com listas dentro de parênteses e separadas por vírgulas. Exemplo:
+As declarações `INSERT` que utilizam a sintaxe `VALUES` podem inserir várias strings. Para fazer isso, inclua várias listas de valores de coluna separados por vírgula, com listas dentro de parênteses e separadas por vírgulas. Exemplo:
 
 ```sql
 INSERT INTO tbl_name (a,b,c) VALUES(1,2,3),(4,5,6),(7,8,9);
 ```
 
-Cada lista de valores deve conter exatamente tantos valores quanto devem ser inseridos por linha. A seguinte declaração é inválida porque contém uma lista de nove valores, em vez de três listas de três valores cada uma:
+Cada lista de valores deve conter exatamente tantos valores quanto devem ser inseridos por string. A seguinte declaração é inválida porque contém uma lista de nove valores, em vez de três listas de três valores cada uma:
 
 ```sql
 INSERT INTO tbl_name (a,b,c) VALUES(1,2,3,4,5,6,7,8,9);
@@ -477,9 +477,9 @@ Records: N1 Duplicates: N2 Warnings: N3
 
 Se você estiver usando a API C, a string de informações pode ser obtida invocando a função `mysql_info()`. Veja `mysql_info()`.
 
-`Records` indica o número de linhas processadas pela declaração. (Isso não é necessariamente o número de linhas realmente inseridas, porque `Duplicates` pode ser não nulo.) `Duplicates` indica o número de linhas que não puderam ser inseridas porque elas duplicariam algum valor único do índice existente. `Warnings` indica o número de tentativas de inserir valores de coluna que foram problemáticos de alguma forma. As advertências podem ocorrer em qualquer uma das seguintes condições:
+`Records` indica o número de strings processadas pela declaração. (Isso não é necessariamente o número de strings realmente inseridas, porque `Duplicates` pode ser não nulo.) `Duplicates` indica o número de strings que não puderam ser inseridas porque elas duplicariam algum valor único do índice existente. `Warnings` indica o número de tentativas de inserir valores de coluna que foram problemáticos de alguma forma. As advertências podem ocorrer em qualquer uma das seguintes condições:
 
-* Inserir `NULL` em uma coluna que tenha sido declarada como `NOT NULL`. Para declarações de `INSERT` de várias linhas ou declarações de `INSERT INTO ... SELECT`, a coluna é definida pelo valor padrão implícito para o tipo de dados da coluna. Isso é `0` para tipos numéricos, a string vazia (`''`) para tipos de string e o valor “zero” para tipos de data e hora. As declarações de `INSERT INTO ... SELECT` são tratadas da mesma maneira que as inserções de várias linhas, porque o servidor não examina o conjunto de resultados da `SELECT` para ver se ele retorna uma única linha. (Para uma declaração de `INSERT` de uma única linha, não ocorre aviso quando `NULL` é inserido em uma coluna de `NOT NULL`. Em vez disso, a declaração falha com um erro.)
+* Inserir `NULL` em uma coluna que tenha sido declarada como `NOT NULL`. Para declarações de `INSERT` de várias strings ou declarações de `INSERT INTO ... SELECT`, a coluna é definida pelo valor padrão implícito para o tipo de dados da coluna. Isso é `0` para tipos numéricos, a string vazia (`''`) para tipos de string e o valor “zero” para tipos de data e hora. As declarações de `INSERT INTO ... SELECT` são tratadas da mesma maneira que as inserções de várias strings, porque o servidor não examina o conjunto de resultados da `SELECT` para ver se ele retorna uma única string. (Para uma declaração de `INSERT` de uma única string, não ocorre aviso quando `NULL` é inserido em uma coluna de `NOT NULL`. Em vez disso, a declaração falha com um erro.)
 
 * Definir uma coluna numérica para um valor que esteja fora do intervalo da coluna. O valor é recortado para o ponto final mais próximo do intervalo.
 
@@ -491,7 +491,7 @@ Se você estiver usando a API C, a string de informações pode ser obtida invoc
 
 * Para exemplos de `INSERT` que envolvem valores da coluna `AUTO_INCREMENT`, consulte a Seção 3.6.9, “Usando AUTO\_INCREMENT”.
 
-Se o `INSERT` inserir uma linha em uma tabela que possui uma coluna `AUTO_INCREMENT`, você pode encontrar o valor usado para essa coluna usando a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`.
+Se o `INSERT` inserir uma string em uma tabela que possui uma coluna `AUTO_INCREMENT`, você pode encontrar o valor usado para essa coluna usando a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`.
 
 Nota
 
@@ -511,21 +511,21 @@ Nota
 
 `HIGH_PRIORITY` afeta apenas os motores de armazenamento que utilizam bloqueio apenas em nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
 
-* Se você usar o modificador `IGNORE`, erros ignoráveis que ocorrem durante a execução da declaração `INSERT` são ignorados. Por exemplo, sem `IGNORE`, uma linha que duplica um índice existente `UNIQUE` ou valor `PRIMARY KEY` na tabela causa um erro de chave duplicada e a declaração é interrompida. Com `IGNORE`, a linha é descartada e não ocorre nenhum erro. Os erros ignorados geram avisos em vez disso.
+* Se você usar o modificador `IGNORE`, erros ignoráveis que ocorrem durante a execução da declaração `INSERT` são ignorados. Por exemplo, sem `IGNORE`, uma string que duplica um índice existente `UNIQUE` ou valor `PRIMARY KEY` na tabela causa um erro de chave duplicada e a declaração é interrompida. Com `IGNORE`, a string é descartada e não ocorre nenhum erro. Os erros ignorados geram avisos em vez disso.
 
-`IGNORE` tem um efeito semelhante em inserções em tabelas particionadas onde não é encontrado nenhuma partição que corresponda a um valor dado. Sem `IGNORE`, tais declarações `INSERT` são interrompidas com um erro. Quando `INSERT IGNORE` é usado, a operação de inserção falha silenciosamente para as linhas que contêm o valor não correspondente, mas insere as linhas que são correspondentes. Para um exemplo, veja a Seção 22.2.2, “LIST Partitioning”.
+`IGNORE` tem um efeito semelhante em inserções em tabelas particionadas onde não é encontrado nenhuma partição que corresponda a um valor dado. Sem `IGNORE`, tais declarações `INSERT` são interrompidas com um erro. Quando `INSERT IGNORE` é usado, a operação de inserção falha silenciosamente para as strings que contêm o valor não correspondente, mas insere as strings que são correspondentes. Para um exemplo, veja a Seção 22.2.2, “LIST Partitioning”.
 
-As conversões de dados que acionarão erros abortarão a declaração se `IGNORE` não for especificado. Com `IGNORE`, os valores inválidos são ajustados para os valores mais próximos e inseridos; são produzidos avisos, mas a declaração não é abortada. Você pode determinar com a função C API `mysql_info()` quantas linhas foram realmente inseridas na tabela.
+As conversões de dados que acionarão erros abortarão a declaração se `IGNORE` não for especificado. Com `IGNORE`, os valores inválidos são ajustados para os valores mais próximos e inseridos; são produzidos avisos, mas a declaração não é abortada. Você pode determinar com a função C API `mysql_info()` quantas strings foram realmente inseridas na tabela.
 
 Para mais informações, consulte O efeito de IGNORE na execução de declarações.
 
-Você pode usar `REPLACE` em vez de `INSERT` para sobrescrever linhas antigas. `REPLACE` é o equivalente de `INSERT IGNORE` no tratamento de novas linhas que contêm valores de chave únicos que duplicam as linhas antigas: As novas linhas substituem as linhas antigas em vez de serem descartadas. Veja a Seção 13.2.8, “Instrução REPLACE”.
+Você pode usar `REPLACE` em vez de `INSERT` para sobrescrever strings antigas. `REPLACE` é o equivalente de `INSERT IGNORE` no tratamento de novas strings que contêm valores de chave únicos que duplicam as strings antigas: As novas strings substituem as strings antigas em vez de serem descartadas. Veja a Seção 13.2.8, “Instrução REPLACE”.
 
-* Se você especificar `ON DUPLICATE KEY UPDATE`, e uma linha for inserida que causaria um valor duplicado em um índice `UNIQUE` ou `PRIMARY KEY`, ocorre um `UPDATE` da linha antiga. O valor de linhas afetadas por linha é 1 se a linha for inserida como uma nova linha, 2 se uma linha existente for atualizada e 0 se uma linha existente for definida com seus valores atuais. Se você especificar a bandeira `CLIENT_FOUND_ROWS` para a função C API `mysql_real_connect()` ao se conectar a `mysqld`, o valor de linhas afetadas é 1 (não 0) se uma linha existente for definida com seus valores atuais. Veja a Seção 13.2.5.2, “Instrução INSERT ... ON DUPLICATE KEY UPDATE”.
+* Se você especificar `ON DUPLICATE KEY UPDATE`, e uma string for inserida que causaria um valor duplicado em um índice `UNIQUE` ou `PRIMARY KEY`, ocorre um `UPDATE` da string antiga. O valor de strings afetadas por string é 1 se a string for inserida como uma nova string, 2 se uma string existente for atualizada e 0 se uma string existente for definida com seus valores atuais. Se você especificar a bandeira `CLIENT_FOUND_ROWS` para a função C API `mysql_real_connect()` ao se conectar a `mysqld`, o valor de strings afetadas é 1 (não 0) se uma string existente for definida com seus valores atuais. Veja a Seção 13.2.5.2, “Instrução INSERT ... ON DUPLICATE KEY UPDATE”.
 
 * `INSERT DELAYED` foi descontinuado no MySQL 5.6 e está previsto para eventual remoção. No MySQL 5.7, o modificador `DELAYED` é aceito, mas ignorado. Use `INSERT` (sem `DELAYED`) em vez disso. Veja a Seção 13.2.5.3, “Instrução INSERT DELAYED”.
 
-Uma declaração `INSERT` que afeta uma tabela dividida usando um mecanismo de armazenamento como `MyISAM` que emprega bloqueios de nível de tabela, bloqueia apenas as partições nas quais as linhas são realmente inseridas. (Para mecanismos de armazenamento como `InnoDB` que emprega bloqueio de nível de linha, não ocorre bloqueio de partições.) Para mais informações, consulte a Seção 22.6.4, “Partição e Bloqueio”.
+Uma declaração `INSERT` que afeta uma tabela dividida usando um mecanismo de armazenamento como `MyISAM` que emprega bloqueios de nível de tabela, bloqueia apenas as partições nas quais as strings são realmente inseridas. (Para mecanismos de armazenamento como `InnoDB` que emprega bloqueio de nível de string, não ocorre bloqueio de partições.) Para mais informações, consulte a Seção 22.6.4, “Partição e Bloqueio”.
 
 #### 13.2.5.1 INSERIR ... Instrução SELECT
 
@@ -547,7 +547,7 @@ assignment_list:
     assignment [, assignment] ...
 ```
 
-Com `INSERT ... SELECT`, você pode inserir rapidamente muitas linhas em uma tabela a partir do resultado de uma declaração `SELECT`, que pode selecionar uma ou mais tabelas. Por exemplo:
+Com `INSERT ... SELECT`, você pode inserir rapidamente muitas strings em uma tabela a partir do resultado de uma declaração `SELECT`, que pode selecionar uma ou mais tabelas. Por exemplo:
 
 ```sql
 INSERT INTO tbl_temp2 (fld_id)
@@ -557,31 +557,31 @@ INSERT INTO tbl_temp2 (fld_id)
 
 As seguintes condições se aplicam às declarações `INSERT ... SELECT`:
 
-* Especifique `IGNORE` para ignorar as linhas que causariam violações de chave duplicada.
+* Especifique `IGNORE` para ignorar as strings que causariam violações de chave duplicada.
 
 * A tabela-alvo da declaração `INSERT` pode aparecer na cláusula `FROM` da parte `SELECT` da consulta. No entanto, você não pode inserir em uma tabela e selecionar da mesma tabela em uma subconsulta.
 
-Ao selecionar e inserir na mesma tabela, o MySQL cria uma tabela temporária interna para armazenar as linhas do `SELECT` e, em seguida, insere essas linhas na tabela de destino. No entanto, você não pode usar `INSERT INTO t ... SELECT ... FROM t` quando `t` é uma tabela `TEMPORARY`, porque as tabelas `TEMPORARY` não podem ser referenciadas duas vezes na mesma declaração. Veja a Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL”, e a Seção B.3.6.2, “Problemas com Tabela TEMPORARY”.
+Ao selecionar e inserir na mesma tabela, o MySQL cria uma tabela temporária interna para armazenar as strings do `SELECT` e, em seguida, insere essas strings na tabela de destino. No entanto, você não pode usar `INSERT INTO t ... SELECT ... FROM t` quando `t` é uma tabela `TEMPORARY`, porque as tabelas `TEMPORARY` não podem ser referenciadas duas vezes na mesma declaração. Veja a Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL”, e a Seção B.3.6.2, “Problemas com Tabela TEMPORARY”.
 
 As colunas `AUTO_INCREMENT` funcionam como de costume. * Para garantir que o log binário possa ser usado para recriar as tabelas originais, o MySQL não permite inserções concorrentes para as declarações `INSERT ... SELECT` (consulte a Seção 8.11.3, “Inserções Concorrentes”).
 
 * Para evitar problemas de referência ambígua de coluna quando os `SELECT` e o `INSERT` se referirem à mesma tabela, forneça um alias único para cada tabela usada na parte `SELECT`, e qualifique os nomes das colunas nessa parte com o alias apropriado.
 
-Você pode selecionar explicitamente quais partições ou subpartições (ou ambas) da tabela de origem ou de destino (ou ambas) devem ser usadas com uma cláusula `PARTITION` após o nome da tabela. Quando `PARTITION` é usado com o nome da tabela de origem na parte `SELECT` da declaração, as linhas são selecionadas apenas das partições ou subpartições nomeadas em sua lista de partições. Quando `PARTITION` é usado com o nome da tabela de destino para a parte `INSERT` da declaração, deve ser possível inserir todas as linhas selecionadas nas partições ou subpartições nomeadas na lista de partições que segue a opção. Caso contrário, a declaração `INSERT ... SELECT` falha. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
+Você pode selecionar explicitamente quais partições ou subpartições (ou ambas) da tabela de origem ou de destino (ou ambas) devem ser usadas com uma cláusula `PARTITION` após o nome da tabela. Quando `PARTITION` é usado com o nome da tabela de origem na parte `SELECT` da declaração, as strings são selecionadas apenas das partições ou subpartições nomeadas em sua lista de partições. Quando `PARTITION` é usado com o nome da tabela de destino para a parte `INSERT` da declaração, deve ser possível inserir todas as strings selecionadas nas partições ou subpartições nomeadas na lista de partições que segue a opção. Caso contrário, a declaração `INSERT ... SELECT` falha. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
 
 Para as declarações `INSERT ... SELECT`, consulte a Seção 13.2.5.2, “Declaração INSERT ... ON DUPLICATE KEY UPDATE” para as condições sob as quais as colunas `SELECT` podem ser referenciadas em uma cláusula `ON DUPLICATE KEY UPDATE`.
 
-A ordem em que uma declaração `SELECT` sem cláusula `ORDER BY` retorna linhas é não determinística. Isso significa que, ao usar replicação, não há garantia de que tal `SELECT` retorne linhas no mesmo ordem na fonte e na replica, o que pode levar a inconsistências entre elas. Para evitar que isso ocorra, sempre escreva declarações `INSERT ... SELECT` que devem ser replicadas usando uma cláusula `ORDER BY` que produza o mesmo ordem de linha na fonte e na replica. Veja também a Seção 16.4.1.17, “Replicação e LIMIT”.
+A ordem em que uma declaração `SELECT` sem cláusula `ORDER BY` retorna strings é não determinística. Isso significa que, ao usar replicação, não há garantia de que tal `SELECT` retorne strings no mesmo ordem na fonte e na replica, o que pode levar a inconsistências entre elas. Para evitar que isso ocorra, sempre escreva declarações `INSERT ... SELECT` que devem ser replicadas usando uma cláusula `ORDER BY` que produza o mesmo ordem de string na fonte e na replica. Veja também a Seção 16.4.1.17, “Replicação e LIMIT”.
 
-Devido a esse problema, as declarações `INSERT ... SELECT ON DUPLICATE KEY UPDATE` e `INSERT IGNORE ... SELECT` são marcadas como inseguras para replicação baseada em declarações. Essas declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em linha quando usar o modo `MIXED`. (Bug #11758262, Bug #50439)
+Devido a esse problema, as declarações `INSERT ... SELECT ON DUPLICATE KEY UPDATE` e `INSERT IGNORE ... SELECT` são marcadas como inseguras para replicação baseada em declarações. Essas declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em string quando usar o modo `MIXED`. (Bug #11758262, Bug #50439)
 
-Veja também a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declaração e baseada em linha”.
+Veja também a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declaração e baseada em string”.
 
-Uma declaração `INSERT ... SELECT` que afeta tabelas particionadas usando um mecanismo de armazenamento como `MyISAM` que emprega bloqueios de nível de tabela bloqueia todas as partições da tabela-alvo; no entanto, apenas as partições que são realmente lidas da tabela de origem são bloqueadas. (Isso não ocorre com tabelas que usam mecanismos de armazenamento como `InnoDB` que emprega bloqueios de nível de linha.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
+Uma declaração `INSERT ... SELECT` que afeta tabelas particionadas usando um mecanismo de armazenamento como `MyISAM` que emprega bloqueios de nível de tabela bloqueia todas as partições da tabela-alvo; no entanto, apenas as partições que são realmente lidas da tabela de origem são bloqueadas. (Isso não ocorre com tabelas que usam mecanismos de armazenamento como `InnoDB` que emprega bloqueios de nível de string.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
 
 #### 13.2.5.2 Inserir ... na declaração DUPLICATE KEY UPDATE
 
-Se você especificar uma cláusula `ON DUPLICATE KEY UPDATE` e uma linha a ser inserida causará um valor duplicado em um índice `UNIQUE` ou `PRIMARY KEY`, ocorre um `UPDATE` da linha antiga. Por exemplo, se a coluna `a` for declarada como `UNIQUE` e contiver o valor `1`, as seguintes duas declarações têm efeito semelhante:
+Se você especificar uma cláusula `ON DUPLICATE KEY UPDATE` e uma string a ser inserida causará um valor duplicado em um índice `UNIQUE` ou `PRIMARY KEY`, ocorre um `UPDATE` da string antiga. Por exemplo, se a coluna `a` for declarada como `UNIQUE` e contiver o valor `1`, as seguintes duas declarações têm efeito semelhante:
 
 ```sql
 INSERT INTO t1 (a,b,c) VALUES (1,2,3)
@@ -598,15 +598,15 @@ Se a coluna `b` também for única, a `INSERT` é equivalente a esta declaraçã
 UPDATE t1 SET c=c+1 WHERE a=1 OR b=2 LIMIT 1;
 ```
 
-Se `a=1 OR b=2` corresponder a várias linhas, apenas uma linha é atualizada. Em geral, você deve tentar evitar o uso de uma cláusula `ON DUPLICATE KEY UPDATE` em tabelas com vários índices exclusivos.
+Se `a=1 OR b=2` corresponder a várias strings, apenas uma string é atualizada. Em geral, você deve tentar evitar o uso de uma cláusula `ON DUPLICATE KEY UPDATE` em tabelas com vários índices exclusivos.
 
-Com `ON DUPLICATE KEY UPDATE`, o valor de `ON DUPLICATE KEY UPDATE` por linha é 1 se a linha for inserida como uma nova linha, 2 se uma linha existente for atualizada e 0 se uma linha existente for definida com seus valores atuais. Se você especificar a bandeira `CLIENT_FOUND_ROWS` para a função C API `mysql_real_connect()` ao se conectar ao `mysqld`, o valor de `ON DUPLICATE KEY UPDATE` é 1 (não 0) se uma linha existente for definida com seus valores atuais.
+Com `ON DUPLICATE KEY UPDATE`, o valor de `ON DUPLICATE KEY UPDATE` por string é 1 se a string for inserida como uma nova string, 2 se uma string existente for atualizada e 0 se uma string existente for definida com seus valores atuais. Se você especificar a bandeira `CLIENT_FOUND_ROWS` para a função C API `mysql_real_connect()` ao se conectar ao `mysqld`, o valor de `ON DUPLICATE KEY UPDATE` é 1 (não 0) se uma string existente for definida com seus valores atuais.
 
-Se uma tabela contiver uma coluna `AUTO_INCREMENT` e o `INSERT ... ON DUPLICATE KEY UPDATE` inserir ou atualizar uma linha, a função `LAST_INSERT_ID()` retornará o valor `AUTO_INCREMENT`.
+Se uma tabela contiver uma coluna `AUTO_INCREMENT` e o `INSERT ... ON DUPLICATE KEY UPDATE` inserir ou atualizar uma string, a função `LAST_INSERT_ID()` retornará o valor `AUTO_INCREMENT`.
 
 A cláusula `ON DUPLICATE KEY UPDATE` pode conter várias atribuições de coluna, separadas por vírgulas.
 
-É possível usar `IGNORE` com `ON DUPLICATE KEY UPDATE` em uma declaração `INSERT`, mas isso pode não se comportar como você espera ao inserir várias linhas em uma tabela que tem várias chaves únicas. Isso se torna aparente quando um valor atualizado é ele mesmo um valor de chave duplicado. Considere a tabela `t`, criada e preenchida pelas declarações mostradas aqui:
+É possível usar `IGNORE` com `ON DUPLICATE KEY UPDATE` em uma declaração `INSERT`, mas isso pode não se comportar como você espera ao inserir várias strings em uma tabela que tem várias chaves únicas. Isso se torna aparente quando um valor atualizado é ele mesmo um valor de chave duplicado. Considere a tabela `t`, criada e preenchida pelas declarações mostradas aqui:
 
 ```sql
 mysql> CREATE TABLE t (a SERIAL, b BIGINT NOT NULL, UNIQUE KEY (b));;
@@ -626,7 +626,7 @@ mysql> SELECT * FROM t;
 2 rows in set (0.00 sec)
 ```
 
-Agora, tentamos inserir duas linhas, uma das quais contém um valor de chave duplicado, usando `ON DUPLICATE KEY UPDATE`, onde a própria cláusula `UPDATE` resulta em um valor de chave duplicado:
+Agora, tentamos inserir duas strings, uma das quais contém um valor de chave duplicado, usando `ON DUPLICATE KEY UPDATE`, onde a própria cláusula `UPDATE` resulta em um valor de chave duplicado:
 
 ```sql
 mysql> INSERT INTO t VALUES (2,3), (3,3) ON DUPLICATE KEY UPDATE a=a+1, b=b-1;
@@ -641,7 +641,7 @@ mysql> SELECT * FROM t;
 2 rows in set (0.00 sec)
 ```
 
-A primeira linha contém um valor duplicado para uma das chaves únicas da tabela (coluna `a`), mas `b=b+1` na cláusula `UPDATE` resulta em uma violação de chave única para a coluna `b`; a declaração é imediatamente rejeitada com um erro e nenhuma linha é atualizada. Vamos repetir a declaração, desta vez adicionando a palavra-chave **`IGNORE`**, assim:
+A primeira string contém um valor duplicado para uma das chaves únicas da tabela (coluna `a`), mas `b=b+1` na cláusula `UPDATE` resulta em uma violação de chave única para a coluna `b`; a declaração é imediatamente rejeitada com um erro e nenhuma string é atualizada. Vamos repetir a declaração, desta vez adicionando a palavra-chave **`IGNORE`**, assim:
 
 ```sql
 mysql> INSERT IGNORE INTO t VALUES (2,3), (3,3)
@@ -662,7 +662,7 @@ mysql> SHOW WARNINGS;
 1 row in set (0.00 sec)
 ```
 
-Como a declaração não foi rejeitada, a execução continua. Isso significa que a segunda linha é inserida em `t`, como podemos ver aqui:
+Como a declaração não foi rejeitada, a execução continua. Isso significa que a segunda string é inserida em `t`, como podemos ver aqui:
 
 ```sql
 mysql> SELECT * FROM t;
@@ -676,7 +676,7 @@ mysql> SELECT * FROM t;
 3 rows in set (0.00 sec)
 ```
 
-Nas expressões de valor de atribuição na cláusula `ON DUPLICATE KEY UPDATE`, você pode usar a função `VALUES(col_name)` para referenciar os valores das colunas da porção `INSERT` da declaração `INSERT ... ON DUPLICATE KEY UPDATE`. Em outras palavras, `VALUES(col_name)` na cláusula `ON DUPLICATE KEY UPDATE` refere-se ao valor de *`col_name`* que seria inserido, caso não ocorresse conflito de chave duplicada. Esta função é especialmente útil em inserções de múltiplas linhas. A função `VALUES()` é significativa apenas como introduzidor para listas de valores da declaração `INSERT`, ou na cláusula `ON DUPLICATE KEY UPDATE` de uma declaração `INSERT`, e retorna `NULL` caso contrário. Por exemplo:
+Nas expressões de valor de atribuição na cláusula `ON DUPLICATE KEY UPDATE`, você pode usar a função `VALUES(col_name)` para referenciar os valores das colunas da porção `INSERT` da declaração `INSERT ... ON DUPLICATE KEY UPDATE`. Em outras palavras, `VALUES(col_name)` na cláusula `ON DUPLICATE KEY UPDATE` refere-se ao valor de *`col_name`* que seria inserido, caso não ocorresse conflito de chave duplicada. Esta função é especialmente útil em inserções de múltiplas strings. A função `VALUES()` é significativa apenas como introduzidor para listas de valores da declaração `INSERT`, ou na cláusula `ON DUPLICATE KEY UPDATE` de uma declaração `INSERT`, e retorna `NULL` caso contrário. Por exemplo:
 
 ```sql
 INSERT INTO t1 (a,b,c) VALUES (1,2,3),(4,5,6)
@@ -702,7 +702,7 @@ Para as declarações `INSERT ... SELECT`, essas regras se aplicam em relação 
 
 * Referências a colunas em outras tabelas, desde que o `SELECT` não utilize `GROUP BY`. Um efeito colateral é que você deve qualificar referências a nomes de colunas não únicos.
 
-As referências a colunas de um `UNION` não funcionam de forma confiável. Para contornar essa restrição, reescreva o `UNION` como uma tabela derivada, de modo que suas linhas possam ser tratadas como um conjunto de resultados de uma única tabela. Por exemplo, essa declaração pode produzir resultados incorretos:
+As referências a colunas de um `UNION` não funcionam de forma confiável. Para contornar essa restrição, reescreva o `UNION` como uma tabela derivada, de modo que suas strings possam ser tratadas como um conjunto de resultados de uma única tabela. Por exemplo, essa declaração pode produzir resultados incorretos:
 
 ```sql
 INSERT INTO t1 (a, b)
@@ -725,11 +725,11 @@ ON DUPLICATE KEY UPDATE b = b + c;
 
 A técnica de reescrita de uma consulta como uma tabela derivada também permite referências a colunas de consultas de `GROUP BY`.
 
-Como os resultados das declarações `INSERT ... SELECT` dependem da ordem das linhas do `SELECT` e essa ordem nem sempre pode ser garantida, é possível que, ao registrar declarações `INSERT ... SELECT ON DUPLICATE KEY UPDATE` para a fonte e a replica divergirem. Assim, as declarações `INSERT ... SELECT ON DUPLICATE KEY UPDATE` são marcadas como inseguras para replicação baseada em declarações. Essas declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em linha ao usar o modo `MIXED`. Uma declaração `INSERT ... ON DUPLICATE KEY UPDATE` contra uma tabela com mais de uma chave única ou primária também é marcada como insegura. (Bug #11765650, Bug #58637)
+Como os resultados das declarações `INSERT ... SELECT` dependem da ordem das strings do `SELECT` e essa ordem nem sempre pode ser garantida, é possível que, ao registrar declarações `INSERT ... SELECT ON DUPLICATE KEY UPDATE` para a fonte e a replica divergirem. Assim, as declarações `INSERT ... SELECT ON DUPLICATE KEY UPDATE` são marcadas como inseguras para replicação baseada em declarações. Essas declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em string ao usar o modo `MIXED`. Uma declaração `INSERT ... ON DUPLICATE KEY UPDATE` contra uma tabela com mais de uma chave única ou primária também é marcada como insegura. (Bug #11765650, Bug #58637)
 
-Veja também a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declaração e baseada em linha”.
+Veja também a Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declaração e baseada em string”.
 
-Um `INSERT ... ON DUPLICATE KEY UPDATE` em uma tabela dividida usando um mecanismo de armazenamento, como `MyISAM`, que emprega bloqueios de nível de tabela, bloqueia quaisquer partições da tabela na qual uma coluna de chave de particionamento é atualizada. (Isso não ocorre com tabelas que usam mecanismos de armazenamento, como `InnoDB`, que emprega bloqueio de nível de linha.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
+Um `INSERT ... ON DUPLICATE KEY UPDATE` em uma tabela dividida usando um mecanismo de armazenamento, como `MyISAM`, que emprega bloqueios de nível de tabela, bloqueia quaisquer partições da tabela na qual uma coluna de chave de particionamento é atualizada. (Isso não ocorre com tabelas que usam mecanismos de armazenamento, como `InnoDB`, que emprega bloqueio de nível de string.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
 
 #### 13.2.5.3 Declaração de adiamento INSERT
 
@@ -737,7 +737,7 @@ Um `INSERT ... ON DUPLICATE KEY UPDATE` em uma tabela dividida usando um mecanis
 INSERT DELAYED ...
 ```
 
-A opção `DELAYED` para a declaração `INSERT` é uma extensão do MySQL ao SQL padrão. Em versões anteriores do MySQL, ela pode ser usada para certos tipos de tabelas (como [[`MyISAM`]), de modo que, quando um cliente usa `INSERT DELAYED`, ele recebe uma resposta do servidor de uma só vez, e a linha é colocada em fila para ser inserida quando a tabela não estiver sendo usada por qualquer outro thread.
+A opção `DELAYED` para a declaração `INSERT` é uma extensão do MySQL ao SQL padrão. Em versões anteriores do MySQL, ela pode ser usada para certos tipos de tabelas (como [[`MyISAM`]), de modo que, quando um cliente usa `INSERT DELAYED`, ele recebe uma resposta do servidor de uma só vez, e a string é colocada em fila para ser inserida quando a tabela não estiver sendo usada por qualquer outro thread.
 
 As inserções e substituições `DELAYED` foram descontinuadas no MySQL 5.6. No MySQL 5.7, a palavra-chave `DELAYED` não é suportada. O servidor reconhece, mas ignora a palavra-chave `DELAYED`, trata a inserção como uma inserção não atrasada e gera um aviso `ER_WARN_LEGACY_SYNTAX_CONVERTED`: A INSERÇÃO ATRASADA já não é suportada. A declaração foi convertida para INSERIR. A palavra-chave `DELAYED` está prevista para ser removida em uma versão futura.
 
@@ -767,7 +767,7 @@ LOAD DATA
         [, col_name={expr | DEFAULT}] ...]
 ```
 
-A declaração `LOAD DATA` lê as linhas de um arquivo de texto em uma tabela em alta velocidade. O arquivo pode ser lido do host do servidor ou do host do cliente, dependendo se o modificador `LOCAL` é dado. `LOCAL` também afeta a interpretação dos dados e o tratamento de erros.
+A declaração `LOAD DATA` lê as strings de um arquivo de texto em uma tabela em alta velocidade. O arquivo pode ser lido do host do servidor ou do host do cliente, dependendo se o modificador `LOCAL` é dado. `LOCAL` também afeta a interpretação dos dados e o tratamento de erros.
 
 `LOAD DATA` é o complemento de `SELECT ... INTO OUTFILE`. (Veja a Seção 13.2.9.1, “Instrução SELECT ... INTO”.) Para escrever dados de uma tabela em um arquivo, use `SELECT ... INTO OUTFILE`. Para ler o arquivo de volta em uma tabela, use `LOAD DATA`. A sintaxe das cláusulas `FIELDS` e `LINES` é a mesma para ambas as instruções.
 
@@ -781,7 +781,7 @@ Para informações sobre a eficiência de `INSERT` em relação a `LOAD DATA` e 
 * Requisitos de segurança
 * Gerenciamento de chaves duplicadas e erros
 * Gerenciamento de índice
-* Manipulação de campo e linha
+* Manipulação de campo e string
 * Especificação da lista de colunas
 * Pré-processamento de entrada
 * Atribuição de valor de coluna
@@ -859,11 +859,11 @@ Para uma operação de carregamento `LOCAL`, o programa de cliente lê um arquiv
 
 #### Gerenciamento de Chave Duplicada e Erro
 
-Os modificadores `REPLACE` e `IGNORE` controlam o tratamento de novas (entrada) linhas que duplicam as linhas existentes da tabela em valores de chave única (`PRIMARY KEY` ou `UNIQUE` valores de índice):
+Os modificadores `REPLACE` e `IGNORE` controlam o tratamento de novas (entrada) strings que duplicam as strings existentes da tabela em valores de chave única (`PRIMARY KEY` ou `UNIQUE` valores de índice):
 
-* Com `REPLACE`, novas linhas que têm o mesmo valor que um valor de chave única em uma linha existente substituem a linha existente. Veja a Seção 13.2.8, “Instrução REPLACE”.
+* Com `REPLACE`, novas strings que têm o mesmo valor que um valor de chave única em uma string existente substituem a string existente. Veja a Seção 13.2.8, “Instrução REPLACE”.
 
-* Com `IGNORE`, novas linhas que duplicam uma linha existente em um valor de chave única são descartadas. Para mais informações, consulte O efeito do IGNORE na execução da declaração.
+* Com `IGNORE`, novas strings que duplicam uma string existente em um valor de chave única são descartadas. Para mais informações, consulte O efeito do IGNORE na execução da declaração.
 
 A menos que `REPLACE` também seja especificado, o modificador `LOCAL` tem o mesmo efeito que `IGNORE`. Isso ocorre porque o servidor não tem como interromper a transmissão do arquivo no meio da operação.
 
@@ -881,7 +881,7 @@ Para ignorar as restrições de chave estrangeira durante a operação de carreg
 
 Se você usar `LOAD DATA` em uma tabela `MyISAM` vazia, todos os índices não exclusivos são criados em um lote separado (como no caso de `REPAIR TABLE`). Normalmente, isso torna `LOAD DATA` muito mais rápido quando você tem muitos índices. Em alguns casos extremos, você pode criar os índices ainda mais rápido, desligando-os com `ALTER TABLE ... DISABLE KEYS` antes de carregar o arquivo na tabela e recriar os índices com `ALTER TABLE ... ENABLE KEYS` após carregar o arquivo. Veja a Seção 8.2.4.1, “Otimizando Entradas de Inserção”.
 
-#### Manipulação de Campo e Linha
+#### Manipulação de Campo e String
 
 Tanto para as declarações `LOAD DATA` quanto `SELECT ... INTO OUTFILE`, a sintaxe das cláusulas `FIELDS` e `LINES` é a mesma. Ambas as cláusulas são opcionais, mas `FIELDS` deve preceder `LINES` se ambas forem especificadas.
 
@@ -894,30 +894,30 @@ FIELDS TERMINATED BY '\t' ENCLOSED BY '' ESCAPED BY '\\'
 LINES TERMINATED BY '\n' STARTING BY ''
 ```
 
-O backslash é o caractere de fuga do MySQL dentro das strings nas declarações SQL. Assim, para especificar um backslash literal, você deve especificar dois backslashes para que o valor seja interpretado como um único backslash. As sequências de escape `'\t'` e `'\n'` especificam, respectivamente, caracteres de tabulação e nova linha.
+O backslash é o caractere de fuga do MySQL dentro das strings nas declarações SQL. Assim, para especificar um backslash literal, você deve especificar dois backslashes para que o valor seja interpretado como um único backslash. As sequências de escape `'\t'` e `'\n'` especificam, respectivamente, caracteres de tabulação e nova string.
 
 Em outras palavras, os padrões fazem com que o `LOAD DATA` atue da seguinte maneira ao ler a entrada:
 
-* Procure limites de linha em novas linhas.
-* Não ignore nenhum prefixo de linha.
-* Divida as linhas em campos com tabulações.
+* Procure limites de string em novas strings.
+* Não ignore nenhum prefixo de string.
+* Divida as strings em campos com tabulações.
 * Não espere que os campos estejam encerrados por quaisquer caracteres de citação.
 
-* Interprete os caracteres precedidos pelo caractere de escape `\` como sequências de escape. Por exemplo, `\t`, `\n` e `\\` significam tabulação, nova linha e barra invertida, respectivamente. Consulte a discussão de `FIELDS ESCAPED BY` mais adiante para obter a lista completa de sequências de escape.
+* Interprete os caracteres precedidos pelo caractere de escape `\` como sequências de escape. Por exemplo, `\t`, `\n` e `\\` significam tabulação, nova string e barra invertida, respectivamente. Consulte a discussão de `FIELDS ESCAPED BY` mais adiante para obter a lista completa de sequências de escape.
 
 Por outro lado, os defeitos fazem com que `SELECT ... INTO OUTFILE` atue da seguinte maneira ao escrever a saída:
 
 * Escreva guias entre os campos.
 * Não inclua campos dentro de caracteres de citação.
-* Use `\` para escapar instâncias de guia, nova linha ou `\` que ocorram dentro dos valores dos campos.
+* Use `\` para escapar instâncias de guia, nova string ou `\` que ocorram dentro dos valores dos campos.
 
-* Escreva novas linhas nas extremidades das linhas.
+* Escreva novas strings nas extremidades das strings.
 
 Nota
 
-Para um arquivo de texto gerado em um sistema Windows, a leitura adequada do arquivo pode exigir `LINES TERMINATED BY '\r\n'`, pois os programas do Windows geralmente usam dois caracteres como terminador de linha. Alguns programas, como o **WordPad**, podem usar `\r` como terminador de linha ao escrever arquivos. Para ler tais arquivos, use `LINES TERMINATED BY '\r'`.
+Para um arquivo de texto gerado em um sistema Windows, a leitura adequada do arquivo pode exigir `LINES TERMINATED BY '\r\n'`, pois os programas do Windows geralmente usam dois caracteres como terminador de string. Alguns programas, como o **WordPad**, podem usar `\r` como terminador de string ao escrever arquivos. Para ler tais arquivos, use `LINES TERMINATED BY '\r'`.
 
-Se todas as linhas de entrada tiverem um prefixo comum que você deseja ignorar, você pode usar `LINES STARTING BY 'prefix_string'` para ignorar o prefixo *e qualquer coisa antes dele*. Se uma linha não incluir o prefixo, toda a linha é ignorada. Suponha que você emita a seguinte declaração:
+Se todas as strings de entrada tiverem um prefixo comum que você deseja ignorar, você pode usar `LINES STARTING BY 'prefix_string'` para ignorar o prefixo *e qualquer coisa antes dele*. Se uma string não incluir o prefixo, toda a string é ignorada. Suponha que você emita a seguinte declaração:
 
 ```sql
 LOAD DATA INFILE '/tmp/test.txt' INTO TABLE test
@@ -932,15 +932,15 @@ something xxx"def",2
 "ghi",3
 ```
 
-As linhas resultantes são `("abc",1)` e `("def",2)`. A terceira linha do arquivo é ignorada porque não contém o prefixo.
+As strings resultantes são `("abc",1)` e `("def",2)`. A terceira string do arquivo é ignorada porque não contém o prefixo.
 
-A cláusula `IGNORE number LINES` pode ser usada para ignorar linhas no início do arquivo. Por exemplo, você pode usar `IGNORE 1 LINES` para ignorar uma linha de cabeçalho inicial que contém os nomes das colunas:
+A cláusula `IGNORE number LINES` pode ser usada para ignorar strings no início do arquivo. Por exemplo, você pode usar `IGNORE 1 LINES` para ignorar uma string de cabeçalho inicial que contém os nomes das colunas:
 
 ```sql
 LOAD DATA INFILE '/tmp/test.txt' INTO TABLE test IGNORE 1 LINES;
 ```
 
-Quando você usa `SELECT ... INTO OUTFILE` em conjunto com `LOAD DATA` para escrever dados de um banco de dados em um arquivo e, em seguida, ler o arquivo de volta ao banco de dados mais tarde, as opções de manipulação de campos e linhas para ambas as declarações devem corresponder. Caso contrário, `LOAD DATA` não interpreta os conteúdos do arquivo corretamente. Suponha que você use `SELECT ... INTO OUTFILE` para escrever um arquivo com campos delimitados por vírgulas:
+Quando você usa `SELECT ... INTO OUTFILE` em conjunto com `LOAD DATA` para escrever dados de um banco de dados em um arquivo e, em seguida, ler o arquivo de volta ao banco de dados mais tarde, as opções de manipulação de campos e strings para ambas as declarações devem corresponder. Caso contrário, `LOAD DATA` não interpreta os conteúdos do arquivo corretamente. Suponha que você use `SELECT ... INTO OUTFILE` para escrever um arquivo com campos delimitados por vírgulas:
 
 ```sql
 SELECT * INTO OUTFILE 'data.txt'
@@ -962,9 +962,9 @@ LOAD DATA INFILE 'data.txt' INTO TABLE table2
   FIELDS TERMINATED BY '\t';
 ```
 
-O resultado provável é que cada linha de entrada seria interpretada como um único campo.
+O resultado provável é que cada string de entrada seria interpretada como um único campo.
 
-`LOAD DATA` pode ser usado para ler arquivos obtidos de fontes externas. Por exemplo, muitos programas podem exportar dados no formato de valores separados por vírgula (CSV), de modo que as linhas tenham campos separados por vírgulas e encerrados entre aspas duplas, com uma linha inicial de nomes de colunas. Se as linhas em tal arquivo forem terminadas por pares de retorno de carro/nova linha, a declaração mostrada aqui ilustra as opções de manipulação de campos e linhas que você usaria para carregar o arquivo:
+`LOAD DATA` pode ser usado para ler arquivos obtidos de fontes externas. Por exemplo, muitos programas podem exportar dados no formato de valores separados por vírgula (CSV), de modo que as strings tenham campos separados por vírgulas e encerrados entre aspas duplas, com uma string inicial de nomes de colunas. Se as strings em tal arquivo forem terminadas por pares de retorno de carro/nova string, a declaração mostrada aqui ilustra as opções de manipulação de campos e strings que você usaria para carregar o arquivo:
 
 ```sql
 LOAD DATA INFILE 'data.txt' INTO TABLE tbl_name
@@ -975,9 +975,9 @@ LOAD DATA INFILE 'data.txt' INTO TABLE tbl_name
 
 Se os valores de entrada não forem necessariamente encerrados entre aspas, use `OPTIONALLY` antes da opção `ENCLOSED BY`.
 
-Qualquer uma das opções de manipulação de campo ou linha pode especificar uma string vazia (`''`). Se não estiver vazia, os valores de `FIELDS [OPTIONALLY] ENCLOSED BY` e `FIELDS ESCAPED BY` devem ser um único caractere. Os valores de `FIELDS TERMINATED BY`, `LINES STARTING BY` e `LINES TERMINATED BY` podem ser mais de um caractere. Por exemplo, para escrever linhas que são terminadas por pares de retorno de carro/reinício de linha, ou para ler um arquivo contendo tais linhas, especifique uma cláusula de `LINES TERMINATED BY '\r\n'`.
+Qualquer uma das opções de manipulação de campo ou string pode especificar uma string vazia (`''`). Se não estiver vazia, os valores de `FIELDS [OPTIONALLY] ENCLOSED BY` e `FIELDS ESCAPED BY` devem ser um único caractere. Os valores de `FIELDS TERMINATED BY`, `LINES STARTING BY` e `LINES TERMINATED BY` podem ser mais de um caractere. Por exemplo, para escrever strings que são terminadas por pares de retorno de carro/reinício de string, ou para ler um arquivo contendo tais strings, especifique uma cláusula de `LINES TERMINATED BY '\r\n'`.
 
-Para ler um arquivo que contém piadas separadas por linhas que consistem em `%%`, você pode fazer isso
+Para ler um arquivo que contém piadas separadas por strings que consistem em `%%`, você pode fazer isso
 
 ```sql
 CREATE TABLE jokes
@@ -1006,7 +1006,7 @@ Se você especificar `OPTIONALLY`, o caractere `ENCLOSED BY` é usado apenas par
 4,"a string containing a \", quote and comma",102.20
 ```
 
-Os ocorrencias do caractere `ENCLOSED BY` dentro de um valor de campo são escapadas prefixando-os com o caractere `ESCAPED BY`. Além disso, se você especificar um valor vazio `ESCAPED BY`, é possível gerar inadvertidamente uma saída que não pode ser lida corretamente pelo `LOAD DATA`. Por exemplo, a saída anterior que acabou de ser mostrada apareceria da seguinte forma se o caractere de escape fosse vazio. Observe que o segundo campo na quarta linha contém uma vírgula após a citação, que (erradamente) parece terminar o campo:
+Os ocorrencias do caractere `ENCLOSED BY` dentro de um valor de campo são escapadas prefixando-os com o caractere `ESCAPED BY`. Além disso, se você especificar um valor vazio `ESCAPED BY`, é possível gerar inadvertidamente uma saída que não pode ser lida corretamente pelo `LOAD DATA`. Por exemplo, a saída anterior que acabou de ser mostrada apareceria da seguinte forma se o caractere de escape fosse vazio. Observe que o segundo campo na quarta string contém uma vírgula após a citação, que (erradamente) parece terminar o campo:
 
 ```sql
 1,"a string",100.20
@@ -1017,7 +1017,7 @@ Os ocorrencias do caractere `ENCLOSED BY` dentro de um valor de campo são escap
 
 Para a entrada, o caractere `ENCLOSED BY` (se presente) é removido das extremidades dos valores do campo. (Isso é verdadeiro, independentemente de `OPTIONALLY` ser especificado; `OPTIONALLY` não tem efeito na interpretação da entrada.) Ocorrência do caractere `ENCLOSED BY` precedida pelo caractere `ESCAPED BY` é interpretada como parte do valor atual do campo.
 
-Se o campo começar com o caractere `ENCLOSED BY`, as ocorrências desse caractere são reconhecidas como terminando um valor de campo apenas se forem seguidas pela sequência de campo ou linha `TERMINATED BY`. Para evitar ambiguidade, as ocorrências do caractere `ENCLOSED BY` dentro de um valor de campo podem ser duplicadas e são interpretadas como uma única ocorrência do caractere. Por exemplo, se `ENCLOSED BY '"'` for especificado, as aspas são tratadas como mostrado aqui:
+Se o campo começar com o caractere `ENCLOSED BY`, as ocorrências desse caractere são reconhecidas como terminando um valor de campo apenas se forem seguidas pela sequência de campo ou string `TERMINATED BY`. Para evitar ambiguidade, as ocorrências do caractere `ENCLOSED BY` dentro de um valor de campo podem ser duplicadas e são interpretadas como uma única ocorrência do caractere. Por exemplo, se `ENCLOSED BY '"'` for especificado, as aspas são tratadas como mostrado aqui:
 
 ```sql
 "The ""BIG"" boss"  -> The "BIG" boss
@@ -1029,7 +1029,7 @@ The ""BIG"" boss    -> The ""BIG"" boss
 
 * Para entrada, se o caractere `FIELDS ESCAPED BY` não estiver vazio, as ocorrências desse caractere são removidas e o caractere seguinte é tomado literalmente como parte do valor de um campo. Algumas sequências de dois caracteres que são exceções, onde o primeiro caractere é o caractere de escape. Essas sequências são mostradas na tabela a seguir (usando `\` para o caractere de escape). As regras para o tratamento de `NULL` são descritas mais adiante nesta seção.
 
-  <table summary="Two-character sequences for which the first character (a \) is the escape character."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Character</th> <th>Sequência de fuga</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>Um ASCII NUL (<code>X'00'</code>) personagem</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação.</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Ctrl+Z)</td> </tr><tr> <td><code>\N</code></td> <td>NULL</td> </tr></tbody></table>
+  <table summary="Two-character sequences for which the first character (a \) is the escape character."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Character</th> <th>Sequência de fuga</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>Um ASCII NUL (<code>X'00'</code>) personagem</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova string (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação.</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Ctrl+Z)</td> </tr><tr> <td><code>\N</code></td> <td>NULL</td> </tr></tbody></table>
 
 Para mais informações sobre a sintaxe de `\`-escape, consulte a Seção 9.1.1, “Literais de String”.
 
@@ -1046,15 +1046,15 @@ Se o caractere `FIELDS ESCAPED BY` estiver vazio, a interpretação da sequênci
 
 Se o caractere `FIELDS ESCAPED BY` estiver vazio, nenhum caractere será escamado e `NULL` será exibido como `NULL`, e não `\N`. Provavelmente não é uma boa ideia especificar um caractere de escape vazio, especialmente se os valores dos campos em seus dados contiverem algum dos caracteres da lista que acabou de ser fornecida.
 
-Em certos casos, as opções de manipulação de campo e linha interagem:
+Em certos casos, as opções de manipulação de campo e string interagem:
 
-* Se `LINES TERMINATED BY` for uma string vazia e `FIELDS TERMINATED BY` não estiver vazia, as linhas também são terminadas com `FIELDS TERMINATED BY`.
+* Se `LINES TERMINATED BY` for uma string vazia e `FIELDS TERMINATED BY` não estiver vazia, as strings também são terminadas com `FIELDS TERMINATED BY`.
 
-* Se os valores de `FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` estiverem ambos vazios (`''`), é utilizado um formato de linha fixa (não delimitado). Com o formato de linha fixa, não são utilizados delimitadores entre os campos (mas você ainda pode ter um terminador de linha). Em vez disso, os valores das colunas são lidos e escritos usando uma largura de campo o suficiente para conter todos os valores no campo. Para `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), e `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), as larguras dos campos são 4, 6, 8, 11 e 20, respectivamente, independentemente da largura de exibição declarada.
+* Se os valores de `FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` estiverem ambos vazios (`''`), é utilizado um formato de string fixa (não delimitado). Com o formato de string fixa, não são utilizados delimitadores entre os campos (mas você ainda pode ter um terminador de string). Em vez disso, os valores das colunas são lidos e escritos usando uma largura de campo o suficiente para conter todos os valores no campo. Para `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), e `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), as larguras dos campos são 4, 6, 8, 11 e 20, respectivamente, independentemente da largura de exibição declarada.
 
-`LINES TERMINATED BY` ainda é usado para separar as linhas. Se uma linha não contiver todos os campos, o resto das colunas é definido com seus valores padrão. Se você não tem um finalizador de linha, deve definir isso para `''`. Neste caso, o arquivo de texto deve conter todos os campos para cada linha.
+`LINES TERMINATED BY` ainda é usado para separar as strings. Se uma string não contiver todos os campos, o resto das colunas é definido com seus valores padrão. Se você não tem um finalizador de string, deve definir isso para `''`. Neste caso, o arquivo de texto deve conter todos os campos para cada string.
 
-O formato de linha fixa também afeta o manuseio dos valores de `NULL`, conforme descrito mais adiante.
+O formato de string fixa também afeta o manuseio dos valores de `NULL`, conforme descrito mais adiante.
 
 Nota
 
@@ -1068,13 +1068,13 @@ O tratamento dos valores de `NULL` varia de acordo com as opções de `FIELDS` e
 
 * Se `FIELDS ESCAPED BY` estiver vazio, `NULL` é escrito como a palavra `NULL`.
 
-* Com o formato de linha fixa (que é usado quando `FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` estão ambos vazios), `NULL` é escrito como uma string vazia. Isso faz com que tanto os valores de `NULL` quanto as strings vazias na tabela sejam indistinguíveis quando escritos no arquivo, porque ambos são escritos como strings vazias. Se você precisa ser capaz de distinguir os dois quando lê o arquivo novamente, você não deve usar o formato de linha fixa.
+* Com o formato de string fixa (que é usado quando `FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` estão ambos vazios), `NULL` é escrito como uma string vazia. Isso faz com que tanto os valores de `NULL` quanto as strings vazias na tabela sejam indistinguíveis quando escritos no arquivo, porque ambos são escritos como strings vazias. Se você precisa ser capaz de distinguir os dois quando lê o arquivo novamente, você não deve usar o formato de string fixa.
 
 Uma tentativa de carregar `NULL` em uma coluna `NOT NULL` produz um aviso ou um erro de acordo com as regras descritas na Atribuição de Valor da Coluna.
 
 Alguns casos não são suportados por `LOAD DATA`:
 
-* Linhas de tamanho fixo (`FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` vazias) e colunas `BLOB` ou `TEXT`.
+* Strings de tamanho fixo (`FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` vazias) e colunas `BLOB` ou `TEXT`.
 
 * Se você especificar um separador que é o mesmo ou um prefixo de outro, `LOAD DATA` não pode interpretar a entrada corretamente. Por exemplo, a seguinte cláusula `FIELDS` causaria problemas:
 
@@ -1082,7 +1082,7 @@ Alguns casos não são suportados por `LOAD DATA`:
   FIELDS TERMINATED BY '"' ENCLOSED BY '"'
   ```
 
-* Se `FIELDS ESCAPED BY` estiver vazio, um valor de campo que contém uma ocorrência de `FIELDS ENCLOSED BY` ou `LINES TERMINATED BY`, seguida pelo valor de `FIELDS TERMINATED BY`, faz com que `LOAD DATA` pare de ler um campo ou linha muito cedo. Isso acontece porque `LOAD DATA` não pode determinar corretamente onde o valor do campo ou linha termina.
+* Se `FIELDS ESCAPED BY` estiver vazio, um valor de campo que contém uma ocorrência de `FIELDS ENCLOSED BY` ou `LINES TERMINATED BY`, seguida pelo valor de `FIELDS TERMINATED BY`, faz com que `LOAD DATA` pare de ler um campo ou string muito cedo. Isso acontece porque `LOAD DATA` não pode determinar corretamente onde o valor do campo ou string termina.
 
 #### Especificação da Lista de Colunas
 
@@ -1092,7 +1092,7 @@ O exemplo a seguir carrega todas as colunas da tabela `persondata`:
 LOAD DATA INFILE 'persondata.txt' INTO TABLE persondata;
 ```
 
-Por padrão, quando não é fornecida uma lista de colunas no final da declaração `LOAD DATA`, espera-se que as linhas de entrada contenham um campo para cada coluna da tabela. Se você deseja carregar apenas algumas das colunas de uma tabela, especifique uma lista de colunas:
+Por padrão, quando não é fornecida uma lista de colunas no final da declaração `LOAD DATA`, espera-se que as strings de entrada contenham um campo para cada coluna da tabela. Se você deseja carregar apenas algumas das colunas de uma tabela, especifique uma lista de colunas:
 
 ```sql
 LOAD DATA INFILE 'persondata.txt' INTO TABLE persondata
@@ -1137,13 +1137,13 @@ O uso da lista de colunas/variáveis e da cláusula `SET` está sujeito às segu
 
 * Você pode usar subconsultas no lado direito das atribuições de `SET`. Uma subconsulta que retorna um valor a ser atribuído a uma coluna pode ser apenas uma subconsulta escalar. Além disso, você não pode usar uma subconsulta para selecionar a tabela que está sendo carregada.
 
-* As linhas ignoradas por uma cláusula `IGNORE number LINES` não são processadas para a lista de colunas/variáveis ou cláusula `SET`.
+* As strings ignoradas por uma cláusula `IGNORE number LINES` não são processadas para a lista de colunas/variáveis ou cláusula `SET`.
 
-* As variáveis do usuário não podem ser usadas ao carregar dados com formato de linha fixa, porque as variáveis do usuário não têm largura de exibição.
+* As variáveis do usuário não podem ser usadas ao carregar dados com formato de string fixa, porque as variáveis do usuário não têm largura de exibição.
 
 #### Atribuição de Valor à Coluna
 
-Para processar uma linha de entrada, `LOAD DATA` a divide em campos e utiliza os valores de acordo com a lista de colunas/variáveis e a cláusula `SET`, se estiverem presentes. Em seguida, a linha resultante é inserida na tabela. Se houver gatilhos `BEFORE INSERT` ou `AFTER INSERT` para a tabela, eles são ativados antes ou após a inserção da linha, respectivamente.
+Para processar uma string de entrada, `LOAD DATA` a divide em campos e utiliza os valores de acordo com a lista de colunas/variáveis e a cláusula `SET`, se estiverem presentes. Em seguida, a string resultante é inserida na tabela. Se houver gatilhos `BEFORE INSERT` ou `AFTER INSERT` para a tabela, eles são ativados antes ou após a inserção da string, respectivamente.
 
 A interpretação dos valores do campo e a atribuição às colunas da tabela dependem desses fatores:
 
@@ -1168,9 +1168,9 @@ A interpretação restritiva dos dados utiliza essas regras:
 
 Em contraste, a interpretação de dados não restritiva utiliza essas regras:
 
-* Se uma linha de entrada tiver muitos campos, os campos extras são ignorados e o número de avisos é incrementado.
+* Se uma string de entrada tiver muitos campos, os campos extras são ignorados e o número de avisos é incrementado.
 
-* Se uma linha de entrada tiver poucos campos, as colunas nas quais os campos de entrada estão ausentes são atribuídos seus valores padrão. A atribuição de valores padrão de tipo de dados é descrita na Seção 11.6, “Valores padrão de tipo de dados”.
+* Se uma string de entrada tiver poucos campos, as colunas nas quais os campos de entrada estão ausentes são atribuídos seus valores padrão. A atribuição de valores padrão de tipo de dados é descrita na Seção 11.6, “Valores padrão de tipo de dados”.
 
 Atribuir `NULL` (ou seja, `\N`) a uma coluna que não é `NULL` resulta na atribuição do valor padrão implícito para o tipo de dados da coluna. Os valores padrão implícitos são descritos na Seção 11.6, “Valores padrão do tipo de dados”.
 
@@ -1226,9 +1226,9 @@ SET b = CAST(CONV(MID(@var1, 3, LENGTH(@var1)-2), 2, 10) AS UNSIGNED)
 
 #### Suporte para Tabela Partida
 
-`LOAD DATA` suporta a seleção explícita de partições usando a cláusula `PARTITION` com uma lista de um ou mais nomes separados por vírgula de partições, subpartições ou ambos. Quando esta cláusula é usada, se quaisquer linhas do arquivo não puderem ser inseridas em nenhuma das partições ou subpartições nomeadas na lista, a declaração falha com o erro Encontrou uma linha que não corresponde ao conjunto de partições dado. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
+`LOAD DATA` suporta a seleção explícita de partições usando a cláusula `PARTITION` com uma lista de um ou mais nomes separados por vírgula de partições, subpartições ou ambos. Quando esta cláusula é usada, se quaisquer strings do arquivo não puderem ser inseridas em nenhuma das partições ou subpartições nomeadas na lista, a declaração falha com o erro Encontrou uma string que não corresponde ao conjunto de partições dado. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
 
-Para tabelas particionadas que utilizam mecanismos de armazenamento que empregam bloqueios de tabela, como `MyISAM`, `LOAD DATA` não pode eliminar quaisquer bloqueios de partição. Isso não se aplica a tabelas que utilizam mecanismos de armazenamento que empregam bloqueio de nível de linha, como `InnoDB`. Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
+Para tabelas particionadas que utilizam mecanismos de armazenamento que empregam bloqueios de tabela, como `MyISAM`, `LOAD DATA` não pode eliminar quaisquer bloqueios de partição. Isso não se aplica a tabelas que utilizam mecanismos de armazenamento que empregam bloqueio de nível de string, como `InnoDB`. Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
 
 #### Considerações sobre Concorrência
 
@@ -1244,7 +1244,7 @@ Quando a declaração `LOAD DATA` terminar, ela retorna uma string de informaç�
 Records: 1  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-As advertências ocorrem nas mesmas circunstâncias em que os valores são inseridos usando a declaração `INSERT` (consulte Seção 13.2.5, “Declaração de Inserção”), exceto que `LOAD DATA` também gera advertências quando há poucos ou muitos campos na linha de entrada.
+As advertências ocorrem nas mesmas circunstâncias em que os valores são inseridos usando a declaração `INSERT` (consulte Seção 13.2.5, “Declaração de Inserção”), exceto que `LOAD DATA` também gera advertências quando há poucos ou muitos campos na string de entrada.
 
 Você pode usar `SHOW WARNINGS` para obter uma lista dos primeiros avisos `max_error_count` como informações sobre o que deu errado. Veja a Seção 13.7.5.40, “Declaração de avisos”.
 
@@ -1265,7 +1265,7 @@ find / -ls > /mysql/data/db1/ls.dat &
 mysql -e "LOAD DATA INFILE 'ls.dat' INTO TABLE t1" db1
 ```
 
-Aqui, você deve executar o comando que gera os dados a serem carregados e os comandos **mysql** em terminais separados, ou executar o processo de geração de dados em segundo plano (como mostrado no exemplo anterior). Se você não fizer isso, o tubo fica bloqueado até que os dados sejam lidos pelo processo **mysql**.
+Aqui, você deve executar o comando que gera os dados a serem carregados e os comandos **mysql** em terminais separados, ou executar o processo de geração de dados em segundo plano (como mostrado no exemplo anterior). Se você não fizer isso, o pipe fica bloqueado até que os dados sejam lidos pelo processo **mysql**.
 
 ### 13.2.7 Declaração de CARREGAR XML
 
@@ -1286,13 +1286,13 @@ LOAD XML
 
 A declaração `LOAD XML` lê dados de um arquivo XML em uma tabela. O *`file_name`* deve ser fornecido como uma string literal. O *`tagname`* na cláusula opcional `ROWS IDENTIFIED BY` também deve ser fornecido como uma string literal, e deve ser rodeado por chaves angulares (`<` e `>`).
 
-`LOAD XML` atua como complemento para executar o cliente **mysql** no modo de saída XML (ou seja, iniciar o cliente com a opção `--xml`). Para escrever dados de uma tabela em um arquivo XML, você pode invocar o cliente **mysql** com as opções `--xml` e `-e` a partir da linha de comandos do sistema, conforme mostrado aqui:
+`LOAD XML` atua como complemento para executar o cliente **mysql** no modo de saída XML (ou seja, iniciar o cliente com a opção `--xml`). Para escrever dados de uma tabela em um arquivo XML, você pode invocar o cliente **mysql** com as opções `--xml` e `-e` a partir da string de comandos do sistema, conforme mostrado aqui:
 
 ```sql
 $> mysql --xml -e 'SELECT * FROM mydb.mytable' > file.xml
 ```
 
-Para ler o arquivo de volta em uma tabela, use `LOAD XML`. Por padrão, o elemento `<row>` é considerado equivalente a uma linha de tabela de banco de dados; isso pode ser alterado usando a cláusula `ROWS IDENTIFIED BY`.
+Para ler o arquivo de volta em uma tabela, use `LOAD XML`. Por padrão, o elemento `<row>` é considerado equivalente a uma string de tabela de banco de dados; isso pode ser alterado usando a cláusula `ROWS IDENTIFIED BY`.
 
 Esta declaração suporta três formatos XML diferentes:
 
@@ -1322,7 +1322,7 @@ Esta declaração suporta três formatos XML diferentes:
 
 Este é o formato utilizado por outras ferramentas do MySQL, como o **mysqldump**.
 
-Todos os três formatos podem ser usados no mesmo arquivo XML; a rotina de importação detecta automaticamente o formato de cada linha e interpreta-o corretamente. As tags são correspondidas com base no nome da tag ou atributo e no nome da coluna.
+Todos os três formatos podem ser usados no mesmo arquivo XML; a rotina de importação detecta automaticamente o formato de cada string e interpreta-o corretamente. As tags são correspondidas com base no nome da tag ou atributo e no nome da coluna.
 
 Em MySQL 5.7, `LOAD XML` não suporta as seções `CDATA` no XML de origem. Essa limitação é removida no MySQL 8.0. (Bug #30753708, Bug #98199)
 
@@ -1339,7 +1339,7 @@ Consulte a Seção 13.2.6, “Instrução LOAD DATA”, para obter mais informa�
 
 `(field_name_or_user_var, ...)` é uma lista de um ou mais campos XML separados por vírgula ou variáveis de usuário. O nome de uma variável de usuário usada para esse propósito deve corresponder ao nome de um campo do arquivo XML, precedido por `@`. Você pode usar os nomes dos campos para selecionar apenas os campos desejados. As variáveis de usuário podem ser empregadas para armazenar os valores correspondentes dos campos para uso subsequente.
 
-A cláusula `IGNORE number LINES` ou `IGNORE number ROWS` faz com que as primeiras linhas do *`number`* no arquivo XML sejam ignoradas. É análogo à cláusula `IGNORE ... LINES` da declaração `LOAD DATA`.
+A cláusula `IGNORE number LINES` ou `IGNORE number ROWS` faz com que as primeiras strings do *`number`* no arquivo XML sejam ignoradas. É análogo à cláusula `IGNORE ... LINES` da declaração `LOAD DATA`.
 
 Suponha que tenhamos uma tabela chamada `person`, criada conforme mostrado aqui:
 
@@ -1392,9 +1392,9 @@ Aqui, assumimos que `person.xml` está localizado no diretório de dados do MySQ
 ERROR 2 (HY000): File '/person.xml' not found (Errcode: 2)
 ```
 
-A cláusula `ROWS IDENTIFIED BY '<person>'` significa que cada elemento `<person>` no arquivo XML é considerado equivalente a uma linha na tabela na qual os dados devem ser importados. Neste caso, esta é a tabela `person` no banco de dados `test`.
+A cláusula `ROWS IDENTIFIED BY '<person>'` significa que cada elemento `<person>` no arquivo XML é considerado equivalente a uma string na tabela na qual os dados devem ser importados. Neste caso, esta é a tabela `person` no banco de dados `test`.
 
-Como pode ser visto na resposta do servidor, 8 linhas foram importadas na tabela `test.person`. Isso pode ser verificado por meio de uma simples declaração `SELECT`:
+Como pode ser visto na resposta do servidor, 8 strings foram importadas na tabela `test.person`. Isso pode ser verificado por meio de uma simples declaração `SELECT`:
 
 ```sql
 mysql> SELECT * FROM person;
@@ -1475,7 +1475,7 @@ $> cat person-dump.xml
 
 Nota
 
-A opção `--xml` faz com que o cliente **mysql** use o formato XML para sua saída; a opção `-e` faz com que o cliente execute a instrução SQL imediatamente após a opção. Veja a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+A opção `--xml` faz com que o cliente **mysql** use o formato XML para sua saída; a opção `-e` faz com que o cliente execute a instrução SQL imediatamente após a opção. Veja a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 Você pode verificar se o dump é válido ao criar uma cópia da tabela `person` e importar o arquivo de dump na nova tabela, da seguinte forma:
 
@@ -1547,7 +1547,7 @@ mysql> SELECT * FROM person2;
 8 rows in set (0.00 sec)
 ```
 
-A ordem em que os campos são apresentados em cada linha do arquivo XML não afeta o funcionamento do `LOAD XML`; a ordem dos campos pode variar de uma linha para outra e não é necessário que esteja no mesmo ordem que as colunas correspondentes na tabela.
+A ordem em que os campos são apresentados em cada string do arquivo XML não afeta o funcionamento do `LOAD XML`; a ordem dos campos pode variar de uma string para outra e não é necessário que esteja no mesmo ordem que as colunas correspondentes na tabela.
 
 Como mencionado anteriormente, você pode usar uma lista `(field_name_or_user_var, ...)` de um ou mais campos XML (para selecionar apenas os campos desejados) ou variáveis de usuário (para armazenar os valores correspondentes do campo para uso posterior). As variáveis de usuário podem ser especialmente úteis quando você deseja inserir dados de um arquivo XML em colunas de tabela cujos nomes não correspondem aos dos campos XML. Para ver como isso funciona, primeiro criamos uma tabela chamada `individual` cuja estrutura corresponde à da tabela `person`, mas cujas colunas são nomeadas de maneira diferente:
 
@@ -1650,7 +1650,7 @@ CREATE TABLE address (
 );
 ```
 
-Para importar os dados do arquivo XML para a tabela `person`, execute a seguinte instrução `LOAD XML`, que especifica que as linhas devem ser especificadas pelo elemento `<person>`, conforme mostrado aqui;
+Para importar os dados do arquivo XML para a tabela `person`, execute a seguinte instrução `LOAD XML`, que especifica que as strings devem ser especificadas pelo elemento `<person>`, conforme mostrado aqui;
 
 ```sql
 mysql> LOAD XML LOCAL INFILE 'address.xml'
@@ -1715,7 +1715,7 @@ Retirar o privilégio `FILE` (ou não concedê-lo em primeiro lugar) impede que 
 
 Em outras palavras, o privilégio `FILE` afeta apenas se o cliente pode ler arquivos no servidor; não tem influência sobre se o cliente pode ler arquivos no sistema de arquivos local.
 
-Para tabelas particionadas que utilizam mecanismos de armazenamento que empregam bloqueios de tabela, como `MyISAM`, quaisquer bloqueios causados por `LOAD XML` realizam bloqueios em todas as partições da tabela. Isso não se aplica a tabelas que utilizam mecanismos de armazenamento que empregam bloqueios em nível de linha, como `InnoDB`. Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
+Para tabelas particionadas que utilizam mecanismos de armazenamento que empregam bloqueios de tabela, como `MyISAM`, quaisquer bloqueios causados por `LOAD XML` realizam bloqueios em todas as partições da tabela. Isso não se aplica a tabelas que utilizam mecanismos de armazenamento que empregam bloqueios em nível de string, como `InnoDB`. Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
 
 ### 13.2.8 Declaração REPLACE
 
@@ -1750,7 +1750,7 @@ assignment_list:
     assignment [, assignment] ...
 ```
 
-`REPLACE` funciona exatamente como `INSERT`, exceto que, se uma linha antiga na tabela tiver o mesmo valor que uma nova linha para um índice de `PRIMARY KEY` ou `UNIQUE`, a linha antiga é excluída antes de a nova linha ser inserida. Veja a Seção 13.2.5, “Instrução de Inserção”.
+`REPLACE` funciona exatamente como `INSERT`, exceto que, se uma string antiga na tabela tiver o mesmo valor que uma nova string para um índice de `PRIMARY KEY` ou `UNIQUE`, a string antiga é excluída antes de a nova string ser inserida. Veja a Seção 13.2.5, “Instrução de Inserção”.
 
 `REPLACE` é uma extensão do MySQL ao padrão SQL. Ela insere, ou *deleta* e insere. Para outra extensão do MySQL ao SQL padrão — que insere ou *atualiza* — consulte a Seção 13.2.5.2, “Instrução INSERT ... ON DUPLICATE KEY UPDATE”.
 
@@ -1758,36 +1758,36 @@ As inserções e substituições `DELAYED` foram descontinuadas no MySQL 5.6. No
 
 Nota
 
-`REPLACE` faz sentido apenas se uma tabela tiver um índice `PRIMARY KEY` ou `UNIQUE`. Caso contrário, ele se torna equivalente a `INSERT`, porque não há índice para ser usado para determinar se uma nova linha duplica outra.
+`REPLACE` faz sentido apenas se uma tabela tiver um índice `PRIMARY KEY` ou `UNIQUE`. Caso contrário, ele se torna equivalente a `INSERT`, porque não há índice para ser usado para determinar se uma nova string duplica outra.
 
-Os valores de todas as colunas são retirados dos valores especificados na declaração `REPLACE`. Quaisquer colunas ausentes são definidas com seus valores padrão, assim como acontece com `INSERT`. Você não pode referenciar valores da linha atual e usá-los na nova linha. Se você usar uma atribuição como `SET col_name = col_name + 1`, a referência ao nome da coluna do lado direito é tratada como `DEFAULT(col_name)`, então a atribuição é equivalente a `SET col_name = DEFAULT(col_name) + 1`.
+Os valores de todas as colunas são retirados dos valores especificados na declaração `REPLACE`. Quaisquer colunas ausentes são definidas com seus valores padrão, assim como acontece com `INSERT`. Você não pode referenciar valores da string atual e usá-los na nova string. Se você usar uma atribuição como `SET col_name = col_name + 1`, a referência ao nome da coluna do lado direito é tratada como `DEFAULT(col_name)`, então a atribuição é equivalente a `SET col_name = DEFAULT(col_name) + 1`.
 
 Para usar `REPLACE`, você deve ter os privilégios `INSERT` e `DELETE` para a tabela.
 
 Se uma coluna gerada for substituída explicitamente, o único valor permitido é `DEFAULT`. Para informações sobre colunas geradas, consulte a Seção 13.1.18.7, “CREATE TABLE e Colunas Geradas”.
 
-`REPLACE` suporta a seleção explícita de partições usando a cláusula `PARTITION` com uma lista de nomes separados por vírgula de partições, subpartições ou ambos. Como com `INSERT`, se não for possível inserir a nova linha em nenhuma dessas partições ou subpartições, a declaração `REPLACE` falha com o erro Encontrou uma linha que não corresponde ao conjunto de partições fornecido. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
+`REPLACE` suporta a seleção explícita de partições usando a cláusula `PARTITION` com uma lista de nomes separados por vírgula de partições, subpartições ou ambos. Como com `INSERT`, se não for possível inserir a nova string em nenhuma dessas partições ou subpartições, a declaração `REPLACE` falha com o erro Encontrou uma string que não corresponde ao conjunto de partições fornecido. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
 
-A declaração `REPLACE` retorna um contador para indicar o número de linhas afetadas. Esta é a soma das linhas excluídas e inseridas. Se o contador for 1 para uma única linha `REPLACE`, uma linha foi inserida e nenhuma linha foi excluída. Se o contador for maior que 1, uma ou mais linhas antigas foram excluídas antes de a nova linha ser inserida. É possível que uma única linha substitua mais de uma linha antiga se a tabela contiver vários índices exclusivos e a nova linha duplique valores para diferentes linhas antigas em diferentes índices exclusivos.
+A declaração `REPLACE` retorna um contador para indicar o número de strings afetadas. Esta é a soma das strings excluídas e inseridas. Se o contador for 1 para uma única string `REPLACE`, uma string foi inserida e nenhuma string foi excluída. Se o contador for maior que 1, uma ou mais strings antigas foram excluídas antes de a nova string ser inserida. É possível que uma única string substitua mais de uma string antiga se a tabela contiver vários índices exclusivos e a nova string duplique valores para diferentes strings antigas em diferentes índices exclusivos.
 
-O número de linhas afetadas facilita a determinação de se o `REPLACE` apenas adicionou uma linha ou se também substituiu quaisquer linhas: Verifique se o número é 1 (adicionado) ou maior (substituído).
+O número de strings afetadas facilita a determinação de se o `REPLACE` apenas adicionou uma string ou se também substituiu quaisquer strings: Verifique se o número é 1 (adicionado) ou maior (substituído).
 
-Se você estiver usando a API C, o número de linhas afetadas pode ser obtido usando a função `mysql_affected_rows()`.
+Se você estiver usando a API C, o número de strings afetadas pode ser obtido usando a função `mysql_affected_rows()`.
 
 Você não pode substituir em uma tabela e selecionar da mesma tabela em uma subconsulta.
 
 O MySQL utiliza o seguinte algoritmo para `REPLACE` (e `LOAD DATA ... REPLACE`):
 
-1. Tente inserir a nova linha na tabela.
+1. Tente inserir a nova string na tabela.
 2. Enquanto a inserção falha porque ocorre um erro de chave duplicada para uma chave primária ou índice único:
 
-1. Exclua da tabela a linha em conflito que possui o valor de chave duplicado
+1. Exclua da tabela a string em conflito que possui o valor de chave duplicado
 
-2. Tente novamente inserir a nova linha na tabela
+2. Tente novamente inserir a nova string na tabela
 
 É possível que, no caso de um erro de chave duplicada, um mecanismo de armazenamento possa realizar o `REPLACE` como uma atualização em vez de uma exclusão mais inserção, mas a semântica é a mesma. Não há efeitos visíveis para o usuário, exceto uma possível diferença em como o mecanismo de armazenamento incrementa as variáveis de status `Handler_xxx`.
 
-Como os resultados das declarações de `REPLACE ... SELECT` dependem da ordem das linhas do `SELECT` e essa ordem nem sempre pode ser garantida, é possível que, ao registrar essas declarações para a fonte e a replica divergirem. Por essa razão, as declarações de `REPLACE ... SELECT` são marcadas como inseguras para replicação baseada em declarações. Essas declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em linha ao usar o modo `MIXED`. Veja também a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linha”.
+Como os resultados das declarações de `REPLACE ... SELECT` dependem da ordem das strings do `SELECT` e essa ordem nem sempre pode ser garantida, é possível que, ao registrar essas declarações para a fonte e a replica divergirem. Por essa razão, as declarações de `REPLACE ... SELECT` são marcadas como inseguras para replicação baseada em declarações. Essas declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em string ao usar o modo `MIXED`. Veja também a Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em String”.
 
 Ao modificar uma tabela existente que não está particionada para acomodar a partição, ou ao modificar a partição de uma tabela já particionada, você pode considerar alterar a chave primária da tabela (consulte a Seção 22.6.1, “Chaves de Partição, Chave Primária e Chaves Únicas”). Você deve estar ciente de que, se você fizer isso, os resultados das declarações `REPLACE` podem ser afetados, assim como aconteceria se você modificasse a chave primária de uma tabela não particionada. Considere a tabela criada pela seguinte declaração `CREATE TABLE`:
 
@@ -1848,9 +1848,9 @@ mysql> SELECT * FROM test2;
 2 rows in set (0.00 sec)
 ```
 
-Isso ocorre porque, quando executado em `test2`, os valores das colunas `id` e `ts` devem corresponder aos de uma linha existente para que a linha seja substituída; caso contrário, uma linha é inserida.
+Isso ocorre porque, quando executado em `test2`, os valores das colunas `id` e `ts` devem corresponder aos de uma string existente para que a string seja substituída; caso contrário, uma string é inserida.
 
-Uma declaração `REPLACE` que afeta uma tabela particionada usando um mecanismo de armazenamento, como `MyISAM`, que emprega bloqueios de nível de tabela, bloqueia apenas as partições que contêm linhas que correspondem à cláusula `REPLACE` do `WHERE`, desde que nenhuma das colunas de particionamento da tabela seja atualizada; caso contrário, toda a tabela é bloqueada. (Para mecanismos de armazenamento, como `InnoDB` que emprega bloqueios de nível de linha, não ocorre bloqueio de partições.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
+Uma declaração `REPLACE` que afeta uma tabela particionada usando um mecanismo de armazenamento, como `MyISAM`, que emprega bloqueios de nível de tabela, bloqueia apenas as partições que contêm strings que correspondem à cláusula `REPLACE` do `WHERE`, desde que nenhuma das colunas de particionamento da tabela seja atualizada; caso contrário, toda a tabela é bloqueada. (Para mecanismos de armazenamento, como `InnoDB` que emprega bloqueios de nível de string, não ocorre bloqueio de partições.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
 
 ### 13.2.9 Instrução SELECT
 
@@ -1896,25 +1896,25 @@ export_options:
     ]
 ```
 
-`SELECT` é usado para recuperar linhas selecionadas de uma ou mais tabelas, e pode incluir declarações `UNION` e subconsultas. Veja a Seção 13.2.9.3, “Cláusula UNION”, e a Seção 13.2.10, “Subconsultas”.
+`SELECT` é usado para recuperar strings selecionadas de uma ou mais tabelas, e pode incluir declarações `UNION` e subconsultas. Veja a Seção 13.2.9.3, “Cláusula UNION”, e a Seção 13.2.10, “Subconsultas”.
 
 As cláusulas mais comumente utilizadas das declarações do `SELECT` são estas:
 
 * Cada *`select_expr`* indica uma coluna que você deseja recuperar. Deve haver pelo menos um *`select_expr`*.
 
-* *`table_references`* indica a tabela ou as tabelas a partir das quais devem ser recuperadas as linhas. Sua sintaxe é descrita na Seção 13.2.9.2, “Cláusula JOIN”.
+* *`table_references`* indica a tabela ou as tabelas a partir das quais devem ser recuperadas as strings. Sua sintaxe é descrita na Seção 13.2.9.2, “Cláusula JOIN”.
 
-* `SELECT` suporta a seleção explícita de partições usando a cláusula `PARTITION` com uma lista de partições ou subpartições (ou ambas) após o nome da tabela em um *`table_reference`* (consulte Seção 13.2.9.2, “Cláusula JOIN”). Neste caso, as linhas são selecionadas apenas das partições listadas, e quaisquer outras partições da tabela são ignoradas. Para mais informações e exemplos, consulte Seção 22.5, “Seleção de Partições”.
+* `SELECT` suporta a seleção explícita de partições usando a cláusula `PARTITION` com uma lista de partições ou subpartições (ou ambas) após o nome da tabela em um *`table_reference`* (consulte Seção 13.2.9.2, “Cláusula JOIN”). Neste caso, as strings são selecionadas apenas das partições listadas, e quaisquer outras partições da tabela são ignoradas. Para mais informações e exemplos, consulte Seção 22.5, “Seleção de Partições”.
 
 `SELECT ... PARTITION` de tabelas usando motores de armazenamento, como `MyISAM` que realizam bloqueios de nível de tabela (e, portanto, bloqueios de partição), bloqueiam apenas as partições ou subpartições nomeadas pela opção `PARTITION`.
 
 Para mais informações, consulte a Seção 22.6.4, “Particionamento e bloqueio”.
 
-* A cláusula `WHERE` (se fornecida) indica a condição ou condições que as linhas devem satisfazer para serem selecionadas. *`where_condition`* é uma expressão que é avaliada como verdadeira para cada linha a ser selecionada. A declaração seleciona todas as linhas se não houver nenhuma cláusula `WHERE`.
+* A cláusula `WHERE` (se fornecida) indica a condição ou condições que as strings devem satisfazer para serem selecionadas. *`where_condition`* é uma expressão que é avaliada como verdadeira para cada string a ser selecionada. A declaração seleciona todas as strings se não houver nenhuma cláusula `WHERE`.
 
 Na expressão `WHERE`, você pode usar qualquer uma das funções e operadores que o MySQL suporta, exceto as funções agregadas (de grupo). Veja a Seção 9.5, “Expressões”, e o Capítulo 12, *Funções e Operadores*.
 
-`SELECT` também pode ser usado para recuperar linhas calculadas sem referência a qualquer tabela.
+`SELECT` também pode ser usado para recuperar strings calculadas sem referência a qualquer tabela.
 
 Por exemplo:
 
@@ -1992,7 +1992,7 @@ Por essa razão, é uma boa prática estar acostumado a usar `AS` explicitamente
 
 Não é permitido referir-se a um alias de coluna em uma cláusula `WHERE`, porque o valor da coluna pode não estar ainda determinado quando a cláusula `WHERE` é executada. Veja a Seção B.3.4.4, “Problemas com aliases de coluna”.
 
-* A cláusula `FROM table_references` indica a(s) tabela(s) a partir da qual(em) as linhas devem ser recuperadas. Se você nomear mais de uma tabela, está realizando uma junção. Para informações sobre a sintaxe de junção, consulte a Seção 13.2.9.2, “Cláusula JOIN”. Para cada tabela especificada, você pode especificar um alias opcionalmente.
+* A cláusula `FROM table_references` indica a(s) tabela(s) a partir da qual(em) as strings devem ser recuperadas. Se você nomear mais de uma tabela, está realizando uma junção. Para informações sobre a sintaxe de junção, consulte a Seção 13.2.9.2, “Cláusula JOIN”. Para cada tabela especificada, você pode especificar um alias opcionalmente.
 
   ```sql
   tbl_name [[AS] alias] [index_hint]
@@ -2035,7 +2035,7 @@ O uso de posições de coluna é desaconselhado porque a sintaxe foi removida do
 
 * O MySQL estende a cláusula `GROUP BY` para que você também possa especificar `ASC` e `DESC` após as colunas nomeadas na cláusula. No entanto, essa sintaxe é desatualizada. Para produzir um determinado ordem de classificação, forneça uma cláusula `ORDER BY`.
 
-* Se você usar `GROUP BY`, as linhas de saída são ordenadas de acordo com as colunas do `GROUP BY` como se você tivesse um `ORDER BY` para as mesmas colunas. Para evitar o overhead da ordenação que o `GROUP BY` produz, adicione `ORDER BY NULL`:
+* Se você usar `GROUP BY`, as strings de saída são ordenadas de acordo com as colunas do `GROUP BY` como se você tivesse um `ORDER BY` para as mesmas colunas. Para evitar o overhead da ordenação que o `GROUP BY` produz, adicione `ORDER BY NULL`:
 
   ```sql
   SELECT a, COUNT(b) FROM test_table GROUP BY a ORDER BY NULL;
@@ -2049,7 +2049,7 @@ Confiar na classificação implícita `GROUP BY` (ou seja, a classificação na 
 
 * `GROUP BY` permite um modificador `WITH ROLLUP`. Veja a Seção 12.19.2, “Modificadores GROUP BY”.
 
-* A cláusula `HAVING`, assim como a cláusula `WHERE`, especifica condições de seleção. A cláusula `WHERE` especifica condições em colunas da lista de seleção, mas não pode se referir a funções agregadas. A cláusula `HAVING` especifica condições em grupos, tipicamente formados pela cláusula `GROUP BY`. O resultado da consulta inclui apenas grupos que satisfazem as condições da `HAVING`. (Se não houver `GROUP BY`, todas as linhas implicitamente formam um único grupo agregado.)
+* A cláusula `HAVING`, assim como a cláusula `WHERE`, especifica condições de seleção. A cláusula `WHERE` especifica condições em colunas da lista de seleção, mas não pode se referir a funções agregadas. A cláusula `HAVING` especifica condições em grupos, tipicamente formados pela cláusula `GROUP BY`. O resultado da consulta inclui apenas grupos que satisfazem as condições da `HAVING`. (Se não houver `GROUP BY`, todas as strings implicitamente formam um único grupo agregado.)
 
 A cláusula `HAVING` é aplicada quase na última posição, logo antes de os itens serem enviados ao cliente, sem otimização. (A cláusula `LIMIT` é aplicada após a cláusula `HAVING`.
 
@@ -2094,25 +2094,25 @@ Nessa declaração, ambas as colunas têm o nome `a`. Para garantir que a coluna
 
 * O MySQL resolve referências de coluna ou alias não qualificadas nas cláusulas `ORDER BY` procurando nos valores de *`select_expr`*, em seguida, nas colunas das tabelas na cláusula `FROM`. Para as cláusulas `GROUP BY` ou `HAVING`, ele procura na cláusula `FROM` antes de procurar nos valores de *`select_expr`*. (Para `GROUP BY` e `HAVING`, isso difere do comportamento anterior ao MySQL 5.0 que usava as mesmas regras que para `ORDER BY`.)
 
-* A cláusula `LIMIT` pode ser usada para restringir o número de linhas retornadas pela declaração `SELECT`. `LIMIT` aceita um ou dois argumentos numéricos, que devem ser ambos constantes inteiras não negativas, com essas exceções:
+* A cláusula `LIMIT` pode ser usada para restringir o número de strings retornadas pela declaração `SELECT`. `LIMIT` aceita um ou dois argumentos numéricos, que devem ser ambos constantes inteiras não negativas, com essas exceções:
 
 + Dentro das declarações preparadas, os parâmetros `LIMIT` podem ser especificados usando os marcadores de marcador `?`.
 
 + Dentro dos programas armazenados, os parâmetros `LIMIT` podem ser especificados usando parâmetros de rotina com valores inteiros ou variáveis locais.
 
-Com dois argumentos, o primeiro argumento especifica o deslocamento da primeira linha a ser devolvida, e o segundo especifica o número máximo de linhas a ser devolvido. O deslocamento da linha inicial é 0 (não 1):
+Com dois argumentos, o primeiro argumento especifica o deslocamento da primeira string a ser devolvida, e o segundo especifica o número máximo de strings a ser devolvido. O deslocamento da string inicial é 0 (não 1):
 
   ```sql
   SELECT * FROM tbl LIMIT 5,10;  # Retrieve rows 6-15
   ```
 
-Para recuperar todas as linhas a partir de um certo deslocamento até o final do conjunto de resultados, você pode usar um número grande para o segundo parâmetro. Esta declaração recupera todas as linhas da 96ª linha até a última:
+Para recuperar todas as strings a partir de um certo deslocamento até o final do conjunto de resultados, você pode usar um número grande para o segundo parâmetro. Esta declaração recupera todas as strings da 96ª string até a última:
 
   ```sql
   SELECT * FROM tbl LIMIT 95,18446744073709551615;
   ```
 
-Com um argumento, o valor especifica o número de linhas a serem retornadas a partir do início do conjunto de resultados:
+Com um argumento, o valor especifica o número de strings a serem retornadas a partir do início do conjunto de resultados:
 
   ```sql
   SELECT * FROM tbl LIMIT 5;     # Retrieve first 5 rows
@@ -2120,7 +2120,7 @@ Com um argumento, o valor especifica o número de linhas a serem retornadas a pa
 
 Em outras palavras, `LIMIT row_count` é equivalente a `LIMIT 0, row_count`.
 
-Para declarações preparadas, você pode usar marcadores. As seguintes declarações retornam uma linha da tabela `tbl`:
+Para declarações preparadas, você pode usar marcadores. As seguintes declarações retornam uma string da tabela `tbl`:
 
   ```sql
   SET @a=1;
@@ -2128,7 +2128,7 @@ Para declarações preparadas, você pode usar marcadores. As seguintes declara�
   EXECUTE STMT USING @a;
   ```
 
-As seguintes declarações retornam a segunda a sexta linha da tabela `tbl`:
+As seguintes declarações retornam a segunda a sexta string da tabela `tbl`:
 
   ```sql
   SET @skip=1; SET @numrows=5;
@@ -2150,13 +2150,13 @@ A sintaxe `PROCEDURE` é descontinuada a partir do MySQL 5.7.18 e é removida no
 
 * O formulário `SELECT ... INTO` de `SELECT` permite que o resultado da consulta seja escrito em um arquivo ou armazenado em variáveis. Para mais informações, consulte a Seção 13.2.9.1, "Instrução SELECT ... INTO".
 
-* Se você usar `FOR UPDATE` com um mecanismo de armazenamento que utiliza bloqueios de página ou de linha, as linhas examinadas pela consulta são bloqueadas para escrita até o final da transação atual. O uso de `LOCK IN SHARE MODE` define um bloqueio compartilhado que permite que outras transações leiam as linhas examinadas, mas não as atualizem ou excluam. Veja a Seção 14.7.2.4, “Bloqueio de Leitura”.
+* Se você usar `FOR UPDATE` com um mecanismo de armazenamento que utiliza bloqueios de página ou de string, as strings examinadas pela consulta são bloqueadas para escrita até o final da transação atual. O uso de `LOCK IN SHARE MODE` define um bloqueio compartilhado que permite que outras transações leiam as strings examinadas, mas não as atualizem ou excluam. Veja a Seção 14.7.2.4, “Bloqueio de Leitura”.
 
 Além disso, você não pode usar `FOR UPDATE` como parte do `SELECT` em uma declaração como `CREATE TABLE new_table SELECT ... FROM old_table ...`. (Se você tentar fazer isso, a declaração é rejeitada com o erro "Não é possível atualizar a tabela '*`old_table`'*" enquanto '*`new_table`'* está sendo criado.) Esta é uma mudança de comportamento do MySQL 5.5 e versões anteriores, que permitia que as declarações `CREATE TABLE ... SELECT` fizessem alterações em tabelas que não a tabela que está sendo criada.
 
 Após a palavra-chave `SELECT`, você pode usar vários modificadores que afetam o funcionamento da declaração. `HIGH_PRIORITY`, `STRAIGHT_JOIN` e modificadores que começam com `SQL_` são extensões do MySQL ao SQL padrão.
 
-* Os modificadores `ALL` e `DISTINCT` especificam se as linhas duplicadas devem ser retornadas. `ALL` (o padrão) especifica que todas as linhas correspondentes devem ser retornadas, incluindo as duplicadas. `DISTINCT` especifica a remoção das linhas duplicadas do conjunto de resultados. É um erro especificar ambos os modificadores. `DISTINCTROW` é sinônimo de `DISTINCT`.
+* Os modificadores `ALL` e `DISTINCT` especificam se as strings duplicadas devem ser retornadas. `ALL` (o padrão) especifica que todas as strings correspondentes devem ser retornadas, incluindo as duplicadas. `DISTINCT` especifica a remoção das strings duplicadas do conjunto de resultados. É um erro especificar ambos os modificadores. `DISTINCTROW` é sinônimo de `DISTINCT`.
 
 * `HIGH_PRIORITY` dá prioridade maior ao `SELECT` do que a uma declaração que atualiza uma tabela. Você deve usar isso apenas para consultas que são muito rápidas e devem ser feitas de uma só vez. Uma consulta `SELECT HIGH_PRIORITY` que é emitida enquanto a tabela está bloqueada para leitura funciona mesmo que haja uma declaração de atualização esperando a tabela ficar livre. Isso afeta apenas os motores de armazenamento que usam apenas bloqueio de nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
 
@@ -2164,13 +2164,13 @@ Após a palavra-chave `SELECT`, você pode usar vários modificadores que afetam
 
 * `STRAIGHT_JOIN` obriga o otimizador a unir as tabelas na ordem em que elas estão listadas na cláusula `FROM`. Você pode usar isso para acelerar uma consulta se o otimizador unir as tabelas em ordem não ótima. `STRAIGHT_JOIN` também pode ser usado na lista *`table_references`*. Veja a Seção 13.2.9.2, “Cláusula JOIN”.
 
-`STRAIGHT_JOIN` não se aplica a qualquer tabela que o otimizador trate como uma tabela `const` ou `system`. Tal tabela produz uma única linha, é lida durante a fase de otimização da execução da consulta e as referências às suas colunas são substituídas pelos valores apropriados das colunas antes de a execução da consulta prosseguir. Essas tabelas aparecem primeiro no plano de consulta exibido por `EXPLAIN`. Veja a Seção 8.8.1, “Otimizando consultas com EXPLAIN”. Esta exceção pode não se aplicar a tabelas `const` ou `system` que são usadas no lado complementado pelo `NULL` de uma junção externa (ou seja, a tabela do lado direito de um `LEFT JOIN` ou a tabela do lado esquerdo de um `RIGHT JOIN`.
+`STRAIGHT_JOIN` não se aplica a qualquer tabela que o otimizador trate como uma tabela `const` ou `system`. Tal tabela produz uma única string, é lida durante a fase de otimização da execução da consulta e as referências às suas colunas são substituídas pelos valores apropriados das colunas antes de a execução da consulta prosseguir. Essas tabelas aparecem primeiro no plano de consulta exibido por `EXPLAIN`. Veja a Seção 8.8.1, “Otimizando consultas com EXPLAIN”. Esta exceção pode não se aplicar a tabelas `const` ou `system` que são usadas no lado complementado pelo `NULL` de uma junção externa (ou seja, a tabela do lado direito de um `LEFT JOIN` ou a tabela do lado esquerdo de um `RIGHT JOIN`.
 
-* `SQL_BIG_RESULT` ou `SQL_SMALL_RESULT` pode ser usado com `GROUP BY` ou `DISTINCT` para informar o otimizador que o conjunto de resultados tem muitas linhas ou é pequeno, respectivamente. Para `SQL_BIG_RESULT`, o MySQL usa diretamente tabelas temporárias baseadas em disco se elas forem criadas e prefere a ordenação em vez de usar uma tabela temporária com uma chave nos elementos do `GROUP BY`. Para `SQL_SMALL_RESULT`, o MySQL usa tabelas temporárias de memória para armazenar a tabela resultante em vez de usar a ordenação. Isso normalmente não é necessário.
+* `SQL_BIG_RESULT` ou `SQL_SMALL_RESULT` pode ser usado com `GROUP BY` ou `DISTINCT` para informar o otimizador que o conjunto de resultados tem muitas strings ou é pequeno, respectivamente. Para `SQL_BIG_RESULT`, o MySQL usa diretamente tabelas temporárias baseadas em disco se elas forem criadas e prefere a ordenação em vez de usar uma tabela temporária com uma chave nos elementos do `GROUP BY`. Para `SQL_SMALL_RESULT`, o MySQL usa tabelas temporárias de memória para armazenar a tabela resultante em vez de usar a ordenação. Isso normalmente não é necessário.
 
 * `SQL_BUFFER_RESULT` obriga o resultado a ser colocado em uma tabela temporária. Isso ajuda o MySQL a liberar os bloqueios da tabela precocemente e ajuda em casos em que leva um longo tempo enviar o conjunto de resultados ao cliente. Este modificador pode ser usado apenas para declarações de nível superior `SELECT`, não para subconsultas ou após `UNION`.
 
-* `SQL_CALC_FOUND_ROWS` indica ao MySQL que calcule quantas linhas haveriam no conjunto de resultados, ignorando qualquer cláusula `LIMIT`. O número de linhas pode então ser recuperado com `SELECT FOUND_ROWS()`. Veja a Seção 12.15, “Funções de Informação”.
+* `SQL_CALC_FOUND_ROWS` indica ao MySQL que calcule quantas strings haveriam no conjunto de resultados, ignorando qualquer cláusula `LIMIT`. O número de strings pode então ser recuperado com `SELECT FOUND_ROWS()`. Veja a Seção 12.15, “Funções de Informação”.
 
 Os modificadores `SQL_CACHE` e `SQL_NO_CACHE` afetam o armazenamento de resultados de consulta no cache de consulta (consulte Seção 8.10.3, “O Cache de Consulta MySQL”). `SQL_CACHE` indica ao MySQL que armazene o resultado no cache de consulta se for cacheável e o valor da variável do sistema `query_cache_type` for `2` ou `DEMAND`. Com `SQL_NO_CACHE`, o servidor não utiliza o cache de consulta. Ele não verifica o cache de consulta para verificar se o resultado já está armazenado, nem armazena o resultado da consulta.
 
@@ -2182,7 +2182,7 @@ Nota
 
 O cache de consulta é descontinuado a partir do MySQL 5.7.20 e é removido no MySQL 8.0. A depreciação inclui `SQL_CACHE` e `SQL_NO_CACHE`.
 
-Um `SELECT` de uma tabela particionada usando um mecanismo de armazenamento, como `MyISAM`, que emprega bloqueios de nível de tabela, bloqueia apenas as partições que contêm linhas que correspondem à cláusula da declaração `SELECT` `WHERE`. (Isso não ocorre com mecanismos de armazenamento, como `InnoDB`, que emprega bloqueio de nível de linha.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
+Um `SELECT` de uma tabela particionada usando um mecanismo de armazenamento, como `MyISAM`, que emprega bloqueios de nível de tabela, bloqueia apenas as partições que contêm strings que correspondem à cláusula da declaração `SELECT` `WHERE`. (Isso não ocorre com mecanismos de armazenamento, como `InnoDB`, que emprega bloqueio de nível de string.) Para mais informações, consulte a Seção 22.6.4, “Particionamento e Bloqueio”.
 
 #### 13.2.9.1 Instrução SELECT ... INTO
 
@@ -2190,9 +2190,9 @@ O formulário `SELECT ... INTO` da `SELECT` permite que o resultado de uma consu
 
 * `SELECT ... INTO var_list` seleciona os valores da coluna e os armazena em variáveis.
 
-* `SELECT ... INTO OUTFILE` escreve as linhas selecionadas em um arquivo. Os terminadores de coluna e linha podem ser especificados para produzir um formato de saída específico.
+* `SELECT ... INTO OUTFILE` escreve as strings selecionadas em um arquivo. Os terminadores de coluna e string podem ser especificados para produzir um formato de saída específico.
 
-* `SELECT ... INTO DUMPFILE` escreve uma única linha em um arquivo sem qualquer formatação.
+* `SELECT ... INTO DUMPFILE` escreve uma única string em um arquivo sem qualquer formatação.
 
 Uma declaração `SELECT` dada pode conter no máximo uma cláusula `INTO`, embora, como mostrado pela descrição da sintaxe `SELECT` (ver Seção 13.2.9, “Declaração SELECT”), o `INTO` pode aparecer em diferentes posições:
 
@@ -2214,7 +2214,7 @@ Para a variante `INTO var_list`:
 
 * *`var_list`* nomeia uma lista de uma ou mais variáveis, cada uma das quais pode ser uma variável definida pelo usuário, parâmetro de procedimento ou função armazenada, ou variável local de programa armazenado. (Dentro de uma declaração preparada `SELECT ... INTO var_list`, apenas variáveis definidas pelo usuário são permitidas; veja Seção 13.6.4.2, “Escopo e Resolução de Variáveis Locais”.)
 
-* Os valores selecionados são atribuídos às variáveis. O número de variáveis deve corresponder ao número de colunas. A consulta deve retornar uma única linha. Se a consulta não retornar nenhuma linha, ocorre um aviso com o código de erro 1329 (`No data`), e os valores das variáveis permanecem inalterados. Se a consulta retornar várias linhas, ocorre o erro 1172 (`Result consisted of more than one row`). Se é possível que a declaração possa recuperar várias linhas, você pode usar `LIMIT 1` para limitar o conjunto de resultados a uma única linha.
+* Os valores selecionados são atribuídos às variáveis. O número de variáveis deve corresponder ao número de colunas. A consulta deve retornar uma única string. Se a consulta não retornar nenhuma string, ocorre um aviso com o código de erro 1329 (`No data`), e os valores das variáveis permanecem inalterados. Se a consulta retornar várias strings, ocorre o erro 1172 (`Result consisted of more than one row`). Se é possível que a declaração possa recuperar várias strings, você pode usar `LIMIT 1` para limitar o conjunto de resultados a uma única string.
 
   ```sql
   SELECT id, data INTO @x, @y FROM test.t1 LIMIT 1;
@@ -2222,7 +2222,7 @@ Para a variante `INTO var_list`:
 
 Os nomes de variáveis do usuário não são sensíveis ao caso. Veja a Seção 9.4, “Variáveis Definidas pelo Usuário”.
 
-O formulário `SELECT ... INTO OUTFILE 'file_name'` da `SELECT` escreve as linhas selecionadas em um arquivo. O arquivo é criado no host do servidor, portanto, você deve ter o privilégio `FILE` para usar essa sintaxe. *`file_name`* não pode ser um arquivo existente, o que, entre outras coisas, impede que arquivos como `/etc/passwd` e tabelas de banco de dados sejam modificados. A variável de sistema `character_set_filesystem` controla a interpretação do nome do arquivo.
+O formulário `SELECT ... INTO OUTFILE 'file_name'` da `SELECT` escreve as strings selecionadas em um arquivo. O arquivo é criado no host do servidor, portanto, você deve ter o privilégio `FILE` para usar essa sintaxe. *`file_name`* não pode ser um arquivo existente, o que, entre outras coisas, impede que arquivos como `/etc/passwd` e tabelas de banco de dados sejam modificados. A variável de sistema `character_set_filesystem` controla a interpretação do nome do arquivo.
 
 A declaração `SELECT ... INTO OUTFILE` é destinada a permitir o descarregamento de uma tabela para um arquivo de texto no host do servidor. Para criar o arquivo resultante em outro host, a `SELECT ... INTO OUTFILE` normalmente é inadequada, pois não há como escrever um caminho para o arquivo em relação ao sistema de arquivos do host do servidor, a menos que a localização do arquivo no host remoto possa ser acessada usando um caminho mapeado em rede no sistema de arquivos do host do servidor.
 
@@ -2256,7 +2256,7 @@ SELECT a,b,a+b INTO OUTFILE '/tmp/result.txt'
   FROM test_table;
 ```
 
-Se você usar `INTO DUMPFILE` em vez de `INTO OUTFILE`, o MySQL escreve apenas uma linha no arquivo, sem nenhuma terminação de coluna ou linha e sem realizar nenhum processamento de escape. Isso é útil para selecionar um valor de `BLOB` e armazená-lo em um arquivo.
+Se você usar `INTO DUMPFILE` em vez de `INTO OUTFILE`, o MySQL escreve apenas uma string no arquivo, sem nenhuma terminação de coluna ou string e sem realizar nenhum processamento de escape. Isso é útil para selecionar um valor de `BLOB` e armazená-lo em um arquivo.
 
 Nota
 
@@ -2323,7 +2323,7 @@ index_list:
 
 Uma referência de tabela também é conhecida como expressão de junção.
 
-Uma referência de tabela (quando se refere a uma tabela particionada) pode conter uma cláusula `PARTITION`, incluindo uma lista de partições, subpartições ou ambas, separadas por vírgulas. Esta opção segue o nome da tabela e precede qualquer declaração de alias. O efeito desta opção é que as linhas são selecionadas apenas das partições ou subpartições listadas. Quaisquer partições ou subpartições não mencionadas na lista são ignoradas. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
+Uma referência de tabela (quando se refere a uma tabela particionada) pode conter uma cláusula `PARTITION`, incluindo uma lista de partições, subpartições ou ambas, separadas por vírgulas. Esta opção segue o nome da tabela e precede qualquer declaração de alias. O efeito desta opção é que as strings são selecionadas apenas das partições ou subpartições listadas. Quaisquer partições ou subpartições não mencionadas na lista são ignoradas. Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partições”.
 
 A sintaxe de *`table_factor`* é estendida no MySQL em comparação com o SQL padrão. O padrão aceita apenas *`table_reference`*, não uma lista deles dentro de um par de parênteses.
 
@@ -2367,13 +2367,13 @@ A lista a seguir descreve os fatores gerais a serem considerados ao escrever jun
 
 * O número máximo de tabelas que podem ser referenciadas em uma única junção é de 61. Isso inclui uma junção que é tratada pela fusão de tabelas derivadas e visualizações na cláusula `FROM` no bloco de consulta externa (consulte Seção 8.2.2.4, “Otimizando tabelas derivadas e referências de visualizações com fusão ou materialização”).
 
-* `INNER JOIN` e `,` (vírgula) são semanticamente equivalentes na ausência de uma condição de junção: ambos produzem um produto cartesiano entre as tabelas especificadas (ou seja, cada e cada linha da primeira tabela é unida a cada e cada linha da segunda tabela).
+* `INNER JOIN` e `,` (vírgula) são semanticamente equivalentes na ausência de uma condição de junção: ambos produzem um produto cartesiano entre as tabelas especificadas (ou seja, cada e cada string da primeira tabela é unida a cada e cada string da segunda tabela).
 
 No entanto, a precedência do operador de vírgula é menor do que a dos `INNER JOIN`, `CROSS JOIN`, `LEFT JOIN` e assim por diante. Se você misturar junções por vírgula com os outros tipos de junção quando houver uma condição de junção, pode ocorrer um erro na forma de `Unknown column 'col_name' in 'on clause'`. Informações sobre como lidar com esse problema são fornecidas mais adiante nesta seção.
 
-* O *`search_condition`* utilizado com `ON` é qualquer expressão condicional na forma que pode ser usada em uma cláusula `WHERE`. Geralmente, a cláusula `ON` serve para condições que especificam como unir tabelas, e a cláusula `WHERE` restringe quais linhas devem ser incluídas no conjunto de resultados.
+* O *`search_condition`* utilizado com `ON` é qualquer expressão condicional na forma que pode ser usada em uma cláusula `WHERE`. Geralmente, a cláusula `ON` serve para condições que especificam como unir tabelas, e a cláusula `WHERE` restringe quais strings devem ser incluídas no conjunto de resultados.
 
-* Se não houver uma linha correspondente à tabela correta na parte `ON` ou `USING` em um `LEFT JOIN`, uma linha com todas as colunas definidas como `NULL` é usada para a tabela correta. Você pode usar esse fato para encontrar linhas em uma tabela que não tenham correspondência em outra tabela:
+* Se não houver uma string correspondente à tabela correta na parte `ON` ou `USING` em um `LEFT JOIN`, uma string com todas as colunas definidas como `NULL` é usada para a tabela correta. Você pode usar esse fato para encontrar strings em uma tabela que não tenham correspondência em outra tabela:
 
   ```sql
   SELECT left_tbl.*
@@ -2381,7 +2381,7 @@ No entanto, a precedência do operador de vírgula é menor do que a dos `INNER 
     WHERE right_tbl.id IS NULL;
   ```
 
-Este exemplo encontra todas as linhas em `left_tbl` com um valor em `id` que não está presente em `right_tbl` (ou seja, todas as linhas em `left_tbl` sem uma linha correspondente em `right_tbl`). Veja a Seção 8.2.1.8, “Otimização de Conjunção Externa”.
+Este exemplo encontra todas as strings em `left_tbl` com um valor em `id` que não está presente em `right_tbl` (ou seja, todas as strings em `left_tbl` sem uma string correspondente em `right_tbl`). Veja a Seção 8.2.1.8, “Otimização de Conjunção Externa”.
 
 * A cláusula `USING(join_column_list)` nomeia uma lista de colunas que devem existir em ambas as tabelas. Se as tabelas `a` e `b` contenham as colunas `c1`, `c2` e `c3`, a seguinte junção compara as colunas correspondentes das duas tabelas:
 
@@ -2529,7 +2529,7 @@ Compare esses resultados com as consultas equivalentes, que são as mesmas, com 
   a LEFT JOIN b ON a.c1 = b.c1 AND a.c2 = b.c2 AND a.c3 = b.c3
   ```
 
-Em relação à determinação de quais linhas satisfazem a condição de junção, ambas as junções são semanticamente idênticas.
+Em relação à determinação de quais strings satisfazem a condição de junção, ambas as junções são semanticamente idênticas.
 
 Em relação à determinação das colunas a serem exibidas para a expansão de `SELECT *`, as duas junções não são semanticamente idênticas. A junção `USING` seleciona o valor coalescido das colunas correspondentes, enquanto a junção `ON` seleciona todas as colunas de todas as tabelas. Para a junção `USING`, `SELECT *` seleciona esses valores:
 
@@ -2648,7 +2648,7 @@ mysql> SELECT REPEAT('a',1) UNION SELECT REPEAT('b',20);
 
 ##### UNIÃO DISTINCT e UNIÃO ALL
 
-Por padrão, as linhas duplicadas são removidas dos resultados de `UNION`. A palavra-chave opcional `DISTINCT` tem o mesmo efeito, mas torna-o explícito. Com a palavra-chave opcional `ALL`, a remoção de linhas duplicadas não ocorre e o resultado inclui todas as linhas correspondentes de todas as declarações de `SELECT`.
+Por padrão, as strings duplicadas são removidas dos resultados de `UNION`. A palavra-chave opcional `DISTINCT` tem o mesmo efeito, mas torna-o explícito. Com a palavra-chave opcional `ALL`, a remoção de strings duplicadas não ocorre e o resultado inclui todas as strings correspondentes de todas as declarações de `SELECT`.
 
 Você pode misturar `UNION ALL` e `UNION DISTINCT` na mesma consulta. Tipos mistos de `UNION` são tratados de forma que uma união `DISTINCT` substitui qualquer união `ALL` à sua esquerda. Uma união `DISTINCT` pode ser produzida explicitamente usando `UNION DISTINCT` ou implicitamente usando `UNION` sem a palavra-chave subsequente `DISTINCT` ou `ALL`.
 
@@ -2666,7 +2666,7 @@ Nota
 
 Versões anteriores do MySQL podem permitir essas declarações sem parênteses. No MySQL 5.7, o requisito de parênteses é exigido.
 
-O uso de `ORDER BY` para declarações individuais de `SELECT` não implica em nada sobre a ordem em que as linhas aparecem no resultado final, porque `UNION`, por padrão, produz um conjunto não ordenado de linhas. Portanto, `ORDER BY` neste contexto é tipicamente usado em conjunto com `LIMIT`, para determinar o subconjunto das linhas selecionadas para recuperar para o `SELECT`, embora isso não afete necessariamente a ordem dessas linhas no resultado final `UNION`. Se `ORDER BY` aparece sem `LIMIT` em um `SELECT`, é otimizado, pois não tem efeito.
+O uso de `ORDER BY` para declarações individuais de `SELECT` não implica em nada sobre a ordem em que as strings aparecem no resultado final, porque `UNION`, por padrão, produz um conjunto não ordenado de strings. Portanto, `ORDER BY` neste contexto é tipicamente usado em conjunto com `LIMIT`, para determinar o subconjunto das strings selecionadas para recuperar para o `SELECT`, embora isso não afete necessariamente a ordem dessas strings no resultado final `UNION`. Se `ORDER BY` aparece sem `LIMIT` em um `SELECT`, é otimizado, pois não tem efeito.
 
 Para usar uma cláusula `ORDER BY` ou `LIMIT` para ordenar ou limitar todo o resultado `UNION`, coloque entre parênteses as declarações individuais `SELECT` e coloque o `ORDER BY` ou `LIMIT` após a última:
 
@@ -2688,7 +2688,7 @@ Além disso, se uma coluna a ser ordenada estiver aliada, a cláusula `ORDER BY`
 (SELECT a AS b FROM t) UNION (SELECT ...) ORDER BY a;
 ```
 
-Para fazer com que as linhas de um resultado do `UNION` consistam em conjuntos de linhas recuperadas por cada `SELECT` uma após a outra, selecione uma coluna adicional em cada `SELECT` para usar como coluna de classificação e adicione um `ORDER BY` que classifique nessa coluna seguindo a última `SELECT`:
+Para fazer com que as strings de um resultado do `UNION` consistam em conjuntos de strings recuperadas por cada `SELECT` uma após a outra, selecione uma coluna adicional em cada `SELECT` para usar como coluna de classificação e adicione um `ORDER BY` que classifique nessa coluna seguindo a última `SELECT`:
 
 ```sql
 (SELECT 1 AS sort_col, col1a, col1b, ... FROM t1)
@@ -2704,7 +2704,7 @@ UNION
 (SELECT 2, col2a, col2b, ... FROM t2) ORDER BY sort_col, col1a;
 ```
 
-O uso de uma coluna adicional também permite determinar de qual `SELECT` cada linha vem. Colunas extras também podem fornecer outras informações de identificação, como uma cadeia que indica o nome de uma tabela.
+O uso de uma coluna adicional também permite determinar de qual `SELECT` cada string vem. Colunas extras também podem fornecer outras informações de identificação, como uma cadeia que indica o nome de uma tabela.
 
 `UNION` consultas com uma função agregada em uma cláusula `ORDER BY` são rejeitadas com um erro `ER_AGGREGATE_ORDER_FOR_UNION`. Exemplo:
 
@@ -2755,7 +2755,7 @@ WHERE s11 > ANY
       (SELECT * FROM t5) AS t5)));
 ```
 
-Uma subconsulta pode retornar um escalar (um único valor), uma única linha, uma única coluna ou uma tabela (uma ou mais linhas de uma ou mais colunas). Essas são chamadas de subconsultas escalares, coluna, linha e tabela. Subconsultas que retornam um tipo específico de resultado muitas vezes podem ser usadas apenas em certos contextos, conforme descrito nas seções a seguir.
+Uma subconsulta pode retornar um escalar (um único valor), uma única string, uma única coluna ou uma tabela (uma ou mais strings de uma ou mais colunas). Essas são chamadas de subconsultas escalares, coluna, string e tabela. Subconsultas que retornam um tipo específico de resultado muitas vezes podem ser usadas apenas em certos contextos, conforme descrito nas seções a seguir.
 
 Há poucas restrições quanto ao tipo de declarações nas quais subconsultas podem ser usadas. Uma subconsulta pode conter muitas das palavras-chave ou cláusulas que uma `SELECT` comum pode conter: `DISTINCT`, `GROUP BY`, `ORDER BY`, `LIMIT`, junções, dicas de índice, `UNION` construções, comentários, funções, e assim por diante.
 
@@ -2796,7 +2796,7 @@ Em seguida, realize um `SELECT`:
 SELECT (SELECT s1 FROM t2) FROM t1;
 ```
 
-O resultado é `2`, porque há uma linha em `t2` que contém uma coluna `s1` que tem um valor de `2`.
+O resultado é `2`, porque há uma string em `t2` que contém uma coluna `s1` que tem um valor de `2`.
 
 Uma subconsulta escalar pode fazer parte de uma expressão, mas lembre-se das chaves, mesmo que a subconsulta seja um operador que fornece um argumento para uma função. Por exemplo:
 
@@ -2832,21 +2832,21 @@ non_subquery_operand LIKE (subquery)
 
 Em um determinado momento, o único local legal para uma subconsulta era no lado direito de uma comparação, e ainda pode encontrar alguns sistemas de gerenciamento de banco de dados antigos que insistem nisso.
 
-Aqui está um exemplo de uma comparação de subconsulta de forma comum que você não pode fazer com uma junção. Ela encontra todas as linhas na tabela `t1` para as quais o valor de `column1` é igual a um valor máximo na tabela `t2`:
+Aqui está um exemplo de uma comparação de subconsulta de forma comum que você não pode fazer com uma junção. Ela encontra todas as strings na tabela `t1` para as quais o valor de `column1` é igual a um valor máximo na tabela `t2`:
 
 ```sql
 SELECT * FROM t1
   WHERE column1 = (SELECT MAX(column2) FROM t2);
 ```
 
-Aqui está outro exemplo, que, novamente, é impossível com uma junção porque envolve agregação para uma das tabelas. Ele encontra todas as linhas na tabela `t1` que contêm um valor que ocorre duas vezes em uma coluna dada:
+Aqui está outro exemplo, que, novamente, é impossível com uma junção porque envolve agregação para uma das tabelas. Ele encontra todas as strings na tabela `t1` que contêm um valor que ocorre duas vezes em uma coluna dada:
 
 ```sql
 SELECT * FROM t1 AS t
   WHERE 2 = (SELECT COUNT(*) FROM t1 WHERE t1.id = t.id);
 ```
 
-Para uma comparação da subconsulta com um escalar, a subconsulta deve retornar um escalar. Para uma comparação da subconsulta com um construtor de linha, a subconsulta deve ser uma subconsulta de linha que retorne uma linha com o mesmo número de valores que o construtor de linha. Veja a Seção 13.2.10.5, “Subconsultas de Linha”.
+Para uma comparação da subconsulta com um escalar, a subconsulta deve retornar um escalar. Para uma comparação da subconsulta com um construtor de string, a subconsulta deve ser uma subconsulta de string que retorne uma string com o mesmo número de valores que o construtor de string. Veja a Seção 13.2.10.5, “Subconsultas de String”.
 
 #### 13.2.10.3 Subconsultas com ANY, IN ou SOME
 
@@ -2870,7 +2870,7 @@ A palavra-chave `ANY`, que deve seguir um operador de comparação, significa �
 SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
 ```
 
-Suponha que haja uma linha na tabela `t1` contendo `(10)`. A expressão é `TRUE` se a tabela `t2` contiver `(21,14,7)`, porque há um valor `7` em `t2` que é menor que `10`. A expressão é `FALSE` se a tabela `t2` contiver `(20,10)`, ou se a tabela `t2` estiver vazia. A expressão é *desconhecida* (ou seja, `NULL`) se a tabela `t2` contiver `(NULL,NULL,NULL)`.
+Suponha que haja uma string na tabela `t1` contendo `(10)`. A expressão é `TRUE` se a tabela `t2` contiver `(21,14,7)`, porque há um valor `7` em `t2` que é menor que `10`. A expressão é `FALSE` se a tabela `t2` contiver `(20,10)`, ou se a tabela `t2` estiver vazia. A expressão é *desconhecida* (ou seja, `NULL`) se a tabela `t2` contiver `(NULL,NULL,NULL)`.
 
 Quando usado com uma subconsulta, a palavra `IN` é um alias para `= ANY`. Assim, essas duas declarações são iguais:
 
@@ -2906,7 +2906,7 @@ A palavra `ALL`, que deve ser seguida por um operador de comparação, significa
 SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);
 ```
 
-Suponha que haja uma linha na tabela `t1` contendo `(10)`. A expressão é `TRUE` se a tabela `t2` contiver `(-5,0,+5)` porque `10` é maior que todos os três valores em `t2`. A expressão é `FALSE` se a tabela `t2` contiver `(12,6,NULL,-100)` porque há um único valor `12` na tabela `t2` que é maior que `10`. A expressão é *desconhecida* (ou seja, `NULL`) se a tabela `t2` contiver `(0,NULL,1)`.
+Suponha que haja uma string na tabela `t1` contendo `(10)`. A expressão é `TRUE` se a tabela `t2` contiver `(-5,0,+5)` porque `10` é maior que todos os três valores em `t2`. A expressão é `FALSE` se a tabela `t2` contiver `(12,6,NULL,-100)` porque há um único valor `12` na tabela `t2` que é maior que `10`. A expressão é *desconhecida* (ou seja, `NULL`) se a tabela `t2` contiver `(0,NULL,1)`.
 
 Por fim, a expressão é `TRUE` se a tabela `t2` estiver vazia. Portanto, a expressão seguinte é `TRUE` quando a tabela `t2` estiver vazia:
 
@@ -2935,9 +2935,9 @@ SELECT s1 FROM t1 WHERE s1 <> ALL (SELECT s1 FROM t2);
 SELECT s1 FROM t1 WHERE s1 NOT IN (SELECT s1 FROM t2);
 ```
 
-#### 13.2.10.5 Subconsultas de linha
+#### 13.2.10.5 Subconsultas de string
 
-Subconsultas escalares ou de coluna retornam um único valor ou uma coluna de valores. Uma subconsulta *de linha* é uma variante de subconsulta que retorna uma única linha e, portanto, pode retornar mais de um valor de coluna. Operadores legais para comparações de subconsultas de linha são:
+Subconsultas escalares ou de coluna retornam um único valor ou uma coluna de valores. Uma subconsulta *de string* é uma variante de subconsulta que retorna uma única string e, portanto, pode retornar mais de um valor de coluna. Operadores legais para comparações de subconsultas de string são:
 
 ```sql
 =  >  <  >=  <=  <>  !=  <=>
@@ -2952,26 +2952,26 @@ SELECT * FROM t1
   WHERE ROW(col1,col2) = (SELECT col3, col4 FROM t2 WHERE id = 10);
 ```
 
-Para ambas as consultas, se a tabela `t2` contiver uma única linha com `id = 10`, a subconsulta retorna uma única linha. Se essa linha tiver os valores de `col3` e `col4` iguais aos valores de `col1` e `col2` de quaisquer linhas em `t1`, a expressão `WHERE` é `TRUE` e cada consulta retorna essas linhas de `t1`. Se os valores de `t2` da linha `col3` e `col4` não forem iguais aos valores de `col1` e `col2` de qualquer linha em `t1`, a expressão é `FALSE` e a consulta retorna um conjunto de resultados vazio. A expressão é *desconhecida* (ou seja, `NULL`) se a subconsulta não produzir nenhuma linha. Um erro ocorre se a subconsulta produzir várias linhas, pois uma subconsulta de linha pode retornar no máximo uma linha.
+Para ambas as consultas, se a tabela `t2` contiver uma única string com `id = 10`, a subconsulta retorna uma única string. Se essa string tiver os valores de `col3` e `col4` iguais aos valores de `col1` e `col2` de quaisquer strings em `t1`, a expressão `WHERE` é `TRUE` e cada consulta retorna essas strings de `t1`. Se os valores de `t2` da string `col3` e `col4` não forem iguais aos valores de `col1` e `col2` de qualquer string em `t1`, a expressão é `FALSE` e a consulta retorna um conjunto de resultados vazio. A expressão é *desconhecida* (ou seja, `NULL`) se a subconsulta não produzir nenhuma string. Um erro ocorre se a subconsulta produzir várias strings, pois uma subconsulta de string pode retornar no máximo uma string.
 
-Para informações sobre como cada operador funciona para comparações de linha, consulte a Seção 12.4.2, “Funções e operadores de comparação”.
+Para informações sobre como cada operador funciona para comparações de string, consulte a Seção 12.4.2, “Funções e operadores de comparação”.
 
-As expressões `(1,2)` e `ROW(1,2)` são às vezes chamadas de construtores de linha. As duas são equivalentes. O construtor de linha e a linha devolvida pela subconsulta devem conter o mesmo número de valores.
+As expressões `(1,2)` e `ROW(1,2)` são às vezes chamadas de construtores de string. As duas são equivalentes. O construtor de string e a string devolvida pela subconsulta devem conter o mesmo número de valores.
 
-Um construtor de linha é usado para comparações com subconsultas que retornam duas ou mais colunas. Quando uma subconsulta retorna uma única coluna, isso é considerado um valor escalar e não como uma linha, portanto, um construtor de linha não pode ser usado com uma subconsulta que não retorne pelo menos duas colunas. Assim, a seguinte consulta falha com um erro de sintaxe:
+Um construtor de string é usado para comparações com subconsultas que retornam duas ou mais colunas. Quando uma subconsulta retorna uma única coluna, isso é considerado um valor escalar e não como uma string, portanto, um construtor de string não pode ser usado com uma subconsulta que não retorne pelo menos duas colunas. Assim, a seguinte consulta falha com um erro de sintaxe:
 
 ```sql
 SELECT * FROM t1 WHERE ROW(1) = (SELECT column1 FROM t2)
 ```
 
-Os construtores de linha são válidos em outros contextos. Por exemplo, as seguintes duas declarações são semanticamente equivalentes (e são tratadas da mesma maneira pelo otimizador):
+Os construtores de string são válidos em outros contextos. Por exemplo, as seguintes duas declarações são semanticamente equivalentes (e são tratadas da mesma maneira pelo otimizador):
 
 ```sql
 SELECT * FROM t1 WHERE (column1,column2) = (1,1);
 SELECT * FROM t1 WHERE column1 = 1 AND column2 = 1;
 ```
 
-A seguinte consulta responde à solicitação: “encontrar todas as linhas na tabela `t1` que também existem na tabela `t2`”:
+A seguinte consulta responde à solicitação: “encontrar todas as strings na tabela `t1` que também existem na tabela `t2`”:
 
 ```sql
 SELECT column1,column2,column3
@@ -2980,11 +2980,11 @@ SELECT column1,column2,column3
          (SELECT column1,column2,column3 FROM t2);
 ```
 
-Para mais informações sobre o otimizador e os construtores de linha, consulte a Seção 8.2.1.19, “Otimização da expressão do construtor de linha”.
+Para mais informações sobre o otimizador e os construtores de string, consulte a Seção 8.2.1.19, “Otimização da expressão do construtor de string”.
 
 #### 13.2.10.6 Subconsultas com EXISTS ou NOT EXISTS
 
-Se uma subconsulta retornar qualquer número de linhas, `EXISTS subquery` é `TRUE`, e `NOT EXISTS subquery` é `FALSE`. Por exemplo:
+Se uma subconsulta retornar qualquer número de strings, `EXISTS subquery` é `TRUE`, e `NOT EXISTS subquery` é `FALSE`. Por exemplo:
 
 ```sql
 SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
@@ -2992,7 +2992,7 @@ SELECT column1 FROM t1 WHERE EXISTS (SELECT * FROM t2);
 
 Tradicionalmente, uma subconsulta `EXISTS` começa com `SELECT *`, mas poderia começar com `SELECT 5` ou `SELECT column1` ou qualquer outra coisa. O MySQL ignora a lista `SELECT` em uma subconsulta desse tipo, então não faz diferença.
 
-Para o exemplo anterior, se `t2` contiver quaisquer linhas, mesmo linhas com apenas valores de `NULL`, a condição de `EXISTS` é `TRUE`. Esse é, na verdade, um exemplo improvável, porque uma subconsulta de `[NOT] EXISTS` quase sempre contém correlações. Aqui estão alguns exemplos mais realistas:
+Para o exemplo anterior, se `t2` contiver quaisquer strings, mesmo strings com apenas valores de `NULL`, a condição de `EXISTS` é `TRUE`. Esse é, na verdade, um exemplo improvável, porque uma subconsulta de `[NOT] EXISTS` quase sempre contém correlações. Aqui estão alguns exemplos mais realistas:
 
 * Que tipo de loja está presente em uma ou mais cidades?
 
@@ -3035,7 +3035,7 @@ SELECT * FROM t1
 
 Observe que a subconsulta contém uma referência a uma coluna de `t1`, embora a cláusula `FROM` da subconsulta não mencione uma tabela `t1`. Portanto, o MySQL procura fora da subconsulta e encontra `t1` na consulta externa.
 
-Suponha que a tabela `t1` contenha uma linha onde `column1 = 5` e `column2 = 6`; enquanto isso, a tabela `t2` contém uma linha onde `column1 = 5` e `column2 = 7`. A expressão simples `... WHERE column1 = ANY (SELECT column1 FROM t2)` seria `TRUE`, mas, neste exemplo, a cláusula `WHERE` dentro da subconsulta é `FALSE` (porque `(5,6)` não é igual a `(5,7)`,) então a expressão como um todo é `FALSE`.
+Suponha que a tabela `t1` contenha uma string onde `column1 = 5` e `column2 = 6`; enquanto isso, a tabela `t2` contém uma string onde `column1 = 5` e `column2 = 7`. A expressão simples `... WHERE column1 = ANY (SELECT column1 FROM t2)` seria `TRUE`, mas, neste exemplo, a cláusula `WHERE` dentro da subconsulta é `FALSE` (porque `(5,6)` não é igual a `(5,7)`,) então a expressão como um todo é `FALSE`.
 
 **Regra de escopo:** O MySQL avalia de dentro para fora. Por exemplo:
 
@@ -3112,7 +3112,7 @@ SELECT AVG(sum_column1)
 
 Observe que o nome da coluna usado na subconsulta (`sum_column1`) é reconhecido na consulta externa.
 
-Uma tabela derivada pode retornar um escalar, coluna, linha ou tabela.
+Uma tabela derivada pode retornar um escalar, coluna, string ou tabela.
 
 As tabelas derivadas estão sujeitas a essas restrições:
 
@@ -3122,7 +3122,7 @@ As tabelas derivadas estão sujeitas a essas restrições:
 
 O otimizador determina informações sobre tabelas derivadas de tal forma que `EXPLAIN` não precisa materializá-las. Veja a Seção 8.2.2.4, “Otimizando tabelas derivadas e referências de visão com junção ou materialização”.
 
-É possível, em determinadas circunstâncias, que o uso de `EXPLAIN SELECT` modifique os dados da tabela. Isso pode ocorrer se a consulta externa acessar quaisquer tabelas e uma consulta interna invocando uma função armazenada que altera uma ou mais linhas de uma tabela. Suponha que existam duas tabelas `t1` e `t2` no banco de dados `d1`, e uma função armazenada `f1` que modifica `t2`, criada conforme mostrado aqui:
+É possível, em determinadas circunstâncias, que o uso de `EXPLAIN SELECT` modifique os dados da tabela. Isso pode ocorrer se a consulta externa acessar quaisquer tabelas e uma consulta interna invocando uma função armazenada que altera uma ou mais strings de uma tabela. Suponha que existam duas tabelas `t1` e `t2` no banco de dados `d1`, e uma função armazenada `f1` que modifica `t2`, criada conforme mostrado aqui:
 
 ```sql
 CREATE DATABASE d1;
@@ -3279,9 +3279,9 @@ Esse erro ocorre em casos como este:
   SELECT (SELECT column1, column2 FROM t2) FROM t1;
   ```
 
-Você pode usar uma subconsulta que retorne várias colunas, se o propósito for a comparação de linhas. Em outros contextos, a subconsulta deve ser um operador escalar. Veja a Seção 13.2.10.5, “Subconsultas de Linhas”.
+Você pode usar uma subconsulta que retorne várias colunas, se o propósito for a comparação de strings. Em outros contextos, a subconsulta deve ser um operador escalar. Veja a Seção 13.2.10.5, “Subconsultas de Strings”.
 
-* Número incorreto de linhas da subconsulta:
+* Número incorreto de strings da subconsulta:
 
   ```sql
   ERROR 1242 (ER_SUBSELECT_NO_1_ROW)
@@ -3289,13 +3289,13 @@ Você pode usar uma subconsulta que retorne várias colunas, se o propósito for
   Message = "Subquery returns more than 1 row"
   ```
 
-Esse erro ocorre em declarações em que a subconsulta deve retornar no máximo uma linha, mas retorna várias linhas. Considere o seguinte exemplo:
+Esse erro ocorre em declarações em que a subconsulta deve retornar no máximo uma string, mas retorna várias strings. Considere o seguinte exemplo:
 
   ```sql
   SELECT * FROM t1 WHERE column1 = (SELECT column1 FROM t2);
   ```
 
-Se `SELECT column1 FROM t2` retornar apenas uma linha, a consulta anterior funciona. Se a subconsulta retornar mais de uma linha, o erro 1242 ocorre. Nesse caso, a consulta deve ser reescrita da seguinte forma:
+Se `SELECT column1 FROM t2` retornar apenas uma string, a consulta anterior funciona. Se a subconsulta retornar mais de uma string, o erro 1242 ocorre. Nesse caso, a consulta deve ser reescrita da seguinte forma:
 
   ```sql
   SELECT * FROM t1 WHERE column1 = ANY (SELECT column1 FROM t2);
@@ -3324,7 +3324,7 @@ Para motores de armazenamento transacional, o erro de uma subconsulta faz com qu
 
 O desenvolvimento está em andamento, portanto, nenhuma dica de otimização é confiável a longo prazo. A lista a seguir fornece alguns truques interessantes que você pode querer experimentar. Veja também a Seção 8.2.2, “Otimizando subconsultas, tabelas derivadas e referências de visualização”.
 
-* Use cláusulas de subconsulta que afetem o número ou a ordem das linhas na subconsulta. Por exemplo:
+* Use cláusulas de subconsulta que afetem o número ou a ordem das strings na subconsulta. Por exemplo:
 
   ```sql
   SELECT * FROM t1 WHERE t1.column1 IN
@@ -3377,7 +3377,7 @@ Em vez dessa consulta:
   SELECT (SELECT column1 FROM t1) + 5 FROM t2;
   ```
 
-* Use uma subconsulta de linha em vez de uma subconsulta correlacionada. Por exemplo, use esta consulta:
+* Use uma subconsulta de string em vez de uma subconsulta correlacionada. Por exemplo, use esta consulta:
 
   ```sql
   SELECT * FROM t1
@@ -3398,7 +3398,7 @@ Em vez dessa consulta:
 
 * Use `= ANY` em vez de `EXISTS`.
 
-* Para subconsultas não correlacionadas que sempre retornam uma linha, `IN` é sempre mais lento do que `=`. Por exemplo, use esta consulta:
+* Para subconsultas não correlacionadas que sempre retornam uma string, `IN` é sempre mais lento do que `=`. Por exemplo, use esta consulta:
 
   ```sql
   SELECT * FROM t1
@@ -3479,7 +3479,7 @@ SELECT table1.*
 
 Um `LEFT [OUTER] JOIN` pode ser mais rápido do que uma subconsulta equivalente, pois o servidor pode ser capaz de otimizá-lo melhor — um fato que não é específico apenas para o MySQL Server. Antes do SQL-92, as junções externas não existiam, então as subconsultas eram a única maneira de fazer certas coisas. Hoje, o MySQL Server e muitos outros sistemas de banco de dados modernos oferecem uma ampla gama de tipos de junção externa.
 
-O MySQL Server suporta declarações de múltiplas tabelas `DELETE` que podem ser usadas para deletar eficientemente linhas com base em informações de uma tabela ou até mesmo de muitas tabelas ao mesmo tempo. Também são suportadas declarações de múltiplas tabelas `UPDATE`. Veja a Seção 13.2.2, “Declaração DELETE”, e a Seção 13.2.11, “Declaração UPDATE”.
+O MySQL Server suporta declarações de múltiplas tabelas `DELETE` que podem ser usadas para deletar eficientemente strings com base em informações de uma tabela ou até mesmo de muitas tabelas ao mesmo tempo. Também são suportadas declarações de múltiplas tabelas `UPDATE`. Veja a Seção 13.2.2, “Declaração DELETE”, e a Seção 13.2.11, “Declaração UPDATE”.
 
 #### 13.2.10.12 Restrições em subconsultas
 
@@ -3497,15 +3497,15 @@ Exceção: A proibição anterior não se aplica se, para a tabela modificada, v
   UPDATE t ... WHERE col = (SELECT * FROM (SELECT ... FROM t...) AS dt ...);
   ```
 
-Aqui, o resultado da tabela derivada é materializado como uma tabela temporária, portanto, as linhas relevantes em `t` já foram selecionadas no momento em que a atualização para `t` ocorre.
+Aqui, o resultado da tabela derivada é materializado como uma tabela temporária, portanto, as strings relevantes em `t` já foram selecionadas no momento em que a atualização para `t` ocorre.
 
-* As operações de comparação de linhas são suportadas apenas parcialmente:
+* As operações de comparação de strings são suportadas apenas parcialmente:
 
-+ Para `expr [NOT] IN subquery`, *`expr`* pode ser um *`n`*-tuplo (especificado usando sintaxe de construtor de linha) e a subconsulta pode retornar linhas de *`n`*-tuplos. Portanto, a sintaxe permitida é expressa de forma mais específica como `row_constructor [NOT] IN table_subquery`
++ Para `expr [NOT] IN subquery`, *`expr`* pode ser um *`n`*-tuplo (especificado usando sintaxe de construtor de string) e a subconsulta pode retornar strings de *`n`*-tuplos. Portanto, a sintaxe permitida é expressa de forma mais específica como `row_constructor [NOT] IN table_subquery`
 
-+ Para `expr op {ALL|ANY|SOME} subquery`, *`expr`* deve ser um valor escalar e a subconsulta deve ser uma subconsulta de coluna; não pode retornar linhas de múltiplos colunas.
++ Para `expr op {ALL|ANY|SOME} subquery`, *`expr`* deve ser um valor escalar e a subconsulta deve ser uma subconsulta de coluna; não pode retornar strings de múltiplos colunas.
 
-Em outras palavras, para uma subconsulta que retorna linhas de tuplas de *`n`*, isso é suportado:
+Em outras palavras, para uma subconsulta que retorna strings de tuplas de *`n`*, isso é suportado:
 
   ```sql
   (expr_1, ..., expr_n) [NOT] IN table_subquery
@@ -3517,9 +3517,9 @@ Mas isso não é suportado:
   (expr_1, ..., expr_n) op {ALL|ANY|SOME} subquery
   ```
 
-A razão para o suporte à comparação de linhas para `IN`, mas não para as outras é que `IN` é implementada reescrevendo-a como uma sequência de comparações de `=` e operações de `AND`. Essa abordagem não pode ser usada para `ALL`, `ANY` ou `SOME`.
+A razão para o suporte à comparação de strings para `IN`, mas não para as outras é que `IN` é implementada reescrevendo-a como uma sequência de comparações de `=` e operações de `AND`. Essa abordagem não pode ser usada para `ALL`, `ANY` ou `SOME`.
 
-* As subconsultas na cláusula `FROM` não podem ser subconsultas correlacionadas. Elas são materializadas no seu todo (evaluadas para produzir um conjunto de resultados) durante a execução da consulta, portanto, não podem ser avaliadas por linha da consulta externa. O otimizador adista a materialização até que o resultado seja necessário, o que pode permitir que a materialização seja evitada. Veja a Seção 8.2.2.4, “Otimizando tabelas derivadas e referências de visão com Merging ou Materialização”.
+* As subconsultas na cláusula `FROM` não podem ser subconsultas correlacionadas. Elas são materializadas no seu todo (evaluadas para produzir um conjunto de resultados) durante a execução da consulta, portanto, não podem ser avaliadas por string da consulta externa. O otimizador adista a materialização até que o resultado seja necessário, o que pode permitir que a materialização seja evitada. Veja a Seção 8.2.2.4, “Otimizando tabelas derivadas e referências de visão com Merging ou Materialização”.
 
 * O MySQL não suporta `LIMIT` em subconsultas para certos operadores de subconsulta:
 
@@ -3530,7 +3530,7 @@ A razão para o suporte à comparação de linhas para `IN`, mas não para as ou
    'LIMIT & IN/ALL/ANY/SOME subquery'
   ```
 
-* O MySQL permite que uma subconsulta faça referência a uma função armazenada que tenha efeitos colaterais que modificam dados, como inserir linhas em uma tabela. Por exemplo, se `f()` inserir linhas, a seguinte consulta pode modificar os dados:
+* O MySQL permite que uma subconsulta faça referência a uma função armazenada que tenha efeitos colaterais que modificam dados, como inserir strings em uma tabela. Por exemplo, se `f()` inserir strings, a seguinte consulta pode modificar os dados:
 
   ```sql
   SELECT ... WHERE x IN (SELECT f() ...);
@@ -3542,7 +3542,7 @@ Para replicação baseada em declarações ou em formato misto, uma implicação
 
 ### 13.2.11 Declaração de Atualização
 
-`UPDATE` é uma declaração DML que modifica linhas em uma tabela.
+`UPDATE` é uma declaração DML que modifica strings em uma tabela.
 
 Sintaxe de tabela única:
 
@@ -3571,19 +3571,19 @@ UPDATE [LOW_PRIORITY] [IGNORE] table_references
     [WHERE where_condition]
 ```
 
-Para a sintaxe de tabela única, a declaração `UPDATE` atualiza as colunas das linhas existentes na tabela nomeada com novos valores. A cláusula `SET` indica quais colunas devem ser modificadas e os valores que devem ser dados. Cada valor pode ser dado como uma expressão ou a palavra-chave `DEFAULT` para definir uma coluna explicitamente ao seu valor padrão. A cláusula `WHERE`, se especificada, especifica as condições que identificam quais linhas devem ser atualizadas. Sem a cláusula `WHERE`, todas as linhas são atualizadas. Se a cláusula `ORDER BY` for especificada, as linhas são atualizadas na ordem que é especificada. A cláusula `LIMIT` coloca um limite no número de linhas que podem ser atualizadas.
+Para a sintaxe de tabela única, a declaração `UPDATE` atualiza as colunas das strings existentes na tabela nomeada com novos valores. A cláusula `SET` indica quais colunas devem ser modificadas e os valores que devem ser dados. Cada valor pode ser dado como uma expressão ou a palavra-chave `DEFAULT` para definir uma coluna explicitamente ao seu valor padrão. A cláusula `WHERE`, se especificada, especifica as condições que identificam quais strings devem ser atualizadas. Sem a cláusula `WHERE`, todas as strings são atualizadas. Se a cláusula `ORDER BY` for especificada, as strings são atualizadas na ordem que é especificada. A cláusula `LIMIT` coloca um limite no número de strings que podem ser atualizadas.
 
-Para a sintaxe de múltiplas tabelas, `UPDATE` atualiza as linhas em cada tabela nomeada em *`table_references`* que satisfazem as condições. Cada linha correspondente é atualizada uma vez, mesmo que corresponda às condições várias vezes. Para a sintaxe de múltiplas tabelas, `ORDER BY` e `LIMIT` não podem ser usados.
+Para a sintaxe de múltiplas tabelas, `UPDATE` atualiza as strings em cada tabela nomeada em *`table_references`* que satisfazem as condições. Cada string correspondente é atualizada uma vez, mesmo que corresponda às condições várias vezes. Para a sintaxe de múltiplas tabelas, `ORDER BY` e `LIMIT` não podem ser usados.
 
-Para tabelas particionadas, tanto as formas de formulário único quanto as múltiplas de esta declaração suportam o uso de uma cláusula `PARTITION` como parte de uma referência de tabela. Esta opção recebe uma lista de uma ou mais particionamentos ou subparticionamentos (ou ambos). Apenas as particionamentos (ou subparticionamentos) listados são verificados quanto a correspondências, e uma linha que não está em nenhuma dessas particionamentos ou subparticionamentos não é atualizada, seja ela satisfatória ou não para *`where_condition`*.
+Para tabelas particionadas, tanto as formas de formulário único quanto as múltiplas de esta declaração suportam o uso de uma cláusula `PARTITION` como parte de uma referência de tabela. Esta opção recebe uma lista de uma ou mais particionamentos ou subparticionamentos (ou ambos). Apenas as particionamentos (ou subparticionamentos) listados são verificados quanto a correspondências, e uma string que não está em nenhuma dessas particionamentos ou subparticionamentos não é atualizada, seja ela satisfatória ou não para *`where_condition`*.
 
 Nota
 
-Ao contrário do caso em que se usa `PARTITION` com uma declaração `INSERT` ou `REPLACE`, uma declaração `UPDATE ... PARTITION` válida, mesmo que não haja linhas nas partições (ou subpartições) listadas que correspondam ao *`where_condition`*, é considerada bem-sucedida.
+Ao contrário do caso em que se usa `PARTITION` com uma declaração `INSERT` ou `REPLACE`, uma declaração `UPDATE ... PARTITION` válida, mesmo que não haja strings nas partições (ou subpartições) listadas que correspondam ao *`where_condition`*, é considerada bem-sucedida.
 
 Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Partição”.
 
-*`where_condition`* é uma expressão que é avaliada como verdadeira para cada linha que deve ser atualizada. Para a sintaxe da expressão, consulte a Seção 9.5, “Expressões”.
+*`where_condition`* é uma expressão que é avaliada como verdadeira para cada string que deve ser atualizada. Para a sintaxe da expressão, consulte a Seção 9.5, “Expressões”.
 
 *`table_references`* e *`where_condition`* são especificados conforme descrito na Seção 13.2.9, “Instrução SELECT”.
 
@@ -3593,9 +3593,9 @@ A declaração `UPDATE` suporta os seguintes modificadores:
 
 * Com o modificador `LOW_PRIORITY`, a execução do `UPDATE` é adiada até que nenhum outro cliente esteja lendo a tabela. Isso afeta apenas os motores de armazenamento que usam apenas bloqueio em nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
 
-* Com o modificador `IGNORE`, a declaração de atualização não é interrompida, mesmo que ocorram erros durante a atualização. As linhas para as quais ocorrem conflitos de chave duplicada em um valor de chave única não são atualizadas. As linhas atualizadas para valores que causariam erros de conversão de dados são atualizadas para os valores mais próximos dos válidos, em vez disso. Para mais informações, consulte O efeito do IGNORE na execução da declaração.
+* Com o modificador `IGNORE`, a declaração de atualização não é interrompida, mesmo que ocorram erros durante a atualização. As strings para as quais ocorrem conflitos de chave duplicada em um valor de chave única não são atualizadas. As strings atualizadas para valores que causariam erros de conversão de dados são atualizadas para os valores mais próximos dos válidos, em vez disso. Para mais informações, consulte O efeito do IGNORE na execução da declaração.
 
-As declarações `UPDATE IGNORE`, incluindo aquelas que possuem uma cláusula `ORDER BY`, são marcadas como inseguras para replicação baseada em declarações. (Isso ocorre porque a ordem em que as linhas são atualizadas determina quais linhas são ignoradas.) Tais declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em linha quando usar o modo `MIXED`. (Bug #11758262, Bug #50439) Consulte a Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”, para obter mais informações.
+As declarações `UPDATE IGNORE`, incluindo aquelas que possuem uma cláusula `ORDER BY`, são marcadas como inseguras para replicação baseada em declarações. (Isso ocorre porque a ordem em que as strings são atualizadas determina quais strings são ignoradas.) Tais declarações produzem um aviso no log de erro ao usar o modo baseado em declarações e são escritas no log binário usando o formato baseado em string quando usar o modo `MIXED`. (Bug #11758262, Bug #50439) Consulte a Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”, para obter mais informações.
 
 Se você acessar uma coluna da tabela que será atualizada em uma expressão, o `UPDATE` usa o valor atual da coluna. Por exemplo, a seguinte declaração define o `col1` como um valor maior que seu valor atual:
 
@@ -3617,17 +3617,17 @@ Se você atualizar uma coluna que foi declarada como `NOT NULL` definindo-a como
 
 Se uma coluna gerada for atualizada explicitamente, o único valor permitido é `DEFAULT`. Para informações sobre colunas geradas, consulte a Seção 13.1.18.7, “CREATE TABLE e Colunas Geradas”.
 
-`UPDATE` retorna o número de linhas que foram realmente alteradas. A função API C `mysql_info()` retorna o número de linhas que foram correspondidas e atualizadas, além do número de avisos que ocorreram durante o `UPDATE`.
+`UPDATE` retorna o número de strings que foram realmente alteradas. A função API C `mysql_info()` retorna o número de strings que foram correspondidas e atualizadas, além do número de avisos que ocorreram durante o `UPDATE`.
 
-Você pode usar `LIMIT row_count` para restringir o escopo do `UPDATE`. Uma cláusula `LIMIT` é uma restrição de correspondência de linhas. A declaração para de assim que encontrar *`row_count`* linhas que satisfazem a cláusula `WHERE`, independentemente de elas terem sido alteradas ou
+Você pode usar `LIMIT row_count` para restringir o escopo do `UPDATE`. Uma cláusula `LIMIT` é uma restrição de correspondência de strings. A declaração para de assim que encontrar *`row_count`* strings que satisfazem a cláusula `WHERE`, independentemente de elas terem sido alteradas ou
 
-Se uma declaração `UPDATE` incluir uma cláusula `ORDER BY`, as linhas são atualizadas na ordem especificada pela cláusula. Isso pode ser útil em certas situações que, de outra forma, poderiam resultar em um erro. Suponha que uma tabela `t` contenha uma coluna `id` que possui um índice único. A declaração seguinte pode falhar com um erro de chave duplicada, dependendo da ordem em que as linhas são atualizadas:
+Se uma declaração `UPDATE` incluir uma cláusula `ORDER BY`, as strings são atualizadas na ordem especificada pela cláusula. Isso pode ser útil em certas situações que, de outra forma, poderiam resultar em um erro. Suponha que uma tabela `t` contenha uma coluna `id` que possui um índice único. A declaração seguinte pode falhar com um erro de chave duplicada, dependendo da ordem em que as strings são atualizadas:
 
 ```sql
 UPDATE t SET id = id + 1;
 ```
 
-Por exemplo, se a tabela contém 1 e 2 na coluna `id` e 1 é atualizado para 2 antes de 2 ser atualizado para 3, ocorre um erro. Para evitar esse problema, adicione uma cláusula `ORDER BY` para fazer com que as linhas com valores maiores em `id` sejam atualizadas antes daquelas com valores menores:
+Por exemplo, se a tabela contém 1 e 2 na coluna `id` e 1 é atualizado para 2 antes de 2 ser atualizado para 3, ocorre um erro. Para evitar esse problema, adicione uma cláusula `ORDER BY` para fazer com que as strings com valores maiores em `id` sejam atualizadas antes daquelas com valores menores:
 
 ```sql
 UPDATE t SET id = id + 1 ORDER BY id DESC;

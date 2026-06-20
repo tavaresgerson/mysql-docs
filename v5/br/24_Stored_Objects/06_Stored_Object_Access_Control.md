@@ -130,7 +130,7 @@ Para redefinir um objeto com um definidor diferente, você pode usar `ALTER EVEN
   WHERE DEFINER = 'user_name@host_name';
   ```
 
-Para a tabela `ROUTINES`, a consulta inclui a coluna `ROUTINE_TYPE` para que as linhas de saída distingam se o `DEFINER` é para um procedimento armazenado ou uma função armazenada.
+Para a tabela `ROUTINES`, a consulta inclui a coluna `ROUTINE_TYPE` para que as strings de saída distingam se o `DEFINER` é para um procedimento armazenado ou uma função armazenada.
 
 Se a conta que você está procurando não existir, quaisquer objetos exibidos por essas consultas são objetos órfãos.
 

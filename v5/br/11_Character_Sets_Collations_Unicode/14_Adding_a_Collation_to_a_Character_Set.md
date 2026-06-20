@@ -40,7 +40,7 @@ As instruções aqui cobrem apenas as collation definidas pelo usuário que pode
 
 Nota
 
-Se você modificar uma colagem definida pelo usuário existente, isso pode afetar a ordem das linhas para índices em colunas que utilizam a colagem. Nesse caso, reconstrua quaisquer índices desse tipo para evitar problemas, como resultados incorretos de consulta. Veja a Seção 2.10.12, “Reconstruir ou Reparar Tabelas ou Índices”.
+Se você modificar uma colagem definida pelo usuário existente, isso pode afetar a ordem das strings para índices em colunas que utilizam a colagem. Nesse caso, reconstrua quaisquer índices desse tipo para evitar problemas, como resultados incorretos de consulta. Veja a Seção 2.10.12, “Reconstruir ou Reparar Tabelas ou Índices”.
 
 ### Recursos adicionais
 

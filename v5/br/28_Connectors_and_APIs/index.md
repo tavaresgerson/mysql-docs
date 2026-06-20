@@ -20,7 +20,7 @@ A Oracle desenvolve vários conectores:
 
 Para acesso direto ao uso do MySQL de forma nativa dentro de uma aplicação em C, existem dois métodos:
 
-* A API C oferece acesso de nível baixo ao protocolo cliente/servidor do MySQL através da biblioteca de clientes `libmysqlclient`. Este é o método primário utilizado para se conectar a uma instância do servidor MySQL, e é utilizado tanto pelos clientes de linha de comando do MySQL quanto por muitos dos Conectadores MySQL e APIs de terceiros detalhados aqui.
+* A API C oferece acesso de nível baixo ao protocolo cliente/servidor do MySQL através da biblioteca de clientes `libmysqlclient`. Este é o método primário utilizado para se conectar a uma instância do servidor MySQL, e é utilizado tanto pelos clientes de string de comando do MySQL quanto por muitos dos Conectadores MySQL e APIs de terceiros detalhados aqui.
 
 `libmysqlclient` está incluído nas distribuições do MySQL.
 

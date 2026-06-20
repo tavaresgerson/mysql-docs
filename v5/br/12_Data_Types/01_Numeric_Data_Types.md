@@ -157,7 +157,7 @@ Um número pequeno (de precisão simples) de ponto flutuante. Os valores permiti
 
 `UNSIGNED`, se especificado, não permite valores negativos.
 
-Usar `FLOAT` - FLOAT, DOUBLE") pode lhe causar alguns problemas inesperados, pois todos os cálculos no MySQL são feitos com precisão dupla. Veja a Seção B.3.4.7, "Resolvendo problemas com nenhuma linha correspondente".
+Usar `FLOAT` - FLOAT, DOUBLE") pode lhe causar alguns problemas inesperados, pois todos os cálculos no MySQL são feitos com precisão dupla. Veja a Seção B.3.4.7, "Resolvendo problemas com nenhuma string correspondente".
 
 * `FLOAT(p) [UNSIGNED] [ZEROFILL]`(floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE")
 
@@ -307,7 +307,7 @@ mysql> SELECT * FROM t1;
 +------+------+
 ```
 
-Quando o modo SQL rigoroso não está habilitado, as conversões de atribuição de colunas que ocorrem devido ao recorte são relatadas como avisos para as declarações `ALTER TABLE`, `LOAD DATA`, `UPDATE` e `INSERT` de várias linhas. No modo rigoroso, essas declarações falham e alguns ou todos os valores não são inseridos ou alterados, dependendo se a tabela é uma tabela transacional e outros fatores. Para obter detalhes, consulte a Seção 5.1.10, “Modos SQL do servidor”.
+Quando o modo SQL rigoroso não está habilitado, as conversões de atribuição de colunas que ocorrem devido ao recorte são relatadas como avisos para as declarações `ALTER TABLE`, `LOAD DATA`, `UPDATE` e `INSERT` de várias strings. No modo rigoroso, essas declarações falham e alguns ou todos os valores não são inseridos ou alterados, dependendo se a tabela é uma tabela transacional e outros fatores. Para obter detalhes, consulte a Seção 5.1.10, “Modos SQL do servidor”.
 
 O excesso durante a avaliação de expressões numéricas resulta em um erro. Por exemplo, o maior valor assinado `BIGINT` (INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT) é 9223372036854775807, então a expressão a seguir produz um erro:
 

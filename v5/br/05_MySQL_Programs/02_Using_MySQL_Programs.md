@@ -2,7 +2,7 @@
 
 ### 4.2.1 Invocação de programas MySQL
 
-Para invocar um programa MySQL a partir da linha de comando (ou seja, do seu shell ou prompt de comando), insira o nome do programa seguido de quaisquer opções ou outros argumentos necessários para instruir o programa o que você deseja que ele faça. Os seguintes comandos mostram algumas invocações de programa de exemplo. `$>` representa o prompt para o seu interpretador de comandos; ele não faz parte do que você digita. O prompt específico que você vê depende do seu interpretador de comandos. Os prompts típicos são `$` para **sh**, **ksh** ou **bash**, `%` para **csh** ou **tcsh**, e `C:\>` para os interpretadores de comandos **command.com** ou **cmd.exe** do Windows.
+Para invocar um programa MySQL a partir da string de comando (ou seja, do seu shell ou prompt de comando), insira o nome do programa seguido de quaisquer opções ou outros argumentos necessários para instruir o programa o que você deseja que ele faça. Os seguintes comandos mostram algumas invocações de programa de exemplo. `$>` representa o prompt para o seu interpretador de comandos; ele não faz parte do que você digita. O prompt específico que você vê depende do seu interpretador de comandos. Os prompts típicos são `$` para **sh**, **ksh** ou **bash**, `%` para **csh** ou **tcsh**, e `C:\>` para os interpretadores de comandos **command.com** ou **cmd.exe** do Windows.
 
 ```sql
 $> mysql --user=root test
@@ -27,7 +27,7 @@ Consulte a documentação do seu interpretador de comandos para obter instruçõ
 
 Existem várias maneiras de especificar opções para programas MySQL:
 
-* Liste as opções na linha de comando após o nome do programa. Isso é comum para opções que se aplicam a uma invocação específica do programa.
+* Liste as opções na string de comando após o nome do programa. Isso é comum para opções que se aplicam a uma invocação específica do programa.
 
 * Liste as opções em um arquivo de opções que o programa lê quando ele começa. Isso é comum para as opções que você deseja que o programa use a cada vez que ele é executado.
 
@@ -39,7 +39,7 @@ As opções são processadas em ordem, então, se uma opção for especificada v
 mysql -h example.com -h localhost
 ```
 
-Há uma exceção: para `mysqld`, a *primeira* instância da opção `--user` é usada como uma precaução de segurança, para evitar que um usuário especificado em um arquivo de opção seja sobrescrito na linha de comando.
+Há uma exceção: para `mysqld`, a *primeira* instância da opção `--user` é usada como uma precaução de segurança, para evitar que um usuário especificado em um arquivo de opção seja sobrescrito na string de comando.
 
 Se forem fornecidas opções conflitantes ou relacionadas, as opções posteriores têm precedência sobre as opções anteriores. O seguinte comando executa o **mysql** no modo "sem nomes de colunas":
 
@@ -47,13 +47,13 @@ Se forem fornecidas opções conflitantes ou relacionadas, as opções posterior
 mysql --column-names --skip-column-names
 ```
 
-Os programas do MySQL determinam quais opções são dadas primeiro, examinando variáveis de ambiente, processando arquivos de opção e, em seguida, verificando a linha de comando. Como as opções posteriores têm precedência sobre as anteriores, a ordem de processamento significa que as variáveis de ambiente têm a menor precedência e as opções da linha de comando a maior.
+Os programas do MySQL determinam quais opções são dadas primeiro, examinando variáveis de ambiente, processando arquivos de opção e, em seguida, verificando a string de comando. Como as opções posteriores têm precedência sobre as anteriores, a ordem de processamento significa que as variáveis de ambiente têm a menor precedência e as opções da string de comando a maior.
 
-Você pode aproveitar a forma como os programas do MySQL processam as opções, especificando valores padrão de opções para um programa em um arquivo de opções. Isso permite que você evite digitar-os cada vez que você executa o programa, ao mesmo tempo em que permite que você substitua os valores padrão, se necessário, usando opções de linha de comando.
+Você pode aproveitar a forma como os programas do MySQL processam as opções, especificando valores padrão de opções para um programa em um arquivo de opções. Isso permite que você evite digitar-os cada vez que você executa o programa, ao mesmo tempo em que permite que você substitua os valores padrão, se necessário, usando opções de string de comando.
 
-#### 4.2.2.1 Usando opções na linha de comando
+#### 4.2.2.1 Usando opções na string de comando
 
-As opções do programa especificadas na linha de comando seguem estas regras:
+As opções do programa especificadas na string de comando seguem estas regras:
 
 * As opções são fornecidas após o nome do comando.
 * Um argumento de opção começa com uma ou duas barras, dependendo se é uma forma curta ou longa do nome da opção. Muitas opções têm tanto formas curtas quanto longas. Por exemplo, `-?` e `--help` são as formas curta e longa da opção que instrui um programa MySQL a exibir sua mensagem de ajuda.
@@ -94,7 +94,7 @@ Na inicialização do servidor, a sintaxe para as variáveis do sistema é a mes
 
 * Ao especificar nomes de arquivos como valores de opção, evite o uso do caractere meta `~` do shell. Ele pode não ser interpretado conforme o esperado.
 
-Os valores de opção que contêm espaços devem ser citados quando fornecidos na linha de comando. Por exemplo, a opção `--execute` (ou `-e`) pode ser usada com **mysql** para passar uma ou mais declarações SQL separadas por ponto e vírgula ao servidor. Quando esta opção é usada, **mysql** executa as declarações no valor da opção e sai. As declarações devem ser fechadas com aspas. Por exemplo:
+Os valores de opção que contêm espaços devem ser citados quando fornecidos na string de comando. Por exemplo, a opção `--execute` (ou `-e`) pode ser usada com **mysql** para passar uma ou mais declarações SQL separadas por ponto e vírgula ao servidor. Quando esta opção é usada, **mysql** executa as declarações no valor da opção e sai. As declarações devem ser fechadas com aspas. Por exemplo:
 
 ```sql
 $> mysql -u root -p -e "SELECT VERSION();SELECT NOW()"
@@ -120,7 +120,7 @@ Para usar valores citados em uma declaração, você deve escapar as aspas inter
 
 #### 4.2.2.2 Usando arquivos de opção
 
-A maioria dos programas do MySQL pode ler as opções de inicialização a partir de arquivos de opção (às vezes chamados de arquivos de configuração). Os arquivos de opção fornecem uma maneira conveniente de especificar opções comumente usadas, para que elas não precisem ser inseridas na linha de comando toda vez que você executa um programa.
+A maioria dos programas do MySQL pode ler as opções de inicialização a partir de arquivos de opção (às vezes chamados de arquivos de configuração). Os arquivos de opção fornecem uma maneira conveniente de especificar opções comumente usadas, para que elas não precisem ser inseridas na string de comando toda vez que você executa um programa.
 
 Para determinar se um programa lê arquivos de opções, invoque-o com a opção `--help`. (Para `mysqld`, use `--verbose` e `--help`. Se o programa lê arquivos de opções, a mensagem de ajuda indica quais arquivos ele procura e quais grupos de opções ele reconhece.
 
@@ -252,37 +252,37 @@ Na tabela anterior, `~` representa o diretório de casa do usuário atual (o val
 
 *`DATADIR`* é comumente `/usr/local/mysql/data`, embora isso possa variar de acordo com a plataforma ou o método de instalação. O valor é o diretório de dados construído quando o MySQL foi compilado, não a localização especificada com a opção `--datadir` quando o `mysqld` começa. O uso de `--datadir` em tempo de execução não afeta onde o servidor procura os arquivos de opção que ele lê antes de processar quaisquer opções.
 
-Se forem encontradas várias instâncias de uma opção específica, a última instância prevalece, com uma exceção: para `mysqld`, a *primeira* instância da opção `--user` é usada como uma precaução de segurança, para evitar que um usuário especificado em um arquivo de opção seja sobrescrito na linha de comando.
+Se forem encontradas várias instâncias de uma opção específica, a última instância prevalece, com uma exceção: para `mysqld`, a *primeira* instância da opção `--user` é usada como uma precaução de segurança, para evitar que um usuário especificado em um arquivo de opção seja sobrescrito na string de comando.
 
 ##### Sintaxe do arquivo de opção
 
 A descrição a seguir sobre a sintaxe do arquivo de opção se aplica a arquivos que você edita manualmente. Isso exclui `.mylogin.cnf`, que é criado usando **mysql\_config\_editor** e é criptografado.
 
-Qualquer opção longa que possa ser dada na linha de comando ao executar um programa MySQL também pode ser dada em um arquivo de opções. Para obter a lista de opções disponíveis para um programa, execute-o com a opção `--help`. (Para `mysqld`, use `--verbose` e `--help`.).
+Qualquer opção longa que possa ser dada na string de comando ao executar um programa MySQL também pode ser dada em um arquivo de opções. Para obter a lista de opções disponíveis para um programa, execute-o com a opção `--help`. (Para `mysqld`, use `--verbose` e `--help`.).
 
-A sintaxe para especificar opções em um arquivo de opções é semelhante à sintaxe de linha de comando (consulte a Seção 4.2.2.1, “Usando opções na linha de comando”). No entanto, em um arquivo de opções, você omite as duas barras de insígnia no início do nome da opção e especifica apenas uma opção por linha. Por exemplo, `--quick` e `--host=localhost` na linha de comando devem ser especificados como `quick` e `host=localhost` em linhas separadas em um arquivo de opções. Para especificar uma opção na forma `--loose-opt_name` em um arquivo de opções, escreva-a como `loose-opt_name`.
+A sintaxe para especificar opções em um arquivo de opções é semelhante à sintaxe de string de comando (consulte a Seção 4.2.2.1, “Usando opções na string de comando”). No entanto, em um arquivo de opções, você omite as duas barras de insígnia no início do nome da opção e especifica apenas uma opção por string. Por exemplo, `--quick` e `--host=localhost` na string de comando devem ser especificados como `quick` e `host=localhost` em strings separadas em um arquivo de opções. Para especificar uma opção na forma `--loose-opt_name` em um arquivo de opções, escreva-a como `loose-opt_name`.
 
-Linhas vazias em arquivos de opções são ignoradas. Linhas não vazias podem ter qualquer uma das seguintes formas:
+Strings vazias em arquivos de opções são ignoradas. Strings não vazias podem ter qualquer uma das seguintes formas:
 
 * `#comment`, `;comment`
 
-As linhas de comentário começam com `#` ou `;`. Uma linha de comentário `#` pode começar no meio de uma linha também.
+As strings de comentário começam com `#` ou `;`. Uma string de comentário `#` pode começar no meio de uma string também.
 
 * `[group]`
 
-*`group`* é o nome do programa ou grupo para o qual você deseja definir opções. Após uma linha de grupo, quaisquer linhas de definição de opções se aplicam ao grupo nomeado até o final do arquivo de opções ou até que outra linha de grupo seja dada. Os nomes dos grupos de opções não são sensíveis ao caso.
+*`group`* é o nome do programa ou grupo para o qual você deseja definir opções. Após uma string de grupo, quaisquer strings de definição de opções se aplicam ao grupo nomeado até o final do arquivo de opções ou até que outra string de grupo seja dada. Os nomes dos grupos de opções não são sensíveis ao caso.
 
 * `opt_name`
 
-Isso é equivalente a `--opt_name` na linha de comando.
+Isso é equivalente a `--opt_name` na string de comando.
 
 * `opt_name=value`
 
-Isso é equivalente a `--opt_name=value` na linha de comando. Em um arquivo de opções, você pode ter espaços ao redor do caractere `=`, algo que não é verdade na linha de comando. O valor opcional pode ser fechado entre aspas simples ou duplas, o que é útil se o valor contiver um caractere de comentário `#`.
+Isso é equivalente a `--opt_name=value` na string de comando. Em um arquivo de opções, você pode ter espaços ao redor do caractere `=`, algo que não é verdade na string de comando. O valor opcional pode ser fechado entre aspas simples ou duplas, o que é útil se o valor contiver um caractere de comentário `#`.
 
 Espaços de início e de fim são automaticamente excluídos dos nomes e valores das opções.
 
-Você pode usar as sequências de escape `\b`, `\t`, `\n`, `\r`, `\\` e `\s` nos valores de opção para representar os caracteres de apagamento, tabulação, nova linha, retorno de carro, barra invertida e espaço. Nos arquivos de opção, essas regras de escape se aplicam:
+Você pode usar as sequências de escape `\b`, `\t`, `\n`, `\r`, `\\` e `\s` nos valores de opção para representar os caracteres de apagamento, tabulação, nova string, retorno de carro, barra invertida e espaço. Nos arquivos de opção, essas regras de escape se aplicam:
 
 * Um traço seguido por um caractere de sequência de escape válido é convertido para o caractere representado pela sequência. Por exemplo, `\s` é convertido em um espaço.
 
@@ -365,9 +365,9 @@ Nota
 
 Quaisquer arquivos que devem ser encontrados e incluídos usando a diretiva `!includedir` em sistemas operacionais Unix *devem* ter nomes de arquivo terminando em `.cnf`. Em Windows, essa diretiva verifica arquivos com a extensão `.ini` ou `.cnf`.
 
-Escreva o conteúdo de um arquivo de opção incluído como qualquer outro arquivo de opção. Isso significa que ele deve conter grupos de opções, cada um precedido por uma linha `[group]` que indica o programa ao qual as opções se aplicam.
+Escreva o conteúdo de um arquivo de opção incluído como qualquer outro arquivo de opção. Isso significa que ele deve conter grupos de opções, cada um precedido por uma string `[group]` que indica o programa ao qual as opções se aplicam.
 
-Enquanto um arquivo incluído está sendo processado, apenas as opções dos grupos que o programa atual está procurando são usadas. Outros grupos são ignorados. Suponha que um arquivo `my.cnf` contenha esta linha:
+Enquanto um arquivo incluído está sendo processado, apenas as opções dos grupos que o programa atual está procurando são usadas. Outros grupos são ignorados. Suponha que um arquivo `my.cnf` contenha esta string:
 
 ```sql
 !include /home/mydir/myopt.cnf
@@ -397,11 +397,11 @@ Para que as diretivas de inclusão funcionem, o caminho do arquivo não deve ser
 !include C:\\ProgramData\\MySQL\\MySQL Server\\myopts.ini
 ```
 
-Em Windows, se `!include /path/to/extra.ini` for a última linha do arquivo, certifique-se de que uma nova linha é anexada no final ou a linha é ignorada.
+Em Windows, se `!include /path/to/extra.ini` for a última string do arquivo, certifique-se de que uma nova string é anexada no final ou a string é ignorada.
 
-#### 4.2.2.3 Opções de linha de comando que afetam o manuseio de arquivos com Option
+#### 4.2.2.3 Opções de string de comando que afetam o manuseio de arquivos com Option
 
-A maioria dos programas do MySQL que suportam arquivos de opções lida com as seguintes opções. Como essas opções afetam o manuseio de arquivos de opções, elas devem ser fornecidas na linha de comando e não em um arquivo de opção. Para funcionar corretamente, cada uma dessas opções deve ser fornecida antes das outras, com essas exceções:
+A maioria dos programas do MySQL que suportam arquivos de opções lida com as seguintes opções. Como essas opções afetam o manuseio de arquivos de opções, elas devem ser fornecidas na string de comando e não em um arquivo de opção. Para funcionar corretamente, cada uma dessas opções deve ser fornecida antes das outras, com essas exceções:
 
 * `--print-defaults` pode ser usado imediatamente após `--defaults-file`, `--defaults-extra-file` ou `--login-path`.
 
@@ -576,7 +576,7 @@ Veja a introdução desta seção sobre as restrições sobre a posição na qua
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que os programas de cliente leem o arquivo de caminho de login `.mylogin.cnf`, se ele existir, mesmo quando o `--no-defaults` é usado. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo que o `--no-defaults` esteja presente. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que os programas de cliente leem o arquivo de caminho de login `.mylogin.cnf`, se ele existir, mesmo quando o `--no-defaults` é usado. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo que o `--no-defaults` esteja presente. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
 * `--print-defaults`
 
@@ -605,7 +605,7 @@ Veja a introdução desta seção sobre as restrições sobre a posição na qua
 
 #### 4.2.2.4 Modificadores de Opção de Programa
 
-Algumas opções são "booleanas" e controlam o comportamento que pode ser ativado ou desativado. Por exemplo, o cliente **mysql** suporta uma opção `--column-names` que determina se deve ou não exibir uma linha de nomes de colunas no início dos resultados da consulta. Por padrão, essa opção está habilitada. No entanto, você pode querer desabilitá-la em algumas situações, como ao enviar a saída do **mysql** para outro programa que espera ver apenas dados e não uma linha de cabeçalho inicial.
+Algumas opções são "booleanas" e controlam o comportamento que pode ser ativado ou desativado. Por exemplo, o cliente **mysql** suporta uma opção `--column-names` que determina se deve ou não exibir uma string de nomes de colunas no início dos resultados da consulta. Por padrão, essa opção está habilitada. No entanto, você pode querer desabilitá-la em algumas situações, como ao enviar a saída do **mysql** para outro programa que espera ver apenas dados e não uma string de cabeçalho inicial.
 
 Para desabilitar os nomes das colunas, você pode especificar a opção usando qualquer uma dessas formas:
 
@@ -689,14 +689,14 @@ Em versões mais antigas do MySQL, as opções do programa podiam ser especifica
 
 * A opção `--skip-grant` deve agora ser especificada como `--skip-grant-tables`.
 
-Sufixos para especificar um multiplicador de valor podem ser usados ao definir uma variável no momento da invocação do programa, mas não para definir o valor com `SET` no tempo de execução. Por outro lado, com `SET`, você pode atribuir o valor de uma variável usando uma expressão, o que não é verdade quando você define uma variável na inicialização do servidor. Por exemplo, a primeira das linhas a seguir é legal no momento da invocação do programa, mas a segunda não é:
+Sufixos para especificar um multiplicador de valor podem ser usados ao definir uma variável no momento da invocação do programa, mas não para definir o valor com `SET` no tempo de execução. Por outro lado, com `SET`, você pode atribuir o valor de uma variável usando uma expressão, o que não é verdade quando você define uma variável na inicialização do servidor. Por exemplo, a primeira das strings a seguir é legal no momento da invocação do programa, mas a segunda não é:
 
 ```sql
 $> mysql --max_allowed_packet=16M
 $> mysql --max_allowed_packet=16*1024*1024
 ```
 
-Por outro lado, a segunda das linhas a seguir é legal durante a execução, mas a primeira não é:
+Por outro lado, a segunda das strings a seguir é legal durante a execução, mas a primeira não é:
 
 ```sql
 mysql> SET GLOBAL max_allowed_packet=16M;
@@ -745,14 +745,14 @@ $> mysql --host 85.224.35.45 --user
 mysql: option '--user' requires an argument
 ```
 
-Neste caso, o **mysql** não conseguiu encontrar um valor após a opção `--user`, porque nada veio após ela na linha de comando. No entanto, se você omitir o valor para uma opção que *não* é a última opção a ser usada, você obterá um erro diferente que você pode não estar esperando:
+Neste caso, o **mysql** não conseguiu encontrar um valor após a opção `--user`, porque nada veio após ela na string de comando. No entanto, se você omitir o valor para uma opção que *não* é a última opção a ser usada, você obterá um erro diferente que você pode não estar esperando:
 
 ```sql
 $> mysql --host --user jon
 ERROR 2005 (HY000): Unknown MySQL server host '--user' (1)
 ```
 
-Porque o **mysql** assume que qualquer string que siga `--host` na linha de comando é um nome de host, `--host` `--user` é interpretado como `--host=--user`, e o cliente tenta se conectar a um servidor MySQL que está em execução em um host chamado “--user”.
+Porque o **mysql** assume que qualquer string que siga `--host` na string de comando é um nome de host, `--host` `--user` é interpretado como `--host=--user`, e o cliente tenta se conectar a um servidor MySQL que está em execução em um host chamado “--user”.
 
 As opções com valores padrão sempre exigem um sinal de igual ao atribuir um valor; não fazer isso causa um erro. Por exemplo, a opção do servidor MySQL `--log-error` tem o valor padrão `host_name.err`, onde *`host_name`* é o nome do host no qual o MySQL está em execução. Suponha que você esteja executando o MySQL em um computador cujo nome de host é “tonfisk”, e considere a seguinte invocação de `mysqld_safe`:
 
@@ -774,7 +774,7 @@ $> 080112 12:53:40 mysqld_safe Logging to '/usr/local/mysql/var/tonfisk.err'.
 $>
 ```
 
-O resultado é o mesmo, uma vez que `--log-error` não é seguido por nada mais na linha de comando, e fornece seu próprio valor padrão. (O caractere `&` informa ao sistema operacional que o MySQL deve ser executado em segundo plano; ele é ignorado pelo próprio MySQL.) Agora, suponha que você queira registrar erros em um arquivo chamado `my-errors.err`. Você pode tentar iniciar o servidor com `--log-error my-errors`, mas isso não tem o efeito desejado, como mostrado aqui:
+O resultado é o mesmo, uma vez que `--log-error` não é seguido por nada mais na string de comando, e fornece seu próprio valor padrão. (O caractere `&` informa ao sistema operacional que o MySQL deve ser executado em segundo plano; ele é ignorado pelo próprio MySQL.) Agora, suponha que você queira registrar erros em um arquivo chamado `my-errors.err`. Você pode tentar iniciar o servidor com `--log-error my-errors`, mas isso não tem o efeito desejado, como mostrado aqui:
 
 ```sql
 $> mysqld_safe --log-error my-errors &
@@ -786,7 +786,7 @@ $> 080111 22:53:31 mysqld_safe Logging to '/usr/local/mysql/var/tonfisk.err'.
 [1]+  Done                    ./mysqld_safe --log-error my-errors
 ```
 
-O servidor tentou começar a usar `/usr/local/mysql/var/tonfisk.err` como o log de erro, mas depois desligou. Examinando as últimas linhas desse arquivo, é possível ver a razão:
+O servidor tentou começar a usar `/usr/local/mysql/var/tonfisk.err` como o log de erro, mas depois desligou. Examinando as últimas strings desse arquivo, é possível ver a razão:
 
 ```sql
 $> tail /usr/local/mysql/var/tonfisk.err
@@ -869,7 +869,7 @@ mysql> SELECT USER();
 1 row in set (0.00 sec)
 ```
 
-Isso não é o mesmo comportamento que com a linha de comando, onde o sinal de igual não é necessário:
+Isso não é o mesmo comportamento que com a string de comando, onde o sinal de igual não é necessário:
 
 ```sql
 $> mysql --user jon --host tonfisk
@@ -892,7 +892,7 @@ Especificar uma opção que exige um valor sem um valor em um arquivo de opçõe
 
 ### 4.2.3 Opções de comando para conectar ao servidor
 
-Esta seção descreve as opções suportadas pela maioria dos programas clientes do MySQL que controlam como os programas clientes estabelecem conexões com o servidor e se as conexões são criptografadas. Essas opções podem ser fornecidas na linha de comando ou em um arquivo de opção.
+Esta seção descreve as opções suportadas pela maioria dos programas clientes do MySQL que controlam como os programas clientes estabelecem conexões com o servidor e se as conexões são criptografadas. Essas opções podem ser fornecidas na string de comando ou em um arquivo de opção.
 
 * Opções de comando para estabelecimento de conexão
 * Opções de comando para conexões criptografadas
@@ -932,7 +932,7 @@ Esta seção descreve as opções que controlam a forma como os programas do cli
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 </tr>
 <tr>
@@ -962,7 +962,7 @@ Esta seção descreve as opções que controlam a forma como os programas do cli
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 </tr>
 <tr>
@@ -991,7 +991,7 @@ O host em que o servidor MySQL está sendo executado. O valor pode ser um nome d
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o programa de cliente solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o programa de cliente não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -999,7 +999,7 @@ Para especificar explicitamente que não há senha e que o programa de cliente n
 
   <table frame="box" rules="all" summary="Properties for pipe"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -1059,9 +1059,9 @@ Esta opção só se aplica se o servidor foi iniciado com a variável de sistema
 
   <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
-Em Unix, o nome do arquivo de soquete Unix a ser usado para conexões feitas usando um tubo nomeado para um servidor local. O nome padrão do arquivo de soquete Unix é `/tmp/mysql.sock`.
+Em Unix, o nome do arquivo de soquete Unix a ser usado para conexões feitas usando um pipe nomeado para um servidor local. O nome padrão do arquivo de soquete Unix é `/tmp/mysql.sock`.
 
-Em Windows, o nome do tubo nomeado a ser usado para conexões a um servidor local. O nome padrão do tubo do Windows é `MySQL`. O nome do tubo não é sensível ao caso.
+Em Windows, o nome do pipe nomeado a ser usado para conexões a um servidor local. O nome padrão do pipe do Windows é `MySQL`. O nome do pipe não é sensível ao caso.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -1316,9 +1316,9 @@ Para especificar quais protocolos TLS o servidor permite, defina a variável de 
 
 ### 4.2.4 Conectando ao servidor MySQL usando opções de comando
 
-Esta seção descreve o uso de opções de linha de comando para especificar como estabelecer conexões ao servidor MySQL, para clientes como **mysql** ou **mysqldump**. Para informações adicionais se você não conseguir se conectar, consulte a Seção 6.2.17, “Soluções para problemas de conexão com MySQL”.
+Esta seção descreve o uso de opções de string de comando para especificar como estabelecer conexões ao servidor MySQL, para clientes como **mysql** ou **mysqldump**. Para informações adicionais se você não conseguir se conectar, consulte a Seção 6.2.17, “Soluções para problemas de conexão com MySQL”.
 
-Para que um programa de cliente se conecte ao servidor MySQL, ele deve usar os parâmetros de conexão adequados, como o nome do host onde o servidor está sendo executado e o nome de usuário e senha da sua conta MySQL. Cada parâmetro de conexão tem um valor padrão, mas você pode substituir os valores padrão conforme necessário, usando opções de programa especificadas na linha de comando ou em um arquivo de opção.
+Para que um programa de cliente se conecte ao servidor MySQL, ele deve usar os parâmetros de conexão adequados, como o nome do host onde o servidor está sendo executado e o nome de usuário e senha da sua conta MySQL. Cada parâmetro de conexão tem um valor padrão, mas você pode substituir os valores padrão conforme necessário, usando opções de programa especificadas na string de comando ou em um arquivo de opção.
 
 Os exemplos aqui usam o programa cliente **mysql**, mas os princípios se aplicam a outros clientes, como **mysqldump**, **mysqladmin** ou **mysqlshow**.
 
@@ -1338,7 +1338,7 @@ Como não há opções de parâmetros, os valores padrão se aplicam:
 
 * Para **mysql**, o primeiro argumento não opcional é considerado o nome do banco de dados padrão. Como não há tal argumento, **mysql** não seleciona nenhum banco de dados padrão.
 
-Para especificar o nome do host e o nome do usuário explicitamente, bem como uma senha, forneça opções apropriadas na linha de comando. Para selecionar um banco de dados padrão, adicione um argumento de nome de banco de dados. Exemplos:
+Para especificar o nome do host e o nome do usuário explicitamente, bem como uma senha, forneça opções apropriadas na string de comando. Para selecionar um banco de dados padrão, adicione um argumento de nome de banco de dados. Exemplos:
 
 ```sql
 mysql --host=localhost --user=myname --password=password mydb
@@ -1349,11 +1349,11 @@ Para as opções de senha, o valor da senha é opcional:
 
 * Se você usar a opção `--password` ou `-p` e especificar um valor de senha, não deve haver *espaço* entre `--password=` ou `-p` e a senha que o segue.
 
-* Se você usar `--password` ou `-p`, mas não especificar um valor de senha, o programa de cliente solicitará que você insira a senha. A senha não será exibida enquanto você a digita. Isso é mais seguro do que fornecer a senha na linha de comando, o que pode permitir que outros usuários em seu sistema vejam a linha de senha ao executar um comando como **ps**. Veja a Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”.
+* Se você usar `--password` ou `-p`, mas não especificar um valor de senha, o programa de cliente solicitará que você insira a senha. A senha não será exibida enquanto você a digita. Isso é mais seguro do que fornecer a senha na string de comando, o que pode permitir que outros usuários em seu sistema vejam a string de senha ao executar um comando como **ps**. Veja a Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”.
 
 * Para especificar explicitamente que não há senha e que o programa de cliente não deve solicitar uma senha, use a opção `--skip-password`.
 
-Como mencionado anteriormente, incluir o valor da senha na linha de comando é um risco de segurança. Para evitar esse risco, especifique a opção `--password` ou `-p` sem qualquer valor de senha subsequente:
+Como mencionado anteriormente, incluir o valor da senha na string de comando é um risco de segurança. Para evitar esse risco, especifique a opção `--password` ou `-p` sem qualquer valor de senha subsequente:
 
 ```sql
 mysql --host=localhost --user=myname --password mydb
@@ -1372,7 +1372,7 @@ Os programas do cliente determinam o tipo de conexão a ser feita da seguinte fo
 
 + Em Unix, os programas do MySQL tratam o nome do host `localhost` de maneira especial, de uma forma que provavelmente é diferente do que você espera em comparação com outros programas baseados em rede: o cliente se conecta usando um arquivo de soquete Unix. A opção `--socket` ou a variável de ambiente `MYSQL_UNIX_PORT` pode ser usada para especificar o nome do soquete.
 
-* Em Windows, se `host` é `.` (período), ou o TCP/IP não está habilitado e `--socket` não é especificado ou o host está vazio, o cliente se conecta usando um tubo nomeado, se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Se as conexões por tubo nomeado não forem suportadas ou se o usuário que está fazendo a conexão não for membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`, ocorrerá um erro.
+* Em Windows, se `host` é `.` (período), ou o TCP/IP não está habilitado e `--socket` não é especificado ou o host está vazio, o cliente se conecta usando um pipe nomeado, se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Se as conexões por pipe nomeado não forem suportadas ou se o usuário que está fazendo a conexão não for membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`, ocorrerá um erro.
 
 * Caso contrário, a conexão usa TCP/IP.
 
@@ -1420,7 +1420,7 @@ mysql --port=13306 --protocol=TCP
 
 Para obter informações adicionais sobre as opções que controlam a forma como os programas do cliente estabelecem conexões com o servidor, consulte a Seção 4.2.3, “Opções de comando para conectar-se ao servidor”.
 
-É possível especificar os parâmetros de conexão sem inseri-los na linha de comando cada vez que você invoca um programa cliente:
+É possível especificar os parâmetros de conexão sem inseri-los na string de comando cada vez que você invoca um programa cliente:
 
 * Especifique os parâmetros de conexão na seção `[client]` de um arquivo de opção. A seção relevante do arquivo pode parecer assim:
 
@@ -1542,7 +1542,7 @@ O controle de compressão se aplica a conexões ao servidor por programas de cli
 
 Esses parâmetros de configuração estão disponíveis para controlar a compressão da conexão:
 
-* Os programas do cliente suportam uma opção de linha de comando `--compress` para especificar o uso de compressão para a conexão com o servidor.
+* Os programas do cliente suportam uma opção de string de comando `--compress` para especificar o uso de compressão para a conexão com o servidor.
 
 * Para os programas que utilizam a API C do MySQL, habilitar a opção `MYSQL_OPT_COMPRESS` para a função `mysql_options()` especifica o uso de compressão para a conexão com o servidor.
 
@@ -1575,13 +1575,13 @@ Para **csh** e **tcsh**, use **setenv** para tornar a variável do shell dispon�
 setenv MYSQL_TCP_PORT 3306
 ```
 
-Os comandos para definir variáveis de ambiente podem ser executados na linha de comando para produzir efeito imediatamente, mas as configurações persistem apenas até que você faça o logout. Para que as configurações produzam efeito cada vez que você faz o login, use a interface fornecida pelo seu sistema ou coloque o comando ou os comandos apropriados em um arquivo de inicialização que o interpretador de comandos lê a cada vez que ele é iniciado.
+Os comandos para definir variáveis de ambiente podem ser executados na string de comando para produzir efeito imediatamente, mas as configurações persistem apenas até que você faça o logout. Para que as configurações produzam efeito cada vez que você faz o login, use a interface fornecida pelo seu sistema ou coloque o comando ou os comandos apropriados em um arquivo de inicialização que o interpretador de comandos lê a cada vez que ele é iniciado.
 
 Em Windows, você pode definir variáveis de ambiente usando o Painel de Controle do Sistema (em Avançado).
 
 No Unix, os arquivos típicos de inicialização do shell são `.bashrc` ou `.bash_profile` para **bash**, ou `.tcshrc` para **tcsh**.
 
-Suponha que seus programas MySQL estejam instalados em `/usr/local/mysql/bin` e que você queira facilitar a invocação desses programas. Para fazer isso, defina o valor da variável de ambiente `PATH` para incluir esse diretório. Por exemplo, se seu shell for **bash**, adicione a seguinte linha ao seu arquivo `.bashrc`:
+Suponha que seus programas MySQL estejam instalados em `/usr/local/mysql/bin` e que você queira facilitar a invocação desses programas. Para fazer isso, defina o valor da variável de ambiente `PATH` para incluir esse diretório. Por exemplo, se seu shell for **bash**, adicione a seguinte string ao seu arquivo `.bashrc`:
 
 ```sql
 PATH=${PATH}:/usr/local/mysql/bin
@@ -1589,7 +1589,7 @@ PATH=${PATH}:/usr/local/mysql/bin
 
 O **bash** utiliza diferentes arquivos de inicialização para shells de login e não de login, então você pode querer adicionar a configuração para `.bashrc` para shells de login e para `.bash_profile` para shells não de login para garantir que `PATH` seja definido independentemente.
 
-Se sua concha for **tcsh**, adicione a seguinte linha ao seu arquivo `.tcshrc`:
+Se sua concha for **tcsh**, adicione a seguinte string ao seu arquivo `.tcshrc`:
 
 ```sql
 setenv PATH ${PATH}:/usr/local/mysql/bin

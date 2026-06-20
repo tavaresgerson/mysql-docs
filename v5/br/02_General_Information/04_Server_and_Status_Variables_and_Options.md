@@ -198,7 +198,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `binlog_gtid_simple_recovery`: Controla como os registros binários são iterados durante a recuperação do GTID. Adicionado no MySQL 5.7.6.
 
-* `binlog_transaction_dependency_history_size`: Número de hashes de linha mantidos para procurar transações que foram atualizadas pela última linha. Adicionada no MySQL 5.7.22.
+* `binlog_transaction_dependency_history_size`: Número de hashes de string mantidos para procurar transações que foram atualizadas pela última string. Adicionada no MySQL 5.7.22.
 
 * `binlog_transaction_dependency_tracking`: Fonte de informações sobre a dependência (marcadores de commit ou conjuntos de escrita de transação) a partir da qual se pode avaliar quais transações podem ser executadas em paralelo pelo aplicativo multithread do replica. Adicionado no MySQL 5.7.22.
 
@@ -266,7 +266,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `group_replication_member_weight`: Chance de este membro ser eleito como primário. Adicionada no MySQL 5.7.20.
 
-* `group_replication_poll_spin_loops`: Número de vezes que o fio de comunicação do grupo espera. Adicionado no MySQL 5.7.17.
+* `group_replication_poll_spin_loops`: Número de vezes que o thread de comunicação do grupo espera. Adicionado no MySQL 5.7.17.
 
 * `group_replication_recovery_complete_at`: Políticas de recuperação ao lidar com transações em cache após a transferência de estado. Adicionada no MySQL 5.7.17.
 
@@ -322,7 +322,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `innodb_deadlock_detect`: Habilita ou desabilita a detecção de travamento. Adicionada no MySQL 5.7.15.
 
-* `innodb_default_row_format`: Formato de linha padrão para tabelas InnoDB. Adicionada no MySQL 5.7.9.
+* `innodb_default_row_format`: Formato de string padrão para tabelas InnoDB. Adicionada no MySQL 5.7.9.
 
 * `innodb_disable_resize_buffer_pool_debug`: Desabilita o redimensionamento do buffer pool do InnoDB. Foi adicionado no MySQL 5.7.6.
 
@@ -378,7 +378,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `keyring-migration-port`: Número de porta TCP/IP para conectar ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
 
-* `keyring-migration-socket`: Arquivo de socket Unix ou tubo nomeado do Windows para conectar-se ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
+* `keyring-migration-socket`: Arquivo de socket Unix ou pipe nomeado do Windows para conectar-se ao servidor em execução para migração de chave. Adicionado no MySQL 5.7.21.
 
 * `keyring-migration-source`: Plugin de chave de segurança de origem migratória. Adicionado no MySQL 5.7.21.
 
@@ -476,7 +476,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `mysqlx_ssl_key`: Arquivo que contém a chave X.509. Adicionada no MySQL 5.7.12.
 
-* `named_pipe_full_access_group`: Nome do grupo do Windows que recebe acesso total ao tubo nomeado. Foi adicionado no MySQL 5.7.25.
+* `named_pipe_full_access_group`: Nome do grupo do Windows que recebe acesso total ao pipe nomeado. Foi adicionado no MySQL 5.7.25.
 
 * `ngram_token_size`: Define o tamanho do token de n-gramas para o analisador de busca de texto completo ngram. Foi adicionado no MySQL 5.7.6.
 
@@ -490,9 +490,9 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `performance-schema-consumer-events-transactions-history-long`: Configure o consumidor `events-transactions-history-long`. Adicionado no MySQL 5.7.3.
 
-* `performance_schema_events_transactions_history_long_size`: Número de linhas na tabela `events_transactions_history_long`. Adicionada no MySQL 5.7.3.
+* `performance_schema_events_transactions_history_long_size`: Número de strings na tabela `events_transactions_history_long`. Adicionada no MySQL 5.7.3.
 
-* `performance_schema_events_transactions_history_size`: Número de linhas por fio na tabela `events_transactions_history`. Adicionada no MySQL 5.7.3.
+* `performance_schema_events_transactions_history_size`: Número de strings por thread na tabela `events_transactions_history`. Adicionada no MySQL 5.7.3.
 
 * `performance_schema_max_digest_length`: Tamanho máximo do esquema de digest de desempenho em bytes. Adicionado no MySQL 5.7.8.
 
@@ -502,7 +502,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `performance_schema_max_metadata_locks`: Número máximo de bloqueios de metadados a serem rastreados. Adicionado no MySQL 5.7.3.
 
-* `performance_schema_max_prepared_statements_instances`: Número de linhas na tabela `prepared_statements_instances`. Adicionada no MySQL 5.7.4.
+* `performance_schema_max_prepared_statements_instances`: Número de strings na tabela `prepared_statements_instances`. Adicionada no MySQL 5.7.4.
 
 * `performance_schema_max_program_instances`: Número máximo de programas armazenados para estatísticas. Adicionado no MySQL 5.7.2.
 
@@ -566,11 +566,11 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 * `thread_pool_high_priority_connection`: Se a sessão atual é de alta prioridade. Adicionada no MySQL 5.7.9.
 
-* `thread_pool_max_unused_threads`: Número máximo permitido de fios não utilizados. Adicionado no MySQL 5.7.9.
+* `thread_pool_max_unused_threads`: Número máximo permitido de threads não utilizados. Adicionado no MySQL 5.7.9.
 
 * `thread_pool_prio_kickup_timer`: Quanto tempo antes a declaração é movida para execução de alta prioridade. Adicionada no MySQL 5.7.9.
 
-* `thread_pool_size`: Número de grupos de fios no conjunto de fios. Adicionado no MySQL 5.7.9.
+* `thread_pool_size`: Número de grupos de threads no conjunto de threads. Adicionado no MySQL 5.7.9.
 
 * `thread_pool_stall_limit`: Quanto tempo antes a declaração é definida como travada. Adicionada no MySQL 5.7.9.
 
@@ -616,7 +616,7 @@ As seguintes variáveis de sistema, variáveis de status e opções foram descon
 
 * `Slave_received_heartbeats`: Número de batimentos cardíacos recebidos pela réplica desde o último reajuste. Desatualizado no MySQL 5.7.6.
 
-* `Slave_retried_transactions`: Número total de vezes desde a inicialização em que o fio de replicação SQL refez as transações. Desatualizado no MySQL 5.7.6.
+* `Slave_retried_transactions`: Número total de vezes desde a inicialização em que o thread de replicação SQL refez as transações. Desatualizado no MySQL 5.7.6.
 
 * `Slave_running`: Estado deste servidor como replica (status de thread de I/O de replicação). Desatualizado no MySQL 5.7.6.
 
@@ -628,7 +628,7 @@ As seguintes variáveis de sistema, variáveis de status e opções foram descon
 
 * `des-key-file`: Carregar chaves para `des_encrypt()` e `des_encrypt` a partir do arquivo fornecido. Desatualizado no MySQL 5.7.6.
 
-* `disable-partition-engine-check`: Se deve desabilitar a verificação de inicialização para tabelas sem particionamento nativo. Depreendido no MySQL 5.7.17.
+* `disable-partition-engine-check`: Se deve desabilitar a verificação de inicialização para tabelas sem particionamento nativo. Descontinuado no MySQL 5.7.17.
 
 * `group_replication_allow_local_disjoint_gtids_join`: Permitir que o servidor atual se junte ao grupo mesmo que tenha transações não presentes no grupo. Desatualizado no MySQL 5.7.21.
 
@@ -636,7 +636,7 @@ As seguintes variáveis de sistema, variáveis de status e opções foram descon
 
 * `have_query_cache`: Se o mysqld suporta cache de consulta. Desatualizado no MySQL 5.7.20.
 
-* `ignore-db-dir`: Trate o diretório como um diretório não-de-banco de dados. Depreendido no MySQL 5.7.16.
+* `ignore-db-dir`: Trate o diretório como um diretório não-de-banco de dados. Descontinuado no MySQL 5.7.16.
 
 * `ignore_db_dirs`: Diretórios tratados como diretórios não-de-banco de dados. Descontinuado no MySQL 5.7.16.
 
@@ -662,7 +662,7 @@ As seguintes variáveis de sistema, variáveis de status e opções foram descon
 
 * `metadata_locks_hash_instances`: Número de hashes de bloqueio de metadados. Desatualizado no MySQL 5.7.4.
 
-* `myisam_repair_threads`: Número de fios a serem usados ao reparar tabelas MyISAM. 1 desativa a reparação paralela. Desatualizado no MySQL 5.7.38.
+* `myisam_repair_threads`: Número de threads a serem usados ao reparar tabelas MyISAM. 1 desativa a reparação paralela. Desatualizado no MySQL 5.7.38.
 
 * `old_passwords`: Seleciona o método de hashing de senha para `PASSWORD()`. Desatualizado no MySQL 5.7.6.
 
@@ -728,7 +728,7 @@ As seguintes variáveis de sistema, variáveis de status e opções foram removi
 
 * `max_statement_time`: Valor do tempo de espera para a execução da declaração. Removido no MySQL 5.7.8.
 
-* `myisam_repair_threads`: Número de fios a serem usados ao reparar tabelas MyISAM. 1 desativa a reparação paralela. Removido no MySQL 5.7.39.
+* `myisam_repair_threads`: Número de threads a serem usados ao reparar tabelas MyISAM. 1 desativa a reparação paralela. Removido no MySQL 5.7.39.
 
 * `simplified_binlog_gtid_recovery`: Renomeado para `binlog_gtid_simple_recovery`. Removido no MySQL 5.7.6.
 

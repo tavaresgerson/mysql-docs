@@ -45,7 +45,7 @@ Algumas variáveis do sistema em um membro do grupo de replicação em grupo, in
 
 Importante
 
-* Várias variáveis do sistema para a Replicação por Grupo não são completamente validadas durante o início do servidor se elas forem passadas como argumentos na linha de comando para o servidor. Essas variáveis do sistema incluem `group_replication_group_name`, `group_replication_single_primary_mode`, `group_replication_force_members`, as variáveis SSL e as variáveis do sistema de controle de fluxo. Elas só são totalmente validadas após o servidor ter sido iniciado.
+* Várias variáveis do sistema para a Replicação por Grupo não são completamente validadas durante o início do servidor se elas forem passadas como argumentos na string de comando para o servidor. Essas variáveis do sistema incluem `group_replication_group_name`, `group_replication_single_primary_mode`, `group_replication_force_members`, as variáveis SSL e as variáveis do sistema de controle de fluxo. Elas só são totalmente validadas após o servidor ter sido iniciado.
 
 * As variáveis do sistema para a Replicação por Grupo que especificam endereços IP ou nomes de host para os membros do grupo não são validadas até que uma declaração `START GROUP_REPLICATION` seja emitida. O Sistema de Comunicação do Grupo (GCS) da Replicação por Grupo não está disponível para validar os valores até esse ponto.
 
@@ -313,7 +313,7 @@ Durante a eleição de um novo primário, os membros acima seriam classificados 
 
   <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>4
 
-O número de vezes que o fio de comunicação do grupo aguarda que o mutex do motor de comunicação seja liberado antes de a thread aguardar mais mensagens de rede recebidas.
+O número de vezes que o thread de comunicação do grupo aguarda que o mutex do motor de comunicação seja liberado antes de a thread aguardar mais mensagens de rede recebidas.
 
 * `group_replication_recovery_complete_at`
 

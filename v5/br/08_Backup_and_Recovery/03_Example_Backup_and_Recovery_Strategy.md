@@ -75,14 +75,14 @@ $> mysqldump --single-transaction --flush-logs --master-data=2 \
          --all-databases > backup_sunday_1_PM.sql
 ```
 
-Após executar este comando, o diretório de dados contém um novo arquivo de log binário, `gbichot2-bin.000007`, porque a opção `--flush-logs` faz com que o servidor limpe seus logs. A opção `--master-data` faz com que o **mysqldump** escreva informações de log binário em sua saída, então o arquivo de dump resultante `.sql` inclui essas linhas:
+Após executar este comando, o diretório de dados contém um novo arquivo de log binário, `gbichot2-bin.000007`, porque a opção `--flush-logs` faz com que o servidor limpe seus logs. A opção `--master-data` faz com que o **mysqldump** escreva informações de log binário em sua saída, então o arquivo de dump resultante `.sql` inclui essas strings:
 
 ```sql
 -- Position to start replication or point-in-time recovery from
 -- CHANGE MASTER TO MASTER_LOG_FILE='gbichot2-bin.000007',MASTER_LOG_POS=4;
 ```
 
-Como o comando **mysqldump** fez um backup completo, essas linhas significam duas coisas:
+Como o comando **mysqldump** fez um backup completo, essas strings significam duas coisas:
 
 * O arquivo de descarte contém todas as alterações feitas antes de quaisquer alterações escritas no arquivo de registro binário `gbichot2-bin.000007` ou superior.
 

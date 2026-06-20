@@ -52,7 +52,7 @@ clique em Executar.
 
 1. Abra uma janela de terminal (prompt de comando no Windows) e navegue até o local dos binários do MySQL (por exemplo, `/usr/bin/` no Linux).
 
-2. Inicie o cliente de linha de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
+2. Inicie o cliente de string de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
 
         ```sql
         mysql -u user -p
@@ -97,7 +97,7 @@ Se você encontrar problemas com a instalação do X Plugin, ou se deseja saber 
 
 A instalação do X Plugin cria uma conta de usuário `mysqlxsys@localhost`. Se, por algum motivo, a criação da conta de usuário falhar, a instalação do X Plugin também falhará. Aqui está uma explicação sobre o que a conta de usuário `mysqlxsys@localhost` é e o que fazer quando sua criação falhar.
 
-O processo de instalação do X Plugin utiliza o usuário `root` do MySQL para criar uma conta interna para o usuário `mysqlxsys@localhost`. A conta `mysqlxsys@localhost` é usada pelo X Plugin para autenticação de usuários externos contra o sistema de conta MySQL e para matar sessões quando solicitado por um usuário privilegiado. A conta `mysqlxsys@localhost` é criada como bloqueada, portanto, não pode ser usada para fazer login por usuários externos. Se, por algum motivo, a conta MySQL `root` não estiver disponível, antes de iniciar a instalação do X Plugin, você deve criar manualmente o usuário `mysqlxsys@localhost` emitindo as seguintes declarações no cliente de linha de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
+O processo de instalação do X Plugin utiliza o usuário `root` do MySQL para criar uma conta interna para o usuário `mysqlxsys@localhost`. A conta `mysqlxsys@localhost` é usada pelo X Plugin para autenticação de usuários externos contra o sistema de conta MySQL e para matar sessões quando solicitado por um usuário privilegiado. A conta `mysqlxsys@localhost` é criada como bloqueada, portanto, não pode ser usada para fazer login por usuários externos. Se, por algum motivo, a conta MySQL `root` não estiver disponível, antes de iniciar a instalação do X Plugin, você deve criar manualmente o usuário `mysqlxsys@localhost` emitindo as seguintes declarações no cliente de string de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
 
 ```sql
 CREATE USER IF NOT EXISTS mysqlxsys@localhost IDENTIFIED WITH
@@ -108,7 +108,7 @@ GRANT SUPER ON *.* TO mysqlxsys@localhost;
 
 ### Desinstalando o Plugin X
 
-Se você quiser desinstalar (desativar) o Plugin X, execute a seguinte declaração no cliente de linha de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
+Se você quiser desinstalar (desativar) o Plugin X, execute a seguinte declaração no cliente de string de comando [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"):
 
 ```sql
 UNINSTALL PLUGIN mysqlx;

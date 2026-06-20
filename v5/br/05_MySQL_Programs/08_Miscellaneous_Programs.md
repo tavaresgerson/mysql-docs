@@ -99,7 +99,7 @@ replace from to [from to] ... < file_name
 
 *`from`* representa uma cadeia de caracteres a ser procurada e *`to`* representa sua substituição. Pode haver um ou mais pares de cadeias de caracteres.
 
-Use a opção `--` para indicar onde a lista de substituição de strings termina e onde os nomes dos arquivos começam. Neste caso, qualquer arquivo nomeado na linha de comando é modificado no local, então você pode querer fazer uma cópia do original antes de convertê-lo. *`replace`* imprime uma mensagem indicando quais dos arquivos de entrada ele realmente modifica.
+Use a opção `--` para indicar onde a lista de substituição de strings termina e onde os nomes dos arquivos começam. Neste caso, qualquer arquivo nomeado na string de comando é modificado no local, então você pode querer fazer uma cópia do original antes de convertê-lo. *`replace`* imprime uma mensagem indicando quais dos arquivos de entrada ele realmente modifica.
 
 Se a opção `--` não for fornecida, **replace** lê a entrada padrão e escreve na saída padrão.
 

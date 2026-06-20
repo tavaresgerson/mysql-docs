@@ -21,9 +21,9 @@ Essa consulta ilustra várias coisas sobre o **mysql**:
 
 * Quando você emite uma consulta, o **mysql** envia-a para o servidor para execução e exibe os resultados, e então imprime outro prompt `mysql>` para indicar que está pronto para outra consulta.
 
-* **mysql** exibe a saída da consulta em forma tabular (linhas e colunas). A primeira linha contém rótulos para as colunas. As linhas seguintes são os resultados da consulta. Normalmente, os rótulos das colunas são os nomes das colunas que você extrai das tabelas do banco de dados. Se você está recuperando o valor de uma expressão em vez de uma coluna de tabela (como no exemplo mostrado acima), **mysql** rotula a coluna usando a própria expressão.
+* **mysql** exibe a saída da consulta em forma tabular (strings e colunas). A primeira string contém rótulos para as colunas. As strings seguintes são os resultados da consulta. Normalmente, os rótulos das colunas são os nomes das colunas que você extrai das tabelas do banco de dados. Se você está recuperando o valor de uma expressão em vez de uma coluna de tabela (como no exemplo mostrado acima), **mysql** rotula a coluna usando a própria expressão.
 
-* **mysql** mostra quantos registros foram retornados e quanto tempo a consulta levou para ser executada, o que lhe dá uma ideia aproximada do desempenho do servidor. Esses valores são imprecisos porque representam o tempo do relógio (não CPU ou tempo da máquina) e porque são afetados por fatores como carga do servidor e latência da rede. (Por economia de espaço, a linha “registros no conjunto” às vezes não é mostrada nos exemplos restantes deste capítulo.)
+* **mysql** mostra quantos registros foram retornados e quanto tempo a consulta levou para ser executada, o que lhe dá uma ideia aproximada do desempenho do servidor. Esses valores são imprecisos porque representam o tempo do relógio (não CPU ou tempo da máquina) e porque são afetados por fatores como carga do servidor e latência da rede. (Por economia de espaço, a string “registros no conjunto” às vezes não é mostrada nos exemplos restantes deste capítulo.)
 
 As palavras-chave podem ser inseridas em qualquer letra. As seguintes consultas são equivalentes:
 
@@ -45,7 +45,7 @@ mysql> SELECT SIN(PI()/4), (4+1)*5;
 1 row in set (0.02 sec)
 ```
 
-As consultas exibidas até agora foram declarações relativamente curtas, de uma linha. Você pode até inserir várias declarações em uma única linha. Basta encerrar cada uma com um ponto e vírgula:
+As consultas exibidas até agora foram declarações relativamente curtas, de uma string. Você pode até inserir várias declarações em uma única string. Basta encerrar cada uma com um ponto e vírgula:
 
 ```sql
 mysql> SELECT VERSION(); SELECT NOW();
@@ -64,9 +64,9 @@ mysql> SELECT VERSION(); SELECT NOW();
 1 row in set (0.00 sec)
 ```
 
-Uma consulta não precisa ser dada em uma única linha, portanto, consultas longas que exigem várias linhas não são um problema. **mysql** determina onde sua declaração termina, procurando o ponto-e-vírgula que termina, e não procurando o fim da linha de entrada. (Em outras palavras, **mysql** aceita entrada de formato livre: coleta linhas de entrada, mas não as executa até que veja o ponto-e-vírgula.)
+Uma consulta não precisa ser dada em uma única string, portanto, consultas longas que exigem várias strings não são um problema. **mysql** determina onde sua declaração termina, procurando o ponto-e-vírgula que termina, e não procurando o fim da string de entrada. (Em outras palavras, **mysql** aceita entrada de formato livre: coleta strings de entrada, mas não as executa até que veja o ponto-e-vírgula.)
 
-Aqui está uma declaração simples de várias linhas:
+Aqui está uma declaração simples de várias strings:
 
 ```sql
 mysql> SELECT
@@ -80,7 +80,7 @@ mysql> SELECT
 +---------------+--------------+
 ```
 
-Neste exemplo, observe como o prompt muda de `mysql>` para `->` após inserir a primeira linha de uma consulta de várias linhas. É assim que o **mysql** indica que ainda não viu uma declaração completa e está esperando pelo resto. O prompt é seu amigo, porque fornece feedback valioso. Se você usar esse feedback, sempre poderá estar ciente do que o **mysql** está esperando.
+Neste exemplo, observe como o prompt muda de `mysql>` para `->` após inserir a primeira string de uma consulta de várias strings. É assim que o **mysql** indica que ainda não viu uma declaração completa e está esperando pelo resto. O prompt é seu amigo, porque fornece feedback valioso. Se você usar esse feedback, sempre poderá estar ciente do que o **mysql** está esperando.
 
 Se você decidir que não quer executar uma consulta que está em processo de inserir, cancele-a digitando `\c`:
 
@@ -95,9 +95,9 @@ Aqui, também, observe o prompt. Ele volta para `mysql>` depois que você digita
 
 A tabela a seguir mostra cada um dos prompts que você pode ver e resume o que eles significam sobre o estado em que o **mysql** está.
 
-<table summary="MySQL prompts and the meaning of each prompt."><col style="width: 10%"/><col style="width: 80%"/><thead><tr> <th>Prompt</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>mysql&gt;</code></td> <td>Pronto para nova consulta</td> </tr><tr> <td><code>-&gt;</code></td> <td>Esperando pela próxima linha de consulta de várias linhas</td> </tr><tr> <td><code>'&gt;</code></td> <td>Esperando para a próxima linha, esperando a conclusão de uma string que começou com uma única citação (<code>'</code>)</td> </tr><tr> <td><code>"&gt;</code></td> <td>Esperando para a próxima linha, esperando a conclusão de uma string que começou com uma citação dupla (<code>"</code>)</td> </tr><tr> <td><code>`&gt;</code></td> <td>Esperando para a próxima linha, esperando a conclusão de um identificador que começou com uma barra invertida (<code>`</code>)</td> </tr><tr> <td><code>/*&gt;</code></td> <td>Esperando pela próxima linha, esperando a conclusão de um comentário que começou com<code>/*</code></td> </tr></tbody></table>
+<table summary="MySQL prompts and the meaning of each prompt."><col style="width: 10%"/><col style="width: 80%"/><thead><tr> <th>Prompt</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>mysql&gt;</code></td> <td>Pronto para nova consulta</td> </tr><tr> <td><code>-&gt;</code></td> <td>Esperando pela próxima string de consulta de várias strings</td> </tr><tr> <td><code>'&gt;</code></td> <td>Esperando para a próxima string, esperando a conclusão de uma string que começou com uma única citação (<code>'</code>)</td> </tr><tr> <td><code>"&gt;</code></td> <td>Esperando para a próxima string, esperando a conclusão de uma string que começou com uma citação dupla (<code>"</code>)</td> </tr><tr> <td><code>`&gt;</code></td> <td>Esperando para a próxima string, esperando a conclusão de um identificador que começou com uma barra invertida (<code>`</code>)</td> </tr><tr> <td><code>/*&gt;</code></td> <td>Esperando pela próxima string, esperando a conclusão de um comentário que começou com<code>/*</code></td> </tr></tbody></table>
 
-As declarações de várias linhas geralmente ocorrem acidentalmente quando você pretende emitir uma consulta em uma única linha, mas esquece o ponto e vírgula final. Neste caso, o **mysql** espera mais entrada:
+As declarações de várias strings geralmente ocorrem acidentalmente quando você pretende emitir uma consulta em uma única string, mas esquece o ponto e vírgula final. Neste caso, o **mysql** espera mais entrada:
 
 ```sql
 mysql> SELECT USER()
@@ -116,7 +116,7 @@ mysql> SELECT USER()
 +---------------+
 ```
 
-Os prompts `'>` e `">` ocorrem durante a coleta de strings (outra maneira de dizer que o MySQL está esperando a conclusão de uma string). No MySQL, você pode escrever strings cercadas por caracteres `'` ou `"` (por exemplo, `'hello'` ou `"goodbye"`), e o **mysql** permite que você insira strings que se estendem por várias linhas. Quando você vê um prompt `'>` ou `">`, isso significa que você inseriu uma linha contendo uma string que começa com um caractere de citação `'` ou `"`, mas ainda não inseriu a citação correspondente que termina a string. Isso geralmente indica que você deixou inadvertidamente um caractere de citação. Por exemplo:
+Os prompts `'>` e `">` ocorrem durante a coleta de strings (outra maneira de dizer que o MySQL está esperando a conclusão de uma string). No MySQL, você pode escrever strings cercadas por caracteres `'` ou `"` (por exemplo, `'hello'` ou `"goodbye"`), e o **mysql** permite que você insira strings que se estendem por várias strings. Quando você vê um prompt `'>` ou `">`, isso significa que você inseriu uma string contendo uma string que começa com um caractere de citação `'` ou `"`, mas ainda não inseriu a citação correspondente que termina a string. Isso geralmente indica que você deixou inadvertidamente um caractere de citação. Por exemplo:
 
 ```sql
 mysql> SELECT * FROM my_table WHERE name = 'Smith AND age < 30;
@@ -141,4 +141,4 @@ Os prompts `` `>` ` prompt is similar to the `'>` and `` indicam que você inici
 
 Nota
 
-As declarações de várias linhas a partir deste ponto são escritas sem os prompts secundários (`->` ou outros), para facilitar a cópia e a inserção das declarações para que você mesmo possa experimentar.
+As declarações de várias strings a partir deste ponto são escritas sem os prompts secundários (`->` ou outros), para facilitar a cópia e a inserção das declarações para que você mesmo possa experimentar.

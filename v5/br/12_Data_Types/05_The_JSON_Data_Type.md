@@ -609,7 +609,7 @@ Uma solução para os operadores e funções de comparação listados acima é c
 
 A comparação de valores JSON ocorre em dois níveis. O primeiro nível de comparação é baseado nos tipos JSON dos valores comparados. Se os tipos diferirem, o resultado da comparação é determinado exclusivamente pelo tipo que tem precedência maior. Se os dois valores tiverem o mesmo tipo JSON, ocorre um segundo nível de comparação usando regras específicas do tipo.
 
-A lista a seguir mostra as precedências dos tipos JSON, da precedência mais alta para a mais baixa. (Os nomes dos tipos são aqueles retornados pela função `JSON_TYPE()`. Os tipos mostrados juntos em uma linha têm a mesma precedência. Qualquer valor que tenha um tipo JSON listado anteriormente na lista é comparado a qualquer valor que tenha um tipo JSON listado mais tarde na lista.
+A lista a seguir mostra as precedências dos tipos JSON, da precedência mais alta para a mais baixa. (Os nomes dos tipos são aqueles retornados pela função `JSON_TYPE()`. Os tipos mostrados juntos em uma string têm a mesma precedência. Qualquer valor que tenha um tipo JSON listado anteriormente na lista é comparado a qualquer valor que tenha um tipo JSON listado mais tarde na lista.
 
 ```sql
 BLOB
@@ -702,9 +702,9 @@ Os valores JSON podem conter números com valor exato e números com valor aprox
 
 As regras para comparar tipos numéricos nativos do MySQL são discutidas na Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”, mas as regras para comparar números dentro dos valores JSON diferem um pouco:
 
-Em uma comparação entre duas colunas que utilizam os tipos numéricos nativos MySQL `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e `DOUBLE` - FLOAT, DOUBLE", respectivamente, é sabido que todas as comparações envolvem um inteiro e um duplo, então o inteiro é convertido para duplo para todas as linhas. Isso significa que os números de valor exato são convertidos em números de valor aproximado.
+Em uma comparação entre duas colunas que utilizam os tipos numéricos nativos MySQL `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e `DOUBLE` - FLOAT, DOUBLE", respectivamente, é sabido que todas as comparações envolvem um inteiro e um duplo, então o inteiro é convertido para duplo para todas as strings. Isso significa que os números de valor exato são convertidos em números de valor aproximado.
 
-+ Por outro lado, se a consulta comparar duas colunas JSON que contêm números, não pode ser conhecido antecipadamente se os números são inteiros ou decimais. Para fornecer o comportamento mais consistente em todas as linhas, o MySQL converte números de valor aproximado em números de valor exato. A ordem resultante é consistente e não perde precisão para os números de valor exato. Por exemplo, dados os escalares 9223372036854775805, 9223372036854775806, 9223372036854775807 e 9,223372036854776e18, a ordem é a seguinte:
++ Por outro lado, se a consulta comparar duas colunas JSON que contêm números, não pode ser conhecido antecipadamente se os números são inteiros ou decimais. Para fornecer o comportamento mais consistente em todas as strings, o MySQL converte números de valor aproximado em números de valor exato. A ordem resultante é consistente e não perde precisão para os números de valor exato. Por exemplo, dados os escalares 9223372036854775805, 9223372036854775806, 9223372036854775807 e 9,223372036854776e18, a ordem é a seguinte:
 
     ```sql
     9223372036854775805 < 9223372036854775806 < 9223372036854775807

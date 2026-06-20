@@ -72,7 +72,7 @@ Quando você executa um programa cliente para se conectar ao servidor MySQL, nã
 
 * Use o utilitário **mysql\_config\_editor**, que permite armazenar as credenciais de autenticação em um arquivo de caminho de login criptografado chamado `.mylogin.cnf`. O arquivo pode ser lido posteriormente por programas clientes do MySQL para obter as credenciais de autenticação para conectar ao MySQL Server. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração MySQL”.
 
-* Use a opção `--password=password` ou `-ppassword` na linha de comando. Por exemplo:
+* Use a opção `--password=password` ou `-ppassword` na string de comando. Por exemplo:
 
   ```sql
   $> mysql -u francis -pfrank db_name
@@ -80,11 +80,11 @@ Quando você executa um programa cliente para se conectar ao servidor MySQL, nã
 
 Aviso
 
-Isso é conveniente, mas inseguro. Em alguns sistemas, sua senha se torna visível para programas de status do sistema, como o **ps**, que podem ser invocados por outros usuários para exibir linhas de comando. Os clientes MySQL geralmente sobrescrevem o argumento da senha de linha de comando durante sua sequência de inicialização. No entanto, ainda há um breve intervalo durante o qual o valor é visível. Além disso, em alguns sistemas, essa estratégia de sobrescrita é ineficaz e a senha permanece visível para o **ps**. (Sistemas Unix SystemV e talvez outros estão sujeitos a esse problema.)
+Isso é conveniente, mas inseguro. Em alguns sistemas, sua senha se torna visível para programas de status do sistema, como o **ps**, que podem ser invocados por outros usuários para exibir strings de comando. Os clientes MySQL geralmente sobrescrevem o argumento da senha de string de comando durante sua sequência de inicialização. No entanto, ainda há um breve intervalo durante o qual o valor é visível. Além disso, em alguns sistemas, essa estratégia de sobrescrita é ineficaz e a senha permanece visível para o **ps**. (Sistemas Unix SystemV e talvez outros estão sujeitos a esse problema.)
 
 Se o ambiente operacional está configurado para exibir seu comando atual na barra de título da janela do terminal, a senha permanece visível enquanto o comando estiver em execução, mesmo que o comando tenha saído da área de conteúdo da janela.
 
-* Use a opção `--password` ou `-p` na linha de comando sem valor de senha especificado. Neste caso, o programa cliente solicita a senha de forma interativa:
+* Use a opção `--password` ou `-p` na string de comando sem valor de senha especificado. Neste caso, o programa cliente solicita a senha de forma interativa:
 
   ```sql
   $> mysql -u francis -p db_name
@@ -93,7 +93,7 @@ Se o ambiente operacional está configurado para exibir seu comando atual na bar
 
 Os caracteres `*` indicam onde você deve inserir sua senha. A senha não é exibida enquanto você a digita.
 
-É mais seguro digitar sua senha dessa maneira do que especificá-la na linha de comando, porque ela não é visível para outros usuários. No entanto, esse método de digitação de senha é adequado apenas para programas que você executa interativamente. Se você quiser invocar um cliente a partir de um script que não seja interativo, não há oportunidade de digitar a senha pelo teclado. Em alguns sistemas, você pode até encontrar que a primeira linha do seu script é lida e interpretada (incorretamente) como sua senha.
+É mais seguro digitar sua senha dessa maneira do que especificá-la na string de comando, porque ela não é visível para outros usuários. No entanto, esse método de digitação de senha é adequado apenas para programas que você executa interativamente. Se você quiser invocar um cliente a partir de um script que não seja interativo, não há oportunidade de digitar a senha pelo teclado. Em alguns sistemas, você pode até encontrar que a primeira string do seu script é lida e interpretada (incorretamente) como sua senha.
 
 * Armazene sua senha em um arquivo de opção. Por exemplo, no Unix, você pode listar sua senha na seção `[client]` do arquivo `.my.cnf` em seu diretório doméstico:
 
@@ -108,7 +108,7 @@ Para manter a senha segura, o arquivo não deve ser acessível a ninguém, excet
   $> chmod 600 .my.cnf
   ```
 
-Para nomear, a partir da linha de comando, um arquivo de opção específico que contenha a senha, use a opção `--defaults-file=file_name`, onde `file_name` é o nome completo do caminho do arquivo. Por exemplo:
+Para nomear, a partir da string de comando, um arquivo de opção específico que contenha a senha, use a opção `--defaults-file=file_name`, onde `file_name` é o nome completo do caminho do arquivo. Por exemplo:
 
   ```sql
   $> mysql --defaults-file=/home/francis/mysql-opts
@@ -122,7 +122,7 @@ Este método de especificar sua senha do MySQL deve ser considerado *extremament
 
 No Unix, o cliente **mysql** escreve um registro de declarações executadas em um arquivo de histórico (consulte a Seção 4.5.1.3, “Registro de histórico do cliente mysql”). Por padrão, este arquivo é chamado `.mysql_history` e é criado no seu diretório doméstico. Senhas podem ser escritas como texto simples em declarações SQL, como `CREATE USER` e `ALTER USER`, portanto, se você usar essas declarações, elas são registradas no arquivo de histórico. Para manter este arquivo seguro, use um modo de acesso restritivo, da mesma maneira que foi descrito anteriormente para o arquivo `.my.cnf`.
 
-Se o interpretador de comandos está configurado para manter um histórico, qualquer arquivo no qual os comandos são salvos contém senhas do MySQL inseridas na linha de comando. Por exemplo, o **bash** usa `~/.bash_history`. Qualquer arquivo desse tipo deve ter um modo de acesso restritivo.
+Se o interpretador de comandos está configurado para manter um histórico, qualquer arquivo no qual os comandos são salvos contém senhas do MySQL inseridas na string de comando. Por exemplo, o **bash** usa `~/.bash_history`. Qualquer arquivo desse tipo deve ter um modo de acesso restritivo.
 
 #### 6.1.2.2 Diretrizes do administrador para segurança de senha
 
@@ -721,9 +721,9 @@ Os aplicativos de clientes que acessam o MySQL devem seguir as diretrizes a segu
 
 Aplicativos que acessam o MySQL não devem confiar em quaisquer dados inseridos por usuários, que podem tentar enganar seu código ao inserir sequências de caracteres especiais ou escapadas em formulários da Web, URLs ou qualquer aplicativo que você tenha criado. Certifique-se de que sua aplicação permaneça segura se um usuário tentar realizar uma injeção SQL ao inserir algo como `; DROP DATABASE mysql;` em um formulário. Este é um exemplo extremo, mas grandes vazamentos de segurança e perda de dados podem ocorrer como resultado de hackers usando técnicas semelhantes, se você não se preparar para elas.
 
-Um erro comum é proteger apenas os valores de dados de texto. Lembre-se de verificar os dados numéricos também. Se um aplicativo gerar uma consulta como `SELECT * FROM table WHERE ID=234` quando um usuário digita o valor `234`, o usuário pode digitar o valor `234 OR 1=1` para fazer com que o aplicativo gere a consulta `SELECT * FROM table WHERE ID=234 OR 1=1`. Como resultado, o servidor recupera cada linha da tabela. Isso expõe cada linha e causa uma carga excessiva no servidor. A maneira mais simples de se proteger desse tipo de ataque é usar aspas duplas ao redor das constantes numéricas: `SELECT * FROM table WHERE ID='234'`. Se o usuário digitar informações extras, tudo se torna parte do texto. Em um contexto numérico, o MySQL converte automaticamente esse texto em um número e remove quaisquer caracteres não numéricos finais.
+Um erro comum é proteger apenas os valores de dados de texto. Lembre-se de verificar os dados numéricos também. Se um aplicativo gerar uma consulta como `SELECT * FROM table WHERE ID=234` quando um usuário digita o valor `234`, o usuário pode digitar o valor `234 OR 1=1` para fazer com que o aplicativo gere a consulta `SELECT * FROM table WHERE ID=234 OR 1=1`. Como resultado, o servidor recupera cada string da tabela. Isso expõe cada string e causa uma carga excessiva no servidor. A maneira mais simples de se proteger desse tipo de ataque é usar aspas duplas ao redor das constantes numéricas: `SELECT * FROM table WHERE ID='234'`. Se o usuário digitar informações extras, tudo se torna parte do texto. Em um contexto numérico, o MySQL converte automaticamente esse texto em um número e remove quaisquer caracteres não numéricos finais.
 
-Às vezes, as pessoas pensam que, se um banco de dados contém apenas dados disponíveis publicamente, ele não precisa ser protegido. Isso está incorreto. Mesmo que seja permitido exibir qualquer linha no banco de dados, você ainda deve proteger contra ataques de negação de serviço (por exemplo, aqueles que são baseados na técnica do parágrafo anterior que faz o servidor desperdiçar recursos). Caso contrário, seu servidor deixa de ser responsivo para usuários legítimos.
+Às vezes, as pessoas pensam que, se um banco de dados contém apenas dados disponíveis publicamente, ele não precisa ser protegido. Isso está incorreto. Mesmo que seja permitido exibir qualquer string no banco de dados, você ainda deve proteger contra ataques de negação de serviço (por exemplo, aqueles que são baseados na técnica do parágrafo anterior que faz o servidor desperdiçar recursos). Caso contrário, seu servidor deixa de ser responsivo para usuários legítimos.
 
 Lista de verificação:
 

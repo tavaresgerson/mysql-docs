@@ -116,10 +116,10 @@ Em sistemas Unix e semelhantes, um processo pode ser o destinatário de sinais e
 
 Os programas de cliente do MySQL respondem aos sinais da seguinte forma:
 
-* O cliente **mysql** interpreta `SIGINT` (tipicamente o resultado de digitar **Control+C**) como uma instrução para interromper a declaração atual, se houver uma, ou para cancelar qualquer linha de entrada parcial, caso contrário. Esse comportamento pode ser desativado usando a opção `--sigint-ignore` para ignorar os sinais `SIGINT`.
+* O cliente **mysql** interpreta `SIGINT` (tipicamente o resultado de digitar **Control+C**) como uma instrução para interromper a declaração atual, se houver uma, ou para cancelar qualquer string de entrada parcial, caso contrário. Esse comportamento pode ser desativado usando a opção `--sigint-ignore` para ignorar os sinais `SIGINT`.
 
 * Os programas de clientes que utilizam a biblioteca de clientes MySQL bloqueiam os sinais `SIGPIPE` por padrão. Essas variações são possíveis:
 
-+ O cliente pode instalar seu próprio manipulador `SIGPIPE` para substituir o comportamento padrão. Veja Escrever programas de cliente com API em fio C.
++ O cliente pode instalar seu próprio manipulador `SIGPIPE` para substituir o comportamento padrão. Veja Escrever programas de cliente com API em thread C.
 
 + Os clientes podem impedir a instalação dos manipuladores `SIGPIPE` especificando a opção `CLIENT_IGNORE_SIGPIPE` para `mysql_real_connect()` no momento da conexão. Veja mysql\_real\_connect().

@@ -9,9 +9,9 @@ mysql> TRUNCATE TABLE performance_schema.setup_instruments;
 ERROR 1683 (HY000): Invalid performance_schema usage.
 ```
 
-Algumas das tabelas de configuração têm colunas que podem ser modificadas para afetar o funcionamento do Gerador de Desempenho; outras também permitem que linhas sejam inseridas ou excluídas. A truncação é permitida para limpar eventos coletados, então `TRUNCATE TABLE` pode ser usado em tabelas que contêm esse tipo de informação, como tabelas com um prefixo de `events_waits_`.
+Algumas das tabelas de configuração têm colunas que podem ser modificadas para afetar o funcionamento do Gerador de Desempenho; outras também permitem que strings sejam inseridas ou excluídas. A truncação é permitida para limpar eventos coletados, então `TRUNCATE TABLE` pode ser usado em tabelas que contêm esse tipo de informação, como tabelas com um prefixo de `events_waits_`.
 
-As tabelas resumidas podem ser truncadas com `TRUNCATE TABLE`. Geralmente, o efeito é redefinir as colunas resumidas para 0 ou `NULL`, e não remover linhas. Isso permite que você limpe os valores coletados e reinicie a agregação. Isso pode ser útil, por exemplo, depois de ter feito uma alteração na configuração de execução. Exceções a esse comportamento de truncação são mencionadas nas seções individuais das tabelas resumidas.
+As tabelas resumidas podem ser truncadas com `TRUNCATE TABLE`. Geralmente, o efeito é redefinir as colunas resumidas para 0 ou `NULL`, e não remover strings. Isso permite que você limpe os valores coletados e reinicie a agregação. Isso pode ser útil, por exemplo, depois de ter feito uma alteração na configuração de execução. Exceções a esse comportamento de truncação são mencionadas nas seções individuais das tabelas resumidas.
 
 Os privilégios são iguais aos de outras bases de dados e tabelas:
 

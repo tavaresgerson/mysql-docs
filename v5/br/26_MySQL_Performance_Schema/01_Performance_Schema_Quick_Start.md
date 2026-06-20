@@ -2,7 +2,7 @@
 
 Esta seção apresenta brevemente o Schema de Desempenho com exemplos que mostram como usá-lo. Para exemplos adicionais, consulte a Seção 25.19, “Usando o Schema de Desempenho para diagnosticar problemas”.
 
-O Schema de Desempenho é ativado por padrão. Para ativá-lo ou desativá-lo explicitamente, inicie o servidor com a variável `performance_schema` definida com um valor apropriado. Por exemplo, use essas linhas no arquivo do servidor `my.cnf`:
+O Schema de Desempenho é ativado por padrão. Para ativá-lo ou desativá-lo explicitamente, inicie o servidor com a variável `performance_schema` definida com um valor apropriado. Por exemplo, use essas strings no arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]
@@ -146,7 +146,7 @@ A estrutura de tabela também está disponível ao selecionar tabelas como `INFO
 
 As tabelas no banco de dados `performance_schema` podem ser agrupadas de acordo com o tipo de informação que contêm: eventos atuais, históricos e resumos de eventos, instâncias de objetos e informações de configuração (configuração). Os exemplos a seguir ilustram alguns usos dessas tabelas. Para informações detalhadas sobre as tabelas de cada grupo, consulte a Seção 25.12, “Descrição das tabelas do Schema de Desempenho”.
 
-Inicialmente, nem todos os instrumentos e consumidores estão habilitados, portanto, o esquema de desempenho não coleta todos os eventos. Para ativar todos esses recursos e habilitar o cronometramento de eventos, execute duas declarações (as contagens de linhas podem diferir dependendo da versão do MySQL):
+Inicialmente, nem todos os instrumentos e consumidores estão habilitados, portanto, o esquema de desempenho não coleta todos os eventos. Para ativar todos esses recursos e habilitar o cronometramento de eventos, execute duas declarações (as contagens de strings podem diferir dependendo da versão do MySQL):
 
 ```sql
 mysql> UPDATE performance_schema.setup_instruments
@@ -157,7 +157,7 @@ mysql> UPDATE performance_schema.setup_consumers
 Query OK, 10 rows affected (0.00 sec)
 ```
 
-Para ver o que o servidor está fazendo no momento, examine a tabela `events_waits_current`. Ela contém uma linha por thread, mostrando cada evento monitorado mais recente da thread:
+Para ver o que o servidor está fazendo no momento, examine a tabela `events_waits_current`. Ela contém uma string por thread, mostrando cada evento monitorado mais recente da thread:
 
 ```sql
 mysql> SELECT *
@@ -185,15 +185,15 @@ OBJECT_INSTANCE_BEGIN: 142270668
 ...
 ```
 
-Esse evento indica que o fio 0 estava esperando 86.526 picosegundos para adquirir um bloqueio no `THR_LOCK::mutex`, um mutex no subsistema `mysys`. As primeiras colunas fornecem as seguintes informações:
+Esse evento indica que o thread 0 estava esperando 86.526 picosegundos para adquirir um bloqueio no `THR_LOCK::mutex`, um mutex no subsistema `mysys`. As primeiras colunas fornecem as seguintes informações:
 
-* As colunas ID indicam qual fio o evento vem e o número do evento.
+* As colunas ID indicam qual thread o evento vem e o número do evento.
 
 * `EVENT_NAME` indica o que foi instrumentado e `SOURCE` indica qual arquivo de origem contém o código instrumentado.
 
 * As colunas do temporizador mostram quando o evento começou e parou e quanto tempo levou. Se um evento ainda estiver em andamento, os valores `TIMER_END` e `TIMER_WAIT` são `NULL`. Os valores do temporizador são aproximados e expressos em picosegundos. Para informações sobre temporizadores e coleta de tempo de eventos, consulte a Seção 25.4.1, “Tempo de Otimização do Esquema de Desempenho”.
 
-As tabelas de histórico contêm o mesmo tipo de linhas que a tabela de eventos atuais, mas têm mais linhas e mostram o que o servidor tem feito “recentemente”, em vez de “atualmente”. As tabelas `events_waits_history` e `events_waits_history_long` contêm os 10 eventos mais recentes por fio e os 10.000 eventos mais recentes, respectivamente. Por exemplo, para ver informações sobre eventos recentes produzidos pelo fio 13, faça o seguinte:
+As tabelas de histórico contêm o mesmo tipo de strings que a tabela de eventos atuais, mas têm mais strings e mostram o que o servidor tem feito “recentemente”, em vez de “atualmente”. As tabelas `events_waits_history` e `events_waits_history_long` contêm os 10 eventos mais recentes por thread e os 10.000 eventos mais recentes, respectivamente. Por exemplo, para ver informações sobre eventos recentes produzidos pelo thread 13, faça o seguinte:
 
 ```sql
 mysql> SELECT EVENT_ID, EVENT_NAME, TIMER_WAIT

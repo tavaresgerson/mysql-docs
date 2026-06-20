@@ -24,7 +24,7 @@ O MySQL tem suporte para indexação e busca de texto completo:
 
 * Para conjuntos de dados grandes, é muito mais rápido carregar seus dados em uma tabela que não tenha o índice `FULLTEXT` e, em seguida, criar o índice, do que carregar dados em uma tabela que tenha um índice existente `FULLTEXT`.
 
-A pesquisa de texto completo é realizada usando a sintaxe `MATCH() AGAINST()`. `MATCH()` recebe uma lista separada por vírgula que nomeia as colunas a serem pesquisadas. `AGAINST` recebe uma string para pesquisar e um modificador opcional que indica que tipo de pesquisa deve ser realizada. A string de pesquisa deve ser um valor de string que é constante durante a avaliação da consulta. Isso exclui, por exemplo, uma coluna de tabela porque isso pode diferir para cada linha.
+A pesquisa de texto completo é realizada usando a sintaxe `MATCH() AGAINST()`. `MATCH()` recebe uma lista separada por vírgula que nomeia as colunas a serem pesquisadas. `AGAINST` recebe uma string para pesquisar e um modificador opcional que indica que tipo de pesquisa deve ser realizada. A string de pesquisa deve ser um valor de string que é constante durante a avaliação da consulta. Isso exclui, por exemplo, uma coluna de tabela porque isso pode diferir para cada string.
 
 Existem três tipos de pesquisas de texto completo:
 
@@ -32,9 +32,9 @@ Existem três tipos de pesquisas de texto completo:
 
 As pesquisas de texto completo são pesquisas em linguagem natural se o modificador `IN NATURAL LANGUAGE MODE` for fornecido ou se nenhum modificador for fornecido. Para mais informações, consulte a Seção 12.9.1, “Pesquisas de texto completo em linguagem natural”.
 
-* Uma pesquisa booleana interpreta a string de pesquisa usando as regras de uma linguagem de consulta especial. A string contém as palavras a serem pesquisadas. Também pode conter operadores que especificam requisitos, como que uma palavra deve estar presente ou ausente em linhas correspondentes, ou que deve ser ponderada mais alta ou mais baixa do que o usual. Algumas palavras comuns (stopwords) são omitidas do índice de pesquisa e não correspondem se estiverem presentes na string de pesquisa. O modificador `IN BOOLEAN MODE` especifica uma pesquisa booleana. Para mais informações, consulte a Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”.
+* Uma pesquisa booleana interpreta a string de pesquisa usando as regras de uma linguagem de consulta especial. A string contém as palavras a serem pesquisadas. Também pode conter operadores que especificam requisitos, como que uma palavra deve estar presente ou ausente em strings correspondentes, ou que deve ser ponderada mais alta ou mais baixa do que o usual. Algumas palavras comuns (stopwords) são omitidas do índice de pesquisa e não correspondem se estiverem presentes na string de pesquisa. O modificador `IN BOOLEAN MODE` especifica uma pesquisa booleana. Para mais informações, consulte a Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”.
 
-* Uma pesquisa de expansão de consulta é uma modificação de uma pesquisa de linguagem natural. A string de pesquisa é usada para realizar uma pesquisa de linguagem natural. Em seguida, as palavras das linhas mais relevantes retornadas pela pesquisa são adicionadas à string de pesquisa e a pesquisa é realizada novamente. A consulta retorna as linhas da segunda pesquisa. O modificador `IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION` ou `WITH QUERY EXPANSION` especifica uma pesquisa de expansão de consulta. Para mais informações, consulte a Seção 12.9.3, “Pesquisas de texto completo com expansão de consulta”.
+* Uma pesquisa de expansão de consulta é uma modificação de uma pesquisa de linguagem natural. A string de pesquisa é usada para realizar uma pesquisa de linguagem natural. Em seguida, as palavras das strings mais relevantes retornadas pela pesquisa são adicionadas à string de pesquisa e a pesquisa é realizada novamente. A consulta retorna as strings da segunda pesquisa. O modificador `IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION` ou `WITH QUERY EXPANSION` especifica uma pesquisa de expansão de consulta. Para mais informações, consulte a Seção 12.9.3, “Pesquisas de texto completo com expansão de consulta”.
 
 Para informações sobre o desempenho da consulta `FULLTEXT`, consulte a Seção 8.3.4, “Índices de Coluna”.
 
@@ -46,7 +46,7 @@ A ferramenta **myisam\_ftdump** descarrega o conteúdo de um índice de texto co
 
 ### 12.9.1 Pesquisas de texto completo em linguagem natural
 
-Por padrão ou com o modificador `IN NATURAL LANGUAGE MODE`, a função `MATCH()` realiza uma pesquisa de linguagem natural para uma string em uma coleção de texto. Uma coleção é um conjunto de uma ou mais colunas incluídas em um índice [[`FULLTEXT`]. A string de pesquisa é dada como argumento para `AGAINST()`. Para cada linha na tabela, `MATCH()` retorna um valor de relevância; ou seja, uma medida de semelhança entre a string de pesquisa e o texto naquela linha nas colunas nomeadas na lista [[`MATCH()`].
+Por padrão ou com o modificador `IN NATURAL LANGUAGE MODE`, a função `MATCH()` realiza uma pesquisa de linguagem natural para uma string em uma coleção de texto. Uma coleção é um conjunto de uma ou mais colunas incluídas em um índice [[`FULLTEXT`]. A string de pesquisa é dada como argumento para `AGAINST()`. Para cada string na tabela, `MATCH()` retorna um valor de relevância; ou seja, uma medida de semelhança entre a string de pesquisa e o texto naquela string nas colunas nomeadas na lista [[`MATCH()`].
 
 ```sql
 mysql> CREATE TABLE articles (
@@ -81,7 +81,7 @@ mysql> SELECT * FROM articles
 
 Por padrão, a pesquisa é realizada de forma não sensível ao caso. Para realizar uma pesquisa de texto completo sensível ao caso, use uma codificação binária para as colunas indexadas. Por exemplo, uma coluna que usa o conjunto de caracteres `latin1` pode ser atribuída uma codificação de `latin1_bin` para torná-la sensível ao caso para pesquisas de texto completo.
 
-Quando o `MATCH()` é usado em uma cláusula `WHERE`, como no exemplo mostrado anteriormente, as linhas devolvidas são automaticamente ordenadas com a maior relevância em primeiro lugar, desde que as seguintes condições sejam atendidas:
+Quando o `MATCH()` é usado em uma cláusula `WHERE`, como no exemplo mostrado anteriormente, as strings devolvidas são automaticamente ordenadas com a maior relevância em primeiro lugar, desde que as seguintes condições sejam atendidas:
 
 * Não deve haver cláusula explícita `ORDER BY`.
 
@@ -91,11 +91,11 @@ Quando o `MATCH()` é usado em uma cláusula `WHERE`, como no exemplo mostrado a
 
 Dadas as condições listadas acima, geralmente é menos esforço especificar o uso de `ORDER BY` para uma ordem de classificação explícita quando isso é necessário ou desejado.
 
-Os valores de relevância são números de ponto flutuante não negativos. Zero relevância significa nenhuma semelhança. A relevância é calculada com base no número de palavras na linha (documento), no número de palavras únicas na linha, no número total de palavras na coleção e no número de linhas que contêm uma palavra específica.
+Os valores de relevância são números de ponto flutuante não negativos. Zero relevância significa nenhuma semelhança. A relevância é calculada com base no número de palavras na string (documento), no número de palavras únicas na string, no número total de palavras na coleção e no número de strings que contêm uma palavra específica.
 
 Nota
 
-O termo “documento” pode ser usado de forma intercambiável com o termo “linha”, e ambos os termos se referem à parte indexada da linha. O termo “coleção” se refere às colunas indexadas e engloba todas as linhas.
+O termo “documento” pode ser usado de forma intercambiável com o termo “string”, e ambos os termos se referem à parte indexada da string. O termo “coleção” se refere às colunas indexadas e engloba todas as strings.
 
 Para simplesmente contar partidas, você pode usar uma consulta como esta:
 
@@ -126,7 +126,7 @@ mysql> SELECT
 1 row in set (0.03 sec)
 ```
 
-A primeira consulta realiza um trabalho adicional (ordenando os resultados por relevância), mas também pode usar uma pesquisa de índice com base na cláusula `WHERE`. A pesquisa de índice pode tornar a primeira consulta mais rápida se a pesquisa corresponder a poucas linhas. A segunda consulta realiza uma varredura completa da tabela, o que pode ser mais rápido do que a pesquisa de índice se o termo de busca estiver presente na maioria das linhas.
+A primeira consulta realiza um trabalho adicional (ordenando os resultados por relevância), mas também pode usar uma pesquisa de índice com base na cláusula `WHERE`. A pesquisa de índice pode tornar a primeira consulta mais rápida se a pesquisa corresponder a poucas strings. A segunda consulta realiza uma varredura completa da tabela, o que pode ser mais rápido do que a pesquisa de índice se o termo de busca estiver presente na maioria das strings.
 
 Para pesquisas de texto completo em linguagem natural, as colunas nomeadas na função `MATCH()` devem ser as mesmas colunas incluídas em algum índice `FULLTEXT` na sua tabela. Para a consulta anterior, as colunas nomeadas na função `MATCH()` (`title` e `body`) são as mesmas das nomeadas na definição do índice `article` da tabela `FULLTEXT`. Para pesquisar o `title` ou `body` separadamente, você criaria índices separados `FULLTEXT` para cada coluna.
 
@@ -134,7 +134,7 @@ Você também pode realizar uma pesquisa booleana ou uma pesquisa com expansão 
 
 Uma pesquisa de texto completo que utiliza um índice pode nomear colunas apenas de uma única tabela na cláusula `MATCH()`, porque um índice não pode abranger múltiplas tabelas. Para as tabelas `MyISAM`, uma pesquisa booleana pode ser feita na ausência de um índice (embora de forma mais lenta), nesse caso, é possível nomear colunas de múltiplas tabelas.
 
-O exemplo anterior é uma ilustração básica que mostra como usar a função `MATCH()` onde as linhas são retornadas em ordem de relevância decrescente. O próximo exemplo mostra como recuperar os valores de relevância explicitamente. As linhas retornadas não são ordenadas porque a declaração `SELECT` não inclui cláusulas de `WHERE` nem `ORDER BY`:
+O exemplo anterior é uma ilustração básica que mostra como usar a função `MATCH()` onde as strings são retornadas em ordem de relevância decrescente. O próximo exemplo mostra como recuperar os valores de relevância explicitamente. As strings retornadas não são ordenadas porque a declaração `SELECT` não inclui cláusulas de `WHERE` nem `ORDER BY`:
 
 ```sql
 mysql> SELECT id, MATCH (title,body)
@@ -153,7 +153,7 @@ mysql> SELECT id, MATCH (title,body)
 6 rows in set (0.00 sec)
 ```
 
-O exemplo a seguir é mais complexo. A consulta retorna os valores de relevância e também ordena as linhas em ordem decrescente de relevância. Para obter esse resultado, especifique `MATCH()` duas vezes: uma na lista `SELECT` e uma na cláusula `WHERE`. Isso não causa sobrecarga adicional, porque o otimizador do MySQL percebe que as duas chamadas de `MATCH()` são idênticas e invoca o código de pesquisa full-text apenas uma vez.
+O exemplo a seguir é mais complexo. A consulta retorna os valores de relevância e também ordena as strings em ordem decrescente de relevância. Para obter esse resultado, especifique `MATCH()` duas vezes: uma na lista `SELECT` e uma na cláusula `WHERE`. Isso não causa sobrecarga adicional, porque o otimizador do MySQL percebe que as duas chamadas de `MATCH()` são idênticas e invoca o código de pesquisa full-text apenas uma vez.
 
 ```sql
 mysql> SELECT id, body, MATCH (title,body)
@@ -172,7 +172,7 @@ mysql> SELECT id, body, MATCH (title,body)
 2 rows in set (0.00 sec)
 ```
 
-Uma frase que está encerrada entre aspas duplas (`"`) corresponde apenas às linhas que contêm a frase *literalmente, como foi digitada*. O motor de texto completo divide a frase em palavras e realiza uma pesquisa no índice `FULLTEXT` pelas palavras. Os caracteres não-palavras não precisam ser correspondidos exatamente: a pesquisa de frase exige apenas que as correspondências contenham exatamente as mesmas palavras que a frase e na mesma ordem. Por exemplo, `"test phrase"` corresponde a `"test, phrase"`. Se a frase não contiver palavras que estão no índice, o resultado é vazio. Por exemplo, se todas as palavras são palavras não-verbais ou mais curtas que o comprimento mínimo das palavras indexadas, o resultado é vazio.
+Uma frase que está encerrada entre aspas duplas (`"`) corresponde apenas às strings que contêm a frase *literalmente, como foi digitada*. O motor de texto completo divide a frase em palavras e realiza uma pesquisa no índice `FULLTEXT` pelas palavras. Os caracteres não-palavras não precisam ser correspondidos exatamente: a pesquisa de frase exige apenas que as correspondências contenham exatamente as mesmas palavras que a frase e na mesma ordem. Por exemplo, `"test phrase"` corresponde a `"test, phrase"`. Se a frase não contiver palavras que estão no índice, o resultado é vazio. Por exemplo, se todas as palavras são palavras não-verbais ou mais curtas que o comprimento mínimo das palavras indexadas, o resultado é vazio.
 
 A implementação do MySQL `FULLTEXT` considera qualquer sequência de caracteres de palavra verdadeira (letras, dígitos e sublinhados) como uma palavra. Essa sequência também pode conter apóstrofos (`'`), mas não mais de um em sequência. Isso significa que `aaa'bbb` é considerado uma palavra, mas `aaa''bbb` é considerado duas palavras. Os apóstrofos no início ou no fim de uma palavra são removidos pelo analisador `FULLTEXT`; `'aaa'bbb'` seria analisado como `aaa'bbb`.
 
@@ -192,11 +192,11 @@ Esse comportamento não se aplica aos índices `FULLTEXT` que utilizam o analisa
 
 Veja a Seção 12.9.4, “Stopwords de Texto Completo”, para ver as listas de stopwords padrão e como modificá-las. O comprimento mínimo de palavra padrão pode ser alterado conforme descrito na Seção 12.9.6, “Ajuste fino da pesquisa de texto completo do MySQL”.
 
-Cada palavra correta na coleção e na consulta é ponderada de acordo com sua importância na coleção ou consulta. Assim, uma palavra que está presente em muitos documentos tem um peso menor, porque tem menor valor semântico nesta coleção em particular. Por outro lado, se a palavra é rara, ela recebe um peso maior. Os pesos das palavras são combinados para calcular a relevância da linha. Esta técnica funciona melhor com grandes coleções.
+Cada palavra correta na coleção e na consulta é ponderada de acordo com sua importância na coleção ou consulta. Assim, uma palavra que está presente em muitos documentos tem um peso menor, porque tem menor valor semântico nesta coleção em particular. Por outro lado, se a palavra é rara, ela recebe um peso maior. Os pesos das palavras são combinados para calcular a relevância da string. Esta técnica funciona melhor com grandes coleções.
 
 Limitação do MyISAM
 
-Para tabelas muito pequenas, a distribuição das palavras não reflete adequadamente seu valor semântico, e este modelo pode, às vezes, produzir resultados bizarros para índices de pesquisa em tabelas `MyISAM`. Por exemplo, embora a palavra “MySQL” esteja presente em cada linha da tabela `articles` mostrada anteriormente, uma pesquisa pela palavra em um índice de pesquisa `MyISAM` não produz resultados:
+Para tabelas muito pequenas, a distribuição das palavras não reflete adequadamente seu valor semântico, e este modelo pode, às vezes, produzir resultados bizarros para índices de pesquisa em tabelas `MyISAM`. Por exemplo, embora a palavra “MySQL” esteja presente em cada string da tabela `articles` mostrada anteriormente, uma pesquisa pela palavra em um índice de pesquisa `MyISAM` não produz resultados:
 
 ```sql
 mysql> SELECT * FROM articles
@@ -205,13 +205,13 @@ mysql> SELECT * FROM articles
 Empty set (0.00 sec)
 ```
 
-O resultado da pesquisa está vazio porque a palavra “MySQL” está presente em pelo menos 50% das linhas, e, portanto, é tratada efetivamente como uma palavra parada. Essa técnica de filtragem é mais adequada para grandes conjuntos de dados, onde você pode não querer que o conjunto de resultados retorne cada segunda linha de uma tabela de 1 GB, do que para pequenos conjuntos de dados onde isso pode causar resultados ruins para termos populares.
+O resultado da pesquisa está vazio porque a palavra “MySQL” está presente em pelo menos 50% das strings, e, portanto, é tratada efetivamente como uma palavra parada. Essa técnica de filtragem é mais adequada para grandes conjuntos de dados, onde você pode não querer que o conjunto de resultados retorne cada segunda string de uma tabela de 1 GB, do que para pequenos conjuntos de dados onde isso pode causar resultados ruins para termos populares.
 
-O limiar de 50% pode surpreendê-lo quando você tenta pela primeira vez a pesquisa de texto completo para ver como ela funciona, e torna as tabelas `InnoDB` mais adequadas para experimentação com pesquisas de texto completo. Se você criar uma tabela `MyISAM` e inserir apenas uma ou duas linhas de texto nela, cada palavra do texto ocorre em pelo menos 50% das linhas. Como resultado, nenhuma pesquisa retorna resultados até que a tabela contenha mais linhas. Os usuários que precisam contornar a limitação de 50% podem construir índices de pesquisa em tabelas `InnoDB`, ou usar o modo de busca booleana explicado na Seção 12.9.2, “Pesquisas de Texto Completo Booleanas”.
+O limiar de 50% pode surpreendê-lo quando você tenta pela primeira vez a pesquisa de texto completo para ver como ela funciona, e torna as tabelas `InnoDB` mais adequadas para experimentação com pesquisas de texto completo. Se você criar uma tabela `MyISAM` e inserir apenas uma ou duas strings de texto nela, cada palavra do texto ocorre em pelo menos 50% das strings. Como resultado, nenhuma pesquisa retorna resultados até que a tabela contenha mais strings. Os usuários que precisam contornar a limitação de 50% podem construir índices de pesquisa em tabelas `InnoDB`, ou usar o modo de busca booleana explicado na Seção 12.9.2, “Pesquisas de Texto Completo Booleanas”.
 
 ### 12.9.2 Pesquisas completas de texto booleanas
 
-O MySQL pode realizar pesquisas de texto completo booleano usando o modificador `IN BOOLEAN MODE`. Com este modificador, certos caracteres têm um significado especial no início ou no final das palavras na string de pesquisa. Na seguinte consulta, os operadores `+` e `-` indicam que uma palavra deve estar presente ou ausente, respectivamente, para que uma correspondência ocorra. Assim, a consulta recupera todas as linhas que contêm a palavra “MySQL”, mas que *não* contêm a palavra “YourSQL”:
+O MySQL pode realizar pesquisas de texto completo booleano usando o modificador `IN BOOLEAN MODE`. Com este modificador, certos caracteres têm um significado especial no início ou no final das palavras na string de pesquisa. Na seguinte consulta, os operadores `+` e `-` indicam que uma palavra deve estar presente ou ausente, respectivamente, para que uma correspondência ocorra. Assim, a consulta recupera todas as strings que contêm a palavra “MySQL”, mas que *não* contêm a palavra “YourSQL”:
 
 ```sql
 mysql> SELECT * FROM articles WHERE MATCH (title,body)
@@ -237,7 +237,7 @@ Ao implementar essa funcionalidade, o MySQL utiliza o que é às vezes referido 
 
 As pesquisas de texto completo booleano têm essas características:
 
-* Eles não classificam automaticamente as linhas em ordem decrescente de relevância.
+* Eles não classificam automaticamente as strings em ordem decrescente de relevância.
 
 As tabelas `InnoDB` exigem um índice `FULLTEXT` em todas as colunas da expressão `MATCH()` para realizar consultas booleanas. Consultas booleanas em um índice de pesquisa `MyISAM` podem funcionar mesmo sem um índice `FULLTEXT`, embora uma pesquisa executada dessa maneira seria bastante lenta.
 
@@ -261,17 +261,17 @@ A capacidade de busca de texto completo booleano suporta os seguintes operadores
 
 * `+`
 
-Um sinal de mais inicial ou final indica que essa palavra *deve* estar presente em cada linha que é devolvida. O `InnoDB` só suporta sinais de mais iniciais.
+Um sinal de mais inicial ou final indica que essa palavra *deve* estar presente em cada string que é devolvida. O `InnoDB` só suporta sinais de mais iniciais.
 
 * `-`
 
-Um sinal de menos prefixado ou sufixado indica que essa palavra *não* deve estar presente em nenhuma das linhas que são retornadas. O `InnoDB` só suporta sinais de menos prefixados.
+Um sinal de menos prefixado ou sufixado indica que essa palavra *não* deve estar presente em nenhuma das strings que são retornadas. O `InnoDB` só suporta sinais de menos prefixados.
 
-Nota: O operador `-` atua apenas para excluir linhas que, de outra forma, são correspondidas por outros termos de pesquisa. Assim, uma pesquisa em modo booleano que contém apenas termos precedidos por `-` retorna um resultado vazio. Não retorna “todas as linhas exceto aquelas que contêm algum dos termos excluídos”.
+Nota: O operador `-` atua apenas para excluir strings que, de outra forma, são correspondidas por outros termos de pesquisa. Assim, uma pesquisa em modo booleano que contém apenas termos precedidos por `-` retorna um resultado vazio. Não retorna “todas as strings exceto aquelas que contêm algum dos termos excluídos”.
 
 * (sem operador)
 
-Por padrão (quando nem `+` nem `-` é especificado), a palavra é opcional, mas as linhas que a contêm são classificadas como mais altas. Isso imita o comportamento de `MATCH() AGAINST()`(fulltext-search.html#function_match) sem o modificador `IN BOOLEAN MODE`.
+Por padrão (quando nem `+` nem `-` é especificado), a palavra é opcional, mas as strings que a contêm são classificadas como mais altas. Isso imita o comportamento de `MATCH() AGAINST()`(fulltext-search.html#function_match) sem o modificador `IN BOOLEAN MODE`.
 
 * `@distance`
 
@@ -279,7 +279,7 @@ Este operador funciona apenas em tabelas `InnoDB`. Testa se duas ou mais palavra
 
 * `> <`
 
-Esses dois operadores são usados para alterar a contribuição de uma palavra para o valor de relevância que é atribuído a uma linha. O operador `>` aumenta a contribuição e o operador `<` a diminui. Veja o exemplo que segue esta lista.
+Esses dois operadores são usados para alterar a contribuição de uma palavra para o valor de relevância que é atribuído a uma string. O operador `>` aumenta a contribuição e o operador `<` a diminui. Veja o exemplo que segue esta lista.
 
 * `( )`
 
@@ -287,7 +287,7 @@ As parênteses agrupam palavras em subexpressões. Os grupos entre parênteses p
 
 * `~`
 
-Uma tilde principal atua como um operador de negação, fazendo com que a contribuição da palavra para a relevância da linha seja negativa. Isso é útil para marcar palavras de "ruído". Uma linha que contém tal palavra é avaliada como inferior às outras, mas não é excluída completamente, como seria com o operador `-`.
+Uma tilde principal atua como um operador de negação, fazendo com que a contribuição da palavra para a relevância da string seja negativa. Isso é útil para marcar palavras de "ruído". Uma string que contém tal palavra é avaliada como inferior às outras, mas não é excluída completamente, como seria com o operador `-`.
 
 * `*`
 
@@ -295,11 +295,11 @@ O asterisco serve como operador de truncação (ou comodinho). Ao contrário dos
 
 Se uma palavra for especificada com o operador de truncação, ela não será removida de uma consulta booleana, mesmo que seja muito curta ou uma palavra parada. Se uma palavra é muito curta é determinado a partir do ajuste `innodb_ft_min_token_size` para as tabelas `InnoDB` ou `ft_min_word_len` para as tabelas `MyISAM`. Essas opções não são aplicáveis aos índices `FULLTEXT` que usam o analisador de ngram.
 
-A palavra wildcarded é considerada um prefixo que deve estar presente no início de uma ou mais palavras. Se o comprimento mínimo da palavra for de 4, uma pesquisa por `'+word +the*'` pode retornar menos linhas do que uma pesquisa por `'+word +the'`, porque a segunda consulta ignora o termo de busca muito curto `the`.
+A palavra wildcarded é considerada um prefixo que deve estar presente no início de uma ou mais palavras. Se o comprimento mínimo da palavra for de 4, uma pesquisa por `'+word +the*'` pode retornar menos strings do que uma pesquisa por `'+word +the'`, porque a segunda consulta ignora o termo de busca muito curto `the`.
 
 * `"`
 
-Uma frase que está encerrada entre aspas duplas (`"`) corresponde apenas às linhas que contêm a frase *literalmente, como foi digitada*. O motor de texto completo divide a frase em palavras e realiza uma pesquisa no índice `FULLTEXT` pelas palavras. Os caracteres não-alfabéticos não precisam ser correspondidos exatamente: a pesquisa de frase exige apenas que as correspondências contenham exatamente as mesmas palavras que a frase e na mesma ordem. Por exemplo, `"test phrase"` corresponde a `"test, phrase"`.
+Uma frase que está encerrada entre aspas duplas (`"`) corresponde apenas às strings que contêm a frase *literalmente, como foi digitada*. O motor de texto completo divide a frase em palavras e realiza uma pesquisa no índice `FULLTEXT` pelas palavras. Os caracteres não-alfabéticos não precisam ser correspondidos exatamente: a pesquisa de frase exige apenas que as correspondências contenham exatamente as mesmas palavras que a frase e na mesma ordem. Por exemplo, `"test phrase"` corresponde a `"test, phrase"`.
 
 Se a frase não contiver palavras que estejam no índice, o resultado será vazio. As palavras podem não estar no índice devido a uma combinação de fatores: se não existem no texto, são palavras de parada ou são mais curtas que o comprimento mínimo das palavras indexadas.
 
@@ -307,35 +307,35 @@ Os exemplos a seguir demonstram algumas cadeias de busca que utilizam operadores
 
 * `'apple banana'`
 
-Encontre linhas que contenham pelo menos uma das duas palavras.
+Encontre strings que contenham pelo menos uma das duas palavras.
 
 * `'+apple +juice'`
 
-Encontre linhas que contenham ambas as palavras.
+Encontre strings que contenham ambas as palavras.
 
 * `'+apple macintosh'`
 
-Encontre linhas que contenham a palavra “apple”, mas classifique as linhas mais altas se elas também contenham “macintosh”.
+Encontre strings que contenham a palavra “apple”, mas classifique as strings mais altas se elas também contenham “macintosh”.
 
 * `'+apple -macintosh'`
 
-Encontre linhas que contenham a palavra “apple”, mas não “macintosh”.
+Encontre strings que contenham a palavra “apple”, mas não “macintosh”.
 
 * `'+apple ~macintosh'`
 
-Encontre linhas que contenham a palavra “apple”, mas se a linha também contiver a palavra “macintosh”, classifique-a como menos importante do que se a linha não contiver essa palavra. Isso é “mais suave” do que uma busca para `'+apple -macintosh'`, para a qual a presença de “macintosh” faz com que a linha não seja devolvida.
+Encontre strings que contenham a palavra “apple”, mas se a string também contiver a palavra “macintosh”, classifique-a como menos importante do que se a string não contiver essa palavra. Isso é “mais suave” do que uma busca para `'+apple -macintosh'`, para a qual a presença de “macintosh” faz com que a string não seja devolvida.
 
 * `'+apple +(>turnover <strudel)'`
 
-Encontre linhas que contenham as palavras “apple” e “turnover”, ou “apple” e “strudel” (em qualquer ordem), mas classifique “apple turnover” como mais importante do que “apple strudel”.
+Encontre strings que contenham as palavras “apple” e “turnover”, ou “apple” e “strudel” (em qualquer ordem), mas classifique “apple turnover” como mais importante do que “apple strudel”.
 
 * `'apple*'`
 
-Encontre linhas que contenham palavras como “apple”, “apples”, “applesauce” ou “applet”.
+Encontre strings que contenham palavras como “apple”, “apples”, “applesauce” ou “applet”.
 
 * `'"some words"'`
 
-Encontre linhas que contenham a frase exata “algumas palavras” (por exemplo, linhas que contenham “algumas palavras de sabedoria”, mas não “algumas palavras de ruído”). Note que os caracteres `"` que encerram a frase são caracteres operador que delimitam a frase. Eles não são as aspas que encerram a própria string de pesquisa.
+Encontre strings que contenham a frase exata “algumas palavras” (por exemplo, strings que contenham “algumas palavras de sabedoria”, mas não “algumas palavras de ruído”). Note que os caracteres `"` que encerram a frase são caracteres operador que delimitam a frase. Eles não são as aspas que encerram a própria string de pesquisa.
 
 #### Rankings de relevância para pesquisa no modo booleano do InnoDB
 
@@ -420,7 +420,7 @@ Os valores `TF` e `IDF` são, em seguida, inseridos na fórmula de classificaç�
 ${rank} = ${TF} * ${IDF} * ${IDF}
 ```
 
-Realizando o cálculo no cliente de linha de comando do MySQL, retorna um valor de classificação de 1,088696164686938.
+Realizando o cálculo no cliente de string de comando do MySQL, retorna um valor de classificação de 1,088696164686938.
 
 ```sql
 mysql> SELECT 6*LOG10(8/3)*LOG10(8/3);
@@ -434,7 +434,7 @@ mysql> SELECT 6*LOG10(8/3)*LOG10(8/3);
 
 Nota
 
-Você pode notar uma pequena diferença nos valores de classificação retornados pela declaração `SELECT ... MATCH ... AGAINST` e pelo cliente de linha de comando do MySQL (`1.0886961221694946` versus `1.088696164686938`). A diferença se deve ao modo como os casts entre inteiros e flutuantes/doblantes são realizados internamente pelo `InnoDB` (junto com decisões relacionadas à precisão e arredondamento), e como eles são realizados em outros lugares, como no cliente de linha de comando do MySQL ou em outros tipos de calculadoras.
+Você pode notar uma pequena diferença nos valores de classificação retornados pela declaração `SELECT ... MATCH ... AGAINST` e pelo cliente de string de comando do MySQL (`1.0886961221694946` versus `1.088696164686938`). A diferença se deve ao modo como os casts entre inteiros e flutuantes/doblantes são realizados internamente pelo `InnoDB` (junto com decisões relacionadas à precisão e arredondamento), e como eles são realizados em outros lugares, como no cliente de string de comando do MySQL ou em outros tipos de calculadoras.
 
 ##### Ranking de relevância para uma busca por múltiplos termos
 
@@ -467,7 +467,7 @@ mysql> SELECT id, title, body, MATCH (title,body)
 8 rows in set (0.00 sec)
 ```
 
-No primeiro registro (`id 8`), 'mysql' aparece uma vez e 'tutorial' aparece duas vezes. Há seis registros correspondentes para 'mysql' e dois registros correspondentes para 'tutorial'. O cliente de linha de comando MySQL retorna o valor de classificação esperado ao inserir esses valores na fórmula de classificação para uma pesquisa de múltiplas palavras:
+No primeiro registro (`id 8`), 'mysql' aparece uma vez e 'tutorial' aparece duas vezes. Há seis registros correspondentes para 'mysql' e dois registros correspondentes para 'tutorial'. O cliente de string de comando MySQL retorna o valor de classificação esperado ao inserir esses valores na fórmula de classificação para uma pesquisa de múltiplas palavras:
 
 ```sql
 mysql> SELECT (1*log10(8/6)*log10(8/6)) + (2*log10(8/2)*log10(8/2));
@@ -481,7 +481,7 @@ mysql> SELECT (1*log10(8/6)*log10(8/6)) + (2*log10(8/2)*log10(8/2));
 
 Nota
 
-A pequena diferença nos valores de classificação retornados pela declaração `SELECT ... MATCH ... AGAINST` e pelo cliente de linha de comando do MySQL é explicada no exemplo anterior.
+A pequena diferença nos valores de classificação retornados pela declaração `SELECT ... MATCH ... AGAINST` e pelo cliente de string de comando do MySQL é explicada no exemplo anterior.
 
 ### 12.9.3 Pesquisas de texto completo com expansão de consulta
 
@@ -673,7 +673,7 @@ O arquivo de palavras-chave é carregado e pesquisado usando `latin1` se `charac
 
 Para substituir a lista de palavras-chave padrão para tabelas MyISAM, defina a variável de sistema `ft_stopword_file`. (Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.) O valor da variável deve ser o nome do caminho do arquivo que contém a lista de palavras-chave, ou a string vazia para desabilitar a filtragem de palavras-chave. O servidor procura o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. Após alterar o valor desta variável ou o conteúdo do arquivo de palavras-chave, reinicie o servidor e reconstrua seus índices `FULLTEXT`.
 
-A lista de palavras-stop é livre de formato, separando as palavras-stop com qualquer caractere não alfanumérico, como nova linha, espaço ou vírgula. As exceções são o caractere sublinhado (`_`) e um único apóstrofo (`'`) que são tratados como parte de uma palavra. O conjunto de caracteres da lista de palavras-stop é o conjunto de caracteres padrão do servidor; consulte a Seção 10.3.2, “Conjunto de caracteres do servidor e cotação”.
+A lista de palavras-stop é livre de formato, separando as palavras-stop com qualquer caractere não alfanumérico, como nova string, espaço ou vírgula. As exceções são o caractere sublinhado (`_`) e um único apóstrofo (`'`) que são tratados como parte de uma palavra. O conjunto de caracteres da lista de palavras-stop é o conjunto de caracteres padrão do servidor; consulte a Seção 10.3.2, “Conjunto de caracteres do servidor e cotação”.
 
 A lista a seguir mostra as palavras-chave padrão para os índices de pesquisa de `MyISAM`. Em uma distribuição de fonte MySQL, você pode encontrar essa lista no arquivo `storage/myisam/ft_static.c`.
 
@@ -807,7 +807,7 @@ Um analisador de texto completo baseado em caracteres que suporta chinês, japon
 
 * A lista de colunas `MATCH()` deve corresponder exatamente à lista de colunas em alguma definição de índice `FULLTEXT` para a tabela, a menos que esta `MATCH()` seja `IN BOOLEAN MODE` em uma tabela `MyISAM`. Para tabelas `MyISAM`, pesquisas em modo booleano podem ser feitas em colunas não indexadas, embora sejam propensas a serem lentas.
 
-* O argumento para `AGAINST()` deve ser um valor de string que seja constante durante a avaliação da consulta. Isso exclui, por exemplo, uma coluna de tabela, porque ela pode diferir para cada linha.
+* O argumento para `AGAINST()` deve ser um valor de string que seja constante durante a avaliação da consulta. Isso exclui, por exemplo, uma coluna de tabela, porque ela pode diferir para cada string.
 
 * As dicas de índice são mais limitadas para pesquisas de `FULLTEXT` do que para pesquisas que não são de `FULLTEXT`. Veja a Seção 8.9.4, “Dicas de índice”.
 
@@ -841,7 +841,7 @@ Nota
 
 Os parâmetros de comprimento mínimo e máximo de palavras para o índice de texto completo não se aplicam aos índices `FULLTEXT` criados usando o analisador de ngram. O tamanho do token ngram é definido pela opção `ngram_token_size`.
 
-Depois de alterar alguma dessas opções, reconstrua seus índices do `FULLTEXT` para que a mudança entre em vigor. Por exemplo, para tornar as palavras de dois caracteres pesquisáveis, você pode colocar as seguintes linhas em um arquivo de opções:
+Depois de alterar alguma dessas opções, reconstrua seus índices do `FULLTEXT` para que a mudança entre em vigor. Por exemplo, para tornar as palavras de dois caracteres pesquisáveis, você pode colocar as seguintes strings em um arquivo de opções:
 
 ```sql
 [mysqld]
@@ -853,13 +853,13 @@ Em seguida, reinicie o servidor e reconstrua seus índices `FULLTEXT`. Para as t
 
 #### Configurando o Limite de Pesquisa em Linguagem Natural
 
-Para os índices de pesquisa de `MyISAM`, o limite de 50% para pesquisas em linguagem natural é determinado pelo esquema de ponderação específico escolhido. Para desativá-lo, procure a seguinte linha em `storage/myisam/ftdefs.h`:
+Para os índices de pesquisa de `MyISAM`, o limite de 50% para pesquisas em linguagem natural é determinado pelo esquema de ponderação específico escolhido. Para desativá-lo, procure a seguinte string em `storage/myisam/ftdefs.h`:
 
 ```sql
 #define GWS_IN_USE GWS_PROB
 ```
 
-Altere essa linha para esta:
+Altere essa string para esta:
 
 ```sql
 #define GWS_IN_USE GWS_FREQ
@@ -986,7 +986,7 @@ Para adicionar uma codificação para indexação de texto completo, use o proce
    </collation>
    ```
 
-3. Modifique o array `ctype` em `latin1.xml`. Altere o valor correspondente a 0x2D (que é o código para o caractere `'-'`) de 10 (ponto de pontuação) para 01 (letra maiúscula). No array a seguir, este é o elemento na quarta linha para baixo, terceiro valor da extremidade.
+3. Modifique o array `ctype` em `latin1.xml`. Altere o valor correspondente a 0x2D (que é o código para o caractere `'-'`) de 10 (ponto de pontuação) para 01 (letra maiúscula). No array a seguir, este é o elemento na quarta string para baixo, terceiro valor da extremidade.
 
    ```sql
    <ctype>
@@ -1159,7 +1159,7 @@ Para a busca no modo booleano, o termo de busca é convertido em uma busca de fr
 
 Como um índice ngram `FULLTEXT` contém apenas ngrams e não contém informações sobre o início dos termos, as pesquisas com caracteres especiais podem retornar resultados inesperados. Os seguintes comportamentos se aplicam às pesquisas com caracteres especiais usando índices de pesquisa ngram `FULLTEXT`:
 
-* Se o termo prefixo de uma pesquisa com wildcard for mais curto que o tamanho do token ngram, a consulta retorna todas as linhas indexadas que contêm tokens ngram começando com o termo prefixo. Por exemplo, supondo `ngram_token_size=2`, uma pesquisa em “a\*” retorna todas as linhas que começam com “a”.
+* Se o termo prefixo de uma pesquisa com wildcard for mais curto que o tamanho do token ngram, a consulta retorna todas as strings indexadas que contêm tokens ngram começando com o termo prefixo. Por exemplo, supondo `ngram_token_size=2`, uma pesquisa em “a\*” retorna todas as strings que começam com “a”.
 
 * Se o termo prefixo de uma pesquisa com wildcard for mais longo que o tamanho do token ngram, o termo prefixo é convertido em uma frase ngram e o operador wildcard é ignorado. Por exemplo, assumindo `ngram_token_size=2`, uma pesquisa com wildcard “abc\*” é convertida em “ab bc”.
 

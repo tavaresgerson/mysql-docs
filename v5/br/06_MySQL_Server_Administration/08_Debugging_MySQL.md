@@ -44,7 +44,7 @@ Em Windows, você também deve usar a bandeira `--standalone` para não iniciar 
 C:\> mysqld-debug --debug --standalone
 ```
 
-Depois disso, você pode usar a ferramenta de linha de comando `mysql.exe` em uma segunda janela do console para reproduzir o problema. Você pode parar o servidor `mysqld` com **mysqladmin shutdown**.
+Depois disso, você pode usar a ferramenta de string de comando `mysql.exe` em uma segunda janela do console para reproduzir o problema. Você pode parar o servidor `mysqld` com **mysqladmin shutdown**.
 
 O arquivo de rastreamento pode se tornar **muito grande!** Para gerar um arquivo de rastreamento menor, você pode usar opções de depuração como esta:
 
@@ -52,7 +52,7 @@ O arquivo de rastreamento pode se tornar **muito grande!** Para gerar um arquivo
 
 Isso apenas imprime informações com as tags mais interessantes no arquivo de registro.
 
-Se você enviar um relatório de erro, por favor, adicione apenas as linhas do arquivo de registro que indicam onde algo parece estar errado. Se você não conseguir localizar o local errado, abra um relatório de erro e faça o upload de todo o arquivo de registro ao relatório, para que um desenvolvedor do MySQL possa examiná-lo. Para instruções, consulte a Seção 1.5, “Como relatar erros ou problemas”.
+Se você enviar um relatório de erro, por favor, adicione apenas as strings do arquivo de registro que indicam onde algo parece estar errado. Se você não conseguir localizar o local errado, abra um relatório de erro e faça o upload de todo o arquivo de registro ao relatório, para que um desenvolvedor do MySQL possa examiná-lo. Para instruções, consulte a Seção 1.5, “Como relatar erros ou problemas”.
 
 O arquivo de rastreamento é feito com o pacote DBUG por Fred Fish. Veja a Seção 5.8.3, “O pacote DBUG”.
 
@@ -78,7 +78,7 @@ Os arquivos `.exe` e `.pdb` devem corresponder exatamente (ambos o número da ve
 
 2. Crie um diretório para armazenar os arquivos gerados, como `c:\symbols`
 
-3. Determine o caminho para o seu executável **windbg.exe** usando o Find GUI ou a partir da linha de comando, por exemplo: `dir /s /b windbg.exe` -- um padrão comum é *C:\Program Files\Debugging Tools for Windows (x64)\windbg.exe*
+3. Determine o caminho para o seu executável **windbg.exe** usando o Find GUI ou a partir da string de comando, por exemplo: `dir /s /b windbg.exe` -- um padrão comum é *C:\Program Files\Debugging Tools for Windows (x64)\windbg.exe*
 
 4. Inicie `windbg.exe`, fornecendo as permissões para `mysqld-debug.exe`, `mysqld.pdb`, `mysqld.dmp` e o código-fonte. Alternativamente, insira cada caminho na interface gráfica do WinDbg. Por exemplo:
 
@@ -92,7 +92,7 @@ Os arquivos `.exe` e `.pdb` devem corresponder exatamente (ambos o número da ve
 
 Nota
 
-O caractere `^` e a nova linha são removidos pelo processador de linha de comando do Windows, então certifique-se de que os espaços permaneçam intactos.
+O caractere `^` e a nova string são removidos pelo processador de string de comando do Windows, então certifique-se de que os espaços permaneçam intactos.
 
 #### 5.8.1.4 Depuração do mysqld sob o gdb
 
@@ -100,7 +100,7 @@ Na maioria dos sistemas, você também pode iniciar `mysqld` a partir do **gdb**
 
 Com algumas versões mais antigas do **gdb** no Linux, você deve usar `run --one-thread` se quiser ser capaz de depurar `mysqld` threads. Nesse caso, você só pode ter um thread ativo de cada vez.
 
-Os fios NPTL (a nova biblioteca de fios no Linux) podem causar problemas ao executar `mysqld` sob **gdb**. Alguns sintomas são:
+Os threads NPTL (a nova biblioteca de threads no Linux) podem causar problemas ao executar `mysqld` sob **gdb**. Alguns sintomas são:
 
 * `mysqld` fica parado durante o arranque (antes de escrever `ready for connections`).
 
@@ -269,7 +269,7 @@ Versões mais recentes das funções de depuração de pilha `glibc` também imp
 plugin/auth/auth_test_plugin.so(+0x9a6)[0x7ff4d11c29a6]
 ```
 
-Para traduzir o endereço relativo (`+0x9a6`) em um nome de arquivo e número de linha, use este comando:
+Para traduzir o endereço relativo (`+0x9a6`) em um nome de arquivo e número de string, use este comando:
 
 ```sql
 $> addr2line -fie auth_test_plugin.so 0x9a6
@@ -292,7 +292,7 @@ $> gaddr2line -fie auth_test_plugin.so 0x1510
 mysql-trunk/plugin/auth/test_plugin.c:88
 ```
 
-O Windows já imprime o endereço, o nome da função e a linha:
+O Windows já imprime o endereço, o nome da função e a string:
 
 ```sql
 000007FEF07E10A4 auth_test_plugin.dll!auth_test_plugin()[test_plugin.c:72]
@@ -304,7 +304,7 @@ Observe que, antes de começar a usar `mysqld` com o log de consulta geral habil
 
 Se o `mysqld` morrer ou ficar parado, você deve começar a `mysqld` com o log de consulta geral habilitado. Veja a Seção 5.4.3, “O log de consulta geral”. Quando o `mysqld` morrer novamente, você pode examinar o final do arquivo de log para a consulta que matou o `mysqld`.
 
-Se você usar o arquivo de log de consulta geral padrão, o log é armazenado no diretório do banco de dados como `host_name.log`. Na maioria dos casos, é a última consulta no arquivo de log que interrompeu `mysqld`, mas, se possível, você deve verificar isso reiniciando `mysqld` e executando a consulta encontrada a partir das ferramentas de linha de comando do **mysql**. Se isso funcionar, você também deve testar todas as consultas complicadas que não foram concluídas.
+Se você usar o arquivo de log de consulta geral padrão, o log é armazenado no diretório do banco de dados como `host_name.log`. Na maioria dos casos, é a última consulta no arquivo de log que interrompeu `mysqld`, mas, se possível, você deve verificar isso reiniciando `mysqld` e executando a consulta encontrada a partir das ferramentas de string de comando do **mysql**. Se isso funcionar, você também deve testar todas as consultas complicadas que não foram concluídas.
 
 Você também pode tentar o comando `EXPLAIN` em todas as declarações `SELECT` que levam um longo tempo para garantir que o `mysqld` esteja usando índices corretamente. Veja a Seção 13.8.2, “Declaração EXPLAIN”.
 
@@ -314,7 +314,7 @@ Se você encontrar o texto `mysqld restarted` no log de erro (normalmente um arq
 
 Se você iniciou `mysqld` com a variável de sistema `myisam_recover_options` definida, o MySQL verifica automaticamente e tenta reparar as tabelas `MyISAM` se elas estiverem marcadas como 'não fechadas corretamente' ou 'quebradas'. Se isso acontecer, o MySQL escreve uma entrada no arquivo `hostname.err` `'Warning: Checking table ...'` que é seguida por `Warning: Repairing table` se a tabela precisar ser reparada. Se você receber muitos desses erros, sem que o `mysqld` tenha morrido inesperadamente pouco antes, então algo está errado e precisa ser investigado mais a fundo. Veja a Seção 5.1.6, “Opções de Comando do Servidor”.
 
-Quando o servidor detecta a corrupção da tabela `MyISAM`, ele escreve informações adicionais no log de erro, como o nome e o número da linha do arquivo de origem e a lista de threads acessando a tabela. Exemplo: `Got an error from thread_id=1, mi_dynrec.c:368`. Essas são informações úteis para incluir em relatórios de bugs.
+Quando o servidor detecta a corrupção da tabela `MyISAM`, ele escreve informações adicionais no log de erro, como o nome e o número da string do arquivo de origem e a lista de threads acessando a tabela. Exemplo: `Got an error from thread_id=1, mi_dynrec.c:368`. Essas são informações úteis para incluir em relatórios de bugs.
 
 Não é um bom sinal se o `mysqld` morreu de forma inesperada, mas, neste caso, você não deve investigar as mensagens do `Checking table...`, mas sim tentar descobrir por que o `mysqld` morreu.
 
@@ -369,18 +369,18 @@ Se o seu cliente falhar em algum código que parece legal, você deve verificar 
 
 O servidor MySQL e a maioria dos clientes MySQL são compilados com o pacote `DBUG`, originalmente criado por Fred Fish. Quando você configurou o MySQL para depuração, este pacote permite obter um arquivo de rastreamento do que o programa está fazendo. Veja a Seção 5.8.1.2, “Criando arquivos de rastreamento”.
 
-Esta seção resume os valores de argumento que você pode especificar nas opções de depuração na linha de comando para os programas MySQL que foram construídos com suporte de depuração.
+Esta seção resume os valores de argumento que você pode especificar nas opções de depuração na string de comando para os programas MySQL que foram construídos com suporte de depuração.
 
 O pacote `DBUG` pode ser usado ao invocar um programa com a opção `--debug[=debug_options]` ou `-# [debug_options]`. Se você especificar a opção `--debug` ou `-#` sem um valor de *`debug_options`*, a maioria dos programas do MySQL usa um valor padrão. O padrão do servidor é `d:t:i:o,/tmp/mysqld.trace` no Unix e `d:t:i:O,\mysqld.trace` no Windows. O efeito desse padrão é:
 
 * `d`: Habilitar saída para todas as macros de depuração
 * `t`: Rastrear chamadas de função e saídas
-* `i`: Adicionar PID às linhas de saída
+* `i`: Adicionar PID às strings de saída
 * `o,/tmp/mysqld.trace`, `O,\mysqld.trace`: Definir o arquivo de saída de depuração.
 
 A maioria dos programas de cliente usa um valor padrão *`debug_options`* de `d:t:o,/tmp/program_name.trace`, independentemente da plataforma.
 
-Aqui estão algumas strings de controle de depuração como elas podem ser especificadas em uma linha de comando de shell:
+Aqui estão algumas strings de controle de depuração como elas podem ser especificadas em uma string de comando de shell:
 
 ```sql
 --debug=d:t
@@ -434,7 +434,7 @@ No MySQL, as palavras-chave comuns de macro de depuração para ativar são<code
 <td>
 <code>D</code>
 </td>
-<td>Atraso após cada linha de saída do depurador. O argumento é o atraso, em décimos de segundo, sujeito às capacidades da máquina. Por exemplo,<code>D,20</code>especifica um atraso de dois segundos.</td>
+<td>Atraso após cada string de saída do depurador. O argumento é o atraso, em décimos de segundo, sujeito às capacidades da máquina. Por exemplo,<code>D,20</code>especifica um atraso de dois segundos.</td>
 </tr>
 <tr>
 <td>
@@ -446,31 +446,31 @@ No MySQL, as palavras-chave comuns de macro de depuração para ativar são<code
 <td>
 <code>F</code>
 </td>
-<td>Identifique o nome do arquivo de origem para cada linha de saída de depuração ou rastreamento.</td>
+<td>Identifique o nome do arquivo de origem para cada string de saída de depuração ou rastreamento.</td>
 </tr>
 <tr>
 <td>
 <code>i</code>
 </td>
-<td>Identifique o processo com o PID ou ID de thread para cada linha de saída de depuração ou rastreamento.</td>
+<td>Identifique o processo com o PID ou ID de thread para cada string de saída de depuração ou rastreamento.</td>
 </tr>
 <tr>
 <td>
 <code>L</code>
 </td>
-<td>Identifique o número de linha do arquivo fonte para cada linha de saída de depuração ou rastreamento.</td>
+<td>Identifique o número de string do arquivo fonte para cada string de saída de depuração ou rastreamento.</td>
 </tr>
 <tr>
 <td>
 <code>n</code>
 </td>
-<td>Imprima a profundidade atual da função de encaixe para cada linha de saída de depuração ou rastreamento.</td>
+<td>Imprima a profundidade atual da função de encaixe para cada string de saída de depuração ou rastreamento.</td>
 </tr>
 <tr>
 <td>
 <code>N</code>
 </td>
-<td>Numerar cada linha de saída de depuração.</td>
+<td>Numerar cada string de saída de depuração.</td>
 </tr>
 <tr>
 <td>
@@ -507,7 +507,7 @@ No MySQL, as palavras-chave comuns de macro de depuração para ativar são<code
 <td>
 <code>P</code>
 </td>
-<td>Imprima o nome do processo atual para cada linha de saída de depuração ou rastreamento.</td>
+<td>Imprima o nome do processo atual para cada string de saída de depuração ou rastreamento.</td>
 </tr>
 <tr>
 <td>
@@ -519,13 +519,13 @@ No MySQL, as palavras-chave comuns de macro de depuração para ativar são<code
 <td>
 <code>t</code>
 </td>
-<td>Ative linhas de rastreamento de chamadas de função/saída. Pode ser seguido por uma lista (contendo apenas um modificador) que fornece um nível máximo numérico de rastreamento, além do qual não há saída para depuração ou macros de rastreamento. O padrão é uma opção de tempo de compilação.</td>
+<td>Ative strings de rastreamento de chamadas de função/saída. Pode ser seguido por uma lista (contendo apenas um modificador) que fornece um nível máximo numérico de rastreamento, além do qual não há saída para depuração ou macros de rastreamento. O padrão é uma opção de tempo de compilação.</td>
 </tr>
 <tr>
 <td>
 <code>T</code>
 </td>
-<td>Imprima o timestamp atual para cada linha de saída.</td>
+<td>Imprima o timestamp atual para cada string de saída.</td>
 </tr>
 </tbody>
 </table>
@@ -620,15 +620,15 @@ mysql> SELECT @@debug;
 
 O suporte para DTrace é descontinuado no MySQL 5.7 e é removido no MySQL 8.0.
 
-As sondas DTrace no servidor MySQL são projetadas para fornecer informações sobre a execução de consultas no MySQL e as diferentes áreas do sistema que estão sendo utilizadas durante esse processo. A organização e o disparo das sondas significam que a execução de uma consulta inteira pode ser monitorada com um nível de sondas (`query-start` e `query-done`) mas, ao monitorar outras sondas, você pode obter informações sucessivamente mais detalhadas sobre a execução da consulta em termos de os bloqueios utilizados, métodos de ordenação e até mesmo informações de execução nível de linha por linha e nível de banco de dados.
+As sondas DTrace no servidor MySQL são projetadas para fornecer informações sobre a execução de consultas no MySQL e as diferentes áreas do sistema que estão sendo utilizadas durante esse processo. A organização e o disparo das sondas significam que a execução de uma consulta inteira pode ser monitorada com um nível de sondas (`query-start` e `query-done`) mas, ao monitorar outras sondas, você pode obter informações sucessivamente mais detalhadas sobre a execução da consulta em termos de os bloqueios utilizados, métodos de ordenação e até mesmo informações de execução nível de string por string e nível de banco de dados.
 
-As sondas DTrace são organizadas de modo que você possa acompanhar todo o processo de consulta, desde o ponto de conexão de um cliente, passando pela execução da consulta, operações em nível de linha e voltando novamente. Você pode pensar nas sondas como sendo disparadas dentro de uma sequência específica durante uma sequência típica de conexão/execução/desconexão do cliente, conforme mostrado na figura a seguir.
+As sondas DTrace são organizadas de modo que você possa acompanhar todo o processo de consulta, desde o ponto de conexão de um cliente, passando pela execução da consulta, operações em nível de string e voltando novamente. Você pode pensar nas sondas como sendo disparadas dentro de uma sequência específica durante uma sequência típica de conexão/execução/desconexão do cliente, conforme mostrado na figura a seguir.
 
 **Figura 5.1 Sequência de sonda DTrace**
 
 ![Example of a DTrace probe sequence during a typical client connect, execute, disconnect sequence.](images/dtrace-groups.png)
 
-As informações globais são fornecidas nos argumentos das sondagens DTrace em vários níveis. As informações globais, ou seja, o ID de conexão e o usuário/host e, quando relevante, a string de consulta, são fornecidas em níveis chave (`connection-start`, `command-start`, `query-start` e `query-exec-start`). À medida que você se aprofunda nas sondagens, presume-se que você esteja interessado apenas nas execuções individuais (sondagens de nível de linha fornecem informações apenas sobre o nome do banco de dados e da tabela), ou que você pretenda combinar as sondagens de nível de linha com as sondagens parentais conceituais para fornecer as informações sobre uma consulta específica. Exemplos disso são fornecidos, pois o formato e os argumentos de cada sonda são fornecidos.
+As informações globais são fornecidas nos argumentos das sondagens DTrace em vários níveis. As informações globais, ou seja, o ID de conexão e o usuário/host e, quando relevante, a string de consulta, são fornecidas em níveis chave (`connection-start`, `command-start`, `query-start` e `query-exec-start`). À medida que você se aprofunda nas sondagens, presume-se que você esteja interessado apenas nas execuções individuais (sondagens de nível de string fornecem informações apenas sobre o nome do banco de dados e da tabela), ou que você pretenda combinar as sondagens de nível de string com as sondagens parentais conceituais para fornecer as informações sobre uma consulta específica. Exemplos disso são fornecidos, pois o formato e os argumentos de cada sonda são fornecidos.
 
 O MySQL inclui suporte para sondagens DTrace nessas plataformas:
 
@@ -1132,14 +1132,14 @@ Parsing select * from t1 join (t2) on (t1.i = t2.i) order by t1.s,t1.i limit 10:
 
 ##### 5.8.4.1.5 Provas do cache de consulta
 
-Os testes de cache de consulta são executados ao executar qualquer consulta. A consulta `query-cache-hit` é acionada quando uma consulta existe no cache de consulta e pode ser usada para retornar as informações do cache de consulta. Os argumentos contêm o texto da consulta original e o número de linhas devolvidas a partir do cache de consulta para a consulta. Se a consulta não estiver no cache de consulta, ou o cache de consulta não estiver habilitado, então o teste `query-cache-miss` é acionado em vez disso.
+Os testes de cache de consulta são executados ao executar qualquer consulta. A consulta `query-cache-hit` é acionada quando uma consulta existe no cache de consulta e pode ser usada para retornar as informações do cache de consulta. Os argumentos contêm o texto da consulta original e o número de strings devolvidas a partir do cache de consulta para a consulta. Se a consulta não estiver no cache de consulta, ou o cache de consulta não estiver habilitado, então o teste `query-cache-miss` é acionado em vez disso.
 
 ```sql
 query-cache-hit(query, rows)
 query-cache-miss(query)
 ```
 
-* `query-cache-hit`: Desempenha quando a consulta foi encontrada no cache de consulta. O primeiro argumento, `query`, contém o texto original da consulta. O segundo argumento, `rows`, é um número inteiro que contém o número de linhas na consulta cacheada.
+* `query-cache-hit`: Desempenha quando a consulta foi encontrada no cache de consulta. O primeiro argumento, `query`, contém o texto original da consulta. O segundo argumento, `rows`, é um número inteiro que contém o número de strings na consulta cacheada.
 
 * `query-cache-miss`: Desencaminhado quando a consulta não é encontrada no cache de consultas. O primeiro argumento, `query`, contém o texto original da consulta.
 
@@ -1222,9 +1222,9 @@ As informações fornecidas nos argumentos para `query-start` e `query-exec-star
 
 * `query-exec-done`: Desencaminhado quando a execução da consulta foi concluída. A sonda inclui um único argumento, `status`, que retorna 0 quando a consulta é executada com sucesso e 1 se houve um erro.
 
-##### 5.8.4.1.7 Sondas de nível de linha
+##### 5.8.4.1.7 Sondas de nível de string
 
-As `*row-{start,done}` são acionadas sempre que uma operação de linha é empurrada para um motor de armazenamento. Por exemplo, se você executar uma declaração `INSERT` com 100 linhas de dados, então as `insert-row-start` e `insert-row-done` são acionadas 100 vezes cada, para cada inserção de linha.
+As `*row-{start,done}` são acionadas sempre que uma operação de string é empurrada para um motor de armazenamento. Por exemplo, se você executar uma declaração `INSERT` com 100 strings de dados, então as `insert-row-start` e `insert-row-done` são acionadas 100 vezes cada, para cada inserção de string.
 
 ```sql
 insert-row-start(database, table)
@@ -1237,17 +1237,17 @@ delete-row-start(database, table)
 delete-row-done(status)
 ```
 
-* `insert-row-start`: Ativado antes de uma linha ser inserida em uma tabela.
+* `insert-row-start`: Ativado antes de uma string ser inserida em uma tabela.
 
-* `insert-row-done`: Descoberto após uma linha ser inserida em uma tabela.
+* `insert-row-done`: Descoberto após uma string ser inserida em uma tabela.
 
-* `update-row-start`: Ativado antes de uma linha ser atualizada em uma tabela.
+* `update-row-start`: Ativado antes de uma string ser atualizada em uma tabela.
 
-* `update-row-done`: Ativado antes de uma linha ser atualizada em uma tabela.
+* `update-row-done`: Ativado antes de uma string ser atualizada em uma tabela.
 
-* `delete-row-start`: Ativado antes de uma linha ser excluída de uma tabela.
+* `delete-row-start`: Ativado antes de uma string ser excluída de uma tabela.
 
-* `delete-row-done`: Ativado antes de uma linha ser excluída de uma tabela.
+* `delete-row-done`: Ativado antes de uma string ser excluída de uma tabela.
 
 Os argumentos suportados pelas sondas são consistentes para as sondas correspondentes `start` e `done` em cada caso:
 
@@ -1255,9 +1255,9 @@ Os argumentos suportados pelas sondas são consistentes para as sondas correspon
 * `table`: O nome da tabela.  
 * `status`: O status; 0 para sucesso ou 1 para falha.
 
-Como as sondagens de nível de linha são acionadas para cada acesso individual à linha, essas sondagens podem ser acionadas muitas milhares de vezes por segundo, o que pode ter um efeito prejudicial tanto no script de monitoramento quanto no MySQL. O ambiente DTrace deve limitar o acionamento dessas sondagens para evitar que o desempenho seja afetado negativamente. Ou use as sondagens com parcimônia, ou use funções de contagem ou agregação para relatar essas sondagens e, em seguida, forneça um resumo quando o script termina ou como parte de uma sondagem `query-done` ou `query-exec-done`.
+Como as sondagens de nível de string são acionadas para cada acesso individual à string, essas sondagens podem ser acionadas muitas milhares de vezes por segundo, o que pode ter um efeito prejudicial tanto no script de monitoramento quanto no MySQL. O ambiente DTrace deve limitar o acionamento dessas sondagens para evitar que o desempenho seja afetado negativamente. Ou use as sondagens com parcimônia, ou use funções de contagem ou agregação para relatar essas sondagens e, em seguida, forneça um resumo quando o script termina ou como parte de uma sondagem `query-done` ou `query-exec-done`.
 
-O seguinte exemplo de script resume a duração de cada operação de linha dentro de uma consulta maior:
+O seguinte exemplo de script resume a duração de cada operação de string dentro de uma consulta maior:
 
 ```sql
 #!/usr/sbin/dtrace -s
@@ -1325,7 +1325,7 @@ mysql*:::update-row-done
 }
 ```
 
-Ao executar o script acima com uma consulta que insere dados em uma tabela, você pode monitorar o tempo exato gasto na inserção de linha bruta:
+Ao executar o script acima com uma consulta que insere dados em uma tabela, você pode monitorar o tempo exato gasto na inserção de string bruta:
 
 ```sql
 St Who        DB            ConnID    Dur ms Query
@@ -1333,31 +1333,31 @@ St Who        DB            ConnID    Dur ms Query
                                         4827 -> Row ops
 ```
 
-##### 5.8.4.1.8 Leitura de sondagens de linha
+##### 5.8.4.1.8 Leitura de sondagens de string
 
-As sondas de linha de leitura são acionadas em nível do mecanismo de armazenamento a cada vez que ocorre uma operação de leitura de linha. Essas sondas são especificadas dentro de cada mecanismo de armazenamento (ao contrário das sondas `*row-start` que estão na interface do mecanismo de armazenamento). Portanto, essas sondas podem ser usadas para monitorar operações individuais de nível de linha do mecanismo de armazenamento e desempenho. Como essas sondas são acionadas ao redor da interface de leitura de linha do mecanismo de armazenamento, elas podem ser atingidas em um número significativo de vezes durante uma consulta básica.
+As sondas de string de leitura são acionadas em nível do mecanismo de armazenamento a cada vez que ocorre uma operação de leitura de string. Essas sondas são especificadas dentro de cada mecanismo de armazenamento (ao contrário das sondas `*row-start` que estão na interface do mecanismo de armazenamento). Portanto, essas sondas podem ser usadas para monitorar operações individuais de nível de string do mecanismo de armazenamento e desempenho. Como essas sondas são acionadas ao redor da interface de leitura de string do mecanismo de armazenamento, elas podem ser atingidas em um número significativo de vezes durante uma consulta básica.
 
 ```sql
 read-row-start(database, table, scan_flag)
 read-row-done(status)
 ```
 
-* `read-row-start`: Desencaminhado quando uma linha é lida pelo motor de armazenamento a partir do especificado `database` e `table`. O `scan_flag` é definido como 1 (verdadeiro) quando a leitura faz parte de uma varredura de tabela (ou seja, uma leitura sequencial), ou 0 (falso) quando a leitura é de um registro específico.
+* `read-row-start`: Desencaminhado quando uma string é lida pelo motor de armazenamento a partir do especificado `database` e `table`. O `scan_flag` é definido como 1 (verdadeiro) quando a leitura faz parte de uma varredura de tabela (ou seja, uma leitura sequencial), ou 0 (falso) quando a leitura é de um registro específico.
 
-* `read-row-done`: Desempenha quando uma operação de leitura de linha dentro de um motor de armazenamento é concluída. O `status` retorna 0 em caso de sucesso, ou um valor positivo em caso de falha.
+* `read-row-done`: Desempenha quando uma operação de leitura de string dentro de um motor de armazenamento é concluída. O `status` retorna 0 em caso de sucesso, ou um valor positivo em caso de falha.
 
 ##### 5.8.4.1.9 Sondas de índice
 
-Os índices de sondagem são acionados sempre que uma linha é lida usando um dos índices para a tabela especificada. A sonda é acionada dentro do motor de armazenamento correspondente à tabela.
+Os índices de sondagem são acionados sempre que uma string é lida usando um dos índices para a tabela especificada. A sonda é acionada dentro do motor de armazenamento correspondente à tabela.
 
 ```sql
 index-read-row-start(database, table)
 index-read-row-done(status)
 ```
 
-* `index-read-row-start`: Desencaminhado quando uma linha é lida pelo motor de armazenamento a partir do especificado `database` e `table`.
+* `index-read-row-start`: Desencaminhado quando uma string é lida pelo motor de armazenamento a partir do especificado `database` e `table`.
 
-* `index-read-row-done`: Desempenha quando uma operação de leitura de linha indexada dentro de um mecanismo de armazenamento é concluída. O `status` retorna 0 em caso de sucesso, ou um valor positivo em caso de falha.
+* `index-read-row-done`: Desempenha quando uma operação de leitura de string indexada dentro de um mecanismo de armazenamento é concluída. O `status` retorna 0 em caso de sucesso, ou um valor positivo em caso de falha.
 
 ##### 5.8.4.1.10 Provas de bloqueio
 
@@ -1467,7 +1467,7 @@ filesort-done(status, rows)
 
 * `filesort-start`: Desencaminhado quando a operação de filesort começa em uma tabela. Os dois argumentos da sonda, `database` e `table`, identificam a tabela que está sendo ordenada.
 
-* `filesort-done`: Desempenha quando a operação de filesort é concluída. Dois argumentos são fornecidos, o `status` (0 para sucesso, 1 para falha) e o número de linhas ordenadas durante o processo de filesort.
+* `filesort-done`: Desempenha quando a operação de filesort é concluída. Dois argumentos são fornecidos, o `status` (0 para sucesso, 1 para falha) e o número de strings ordenadas durante o processo de filesort.
 
 Um exemplo disso é o seguinte script, que acompanha a duração do processo de filesort, além da duração da consulta principal:
 
@@ -1530,9 +1530,9 @@ St Who        DB            ConnID       Dur microsec Query
 
 ##### 5.8.4.1.12 Provas de sonda
 
-As declarações individuais de sondagem são fornecidas para fornecer informações específicas sobre diferentes tipos de declarações. Para as sondagens de início, a string da consulta é fornecida como o único argumento. Dependendo do tipo de declaração, as informações fornecidas pela sonda correspondente podem diferir. Para todas as sondagens de término, o status da operação (`0` para sucesso, `>0` para falha) é fornecido. Para as operações `SELECT`, `INSERT`, `INSERT ... (SELECT FROM ...)`, `DELETE` e `DELETE FROM t1,t2`, o número de linhas afetadas é retornado.
+As declarações individuais de sondagem são fornecidas para fornecer informações específicas sobre diferentes tipos de declarações. Para as sondagens de início, a string da consulta é fornecida como o único argumento. Dependendo do tipo de declaração, as informações fornecidas pela sonda correspondente podem diferir. Para todas as sondagens de término, o status da operação (`0` para sucesso, `>0` para falha) é fornecido. Para as operações `SELECT`, `INSERT`, `INSERT ... (SELECT FROM ...)`, `DELETE` e `DELETE FROM t1,t2`, o número de strings afetadas é retornado.
 
-Para as declarações `UPDATE` e `UPDATE t1,t2 ...`, o número de linhas correspondentes e o número de linhas que realmente foram alteradas são fornecidos. Isso ocorre porque o número de linhas que realmente correspondem à cláusula correspondente `WHERE` e o número de linhas que foram alteradas podem diferir. O MySQL não atualiza o valor de uma linha se o valor já corresponder ao novo ajuste.
+Para as declarações `UPDATE` e `UPDATE t1,t2 ...`, o número de strings correspondentes e o número de strings que realmente foram alteradas são fornecidos. Isso ocorre porque o número de strings que realmente correspondem à cláusula correspondente `WHERE` e o número de strings que foram alteradas podem diferir. O MySQL não atualiza o valor de uma string se o valor já corresponder ao novo ajuste.
 
 ```sql
 select-start(query)
@@ -1589,11 +1589,11 @@ Os argumentos para as estações de inspeção são:
 
 * `query`: A string de consulta. * `status`: O status da consulta. `0` para sucesso e `>0` para falha.
 
-* `rows`: O número de linhas afetadas pela declaração. Isso retorna o número de linhas encontradas para `SELECT`, o número de linhas excluídas para `DELETE` e o número de linhas inseridas com sucesso para `INSERT`.
+* `rows`: O número de strings afetadas pela declaração. Isso retorna o número de strings encontradas para `SELECT`, o número de strings excluídas para `DELETE` e o número de strings inseridas com sucesso para `INSERT`.
 
-* `rowsmatched`: O número de linhas correspondentes à cláusula `WHERE` de uma operação `UPDATE`.
+* `rowsmatched`: O número de strings correspondentes à cláusula `WHERE` de uma operação `UPDATE`.
 
-* `rowschanged`: O número de linhas que realmente foram alteradas durante uma operação de `UPDATE`.
+* `rowschanged`: O número de strings que realmente foram alteradas durante uma operação de `UPDATE`.
 
 Você usa essas sondas para monitorar a execução desses tipos de declaração sem precisar monitorar o usuário ou cliente que executa as declarações. Um exemplo simples disso é acompanhar os tempos de execução:
 
@@ -1642,7 +1642,7 @@ mysql*:::update-done, mysql*:::multi-update-done
 }
 ```
 
-Quando executado, você pode ver os tempos básicos de execução e as correspondências de linhas:
+Quando executado, você pode ver os tempos básicos de execução e as correspondências de strings:
 
 ```sql
 Query                                                        RowsU    RowsM    Dur (ms)

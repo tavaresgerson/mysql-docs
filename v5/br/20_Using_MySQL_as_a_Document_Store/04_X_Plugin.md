@@ -1174,7 +1174,7 @@ O porto TCP ao qual o X Plugin está ouvindo. Se uma ligação de rede falhou, o
 
 * `Mysqlx_rows_sent`(x-plugin-status-variables.html#statvar_Mysqlx_rows_sent)
 
-O número de linhas enviadas de volta aos clientes.
+O número de strings enviadas de volta aos clientes.
 
 * `Mysqlx_sessions`(x-plugin-status-variables.html#statvar_Mysqlx_sessions)
 
@@ -1318,11 +1318,11 @@ O número de declarações de ping recebidas.
 
 * `Mysqlx_worker_threads`(x-plugin-status-variables.html#statvar_Mysqlx_worker_threads)
 
-O número de fios de trabalho disponíveis.
+O número de threads de trabalho disponíveis.
 
 * `Mysqlx_worker_threads_active`(x-plugin-status-variables.html#statvar_Mysqlx_worker_threads_active)
 
-O número de fios de trabalho atualmente utilizados.
+O número de threads de trabalho atualmente utilizados.
 
 ### 19.4.3 Monitoramento do Plugin X
 

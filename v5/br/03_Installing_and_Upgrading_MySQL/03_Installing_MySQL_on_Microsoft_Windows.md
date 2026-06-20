@@ -243,7 +243,7 @@ Para invocar o Instalador MySQL após uma instalação bem-sucedida:
 
 * `MySQLInstaller.exe` para abrir o aplicativo gráfico.
 
-* `MySQLInstallerConsole.exe` para abrir o aplicativo de linha de comando.
+* `MySQLInstallerConsole.exe` para abrir o aplicativo de string de comando.
 
 3. Clique em Abrir e, em seguida, em OK na janela Executar. Se for solicitado para permitir que o aplicativo faça alterações no dispositivo, selecione `Yes`.
 
@@ -387,7 +387,7 @@ Os produtos instalados do MySQL não são alterados nem removidos quando você a
 <th>
 <code>MySQL Installer for Windows</code>
 </th>
-<td>Este pasta contém todos os arquivos necessários para executar o Instalador do MySQL e<code>MySQLInstallerConsole.exe</code>, um programa de linha de comando com funcionalidades semelhantes.</td>
+<td>Este pasta contém todos os arquivos necessários para executar o Instalador do MySQL e<code>MySQLInstallerConsole.exe</code>, um programa de string de comando com funcionalidades semelhantes.</td>
 <td>
 <code>C:\Program Files (x86)</code>
 </td>
@@ -547,7 +547,7 @@ Você pode definir o nível de controle de acesso com base no usuário (ou usuá
 
 - **Acesso mínimo para todos os usuários (RECOMENDADO).** Esse nível é ativado por padrão porque é o mais seguro.
 
-- **Acesso total a membros de um grupo local.** Se a opção de acesso mínimo for restritiva demais para o software do cliente, use esta opção para reduzir o número de usuários que têm acesso total no tubo nomeado. O grupo deve ser estabelecido no Windows antes de poder ser selecionado da lista. A associação a este grupo deve ser limitada e gerenciada. O Windows exige que um membro recém-adicionado faça logout e, em seguida, faça login novamente para se juntar a um grupo local.
+- **Acesso total a membros de um grupo local.** Se a opção de acesso mínimo for restritiva demais para o software do cliente, use esta opção para reduzir o número de usuários que têm acesso total no pipe nomeado. O grupo deve ser estabelecido no Windows antes de poder ser selecionado da lista. A associação a este grupo deve ser limitada e gerenciada. O Windows exige que um membro recém-adicionado faça logout e, em seguida, faça login novamente para se juntar a um grupo local.
 
 - **Acesso total a todos os usuários (NÃO RECOMENDADO).** Esta opção é menos segura e deve ser definida apenas quando outras medidas de segurança são implementadas.
 
@@ -943,7 +943,7 @@ O Instalador do MySQL permanece instalado no seu computador, e, como outros soft
 
 #### 2.3.3.5 Referência do Console do Instalador do MySQL
 
-O **MySQLInstallerConsole.exe** oferece funcionalidades de linha de comando semelhantes às do MySQL Installer. Esta referência inclui:
+O **MySQLInstallerConsole.exe** oferece funcionalidades de string de comando semelhantes às do MySQL Installer. Esta referência inclui:
 
 * Nomes dos produtos do MySQL
 * Sintaxe de comando
@@ -955,7 +955,7 @@ Para usar o console:
 
 1. Abra um prompt de comando com privilégios administrativos selecionando "Sistema do Windows" no menu Iniciar, clique com o botão direito no Prompt de comando, selecione Mais e, em seguida, execute como administrador.
 
-2. A partir da linha de comando, altere, opcionalmente, o diretório para onde o comando **MySQLInstallerConsole.exe** está localizado. Por exemplo, para usar o local de instalação padrão:
+2. A partir da string de comando, altere, opcionalmente, o diretório para onde o comando **MySQLInstallerConsole.exe** está localizado. Por exemplo, para usar o local de instalação padrão:
 
   ```prompt
   cd Program Files (x86)\MySQL\MySQL Installer for Windows
@@ -1442,7 +1442,7 @@ O Instalador do MySQL instala o MySQL em `C:\Program Files\MySQL`.
 
 #### 2.3.4.2 Criando um arquivo de opção
 
-Se você precisar especificar opções de inicialização ao executar o servidor, pode indicá-las na linha de comando ou colocá-las em um arquivo de opção. Para opções que são usadas toda vez que o servidor é iniciado, pode ser mais conveniente usar um arquivo de opção para especificar sua configuração MySQL. Isso é particularmente verdadeiro nas seguintes circunstâncias:
+Se você precisar especificar opções de inicialização ao executar o servidor, pode indicá-las na string de comando ou colocá-las em um arquivo de opção. Para opções que são usadas toda vez que o servidor é iniciado, pode ser mais conveniente usar um arquivo de opção para especificar sua configuração MySQL. Isso é particularmente verdadeiro nas seguintes circunstâncias:
 
 * Os locais de instalação ou diretórios de dados são diferentes dos locais padrão (`C:\Program Files\MySQL\MySQL Server 5.7` e `C:\Program Files\MySQL\MySQL Server 5.7\data`).
 
@@ -1523,7 +1523,7 @@ Cada servidor de uma distribuição suporta o mesmo conjunto de motores de armaz
 
 Todos os servidores Windows com MySQL 5.7 têm suporte para vinculação simbólica de diretórios de banco de dados.
 
-O MySQL suporta TCP/IP em todas as plataformas do Windows. Os servidores do MySQL no Windows também suportam tubos nomeados, se você iniciar o servidor com a variável de sistema `named_pipe` habilitada. É necessário habilitar essa variável explicitamente, porque alguns usuários tiveram problemas ao desligar o servidor MySQL quando tubos nomeados foram usados. O padrão é usar TCP/IP, independentemente da plataforma, porque os tubos nomeados são mais lentos do que o TCP/IP em muitas configurações do Windows.
+O MySQL suporta TCP/IP em todas as plataformas do Windows. Os servidores do MySQL no Windows também suportam pipes nomeados, se você iniciar o servidor com a variável de sistema `named_pipe` habilitada. É necessário habilitar essa variável explicitamente, porque alguns usuários tiveram problemas ao desligar o servidor MySQL quando pipes nomeados foram usados. O padrão é usar TCP/IP, independentemente da plataforma, porque os pipes nomeados são mais lentos do que o TCP/IP em muitas configurações do Windows.
 
 #### 2.3.4.4 Inicializando o Diretório de Dados
 
@@ -1535,19 +1535,19 @@ Se você instalou o MySQL usando o pacote `noinstall`, você pode precisar inici
 
 #### 2.3.4.5 Começando o servidor pela primeira vez
 
-Esta seção oferece uma visão geral geral sobre como iniciar o servidor MySQL. As seções a seguir fornecem informações mais específicas para iniciar o servidor MySQL a partir da linha de comando ou como um serviço do Windows.
+Esta seção oferece uma visão geral geral sobre como iniciar o servidor MySQL. As seções a seguir fornecem informações mais específicas para iniciar o servidor MySQL a partir da string de comando ou como um serviço do Windows.
 
 As informações aqui aplicam-se principalmente se você instalou o MySQL usando a versão `noinstall`, ou se deseja configurar e testar o MySQL manualmente, em vez das ferramentas de GUI.
 
 Os exemplos nessas seções assumem que o MySQL está instalado na localização padrão de `C:\Program Files\MySQL\MySQL Server 5.7`. Ajuste os nomes de caminho mostrados nos exemplos se o MySQL estiver instalado em um local diferente.
 
-Os clientes têm duas opções. Eles podem usar TCP/IP ou podem usar um tubo nomeado se o servidor suportar conexões de tubo nomeado.
+Os clientes têm duas opções. Eles podem usar TCP/IP ou podem usar um pipe nomeado se o servidor suportar conexões de pipe nomeado.
 
 O MySQL para Windows também suporta conexões de memória compartilhada se o servidor for iniciado com a variável de sistema `shared_memory` habilitada. Os clientes podem se conectar através da memória compartilhada usando a opção `--protocol=MEMORY`.
 
 Para obter informações sobre qual binário do servidor deve ser executado, consulte a Seção 2.3.4.3, “Selecionando um tipo de servidor MySQL”.
 
-Os testes são melhores realizados a partir de uma linha de comando em uma janela de console (ou "janela DOS"). Dessa forma, você pode ter o servidor exibindo mensagens de status na janela onde elas são fáceis de ver. Se algo estiver errado com sua configuração, essas mensagens facilitam a identificação e a correção de quaisquer problemas.
+Os testes são melhores realizados a partir de uma string de comando em uma janela de console (ou "janela DOS"). Dessa forma, você pode ter o servidor exibindo mensagens de status na janela onde elas são fáceis de ver. Se algo estiver errado com sua configuração, essas mensagens facilitam a identificação e a correção de quaisquer problemas.
 
 Nota
 
@@ -1594,11 +1594,11 @@ Nota
 
 A conta inicial `root` nas tabelas de concessão do MySQL não tem senha. Após iniciar o servidor, você deve configurar uma senha para ele usando as instruções na Seção 2.9.4, “Segurando a Conta Inicial do MySQL”.
 
-#### 2.3.4.6 Iniciar o MySQL a partir da linha de comando do Windows
+#### 2.3.4.6 Iniciar o MySQL a partir da string de comando do Windows
 
-O servidor MySQL pode ser iniciado manualmente a partir da linha de comando. Isso pode ser feito em qualquer versão do Windows.
+O servidor MySQL pode ser iniciado manualmente a partir da string de comando. Isso pode ser feito em qualquer versão do Windows.
 
-Para iniciar o servidor `mysqld` a partir da linha de comando, você deve iniciar uma janela de console (ou "janela DOS") e digitar o seguinte comando:
+Para iniciar o servidor `mysqld` a partir da string de comando, você deve iniciar uma janela de console (ou "janela DOS") e digitar o seguinte comando:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld"
@@ -1648,15 +1648,15 @@ Nota
 
 Deve haver um ponto e vírgula separando este caminho de quaisquer valores presentes neste campo.
 
-Desconsidere este diálogo e, em seguida, cada diálogo, clicando em OK até que todos os diálogos que foram abertos tenham sido descartados. O novo valor `PATH` deve estar disponível para qualquer novo shell de comando que você abrir, permitindo que você invoque qualquer programa executável do MySQL digitando seu nome no prompt do DOS em qualquer diretório do sistema, sem precisar fornecer o caminho. Isso inclui os servidores, o cliente **mysql** e todas as ferramentas de linha de comando do MySQL, como **mysqladmin** e **mysqldump**.
+Desconsidere este diálogo e, em seguida, cada diálogo, clicando em OK até que todos os diálogos que foram abertos tenham sido descartados. O novo valor `PATH` deve estar disponível para qualquer novo shell de comando que você abrir, permitindo que você invoque qualquer programa executável do MySQL digitando seu nome no prompt do DOS em qualquer diretório do sistema, sem precisar fornecer o caminho. Isso inclui os servidores, o cliente **mysql** e todas as ferramentas de string de comando do MySQL, como **mysqladmin** e **mysqldump**.
 
 Você não deve adicionar o diretório MySQL `bin` ao seu Windows `PATH` se você estiver executando vários servidores MySQL na mesma máquina.
 
 #### 2.3.4.8 Começando o MySQL como um serviço do Windows
 
-Em Windows, a maneira recomendada para executar o MySQL é instalá-lo como um serviço do Windows, para que o MySQL comece e pare automaticamente quando o Windows começa e para. Um servidor MySQL instalado como um serviço também pode ser controlado a partir da linha de comando usando comandos **NET**, ou com o utilitário gráfico **Serviços**. Geralmente, para instalar o MySQL como um serviço do Windows, você deve estar logado usando uma conta que tenha direitos de administrador.
+Em Windows, a maneira recomendada para executar o MySQL é instalá-lo como um serviço do Windows, para que o MySQL comece e pare automaticamente quando o Windows começa e para. Um servidor MySQL instalado como um serviço também pode ser controlado a partir da string de comando usando comandos **NET**, ou com o utilitário gráfico **Serviços**. Geralmente, para instalar o MySQL como um serviço do Windows, você deve estar logado usando uma conta que tenha direitos de administrador.
 
-O utilitário **Serviços** (o Gestor de Controlo de Serviços do Windows) pode ser encontrado no Painel de Controlo do Windows. Para evitar conflitos, é aconselhável fechar o utilitário **Serviços** enquanto realiza operações de instalação ou remoção de servidores a partir da linha de comando.
+O utilitário **Serviços** (o Gestor de Controlo de Serviços do Windows) pode ser encontrado no Painel de Controlo do Windows. Para evitar conflitos, é aconselhável fechar o utilitário **Serviços** enquanto realiza operações de instalação ou remoção de servidores a partir da string de comando.
 
 ##### Instalação do serviço
 
@@ -1693,7 +1693,7 @@ Para facilitar a invocação de programas MySQL, você pode adicionar o nome do 
 
 * Sob Variáveis do sistema, selecione Caminho e, em seguida, clique no botão Editar. O diálogo Editar variável do sistema deve aparecer.
 
-* Coloque o cursor no final do texto que aparece no espaço marcado com Valor Variável. (Use a tecla **Final** para garantir que o cursor esteja posicionado na extremidade final do texto neste espaço.) Em seguida, insira o nome completo do caminho do diretório MySQL `bin` (por exemplo, `C:\Program Files\MySQL\MySQL Server 5.7\bin`), e deve haver um ponto e vírgula separando este caminho de quaisquer valores presentes neste campo. Desconsidere este diálogo e, em seguida, cada diálogo, clicando em OK até que todos os diálogos que foram abertos tenham sido descartados. Agora você deve ser capaz de invocar qualquer programa executável MySQL digitando seu nome no prompt do DOS em qualquer diretório do sistema, sem precisar fornecer o caminho. Isso inclui os servidores, o cliente **mysql** e todas as ferramentas de linha de comando MySQL, como **mysqladmin** e **mysqldump**.
+* Coloque o cursor no final do texto que aparece no espaço marcado com Valor Variável. (Use a tecla **Final** para garantir que o cursor esteja posicionado na extremidade final do texto neste espaço.) Em seguida, insira o nome completo do caminho do diretório MySQL `bin` (por exemplo, `C:\Program Files\MySQL\MySQL Server 5.7\bin`), e deve haver um ponto e vírgula separando este caminho de quaisquer valores presentes neste campo. Desconsidere este diálogo e, em seguida, cada diálogo, clicando em OK até que todos os diálogos que foram abertos tenham sido descartados. Agora você deve ser capaz de invocar qualquer programa executável MySQL digitando seu nome no prompt do DOS em qualquer diretório do sistema, sem precisar fornecer o caminho. Isso inclui os servidores, o cliente **mysql** e todas as ferramentas de string de comando MySQL, como **mysqladmin** e **mysqldump**.
 
 Você não deve adicionar o diretório MySQL `bin` ao seu Windows `PATH` se você estiver executando vários servidores MySQL na mesma máquina.
 
@@ -1764,7 +1764,7 @@ Como alternativa, use a opção `mysqld` `--remove` para remover o serviço.
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld" --remove
 ```
 
-Se o `mysqld` não estiver sendo executado como um serviço, você pode iniciá-lo a partir da linha de comando. Para obter instruções, consulte a Seção 2.3.4.6, “Iniciando o MySQL a partir da linha de comando do Windows”.
+Se o `mysqld` não estiver sendo executado como um serviço, você pode iniciá-lo a partir da string de comando. Para obter instruções, consulte a Seção 2.3.4.6, “Iniciando o MySQL a partir da string de comando do Windows”.
 
 Se você encontrar dificuldades durante a instalação, consulte a Seção 2.3.5, “Solucionando problemas de instalação do Microsoft Windows MySQL Server”.
 
@@ -1795,7 +1795,7 @@ Ao instalar e executar o MySQL pela primeira vez, você pode encontrar certos er
 
 Seu primeiro recurso ao resolver problemas no servidor é o log de erro. O servidor MySQL usa o log de erro para registrar informações relevantes ao erro que impede o início do servidor. O log de erro está localizado no diretório de dados especificado no seu arquivo `my.ini`. O local padrão do diretório de dados é `C:\Program Files\MySQL\MySQL Server 5.7\data`, ou `C:\ProgramData\Mysql` no Windows 7 e no Windows Server 2008. O diretório `C:\ProgramData` é oculto por padrão. Você precisa alterar suas opções de pasta para ver o diretório e o conteúdo. Para mais informações sobre o log de erro e entender o conteúdo, consulte a Seção 5.4.2, “O Log de Erro”.
 
-Para obter informações sobre possíveis erros, consulte também as mensagens do console exibidas quando o serviço MySQL está sendo iniciado. Use o comando **SC START *`mysqld_service_name`*** ou **NET START *`mysqld_service_name`*** a partir da linha de comando após instalar `mysqld` como um serviço para ver quaisquer mensagens de erro relacionadas ao início do servidor MySQL como um serviço. Veja a Seção 2.3.4.8, “Iniciando o MySQL como um serviço do Windows”.
+Para obter informações sobre possíveis erros, consulte também as mensagens do console exibidas quando o serviço MySQL está sendo iniciado. Use o comando **SC START *`mysqld_service_name`*** ou **NET START *`mysqld_service_name`*** a partir da string de comando após instalar `mysqld` como um serviço para ver quaisquer mensagens de erro relacionadas ao início do servidor MySQL como um serviço. Veja a Seção 2.3.4.8, “Iniciando o MySQL como um serviço do Windows”.
 
 Os exemplos a seguir mostram outras mensagens de erro comuns que você pode encontrar ao instalar o MySQL e iniciar o servidor pela primeira vez:
 
@@ -1853,7 +1853,7 @@ Isso ocorre quando o Assistente de Configuração tenta instalar o serviço e en
 
 Uma solução para esse problema é escolher um nome de serviço diferente de `mysql` ao usar o assistente de configuração. Isso permite que o novo serviço seja instalado corretamente, mas deixa o serviço desatualizado no lugar. Embora isso seja inócuo, é melhor remover serviços antigos que não são mais usados.
 
-Para remover permanentemente o antigo serviço `mysql`, execute o seguinte comando como um usuário com privilégios administrativos, na linha de comando:
+Para remover permanentemente o antigo serviço `mysql`, execute o seguinte comando como um usuário com privilégios administrativos, na string de comando:
 
   ```sql
   C:\> SC DELETE mysql
@@ -1978,7 +1978,7 @@ C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-Para mais informações sobre **mysql** e **mysqlshow**, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”, e a Seção 4.5.7, “mysqlshow — Exibir informações de banco de dados, tabela e coluna”.
+Para mais informações sobre **mysql** e **mysqlshow**, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”, e a Seção 4.5.7, “mysqlshow — Exibir informações de banco de dados, tabela e coluna”.
 
 ### 2.3.7 Restrições da Plataforma Windows
 
@@ -2040,9 +2040,9 @@ mysql> LOAD DATA INFILE 'C:\\tmp\\skr.txt' INTO TABLE skr;
 mysql> SELECT * INTO OUTFILE 'C:\\tmp\\skr.txt' FROM skr;
 ```
 
-**Problemas com tubos**
+**Problemas com pipes**
 
-Os tubos não funcionam de forma confiável a partir do prompt de linha de comando do Windows. Se o tubo incluir o caractere `^Z` / `CHAR(24)`, o Windows pensa que encontrou o fim do arquivo e interrompe o programa.
+Os pipes não funcionam de forma confiável a partir do prompt de string de comando do Windows. Se o pipe incluir o caractere `^Z` / `CHAR(24)`, o Windows pensa que encontrou o fim do arquivo e interrompe o programa.
 
 Esse é principalmente um problema quando você tenta aplicar um log binário da seguinte forma:
 

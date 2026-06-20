@@ -6,7 +6,7 @@ Este manual não é destinado para uso com versões mais antigas do software MyS
 
 Se você está usando o MySQL 8.0, consulte o *Manual de Referência do MySQL 8.0*.
 
-Como este manual serve como referência, ele não fornece instruções gerais sobre conceitos de SQL ou bancos de dados relacionais. Além disso, ele não ensina como usar seu sistema operacional ou interpretador de linha de comando.
+Como este manual serve como referência, ele não fornece instruções gerais sobre conceitos de SQL ou bancos de dados relacionais. Além disso, ele não ensina como usar seu sistema operacional ou interpretador de string de comando.
 
 O software de banco de dados MySQL está em constante desenvolvimento e o Manual de Referência também é atualizado frequentemente. A versão mais recente do manual está disponível online em formato pesquisável em https://dev.mysql.com/doc/. Outros formatos também estão disponíveis lá, incluindo versões HTML e PDF para download.
 
@@ -20,7 +20,7 @@ Este manual utiliza certas convenções tipográficas:
 
 * **`Text in this style`** indica a entrada que você digita nos exemplos.
 
-* **Texto neste estilo** indica os nomes de programas e scripts executáveis, sendo exemplos **mysql** (o programa cliente de linha de comando do MySQL) e `mysqld` (o executável do servidor MySQL).
+* **Texto neste estilo** indica os nomes de programas e scripts executáveis, sendo exemplos **mysql** (o programa cliente de string de comando do MySQL) e `mysqld` (o executável do servidor MySQL).
 
 * *`Text in this style`* é usado para entrada variável para a qual você deve substituir um valor de sua escolha.
 
@@ -41,7 +41,7 @@ C:\> type a command here (Windows only)
 mysql> type a mysql statement here
 ```
 
-Os comandos são emitidos no seu interpretador de comandos. Em Unix, isso é tipicamente um programa como **sh**, **csh** ou **bash**. Em Windows, o programa equivalente é **command.com** ou **cmd.exe**, tipicamente executado em uma janela de console. As declarações prefixadas por `mysql` são emitidas no cliente de linha de comando **mysql**.
+Os comandos são emitidos no seu interpretador de comandos. Em Unix, isso é tipicamente um programa como **sh**, **csh** ou **bash**. Em Windows, o programa equivalente é **command.com** ou **cmd.exe**, tipicamente executado em uma janela de console. As declarações prefixadas por `mysql` são emitidas no cliente de string de comando **mysql**.
 
 Nota
 

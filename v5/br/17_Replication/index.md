@@ -20,7 +20,7 @@ A replicação no MySQL suporta diferentes tipos de sincronização. O tipo orig
 
 Há várias soluções disponíveis para configurar a replicação entre servidores, e o melhor método a usar depende da presença de dados e dos tipos de motor que você está usando. Para obter mais informações sobre as opções disponíveis, consulte a Seção 16.1.2, “Configurando a replicação com base na posição do arquivo de registro binário”.
 
-Existem dois tipos principais de formato de replicação, a Replicação Baseada em Declaração (SBR), que replica declarações SQL inteiras, e a Replicação Baseada em Linha (RBR), que replica apenas as linhas alteradas. Você também pode usar uma terceira variedade, a Replicação Baseada Mista (MBR). Para mais informações sobre os diferentes formatos de replicação, consulte a Seção 16.2.1, “Formatos de Replicação”.
+Existem dois tipos principais de formato de replicação, a Replicação Baseada em Declaração (SBR), que replica declarações SQL inteiras, e a Replicação Baseada em String (RBR), que replica apenas as strings alteradas. Você também pode usar uma terceira variedade, a Replicação Baseada Mista (MBR). Para mais informações sobre os diferentes formatos de replicação, consulte a Seção 16.2.1, “Formatos de Replicação”.
 
 A replicação é controlada por uma série de opções e variáveis diferentes. Para mais informações, consulte a Seção 16.1.6, “Opções e variáveis de replicação e registro binário”.
 

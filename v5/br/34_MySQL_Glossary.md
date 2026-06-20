@@ -46,9 +46,9 @@ ANSI: Em **ODBC**, um método alternativo para suportar conjuntos de caracteres 
 
 Veja também Conector/ODBC, ODBC, Unicode.
 
-Antílope: O nome de código para o formato de arquivo original do `InnoDB` **. O formato suporta os formatos de linha **REDUNDANTE** e **COMPACT**, mas não os formatos de linha mais recentes **DINÂMICA** e **COMPREENSO** disponíveis no formato de arquivo **Barracuda**.
+Antílope: O nome de código para o formato de arquivo original do `InnoDB` **. O formato suporta os formatos de string **REDUNDANTE** e **COMPACT**, mas não os formatos de string mais recentes **DINÂMICA** e **COMPREENSO** disponíveis no formato de arquivo **Barracuda**.
 
-Veja também Barracuda, formato de linha compacta, formato de linha comprimido, formato de linha dinâmico, formato de arquivo, innodb\_file\_format, formato de linha redundante.
+Veja também Barracuda, formato de string compacta, formato de string comprimido, formato de string dinâmico, formato de arquivo, innodb\_file\_format, formato de string redundante.
 
 API: As APIs fornecem acesso de nível baixo ao protocolo MySQL e aos recursos do MySQL a partir de programas **de cliente**. Contrasta com o acesso de nível superior fornecido por um **Conectador**.
 
@@ -90,15 +90,15 @@ instrução atômica: instruções especiais fornecidas pela CPU, para garantir 
 
 auto-incremento: Uma propriedade de uma coluna de tabela (especificada pelo termo-chave `AUTO_INCREMENT`) que adiciona automaticamente uma sequência ascendente de valores na coluna.
 
-Isso economiza trabalho para o desenvolvedor, pois não precisa produzir novos valores únicos ao inserir novas linhas. Isso fornece informações úteis para o otimizador de consulta, porque a coluna é conhecida por não ser nula e com valores únicos. Os valores de uma coluna desse tipo podem ser usados como chaves de busca em vários contextos, e, como são gerados automaticamente, não há motivo para alterá-los; por essa razão, as colunas de chave primária são frequentemente especificadas como auto-incrementadas.
+Isso economiza trabalho para o desenvolvedor, pois não precisa produzir novos valores únicos ao inserir novas strings. Isso fornece informações úteis para o otimizador de consulta, porque a coluna é conhecida por não ser nula e com valores únicos. Os valores de uma coluna desse tipo podem ser usados como chaves de busca em vários contextos, e, como são gerados automaticamente, não há motivo para alterá-los; por essa razão, as colunas de chave primária são frequentemente especificadas como auto-incrementadas.
 
-As colunas de autoincremento podem ser problemáticas com a replicação baseada em declarações, porque a reprodução das declarações em uma replica pode não produzir o mesmo conjunto de valores de coluna que na fonte, devido a problemas de sincronização. Quando você tem uma chave primária de autoincremento, você pode usar a replicação baseada em declarações apenas com a configuração `innodb_autoinc_lock_mode=1`. Se você tiver `innodb_autoinc_lock_mode=2`, que permite maior concorrência para operações de inserção, use **replicação baseada em linhas** em vez de **replicação baseada em declarações**. A configuração `innodb_autoinc_lock_mode=0` não deve ser usada, exceto por motivos de compatibilidade.
+As colunas de autoincremento podem ser problemáticas com a replicação baseada em declarações, porque a reprodução das declarações em uma replica pode não produzir o mesmo conjunto de valores de coluna que na fonte, devido a problemas de sincronização. Quando você tem uma chave primária de autoincremento, você pode usar a replicação baseada em declarações apenas com a configuração `innodb_autoinc_lock_mode=1`. Se você tiver `innodb_autoinc_lock_mode=2`, que permite maior concorrência para operações de inserção, use **replicação baseada em strings** em vez de **replicação baseada em declarações**. A configuração `innodb_autoinc_lock_mode=0` não deve ser usada, exceto por motivos de compatibilidade.
 
-O modo de bloqueio consecutivo (`innodb_autoinc_lock_mode=1`) é o ajuste padrão antes do MySQL 8.0.3. A partir do MySQL 8.0.3, o modo de bloqueio interlaçado (`innodb_autoinc_lock_mode=2`) é o padrão, o que reflete a mudança de replicação baseada em declarações para replicação baseada em linhas como o tipo de replicação padrão.
+O modo de bloqueio consecutivo (`innodb_autoinc_lock_mode=1`) é o ajuste padrão antes do MySQL 8.0.3. A partir do MySQL 8.0.3, o modo de bloqueio interlaçado (`innodb_autoinc_lock_mode=2`) é o padrão, o que reflete a mudança de replicação baseada em declarações para replicação baseada em strings como o tipo de replicação padrão.
 
-Veja também bloqueio de autoincremento, innodb\_autoinc\_lock\_mode, chave primária, replicação baseada em linha, replicação baseada em declaração.
+Veja também bloqueio de autoincremento, innodb\_autoinc\_lock\_mode, chave primária, replicação baseada em string, replicação baseada em declaração.
 
-bloqueio de autoincremento: A conveniência de uma chave primária de **autoincremento** implica em algum compromisso com a concorrência. No caso mais simples, se uma transação está inserindo valores na tabela, qualquer outra transação deve esperar para fazer suas próprias inserções naquela tabela, para que as linhas inseridas pela primeira transação recebam valores consecutivos da chave primária. `InnoDB` inclui otimizações e a opção `innodb_autoinc_lock_mode` para que você possa configurar um equilíbrio ótimo entre sequências previsíveis de valores de autoincremento e **concorrência** máxima para operações de inserção.
+bloqueio de autoincremento: A conveniência de uma chave primária de **autoincremento** implica em algum compromisso com a concorrência. No caso mais simples, se uma transação está inserindo valores na tabela, qualquer outra transação deve esperar para fazer suas próprias inserções naquela tabela, para que as strings inseridas pela primeira transação recebam valores consecutivos da chave primária. `InnoDB` inclui otimizações e a opção `innodb_autoinc_lock_mode` para que você possa configurar um equilíbrio ótimo entre sequências previsíveis de valores de autoincremento e **concorrência** máxima para operações de inserção.
 
 Veja também auto-incremento, concorrência, innodb\_autoinc\_lock\_mode.
 
@@ -140,7 +140,7 @@ Os backups são classificados como **quentes**, **quentes** ou **frios**, depend
 
 Veja também backup frio, backup quente, backup lógico, MySQL Enterprise Backup, mysqldump, backup físico, backup quente.
 
-Barracuda: O nome de código para um formato de arquivo `InnoDB` que suporta o formato de linha **COMPREENSO**, que permite a compressão de tabela InnoDB, e o formato de linha **DINÂMICO**, que melhora o layout de armazenamento para colunas de comprimento variável.
+Barracuda: O nome de código para um formato de arquivo `InnoDB` que suporta o formato de string **COMPREENSO**, que permite a compressão de tabela InnoDB, e o formato de string **DINÂMICO**, que melhora o layout de armazenamento para colunas de comprimento variável.
 
 A versão do produto **MySQL Enterprise Backup** 3.5 e superior suporta a criação de backups de espaços de tabela que utilizam o formato de arquivo Barracuda.
 
@@ -154,7 +154,7 @@ beta: Uma fase inicial da vida de um produto de software, quando ele está dispo
 
 Veja também o termo adotante precoce, GA.
 
-registro binário: Um arquivo que contém um registro de todas as declarações ou alterações de linha que tentam alterar os dados da tabela. O conteúdo do registro binário pode ser reexecutado para atualizar as réplicas em um cenário de **replicação**, ou para atualizar um banco de dados após restaurar os dados da tabela a partir de um backup. O recurso de registro binário pode ser ativado e desativado, embora a Oracle recomenda sempre ativá-lo se você usar replicação ou realizar backups.
+registro binário: Um arquivo que contém um registro de todas as declarações ou alterações de string que tentam alterar os dados da tabela. O conteúdo do registro binário pode ser reexecutado para atualizar as réplicas em um cenário de **replicação**, ou para atualizar um banco de dados após restaurar os dados da tabela a partir de um backup. O recurso de registro binário pode ser ativado e desativado, embora a Oracle recomenda sempre ativá-lo se você usar replicação ou realizar backups.
 
 Você pode examinar o conteúdo do log binário ou reproduzi-lo durante a replicação ou recuperação, usando o comando **mysqlbinlog**. Para obter informações completas sobre o log binário, consulte a Seção 5.4.4, “O Log Binário”. Para opções de configuração do MySQL relacionadas ao log binário, consulte a Seção 16.1.6.4, “Opções e variáveis de registro binário”.
 
@@ -172,7 +172,7 @@ expansão de consulta cega: um modo especial de **pesquisa de texto completo** h
 
 Veja também a pesquisa de texto completo.
 
-BLOB: Um tipo de dados SQL (`TINYBLOB`, `BLOB`, `MEDIUMBLOB` e `LONGBLOB`) para objetos que contêm qualquer tipo de dados binários, de tamanho arbitrário. Usado para armazenar documentos, imagens, arquivos de som e outros tipos de informações que não podem ser facilmente decompostos em linhas e colunas dentro de uma tabela MySQL. As técnicas para lidar com BLOBs dentro de uma aplicação MySQL variam com cada **Conectivo** e **API**. O MySQL `Connector/ODBC` define os valores de `BLOB` como `LONGVARBINARY`. Para coleções grandes e de formato livre de dados de caracteres, o termo da indústria é **CLOB**, representado pelos tipos de dados MySQL `TEXT`.
+BLOB: Um tipo de dados SQL (`TINYBLOB`, `BLOB`, `MEDIUMBLOB` e `LONGBLOB`) para objetos que contêm qualquer tipo de dados binários, de tamanho arbitrário. Usado para armazenar documentos, imagens, arquivos de som e outros tipos de informações que não podem ser facilmente decompostos em strings e colunas dentro de uma tabela MySQL. As técnicas para lidar com BLOBs dentro de uma aplicação MySQL variam com cada **Conectivo** e **API**. O MySQL `Connector/ODBC` define os valores de `BLOB` como `LONGVARBINARY`. Para coleções grandes e de formato livre de dados de caracteres, o termo da indústria é **CLOB**, representado pelos tipos de dados MySQL `TEXT`.
 
 Veja também API, CLOB, conector, Connector/ODBC.
 
@@ -192,7 +192,7 @@ buffer: Uma área de memória ou disco usada para armazenamento temporário. Os 
 
 Veja também: buffer pool, alterar buffer, falha, buffer de escrita dupla.
 
-pool de buffer: A área de memória que armazena dados `InnoDB` em cache para ambas as tabelas e índices. Para a eficiência de operações de leitura de alto volume, o pool de buffer é dividido em **páginas** que podem potencialmente conter várias linhas. Para a eficiência da gestão de cache, o pool de buffer é implementado como uma lista enlaçada de páginas; os dados que são raramente usados são eliminados da cache, usando uma variação do algoritmo **LRU**. Em sistemas com grande memória, você pode melhorar a concorrência dividindo o pool de buffer em várias **instâncias de pool de buffer**.
+pool de buffer: A área de memória que armazena dados `InnoDB` em cache para ambas as tabelas e índices. Para a eficiência de operações de leitura de alto volume, o pool de buffer é dividido em **páginas** que podem potencialmente conter várias strings. Para a eficiência da gestão de cache, o pool de buffer é implementado como uma lista enlaçada de páginas; os dados que são raramente usados são eliminados da cache, usando uma variação do algoritmo **LRU**. Em sistemas com grande memória, você pode melhorar a concorrência dividindo o pool de buffer em várias **instâncias de pool de buffer**.
 
 Várias variáveis de status `InnoDB`, tabelas `INFORMATION_SCHEMA` e tabelas `performance_schema` ajudam a monitorar o funcionamento interno do pool de buffers. A partir do MySQL 5.6, você pode evitar um longo período de aquecimento após o reinício do servidor, especialmente para instâncias com grandes pools de buffers, salvando o estado do pool de buffers na parada do servidor e restaurando o pool de buffers ao mesmo estado na inicialização do servidor. Veja a Seção 14.8.3.6, “Salvar e restaurar o estado do pool de buffers”.
 
@@ -240,9 +240,9 @@ cache: O termo geral para qualquer área de memória que armazena cópias de dad
 
 Veja também buffer, buffer pool.
 
-cardinalidade: O número de valores diferentes em uma **coluna** de uma tabela. Quando as consultas referem-se a colunas que têm um **índice** associado, a cardinalidade de cada coluna influencia qual método de acesso é o mais eficiente. Por exemplo, para uma coluna com uma **restrição única**, o número de valores diferentes é igual ao número de linhas na tabela. Se uma tabela tiver um milhão de linhas, mas apenas 10 valores diferentes para uma coluna específica, cada valor ocorre (em média) 100.000 vezes. Uma consulta como `SELECT c1 FROM t1 WHERE c1 = 50;` pode, portanto, retornar 1 linha ou um número enorme de linhas, e o servidor de banco de dados pode processar a consulta de maneira diferente, dependendo da cardinalidade de `c1`.
+cardinalidade: O número de valores diferentes em uma **coluna** de uma tabela. Quando as consultas referem-se a colunas que têm um **índice** associado, a cardinalidade de cada coluna influencia qual método de acesso é o mais eficiente. Por exemplo, para uma coluna com uma **restrição única**, o número de valores diferentes é igual ao número de strings na tabela. Se uma tabela tiver um milhão de strings, mas apenas 10 valores diferentes para uma coluna específica, cada valor ocorre (em média) 100.000 vezes. Uma consulta como `SELECT c1 FROM t1 WHERE c1 = 50;` pode, portanto, retornar 1 string ou um número enorme de strings, e o servidor de banco de dados pode processar a consulta de maneira diferente, dependendo da cardinalidade de `c1`.
 
-Se os valores em uma coluna tiverem uma distribuição muito irregular, a cardinalidade pode não ser uma boa maneira de determinar o melhor plano de consulta. Por exemplo, `SELECT c1 FROM t1 WHERE c1 = x;` pode retornar 1 linha quando `x=50` e um milhão de linhas quando `x=30`. Nesse caso, você pode precisar usar **dicas de índice** para fornecer conselhos sobre qual método de busca é mais eficiente para uma consulta específica.
+Se os valores em uma coluna tiverem uma distribuição muito irregular, a cardinalidade pode não ser uma boa maneira de determinar o melhor plano de consulta. Por exemplo, `SELECT c1 FROM t1 WHERE c1 = x;` pode retornar 1 string quando `x=50` e um milhão de strings quando `x=30`. Nesse caso, você pode precisar usar **dicas de índice** para fornecer conselhos sobre qual método de busca é mais eficiente para uma consulta específica.
 
 A cardinalidade também pode se aplicar ao número de valores distintos presentes em várias colunas, como em um **índice composto**.
 
@@ -276,7 +276,7 @@ O MySQL também utiliza verificações de checksum para fins de replicação. Pa
 
 Veja também buffer pool, página, tablespace.
 
-tabela de filho: Em uma relação de **chave estrangeira**, uma tabela de filho é aquela cujas linhas referem (ou apontam) para linhas de outra tabela com um valor idêntico para uma coluna específica. Esta é a tabela que contém a cláusula `FOREIGN KEY ... REFERENCES` e, opcionalmente, as cláusulas `ON UPDATE` e `ON DELETE`. A linha correspondente na **tabela pai** deve existir antes de a linha poder ser criada na tabela de filho. Os valores na tabela de filho podem impedir operações de exclusão ou atualização na tabela pai, ou podem causar exclusão ou atualizações automáticas na tabela de filho, com base na opção `ON CASCADE` usada ao criar a chave estrangeira.
+tabela de filho: Em uma relação de **chave estrangeira**, uma tabela de filho é aquela cujas strings referem (ou apontam) para strings de outra tabela com um valor idêntico para uma coluna específica. Esta é a tabela que contém a cláusula `FOREIGN KEY ... REFERENCES` e, opcionalmente, as cláusulas `ON UPDATE` e `ON DELETE`. A string correspondente na **tabela pai** deve existir antes de a string poder ser criada na tabela de filho. Os valores na tabela de filho podem impedir operações de exclusão ou atualização na tabela pai, ou podem causar exclusão ou atualizações automáticas na tabela de filho, com base na opção `ON CASCADE` usada ao criar a chave estrangeira.
 
 Veja também chave estrangeira, tabela pai.
 
@@ -288,7 +288,7 @@ desativação limpa: Uma **desativação** que é concluída sem erros e aplica 
 
 Veja também: acidente de avião, desligamento rápido, desligamento, desligamento lento.
 
-cliente: Um programa que funciona fora do servidor de banco de dados, comunicando-se com o banco de dados enviando solicitações através de um **Conector**, ou uma **API** disponibilizada através de **bibliotecas de cliente**. Pode funcionar na mesma máquina física do servidor de banco de dados, ou em uma máquina remota conectada através de uma rede. Pode ser um aplicativo de banco de dados de propósito específico, ou um programa de propósito geral como o processador de linha de comando **mysql**.
+cliente: Um programa que funciona fora do servidor de banco de dados, comunicando-se com o banco de dados enviando solicitações através de um **Conector**, ou uma **API** disponibilizada através de **bibliotecas de cliente**. Pode funcionar na mesma máquina física do servidor de banco de dados, ou em uma máquina remota conectada através de uma rede. Pode ser um aplicativo de banco de dados de propósito específico, ou um programa de propósito geral como o processador de string de comando **mysql**.
 
 Veja também API, bibliotecas de cliente, conector, mysql, servidor.
 
@@ -314,19 +314,19 @@ backup frio: Um **backup** realizado enquanto o banco de dados está desligado. 
 
 Veja também backup, backup quente e backup quente.
 
-coluna: Um item de dados dentro de uma **linha**, cujo armazenamento e semântica são definidos por um tipo de dados. Cada **tabela** e **índice** é amplamente definido pelo conjunto de colunas que contém.
+coluna: Um item de dados dentro de uma **string**, cujo armazenamento e semântica são definidos por um tipo de dados. Cada **tabela** e **índice** é amplamente definido pelo conjunto de colunas que contém.
 
 Cada coluna tem um valor de **cardinalidade**. Uma coluna pode ser a **chave primária** de sua tabela ou parte da chave primária. Uma coluna pode estar sujeita a uma **restrição única**, uma **restrição NOT NULL** ou ambas. Os valores em diferentes colunas, mesmo entre diferentes tabelas, podem ser vinculados por uma **relação de chave estrangeira**.
 
 Em discussões sobre operações internas do MySQL, às vezes **campo** é usado como sinônimo.
 
-Veja também cardinalidade, chave estrangeira, índice, restrição NOT NULL, chave primária, linha, tabela, restrição única.
+Veja também cardinalidade, chave estrangeira, índice, restrição NOT NULL, chave primária, string, tabela, restrição única.
 
 índice de coluna: Um **índice** em uma única coluna.
 
 Veja também índice composto, índice.
 
-prefixo da coluna: Quando um **índice** é criado com uma especificação de comprimento, como `CREATE INDEX idx ON t1 (c1(N))`, apenas os primeiros N caracteres do valor da coluna são armazenados no índice. Manter o prefixo do índice pequeno torna o índice compacto, e as economias de memória e I/O de disco ajudam no desempenho. (Embora fazer o prefixo do índice muito pequeno possa dificultar a otimização da consulta, fazendo com que as linhas com valores diferentes pareçam duplicatas para o otimizador de consulta.)
+prefixo da coluna: Quando um **índice** é criado com uma especificação de comprimento, como `CREATE INDEX idx ON t1 (c1(N))`, apenas os primeiros N caracteres do valor da coluna são armazenados no índice. Manter o prefixo do índice pequeno torna o índice compacto, e as economias de memória e I/O de disco ajudam no desempenho. (Embora fazer o prefixo do índice muito pequeno possa dificultar a otimização da consulta, fazendo com que as strings com valores diferentes pareçam duplicatas para o otimizador de consulta.)
 
 Para colunas que contêm valores binários ou cadeias de texto longas, onde o ordenamento não é uma consideração importante e o armazenamento de todo o valor no índice desperdiçaria espaço, o índice usa automaticamente os primeiros N (tipicamente 768) caracteres do valor para fazer pesquisas e ordenamentos.
 
@@ -344,11 +344,11 @@ Por padrão, o MySQL usa a configuração **autocommit**, que emite automaticame
 
 Veja também autocommit, otimista, rollback, SQL, transação.
 
-formato de linha compacto: O formato de linha padrão `InnoDB` **para tabelas InnoDB** do MySQL 5.0.3 ao MySQL 5.7.8. A partir do MySQL 5.7.9, o formato de linha padrão é definido pela opção de configuração `innodb_default_row_format`, que tem um ajuste padrão de **DINÂMICO**. O formato de linha **COMPACT** oferece uma representação mais compacta para nulos e colunas de comprimento variável do que o formato de linha padrão anterior (**REDUNDANTE**).
+formato de string compacto: O formato de string padrão `InnoDB` **para tabelas InnoDB** do MySQL 5.0.3 ao MySQL 5.7.8. A partir do MySQL 5.7.9, o formato de string padrão é definido pela opção de configuração `innodb_default_row_format`, que tem um ajuste padrão de **DINÂMICO**. O formato de string **COMPACT** oferece uma representação mais compacta para nulos e colunas de comprimento variável do que o formato de string padrão anterior (**REDUNDANTE**).
 
-Para informações adicionais sobre o formato da linha `InnoDB` `COMPACT`, consulte a Seção 14.11, “Formatos de linha InnoDB”.
+Para informações adicionais sobre o formato da string `InnoDB` `COMPACT`, consulte a Seção 14.11, “Formatos de string InnoDB”.
 
-Veja também: Antílope, formato de linha dinâmico, formato de arquivo, formato de linha redundante, formato de linha.
+Veja também: Antílope, formato de string dinâmico, formato de arquivo, formato de string redundante, formato de string.
 
 índice composto: Um **índice** que inclui várias colunas.
 
@@ -362,15 +362,15 @@ Aplicar **compressão** no início do processo de backup ajuda a evitar o desper
 
 Veja também aplicar, log binário, compressão, backup quente, MySQL Enterprise Backup, tablespace.
 
-formato de linha compactada: um **formato de linha** que permite a **comprimentos** de dados e índices para as tabelas `InnoDB`. Foi introduzido no Plugin `InnoDB`, disponível como parte do formato de arquivo **Barracuda**. Campos grandes são armazenados longe da página que contém o resto dos dados da linha, como no **formato de linha dinâmica**. Tanto as páginas de índice quanto os campos grandes são compactados, resultando em economia de memória e disco. Dependendo da estrutura dos dados, a diminuição da memória e do uso do disco pode ou não superar o custo de desempenho da descomprimagem dos dados conforme eles são usados. Consulte a Seção 14.9, “Compressão de Tabela e Página InnoDB”, para detalhes de uso.
+formato de string compactada: um **formato de string** que permite a **comprimentos** de dados e índices para as tabelas `InnoDB`. Foi introduzido no Plugin `InnoDB`, disponível como parte do formato de arquivo **Barracuda**. Campos grandes são armazenados longe da página que contém o resto dos dados da string, como no **formato de string dinâmica**. Tanto as páginas de índice quanto os campos grandes são compactados, resultando em economia de memória e disco. Dependendo da estrutura dos dados, a diminuição da memória e do uso do disco pode ou não superar o custo de desempenho da descomprimagem dos dados conforme eles são usados. Consulte a Seção 14.9, “Compressão de Tabela e Página InnoDB”, para detalhes de uso.
 
-Para informações adicionais sobre o formato da linha `InnoDB` `COMPRESSED`, consulte o Formato de linha dinâmico.
+Para informações adicionais sobre o formato da string `InnoDB` `COMPRESSED`, consulte o Formato de string dinâmico.
 
-Veja também Barracuda, compressão, formato de linha dinâmico, formato de linha.
+Veja também Barracuda, compressão, formato de string dinâmico, formato de string.
 
 tabela compactada: uma tabela para a qual os dados são armazenados em forma compactada. Para `InnoDB`, é uma tabela criada com `ROW_FORMAT=COMPRESSED`. Consulte a Seção 14.9, “Compactação de tabela e página InnoDB”, para obter mais informações.
 
-Veja também o formato de linha compactada, compressão.
+Veja também o formato de string compactada, compressão.
 
 comprimidos: Uma característica com benefícios amplos, que resultam no uso de menos espaço em disco, com menos operações de E/S e menos memória para cache.
 
@@ -378,7 +378,7 @@ comprimidos: Uma característica com benefícios amplos, que resultam no uso de 
 
 Outro tipo de compressão é a função de **backup comprimido** do produto **MySQL Enterprise Backup**.
 
-Veja também Barracuda, pool de buffer, backup comprimido, formato de linha comprimido, DML, compressão transparente de página.
+Veja também Barracuda, pool de buffer, backup comprimido, formato de string comprimido, DML, compressão transparente de página.
 
 falha de compressão: Na verdade, não é um erro, mas sim uma operação cara que pode ocorrer ao usar **compressão** em combinação com operações **DML**. Ocorre quando: as atualizações de uma **página** comprimida ultrapassam a área na página reservada para gravação de modificações; a página é comprimida novamente, com todas as alterações aplicadas aos dados da tabela; os dados recompressados não cabem na página original, exigindo que o MySQL divida os dados em duas novas páginas e comprima cada uma separadamente. Para verificar a frequência dessa condição, consulte a tabela `INFORMATION_SCHEMA.INNODB_CMP` e verifique quanto o valor da coluna `COMPRESS_OPS` excede o valor da coluna `COMPRESS_OPS_OK`. Idealmente, as falhas de compressão não ocorrem com frequência; quando ocorrem, você pode ajustar as opções de configuração dos `innodb_compression_level`, `innodb_compression_failure_threshold_pct` e `innodb_compression_pad_pct_max`.
 
@@ -452,7 +452,7 @@ contador: Um valor que é incrementado por um tipo específico de operação `In
 
 Veja também INFORMATION_SCHEMA, contador de métricas, Schema de desempenho.
 
-Índice de cobertura: Um **índice** que inclui todas as colunas recuperadas por uma consulta. Em vez de usar os valores do índice como ponteiros para encontrar as linhas completas da tabela, a consulta retorna valores da estrutura do índice, economizando I/O de disco. `InnoDB` pode aplicar essa técnica de otimização a mais índices do que o MyISAM pode, porque os **índices secundários** `InnoDB` também incluem as colunas da **chave primária**. `InnoDB` não pode aplicar essa técnica para consultas contra tabelas modificadas por uma transação, até que essa transação termine.
+Índice de cobertura: Um **índice** que inclui todas as colunas recuperadas por uma consulta. Em vez de usar os valores do índice como ponteiros para encontrar as strings completas da tabela, a consulta retorna valores da estrutura do índice, economizando I/O de disco. `InnoDB` pode aplicar essa técnica de otimização a mais índices do que o MyISAM pode, porque os **índices secundários** `InnoDB` também incluem as colunas da **chave primária**. `InnoDB` não pode aplicar essa técnica para consultas contra tabelas modificadas por uma transação, até que essa transação termine.
 
 Qualquer **índice de coluna** ou **índice composto** pode atuar como um índice de cobertura, dado a consulta correta. Projete seus índices e consultas para aproveitar essa técnica de otimização sempre que possível.
 
@@ -526,7 +526,7 @@ Fornecedor DDEX: Uma funcionalidade que permite usar as ferramentas de design de
 
 Veja também Visual Studio.
 
-DDL: Linguagem de definição de dados, um conjunto de declarações de **SQL** para manipular o próprio banco de dados em vez das linhas individuais de tabela. Inclui todas as formas das declarações `CREATE`, `ALTER` e `DROP`. Também inclui a declaração `TRUNCATE`, porque ela funciona de maneira diferente de uma declaração `DELETE FROM table_name`, embora o efeito final seja semelhante.
+DDL: Linguagem de definição de dados, um conjunto de declarações de **SQL** para manipular o próprio banco de dados em vez das strings individuais de tabela. Inclui todas as formas das declarações `CREATE`, `ALTER` e `DROP`. Também inclui a declaração `TRUNCATE`, porque ela funciona de maneira diferente de uma declaração `DELETE FROM table_name`, embora o efeito final seja semelhante.
 
 As instruções DDL automaticamente **confirmam** a **transação** atual; elas não podem ser **desfeitas**.
 
@@ -538,7 +538,7 @@ Veja também commit, DCL, DML, arquivo por tabela, rollback, SQL, transação.
 
 deadlock: Uma situação em que diferentes **transações** não conseguem prosseguir, porque cada uma delas possui um **bloqueio** que a outra precisa. Como ambas as transações estão esperando que um recurso se torne disponível, nenhuma delas libera os bloqueios que detém.
 
-Um impasse pode ocorrer quando as transações bloqueiam linhas em múltiplas tabelas (através de declarações como `UPDATE` ou `SELECT ... FOR UPDATE`, mas na ordem oposta. Um impasse também pode ocorrer quando tais declarações bloqueiam faixas de registros de índice e **lacunas**, com cada transação adquirindo alguns bloqueios, mas não outros devido a um problema de sincronização.
+Um impasse pode ocorrer quando as transações bloqueiam strings em múltiplas tabelas (através de declarações como `UPDATE` ou `SELECT ... FOR UPDATE`, mas na ordem oposta. Um impasse também pode ocorrer quando tais declarações bloqueiam faixas de registros de índice e **lacunas**, com cada transação adquirindo alguns bloqueios, mas não outros devido a um problema de sincronização.
 
 Para informações de fundo sobre como os deadlocks são detectados e tratados automaticamente, consulte a Seção 14.7.5.2, “Detecção de Deadlocks”. Para dicas sobre como evitar e recuperar de condições de deadlocks, consulte a Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”.
 
@@ -548,7 +548,7 @@ Detecção de ponto morto: Um mecanismo que detecta automaticamente quando ocorr
 
 Veja também: impasse, rollback, transação, vítima.
 
-Excluir: Quando o `InnoDB` processa uma declaração `DELETE`, as linhas são marcadas imediatamente para exclusão e não são mais devolvidas por consultas. O armazenamento é recuperado em algum momento posterior, durante a coleta periódica de lixo conhecida como operação de **purga**. Para a remoção de grandes quantidades de dados, operações relacionadas com suas próprias características de desempenho são **TRUNCATE** e **DROP**.
+Excluir: Quando o `InnoDB` processa uma declaração `DELETE`, as strings são marcadas imediatamente para exclusão e não são mais devolvidas por consultas. O armazenamento é recuperado em algum momento posterior, durante a coleta periódica de lixo conhecida como operação de **purga**. Para a remoção de grandes quantidades de dados, operações relacionadas com suas próprias características de desempenho são **TRUNCATE** e **DROP**.
 
 Veja também drop, purge e truncate.
 
@@ -610,17 +610,17 @@ DSN: Abreviação de "Database Source Name" (Nome da Fonte do Banco de Dados). �
 
 Veja também conexão, string de conexão, Conector/NET, Conector/ODBC.
 
-cursor dinâmico: Um tipo de **cursor** suportado pelo **ODBC** que pode capturar novos e alterados resultados quando as linhas são lidas novamente. Se e como rapidamente as alterações são visíveis para o cursor depende do tipo de tabela envolvida (transacional ou não transacional) e do nível de isolamento para tabelas transacionais. O suporte para cursors dinâmicos deve ser explicitamente habilitado.
+cursor dinâmico: Um tipo de **cursor** suportado pelo **ODBC** que pode capturar novos e alterados resultados quando as strings são lidas novamente. Se e como rapidamente as alterações são visíveis para o cursor depende do tipo de tabela envolvida (transacional ou não transacional) e do nível de isolamento para tabelas transacionais. O suporte para cursors dinâmicos deve ser explicitamente habilitado.
 
 Veja também cursor, ODBC.
 
-formato de linha dinâmico: um formato de linha introduzido no plugin `InnoDB`, disponível como parte do **formato de arquivo Barracuda**. Como os valores de coluna de comprimento variável são armazenados fora da página que contém os dados da linha, é muito eficiente para linhas que incluem grandes objetos. Como os campos grandes normalmente não são acessados para avaliar as condições da consulta, eles não são trazidos para o **buffer pool** com tanta frequência, resultando em menos operações de E/S e melhor utilização da memória de cache.
+formato de string dinâmico: um formato de string introduzido no plugin `InnoDB`, disponível como parte do **formato de arquivo Barracuda**. Como os valores de coluna de comprimento variável são armazenados fora da página que contém os dados da string, é muito eficiente para strings que incluem grandes objetos. Como os campos grandes normalmente não são acessados para avaliar as condições da consulta, eles não são trazidos para o **buffer pool** com tanta frequência, resultando em menos operações de E/S e melhor utilização da memória de cache.
 
-A partir do MySQL 5.7.9, o formato padrão da linha é definido por `innodb_default_row_format`, que tem um valor padrão de `DYNAMIC`.
+A partir do MySQL 5.7.9, o formato padrão da string é definido por `innodb_default_row_format`, que tem um valor padrão de `DYNAMIC`.
 
-Para informações adicionais sobre o formato da linha `InnoDB` `DYNAMIC`, consulte o Formato de linha dinâmico.
+Para informações adicionais sobre o formato da string `InnoDB` `DYNAMIC`, consulte o Formato de string dinâmico.
 
-Veja também Barracuda, pool de buffer, formato de arquivo, formato de linha.
+Veja também Barracuda, pool de buffer, formato de arquivo, formato de string.
 
 SQL dinâmico: Uma funcionalidade que permite criar e executar **declarações preparadas** usando métodos mais robustos, seguros e eficientes para substituir os valores dos parâmetros do que a técnica ingênua de concatenar as partes da declaração em uma variável de string.
 
@@ -660,7 +660,7 @@ Em aplicativos do **Visual Studio** que utilizam o **Connector/NET**, configurar
 
 Veja também Connector/J, Connector/NET, interceptor, Java, Visual Studio.
 
-bloqueio exclusivo: Um tipo de **bloqueio** que impede qualquer outra **transação** de bloquear a mesma linha. Dependendo do nível de **isolamento** da transação, esse tipo de bloqueio pode bloquear outras transações de escrever na mesma linha, ou também pode bloquear outras transações de ler a mesma linha. O nível de isolamento padrão `InnoDB` **REPEATABLE READ**, permite maior **concorrência** ao permitir que as transações leiam linhas que têm bloqueios exclusivos, uma técnica conhecida como **leitura consistente**.
+bloqueio exclusivo: Um tipo de **bloqueio** que impede qualquer outra **transação** de bloquear a mesma string. Dependendo do nível de **isolamento** da transação, esse tipo de bloqueio pode bloquear outras transações de escrever na mesma string, ou também pode bloquear outras transações de ler a mesma string. O nível de isolamento padrão `InnoDB` **REPEATABLE READ**, permite maior **concorrência** ao permitir que as transações leiam strings que têm bloqueios exclusivos, uma técnica conhecida como **leitura consistente**.
 
 Veja também concorrência, leitura consistente, nível de isolamento, bloqueio, LEITURA REPEATÁVEL, bloqueio compartilhado, transação.
 
@@ -702,25 +702,25 @@ desativação rápida: O procedimento de **desativação** padrão para `InnoDB`
 
 Veja também recuperação de falhas, arquivos de dados, esvaziamento, desligamento, desligamento lento.
 
-formato de arquivo: O formato de arquivo para as tabelas `InnoDB`, habilitado usando a opção de configuração `innodb_file_format`. Os formatos de arquivo suportados são **Antelope** e **Barracuda**. Antelope é o formato de arquivo original `InnoDB` e suporta os formatos de linha **REDUNDANT** e **COMPACT**. Barracuda é o formato de arquivo mais recente `InnoDB` e suporta os formatos de linha **COMPRESSED** e **DYNAMIC**.
+formato de arquivo: O formato de arquivo para as tabelas `InnoDB`, habilitado usando a opção de configuração `innodb_file_format`. Os formatos de arquivo suportados são **Antelope** e **Barracuda**. Antelope é o formato de arquivo original `InnoDB` e suporta os formatos de string **REDUNDANT** e **COMPACT**. Barracuda é o formato de arquivo mais recente `InnoDB` e suporta os formatos de string **COMPRESSED** e **DYNAMIC**.
 
-Veja também Antílope, Barracuda, arquivo por tabela, arquivo .ibd, arquivo ibdata, formato de linha.
+Veja também Antílope, Barracuda, arquivo por tabela, arquivo .ibd, arquivo ibdata, formato de string.
 
 file-per-table: Um nome geral para a configuração controlada pela opção `innodb_file_per_table`, que é uma opção de configuração importante que afeta aspectos do armazenamento de arquivos `InnoDB`, disponibilidade de recursos e características de E/S. A partir do MySQL 5.6.7, `innodb_file_per_table` é habilitado por padrão.
 
-Com a opção `innodb_file_per_table` habilitada, você pode criar uma tabela em seu próprio arquivo **.ibd** em vez dos arquivos compartilhados **ibdata** do **espaço de tabela do sistema**. Quando os dados da tabela são armazenados em um arquivo **.ibd** individual, você tem mais flexibilidade para escolher os **formatos de linha** necessários para recursos como **compressão de dados**. A operação `TRUNCATE TABLE` também é mais rápida, e o espaço recuperado pode ser usado pelo sistema operacional em vez de permanecer reservado para `InnoDB`.
+Com a opção `innodb_file_per_table` habilitada, você pode criar uma tabela em seu próprio arquivo **.ibd** em vez dos arquivos compartilhados **ibdata** do **espaço de tabela do sistema**. Quando os dados da tabela são armazenados em um arquivo **.ibd** individual, você tem mais flexibilidade para escolher os **formatos de string** necessários para recursos como **compressão de dados**. A operação `TRUNCATE TABLE` também é mais rápida, e o espaço recuperado pode ser usado pelo sistema operacional em vez de permanecer reservado para `InnoDB`.
 
 O produto **MySQL Enterprise Backup** é mais flexível para tabelas que estão em seus próprios arquivos. Por exemplo, as tabelas podem ser excluídas de um backup, mas apenas se estiverem em arquivos separados. Assim, essa configuração é adequada para tabelas que são respaldadas com menos frequência ou em um cronograma diferente.
 
-Veja também formato de linha compactada, compressão, formato de arquivo, arquivo .ibd, arquivo ibdata, innodb\_file\_per\_table, MySQL Enterprise Backup, formato de linha, espaço de tabela do sistema.
+Veja também formato de string compactada, compressão, formato de arquivo, arquivo .ibd, arquivo ibdata, innodb\_file\_per\_table, MySQL Enterprise Backup, formato de string, espaço de tabela do sistema.
 
-coeficiente de preenchimento: Em um índice `InnoDB`, a proporção de uma **página** que é ocupada por dados de índice antes de a página ser dividida. O espaço não utilizado quando os dados de índice são divididos pela primeira vez entre páginas permite que as linhas sejam atualizadas com valores de cadeia mais longos sem exigir operações caras de manutenção de índice. Se o coeficiente de preenchimento for muito baixo, o índice consome mais espaço do que o necessário, causando sobrecarga de E/S extra ao ler o índice. Se o coeficiente de preenchimento for muito alto, qualquer atualização que aumente o comprimento dos valores das colunas pode causar sobrecarga de E/S extra para a manutenção do índice. Consulte a Seção 14.6.2.2, “A Estrutura Física de um Índice InnoDB”, para mais informações.
+coeficiente de preenchimento: Em um índice `InnoDB`, a proporção de uma **página** que é ocupada por dados de índice antes de a página ser dividida. O espaço não utilizado quando os dados de índice são divididos pela primeira vez entre páginas permite que as strings sejam atualizadas com valores de cadeia mais longos sem exigir operações caras de manutenção de índice. Se o coeficiente de preenchimento for muito baixo, o índice consome mais espaço do que o necessário, causando sobrecarga de E/S extra ao ler o índice. Se o coeficiente de preenchimento for muito alto, qualquer atualização que aumente o comprimento dos valores das colunas pode causar sobrecarga de E/S extra para a manutenção do índice. Consulte a Seção 14.6.2.2, “A Estrutura Física de um Índice InnoDB”, para mais informações.
 
 Veja também o índice, página.
 
-formato de linha fixo: Este formato de linha é usado pelo mecanismo de armazenamento `MyISAM`, não pelo `InnoDB`. Se você criar uma tabela `InnoDB` com a opção `ROW_FORMAT=FIXED` no MySQL 5.7.6 ou versões anteriores, o `InnoDB` usa o **formato de linha compacta**, embora o valor `FIXED` ainda possa aparecer em saídas como relatórios `SHOW TABLE STATUS`. A partir do MySQL 5.7.7, o `InnoDB` retorna um erro se o `ROW_FORMAT=FIXED` for especificado.
+formato de string fixo: Este formato de string é usado pelo mecanismo de armazenamento `MyISAM`, não pelo `InnoDB`. Se você criar uma tabela `InnoDB` com a opção `ROW_FORMAT=FIXED` no MySQL 5.7.6 ou versões anteriores, o `InnoDB` usa o **formato de string compacta**, embora o valor `FIXED` ainda possa aparecer em saídas como relatórios `SHOW TABLE STATUS`. A partir do MySQL 5.7.7, o `InnoDB` retorna um erro se o `ROW_FORMAT=FIXED` for especificado.
 
-Veja também o formato de linha compacta, formato de linha.
+Veja também o formato de string compacta, formato de string.
 
 flush: Para escrever as alterações nos arquivos do banco de dados, que haviam sido armazenados em uma área de memória ou em uma área de armazenamento temporária em disco. As estruturas de armazenamento `InnoDB` que são periodicamente apagadas incluem o **registro de refazer**, o **registro de desfazer** e o **pool de buffer**.
 
@@ -732,15 +732,15 @@ lista de limpeza: Uma estrutura de dados interna `InnoDB` que rastreia **página
 
 Veja também: buffer pool, página suja, LRU, mini-transação, mutex, página, limpador de página.
 
-chave estrangeira: Um tipo de relação de ponteiro, entre linhas em tabelas separadas `InnoDB`. A relação de chave estrangeira é definida em uma coluna tanto na **tabela pai** quanto na **tabela filho**.
+chave estrangeira: Um tipo de relação de ponteiro, entre strings em tabelas separadas `InnoDB`. A relação de chave estrangeira é definida em uma coluna tanto na **tabela pai** quanto na **tabela filho**.
 
-Além de permitir a busca rápida de informações relacionadas, as chaves estrangeiras ajudam a impor a **integridade referencial**, impedindo que qualquer um desses ponteiros se torne inválido à medida que os dados são inseridos, atualizados e excluídos. Esse mecanismo de aplicação é um tipo de **restrição**. Uma linha que aponta para outra tabela não pode ser inserida se o valor da chave estrangeira associada não existir na outra tabela. Se uma linha for excluída ou seu valor de chave estrangeira for alterado, e linhas em outra tabela apontarem para esse valor da chave estrangeira, a chave estrangeira pode ser configurada para impedir a exclusão, fazer com que os valores das colunas correspondentes na outra tabela se tornem **nulos** ou excluir automaticamente as linhas correspondentes na outra tabela.
+Além de permitir a busca rápida de informações relacionadas, as chaves estrangeiras ajudam a impor a **integridade referencial**, impedindo que qualquer um desses ponteiros se torne inválido à medida que os dados são inseridos, atualizados e excluídos. Esse mecanismo de aplicação é um tipo de **restrição**. Uma string que aponta para outra tabela não pode ser inserida se o valor da chave estrangeira associada não existir na outra tabela. Se uma string for excluída ou seu valor de chave estrangeira for alterado, e strings em outra tabela apontarem para esse valor da chave estrangeira, a chave estrangeira pode ser configurada para impedir a exclusão, fazer com que os valores das colunas correspondentes na outra tabela se tornem **nulos** ou excluir automaticamente as strings correspondentes na outra tabela.
 
 Uma das etapas na concepção de um banco de dados **normalizado** é identificar os dados que estão duplicados, separar esses dados em uma nova tabela e configurar uma relação de chave estrangeira para que as múltiplas tabelas possam ser consultadas como uma única tabela, utilizando uma operação de **join**.
 
 Veja também tabela de crianças, restrição FOREIGN KEY, junção, normalizada, NULL, tabela pai, integridade referencial, relacional.
 
-Restrição de CHAVE ESTÁVEL: O tipo de **restrição** que mantém a consistência do banco de dados através de uma **chave estável** (foreign key). Como outros tipos de restrições, ela pode impedir que dados sejam inseridos ou atualizados se os dados se tornassem inconsistentes; nesse caso, a inconsistência que está sendo impedida é entre dados em múltiplas tabelas. Alternativamente, quando uma operação de **DML** é realizada, as restrições `FOREIGN KEY` podem fazer com que os dados em **linhas filhas** sejam excluídos, alterados para valores diferentes ou definidos como **nulos**, com base na opção `ON CASCADE` especificada ao criar a chave estável.
+Restrição de CHAVE ESTÁVEL: O tipo de **restrição** que mantém a consistência do banco de dados através de uma **chave estável** (foreign key). Como outros tipos de restrições, ela pode impedir que dados sejam inseridos ou atualizados se os dados se tornassem inconsistentes; nesse caso, a inconsistência que está sendo impedida é entre dados em múltiplas tabelas. Alternativamente, quando uma operação de **DML** é realizada, as restrições `FOREIGN KEY` podem fazer com que os dados em **strings filhas** sejam excluídos, alterados para valores diferentes ou definidos como **nulos**, com base na opção `ON CASCADE` especificada ao criar a chave estável.
 
 Veja também tabela infantil, restrição, DML, chave estrangeira, NULL.
 
@@ -780,7 +780,7 @@ GAC: Abreviação de “Cache de Assembleia Global”. Uma área central para ar
 
 Veja também .NET, assembly.
 
-lacuna: Um local em uma estrutura de dados de índice do `InnoDB` **onde novos valores poderiam ser inseridos. Quando você bloqueia um conjunto de linhas com uma declaração como `SELECT ... FOR UPDATE`, `InnoDB` pode criar bloqueios que se aplicam às lacunas, bem como aos valores reais no índice. Por exemplo, se você selecionar todos os valores maiores que 10 para atualização, um bloqueio de lacuna impede que outra transação insira um novo valor maior que 10. O **registro máximo** e **registro mínimo** representam as lacunas que contêm todos os valores maiores que ou menores que todos os valores atuais do índice.
+lacuna: Um local em uma estrutura de dados de índice do `InnoDB` **onde novos valores poderiam ser inseridos. Quando você bloqueia um conjunto de strings com uma declaração como `SELECT ... FOR UPDATE`, `InnoDB` pode criar bloqueios que se aplicam às lacunas, bem como aos valores reais no índice. Por exemplo, se você selecionar todos os valores maiores que 10 para atualização, um bloqueio de lacuna impede que outra transação insira um novo valor maior que 10. O **registro máximo** e **registro mínimo** representam as lacunas que contêm todos os valores maiores que ou menores que todos os valores atuais do índice.
 
 Veja também concorrência, bloqueio de lacuna, índice, mínimo de registro, nível de isolamento, máximo de registro.
 
@@ -798,7 +798,7 @@ Registra uma gama mais ampla de consultas do que o **registro de consultas lenta
 
 Veja também: log binário, log, log de consultas lentas.
 
-espaço de tabelas geral: Um espaço de tabelas compartilhado `InnoDB` **criado usando a sintaxe `CREATE TABLESPACE`. Espaços de tabelas gerais podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas **tabelas** e suportam tabelas de todos os formatos de linha. Espaços de tabelas gerais foram introduzidos no MySQL 5.7.6.
+espaço de tabelas geral: Um espaço de tabelas compartilhado `InnoDB` **criado usando a sintaxe `CREATE TABLESPACE`. Espaços de tabelas gerais podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas **tabelas** e suportam tabelas de todos os formatos de string. Espaços de tabelas gerais foram introduzidos no MySQL 5.7.6.
 
 As tabelas são adicionadas a um espaço de tabelas geral usando a sintaxe `CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name` ou `ALTER TABLE tbl_name TABLESPACE [=] tablespace_name`.
 
@@ -862,7 +862,7 @@ hospedeiro: O nome da rede de um servidor de banco de dados, usado para estabele
 
 Veja também conexão, localhost, porta.
 
-hot: Uma condição em que uma linha, tabela ou estrutura de dados interna é acessada com tanta frequência, exigindo alguma forma de bloqueio ou exclusão mútua, que resulta em um problema de desempenho ou escalabilidade.
+hot: Uma condição em que uma string, tabela ou estrutura de dados interna é acessada com tanta frequência, exigindo alguma forma de bloqueio ou exclusão mútua, que resulta em um problema de desempenho ou escalabilidade.
 
 Embora "quente" geralmente indique uma condição indesejável, um **backup quente** é o tipo preferido de backup.
 
@@ -890,9 +890,9 @@ Veja também banco de dados, arquivo por tabela, espaço de tabela geral, arquiv
 
 .ibz arquivo: Quando o produto **MySQL Enterprise Backup** realiza um **backup comprimido**, ele transforma cada arquivo de **tablespace** que é criado usando a configuração **file-per-table** (arquivo por tabela) de uma extensão `.ibd` para uma extensão `.ibz`.
 
-A compressão aplicada durante o backup é distinta do **formato de linha comprimido** que mantém os dados da tabela comprimidos durante o funcionamento normal. Uma operação de backup comprimida ignora o passo de compressão para um espaço de tabela que já está no formato de linha comprimido, pois comprimir uma segunda vez atrasaria o backup, mas produziria pouca ou nenhuma economia de espaço.
+A compressão aplicada durante o backup é distinta do **formato de string comprimido** que mantém os dados da tabela comprimidos durante o funcionamento normal. Uma operação de backup comprimida ignora o passo de compressão para um espaço de tabela que já está no formato de string comprimido, pois comprimir uma segunda vez atrasaria o backup, mas produziria pouca ou nenhuma economia de espaço.
 
-Veja também: backup comprimido, formato de linha comprimido, arquivo por tabela, arquivo .ibd, MySQL Enterprise Backup, espaço de tabela.
+Veja também: backup comprimido, formato de string comprimido, arquivo por tabela, arquivo .ibd, MySQL Enterprise Backup, espaço de tabela.
 
 .isl arquivo: Um arquivo que especifica a localização de um arquivo **.ibd** para uma tabela `InnoDB` criada com a cláusula `DATA DIRECTORY =` no MySQL 5.6 e superior, ou com a cláusula `CREATE TABLESPACE ... ADD DATAFILE` no MySQL 5.7 e superior. Funciona como um link simbólico, sem as restrições de plataforma do mecanismo de link simbólico real. Você pode armazenar **tablespaces** `InnoDB` fora do diretório **database**, por exemplo, em um dispositivo de armazenamento especialmente grande ou rápido, dependendo do uso da tabela. Para detalhes, consulte a Seção 14.6.1.2, “Criando Tabelas Externamente”, e a Seção 14.6.3.3, “Tablespaces Gerais”.
 
@@ -928,9 +928,9 @@ ilist: Dentro de um índice `InnoDB` **FULLTEXT**, a estrutura de dados consiste
 
 Veja também o índice FULLTEXT.
 
-bloqueio implícito de linha: um bloqueio de linha que o `InnoDB` adquire para garantir a consistência, sem que você o solicite especificamente.
+bloqueio implícito de string: um bloqueio de string que o `InnoDB` adquire para garantir a consistência, sem que você o solicite especificamente.
 
-Veja também o bloqueio de linha de verticais.
+Veja também o bloqueio de string de verticais.
 
 banco de dados em memória: um tipo de sistema de banco de dados que mantém os dados na memória, para evitar o overhead devido ao I/O de disco e à tradução entre blocos de disco e áreas de memória. Alguns bancos de dados em memória sacrificam a durabilidade (o “D” na filosofia de projeto **ACID**) e são vulneráveis a falhas de hardware, de energia e outros tipos de falhas, tornando-os mais adequados para operações de leitura apenas. Outros bancos de dados em memória utilizam mecanismos de durabilidade, como o registro de alterações no disco ou o uso de memória não volátil.
 
@@ -940,11 +940,11 @@ Veja também ACID, índice de hash adaptável, conjunto de buffers, baseado em d
 
 backup incremental: Um tipo de **backup quente**, realizado pelo produto **MySQL Enterprise Backup**, que apenas salva dados alterados desde algum ponto no tempo. Ter um backup completo e uma sucessão de backups incrementais permite que você reconstrua os dados do backup em um longo período, sem o custo de armazenamento de manter vários backups completos à mão. Você pode restaurar o backup completo e, em seguida, aplicar cada um dos backups incrementais em sucessão, ou você pode manter o backup completo atualizado aplicando cada backup incremental a ele, e então realizar uma única operação de restauração.
 
-A granularidade dos dados alterados está no nível de **página**. Uma página pode, na verdade, cobrir mais de uma linha. Cada página alterada é incluída no backup.
+A granularidade dos dados alterados está no nível de **página**. Uma página pode, na verdade, cobrir mais de uma string. Cada página alterada é incluída no backup.
 
 Veja também backup quente, MySQL Enterprise Backup, página.
 
-índice: Uma estrutura de dados que oferece uma capacidade de busca rápida para **linhas** de uma **tabela**, tipicamente formando uma estrutura em árvore (**árvore B**) que representa todos os valores de uma **coluna** ou conjunto de colunas específicas.
+índice: Uma estrutura de dados que oferece uma capacidade de busca rápida para **strings** de uma **tabela**, tipicamente formando uma estrutura em árvore (**árvore B**) que representa todos os valores de uma **coluna** ou conjunto de colunas específicas.
 
 As tabelas `InnoDB` sempre têm um **índice agrupado** que representa a **chave primária**. Elas também podem ter um ou mais **índices secundários** definidos em uma ou mais colunas. Dependendo de sua estrutura, os índices secundários podem ser classificados como **parciais**, **coluna** ou **compostos**.
 
@@ -952,7 +952,7 @@ Os índices são um aspecto crucial do desempenho das consultas. Os arquitetos d
 
 Embora um índice de árvore B seja o mais comum, um tipo diferente de estrutura de dados é usado para índices de **hash**, como no motor de armazenamento `MEMORY` e no **índice de hash adaptativo** `InnoDB`. Índices de **R-tree** são usados para indexação espacial de informações multidimensionais.
 
-Veja também índice de hash adaptável, árvore B, tabela filho, índice agrupado, índice de coluna, índice composto, índice coberto, chave estrangeira, índice de hash, tabela pai, índice parcial, chave primária, consulta, árvore R, linha, índice secundário, tabela.
+Veja também índice de hash adaptável, árvore B, tabela filho, índice agrupado, índice de coluna, índice composto, índice coberto, chave estrangeira, índice de hash, tabela pai, índice parcial, chave primária, consulta, árvore R, string, índice secundário, tabela.
 
 cache de índice: Uma área de memória que armazena os dados do token para a pesquisa de **texto completo** de `InnoDB`. Aguarda os dados para minimizar o I/O de disco quando os dados são inseridos ou atualizados em colunas que fazem parte de um **índice FULLTEXT**. Os dados do token são escritos em disco quando o cache de índice fica cheio. Cada índice `InnoDB` `FULLTEXT` tem seu próprio cache de índice separado, cujo tamanho é controlado pela opção de configuração `innodb_ft_cache_size`.
 
@@ -990,9 +990,9 @@ As tabelas `InnoDB` são ideais para **backup quente**. Consulte a Seção 28.1,
 
 Veja também ACID, backup quente, MySQL Enterprise Backup, mecanismo de armazenamento, transação.
 
-innodb\_autoinc\_lock\_mode: A opção `innodb_autoinc_lock_mode` controla o algoritmo usado para **bloqueio de autoincremento**. Quando você tem uma chave primária com autoincremento, você pode usar a replicação baseada em declarações apenas com a configuração `innodb_autoinc_lock_mode=1`. Esta configuração é conhecida como modo de bloqueio *consecutivo*, porque as inserções de várias linhas dentro de uma transação recebem valores consecutivos de autoincremento. Se você tiver `innodb_autoinc_lock_mode=2`, que permite maior concorrência para operações de inserção, use a replicação baseada em linhas em vez da replicação baseada em declarações. Esta configuração é conhecida como modo de bloqueio *interlaçado*, porque múltiplas declarações de inserção de várias linhas que são executadas ao mesmo tempo podem receber valores de **autoincremento** que são interligados. A configuração `innodb_autoinc_lock_mode=0` não deve ser usada, exceto por motivos de compatibilidade.
+innodb\_autoinc\_lock\_mode: A opção `innodb_autoinc_lock_mode` controla o algoritmo usado para **bloqueio de autoincremento**. Quando você tem uma chave primária com autoincremento, você pode usar a replicação baseada em declarações apenas com a configuração `innodb_autoinc_lock_mode=1`. Esta configuração é conhecida como modo de bloqueio *consecutivo*, porque as inserções de várias strings dentro de uma transação recebem valores consecutivos de autoincremento. Se você tiver `innodb_autoinc_lock_mode=2`, que permite maior concorrência para operações de inserção, use a replicação baseada em strings em vez da replicação baseada em declarações. Esta configuração é conhecida como modo de bloqueio *interlaçado*, porque múltiplas declarações de inserção de várias strings que são executadas ao mesmo tempo podem receber valores de **autoincremento** que são interligados. A configuração `innodb_autoinc_lock_mode=0` não deve ser usada, exceto por motivos de compatibilidade.
 
-O modo de bloqueio consecutivo (`innodb_autoinc_lock_mode=1`) é o ajuste padrão antes do MySQL 8.0.3. A partir do MySQL 8.0.3, o modo de bloqueio interlaçado (`innodb_autoinc_lock_mode=2`) é o padrão, o que reflete a mudança de replicação baseada em declarações para replicação baseada em linhas como o tipo de replicação padrão.
+O modo de bloqueio consecutivo (`innodb_autoinc_lock_mode=1`) é o ajuste padrão antes do MySQL 8.0.3. A partir do MySQL 8.0.3, o modo de bloqueio interlaçado (`innodb_autoinc_lock_mode=2`) é o padrão, o que reflete a mudança de replicação baseada em declarações para replicação baseada em strings como o tipo de replicação padrão.
 
 Veja também auto-incremento, bloqueio de auto-incremento, inserção em modo misto, chave primária.
 
@@ -1022,7 +1022,7 @@ Série de inovação: As versões de inovação com a mesma versão principal fo
 
 Veja também a Série LTS.
 
-inserir: Uma das operações **DML** primárias em **SQL**. O desempenho das inserções é um fator chave em sistemas de **data warehouse** que carregam milhões de linhas em tabelas, e em sistemas **OLTP** onde muitas conexões concorrentes podem inserir linhas na mesma tabela, em ordem arbitrária. Se o desempenho das inserções é importante para você, você deve aprender sobre as características do **InnoDB**, como o **buffer de inserção** usado no **bufferamento de alterações** e colunas de **auto-incremento**.
+inserir: Uma das operações **DML** primárias em **SQL**. O desempenho das inserções é um fator chave em sistemas de **data warehouse** que carregam milhões de strings em tabelas, e em sistemas **OLTP** onde muitas conexões concorrentes podem inserir strings na mesma tabela, em ordem arbitrária. Se o desempenho das inserções é importante para você, você deve aprender sobre as características do **InnoDB**, como o **buffer de inserção** usado no **bufferamento de alterações** e colunas de **auto-incremento**.
 
 Veja também auto-incremento, alteração de buffer, armazém de dados, DML, InnoDB, buffer de inserção, OLTP, SQL.
 
@@ -1036,7 +1036,7 @@ O buffer de inserção não é usado se o índice secundário for **único**, po
 
 Veja também alterar buffer, alterar bufferização, excluir bufferização, inserir bufferização, purgar bufferização, índice único.
 
-inserir bloqueio de intenção: Um tipo de **bloqueio de lacuna** que é definido pelas operações de `INSERT` antes da inserção da linha. Esse tipo de **bloqueio** sinaliza a intenção de inserir de tal forma que várias transações que inserem no mesmo intervalo do índice não precisam esperar uma da outra se elas não estão inserindo na mesma posição dentro da lacuna. Para mais informações, consulte a Seção 14.7.1, “Bloqueio InnoDB”.
+inserir bloqueio de intenção: Um tipo de **bloqueio de lacuna** que é definido pelas operações de `INSERT` antes da inserção da string. Esse tipo de **bloqueio** sinaliza a intenção de inserir de tal forma que várias transações que inserem no mesmo intervalo do índice não precisam esperar uma da outra se elas não estão inserindo na mesma posição dentro da lacuna. Para mais informações, consulte a Seção 14.7.1, “Bloqueio InnoDB”.
 
 Veja também bloqueio de lacuna, bloqueio, bloqueio da próxima chave.
 
@@ -1050,7 +1050,7 @@ Veja também INFORMATION_SCHEMA, Schema de desempenho.
 
 bloqueio exclusivo de intenção: Veja bloqueio de intenção.
 
-bloqueio de intenção: Um tipo de **bloqueio** que se aplica à tabela, usado para indicar o tipo de bloqueio que a **transação** pretende adquirir sobre as linhas na tabela. Diferentes transações podem adquirir diferentes tipos de bloqueios de intenção na mesma tabela, mas a primeira transação a adquirir um bloqueio de intenção exclusivo (IX) em uma tabela impede que outras transações adquiram quaisquer blocos S ou X na tabela. Por outro lado, a primeira transação a adquirir um bloqueio de intenção compartilhada (IS) em uma tabela impede que outras transações adquiram quaisquer blocos X na tabela. O processo de duas fases permite que as solicitações de bloqueio sejam resolvidas em ordem, sem bloquear blocos e operações correspondentes que são compatíveis. Para mais informações sobre esse mecanismo de bloqueio, consulte a Seção 14.7.1, “Bloqueio InnoDB”.
+bloqueio de intenção: Um tipo de **bloqueio** que se aplica à tabela, usado para indicar o tipo de bloqueio que a **transação** pretende adquirir sobre as strings na tabela. Diferentes transações podem adquirir diferentes tipos de bloqueios de intenção na mesma tabela, mas a primeira transação a adquirir um bloqueio de intenção exclusivo (IX) em uma tabela impede que outras transações adquiram quaisquer blocos S ou X na tabela. Por outro lado, a primeira transação a adquirir um bloqueio de intenção compartilhada (IS) em uma tabela impede que outras transações adquiram quaisquer blocos X na tabela. O processo de duas fases permite que as solicitações de bloqueio sejam resolvidas em ordem, sem bloquear blocos e operações correspondentes que são compatíveis. Para mais informações sobre esse mecanismo de bloqueio, consulte a Seção 14.7.1, “Bloqueio InnoDB”.
 
 Veja também bloqueio, modo de bloqueio, bloqueio, transação.
 
@@ -1064,7 +1064,7 @@ tabela temporária intrínseca: Uma tabela temporária interna otimizada `InnoDB
 
 Veja também o otimizador.
 
-índice invertido: uma estrutura de dados otimizada para sistemas de recuperação de documentos, usada na implementação da pesquisa de **texto completo** `InnoDB`. O índice `InnoDB` **FULLTEXT**, implementado como um índice invertido, registra a posição de cada palavra dentro de um documento, em vez da localização de uma linha de tabela. Um único valor de coluna (um documento armazenado como uma string de texto) é representado por muitas entradas no índice invertido.
+índice invertido: uma estrutura de dados otimizada para sistemas de recuperação de documentos, usada na implementação da pesquisa de **texto completo** `InnoDB`. O índice `InnoDB` **FULLTEXT**, implementado como um índice invertido, registra a posição de cada palavra dentro de um documento, em vez da localização de uma string de tabela. Um único valor de coluna (um documento armazenado como uma string de texto) é representado por muitas entradas no índice invertido.
 
 Veja também pesquisa de texto completo, índice FULLTEXT, ilist.
 
@@ -1106,11 +1106,11 @@ Veja também chave estrangeira, índice, normalizado, consulta, integridade refe
 
 keystore: Veja também SSL.
 
-SIZE\_DE\_BLOCO\_PRINCIPAL: Uma opção para especificar o tamanho das páginas de dados dentro de uma tabela `InnoDB` que utiliza **formato de linha comprimido**. O padrão é de 8 kilobytes. Valores menores correm o risco de atingir limites internos que dependem da combinação do tamanho da linha e do percentual de compressão.
+SIZE\_DE\_BLOCO\_PRINCIPAL: Uma opção para especificar o tamanho das páginas de dados dentro de uma tabela `InnoDB` que utiliza **formato de string comprimido**. O padrão é de 8 kilobytes. Valores menores correm o risco de atingir limites internos que dependem da combinação do tamanho da string e do percentual de compressão.
 
 Para as tabelas `MyISAM`, `KEY_BLOCK_SIZE` especifica opcionalmente o tamanho em bytes a ser usado para blocos de chave de índice. O valor é tratado como um indicativo; um tamanho diferente pode ser usado, se necessário. Um valor `KEY_BLOCK_SIZE` especificado para uma definição de índice individual substitui um valor de nível de tabela `KEY_BLOCK_SIZE`.
 
-Veja também o formato de linha compactada.
+Veja também o formato de string compactada.
 
 ### L
 
@@ -1144,19 +1144,19 @@ Veja também Connector/J, J2EE.
 
 localhost: Veja também conexão.
 
-bloqueio: A noção de alto nível de um objeto que controla o acesso a um recurso, como uma tabela, linha ou estrutura de dados interna, como parte de uma estratégia de **bloqueio**. Para ajustes intensivos de desempenho, você pode se aprofundar nas estruturas reais que implementam bloqueios, como **mutexes** e **latches**.
+bloqueio: A noção de alto nível de um objeto que controla o acesso a um recurso, como uma tabela, string ou estrutura de dados interna, como parte de uma estratégia de **bloqueio**. Para ajustes intensivos de desempenho, você pode se aprofundar nas estruturas reais que implementam bloqueios, como **mutexes** e **latches**.
 
 Veja também trava, modo de bloqueio, bloqueio, mútuo.
 
-escalonamento de bloqueio: Uma operação usada em alguns sistemas de banco de dados que converte muitos **bloqueios de linha** em um único **bloqueio de tabela**, economizando espaço de memória, mas reduzindo o acesso concorrente à tabela. `InnoDB` utiliza uma representação eficiente em termos de espaço para bloqueios de linha, de modo que o escalonamento de **bloqueio** não seja necessário.
+escalonamento de bloqueio: Uma operação usada em alguns sistemas de banco de dados que converte muitos **bloqueios de string** em um único **bloqueio de tabela**, economizando espaço de memória, mas reduzindo o acesso concorrente à tabela. `InnoDB` utiliza uma representação eficiente em termos de espaço para bloqueios de string, de modo que o escalonamento de **bloqueio** não seja necessário.
 
-Veja também bloqueio, bloqueio de linha, bloqueio de tabela.
+Veja também bloqueio, bloqueio de string, bloqueio de tabela.
 
-Modo de bloqueio: Um **bloqueio** compartilhado (S) permite que uma **transação** leia uma linha. Múltiplas transações podem adquirir um bloqueio S na mesma linha ao mesmo tempo.
+Modo de bloqueio: Um **bloqueio** compartilhado (S) permite que uma **transação** leia uma string. Múltiplas transações podem adquirir um bloqueio S na mesma string ao mesmo tempo.
 
-Uma chave (X) exclusiva permite que uma transação atualize ou exclua uma linha. Nenhuma outra transação pode adquirir qualquer tipo de chave na mesma linha ao mesmo tempo.
+Uma chave (X) exclusiva permite que uma transação atualize ou exclua uma string. Nenhuma outra transação pode adquirir qualquer tipo de chave na mesma string ao mesmo tempo.
 
-Os **bloqueios de intenção** se aplicam à tabela e são usados para indicar que tipo de bloqueio a transação pretende adquirir em relação às linhas da tabela. Diferentes transações podem adquirir diferentes tipos de bloqueios de intenção na mesma tabela, mas a primeira transação a adquirir um bloqueio exclusivo (IX) em uma tabela impede que outras transações adquiram quaisquer blocos S ou X na tabela. Por outro lado, a primeira transação a adquirir um bloqueio compartilhado (IS) em uma tabela impede que outras transações adquiram quaisquer blocos X na tabela. O processo de duas fases permite que os pedidos de bloqueio sejam resolvidos em ordem, sem bloquear blocos e operações correspondentes que sejam compatíveis.
+Os **bloqueios de intenção** se aplicam à tabela e são usados para indicar que tipo de bloqueio a transação pretende adquirir em relação às strings da tabela. Diferentes transações podem adquirir diferentes tipos de bloqueios de intenção na mesma tabela, mas a primeira transação a adquirir um bloqueio exclusivo (IX) em uma tabela impede que outras transações adquiram quaisquer blocos S ou X na tabela. Por outro lado, a primeira transação a adquirir um bloqueio compartilhado (IS) em uma tabela impede que outras transações adquiram quaisquer blocos X na tabela. O processo de duas fases permite que os pedidos de bloqueio sejam resolvidos em ordem, sem bloquear blocos e operações correspondentes que sejam compatíveis.
 
 Veja também bloqueio de intenção, bloqueio, bloqueio, transação.
 
@@ -1202,7 +1202,7 @@ loose: Um prefixo adicionado às opções de configuração de `InnoDB` após o 
 
 Veja também startup.
 
-linha de baixa água: Um valor que representa um limite inferior, tipicamente um valor de referência em que alguma ação corretiva começa ou se torna mais agressiva. Contrasta com a **linha de alta água**.
+string de baixa água: Um valor que representa um limite inferior, tipicamente um valor de referência em que alguma ação corretiva começa ou se torna mais agressiva. Contrasta com a **string de alta água**.
 
 Veja também o nível máximo.
 
@@ -1280,7 +1280,7 @@ mini-transação: Uma fase interna do processamento do `InnoDB`, ao fazer altera
 
 Veja também commit, recuperação de falha, DML, físico, purgar, registro redo, rollback, transação.
 
-inserto em modo misto: Uma declaração `INSERT` onde os valores de **auto-incremento** são especificados para algumas, mas não para todas, das novas linhas. Por exemplo, um multi-valor `INSERT` pode especificar um valor para a coluna de auto-incremento em alguns casos e `NULL` em outros casos. `InnoDB` gera valores de auto-incremento para as linhas onde o valor da coluna foi especificado como `NULL`. Outro exemplo é uma declaração `INSERT ... ON DUPLICATE KEY UPDATE`, onde os valores de auto-incremento podem ser gerados, mas não utilizados, para quaisquer linhas duplicadas que sejam processadas como `UPDATE` em vez de declarações `INSERT`.
+inserto em modo misto: Uma declaração `INSERT` onde os valores de **auto-incremento** são especificados para algumas, mas não para todas, das novas strings. Por exemplo, um multi-valor `INSERT` pode especificar um valor para a coluna de auto-incremento em alguns casos e `NULL` em outros casos. `InnoDB` gera valores de auto-incremento para as strings onde o valor da coluna foi especificado como `NULL`. Outro exemplo é uma declaração `INSERT ... ON DUPLICATE KEY UPDATE`, onde os valores de auto-incremento podem ser gerados, mas não utilizados, para quaisquer strings duplicadas que sejam processadas como `UPDATE` em vez de declarações `INSERT`.
 
 Pode causar problemas de consistência entre os servidores **fonte** e **replica** em uma configuração de **replicação**. Pode ser necessário ajustar o valor da opção de configuração **innodb\_autoinc\_lock\_mode**.
 
@@ -1304,7 +1304,7 @@ mutex: Abreviação informal para "variável de mutex". (O próprio mutex é uma
 
 Veja também latch, lock, Schema de desempenho, Pthreads, rw-lock.
 
-MVCC: Abreviação de “controle de concorrência multiversão”. Essa técnica permite que as `InnoDB` **transações** com certos **níveis de isolamento** realizem operações de **leitura consistente**, ou seja, para consultar linhas que estão sendo atualizadas por outras transações e ver os valores antes dessas atualizações ocorrerem. Essa é uma técnica poderosa para aumentar a **concorrência**, permitindo que as consultas prossigam sem esperar devido aos **bloqueios** mantidos pelas outras transações.
+MVCC: Abreviação de “controle de concorrência multiversão”. Essa técnica permite que as `InnoDB` **transações** com certos **níveis de isolamento** realizem operações de **leitura consistente**, ou seja, para consultar strings que estão sendo atualizadas por outras transações e ver os valores antes dessas atualizações ocorrerem. Essa é uma técnica poderosa para aumentar a **concorrência**, permitindo que as consultas prossigam sem esperar devido aos **bloqueios** mantidos pelas outras transações.
 
 Essa técnica não é universal no mundo dos bancos de dados. Alguns outros produtos de banco de dados e alguns outros motores de armazenamento do MySQL não a suportam.
 
@@ -1322,11 +1322,11 @@ Drivers MyODBC: Nome obsoleto para **Connector/ODBC**.
 
 Veja também Conector/ODBC.
 
-mysql: O programa **mysql** é o interpretador de linha de comando para o banco de dados MySQL. Ele processa instruções **SQL**, e também comandos específicos do MySQL, como `SHOW TABLES`, enviando solicitações ao daemon `mysqld`.
+mysql: O programa **mysql** é o interpretador de string de comando para o banco de dados MySQL. Ele processa instruções **SQL**, e também comandos específicos do MySQL, como `SHOW TABLES`, enviando solicitações ao daemon `mysqld`.
 
 Veja também mysqld, SQL.
 
-comando mysqlbackup: uma ferramenta de linha de comando do produto **MySQL Enterprise Backup**. Realiza uma operação de backup `InnoDB` e um backup quente para as tabelas `MyISAM` e outros tipos de tabelas. Consulte a Seção 28.1, “MySQL Enterprise Backup Overview” para obter mais informações sobre este comando.
+comando mysqlbackup: uma ferramenta de string de comando do produto **MySQL Enterprise Backup**. Realiza uma operação de backup `InnoDB` e um backup quente para as tabelas `MyISAM` e outros tipos de tabelas. Consulte a Seção 28.1, “MySQL Enterprise Backup Overview” para obter mais informações sobre este comando.
 
 Veja também backup quente, MySQL Enterprise Backup, backup quente.
 
@@ -1392,7 +1392,7 @@ I/O não bloqueante: Um termo da indústria que significa o mesmo que **I/O ass�
 
 Veja também I/O assíncrono.
 
-Uma estratégia de projeto de banco de dados onde os dados são divididos em várias tabelas e os valores duplicados são condensados em linhas únicas representadas por uma ID, para evitar o armazenamento, consulta e atualização de valores redundantes ou extensos. É tipicamente usado em aplicações **OLTP**.
+Uma estratégia de projeto de banco de dados onde os dados são divididos em várias tabelas e os valores duplicados são condensados em strings únicas representadas por uma ID, para evitar o armazenamento, consulta e atualização de valores redundantes ou extensos. É tipicamente usado em aplicações **OLTP**.
 
 Por exemplo, um endereço pode receber um ID único, de modo que um banco de dados de censo possa representar a relação **mora em este endereço**, associando esse ID a cada membro de uma família, em vez de armazenar múltiplas cópias de um valor complexo, como **123 Main Street, Anytown, EUA**.
 
@@ -1410,11 +1410,11 @@ Restrição NOT NULL: Um tipo de **restrição** que especifica que uma **coluna
 
 Veja também coluna, restrição, NULL, chave primária, integridade referencial.
 
-NULL: Um valor especial em **SQL**, indicando a ausência de dados. Qualquer operação aritmética ou teste de igualdade que envolva um valor de `NULL`, por sua vez, produz um resultado de `NULL`. (Assim, é semelhante ao conceito de NaN (”not a number” ou “não um número”) do IEEE em relação a números flutuantes.) Qualquer cálculo agregado, como `AVG()`, ignora linhas com valores de `NULL`, ao determinar quantas linhas devem ser divididas. O único teste que funciona com valores de `NULL` usa os ditos SQL `IS NULL` ou `IS NOT NULL`.
+NULL: Um valor especial em **SQL**, indicando a ausência de dados. Qualquer operação aritmética ou teste de igualdade que envolva um valor de `NULL`, por sua vez, produz um resultado de `NULL`. (Assim, é semelhante ao conceito de NaN (”not a number” ou “não um número”) do IEEE em relação a números flutuantes.) Qualquer cálculo agregado, como `AVG()`, ignora strings com valores de `NULL`, ao determinar quantas strings devem ser divididas. O único teste que funciona com valores de `NULL` usa os ditos SQL `IS NULL` ou `IS NOT NULL`.
 
-Os valores de `NULL` desempenham um papel em operações de **índice**, porque, para o desempenho, um banco de dados deve minimizar o overhead de manter o controle de valores de dados ausentes. Tipicamente, os valores de `NULL` não são armazenados em um índice, porque uma consulta que testa uma coluna indexada usando um operador de comparação padrão nunca poderia corresponder a uma linha com um valor de `NULL` para aquela coluna. Por causa do mesmo motivo, índices únicos não impedem os valores de `NULL`; esses valores simplesmente não são representados no índice. Declarar uma restrição de `NOT NULL` em uma coluna fornece a garantia de que não há linhas excluídas do índice, permitindo uma melhor otimização da consulta (contagem precisa de linhas e estimativa de se usar o índice).
+Os valores de `NULL` desempenham um papel em operações de **índice**, porque, para o desempenho, um banco de dados deve minimizar o overhead de manter o controle de valores de dados ausentes. Tipicamente, os valores de `NULL` não são armazenados em um índice, porque uma consulta que testa uma coluna indexada usando um operador de comparação padrão nunca poderia corresponder a uma string com um valor de `NULL` para aquela coluna. Por causa do mesmo motivo, índices únicos não impedem os valores de `NULL`; esses valores simplesmente não são representados no índice. Declarar uma restrição de `NOT NULL` em uma coluna fornece a garantia de que não há strings excluídas do índice, permitindo uma melhor otimização da consulta (contagem precisa de strings e estimativa de se usar o índice).
 
-Como a **chave primária** deve ser capaz de identificar de forma única cada linha da tabela, uma chave primária de uma única coluna não pode conter quaisquer valores de `NULL`, e uma chave primária de várias colunas não pode conter quaisquer linhas com valores de `NULL` em todas as colunas.
+Como a **chave primária** deve ser capaz de identificar de forma única cada string da tabela, uma chave primária de uma única coluna não pode conter quaisquer valores de `NULL`, e uma chave primária de várias colunas não pode conter quaisquer strings com valores de `NULL` em todas as colunas.
 
 Embora o banco de dados Oracle permita que um valor `NULL` seja concatenado com uma string, `InnoDB` trata o resultado de tal operação como `NULL`.
 
@@ -1430,15 +1430,15 @@ ODBC: Abreviação de Open Database Connectivity, uma API padrão da indústria.
 
 Veja também Conector/ODBC.
 
-coluna off-page: Uma coluna que contém dados de comprimento variável (como `BLOB` e `VARCHAR`) que é muito longa para caber em uma página de **árvore B**. Os dados são armazenados em páginas de **overflow**. O formato de linha **DINÂMICO** é mais eficiente para esse armazenamento do que o formato de linha **COMPACT** mais antigo.
+coluna off-page: Uma coluna que contém dados de comprimento variável (como `BLOB` e `VARCHAR`) que é muito longa para caber em uma página de **árvore B**. Os dados são armazenados em páginas de **overflow**. O formato de string **DINÂMICO** é mais eficiente para esse armazenamento do que o formato de string **COMPACT** mais antigo.
 
-Veja também B-tree, formato de linha compacta, formato de linha dinâmica, página de excesso.
+Veja também B-tree, formato de string compacta, formato de string dinâmica, página de excesso.
 
 OLTP: Abreviação de “Processamento de Transações Online”. Um sistema de banco de dados ou uma aplicação de banco de dados que executa uma carga de trabalho com muitas **transações**, com leituras e escritas frequentes, geralmente afetando pequenas quantidades de dados de cada vez. Por exemplo, um sistema de reserva de uma companhia aérea ou uma aplicação que processa depósitos bancários. Os dados podem ser organizados em forma **normalizada** para um equilíbrio entre a eficiência da **DML** (inserir/atualizar/deletar) e a eficiência da **consulta**. Contrasta com **data warehouse**.
 
-Com sua capacidade de **bloqueio de nível de linha** e **transacional**, o **InnoDB** é o motor de armazenamento ideal para tabelas do MySQL utilizadas em aplicações OLTP.
+Com sua capacidade de **bloqueio de nível de string** e **transacional**, o **InnoDB** é o motor de armazenamento ideal para tabelas do MySQL utilizadas em aplicações OLTP.
 
-Veja também armazém de dados, DML, InnoDB, consulta, bloqueio de linha, transação.
+Veja também armazém de dados, DML, InnoDB, consulta, bloqueio de string, transação.
 
 online: Um tipo de operação que não envolve tempo de inatividade, bloqueio ou operação restrita para o banco de dados. Tipicamente aplicado a **DDL**. Operações que reduzem os períodos de operação restrita, como a **criação rápida de índices**, evoluíram para um conjunto mais amplo de operações **DDL online** no MySQL 5.6.
 
@@ -1466,7 +1466,7 @@ opinião otimista: O componente MySQL que determina os melhores **índices** e *
 
 Veja também índice, junta, consulta, tabela.
 
-opção: Um parâmetro de configuração para o MySQL, armazenado no arquivo **option** ou passado na linha de comando.
+opção: Um parâmetro de configuração para o MySQL, armazenado no arquivo **option** ou passado na string de comando.
 
 Para as **opções** que se aplicam a tabelas de **InnoDB**, cada nome de opção começa com o prefixo `innodb_`.
 
@@ -1488,31 +1488,31 @@ Com a introdução do suporte nativo de particionamento para as tabelas `InnoDB`
 
 Veja também MySQL Enterprise Backup, comando mysqlbackup.
 
-uma unidade que representa a quantidade de dados que a `InnoDB` transfere a qualquer momento entre o disco (os **arquivos de dados**) e a memória (o **pool de buffer**). Uma página pode conter uma ou mais **linhas**, dependendo de quanto dados estão em cada linha. Se uma linha não cabe inteiramente em uma única página, a `InnoDB` configura estruturas de dados em estilo ponteiro adicionais para que as informações sobre a linha possam ser armazenadas em uma página.
+uma unidade que representa a quantidade de dados que a `InnoDB` transfere a qualquer momento entre o disco (os **arquivos de dados**) e a memória (o **pool de buffer**). Uma página pode conter uma ou mais **strings**, dependendo de quanto dados estão em cada string. Se uma string não cabe inteiramente em uma única página, a `InnoDB` configura estruturas de dados em estilo ponteiro adicionais para que as informações sobre a string possam ser armazenadas em uma página.
 
-Uma maneira de caber mais dados em cada página é usar o **formato de linha compactada**. Para tabelas que utilizam BLOBs ou campos de texto grandes, o **formato de linha compacta** permite que essas colunas grandes sejam armazenadas separadamente do resto da linha, reduzindo o sobrecarga de I/O e o uso de memória para consultas que não fazem referência a essas colunas.
+Uma maneira de caber mais dados em cada página é usar o **formato de string compactada**. Para tabelas que utilizam BLOBs ou campos de texto grandes, o **formato de string compacta** permite que essas colunas grandes sejam armazenadas separadamente do resto da string, reduzindo o sobrecarga de I/O e o uso de memória para consultas que não fazem referência a essas colunas.
 
 Quando o `InnoDB` lê ou escreve conjuntos de páginas como um lote para aumentar o desempenho de E/S, ele lê ou escreve um **extent** de cada vez.
 
 Todas as estruturas de dados de disco `InnoDB` dentro de uma instância do MySQL compartilham o mesmo **tamanho da página**.
 
-Veja também: buffer pool, formato de linha compacta, formato de linha comprimida, arquivos de dados, extensão, tamanho de página, linha.
+Veja também: buffer pool, formato de string compacta, formato de string comprimida, arquivos de dados, extensão, tamanho de página, string.
 
 limpeza de página: Um **thread** de `InnoDB` de fundo que **limpa** **páginas sujas** do **buffer pool**. Antes do MySQL 5.6, essa atividade era realizada pelo **thread mestre**. O número de threads de limpeza de página é controlado pela opção de configuração `innodb_page_cleaners`, introduzida no MySQL 5.7.4.
 
 Veja também: buffer pool, página suja, esvaziar, thread mestre, thread.
 
-tamanho da página: Para lançamentos até e incluindo o MySQL 5.5, o tamanho de cada `InnoDB` **página** é fixo em 16 kilobytes. Esse valor representa um equilíbrio: grande o suficiente para conter os dados da maioria das linhas, mas pequeno o suficiente para minimizar o overhead de desempenho da transferência de dados desnecessários para a memória. Outros valores não são testados ou suportados.
+tamanho da página: Para lançamentos até e incluindo o MySQL 5.5, o tamanho de cada `InnoDB` **página** é fixo em 16 kilobytes. Esse valor representa um equilíbrio: grande o suficiente para conter os dados da maioria das strings, mas pequeno o suficiente para minimizar o overhead de desempenho da transferência de dados desnecessários para a memória. Outros valores não são testados ou suportados.
 
 A partir do MySQL 5.6, o tamanho da página para uma `InnoDB` **instância]] pode ser de 4KB, 8KB ou 16KB, controlado pela opção de configuração `innodb_page_size`. A partir do MySQL 5.7.6, o `InnoDB` também suporta tamanhos de página de 32KB e 64KB. Para tamanhos de página de 32KB e 64KB, o `ROW_FORMAT=COMPRESSED` não é suportado e o tamanho máximo do registro é de 16KB.
 
 O tamanho da página é definido ao criar a instância do MySQL e permanece constante posteriormente. O mesmo tamanho da página se aplica a todos os **tablespaces** `InnoDB` **, incluindo o tablespace do sistema, tablespaces de arquivo por tabela e tablespaces gerais.
 
-Tamanhos menores de página podem ajudar no desempenho com dispositivos de armazenamento que utilizam tamanhos de bloco pequenos, especialmente para dispositivos **SSD** em cargas de trabalho **ligadas a disco**, como para aplicações **OLTP**. À medida que as linhas individuais são atualizadas, menos dados são copiados para a memória, escritos em disco, reorganizados, bloqueados, e assim por diante.
+Tamanhos menores de página podem ajudar no desempenho com dispositivos de armazenamento que utilizam tamanhos de bloco pequenos, especialmente para dispositivos **SSD** em cargas de trabalho **ligadas a disco**, como para aplicações **OLTP**. À medida que as strings individuais são atualizadas, menos dados são copiados para a memória, escritos em disco, reorganizados, bloqueados, e assim por diante.
 
 Veja também disco-ligado, arquivo por tabela, espaço de tabela geral, instância, OLTP, página, SSD, espaço de tabela do sistema, espaço de tabela.
 
-tabela pai: A tabela em uma relação de **chave estrangeira** que contém os valores iniciais dos campos apontados a partir da **tabela filho**. As consequências da exclusão ou atualização de linhas na tabela pai dependem das cláusulas `ON UPDATE` e `ON DELETE` na definição da chave estrangeira. As linhas com valores correspondentes na tabela filho podem ser automaticamente excluídas ou atualizadas por sua vez, ou essas colunas podem ser definidas como `NULL`, ou a operação pode ser impedida.
+tabela pai: A tabela em uma relação de **chave estrangeira** que contém os valores iniciais dos campos apontados a partir da **tabela filho**. As consequências da exclusão ou atualização de strings na tabela pai dependem das cláusulas `ON UPDATE` e `ON DELETE` na definição da chave estrangeira. As strings com valores correspondentes na tabela filho podem ser automaticamente excluídas ou atualizadas por sua vez, ou essas colunas podem ser definidas como `NULL`, ou a operação pode ser impedida.
 
 Veja também tabela de crianças, chave estrangeira.
 
@@ -1550,15 +1550,15 @@ Muitos mecanismos de banco de dados integrados utilizam a metodologia **opositor
 
 Veja também: impasse, bloqueio, otimista.
 
-fantasma: Uma linha que aparece no conjunto de resultados de uma consulta, mas não no conjunto de resultados de uma consulta anterior. Por exemplo, se uma consulta for executada duas vezes dentro de uma **transação**, e, nesse meio tempo, outra transação seja confirmada após inserir uma nova linha ou atualizar uma linha para que ela corresponda à cláusula `WHERE` da consulta.
+fantasma: Uma string que aparece no conjunto de resultados de uma consulta, mas não no conjunto de resultados de uma consulta anterior. Por exemplo, se uma consulta for executada duas vezes dentro de uma **transação**, e, nesse meio tempo, outra transação seja confirmada após inserir uma nova string ou atualizar uma string para que ela corresponda à cláusula `WHERE` da consulta.
 
-Esse tipo de ocorrência é conhecido como leitura fantasma. É mais difícil de evitar do que uma **leitura não repetida**, porque o bloqueio de todas as linhas do primeiro conjunto de resultados da consulta não impede as alterações que causam a ocorrência do fantasma.
+Esse tipo de ocorrência é conhecido como leitura fantasma. É mais difícil de evitar do que uma **leitura não repetida**, porque o bloqueio de todas as strings do primeiro conjunto de resultados da consulta não impede as alterações que causam a ocorrência do fantasma.
 
 Entre os diferentes **níveis de isolamento**, as leituras fantasmas são prevenidas pelo nível de leitura serializável e permitidas pelos níveis de leitura **repetiível**, **consistente** e **não comprometido**.
 
 Veja também leitura consistente, nível de isolamento, leitura não repetida, LEITURA NÃO COMPROMETIDA, LEITURA REPEATÁVEL, SERIALIZÁVEL, transação.
 
-PHP: Um idioma de programação que surgiu com aplicações web. O código é tipicamente incorporado como blocos dentro da fonte de uma página web, com a saída substituída na página conforme ela é transmitida pelo servidor web. Isso contrasta com aplicações como scripts CGI que imprimem a saída na forma de uma página web inteira. O estilo de codificação PHP é usado para páginas web altamente interativas e dinâmicas. Programas modernos de PHP também podem ser executados como aplicações de linha de comando ou GUI.
+PHP: Um idioma de programação que surgiu com aplicações web. O código é tipicamente incorporado como blocos dentro da fonte de uma página web, com a saída substituída na página conforme ela é transmitida pelo servidor web. Isso contrasta com aplicações como scripts CGI que imprimem a saída na forma de uma página web inteira. O estilo de codificação PHP é usado para páginas web altamente interativas e dinâmicas. Programas modernos de PHP também podem ser executados como aplicações de string de comando ou GUI.
 
 As aplicações MySQL são escritas usando uma das **APIs do PHP**. Módulos reutilizáveis podem ser escritos em **C** e chamados a partir do PHP.
 
@@ -1606,7 +1606,7 @@ Embora você possa usar declarações preparadas diretamente através da sintaxe
 
 Veja também declaração preparada do lado do cliente, conector, declaração preparada do lado do servidor.
 
-chave primária: Um conjunto de colunas — e, por implicação, o índice baseado neste conjunto de colunas — que pode identificar de forma única cada linha em uma tabela. Como tal, deve ser um índice único que não contenha quaisquer valores de `NULL`.
+chave primária: Um conjunto de colunas — e, por implicação, o índice baseado neste conjunto de colunas — que pode identificar de forma única cada string em uma tabela. Como tal, deve ser um índice único que não contenha quaisquer valores de `NULL`.
 
 `InnoDB` exige que cada tabela tenha um índice desse tipo (também chamado de **índice agrupado** ou **índice de agrupamento**) e organiza o armazenamento da tabela com base nos valores das colunas da chave primária.
 
@@ -1638,7 +1638,7 @@ purga de atraso: Outro nome para a lista de histórico `InnoDB` **. Relacionado 
 
 Veja também a lista de histórico, purga.
 
-purga de fio: Um **fio** dentro do processo `InnoDB` que é dedicado a realizar a operação de **purga** periódica. No MySQL 5.6 e superior, vários fios de purga são habilitados pela opção de configuração `innodb_purge_threads`.
+purga de thread: Um **thread** dentro do processo `InnoDB` que é dedicado a realizar a operação de **purga** periódica. No MySQL 5.6 e superior, vários threads de purga são habilitados pela opção de configuração `innodb_purge_threads`.
 
 Veja também purge, rosca.
 
@@ -1714,7 +1714,7 @@ transação de leitura: um tipo de **transação** que pode ser otimizada para t
 
 Veja também leitura não bloqueável, visualização de leitura, transação.
 
-bloqueio de registro: um bloqueio em um registro de índice. Por exemplo, `SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE;` impede que qualquer outra transação insira, atualize ou exclua linhas onde o valor de `t.c1` é 10. Contrasta com **bloqueio de lacuna** e **bloqueio de próxima chave**.
+bloqueio de registro: um bloqueio em um registro de índice. Por exemplo, `SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE;` impede que qualquer outra transação insira, atualize ou exclua strings onde o valor de `t.c1` é 10. Contrasta com **bloqueio de lacuna** e **bloqueio de próxima chave**.
 
 Veja também bloqueio de lacuna, bloqueio, bloqueio da próxima chave.
 
@@ -1734,11 +1734,11 @@ arquivamento do log de refazer: Uma característica `InnoDB` que, quando habilit
 
 Veja também o registro de refazer.
 
-formato de linha redundante: o formato de linha mais antigo `InnoDB` **. Antes do MySQL 5.0.3, era o único formato de linha disponível em `InnoDB`. De MySQL 5.0.3 a MySQL 5.7.8, o formato de linha padrão é **COMPACT**. A partir do MySQL 5.7.9, o formato de linha padrão é definido pela opção de configuração `innodb_default_row_format`, que tem um ajuste padrão de **DINÂMICA**. Você ainda pode especificar o formato de linha **REDUNDANTE** para compatibilidade com tabelas mais antigas de `InnoDB`.
+formato de string redundante: o formato de string mais antigo `InnoDB` **. Antes do MySQL 5.0.3, era o único formato de string disponível em `InnoDB`. De MySQL 5.0.3 a MySQL 5.7.8, o formato de string padrão é **COMPACT**. A partir do MySQL 5.7.9, o formato de string padrão é definido pela opção de configuração `innodb_default_row_format`, que tem um ajuste padrão de **DINÂMICA**. Você ainda pode especificar o formato de string **REDUNDANTE** para compatibilidade com tabelas mais antigas de `InnoDB`.
 
-Para mais informações, consulte a Seção 14.11, “Formatos de linha InnoDB”.
+Para mais informações, consulte a Seção 14.11, “Formatos de string InnoDB”.
 
-Veja também formato de linha compacta, formato de linha dinâmica, formato de linha.
+Veja também formato de string compacta, formato de string dinâmica, formato de string.
 
 integridade referencial: A técnica de manter os dados sempre em um formato consistente, parte da filosofia **ACID**. Em particular, os dados em diferentes tabelas são mantidos consistentes através do uso de **restrições de chave estrangeira**, que podem impedir que mudanças ocorram ou propagar automaticamente essas mudanças para todas as tabelas relacionadas. Mecanismos relacionados incluem a **restrição única**, que impede que valores duplicados sejam inseridos por engano, e a **restrição NOT NULL**, que impede que valores em branco sejam inseridos por engano.
 
@@ -1754,11 +1754,11 @@ Em um contexto matemático, as relações dentro de um banco de dados são deriv
 
 Veja também ACID, coluna, restrição, chave estrangeira, normalizado.
 
-relevancia: Na funcionalidade de **pesquisa de texto completo**, um número que indica a similaridade entre a cadeia de busca e os dados no **índice FULLTEXT**. Por exemplo, quando você busca uma palavra única, essa palavra é tipicamente mais relevante para uma linha onde ocorre várias vezes no texto do que para uma linha onde aparece apenas uma vez.
+relevancia: Na funcionalidade de **pesquisa de texto completo**, um número que indica a similaridade entre a cadeia de busca e os dados no **índice FULLTEXT**. Por exemplo, quando você busca uma palavra única, essa palavra é tipicamente mais relevante para uma string onde ocorre várias vezes no texto do que para uma string onde aparece apenas uma vez.
 
 Veja também pesquisa de texto completo, índice FULLTEXT.
 
-REPEATABLE READ: O nível de isolamento padrão para `InnoDB`. Ele impede que quaisquer linhas que estejam sendo consultadas sejam alteradas por outras **transações**, bloqueando assim **leitura não repetida**, mas não **leitura fantasma**. Ele utiliza uma estratégia de **bloqueio** moderadamente rigorosa, de modo que todas as consultas dentro de uma transação vejam dados do mesmo instantâneo, ou seja, os dados como estavam no momento em que a transação começou.
+REPEATABLE READ: O nível de isolamento padrão para `InnoDB`. Ele impede que quaisquer strings que estejam sendo consultadas sejam alteradas por outras **transações**, bloqueando assim **leitura não repetida**, mas não **leitura fantasma**. Ele utiliza uma estratégia de **bloqueio** moderadamente rigorosa, de modo que todas as consultas dentro de uma transação vejam dados do mesmo instantâneo, ou seja, os dados como estavam no momento em que a transação começou.
 
 Quando uma transação com esse nível de isolamento realiza as operações `UPDATE ... WHERE`, `DELETE ... WHERE`, `SELECT ... FOR UPDATE` e `LOCK IN SHARE MODE`, outras transações podem ter que esperar.
 
@@ -1776,9 +1776,9 @@ As réplicas geralmente têm cargas de trabalho elevadas, pois processam todas a
 
 Veja também DML, replicação, servidor, fonte, SSD.
 
-replicação: A prática de enviar alterações de uma **fonte**, para uma ou mais **replicas**, de modo que todos os bancos de dados tenham os mesmos dados. Essa técnica tem uma ampla gama de usos, como balanceamento de carga para melhor escalabilidade, recuperação em caso de desastre e teste de atualizações e alterações de configuração de software. As alterações podem ser enviadas entre os bancos de dados por métodos chamados **replicação baseada em linha** e **replicação baseada em declaração**.
+replicação: A prática de enviar alterações de uma **fonte**, para uma ou mais **replicas**, de modo que todos os bancos de dados tenham os mesmos dados. Essa técnica tem uma ampla gama de usos, como balanceamento de carga para melhor escalabilidade, recuperação em caso de desastre e teste de atualizações e alterações de configuração de software. As alterações podem ser enviadas entre os bancos de dados por métodos chamados **replicação baseada em string** e **replicação baseada em declaração**.
 
-Veja também replica, replicação baseada em linha, fonte, replicação baseada em declaração.
+Veja também replica, replicação baseada em string, fonte, replicação baseada em declaração.
 
 restaurar: O processo de colocar um conjunto de arquivos de backup do produto **MySQL Enterprise Backup** no lugar para uso pelo MySQL. Esta operação pode ser realizada para corrigir um banco de dados corrompido, para retornar a algum ponto anterior no tempo ou (em um contexto de **replicação**) para configurar uma nova **replica**. No produto **MySQL Enterprise Backup**, esta operação é realizada pela opção `copy-back` do comando `mysqlbackup`.
 
@@ -1794,31 +1794,31 @@ segmento de recuo: A área de armazenamento que contém os **registros de desfaz
 
 Veja também: sistema tablespace, registro de desfazer, tablespace de desfazer.
 
-linha: A estrutura de dados lógica definida por um conjunto de **colunas**. Um conjunto de linhas compõe uma **tabela**. Dentro dos arquivos de dados `InnoDB`, cada **página** pode conter uma ou mais linhas.
+string: A estrutura de dados lógica definida por um conjunto de **colunas**. Um conjunto de strings compõe uma **tabela**. Dentro dos arquivos de dados `InnoDB`, cada **página** pode conter uma ou mais strings.
 
-Embora o `InnoDB` use o termo **formato de linha** para manter a consistência com a sintaxe do MySQL, o formato de linha é uma propriedade de cada tabela e se aplica a todas as linhas dessa tabela.
+Embora o `InnoDB` use o termo **formato de string** para manter a consistência com a sintaxe do MySQL, o formato de string é uma propriedade de cada tabela e se aplica a todas as strings dessa tabela.
 
-Veja também coluna, arquivos de dados, página, formato de linha, tabela.
+Veja também coluna, arquivos de dados, página, formato de string, tabela.
 
-Formato de linha: O formato de armazenamento em disco para **linhas** de uma tabela do `InnoDB` **. À medida que o `InnoDB` ganha novas capacidades, como **compressão**, novos formatos de linha são introduzidos para suportar as melhorias resultantes na eficiência e desempenho do armazenamento.
+Formato de string: O formato de armazenamento em disco para **strings** de uma tabela do `InnoDB` **. À medida que o `InnoDB` ganha novas capacidades, como **compressão**, novos formatos de string são introduzidos para suportar as melhorias resultantes na eficiência e desempenho do armazenamento.
 
-O formato de linha de uma tabela `InnoDB` é especificado pela opção `ROW_FORMAT` ou pela opção de configuração `innodb_default_row_format` (introduzida no MySQL 5.7.9). Os formatos de linha incluem `REDUNDANT`, `COMPACT`, `COMPRESSED` e `DYNAMIC`. Para visualizar o formato de linha de uma tabela `InnoDB`, execute a declaração `SHOW TABLE STATUS` ou consulte os metadados da tabela `InnoDB` no `INFORMATION_SCHEMA`.
+O formato de string de uma tabela `InnoDB` é especificado pela opção `ROW_FORMAT` ou pela opção de configuração `innodb_default_row_format` (introduzida no MySQL 5.7.9). Os formatos de string incluem `REDUNDANT`, `COMPACT`, `COMPRESSED` e `DYNAMIC`. Para visualizar o formato de string de uma tabela `InnoDB`, execute a declaração `SHOW TABLE STATUS` ou consulte os metadados da tabela `InnoDB` no `INFORMATION_SCHEMA`.
 
-Veja também formato de linha compacta, formato de linha comprimida, compressão, formato de linha dinâmica, formato de linha redundante, linha, tabela.
+Veja também formato de string compacta, formato de string comprimida, compressão, formato de string dinâmica, formato de string redundante, string, tabela.
 
-bloqueio de linha: Um **bloqueio** que impede que uma linha seja acessada de uma maneira incompatível por outra **transação**. Outras linhas da mesma tabela podem ser escritas livremente por outras transações. Esse é o tipo de **bloqueio** realizado por operações **DML** em tabelas **InnoDB**.
+bloqueio de string: Um **bloqueio** que impede que uma string seja acessada de uma maneira incompatível por outra **transação**. Outras strings da mesma tabela podem ser escritas livremente por outras transações. Esse é o tipo de **bloqueio** realizado por operações **DML** em tabelas **InnoDB**.
 
 Em contraste com as **bloqueadoras de tabela** usadas por `MyISAM`, ou durante operações de **DDL** em tabelas de `InnoDB` que não podem ser feitas com **DDL online**; essas bloqueadoras bloqueiam o acesso concorrente à tabela.
 
 Veja também DDL, DML, InnoDB, bloqueio, bloqueio, DDL online, bloqueio de tabela, transação.
 
-replicação baseada em linha: Uma forma de **replicação** em que os eventos são propagados a partir da **fonte**, especificando como alterar as linhas individuais na **replica**. É seguro usar para todos os ajustes da opção `innodb_autoinc_lock_mode`.
+replicação baseada em string: Uma forma de **replicação** em que os eventos são propagados a partir da **fonte**, especificando como alterar as strings individuais na **replica**. É seguro usar para todos os ajustes da opção `innodb_autoinc_lock_mode`.
 
 Veja também bloqueio de autoincremento, innodb\_autoinc\_lock\_mode, replica, replicação, fonte, replicação baseada em declaração.
 
-bloqueio de nível de linha: O mecanismo de **bloqueio** utilizado para as tabelas **InnoDB**, que depende de **blocos de linha** em vez de **blocos de tabela**. Múltiplas **transações** podem modificar a mesma tabela simultaneamente. Apenas se duas transações tentarem modificar a mesma linha, uma das transações aguarda a outra para completar (e liberar seus blocos de linha).
+bloqueio de nível de string: O mecanismo de **bloqueio** utilizado para as tabelas **InnoDB**, que depende de **blocos de string** em vez de **blocos de tabela**. Múltiplas **transações** podem modificar a mesma tabela simultaneamente. Apenas se duas transações tentarem modificar a mesma string, uma das transações aguarda a outra para completar (e liberar seus blocos de string).
 
-Veja também InnoDB, bloqueio, bloqueio de linha, bloqueio de tabela, transação.
+Veja também InnoDB, bloqueio, bloqueio de string, bloqueio de tabela, transação.
 
 Ruby: Um idioma de programação que enfatiza a tipificação dinâmica e a programação orientada a objetos. Algumas sintaxes são familiares aos desenvolvedores de **Perl**.
 
@@ -1876,7 +1876,7 @@ Veja também pesquisa de texto completo, índice FULLTEXT.
 
 índice secundário: um tipo de índice `InnoDB` **que representa um subconjunto de colunas da tabela. Uma tabela `InnoDB` pode ter zero, um ou vários índices secundários. (Compare com o **índice agrupado**, que é necessário para cada tabela `InnoDB`, e armazena os dados para todas as colunas da tabela.)
 
-Um índice secundário pode ser usado para satisfazer consultas que exigem apenas valores das colunas indexadas. Para consultas mais complexas, ele pode ser usado para identificar as linhas relevantes na tabela, que são então recuperadas por meio de consultas usando o índice agrupado.
+Um índice secundário pode ser usado para satisfazer consultas que exigem apenas valores das colunas indexadas. Para consultas mais complexas, ele pode ser usado para identificar as strings relevantes na tabela, que são então recuperadas por meio de consultas usando o índice agrupado.
 
 Criar e descartar índices secundários tradicionalmente envolve um custo significativo devido à cópia de todos os dados na tabela `InnoDB`. O recurso de **criação rápida de índices** torna as declarações de `CREATE INDEX` e `DROP INDEX` muito mais rápidas para os índices secundários `InnoDB`.
 
@@ -1890,11 +1890,11 @@ Os segmentos crescem e encolhem à medida que os dados são inseridos e excluíd
 
 Veja também extensão, arquivo por tabela, segmento de rollback, espaço de tabela do sistema, espaço de tabela, registro de desfazer.
 
-seletividade: Uma propriedade da distribuição de dados, o número de valores distintos em uma coluna (sua **cardinalidade**) dividido pelo número de registros na tabela. Alta seletividade significa que os valores da coluna são relativamente únicos e podem ser recuperados eficientemente por meio de um índice. Se você (ou o otimizador de consulta) pode prever que um teste em uma cláusula `WHERE` só corresponde a um pequeno número (ou proporção) de linhas em uma tabela, a **consulta** geral tende a ser eficiente se avaliar esse teste primeiro, usando um índice.
+seletividade: Uma propriedade da distribuição de dados, o número de valores distintos em uma coluna (sua **cardinalidade**) dividido pelo número de registros na tabela. Alta seletividade significa que os valores da coluna são relativamente únicos e podem ser recuperados eficientemente por meio de um índice. Se você (ou o otimizador de consulta) pode prever que um teste em uma cláusula `WHERE` só corresponde a um pequeno número (ou proporção) de strings em uma tabela, a **consulta** geral tende a ser eficiente se avaliar esse teste primeiro, usando um índice.
 
 Veja também cardinalidade, consulta.
 
-leitura semi-consistente: Um tipo de operação de leitura usada para as declarações `UPDATE`, que é uma combinação de **LEITURA COM PROMESSA** e **leitura consistente**. Quando uma declaração `UPDATE` examina uma linha que já está bloqueada, `InnoDB` retorna a versão mais recente comprometida ao MySQL, para que o MySQL possa determinar se a linha corresponde à condição `WHERE` do `UPDATE`. Se a linha corresponder (deve ser atualizada), o MySQL lê a linha novamente, e desta vez `InnoDB` a bloqueia ou espera por um bloqueio nela. Este tipo de operação de leitura só pode ocorrer quando a transação tem o nível de isolamento **isolamento LEITURA COM PROMESSA**, ou quando a opção `innodb_locks_unsafe_for_binlog` é habilitada. `innodb_locks_unsafe_for_binlog` foi removido no MySQL 8.0.
+leitura semi-consistente: Um tipo de operação de leitura usada para as declarações `UPDATE`, que é uma combinação de **LEITURA COM PROMESSA** e **leitura consistente**. Quando uma declaração `UPDATE` examina uma string que já está bloqueada, `InnoDB` retorna a versão mais recente comprometida ao MySQL, para que o MySQL possa determinar se a string corresponde à condição `WHERE` do `UPDATE`. Se a string corresponder (deve ser atualizada), o MySQL lê a string novamente, e desta vez `InnoDB` a bloqueia ou espera por um bloqueio nela. Este tipo de operação de leitura só pode ocorrer quando a transação tem o nível de isolamento **isolamento LEITURA COM PROMESSA**, ou quando a opção `innodb_locks_unsafe_for_binlog` é habilitada. `innodb_locks_unsafe_for_binlog` foi removido no MySQL 8.0.
 
 Veja também leitura consistente, nível de isolamento, READ COMMITTED.
 
@@ -2000,11 +2000,11 @@ Veja também o comando interceptor, string de conexão, Conector/J, Conector/NET
 
 replicação baseada em declarações: Uma forma de **replicação** em que declarações SQL são enviadas a partir da **fonte** e retransmitidas na **replica**. Requer algum cuidado com a configuração da opção `innodb_autoinc_lock_mode`, para evitar potenciais problemas de temporização com **bloqueio de auto-incremento**.
 
-Veja também bloqueio de autoincremento, innodb\_autoinc\_lock\_mode, replica, replicação, replicação baseada em linha, fonte.
+Veja também bloqueio de autoincremento, innodb\_autoinc\_lock\_mode, replica, replicação, replicação baseada em string, fonte.
 
-estatísticas: Valores estimados relacionados a cada tabela e **índice** `InnoDB` **, usados para construir um plano de execução de consulta eficiente. Os principais valores são a **cardinalidade** (número de valores distintos) e o número total de linhas da tabela ou entradas de índice. As estatísticas da tabela representam os dados em seu **índice de chave primária**. As estatísticas de um **índice secundário** representam as linhas cobertas por esse índice.
+estatísticas: Valores estimados relacionados a cada tabela e **índice** `InnoDB` **, usados para construir um plano de execução de consulta eficiente. Os principais valores são a **cardinalidade** (número de valores distintos) e o número total de strings da tabela ou entradas de índice. As estatísticas da tabela representam os dados em seu **índice de chave primária**. As estatísticas de um **índice secundário** representam as strings cobertas por esse índice.
 
-Os valores são estimados em vez de contados com precisão, porque, em qualquer momento, diferentes **transações** podem inserir e excluir linhas da mesma tabela. Para evitar que os valores sejam recalculados frequentemente, você pode habilitar **estatísticas persistentes**, onde os valores são armazenados em tabelas de sistema `InnoDB` e atualizados apenas quando você emite uma declaração `ANALYZE TABLE`.
+Os valores são estimados em vez de contados com precisão, porque, em qualquer momento, diferentes **transações** podem inserir e excluir strings da mesma tabela. Para evitar que os valores sejam recalculados frequentemente, você pode habilitar **estatísticas persistentes**, onde os valores são armazenados em tabelas de sistema `InnoDB` e atualizados apenas quando você emite uma declaração `ANALYZE TABLE`.
 
 Você pode controlar como os valores **NULL** são tratados ao calcular estatísticas por meio da opção de configuração `innodb_stats_method`.
 
@@ -2026,7 +2026,7 @@ O produto **MySQL Enterprise Backup** é otimizado para fazer backup de tabelas 
 
 Veja também InnoDB, MySQL Enterprise Backup, tipo de tabela.
 
-coluna gerada armazenada: uma coluna cujos valores são calculados a partir de uma expressão incluída na definição da coluna. Os valores da coluna são avaliados e armazenados quando as linhas são inseridas ou atualizadas. Uma coluna gerada armazenada requer espaço de armazenamento e pode ser indexada.
+coluna gerada armazenada: uma coluna cujos valores são calculados a partir de uma expressão incluída na definição da coluna. Os valores da coluna são avaliados e armazenados quando as strings são inseridas ou atualizadas. Uma coluna gerada armazenada requer espaço de armazenamento e pode ser indexada.
 
 Contrastando com a **coluna gerada virtualmente**.
 
@@ -2038,11 +2038,11 @@ programa armazenado: uma rotina armazenada (procedimento ou função), um gatilh
 
 procedimento armazenado: um procedimento ou função armazenada.
 
-modo rigoroso: O nome geral para o ajuste controlado pela opção `innodb_strict_mode`. Ativação deste ajuste faz com que certas condições que normalmente são tratadas como avisos sejam consideradas erros. Por exemplo, certas combinações inválidas de opções relacionadas ao **formato do arquivo** e **formato da linha**, que normalmente produzem um aviso e continuam com os valores padrão, agora causam o `CREATE TABLE` falhar. `innodb_strict_mode` é ativado por padrão no MySQL 5.7.
+modo rigoroso: O nome geral para o ajuste controlado pela opção `innodb_strict_mode`. Ativação deste ajuste faz com que certas condições que normalmente são tratadas como avisos sejam consideradas erros. Por exemplo, certas combinações inválidas de opções relacionadas ao **formato do arquivo** e **formato da string**, que normalmente produzem um aviso e continuam com os valores padrão, agora causam o `CREATE TABLE` falhar. `innodb_strict_mode` é ativado por padrão no MySQL 5.7.
 
 O MySQL também tem algo chamado modo estrito. Veja a Seção 5.1.10, “Modos SQL do servidor”.
 
-Veja também o formato de arquivo . See Also, innodb\_strict\_mode, formato de linha.
+Veja também o formato de arquivo . See Also, innodb\_strict\_mode, formato de string.
 
 sublista: Dentro da estrutura da lista que representa o **buffer pool**, as páginas que são relativamente antigas e relativamente novas são representadas por diferentes partes da **lista**. Um conjunto de parâmetros controla o tamanho dessas partes e o ponto de divisão entre as páginas novas e antigas.
 
@@ -2070,9 +2070,9 @@ A opção `innodb_undo_tablespaces` define o número de espaços de tabelas de d
 
 Manter todos os dados da tabela nos espaços de tabela do sistema ou em arquivos separados `.ibd` tem implicações para a gestão de armazenamento em geral. O produto **MySQL Enterprise Backup** pode fazer backup de um pequeno conjunto de arquivos grandes ou muitos arquivos menores. Em sistemas com milhares de tabelas, as operações do sistema de arquivos para processar milhares de arquivos `.ibd` podem causar gargalos.
 
-`InnoDB` introduziu espaços de tabelas gerais no MySQL 5.7.6, que também são representados por arquivos `.ibd`. Os espaços de tabelas gerais são espaços de tabelas compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas tabelas e suportam tabelas de todos os formatos de linha.
+`InnoDB` introduziu espaços de tabelas gerais no MySQL 5.7.6, que também são representados por arquivos `.ibd`. Os espaços de tabelas gerais são espaços de tabelas compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas tabelas e suportam tabelas de todos os formatos de string.
 
-Veja também Barracuda, buffer de alteração, compressão, dicionário de dados, banco de dados, buffer de escrita dupla, formato de linha dinâmico, arquivo por tabela, espaço de tabela geral, arquivo .ibd, arquivo ibdata, innodb\_file\_per\_table, instância, MySQL Enterprise Backup, coluna fora da página, espaço de tabela, registro de desfazer.
+Veja também Barracuda, buffer de alteração, compressão, dicionário de dados, banco de dados, buffer de escrita dupla, formato de string dinâmico, arquivo por tabela, espaço de tabela geral, arquivo .ibd, arquivo ibdata, innodb\_file\_per\_table, instância, MySQL Enterprise Backup, coluna fora da página, espaço de tabela, registro de desfazer.
 
 ### T
 
@@ -2096,17 +2096,17 @@ Em termos de armazenamento de arquivos, uma tabela `InnoDB` pertence a um dos se
 
 Os arquivos de dados **`.ibd`** contêm dados de tabela e **índice**.
 
-As tabelas `InnoDB` criadas em espaços de tabela por arquivo podem usar o formato de arquivo **Barracuda**, e as tabelas Barracuda podem usar o formato de linha **DINÂMICO** ou **COMPREENSO**. Esses formatos de linha permitem recursos como `InnoDB`, como **compressão**, armazenamento eficiente de colunas fora da página e grandes prefixos de chave de índice (consulte `innodb_large_prefix`). Os espaços de tabela gerais suportam todos os formatos de linha, independentemente da configuração do `innodb_file_format`.
+As tabelas `InnoDB` criadas em espaços de tabela por arquivo podem usar o formato de arquivo **Barracuda**, e as tabelas Barracuda podem usar o formato de string **DINÂMICO** ou **COMPREENSO**. Esses formatos de string permitem recursos como `InnoDB`, como **compressão**, armazenamento eficiente de colunas fora da página e grandes prefixos de chave de índice (consulte `innodb_large_prefix`). Os espaços de tabela gerais suportam todos os formatos de string, independentemente da configuração do `innodb_file_format`.
 
-Até o MySQL 5.7.5, as tabelas `InnoDB` dentro do espaço de tabelas do sistema precisavam usar o formato de arquivo **Antelope** para compatibilidade reversa com o MySQL 5.1 e versões anteriores. O formato de arquivo **Antelope** suporta o formato de linha **COMPACT** e **REDUNDANT**. O espaço de tabelas do sistema suporta tabelas que usam o formato de linha **DYNAMIC** a partir do MySQL 5.7.6.
+Até o MySQL 5.7.5, as tabelas `InnoDB` dentro do espaço de tabelas do sistema precisavam usar o formato de arquivo **Antelope** para compatibilidade reversa com o MySQL 5.1 e versões anteriores. O formato de arquivo **Antelope** suporta o formato de string **COMPACT** e **REDUNDANT**. O espaço de tabelas do sistema suporta tabelas que usam o formato de string **DYNAMIC** a partir do MySQL 5.7.6.
 
-As **linhas** de uma tabela `InnoDB` são organizadas em uma estrutura de índice conhecida como **índice agrupado**, com entradas ordenadas com base nas colunas da chave primária da tabela. O acesso aos dados é otimizado para consultas que filtram e ordenam com base nas colunas da chave primária, e cada índice contém uma cópia das colunas da chave primária associadas a cada entrada. Modificar os valores de qualquer uma das colunas da chave primária é uma operação cara. Assim, um aspecto importante do projeto da tabela `InnoDB` é escolher uma chave primária com colunas que são usadas nas consultas mais importantes e manter a chave primária curta, com valores que raramente mudam.
+As **strings** de uma tabela `InnoDB` são organizadas em uma estrutura de índice conhecida como **índice agrupado**, com entradas ordenadas com base nas colunas da chave primária da tabela. O acesso aos dados é otimizado para consultas que filtram e ordenam com base nas colunas da chave primária, e cada índice contém uma cópia das colunas da chave primária associadas a cada entrada. Modificar os valores de qualquer uma das colunas da chave primária é uma operação cara. Assim, um aspecto importante do projeto da tabela `InnoDB` é escolher uma chave primária com colunas que são usadas nas consultas mais importantes e manter a chave primária curta, com valores que raramente mudam.
 
-Veja também: Antílope, backup, Barracuda, índice agrupado, formato de linha compacta, formato de linha comprimida, compressão, formato de linha dinâmico, Criação rápida de índice, arquivo por tabela, arquivo .ibd, índice, coluna fora da página, chave primária, formato de linha redundante, linha, espaço de tabela do sistema, espaço de tabela.
+Veja também: Antílope, backup, Barracuda, índice agrupado, formato de string compacta, formato de string comprimida, compressão, formato de string dinâmico, Criação rápida de índice, arquivo por tabela, arquivo .ibd, índice, coluna fora da página, chave primária, formato de string redundante, string, espaço de tabela do sistema, espaço de tabela.
 
-bloqueio de tabela: um bloqueio que impede qualquer outra **transação** de acessar uma tabela. `InnoDB` faz um esforço considerável para tornar esses bloqueios desnecessários, usando técnicas como **DDL online**, **bloqueios de linha** e **leitura consistente** para processar **DML** e **consultas**. Você pode criar esse bloqueio através do SQL usando a declaração `LOCK TABLE`; um dos passos na migração de outros sistemas de banco de dados ou motores de armazenamento MySQL é remover essas declarações sempre que for possível.
+bloqueio de tabela: um bloqueio que impede qualquer outra **transação** de acessar uma tabela. `InnoDB` faz um esforço considerável para tornar esses bloqueios desnecessários, usando técnicas como **DDL online**, **bloqueios de string** e **leitura consistente** para processar **DML** e **consultas**. Você pode criar esse bloqueio através do SQL usando a declaração `LOCK TABLE`; um dos passos na migração de outros sistemas de banco de dados ou motores de armazenamento MySQL é remover essas declarações sempre que for possível.
 
-Veja também leituras consistentes, DML, bloqueio, bloqueio de acesso, DDL online, consulta, bloqueio de linha, tabela, transação.
+Veja também leituras consistentes, DML, bloqueio, bloqueio de acesso, DDL online, consulta, bloqueio de string, tabela, transação.
 
 varredura de tabela: Veja a varredura completa da tabela.
 
@@ -2122,11 +2122,11 @@ O **espaço de tabela do sistema** contém o dicionário de dados `InnoDB` e, an
 
 A opção `innodb_file_per_table`, habilitada por padrão no MySQL 5.6 e superior, permite que as tabelas sejam criadas em seus próprios espaços de tabela. Os espaços de tabela por arquivo suportam recursos como armazenamento eficiente de colunas fora da página, compressão de tabela e espaços de tabela transportable. Veja a Seção 14.6.3.2, “Espaços de tabela por arquivo”, para detalhes.
 
-`InnoDB` introduziu espaços de tabelas gerais no MySQL 5.7.6. Espaços de tabelas gerais são espaços de tabelas compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas tabelas e suportam tabelas de todos os formatos de linha.
+`InnoDB` introduziu espaços de tabelas gerais no MySQL 5.7.6. Espaços de tabelas gerais são espaços de tabelas compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados do MySQL, são capazes de conter múltiplas tabelas e suportam tabelas de todos os formatos de string.
 
 O MySQL NDB Cluster também agrupa suas tabelas em espaços de tabela. Consulte a Seção 21.6.11.1, “Objetos de dados de disco do NDB Cluster”, para obter detalhes.
 
-Veja também formato de linha compactada, dicionário de dados, arquivos de dados, arquivo por tabela, espaço de tabela geral, índice, innodb\_file\_per\_table, espaço de tabela do sistema, tabela.
+Veja também formato de string compactada, dicionário de dados, arquivos de dados, arquivo por tabela, espaço de tabela geral, índice, innodb\_file\_per\_table, espaço de tabela do sistema, tabela.
 
 Tcl: Uma linguagem de programação originária do mundo de scripts Unix. Às vezes, estendida por código escrito em **C**, **C++** ou **Java**. Para a API de código aberto Tcl para MySQL, consulte a Seção 27.12, “API Tcl de MySQL”.
 
@@ -2170,9 +2170,9 @@ As transações de banco de dados, conforme implementadas por `InnoDB`, possuem 
 
 Veja também ACID, commit, nível de isolamento, bloqueio, rollback.
 
-ID da transação: Um campo interno associado a cada **linha**. Este campo é alterado fisicamente pelas operações `INSERT`, `UPDATE` e `DELETE` para registrar qual **transação** bloqueou a linha.
+ID da transação: Um campo interno associado a cada **string**. Este campo é alterado fisicamente pelas operações `INSERT`, `UPDATE` e `DELETE` para registrar qual **transação** bloqueou a string.
 
-Veja também bloqueio implícito de linha, linha, transação.
+Veja também bloqueio implícito de string, string, transação.
 
 compressão transparente da página: Uma característica adicionada no MySQL 5.7.8 que permite a compressão de nível de página para as tabelas `InnoDB` que residem em espaços de tabela por arquivo. A compressão de página é habilitada especificando o atributo `COMPRESSION` com `CREATE TABLE` ou `ALTER TABLE`. Para mais informações, consulte a Seção 14.9.2, “Compressão de Página InnoDB”.
 
@@ -2192,13 +2192,13 @@ solução de problemas: O processo de determinar a origem de um problema. Alguns
 
 truncate: Uma operação de **DDL** que remove todo o conteúdo de uma tabela, mantendo a tabela e os índices relacionados intactos. Contrasta com **drop**. Embora conceitualmente tenha o mesmo resultado que uma declaração `DELETE` sem cláusula `WHERE`, opera de maneira diferente nos bastidores: `InnoDB` cria uma nova tabela vazia, elimina a tabela antiga e, em seguida, renomeia a nova tabela para ocupar o lugar da antiga. Como se trata de uma operação de DDL, não pode ser **desfeita**.
 
-Se a tabela que está sendo truncada contiver **chaves estrangeiras** que fazem referência a outra tabela, a operação de truncação utiliza um método de operação mais lento, excluindo uma linha de cada vez, para que as linhas correspondentes na tabela referenciada possam ser excluídas conforme necessário por qualquer cláusula `ON DELETE CASCADE`. (O MySQL 5.5 e superior não permitem essa forma mais lenta de truncar e, em vez disso, retornam um erro se chaves estrangeiras estiverem envolvidas. Nesses casos, use uma declaração `DELETE` em vez disso.
+Se a tabela que está sendo truncada contiver **chaves estrangeiras** que fazem referência a outra tabela, a operação de truncação utiliza um método de operação mais lento, excluindo uma string de cada vez, para que as strings correspondentes na tabela referenciada possam ser excluídas conforme necessário por qualquer cláusula `ON DELETE CASCADE`. (O MySQL 5.5 e superior não permitem essa forma mais lenta de truncar e, em vez disso, retornam um erro se chaves estrangeiras estiverem envolvidas. Nesses casos, use uma declaração `DELETE` em vez disso.
 
 Veja também DDL, drop, chave estrangeira, rollback.
 
 truststore: Veja também SSL.
 
-tupla: Um termo técnico que designa um conjunto ordenado de elementos. É uma noção abstrata, usada em discussões formais sobre a teoria de bancos de dados. No campo de bancos de dados, as tuplas são geralmente representadas pelas colunas de uma linha de tabela. Elas também podem ser representadas pelos conjuntos de resultados de consultas, por exemplo, consultas que recuperaram apenas algumas colunas de uma tabela, ou colunas de tabelas unidas.
+tupla: Um termo técnico que designa um conjunto ordenado de elementos. É uma noção abstrata, usada em discussões formais sobre a teoria de bancos de dados. No campo de bancos de dados, as tuplas são geralmente representadas pelas colunas de uma string de tabela. Elas também podem ser representadas pelos conjuntos de resultados de consultas, por exemplo, consultas que recuperaram apenas algumas colunas de uma tabela, ou colunas de tabelas unidas.
 
 Veja também cursor.
 
@@ -2242,13 +2242,13 @@ restrição única: Um tipo de **restrição** que afirma que uma coluna não po
 
 Veja também restrição, índice relacional, índice único.
 
-índice único: Um índice em uma coluna ou conjunto de colunas que possui uma **restrição única**. Como o índice é conhecido por não conter quaisquer valores duplicados, certos tipos de consultas e operações de contagem são mais eficientes do que no tipo normal de índice. A maioria das consultas contra este tipo de índice é simplesmente para determinar se um determinado valor existe ou não. O número de valores no índice é o mesmo que o número de linhas na tabela, ou pelo menos o número de linhas com valores não nulos para as colunas associadas.
+índice único: Um índice em uma coluna ou conjunto de colunas que possui uma **restrição única**. Como o índice é conhecido por não conter quaisquer valores duplicados, certos tipos de consultas e operações de contagem são mais eficientes do que no tipo normal de índice. A maioria das consultas contra este tipo de índice é simplesmente para determinar se um determinado valor existe ou não. O número de valores no índice é o mesmo que o número de strings na tabela, ou pelo menos o número de strings com valores não nulos para as colunas associadas.
 
 A otimização de **alteração do buffer** não se aplica a índices únicos. Como uma solução alternativa, você pode definir temporariamente `unique_checks=0` enquanto realiza uma carga de dados em massa em uma tabela `InnoDB`.
 
 Veja também cardinalidade, alteração de buffer, restrição única, chave única.
 
-chave única: O conjunto de colunas (uma ou mais) que compõem um **índice único**. Quando você pode definir uma condição `WHERE` que corresponde exatamente a uma única linha, e a consulta pode usar um índice único associado, a pesquisa e o tratamento de erros podem ser realizados de forma muito eficiente.
+chave única: O conjunto de colunas (uma ou mais) que compõem um **índice único**. Quando você pode definir uma condição `WHERE` que corresponde exatamente a uma única string, e a consulta pode usar um índice único associado, a pesquisa e o tratamento de erros podem ser realizados de forma muito eficiente.
 
 Veja também cardinalidade, restrição única, índice único.
 
@@ -2260,7 +2260,7 @@ tipo de comprimento variável: um tipo de dados de comprimento variável. Os tip
 
 Veja também a coluna fora da página, página de excesso.
 
-vítima: A **transação** que é automaticamente escolhida para ser **desfeita** quando um **bloqueio** é detectado. `InnoDB` desfaz a transação que atualizou o menor número de linhas.
+vítima: A **transação** que é automaticamente escolhida para ser **desfeita** quando um **bloqueio** é detectado. `InnoDB` desfaz a transação que atualizou o menor número de strings.
 
 A detecção de ponto morto pode ser desativada usando a opção de configuração `innodb_deadlock_detect`.
 
@@ -2270,7 +2270,7 @@ visão: Uma consulta armazenada que, quando invocada, produz um conjunto de resu
 
 coluna virtual: Veja a coluna virtual gerada.
 
-coluna gerada virtualmente: Uma coluna cujos valores são calculados a partir de uma expressão incluída na definição da coluna. Os valores da coluna não são armazenados, mas são avaliados quando as linhas são lidas, imediatamente após quaisquer gatilhos `BEFORE`. Uma coluna gerada virtualmente não requer armazenamento. `InnoDB` suporta índices secundários em colunas geradas virtualmente.
+coluna gerada virtualmente: Uma coluna cujos valores são calculados a partir de uma expressão incluída na definição da coluna. Os valores da coluna não são armazenados, mas são avaliados quando as strings são lidas, imediatamente após quaisquer gatilhos `BEFORE`. Uma coluna gerada virtualmente não requer armazenamento. `InnoDB` suporta índices secundários em colunas geradas virtualmente.
 
 Contrastando com a **coluna gerada armazenada**.
 
@@ -2311,7 +2311,7 @@ carga de trabalho: A combinação e o volume de operações **SQL** e outras ope
 
 Veja também gargalo, CPU-bound, disco-bound, SQL.
 
-escrever combinando: Uma técnica de otimização que reduz as operações de escrita quando as **páginas sujas** são **limpadas** do **buffer pool** do `InnoDB`. Se uma linha em uma página for atualizada várias vezes ou várias linhas na mesma página forem atualizadas, todas essas alterações são armazenadas nos arquivos de dados em uma única operação de escrita, em vez de uma escrita para cada alteração.
+escrever combinando: Uma técnica de otimização que reduz as operações de escrita quando as **páginas sujas** são **limpadas** do **buffer pool** do `InnoDB`. Se uma string em uma página for atualizada várias vezes ou várias strings na mesma página forem atualizadas, todas essas alterações são armazenadas nos arquivos de dados em uma única operação de escrita, em vez de uma escrita para cada alteração.
 
 Veja também: buffer pool, página suja, esvaziar.
 

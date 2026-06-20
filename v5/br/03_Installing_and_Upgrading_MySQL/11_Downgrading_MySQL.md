@@ -6,9 +6,9 @@ A desativação é uma operação menos comum do que a ativação. A desativaç�
 
 Nota
 
-Na discussão a seguir, os comandos do MySQL que devem ser executados usando uma conta do MySQL com privilégios administrativos incluem `-u root` na linha de comando para especificar o usuário do MySQL `root`. Os comandos que exigem uma senha para `root` também incluem uma opção `-p`. Como `-p` é seguido por nenhum valor de opção, tais comandos solicitam a senha. Digite a senha quando solicitado e pressione Enter.
+Na discussão a seguir, os comandos do MySQL que devem ser executados usando uma conta do MySQL com privilégios administrativos incluem `-u root` na string de comando para especificar o usuário do MySQL `root`. Os comandos que exigem uma senha para `root` também incluem uma opção `-p`. Como `-p` é seguido por nenhum valor de opção, tais comandos solicitam a senha. Digite a senha quando solicitado e pressione Enter.
 
-As instruções SQL podem ser executadas usando o cliente de linha de comando **mysql** (conecte-se como `root` para garantir que você tenha os privilégios necessários).
+As instruções SQL podem ser executadas usando o cliente de string de comando **mysql** (conecte-se como `root` para garantir que você tenha os privilégios necessários).
 
 ### 2.11.1 Antes de começar
 

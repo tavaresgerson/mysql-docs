@@ -170,7 +170,7 @@ A tabela a seguir lista os tipos de contas `mysql.user` considerados nesta discu
 </tbody>
 </table>
 
-As contas correspondentes às linhas do plugin `mysql_native_password` não requerem nenhuma ação de atualização (porque não é necessária nenhuma alteração no plugin ou no formato de hash). Para contas correspondentes às linhas para as quais a senha está vazia, considere pedir aos proprietários das contas que escolham uma senha (ou exija-a usando `ALTER USER` para expirarem senhas de contas vazias).
+As contas correspondentes às strings do plugin `mysql_native_password` não requerem nenhuma ação de atualização (porque não é necessária nenhuma alteração no plugin ou no formato de hash). Para contas correspondentes às strings para as quais a senha está vazia, considere pedir aos proprietários das contas que escolham uma senha (ou exija-a usando `ALTER USER` para expirarem senhas de contas vazias).
 
 ##### Atualizando contas de implicitas para explícitas mysql\_native\_password Use
 
@@ -421,7 +421,7 @@ O suporte do RSA possui essas características, onde todos os aspectos que se re
 
 O uso de uma cópia local confiável da chave pública permite que o cliente evite uma viagem de ida e volta no protocolo cliente/servidor e é mais seguro do que solicitar a chave pública do servidor. Por outro lado, solicitar a chave pública do servidor é mais conveniente (não requer gerenciamento de um arquivo do lado do cliente) e pode ser aceitável em ambientes de rede seguros.
 
-+ Para clientes de linha de comando, use a opção `--server-public-key-path` para especificar o arquivo da chave pública RSA. Use a opção `--get-server-public-key` para solicitar a chave pública do servidor. Os seguintes programas suportam as duas opções: **mysql**, **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqldump**, **mysqlimport**, **mysqlpump**, **mysqlshow**, **mysqlslap**, **mysqltest**.
++ Para clientes de string de comando, use a opção `--server-public-key-path` para especificar o arquivo da chave pública RSA. Use a opção `--get-server-public-key` para solicitar a chave pública do servidor. Os seguintes programas suportam as duas opções: **mysql**, **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqldump**, **mysqlimport**, **mysqlpump**, **mysqlshow**, **mysqlslap**, **mysqltest**.
 
 + Para programas que utilizam a API C, chame `mysql_options()` para especificar o arquivo da chave pública RSA, passando a opção `MYSQL_SERVER_PUBLIC_KEY` e o nome do arquivo, ou solicite a chave pública do servidor, passando a opção `MYSQL_OPT_GET_SERVER_PUBLIC_KEY`.
 
@@ -575,7 +575,7 @@ O servidor atribui o plugin `sha256_password` à conta e o usa para criptografar
 
 As instruções anteriores não assumem que `sha256_password` seja o plugin de autenticação padrão. Se `sha256_password` for o plugin de autenticação padrão, pode ser usada uma sintaxe mais simples de `CREATE USER`.
 
-Para iniciar o servidor com o plugin de autenticação padrão definido como `sha256_password`, coloque essas linhas no arquivo de opção do servidor:
+Para iniciar o servidor com o plugin de autenticação padrão definido como `sha256_password`, coloque essas strings no arquivo de opção do servidor:
 
 ```sql
 [mysqld]
@@ -617,7 +617,7 @@ O suporte da RSA possui essas características:
 
 * Para conexões por contas que autenticam usando `sha256_password` e troca de senha baseada em par de chave pública RSA, o servidor envia a chave pública RSA ao cliente conforme necessário. No entanto, se uma cópia da chave pública estiver disponível no host do cliente, o cliente pode usá-la para salvar uma viagem de ida e volta no protocolo cliente/servidor:
 
-+ Para esses clientes de linha de comando, use a opção `--server-public-key-path` para especificar o arquivo da chave pública RSA: **mysql**, **mysqltest**, e (a partir do MySQL 5.7.23) **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqldump**, **mysqlimport**, **mysqlpump**, **mysqlshow**, **mysqlslap**, **mysqltest**.
++ Para esses clientes de string de comando, use a opção `--server-public-key-path` para especificar o arquivo da chave pública RSA: **mysql**, **mysqltest**, e (a partir do MySQL 5.7.23) **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqldump**, **mysqlimport**, **mysqlpump**, **mysqlshow**, **mysqlslap**, **mysqltest**.
 
 + Para programas que utilizam a API C, chame `mysql_options()` para especificar o arquivo da chave pública RSA, passando a opção `MYSQL_SERVER_PUBLIC_KEY` e o nome do arquivo.
 
@@ -810,7 +810,7 @@ Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve esta
 
 O nome de arquivo da biblioteca de plugins é `authentication_pam`. O sufixo do nome do arquivo difere de acordo com a plataforma (por exemplo, `.so` para sistemas Unix e Unix-like, `.dll` para Windows).
 
-Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com este método de carregamento de plugins, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
+Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com este método de carregamento de plugins, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -971,7 +971,7 @@ O formato do arquivo PAM pode diferir em alguns sistemas. Por exemplo, em Ubuntu
 
 Aqui, a string de autenticação contém apenas o nome do serviço PAM, `mysql-unix`, que autentica senhas Unix.
 
-4. Use o cliente de linha de comando **mysql** para se conectar ao servidor MySQL como `antonio`. Por exemplo:
+4. Use o cliente de string de comando **mysql** para se conectar ao servidor MySQL como `antonio`. Por exemplo:
 
    ```sql
    $> mysql --user=antonio --password --enable-cleartext-plugin
@@ -1121,7 +1121,7 @@ As contas proxy utilizam o plugin de autenticação `mysql_no_login` para impedi
      TO ''@'';
    ```
 
-7. Use o cliente de linha de comando **mysql** para se conectar ao servidor MySQL como `antonio`.
+7. Use o cliente de string de comando **mysql** para se conectar ao servidor MySQL como `antonio`.
 
    ```sql
    $> mysql --user=antonio --password --enable-cleartext-plugin
@@ -1195,7 +1195,7 @@ O plugin de autenticação PAM verifica no momento da inicialização se o valor
 
 No MySQL NDB Cluster, a partir das versões 7.5.33 e 7.6.29, as senhas *não* estão incluídas se você definir `AUTHENTICATION_PAM_LOG=1` (ou algum outro valor arbitrário); você pode habilitar o registro de mensagens de depuração, incluindo senhas, definindo `AUTHENTICATION_PAM_LOG=PAM_LOG_WITH_SECRET_INFO`.
 
-Algumas mensagens incluem referência aos arquivos de origem do plugin PAM e números de linha, o que permite que as ações do plugin sejam vinculadas mais estreitamente à localização no código onde elas ocorrem.
+Algumas mensagens incluem referência aos arquivos de origem do plugin PAM e números de string, o que permite que as ações do plugin sejam vinculadas mais estreitamente à localização no código onde elas ocorrem.
 
 Outra técnica para depurar falhas de conexão e determinar o que está acontecendo durante as tentativas de conexão é configurar a autenticação PAM para permitir todas as conexões e, em seguida, verificar os arquivos de registro do sistema. Essa técnica deve ser usada apenas de forma *temporária* e não em um servidor de produção.
 
@@ -1257,7 +1257,7 @@ Esta seção descreve como instalar o plugin de autenticação do Windows no lad
 
 Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve estar localizado no diretório do plugin MySQL (o diretório nomeado pela variável de sistema `plugin_dir`). Se necessário, configure a localização do diretório do plugin, definindo o valor de `plugin_dir` na inicialização do servidor.
 
-Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`:
+Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]
@@ -1555,7 +1555,7 @@ Para carregar os plugins na inicialização do servidor, use as opções `--plug
 
 Cada plugin LDAP do lado do servidor expõe um conjunto de variáveis do sistema que permitem que sua operação seja configurada. Definir a maioria dessas variáveis é opcional, mas você deve definir as variáveis que especificam o host do servidor LDAP (para que o plugin saiba onde se conectar) e o nome distinguido de base para operações de vinculação LDAP (para limitar o escopo das pesquisas e obter pesquisas mais rápidas). Para obter detalhes sobre todas as variáveis do sistema LDAP, consulte a Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectada”.
 
-Para carregar os plugins e definir o host do servidor LDAP e o nome distinto base para operações de vinculação LDAP, coloque linhas como estas no seu arquivo `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
+Para carregar os plugins e definir o host do servidor LDAP e o nome distinto base para operações de vinculação LDAP, coloque strings como estas no seu arquivo `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -1895,7 +1895,7 @@ GRANT PROXY
   TO ''@'%';
 ```
 
-Use o cliente de linha de comando **mysql** para se conectar ao servidor MySQL como `basha`.
+Use o cliente de string de comando **mysql** para se conectar ao servidor MySQL como `basha`.
 
 ```sql
 $> mysql --user=basha --password
@@ -2090,7 +2090,7 @@ Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve esta
 
 O nome de arquivo da biblioteca de plugins é `mysql_no_login`. O sufixo do nome do arquivo difere de acordo com a plataforma (por exemplo, `.so` para sistemas Unix e Unix-like, `.dll` para Windows).
 
-Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
+Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -2225,7 +2225,7 @@ Esta seção descreve como instalar o plugin de autenticação de socket. Para i
 
 Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve estar localizado no diretório do plugin MySQL (o diretório nomeado pela variável de sistema `plugin_dir`). Se necessário, configure a localização do diretório do plugin, definindo o valor de `plugin_dir` na inicialização do servidor.
 
-Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`:
+Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`:
 
 ```sql
 [mysqld]
@@ -2273,7 +2273,7 @@ O método usado para desinstalar o plugin de autenticação de socket depende de
 
 ##### Uso do Autenticação Conectada por Conectores de Soquete
 
-O plugin de soquete verifica se o nome do usuário do socket (o nome do usuário do sistema operacional) corresponde ao nome do usuário do MySQL especificado pelo programa cliente para o servidor. Se os nomes não corresponderem, o plugin verifica se o nome do usuário do socket corresponde ao nome especificado na coluna `authentication_string` da linha da tabela do sistema `mysql.user`. Se uma correspondência for encontrada, o plugin permite a conexão. O valor do `authentication_string` pode ser especificado usando uma cláusula `IDENTIFIED ...AS` com `CREATE USER` ou `ALTER USER`.
+O plugin de soquete verifica se o nome do usuário do socket (o nome do usuário do sistema operacional) corresponde ao nome do usuário do MySQL especificado pelo programa cliente para o servidor. Se os nomes não corresponderem, o plugin verifica se o nome do usuário do socket corresponde ao nome especificado na coluna `authentication_string` da string da tabela do sistema `mysql.user`. Se uma correspondência for encontrada, o plugin permite a conexão. O valor do `authentication_string` pode ser especificado usando uma cláusula `IDENTIFIED ...AS` com `CREATE USER` ou `ALTER USER`.
 
 Suponha que uma conta MySQL seja criada para um usuário do sistema operacional chamado `valerie` que deve ser autenticado pelo plugin `auth_socket` para conexões do host local através do arquivo de soquete:
 
@@ -2328,7 +2328,7 @@ Esta seção descreve como instalar o plugin de autenticação de teste do lado 
 
 Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve estar localizado no diretório do plugin MySQL (o diretório nomeado pela variável de sistema `plugin_dir`). Se necessário, configure a localização do diretório do plugin, definindo o valor de `plugin_dir` na inicialização do servidor.
 
-Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
+Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -2391,7 +2391,7 @@ $> mysql --user=testuser --password
 Enter password: testpassword
 ```
 
-O plugin obtém a senha recebida do cliente e a compara com o valor armazenado na coluna `authentication_string` da linha da conta na tabela do sistema `mysql.user`. Se os dois valores corresponderem, o plugin retorna o valor `authentication_string` como o novo ID de usuário efetivo.
+O plugin obtém a senha recebida do cliente e a compara com o valor armazenado na coluna `authentication_string` da string da conta na tabela do sistema `mysql.user`. Se os dois valores corresponderem, o plugin retorna o valor `authentication_string` como o novo ID de usuário efetivo.
 
 Você pode procurar no registro de erro do servidor uma mensagem que indique se a autenticação foi bem-sucedida (observe que a senha é relatada como o “usuário”):
 
@@ -3019,7 +3019,7 @@ Suponha que sua configuração tenha essas propriedades:
 
 - Os servidores LDAP têm os nomes `ldap1.mem.local` até `ldap3.mem.local` e endereços IP `10.172.166.101` até `10.172.166.103`.
 
-Você deseja que os servidores LDAP sejam descobertos usando pesquisas SRV. Por exemplo, na linha de comando, um comando como este deve listar os servidores LDAP:
+Você deseja que os servidores LDAP sejam descobertos usando pesquisas SRV. Por exemplo, na string de comando, um comando como este deve listar os servidores LDAP:
 
     ```sql
     host -t SRV _ldap._tcp.mem.local
@@ -3027,7 +3027,7 @@ Você deseja que os servidores LDAP sejam descobertos usando pesquisas SRV. Por 
 
 Realize a configuração do DNS da seguinte forma:
 
-1. Adicione uma linha a `/etc/resolv.conf` para especificar o servidor de nomes que fornece informações sobre os domínios do Active Directory:
+1. Adicione uma string a `/etc/resolv.conf` para especificar o servidor de nomes que fornece informações sobre os domínios do Active Directory:
 
        ```sql
        nameserver 10.172.166.100
@@ -3041,7 +3041,7 @@ Realize a configuração do DNS da seguinte forma:
        _ldap._tcp.mem.local. 86400 IN SRV 0 100 389 ldap3.mem.local.
        ```
 
-3. Também pode ser necessário especificar o endereço IP dos servidores LDAP em `/etc/hosts` se o host do servidor não puder ser resolvido. Por exemplo, adicione linhas como esta ao arquivo:
+3. Também pode ser necessário especificar o endereço IP dos servidores LDAP em `/etc/hosts` se o host do servidor não puder ser resolvido. Por exemplo, adicione strings como esta ao arquivo:
 
        ```sql
        10.172.166.101 ldap1.mem.local
@@ -3097,7 +3097,7 @@ Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve esta
 
 O nome de arquivo da biblioteca de plugins é `connection_control`. O sufixo do nome do arquivo difere de acordo com a plataforma (por exemplo, `.so` para sistemas Unix e Unix-like, `.dll` para Windows).
 
-Para carregar os plugins na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que os contém. Com esse método de carregamento de plugins, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
+Para carregar os plugins na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que os contém. Com esse método de carregamento de plugins, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -3180,7 +3180,7 @@ Por exemplo, com o valor padrão `connection_control_failed_connections_threshol
 
 * Se `connection_control_min_connection_delay` e `connection_control_max_connection_delay` forem 2000 e 3000, os atrasos ajustados para as conexões falhadas do quarto e subsequentes serão de 2000 milissegundos, 2000 milissegundos e 3000 milissegundos, com todas as conexões falhadas subsequentes também atrasadas por 3000 milissegundos.
 
-Você pode definir as variáveis de sistema `CONNECTION_CONTROL` no início ou durante o funcionamento do servidor. Suponha que você queira permitir quatro tentativas consecutivas de conexão falhadas antes que o servidor comece a demorar suas respostas, com um atraso mínimo de 2000 milissegundos. Para definir as variáveis relevantes no início do servidor, coloque essas linhas no arquivo `my.cnf` do servidor:
+Você pode definir as variáveis de sistema `CONNECTION_CONTROL` no início ou durante o funcionamento do servidor. Suponha que você queira permitir quatro tentativas consecutivas de conexão falhadas antes que o servidor comece a demorar suas respostas, com um atraso mínimo de 2000 milissegundos. Para definir as variáveis relevantes no início do servidor, coloque essas strings no arquivo `my.cnf` do servidor:
 
 ```sql
 [mysqld]
@@ -3196,7 +3196,7 @@ SET GLOBAL connection_control_failed_connections_threshold = 4;
 SET GLOBAL connection_control_min_connection_delay = 1500;
 ```
 
-`SET GLOBAL` define o valor para a instância MySQL em execução. Para fazer a mudança permanente, adicione uma linha no seu arquivo `my.cnf`, conforme mostrado anteriormente.
+`SET GLOBAL` define o valor para a instância MySQL em execução. Para fazer a mudança permanente, adicione uma string no seu arquivo `my.cnf`, conforme mostrado anteriormente.
 
 As variáveis de sistema `connection_control_min_connection_delay` e `connection_control_max_connection_delay` têm valores mínimo e máximo de 1000 e 2147483647. Além disso, a faixa permitida de valores de cada variável também depende do valor atual da outra:
 
@@ -3393,7 +3393,7 @@ Para ser utilizável pelo servidor, o arquivo da biblioteca de plugins deve esta
 
 O nome de arquivo da biblioteca de plugins é `validate_password`. O sufixo do nome do arquivo difere de acordo com a plataforma (por exemplo, `.so` para Unix e sistemas semelhantes ao Unix, `.dll` para Windows).
 
-Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
+Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugin, a opção deve ser dada toda vez que o servidor é iniciado. Por exemplo, coloque essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -3504,7 +3504,7 @@ O controle ocorre em todos os contextos para os quais o `validate_password` é i
 
 O nome do caminho do arquivo do dicionário que o `validate_password` usa para verificar senhas. Essa variável não está disponível, a menos que o `validate_password` esteja instalado.
 
-Por padrão, essa variável tem um valor vazio e as verificações de dicionário não são realizadas. Para que as verificações de dicionário ocorram, o valor da variável deve ser não vazio. Se o arquivo estiver nomeado como um caminho relativo, ele será interpretado em relação ao diretório de dados do servidor. O conteúdo do arquivo deve ser minúsculo, uma palavra por linha. O conteúdo é tratado como tendo um conjunto de caracteres de `utf8`. O tamanho máximo permitido do arquivo é de 1 MB.
+Por padrão, essa variável tem um valor vazio e as verificações de dicionário não são realizadas. Para que as verificações de dicionário ocorram, o valor da variável deve ser não vazio. Se o arquivo estiver nomeado como um caminho relativo, ele será interpretado em relação ao diretório de dados do servidor. O conteúdo do arquivo deve ser minúsculo, uma palavra por string. O conteúdo é tratado como tendo um conjunto de caracteres de `utf8`. O tamanho máximo permitido do arquivo é de 1 MB.
 
 Para que o arquivo do dicionário seja usado durante a verificação da senha, a política de senha deve ser definida como 2 (`STRONG`); veja a descrição da variável de sistema `validate_password_policy`. Supondo que isso seja verdade, cada subdivisão da senha com comprimento de 4 a 100 é comparada com as palavras no arquivo do dicionário. Qualquer correspondência faz com que a senha seja rejeitada. As comparações não são sensíveis ao caso.
 
@@ -3650,7 +3650,7 @@ A instalação para cada plugin de chaveiro é semelhante. As instruções a seg
 
 O nome de arquivo da biblioteca de plugins `keyring_file` é `keyring_file`. O sufixo do nome do arquivo difere de acordo com a plataforma (por exemplo, `.so` para sistemas Unix e Unix-like, `.dll` para Windows).
 
-Para carregar o plugin, use a opção `--early-plugin-load` para nomear o arquivo da biblioteca do plugin que o contém. Por exemplo, em plataformas onde o sufixo do arquivo da biblioteca do plugin é `.so`, use essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
+Para carregar o plugin, use a opção `--early-plugin-load` para nomear o arquivo da biblioteca do plugin que o contém. Por exemplo, em plataformas onde o sufixo do arquivo da biblioteca do plugin é `.so`, use essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -3706,7 +3706,7 @@ Para o gerenciamento de chaves de criptografia, o plugin `keyring_file` não é 
 
 Para instalar o `keyring_file`, use as instruções gerais encontradas na Seção 6.4.4.1, “Instalação do Plugin de Keyring”, juntamente com as informações de configuração específicas para o `keyring_file` encontradas aqui.
 
-Para ser utilizável durante o processo de inicialização do servidor, `keyring_file` deve ser carregado usando a opção `--early-plugin-load`. A variável de sistema `keyring_file_data` configura opcionalmente a localização do arquivo usado pelo plugin `keyring_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável na inicialização. Por exemplo, use essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário:
+Para ser utilizável durante o processo de inicialização do servidor, `keyring_file` deve ser carregado usando a opção `--early-plugin-load`. A variável de sistema `keyring_file_data` configura opcionalmente a localização do arquivo usado pelo plugin `keyring_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável na inicialização. Por exemplo, use essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -3751,7 +3751,7 @@ Para o gerenciamento de chaves de criptografia, o plugin `keyring_encrypted_file
 
 Para instalar o `keyring_encrypted_file`, use as instruções gerais encontradas na Seção 6.4.4.1, “Instalação do Plugin de Keyring”, juntamente com as informações de configuração específicas para o `keyring_encrypted_file` encontradas aqui.
 
-Para ser utilizável durante o processo de inicialização do servidor, `keyring_encrypted_file` deve ser carregado usando a opção `--early-plugin-load`. Para especificar a senha para criptografar o arquivo de dados do chaveiro, defina a variável de sistema `keyring_encrypted_file_password`. (A senha é obrigatória; se não for especificada na inicialização do servidor, a inicialização do `keyring_encrypted_file` falha.) A variável de sistema `keyring_encrypted_file_data` configura opcionalmente a localização do arquivo usado pelo plugin `keyring_encrypted_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável na inicialização. Por exemplo, use essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário e substituindo sua senha escolhida:
+Para ser utilizável durante o processo de inicialização do servidor, `keyring_encrypted_file` deve ser carregado usando a opção `--early-plugin-load`. Para especificar a senha para criptografar o arquivo de dados do chaveiro, defina a variável de sistema `keyring_encrypted_file_password`. (A senha é obrigatória; se não for especificada na inicialização do servidor, a inicialização do `keyring_encrypted_file` falha.) A variável de sistema `keyring_encrypted_file_data` configura opcionalmente a localização do arquivo usado pelo plugin `keyring_encrypted_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável na inicialização. Por exemplo, use essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário e substituindo sua senha escolhida:
 
 ```sql
 [mysqld]
@@ -3834,7 +3834,7 @@ A variável `keyring_okv_conf_dir` deve nomear um diretório que contenha os seg
 
 * `okvclient.ora`: Um arquivo que contém detalhes do backend do KMIP com o qual o `keyring_okv` se comunica.
 
-* `ssl`: Um diretório que contém os arquivos de certificado e chave necessários para estabelecer uma conexão segura com o back-end KMIP: `CA.pem`, `cert.pem` e `key.pem`. A partir do MySQL 5.7.20, se o arquivo de chave estiver protegido por senha, o diretório `ssl` pode conter um arquivo de texto de uma única linha com o nome `password.txt` contendo a senha necessária para descriptografar o arquivo de chave.
+* `ssl`: Um diretório que contém os arquivos de certificado e chave necessários para estabelecer uma conexão segura com o back-end KMIP: `CA.pem`, `cert.pem` e `key.pem`. A partir do MySQL 5.7.20, se o arquivo de chave estiver protegido por senha, o diretório `ssl` pode conter um arquivo de texto de uma única string com o nome `password.txt` contendo a senha necessária para descriptografar o arquivo de chave.
 
 Tanto o arquivo `okvclient.ora` quanto o diretório `ssl`, com os arquivos de certificado e chave, são necessários para que o `keyring_okv` funcione corretamente. O procedimento usado para preencher o diretório de configuração com esses arquivos depende do back-end KMIP usado com `keyring_okv`, conforme descrito em outro lugar.
 
@@ -3848,7 +3848,7 @@ chown mysql mysql-keyring-okv
 chgrp mysql mysql-keyring-okv
 ```
 
-Para ser utilizável durante o processo de inicialização do servidor, `keyring_okv` deve ser carregado usando a opção `--early-plugin-load`. Além disso, defina a variável de sistema `keyring_okv_conf_dir` para informar ao `keyring_okv` onde encontrar seu diretório de configuração. Por exemplo, use essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e a localização do diretório para sua plataforma, conforme necessário:
+Para ser utilizável durante o processo de inicialização do servidor, `keyring_okv` deve ser carregado usando a opção `--early-plugin-load`. Além disso, defina a variável de sistema `keyring_okv_conf_dir` para informar ao `keyring_okv` onde encontrar seu diretório de configuração. Por exemplo, use essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e a localização do diretório para sua plataforma, conforme necessário:
 
 ```sql
 [mysqld]
@@ -3906,7 +3906,7 @@ O comando anterior produz um arquivo `okvclient.ora`, que deve estar neste local
    install_dir/conf/okvclient.ora
    ```
 
-Os conteúdos esperados do arquivo incluem linhas que parecem assim:
+Os conteúdos esperados do arquivo incluem strings que parecem assim:
 
    ```sql
    SERVER=host_ip:port_num
@@ -3915,7 +3915,7 @@ Os conteúdos esperados do arquivo incluem linhas que parecem assim:
 
 Nota
 
-Se o arquivo existente não estiver nesse formato, então crie um novo arquivo com as linhas mostradas no exemplo anterior. Além disso, considere fazer um backup do arquivo `okvclient.ora` antes de executar o comando **okvutil**. Restaure o arquivo conforme necessário.
+Se o arquivo existente não estiver nesse formato, então crie um novo arquivo com as strings mostradas no exemplo anterior. Além disso, considere fazer um backup do arquivo `okvclient.ora` antes de executar o comando **okvutil**. Restaure o arquivo conforme necessário.
 
 O plugin `keyring_okv` tenta se comunicar com o servidor que está em execução no host nomeado pela variável `SERVER` e volta para `STANDBY_SERVER` se isso falhar:
 
@@ -4035,7 +4035,7 @@ A partir do MySQL 5.7.20, você pode, opcionalmente, proteger o arquivo de chave
    Verifying - Enter PEM pass phrase:
    ```
 
-2. Salve a senha de criptografia em um arquivo de texto de uma única linha com o nome `password.txt` no diretório `ssl`.
+2. Salve a senha de criptografia em um arquivo de texto de uma única string com o nome `password.txt` no diretório `ssl`.
 
 3. Verifique se o arquivo de chave criptografado pode ser descriptografado usando o seguinte comando. O arquivo descriptografado deve ser exibido no console:
 
@@ -4098,10 +4098,10 @@ Na inicialização do MySQL, defina a variável de sistema `keyring_aws_conf_fil
 
 A localização do arquivo de configuração pode variar de acordo com a distribuição do Linux; o diretório para este arquivo também pode já ser fornecido por um módulo do sistema ou por outra aplicação, como o AppArmor. Por exemplo, sob o AppArmor em edições recentes do Ubuntu Linux, o diretório do chaveiro é especificado como `/var/lib/mysql-keyring`. Consulte [Ubuntu Server: AppArmor][(https://documentation.ubuntu.com/server/how-to/security/apparmor/index.html)] para obter mais informações sobre o uso do AppArmor em sistemas Ubuntu; consulte também [este exemplo de arquivo de configuração MySQL][(https://exampleconfig.com/view/mysql-ubuntu20-04-etc-apparmor-d-usr-sbin-mysqld)]. Para outras plataformas operacionais, consulte a documentação do sistema para orientação.
 
-5. Prepare o arquivo de configuração `keyring_aws`, que deve conter duas linhas:
+5. Prepare o arquivo de configuração `keyring_aws`, que deve conter duas strings:
 
-* Linha 1: O ID da chave de acesso secreta
-   * Linha 2: A chave de acesso secreta
+* String 1: O ID da chave de acesso secreta
+   * String 2: A chave de acesso secreta
 
 Por exemplo, se o ID da chave é `wwwwwwwwwwwwwEXAMPLE` e a chave é `xxxxxxxxxxxxx/yyyyyyy/zzzzzzzzEXAMPLEKEY`, o arquivo de configuração fica assim:
 
@@ -4110,7 +4110,7 @@ Por exemplo, se o ID da chave é `wwwwwwwwwwwwwEXAMPLE` e a chave é `xxxxxxxxxx
    xxxxxxxxxxxxx/yyyyyyy/zzzzzzzzEXAMPLEKEY
    ```
 
-Para ser utilizável durante o processo de inicialização do servidor, `keyring_aws` deve ser carregado usando a opção `--early-plugin-load`. A variável de sistema `keyring_aws_cmk_id` é obrigatória e configura o ID da chave mestre do cliente (CMK) obtido do servidor AWS KMS. As variáveis de sistema `keyring_aws_conf_file` e `keyring_aws_data_file` opcionalmente configuram os locais dos arquivos utilizados pelo plugin `keyring_aws` para informações de configuração e armazenamento de dados. Os valores padrão das variáveis de localização de arquivo são específicos da plataforma. Para configurar os locais explicitamente, defina os valores das variáveis no início. Por exemplo, use essas linhas no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e os locais de arquivo para sua plataforma conforme necessário:
+Para ser utilizável durante o processo de inicialização do servidor, `keyring_aws` deve ser carregado usando a opção `--early-plugin-load`. A variável de sistema `keyring_aws_cmk_id` é obrigatória e configura o ID da chave mestre do cliente (CMK) obtido do servidor AWS KMS. As variáveis de sistema `keyring_aws_conf_file` e `keyring_aws_data_file` opcionalmente configuram os locais dos arquivos utilizados pelo plugin `keyring_aws` para informações de configuração e armazenamento de dados. Os valores padrão das variáveis de localização de arquivo são específicos da plataforma. Para configurar os locais explicitamente, defina os valores das variáveis no início. Por exemplo, use essas strings no arquivo do servidor `my.cnf`, ajustando o sufixo `.so` e os locais de arquivo para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -4338,7 +4338,7 @@ O uso de qualquer uma das seguintes opções indica uma migração online:
 
 + `--keyring-migration-port`: Para conexões TCP/IP, o número de porta para se conectar no servidor em execução.
 
-+ `--keyring-migration-socket`: Para conexões de arquivo de socket Unix ou tubos nomeados do Windows, o arquivo de socket ou o tubo nomeado para se conectar no servidor em execução.
++ `--keyring-migration-socket`: Para conexões de arquivo de socket Unix ou pipes nomeados do Windows, o arquivo de socket ou o pipe nomeado para se conectar no servidor em execução.
 
 Para obter informações adicionais sobre as opções de migração principais, consulte a Seção 6.4.4.11, “Opções de comando do Keychain”.
 
@@ -4356,7 +4356,7 @@ Se você invocar o servidor de migração a partir de uma conta de sistema difer
 
 Para evitar esse problema, inicie o servidor de migração como usuário do sistema operacional `root` e forneça uma opção `--user=user_name`, onde *`user_name`* é a conta do sistema normalmente usada para executar o MySQL. Alternativamente, após a migração, examine os objetos do sistema de arquivos relacionados ao chaveiro e mude sua propriedade e permissões, se necessário, usando **chown**, **chmod** ou comandos semelhantes, para que os objetos sejam acessíveis ao servidor em execução.
 
-Exemplo de linha de comando para migração off-line (entre no comando em uma única linha):
+Exemplo de string de comando para migração off-line (entre no comando em uma única string):
 
 ```sql
 mysqld --defaults-file=/usr/local/mysql/etc/my.cnf
@@ -4365,7 +4365,7 @@ mysqld --defaults-file=/usr/local/mysql/etc/my.cnf
   --keyring_encrypted_file_password=password
 ```
 
-Exemplo de linha de comando para migração online:
+Exemplo de string de comando para migração online:
 
 ```sql
 mysqld --defaults-file=/usr/local/mysql/etc/my.cnf
@@ -4906,7 +4906,7 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 
 #### 6.4.4.11 Opções de comando do keyring
 
-O MySQL suporta as seguintes opções de linha de comando relacionadas ao chaveiro:
+O MySQL suporta as seguintes opções de string de comando relacionadas ao chaveiro:
 
 * `--keyring-migration-destination=plugin`
 
@@ -4932,7 +4932,7 @@ A senha da conta do MySQL usada para se conectar ao servidor em execução que e
 
 O valor da senha é opcional. Se não for fornecido, o servidor solicitará um. Se for fornecido, não deve haver *espaço* entre `--keyring-migration-password=` e a senha que o segue. Se não for especificada nenhuma opção de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Consulte a Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”. Você pode usar um arquivo de opção para evitar fornecer a senha na linha de comando. Neste caso, o arquivo deve ter um modo restritivo e ser acessível apenas à conta usada para executar o servidor de migração.
+Especificar uma senha na string de comando deve ser considerado inseguro. Consulte a Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”. Você pode usar um arquivo de opção para evitar fornecer a senha na string de comando. Neste caso, o arquivo deve ter um modo restritivo e ser acessível apenas à conta usada para executar o servidor de migração.
 
 * `--keyring-migration-port=port_num`
 
@@ -4944,7 +4944,7 @@ Para conexões TCP/IP, o número de porta para se conectar ao servidor em execu�
 
   <table frame="box" rules="all" summary="Properties for keyring-migration-socket"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--keyring-migration-socket={file_name|pipe_name}</code></td> </tr><tr><th>Introduced</th> <td>5.7.21</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-Para conexões de arquivo de socket Unix ou tubos nomeados do Windows, o arquivo de socket ou o tubo nomeado para conectar ao servidor em execução que está atualmente usando um dos keystores de chave de migração. Veja a Seção 6.4.4.7, “Migrando Chaves entre Keystores do Keyring”.
+Para conexões de arquivo de socket Unix ou pipes nomeados do Windows, o arquivo de socket ou o pipe nomeado para conectar ao servidor em execução que está atualmente usando um dos keystores de chave de migração. Veja a Seção 6.4.4.7, “Migrando Chaves entre Keystores do Keyring”.
 
 * `--keyring-migration-source=plugin`
 
@@ -6299,7 +6299,7 @@ Esses itens aparecem dentro de valores de hash associados a itens de nível supe
 
 * `args`
 
-Uma série de opções que foram fornecidas na linha de comando ou em arquivos de opção quando o servidor MySQL foi iniciado. A primeira opção é o caminho para o executável do servidor.
+Uma série de opções que foram fornecidas na string de comando ou em arquivos de opção quando o servidor MySQL foi iniciado. A primeira opção é o caminho para o executável do servidor.
 
 Exemplo:
 
@@ -6639,7 +6639,7 @@ As seções a seguir descrevem a rotação de arquivos de registro com mais deta
 
 Se `audit_log_rotate_on_size` for 0 (o padrão), não ocorrerá rotação de log, a menos que seja realizada manualmente. Neste caso, o plugin de log de auditoria fecha e reabre o arquivo de log quando o valor de `audit_log_flush` muda de desativado para ativado. O renomeamento do arquivo de log deve ser feito externamente ao servidor. Suponha que o nome do arquivo de log seja `audit.log` e que você queira manter os três arquivos de log mais recentes, alternando entre os nomes `audit.log.1` até `audit.log.3`. No Unix, realize a rotação manualmente da seguinte forma:
 
-1. Na linha de comando, renomeie os arquivos de registro atuais:
+1. Na string de comando, renomeie os arquivos de registro atuais:
 
    ```sql
    mv audit.log.2 audit.log.3
@@ -6700,7 +6700,7 @@ A estratégia de registro assíncrono tem essas características:
 
 * Impacto mínimo no desempenho e na escalabilidade do servidor. * Bloqueio de threads que geram eventos de auditoria pelo menor tempo possível; ou seja, tempo para alocar o buffer mais o tempo para copiar o evento para o buffer.
 
-* A saída vai para o buffer. Um fio separado lida com as escritas do buffer no arquivo de log.
+* A saída vai para o buffer. Um thread separado lida com as escritas do buffer no arquivo de log.
 
 Com o registro assíncrono, a integridade do arquivo de registro pode ser comprometida se ocorrer um problema durante uma escrita no arquivo ou se o plugin não fechar corretamente (por exemplo, no caso de o servidor hospedeiro sair inesperadamente). Para reduzir esse risco, configure `audit_log_strategy` para usar registro síncrono.
 
@@ -7702,7 +7702,7 @@ Qualquer valor `id` utilizado na definição é avaliado apenas em relação a e
 
 #### 6.4.5.9 Desativando o registro de auditoria
 
-A variável `audit_log_disable`, introduzida no MySQL 5.7.37, permite desabilitar o registro de auditoria para todas as sessões de conexão e conectadas. A variável `audit_log_disable` pode ser definida em um arquivo de opção do MySQL Server, em uma string de inicialização de linha de comando ou em tempo de execução usando uma declaração `SET`; por exemplo:
+A variável `audit_log_disable`, introduzida no MySQL 5.7.37, permite desabilitar o registro de auditoria para todas as sessões de conexão e conectadas. A variável `audit_log_disable` pode ser definida em um arquivo de opção do MySQL Server, em uma string de inicialização de string de comando ou em tempo de execução usando uma declaração `SET`; por exemplo:
 
 ```sql
 SET GLOBAL audit_log_disable = true;
@@ -7867,7 +7867,7 @@ Cada função de registro de auditoria retorna uma string que indica se a opera�
 
 As funções de registro de auditoria tratam argumentos de cadeia como strings binárias (o que significa que elas não distinguem maiúsculas e minúsculas) e os valores de retorno de cadeia são strings binárias.
 
-Se uma função de registro de auditoria for invocada dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se uma função de registro de auditoria for invocada dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 Essas funções do log de auditoria estão disponíveis:
 
@@ -8482,7 +8482,7 @@ Para instalar o MySQL Enterprise Firewall manualmente, procure no diretório `sh
 
 * `linux_install_firewall.sql`: Escolha este script para Linux e sistemas semelhantes que utilizam `.so` como sufixo do nome do arquivo.
 
-O script de instalação cria procedimentos armazenados no banco de dados padrão, `mysql`. Execute o script da seguinte forma na linha de comando. O exemplo aqui usa o script de instalação Linux. Faça as substituições apropriadas para o seu sistema.
+O script de instalação cria procedimentos armazenados no banco de dados padrão, `mysql`. Execute o script da seguinte forma na string de comando. O exemplo aqui usa o script de instalação Linux. Faça as substituições apropriadas para o seu sistema.
 
 ```sql
 $> mysql -u root -p < linux_install_firewall.sql
@@ -8559,7 +8559,7 @@ Esta seção descreve como configurar o MySQL Enterprise Firewall usando instru�
 
 ##### Habilitar ou desabilitar o firewall
 
-Para habilitar ou desabilitar o firewall, defina a variável de sistema `mysql_firewall_mode`. Por padrão, essa variável está habilitada quando o firewall é instalado. Para controlar explicitamente o estado inicial do firewall, você pode definir a variável na inicialização do servidor. Por exemplo, para habilitar o firewall em um arquivo de opção, use essas linhas:
+Para habilitar ou desabilitar o firewall, defina a variável de sistema `mysql_firewall_mode`. Por padrão, essa variável está habilitada quando o firewall é instalado. Para controlar explicitamente o estado inicial do firewall, você pode definir a variável na inicialização do servidor. Por exemplo, para habilitar o firewall em um arquivo de opção, use essas strings:
 
 ```sql
 [mysqld]

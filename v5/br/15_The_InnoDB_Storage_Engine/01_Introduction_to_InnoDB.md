@@ -6,7 +6,7 @@
 
 * Suas operações DML seguem o modelo ACID, com transações que apresentam capacidades de commit, rollback e recuperação em caso de falha para proteger os dados do usuário. Veja a Seção 14.2, “InnoDB e o Modelo ACID”.
 
-* O bloqueio de nível de linha e as leituras consistentes ao estilo Oracle aumentam a concorrência e o desempenho de múltiplos usuários. Veja a Seção 14.7, “Bloqueio e Modelo de Transação InnoDB”.
+* O bloqueio de nível de string e as leituras consistentes ao estilo Oracle aumentam a concorrência e o desempenho de múltiplos usuários. Veja a Seção 14.7, “Bloqueio e Modelo de Transação InnoDB”.
 
 * As tabelas `InnoDB` organizam seus dados no disco para otimizar as consultas com base em chaves primárias. Cada tabela `InnoDB` tem um índice de chave primária chamado índice agrupado que organiza os dados para minimizar o I/O para buscas de chave primária. Veja a Seção 14.6.2.1, “Indekses Agrupados e Secundários”.
 
@@ -50,7 +50,7 @@ As tabelas `InnoDB` têm os seguintes benefícios:
 
 * Inserções, atualizações e exclusões são otimizadas por um mecanismo automático chamado buffer de alterações. `InnoDB` não só permite acesso concorrente de leitura e escrita à mesma tabela, mas também cachea os dados alterados para otimizar o I/O de disco. Veja a Seção 14.5.2, “Buffer de Alterações”.
 
-* Os benefícios de desempenho não se limitam a grandes tabelas com consultas de longa duração. Quando as mesmas linhas são acessadas várias vezes a partir de uma tabela, o Índice Hash Adaptativo assume para tornar essas pesquisas ainda mais rápidas, como se elas viessem de uma tabela hash. Veja a Seção 14.5.3, “Índice Hash Adaptativo”.
+* Os benefícios de desempenho não se limitam a grandes tabelas com consultas de longa duração. Quando as mesmas strings são acessadas várias vezes a partir de uma tabela, o Índice Hash Adaptativo assume para tornar essas pesquisas ainda mais rápidas, como se elas viessem de uma tabela hash. Veja a Seção 14.5.3, “Índice Hash Adaptativo”.
 
 * Você pode comprimir tabelas e índices associados. Veja a Seção 14.9, “Compressão de Tabela e Página InnoDB”.
 
@@ -60,7 +60,7 @@ As tabelas `InnoDB` têm os seguintes benefícios:
 
 * O truncamento de um espaço de tabela por arquivo é muito rápido e pode liberar espaço em disco para que o sistema operacional possa reutilizar, em vez de apenas `InnoDB`. Veja a Seção 14.6.3.2, “Espaços de tabela por arquivo”.
 
-* O layout de armazenamento para dados de tabela é mais eficiente para os campos `BLOB` e de texto longo, com o formato da linha `DYNAMIC`. Veja a Seção 14.11, “Formatos de linha InnoDB”.
+* O layout de armazenamento para dados de tabela é mais eficiente para os campos `BLOB` e de texto longo, com o formato da string `DYNAMIC`. Veja a Seção 14.11, “Formatos de string InnoDB”.
 
 * Você pode monitorar o funcionamento interno do motor de armazenamento consultando as tabelas `INFORMATION_SCHEMA`. Veja a Seção 14.16, “Tabelas do esquema de informações InnoDB”.
 
@@ -86,7 +86,7 @@ Esta seção descreve as melhores práticas ao usar as tabelas `InnoDB`.
 
 * Grupos de operações DML relacionadas são definidos em transações ao serem delimitados com as declarações `START TRANSACTION` e `COMMIT`. Embora você não queira comprometer com muita frequência, também não quer emitir grandes lotes de declarações `INSERT`, `UPDATE` ou `DELETE` que funcionam por horas sem comprometer.
 
-* Não use declarações `LOCK TABLES`. `InnoDB` pode lidar com múltiplas sessões, todas lendo e escrevendo na mesma tabela ao mesmo tempo, sem sacrificar a confiabilidade ou o alto desempenho. Para obter acesso exclusivo de escrita a um conjunto de linhas, use a sintaxe `SELECT ... FOR UPDATE` para bloquear apenas as linhas que você pretende atualizar.
+* Não use declarações `LOCK TABLES`. `InnoDB` pode lidar com múltiplas sessões, todas lendo e escrevendo na mesma tabela ao mesmo tempo, sem sacrificar a confiabilidade ou o alto desempenho. Para obter acesso exclusivo de escrita a um conjunto de strings, use a sintaxe `SELECT ... FOR UPDATE` para bloquear apenas as strings que você pretende atualizar.
 
 * Ative a variável `innodb_file_per_table` ou use tabelas gerais para colocar os dados e índices das tabelas em arquivos separados, em vez do espaço de tabela do sistema. A variável `innodb_file_per_table` é ativada por padrão.
 
@@ -110,7 +110,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.ENGINES;
 
 ### 14.1.4 Testando e Benchmarkando com InnoDB
 
-Se `InnoDB` não for o motor de armazenamento padrão, você pode determinar se seu servidor de banco de dados e aplicativos funcionam corretamente com `InnoDB` reiniciando o servidor com `--default-storage-engine=InnoDB` na linha de comando ou com `default-storage-engine=innodb` definido na seção `[mysqld]` do arquivo de opção do servidor MySQL.
+Se `InnoDB` não for o motor de armazenamento padrão, você pode determinar se seu servidor de banco de dados e aplicativos funcionam corretamente com `InnoDB` reiniciando o servidor com `--default-storage-engine=InnoDB` na string de comando ou com `default-storage-engine=innodb` definido na seção `[mysqld]` do arquivo de opção do servidor MySQL.
 
 Como a mudança do mecanismo de armazenamento padrão afeta apenas as tabelas recém-criadas, execute as etapas de instalação e configuração do aplicativo para confirmar que tudo é instalado corretamente, e, em seguida, exerça as funcionalidades do aplicativo para garantir que os recursos de carregamento, edição e consulta de dados funcionem. Se uma tabela dependa de uma funcionalidade específica de outro mecanismo de armazenamento, você receberá um erro. Neste caso, adicione a cláusula `ENGINE=other_engine_name` à declaração `CREATE TABLE` para evitar o erro.
 

@@ -23,9 +23,9 @@ Essas seções contêm informações sobre o uso do Perl com MySQL e a escrita d
 
 * Para obter informações sobre como citar literais de cadeia, consulte a Seção 9.1.1, “Literais de cadeia”.
 
-As informações do DBI estão disponíveis na linha de comando, online ou em formato impresso:
+As informações do DBI estão disponíveis na string de comando, online ou em formato impresso:
 
-* Uma vez que você tenha os módulos `DBI` e `DBD::mysql` instalados, você pode obter informações sobre eles na linha de comando com o comando `perldoc`:
+* Uma vez que você tenha os módulos `DBI` e `DBD::mysql` instalados, você pode obter informações sobre eles na string de comando com o comando `perldoc`:
 
   ```sql
   $> perldoc DBI

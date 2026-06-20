@@ -14,7 +14,7 @@ As seguintes funcionalidades foram adicionadas ao MySQL 5.7:
 
 + Em MySQL 8.0, `caching_sha2_password` é o plugin de autenticação padrão. Para permitir que clientes do MySQL 5.7 se conectem a servidores 8.0 usando contas que autenticam usando `caching_sha2_password`, a biblioteca de clientes do MySQL 5.7 e os programas de clientes suportam o plugin de autenticação do lado do cliente `caching_sha2_password` a partir do MySQL 5.7.23. Isso melhora a compatibilidade do MySQL 5.7 com servidores MySQL 8.0 e superiores. Veja a Seção 6.4.1.4, “Cacheamento de Autenticação SHA-2 Alterável”.
 
-+ O servidor agora exige que as linhas de conta na tabela do sistema `mysql.user` tenham um valor não vazio na coluna `plugin` e desabilita as contas com um valor vazio. Para instruções de atualização do servidor, consulte a Seção 2.10.3, “Alterações no MySQL 5.7”. Os administradores de banco de dados são aconselhados a também converter contas que utilizam o plugin de autenticação `mysql_old_password` para usar `mysql_native_password` em vez disso, porque o suporte para `mysql_old_password` foi removido. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora da hashing de senha pré-4.1 e do plugin mysql_old_password”.
++ O servidor agora exige que as strings de conta na tabela do sistema `mysql.user` tenham um valor não vazio na coluna `plugin` e desabilita as contas com um valor vazio. Para instruções de atualização do servidor, consulte a Seção 2.10.3, “Alterações no MySQL 5.7”. Os administradores de banco de dados são aconselhados a também converter contas que utilizam o plugin de autenticação `mysql_old_password` para usar `mysql_native_password` em vez disso, porque o suporte para `mysql_old_password` foi removido. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora da hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 + O MySQL agora permite que os administradores de banco de dados estabeleçam uma política para a expiração automática da senha: Qualquer usuário que se conecte ao servidor usando uma conta para a qual a senha tenha expirado seu período permitido deve alterar a senha. Para mais informações, consulte a Seção 6.2.11, “Gestão de Senhas”.
 
@@ -36,7 +36,7 @@ Para mais informações, consulte a Seção 2.9.1, “Inicializando o Diretório
 
 + A Edição Empresarial do MySQL agora oferece capacidades de mascaramento e desidentificação de dados. O mascaramento de dados oculta informações sensíveis, substituindo os valores reais por substitutos. As funções de Mascaramento e Desidentificação de Dados do MySQL Enterprise permitem o mascaramento de dados existentes usando vários métodos, como o ofuscamento (removendo características identificáveis), geração de dados aleatórios formatados e substituição ou substituição de dados. Para mais informações, consulte a Seção 6.5, “Mascaramento e Desidentificação de Dados do MySQL Enterprise”.
 
-+ O MySQL agora define o controle de acesso concedido aos clientes no tubo nomeado para o mínimo necessário para uma comunicação bem-sucedida no Windows. O novo software do cliente MySQL pode abrir conexões de tubo nomeado sem qualquer configuração adicional. Se o software do cliente mais antigo não puder ser atualizado imediatamente, a nova variável de sistema `named_pipe_full_access_group` pode ser usada para dar ao grupo do Windows as permissões necessárias para abrir uma conexão de tubo nomeado. A associação no grupo de acesso completo deve ser restrita e temporária.
++ O MySQL agora define o controle de acesso concedido aos clientes no pipe nomeado para o mínimo necessário para uma comunicação bem-sucedida no Windows. O novo software do cliente MySQL pode abrir conexões de pipe nomeado sem qualquer configuração adicional. Se o software do cliente mais antigo não puder ser atualizado imediatamente, a nova variável de sistema `named_pipe_full_access_group` pode ser usada para dar ao grupo do Windows as permissões necessárias para abrir uma conexão de pipe nomeado. A associação no grupo de acesso completo deve ser restrita e temporária.
 
 **Alterações no modo SQL.**
 
@@ -84,7 +84,7 @@ O desempenho do DDL para as tabelas temporárias `InnoDB` foi aprimorado atravé
 
 + Um novo tipo de registro de desfazer não-refeito para tabelas temporárias normais e comprimidas e objetos relacionados agora reside no espaço de tabelas temporárias. Para mais informações, consulte a Seção 14.6.7, “Logs de desfazer”.
 
-As operações de dumper e carregamento do pool de tampão `InnoDB` foram aprimoradas. Uma nova variável de sistema, `innodb_buffer_pool_dump_pct`, permite que você especifique a porcentagem de páginas mais recentemente usadas em cada pool de tampão para leitura e dumper. Quando há outra atividade de E/S sendo realizada por tarefas de segundo plano `InnoDB`, `InnoDB` tenta limitar o número de operações de carregamento do pool de tampão por segundo usando a configuração `innodb_io_capacity`.
+As operações de dumper e carregamento do pool de buffer `InnoDB` foram aprimoradas. Uma nova variável de sistema, `innodb_buffer_pool_dump_pct`, permite que você especifique a porcentagem de páginas mais recentemente usadas em cada pool de buffer para leitura e dumper. Quando há outra atividade de E/S sendo realizada por tarefas de segundo plano `InnoDB`, `InnoDB` tenta limitar o número de operações de carregamento do pool de buffer por segundo usando a configuração `innodb_io_capacity`.
 
 + O suporte é adicionado ao `InnoDB` para plugins de analisador de texto completo. Para informações sobre plugins de analisador de texto completo, consulte Plugins de Analisador de Texto Completo e Escrita de Plugins de Analisador de Texto Completo.
 
@@ -126,13 +126,13 @@ A partir do MySQL 5.7.9, `mysqld_upgrade` procura e tenta atualizar as tabelas p
     [FILE_BLOCK_SIZE = n]
   ```
 
-As tabelas gerais podem ser criadas fora do diretório de dados do MySQL, podem conter múltiplas tabelas e suportar tabelas de todos os formatos de linha.
+As tabelas gerais podem ser criadas fora do diretório de dados do MySQL, podem conter múltiplas tabelas e suportar tabelas de todos os formatos de string.
 
 As tabelas são adicionadas a um espaço de tabelas geral usando a sintaxe `CREATE TABLE tbl_name ... TABLESPACE [=] tablespace_name` ou `ALTER TABLE tbl_name TABLESPACE [=] tablespace_name`.
 
 Para mais informações, consulte a Seção 14.6.3.3, “Tabelas gerais”.
 
-+ `DYNAMIC` substitui `COMPACT` como o formato de linha padrão implícito para as tabelas `InnoDB`. Uma nova opção de configuração, `innodb_default_row_format`, especifica o formato de linha padrão `InnoDB`. Para mais informações, consulte Definindo o Formato de Linha de uma Tabela.
++ `DYNAMIC` substitui `COMPACT` como o formato de string padrão implícito para as tabelas `InnoDB`. Uma nova opção de configuração, `innodb_default_row_format`, especifica o formato de string padrão `InnoDB`. Para mais informações, consulte Definindo o Formato de String de uma Tabela.
 
 + A partir do MySQL 5.7.11, `InnoDB` suporta criptografia de dados em repouso para espaços de tabela por tabela. A criptografia é habilitada especificando a opção `ENCRYPTION` ao criar ou alterar uma tabela `InnoDB`. Este recurso depende de um plugin `keyring` para gerenciamento de chave de criptografia. Para mais informações, consulte a Seção 6.4.4, “O Keyring MySQL”, e a Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”.
 
@@ -158,7 +158,7 @@ O MySQL 5.7.22 adiciona as seguintes funções JSON:
 
 + Duas funções de agregação JSON `JSON_ARRAYAGG()` e `JSON_OBJECTAGG()`. `JSON_ARRAYAGG()` recebe uma coluna ou expressão como argumento e agrega o resultado como um único array `JSON`. A expressão pode avaliar qualquer tipo de dados MySQL; isso não precisa ser um valor de `JSON`. `JSON_OBJECTAGG()` recebe duas colunas ou expressões que interpreta como uma chave e um valor; retorna o resultado como um único objeto `JSON`. Para mais informações e exemplos, consulte a Seção 12.19, “Funções de Agregação”.
 
-+ A função utilitária JSON `JSON_PRETTY()`, que exibe um valor existente do `JSON` em um formato fácil de ler; cada membro do objeto JSON ou valor de matriz é impresso em uma linha separada, e um objeto ou matriz filho é intencionalmente espaçado 2 espaços em relação ao seu pai.
++ A função utilitária JSON `JSON_PRETTY()`, que exibe um valor existente do `JSON` em um formato fácil de ler; cada membro do objeto JSON ou valor de matriz é impresso em uma string separada, e um objeto ou matriz filho é intencionalmente espaçado 2 espaços em relação ao seu pai.
 
 Essa função também funciona com uma string que pode ser analisada como um valor JSON.
 
@@ -233,15 +233,15 @@ Essas melhorias de registro foram adicionadas:
 
 Colunas geradas.
 
-O MySQL agora suporta a especificação de colunas geradas nas declarações `CREATE TABLE` e `ALTER TABLE`. Os valores de uma coluna gerada são calculados a partir de uma expressão especificada no momento da criação da coluna. Colunas geradas podem ser virtuais (calculadas “on the fly” quando as linhas são lidas) ou armazenadas (calculadas quando as linhas são inseridas ou atualizadas). Para mais informações, consulte a Seção 13.1.18.7, “CREATE TABLE e Colunas Geradas”.
+O MySQL agora suporta a especificação de colunas geradas nas declarações `CREATE TABLE` e `ALTER TABLE`. Os valores de uma coluna gerada são calculados a partir de uma expressão especificada no momento da criação da coluna. Colunas geradas podem ser virtuais (calculadas “on the fly” quando as strings são lidas) ou armazenadas (calculadas quando as strings são inseridas ou atualizadas). Para mais informações, consulte a Seção 13.1.18.7, “CREATE TABLE e Colunas Geradas”.
 
 **cliente mysql.**
 
-Anteriormente, **Control+C** em mysql interrompia a declaração atual, se houver uma, ou saía do mysql se não houvesse. Agora **Control+C** interrompe a declaração atual, se houver uma, ou cancela qualquer linha de entrada parcial, caso contrário, mas não sai.
+Anteriormente, **Control+C** em mysql interrompia a declaração atual, se houver uma, ou saía do mysql se não houvesse. Agora **Control+C** interrompe a declaração atual, se houver uma, ou cancela qualquer string de entrada parcial, caso contrário, mas não sai.
 
 **Reescrita do nome do banco de dados com mysqlbinlog.**
 
-O renomeamento de bancos de dados pelo **mysqlbinlog** ao ler logs binários escritos usando o formato baseado em linha agora é suportado usando a opção `--rewrite-db` adicionada no MySQL 5.7.1.
+O renomeamento de bancos de dados pelo **mysqlbinlog** ao ler logs binários escritos usando o formato baseado em string agora é suportado usando a opção `--rewrite-db` adicionada no MySQL 5.7.1.
 
 Esta opção utiliza o formato `--rewrite-db='dboldname->dbnewname'`. Você pode implementar várias regras de reescrita, especificando a opção várias vezes.
 
@@ -254,11 +254,11 @@ Consultas em tabelas particionadas que utilizam o mecanismo de armazenamento `In
 
 **SEM VALIDAÇÃO, o suporte para ALTER TABLE ... EXCHANGE PARTITION não é permitido.**
 
-A partir do MySQL 5.7.5, a sintaxe `ALTER TABLE ... EXCHANGE PARTITION` inclui uma cláusula opcional `{WITH|WITHOUT} VALIDATION`. Quando `WITHOUT VALIDATION` é especificado, `ALTER TABLE ... EXCHANGE PARTITION` não realiza validação linha a linha ao trocar uma tabela preenchida com a partição, permitindo que os administradores de banco de dados assumam a responsabilidade de garantir que as linhas estejam dentro dos limites da definição da partição. `WITH VALIDATION` é o comportamento padrão e não precisa ser especificado explicitamente. Para mais informações, consulte a Seção 22.3.3, “Trocando Partições e Subpartições com Tabelas”.
+A partir do MySQL 5.7.5, a sintaxe `ALTER TABLE ... EXCHANGE PARTITION` inclui uma cláusula opcional `{WITH|WITHOUT} VALIDATION`. Quando `WITHOUT VALIDATION` é especificado, `ALTER TABLE ... EXCHANGE PARTITION` não realiza validação string a string ao trocar uma tabela preenchida com a partição, permitindo que os administradores de banco de dados assumam a responsabilidade de garantir que as strings estejam dentro dos limites da definição da partição. `WITH VALIDATION` é o comportamento padrão e não precisa ser especificado explicitamente. Para mais informações, consulte a Seção 22.3.3, “Trocando Partições e Subpartições com Tabelas”.
 
 Melhorias no thread de descarte de dados.
 
-O fio de descarte de fonte foi refatorado para reduzir a disputa por bloqueio e melhorar o desempenho da fonte. Anteriormente ao MySQL 5.7.2, o fio de descarte tomava um bloqueio no log binário sempre que lia um evento; no MySQL 5.7.2 e versões posteriores, esse bloqueio é mantido apenas enquanto lê a posição no final do último evento escrito com sucesso. Isso significa que tanto é possível que vários fios de descarte leiam simultaneamente do arquivo de log binário quanto que os fios de descarte agora podem ler enquanto os clientes estão escrevendo no log binário.
+O thread de descarte de fonte foi refatorado para reduzir a disputa por bloqueio e melhorar o desempenho da fonte. Anteriormente ao MySQL 5.7.2, o thread de descarte tomava um bloqueio no log binário sempre que lia um evento; no MySQL 5.7.2 e versões posteriores, esse bloqueio é mantido apenas enquanto lê a posição no final do último evento escrito com sucesso. Isso significa que tanto é possível que vários threads de descarte leiam simultaneamente do arquivo de log binário quanto que os threads de descarte agora podem ler enquanto os clientes estão escrevendo no log binário.
 
 Suporte para conjuntos de caracteres.
 
@@ -268,11 +268,11 @@ O MySQL 5.7.4 inclui um conjunto de caracteres `gb18030` que suporta o conjunto 
 
 Em MySQL 5.7.4 e versões posteriores, o requisito estrito de executar `STOP SLAVE` antes de emitir qualquer declaração `CHANGE MASTER TO` é removido. Em vez de depender se a replica está parada, o comportamento de `CHANGE MASTER TO` agora depende dos estados dos threads SQL da replica e dos threads de E/S da replica; qual desses threads está parado ou em execução agora determina as opções que podem ou não ser usadas com uma declaração `CHANGE MASTER TO` em um determinado momento. As regras para fazer essa determinação estão listadas aqui:
 
-+ Se o fio SQL estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer combinação das opções `RELAY_LOG_FILE`, `RELAY_LOG_POS` e `MASTER_DELAY`, mesmo que o fio de I/O da replica esteja em execução. Nenhuma outra opção pode ser usada com essa declaração quando o fio de I/O estiver em execução.
++ Se o thread SQL estiver parado, você pode executar `CHANGE MASTER TO` usando qualquer combinação das opções `RELAY_LOG_FILE`, `RELAY_LOG_POS` e `MASTER_DELAY`, mesmo que o thread de I/O da replica esteja em execução. Nenhuma outra opção pode ser usada com essa declaração quando o thread de I/O estiver em execução.
 
 + Se a thread de E/S estiver parada, você pode executar `CHANGE MASTER TO` usando qualquer uma das opções para essa declaração (em qualquer combinação permitida) *exceto* `RELAY_LOG_FILE`, `RELAY_LOG_POS` ou `MASTER_DELAY`, mesmo quando a thread SQL estiver em execução. Essas três opções não podem ser usadas quando a thread de E/S estiver em execução.
 
-+ Tanto o fio SQL quanto o fio de E/S devem ser interrompidos antes de emitir `CHANGE MASTER TO ... MASTER_AUTO_POSITION = 1`.
++ Tanto o thread SQL quanto o thread de E/S devem ser interrompidos antes de emitir `CHANGE MASTER TO ... MASTER_AUTO_POSITION = 1`.
 
 Você pode verificar o estado atual das réplicas das threads SQL e de I/O usando `SHOW SLAVE STATUS`.
 
@@ -394,7 +394,7 @@ As funções de criptografia `ENCRYPT()`, `ENCODE()`, `DECODE()`, `DES_ENCRYPT()
 
 * As tabelas `INFORMATION_SCHEMA` `INNODB_LOCKS` e `INNODB_LOCK_WAITS` são desatualizadas e serão removidas no MySQL 8.0, que oferece tabelas de Solução de Desempenho de substituição.
 
-* A tabela Schema de desempenho `setup_timers` é desatualizada e será removida no MySQL 8.0, assim como a linha `TICK` na tabela `performance_timers`.
+* A tabela Schema de desempenho `setup_timers` é desatualizada e será removida no MySQL 8.0, assim como a string `TICK` na tabela `performance_timers`.
 
 * A visão `sys` do esquema `sys.version` é desatualizada; espera-se que seja removida em uma versão futura do MySQL. As aplicações afetadas devem ser ajustadas para usar uma alternativa. Por exemplo, use a função `VERSION()` para recuperar a versão do servidor MySQL.
 

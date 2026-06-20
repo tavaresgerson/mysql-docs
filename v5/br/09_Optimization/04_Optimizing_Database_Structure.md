@@ -6,12 +6,12 @@ No seu papel como projetista de banco de dados, procure a maneira mais eficiente
 
 Projete suas tabelas para minimizar seu espaço no disco. Isso pode resultar em melhorias enormes, reduzindo a quantidade de dados escritos e lidos do disco. Tabelas menores normalmente requerem menos memória principal, enquanto seus conteúdos estão sendo processados ativamente durante a execução da consulta. Qualquer redução de espaço para dados de tabela também resulta em índices menores que podem ser processados mais rapidamente.
 
-O MySQL suporta muitos tipos de motores de armazenamento (tipos de tabela) e formatos de linha. Para cada tabela, você pode decidir qual método de armazenamento e indexação usar. Escolher o formato de tabela adequado para sua aplicação pode lhe proporcionar um grande ganho de desempenho. Veja o Capítulo 14, *O Motor de Armazenamento InnoDB*, e o Capítulo 15, *Motores de Armazenamento Alternativos*.
+O MySQL suporta muitos tipos de motores de armazenamento (tipos de tabela) e formatos de string. Para cada tabela, você pode decidir qual método de armazenamento e indexação usar. Escolher o formato de tabela adequado para sua aplicação pode lhe proporcionar um grande ganho de desempenho. Veja o Capítulo 14, *O Motor de Armazenamento InnoDB*, e o Capítulo 15, *Motores de Armazenamento Alternativos*.
 
 Você pode obter um desempenho melhor para uma tabela e minimizar o espaço de armazenamento usando as técnicas listadas aqui:
 
 * Colunas da tabela
-* Formato de linha
+* Formato de string
 * Índices
 * Conexões
 * Normalização
@@ -22,21 +22,21 @@ Você pode obter um desempenho melhor para uma tabela e minimizar o espaço de a
 
 * Declare as colunas como `NOT NULL` se possível. Isso torna as operações SQL mais rápidas, permitindo um melhor uso de índices e eliminando o overhead para testar se cada valor é `NULL`. Você também economiza um pouco de espaço de armazenamento, um bit por coluna. Se você realmente precisar de valores de `NULL` em suas tabelas, use-os. Apenas evite a configuração padrão que permite valores de `NULL` em todas as colunas.
 
-#### Formato de linha
+#### Formato de string
 
-As tabelas `InnoDB` são criadas usando o formato de linha `DYNAMIC` por padrão. Para usar um formato de linha diferente de `DYNAMIC`, configure `innodb_default_row_format`, ou especifique explicitamente a opção `ROW_FORMAT` em uma declaração `CREATE TABLE` ou `ALTER TABLE`.
+As tabelas `InnoDB` são criadas usando o formato de string `DYNAMIC` por padrão. Para usar um formato de string diferente de `DYNAMIC`, configure `innodb_default_row_format`, ou especifique explicitamente a opção `ROW_FORMAT` em uma declaração `CREATE TABLE` ou `ALTER TABLE`.
 
-A família compacta de formatos de linha, que inclui `COMPACT`, `DYNAMIC` e `COMPRESSED`, diminui o espaço de armazenamento de linha em detrimento do aumento do uso da CPU para algumas operações. Se sua carga de trabalho é típica e limitada pelas taxas de acerto de cache e velocidade do disco, é provável que seja mais rápida. Se for um caso raro que é limitado pela velocidade da CPU, pode ser mais lento.
+A família compacta de formatos de string, que inclui `COMPACT`, `DYNAMIC` e `COMPRESSED`, diminui o espaço de armazenamento de string em detrimento do aumento do uso da CPU para algumas operações. Se sua carga de trabalho é típica e limitada pelas taxas de acerto de cache e velocidade do disco, é provável que seja mais rápida. Se for um caso raro que é limitado pela velocidade da CPU, pode ser mais lento.
 
-A família compacta de formatos de linha também otimiza o armazenamento de coluna `CHAR` quando se usa um conjunto de caracteres de comprimento variável, como `utf8mb3` ou `utf8mb4`. Com `ROW_FORMAT=REDUNDANT`, `CHAR(N)` ocupa *`N`* × o comprimento máximo de byte do conjunto de caracteres. Muitas linguagens podem ser escritas principalmente usando caracteres `utf8` de único byte, então um comprimento de armazenamento fixo muitas vezes desperdiça espaço. Com a família compacta de formatos de linha, `InnoDB` aloca uma quantidade variável de armazenamento na faixa de *`N`* a *`N`* × o comprimento máximo de byte do conjunto de caracteres para essas colunas, removendo espaços finais. O comprimento mínimo de armazenamento é *`N`* bytes para facilitar atualizações no local em casos típicos. Para mais informações, consulte a Seção 14.11, “Formatos de Linha InnoDB”.
+A família compacta de formatos de string também otimiza o armazenamento de coluna `CHAR` quando se usa um conjunto de caracteres de comprimento variável, como `utf8mb3` ou `utf8mb4`. Com `ROW_FORMAT=REDUNDANT`, `CHAR(N)` ocupa *`N`* × o comprimento máximo de byte do conjunto de caracteres. Muitas linguagens podem ser escritas principalmente usando caracteres `utf8` de único byte, então um comprimento de armazenamento fixo muitas vezes desperdiça espaço. Com a família compacta de formatos de string, `InnoDB` aloca uma quantidade variável de armazenamento na faixa de *`N`* a *`N`* × o comprimento máximo de byte do conjunto de caracteres para essas colunas, removendo espaços finais. O comprimento mínimo de armazenamento é *`N`* bytes para facilitar atualizações no local em casos típicos. Para mais informações, consulte a Seção 14.11, “Formatos de String InnoDB”.
 
 * Para minimizar ainda mais o espaço, armazenando os dados da tabela em forma comprimida, especifique `ROW_FORMAT=COMPRESSED` ao criar tabelas `InnoDB`, ou execute o comando **myisampack** em uma tabela `MyISAM` existente. (Tabelas comprimidas `InnoDB` são legíveis e modificáveis, enquanto as tabelas comprimidas `MyISAM` são somente de leitura.)
 
-* Para as tabelas `MyISAM`, se você não tiver colunas de comprimento variável (colunas `VARCHAR`, `TEXT` ou `BLOB`), um formato de linha de tamanho fixo é usado. Isso é mais rápido, mas pode desperdiçar algum espaço. Veja a Seção 15.2.3, “Formatos de Armazenamento de Tabelas MyISAM”. Você pode indicar que deseja ter linhas de comprimento fixo, mesmo que tenha colunas `VARCHAR` com a opção `CREATE TABLE` `ROW_FORMAT=FIXED`.
+* Para as tabelas `MyISAM`, se você não tiver colunas de comprimento variável (colunas `VARCHAR`, `TEXT` ou `BLOB`), um formato de string de tamanho fixo é usado. Isso é mais rápido, mas pode desperdiçar algum espaço. Veja a Seção 15.2.3, “Formatos de Armazenamento de Tabelas MyISAM”. Você pode indicar que deseja ter strings de comprimento fixo, mesmo que tenha colunas `VARCHAR` com a opção `CREATE TABLE` `ROW_FORMAT=FIXED`.
 
 #### Índices
 
-* O índice primário de uma tabela deve ser o mais curto possível. Isso facilita e torna eficiente a identificação de cada linha. Para as tabelas `InnoDB`, as colunas da chave primária são duplicadas em cada entrada do índice secundário, portanto, uma chave primária curta economiza um espaço considerável se você tiver muitos índices secundários.
+* O índice primário de uma tabela deve ser o mais curto possível. Isso facilita e torna eficiente a identificação de cada string. Para as tabelas `InnoDB`, as colunas da chave primária são duplicadas em cada entrada do índice secundário, portanto, uma chave primária curta economiza um espaço considerável se você tiver muitos índices secundários.
 
 * Crie apenas os índices que você precisa para melhorar o desempenho da consulta. Os índices são bons para recuperação, mas desaceleram as operações de inserção e atualização. Se você acessar uma tabela principalmente pesquisando em uma combinação de colunas, crie um único índice composto sobre elas, em vez de um índice separado para cada coluna. A primeira parte do índice deve ser a coluna mais usada. Se você *sempre* usar muitas colunas ao selecionar da tabela, a primeira coluna no índice deve ser a que tem mais duplicatas, para obter uma melhor compressão do índice.
 
@@ -44,7 +44,7 @@ A família compacta de formatos de linha também otimiza o armazenamento de colu
 
 #### Conexões
 
-* Em algumas circunstâncias, pode ser benéfico dividir uma tabela que é verificada com frequência em duas partes. Isso é especialmente verdadeiro se for uma tabela de formato dinâmico e é possível usar uma tabela de formato estático menor que pode ser usada para encontrar as linhas relevantes ao verificar a tabela.
+* Em algumas circunstâncias, pode ser benéfico dividir uma tabela que é verificada com frequência em duas partes. Isso é especialmente verdadeiro se for uma tabela de formato dinâmico e é possível usar uma tabela de formato estático menor que pode ser usada para encontrar as strings relevantes ao verificar a tabela.
 
 * Declare colunas com informações idênticas em diferentes tabelas com tipos de dados idênticos, para acelerar as junções com base nas colunas correspondentes.
 
@@ -62,7 +62,7 @@ A família compacta de formatos de linha também otimiza o armazenamento de colu
 
 * Para IDs únicos ou outros valores que podem ser representados como strings ou números, prefira colunas numéricas em vez de colunas de texto. Como valores numéricos grandes podem ser armazenados em menos bytes do que as strings correspondentes, é mais rápido e consome menos memória para transferi-los e compará-los.
 
-* Se você estiver usando dados numéricos, em muitos casos é mais rápido acessar informações de um banco de dados (usando uma conexão ao vivo) do que acessar um arquivo de texto. As informações no banco de dados provavelmente serão armazenadas em um formato mais compacto do que no arquivo de texto, então acessar isso envolve menos acessos ao disco. Você também economiza código em sua aplicação porque pode evitar analisar o arquivo de texto para encontrar limites de linha e coluna.
+* Se você estiver usando dados numéricos, em muitos casos é mais rápido acessar informações de um banco de dados (usando uma conexão ao vivo) do que acessar um arquivo de texto. As informações no banco de dados provavelmente serão armazenadas em um formato mais compacto do que no arquivo de texto, então acessar isso envolve menos acessos ao disco. Você também economiza código em sua aplicação porque pode evitar analisar o arquivo de texto para encontrar limites de string e coluna.
 
 #### 8.4.2.2 Otimizando para tipos de caracteres e strings
 
@@ -74,7 +74,7 @@ Para colunas de caracteres e de string, siga estas diretrizes:
 
 * Para valores de coluna menores que 8 KB, use `VARCHAR` binário em vez de `BLOB`. As cláusulas `GROUP BY` e `ORDER BY` podem gerar tabelas temporárias, e essas tabelas temporárias podem usar o mecanismo de armazenamento `MEMORY` se a tabela original não contiver quaisquer colunas `BLOB`.
 
-* Se uma tabela contiver colunas de texto, como nome e endereço, mas muitas consultas não recuperem essas colunas, considere dividir as colunas de texto em uma tabela separada e usar consultas de junção com uma chave estrangeira, quando necessário. Quando o MySQL recupera qualquer valor de uma linha, ele lê um bloco de dados que contém todas as colunas daquela linha (e possivelmente outras linhas adjacentes). Manter cada linha pequena, com apenas as colunas mais utilizadas, permite que mais linhas se encaixem em cada bloco de dados. Tais tabelas compactas reduzem o I/O e o uso de memória para consultas comuns.
+* Se uma tabela contiver colunas de texto, como nome e endereço, mas muitas consultas não recuperem essas colunas, considere dividir as colunas de texto em uma tabela separada e usar consultas de junção com uma chave estrangeira, quando necessário. Quando o MySQL recupera qualquer valor de uma string, ele lê um bloco de dados que contém todas as colunas daquela string (e possivelmente outras strings adjacentes). Manter cada string pequena, com apenas as colunas mais utilizadas, permite que mais strings se encaixem em cada bloco de dados. Tais tabelas compactas reduzem o I/O e o uso de memória para consultas comuns.
 
 * Quando você usa um valor gerado aleatoriamente como chave primária em uma tabela `InnoDB`, prefixe-o com um valor ascendente, como a data e hora atuais, se possível. Quando valores primários consecutivos são armazenados fisicamente próximos uns dos outros, o `InnoDB` pode inserir e recuperar-los mais rapidamente.
 
@@ -204,7 +204,7 @@ O servidor cria tabelas temporárias em condições como essas:
 
 * Para consultas que utilizam o modificador `SQL_SMALL_RESULT`, o MySQL usa uma tabela temporária de memória, a menos que a consulta também contenha elementos (descritos mais adiante) que exijam armazenamento em disco.
 
-* Para avaliar as declarações `INSERT ... SELECT` que selecionam e inserem na mesma tabela, o MySQL cria uma tabela temporária interna para armazenar as linhas do `SELECT`, e, em seguida, insere essas linhas na tabela de destino. Veja a Seção 13.2.5.1, “Declaração de INSERT ... SELECT”.
+* Para avaliar as declarações `INSERT ... SELECT` que selecionam e inserem na mesma tabela, o MySQL cria uma tabela temporária interna para armazenar as strings do `SELECT`, e, em seguida, insere essas strings na tabela de destino. Veja a Seção 13.2.5.1, “Declaração de INSERT ... SELECT”.
 
 * Avaliação de declarações de múltiplas tabelas `UPDATE`.
 
@@ -220,7 +220,7 @@ Algumas condições de consulta impedem o uso de uma tabela temporária de memó
 
 * As declarações `SHOW COLUMNS` e `DESCRIBE` utilizam `BLOB` como o tipo para algumas colunas, portanto, a tabela temporária usada para os resultados é uma tabela em disco.
 
-O servidor não utiliza uma tabela temporária para as declarações `UNION` que atendem a certas qualificações. Em vez disso, ele retém da criação de tabela temporária apenas as estruturas de dados necessárias para realizar o tipificação da coluna de resultado. A tabela não é totalmente instanciada e nenhuma linha é escrita nela ou lida nela; as linhas são enviadas diretamente ao cliente. O resultado é a redução de memória e requisitos de disco, e um atraso menor antes da primeira linha ser enviada ao cliente porque o servidor não precisa esperar até que o último bloco de consulta seja executado. A saída do rastreamento da consulta `UNION RESULT` e do otimizador reflete essa estratégia de execução: O bloco de consulta `UNION RESULT` não está presente porque esse bloco corresponde à parte que lê da tabela temporária.
+O servidor não utiliza uma tabela temporária para as declarações `UNION` que atendem a certas qualificações. Em vez disso, ele retém da criação de tabela temporária apenas as estruturas de dados necessárias para realizar o tipificação da coluna de resultado. A tabela não é totalmente instanciada e nenhuma string é escrita nela ou lida nela; as strings são enviadas diretamente ao cliente. O resultado é a redução de memória e requisitos de disco, e um atraso menor antes da primeira string ser enviada ao cliente porque o servidor não precisa esperar até que o último bloco de consulta seja executado. A saída do rastreamento da consulta `UNION RESULT` e do otimizador reflete essa estratégia de execução: O bloco de consulta `UNION RESULT` não está presente porque esse bloco corresponde à parte que lê da tabela temporária.
 
 Essas condições qualificam um `UNION` para avaliação sem uma tabela temporária:
 
@@ -238,15 +238,15 @@ A variável `internal_tmp_disk_storage_engine` define o mecanismo de armazenamen
 
 Nota
 
-Ao usar `internal_tmp_disk_storage_engine=INNODB`, consultas que geram tabelas internas temporárias no disco que excedem os limites de linha ou coluna de `InnoDB` retornam erros de Tamanho de linha muito grande ou Muitas colunas. A solução é definir `internal_tmp_disk_storage_engine` para `MYISAM`.
+Ao usar `internal_tmp_disk_storage_engine=INNODB`, consultas que geram tabelas internas temporárias no disco que excedem os limites de string ou coluna de `InnoDB` retornam erros de Tamanho de string muito grande ou Muitas colunas. A solução é definir `internal_tmp_disk_storage_engine` para `MYISAM`.
 
 Quando uma tabela temporária interna é criada na memória ou em disco, o servidor incrementa o valor `Created_tmp_tables`. Quando uma tabela temporária interna é criada em disco, o servidor incrementa o valor `Created_tmp_disk_tables`. Se forem criadas demasiadas tabelas temporárias internas em disco, considere aumentar as configurações dos valores `tmp_table_size` e `max_heap_table_size`.
 
 #### Formato de Armazenamento de Tabela Temporária Interna
 
-As tabelas temporárias de memória são gerenciadas pelo mecanismo de armazenamento `MEMORY`, que utiliza um formato de linha de comprimento fixo. Os valores das colunas `VARCHAR` e `VARBINARY` são preenchidos com o comprimento máximo da coluna, armazenando-os efetivamente como colunas `CHAR` e `BINARY`.
+As tabelas temporárias de memória são gerenciadas pelo mecanismo de armazenamento `MEMORY`, que utiliza um formato de string de comprimento fixo. Os valores das colunas `VARCHAR` e `VARBINARY` são preenchidos com o comprimento máximo da coluna, armazenando-os efetivamente como colunas `CHAR` e `BINARY`.
 
-As tabelas temporárias no disco são gerenciadas pelo mecanismo de armazenamento `InnoDB` ou `MyISAM` (dependendo da configuração do `internal_tmp_disk_storage_engine`). Ambos os motores armazenam tabelas temporárias usando o formato de linha de largura dinâmica. As colunas ocupam apenas o armazenamento necessário, o que reduz o I/O de disco, os requisitos de espaço e o tempo de processamento em comparação com as tabelas no disco que usam linhas de comprimento fixo.
+As tabelas temporárias no disco são gerenciadas pelo mecanismo de armazenamento `InnoDB` ou `MyISAM` (dependendo da configuração do `internal_tmp_disk_storage_engine`). Ambos os motores armazenam tabelas temporárias usando o formato de string de largura dinâmica. As colunas ocupam apenas o armazenamento necessário, o que reduz o I/O de disco, os requisitos de espaço e o tempo de processamento em comparação com as tabelas no disco que usam strings de comprimento fixo.
 
 Para declarações que inicialmente criam uma tabela temporária interna na memória e, em seguida, a convertem em uma tabela em disco, um melhor desempenho pode ser alcançado ignorando o passo de conversão e criando a tabela em disco desde o início. A variável `big_tables` pode ser usada para forçar o armazenamento em disco de tabelas temporárias internas.
 
@@ -280,9 +280,9 @@ Se o tamanho do ponteiro for muito pequeno para uma tabela existente, você pode
   ALTER TABLE tbl_name MAX_ROWS=1000000000 AVG_ROW_LENGTH=nnn;
   ```
 
-Você deve especificar `AVG_ROW_LENGTH` apenas para tabelas com colunas `BLOB` ou `TEXT`; nesse caso, o MySQL não pode otimizar o espaço necessário com base apenas no número de linhas.
+Você deve especificar `AVG_ROW_LENGTH` apenas para tabelas com colunas `BLOB` ou `TEXT`; nesse caso, o MySQL não pode otimizar o espaço necessário com base apenas no número de strings.
 
-Para alterar o limite de tamanho padrão para as tabelas `MyISAM`, defina o `myisam_data_pointer_size`, que define o número de bytes usados para ponteiros internos de linha. O valor é usado para definir o tamanho do ponteiro para novas tabelas, se você não especificar a opção `MAX_ROWS`. O valor de `myisam_data_pointer_size` pode ser de 2 a 7. Por exemplo, para tabelas que usam o formato de armazenamento dinâmico, um valor de 4 permite tabelas de até 4 GB; um valor de 6 permite tabelas de até 256 TB. As tabelas que usam o formato de armazenamento fixo têm um comprimento máximo de dados maior. Para características de formato de armazenamento, consulte a Seção 15.2.3, “Formatos de Armazenamento de Tabelas MyISAM”.
+Para alterar o limite de tamanho padrão para as tabelas `MyISAM`, defina o `myisam_data_pointer_size`, que define o número de bytes usados para ponteiros internos de string. O valor é usado para definir o tamanho do ponteiro para novas tabelas, se você não especificar a opção `MAX_ROWS`. O valor de `myisam_data_pointer_size` pode ser de 2 a 7. Por exemplo, para tabelas que usam o formato de armazenamento dinâmico, um valor de 4 permite tabelas de até 4 GB; um valor de 6 permite tabelas de até 256 TB. As tabelas que usam o formato de armazenamento fixo têm um comprimento máximo de dados maior. Para características de formato de armazenamento, consulte a Seção 15.2.3, “Formatos de Armazenamento de Tabelas MyISAM”.
 
 Você pode verificar o tamanho máximo de dados e índices usando esta declaração:
 
@@ -300,43 +300,43 @@ Outras formas de contornar os limites de tamanho de arquivo para as tabelas do `
 
 * Você está usando o motor de armazenamento `MEMORY` (`HEAP`); nesse caso, você precisa aumentar o valor da variável do sistema `max_heap_table_size`. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 
-### 8.4.7 Limites de contagem de colunas de tabela e tamanho de linha
+### 8.4.7 Limites de contagem de colunas de tabela e tamanho de string
 
-Esta seção descreve os limites sobre o número de colunas em tabelas e o tamanho das linhas individuais.
+Esta seção descreve os limites sobre o número de colunas em tabelas e o tamanho das strings individuais.
 
-* Limites de contagem de colunas * Limites de tamanho de linha
+* Limites de contagem de colunas * Limites de tamanho de string
 
 #### Limites de contagem de colunas
 
 O MySQL tem um limite rígido de 4096 colunas por tabela, mas o limite máximo efetivo pode ser menor para uma tabela específica. O limite exato das colunas depende de vários fatores:
 
-* O tamanho máximo de uma linha para uma tabela limita o número (e, possivelmente, o tamanho) de colunas, pois o comprimento total de todas as colunas não pode exceder esse tamanho. Veja Limites de tamanho de linha.
+* O tamanho máximo de uma string para uma tabela limita o número (e, possivelmente, o tamanho) de colunas, pois o comprimento total de todas as colunas não pode exceder esse tamanho. Veja Limites de tamanho de string.
 
-* Os requisitos de armazenamento das colunas individuais restringem o número de colunas que cabem dentro de um tamanho máximo de linha dado. Os requisitos de armazenamento para alguns tipos de dados dependem de fatores como o mecanismo de armazenamento, o formato de armazenamento e o conjunto de caracteres. Veja a Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”.
+* Os requisitos de armazenamento das colunas individuais restringem o número de colunas que cabem dentro de um tamanho máximo de string dado. Os requisitos de armazenamento para alguns tipos de dados dependem de fatores como o mecanismo de armazenamento, o formato de armazenamento e o conjunto de caracteres. Veja a Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”.
 
 * Os motores de armazenamento podem impor restrições adicionais que limitam o número de colunas de uma tabela. Por exemplo, `InnoDB` tem um limite de 1017 colunas por tabela. Consulte a Seção 14.23, “Limites do InnoDB”. Para informações sobre outros motores de armazenamento, consulte o Capítulo 15, *Motores de Armazenamento Alternativos*.
 
 * Cada tabela tem um arquivo `.frm` que contém a definição da tabela. A definição afeta o conteúdo deste arquivo de maneiras que podem afetar o número de colunas permitidas na tabela. Veja Limites impostos pela estrutura do arquivo .frm.
 
-#### Limites de tamanho de linha
+#### Limites de tamanho de string
 
-O tamanho máximo de uma linha para uma tabela específica é determinado por vários fatores:
+O tamanho máximo de uma string para uma tabela específica é determinado por vários fatores:
 
-* A representação interna de uma tabela do MySQL tem um limite máximo de tamanho de linha de 65.535 bytes, mesmo que o mecanismo de armazenamento seja capaz de suportar linhas maiores. As colunas `BLOB` e `TEXT` contribuem apenas com 9 a 12 bytes para o limite de tamanho de linha, porque seus conteúdos são armazenados separadamente do resto da linha. `BLOB` e `TEXT`
+* A representação interna de uma tabela do MySQL tem um limite máximo de tamanho de string de 65.535 bytes, mesmo que o mecanismo de armazenamento seja capaz de suportar strings maiores. As colunas `BLOB` e `TEXT` contribuem apenas com 9 a 12 bytes para o limite de tamanho de string, porque seus conteúdos são armazenados separadamente do resto da string. `BLOB` e `TEXT`
 
-* O tamanho máximo de linha para uma tabela `InnoDB`, que se aplica aos dados armazenados localmente dentro de uma página do banco de dados, é ligeiramente menos de meio página para configurações de `innodb_page_size` de 4KB, 8KB, 16KB e 32KB. Por exemplo, o tamanho máximo de linha é ligeiramente menos de 8KB para o tamanho de página padrão de 16KB `InnoDB`. Para páginas de 64KB, o tamanho máximo de linha é ligeiramente menos de 16KB. Veja a Seção 14.23, “Limites do InnoDB”.
+* O tamanho máximo de string para uma tabela `InnoDB`, que se aplica aos dados armazenados localmente dentro de uma página do banco de dados, é ligeiramente menos de meio página para configurações de `innodb_page_size` de 4KB, 8KB, 16KB e 32KB. Por exemplo, o tamanho máximo de string é ligeiramente menos de 8KB para o tamanho de página padrão de 16KB `InnoDB`. Para páginas de 64KB, o tamanho máximo de string é ligeiramente menos de 16KB. Veja a Seção 14.23, “Limites do InnoDB”.
 
-Se uma linha que contém colunas de comprimento variável exceder o tamanho máximo de linha `InnoDB`, `InnoDB` seleciona colunas de comprimento variável para armazenamento externo fora da página até que a linha se encaixe no limite de tamanho de linha `InnoDB`. A quantidade de dados armazenada localmente para colunas de comprimento variável que são armazenadas fora da página difere de acordo com o formato da linha. Para mais informações, consulte a Seção 14.11, “Formatos de linha InnoDB”.
+Se uma string que contém colunas de comprimento variável exceder o tamanho máximo de string `InnoDB`, `InnoDB` seleciona colunas de comprimento variável para armazenamento externo fora da página até que a string se encaixe no limite de tamanho de string `InnoDB`. A quantidade de dados armazenada localmente para colunas de comprimento variável que são armazenadas fora da página difere de acordo com o formato da string. Para mais informações, consulte a Seção 14.11, “Formatos de string InnoDB”.
 
-* Diferentes formatos de armazenamento utilizam diferentes quantidades de dados de cabeçalho e trailer de página, o que afeta a quantidade de armazenamento disponível para as linhas.
+* Diferentes formatos de armazenamento utilizam diferentes quantidades de dados de cabeçalho e trailer de página, o que afeta a quantidade de armazenamento disponível para as strings.
 
-+ Para informações sobre os formatos de linha de `InnoDB`, consulte a Seção 14.11, “Formatos de linha InnoDB”.
++ Para informações sobre os formatos de string de `InnoDB`, consulte a Seção 14.11, “Formatos de string InnoDB”.
 
 + Para informações sobre os formatos de armazenamento de `MyISAM`, consulte a Seção 15.2.3, “Formatos de Armazenamento de Tabela MyISAM”.
 
-Limite de tamanho de linha ##### Exemplos
+Limite de tamanho de string ##### Exemplos
 
-O limite máximo de tamanho de linha do MySQL de 65.535 bytes é demonstrado nos seguintes exemplos `InnoDB` e `MyISAM`. O limite é aplicado independentemente do mecanismo de armazenamento, embora o mecanismo de armazenamento possa ser capaz de suportar linhas maiores.
+O limite máximo de tamanho de string do MySQL de 65.535 bytes é demonstrado nos seguintes exemplos `InnoDB` e `MyISAM`. O limite é aplicado independentemente do mecanismo de armazenamento, embora o mecanismo de armazenamento possa ser capaz de suportar strings maiores.
 
   ```sql
   mysql> CREATE TABLE t (a VARCHAR(10000), b VARCHAR(10000),
@@ -356,7 +356,7 @@ O limite máximo de tamanho de linha do MySQL de 65.535 bytes é demonstrado nos
   check the manual. You have to change some columns to TEXT or BLOBs
   ```
 
-No exemplo a seguir `MyISAM`, ao alterar uma coluna para `TEXT`, é possível evitar o limite de tamanho de linha de 65.535 bytes e permitir que a operação seja bem-sucedida, pois as colunas `BLOB` e `TEXT` contribuem apenas com 9 a 12 bytes para o tamanho da linha.
+No exemplo a seguir `MyISAM`, ao alterar uma coluna para `TEXT`, é possível evitar o limite de tamanho de string de 65.535 bytes e permitir que a operação seja bem-sucedida, pois as colunas `BLOB` e `TEXT` contribuem apenas com 9 a 12 bytes para o tamanho da string.
 
   ```sql
   mysql> CREATE TABLE t (a VARCHAR(10000), b VARCHAR(10000),
@@ -365,7 +365,7 @@ No exemplo a seguir `MyISAM`, ao alterar uma coluna para `TEXT`, é possível ev
   Query OK, 0 rows affected (0.02 sec)
   ```
 
-A operação é bem-sucedida para uma tabela `InnoDB` porque alterar uma coluna para `TEXT` evita o limite de tamanho de linha de 65.535 bytes do MySQL, e o armazenamento fora da página `InnoDB` de colunas de comprimento variável evita o limite de tamanho de linha `InnoDB`.
+A operação é bem-sucedida para uma tabela `InnoDB` porque alterar uma coluna para `TEXT` evita o limite de tamanho de string de 65.535 bytes do MySQL, e o armazenamento fora da página `InnoDB` de colunas de comprimento variável evita o limite de tamanho de string `InnoDB`.
 
   ```sql
   mysql> CREATE TABLE t (a VARCHAR(10000), b VARCHAR(10000),
@@ -374,9 +374,9 @@ A operação é bem-sucedida para uma tabela `InnoDB` porque alterar uma coluna 
   Query OK, 0 rows affected (0.02 sec)
   ```
 
-* O armazenamento para colunas de comprimento variável inclui bytes de comprimento, que são contados para o tamanho da linha. Por exemplo, uma coluna `VARCHAR(255) CHARACTER SET utf8mb3` ocupa dois bytes para armazenar o comprimento do valor, então cada valor pode ocupar até 767 bytes.
+* O armazenamento para colunas de comprimento variável inclui bytes de comprimento, que são contados para o tamanho da string. Por exemplo, uma coluna `VARCHAR(255) CHARACTER SET utf8mb3` ocupa dois bytes para armazenar o comprimento do valor, então cada valor pode ocupar até 767 bytes.
 
-A declaração para criar a tabela `t1` é bem-sucedida porque as colunas exigem 32.765 + 2 bytes e 32.766 + 2 bytes, o que está dentro do tamanho máximo da linha de 65.535 bytes:
+A declaração para criar a tabela `t1` é bem-sucedida porque as colunas exigem 32.765 + 2 bytes e 32.766 + 2 bytes, o que está dentro do tamanho máximo da string de 65.535 bytes:
 
   ```sql
   mysql> CREATE TABLE t1
@@ -385,7 +385,7 @@ A declaração para criar a tabela `t1` é bem-sucedida porque as colunas exigem
   Query OK, 0 rows affected (0.02 sec)
   ```
 
-A declaração para criar a tabela `t2` falha porque, embora o comprimento da coluna esteja dentro do comprimento máximo de 65.535 bytes, são necessários dois bytes adicionais para registrar o comprimento, o que faz com que o tamanho da linha exceda 65.535 bytes:
+A declaração para criar a tabela `t2` falha porque, embora o comprimento da coluna esteja dentro do comprimento máximo de 65.535 bytes, são necessários dois bytes adicionais para registrar o comprimento, o que faz com que o tamanho da string exceda 65.535 bytes:
 
   ```sql
   mysql> CREATE TABLE t2
@@ -405,9 +405,9 @@ Reduzir o comprimento da coluna para 65.533 ou menos permite que a declaração 
   Query OK, 0 rows affected (0.01 sec)
   ```
 
-* Para as tabelas `MyISAM`, as colunas `NULL` requerem espaço adicional na linha para registrar se seus valores são `NULL`. Cada coluna `NULL` leva um bit extra, arredondado para o próximo byte.
+* Para as tabelas `MyISAM`, as colunas `NULL` requerem espaço adicional na string para registrar se seus valores são `NULL`. Cada coluna `NULL` leva um bit extra, arredondado para o próximo byte.
 
-A declaração para criar a tabela `t3` falha porque `MyISAM` requer espaço para as colunas `NULL`, além do espaço necessário para os bytes de comprimento de coluna de comprimento variável, fazendo com que o tamanho da linha exceda 65.535 bytes:
+A declaração para criar a tabela `t3` falha porque `MyISAM` requer espaço para as colunas `NULL`, além do espaço necessário para os bytes de comprimento de coluna de comprimento variável, fazendo com que o tamanho da string exceda 65.535 bytes:
 
   ```sql
   mysql> CREATE TABLE t3
@@ -418,11 +418,11 @@ A declaração para criar a tabela `t3` falha porque `MyISAM` requer espaço par
   check the manual. You have to change some columns to TEXT or BLOBs
   ```
 
-Para informações sobre o armazenamento de colunas `InnoDB` `NULL`, consulte a Seção 14.11, “Formatos de linha InnoDB”.
+Para informações sobre o armazenamento de colunas `InnoDB` `NULL`, consulte a Seção 14.11, “Formatos de string InnoDB”.
 
-* `InnoDB` restringe o tamanho da linha (para dados armazenados localmente dentro da página do banco de dados) a um pouco menos de meio banco de dados para configurações de 4KB, 8KB, 16KB e 32KB `innodb_page_size`, e a um pouco menos de 16KB para páginas de 64KB.
+* `InnoDB` restringe o tamanho da string (para dados armazenados localmente dentro da página do banco de dados) a um pouco menos de meio banco de dados para configurações de 4KB, 8KB, 16KB e 32KB `innodb_page_size`, e a um pouco menos de 16KB para páginas de 64KB.
 
-A declaração para criar a tabela `t4` falha porque as colunas definidas excedem o limite de tamanho de linha para uma página de 16 KB `InnoDB`.
+A declaração para criar a tabela `t4` falha porque as colunas definidas excedem o limite de tamanho de string para uma página de 16 KB `InnoDB`.
 
   ```sql
   mysql> CREATE TABLE t4 (

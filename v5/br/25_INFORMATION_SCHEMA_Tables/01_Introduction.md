@@ -74,7 +74,7 @@ Como o `SHOW` é familiar e amplamente utilizado, as declarações do `SHOW` per
 
 ### INFORMAÇÕES\_SCHEMA e Privilegios
 
-Para a maioria das tabelas `INFORMATION_SCHEMA`, cada usuário do MySQL tem o direito de acessá-las, mas pode ver apenas as linhas das tabelas que correspondem a objetos para os quais o usuário tenha os privilégios de acesso apropriados. Em alguns casos (por exemplo, a coluna `ROUTINE_DEFINITION` na tabela `INFORMATION_SCHEMA` `ROUTINES`, os usuários que têm privilégios insuficientes veem `NULL`. Algumas tabelas têm requisitos de privilégio diferentes; para essas, os requisitos são mencionados nas descrições das tabelas aplicáveis. Por exemplo, as tabelas `InnoDB` (tabelas com nomes que começam com `INNODB_`) requerem o privilégio `PROCESS`.
+Para a maioria das tabelas `INFORMATION_SCHEMA`, cada usuário do MySQL tem o direito de acessá-las, mas pode ver apenas as strings das tabelas que correspondem a objetos para os quais o usuário tenha os privilégios de acesso apropriados. Em alguns casos (por exemplo, a coluna `ROUTINE_DEFINITION` na tabela `INFORMATION_SCHEMA` `ROUTINES`, os usuários que têm privilégios insuficientes veem `NULL`. Algumas tabelas têm requisitos de privilégio diferentes; para essas, os requisitos são mencionados nas descrições das tabelas aplicáveis. Por exemplo, as tabelas `InnoDB` (tabelas com nomes que começam com `INNODB_`) requerem o privilégio `PROCESS`.
 
 Os mesmos privilégios se aplicam à seleção de informações do `INFORMATION_SCHEMA` e à visualização das mesmas informações através das declarações do `SHOW`. Em qualquer caso, você deve ter algum privilégio em um objeto para ver informações sobre ele.
 

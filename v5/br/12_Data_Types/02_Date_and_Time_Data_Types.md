@@ -234,7 +234,7 @@ Os problemas com o tipo de dados `YEAR(2)` incluem ambiguidade dos valores exibi
   3 rows in set (0.00 sec)
   ```
 
-* Se você usar **mysqldump** para drenar a tabela criada no exemplo anterior, o arquivo de dump representa todos os valores de `y2` usando a mesma representação de 2 dígitos (`12`). Se você carregar a tabela a partir do arquivo de dump, todas as linhas resultantes terão o valor interno `2012` e exibirão o valor `12`, perdendo assim as distinções entre eles.
+* Se você usar **mysqldump** para drenar a tabela criada no exemplo anterior, o arquivo de dump representa todos os valores de `y2` usando a mesma representação de 2 dígitos (`12`). Se você carregar a tabela a partir do arquivo de dump, todas as strings resultantes terão o valor interno `2012` e exibirão o valor `12`, perdendo assim as distinções entre eles.
 
 * A conversão de um valor de dados de 2 dígitos ou 4 dígitos `YEAR` para formato de string utiliza a largura de exibição do tipo de dados. Suponha que uma coluna `YEAR(2)` e uma coluna `YEAR`/`YEAR(4)` contenham ambos o valor `1970`. Atribuir cada coluna a uma string resulta em um valor de `'70'` ou `'1970'`, respectivamente. Isso significa que ocorre perda de informação na conversão de `YEAR(2)` para string.
 
@@ -337,9 +337,9 @@ As colunas `TIMESTAMP` e `DATETIME` podem ser automaticamente inicializadas e at
 
 Para qualquer coluna `TIMESTAMP` ou `DATETIME` em uma tabela, você pode atribuir o timestamp atual como o valor padrão, o valor de auto-atualização ou ambos:
 
-* Uma coluna auto-inicializada é definida pelo timestamp atual para as linhas inseridas que não especificam nenhum valor para a coluna.
+* Uma coluna auto-inicializada é definida pelo timestamp atual para as strings inseridas que não especificam nenhum valor para a coluna.
 
-* Uma coluna auto-atualizada é automaticamente atualizada para o timestamp atual quando o valor de qualquer outra coluna na linha é alterado do seu valor atual. Uma coluna auto-atualizada permanece inalterada se todas as outras colunas forem definidas com seus valores atuais. Para evitar que uma coluna auto-atualizada seja atualizada quando outras colunas são alteradas, defina-a explicitamente com seu valor atual. Para atualizar uma coluna auto-atualizada mesmo quando outras colunas não são alteradas, defina-a explicitamente com o valor que ela deve ter (por exemplo, defina-a como `CURRENT_TIMESTAMP`).
+* Uma coluna auto-atualizada é automaticamente atualizada para o timestamp atual quando o valor de qualquer outra coluna na string é alterado do seu valor atual. Uma coluna auto-atualizada permanece inalterada se todas as outras colunas forem definidas com seus valores atuais. Para evitar que uma coluna auto-atualizada seja atualizada quando outras colunas são alteradas, defina-a explicitamente com seu valor atual. Para atualizar uma coluna auto-atualizada mesmo quando outras colunas não são alteradas, defina-a explicitamente com o valor que ela deve ter (por exemplo, defina-a como `CURRENT_TIMESTAMP`).
 
 Além disso, se a variável de sistema `explicit_defaults_for_timestamp` estiver desativada, você pode inicializar ou atualizar qualquer coluna `TIMESTAMP` (mas não `DATETIME`) para a data e hora atuais, atribuindo-a um valor de `NULL`, a menos que tenha sido definida com o atributo `NULL` para permitir valores de `NULL`.
 

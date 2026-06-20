@@ -76,7 +76,7 @@ Há vários aspectos da declaração `ALTER USER`, descritos nos seguintes tópi
 
 ##### ALTER USER Visão geral
 
-Para cada conta afetada, `ALTER USER` modifica a linha correspondente na tabela do sistema `mysql.user` para refletir as propriedades especificadas na declaração. As propriedades não especificadas retêm seus valores atuais.
+Para cada conta afetada, `ALTER USER` modifica a string correspondente na tabela do sistema `mysql.user` para refletir as propriedades especificadas na declaração. As propriedades não especificadas retêm seus valores atuais.
 
 Cada nome de conta usa o formato descrito na Seção 6.2.4, “Especificação de Nomes de Conta”. A parte do nome de conta que representa o nome do host, se omitida, tem como padrão `'%'`. Também é possível especificar `CURRENT_USER` ou `CURRENT_USER()` para se referir à conta associada à sessão atual.
 
@@ -158,21 +158,21 @@ Para a sintaxe *`auth_option`* que não especifica um plugin de autenticação, 
 
 * `IDENTIFIED BY 'auth_string'`
 
-Define o plugin de autenticação da conta como o plugin padrão, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na linha da conta na tabela do sistema `mysql.user`.
+Define o plugin de autenticação da conta como o plugin padrão, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na string da conta na tabela do sistema `mysql.user`.
 
 * `IDENTIFIED WITH auth_plugin`
 
-Define o plugin de autenticação da conta para *`auth_plugin`*, limpa as credenciais para uma string vazia (as credenciais estão associadas ao antigo plugin de autenticação, não ao novo), e armazena o resultado na linha da conta na tabela do sistema `mysql.user`.
+Define o plugin de autenticação da conta para *`auth_plugin`*, limpa as credenciais para uma string vazia (as credenciais estão associadas ao antigo plugin de autenticação, não ao novo), e armazena o resultado na string da conta na tabela do sistema `mysql.user`.
 
 Além disso, a senha está marcada como expirada. O usuário deve escolher uma nova senha na próxima conexão.
 
 * `IDENTIFIED WITH auth_plugin BY 'auth_string'`
 
-Define o plugin de autenticação da conta para *`auth_plugin`*, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na linha da conta na tabela do sistema `mysql.user`.
+Define o plugin de autenticação da conta para *`auth_plugin`*, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na string da conta na tabela do sistema `mysql.user`.
 
 * `IDENTIFIED WITH auth_plugin AS 'auth_string'`
 
-Define o plugin de autenticação da conta para *`auth_plugin`* e armazena o valor `'auth_string'` como está na linha da conta `mysql.user`. Se o plugin exigir uma string hasheada, a string é assumida como já hasheada no formato exigido pelo plugin.
+Define o plugin de autenticação da conta para *`auth_plugin`* e armazena o valor `'auth_string'` como está na string da conta `mysql.user`. Se o plugin exigir uma string hasheada, a string é assumida como já hasheada no formato exigido pelo plugin.
 
 Exemplo: Especifique a senha como texto claro; o plugin padrão é usado:
 
@@ -435,7 +435,7 @@ Há vários aspectos da declaração `CREATE USER`, descritos nos seguintes tóp
 
 ##### CRIAR USUÁRIO Visão geral
 
-Para cada conta, `CREATE USER` cria uma nova linha na tabela do sistema [[`mysql.user`]. A linha da conta reflete as propriedades especificadas na declaração. As propriedades não especificadas são definidas com seus valores padrão:
+Para cada conta, `CREATE USER` cria uma nova string na tabela do sistema [[`mysql.user`]. A string da conta reflete as propriedades especificadas na declaração. As propriedades não especificadas são definidas com seus valores padrão:
 
 * Autenticação: O plugin de autenticação definido pela variável de sistema `default_authentication_plugin`, e credenciais vazias
 
@@ -512,23 +512,23 @@ Para a sintaxe *`auth_option`* que não especifica um plugin de autenticação, 
 
 * `IDENTIFIED BY 'auth_string'`
 
-Define o plugin de autenticação da conta como o plugin padrão, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na linha da conta na tabela do sistema `mysql.user`.
+Define o plugin de autenticação da conta como o plugin padrão, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na string da conta na tabela do sistema `mysql.user`.
 
 * `IDENTIFIED WITH auth_plugin`
 
-Define o plugin de autenticação da conta para *`auth_plugin`*, limpa as credenciais para uma string vazia e armazena o resultado na linha da conta na tabela do sistema `mysql.user`.
+Define o plugin de autenticação da conta para *`auth_plugin`*, limpa as credenciais para uma string vazia e armazena o resultado na string da conta na tabela do sistema `mysql.user`.
 
 * `IDENTIFIED WITH auth_plugin BY 'auth_string'`
 
-Define o plugin de autenticação da conta para *`auth_plugin`*, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na linha da conta na tabela do sistema `mysql.user`.
+Define o plugin de autenticação da conta para *`auth_plugin`*, passa o valor em texto claro `'auth_string'` para o plugin para possível hashing e armazena o resultado na string da conta na tabela do sistema `mysql.user`.
 
 * `IDENTIFIED WITH auth_plugin AS 'auth_string'`
 
-Define o plugin de autenticação da conta para *`auth_plugin`* e armazena o valor `'auth_string'` como está na linha da conta `mysql.user`. Se o plugin exigir uma string hasheada, a string é assumida como já hasheada no formato exigido pelo plugin.
+Define o plugin de autenticação da conta para *`auth_plugin`* e armazena o valor `'auth_string'` como está na string da conta `mysql.user`. Se o plugin exigir uma string hasheada, a string é assumida como já hasheada no formato exigido pelo plugin.
 
 * `IDENTIFIED BY PASSWORD 'auth_string'`
 
-Define o plugin de autenticação da conta como o plugin padrão e armazena o valor `'auth_string'` como está na linha de conta `mysql.user`. Se o plugin requer uma string hasheada, a string é assumida como já hasheada no formato exigido pelo plugin.
+Define o plugin de autenticação da conta como o plugin padrão e armazena o valor `'auth_string'` como está na string de conta `mysql.user`. Se o plugin requer uma string hasheada, a string é assumida como já hasheada no formato exigido pelo plugin.
 
 Nota
 
@@ -548,7 +548,7 @@ CREATE USER 'jeffrey'@'localhost'
   IDENTIFIED WITH mysql_native_password BY 'password';
 ```
 
-Em cada caso, o valor da senha armazenado na linha da conta é o valor em texto claro `'password'` após ter sido criptografado pelo plugin de autenticação associado à conta.
+Em cada caso, o valor da senha armazenado na string da conta é o valor em texto claro `'password'` após ter sido criptografado pelo plugin de autenticação associado à conta.
 
 Para obter informações adicionais sobre a definição de senhas e plugins de autenticação, consulte a Seção 6.2.10, “Atribuição de senhas de conta”, e a Seção 6.2.13, “Autenticação substituível”.
 
@@ -725,7 +725,7 @@ Se várias opções de bloqueio de conta forem especificadas, a última prevalec
 DROP USER [IF EXISTS] user [, user] ...
 ```
 
-A declaração `DROP USER` remove uma ou mais contas do MySQL e seus privilégios. Ela remove as linhas de privilégio para a conta de todas as tabelas de concessão.
+A declaração `DROP USER` remove uma ou mais contas do MySQL e seus privilégios. Ela remove as strings de privilégio para a conta de todas as tabelas de concessão.
 
 Para usar `DROP USER`, você deve ter o privilégio global `CREATE USER`, ou o privilégio `DELETE` para o banco de dados do sistema `mysql`. Quando a variável de sistema `read_only` é habilitada, `DROP USER` requer adicionalmente o privilégio `SUPER`.
 
@@ -963,7 +963,7 @@ Nas declarações `GRANT`, o privilégio `ALL [PRIVILEGES]` ou `PROXY` deve ser 
 
 As informações da conta do MySQL são armazenadas nas tabelas do banco de dados do sistema `mysql`. Para obter detalhes adicionais, consulte a Seção 6.2, “Controle de Acesso e Gerenciamento de Conta”, que discute extensivamente o banco de dados do sistema `mysql` e o sistema de controle de acesso.
 
-Se as tabelas de concessão contiverem linhas de privilégio que contenham nomes de banco de dados ou tabelas com letras maiúsculas e minúsculas misturadas e a variável de sistema `lower_case_table_names` estiver definida com um valor não nulo, `REVOKE` não pode ser usado para revogar esses privilégios. É necessário manipular as tabelas de concessão diretamente. (`GRANT` não cria tais linhas quando `lower_case_table_names` está definido, mas tais linhas podem ter sido criadas antes de definir essa variável.)
+Se as tabelas de concessão contiverem strings de privilégio que contenham nomes de banco de dados ou tabelas com letras maiúsculas e minúsculas misturadas e a variável de sistema `lower_case_table_names` estiver definida com um valor não nulo, `REVOKE` não pode ser usado para revogar esses privilégios. É necessário manipular as tabelas de concessão diretamente. (`GRANT` não cria tais strings quando `lower_case_table_names` está definido, mas tais strings podem ter sido criadas antes de definir essa variável.)
 
 Os privilégios podem ser concedidos em vários níveis, dependendo da sintaxe usada para a cláusula `ON`. Para `REVOKE`, a mesma sintaxe `ON` especifica quais privilégios devem ser removidos.
 
@@ -1249,9 +1249,9 @@ Para usar essa sintaxe `REVOKE`, você deve ter o privilégio global `CREATE USE
 
 As contas de usuários das quais os privilégios devem ser revogados devem existir, mas os privilégios que devem ser revogados não precisam ser concedidos atualmente a eles.
 
-`REVOKE` remove privilégios, mas não remove linhas da tabela do sistema `mysql.user`. Para remover uma conta de usuário completamente, use `DROP USER`. Veja a Seção 13.7.1.3, “Declaração DROP USER”.
+`REVOKE` remove privilégios, mas não remove strings da tabela do sistema `mysql.user`. Para remover uma conta de usuário completamente, use `DROP USER`. Veja a Seção 13.7.1.3, “Declaração DROP USER”.
 
-Se as tabelas de concessão contiverem linhas de privilégio que contenham nomes de banco de dados ou tabelas com letras maiúsculas e minúsculas misturadas e a variável `lower_case_table_names` estiver definida com um valor não nulo, `REVOKE` não pode ser usado para revogar esses privilégios. É necessário manipular as tabelas de concessão diretamente. (`GRANT` não cria tais linhas quando `lower_case_table_names` está definido, mas tais linhas podem ter sido criadas antes de definir a variável.)
+Se as tabelas de concessão contiverem strings de privilégio que contenham nomes de banco de dados ou tabelas com letras maiúsculas e minúsculas misturadas e a variável `lower_case_table_names` estiver definida com um valor não nulo, `REVOKE` não pode ser usado para revogar esses privilégios. É necessário manipular as tabelas de concessão diretamente. (`GRANT` não cria tais strings quando `lower_case_table_names` está definido, mas tais strings podem ter sido criadas antes de definir a variável.)
 
 Quando executado com sucesso a partir do programa **mysql**, `REVOKE` responde com `Query OK, 0 rows affected`. Para determinar quais privilégios permanecem após a operação, use `SHOW GRANTS`. Veja a Seção 13.7.5.21, “Declaração SHOW GRANTS”.
 
@@ -1320,7 +1320,7 @@ A senha pode ser especificada das seguintes formas:
   SET PASSWORD FOR 'jeffrey'@'localhost' = 'password';
   ```
 
-`SET PASSWORD` interpreta a string como uma string em texto claro, passa-a para o plugin de autenticação associado à conta e armazena o resultado retornado pelo plugin na linha da conta na tabela do sistema `mysql.user`. (O plugin recebe a oportunidade de criptografar o valor no formato de criptografia que ele espera. O plugin pode usar o valor conforme especificado, nesse caso, não ocorre criptografia.)
+`SET PASSWORD` interpreta a string como uma string em texto claro, passa-a para o plugin de autenticação associado à conta e armazena o resultado retornado pelo plugin na string da conta na tabela do sistema `mysql.user`. (O plugin recebe a oportunidade de criptografar o valor no formato de criptografia que ele espera. O plugin pode usar o valor conforme especificado, nesse caso, não ocorre criptografia.)
 
 * Use a função `PASSWORD()` (descontinuada no MySQL 5.7)
 
@@ -1328,7 +1328,7 @@ A senha pode ser especificada das seguintes formas:
   SET PASSWORD FOR 'jeffrey'@'localhost' = PASSWORD('password');
   ```
 
-O argumento `PASSWORD()` é a senha em texto claro (não criptografada). `PASSWORD()` encripta a senha e retorna a cadeia de caracteres criptografada da senha para armazenamento na linha de conta na tabela do sistema `mysql.user`.
+O argumento `PASSWORD()` é a senha em texto claro (não criptografada). `PASSWORD()` encripta a senha e retorna a cadeia de caracteres criptografada da senha para armazenamento na string de conta na tabela do sistema `mysql.user`.
 
 A função `PASSWORD()` encripta a senha usando o método de encriptação determinado pelo valor da variável de sistema `old_passwords`. Certifique-se de que `old_passwords` tenha o valor correspondente ao método de encriptação esperado pelo plugin de autenticação associado à conta. Por exemplo, se a conta usa o plugin `mysql_native_password`, o valor de `old_passwords` deve ser 0:
 
@@ -1384,7 +1384,7 @@ O MySQL utiliza a distribuição de chave armazenada para decidir a ordem de jun
 
 Para verificar a cardinalidade da distribuição de chaves armazenada, use a declaração `SHOW INDEX` ou a tabela `INFORMATION_SCHEMA` `STATISTICS`. Veja a Seção 13.7.5.22, “Declaração SHOW INDEX”, e a Seção 24.3.24, “A Tabela de Estatísticas do INFORMATION_SCHEMA”.
 
-Para as tabelas `InnoDB`, `ANALYZE TABLE` determina a cardinalidade do índice realizando mergulhos aleatórios em cada um dos árvores do índice e atualizando as estimativas da cardinalidade do índice conforme necessário. Como essas são apenas estimativas, execuções repetidas de `ANALYZE TABLE` podem produzir números diferentes. Isso torna `ANALYZE TABLE` rápido em tabelas `InnoDB`, mas não 100% preciso, porque não leva em conta todas as linhas.
+Para as tabelas `InnoDB`, `ANALYZE TABLE` determina a cardinalidade do índice realizando mergulhos aleatórios em cada um dos árvores do índice e atualizando as estimativas da cardinalidade do índice conforme necessário. Como essas são apenas estimativas, execuções repetidas de `ANALYZE TABLE` podem produzir números diferentes. Isso torna `ANALYZE TABLE` rápido em tabelas `InnoDB`, mas não 100% preciso, porque não leva em conta todas as strings.
 
 Você pode tornar as estatísticas coletadas por `ANALYZE TABLE` mais precisas e mais estáveis ao habilitar `innodb_stats_persistent`, conforme explicado na Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas de Optimizer Persistente”. Quando o `innodb_stats_persistent` é habilitado, é importante executar o `ANALYZE TABLE` após mudanças importantes nos dados da coluna de índice, pois as estatísticas não são recalculadas periodicamente (como após o reinício do servidor).
 
@@ -1437,7 +1437,7 @@ Antes de executar `CHECK TABLE` em tabelas `InnoDB`, consulte as Notas de uso de
 
 <table summary="Columns of the CHECK TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>O nome da tabela</td> </tr><tr> <td><code>Op</code></td> <td>Sempre<code>check</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>,<code>error</code>,<code>info</code>,<code>note</code>, ou<code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>Uma mensagem informativa</td> </tr></tbody></table>
 
-A declaração pode gerar muitas linhas de informações para cada tabela verificada. A última linha tem um valor de `Msg_type` de `status` e o `Msg_text` normalmente deve ser `OK`. Para uma tabela `MyISAM`, se você não obtém `OK` ou `Table is already up to date`, normalmente deve executar uma reparação da tabela. Veja a Seção 7.6, “Manutenção e Recuperação de Quebra de Tabela MyISAM”. `Table is already up to date` significa que o motor de armazenamento da tabela indicada que não era necessário verificar a tabela.
+A declaração pode gerar muitas strings de informações para cada tabela verificada. A última string tem um valor de `Msg_type` de `status` e o `Msg_text` normalmente deve ser `OK`. Para uma tabela `MyISAM`, se você não obtém `OK` ou `Table is already up to date`, normalmente deve executar uma reparação da tabela. Veja a Seção 7.6, “Manutenção e Recuperação de Quebra de Tabela MyISAM”. `Table is already up to date` significa que o motor de armazenamento da tabela indicada que não era necessário verificar a tabela.
 
 ##### Verificar a compatibilidade da versão
 
@@ -1451,7 +1451,7 @@ Pode ocorrer incompatibilidade porque o formato de armazenamento de um tipo de d
 
 * O método de armazenamento do novo tipo de dados `DECIMAL` - DECIMAL, NUMERIC") foi alterado entre MySQL 5.0.3 e 5.0.5.
 
-* Se a sua tabela foi criada por uma versão diferente do servidor MySQL do que a que você está executando atualmente, `FOR UPGRADE` indica que a tabela tem um arquivo `.frm` com uma versão incompatível. Neste caso, o conjunto de resultados retornado por `CHECK TABLE` contém uma linha com um valor `Msg_type` de `error` e um valor `Msg_text` de `` Table upgrade required. Please do "REPAIR TABLE `tbl_name`" to fix it! ``
+* Se a sua tabela foi criada por uma versão diferente do servidor MySQL do que a que você está executando atualmente, `FOR UPGRADE` indica que a tabela tem um arquivo `.frm` com uma versão incompatível. Neste caso, o conjunto de resultados retornado por `CHECK TABLE` contém uma string com um valor `Msg_type` de `error` e um valor `Msg_text` de `` Table upgrade required. Please do "REPAIR TABLE `tbl_name`" to fix it! ``
 
 * Algumas vezes, são feitas alterações nos conjuntos de caracteres ou nas codificações que exigem a reconstrução dos índices da tabela. Para obter detalhes sobre essas alterações, consulte a Seção 2.10.3, “Alterações no MySQL 5.7”. Para informações sobre a reconstrução de tabelas, consulte a Seção 2.10.12, “Reconstrução ou reparo de tabelas ou índices”.
 
@@ -1475,9 +1475,9 @@ Para verificar as tabelas que contêm colunas temporais e precisam de uma recons
 
 A tabela a seguir mostra as outras opções de verificação que podem ser fornecidas. Essas opções são passadas para o motor de armazenamento, que pode usá-las ou ignorá-las.
 
-<table summary="Other CHECK TABLE options."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Type</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>QUICK</code></td> <td>Não escaneie as linhas para verificar se há links incorretos. Aplica-se a<code>InnoDB</code>e<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>FAST</code></td> <td>Verifique apenas as tabelas que não foram fechadas corretamente. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>CHANGED</code></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação ou que não foram fechadas corretamente. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>MEDIUM</code></td> <td>Escanear as linhas para verificar se os links excluídos são válidos. Isso também calcula um checksum de chave para as linhas e verifica isso com um checksum calculado para as chaves. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>EXTENDED</code></td> <td>Faça uma pesquisa completa de chaves para todas as chaves de cada linha. Isso garante que a tabela seja 100% consistente, mas leva um longo tempo. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr></tbody></table>
+<table summary="Other CHECK TABLE options."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Type</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>QUICK</code></td> <td>Não escaneie as strings para verificar se há links incorretos. Aplica-se a<code>InnoDB</code>e<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>FAST</code></td> <td>Verifique apenas as tabelas que não foram fechadas corretamente. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>CHANGED</code></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação ou que não foram fechadas corretamente. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>MEDIUM</code></td> <td>Escanear as strings para verificar se os links excluídos são válidos. Isso também calcula um checksum de chave para as strings e verifica isso com um checksum calculado para as chaves. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr><tr> <td><code>EXTENDED</code></td> <td>Faça uma pesquisa completa de chaves para todas as chaves de cada string. Isso garante que a tabela seja 100% consistente, mas leva um longo tempo. Ignorado para<code>InnoDB</code>; aplica-se apenas a<code>MyISAM</code>tabelas e visualizações.</td> </tr></tbody></table>
 
-Se nenhuma das opções `QUICK`, `MEDIUM` ou `EXTENDED` for especificada, o tipo de verificação padrão para tabelas de formato dinâmico `MyISAM` é `MEDIUM`. Isso tem o mesmo resultado que executar **myisamchk --medium-check *`tbl_name`*** na tabela. O tipo de verificação padrão também é `MEDIUM` para tabelas de formato estático `MyISAM`, a menos que `CHANGED` ou `FAST` seja especificado. Nesse caso, o padrão é `QUICK`. A varredura de linha é ignorada para `CHANGED` e `FAST` porque as linhas são raramente corrompidas.
+Se nenhuma das opções `QUICK`, `MEDIUM` ou `EXTENDED` for especificada, o tipo de verificação padrão para tabelas de formato dinâmico `MyISAM` é `MEDIUM`. Isso tem o mesmo resultado que executar **myisamchk --medium-check *`tbl_name`*** na tabela. O tipo de verificação padrão também é `MEDIUM` para tabelas de formato estático `MyISAM`, a menos que `CHANGED` ou `FAST` seja especificado. Nesse caso, o padrão é `QUICK`. A varredura de string é ignorada para `CHANGED` e `FAST` porque as strings são raramente corrompidas.
 
 Você pode combinar as opções de verificação, como no exemplo a seguir, que faz uma verificação rápida na tabela para determinar se ela foi fechada corretamente:
 
@@ -1495,7 +1495,7 @@ Para verificar uma tabela que você acredita estar correta, não use opções de
 
 `FAST` e `CHANGED` são, na maioria dos casos, destinados a serem usados a partir de um script (por exemplo, para ser executado a partir do **cron**) para verificar tabelas periodicamente. Na maioria dos casos, `FAST` deve ser preferido em detrimento de `CHANGED`. (O único caso em que não é preferido é quando você suspeita que encontrou um bug no código do `MyISAM`.)
 
-`EXTENDED` deve ser usado apenas depois de ter realizado uma verificação normal, mas ainda obter erros de uma tabela quando o MySQL tenta atualizar uma linha ou encontrar uma linha por chave. Isso é muito improvável se uma verificação normal tiver sido bem-sucedida.
+`EXTENDED` deve ser usado apenas depois de ter realizado uma verificação normal, mas ainda obter erros de uma tabela quando o MySQL tenta atualizar uma string ou encontrar uma string por chave. Isso é muito improvável se uma verificação normal tiver sido bem-sucedida.
 
 O uso de `CHECK TABLE ... EXTENDED` pode influenciar os planos de execução gerados pelo otimizador de consulta.
 
@@ -1503,7 +1503,7 @@ Alguns problemas relatados por `CHECK TABLE` não podem ser corrigidos automatic
 
 * `Found row where the auto_increment column has the value 0`.
 
-Isso significa que você tem uma linha na tabela onde a coluna de índice `AUTO_INCREMENT` contém o valor 0. (É possível criar uma linha onde a coluna `AUTO_INCREMENT` é 0, definindo explicitamente a coluna para 0 com uma declaração `UPDATE`.
+Isso significa que você tem uma string na tabela onde a coluna de índice `AUTO_INCREMENT` contém o valor 0. (É possível criar uma string onde a coluna `AUTO_INCREMENT` é 0, definindo explicitamente a coluna para 0 com uma declaração `UPDATE`.
 
 Isso não é um erro em si, mas pode causar problemas se você decidir descartar a tabela e restaurá-la ou realizar um `ALTER TABLE` na tabela. Neste caso, a coluna `AUTO_INCREMENT` muda o valor de acordo com as regras das colunas `AUTO_INCREMENT`, o que pode causar problemas como um erro de chave duplicada.
 
@@ -1527,7 +1527,7 @@ As seguintes notas se aplicam às tabelas `InnoDB`:
 
 * Ao executar `CHECK TABLE` em grandes tabelas de `InnoDB`, outros threads podem ser bloqueados durante a execução de `CHECK TABLE`. Para evitar tempos de espera, o limiar de espera do semaforo (600 segundos) é estendido por 2 horas (7200 segundos) para operações de `CHECK TABLE`. Se `InnoDB` detectar espera de semaforo de 240 segundos ou mais, ele começa a imprimir a saída do monitor `InnoDB` no log de erro. Se um pedido de bloqueio exceder o limiar de espera do semaforo, `InnoDB` interrompe o processo. Para evitar a possibilidade de um tempo de espera de espera de semaforo completamente, execute `CHECK TABLE QUICK` em vez de `CHECK TABLE`.
 
-* A funcionalidade `CHECK TABLE` para os índices `InnoDB` e `SPATIAL` inclui uma verificação de validade de árvore R e uma verificação para garantir que o número de linhas da árvore R corresponda ao índice agrupado.
+* A funcionalidade `CHECK TABLE` para os índices `InnoDB` e `SPATIAL` inclui uma verificação de validade de árvore R e uma verificação para garantir que o número de strings da árvore R corresponda ao índice agrupado.
 
 * `CHECK TABLE` suporta índices secundários em colunas geradas virtualmente, que são suportados por `InnoDB`.
 
@@ -1539,7 +1539,7 @@ As seguintes notas se aplicam às tabelas `MyISAM`:
 
 * Se a saída de `CHECK TABLE` não retornar `OK` ou `Table is already up to date`, você normalmente deve executar uma reparação da tabela. Veja a Seção 7.6, “Manutenção e Recuperação de Quebra de Tabela MyISAM”.
 
-* Se nenhuma das opções `CHECK TABLE` dos tipos de verificação `QUICK`, `MEDIUM` ou `EXTENDED` estiver especificada, o tipo de verificação padrão para as tabelas de formato dinâmico `MyISAM` é `MEDIUM`. Isso tem o mesmo resultado que executar **myisamchk --medium-check *`tbl_name`*** na tabela. O tipo de verificação padrão também é `MEDIUM` para as tabelas de formato estático `MyISAM`, a menos que `CHANGED` ou `FAST` esteja especificado. Nesse caso, o padrão é [[`QUICK`]. O varrimento de linha é ignorado para `CHANGED` e `FAST` porque as linhas são raramente corrompidas.
+* Se nenhuma das opções `CHECK TABLE` dos tipos de verificação `QUICK`, `MEDIUM` ou `EXTENDED` estiver especificada, o tipo de verificação padrão para as tabelas de formato dinâmico `MyISAM` é `MEDIUM`. Isso tem o mesmo resultado que executar **myisamchk --medium-check *`tbl_name`*** na tabela. O tipo de verificação padrão também é `MEDIUM` para as tabelas de formato estático `MyISAM`, a menos que `CHANGED` ou `FAST` esteja especificado. Nesse caso, o padrão é [[`QUICK`]. O varrimento de string é ignorado para `CHANGED` e `FAST` porque as strings são raramente corrompidas.
 
 #### 13.7.2.3 Declaração da Tabela CHECKSUM
 
@@ -1559,11 +1559,11 @@ Durante a operação de verificação de checksum, a tabela é bloqueada com um 
 
 ##### Considerações de desempenho
 
-Por padrão, toda a tabela é lida linha por linha e o checksum é calculado. Para tabelas grandes, isso pode levar muito tempo, portanto, você só realizará essa operação ocasionalmente. Esse cálculo de linha por linha é o que você obtém com a cláusula `EXTENDED`, com `InnoDB` e todos os outros motores de armazenamento, exceto `MyISAM`, e com as tabelas `MyISAM` que não foram criadas com a cláusula `CHECKSUM=1`.
+Por padrão, toda a tabela é lida string por string e o checksum é calculado. Para tabelas grandes, isso pode levar muito tempo, portanto, você só realizará essa operação ocasionalmente. Esse cálculo de string por string é o que você obtém com a cláusula `EXTENDED`, com `InnoDB` e todos os outros motores de armazenamento, exceto `MyISAM`, e com as tabelas `MyISAM` que não foram criadas com a cláusula `CHECKSUM=1`.
 
 Para as tabelas `MyISAM` criadas com a cláusula `CHECKSUM=1`, `CHECKSUM TABLE` ou `CHECKSUM TABLE ... QUICK`, o checksum da tabela “viva” que pode ser retornado muito rapidamente. Se a tabela não atender a todas essas condições, o método `QUICK` retorna `NULL`. O método `QUICK` não é suportado com tabelas `InnoDB`. Consulte a Seção 13.1.18, “Instrução CREATE TABLE”, para a sintaxe da cláusula `CHECKSUM`.
 
-O valor do checksum depende do formato da linha da tabela. Se o formato da linha mudar, o checksum também mudará. Por exemplo, o formato de armazenamento para tipos temporais, como `TIME`, `DATETIME` e `TIMESTAMP`, mudou no MySQL 5.6 antes do MySQL 5.6.5, então, se uma tabela 5.5 for atualizada para o MySQL 5.6, o valor do checksum pode mudar.
+O valor do checksum depende do formato da string da tabela. Se o formato da string mudar, o checksum também mudará. Por exemplo, o formato de armazenamento para tipos temporais, como `TIME`, `DATETIME` e `TIMESTAMP`, mudou no MySQL 5.6 antes do MySQL 5.6.5, então, se uma tabela 5.5 for atualizada para o MySQL 5.6, o valor do checksum pode mudar.
 
 Importante
 
@@ -1584,11 +1584,11 @@ Use `OPTIMIZE TABLE` nesses casos, dependendo do tipo de tabela:
 
 * Após realizar operações de inserção, atualização ou exclusão substanciais em colunas que fazem parte de um índice `FULLTEXT` em uma tabela `InnoDB`. Defina a opção de configuração `innodb_optimize_fulltext_only=1` primeiro. Para manter o período de manutenção do índice em um tempo razoável, defina a opção `innodb_ft_num_word_optimize` para especificar quantas palavras devem ser atualizadas no índice de pesquisa e execute uma sequência de declarações `OPTIMIZE TABLE` até que o índice de pesquisa esteja totalmente atualizado.
 
-* Após excluir uma grande parte de uma tabela `MyISAM` ou `ARCHIVE`, ou fazer muitas alterações em uma tabela `MyISAM` ou `ARCHIVE` com linhas de comprimento variável (tabelas que possuem as colunas `VARCHAR`, `VARBINARY`, `BLOB` ou `TEXT`). As linhas excluídas são mantidas em uma lista vinculada e as operações subsequentes de `INSERT` reutilizam as posições antigas das linhas. Você pode usar `OPTIMIZE TABLE` para recuperar o espaço não utilizado e para desfragmentar o arquivo de dados. Após alterações extensas em uma tabela, essa declaração também pode melhorar o desempenho das declarações que usam a tabela, às vezes de forma significativa.
+* Após excluir uma grande parte de uma tabela `MyISAM` ou `ARCHIVE`, ou fazer muitas alterações em uma tabela `MyISAM` ou `ARCHIVE` com strings de comprimento variável (tabelas que possuem as colunas `VARCHAR`, `VARBINARY`, `BLOB` ou `TEXT`). As strings excluídas são mantidas em uma lista vinculada e as operações subsequentes de `INSERT` reutilizam as posições antigas das strings. Você pode usar `OPTIMIZE TABLE` para recuperar o espaço não utilizado e para desfragmentar o arquivo de dados. Após alterações extensas em uma tabela, essa declaração também pode melhorar o desempenho das declarações que usam a tabela, às vezes de forma significativa.
 
 Essa declaração exige privilégios `SELECT` e `INSERT` para a tabela.
 
-`OPTIMIZE TABLE` funciona para as tabelas `InnoDB`, `MyISAM` e `ARCHIVE`. `OPTIMIZE TABLE` também é suportado para colunas dinâmicas de tabelas `NDB` de memória. Não funciona para colunas de largura fixa de tabelas de memória, nem para tabelas de Dados em Disco. O desempenho de `OPTIMIZE` em tabelas NDB Cluster pode ser ajustado usando `--ndb-optimization-delay`, que controla o tempo de espera entre os lotes de processamento de linhas por `OPTIMIZE TABLE`. Para mais informações, consulte Problemas anteriores do NDB Cluster resolvidos no NDB Cluster 8.0.
+`OPTIMIZE TABLE` funciona para as tabelas `InnoDB`, `MyISAM` e `ARCHIVE`. `OPTIMIZE TABLE` também é suportado para colunas dinâmicas de tabelas `NDB` de memória. Não funciona para colunas de largura fixa de tabelas de memória, nem para tabelas de Dados em Disco. O desempenho de `OPTIMIZE` em tabelas NDB Cluster pode ser ajustado usando `--ndb-optimization-delay`, que controla o tempo de espera entre os lotes de processamento de strings por `OPTIMIZE TABLE`. Para mais informações, consulte Problemas anteriores do NDB Cluster resolvidos no NDB Cluster 8.0.
 
 Para as tabelas do NDB Cluster, `OPTIMIZE TABLE` pode ser interrompido, por exemplo, ao matar o thread SQL que está executando a operação `OPTIMIZE`.
 
@@ -1643,7 +1643,7 @@ mysql> OPTIMIZE TABLE foo;
 
 As operações de exclusão podem deixar lacunas que deixam as páginas menos preenchidas do que o desejado, o que pode justificar a otimização da tabela.
 
-* As atualizações das linhas geralmente reescrevem os dados na mesma página, dependendo do tipo de dados e do formato da linha, quando há espaço suficiente disponível. Veja a Seção 14.9.1.5, “Como a compressão funciona para tabelas InnoDB” e a Seção 14.11, “Formatos de linha InnoDB”.
+* As atualizações das strings geralmente reescrevem os dados na mesma página, dependendo do tipo de dados e do formato da string, quando há espaço suficiente disponível. Veja a Seção 14.9.1.5, “Como a compressão funciona para tabelas InnoDB” e a Seção 14.11, “Formatos de string InnoDB”.
 
 * Cargas de trabalho de alta concorrência podem deixar lacunas nos índices ao longo do tempo, pois o `InnoDB` retém várias versões dos mesmos dados devido ao seu mecanismo MVCC. Veja a Seção 14.3, “Multiversão InnoDB”.
 
@@ -1651,7 +1651,7 @@ As operações de exclusão podem deixar lacunas que deixam as páginas menos pr
 
 Para as tabelas de `MyISAM`, `OPTIMIZE TABLE` funciona da seguinte forma:
 
-1. Se a tabela tiver linhas excluídas ou divididas, repare a tabela. 2. Se as páginas do índice não estiverem ordenadas, ordene-as. 3. Se as estatísticas da tabela não estiverem atualizadas (e a reparação não puder ser realizada por meio da ordenação do índice), atualize-as.
+1. Se a tabela tiver strings excluídas ou divididas, repare a tabela. 2. Se as páginas do índice não estiverem ordenadas, ordene-as. 3. Se as estatísticas da tabela não estiverem atualizadas (e a reparação não puder ser realizada por meio da ordenação do índice), atualize-as.
 
 ##### Outras considerações
 
@@ -1705,7 +1705,7 @@ Se você usar a opção `QUICK`, `REPAIR TABLE` tenta reparar apenas o arquivo d
 
 * `EXTENDED`
 
-Se você usar a opção `EXTENDED`, o MySQL cria a linha do índice linha a linha em vez de criar um índice de cada vez com classificação. Esse tipo de reparo é semelhante ao realizado pelo **myisamchk --safe-recover**.
+Se você usar a opção `EXTENDED`, o MySQL cria a string do índice string a string em vez de criar um índice de cada vez com classificação. Esse tipo de reparo é semelhante ao realizado pelo **myisamchk --safe-recover**.
 
 * `USE_FRM`
 
@@ -1721,7 +1721,7 @@ Use a opção `USE_FRM` *apenas* se você não puder usar os modos regulares `RE
 
 + O cabeçalho `.MYI` indica se a tabela está comprimida. Se o servidor ignorar essa informação, não poderá determinar se uma tabela está comprimida e a reparação pode causar alterações ou perda dos conteúdos da tabela. Isso significa que `USE_FRM` não deve ser usado com tabelas comprimidas. Isso não deve ser necessário, de qualquer forma: as tabelas comprimidas são apenas de leitura, portanto, não devem ficar corrompidas.
 
-Se você usar `USE_FRM` para uma tabela que foi criada por uma versão diferente do servidor MySQL do que a que você está executando atualmente, `REPAIR TABLE` não tenta reparar a tabela. Nesse caso, o conjunto de resultados retornado por `REPAIR TABLE` contém uma linha com um valor de `Msg_type` de `error` e um valor de `Msg_text` de `Failed repairing incompatible .FRM file`.
+Se você usar `USE_FRM` para uma tabela que foi criada por uma versão diferente do servidor MySQL do que a que você está executando atualmente, `REPAIR TABLE` não tenta reparar a tabela. Nesse caso, o conjunto de resultados retornado por `REPAIR TABLE` contém uma string com um valor de `Msg_type` de `error` e um valor de `Msg_text` de `Failed repairing incompatible .FRM file`.
 
 Se o `USE_FRM` for usado, o `REPAIR TABLE` não verifica a tabela para verificar se é necessário um upgrade.
 
@@ -1731,7 +1731,7 @@ Se o `USE_FRM` for usado, o `REPAIR TABLE` não verifica a tabela para verificar
 
 <table summary="Columns of the REPAIR TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>O nome da tabela</td> </tr><tr> <td><code>Op</code></td> <td>Sempre<code>repair</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>,<code>error</code>,<code>info</code>,<code>note</code>, ou<code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>Uma mensagem informativa</td> </tr></tbody></table>
 
-A declaração `REPAIR TABLE` pode gerar muitas linhas de informações para cada tabela reparada. A última linha tem um valor `Msg_type` de `status` e `Msg_test`, que normalmente deveria ser `OK`. Para uma tabela `MyISAM`, se você não obtiver `OK`, deve tentar repará-la com **myisamchk --safe-recover**. (`REPAIR TABLE` não implementa todas as opções do **myisamchk**. Com **myisamchk --safe-recover**, você também pode usar opções que `REPAIR TABLE` não suporta, como `--max-record-length`.)
+A declaração `REPAIR TABLE` pode gerar muitas strings de informações para cada tabela reparada. A última string tem um valor `Msg_type` de `status` e `Msg_test`, que normalmente deveria ser `OK`. Para uma tabela `MyISAM`, se você não obtiver `OK`, deve tentar repará-la com **myisamchk --safe-recover**. (`REPAIR TABLE` não implementa todas as opções do **myisamchk**. Com **myisamchk --safe-recover**, você também pode usar opções que `REPAIR TABLE` não suporta, como `--max-record-length`.)
 
 A tabela `REPAIR TABLE` captura e lança quaisquer erros que ocorram durante a cópia das estatísticas da tabela do arquivo antigo corrompido para o arquivo recém-criado. Por exemplo, se o ID do usuário do proprietário do arquivo `.frm`, `.MYD` ou `.MYI` for diferente do ID do usuário do processo `mysqld`, a `REPAIR TABLE` gera um erro de "não é possível alterar a propriedade do arquivo" a menos que `mysqld` seja iniciado pelo usuário `root`.
 
@@ -1763,7 +1763,7 @@ A palavra-chave `AGGREGATE`, se fornecida, indica que a função é uma função
 
 *`shared_library_name`* é o nome base do arquivo da biblioteca compartilhada que contém o código que implementa a função. O arquivo deve estar localizado no diretório do plugin. Esse diretório é dado pelo valor da variável de sistema `plugin_dir`. Para mais informações, consulte a Seção 5.6.1, “Instalando e Desinstalando Funções Carregáveis”.
 
-O `CREATE FUNCTION` requer o privilégio `INSERT` para o banco de dados do sistema `mysql`, pois adiciona uma linha à tabela do sistema `mysql.func` para registrar a função.
+O `CREATE FUNCTION` requer o privilégio `INSERT` para o banco de dados do sistema `mysql`, pois adiciona uma string à tabela do sistema `mysql.func` para registrar a função.
 
 Durante a sequência normal de inicialização, o servidor carrega as funções registradas na tabela `mysql.func`. Se o servidor for iniciado com a opção `--skip-grant-tables`, as funções registradas na tabela não são carregadas e ficam indisponíveis.
 
@@ -1779,9 +1779,9 @@ DROP FUNCTION [IF EXISTS] function_name
 
 Essa declaração descarta a função carregável nomeada *`function_name`*. (`DROP FUNCTION` também é usada para descartar funções armazenadas; veja Seção 13.1.27, “Declarações DROP PROCEDURE e DROP FUNCTION”).
 
-`DROP FUNCTION` é o complemento de `CREATE FUNCTION`. Ele requer o privilégio `DELETE` para o banco de dados do sistema `mysql`, pois ele remove a linha da tabela do sistema `mysql.func` que registra a função.
+`DROP FUNCTION` é o complemento de `CREATE FUNCTION`. Ele requer o privilégio `DELETE` para o banco de dados do sistema `mysql`, pois ele remove a string da tabela do sistema `mysql.func` que registra a função.
 
-Durante a sequência normal de inicialização, o servidor carrega as funções registradas na tabela `mysql.func`. Como o `DROP FUNCTION` remove a linha `mysql.func` para a função removida, o servidor não carrega a função durante os reinícios subsequentes.
+Durante a sequência normal de inicialização, o servidor carrega as funções registradas na tabela `mysql.func`. Como o `DROP FUNCTION` remove a string `mysql.func` para a função removida, o servidor não carrega a função durante os reinícios subsequentes.
 
 Nota
 
@@ -1793,9 +1793,9 @@ Para atualizar a biblioteca compartilhada associada a uma função carregável, 
 INSTALL PLUGIN plugin_name SONAME 'shared_library_name'
 ```
 
-Esta declaração instala um plugin do servidor. Ela requer o privilégio `INSERT` para a tabela do sistema `mysql.plugin`, porque adiciona uma linha a essa tabela para registrar o plugin.
+Esta declaração instala um plugin do servidor. Ela requer o privilégio `INSERT` para a tabela do sistema `mysql.plugin`, porque adiciona uma string a essa tabela para registrar o plugin.
 
-*`plugin_name`* é o nome do plugin conforme definido na estrutura do descritor do plugin contida no arquivo da biblioteca (veja Estruturas de dados do plugin). Os nomes dos plugins não são sensíveis ao caso. Para compatibilidade máxima, os nomes dos plugins devem ser limitados a letras ASCII, dígitos e sublinhados, pois são usados em arquivos de código-fonte C, linhas de comando de shell, scripts de shell M4 e Bourne e ambientes SQL.
+*`plugin_name`* é o nome do plugin conforme definido na estrutura do descritor do plugin contida no arquivo da biblioteca (veja Estruturas de dados do plugin). Os nomes dos plugins não são sensíveis ao caso. Para compatibilidade máxima, os nomes dos plugins devem ser limitados a letras ASCII, dígitos e sublinhados, pois são usados em arquivos de código-fonte C, strings de comando de shell, scripts de shell M4 e Bourne e ambientes SQL.
 
 *`shared_library_name`* é o nome da biblioteca compartilhada que contém o código do plugin. O nome inclui a extensão do nome do arquivo (por exemplo, `libmyplugin.so`, `libmyplugin.dll` ou `libmyplugin.dylib`).
 
@@ -1810,7 +1810,7 @@ Se o valor de `plugin_dir` for um nome de caminho relativo, ele é considerado r
 
 `INSTALL PLUGIN` carrega e inicializa o código do plugin para tornar o plugin disponível para uso. Um plugin é inicializado executando sua função de inicialização, que lida com qualquer configuração que o plugin deve realizar antes de ser usado. Quando o servidor é desligado, ele executa a função de desinicialização para cada plugin que está carregado, para que o plugin tenha a chance de realizar qualquer limpeza final.
 
-`INSTALL PLUGIN` também registra o plugin, adicionando uma linha que indica o nome do plugin e o nome do arquivo da biblioteca à tabela do sistema `mysql.plugin`. Durante a sequência normal de inicialização, o servidor carrega e inicializa os plugins registrados em `mysql.plugin`. Isso significa que um plugin é instalado com `INSTALL PLUGIN` apenas uma vez, não toda vez que o servidor é iniciado. Se o servidor for iniciado com a opção `--skip-grant-tables`, os plugins registrados na tabela `mysql.plugin` não são carregados e não estão disponíveis.
+`INSTALL PLUGIN` também registra o plugin, adicionando uma string que indica o nome do plugin e o nome do arquivo da biblioteca à tabela do sistema `mysql.plugin`. Durante a sequência normal de inicialização, o servidor carrega e inicializa os plugins registrados em `mysql.plugin`. Isso significa que um plugin é instalado com `INSTALL PLUGIN` apenas uma vez, não toda vez que o servidor é iniciado. Se o servidor for iniciado com a opção `--skip-grant-tables`, os plugins registrados na tabela `mysql.plugin` não são carregados e não estão disponíveis.
 
 Uma biblioteca de plugins pode conter vários plugins. Para que cada um deles seja instalado, use uma declaração separada `INSTALL PLUGIN`. Cada declaração nomeia um plugin diferente, mas todos eles especificam o mesmo nome da biblioteca.
 
@@ -1836,9 +1836,9 @@ Se você recompilar uma biblioteca de plugins e precisar instalá-la novamente, 
 UNINSTALL PLUGIN plugin_name
 ```
 
-Essa declaração remove um plugin de servidor instalado. `UNINSTALL PLUGIN` é o complemento de `INSTALL PLUGIN`. Requer o privilégio `DELETE` para a tabela do sistema `mysql.plugin`, porque remove a linha daquela tabela que registra o plugin.
+Essa declaração remove um plugin de servidor instalado. `UNINSTALL PLUGIN` é o complemento de `INSTALL PLUGIN`. Requer o privilégio `DELETE` para a tabela do sistema `mysql.plugin`, porque remove a string daquela tabela que registra o plugin.
 
-*`plugin_name`* deve ser o nome de algum plugin que está listado na tabela `mysql.plugin`. O servidor executa a função de desinicialização do plugin e remove a linha do plugin da tabela do sistema `mysql.plugin`, para que os subsequentes reinícios do servidor não carreguem e inicializem o plugin. `UNINSTALL PLUGIN` não remove o arquivo de biblioteca compartilhada do plugin.
+*`plugin_name`* deve ser o nome de algum plugin que está listado na tabela `mysql.plugin`. O servidor executa a função de desinicialização do plugin e remove a string do plugin da tabela do sistema `mysql.plugin`, para que os subsequentes reinícios do servidor não carreguem e inicializem o plugin. `UNINSTALL PLUGIN` não remove o arquivo de biblioteca compartilhada do plugin.
 
 Você não pode desinstalar um plugin se qualquer tabela que o use estiver aberta.
 
@@ -2140,7 +2140,7 @@ like_or_where: {
 
 Se a sintaxe de uma declaração `SHOW` dada incluir uma parte `LIKE 'pattern'`, `'pattern'` é uma string que pode conter os caracteres de comodinho de SQL `%` e `_`. O padrão é útil para restringir a saída da declaração para valores que correspondem.
 
-Várias declarações `SHOW` também aceitam uma cláusula `WHERE` que oferece mais flexibilidade na especificação de quais linhas devem ser exibidas. Veja a Seção 24.8, “Extensões para Declarações SHOW”.
+Várias declarações `SHOW` também aceitam uma cláusula `WHERE` que oferece mais flexibilidade na especificação de quais strings devem ser exibidas. Veja a Seção 24.8, “Extensões para Declarações SHOW”.
 
 Muitas APIs do MySQL (como o PHP) permitem que você trate o resultado retornado de uma declaração `SHOW` como se fosse um conjunto de resultados de uma declaração `SELECT`; veja o Capítulo 27, *Conectores e APIs*, ou a documentação da sua API para mais informações. Além disso, você pode trabalhar em SQL com resultados de consultas em tabelas no banco de dados `INFORMATION_SCHEMA`, o que não é fácil de fazer com resultados de declarações `SHOW`. Veja o Capítulo 24, *Tabelas do INFORMATION\_SCHEMA*.
 
@@ -2223,7 +2223,7 @@ SHOW {CHARACTER SET | CHARSET}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-A declaração `SHOW CHARACTER SET` mostra todos os conjuntos de caracteres disponíveis. A cláusula `LIKE`, se presente, indica quais nomes de conjuntos de caracteres devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”. Por exemplo:
+A declaração `SHOW CHARACTER SET` mostra todos os conjuntos de caracteres disponíveis. A cláusula `LIKE`, se presente, indica quais nomes de conjuntos de caracteres devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar strings com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”. Por exemplo:
 
 ```sql
 mysql> SHOW CHARACTER SET LIKE 'latin%';
@@ -2266,7 +2266,7 @@ SHOW COLLATION
     [LIKE 'pattern' | WHERE expr]
 ```
 
-Esta declaração lista as colatações suportadas pelo servidor. Por padrão, a saída do `SHOW COLLATION` inclui todas as colatações disponíveis. A cláusula `LIKE`, se presente, indica quais nomes de colatação devem ser correspondidos. A cláusula `WHERE` pode ser dada para selecionar linhas usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”. Por exemplo:
+Esta declaração lista as colatações suportadas pelo servidor. Por padrão, a saída do `SHOW COLLATION` inclui todas as colatações disponíveis. A cláusula `LIKE`, se presente, indica quais nomes de colatação devem ser correspondidos. A cláusula `WHERE` pode ser dada para selecionar strings usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”. Por exemplo:
 
 ```sql
 mysql> SHOW COLLATION WHERE Charset = 'latin1';
@@ -2361,7 +2361,7 @@ SHOW COLUMNS FROM mydb.mytable;
 
 A palavra-chave opcional `FULL` faz com que a saída inclua a correção de coluna e comentários, bem como os privilégios que você tem para cada coluna.
 
-A cláusula `LIKE`, se presente, indica quais nomes de colunas devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+A cláusula `LIKE`, se presente, indica quais nomes de colunas devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar strings com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 Os tipos de dados podem diferir do que você espera, com base em uma declaração `CREATE TABLE`, porque o MySQL às vezes altera os tipos de dados quando você cria ou altera uma tabela. As condições sob as quais isso ocorre são descritas na Seção 13.1.18.6, “Alterações Silenciosas de Especificação de Coluna”.
 
@@ -2582,7 +2582,7 @@ Create Table: CREATE TABLE `t1` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT
 ```
 
-Ao criar uma tabela com o modo estrito desativado, o formato de linha padrão do mecanismo de armazenamento é usado se o formato de linha especificado não for suportado. O formato de linha real da tabela é relatado na coluna `Row_format` em resposta ao `SHOW TABLE STATUS`. `SHOW CREATE TABLE` mostra o formato de linha que foi especificado na declaração `CREATE TABLE`.
+Ao criar uma tabela com o modo estrito desativado, o formato de string padrão do mecanismo de armazenamento é usado se o formato de string especificado não for suportado. O formato de string real da tabela é relatado na coluna `Row_format` em resposta ao `SHOW TABLE STATUS`. `SHOW CREATE TABLE` mostra o formato de string que foi especificado na declaração `CREATE TABLE`.
 
 #### 13.7.5.11 Declaração SHOW CREATE TRIGGER
 
@@ -2701,7 +2701,7 @@ SHOW {DATABASES | SCHEMAS}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW DATABASES` lista os bancos de dados no host do servidor MySQL. `SHOW SCHEMAS` é sinônimo de `SHOW DATABASES`. A cláusula `LIKE`, se presente, indica quais nomes de banco de dados devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+`SHOW DATABASES` lista os bancos de dados no host do servidor MySQL. `SHOW SCHEMAS` é sinônimo de `SHOW DATABASES`. A cláusula `LIKE`, se presente, indica quais nomes de banco de dados devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar strings com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 Você só verá os bancos de dados para os quais você tem algum tipo de privilégio, a menos que você tenha o privilégio global [[`SHOW DATABASES`]. Você também pode obter essa lista usando o comando **mysqlshow**.
 
@@ -2769,13 +2769,13 @@ Sempre `InnoDB`.
 
 * `Name`
 
-Antes do MySQL 5.7.8, o campo `Name` relata o arquivo de origem onde o mutex é implementado e o número da linha no arquivo onde o mutex é criado. O número da linha é específico para sua versão do MySQL. A partir do MySQL 5.7.8, apenas o nome do mutex é relatado. O nome do arquivo e o número da linha ainda são relatados para rwlocks.
+Antes do MySQL 5.7.8, o campo `Name` relata o arquivo de origem onde o mutex é implementado e o número da string no arquivo onde o mutex é criado. O número da string é específico para sua versão do MySQL. A partir do MySQL 5.7.8, apenas o nome do mutex é relatado. O nome do arquivo e o número da string ainda são relatados para rwlocks.
 
 * `Status`
 
 O status do mutex.
 
-Antes do MySQL 5.7.8, o campo `Status` exibe vários valores se `WITH_DEBUG` foi definido no momento da compilação do MySQL. Se `WITH_DEBUG` não foi definido, a declaração exibe apenas o valor do campo `os_waits`. No último caso (sem `WITH_DEBUG`, as informações sobre as quais a saída é baseada são insuficientes para distinguir entre mútuos regulares e mútuos que protegem rwlocks (que permitem múltiplos leitores ou um único escritor). Consequentemente, a saída pode parecer conter várias linhas para o mesmo mútuo. Os valores do campo `Status` antes do MySQL 5.7.8 incluem:
+Antes do MySQL 5.7.8, o campo `Status` exibe vários valores se `WITH_DEBUG` foi definido no momento da compilação do MySQL. Se `WITH_DEBUG` não foi definido, a declaração exibe apenas o valor do campo `os_waits`. No último caso (sem `WITH_DEBUG`, as informações sobre as quais a saída é baseada são insuficientes para distinguir entre mútuos regulares e mútuos que protegem rwlocks (que permitem múltiplos leitores ou um único escritor). Consequentemente, a saída pode parecer conter várias strings para o mesmo mútuo. Os valores do campo `Status` antes do MySQL 5.7.8 incluem:
 
 + `count` indica quantas vezes o mutex foi solicitado.
 
@@ -2785,7 +2785,7 @@ Antes do MySQL 5.7.8, o campo `Status` exibe vários valores se `WITH_DEBUG` foi
 
 + `os_waits` indica o número de espera do sistema operacional. Isso ocorre quando o spinlock não funcionou (o mutex não foi bloqueado durante o spinlock e foi necessário ceder ao sistema operacional e esperar).
 
-+ `os_yields` indica o número de vezes que um fio que tenta bloquear um mutex desistiu de seu timeslice e cedeu ao sistema operacional (pela suposição de que permitir que outros fios corram libera o mutex para que ele possa ser bloqueado).
++ `os_yields` indica o número de vezes que um thread que tenta bloquear um mutex desistiu de seu timeslice e cedeu ao sistema operacional (pela suposição de que permitir que outros threads corram libera o mutex para que ele possa ser bloqueado).
 
 + `os_wait_times` indica o tempo (em ms) gasto em espera do sistema operacional. No MySQL 5.7, o temporizador está desativado e esse valor é sempre 0.
 
@@ -2835,13 +2835,13 @@ Os valores de `Name` consistem em duas partes, que nomeiam um buffer interno e u
 
 Os atributos de buffer têm esses significados:
 
-* `size` é o tamanho do registro interno utilizado pela implementação, como o tamanho de uma linha em uma tabela. Os valores de `size` não podem ser alterados.
+* `size` é o tamanho do registro interno utilizado pela implementação, como o tamanho de uma string em uma tabela. Os valores de `size` não podem ser alterados.
 
-* `count` é o número de registros internos, como o número de linhas em uma tabela. Os valores de `count` podem ser alterados usando as opções de configuração do Gerador de Desempenho.
+* `count` é o número de registros internos, como o número de strings em uma tabela. Os valores de `count` podem ser alterados usando as opções de configuração do Gerador de Desempenho.
 
 * Para uma tabela, `tbl_name.memory` é o produto de `size` e `count`. Para o Schema de Desempenho como um todo, `performance_schema.memory` é a soma de toda a memória usada (a soma de todos os outros valores de `memory`).
 
-Em alguns casos, há uma relação direta entre um parâmetro de configuração do Schema de Desempenho e um valor de `SHOW ENGINE`. Por exemplo, `events_waits_history_long.count` corresponde a `performance_schema_events_waits_history_long_size`. Em outros casos, a relação é mais complexa. Por exemplo, `events_waits_history.count` corresponde a `performance_schema_events_waits_history_size` (o número de linhas por fio) multiplicado por `performance_schema_max_thread_instances` (o número de fios).
+Em alguns casos, há uma relação direta entre um parâmetro de configuração do Schema de Desempenho e um valor de `SHOW ENGINE`. Por exemplo, `events_waits_history_long.count` corresponde a `performance_schema_events_waits_history_long_size`. Em outros casos, a relação é mais complexa. Por exemplo, `events_waits_history.count` corresponde a `performance_schema_events_waits_history_size` (o número de strings por thread) multiplicado por `performance_schema_max_thread_instances` (o número de threads).
 
 **MOSTRE O STATUS DO MOTOR DE EXIBIÇÃO NDB.** Se o servidor tiver o motor de armazenamento `NDB` habilitado, `SHOW ENGINE NDB STATUS` exibe informações de status do clúster, como o número de nós de dados conectados, a string de conexão do clúster e as épocas do log binário do clúster, além de contagem de vários objetos da API do Cluster criados pelo MySQL Server quando conectado ao clúster. A saída de exemplo desta declaração é mostrada aqui:
 
@@ -2871,19 +2871,19 @@ mysql> SHOW ENGINE NDB STATUS;
 +------------+-----------------------+--------------------------------------------------+
 ```
 
-A coluna `Status` em cada uma dessas linhas fornece informações sobre a conexão do servidor MySQL com o clúster e sobre o status do log binário do clúster, respectivamente. As informações `Status` estão na forma de um conjunto de pares nome/valor separados por vírgula.
+A coluna `Status` em cada uma dessas strings fornece informações sobre a conexão do servidor MySQL com o clúster e sobre o status do log binário do clúster, respectivamente. As informações `Status` estão na forma de um conjunto de pares nome/valor separados por vírgula.
 
-A coluna `Status` da linha `connection` contém os pares nome/valor descritos na tabela a seguir.
+A coluna `Status` da string `connection` contém os pares nome/valor descritos na tabela a seguir.
 
 <table summary="Name and value pairs found in the connection row Status column in the output of the SHOW ENGINE NDB STATUS statement."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Name</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>cluster_node_id</code></td> <td>O ID do nó do servidor MySQL no clúster</td> </tr><tr> <td><code>connected_host</code></td> <td>O nome de domínio ou endereço IP do servidor de gerenciamento de clúster ao qual o servidor MySQL está conectado</td> </tr><tr> <td><code>connected_port</code></td> <td>O porto usado pelo servidor MySQL para se conectar ao servidor de gerenciamento (<code>connected_host</code>)</td> </tr><tr> <td><code>number_of_data_nodes</code></td> <td>O número de nós de dados configurados para o clúster (ou seja, o número de<code>[ndbd]</code>seções no aglomerado<code>config.ini</code>arquivo)</td> </tr><tr> <td><code>number_of_ready_data_nodes</code></td> <td>O número de nós de dados no clúster que estão realmente em execução</td> </tr><tr> <td><code>connect_count</code></td> <td>O número de vezes que isso<strong>mysqld</strong>conectou ou reconectou-se aos nós de dados do cluster</td> </tr></tbody></table>
 
-A coluna `Status` da linha `binlog` contém informações relacionadas à Replicação de NDB Cluster. Os pares nome/valor que ela contém são descritos na tabela a seguir.
+A coluna `Status` da string `binlog` contém informações relacionadas à Replicação de NDB Cluster. Os pares nome/valor que ela contém são descritos na tabela a seguir.
 
-<table summary="Name and value pairs found in the binlog row Status column in the output of the SHOW ENGINE NDB STATUS statement."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Name</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>latest_epoch</code></td> <td>A época mais recente que mais recentemente foi executada neste servidor MySQL (ou seja, o número de sequência da transação mais recente executada no servidor)</td> </tr><tr> <td><code>latest_trans_epoch</code></td> <td>A época mais recente processada pelos nós de dados do clúster</td> </tr><tr> <td><code>latest_received_binlog_epoch</code></td> <td>A época mais recente recebida pelo fio de registro binário</td> </tr><tr> <td><code>latest_handled_binlog_epoch</code></td> <td>A época mais recente processada pelo fio de log binário (para gravação no log binário)</td> </tr><tr> <td><code>latest_applied_binlog_epoch</code></td> <td>A época mais recente, na verdade, é escrita no log binário</td> </tr></tbody></table>
+<table summary="Name and value pairs found in the binlog row Status column in the output of the SHOW ENGINE NDB STATUS statement."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Name</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>latest_epoch</code></td> <td>A época mais recente que mais recentemente foi executada neste servidor MySQL (ou seja, o número de sequência da transação mais recente executada no servidor)</td> </tr><tr> <td><code>latest_trans_epoch</code></td> <td>A época mais recente processada pelos nós de dados do clúster</td> </tr><tr> <td><code>latest_received_binlog_epoch</code></td> <td>A época mais recente recebida pelo thread de registro binário</td> </tr><tr> <td><code>latest_handled_binlog_epoch</code></td> <td>A época mais recente processada pelo thread de log binário (para gravação no log binário)</td> </tr><tr> <td><code>latest_applied_binlog_epoch</code></td> <td>A época mais recente, na verdade, é escrita no log binário</td> </tr></tbody></table>
 
 Consulte a Seção 21.7, “Replicação de aglomerado NDB”, para obter mais informações.
 
-As linhas restantes da saída de `SHOW ENGINE NDB STATUS` que provavelmente serão úteis na monitorização do grupo estão listadas aqui por `Name`:
+As strings restantes da saída de `SHOW ENGINE NDB STATUS` que provavelmente serão úteis na monitorização do grupo estão listadas aqui por `Name`:
 
 * `NdbTransaction`: O número e o tamanho dos objetos `NdbTransaction` que foram criados. Um `NdbTransaction` é criado cada vez que uma operação de esquema de tabela (como `CREATE TABLE` ou `ALTER TABLE`) é realizada em uma tabela `NDB`.
 
@@ -3088,7 +3088,7 @@ Para ver eventos para um esquema específico, use a cláusula `FROM`. Por exempl
 SHOW EVENTS FROM test;
 ```
 
-A cláusula `LIKE`, se presente, indica quais nomes de eventos devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+A cláusula `LIKE`, se presente, indica quais nomes de eventos devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar strings com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 A saída `SHOW EVENTS` tem essas colunas:
 
@@ -3269,7 +3269,7 @@ SHOW INDEX FROM mytable FROM mydb;
 SHOW INDEX FROM mydb.mytable;
 ```
 
-A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+A cláusula `WHERE` pode ser usada para selecionar strings com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 `SHOW INDEX` retorna os seguintes campos:
 
@@ -3368,7 +3368,7 @@ SHOW OPEN TABLES
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW OPEN TABLES` lista as tabelas não `TEMPORARY` que estão atualmente abertas no cache de tabelas. Veja a Seção 8.4.3.1, “Como o MySQL abre e fecha tabelas”. A cláusula `FROM`, se presente, restringe as tabelas mostradas às presentes no banco de dados *`db_name`*. A cláusula `LIKE`, se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser dada para selecionar linhas usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+`SHOW OPEN TABLES` lista as tabelas não `TEMPORARY` que estão atualmente abertas no cache de tabelas. Veja a Seção 8.4.3.1, “Como o MySQL abre e fecha tabelas”. A cláusula `FROM`, se presente, restringe as tabelas mostradas às presentes no banco de dados *`db_name`*. A cláusula `LIKE`, se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser dada para selecionar strings usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 A saída `SHOW OPEN TABLES` tem essas colunas:
 
@@ -3502,7 +3502,7 @@ Essa declaração é uma extensão do MySQL que está disponível apenas para se
 
 Para usar qualquer uma dessas declarações, você deve ser o proprietário da rotina ou ter acesso ao `mysql.proc` da tabela `SELECT`.
 
-Se a rotina nomeada estiver disponível, cada declaração produz um conjunto de resultados. Cada linha do conjunto de resultados corresponde a uma “instrução” na rotina. A primeira coluna é `Pos`, que é um número ordinal começando com 0. A segunda coluna é `Instruction`, que contém uma declaração SQL (geralmente alterada a partir da fonte original) ou uma diretriz que tem significado apenas para o manipulador da rotina armazenada.
+Se a rotina nomeada estiver disponível, cada declaração produz um conjunto de resultados. Cada string do conjunto de resultados corresponde a uma “instrução” na rotina. A primeira coluna é `Pos`, que é um número ordinal começando com 0. A segunda coluna é `Instruction`, que contém uma declaração SQL (geralmente alterada a partir da fonte original) ou uma diretriz que tem significado apenas para o manipulador da rotina armazenada.
 
 ```sql
 mysql> DELIMITER //
@@ -3541,7 +3541,7 @@ mysql> SHOW FUNCTION CODE test.hello;
 1 row in set (0.00 sec)
 ```
 
-Neste exemplo, as declarações não executáveis `BEGIN` e `END` desapareceram, e para a declaração `DECLARE variable_name`, apenas a parte executável aparece (a parte onde o padrão é atribuído). Para cada declaração que é tirada da fonte, há uma palavra de código `stmt`, seguida por um tipo (9 significa `DROP`, 5 significa `INSERT`, e assim por diante). A última linha contém uma instrução `jump 2`, significando `GOTO instruction #2`.
+Neste exemplo, as declarações não executáveis `BEGIN` e `END` desapareceram, e para a declaração `DECLARE variable_name`, apenas a parte executável aparece (a parte onde o padrão é atribuído). Para cada declaração que é tirada da fonte, há uma palavra de código `stmt`, seguida por um tipo (9 significa `DROP`, 5 significa `INSERT`, e assim por diante). A última string contém uma instrução `jump 2`, significando `GOTO instruction #2`.
 
 #### 13.7.5.28 Declaração de status do procedimento de exibição
 
@@ -3554,7 +3554,7 @@ Essa declaração é uma extensão do MySQL. Ela retorna características de um 
 
 Para usar qualquer uma dessas declarações, você deve ser o proprietário da rotina ou ter acesso ao `mysql.proc` da tabela `SELECT`.
 
-A cláusula `LIKE`, se presente, indica quais nomes de procedimentos ou funções devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+A cláusula `LIKE`, se presente, indica quais nomes de procedimentos ou funções devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar strings com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 ```sql
 mysql> SHOW PROCEDURE STATUS LIKE 'sp1'\G
@@ -3666,7 +3666,7 @@ O identificador de conexão. Este é o mesmo valor exibido na coluna `ID` da tab
 
 * `User`
 
-O usuário do MySQL que emitiu a declaração. Um valor de `system user` refere-se a um fio não cliente gerado pelo servidor para lidar com tarefas internamente, por exemplo, um fio de manipulação de linha atrasada ou um fio de E/S ou SQL usado em hosts replicados. Para `system user`, não há um host especificado na coluna `Host`. `unauthenticated user` refere-se a um fio que se tornou associado a uma conexão com cliente, mas para o qual a autenticação do usuário do cliente ainda não ocorreu. `event_scheduler` refere-se ao fio que monitora eventos agendados (ver Seção 23.4, “Usando o Cronograma de Eventos”).
+O usuário do MySQL que emitiu a declaração. Um valor de `system user` refere-se a um thread não cliente gerado pelo servidor para lidar com tarefas internamente, por exemplo, um thread de manipulação de string atrasada ou um thread de E/S ou SQL usado em hosts replicados. Para `system user`, não há um host especificado na coluna `Host`. `unauthenticated user` refere-se a um thread que se tornou associado a uma conexão com cliente, mas para o qual a autenticação do usuário do cliente ainda não ocorreu. `event_scheduler` refere-se ao thread que monitora eventos agendados (ver Seção 23.4, “Usando o Cronograma de Eventos”).
 
 * `Host`
 
@@ -3682,17 +3682,17 @@ O tipo de comando que o thread está executando em nome do cliente, ou `Sleep` s
 
 * `Time`
 
-O tempo em segundos que o fio esteve em seu estado atual. Para um fio de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o tempo real do host da replica. Veja a Seção 16.2.3, “Fios de Replicação”.
+O tempo em segundos que o thread esteve em seu estado atual. Para um thread de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o tempo real do host da replica. Veja a Seção 16.2.3, “Threads de Replicação”.
 
 * `State`
 
-Uma ação, evento ou estado que indica o que o fio está fazendo. Para descrições dos valores de `State`, consulte a Seção 8.14, “Examinando informações do fio do servidor (processo”) (Informações).
+Uma ação, evento ou estado que indica o que o thread está fazendo. Para descrições dos valores de `State`, consulte a Seção 8.14, “Examinando informações do thread do servidor (processo”) (Informações).
 
-A maioria dos estados corresponde a operações muito rápidas. Se um fio permanecer em um estado específico por muitos segundos, pode haver um problema que precisa ser investigado.
+A maioria dos estados corresponde a operações muito rápidas. Se um thread permanecer em um estado específico por muitos segundos, pode haver um problema que precisa ser investigado.
 
 * `Info`
 
-A declaração que o fio está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a que é enviada ao servidor, ou uma declaração interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `Info` mostra a declaração `SELECT`.
+A declaração que o thread está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a que é enviada ao servidor, ou uma declaração interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `Info` mostra a declaração `SELECT`.
 
 #### 13.7.5.30 Declaração de PROFILO DE EXIBIÇÃO
 
@@ -3734,7 +3734,7 @@ Todas as declarações são perfiladas, exceto `SHOW PROFILE` e `SHOW PROFILES`,
 
 `SHOW PROFILE` exibe informações detalhadas sobre uma única declaração. Sem a cláusula `FOR QUERY n`, a saída se refere à declaração mais recentemente executada. Se `FOR QUERY n` for incluído, `SHOW PROFILE` exibe informações para a declaração *`n`*. Os valores de *`n`* correspondem aos valores de `Query_ID` exibidos por `SHOW PROFILES`.
 
-A cláusula `LIMIT row_count` pode ser usada para limitar a saída para *`row_count`* linhas. Se `LIMIT` for fornecida, `OFFSET offset` pode ser adicionado para começar a saída *`offset`* linhas no conjunto completo de linhas.
+A cláusula `LIMIT row_count` pode ser usada para limitar a saída para *`row_count`* strings. Se `LIMIT` for fornecida, `OFFSET offset` pode ser adicionado para começar a saída *`offset`* strings no conjunto completo de strings.
 
 Por padrão, `SHOW PROFILE` exibe as colunas `Status` e `Duration`. Os valores de `Status` são semelhantes aos dos valores de `State` exibidos por `SHOW PROCESSLIST`, embora possa haver algumas diferenças menores na interpretação das duas declarações para alguns valores de status (consulte a Seção 8.14, “Examinando Informações do Fundo do Servidor (Processo”) Informações”).
 
@@ -3752,7 +3752,7 @@ Os valores opcionais *`type`* podem ser especificados para exibir tipos específ
 * `MEMORY` não é implementado atualmente
 * `PAGE FAULTS` exibe contagens para falhas de página principais e secundárias
 
-* `SOURCE` exibe os nomes das funções do código-fonte, juntamente com o nome e o número da linha do arquivo em que a função ocorre
+* `SOURCE` exibe os nomes das funções do código-fonte, juntamente com o nome e o número da string do arquivo em que a função ocorre
 
 * `SWAPS` exibe contagens de troca
 
@@ -3915,7 +3915,7 @@ SHOW SLAVE HOSTS
 
 Exibe uma lista de réplicas atualmente registradas com a fonte.
 
-`SHOW SLAVE HOSTS` deve ser executado em um servidor que atue como fonte de replicação. `SHOW SLAVE HOSTS` requer o privilégio `REPLICATION SLAVE`. A declaração exibe informações sobre servidores que estão ou estiveram conectados como réplicas, com cada linha do resultado correspondendo a um servidor de réplica, conforme mostrado aqui:
+`SHOW SLAVE HOSTS` deve ser executado em um servidor que atue como fonte de replicação. `SHOW SLAVE HOSTS` requer o privilégio `REPLICATION SLAVE`. A declaração exibe informações sobre servidores que estão ou estiveram conectados como réplicas, com cada string do resultado correspondendo a um servidor de réplica, conforme mostrado aqui:
 
 ```sql
 mysql> SHOW SLAVE HOSTS;
@@ -3927,7 +3927,7 @@ mysql> SHOW SLAVE HOSTS;
 +------------+-----------+------+-----------+--------------------------------------+
 ```
 
-* `Server_id`: O ID único do servidor da replica, conforme configurado no arquivo de opções do servidor de replicação, ou na linha de comando com `--server-id=value`.
+* `Server_id`: O ID único do servidor da replica, conforme configurado no arquivo de opções do servidor de replicação, ou na string de comando com `--server-id=value`.
 
 * `Host`: O nome do host do servidor de replicação conforme especificado na replica com a opção `--report-host`. Isso pode diferir do nome da máquina conforme configurado no sistema operacional.
 
@@ -3939,7 +3939,7 @@ mysql> SHOW SLAVE HOSTS;
 
 Um zero nesta coluna significa que o porto de replicação (`--report-port`) não foi definido.
 
-* `Master_id`: O ID único do servidor de origem que a replicação do servidor está replicando. Este é o ID do servidor em que o `SHOW SLAVE HOSTS` é executado, portanto, este mesmo valor é listado para cada linha no resultado.
+* `Master_id`: O ID único do servidor de origem que a replicação do servidor está replicando. Este é o ID do servidor em que o `SHOW SLAVE HOSTS` é executado, portanto, este mesmo valor é listado para cada string no resultado.
 
 * `Slave_UUID`: O ID globalmente único desta réplica, conforme gerado na réplica e encontrado no arquivo `auto.cnf` da réplica.
 
@@ -3949,7 +3949,7 @@ Um zero nesta coluna significa que o porto de replicação (`--report-port`) nã
 SHOW SLAVE STATUS [FOR CHANNEL channel]
 ```
 
-Essa declaração fornece informações sobre o status dos parâmetros essenciais dos fios replicados. Requer o privilégio `SUPER` ou `REPLICATION CLIENT`.
+Essa declaração fornece informações sobre o status dos parâmetros essenciais dos threads replicados. Requer o privilégio `SUPER` ou `REPLICATION CLIENT`.
 
 Se você emitir essa declaração usando o cliente **mysql**, pode usar um `\G` como terminador de declaração em vez de um ponto e vírgula para obter um layout vertical mais legível:
 
@@ -4021,7 +4021,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para inf
 
 * `Slave_IO_State`
 
-Uma cópia do campo `State` do `SHOW PROCESSLIST` de saída para o fio de I/O de replicação. Isso lhe diz o que o thread está fazendo: tentando se conectar à fonte, esperando eventos da fonte, reconectando-se à fonte, e assim por diante. Para uma lista de estados possíveis, consulte a Seção 8.14.6, “Estados de Replicação de I/O de Replicação”.
+Uma cópia do campo `State` do `SHOW PROCESSLIST` de saída para o thread de I/O de replicação. Isso lhe diz o que o thread está fazendo: tentando se conectar à fonte, esperando eventos da fonte, reconectando-se à fonte, e assim por diante. Para uma lista de estados possíveis, consulte a Seção 8.14.6, “Estados de Replicação de I/O de Replicação”.
 
 * `Master_Host`
 
@@ -4073,7 +4073,7 @@ O valor da variável de status do sistema `Slave_running` corresponde a este val
 
 * `Slave_SQL_Running`
 
-Se o fio SQL foi iniciado.
+Se o thread SQL foi iniciado.
 
 * `Replicate_Do_DB`, `Replicate_Ignore_DB`
 
@@ -4091,7 +4091,7 @@ A emissão de `RESET MASTER` ou `RESET SLAVE` redefinirá os valores mostrados n
 
 Nota
 
-Quando o fio de replicação SQL recebe um erro, ele reporta o erro primeiro e, em seguida, para o fio SQL. Isso significa que há uma pequena janela de tempo durante a qual `SHOW SLAVE STATUS` mostra um valor não nulo para `Last_SQL_Errno`, embora `Slave_SQL_Running` ainda mostre `Yes`.
+Quando o thread de replicação SQL recebe um erro, ele reporta o erro primeiro e, em seguida, para o thread SQL. Isso significa que há uma pequena janela de tempo durante a qual `SHOW SLAVE STATUS` mostra um valor não nulo para `Last_SQL_Errno`, embora `Slave_SQL_Running` ainda mostre `Yes`.
 
 * `Skip_Counter`
 
@@ -4119,7 +4119,7 @@ Os valores especificados na cláusula `UNTIL` da declaração `START SLAVE`.
 
 + `Relay` se a replica estiver lendo até uma posição dada em seu log de relé
 
-+ `SQL_BEFORE_GTIDS` se o fio de replicação SQL estiver processando transações até atingir a primeira transação cujo GTID está listado no `gtid_set`.
++ `SQL_BEFORE_GTIDS` se o thread de replicação SQL estiver processando transações até atingir a primeira transação cujo GTID está listado no `gtid_set`.
 
 + `SQL_AFTER_GTIDS` se as threads da replica estão processando todas as transações até que a última transação no `gtid_set` tenha sido processada por ambas as threads.
 
@@ -4223,7 +4223,7 @@ Quando `Slave_SQL_Running_State` é `Waiting until MASTER_DELAY seconds after ma
 
 * `Slave_SQL_Running_State`
 
-O estado do fio de SQL (análogo a `Slave_IO_State`). O valor é idêntico ao valor do `State` do fio de SQL, conforme exibido por `SHOW PROCESSLIST`. A Seção 8.14.7, “Estados de Replicação do Fio de SQL”, fornece uma lista dos possíveis estados
+O estado do thread de SQL (análogo a `Slave_IO_State`). O valor é idêntico ao valor do `State` do thread de SQL, conforme exibido por `SHOW PROCESSLIST`. A Seção 8.14.7, “Estados de Replicação do Thread de SQL”, fornece uma lista dos possíveis estados
 
 * `Master_Retry_Count`
 
@@ -4302,7 +4302,7 @@ Informações de status variáveis também estão disponíveis nessas fontes:
 
 * O comando **mysqladmin status-extendido**. Veja a Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
 
-Para `SHOW STATUS`, uma cláusula `LIKE`, se presente, indica quais nomes de variáveis devem ser correspondidos. Uma cláusula `WHERE` pode ser dada para selecionar linhas usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+Para `SHOW STATUS`, uma cláusula `LIKE`, se presente, indica quais nomes de variáveis devem ser correspondidos. Uma cláusula `WHERE` pode ser dada para selecionar strings usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 `SHOW STATUS` aceita um modificador opcional de escopo da variável `GLOBAL` ou `SESSION`:
 
@@ -4348,7 +4348,7 @@ mysql> SHOW STATUS;
 +--------------------------+------------+
 ```
 
-Com uma cláusula `LIKE`, a declaração exibe apenas as linhas para aquelas variáveis com nomes que correspondem ao padrão:
+Com uma cláusula `LIKE`, a declaração exibe apenas as strings para aquelas variáveis com nomes que correspondem ao padrão:
 
 ```sql
 mysql> SHOW STATUS LIKE 'Key%';
@@ -4371,7 +4371,7 @@ SHOW TABLE STATUS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW TABLE STATUS` funciona como `SHOW TABLES`, mas fornece uma grande quantidade de informações sobre cada tabela que não é `TEMPORARY`. Você também pode obter essa lista usando o comando **mysqlshow --status *`db_name`***. A cláusula `LIKE`, se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+`SHOW TABLE STATUS` funciona como `SHOW TABLES`, mas fornece uma grande quantidade de informações sobre cada tabela que não é `TEMPORARY`. Você também pode obter essa lista usando o comando **mysqlshow --status *`db_name`***. A cláusula `LIKE`, se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar strings com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 Essa declaração também exibe informações sobre visualizações.
 
@@ -4393,19 +4393,19 @@ O número da versão do arquivo `.frm` da tabela.
 
 * `Row_format`
 
-O formato de armazenamento em linha (`Fixed`, `Dynamic`, `Compressed`, `Redundant`, `Compact`). Para as tabelas `MyISAM`, `Dynamic` corresponde ao que o **myisamchk -dvv** reporta como `Packed`. O formato da tabela `InnoDB` é `Redundant` ou `Compact` ao usar o formato de arquivo `Antelope`, ou `Compressed` ou `Dynamic` ao usar o formato de arquivo `Barracuda`.
+O formato de armazenamento em string (`Fixed`, `Dynamic`, `Compressed`, `Redundant`, `Compact`). Para as tabelas `MyISAM`, `Dynamic` corresponde ao que o **myisamchk -dvv** reporta como `Packed`. O formato da tabela `InnoDB` é `Redundant` ou `Compact` ao usar o formato de arquivo `Antelope`, ou `Compressed` ou `Dynamic` ao usar o formato de arquivo `Barracuda`.
 
 * `Rows`
 
-O número de linhas. Algumas engines de armazenamento, como `MyISAM`, armazenam o contagem exata. Para outras engines de armazenamento, como `InnoDB`, esse valor é uma aproximação e pode variar do valor real em até 40% a 50%. Nesses casos, use `SELECT COUNT(*)` para obter uma contagem precisa.
+O número de strings. Algumas engines de armazenamento, como `MyISAM`, armazenam o contagem exata. Para outras engines de armazenamento, como `InnoDB`, esse valor é uma aproximação e pode variar do valor real em até 40% a 50%. Nesses casos, use `SELECT COUNT(*)` para obter uma contagem precisa.
 
 O valor `Rows` é `NULL` para as tabelas `INFORMATION_SCHEMA`.
 
-Para as tabelas `InnoDB`, o número de linhas é apenas uma estimativa grosseira usada na otimização do SQL. (Isso também é verdadeiro se a tabela `InnoDB` estiver particionada.)
+Para as tabelas `InnoDB`, o número de strings é apenas uma estimativa grosseira usada na otimização do SQL. (Isso também é verdadeiro se a tabela `InnoDB` estiver particionada.)
 
 * `Avg_row_length`
 
-O comprimento médio da linha.
+O comprimento médio da string.
 
 Consulte as notas no final desta seção para informações relacionadas.
 
@@ -4437,7 +4437,7 @@ Consulte as notas no final desta seção para obter informações sobre outros m
 
 O número de bytes alocados, mas não utilizados.
 
-As tabelas `InnoDB` relatam o espaço livre do espaço de tabelas ao qual a tabela pertence. Para uma tabela localizada no espaço de tabelas compartilhado, este é o espaço livre do espaço de tabelas compartilhado. Se você estiver usando vários espaços de tabelas e a tabela tenha seu próprio espaço de tabelas, o espaço livre é apenas para essa tabela. Espaço livre significa o número de bytes em extensões completamente livres, menos uma margem de segurança. Mesmo que o espaço livre seja exibido como 0, é possível inserir linhas, desde que novas extensões não precisem ser alocadas.
+As tabelas `InnoDB` relatam o espaço livre do espaço de tabelas ao qual a tabela pertence. Para uma tabela localizada no espaço de tabelas compartilhado, este é o espaço livre do espaço de tabelas compartilhado. Se você estiver usando vários espaços de tabelas e a tabela tenha seu próprio espaço de tabelas, o espaço livre é apenas para essa tabela. Espaço livre significa o número de bytes em extensões completamente livres, menos uma margem de segurança. Mesmo que o espaço livre seja exibido como 0, é possível inserir strings, desde que novas extensões não precisem ser alocadas.
 
 Para o NDB Cluster, `Data_free` mostra o espaço alocado em disco para, mas não utilizado por, uma tabela ou fragmento de dados de disco. (O uso do recurso de dados em memória é relatado pela coluna `Data_length`.
 
@@ -4490,7 +4490,7 @@ Opções extras usadas com `CREATE TABLE`.
 
 `Create_options` mostra a opção `ENCRYPTION` especificada ao criar ou alterar um espaço de tabela por tabela.
 
-Ao criar uma tabela com o modo estrito desativado, o formato de linha padrão do mecanismo de armazenamento é usado se o formato de linha especificado não for suportado. O formato de linha real da tabela é relatado na coluna `Row_format`. `Create_options` mostra o formato de linha que foi especificado na declaração `CREATE TABLE`.
+Ao criar uma tabela com o modo estrito desativado, o formato de string padrão do mecanismo de armazenamento é usado se o formato de string especificado não for suportado. O formato de string real da tabela é relatado na coluna `Row_format`. `Create_options` mostra o formato de string que foi especificado na declaração `CREATE TABLE`.
 
 Ao alterar o motor de armazenamento de uma tabela, as opções da tabela que não são aplicáveis ao novo motor de armazenamento são mantidas na definição da tabela para permitir a reversão da tabela com suas opções previamente definidas para o motor de armazenamento original, se necessário. `Create_options` pode mostrar opções retidas.
 
@@ -4500,7 +4500,7 @@ O comentário usado ao criar a tabela (ou informações sobre o motivo pelo qual
 
 ##### Notas
 
-* Para as tabelas `InnoDB`, `SHOW TABLE STATUS` não fornece estatísticas precisas, exceto pelo tamanho físico reservado pela tabela. O número de linhas é apenas uma estimativa grosseira usada na otimização do SQL.
+* Para as tabelas `InnoDB`, `SHOW TABLE STATUS` não fornece estatísticas precisas, exceto pelo tamanho físico reservado pela tabela. O número de strings é apenas uma estimativa grosseira usada na otimização do SQL.
 
 * Para as tabelas `NDB`, a saída desta declaração mostra valores apropriados para as colunas `Avg_row_length` e `Data_length`, com exceção de que as colunas `BLOB` não são consideradas.
 
@@ -4522,7 +4522,7 @@ SHOW [FULL] TABLES
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW TABLES` lista as tabelas não `TEMPORARY` em um banco de dados dado. Você também pode obter essa lista usando o comando **mysqlshow *`db_name`***. A cláusula `LIKE`, se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser dada para selecionar linhas usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+`SHOW TABLES` lista as tabelas não `TEMPORARY` em um banco de dados dado. Você também pode obter essa lista usando o comando **mysqlshow *`db_name`***. A cláusula `LIKE`, se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser dada para selecionar strings usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 A correspondência realizada pela cláusula `LIKE` depende da configuração da variável de sistema `lower_case_table_names`.
 
@@ -4540,7 +4540,7 @@ SHOW TRIGGERS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW TRIGGERS` lista os gatilhos atualmente definidos para tabelas em um banco de dados (o banco de dados padrão, a menos que uma cláusula `FROM` seja dada). Esta declaração retorna resultados apenas para bancos e tabelas para as quais você tem o privilégio `TRIGGER`. A cláusula `LIKE`, se presente, indica quais nomes de tabelas (não nomes de gatilho) devem ser correspondidos e faz com que a declaração exiba gatilhos para essas tabelas. A cláusula `WHERE` pode ser dada para selecionar linhas usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+`SHOW TRIGGERS` lista os gatilhos atualmente definidos para tabelas em um banco de dados (o banco de dados padrão, a menos que uma cláusula `FROM` seja dada). Esta declaração retorna resultados apenas para bancos e tabelas para as quais você tem o privilégio `TRIGGER`. A cláusula `LIKE`, se presente, indica quais nomes de tabelas (não nomes de gatilho) devem ser correspondidos e faz com que a declaração exiba gatilhos para essas tabelas. A cláusula `WHERE` pode ser dada para selecionar strings usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 Para o gatilho `ins_sum` definido na Seção 23.3, “Usando gatilhos”, a saída do `SHOW TRIGGERS` é conforme mostrado aqui:
 
@@ -4571,7 +4571,7 @@ O nome do gatilho.
 
 * `Event`
 
-O evento desencadeador. Este é o tipo de operação na tabela associada para a qual o gatilho é ativado. O valor é `INSERT` (uma linha foi inserida), `DELETE` (uma linha foi excluída) ou `UPDATE` (uma linha foi modificada).
+O evento desencadeador. Este é o tipo de operação na tabela associada para a qual o gatilho é ativado. O valor é `INSERT` (uma string foi inserida), `DELETE` (uma string foi excluída) ou `UPDATE` (uma string foi modificada).
 
 * `Table`
 
@@ -4632,7 +4632,7 @@ Tabelas do Schema de desempenho. Veja a Seção 25.12.13, “Tabelas de variáve
 
 * O comando **mysqladmin variables**. Veja a Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
 
-Para `SHOW VARIABLES`, uma cláusula `LIKE`, se presente, indica quais nomes de variáveis devem ser correspondidos. Uma cláusula `WHERE` pode ser dada para selecionar linhas usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
+Para `SHOW VARIABLES`, uma cláusula `LIKE`, se presente, indica quais nomes de variáveis devem ser correspondidos. Uma cláusula `WHERE` pode ser dada para selecionar strings usando condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”.
 
 `SHOW VARIABLES` aceita um modificador opcional de escopo da variável `GLOBAL` ou `SESSION`:
 
@@ -4709,7 +4709,7 @@ mysql> SHOW VARIABLES;
 +-----------------------------------------+---------------------------+
 ```
 
-Com uma cláusula `LIKE`, a declaração exibe apenas as linhas para aquelas variáveis com nomes que correspondem ao padrão. Para obter a linha para uma variável específica, use uma cláusula `LIKE` como mostrado:
+Com uma cláusula `LIKE`, a declaração exibe apenas as strings para aquelas variáveis com nomes que correspondem ao padrão. Para obter a string para uma variável específica, use uma cláusula `LIKE` como mostrado:
 
 ```sql
 SHOW VARIABLES LIKE 'max_join_size';
@@ -4867,7 +4867,7 @@ BINLOG 'str'
 
 `BINLOG` é uma declaração de uso interno. Ela é gerada pelo programa **mysqlbinlog** como a representação imprimível de certos eventos em arquivos de log binário. (Veja a Seção 4.6.7, “mysqlbinlog — Utilitário para Processamento de Arquivos de Log Binário”.) O valor `'str'` é uma string codificada em base 64 que o servidor decodifica para determinar a mudança de dados indicada pelo evento correspondente. Esta declaração requer o privilégio `SUPER`.
 
-Essa declaração pode executar apenas eventos de descrição de formato e eventos de linha.
+Essa declaração pode executar apenas eventos de descrição de formato e eventos de string.
 
 #### 13.7.6.2 Declaração de índice de cache
 
@@ -5013,7 +5013,7 @@ Nota
 
 A declaração `FLUSH` causa um commit implícito. Veja a Seção 13.3.3, “Declarações que causam um commit implícito”.
 
-A ferramenta **mysqladmin** oferece uma interface de linha de comando para algumas operações de limpeza, usando comandos como `flush-hosts`, `flush-logs`, `flush-privileges`, `flush-status` e `flush-tables`. Veja a Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
+A ferramenta **mysqladmin** oferece uma interface de string de comando para algumas operações de limpeza, usando comandos como `flush-hosts`, `flush-logs`, `flush-privileges`, `flush-status` e `flush-tables`. Veja a Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
 
 Enviar um sinal `SIGHUP` para o servidor faz com que várias operações de limpeza ocorram, que são semelhantes a várias formas da declaração `FLUSH`. Os sinais podem ser enviados pela conta do sistema `root` ou pela conta do sistema que possui o processo do servidor. Isso permite que as operações de limpeza sejam realizadas sem precisar se conectar ao servidor, o que requer uma conta MySQL que tenha privilégios suficientes para essas operações. Veja a Seção 4.10, “Tratamento de Sinais Unix no MySQL”.
 
@@ -5162,7 +5162,7 @@ Essa operação é uma maneira muito conveniente de obter backups se você tiver
 
 Antes do MySQL 5.7.19, `FLUSH TABLES WITH READ LOCK` não é compatível com transações XA.
 
-`FLUSH TABLES WITH READ LOCK` não impede que o servidor insira linhas nas tabelas de log (consulte a Seção 5.4.1, “Selecionando destinos de saída de log de consulta geral e log de consulta lenta”).
+`FLUSH TABLES WITH READ LOCK` não impede que o servidor insira strings nas tabelas de log (consulte a Seção 5.4.1, “Selecionando destinos de saída de log de consulta geral e log de consulta lenta”).
 
 * `FLUSH TABLES tbl_name [, tbl_name] ... WITH READ LOCK`
 
@@ -5235,7 +5235,7 @@ Enquanto `FLUSH TABLES ... FOR EXPORT` está em vigor na sessão, as tentativas 
 KILL [CONNECTION | QUERY] processlist_id
 ```
 
-Cada conexão com `mysqld` é executada em um fio separado. Você pode matar um fio com a declaração `KILL processlist_id`.
+Cada conexão com `mysqld` é executada em um thread separado. Você pode matar um thread com a declaração `KILL processlist_id`.
 
 Os identificadores do processo thread podem ser determinados a partir da coluna `ID` da tabela `INFORMATION_SCHEMA` `PROCESSLIST`, da coluna `Id` da saída `SHOW PROCESSLIST` e da coluna `PROCESSLIST_ID` da tabela do Schema de Desempenho [[`threads`]. O valor do thread atual é retornado pela função `CONNECTION_ID()`.
 
@@ -5263,21 +5263,21 @@ Nota
 
 Você não pode usar `KILL` com a biblioteca do servidor MySQL embutido porque o servidor embutido funciona apenas dentro dos threads do aplicativo host. Não cria nenhum thread de conexão por si só.
 
-Quando você usa `KILL`, uma bandeira de eliminação específica para o fio é definida para o fio. Na maioria dos casos, pode levar algum tempo para o fio morrer, porque a bandeira de eliminação é verificada apenas em intervalos específicos:
+Quando você usa `KILL`, uma bandeira de eliminação específica para o thread é definida para o thread. Na maioria dos casos, pode levar algum tempo para o thread morrer, porque a bandeira de eliminação é verificada apenas em intervalos específicos:
 
-* Durante as operações de `SELECT`, para os loops de `ORDER BY` e `GROUP BY`, a bandeira é verificada após a leitura de um bloco de linhas. Se a bandeira de eliminação estiver definida, a declaração é interrompida.
+* Durante as operações de `SELECT`, para os loops de `ORDER BY` e `GROUP BY`, a bandeira é verificada após a leitura de um bloco de strings. Se a bandeira de eliminação estiver definida, a declaração é interrompida.
 
-* As operações `ALTER TABLE` que fazem uma cópia de tabela verificam a bandeira de eliminação periodicamente para cada algumas linhas copiadas lidas da tabela original. Se a bandeira de eliminação estiver definida, a declaração é abortada e a tabela temporária é excluída.
+* As operações `ALTER TABLE` que fazem uma cópia de tabela verificam a bandeira de eliminação periodicamente para cada algumas strings copiadas lidas da tabela original. Se a bandeira de eliminação estiver definida, a declaração é abortada e a tabela temporária é excluída.
 
 A declaração `KILL` retorna sem esperar confirmação, mas a verificação da bandeira de eliminação interrompe a operação em um período razoavelmente curto. Interromper a operação para realizar qualquer limpeza necessária também leva algum tempo.
 
-* Durante as operações de `UPDATE` ou `DELETE`, a bandeira de eliminação é verificada após cada bloco lido e após cada linha atualizada ou excluída. Se a bandeira de eliminação estiver definida, a declaração é abortada. Se você não estiver usando transações, as alterações não são revertidas.
+* Durante as operações de `UPDATE` ou `DELETE`, a bandeira de eliminação é verificada após cada bloco lido e após cada string atualizada ou excluída. Se a bandeira de eliminação estiver definida, a declaração é abortada. Se você não estiver usando transações, as alterações não são revertidas.
 
 * `GET_LOCK()` interrompe e retorna `NULL`.
 
-* Se o fio estiver no manipulador de bloqueio de tabela (estado: `Locked`, o bloqueio de tabela é rapidamente abortado.
+* Se o thread estiver no manipulador de bloqueio de tabela (estado: `Locked`, o bloqueio de tabela é rapidamente abortado.
 
-* Se o fio estiver aguardando espaço livre em um chamado de escrita, a escrita é aborrecida com uma mensagem de erro de "disco cheio".
+* Se o thread estiver aguardando espaço livre em um chamado de escrita, a escrita é aborrecida com uma mensagem de erro de "disco cheio".
 
 Aviso
 

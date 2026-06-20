@@ -16,7 +16,7 @@ A sintaxe `BEGIN ... END` é usada para escrever instruções compostas, que pod
 
 Os blocos `BEGIN ... END` podem ser aninhados.
 
-O uso de múltiplas declarações exige que um cliente seja capaz de enviar strings de declaração que contenham o delimitador de declaração `;`. No cliente de linha de comando **mysql**, isso é tratado com o comando `delimiter`. Alterar o delimitador de fim de declaração `;` (por exemplo, para `//`) permite que `;` seja usado em um corpo de programa. Para um exemplo, consulte a Seção 23.1, “Definindo programas armazenados”.
+O uso de múltiplas declarações exige que um cliente seja capaz de enviar strings de declaração que contenham o delimitador de declaração `;`. No cliente de string de comando **mysql**, isso é tratado com o comando `delimiter`. Alterar o delimitador de fim de declaração `;` (por exemplo, para `//`) permite que `;` seja usado em um corpo de programa. Para um exemplo, consulte a Seção 23.1, “Definindo programas armazenados”.
 
 Um bloco `BEGIN ... END` pode ser rotulado. Veja a Seção 13.6.2, “Rotulagem de declarações”.
 
@@ -438,7 +438,7 @@ O MySQL suporta cursor dentro de programas armazenados. A sintaxe é como na SQL
 * Inespecífico: O servidor pode ou não fazer uma cópia de sua tabela de resultados
 
 * Apenas leitura: Não atualizável  
-* Não scrollable: Pode ser percorrido apenas em uma direção e não pode pular linhas
+* Não scrollable: Pode ser percorrido apenas em uma direção e não pode pular strings
 
 As declarações de cursor devem aparecer antes das declarações de manipulador e após as declarações de variáveis e condições.
 
@@ -493,7 +493,7 @@ Se não for fechado explicitamente, um cursor é fechado no final do bloco `BEGI
 DECLARE cursor_name CURSOR FOR select_statement
 ```
 
-Esta declaração declara um cursor e o associa a uma declaração `SELECT` que recupera as linhas que serão percorridas pelo cursor. Para recuperar as linhas posteriormente, use uma declaração `FETCH`. O número de colunas recuperado pela declaração `SELECT` deve corresponder ao número de variáveis de saída especificadas na declaração `FETCH`.
+Esta declaração declara um cursor e o associa a uma declaração `SELECT` que recupera as strings que serão percorridas pelo cursor. Para recuperar as strings posteriormente, use uma declaração `FETCH`. O número de colunas recuperado pela declaração `SELECT` deve corresponder ao número de variáveis de saída especificadas na declaração `FETCH`.
 
 A declaração `SELECT` não pode ter uma cláusula `INTO`.
 
@@ -509,9 +509,9 @@ Para informações disponíveis através das declarações `SHOW`, é possível,
 FETCH [[NEXT] FROM] cursor_name INTO var_name [, var_name] ...
 ```
 
-Essa declaração recupera a próxima linha da declaração `SELECT` associada ao cursor especificado (que deve estar aberto) e avança o ponteiro do cursor. Se uma linha existir, as colunas recuperadas são armazenadas nas variáveis nomeadas. O número de colunas recuperadas pela declaração `SELECT` deve corresponder ao número de variáveis de saída especificadas na declaração `FETCH`.
+Essa declaração recupera a próxima string da declaração `SELECT` associada ao cursor especificado (que deve estar aberto) e avança o ponteiro do cursor. Se uma string existir, as colunas recuperadas são armazenadas nas variáveis nomeadas. O número de colunas recuperadas pela declaração `SELECT` deve corresponder ao número de variáveis de saída especificadas na declaração `FETCH`.
 
-Se não houver mais linhas disponíveis, uma condição sem dados ocorre com o valor SQLSTATE `'02000'`. Para detectar essa condição, você pode configurar um manipulador para ela (ou para uma condição `NOT FOUND`). Para um exemplo, consulte a Seção 13.6.6, “Cursors”.
+Se não houver mais strings disponíveis, uma condição sem dados ocorre com o valor SQLSTATE `'02000'`. Para detectar essa condição, você pode configurar um manipulador para ela (ou para uma condição `NOT FOUND`). Para um exemplo, consulte a Seção 13.6.6, “Cursors”.
 
 Tenha em atenção que outra operação, como uma `SELECT` ou outra `FETCH`, também pode fazer com que o manipulador execute ao levantar a mesma condição. Se for necessário distinguir qual operação levantou a condição, coloque a operação dentro do seu próprio bloco `BEGIN ... END` para que possa ser associada ao seu próprio manipulador.
 
@@ -525,11 +525,11 @@ Essa declaração abre um cursor previamente declarado. Para um exemplo, veja a 
 
 #### 13.6.6.5 Restrições em cursors do lado do servidor
 
-Os cursors do lado do servidor são implementados na API C usando a função `mysql_stmt_attr_set()`. A mesma implementação é usada para cursors em rotinas armazenadas. Um cursor do lado do servidor permite que um conjunto de resultados seja gerado no lado do servidor, mas não transferido para o cliente, exceto para as linhas que o cliente solicita. Por exemplo, se um cliente executa uma consulta, mas está interessado apenas na primeira linha, as linhas restantes não são transferidas.
+Os cursors do lado do servidor são implementados na API C usando a função `mysql_stmt_attr_set()`. A mesma implementação é usada para cursors em rotinas armazenadas. Um cursor do lado do servidor permite que um conjunto de resultados seja gerado no lado do servidor, mas não transferido para o cliente, exceto para as strings que o cliente solicita. Por exemplo, se um cliente executa uma consulta, mas está interessado apenas na primeira string, as strings restantes não são transferidas.
 
-Em MySQL, um cursor do lado do servidor é materializado em uma tabela temporária interna. Inicialmente, esta é uma tabela `MEMORY`, mas é convertida em uma tabela `MyISAM` quando seu tamanho excede o valor mínimo das variáveis de sistema `max_heap_table_size` e `tmp_table_size`. As mesmas restrições se aplicam às tabelas temporárias internas criadas para armazenar o conjunto de resultados de um cursor, como para outros usos de tabelas temporárias internas. Veja a Seção 8.4.4, “Uso de Tabela Temporária Interna em MySQL”. Uma limitação da implementação é que, para um conjunto de resultados grande, recuperar suas linhas através de um cursor pode ser lento.
+Em MySQL, um cursor do lado do servidor é materializado em uma tabela temporária interna. Inicialmente, esta é uma tabela `MEMORY`, mas é convertida em uma tabela `MyISAM` quando seu tamanho excede o valor mínimo das variáveis de sistema `max_heap_table_size` e `tmp_table_size`. As mesmas restrições se aplicam às tabelas temporárias internas criadas para armazenar o conjunto de resultados de um cursor, como para outros usos de tabelas temporárias internas. Veja a Seção 8.4.4, “Uso de Tabela Temporária Interna em MySQL”. Uma limitação da implementação é que, para um conjunto de resultados grande, recuperar suas strings através de um cursor pode ser lento.
 
-Os cursors são apenas de leitura; você não pode usar um cursor para atualizar linhas.
+Os cursors são apenas de leitura; você não pode usar um cursor para atualizar strings.
 
 `UPDATE WHERE CURRENT OF` e `DELETE WHERE CURRENT OF` não são implementados, porque os cursors atualizáveis não são suportados.
 
@@ -681,7 +681,7 @@ Não use valores SQLSTATE que comecem com `'00'`, pois esses indicam sucesso em 
     END;
   ```
 
-* `NOT FOUND`: Abreviação para a classe de valores SQLSTATE que começam com `'02'`. Isso é relevante no contexto de cursor e é usado para controlar o que acontece quando um cursor atinge o final de um conjunto de dados. Se não houver mais linhas disponíveis, uma condição de Nenhum dado ocorre com o valor SQLSTATE `'02000'`. Para detectar essa condição, você pode configurar um manipulador para ela ou para uma condição de `NOT FOUND`.
+* `NOT FOUND`: Abreviação para a classe de valores SQLSTATE que começam com `'02'`. Isso é relevante no contexto de cursor e é usado para controlar o que acontece quando um cursor atinge o final de um conjunto de dados. Se não houver mais strings disponíveis, uma condição de Nenhum dado ocorre com o valor SQLSTATE `'02000'`. Para detectar essa condição, você pode configurar um manipulador para ela ou para uma condição de `NOT FOUND`.
 
   ```sql
   DECLARE CONTINUE HANDLER FOR NOT FOUND
@@ -690,7 +690,7 @@ Não use valores SQLSTATE que comecem com `'00'`, pois esses indicam sucesso em 
     END;
   ```
 
-Para outro exemplo, veja a Seção 13.6.6, “Cursors”. A condição `NOT FOUND` também ocorre para as declarações `SELECT ... INTO var_list` que não recuperam nenhuma linha.
+Para outro exemplo, veja a Seção 13.6.6, “Cursors”. A condição `NOT FOUND` também ocorre para as declarações `SELECT ... INTO var_list` que não recuperam nenhuma string.
 
 * `SQLEXCEPTION`: Abreviação para a classe de valores SQLSTATE que não começam com `'00'`, `'01'` ou `'02'`.
 
@@ -886,7 +886,7 @@ Esta extensão só se aplica à área de diagnóstico atual. Não se aplica à s
 
 Para uma descrição da área de diagnóstico, consulte a Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”. Em resumo, ela contém dois tipos de informações:
 
-* Informações de declaração, como o número de condições que ocorreram ou o número de linhas afetadas.
+* Informações de declaração, como o número de condições que ocorreram ou o número de strings afetadas.
 
 * Informações sobre a condição, como o código e a mensagem de erro. Se uma declaração levantar várias condições, esta parte da área de diagnóstico tem uma área de condição para cada uma. Se uma declaração não levantar condições, esta parte da área de diagnóstico está vazia.
 
@@ -913,7 +913,7 @@ Condition area list:
 
 `GET DIAGNOSTICS` pode obter informações de declaração ou condição, mas não ambas na mesma declaração:
 
-* Para obter informações de declaração, obtenha os itens desejados da declaração nas variáveis de destino. Esta instância de `GET DIAGNOSTICS` atribui o número de condições disponíveis e o número de linhas afetadas às variáveis de usuário `@p1` e `@p2`:
+* Para obter informações de declaração, obtenha os itens desejados da declaração nas variáveis de destino. Esta instância de `GET DIAGNOSTICS` atribui o número de condições disponíveis e o número de strings afetadas às variáveis de usuário `@p1` e `@p2`:
 
   ```sql
   GET DIAGNOSTICS @p1 = NUMBER, @p2 = ROW_COUNT;
@@ -960,7 +960,7 @@ GET DIAGNOSTICS CONDITION @cno @errno = MYSQL_ERRNO;
 
 Para obter informações sobre os itens de informação de declaração e condição permitidos, e quais são preenchidos quando uma condição ocorre, consulte os itens de informação da área de diagnóstico.
 
-Aqui está um exemplo que usa `GET DIAGNOSTICS` e um manipulador de exceção no contexto de um procedimento armazenado para avaliar o resultado de uma operação de inserção. Se a inserção foi bem-sucedida, o procedimento usa `GET DIAGNOSTICS` para obter o número de linhas afetadas. Isso mostra que você pode usar `GET DIAGNOSTICS` várias vezes para recuperar informações sobre uma declaração, desde que a área de diagnóstico atual não tenha sido limpa.
+Aqui está um exemplo que usa `GET DIAGNOSTICS` e um manipulador de exceção no contexto de um procedimento armazenado para avaliar o resultado de uma operação de inserção. Se a inserção foi bem-sucedida, o procedimento usa `GET DIAGNOSTICS` para obter o número de strings afetadas. Isso mostra que você pode usar `GET DIAGNOSTICS` várias vezes para recuperar informações sobre uma declaração, desde que a área de diagnóstico atual não tenha sido limpa.
 
 ```sql
 CREATE PROCEDURE do_insert(value INT)
@@ -1109,7 +1109,7 @@ As declarações que executam após as declarações `GET DIAGNOSTICS` podem red
 
 Quando o manipulador de condição termina, sua área de diagnóstico atual é removida da pilha e a área de diagnóstico empilhada se torna a área de diagnóstico atual no procedimento armazenado.
 
-Após o procedimento retornar, a tabela contém duas linhas. A linha vazia resulta da tentativa de inserir `NULL` que foi mapeada a uma inserção de cadeia vazia:
+Após o procedimento retornar, a tabela contém duas strings. A string vazia resulta da tentativa de inserir `NULL` que foi mapeada a uma inserção de cadeia vazia:
 
 ```sql
 +----------+
@@ -1198,7 +1198,7 @@ condition_name, simple_value_specification:
 
 `RESIGNAL` transmite as informações sobre as condições de erro que estão disponíveis durante a execução de um manipulador de condição dentro de uma declaração composta dentro de um procedimento armazenado ou função, gatilho ou evento. `RESIGNAL` pode alterar algumas ou todas as informações antes de transmiti-las. `RESIGNAL` está relacionado a `SIGNAL`, mas, em vez de originar uma condição como o `SIGNAL` faz, `RESIGNAL` retransmite informações de condição existentes, possivelmente após modificá-las.
 
-`RESIGNAL` permite tanto lidar com um erro quanto retornar as informações do erro. Caso contrário, ao executar uma declaração SQL dentro do manipulador, as informações que causaram a ativação do manipulador são destruídas. `RESIGNAL` também pode tornar alguns procedimentos mais curtos se um manipulador dado puder lidar com parte de uma situação, então passar a condição “para cima da linha” para outro manipulador.
+`RESIGNAL` permite tanto lidar com um erro quanto retornar as informações do erro. Caso contrário, ao executar uma declaração SQL dentro do manipulador, as informações que causaram a ativação do manipulador são destruídas. `RESIGNAL` também pode tornar alguns procedimentos mais curtos se um manipulador dado puder lidar com parte de uma situação, então passar a condição “para cima da string” para outro manipulador.
 
 Não são necessários privilégios para executar a declaração `RESIGNAL`.
 
@@ -1893,7 +1893,7 @@ A discussão a seguir descreve a estrutura da área de diagnóstico no MySQL, os
 
 A área de diagnóstico contém dois tipos de informações:
 
-* Informações de declaração, como o número de condições que ocorreram ou o número de linhas afetadas.
+* Informações de declaração, como o número de condições que ocorreram ou o número de strings afetadas.
 
 * Informações sobre a condição, como o código e a mensagem de erro. Se uma declaração levantar várias condições, esta parte da área de diagnóstico tem uma área de condição para cada uma. Se uma declaração não levantar condições, esta parte da área de diagnóstico está vazia.
 
@@ -1926,7 +1926,7 @@ A parte de informações de declaração da área de diagnóstico contém esses 
 
 * `NUMBER`: Um número inteiro que indica o número de áreas de condição que possuem informações.
 
-* `ROW_COUNT`: Um número inteiro que indica o número de linhas afetadas pela declaração. `ROW_COUNT` tem o mesmo valor que a função `ROW_COUNT()` (ver Seção 12.15, “Funções de Informação”).
+* `ROW_COUNT`: Um número inteiro que indica o número de strings afetadas pela declaração. `ROW_COUNT` tem o mesmo valor que a função `ROW_COUNT()` (ver Seção 12.15, “Funções de Informação”).
 
 A parte de informações de condição da área de diagnóstico contém uma área de condição para cada condição. As áreas de condição são numeradas de 1 até o valor do item de condição da declaração `NUMBER`. Se `NUMBER` for 0, não há áreas de condição.
 

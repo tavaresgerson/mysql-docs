@@ -17,4 +17,4 @@ LOAD DATA INFILE '/local/access_log' INTO TABLE tbl_name
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\'
 ```
 
-A tabela nomeada deve ser criada para ter colunas que correspondam às que a linha `LogFormat` escreve no arquivo de registro.
+A tabela nomeada deve ser criada para ter colunas que correspondam às que a string `LogFormat` escreve no arquivo de registro.

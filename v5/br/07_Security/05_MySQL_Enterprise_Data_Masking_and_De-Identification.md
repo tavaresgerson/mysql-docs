@@ -302,8 +302,8 @@ O MySQL Enterprise Data Masking e De-Identification permite que dicionários sej
 
 Um arquivo de dicionário válido tem essas características:
 
-* O conteúdo do arquivo é texto simples, um termo por linha.
-* Linhas vazias são ignoradas.
+* O conteúdo do arquivo é texto simples, um termo por string.
+* Strings vazias são ignoradas.
 * O arquivo deve conter pelo menos um termo.
 
 Suponha que um arquivo chamado `de_cities.txt` contenha esses nomes de cidades na Alemanha:
@@ -506,7 +506,7 @@ SET @email = CONVERT(gen_rnd_email() USING utf8mb4);
 
 Também pode ser necessário converter argumentos de cadeia, conforme ilustrado em Usar dados mascarados para identificação do cliente.
 
-Se uma função de Máscara de dados empresariais e desidentificação do MySQL for invocada dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+Se uma função de Máscara de dados empresariais e desidentificação do MySQL for invocada dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor do `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando do MySQL”.
 
 #### Funções de Máscara de Dados
 
@@ -846,7 +846,7 @@ Exemplo:
 
 As funções desta seção manipulam dicionários de termos e realizam operações de geração e mascaramento com base neles. Algumas dessas funções exigem o privilégio `SUPER`.
 
-Quando um dicionário é carregado, ele se torna parte do registro do dicionário e recebe um nome que será usado por outras funções do dicionário. Os dicionários são carregados a partir de arquivos de texto simples que contêm um termo por linha. Linhas vazias são ignoradas. Para ser válido, um arquivo de dicionário deve conter pelo menos uma linha não vazia.
+Quando um dicionário é carregado, ele se torna parte do registro do dicionário e recebe um nome que será usado por outras funções do dicionário. Os dicionários são carregados a partir de arquivos de texto simples que contêm um termo por string. Strings vazias são ignoradas. Para ser válido, um arquivo de dicionário deve conter pelo menos uma string não vazia.
 
 * `gen_blacklist(str, dictionary_name, replacement_dictionary_name)`
 

@@ -4,7 +4,7 @@ Em alguns casos, você pode querer executar várias instâncias do MySQL em uma 
 
 É possível usar um binário de servidor MySQL diferente por instância, ou usar o mesmo binário para múltiplas instâncias, ou qualquer combinação das duas abordagens. Por exemplo, você pode executar um servidor do MySQL 5.6 e outro do MySQL 5.7, para ver como diferentes versões lidam com uma carga de trabalho específica. Ou você pode executar múltiplas instâncias da versão atual de produção, cada uma gerenciando um conjunto diferente de bancos de dados.
 
-Se você usa ou não binários de servidor distintos, cada instância que você executa deve ser configurada com valores únicos para vários parâmetros de operação. Isso elimina o potencial de conflito entre as instâncias. Os parâmetros podem ser definidos na linha de comando, em arquivos de opção ou definindo variáveis de ambiente. Veja a Seção 4.2.2, “Especificando Opções de Programa”. Para ver os valores usados por uma instância específica, conecte-se a ela e execute uma declaração `SHOW VARIABLES`.
+Se você usa ou não binários de servidor distintos, cada instância que você executa deve ser configurada com valores únicos para vários parâmetros de operação. Isso elimina o potencial de conflito entre as instâncias. Os parâmetros podem ser definidos na string de comando, em arquivos de opção ou definindo variáveis de ambiente. Veja a Seção 4.2.2, “Especificando Opções de Programa”. Para ver os valores usados por uma instância específica, conecte-se a ela e execute uma declaração `SHOW VARIABLES`.
 
 O recurso principal gerenciado por uma instância MySQL é o diretório de dados. Cada instância deve usar um diretório de dados diferente, cujo local é especificado usando a opção `--datadir=dir_name`. Para métodos de configuração de cada instância com seu próprio diretório de dados, e avisos sobre os perigos de não fazer isso, consulte a Seção 5.7.1, “Configurando Múltiplos Diretórios de Dados”.
 
@@ -89,11 +89,11 @@ Com esse método, todas as contas do MySQL ou dados do usuário presentes no dir
 
 ### 5.7.2 Executando múltiplas instâncias do MySQL no Windows
 
-Você pode executar vários servidores no Windows iniciando-os manualmente a partir da linha de comando, cada um com os parâmetros operacionais apropriados, ou instalando vários servidores como serviços do Windows e executando-os dessa maneira. As instruções gerais para executar o MySQL a partir da linha de comando ou como um serviço são fornecidas na Seção 2.3, “Instalando MySQL no Microsoft Windows”. As seções seguintes descrevem como iniciar cada servidor com diferentes valores para as opções que devem ser únicas por servidor, como o diretório de dados. Essas opções estão listadas na Seção 5.7, “Executando Múltiplas Instâncias do MySQL em uma Máquina”.
+Você pode executar vários servidores no Windows iniciando-os manualmente a partir da string de comando, cada um com os parâmetros operacionais apropriados, ou instalando vários servidores como serviços do Windows e executando-os dessa maneira. As instruções gerais para executar o MySQL a partir da string de comando ou como um serviço são fornecidas na Seção 2.3, “Instalando MySQL no Microsoft Windows”. As seções seguintes descrevem como iniciar cada servidor com diferentes valores para as opções que devem ser únicas por servidor, como o diretório de dados. Essas opções estão listadas na Seção 5.7, “Executando Múltiplas Instâncias do MySQL em uma Máquina”.
 
-#### 5.7.2.1 Iniciar múltiplas instâncias do MySQL na linha de comando do Windows
+#### 5.7.2.1 Iniciar múltiplas instâncias do MySQL na string de comando do Windows
 
-O procedimento para iniciar um único servidor MySQL manualmente a partir da linha de comando é descrito na Seção 2.3.4.6, “Iniciando o MySQL a partir da linha de comando do Windows”. Para iniciar vários servidores dessa maneira, você pode especificar as opções apropriadas na linha de comando ou em um arquivo de opções. É mais conveniente colocar as opções em um arquivo de opções, mas é necessário garantir que cada servidor receba seu próprio conjunto de opções. Para fazer isso, crie um arquivo de opções para cada servidor e diga ao servidor o nome do arquivo com uma opção `--defaults-file` quando você executá-lo.
+O procedimento para iniciar um único servidor MySQL manualmente a partir da string de comando é descrito na Seção 2.3.4.6, “Iniciando o MySQL a partir da string de comando do Windows”. Para iniciar vários servidores dessa maneira, você pode especificar as opções apropriadas na string de comando ou em um arquivo de opções. É mais conveniente colocar as opções em um arquivo de opções, mas é necessário garantir que cada servidor receba seu próprio conjunto de opções. Para fazer isso, crie um arquivo de opções para cada servidor e diga ao servidor o nome do arquivo com uma opção `--defaults-file` quando você executá-lo.
 
 Suponha que você queira executar uma instância do `mysqld` na porta 3307 com um diretório de dados do `C:\mydata1`, e outra instância na porta 3308 com um diretório de dados do `C:\mydata2`. Use este procedimento:
 
@@ -131,7 +131,7 @@ C:\> C:\mysql\bin\mysqladmin --port=3307 --host=127.0.0.1 --user=root --password
 C:\> C:\mysql\bin\mysqladmin --port=3308 --host=127.0.0.1 --user=root --password shutdown
 ```
 
-Os servidores configurados conforme descrito permitem que os clientes se conectem via TCP/IP. Se sua versão do Windows suporta tubos nomeados e você também deseja permitir conexões por tubos nomeados, especifique opções que habilitem o tubo nomeado e especifique seu nome. Cada servidor que suporte conexões por tubos nomeados deve usar um nome de tubo exclusivo. Por exemplo, o arquivo `C:\my-opts1.cnf` pode ser escrito da seguinte forma:
+Os servidores configurados conforme descrito permitem que os clientes se conectem via TCP/IP. Se sua versão do Windows suporta pipes nomeados e você também deseja permitir conexões por pipes nomeados, especifique opções que habilitem o pipe nomeado e especifique seu nome. Cada servidor que suporte conexões por pipes nomeados deve usar um nome de pipe exclusivo. Por exemplo, o arquivo `C:\my-opts1.cnf` pode ser escrito da seguinte forma:
 
 ```sql
 [mysqld]
@@ -218,7 +218,7 @@ Para o 5.7.44 `mysqld`, crie um arquivo `C:\my-opts2.cnf` que tenha a seguinte a
   socket = mypipe2
   ```
 
-Instale os serviços da seguinte forma (entre cada comando em uma única linha):
+Instale os serviços da seguinte forma (entre cada comando em uma única string):
 
   ```sql
   C:\> C:\mysql-5.7.9\bin\mysqld --install mysqld1
@@ -261,7 +261,7 @@ Com as informações exibidas por esse comando, você pode dizer quais valores d
 
 Se você especificar `localhost` como o nome do host, o **mysqladmin** por padrão usa um arquivo de socket Unix em vez de TCP/IP. Para especificar explicitamente o protocolo de transporte, use a opção `--protocol={TCP|SOCKET|PIPE|MEMORY}`.
 
-Você não precisa compilar um novo servidor MySQL apenas para começar com um arquivo de socket Unix diferente e um número de porta TCP/IP. Também é possível usar o mesmo binário do servidor e iniciar cada invocação dele com diferentes valores de parâmetros no runtime. Uma maneira de fazer isso é usando opções de linha de comando:
+Você não precisa compilar um novo servidor MySQL apenas para começar com um arquivo de socket Unix diferente e um número de porta TCP/IP. Também é possível usar o mesmo binário do servidor e iniciar cada invocação dele com diferentes valores de parâmetros no runtime. Uma maneira de fazer isso é usando opções de string de comando:
 
 ```sql
 $> mysqld_safe --socket=file_name --port=port_number
@@ -299,7 +299,7 @@ Para se conectar a um programa de cliente a um servidor MySQL que está ouvindo 
 
 * Inicie o cliente com `--host=host_name` `--port=port_number` para se conectar usando TCP/IP a um servidor remoto, com `--host=127.0.0.1` `--port=port_number` para se conectar usando TCP/IP a um servidor local, ou com `--host=localhost` `--socket=file_name` para se conectar a um servidor local usando um arquivo de socket Unix ou uma tubulação nomeada do Windows.
 
-* Inicie o cliente com `--protocol=TCP` para se conectar usando TCP/IP, `--protocol=SOCKET` para se conectar usando um arquivo de socket Unix, `--protocol=PIPE` para se conectar usando um tubo nomeado, ou `--protocol=MEMORY` para se conectar usando memória compartilhada. Para conexões TCP/IP, você também pode precisar especificar as opções `--host` e `--port`. Para os outros tipos de conexões, você pode precisar especificar uma opção `--socket` para especificar um arquivo de socket Unix ou nome de tubo nomeado do Windows, ou uma opção `--shared-memory-base-name` para especificar o nome da memória compartilhada. As conexões de memória compartilhada são suportadas apenas no Windows.
+* Inicie o cliente com `--protocol=TCP` para se conectar usando TCP/IP, `--protocol=SOCKET` para se conectar usando um arquivo de socket Unix, `--protocol=PIPE` para se conectar usando um pipe nomeado, ou `--protocol=MEMORY` para se conectar usando memória compartilhada. Para conexões TCP/IP, você também pode precisar especificar as opções `--host` e `--port`. Para os outros tipos de conexões, você pode precisar especificar uma opção `--socket` para especificar um arquivo de socket Unix ou nome de pipe nomeado do Windows, ou uma opção `--shared-memory-base-name` para especificar o nome da memória compartilhada. As conexões de memória compartilhada são suportadas apenas no Windows.
 
 * Em Unix, configure as variáveis de ambiente `MYSQL_UNIX_PORT` e `MYSQL_TCP_PORT` para apontar para o arquivo de socket Unix e o número da porta TCP/IP antes de iniciar seus clientes. Se você normalmente usa um arquivo de socket específico ou um número de porta, pode colocar comandos para definir essas variáveis de ambiente em seu arquivo `.login` para que elas sejam aplicadas cada vez que você faz login. Veja a Seção 4.9, “Variáveis de Ambiente”.
 

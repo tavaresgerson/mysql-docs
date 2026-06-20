@@ -74,7 +74,7 @@ Duas tabelas do Schema de desempenho fornecem informações sobre o temporizador
 
 * `setup_timers` indica quais temporizadores são utilizados para quais instrumentos.
 
-Cada linha do temporizador em `setup_timers` deve se referir a um dos temporizadores listados em `performance_timers`.
+Cada string do temporizador em `setup_timers` deve se referir a um dos temporizadores listados em `performance_timers`.
 
 Os temporizadores variam em precisão e quantidade de sobrecarga. Para ver quais temporizadores estão disponíveis e suas características, confira a tabela `performance_timers`:
 
@@ -91,7 +91,7 @@ mysql> SELECT * FROM performance_schema.performance_timers;
 +-------------+-----------------+------------------+----------------+
 ```
 
-Se os valores associados a um nome de temporizador específico forem `NULL`, esse temporizador não é suportado na sua plataforma. As linhas que não contêm `NULL` indicam quais temporizadores você pode usar em `setup_timers`.
+Se os valores associados a um nome de temporizador específico forem `NULL`, esse temporizador não é suportado na sua plataforma. As strings que não contêm `NULL` indicam quais temporizadores você pode usar em `setup_timers`.
 
 As colunas têm esses significados:
 
@@ -154,7 +154,7 @@ O MySQL funciona com contadores de ciclo em x386 (Windows, macOS, Linux, Solaris
 
 #### Representação do Cronômetro do Schema de Desempenho em Eventos
 
-As linhas em tabelas do Gerador de Desempenho que armazenam eventos atuais e históricos têm três colunas para representar informações de temporização: `TIMER_START` e `TIMER_END` indicam quando um evento começou e terminou, e `TIMER_WAIT` indica a duração do evento.
+As strings em tabelas do Gerador de Desempenho que armazenam eventos atuais e históricos têm três colunas para representar informações de temporização: `TIMER_START` e `TIMER_END` indicam quando um evento começou e terminou, e `TIMER_WAIT` indica a duração do evento.
 
 A tabela `setup_instruments` possui uma coluna `ENABLED` para indicar os instrumentos para os quais os eventos devem ser coletados. A tabela também possui uma coluna `TIMED` para indicar quais instrumentos são temporizados. Se um instrumento não estiver habilitado, ele não produz eventos. Se um instrumento habilitado não for temporizado, os eventos produzidos pelo instrumento têm `NULL` para os valores do temporizador `TIMER_START`, `TIMER_END` e `TIMER_WAIT`. Isso, por sua vez, faz com que esses valores sejam ignorados ao calcular valores de tempo agregados em tabelas resumidas (soma, mínimo, máximo e média).
 
@@ -162,7 +162,7 @@ Internamente, os tempos dentro dos eventos são armazenados em unidades fornecid
 
 As modificações na tabela `setup_timers` afetam o monitoramento imediatamente. Eventos já em andamento podem usar o temporizador original para a hora de início e o novo temporizador para a hora de término. Para evitar resultados imprevisíveis após fazer alterações no temporizador, use `TRUNCATE TABLE` para redefinir as estatísticas do Gerador de Desempenho.
 
-A linha de base do temporizador (“zero de tempo”) ocorre durante a inicialização do Schema de desempenho durante a inicialização do servidor. Os valores `TIMER_START` e `TIMER_END` nos eventos representam picosegundos desde a linha de base. Os valores `TIMER_WAIT` são durações em picosegundos.
+A string de base do temporizador (“zero de tempo”) ocorre durante a inicialização do Schema de desempenho durante a inicialização do servidor. Os valores `TIMER_START` e `TIMER_END` nos eventos representam picosegundos desde a string de base. Os valores `TIMER_WAIT` são durações em picosegundos.
 
 Os valores de picosegundo nos eventos são aproximados. Sua precisão está sujeita às formas usuais de erro associadas à conversão de uma unidade para outra. Se o temporizador `CYCLE` for usado e a taxa do processador variar, pode haver um desvio. Por esses motivos, não é razoável considerar o valor do `TIMER_START` para um evento como uma medida precisa do tempo decorrido desde o início do servidor. Por outro lado, é razoável usar os valores do `TIMER_START` ou `TIMER_WAIT` nas cláusulas do `ORDER BY` para ordenar os eventos pelo horário de início ou pela duração.
 
@@ -211,7 +211,7 @@ Os eventos são processados de forma de produtor/consumidor:
   ...
   ```
 
-A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou fio que está sendo monitorado, outras tabelas podem ser usadas conforme descrito na Seção 25.4.3, “Pré-filtragem de Eventos”.
+A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou thread que está sendo monitorado, outras tabelas podem ser usadas conforme descrito na Seção 25.4.3, “Pré-filtragem de Eventos”.
 
 * As tabelas do Schema de desempenho são os destinos dos eventos e consomem eventos. A tabela `setup_consumers` lista os tipos de consumidores para os quais as informações dos eventos podem ser enviadas e se eles estão habilitados:
 
@@ -246,7 +246,7 @@ Razões para usar pré-filtragem:
 
 + Para reduzir os custos. O overhead do Schema de desempenho deve ser mínimo mesmo com todos os instrumentos habilitados, mas talvez você queira reduzi-lo ainda mais. Ou você não se importa com o tempo dos eventos e deseja desabilitar o código de temporização para eliminar o overhead de temporização.
 
-+ Para evitar preencher as tabelas de eventos atuais ou de história com eventos nos quais você não está interessado. O pré-filtro deixa mais "espaço" nessas tabelas para as instâncias das linhas dos tipos de instrumento habilitados. Se você habilitar apenas instrumentos de arquivo com pré-filtro, não são coletadas linhas para instrumentos não de arquivo. Com o pós-filtro, os eventos não de arquivo são coletados, deixando menos linhas para os eventos de arquivo.
++ Para evitar preencher as tabelas de eventos atuais ou de história com eventos nos quais você não está interessado. O pré-filtro deixa mais "espaço" nessas tabelas para as instâncias das strings dos tipos de instrumento habilitados. Se você habilitar apenas instrumentos de arquivo com pré-filtro, não são coletadas strings para instrumentos não de arquivo. Com o pós-filtro, os eventos não de arquivo são coletados, deixando menos strings para os eventos de arquivo.
 
 + Para evitar manter alguns tipos de tabelas de eventos. Se você desabilitar um consumidor, o servidor não gasta tempo mantendo destinos para esse consumidor. Por exemplo, se você não se importa com os históricos de eventos, pode desabilitar os consumidores da tabela de histórico para melhorar o desempenho.
 
@@ -270,7 +270,7 @@ O pré-filtro é realizado pelo Schema de Desempenho e tem um efeito global que 
 
 + `setup_objects` controla se o Schema de Desempenho monitora tabelas e objetos de programas armazenados específicos.
 
-+ `threads` indica se o monitoramento está habilitado para cada fio do servidor.
++ `threads` indica se o monitoramento está habilitado para cada thread do servidor.
 
 + `setup_actors` determina o estado inicial de monitoramento para novos threads de primeiro plano.
 
@@ -284,7 +284,7 @@ As modificações em qualquer uma dessas tabelas afetam o monitoramento imediata
 
 Quando você altera a configuração de monitoramento, o Schema de desempenho não limpa as tabelas de histórico. Os eventos já coletados permanecem nas tabelas de eventos atuais e histórico até serem substituídos por eventos mais recentes. Se você desabilitar os instrumentos, pode ser necessário esperar um pouco antes de os eventos deles serem substituídos por eventos mais recentes de interesse. Como alternativa, use `TRUNCATE TABLE` para esvaziar as tabelas de histórico.
 
-Após fazer as alterações na instrumentação, você pode querer truncar as tabelas de resumo. Geralmente, o efeito é redefinir as colunas de resumo para 0 ou `NULL`, e não para remover linhas. Isso permite que você limpe os valores coletados e reinicie a agregação. Isso pode ser útil, por exemplo, depois de ter feito uma alteração na configuração de execução. Exceções a esse comportamento de truncação são mencionadas nas seções individuais das tabelas de resumo.
+Após fazer as alterações na instrumentação, você pode querer truncar as tabelas de resumo. Geralmente, o efeito é redefinir as colunas de resumo para 0 ou `NULL`, e não para remover strings. Isso permite que você limpe os valores coletados e reinicie a agregação. Isso pode ser útil, por exemplo, depois de ter feito uma alteração na configuração de execução. Exceções a esse comportamento de truncação são mencionadas nas seções individuais das tabelas de resumo.
 
 As seções a seguir descrevem como usar tabelas específicas para controlar o pré-filtro do Schema de Desempenho.
 
@@ -327,9 +327,9 @@ mysql> SELECT * FROM performance_schema.setup_instruments;
 
 Para controlar se um instrumento está habilitado, defina sua coluna `ENABLED` para `YES` ou `NO`. Para configurar se deve coletar informações de temporização para um instrumento habilitado, defina o valor da coluna `TIMED` para `YES` ou `NO`. Definir a coluna `TIMED` afeta o conteúdo da tabela do Schema de Desempenho, conforme descrito na Seção 25.4.1, “Temporização de Eventos do Schema de Desempenho”.
 
-As modificações na maioria das linhas de `setup_instruments` afetam o monitoramento imediatamente. Para alguns instrumentos, as modificações só são eficazes apenas no início da inicialização do servidor; alterá-las durante a execução não tem efeito. Isso afeta principalmente os mutexes, condições e rwlocks no servidor, embora possa haver outros instrumentos para os quais isso seja verdade.
+As modificações na maioria das strings de `setup_instruments` afetam o monitoramento imediatamente. Para alguns instrumentos, as modificações só são eficazes apenas no início da inicialização do servidor; alterá-las durante a execução não tem efeito. Isso afeta principalmente os mutexes, condições e rwlocks no servidor, embora possa haver outros instrumentos para os quais isso seja verdade.
 
-A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou fio que está sendo monitorado, outras tabelas podem ser usadas conforme descrito na Seção 25.4.3, “Pré-filtragem de Eventos”.
+A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou thread que está sendo monitorado, outras tabelas podem ser usadas conforme descrito na Seção 25.4.3, “Pré-filtragem de Eventos”.
 
 Os exemplos a seguir demonstram operações possíveis na tabela `setup_instruments`. Essas alterações, assim como outras operações de pré-filtragem, afetam todos os usuários. Algumas dessas consultas utilizam o operador `LIKE` e um instrumento de correspondência de padrões. Para informações adicionais sobre especificação de padrões para seleção de instrumentos, consulte a Seção 25.4.9, “Nomeando Instrumentos ou Consumidores para Operações de Filtragem”.
 
@@ -421,33 +421,33 @@ mysql> SELECT * FROM performance_schema.setup_objects;
 
 As modificações na tabela `setup_objects` afetam o monitoramento de objetos imediatamente.
 
-A coluna `OBJECT_TYPE` indica o tipo de objeto ao qual uma linha se aplica. O filtro `TABLE` afeta eventos de entrada/saída de tabela (instrumento `wait/io/table/sql/handler`) e eventos de bloqueio de tabela (instrumento `wait/lock/table/sql/handler`).
+A coluna `OBJECT_TYPE` indica o tipo de objeto ao qual uma string se aplica. O filtro `TABLE` afeta eventos de entrada/saída de tabela (instrumento `wait/io/table/sql/handler`) e eventos de bloqueio de tabela (instrumento `wait/lock/table/sql/handler`).
 
 As colunas `OBJECT_SCHEMA` e `OBJECT_NAME` devem conter um nome literal do esquema ou objeto, ou `'%'` para corresponder a qualquer nome.
 
 A coluna `ENABLED` indica se os objetos correspondentes são monitorados, e `TIMED` indica se é necessário coletar informações de temporização. A definição da coluna `TIMED` afeta o conteúdo da tabela do Schema de Desempenho, conforme descrito na Seção 25.4.1, “Temporização dos Eventos do Schema de Desempenho”.
 
-O efeito da configuração padrão do objeto é instrumar todos os objetos, exceto aqueles nos bancos de dados `mysql`, `INFORMATION_SCHEMA` e `performance_schema`. (As tabelas no banco de dados `INFORMATION_SCHEMA` não são instrumentadas, independentemente do conteúdo de `setup_objects`; a linha para `information_schema.%` simplesmente torna isso explícito pelo padrão.)
+O efeito da configuração padrão do objeto é instrumar todos os objetos, exceto aqueles nos bancos de dados `mysql`, `INFORMATION_SCHEMA` e `performance_schema`. (As tabelas no banco de dados `INFORMATION_SCHEMA` não são instrumentadas, independentemente do conteúdo de `setup_objects`; a string para `information_schema.%` simplesmente torna isso explícito pelo padrão.)
 
-Quando o Schema de Desempenho verifica uma correspondência em `setup_objects`, ele tenta encontrar correspondências mais específicas primeiro. Para as linhas que correspondem a um dado `OBJECT_TYPE`, o Schema de Desempenho verifica as linhas nesta ordem:
+Quando o Schema de Desempenho verifica uma correspondência em `setup_objects`, ele tenta encontrar correspondências mais específicas primeiro. Para as strings que correspondem a um dado `OBJECT_TYPE`, o Schema de Desempenho verifica as strings nesta ordem:
 
-* Linhas com `OBJECT_SCHEMA='literal'` e `OBJECT_NAME='literal'`.
+* Strings com `OBJECT_SCHEMA='literal'` e `OBJECT_NAME='literal'`.
 
-* Linhas com `OBJECT_SCHEMA='literal'` e `OBJECT_NAME='%'`.
+* Strings com `OBJECT_SCHEMA='literal'` e `OBJECT_NAME='%'`.
 
-* Linhas com `OBJECT_SCHEMA='%'` e `OBJECT_NAME='%'`.
+* Strings com `OBJECT_SCHEMA='%'` e `OBJECT_NAME='%'`.
 
-Por exemplo, com uma tabela `db1.t1`, o Schema de Desempenho procura nas linhas `TABLE` para uma correspondência com `'db1'` e `'t1'`, depois para `'db1'` e `'%'`, depois para `'%'` e `'%'`. A ordem em que ocorre a correspondência é importante, pois diferentes linhas de correspondência `setup_objects` podem ter diferentes valores de `ENABLED` e `TIMED`.
+Por exemplo, com uma tabela `db1.t1`, o Schema de Desempenho procura nas strings `TABLE` para uma correspondência com `'db1'` e `'t1'`, depois para `'db1'` e `'%'`, depois para `'%'` e `'%'`. A ordem em que ocorre a correspondência é importante, pois diferentes strings de correspondência `setup_objects` podem ter diferentes valores de `ENABLED` e `TIMED`.
 
 Para eventos relacionados a tabela, o Schema de Desempenho combina os conteúdos de `setup_objects` com `setup_instruments` para determinar se os instrumentos devem ser habilitados e se os instrumentos habilitados devem ser temporizados:
 
-* Para tabelas que correspondem a uma linha em `setup_objects`, os instrumentos da tabela produzem eventos apenas se `ENABLED` é `YES` em ambos `setup_instruments` e `setup_objects`.
+* Para tabelas que correspondem a uma string em `setup_objects`, os instrumentos da tabela produzem eventos apenas se `ENABLED` é `YES` em ambos `setup_instruments` e `setup_objects`.
 
 * Os valores `TIMED` nas duas tabelas são combinados, de modo que as informações de cronometragem são coletadas apenas quando ambos os valores são `YES`.
 
-Para os objetos de programa armazenados, o Schema de desempenho toma as colunas `ENABLED` e `TIMED` diretamente da linha `setup_objects`. Não há combinação de valores com `setup_instruments`.
+Para os objetos de programa armazenados, o Schema de desempenho toma as colunas `ENABLED` e `TIMED` diretamente da string `setup_objects`. Não há combinação de valores com `setup_instruments`.
 
-Suponha que `setup_objects` contenha as seguintes linhas `TABLE` que se aplicam a `db1`, `db2` e `db3`:
+Suponha que `setup_objects` contenha as seguintes strings `TABLE` que se aplicam a `db1`, `db2` e `db3`:
 
 ```sql
 +-------------+---------------+-------------+---------+-------+
@@ -461,7 +461,7 @@ Suponha que `setup_objects` contenha as seguintes linhas `TABLE` que se aplicam 
 +-------------+---------------+-------------+---------+-------+
 ```
 
-Se um instrumento relacionado a um objeto no `setup_instruments` tiver um valor de `ENABLED` de `NO`, os eventos para o objeto não serão monitorados. Se o valor de `ENABLED` for `YES`, o monitoramento de eventos ocorrerá de acordo com o valor de `ENABLED` na linha relevante do `setup_objects`:
+Se um instrumento relacionado a um objeto no `setup_instruments` tiver um valor de `ENABLED` de `NO`, os eventos para o objeto não serão monitorados. Se o valor de `ENABLED` for `YES`, o monitoramento de eventos ocorrerá de acordo com o valor de `ENABLED` na string relevante do `setup_objects`:
 
 * Eventos `db1.t1` são monitorados
 * Eventos `db1.t2` não são monitorados
@@ -471,19 +471,19 @@ Se um instrumento relacionado a um objeto no `setup_instruments` tiver um valor 
 
 A lógica semelhante se aplica para combinar as colunas `TIMED` das tabelas `setup_instruments` e `setup_objects` para determinar se é necessário coletar informações sobre o tempo de ocorrência dos eventos.
 
-Se uma tabela persistente e uma tabela temporária tiverem o mesmo nome, a correspondência com as linhas de `setup_objects` ocorre da mesma maneira para ambas. Não é possível habilitar o monitoramento para uma tabela, mas não para a outra. No entanto, cada tabela é instrumentada separadamente.
+Se uma tabela persistente e uma tabela temporária tiverem o mesmo nome, a correspondência com as strings de `setup_objects` ocorre da mesma maneira para ambas. Não é possível habilitar o monitoramento para uma tabela, mas não para a outra. No entanto, cada tabela é instrumentada separadamente.
 
 ### 25.4.6 Pré-filtragem por Fóruns
 
-A tabela `threads` contém uma linha para cada fio do servidor. Cada linha contém informações sobre um fio e indica se o monitoramento está habilitado para ele. Para que o Schema de Desempenho monitore um fio, essas coisas devem ser verdadeiras:
+A tabela `threads` contém uma string para cada thread do servidor. Cada string contém informações sobre um thread e indica se o monitoramento está habilitado para ele. Para que o Schema de Desempenho monitore um thread, essas coisas devem ser verdadeiras:
 
 * O consumidor `thread_instrumentation` na tabela `setup_consumers` deve ser `YES`.
 
 * A coluna `threads.INSTRUMENTED` deve ser `YES`.
 
-* O monitoramento ocorre apenas para os eventos de fio produzidos a partir de instrumentos que estão habilitados na tabela `setup_instruments`.
+* O monitoramento ocorre apenas para os eventos de thread produzidos a partir de instrumentos que estão habilitados na tabela `setup_instruments`.
 
-A tabela `threads` também indica para cada fio de servidor se deve realizar o registro de eventos históricos. Isso inclui eventos de espera, estágio, declaração e transação e afeta o registro nessas tabelas:
+A tabela `threads` também indica para cada thread de servidor se deve realizar o registro de eventos históricos. Isso inclui eventos de espera, estágio, declaração e transação e afeta o registro nessas tabelas:
 
 ```sql
 events_waits_history
@@ -504,7 +504,7 @@ Para que o registro de eventos históricos ocorra, essas coisas devem ser verdad
 
 * O registro ocorre apenas para aqueles eventos de thread produzidos a partir de instrumentos que estão habilitados na tabela `setup_instruments`.
 
-Para os threads de primeiro plano (resultantes de conexões de clientes), os valores iniciais das colunas `INSTRUMENTED` e `HISTORY` nas linhas da tabela `threads` são determinados pelo fato de a conta de usuário associada a um thread corresponder a qualquer linha na tabela `setup_actors`. Os valores vêm das colunas `ENABLED` e `HISTORY` da linha de correspondência da tabela `setup_actors`.
+Para os threads de primeiro plano (resultantes de conexões de clientes), os valores iniciais das colunas `INSTRUMENTED` e `HISTORY` nas strings da tabela `threads` são determinados pelo fato de a conta de usuário associada a um thread corresponder a qualquer string na tabela `setup_actors`. Os valores vêm das colunas `ENABLED` e `HISTORY` da string de correspondência da tabela `setup_actors`.
 
 Para os threads de fundo, não há um usuário associado. `INSTRUMENTED` e `HISTORY` são `YES` por padrão e `setup_actors` não é consultado.
 
@@ -523,27 +523,27 @@ As colunas `HOST` e `USER` devem conter um nome literal de host ou usuário, ou 
 
 As colunas `ENABLED` e `HISTORY` indicam se é necessário habilitar a instrumentação e o registro de eventos históricos para os threads correspondentes, sob reserva das outras condições descritas anteriormente.
 
-Quando o Schema de Desempenho verifica uma correspondência para cada novo fio de plano de fundo em `setup_actors`, ele tenta encontrar correspondências mais específicas primeiro, usando as colunas `USER` e `HOST` (`ROLE` é inutilizado):
+Quando o Schema de Desempenho verifica uma correspondência para cada novo thread de plano de fundo em `setup_actors`, ele tenta encontrar correspondências mais específicas primeiro, usando as colunas `USER` e `HOST` (`ROLE` é inutilizado):
 
-* Linhas com `USER='literal'` e `HOST='literal'`.
+* Strings com `USER='literal'` e `HOST='literal'`.
 
-* Linhas com `USER='literal'` e `HOST='%'`.
+* Strings com `USER='literal'` e `HOST='%'`.
 
-* Linhas com `USER='%'` e `HOST='literal'`.
+* Strings com `USER='%'` e `HOST='literal'`.
 
-* Linhas com `USER='%'` e `HOST='%'`.
+* Strings com `USER='%'` e `HOST='%'`.
 
-A ordem em que a correspondência ocorre é importante porque diferentes linhas de correspondência `setup_actors` podem ter diferentes valores de `USER` e `HOST`. Isso permite que a instrumentação e o registro de eventos históricos sejam aplicados seletivamente por host, usuário ou conta (combinação de usuário e host), com base nos valores das colunas `ENABLED` e `HISTORY`:
+A ordem em que a correspondência ocorre é importante porque diferentes strings de correspondência `setup_actors` podem ter diferentes valores de `USER` e `HOST`. Isso permite que a instrumentação e o registro de eventos históricos sejam aplicados seletivamente por host, usuário ou conta (combinação de usuário e host), com base nos valores das colunas `ENABLED` e `HISTORY`:
 
-* Quando a melhor correspondência é uma linha com `ENABLED=YES`, o valor `INSTRUMENTED` para o fio se torna `YES`. Quando a melhor correspondência é uma linha com `HISTORY=YES`, o valor `HISTORY` para o fio se torna `YES`.
+* Quando a melhor correspondência é uma string com `ENABLED=YES`, o valor `INSTRUMENTED` para o thread se torna `YES`. Quando a melhor correspondência é uma string com `HISTORY=YES`, o valor `HISTORY` para o thread se torna `YES`.
 
-* Quando a melhor correspondência é uma linha com `ENABLED=NO`, o valor `INSTRUMENTED` para o fio se torna `NO`. Quando a melhor correspondência é uma linha com `HISTORY=NO`, o valor `HISTORY` para o fio se torna `NO`.
+* Quando a melhor correspondência é uma string com `ENABLED=NO`, o valor `INSTRUMENTED` para o thread se torna `NO`. Quando a melhor correspondência é uma string com `HISTORY=NO`, o valor `HISTORY` para o thread se torna `NO`.
 
-* Quando não é encontrada nenhuma correspondência, os valores `INSTRUMENTED` e `HISTORY` para o fio se tornam `NO`.
+* Quando não é encontrada nenhuma correspondência, os valores `INSTRUMENTED` e `HISTORY` para o thread se tornam `NO`.
 
-As colunas `ENABLED` e `HISTORY` nas linhas `setup_actors` podem ser configuradas como `YES` ou `NO`, independentemente uma da outra. Isso significa que você pode habilitar a instrumentação separadamente, independentemente de você coletar eventos históricos.
+As colunas `ENABLED` e `HISTORY` nas strings `setup_actors` podem ser configuradas como `YES` ou `NO`, independentemente uma da outra. Isso significa que você pode habilitar a instrumentação separadamente, independentemente de você coletar eventos históricos.
 
-Por padrão, o monitoramento e a coleta de eventos históricos estão habilitados para todos os novos threads de primeiro plano, porque a tabela `setup_actors` inicialmente contém uma linha com `'%'` para ambos os `HOST` e `USER`. Para realizar uma correspondência mais limitada, como habilitar o monitoramento apenas para alguns threads de primeiro plano, você deve alterar essa linha, pois ela corresponde a qualquer conexão, e adicionar linhas para combinações mais específicas de `HOST`/`USER`.
+Por padrão, o monitoramento e a coleta de eventos históricos estão habilitados para todos os novos threads de primeiro plano, porque a tabela `setup_actors` inicialmente contém uma string com `'%'` para ambos os `HOST` e `USER`. Para realizar uma correspondência mais limitada, como habilitar o monitoramento apenas para alguns threads de primeiro plano, você deve alterar essa string, pois ela corresponde a qualquer conexão, e adicionar strings para combinações mais específicas de `HOST`/`USER`.
 
 Suponha que você modifique `setup_actors` da seguinte forma:
 
@@ -562,21 +562,21 @@ INSERT INTO performance_schema.setup_actors
 VALUES('%','sam','%','NO','YES');
 ```
 
-A declaração `UPDATE` altera a correspondência padrão para desabilitar a instrumentação e a coleta de eventos históricos. As declarações `INSERT` adicionam linhas para correspondências mais específicas.
+A declaração `UPDATE` altera a correspondência padrão para desabilitar a instrumentação e a coleta de eventos históricos. As declarações `INSERT` adicionam strings para correspondências mais específicas.
 
 Agora, o Schema de Desempenho determina como definir os valores de `INSTRUMENTED` e `HISTORY` para novos threads de conexão da seguinte forma:
 
-* Se `joe` se conecta a partir do host local, a conexão corresponde à primeira linha inserida. Os valores de `INSTRUMENTED` e `HISTORY` para o fio se tornam `YES`.
+* Se `joe` se conecta a partir do host local, a conexão corresponde à primeira string inserida. Os valores de `INSTRUMENTED` e `HISTORY` para o thread se tornam `YES`.
 
-* Se `joe` se conecta a partir de `hosta.example.com`, a conexão corresponde à segunda linha inserida. O valor `INSTRUMENTED` para o fio se torna `YES` e o valor `HISTORY` se torna `NO`.
+* Se `joe` se conecta a partir de `hosta.example.com`, a conexão corresponde à segunda string inserida. O valor `INSTRUMENTED` para o thread se torna `YES` e o valor `HISTORY` se torna `NO`.
 
-* Se `joe` se conecta a qualquer outro host, não há correspondência. Os valores `INSTRUMENTED` e `HISTORY` para o fio se tornam `NO`.
+* Se `joe` se conecta a qualquer outro host, não há correspondência. Os valores `INSTRUMENTED` e `HISTORY` para o thread se tornam `NO`.
 
-* Se `sam` se conectar a qualquer host, a conexão corresponde à terceira linha inserida. O valor `INSTRUMENTED` para o fio se torna `NO` e o valor `HISTORY` se torna `YES`.
+* Se `sam` se conectar a qualquer host, a conexão corresponde à terceira string inserida. O valor `INSTRUMENTED` para o thread se torna `NO` e o valor `HISTORY` se torna `YES`.
 
-* Para qualquer outra conexão, a linha com `HOST` e `USER` definida como `'%'` corresponde à linha atual, que agora tem `ENABLED` e `HISTORY` definidos como `NO`, então os valores de `INSTRUMENTED` e `HISTORY` para o fio se tornam `NO`.
+* Para qualquer outra conexão, a string com `HOST` e `USER` definida como `'%'` corresponde à string atual, que agora tem `ENABLED` e `HISTORY` definidos como `NO`, então os valores de `INSTRUMENTED` e `HISTORY` para o thread se tornam `NO`.
 
-As modificações na tabela `setup_actors` afetam apenas os threads de primeiro plano criados após a modificação, e não os threads existentes. Para afetar os threads existentes, modifique as colunas `INSTRUMENTED` e `HISTORY` das linhas da tabela `threads`.
+As modificações na tabela `setup_actors` afetam apenas os threads de primeiro plano criados após a modificação, e não os threads existentes. Para afetar os threads existentes, modifique as colunas `INSTRUMENTED` e `HISTORY` das strings da tabela `threads`.
 
 ### 25.4.7 Pré-filtragem pelo Consumidor
 
@@ -629,7 +629,7 @@ As configurações de consumo na tabela `setup_consumers` formam uma hierarquia 
 
 Os seguintes listamentos descrevem os valores de consumo disponíveis. Para discussão de várias configurações de consumo representativas e seu efeito na instrumentação, veja a Seção 25.4.8, “Configurações de Consumo Exemplos”.
 
-* Consumidores globais e de fio
+* Consumidores globais e de thread
 * Consumidores de eventos de espera
 * Consumidores de eventos em estágio
 * Consumidores de eventos de declaração
@@ -726,9 +726,9 @@ Cada uma das seguintes descrições de configuração indica quais elementos de 
 
 * Sem instrumentação
 * Apenas instrumentação global
-* Apenas instrumentação global e de fio
-* Instrumentação global, de fio e de evento atual
-* Instrumentação global, de fio, de evento atual e de histórico de eventos
+* Apenas instrumentação global e de thread
+* Instrumentação global, de thread e de evento atual
+* Instrumentação global, de thread, de evento atual e de histórico de eventos
 
 #### Sem Instrumentos
 
@@ -824,7 +824,7 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Nessa configuração, a instrumentação é mantida globalmente e por fio. Não são coletados eventos individuais nas tabelas de eventos atuais ou de histórico de eventos.
+Nessa configuração, a instrumentação é mantida globalmente e por thread. Não são coletados eventos individuais nas tabelas de eventos atuais ou de histórico de eventos.
 
 Elementos adicionais de configuração verificados, em relação à configuração anterior:
 
@@ -837,7 +837,7 @@ Tabelas de saída adicionais mantidas, em relação à configuração anterior:
 
 * `events_xxx_summary_by_yyy_by_event_name`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`; e *`yyy`* é `thread`, `user`, `host`, `account`
 
-#### Instrumentação global, de fio e de eventos atuais
+#### Instrumentação global, de thread e de eventos atuais
 
 Estado da configuração do servidor:
 
@@ -864,7 +864,7 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Nessa configuração, a instrumentação é mantida globalmente e por fio. Os eventos individuais são coletados na tabela de eventos atuais, mas não nas tabelas de histórico de eventos.
+Nessa configuração, a instrumentação é mantida globalmente e por thread. Os eventos individuais são coletados na tabela de eventos atuais, mas não nas tabelas de histórico de eventos.
 
 Elementos adicionais de configuração verificados, em relação à configuração anterior:
 
@@ -938,7 +938,7 @@ Tabelas de histórico de eventos mantidas para esta configuração:
 
 * `events_xxx_history_long`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`
 
-Essa configuração coleta o histórico de eventos por fio e globalmente:
+Essa configuração coleta o histórico de eventos por thread e globalmente:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;

@@ -8,11 +8,11 @@ Esta seção descreve funções agregadas que operam em conjuntos de valores. El
 
 **Tabela 12.25 Funções agregadas**
 
-<table frame="box" rules="all" summary="A reference that lists aggregate functions."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>AVG()</code></th> <td>Retorne o valor médio do argumento</td> <td></td> </tr><tr><th><code>BIT_AND()</code></th> <td> Return bitwise AND </td> <td></td> </tr><tr><th><code>BIT_OR()</code></th> <td> Return bitwise OR </td> <td></td> </tr><tr><th><code>BIT_XOR()</code></th> <td> Return bitwise XOR </td> <td></td> </tr><tr><th><code>COUNT()</code></th> <td>Retorne um contador do número de linhas retornadas</td> <td></td> </tr><tr><th><code>COUNT(DISTINCT)</code></th> <td>Retorne o contagem de um número de valores diferentes</td> <td></td> </tr><tr><th><code>GROUP_CONCAT()</code></th> <td>Retorne uma string concatenada</td> <td></td> </tr><tr><th><code>JSON_ARRAYAGG()</code></th> <td>Retorne o conjunto de resultados como um único array JSON</td> <td>5.7.22</td> </tr><tr><th><code>JSON_OBJECTAGG()</code></th> <td>Retorne o conjunto de resultados como um único objeto JSON</td> <td>5.7.22</td> </tr><tr><th><code>MAX()</code></th> <td>Retorne o valor máximo</td> <td></td> </tr><tr><th><code>MIN()</code></th> <td>Retorne o valor mínimo</td> <td></td> </tr><tr><th><code>STD()</code></th> <td>Retorne a desvio padrão da população</td> <td></td> </tr><tr><th><code>STDDEV()</code></th> <td>Retorne a desvio padrão da população</td> <td></td> </tr><tr><th><code>STDDEV_POP()</code></th> <td>Retorne a desvio padrão da população</td> <td></td> </tr><tr><th><code>STDDEV_SAMP()</code></th> <td>Retorne a desvio padrão da amostra</td> <td></td> </tr><tr><th><code>SUM()</code></th> <td> Return the sum </td> <td></td> </tr><tr><th><code>VAR_POP()</code></th> <td>Retorne a variância padrão da população</td> <td></td> </tr><tr><th><code>VAR_SAMP()</code></th> <td>Retorne a variância da amostra</td> <td></td> </tr><tr><th><code>VARIANCE()</code></th> <td>Retorne a variância padrão da população</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists aggregate functions."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>AVG()</code></th> <td>Retorne o valor médio do argumento</td> <td></td> </tr><tr><th><code>BIT_AND()</code></th> <td> Return bitwise AND </td> <td></td> </tr><tr><th><code>BIT_OR()</code></th> <td> Return bitwise OR </td> <td></td> </tr><tr><th><code>BIT_XOR()</code></th> <td> Return bitwise XOR </td> <td></td> </tr><tr><th><code>COUNT()</code></th> <td>Retorne um contador do número de strings retornadas</td> <td></td> </tr><tr><th><code>COUNT(DISTINCT)</code></th> <td>Retorne o contagem de um número de valores diferentes</td> <td></td> </tr><tr><th><code>GROUP_CONCAT()</code></th> <td>Retorne uma string concatenada</td> <td></td> </tr><tr><th><code>JSON_ARRAYAGG()</code></th> <td>Retorne o conjunto de resultados como um único array JSON</td> <td>5.7.22</td> </tr><tr><th><code>JSON_OBJECTAGG()</code></th> <td>Retorne o conjunto de resultados como um único objeto JSON</td> <td>5.7.22</td> </tr><tr><th><code>MAX()</code></th> <td>Retorne o valor máximo</td> <td></td> </tr><tr><th><code>MIN()</code></th> <td>Retorne o valor mínimo</td> <td></td> </tr><tr><th><code>STD()</code></th> <td>Retorne a desvio padrão da população</td> <td></td> </tr><tr><th><code>STDDEV()</code></th> <td>Retorne a desvio padrão da população</td> <td></td> </tr><tr><th><code>STDDEV_POP()</code></th> <td>Retorne a desvio padrão da população</td> <td></td> </tr><tr><th><code>STDDEV_SAMP()</code></th> <td>Retorne a desvio padrão da amostra</td> <td></td> </tr><tr><th><code>SUM()</code></th> <td> Return the sum </td> <td></td> </tr><tr><th><code>VAR_POP()</code></th> <td>Retorne a variância padrão da população</td> <td></td> </tr><tr><th><code>VAR_SAMP()</code></th> <td>Retorne a variância da amostra</td> <td></td> </tr><tr><th><code>VARIANCE()</code></th> <td>Retorne a variância padrão da população</td> <td></td> </tr></tbody></table>
 
 A menos que haja indicação em contrário, as funções agregadas ignoram os valores de `NULL`.
 
-Se você usar uma função agregada em uma declaração que não contém nenhuma cláusula `GROUP BY`, ela é equivalente a agrupar todas as linhas. Para mais informações, consulte a Seção 12.19.3, “Tratamento do MySQL do GROUP BY”.
+Se você usar uma função agregada em uma declaração que não contém nenhuma cláusula `GROUP BY`, ela é equivalente a agrupar todas as strings. Para mais informações, consulte a Seção 12.19.3, “Tratamento do MySQL do GROUP BY”.
 
 Para argumentos numéricos, as funções de variância e desvio padrão retornam um valor `DOUBLE` - FLOAT, DOUBLE"). As funções `SUM()` e `AVG()` retornam um valor `DECIMAL` - DECIMAL, NUMERIC") para argumentos de valor exato (inteiro ou `DECIMAL` - DECIMAL, NUMERIC")), e um valor `DOUBLE` - FLOAT, DOUBLE") para argumentos de valor aproximado (`FLOAT` - FLOAT, DOUBLE") ou `DOUBLE` - FLOAT, DOUBLE")).
 
@@ -31,7 +31,7 @@ As funções agregadoras `BIT_AND()`, `BIT_OR()` e `BIT_XOR()` realizam operaç�
 
 Retorna o valor médio de `expr`. A opção `DISTINCT` pode ser usada para retornar a média dos valores distintos de *`expr`*.
 
-Se não houver linhas correspondentes, `AVG()` retorna `NULL`.
+Se não houver strings correspondentes, `AVG()` retorna `NULL`.
 
   ```sql
   mysql> SELECT student_name, AVG(test_score)
@@ -43,25 +43,25 @@ Se não houver linhas correspondentes, `AVG()` retorna `NULL`.
 
 Retorna o bitwise `AND` de todos os bits em *`expr`*. O cálculo é realizado com precisão de 64 bits (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT)).
 
-Se não houver linhas correspondentes, `BIT_AND()` retorna um valor neutro (todos os bits definidos como 1).
+Se não houver strings correspondentes, `BIT_AND()` retorna um valor neutro (todos os bits definidos como 1).
 
 * `BIT_OR(expr)`
 
 Retorna o bitwise `OR` de todos os bits em *`expr`*. O cálculo é realizado com precisão de 64 bits (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT)).
 
-Se não houver linhas correspondentes, `BIT_OR()` retorna um valor neutro (todos os bits configurados como 0).
+Se não houver strings correspondentes, `BIT_OR()` retorna um valor neutro (todos os bits configurados como 0).
 
 * `BIT_XOR(expr)`
 
 Retorna o bitwise `XOR` de todos os bits em *`expr`*. O cálculo é realizado com precisão de 64 bits (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT)).
 
-Se não houver linhas correspondentes, `BIT_XOR()` retorna um valor neutro (todos os bits configurados como 0).
+Se não houver strings correspondentes, `BIT_XOR()` retorna um valor neutro (todos os bits configurados como 0).
 
 * `COUNT(expr)`
 
-Retorna um contador do número de valores não `NULL` de *`expr`* nas linhas recuperadas por uma declaração `SELECT`. O resultado é um valor `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
+Retorna um contador do número de valores não `NULL` de *`expr`* nas strings recuperadas por uma declaração `SELECT`. O resultado é um valor `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
 
-Se não houver linhas correspondentes, `COUNT()` retorna `0`.
+Se não houver strings correspondentes, `COUNT()` retorna `0`.
 
   ```sql
   mysql> SELECT student.student_name,COUNT(*)
@@ -70,15 +70,15 @@ Se não houver linhas correspondentes, `COUNT()` retorna `0`.
          GROUP BY student_name;
   ```
 
-`COUNT(*)` é um pouco diferente, pois retorna um contador do número de linhas recuperadas, independentemente de elas conterem ou não os valores de `NULL`.
+`COUNT(*)` é um pouco diferente, pois retorna um contador do número de strings recuperadas, independentemente de elas conterem ou não os valores de `NULL`.
 
-Para motores de armazenamento transacional, como `InnoDB`, armazenar um número exato de linhas é problemático. Múltiplas transações podem estar ocorrendo ao mesmo tempo, e cada uma delas pode afetar o contagem.
+Para motores de armazenamento transacional, como `InnoDB`, armazenar um número exato de strings é problemático. Múltiplas transações podem estar ocorrendo ao mesmo tempo, e cada uma delas pode afetar o contagem.
 
-`InnoDB` não mantém um contador interno de linhas em uma tabela, porque transações concorrentes podem "ver" diferentes números de linhas ao mesmo tempo. Consequentemente, as declarações `SELECT COUNT(*)` contam apenas as linhas visíveis para a transação atual.
+`InnoDB` não mantém um contador interno de strings em uma tabela, porque transações concorrentes podem "ver" diferentes números de strings ao mesmo tempo. Consequentemente, as declarações `SELECT COUNT(*)` contam apenas as strings visíveis para a transação atual.
 
 Antes do MySQL 5.7.18, `InnoDB` processa as instruções `SELECT COUNT(*)` ao analisar o índice agrupado. A partir do MySQL 5.7.18, `InnoDB` processa as instruções `SELECT COUNT(*)` ao percorrer o menor índice secundário disponível, a menos que uma dica de índice ou do otimizador indique ao otimizador que use um índice diferente. Se um índice secundário não estiver presente, o índice agrupado é analisado.
 
-O processamento das declarações `SELECT COUNT(*)` leva algum tempo se os registros do índice não estiverem totalmente no buffer pool. Para uma contagem mais rápida, crie uma tabela de contagem e deixe sua aplicação atualizá-la de acordo com as inserções e exclusões que ela realiza. No entanto, esse método pode não escalar bem em situações em que milhares de transações concorrentes estão iniciando atualizações na mesma tabela de contagem. Se um número aproximado de linhas for suficiente, use `SHOW TABLE STATUS`.
+O processamento das declarações `SELECT COUNT(*)` leva algum tempo se os registros do índice não estiverem totalmente no buffer pool. Para uma contagem mais rápida, crie uma tabela de contagem e deixe sua aplicação atualizá-la de acordo com as inserções e exclusões que ela realiza. No entanto, esse método pode não escalar bem em situações em que milhares de transações concorrentes estão iniciando atualizações na mesma tabela de contagem. Se um número aproximado de strings for suficiente, use `SHOW TABLE STATUS`.
 
 `InnoDB` lida com as operações de `SELECT COUNT(*)` e `SELECT COUNT(1)` da mesma maneira. Não há diferença de desempenho.
 
@@ -88,13 +88,13 @@ Para as tabelas `MyISAM`, `COUNT(*)` é otimizado para retornar muito rapidament
   mysql> SELECT COUNT(*) FROM student;
   ```
 
-Essa otimização só se aplica às tabelas `MyISAM`, porque um número exato de linhas é armazenado para esse mecanismo de armazenamento e pode ser acessado muito rapidamente. `COUNT(1)` está sujeito à mesma otimização apenas se a primeira coluna for definida como `NOT NULL`.
+Essa otimização só se aplica às tabelas `MyISAM`, porque um número exato de strings é armazenado para esse mecanismo de armazenamento e pode ser acessado muito rapidamente. `COUNT(1)` está sujeito à mesma otimização apenas se a primeira coluna for definida como `NOT NULL`.
 
 * `COUNT(DISTINCT expr,[expr...])`(aggregate-functions.html#function_count)
 
-Retorna um contador do número de linhas com valores diferentes de `NULL` *`expr`*.
+Retorna um contador do número de strings com valores diferentes de `NULL` *`expr`*.
 
-Se não houver linhas correspondentes, `COUNT(DISTINCT)` retorna `0`.
+Se não houver strings correspondentes, `COUNT(DISTINCT)` retorna `0`.
 
   ```sql
   mysql> SELECT COUNT(DISTINCT results) FROM student;
@@ -140,13 +140,13 @@ O resultado é truncado para o comprimento máximo que é dado pela variável de
 
 O valor de retorno é uma string não binária ou binária, dependendo se os argumentos são strings não binárias ou binárias. O tipo de resultado é `TEXT` ou `BLOB`, a menos que `group_concat_max_len` seja menor ou igual a 512, caso em que o tipo de resultado é `VARCHAR` ou `VARBINARY`.
 
-Se `GROUP_CONCAT()` for invocado dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”.
+Se `GROUP_CONCAT()` for invocado dentro do cliente **mysql**, os resultados de cadeia binária são exibidos usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de string de comando MySQL”.
 
 Veja também `CONCAT()` e `CONCAT_WS()`: Seção 12.8, “Funções e operadores de cadeia”.
 
 * `JSON_ARRAYAGG(col_or_expr)`
 
-Agrupa um conjunto de resultados como um único array `JSON` cujos elementos consistem nas linhas. A ordem dos elementos neste array é indefinida. A função atua em uma coluna ou em uma expressão que avalia um único valor. Retorna `NULL` se o resultado não contiver nenhuma linha, ou em caso de erro.
+Agrupa um conjunto de resultados como um único array `JSON` cujos elementos consistem nas strings. A ordem dos elementos neste array é indefinida. A função atua em uma coluna ou em uma expressão que avalia um único valor. Retorna `NULL` se o resultado não contiver nenhuma string, ou em caso de erro.
 
   ```sql
   mysql> SELECT o_id, attribute, value FROM t3;
@@ -175,7 +175,7 @@ Adicionado no MySQL 5.7.22.
 
 * `JSON_OBJECTAGG(key, value)`(aggregate-functions.html#function_json-objectagg)
 
-Pede dois nomes de coluna ou expressões como argumentos, sendo o primeiro usado como chave e o segundo como valor, e retorna um objeto JSON contendo pares chave-valor. Retorna `NULL` se o resultado não contiver nenhuma linha, ou em caso de erro. Um erro ocorre se qualquer nome de chave for `NULL` ou se o número de argumentos não for igual a 2.
+Pede dois nomes de coluna ou expressões como argumentos, sendo o primeiro usado como chave e o segundo como valor, e retorna um objeto JSON contendo pares chave-valor. Retorna `NULL` se o resultado não contiver nenhuma string, ou em caso de erro. Um erro ocorre se qualquer nome de chave for `NULL` ou se o número de argumentos não for igual a 2.
 
   ```sql
   mysql> SELECT o_id, attribute, value FROM t3;
@@ -200,7 +200,7 @@ Pede dois nomes de coluna ou expressões como argumentos, sendo o primeiro usado
   2 rows in set (0.00 sec)
   ```
 
-**Tratamento de chaves duplicadas.** Quando o resultado desta função é normalizado, os valores com chaves duplicadas são descartados. De acordo com a especificação do tipo de dados `JSON` do MySQL, que não permite chaves duplicadas, apenas o último valor encontrado é usado com essa chave no objeto retornado (“a chave duplicada ganha”). Isso significa que o resultado do uso desta função em colunas de um `SELECT` pode depender da ordem em que as linhas são retornadas, o que não é garantido.
+**Tratamento de chaves duplicadas.** Quando o resultado desta função é normalizado, os valores com chaves duplicadas são descartados. De acordo com a especificação do tipo de dados `JSON` do MySQL, que não permite chaves duplicadas, apenas o último valor encontrado é usado com essa chave no objeto retornado (“a chave duplicada ganha”). Isso significa que o resultado do uso desta função em colunas de um `SELECT` pode depender da ordem em que as strings são retornadas, o que não é garantido.
 
 Considere o seguinte:
 
@@ -264,7 +264,7 @@ Adicionado no MySQL 5.7.22.
 
 Retorna o valor máximo de *`expr`*. `MAX()` pode receber um argumento de string; nesses casos, ele retorna o valor máximo da string. Veja a Seção 8.3.1, “Como o MySQL usa índices”. A palavra-chave `DISTINCT` pode ser usada para encontrar o máximo dos valores distintos de *`expr`*, no entanto, isso produz o mesmo resultado que omitir `DISTINCT`.
 
-Se não houver linhas correspondentes, `MAX()` retorna `NULL`.
+Se não houver strings correspondentes, `MAX()` retorna `NULL`.
 
   ```sql
   mysql> SELECT student_name, MIN(test_score), MAX(test_score)
@@ -278,7 +278,7 @@ Para `MAX()`, o MySQL atualmente compara as colunas `ENUM` e `SET` pelo seu valo
 
 Retorna o valor mínimo de *`expr`*. `MIN()` pode receber um argumento de string; nesses casos, ele retorna o valor mínimo da string. Veja a Seção 8.3.1, “Como o MySQL usa índices”. A palavra-chave `DISTINCT` pode ser usada para encontrar o mínimo dos valores distintos de *`expr`*, no entanto, isso produz o mesmo resultado que omitir `DISTINCT`.
 
-Se não houver linhas correspondentes, `MIN()` retorna `NULL`.
+Se não houver strings correspondentes, `MIN()` retorna `NULL`.
 
   ```sql
   mysql> SELECT student_name, MIN(test_score), MAX(test_score)
@@ -292,53 +292,53 @@ Para `MIN()`, o MySQL atualmente compara as colunas `ENUM` e `SET` por seu valor
 
 Retorna a desvio padrão populacional de *`expr`*. `STD()` é sinônimo da função padrão SQL `STDDEV_POP()`, fornecida como uma extensão MySQL.
 
-Se não houver linhas correspondentes, `STD()` retorna `NULL`.
+Se não houver strings correspondentes, `STD()` retorna `NULL`.
 
 * `STDDEV(expr)`
 
 Retorna a desvio padrão populacional de *`expr`*. `STDDEV()` é sinônimo da função padrão SQL `STDDEV_POP()`, fornecida para compatibilidade com Oracle.
 
-Se não houver linhas correspondentes, `STDDEV()` retorna `NULL`.
+Se não houver strings correspondentes, `STDDEV()` retorna `NULL`.
 
 * `STDDEV_POP(expr)`
 
 Retorna a desvio padrão populacional de *`expr`* (a raiz quadrada de `VAR_POP()`). Você também pode usar `STD()` ou `STDDEV()`, que são equivalentes, mas não são SQL padrão.
 
-Se não houver linhas correspondentes, `STDDEV_POP()` retorna `NULL`.
+Se não houver strings correspondentes, `STDDEV_POP()` retorna `NULL`.
 
 * `STDDEV_SAMP(expr)`
 
 Retorna a desvio padrão amostral de *`expr`* (a raiz quadrada de `VAR_SAMP()`.
 
-Se não houver linhas correspondentes, `STDDEV_SAMP()` retorna `NULL`.
+Se não houver strings correspondentes, `STDDEV_SAMP()` retorna `NULL`.
 
 * `SUM([DISTINCT] expr)`(aggregate-functions.html#function_sum)
 
-Retorna a soma de *`expr`*. Se o conjunto de retorno não tiver linhas, `SUM()` retorna `NULL`. A palavra-chave `DISTINCT` pode ser usada para somar apenas os valores distintos de *`expr`*.
+Retorna a soma de *`expr`*. Se o conjunto de retorno não tiver strings, `SUM()` retorna `NULL`. A palavra-chave `DISTINCT` pode ser usada para somar apenas os valores distintos de *`expr`*.
 
-Se não houver linhas correspondentes, `SUM()` retorna `NULL`.
+Se não houver strings correspondentes, `SUM()` retorna `NULL`.
 
 * `VAR_POP(expr)`
 
-Retorna a variância padrão da população de *`expr`*. Considera as linhas como a população inteira, não como uma amostra, portanto, tem o número de linhas como denominador. Você também pode usar `VARIANCE()`, que é equivalente, mas não é SQL padrão.
+Retorna a variância padrão da população de *`expr`*. Considera as strings como a população inteira, não como uma amostra, portanto, tem o número de strings como denominador. Você também pode usar `VARIANCE()`, que é equivalente, mas não é SQL padrão.
 
-Se não houver linhas correspondentes, `VAR_POP()` retorna `NULL`.
+Se não houver strings correspondentes, `VAR_POP()` retorna `NULL`.
 
 * `VAR_SAMP(expr)`
 
-Retorna a variância amostral de *`expr`*. Ou seja, o denominador é o número de linhas menos um.
+Retorna a variância amostral de *`expr`*. Ou seja, o denominador é o número de strings menos um.
 
-Se não houver linhas correspondentes, `VAR_SAMP()` retorna `NULL`.
+Se não houver strings correspondentes, `VAR_SAMP()` retorna `NULL`.
 
 * `VARIANCE(expr)`
 
 Retorna a variância padrão da população de *`expr`*. `VARIANCE()` é sinônimo da função padrão SQL `VAR_POP()`, fornecida como uma extensão MySQL.
 
-Se não houver linhas correspondentes, `VARIANCE()` retorna `NULL`.
+Se não houver strings correspondentes, `VARIANCE()` retorna `NULL`.
 
 ### 12.19.2 Modificadores de GROUP BY
 
-A cláusula `GROUP BY` permite um modificador `WITH ROLLUP` que faz com que a saída resumida inclua linhas extras que representam operações resumidas de nível superior (ou seja, super-agregadas). `ROLLUP` permite, assim, responder a perguntas em vários níveis de análise com uma única consulta. Por exemplo, `ROLLUP` pode ser usado para fornecer suporte a operações OLAP (Processamento Analítico Online).
+A cláusula `GROUP BY` permite um modificador `WITH ROLLUP` que faz com que a saída resumida inclua strings extras que representam operações resumidas de nível superior (ou seja, super-agregadas). `ROLLUP` permite, assim, responder a perguntas em vários níveis de análise com uma única consulta. Por exemplo, `ROLLUP` pode ser usado para fornecer suporte a operações OLAP (Processamento Analítico Online).
 
 Suponha que uma tabela `sales` tenha as colunas `year`, `country`, `product` e `profit` para registrar a rentabilidade das vendas:
 
@@ -366,7 +366,7 @@ mysql> SELECT year, SUM(profit) AS profit
 +------+--------+
 ```
 
-A saída mostra o lucro total (agregado) para cada ano. Para determinar também o lucro total somando todos os anos, você deve somar os valores individuais você mesmo ou executar uma consulta adicional. Ou você pode usar `ROLLUP`, que fornece ambos os níveis de análise com uma única consulta. Adicionando um modificador `WITH ROLLUP` à cláusula `GROUP BY`, a consulta produz outra linha (super-agregado) que mostra o total geral sobre todos os valores do ano:
+A saída mostra o lucro total (agregado) para cada ano. Para determinar também o lucro total somando todos os anos, você deve somar os valores individuais você mesmo ou executar uma consulta adicional. Ou você pode usar `ROLLUP`, que fornece ambos os níveis de análise com uma única consulta. Adicionando um modificador `WITH ROLLUP` à cláusula `GROUP BY`, a consulta produz outra string (super-agregado) que mostra o total geral sobre todos os valores do ano:
 
 ```sql
 mysql> SELECT year, SUM(profit) AS profit
@@ -381,9 +381,9 @@ mysql> SELECT year, SUM(profit) AS profit
 +------+--------+
 ```
 
-O valor `NULL` na coluna `year` identifica a linha do superagregado de total geral.
+O valor `NULL` na coluna `year` identifica a string do superagregado de total geral.
 
-`ROLLUP` tem um efeito mais complexo quando há várias colunas `GROUP BY`. Neste caso, cada vez que há uma mudança no valor em qualquer coluna, exceto a última coluna de agrupamento, a consulta produz uma linha de resumo superagregado extra.
+`ROLLUP` tem um efeito mais complexo quando há várias colunas `GROUP BY`. Neste caso, cada vez que há uma mudança no valor em qualquer coluna, exceto a última coluna de agrupamento, a consulta produz uma string de resumo superagregado extra.
 
 Por exemplo, sem `ROLLUP`, um resumo da tabela `sales` com base em `year`, `country` e `product` pode parecer assim, onde a saída indica valores resumidos apenas no nível de análise ano/país/produto:
 
@@ -407,7 +407,7 @@ mysql> SELECT year, country, product, SUM(profit) AS profit
 +------+---------+------------+--------+
 ```
 
-Com `ROLLUP` adicionado, a consulta produz várias linhas extras:
+Com `ROLLUP` adicionado, a consulta produz várias strings extras:
 
 ```sql
 mysql> SELECT year, country, product, SUM(profit) AS profit
@@ -439,15 +439,15 @@ mysql> SELECT year, country, product, SUM(profit) AS profit
 
 Agora, a saída inclui informações resumidas em quatro níveis de análise, e não apenas em um:
 
-* Após cada conjunto de linhas de produtos para um ano e país específico, uma linha de resumo superagregado adicional aparece, mostrando o total para todos os produtos. Essas linhas têm a coluna `product` definida como `NULL`.
+* Após cada conjunto de strings de produtos para um ano e país específico, uma string de resumo superagregado adicional aparece, mostrando o total para todos os produtos. Essas strings têm a coluna `product` definida como `NULL`.
 
-* Após cada conjunto de linhas para um ano dado, uma linha de resumo superagregado adicional aparece, mostrando o total para todos os países e produtos. Essas linhas têm as colunas `country` e `products` definidas como `NULL`.
+* Após cada conjunto de strings para um ano dado, uma string de resumo superagregado adicional aparece, mostrando o total para todos os países e produtos. Essas strings têm as colunas `country` e `products` definidas como `NULL`.
 
-* Por fim, após todas as outras linhas, uma linha de resumo superagregado extra aparece, mostrando o total geral para todos os anos, países e produtos. Essa linha tem as colunas `year`, `country` e `products` definidas como `NULL`.
+* Por fim, após todas as outras strings, uma string de resumo superagregado extra aparece, mostrando o total geral para todos os anos, países e produtos. Essa string tem as colunas `year`, `country` e `products` definidas como `NULL`.
 
-Os indicadores `NULL` em cada linha de superagregado são produzidos quando a linha é enviada ao cliente. O servidor analisa as colunas nomeadas na cláusula `GROUP BY` seguindo a coluna mais à esquerda que tem o valor alterado. Para qualquer coluna no conjunto de resultados com um nome que corresponda a qualquer um desses nomes, seu valor é definido como `NULL`. (Se você especificar a agrupamento de colunas por posição da coluna, o servidor identifica quais colunas devem ser definidas como `NULL` por posição.)
+Os indicadores `NULL` em cada string de superagregado são produzidos quando a string é enviada ao cliente. O servidor analisa as colunas nomeadas na cláusula `GROUP BY` seguindo a coluna mais à esquerda que tem o valor alterado. Para qualquer coluna no conjunto de resultados com um nome que corresponda a qualquer um desses nomes, seu valor é definido como `NULL`. (Se você especificar a agrupamento de colunas por posição da coluna, o servidor identifica quais colunas devem ser definidas como `NULL` por posição.)
 
-Como os valores do `NULL` nas linhas do superagregado são colocados no conjunto de resultados em uma etapa tão tardia no processamento da consulta, você pode testá-los como valores do `NULL` apenas na lista de seleção ou na cláusula `HAVING`. Você não pode testá-los como valores do `NULL` em condições de junção ou na cláusula `WHERE` para determinar quais linhas selecionar. Por exemplo, você não pode adicionar `WHERE product IS NULL` à consulta para eliminar todas as linhas, exceto as do superagregado, do resultado.
+Como os valores do `NULL` nas strings do superagregado são colocados no conjunto de resultados em uma etapa tão tardia no processamento da consulta, você pode testá-los como valores do `NULL` apenas na lista de seleção ou na cláusula `HAVING`. Você não pode testá-los como valores do `NULL` em condições de junção ou na cláusula `WHERE` para determinar quais strings selecionar. Por exemplo, você não pode adicionar `WHERE product IS NULL` à consulta para eliminar todas as strings, exceto as do superagregado, do resultado.
 
 Os valores do `NULL` aparecem como `NULL` no lado do cliente e podem ser testados como tal usando qualquer interface de programação de cliente MySQL. No entanto, neste ponto, você não pode distinguir se um `NULL` representa um valor agrupado regular ou um valor superagregado. No MySQL 8.0, você pode usar a função `GROUPING()` para testar a distinção.
 
@@ -471,9 +471,9 @@ mysql> SELECT * FROM
 +------+--------+
 ```
 
-Neste caso, as linhas de resumo do superagregado são ordenadas com as linhas das quais são calculadas, e seu posicionamento depende do tipo de ordenação (no início para uma ordenação ascendente, no final para uma ordenação descendente).
+Neste caso, as strings de resumo do superagregado são ordenadas com as strings das quais são calculadas, e seu posicionamento depende do tipo de ordenação (no início para uma ordenação ascendente, no final para uma ordenação descendente).
 
-`LIMIT` pode ser usado para restringir o número de linhas devolvidas ao cliente. `LIMIT` é aplicado após `ROLLUP`, portanto, o limite se aplica contra as linhas extras adicionadas por `ROLLUP`. Por exemplo:
+`LIMIT` pode ser usado para restringir o número de strings devolvidas ao cliente. `LIMIT` é aplicado após `ROLLUP`, portanto, o limite se aplica contra as strings extras adicionadas por `ROLLUP`. Por exemplo:
 
 ```sql
 mysql> SELECT year, country, product, SUM(profit) AS profit
@@ -491,9 +491,9 @@ mysql> SELECT year, country, product, SUM(profit) AS profit
 +------+---------+------------+--------+
 ```
 
-Usar `LIMIT` com `ROLLUP` pode produzir resultados mais difíceis de interpretar, pois há menos contexto para entender as linhas superagregadas.
+Usar `LIMIT` com `ROLLUP` pode produzir resultados mais difíceis de interpretar, pois há menos contexto para entender as strings superagregadas.
 
-Uma extensão do MySQL permite que uma coluna que não aparece na lista `GROUP BY` seja nomeada na lista de seleção. (Para informações sobre colunas não agregadas e `GROUP BY`, consulte a Seção 12.19.3, “Tratamento do MySQL do GROUP BY”.) Neste caso, o servidor é livre para escolher qualquer valor desta coluna não agregada em linhas de resumo, e isso inclui as linhas extras adicionadas por `WITH ROLLUP`. Por exemplo, na seguinte consulta, `country` é uma coluna não agregada que não aparece na lista `GROUP BY` e os valores escolhidos para esta coluna são não determinísticos:
+Uma extensão do MySQL permite que uma coluna que não aparece na lista `GROUP BY` seja nomeada na lista de seleção. (Para informações sobre colunas não agregadas e `GROUP BY`, consulte a Seção 12.19.3, “Tratamento do MySQL do GROUP BY”.) Neste caso, o servidor é livre para escolher qualquer valor desta coluna não agregada em strings de resumo, e isso inclui as strings extras adicionadas por `WITH ROLLUP`. Por exemplo, na seguinte consulta, `country` é uma coluna não agregada que não aparece na lista `GROUP BY` e os valores escolhidos para esta coluna são não determinísticos:
 
 ```sql
 mysql> SELECT year, country, SUM(profit) AS profit
@@ -612,7 +612,7 @@ Essa consulta pode ser inválida com `ONLY_FULL_GROUP_BY` habilitado porque a co
 SELECT name, address, MAX(age) FROM t GROUP BY name;
 ```
 
-A consulta é válida se `name` for uma chave primária de `t` ou se for uma coluna única de `NOT NULL`. Nesses casos, o MySQL reconhece que a coluna selecionada é funcionalmente dependente de uma coluna de agrupamento. Por exemplo, se `name` for uma chave primária, seu valor determina o valor de `address`, pois cada grupo tem apenas um valor da chave primária e, portanto, apenas uma linha. Como resultado, não há aleatoriedade na escolha do valor de `address` em um grupo e não há necessidade de rejeitar a consulta.
+A consulta é válida se `name` for uma chave primária de `t` ou se for uma coluna única de `NOT NULL`. Nesses casos, o MySQL reconhece que a coluna selecionada é funcionalmente dependente de uma coluna de agrupamento. Por exemplo, se `name` for uma chave primária, seu valor determina o valor de `address`, pois cada grupo tem apenas um valor da chave primária e, portanto, apenas uma string. Como resultado, não há aleatoriedade na escolha do valor de `address` em um grupo e não há necessidade de rejeitar a consulta.
 
 A consulta é inválida se `name` não for uma chave primária de `t` ou uma coluna única de `NOT NULL`. Nesse caso, nenhuma dependência funcional pode ser inferida e ocorre um erro:
 
@@ -632,7 +632,7 @@ SELECT name, ANY_VALUE(address), MAX(age) FROM t GROUP BY name;
 
 Alternativamente, desative `ONLY_FULL_GROUP_BY`.
 
-O exemplo anterior, no entanto, é bastante simples. Em particular, é improvável que você agrupe em uma única coluna de chave primária, porque cada grupo conterá apenas uma linha. Para exemplos adicionais que demonstram a dependência funcional em consultas mais complexas, consulte a Seção 12.19.4, “Detecção de Dependência Funcional”.
+O exemplo anterior, no entanto, é bastante simples. Em particular, é improvável que você agrupe em uma única coluna de chave primária, porque cada grupo conterá apenas uma string. Para exemplos adicionais que demonstram a dependência funcional em consultas mais complexas, consulte a Seção 12.19.4, “Detecção de Dependência Funcional”.
 
 Se uma consulta tiver funções agregadas e nenhuma cláusula `GROUP BY`, ela não pode ter colunas não agregadas na lista de seleção, na condição `HAVING` ou na lista `ORDER BY` com `ONLY_FULL_GROUP_BY` habilitado:
 
@@ -649,7 +649,7 @@ Sem `GROUP BY`, há um único grupo e não é determinado qual valor de `name` e
 SELECT ANY_VALUE(name), MAX(age) FROM t;
 ```
 
-Em MySQL 5.7.5 e versões posteriores, `ONLY_FULL_GROUP_BY` também afeta o tratamento de consultas que utilizam `DISTINCT` e `ORDER BY`. Considere o caso de uma tabela `t` com três colunas `c1`, `c2` e `c3` que contém essas linhas:
+Em MySQL 5.7.5 e versões posteriores, `ONLY_FULL_GROUP_BY` também afeta o tratamento de consultas que utilizam `DISTINCT` e `ORDER BY`. Considere o caso de uma tabela `t` com três colunas `c1`, `c2` e `c3` que contém essas strings:
 
 ```sql
 c1 c2 c3
@@ -664,7 +664,7 @@ Suponha que execute a seguinte consulta, esperando que os resultados sejam orden
 SELECT DISTINCT c1, c2 FROM t ORDER BY c3;
 ```
 
-Para ordenar o resultado, os duplicados devem ser eliminados primeiro. Mas para isso, devemos manter a primeira linha ou a terceira? Essa escolha arbitrária influencia o valor retido de `c3`, que por sua vez influencia a ordenação e a torna arbitrária também. Para evitar esse problema, uma consulta que tem `DISTINCT` e `ORDER BY` é rejeitada como inválida se qualquer expressão `ORDER BY` não satisfazer pelo menos uma dessas condições:
+Para ordenar o resultado, os duplicados devem ser eliminados primeiro. Mas para isso, devemos manter a primeira string ou a terceira? Essa escolha arbitrária influencia o valor retido de `c3`, que por sua vez influencia a ordenação e a torna arbitrária também. Para evitar esse problema, uma consulta que tem `DISTINCT` e `ORDER BY` é rejeitada como inválida se qualquer expressão `ORDER BY` não satisfazer pelo menos uma dessas condições:
 
 * A expressão é igual a uma na lista de seleção * Todas as colunas referenciadas pela expressão e pertencentes às tabelas selecionadas da consulta são elementos da lista de seleção
 
@@ -820,7 +820,7 @@ GROUP BY cl.CountryCode, cl.Language;
 
 Enquanto um teste de igualdade em uma condição de `WHERE` ou `INNER JOIN` é simétrico, um teste de igualdade em uma condição de junção externa não é, porque as tabelas desempenham papéis diferentes.
 
-Suponha que a integridade referencial tenha sido acidentalmente quebrada e exista uma linha de `countrylanguage` sem uma linha correspondente em `country`. Considere a mesma consulta do exemplo anterior, mas com uma `LEFT JOIN`:
+Suponha que a integridade referencial tenha sido acidentalmente quebrada e exista uma string de `countrylanguage` sem uma string correspondente em `country`. Considere a mesma consulta do exemplo anterior, mas com uma `LEFT JOIN`:
 
 ```sql
 SELECT co.Name, cl.Language,
@@ -830,7 +830,7 @@ ON cl.CountryCode = co.Code
 GROUP BY cl.CountryCode, cl.Language;
 ```
 
-Para um valor dado de `cl.CountryCode`, o valor de `co.Code` no resultado da junção é encontrado em uma linha correspondente (determinada por `cl.CountryCode`) ou é complementado com `NULL` se não houver correspondência (também determinado por `cl.CountryCode`). Em cada caso, essa relação se aplica:
+Para um valor dado de `cl.CountryCode`, o valor de `co.Code` no resultado da junção é encontrado em uma string correspondente (determinada por `cl.CountryCode`) ou é complementado com `NULL` se não houver correspondência (também determinado por `cl.CountryCode`). Em cada caso, essa relação se aplica:
 
 ```sql
 {cl.CountryCode} -> {co.Code}
@@ -868,7 +868,7 @@ Agora, essa relação *não* se aplica:
 {cl.CountryCode, cl.Language} -> {cl.*,co.*}
 ```
 
-Todas as linhas `NULL` complementadas feitas para `cl` são colocadas em um único grupo (elas têm ambas as colunas `GROUP BY` iguais a `NULL`, e dentro deste grupo o valor de `co.Name` pode variar. A consulta é inválida e o MySQL a rejeita.
+Todas as strings `NULL` complementadas feitas para `cl` são colocadas em um único grupo (elas têm ambas as colunas `GROUP BY` iguais a `NULL`, e dentro deste grupo o valor de `co.Name` pode variar. A consulta é inválida e o MySQL a rejeita.
 
 A dependência funcional em junções externas está, portanto, relacionada à questão de se as colunas determinantes pertencem ao lado esquerdo ou direito do `LEFT JOIN`. A determinação da dependência funcional se torna mais complexa se houver junções externas aninhadas ou se a condição de junção não consistir inteiramente em comparações de igualdade.
 

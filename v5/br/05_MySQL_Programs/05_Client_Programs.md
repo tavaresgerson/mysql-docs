@@ -2,11 +2,11 @@
 
 Esta seção descreve os programas de cliente que se conectam ao servidor MySQL.
 
-### 4.5.1 mysql — O cliente de linha de comando MySQL
+### 4.5.1 mysql — O cliente de string de comando MySQL
 
-**mysql** é um shell SQL simples com capacidade de edição de linha de entrada. Ele suporta uso interativo e não interativo. Quando usado interativamente, os resultados das consultas são apresentados em um formato de tabela ASCII. Quando usado não interativamente (por exemplo, como um filtro), o resultado é apresentado em formato de separação por tabulação. O formato de saída pode ser alterado usando opções de comando.
+**mysql** é um shell SQL simples com capacidade de edição de string de entrada. Ele suporta uso interativo e não interativo. Quando usado interativamente, os resultados das consultas são apresentados em um formato de tabela ASCII. Quando usado não interativamente (por exemplo, como um filtro), o resultado é apresentado em formato de separação por tabulação. O formato de saída pode ser alterado usando opções de comando.
 
-Se você tiver problemas devido à memória insuficiente para conjuntos de resultados grandes, use a opção `--quick`. Isso obriga o **mysql** a recuperar os resultados do servidor uma linha de cada vez, em vez de recuperar todo o conjunto de resultados e bufferá-lo na memória antes de exibí-lo. Isso é feito retornando o conjunto de resultados usando a função C API `mysql_use_result()` no cliente/biblioteca do servidor, em vez de `mysql_store_result()`.
+Se você tiver problemas devido à memória insuficiente para conjuntos de resultados grandes, use a opção `--quick`. Isso obriga o **mysql** a recuperar os resultados do servidor uma string de cada vez, em vez de recuperar todo o conjunto de resultados e bufferá-lo na memória antes de exibí-lo. Isso é feito retornando o conjunto de resultados usando a função C API `mysql_use_result()` no cliente/biblioteca do servidor, em vez de `mysql_store_result()`.
 
 Nota
 
@@ -32,7 +32,7 @@ Enter password: your_password
 
 Em seguida, digite uma declaração SQL, termine-a com `;`, `\g` ou `\G` e pressione Enter.
 
-Teclar **Control+C** interrompe a declaração atual, se houver uma, ou, caso contrário, anula qualquer linha de entrada parcial.
+Teclar **Control+C** interrompe a declaração atual, se houver uma, ou, caso contrário, anula qualquer string de entrada parcial.
 
 Você pode executar instruções SQL em um arquivo de script (arquivo de lote) da seguinte forma:
 
@@ -44,7 +44,7 @@ No Unix, o cliente **mysql** registra as declarações executadas interativament
 
 #### 4.5.1.1 Opções do cliente do MySQL
 
-O **mysql** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysql** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysql]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.13 Opções do cliente do MySQL**
 
@@ -268,7 +268,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 </tr>
 <tr>
 <th><code>--line-numbers</code></th>
-<td>Escreva números de linha para erros</td>
+<td>Escreva números de string para erros</td>
 <td></td>
 <td></td>
 </tr>
@@ -292,7 +292,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 </tr>
 <tr>
 <th><code>--max-join-size</code></th>
-<td>O limite automático para as linhas em uma junção ao usar --safe-updates</td>
+<td>O limite automático para as strings em uma junção ao usar --safe-updates</td>
 <td></td>
 <td></td>
 </tr>
@@ -328,7 +328,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 </tr>
 <tr>
 <th><code>--one-database</code></th>
-<td>Ignorar declarações, exceto as para o banco de dados padrão nomeado na linha de comando</td>
+<td>Ignorar declarações, exceto as para o banco de dados padrão nomeado na string de comando</td>
 <td></td>
 <td></td>
 </tr>
@@ -346,7 +346,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -460,7 +460,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 </tr>
 <tr>
 <th><code>--skip-line-numbers</code></th>
-<td>Pular números de linha para erros</td>
+<td>Pular números de string para erros</td>
 <td></td>
 <td></td>
 </tr>
@@ -484,7 +484,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -598,7 +598,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 </tr>
 <tr>
 <th><code>--vertical</code></th>
-<td>Imprimir linhas de saída de consulta verticalmente (uma linha por valor de coluna)</td>
+<td>Imprimir strings de saída de consulta verticalmente (uma string por valor de coluna)</td>
 <td></td>
 <td></td>
 </tr>
@@ -645,7 +645,7 @@ Se os conjuntos de resultados forem muito largos para a janela atual, exiba-os v
 
   <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-Imprima os resultados usando a tecla tab como separador de coluna, com cada linha em uma nova linha. Com esta opção, o **mysql** não usa o arquivo de histórico.
+Imprima os resultados usando a tecla tab como separador de coluna, com cada string em uma nova string. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
 O modo de lote resulta em saída não tabular e escapamento de caracteres especiais. O escapamento pode ser desativado usando o modo bruto; consulte a descrição da opção `--raw`.
 
@@ -864,7 +864,7 @@ Para mais informações, consulte a Seção 10.4, “Conjunto de caracteres de c
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -874,7 +874,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -882,7 +882,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysql** normalmente lê os grupos `[client]` e `[mysql]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysql** também lê os grupos `[client_other]` e `[mysql_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--delimiter=str`
 
@@ -892,7 +892,7 @@ Defina o delimitador de declaração. O padrão é o caractere ponto e vírgula 
 
 * `--disable-named-commands`
 
-Desative comandos nomeados. Use apenas o formulário `\*` ou use comandos nomeados apenas no início de uma linha que termina com um ponto e vírgula (`;`). O *mysql* começa com esta opção *ativada* por padrão. No entanto, mesmo com esta opção, os comandos de formato longo ainda funcionam a partir da primeira linha. Veja a Seção 4.5.1.2, “Comandos do cliente do mysql”.
+Desative comandos nomeados. Use apenas o formulário `\*` ou use comandos nomeados apenas no início de uma string que termina com um ponto e vírgula (`;`). O *mysql* começa com esta opção *ativada* por padrão. No entanto, mesmo com esta opção, os comandos de formato longo ainda funcionam a partir da primeira string. Veja a Seção 4.5.1.2, “Comandos do cliente do mysql”.
 
 * `--enable-cleartext-plugin`
 
@@ -904,7 +904,7 @@ Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Veja a 
 
   <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>7
 
-Execute a declaração e saia. O formato de saída padrão é como o produzido com `--batch`. Veja a Seção 4.2.2.1, “Usando opções na linha de comando”, para alguns exemplos. Com esta opção, o **mysql** não usa o arquivo de histórico.
+Execute a declaração e saia. O formato de saída padrão é como o produzido com `--batch`. Veja a Seção 4.2.2.1, “Usando opções na string de comando”, para alguns exemplos. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
 * `--force`, `-f`
 
@@ -958,7 +958,7 @@ Instrução SQL para executar após a conexão com o servidor. Se o auto-reconex
 
   <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>5
 
-Escreva números de linha para erros. Desative isso com `--skip-line-numbers`.
+Escreva números de string para erros. Desative isso com `--skip-line-numbers`.
 
 * `--local-infile[={0|1}]`
 
@@ -974,7 +974,7 @@ O uso bem-sucedido de operações de carregamento `LOCAL` dentro do **mysql** ta
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--max-allowed-packet=value`
 
@@ -986,7 +986,7 @@ O tamanho máximo do buffer para comunicação cliente/servidor. O padrão é 16
 
   <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>9
 
-O limite automático para linhas em uma junção ao usar `--safe-updates`. (O valor padrão é 1.000.000.)
+O limite automático para strings em uma junção ao usar `--safe-updates`. (O valor padrão é 1.000.000.)
 
 * `--named-commands`, `-G`
 
@@ -1018,17 +1018,17 @@ Não emita um sinal sonoro quando ocorrerem erros.
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--one-database`, `-o`
 
   <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>5
 
-Ignore as declarações, exceto aquelas que ocorrem enquanto o banco de dados padrão é o nomeado na linha de comando. Esta opção é rudimentar e deve ser usada com cuidado. O filtro de declaração é baseado apenas em declarações `USE`.
+Ignore as declarações, exceto aquelas que ocorrem enquanto o banco de dados padrão é o nomeado na string de comando. Esta opção é rudimentar e deve ser usada com cuidado. O filtro de declaração é baseado apenas em declarações `USE`.
 
-Inicialmente, o **mysql** executa as instruções na entrada porque especificar um banco de dados *`db_name`* na linha de comando é equivalente a inserir `USE db_name` no início da entrada. Em seguida, para cada declaração `USE` encontrada, o **mysql** aceita ou rejeita as seguintes declarações, dependendo se o nome do banco de dados especificado é o mesmo da linha de comando. O conteúdo das declarações é irrelevante.
+Inicialmente, o **mysql** executa as instruções na entrada porque especificar um banco de dados *`db_name`* na string de comando é equivalente a inserir `USE db_name` no início da entrada. Em seguida, para cada declaração `USE` encontrada, o **mysql** aceita ou rejeita as seguintes declarações, dependendo se o nome do banco de dados especificado é o mesmo da string de comando. O conteúdo das declarações é irrelevante.
 
 Suponha que **mysql** seja invocado para processar este conjunto de declarações:
 
@@ -1042,7 +1042,7 @@ Suponha que **mysql** seja invocado para processar este conjunto de declaraçõe
   CREATE TABLE db2.t1 (j INT);
   ```
 
-Se a linha de comando for **mysql --force --one-database db1**, o **mysql** lida com a entrada da seguinte forma:
+Se a string de comando for **mysql --force --one-database db1**, o **mysql** lida com a entrada da seguinte forma:
 
 + A declaração `DELETE` é executada porque o banco de dados padrão é `db1`, embora a declaração nomeie uma tabela em um banco de dados diferente.
 
@@ -1062,7 +1062,7 @@ Use o comando fornecido para a saída da consulta de paginação. Se o comando f
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysql** solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysql** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -1070,7 +1070,7 @@ Para especificar explicitamente que não há senha e que o **mysql** não deve s
 
   <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>8
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -1090,7 +1090,7 @@ Para conexões TCP/IP, o número de porta a ser utilizado.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--prompt=format_str`
 
@@ -1108,9 +1108,9 @@ O protocolo de transporte a ser usado para se conectar ao servidor. É útil qua
 
   <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>4
 
-Não cache cada resultado da consulta, imprima cada linha conforme ela é recebida. Isso pode tornar o servidor mais lento se o resultado for suspenso. Com esta opção, o **mysql** não usa o arquivo de histórico.
+Não cache cada resultado da consulta, imprima cada string conforme ela é recebida. Isso pode tornar o servidor mais lento se o resultado for suspenso. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
-Por padrão, o **mysql** recupera todas as linhas de resultado antes de produzir qualquer saída; ao armazená-las, calcula um comprimento máximo de coluna em execução a partir do valor real de cada coluna em sucessão. Ao imprimir a saída, ele usa esse máximo para formatá-la. Quando `--quick` é especificado, o **mysql** não tem as linhas para as quais calcular o comprimento antes de começar, e, portanto, usa o comprimento máximo. No exemplo a seguir, a tabela `t1` tem uma única coluna do tipo `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e contendo 4 linhas. A saída padrão tem 9 caracteres de largura; essa largura é igual ao número máximo de caracteres em qualquer um dos valores das colunas nas linhas retornadas (5), mais 2 caracteres cada para os espaços usados como preenchimento e os caracteres `|` usados como delimitadores de coluna). A saída ao usar a opção `--quick` tem 25 caracteres de largura; essa é igual ao número de caracteres necessários para representar `-9223372036854775808`, que é o valor mais longo possível que pode ser armazenado em uma coluna (assinada) `BIGINT`, ou 19 caracteres, mais os 4 caracteres usados para preenchimento e delimitadores de coluna. A diferença pode ser vista aqui:
+Por padrão, o **mysql** recupera todas as strings de resultado antes de produzir qualquer saída; ao armazená-las, calcula um comprimento máximo de coluna em execução a partir do valor real de cada coluna em sucessão. Ao imprimir a saída, ele usa esse máximo para formatá-la. Quando `--quick` é especificado, o **mysql** não tem as strings para as quais calcular o comprimento antes de começar, e, portanto, usa o comprimento máximo. No exemplo a seguir, a tabela `t1` tem uma única coluna do tipo `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e contendo 4 strings. A saída padrão tem 9 caracteres de largura; essa largura é igual ao número máximo de caracteres em qualquer um dos valores das colunas nas strings retornadas (5), mais 2 caracteres cada para os espaços usados como preenchimento e os caracteres `|` usados como delimitadores de coluna). A saída ao usar a opção `--quick` tem 25 caracteres de largura; essa é igual ao número de caracteres necessários para representar `-9223372036854775808`, que é o valor mais longo possível que pode ser armazenado em uma coluna (assinada) `BIGINT`, ou 19 caracteres, mais os 4 caracteres usados para preenchimento e delimitadores de coluna. A diferença pode ser vista aqui:
 
   ```sql
   $> mysql -t test -e "SELECT * FROM t1"
@@ -1138,7 +1138,7 @@ Por padrão, o **mysql** recupera todas as linhas de resultado antes de produzir
 
   <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>5
 
-Para a saída tabular, o "boxeamento" ao redor das colunas permite que um valor de coluna seja distinguido de outro. Para a saída não tabular (como a produzida em modo de lote ou quando a opção `--batch` ou `--silent` é dada), caracteres especiais são escamados na saída para que possam ser identificados facilmente. Novo linha, tab, `NUL` e barra invertida são escritos como `\n`, `\t`, `\0` e `\\`. A opção `--raw` desabilita este escapagem de caracteres.
+Para a saída tabular, o "boxeamento" ao redor das colunas permite que um valor de coluna seja distinguido de outro. Para a saída não tabular (como a produzida em modo de lote ou quando a opção `--batch` ou `--silent` é dada), caracteres especiais são escamados na saída para que possam ser identificados facilmente. Novo string, tab, `NUL` e barra invertida são escritos como `\n`, `\t`, `\0` e `\\`. A opção `--raw` desabilita este escapagem de caracteres.
 
 O exemplo a seguir demonstra a saída tabular versus não tabular e o uso do modo bruto para desabilitar a fuga de caracteres:
 
@@ -1172,7 +1172,7 @@ Se a conexão com o servidor for perdida, tente reconectar automaticamente. Uma 
 
   <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>7
 
-Se esta opção estiver habilitada, as declarações `UPDATE` e `DELETE` que não utilizam uma chave na cláusula `WHERE` ou na cláusula `LIMIT` produzem um erro. Além disso, restrições são colocadas nas declarações `SELECT` que produzem (ou são estimadas para produzir) conjuntos de resultados muito grandes. Se você definiu esta opção em um arquivo de opções, pode usar `--skip-safe-updates` na linha de comando para sobrescrevê-la. Para obter mais informações sobre esta opção, consulte "Usando o modo de atualizações seguras (--safe-updates)".
+Se esta opção estiver habilitada, as declarações `UPDATE` e `DELETE` que não utilizam uma chave na cláusula `WHERE` ou na cláusula `LIMIT` produzem um erro. Além disso, restrições são colocadas nas declarações `SELECT` que produzem (ou são estimadas para produzir) conjuntos de resultados muito grandes. Se você definiu esta opção em um arquivo de opções, pode usar `--skip-safe-updates` na string de comando para sobrescrevê-la. Para obter mais informações sobre esta opção, consulte "Usando o modo de atualizações seguras (--safe-updates)".
 
 * `--secure-auth`
 
@@ -1224,7 +1224,7 @@ Se houver alguma advertência, ela deve ser exibida após cada declaração. Est
 
 Ignore os sinais `SIGINT` (normalmente o resultado de digitar **Control+C**).
 
-Sem essa opção, ao digitar **Control+C**, o texto atual é interrompido, se houver um, ou qualquer linha de entrada parcial é cancelada, caso contrário.
+Sem essa opção, ao digitar **Control+C**, o texto atual é interrompido, se houver um, ou qualquer string de entrada parcial é cancelada, caso contrário.
 
 * `--silent`, `-s`
 
@@ -1259,13 +1259,13 @@ Não escreva nomes de colunas nos resultados. O uso desta opção faz com que a 
 
   <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>6
 
-Não escreva números de linha para erros. Útil quando você deseja comparar arquivos de resultado que incluem mensagens de erro.
+Não escreva números de string para erros. Útil quando você deseja comparar arquivos de resultado que incluem mensagens de erro.
 
 * `--socket=path`, `-S path`
 
   <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>7
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -1279,7 +1279,7 @@ As opções que começam com `--ssl` especificam se deve conectar ao servidor us
 
 Essa opção faz com que o **mysql** envie declarações interativas para a facilidade de registro do sistema. Em Unix, isso é `syslog`; em Windows, é o Registro de Eventos do Windows. O destino onde as mensagens registradas aparecem é dependente do sistema. Em Linux, o destino é frequentemente o arquivo `/var/log/messages`.
 
-Aqui está uma amostra de saída gerada no Linux usando `--syslog`. Essa saída é formatada para melhor legibilidade; cada mensagem registrada na verdade ocupa uma única linha.
+Aqui está uma amostra de saída gerada no Linux usando `--syslog`. Essa saída é formatada para melhor legibilidade; cada mensagem registrada na verdade ocupa uma única string.
 
   ```sql
   Mar  7 12:39:25 myhost MysqlClient[20824]:
@@ -1340,7 +1340,7 @@ Exibir informações da versão e sair.
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
-Imprimir linhas de saída de consulta verticalmente (uma linha por valor de coluna). Sem essa opção, você pode especificar saída vertical para declarações individuais terminando-as com `\G`.
+Imprimir strings de saída de consulta verticalmente (uma string por valor de coluna). Sem essa opção, você pode especificar saída vertical para declarações individuais terminando-as com `\G`.
 
 * `--wait`, `-w`
 
@@ -1433,7 +1433,7 @@ Se o **mysql** for invocado com a opção `--binary-mode`, todos os comandos do 
 
 Cada comando tem uma forma longa e uma forma curta. A forma longa não é sensível ao caso; a forma curta é. A forma longa pode ser seguida por um terminador opcional por ponto e vírgula, mas a forma curta não deve.
 
-O uso de comandos de formato curto dentro de comentários `/* ... */` de várias linhas não é suportado. Os comandos de formato curto funcionam dentro de comentários de versão `/*! ... */` de uma linha, assim como os comentários de dicas de otimização `/*+ ... */`, que são armazenados em definições de objeto. Se houver preocupação de que os comentários de dicas de otimização possam ser armazenados em definições de objeto de modo que os arquivos de depuração, quando re carregados com `mysql`, resultem na execução desses comandos, invocando **mysql** com a opção `--binary-mode` ou usando um cliente de re carregamento diferente de **mysql**.
+O uso de comandos de formato curto dentro de comentários `/* ... */` de várias strings não é suportado. Os comandos de formato curto funcionam dentro de comentários de versão `/*! ... */` de uma string, assim como os comentários de dicas de otimização `/*+ ... */`, que são armazenados em definições de objeto. Se houver preocupação de que os comentários de dicas de otimização possam ser armazenados em definições de objeto de modo que os arquivos de depuração, quando re carregados com `mysql`, resultem na execução desses comandos, invocando **mysql** com a opção `--binary-mode` ou usando um cliente de re carregamento diferente de **mysql**.
 
 * `help [arg]`, `\h [arg]`, `\? [arg]`, `? [arg]`
 
@@ -1457,7 +1457,7 @@ Reconnecte-se ao servidor. Os argumentos opcionais para o nome do banco de dados
 
 Altere a string que o **mysql** interpreta como o separador entre as instruções SQL. O padrão é o caractere ponto e vírgula (`;`).
 
-A string de delimitador pode ser especificada como um argumento não citado ou citado na linha de comando do comando `delimiter`. A citação pode ser feita com caractere de aspas simples (`'`), dupla (`"`), ou barra invertida (`` ` ``) characters. To include a quote within a quoted string, either quote the string with a different quote character or escape the quote with a backslash (`\). Deve-se evitar o uso de barra invertida fora de strings citadas, pois é o caractere de escape para MySQL. Para um argumento não citado, o delimitador é lido até o primeiro espaço ou até o final da linha. Para um argumento citado, o delimitador é lido até a citação correspondente na linha.
+A string de delimitador pode ser especificada como um argumento não citado ou citado na string de comando do comando `delimiter`. A citação pode ser feita com caractere de aspas simples (`'`), dupla (`"`), ou barra invertida (`` ` ``) characters. To include a quote within a quoted string, either quote the string with a different quote character or escape the quote with a backslash (`\). Deve-se evitar o uso de barra invertida fora de strings citadas, pois é o caractere de escape para MySQL. Para um argumento não citado, o delimitador é lido até o primeiro espaço ou até o final da string. Para um argumento citado, o delimitador é lido até a citação correspondente na string.
 
 **mysql** interpreta instâncias da cadeia de delimitador como um delimitador de declaração em qualquer lugar que ocorra, exceto dentro de strings citadas. Tenha cuidado ao definir um delimitador que possa ocorrer dentro de outras palavras. Por exemplo, se você definir o delimitador como `X`, não é possível usar a palavra `INDEX` em declarações. **mysql** interpreta isso como `INDE` seguido pelo delimitador `X`.
 
@@ -1499,7 +1499,7 @@ Desative a exibição de avisos após cada declaração.
 
 Ative a exibição de páginas de saída. Ao usar a opção `--pager` ao invocar o **mysql**, é possível navegar ou pesquisar resultados de consulta em modo interativo com programas Unix, como **less**, **more** ou qualquer outro programa semelhante. Se você não especificar nenhum valor para a opção, o **mysql** verifica o valor da variável de ambiente `PAGER` e define o pager para essa opção. A funcionalidade de pager funciona apenas em modo interativo.
 
-A exibição de páginas de saída pode ser habilitada interativamente com o comando `pager` e desabilitada com `nopager`. O comando aceita um argumento opcional; se fornecido, o programa de exibição é definido para isso. Sem argumento, o pager é definido para o pager que foi definido na linha de comando, ou `stdout` se nenhum pager foi especificado.
+A exibição de páginas de saída pode ser habilitada interativamente com o comando `pager` e desabilitada com `nopager`. O comando aceita um argumento opcional; se fornecido, o programa de exibição é definido para isso. Sem argumento, o pager é definido para o pager que foi definido na string de comando, ou `stdout` se nenhum pager foi especificado.
 
 A exibição de resultados de consulta funciona apenas no Unix porque usa a função `popen()`, que não existe no Windows. Para o Windows, a opção `tee` pode ser usada em vez disso para salvar a saída da consulta, embora não seja tão conveniente quanto `pager` para navegar pela saída em algumas situações.
 
@@ -1623,7 +1623,7 @@ Você também pode combinar as funções `tee` e `pager`. Tenha um arquivo `tee`
 
 O comando `prompt` reconfigura o prompt padrão `mysql>`. A string para definir o prompt pode conter as seguintes sequências especiais.
 
-<table summary="prompt command options that are used to configure the mysql&gt; prompt."><col style="width: 15%"/><col style="width: 75%"/><thead><tr> <th>Option</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>\C</code></td> <td>O identificador atual da conexão</td> </tr><tr> <td><code>\c</code></td> <td>Um contador que incrementa para cada declaração que você emite</td> </tr><tr> <td><code>\D</code></td> <td>A data atual completa</td> </tr><tr> <td><code>\d</code></td> <td>O banco de dados padrão</td> </tr><tr> <td><code>\h</code></td> <td>O servidor host</td> </tr><tr> <td><code>\l</code></td> <td>O delimitador atual</td> </tr><tr> <td><code>\m</code></td> <td>Minutos do horário atual</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha</td> </tr><tr> <td><code>\O</code></td> <td>O mês atual no formato de três letras (Jan, Feb, …)</td> </tr><tr> <td><code>\o</code></td> <td>O mês atual em formato numérico</td> </tr><tr> <td><code>\P</code></td> <td>am/pm</td> </tr><tr> <td><code>\p</code></td> <td>O port atual TCP/IP ou arquivo de soquete</td> </tr><tr> <td><code>\R</code></td> <td>O horário atual, em hora militar de 24 horas (0–23)</td> </tr><tr> <td><code>\r</code></td> <td>O horário atual, horário padrão de 12 horas (1–12)</td> </tr><tr> <td><code>\S</code></td> <td>Ponto e vírgula</td> </tr><tr> <td><code>\s</code></td> <td>Segundos do horário atual</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\U</code></td> <td>Seu completo<code><code>user_name</code>@<code>host_name</code></code>nome da conta</td> </tr><tr> <td><code>\u</code></td> <td>Seu nome de usuário</td> </tr><tr> <td><code>\v</code></td> <td>A versão do servidor</td> </tr><tr> <td><code>\w</code></td> <td>O dia atual da semana no formato de três letras (Seg, Ter, etc.)</td> </tr><tr> <td><code>\Y</code></td> <td>O ano atual, quatro algarismos</td> </tr><tr> <td><code>\y</code></td> <td>O ano atual, dois algarismos</td> </tr><tr> <td><code>\_</code></td> <td>Um espaço</td> </tr><tr> <td><code>\ </code></td> <td>Um espaço (um espaço segue o backslash)</td> </tr><tr> <td><code>\'</code></td> <td>Citação única</td> </tr><tr> <td><code>\"</code></td> <td>Citação dupla</td> </tr><tr> <td><code>\\</code></td> <td>Literalmente<code>\</code>caractere barra invertida</td> </tr><tr> <td><code>\<code>x</code></code></td> <td> <code>x</code>, para qualquer “<code>x</code>“não listado acima</td> </tr></tbody></table>
+<table summary="prompt command options that are used to configure the mysql&gt; prompt."><col style="width: 15%"/><col style="width: 75%"/><thead><tr> <th>Option</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>\C</code></td> <td>O identificador atual da conexão</td> </tr><tr> <td><code>\c</code></td> <td>Um contador que incrementa para cada declaração que você emite</td> </tr><tr> <td><code>\D</code></td> <td>A data atual completa</td> </tr><tr> <td><code>\d</code></td> <td>O banco de dados padrão</td> </tr><tr> <td><code>\h</code></td> <td>O servidor host</td> </tr><tr> <td><code>\l</code></td> <td>O delimitador atual</td> </tr><tr> <td><code>\m</code></td> <td>Minutos do horário atual</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova string</td> </tr><tr> <td><code>\O</code></td> <td>O mês atual no formato de três letras (Jan, Feb, …)</td> </tr><tr> <td><code>\o</code></td> <td>O mês atual em formato numérico</td> </tr><tr> <td><code>\P</code></td> <td>am/pm</td> </tr><tr> <td><code>\p</code></td> <td>O port atual TCP/IP ou arquivo de soquete</td> </tr><tr> <td><code>\R</code></td> <td>O horário atual, em hora militar de 24 horas (0–23)</td> </tr><tr> <td><code>\r</code></td> <td>O horário atual, horário padrão de 12 horas (1–12)</td> </tr><tr> <td><code>\S</code></td> <td>Ponto e vírgula</td> </tr><tr> <td><code>\s</code></td> <td>Segundos do horário atual</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\U</code></td> <td>Seu completo<code><code>user_name</code>@<code>host_name</code></code>nome da conta</td> </tr><tr> <td><code>\u</code></td> <td>Seu nome de usuário</td> </tr><tr> <td><code>\v</code></td> <td>A versão do servidor</td> </tr><tr> <td><code>\w</code></td> <td>O dia atual da semana no formato de três letras (Seg, Ter, etc.)</td> </tr><tr> <td><code>\Y</code></td> <td>O ano atual, quatro algarismos</td> </tr><tr> <td><code>\y</code></td> <td>O ano atual, dois algarismos</td> </tr><tr> <td><code>\_</code></td> <td>Um espaço</td> </tr><tr> <td><code>\ </code></td> <td>Um espaço (um espaço segue o backslash)</td> </tr><tr> <td><code>\'</code></td> <td>Citação única</td> </tr><tr> <td><code>\"</code></td> <td>Citação dupla</td> </tr><tr> <td><code>\\</code></td> <td>Literalmente<code>\</code>caractere barra invertida</td> </tr><tr> <td><code>\<code>x</code></code></td> <td> <code>x</code>, para qualquer “<code>x</code>“não listado acima</td> </tr></tbody></table>
 
 Você pode definir o prompt de várias maneiras:
 
@@ -1633,7 +1633,7 @@ Você pode definir o prompt de várias maneiras:
   export MYSQL_PS1="(\u@\h) [\d]> "
   ```
 
-* *Use uma opção de linha de comando.* Você pode definir a opção `--prompt` na linha de comando para **mysql**. Por exemplo:
+* *Use uma opção de string de comando.* Você pode definir a opção `--prompt` na string de comando para **mysql**. Por exemplo:
 
   ```sql
   $> mysql --prompt="(\u@\h) [\d]> "
@@ -1687,11 +1687,11 @@ Para cada destino de registro habilitado, o registro de declarações ocorre da 
 
 * As declarações são ignoradas e não registradas se corresponderem a qualquer padrão na lista de "ignorar". Esta lista é descrita mais adiante.
 
-* **mysql** registra cada linha de declaração não ignorada e não vazia individualmente.
+* **mysql** registra cada string de declaração não ignorada e não vazia individualmente.
 
-* Se uma declaração não ignorada abranger várias linhas (excluindo o delimitador final), o **mysql** concatena as linhas para formar a declaração completa, mapeia as novas linhas em espaços e registra o resultado, além de um delimitador.
+* Se uma declaração não ignorada abranger várias strings (excluindo o delimitador final), o **mysql** concatena as strings para formar a declaração completa, mapeia as novas strings em espaços e registra o resultado, além de um delimitador.
 
-Consequentemente, uma declaração de entrada que se estende por várias linhas pode ser registrada duas vezes. Considere este exemplo de entrada:
+Consequentemente, uma declaração de entrada que se estende por várias strings pode ser registrada duas vezes. Considere este exemplo de entrada:
 
 ```sql
 mysql> SELECT
@@ -1701,7 +1701,7 @@ mysql> SELECT
     -> ;
 ```
 
-Neste caso, o **mysql** registra as linhas “SELECT”, “'Hoje é'”, “,”, “CURDATE()” e “;” à medida que as lê. Ele também registra a declaração completa, após mapear `SELECT\n'Today is'\n,\nCURDATE()` para `SELECT 'Today is' , CURDATE()`, além de um delimitador. Assim, essas linhas aparecem na saída registrada:
+Neste caso, o **mysql** registra as strings “SELECT”, “'Hoje é'”, “,”, “CURDATE()” e “;” à medida que as lê. Ele também registra a declaração completa, após mapear `SELECT\n'Today is'\n,\nCURDATE()` para `SELECT 'Today is' , CURDATE()`, além de um delimitador. Assim, essas strings aparecem na saída registrada:
 
 ```sql
 SELECT
@@ -1719,7 +1719,7 @@ O **mysql** ignora, para fins de registro, as declarações que correspondem a q
 
 Para especificar padrões adicionais, use a opção `--histignore` ou defina a variável de ambiente `MYSQL_HISTIGNORE`. (Se ambos forem especificados, o valor da opção tem precedência.) O valor deve ser uma lista de um ou mais padrões separados por vírgula, que são anexados à lista de padrões padrão.
 
-Os padrões especificados na linha de comando podem precisar ser citados ou escapados para evitar que o interpretador de comandos os trate de forma especial. Por exemplo, para suprimir o registro para as declarações `UPDATE` e `DELETE`, além das declarações que se referem a senhas, invoque o **mysql** da seguinte forma:
+Os padrões especificados na string de comando podem precisar ser citados ou escapados para evitar que o interpretador de comandos os trate de forma especial. Por exemplo, para suprimir o registro para as declarações `UPDATE` e `DELETE`, além das declarações que se referem a senhas, invoque o **mysql** da seguinte forma:
 
 ```sql
 mysql --histignore="*UPDATE*:*DELETE*"
@@ -1773,7 +1773,7 @@ O banco de dados padrão ou `--` se nenhum banco de dados tiver sido selecionado
 
 O texto da declaração registrada.
 
-Aqui está uma amostra de saída gerada no Linux usando `--syslog`. Essa saída é formatada para melhor legibilidade; cada mensagem registrada na verdade ocupa uma única linha.
+Aqui está uma amostra de saída gerada no Linux usando `--syslog`. Essa saída é formatada para melhor legibilidade; cada mensagem registrada na verdade ocupa uma única string.
 
 ```sql
 Mar  7 12:39:25 myhost MysqlClient[20824]:
@@ -1892,7 +1892,7 @@ No entanto, também é possível colocar suas declarações SQL em um arquivo e,
 mysql db_name < text_file
 ```
 
-Se você colocar uma declaração `USE db_name` como a primeira declaração no arquivo, não é necessário especificar o nome do banco de dados na linha de comando:
+Se você colocar uma declaração `USE db_name` como a primeira declaração no arquivo, não é necessário especificar o nome do banco de dados na string de comando:
 
 ```sql
 mysql < text_file
@@ -1923,34 +1923,34 @@ Para mais informações sobre o modo em lote, consulte a Seção 3.5, “Usando 
 
 Esta seção fornece informações sobre técnicas para uso mais eficaz do **mysql** e sobre o comportamento operacional do **mysql**.
 
-* Edição de linha de entrada * Desativação do Histórico Interativo * Suporte a Unicode no Windows * Exibição dos resultados da consulta verticalmente * Uso do modo de atualizações seguras (--safe-updates)") * Desativação do auto-reconexão do mysql * Parser do cliente mysql versus parser do servidor
+* Edição de string de entrada * Desativação do Histórico Interativo * Suporte a Unicode no Windows * Exibição dos resultados da consulta verticalmente * Uso do modo de atualizações seguras (--safe-updates)") * Desativação do auto-reconexão do mysql * Parser do cliente mysql versus parser do servidor
 
-Edição de linha de entrada
+Edição de string de entrada
 
-O **mysql** suporta edição de linha de entrada, o que permite modificar a linha de entrada atual no local ou recuperar linhas de entrada anteriores. Por exemplo, as teclas **seta para a esquerda** e **seta para a direita** movem-se horizontalmente dentro da linha de entrada atual, e as teclas **seta para cima** e **seta para baixo** movem-se para cima e para baixo através do conjunto de linhas previamente inseridas. **Backspace** exclui o caractere antes do cursor e, ao digitar novos caracteres, eles são inseridos na posição do cursor. Para inserir a linha, pressione **Enter**.
+O **mysql** suporta edição de string de entrada, o que permite modificar a string de entrada atual no local ou recuperar strings de entrada anteriores. Por exemplo, as teclas **seta para a esquerda** e **seta para a direita** movem-se horizontalmente dentro da string de entrada atual, e as teclas **seta para cima** e **seta para baixo** movem-se para cima e para baixo através do conjunto de strings previamente inseridas. **Backspace** exclui o caractere antes do cursor e, ao digitar novos caracteres, eles são inseridos na posição do cursor. Para inserir a string, pressione **Enter**.
 
 Em Windows, as sequências de teclas de edição são as mesmas que são suportadas para edição de comandos em janelas de console. Em Unix, as sequências de teclas dependem da biblioteca de entrada usada para construir o **mysql** (por exemplo, a biblioteca `libedit` ou `readline`).
 
 A documentação para as bibliotecas `libedit` e `readline` está disponível online. Para alterar o conjunto de sequências de teclas permitidas por uma biblioteca de entrada dada, defina ligações de teclas no arquivo de inicialização da biblioteca. Este é um arquivo no seu diretório doméstico: `.editrc` para `libedit` e `.inputrc` para `readline`.
 
-Por exemplo, em `libedit`, **Control+W** exclui tudo antes da posição atual do cursor e **Control+U** exclui toda a linha. Em `readline`, **Control+W** exclui a palavra antes do cursor e **Control+U** exclui tudo antes da posição atual do cursor. Se o **mysql** foi construído usando `libedit`, um usuário que prefira o comportamento do `readline` para essas duas teclas pode colocar as seguintes linhas no arquivo `.editrc` (criando o arquivo, se necessário):
+Por exemplo, em `libedit`, **Control+W** exclui tudo antes da posição atual do cursor e **Control+U** exclui toda a string. Em `readline`, **Control+W** exclui a palavra antes do cursor e **Control+U** exclui tudo antes da posição atual do cursor. Se o **mysql** foi construído usando `libedit`, um usuário que prefira o comportamento do `readline` para essas duas teclas pode colocar as seguintes strings no arquivo `.editrc` (criando o arquivo, se necessário):
 
 ```sql
 bind "^W" ed-delete-prev-word
 bind "^U" vi-kill-line-prev
 ```
 
-Para ver o conjunto atual de vinculações de teclas, coloque temporariamente uma linha que diga apenas `bind` no final de `.editrc`. Em seguida, o **mysql** exibe as vinculações quando ele começa.
+Para ver o conjunto atual de vinculações de teclas, coloque temporariamente uma string que diga apenas `bind` no final de `.editrc`. Em seguida, o **mysql** exibe as vinculações quando ele começa.
 
 ##### Desativando Histórico Interativo
 
-A tecla **seta para cima** permite que você relembre as linhas de entrada das sessões atuais e anteriores. Nos casos em que um console é compartilhado, esse comportamento pode ser inadequado. O **mysql** suporta a desativação do histórico interativo parcialmente ou totalmente, dependendo da plataforma do host.
+A tecla **seta para cima** permite que você relembre as strings de entrada das sessões atuais e anteriores. Nos casos em que um console é compartilhado, esse comportamento pode ser inadequado. O **mysql** suporta a desativação do histórico interativo parcialmente ou totalmente, dependendo da plataforma do host.
 
-No Windows, o histórico é armazenado na memória. **Alt+F7** exclui todas as linhas de entrada armazenadas na memória do buffer de histórico atual. Também exclui a lista de números sequenciais na frente das linhas de entrada exibidas com **F7** e recuperadas (por número) com **F9**. Novas linhas de entrada inseridas após pressionar **Alt+F7** repopulam o buffer de histórico atual. A limpeza do buffer não impede o registro no Visualizador de Eventos do Windows, se a opção `--syslog` foi usada para iniciar o **mysql**. A fechamento da janela da consola também limpa o buffer de histórico atual.
+No Windows, o histórico é armazenado na memória. **Alt+F7** exclui todas as strings de entrada armazenadas na memória do buffer de histórico atual. Também exclui a lista de números sequenciais na frente das strings de entrada exibidas com **F7** e recuperadas (por número) com **F9**. Novas strings de entrada inseridas após pressionar **Alt+F7** repopulam o buffer de histórico atual. A limpeza do buffer não impede o registro no Visualizador de Eventos do Windows, se a opção `--syslog` foi usada para iniciar o **mysql**. A fechamento da janela da consola também limpa o buffer de histórico atual.
 
-Para desativar o histórico interativo no Unix, primeiro exclua o arquivo `.mysql_history`, se ele existir (as entradas anteriores são recuperadas caso contrário). Em seguida, inicie o **mysql** com a opção `--histignore="*"` para ignorar todas as novas linhas de entrada. Para reativar o comportamento de recall (e registro) novamente, reinicie o **mysql** sem a opção.
+Para desativar o histórico interativo no Unix, primeiro exclua o arquivo `.mysql_history`, se ele existir (as entradas anteriores são recuperadas caso contrário). Em seguida, inicie o **mysql** com a opção `--histignore="*"` para ignorar todas as novas strings de entrada. Para reativar o comportamento de recall (e registro) novamente, reinicie o **mysql** sem a opção.
 
-Se você impedir que o arquivo `.mysql_history` seja criado (veja Controlando o arquivo de histórico) e usar `--histignore="*"` para iniciar o cliente **mysql**, a facilidade de recall interativa do histórico será totalmente desativada. Alternativamente, se você omitir a opção `--histignore`, poderá recuperar as linhas de entrada inseridas durante a sessão atual.
+Se você impedir que o arquivo `.mysql_history` seja criado (veja Controlando o arquivo de histórico) e usar `--histignore="*"` para iniciar o cliente **mysql**, a facilidade de recall interativa do histórico será totalmente desativada. Alternativamente, se você omitir a opção `--histignore`, poderá recuperar as strings de entrada inseridas durante a sessão atual.
 
 Suporte Unicode no Windows
 
@@ -1975,7 +1975,7 @@ default-character-set=utf8
 
 ##### Exibir os resultados da consulta verticalmente
 
-Alguns resultados de consulta são muito mais legíveis quando exibidos verticalmente, em vez do formato usual de tabela horizontal. As consultas podem ser exibidas verticalmente terminando a consulta com \G em vez de um ponto e vírgula. Por exemplo, valores de texto mais longos que incluem novas linhas são frequentemente muito mais fáceis de ler com saída vertical:
+Alguns resultados de consulta são muito mais legíveis quando exibidos verticalmente, em vez do formato usual de tabela horizontal. As consultas podem ser exibidas verticalmente terminando a consulta com \G em vez de um ponto e vírgula. Por exemplo, valores de texto mais longos que incluem novas strings são frequentemente muito mais fáceis de ler com saída vertical:
 
 ```sql
 mysql> SELECT * FROM mails WHERE LENGTH(txt) < 300 LIMIT 300,1\G
@@ -2004,7 +2004,7 @@ Jones
 
 ##### Usando o Modo de Atualizações Seguras (--safe-updates)
 
-Para iniciantes, uma opção de inicialização útil é `--safe-updates` (ou `--i-am-a-dummy`, que tem o mesmo efeito). O modo de atualizações seguras é útil para casos em que você pode ter emitido uma declaração `UPDATE` ou `DELETE` mas esqueceu a cláusula `WHERE` que indica quais linhas devem ser modificadas. Normalmente, tais declarações atualizam ou excluem todas as linhas da tabela. Com `--safe-updates`, você pode modificar linhas apenas especificando os valores da chave que as identificam, ou uma cláusula `LIMIT`, ou ambas. Isso ajuda a evitar acidentes. O modo de atualizações seguras também restringe declarações `SELECT` que produzem (ou são estimadas para produzir) conjuntos de resultados muito grandes.
+Para iniciantes, uma opção de inicialização útil é `--safe-updates` (ou `--i-am-a-dummy`, que tem o mesmo efeito). O modo de atualizações seguras é útil para casos em que você pode ter emitido uma declaração `UPDATE` ou `DELETE` mas esqueceu a cláusula `WHERE` que indica quais strings devem ser modificadas. Normalmente, tais declarações atualizam ou excluem todas as strings da tabela. Com `--safe-updates`, você pode modificar strings apenas especificando os valores da chave que as identificam, ou uma cláusula `LIMIT`, ou ambas. Isso ajuda a evitar acidentes. O modo de atualizações seguras também restringe declarações `SELECT` que produzem (ou são estimadas para produzir) conjuntos de resultados muito grandes.
 
 A opção `--safe-updates` faz com que o **mysql** execute a seguinte instrução quando se conecta ao servidor MySQL, para definir os valores de sessão das variáveis de sistema `sql_safe_updates`, `sql_select_limit` e `max_join_size`:
 
@@ -2022,9 +2022,9 @@ A declaração `SET` afeta o processamento de declarações da seguinte forma:
   UPDATE tbl_name SET not_key_column=val LIMIT 1;
   ```
 
-* Definindo `sql_select_limit` para 1.000, o servidor limita todos os conjuntos de resultados `SELECT` a 1.000 linhas, a menos que a declaração inclua uma cláusula `LIMIT`.
+* Definindo `sql_select_limit` para 1.000, o servidor limita todos os conjuntos de resultados `SELECT` a 1.000 strings, a menos que a declaração inclua uma cláusula `LIMIT`.
 
-* Definindo `max_join_size` para 1.000.000, as declarações de múltiplas tabelas `SELECT` geram um erro se o servidor estimar que deve examinar mais de 1.000.000 de combinações de linhas.
+* Definindo `max_join_size` para 1.000.000, as declarações de múltiplas tabelas `SELECT` geram um erro se o servidor estimar que deve examinar mais de 1.000.000 de combinações de strings.
 
 Para especificar limites de conjunto de resultados diferentes de 1.000 e 1.000.000, você pode substituir os valores padrão usando as opções `--select-limit` e `--max-join-size` ao invocar o **mysql**:
 
@@ -2141,7 +2141,7 @@ Limpe todas as tabelas.
 
 * `flush-threads`
 
-Limpe o cache do fio.
+Limpe o cache do thread.
 
 * `kill id,id,...`
 
@@ -2161,7 +2161,7 @@ Defina uma nova senha. Isso altera a senha para *`new_password`* para a conta qu
 
 Aviso
 
-Definir uma senha usando **mysqladmin** deve ser considerado *inseguro*. Em alguns sistemas, sua senha se torna visível para programas de status do sistema, como o **ps**, que podem ser invocados por outros usuários para exibir linhas de comando. Os clientes MySQL geralmente sobrescrevem o argumento da senha de linha de comando durante sua sequência de inicialização. No entanto, ainda há um breve intervalo durante o qual o valor é visível. Além disso, em alguns sistemas, essa estratégia de sobrescrita é ineficaz e a senha permanece visível para o **ps**. (Sistemas Unix SystemV e talvez outros estão sujeitos a esse problema.)
+Definir uma senha usando **mysqladmin** deve ser considerado *inseguro*. Em alguns sistemas, sua senha se torna visível para programas de status do sistema, como o **ps**, que podem ser invocados por outros usuários para exibir strings de comando. Os clientes MySQL geralmente sobrescrevem o argumento da senha de string de comando durante sua sequência de inicialização. No entanto, ainda há um breve intervalo durante o qual o valor é visível. Além disso, em alguns sistemas, essa estratégia de sobrescrita é ineficaz e a senha permanece visível para o **ps**. (Sistemas Unix SystemV e talvez outros estão sujeitos a esse problema.)
 
 Se o valor *`new_password`* contiver espaços ou outros caracteres especiais para o seu interpretador de comandos, você precisa colocá-lo entre aspas. Em Windows, certifique-se de usar aspas duplas em vez de aspas simples; as aspas simples não são removidas da senha, mas sim interpretadas como parte da senha. Por exemplo:
 
@@ -2169,11 +2169,11 @@ Se o valor *`new_password`* contiver espaços ou outros caracteres especiais par
   mysqladmin password "my new password"
   ```
 
-A nova senha pode ser omitida após o comando `password`. Neste caso, o **mysqladmin** solicita o valor da senha, o que permite evitar a especificação da senha na linha de comando. O omitindo o valor da senha deve ser feito apenas se `password` é o último comando na linha de comando do **mysqladmin**. Caso contrário, o próximo argumento é considerado como senha.
+A nova senha pode ser omitida após o comando `password`. Neste caso, o **mysqladmin** solicita o valor da senha, o que permite evitar a especificação da senha na string de comando. O omitindo o valor da senha deve ser feito apenas se `password` é o último comando na string de comando do **mysqladmin**. Caso contrário, o próximo argumento é considerado como senha.
 
 Cuidado
 
-Não use este comando se o servidor foi iniciado com a opção `--skip-grant-tables`. Não há alteração de senha aplicada. Isso é verdade mesmo se você preceder o comando `password` com `flush-privileges` na mesma linha de comando para reativar as tabelas de concessão, porque a operação de varredura ocorre após a conexão. No entanto, você pode usar **mysqladmin flush-privileges** para reativar a tabela de concessão e, em seguida, usar um comando separado **mysqladmin password** para alterar a senha.
+Não use este comando se o servidor foi iniciado com a opção `--skip-grant-tables`. Não há alteração de senha aplicada. Isso é verdade mesmo se você preceder o comando `password` com `flush-privileges` na mesma string de comando para reativar as tabelas de concessão, porque a operação de varredura ocorre após a conexão. No entanto, você pode usar **mysqladmin flush-privileges** para reativar a tabela de concessão e, em seguida, usar um comando separado **mysqladmin password** para alterar a senha.
 
 * `ping`
 
@@ -2261,7 +2261,7 @@ O número de tabelas que estão abertas atualmente.
 
 Se você executar **mysqladmin shutdown** ao se conectar a um servidor local usando um arquivo de socket Unix, o **mysqladmin** aguarda até que o arquivo de ID de processo do servidor seja removido, para garantir que o servidor tenha sido desligado corretamente.
 
-O **mysqladmin** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqladmin]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqladmin** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqladmin]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.14 Opções mysqladmin**
 
@@ -2413,7 +2413,7 @@ O **mysqladmin** suporta as seguintes opções, que podem ser especificadas na l
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -2491,7 +2491,7 @@ O **mysqladmin** suporta as seguintes opções, que podem ser especificadas na l
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -2581,7 +2581,7 @@ O **mysqladmin** suporta as seguintes opções, que podem ser especificadas na l
 </tr>
 <tr>
 <th><code>--vertical</code></th>
-<td>Imprimir linhas de saída de consulta verticalmente (uma linha por valor de coluna)</td>
+<td>Imprimir strings de saída de consulta verticalmente (uma string por valor de coluna)</td>
 <td></td>
 <td></td>
 </tr>
@@ -2672,7 +2672,7 @@ Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -2682,7 +2682,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -2690,7 +2690,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqladmin** normalmente lê os grupos `[client]` e `[mysqladmin]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqladmin** também lê os grupos `[client_other]` e `[mysqladmin_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--enable-cleartext-plugin`
 
@@ -2728,7 +2728,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--no-beep`, `-b`
 
@@ -2742,9 +2742,9 @@ Suprima o sinal sonoro de alerta que é emitido por padrão para erros, como fal
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--password[=password]`, `-p[password]`
 
@@ -2752,7 +2752,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecida, o **mysqladmin** solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de opção de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqladmin** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -2760,7 +2760,7 @@ Para especificar explicitamente que não há senha e que o **mysqladmin** não d
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -2780,7 +2780,7 @@ Para conexões TCP/IP, o número de porta a ser utilizado.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -2856,7 +2856,7 @@ Execute comandos repetidamente, dormindo por *`delay`* segundos entre eles. A op
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>6
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -2942,7 +2942,7 @@ Os nomes mostrados na tabela a seguir podem ser usados para alterar o comportame
 
 <table summary="Command names that can be used to change mysqlcheck default behavior."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Command</th> <th>Significado</th> </tr></thead><tbody><tr> <td><strong>mysqlrepair</strong></td> <td>A opção padrão é<code>--repair</code></td> </tr><tr> <td><strong>mysqlanalyze</strong></td> <td>A opção padrão é<code>--analyze</code></td> </tr><tr> <td><strong>mysqloptimize</strong></td> <td>A opção padrão é<code>--optimize</code></td> </tr></tbody></table>
 
-O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlcheck]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqlcheck]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.15 Opções do mysqlcheck**
 
@@ -3160,7 +3160,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -3232,7 +3232,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -3351,7 +3351,7 @@ Exibir uma mensagem de ajuda e sair.
 
   <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
-Verifique todas as tabelas em todos os bancos de dados. Isso é o mesmo que usar a opção `--databases` e nomear todos os bancos de dados na linha de comando, exceto que os bancos de dados `INFORMATION_SCHEMA` e `performance_schema` não são verificados. Eles podem ser verificados explicitamente nomeando-os com a opção `--databases`.
+Verifique todas as tabelas em todos os bancos de dados. Isso é o mesmo que usar a opção `--databases` e nomear todos os bancos de dados na string de comando, exceto que os bancos de dados `INFORMATION_SCHEMA` e `performance_schema` não são verificados. Eles podem ser verificados explicitamente nomeando-os com a opção `--databases`.
 
 * `--all-in-1`, `-1`
 
@@ -3605,7 +3605,7 @@ Verifique as tabelas em busca de erros. Essa é a operação padrão.
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -3677,7 +3677,7 @@ Verifique as tabelas em busca de erros. Essa é a operação padrão.
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -4004,7 +4004,7 @@ Verifique apenas as tabelas que foram alteradas desde a última verificação ou
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -4076,7 +4076,7 @@ Verifique apenas as tabelas que foram alteradas desde a última verificação ou
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -4403,7 +4403,7 @@ Invoque `CHECK TABLE` com a opção `FOR UPGRADE` para verificar as tabelas quan
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -4475,7 +4475,7 @@ Invoque `CHECK TABLE` com a opção `FOR UPGRADE` para verificar as tabelas quan
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -4802,7 +4802,7 @@ Compressa todas as informações enviadas entre o cliente e o servidor, se poss�
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -4874,7 +4874,7 @@ Compressa todas as informações enviadas entre o cliente e o servidor, se poss�
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -4983,7 +4983,7 @@ Compressa todas as informações enviadas entre o cliente e o servidor, se poss�
 </tbody>
 </table>
 
-Processar todas as tabelas nos bancos de dados nomeados. Normalmente, o **mysqlcheck** trata o argumento de nome no comando de linha como um nome de banco de dados e quaisquer nomes subsequentes como nomes de tabela. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados.
+Processar todas as tabelas nos bancos de dados nomeados. Normalmente, o **mysqlcheck** trata o argumento de nome no comando de string como um nome de banco de dados e quaisquer nomes subsequentes como nomes de tabela. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
@@ -5201,7 +5201,7 @@ Processar todas as tabelas nos bancos de dados nomeados. Normalmente, o **mysqlc
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -5273,7 +5273,7 @@ Processar todas as tabelas nos bancos de dados nomeados. Normalmente, o **mysqlc
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -5602,7 +5602,7 @@ Essa opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -5674,7 +5674,7 @@ Essa opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -6003,7 +6003,7 @@ Essa opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -6075,7 +6075,7 @@ Essa opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -6404,7 +6404,7 @@ Essa opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -6476,7 +6476,7 @@ Essa opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -6803,7 +6803,7 @@ Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -6875,7 +6875,7 @@ Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -6986,7 +6986,7 @@ Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -7204,7 +7204,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -7276,7 +7276,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -7389,7 +7389,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -7397,7 +7397,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlcheck** normalmente lê os grupos `[client]` e `[mysqlcheck]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlcheck** também lê os grupos `[client_other]` e `[mysqlcheck_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--extended`, `-e`
 
@@ -7405,7 +7405,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Se você estiver usando essa opção para verificar tabelas, isso garante que elas sejam 100% consistentes, mas leva um longo tempo.
 
-Se você estiver usando essa opção para reparar tabelas, ela executa uma reparação estendida que pode não apenas levar um longo tempo para ser executada, mas também pode gerar muitas linhas de lixo!
+Se você estiver usando essa opção para reparar tabelas, ela executa uma reparação estendida que pode não apenas levar um longo tempo para ser executada, mas também pode gerar muitas strings de lixo!
 
 * `--default-auth=plugin`
 
@@ -7473,7 +7473,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--medium-check`, `-m`
 
@@ -7487,9 +7487,9 @@ Faça uma verificação que seja mais rápida do que uma operação `--extended`
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--optimize`, `-o`
 
@@ -7503,7 +7503,7 @@ Otimize as tabelas.
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlcheck** solicita uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqlcheck** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -7511,7 +7511,7 @@ Para especificar explicitamente que não há senha e que o **mysqlcheck** não d
 
   <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -7531,7 +7531,7 @@ Para conexões TCP/IP, o número de porta a ser utilizado.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -7543,7 +7543,7 @@ O protocolo de transporte a ser usado para se conectar ao servidor. É útil qua
 
   <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
-Se você estiver usando essa opção para verificar tabelas, isso impede que a verificação analise as linhas para verificar links incorretos. Esse é o método de verificação mais rápido.
+Se você estiver usando essa opção para verificar tabelas, isso impede que a verificação analise as strings para verificar links incorretos. Esse é o método de verificação mais rápido.
 
 Se você estiver usando essa opção para reparar tabelas, ela tenta reparar apenas a árvore de índice. Esse é o método de reparo mais rápido.
 
@@ -7603,7 +7603,7 @@ Não inclua o banco de dados nomeado (sensível a maiúsculas e minúsculas) nas
 
   <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -7707,7 +7707,7 @@ Para backup e restauração em larga escala, um backup físico é mais apropriad
 
 * Se suas tabelas são principalmente tabelas `InnoDB` ou se você tem uma mistura de tabelas `InnoDB` e `MyISAM`, considere usar o comando **mysqlbackup** do produto MySQL Enterprise Backup. (Disponível como parte da assinatura Enterprise.) Ele oferece o melhor desempenho para backups `InnoDB` com mínima interrupção; também pode fazer backup de tabelas de `MyISAM` e outros motores de armazenamento; e oferece várias opções convenientes para acomodar diferentes cenários de backup. Veja a Seção 28.1, “Visão geral do MySQL Enterprise Backup”.
 
-O **mysqldump** pode recuperar e drenar o conteúdo da tabela linha por linha, ou pode recuperar todo o conteúdo de uma tabela e bufferá-lo na memória antes de drená-lo. O bufferamento na memória pode ser um problema se você estiver drenando tabelas grandes. Para drenar tabelas linha por linha, use a opção `--quick` (ou `--opt`, que habilita `--quick`). A opção `--opt` (e, portanto, `--quick`) é habilitada por padrão, então para habilitar o bufferamento de memória, use `--skip-quick`.
+O **mysqldump** pode recuperar e drenar o conteúdo da tabela string por string, ou pode recuperar todo o conteúdo de uma tabela e bufferá-lo na memória antes de drená-lo. O bufferamento na memória pode ser um problema se você estiver drenando tabelas grandes. Para drenar tabelas string por string, use a opção `--quick` (ou `--opt`, que habilita `--quick`). A opção `--opt` (e, portanto, `--quick`) é habilitada por padrão, então para habilitar o bufferamento de memória, use `--skip-quick`.
 
 Se você estiver usando uma versão recente do **mysqldump** para gerar um dump que será carregado em um servidor MySQL muito antigo, use a opção `--skip-opt` em vez da opção `--opt` ou `--extended-insert`.
 
@@ -7729,7 +7729,7 @@ Para ver uma lista das opções que sua versão do **mysqldump** suporta, execut
 
 #### Sintaxe de opção - Resumo alfabético
 
-O **mysqldump** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqldump]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqldump** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqldump]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.16 Opções do mysqldump**
 
@@ -7929,7 +7929,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--extended-insert</code></th>
-<td>Use a sintaxe de inserção de várias linhas</td>
+<td>Use a sintaxe de inserção de várias strings</td>
 <td></td>
 <td></td>
 </tr>
@@ -8121,7 +8121,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--order-by-primary</code></th>
-<td>Exclua as linhas de cada tabela, ordenadas por sua chave primária ou pelo seu primeiro índice único.</td>
+<td>Exclua as strings de cada tabela, ordenadas por sua chave primária ou pelo seu primeiro índice único.</td>
 <td></td>
 <td></td>
 </tr>
@@ -8133,7 +8133,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -8163,7 +8163,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--quick</code></th>
-<td>Recuperar linhas de uma tabela do servidor uma linha de cada vez</td>
+<td>Recuperar strings de uma tabela do servidor uma string de cada vez</td>
 <td></td>
 <td></td>
 </tr>
@@ -8277,7 +8277,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--skip-quick</code></th>
-<td>Não retorne linhas de uma tabela do servidor uma linha de cada vez</td>
+<td>Não retorne strings de uma tabela do servidor uma string de cada vez</td>
 <td></td>
 <td></td>
 </tr>
@@ -8307,7 +8307,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -8421,7 +8421,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--where</code></th>
-<td>Exclua apenas as linhas selecionadas pela condição WHERE dada</td>
+<td>Exclua apenas as strings selecionadas pela condição WHERE dada</td>
 <td></td>
 <td></td>
 </tr>
@@ -8488,7 +8488,7 @@ Arraste os dados do servidor MySQL para o host fornecido. O host padrão é `loc
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--password[=password]`, `-p[password]`
 
@@ -8496,7 +8496,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecida, o **mysqldump** solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de opção de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqldump** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -8504,7 +8504,7 @@ Para especificar explicitamente que não há senha e que o **mysqldump** não de
 
   <table frame="box" rules="all" summary="Properties for pipe"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -8562,7 +8562,7 @@ Essa opção foi adicionada no MySQL 5.7.36.
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -8594,7 +8594,7 @@ Essas opções são usadas para controlar quais arquivos de opção devem ser li
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -8604,7 +8604,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -8612,7 +8612,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, o **mysqldump** normalmente lê os grupos `[client]` e `[mysqldump]`. Se esta opção for dada como `--defaults-group-suffix=_other`, o **mysqldump** também lê os grupos `[client_other]` e `[mysqldump_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--no-defaults`
 
@@ -8620,9 +8620,9 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--print-defaults`
 
@@ -8630,7 +8630,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 #### Opções de DDL
 
@@ -8846,7 +8846,7 @@ Essa opção não deve ser usada se o servidor onde o dump vai ser aplicado usa 
 
 O valor da opção é tratado da mesma maneira que para `--master-data` (definir nenhum valor ou 1 faz com que uma declaração `CHANGE MASTER TO` seja escrita no dump, definir 2 faz com que a declaração seja escrita, mas encapsulada em comentários SQL) e tem o mesmo efeito que `--master-data` em termos de habilitação ou desabilitação de outras opções e na forma como o bloqueio é tratado.
 
-Essa opção faz com que o **mysqldump** pare o fio de replicação do SQL antes do dump e o reinicie novamente depois.
+Essa opção faz com que o **mysqldump** pare o thread de replicação do SQL antes do dump e o reinicie novamente depois.
 
 `--dump-slave` envia uma declaração `SHOW SLAVE STATUS` ao servidor para obter informações, portanto, ela requer privilégios suficientes para executar essa declaração.
 
@@ -8964,7 +8964,7 @@ Identificador de citações (como nomes de banco de dados, tabela e coluna) dent
 
 Saída direta para o arquivo nomeado. O arquivo de resultado é criado e seus conteúdos anteriores são sobrescritos, mesmo que um erro ocorra durante a geração do dump.
 
-Essa opção deve ser usada no Windows para evitar que os caracteres de nova linha `\n` sejam convertidos em sequências de retorno de carro/nova linha `\r\n`.
+Essa opção deve ser usada no Windows para evitar que os caracteres de nova string `\n` sejam convertidos em sequências de retorno de carro/nova string `\r\n`.
 
 * `--tab=dir_name`, `-T dir_name`
 
@@ -8976,7 +8976,7 @@ Nota
 
 Essa opção deve ser usada apenas quando o **mysqldump** é executado na mesma máquina que o servidor `mysqld`. Como o servidor cria os arquivos `*.txt` no diretório que você especifica, o diretório deve ser legível pelo servidor e a conta do MySQL que você usa deve ter o privilégio `FILE`. Como o **mysqldump** cria `*.sql` no mesmo diretório, ele deve ser legível pela conta de login do seu sistema.
 
-Por padrão, os arquivos de dados `.txt` são formatados usando caracteres de tabulação entre os valores das colunas e uma nova linha no final de cada linha. O formato pode ser especificado explicitamente usando as opções `--fields-xxx` e `--lines-terminated-by`.
+Por padrão, os arquivos de dados `.txt` são formatados usando caracteres de tabulação entre os valores das colunas e uma nova string no final de cada string. O formato pode ser especificado explicitamente usando as opções `--fields-xxx` e `--lines-terminated-by`.
 
 Os valores das colunas são convertidos para o conjunto de caracteres especificado pela opção `--default-character-set`.
 
@@ -9044,19 +9044,19 @@ A saída XML do **mysqldump** inclui o espaço de nomes XML, conforme mostrado a
 
 #### Opções de Filtragem
 
-As seguintes opções controlam quais tipos de objetos do esquema são escritos no arquivo de depuração: por categoria, como gatilhos ou eventos; por nome, por exemplo, escolhendo quais bancos de dados e tabelas devem ser depurados; ou até mesmo filtrando linhas dos dados da tabela usando uma cláusula `WHERE`.
+As seguintes opções controlam quais tipos de objetos do esquema são escritos no arquivo de depuração: por categoria, como gatilhos ou eventos; por nome, por exemplo, escolhendo quais bancos de dados e tabelas devem ser depurados; ou até mesmo filtrando strings dos dados da tabela usando uma cláusula `WHERE`.
 
 * `--all-databases`, `-A`
 
   <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
-Descarte todas as tabelas em todos os bancos de dados. Isso é o mesmo que usar a opção `--databases` e nomear todos os bancos de dados na linha de comando.
+Descarte todas as tabelas em todos os bancos de dados. Isso é o mesmo que usar a opção `--databases` e nomear todos os bancos de dados na string de comando.
 
 * `--databases`, `-B`
 
   <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
-Arraste várias bases de dados. Normalmente, o **mysqldump** trata o argumento de nome do primeiro na linha de comando como um nome de banco de dados e os nomes seguintes como nomes de tabela. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados. As declarações `CREATE DATABASE` e `USE` são incluídas na saída antes de cada nova base de dados.
+Arraste várias bases de dados. Normalmente, o **mysqldump** trata o argumento de nome do primeiro na string de comando como um nome de banco de dados e os nomes seguintes como nomes de tabela. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados. As declarações `CREATE DATABASE` e `USE` são incluídas na saída antes de cada nova base de dados.
 
 Essa opção pode ser usada para descartar os bancos de dados `INFORMATION_SCHEMA` e `performance_schema`, que normalmente não são descartados mesmo com a opção `--all-databases`. (Use também a opção `--skip-lock-tables`.
 
@@ -9086,7 +9086,7 @@ Não descarte a tabela fornecida, que deve ser especificada usando tanto os nome
 
   <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
 
-Não escreva nenhuma informação da linha da tabela (ou seja, não descarte o conteúdo da tabela). Isso é útil se você deseja descarregar apenas a declaração `CREATE TABLE` da tabela (por exemplo, para criar uma cópia vazia da tabela carregando o arquivo de descarte).
+Não escreva nenhuma informação da string da tabela (ou seja, não descarte o conteúdo da tabela). Isso é útil se você deseja descarregar apenas a declaração `CREATE TABLE` da tabela (por exemplo, para criar uma cópia vazia da tabela carregando o arquivo de descarte).
 
 * `--routines`, `-R`
 
@@ -9118,7 +9118,7 @@ Múltiplos gatilhos são permitidos. O **mysqldump** exibe os gatilhos na ordem 
 
   <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
 
-Exclua apenas as linhas selecionadas pela condição dada `WHERE`. Aspas ao redor da condição são obrigatórias se ela contiver espaços ou outros caracteres especiais para o interpretador do comando.
+Exclua apenas as strings selecionadas pela condição dada `WHERE`. Aspas ao redor da condição são obrigatórias se ela contiver espaços ou outros caracteres especiais para o interpretador do comando.
 
 Exemplos:
 
@@ -9138,13 +9138,13 @@ O desempenho também é afetado pelas opções transacionais, principalmente par
 
   <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
-Para cada tabela, rode as declarações `INSERT` com as declarações `/*!40000 ALTER TABLE tbl_name DISABLE KEYS */;` e `/*!40000 ALTER TABLE tbl_name ENABLE KEYS */;`. Isso torna o carregamento do arquivo de depuração mais rápido, pois os índices são criados após todas as linhas serem inseridas. Esta opção é eficaz apenas para índices não únicos das tabelas `MyISAM`.
+Para cada tabela, rode as declarações `INSERT` com as declarações `/*!40000 ALTER TABLE tbl_name DISABLE KEYS */;` e `/*!40000 ALTER TABLE tbl_name ENABLE KEYS */;`. Isso torna o carregamento do arquivo de depuração mais rápido, pois os índices são criados após todas as strings serem inseridas. Esta opção é eficaz apenas para índices não únicos das tabelas `MyISAM`.
 
 * `--extended-insert`, `-e`
 
   <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
-Escreva declarações `INSERT` usando sintaxe de várias linhas que inclua várias listas `VALUES`. Isso resulta em um arquivo de depuração menor e acelera as inserções quando o arquivo é carregado novamente.
+Escreva declarações `INSERT` usando sintaxe de várias strings que inclua várias listas `VALUES`. Isso resulta em um arquivo de depuração menor e acelera as inserções quando o arquivo é carregado novamente.
 
 * `--insert-ignore`
 
@@ -9166,7 +9166,7 @@ O valor desta opção é específico para o **mysqldump** e não deve ser confun
 
   <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
-O tamanho inicial do buffer para a comunicação cliente/servidor. Ao criar declarações `INSERT` de várias linhas (como com a opção `--extended-insert` ou `--opt`, o **mysqldump** cria linhas com até `--net-buffer-length` bytes de comprimento. Se você aumentar essa variável, certifique-se de que a variável de sistema do servidor MySQL `net_buffer_length` tenha um valor pelo menos desse tamanho.
+O tamanho inicial do buffer para a comunicação cliente/servidor. Ao criar declarações `INSERT` de várias strings (como com a opção `--extended-insert` ou `--opt`, o **mysqldump** cria strings com até `--net-buffer-length` bytes de comprimento. Se você aumentar essa variável, certifique-se de que a variável de sistema do servidor MySQL `net_buffer_length` tenha um valor pelo menos desse tamanho.
 
 * `--opt`
 
@@ -9180,7 +9180,7 @@ Como a opção `--opt` é habilitada por padrão, você só especifica sua opost
 
   <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
 
-Esta opção é útil para descartar tabelas grandes. Ela obriga o **mysqldump** a recuperar linhas de uma tabela do servidor uma linha de cada vez, em vez de recuperar o conjunto completo de linhas e bufferá-lo na memória antes de escrevê-lo.
+Esta opção é útil para descartar tabelas grandes. Ela obriga o **mysqldump** a recuperar strings de uma tabela do servidor uma string de cada vez, em vez de recuperar o conjunto completo de strings e bufferá-lo na memória antes de escrevê-lo.
 
 * `--skip-opt`
 
@@ -9242,7 +9242,7 @@ Incorpore as declarações `INSERT` para cada tabela descartada dentro das decla
 
   <table frame="box" rules="all" summary="Properties for pipe"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
-Exclua as linhas de cada tabela, ordenadas por sua chave primária ou pelo seu primeiro índice único, se tal índice existir. Isso é útil ao descartar uma tabela `MyISAM` que será carregada em uma tabela `InnoDB`, mas faz com que a operação de descarte leve consideravelmente mais tempo.
+Exclua as strings de cada tabela, ordenadas por sua chave primária ou pelo seu primeiro índice único, se tal índice existir. Isso é útil ao descartar uma tabela `MyISAM` que será carregada em uma tabela `InnoDB`, mas faz com que a operação de descarte leve consideravelmente mais tempo.
 
 * `--shared-memory-base-name=name`
 
@@ -9272,7 +9272,7 @@ Para descartar tabelas grandes, combine a opção `--single-transaction` com a o
 
 #### Grupos de Opções
 
-* A opção `--opt` ativa vários ajustes que trabalham juntos para realizar uma operação de varredura rápida. Todos esses ajustes estão ativados por padrão, porque `--opt` está ativado por padrão. Assim, você raramente, ou nunca, especifica `--opt`. Em vez disso, você pode desativar esses ajustes como um grupo, especificando `--skip-opt`, e, opcionalmente, reativar certos ajustes especificando as opções associadas posteriormente na linha de comando.
+* A opção `--opt` ativa vários ajustes que trabalham juntos para realizar uma operação de varredura rápida. Todos esses ajustes estão ativados por padrão, porque `--opt` está ativado por padrão. Assim, você raramente, ou nunca, especifica `--opt`. Em vez disso, você pode desativar esses ajustes como um grupo, especificando `--skip-opt`, e, opcionalmente, reativar certos ajustes especificando as opções associadas posteriormente na string de comando.
 
 * A opção `--compact` desativa várias configurações que controlam se as declarações e comentários opcionais aparecem na saída. Novamente, você pode seguir esta opção com outras opções que reativam certas configurações, ou ativar todas as configurações usando o formulário `--skip-compact`.
 
@@ -9346,7 +9346,7 @@ Para mais informações sobre fazer backups, consulte a Seção 7.2, “Métodos
 
 #### Restrições
 
-O **mysqldump** não devolve o esquema `INFORMATION_SCHEMA`, `performance_schema` ou `sys` por padrão. Para devolve-los, nomeie-os explicitamente na linha de comando. Também pode nomeá-los com a opção `--databases`. Para `INFORMATION_SCHEMA` e `performance_schema`, use também a opção `--skip-lock-tables`.
+O **mysqldump** não devolve o esquema `INFORMATION_SCHEMA`, `performance_schema` ou `sys` por padrão. Para devolve-los, nomeie-os explicitamente na string de comando. Também pode nomeá-los com a opção `--databases`. Para `INFORMATION_SCHEMA` e `performance_schema`, use também a opção `--skip-lock-tables`.
 
 O **mysqldump** não daria o dump do banco de dados de informação do NDB Cluster `ndbinfo`.
 
@@ -9362,7 +9362,7 @@ Se você encontrar problemas ao fazer backup de visualizações devido a privil�
 
 ### 4.5.5 mysqlimport — Um programa de importação de dados
 
-O cliente **mysqlimport** fornece uma interface de linha de comando para a declaração SQL `LOAD DATA`. A maioria das opções do **mysqlimport** corresponde diretamente a cláusulas da sintaxe do `LOAD DATA`. Veja a Seção 13.2.6, “Declaração LOAD DATA”.
+O cliente **mysqlimport** fornece uma interface de string de comando para a declaração SQL `LOAD DATA`. A maioria das opções do **mysqlimport** corresponde diretamente a cláusulas da sintaxe do `LOAD DATA`. Veja a Seção 13.2.6, “Declaração LOAD DATA”.
 
 Invoque **mysqlimport** da seguinte forma:
 
@@ -9370,9 +9370,9 @@ Invoque **mysqlimport** da seguinte forma:
 mysqlimport [options] db_name textfile1 [textfile2 ...]
 ```
 
-Para cada arquivo de texto nomeado na linha de comando, o **mysqlimport** remove qualquer extensão do nome do arquivo e usa o resultado para determinar o nome da tabela na qual os conteúdos do arquivo serão importados. Por exemplo, os arquivos com os nomes `patient.txt`, `patient.text` e `patient` seriam todos importados em uma tabela chamada `patient`.
+Para cada arquivo de texto nomeado na string de comando, o **mysqlimport** remove qualquer extensão do nome do arquivo e usa o resultado para determinar o nome da tabela na qual os conteúdos do arquivo serão importados. Por exemplo, os arquivos com os nomes `patient.txt`, `patient.text` e `patient` seriam todos importados em uma tabela chamada `patient`.
 
-O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlimport]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqlimport]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.17 Opções de mysqlimport**
 
@@ -9530,7 +9530,7 @@ O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--ignore-lines</code></th>
-<td>Ignore as primeiras N linhas do arquivo de dados</td>
+<td>Ignore as primeiras N strings do arquivo de dados</td>
 <td></td>
 <td></td>
 </tr>
@@ -9578,7 +9578,7 @@ O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -9608,7 +9608,7 @@ O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--replace</code></th>
-<td>As opções --replace e --ignore controlam o tratamento das linhas de entrada que duplicam linhas existentes com valores de chave únicos.</td>
+<td>As opções --replace e --ignore controlam o tratamento das strings de entrada que duplicam strings existentes com valores de chave únicos.</td>
 <td></td>
 <td></td>
 </tr>
@@ -9638,7 +9638,7 @@ O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -9710,7 +9710,7 @@ O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na 
 </tr>
 <tr>
 <th><code>--use-threads</code></th>
-<td>Número de fios para carregamento de arquivos em paralelo</td>
+<td>Número de threads para carregamento de arquivos em paralelo</td>
 <td></td>
 <td></td>
 </tr>
@@ -9807,7 +9807,7 @@ Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. 
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -9817,7 +9817,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -9825,7 +9825,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlimport** normalmente lê os grupos `[client]` e `[mysqlimport]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlimport** também lê os grupos `[client_other]` e `[mysqlimport_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--delete`, `-D`
 
@@ -9887,13 +9887,13 @@ Veja a descrição para a opção `--replace`.
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
-Ignore as primeiras linhas *`N`* do arquivo de dados.
+Ignore as primeiras strings *`N`* do arquivo de dados.
 
 * `--lines-terminated-by=...`
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
-Esta opção tem o mesmo significado que a cláusula correspondente para `LOAD DATA`. Por exemplo, para importar arquivos do Windows que têm linhas terminadas com pares de retorno de carro/retorno de linha, use `--lines-terminated-by="\r\n"`. (Você pode precisar duplicar as barras invertidas, dependendo das convenções de fuga do seu interpretador de comandos.) Veja a Seção 13.2.6, “Instrução LOAD DATA”.
+Esta opção tem o mesmo significado que a cláusula correspondente para `LOAD DATA`. Por exemplo, para importar arquivos do Windows que têm strings terminadas com pares de retorno de carro/retorno de string, use `--lines-terminated-by="\r\n"`. (Você pode precisar duplicar as barras invertidas, dependendo das convenções de fuga do seu interpretador de comandos.) Veja a Seção 13.2.6, “Instrução LOAD DATA”.
 
 * `--local`, `-L`
 
@@ -9915,7 +9915,7 @@ Bloquear *todas* as tabelas para escrita antes de processar quaisquer arquivos d
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--low-priority`
 
@@ -9929,9 +9929,9 @@ Use `LOW_PRIORITY` ao carregar a tabela. Isso afeta apenas os motores de armazen
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--password[=password]`, `-p[password]`
 
@@ -9939,7 +9939,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecida, o **mysqlimport** solicita uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqlimport** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -9947,7 +9947,7 @@ Para especificar explicitamente que não há senha e que o **mysqlimport** não 
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>2
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -9967,7 +9967,7 @@ Para conexões TCP/IP, o número de porta a ser utilizado.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -9979,7 +9979,7 @@ O protocolo de transporte a ser usado para se conectar ao servidor. É útil qua
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>7
 
-As opções `--replace` e `--ignore` controlam o tratamento das linhas de entrada que duplicam linhas existentes em valores de chave únicos. Se você especificar `--replace`, as novas linhas substituem as linhas existentes que têm o mesmo valor de chave única. Se você especificar `--ignore`, as linhas de entrada que duplicam uma linha existente em um valor de chave única são ignoradas. Se você não especificar nenhuma dessas opções, um erro ocorre quando um valor de chave duplicado é encontrado, e o resto do arquivo de texto é ignorado.
+As opções `--replace` e `--ignore` controlam o tratamento das strings de entrada que duplicam strings existentes em valores de chave únicos. Se você especificar `--replace`, as novas strings substituem as strings existentes que têm o mesmo valor de chave única. Se você especificar `--ignore`, as strings de entrada que duplicam uma string existente em um valor de chave única são ignoradas. Se você não especificar nenhuma dessas opções, um erro ocorre quando um valor de chave duplicado é encontrado, e o resto do arquivo de texto é ignorado.
 
 * `--secure-auth`
 
@@ -10025,7 +10025,7 @@ Modo silencioso. Produza a saída apenas quando ocorrerem erros.
 
   <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>2
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -10104,7 +10104,7 @@ As características do **mysqlpump** incluem:
 
 * descarte de contas de usuários como declarações de gestão de contas (`CREATE USER`, `GRANT`) e não como inserções no banco de dados do sistema `mysql`
 
-* Capacidade de criar saída comprimida * Indicador de progresso (os valores são estimativas) * Para recarga do arquivo de depuração, criação de índice secundário mais rápida para as tabelas `InnoDB` adicionando índices após as linhas serem inseridas
+* Capacidade de criar saída comprimida * Indicador de progresso (os valores são estimativas) * Para recarga do arquivo de depuração, criação de índice secundário mais rápida para as tabelas `InnoDB` adicionando índices após as strings serem inseridas
 
 O **mysqlpump** requer pelo menos o privilégio `SELECT` para tabelas descarregadas, `SHOW VIEW` para visualizações descarregadas, `TRIGGER` para gatilhos descarregados e `LOCK TABLES` se a opção `--single-transaction` não for usada. O privilégio `SELECT` no banco de dados do sistema `mysql` é necessário para descarregar definições de usuário. Algumas opções podem exigir outros privilégios, conforme indicado nas descrições das opções.
 
@@ -10132,7 +10132,7 @@ Por padrão, o **mysqlpump** exibe todos os bancos de dados (com certas exceçõ
 mysqlpump --all-databases
 ```
 
-Para descartar um único banco de dados ou certas tabelas nesse banco de dados, nomeie o banco de dados na linha de comando, opcionalmente seguido pelos nomes das tabelas:
+Para descartar um único banco de dados ou certas tabelas nesse banco de dados, nomeie o banco de dados na string de comando, opcionalmente seguido pelos nomes das tabelas:
 
 ```sql
 mysqlpump db_name
@@ -10168,7 +10168,7 @@ Para ver uma lista das opções que o **mysqlpump** suporta, execute o comando *
 
 #### Resumo da Opção mysqlpump
 
-O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlpump]` e `[client]` de um arquivo de opções. (Antes do MySQL 5.7.30, o **mysqlpump** lia o grupo `[mysql_dump]` em vez de `[mysqlpump]`. A partir do 5.7.30, `[mysql_dump]` ainda é aceito, mas é descontinuado.) Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqlpump]` e `[client]` de um arquivo de opções. (Antes do MySQL 5.7.30, o **mysqlpump** lia o grupo `[mysql_dump]` em vez de `[mysqlpump]`. A partir do 5.7.30, `[mysql_dump]` ainda é aceito, mas é descontinuado.) Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.18 Opções do mysqlpump**
 
@@ -10286,7 +10286,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--defer-table-indexes</code></th>
-<td>Para recarregar, adiar a criação do índice até depois de carregar as linhas da tabela</td>
+<td>Para recarregar, adiar a criação do índice até depois de carregar as strings da tabela</td>
 <td></td>
 </tr>
 <tr>
@@ -10326,7 +10326,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--extended-insert</code></th>
-<td>Use a sintaxe de inserção de várias linhas</td>
+<td>Use a sintaxe de inserção de várias strings</td>
 <td></td>
 </tr>
 <tr>
@@ -10496,12 +10496,12 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--skip-dump-rows</code></th>
-<td>Não descarte linhas de tabela</td>
+<td>Não descarte strings de tabela</td>
 <td></td>
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 </tr>
 <tr>
@@ -10684,7 +10684,7 @@ A saída do `ZLIB` pode ser descomprimida da seguinte forma:
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
-Normalmente, o **mysqlpump** trata o argumento de nome no comando de linha como um nome de banco de dados e quaisquer nomes subsequentes como nomes de tabela. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados. As declarações `CREATE DATABASE` são incluídas na saída antes de cada novo banco de dados.
+Normalmente, o **mysqlpump** trata o argumento de nome no comando de string como um nome de banco de dados e quaisquer nomes subsequentes como nomes de tabela. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados. As declarações `CREATE DATABASE` são incluídas na saída antes de cada novo banco de dados.
 
 `--all-databases` e `--databases` são mutuamente exclusivos.
 
@@ -10750,7 +10750,7 @@ Antes do MySQL 5.7.11, o uso da opção `--single-transaction` é mutuamente exc
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -10760,7 +10760,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -10768,13 +10768,13 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, o **mysqlpump** normalmente lê os grupos `[client]` e `[mysqlpump]`. Se esta opção for dada como `--defaults-group-suffix=_other`, o **mysqlpump** também lê os grupos `[client_other]` e `[mysqlpump_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defer-table-indexes`
 
   <table frame="box" rules="all" summary="Properties for add-drop-database"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>2
 
-Na saída de dump, adiar a criação do índice para cada tabela até que suas linhas tenham sido carregadas. Isso funciona para todos os motores de armazenamento, mas para `InnoDB` aplica-se apenas para índices secundários.
+Na saída de dump, adiar a criação do índice para cada tabela até que suas strings tenham sido carregadas. Isso funciona para todos os motores de armazenamento, mas para `InnoDB` aplica-se apenas para índices secundários.
 
 Esta opção é ativada por padrão; use `--skip-defer-table-indexes` para desativá-la.
 
@@ -10830,9 +10830,9 @@ Não descarte as contas do usuário em *`user_list`*, que é uma lista de um ou 
 
   <table frame="box" rules="all" summary="Properties for add-drop-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>0
 
-Escreva declarações `INSERT` usando sintaxe de várias linhas que inclua várias listas `VALUES`. Isso resulta em um arquivo de depuração menor e acelera as inserções quando o arquivo é carregado novamente.
+Escreva declarações `INSERT` usando sintaxe de várias strings que inclua várias listas `VALUES`. Isso resulta em um arquivo de depuração menor e acelera as inserções quando o arquivo é carregado novamente.
 
-O valor da opção indica o número de linhas a serem incluídas em cada declaração `INSERT`. O padrão é 250. Um valor de 1 produz uma declaração `INSERT` por linha de tabela.
+O valor da opção indica o número de strings a serem incluídas em cada declaração `INSERT`. O padrão é 250. Um valor de 1 produz uma declaração `INSERT` por string de tabela.
 
 * `--get-server-public-key`
 
@@ -10912,7 +10912,7 @@ Registre as advertências e erros anexando-os ao arquivo nomeado. Se esta opçã
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--max-allowed-packet=N`
 
@@ -10924,7 +10924,7 @@ O tamanho máximo do buffer para comunicação cliente/servidor. O padrão é 24
 
   <table frame="box" rules="all" summary="Properties for add-drop-user"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>4
 
-O tamanho inicial do buffer para a comunicação cliente/servidor. Ao criar declarações `INSERT` de várias linhas (como com a opção `--extended-insert`, o **mysqlpump** cria linhas com até *`N`* bytes de comprimento. Se você usar esta opção para aumentar o valor, certifique-se de que a variável de sistema do servidor MySQL `net_buffer_length` tenha um valor pelo menos desse tamanho.
+O tamanho inicial do buffer para a comunicação cliente/servidor. Ao criar declarações `INSERT` de várias strings (como com a opção `--extended-insert`, o **mysqlpump** cria strings com até *`N`* bytes de comprimento. Se você usar esta opção para aumentar o valor, certifique-se de que a variável de sistema do servidor MySQL `net_buffer_length` tenha um valor pelo menos desse tamanho.
 
 * `--no-create-db`
 
@@ -10944,9 +10944,9 @@ Não escreva declarações `CREATE TABLE` que criem cada tabela descarregada.
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--parallel-schemas=[N:]db_list`
 
@@ -10962,7 +10962,7 @@ Múltiplas instâncias desta opção criam múltiplas filas. O **mysqlpump** tam
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecida, o **mysqlpump** solicitará uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqlpump** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -10984,7 +10984,7 @@ Para conexões TCP/IP, o número de porta a ser utilizado.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -11004,7 +11004,7 @@ Escreva declarações `REPLACE` em vez de declarações `INSERT`.
 
 Saída direta para o arquivo nomeado. O arquivo de resultado é criado e seus conteúdos anteriores são sobrescritos, mesmo que um erro ocorra durante a geração do dump.
 
-Essa opção deve ser usada no Windows para evitar que os caracteres de nova linha `\n` sejam convertidos em sequências de retorno de carro/nova linha `\r\n`.
+Essa opção deve ser usada no Windows para evitar que os caracteres de nova string `\n` sejam convertidos em sequências de retorno de carro/nova string `\r\n`.
 
 * `--routines`
 
@@ -11098,13 +11098,13 @@ Omita as cláusulas `DEFINER` e `SQL SECURITY` das declarações `CREATE` para v
 
   <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>4
 
-Não descarte as linhas da tabela.
+Não descarte as strings da tabela.
 
 * `--socket=path`, `-S path`
 
   <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>5
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -11164,7 +11164,7 @@ Exibir informações da versão e sair.
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
-Exiba periodicamente um indicador de progresso que forneça informações sobre o número de tabelas, linhas e outros objetos concluídos e o total.
+Exiba periodicamente um indicador de progresso que forneça informações sobre o número de tabelas, strings e outros objetos concluídos e o total.
 
 Esta opção é ativada por padrão; use `--skip-watch-progress` para desativá-la.
 
@@ -11284,7 +11284,7 @@ mysqlpump --single-transaction --default-parallelism=0
 
 #### mysqlpump Restrições
 
-O **mysqlpump** não densa o esquema `INFORMATION_SCHEMA`, `performance_schema`, `ndbinfo` ou `sys` por padrão. Para drenar qualquer um desses, nomeie-os explicitamente na linha de comando. Você também pode nomeá-los com a opção `--databases` ou `--include-databases`.
+O **mysqlpump** não densa o esquema `INFORMATION_SCHEMA`, `performance_schema`, `ndbinfo` ou `sys` por padrão. Para drenar qualquer um desses, nomeie-os explicitamente na string de comando. Você também pode nomeá-los com a opção `--databases` ou `--include-databases`.
 
 O **mysqlpump** não daria `InnoDB` `CREATE TABLESPACE` declarações.
 
@@ -11298,7 +11298,7 @@ mysqlpump mysql user db ...
 
 O cliente **mysqlshow** pode ser usado para ver rapidamente quais bancos de dados existem, suas tabelas ou as colunas ou índices de uma tabela.
 
-O **mysqlshow** fornece uma interface de linha de comando para várias instruções SQL `SHOW`. Veja a Seção 13.7.5, “Instruções SHOW”. As mesmas informações podem ser obtidas usando essas instruções diretamente. Por exemplo, você pode executá-las a partir do programa cliente **mysql**.
+O **mysqlshow** fornece uma interface de string de comando para várias instruções SQL `SHOW`. Veja a Seção 13.7.5, “Instruções SHOW”. As mesmas informações podem ser obtidas usando essas instruções diretamente. Por exemplo, você pode executá-las a partir do programa cliente **mysql**.
 
 Invoque o **mysqlshow** da seguinte forma:
 
@@ -11312,9 +11312,9 @@ mysqlshow [options] [db_name [tbl_name [col_name]]]
 
 A saída exibe apenas os nomes dos bancos de dados, tabelas ou colunas para os quais você tem alguns privilégios.
 
-Se o último argumento contiver caracteres de comodinho de shell ou SQL (`*`, `?`, `%` ou `_`), apenas os nomes que são correspondidos pelo comodinho são mostrados. Se um nome de banco de dados contiver quaisquer sublinhados, esses devem ser escapados com uma barra invertida (algumas cartilhas Unix requerem duas) para obter uma lista das tabelas ou colunas adequadas. Os caracteres `*` e `?` são convertidos em caracteres de comodinho SQL `%` e `_`. Isso pode causar alguma confusão quando você tenta exibir as colunas de uma tabela com um `_` no nome, porque, neste caso, **mysqlshow** mostra apenas os nomes de tabela que correspondem ao padrão. Isso é facilmente corrigido adicionando um último `%` na linha de comando como um argumento separado.
+Se o último argumento contiver caracteres de comodinho de shell ou SQL (`*`, `?`, `%` ou `_`), apenas os nomes que são correspondidos pelo comodinho são mostrados. Se um nome de banco de dados contiver quaisquer sublinhados, esses devem ser escapados com uma barra invertida (algumas cartilhas Unix requerem duas) para obter uma lista das tabelas ou colunas adequadas. Os caracteres `*` e `?` são convertidos em caracteres de comodinho SQL `%` e `_`. Isso pode causar alguma confusão quando você tenta exibir as colunas de uma tabela com um `_` no nome, porque, neste caso, **mysqlshow** mostra apenas os nomes de tabela que correspondem ao padrão. Isso é facilmente corrigido adicionando um último `%` na string de comando como um argumento separado.
 
-O **mysqlshow** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlshow]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqlshow** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqlshow]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.19 mysqlshow Opções**
 
@@ -11352,7 +11352,7 @@ O **mysqlshow** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--count</code></th>
-<td>Mostre o número de linhas por tabela</td>
+<td>Mostre o número de strings por tabela</td>
 <td></td>
 <td></td>
 </tr>
@@ -11454,7 +11454,7 @@ O **mysqlshow** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -11508,7 +11508,7 @@ O **mysqlshow** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -11633,7 +11633,7 @@ Compressa todas as informações enviadas entre o cliente e o servidor, se poss�
 
   <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--count</code></td> </tr></tbody></table>
 
-Mostre o número de linhas por tabela. Isso pode ser lento para tabelas que não são `MyISAM`.
+Mostre o número de strings por tabela. Isso pode ser lento para tabelas que não são `MyISAM`.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
@@ -11677,7 +11677,7 @@ Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. 
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -11687,7 +11687,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -11695,7 +11695,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlshow** normalmente lê os grupos `[client]` e `[mysqlshow]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlshow** também lê os grupos `[client_other]` e `[mysqlshow_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--enable-cleartext-plugin`
 
@@ -11735,7 +11735,7 @@ Mostrar índices de tabela.
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--no-defaults`
 
@@ -11743,9 +11743,9 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--password[=password]`, `-p[password]`
 
@@ -11753,7 +11753,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlshow** solicita uma senha. Se for fornecida, não deve haver espaço entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de opção de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqlshow** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -11761,7 +11761,7 @@ Para especificar explicitamente que não há senha e que o **mysqlshow** não de
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -11781,7 +11781,7 @@ Para conexões TCP/IP, o número de porta a ser utilizado.
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -11833,7 +11833,7 @@ Mostre uma coluna indicando o tipo de tabela, como em `SHOW FULL TABLES`. O tipo
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -11883,7 +11883,7 @@ Invoque o **mysqlslap** da seguinte forma:
 mysqlslap [options]
 ```
 
-Algumas opções, como `--create` ou `--query`, permitem que você especifique uma string contendo uma declaração SQL ou um arquivo contendo declarações. Se você especificar um arquivo, por padrão, ele deve conter uma declaração por linha. (Ou seja, o delimitador de declaração implícito é o caractere de nova linha.) Use a opção `--delimiter` para especificar um delimitador diferente, o que permite que você especifique declarações que se estendem por várias linhas ou coloque várias declarações em uma única linha. Não é possível incluir comentários em um arquivo; o **mysqlslap** não os entende.
+Algumas opções, como `--create` ou `--query`, permitem que você especifique uma string contendo uma declaração SQL ou um arquivo contendo declarações. Se você especificar um arquivo, por padrão, ele deve conter uma declaração por string. (Ou seja, o delimitador de declaração implícito é o caractere de nova string.) Use a opção `--delimiter` para especificar um delimitador diferente, o que permite que você especifique declarações que se estendem por várias strings ou coloque várias declarações em uma única string. Não é possível incluir comentários em um arquivo; o **mysqlslap** não os entende.
 
 **mysqlslap** é executado em três etapas:
 
@@ -11895,7 +11895,7 @@ Algumas opções, como `--create` ou `--query`, permitem que você especifique u
 
 Exemplos:
 
-Forneça suas próprias instruções de criação e consulta SQL, com 50 clientes fazendo consultas e 200 seleções para cada uma (insira o comando em uma única linha):
+Forneça suas próprias instruções de criação e consulta SQL, com 50 clientes fazendo consultas e 200 seleções para cada uma (insira o comando em uma única string):
 
 ```sql
 mysqlslap --delimiter=";"
@@ -11919,7 +11919,7 @@ mysqlslap --concurrency=5
   --delimiter=";"
 ```
 
-O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlslap]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na string de comando ou nos grupos `[mysqlslap]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.20 Opções mysqlslap**
 
@@ -11987,7 +11987,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--auto-generate-sql-write-number</code></th>
-<td>Quantas inserções de linha devem ser realizadas em cada fio</td>
+<td>Quantas inserções de string devem ser realizadas em cada thread</td>
 <td></td>
 <td></td>
 </tr>
@@ -12167,7 +12167,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--pipe</code></th>
-<td>Conecte-se ao servidor usando um tubo nomeado (apenas Windows)</td>
+<td>Conecte-se ao servidor usando um pipe nomeado (apenas Windows)</td>
 <td></td>
 <td></td>
 </tr>
@@ -12251,7 +12251,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 </tr>
 <tr>
 <th><code>--socket</code></th>
-<td>Arquivo de socket Unix ou tubo nomeado do Windows a ser usado</td>
+<td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td>
 <td></td>
 <td></td>
 </tr>
@@ -12406,7 +12406,7 @@ Quantas consultas diferentes devem ser geradas para `--auto-generate-sql-write-n
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
-Quantos insertos de linha devem ser realizados. O padrão é 100.
+Quantos insertos de string devem ser realizados. O padrão é 100.
 
 * `--commit=N`
 
@@ -12484,7 +12484,7 @@ Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. 
 
 Leia este arquivo de opção após o arquivo de opção global, mas (em Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-file=file_name`
 
@@ -12494,7 +12494,7 @@ Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for
 
 Exceção: Mesmo com `--defaults-file`, os programas de cliente leem `.mylogin.cnf`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--defaults-group-suffix=str`
 
@@ -12502,7 +12502,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlslap** normalmente lê os grupos `[client]` e `[mysqlslap]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlslap** também lê os grupos `[client_other]` e `[mysqlslap_other]`.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--delimiter=str`, `-F str`
 
@@ -12558,7 +12558,7 @@ O número de vezes em que os testes devem ser realizados.
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--no-drop`
 
@@ -12572,9 +12572,9 @@ Evite que o **mysqlslap** elimine qualquer esquema que ele crie durante a execu�
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para impedir que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--number-char-cols=N`, `-x N`
 
@@ -12592,7 +12592,7 @@ O número de colunas `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"
 
   <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-Limite cada cliente a aproximadamente esse número de consultas. O contagem de consultas leva em consideração o delimitador da declaração. Por exemplo, se você invocar o **mysqlslap** da seguinte forma, o delimitador `;` é reconhecido para que cada instância da string de consulta seja contada como duas consultas. Como resultado, 5 linhas (e não 10) são inseridas.
+Limite cada cliente a aproximadamente esse número de consultas. O contagem de consultas leva em consideração o delimitador da declaração. Por exemplo, se você invocar o **mysqlslap** da seguinte forma, o delimitador `;` é reconhecido para que cada instância da string de consulta seja contada como duas consultas. Como resultado, 5 strings (e não 10) são inseridas.
 
   ```sql
   mysqlslap --delimiter=";" --number-of-queries=10
@@ -12611,7 +12611,7 @@ Não conecte-se aos bancos de dados. **mysqlslap** apenas imprime o que teria fe
 
 A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecida, o **mysqlslap** solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se não for especificado nenhum tipo de opção de senha, o padrão é não enviar senha.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Para evitar fornecer a senha na linha de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
+Especificar uma senha na string de comando deve ser considerado inseguro. Para evitar fornecer a senha na string de comando, use um arquivo de opção. Consulte a Seção 6.1.2.1, "Diretrizes para o Usuário Final sobre Segurança de Senhas".
 
 Para especificar explicitamente que não há senha e que o **mysqlslap** não deve solicitar uma senha, use a opção `--skip-password`.
 
@@ -12619,7 +12619,7 @@ Para especificar explicitamente que não há senha e que o **mysqlslap** não de
 
   <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
+Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
@@ -12663,7 +12663,7 @@ A cadeia de caracteres a ser executada usando `system()` antes de executar os te
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
-Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
+Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
@@ -12721,7 +12721,7 @@ Modo silencioso. Sem saída.
 
   <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do tubo nomeado a ser usado.
+Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
 Em Windows, esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões de canal nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 

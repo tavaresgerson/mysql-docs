@@ -111,7 +111,7 @@ Explicação da notação:
 
 * *`AGGR_BIT_FUNC`*: Uma função agregada que aceita argumentos de valor de bit: `BIT_AND()`, `BIT_OR()`, `BIT_XOR()`.
 
-O servidor produz um único aviso para cada expressão problemática em uma declaração, não um aviso para cada linha processada. Suponha que uma declaração que contém duas expressões problemáticas selecione três linhas de uma tabela. O número de avisos por execução da declaração é de dois, não seis. O exemplo a seguir ilustra isso.
+O servidor produz um único aviso para cada expressão problemática em uma declaração, não um aviso para cada string processada. Suponha que uma declaração que contém duas expressões problemáticas selecione três strings de uma tabela. O número de avisos por execução da declaração é de dois, não seis. O exemplo a seguir ilustra isso.
 
 ```sql
 mysql> CREATE TABLE t(vbin1 VARBINARY(32), vbin2 VARBINARY(32));
@@ -172,4 +172,4 @@ Uma declaração afetada que não pode ser reescrita está sujeita a esses probl
 
 * A declaração pode retornar um resultado diferente após uma atualização para o MySQL 8.0.
 
-* A replicação para o MySQL 8.0 a partir de versões mais antigas pode falhar para registros binários baseados em declarações e de formato misto. Isso também é verdadeiro para a reprodução de logs binários mais antigos em um servidor 8.0 (por exemplo, usando **mysqlbinlog**). Para evitar isso, mude para registro binário baseado em linhas no servidor de origem mais antigo.
+* A replicação para o MySQL 8.0 a partir de versões mais antigas pode falhar para registros binários baseados em declarações e de formato misto. Isso também é verdadeiro para a reprodução de logs binários mais antigos em um servidor 8.0 (por exemplo, usando **mysqlbinlog**). Para evitar isso, mude para registro binário baseado em strings no servidor de origem mais antigo.

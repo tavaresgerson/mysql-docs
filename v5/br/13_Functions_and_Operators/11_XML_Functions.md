@@ -8,7 +8,7 @@ Esta seção discute o XML e as funcionalidades relacionadas no MySQL.
 
 Nota
 
-É possível obter uma saída formatada em XML do MySQL nos clientes `--xml` do **mysql** e **mysqldump**, invocando-os com a opção `--xml`. Veja a Seção 4.5.1, “mysql — O Cliente de Linha de Comando MySQL”, e a Seção 4.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”.
+É possível obter uma saída formatada em XML do MySQL nos clientes `--xml` do **mysql** e **mysqldump**, invocando-os com a opção `--xml`. Veja a Seção 4.5.1, “mysql — O Cliente de String de Comando MySQL”, e a Seção 4.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”.
 
 Dois recursos que oferecem capacidades básicas do XPath 1.0 (Linguagem de Caminho XML, versão 1.0) estão disponíveis. Algumas informações básicas sobre a sintaxe e o uso do XPath são fornecidas mais adiante nesta seção; no entanto, uma discussão aprofundada desses tópicos está além do escopo deste manual, e você deve consultar o [Padrão de Linguagem de Caminho XML (XPath) 1.0][(http://www.w3.org/TR/xpath)] para informações definitivas. Um recurso útil para aqueles novos no XPath ou que desejam um revisado nos conceitos básicos é o [Zvon.org XPath Tutorial][(http://www.zvon.org/xxl/XPathTutorial/)], que está disponível em vários idiomas.
 
@@ -578,7 +578,7 @@ mysql> SELECT ExtractValue(
 1 row in set (0.01 sec)
 ```
 
-Como o `ExtractValue()` retorna múltiplos resultados como uma única string delimitada por espaço, este ataque de injeção fornece a cada usuário todas as IDs válidas contidas no `users.xml` como uma única linha de saída. Como uma proteção extra, você também deve testar a saída antes de devolvê-la ao usuário. Aqui está um exemplo simples:
+Como o `ExtractValue()` retorna múltiplos resultados como uma única string delimitada por espaço, este ataque de injeção fornece a cada usuário todas as IDs válidas contidas no `users.xml` como uma única string de saída. Como uma proteção extra, você também deve testar a saída antes de devolvê-la ao usuário. Aqui está um exemplo simples:
 
 ```sql
 mysql> SELECT @id = ExtractValue(
