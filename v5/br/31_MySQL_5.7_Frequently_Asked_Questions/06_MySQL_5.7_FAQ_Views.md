@@ -1,0 +1,15 @@
+## A.6 Perguntas frequentes sobre o MySQL 5.7: Visualizações
+
+A.6.1. Onde posso encontrar documentação sobre Views do MySQL?
+
+A.6.2. Há um fórum de discussão para Visualizações do MySQL?
+
+A.6.3. O que acontece com uma visão se uma tabela subjacente for excluída ou renomeada?
+
+A.6.4. O MySQL tem instantâneos de tabela?
+
+A.6.5. O MySQL tem vistas materializadas?
+
+A.6.6. Você pode inserir em visualizações que são baseadas em junções?
+
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><b>A.6.1.</b></td><td align="left" valign="top"><p>Onde posso encontrar documentação que cubra as Visões do MySQL?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>Veja a Seção 23.5, “Usando visualizações”.</p><p>Você também pode achar os Fóruns de Usuários do MySQL úteis.</p></td></tr><tr class="question"><td align="left" valign="top"><b>A.6.2.</b></td><td align="left" valign="top"><p>Há um fórum de discussão para Visualizações do MySQL?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>Veja o<a class="ulink" href="https://forums.mysql.com/list.php?20" target="_blank">Fóruns de usuários do MySQL</a>. </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.6.3.</b></td><td align="left" valign="top"><p>O que acontece com uma visão se uma tabela subjacente for excluída ou renomeada?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>Depois de uma visão ter sido criada, é possível descartar ou alterar uma tabela ou visão à qual a definição se refere. Para verificar a definição de uma visão em relação a problemas desse tipo, use o<code>CHECK TABLE</code>declaração. (Veja a Seção 13.7.2.2, “Declaração CHECK TABLE”).</p></td></tr><tr class="question"><td align="left" valign="top"><b>A.6.4.</b></td><td align="left" valign="top"><p>O MySQL tem instantâneos de tabela?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> No. </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.6.5.</b></td><td align="left" valign="top"><p>O MySQL tem vistas materializadas?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> No. </p></td></tr><tr class="question"><td align="left" valign="top"><b>A.6.6.</b></td><td align="left" valign="top"><p>Você pode inserir em visualizações que são baseadas em junções?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>É possível, desde que você<code>INSERT</code>A declaração tem uma lista de colunas que deixa claro que apenas uma tabela está envolvida.</p><p>Você<em>não pode</em>inserir em várias tabelas com uma única inserção em uma visão.</p></td></tr></tbody></table>

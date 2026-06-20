@@ -1,0 +1,1 @@
+# Apêndice A Perguntas Frequentes sobre o MySQL 5.7

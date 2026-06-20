@@ -1,0 +1,78 @@
+## B.1 Fontes e elementos dos erros de mensagem
+
+Esta seção discute como as mensagens de erro se originam no MySQL e os elementos que elas contêm.
+
+* Fontes de Mensagens de Erro
+* Elementos de Mensagens de Erro
+
+### Fontes de Mensagem de Erro
+
+Os erros podem ocorrer no lado do servidor ou no lado do cliente:
+
+* Do lado do servidor, mensagens de erro podem ocorrer durante os processos de inicialização e desligamento, como resultado de problemas que ocorrem durante a execução de declarações SQL, e assim por diante.
+
++ O servidor MySQL escreve alguns erros em seu log de erro. Esses indicam problemas de interesse para administradores de banco de dados ou que requerem ação do DBA.
+
++ O servidor envia outros erros para os programas do cliente. Esses indicam problemas que pertencem apenas a um cliente específico. A biblioteca de clientes MySQL recebe os erros recebidos do servidor e os torna disponíveis para o programa de cliente do host.
+
+* As mensagens de erro do lado do cliente são geradas dentro da biblioteca de clientes MySQL, geralmente envolvendo problemas de comunicação com o servidor.
+
+Exemplos de mensagens de erro do lado do servidor escritas no log de erro:
+
+* Essa mensagem produzida durante o processo de inicialização fornece um indicador de status ou progresso:
+
+  ```sql
+  2018-09-26T14:46:06.326016Z 0 [Note] Skipping generation of SSL
+  certificates as options related to SSL are specified.
+  ```
+
+* Esta mensagem indica um problema que requer ação do DBA:
+
+  ```sql
+  2018-10-02T03:20:39.410387Z 0 [ERROR] Plugin 'InnoDB'
+  registration as a STORAGE ENGINE failed.
+  ```
+
+Exemplo de mensagem de erro do lado do servidor enviada aos programas do cliente, conforme exibida pelo cliente **mysql**:
+
+```sql
+mysql> SELECT * FROM no_such_table;
+ERROR 1146 (42S02): Table 'test.no_such_table' doesn't exist
+```
+
+Exemplo de mensagem de erro do lado do cliente originada dentro da biblioteca do cliente, conforme exibida pelo cliente **mysql**:
+
+```sql
+$> mysql -h no-such-host
+ERROR 2005 (HY000): Unknown MySQL server host 'no-such-host' (0)
+```
+
+Se o erro se origina dentro da biblioteca do cliente ou é recebido do servidor, um programa cliente MySQL pode responder de várias maneiras. Como ilustrado acima, o cliente pode exibir a mensagem de erro para que o usuário possa tomar medidas corretivas. Em vez disso, o cliente pode tentar resolver ou repetir uma operação falha internamente, ou tomar outras ações.
+
+### Elementos de Mensagem de Erro
+
+Quando ocorre um erro, as informações de erro incluem vários elementos: um código de erro, o valor SQLSTATE e uma string de mensagem. Esses elementos têm as seguintes características:
+
+* Código de erro: Este valor é numérico. É específico do MySQL e não é portátil para outros sistemas de banco de dados.
+
+Cada número de erro tem um valor simbólico correspondente. Exemplos:
+
++ O símbolo para o número de erro do servidor `1146` é `ER_NO_SUCH_TABLE`.
+
++ O símbolo para o número de erro do cliente `2005` é `CR_UNKNOWN_HOST`.
+
+Os códigos de erro são estáveis em todas as versões de disponibilidade geral (GA) de uma série específica do MySQL. Antes de uma série atingir o status de GA, novos códigos ainda podem estar em desenvolvimento e estão sujeitos a alterações.
+
+* Valor SQLSTATE: Esse valor é uma cadeia de cinco caracteres (por exemplo, `'42S02'`). Os valores SQLSTATE são retirados do ANSI SQL e ODBC e são mais padronizados do que os códigos de erro numéricos. Os dois primeiros caracteres de um valor SQLSTATE indicam a classe de erro:
+
++ Classe = `'00'` indica sucesso.
+  + Classe = `'01'` indica um aviso.
+  + Classe = `'02'` indica “não encontrado”. Isso é relevante no contexto de cursor e é usado para controlar o que acontece quando um cursor atinge o final de um conjunto de dados. Esta condição também ocorre para as declarações `SELECT ... INTO var_list` que não recuperam nenhuma linha.
+
++ Classe > `'02'` indica uma exceção.
+
+Para erros do lado do servidor, nem todos os números de erro do MySQL têm valores correspondentes de SQLSTATE. Nesses casos, `'HY000'` (erro geral) é usado.
+
+Para erros do lado do cliente, o valor SQLSTATE é sempre `'HY000'` (erro geral), portanto, não é significativo para distinguir um erro do cliente de outro.
+
+* Mensagem de texto: Esta string fornece uma descrição textual do erro.
