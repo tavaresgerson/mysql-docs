@@ -70,7 +70,7 @@ Os usuários do MySQL devem seguir as diretrizes a seguir para manter as senhas 
 
 Quando você executa um programa cliente para se conectar ao servidor MySQL, não é aconselhável especificar sua senha de uma maneira que a exponga à descoberta por outros usuários. Os métodos que você pode usar para especificar sua senha ao executar programas cliente estão listados aqui, juntamente com uma avaliação dos riscos de cada método. Em resumo, os métodos mais seguros são fazer com que o programa cliente solicite a senha ou especificar a senha em um arquivo de opção adequadamente protegido.
 
-* Use o utilitário **mysql\_config\_editor**, que permite armazenar as credenciais de autenticação em um arquivo de caminho de login criptografado chamado `.mylogin.cnf`. O arquivo pode ser lido posteriormente por programas clientes do MySQL para obter as credenciais de autenticação para conectar ao MySQL Server. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração MySQL”.
+* Use o utilitário **mysql_config_editor**, que permite armazenar as credenciais de autenticação em um arquivo de caminho de login criptografado chamado `.mylogin.cnf`. O arquivo pode ser lido posteriormente por programas clientes do MySQL para obter as credenciais de autenticação para conectar ao MySQL Server. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração MySQL”.
 
 * Use a opção `--password=password` ou `-ppassword` na string de comando. Por exemplo:
 
@@ -256,7 +256,7 @@ Para permitir a geração explícita de hashes de senha pré-4.1, foram feitas d
 
 + Para fins de compatibilidade, a variável de sistema `old_passwords` foi adicionada, para permitir o controle dos DBA e das aplicações sobre o método de hashing. O valor padrão `old_passwords` de 0 faz com que o hashing use o método 4.1 (valores de hash de 41 bytes), mas definir `old_passwords=1` faz com que o hashing use o método pré-4.1. Neste caso, `PASSWORD()` produz valores de 16 bytes e é equivalente a `OLD_PASSWORD()`
 
-Para permitir que os administradores de banco de dados controlem como os clientes podem se conectar, a variável de sistema `secure_auth` foi adicionada. Iniciar o servidor com essa variável desativada ou ativada permite ou proíbe que os clientes se conectem usando o método de hashing de senha pré-4.1. Antes do MySQL 5.6.5, `secure_auth` é desativado por padrão. A partir do 5.6.5, `secure_auth` é ativado por padrão para promover uma configuração padrão mais segura. Os administradores de banco de dados podem desativá-lo a seu critério, mas isso não é recomendado, e os hashes de senha pré-4.1 devem ser evitados. (Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”).
+Para permitir que os administradores de banco de dados controlem como os clientes podem se conectar, a variável de sistema `secure_auth` foi adicionada. Iniciar o servidor com essa variável desativada ou ativada permite ou proíbe que os clientes se conectem usando o método de hashing de senha pré-4.1. Antes do MySQL 5.6.5, `secure_auth` é desativado por padrão. A partir do 5.6.5, `secure_auth` é ativado por padrão para promover uma configuração padrão mais segura. Os administradores de banco de dados podem desativá-lo a seu critério, mas isso não é recomendado, e os hashes de senha pré-4.1 devem ser evitados. (Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”).
 
 Além disso, o cliente **mysql** suporta uma opção `--secure-auth` que é análoga a `secure_auth`, mas do lado do cliente. Pode ser usada para impedir conexões a contas menos seguras que utilizam hashing de senha pré-4.1. Esta opção é desativada por padrão antes do MySQL 5.6.7, sendo ativada posteriormente.
 
@@ -664,7 +664,7 @@ Os administradores e aplicativos podem configurar se é permitido carregar dados
 
 + Por padrão, a biblioteca de clientes nas distribuições binárias do MySQL é compilada com `ENABLED_LOCAL_INFILE` habilitado. Se você compilar o MySQL a partir de fonte, configure-o com `ENABLED_LOCAL_INFILE` desativado ou ativado, dependendo se os clientes que não fazem acordos explícitos devem ter a capacidade `LOCAL` desativada ou ativada.
 
-+ Para programas de cliente que utilizam a API C, a capacidade de carregar dados local é determinada pelo padrão compilado na biblioteca de cliente MySQL. Para habilitar ou desabilitar explicitamente, invoque a função `mysql_options()` da API C para desabilitar ou habilitar a opção `MYSQL_OPT_LOCAL_INFILE`. Veja mysql\_options().
++ Para programas de cliente que utilizam a API C, a capacidade de carregar dados local é determinada pelo padrão compilado na biblioteca de cliente MySQL. Para habilitar ou desabilitar explicitamente, invoque a função `mysql_options()` da API C para desabilitar ou habilitar a opção `MYSQL_OPT_LOCAL_INFILE`. Veja mysql_options().
 
 + Para o cliente **mysql**, a capacidade de carregar dados locais é determinada pelo padrão compilado na biblioteca do cliente MySQL. Para desabilitar ou habilitar explicitamente, use a opção `--local-infile=0` ou `--local-infile[=1]`.
 

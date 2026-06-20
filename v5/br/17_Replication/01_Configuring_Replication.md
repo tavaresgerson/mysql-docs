@@ -907,7 +907,7 @@ Você deve fazer isso para evitar que este servidor inunda o fluxo de replicaç�
 
 Esse método cria um servidor que é essencialmente um instantâneo, mas que, com o tempo, pode se tornar uma fonte, à medida que seu histórico de registro binário converge com o do fluxo de replicação (ou seja, à medida que ele alcança a fonte ou fontes). Esse resultado é semelhante em efeito ao obtido usando o método de provisionamento restante, que discutimos nos próximos parágrafos.
 
-**Excluindo transações com gtid\_purged.** A variável global `gtid_purged` da fonte contém o conjunto de todas as transações que foram purgadas do log binário da fonte. Como mencionado anteriormente (veja Injetando transações vazias), você pode registrar o valor de `gtid_executed` no servidor do qual o instantâneo foi tirado (em vez de copiar os logs binários para o novo servidor). Ao contrário do método anterior, não é necessário compromentar transações vazias (ou emitir `PURGE BINARY LOGS`), em vez disso, você pode definir `gtid_purged` diretamente na replica, com base no valor de `gtid_executed` no servidor do qual o backup ou instantâneo foi tirado.
+**Excluindo transações com gtid_purged.** A variável global `gtid_purged` da fonte contém o conjunto de todas as transações que foram purgadas do log binário da fonte. Como mencionado anteriormente (veja Injetando transações vazias), você pode registrar o valor de `gtid_executed` no servidor do qual o instantâneo foi tirado (em vez de copiar os logs binários para o novo servidor). Ao contrário do método anterior, não é necessário compromentar transações vazias (ou emitir `PURGE BINARY LOGS`), em vez disso, você pode definir `gtid_purged` diretamente na replica, com base no valor de `gtid_executed` no servidor do qual o backup ou instantâneo foi tirado.
 
 Assim como o método que utiliza transações vazias, este método cria um servidor que é funcionalmente um instantâneo, mas que, com o tempo, pode se tornar uma fonte, pois seu histórico de registro binário converge com o do servidor fonte de replicação ou do grupo.
 
@@ -955,7 +955,7 @@ Para obter informações sobre outras opções de inicialização necessárias a
 
 **Saltar transações.** `sql_slave_skip_counter` não é suportado ao usar GTIDs. Se você precisa saltar transações, use o valor da variável da fonte `gtid_executed`. Para instruções, consulte a Seção 16.1.7.3, “Saltar Transações”.
 
-**Ignorar servidores.** A opção IGNORE\_SERVER\_IDS da declaração `CHANGE MASTER TO` é desaconselhada ao usar GTIDs, porque as transações que já foram aplicadas são ignoradas automaticamente. Antes de começar a replicação baseada em GTIDs, verifique e limpe todas as listas de IDs de servidor ignoradas que foram previamente definidas nos servidores envolvidos. A declaração `SHOW SLAVE STATUS`, que pode ser emitida para canais individuais, exibe a lista de IDs de servidor ignorados, se houver uma. Se não houver uma lista, o campo `Replicate_Ignore_Server_Ids` está em branco.
+**Ignorar servidores.** A opção IGNORE_SERVER_IDS da declaração `CHANGE MASTER TO` é desaconselhada ao usar GTIDs, porque as transações que já foram aplicadas são ignoradas automaticamente. Antes de começar a replicação baseada em GTIDs, verifique e limpe todas as listas de IDs de servidor ignoradas que foram previamente definidas nos servidores envolvidos. A declaração `SHOW SLAVE STATUS`, que pode ser emitida para canais individuais, exibe a lista de IDs de servidor ignorados, se houver uma. Se não houver uma lista, o campo `Replicate_Ignore_Server_Ids` está em branco.
 
 Modo GTID e mysqldump. É possível importar um dump feito usando **mysqldump** em um servidor MySQL que esteja rodando com o modo GTID habilitado, desde que não haja GTIDs no log binário do servidor de destino.
 
@@ -1226,7 +1226,7 @@ Como parte das mudanças introduzidas pelo MySQL 5.7.6, os campos relacionados a
 
 A replicação a partir de uma fonte usando `gtid_mode=ON` permite a utilização de autoposição, configurada usando a declaração `CHANGE MASTER TO MASTER_AUTO_POSITION = 1;`. A topologia de replicação que está sendo usada afeta se é possível habilitar a autoposição ou não, pois essa funcionalidade depende de GTIDs e não é compatível com transações anônimas. Um erro é gerado se a autoposição for habilitada e uma transação anônima for encontrada. É altamente recomendável garantir que não haja transações anônimas restantes na topologia antes de habilitar a autoposição, veja Seção 16.1.4.2, “Habilitando Transações GTID Online”. As combinações válidas de `gtid_mode` e autoposição na fonte e na replica são mostradas na tabela a seguir, onde o `gtid_mode` da fonte é mostrado na horizontal e o `gtid_mode` da replica é na vertical:
 
-**Tabela 16.1 Combinações válidas de gtid\_mode de origem e réplica**
+**Tabela 16.1 Combinações válidas de gtid_mode de origem e réplica**
 
 <table width="708"><col style="width: 2%"/><col style="width: 1%"/><col style="width: 2%"/><col style="width: 21%"/><col style="width: 17%"/><thead><tr> <th><p> <code>gtid_mode</code> </p></th> <th><p> Source <code>OFF</code> </p></th> <th><p> Source <code>OFF_PERMISSIVE</code> </p></th> <th><p> Source <code>ON_PERMISSIVE</code> </p></th> <th><p> Source <code>ON</code> </p></th> </tr></thead><tbody><tr> <th><p> Replica <code>OFF</code> </p></th> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> N </p></td> <td><p> N </p></td> </tr><tr> <th><p> Replica <code>OFF_PERMISSIVE</code> </p></th> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y* </p></td> </tr><tr> <th><p> Replica <code>ON_PERMISSIVE</code> </p></th> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y* </p></td> </tr><tr> <th><p> Replica <code>ON</code> </p></th> <td><p> N </p></td> <td><p> N </p></td> <td><p> Y </p></td> <td><p> Y* </p></td> </tr></tbody></table>
 
@@ -1805,7 +1805,7 @@ As opções de string de comando e as variáveis do sistema na lista a seguir se
 
 * `gtid_executed`: Global: Todos os GTIDs no log binário (global) ou na transação atual (sessão). Apenas leitura.
 
-* `gtid_executed_compression_period`: Compress gtid\_executed tabela cada vez que ocorrer esse número de transações. 0 significa nunca comprimir essa tabela. Aplica-se apenas quando o registro binário está desativado.
+* `gtid_executed_compression_period`: Compress gtid_executed tabela cada vez que ocorrer esse número de transações. 0 significa nunca comprimir essa tabela. Aplica-se apenas quando o registro binário está desativado.
 
 * `gtid_mode`: Controla se o registro baseado em GTID está habilitado e quais tipos de registros de transações podem conter.
 
@@ -1971,7 +1971,7 @@ As opções de string de comando e as variáveis do sistema na lista a seguir se
 
 * `slave_transaction_retries`: Número de vezes que o thread de replicação SQL refaz a transação no caso de ela falhar com bloqueio ou timeout de espera de bloqueio, antes de desistir e parar.
 
-* `slave_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL\_LOSSY, ALL\_NON\_LOSSY. Defina uma string vazia para não permitir conversões de tipo entre a fonte e a replica.
+* `slave_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL_LOSSY, ALL_NON_LOSSY. Defina uma string vazia para não permitir conversões de tipo entre a fonte e a replica.
 
 * `sql_log_bin`: Controla o registro binário para a sessão atual.
 
@@ -2243,7 +2243,7 @@ Não é possível restringir os efeitos dessas duas variáveis a uma única tabe
 
 O valor padrão de `auto_increment_increment` é
 
-1. Veja a Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
+1. Veja a Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”.
 
 * `auto_increment_offset`
 
@@ -2586,7 +2586,7 @@ Importante
 
 Os filtros de replicação de nível de tabela são aplicados apenas a tabelas que são explicitamente mencionadas e operadas na consulta. Eles não se aplicam a tabelas que são atualizadas implicitamente pela consulta. Por exemplo, uma declaração `GRANT`, que atualiza a tabela `mysql.user` do sistema, mas não menciona essa tabela, não é afetada por um filtro que especifica `mysql.%` como o padrão de comodínio.
 
-Para incluir caracteres curinga literais nos padrões de nomes de banco de dados ou tabela, escape-os com uma barra invertida. Por exemplo, para replicar todas as tabelas de um banco de dados que é denominado `my_own%db`, mas não replicar tabelas do banco de dados `my1ownAABCdb`, você deve escapar os caracteres `_` e `%` assim: `--replicate-wild-do-table=my\_own\%db`. Se você usar a opção na string de comando, você pode precisar duplicar as barras invertidas ou citar o valor da opção, dependendo do seu interpretador de comandos. Por exemplo, com o shell **bash**, você precisaria digitar `--replicate-wild-do-table=my\\_own\\%db`.
+Para incluir caracteres curinga literais nos padrões de nomes de banco de dados ou tabela, escape-os com uma barra invertida. Por exemplo, para replicar todas as tabelas de um banco de dados que é denominado `my_own%db`, mas não replicar tabelas do banco de dados `my1ownAABCdb`, você deve escapar os caracteres `_` e `%` assim: `--replicate-wild-do-table=my_own\%db`. Se você usar a opção na string de comando, você pode precisar duplicar as barras invertidas ou citar o valor da opção, dependendo do seu interpretador de comandos. Por exemplo, com o shell **bash**, você precisaria digitar `--replicate-wild-do-table=my\_own\\%db`.
 
 * `--replicate-wild-ignore-table=db_name.tbl_name`
 
@@ -3095,9 +3095,9 @@ Se o número de eventos ignorados, conforme especificado ao definir essa variáv
 
 Os efeitos desta variável em uma réplica dependem de se o `master_info_repository` da réplica está definido como `FILE` ou `TABLE`, conforme explicado nos parágrafos a seguir.
 
-**master\_info\_repository = FILE.** Se o valor de `sync_master_info` for maior que 0, a replica sincroniza seu arquivo `master.info` no disco (usando `fdatasync()`) após cada evento `sync_master_info`. Se for 0, o servidor MySQL não realiza nenhuma sincronização do arquivo `master.info` no disco; em vez disso, o servidor depende do sistema operacional para esvaziar seu conteúdo periodicamente, como em qualquer outro arquivo.
+**master_info_repository = FILE.** Se o valor de `sync_master_info` for maior que 0, a replica sincroniza seu arquivo `master.info` no disco (usando `fdatasync()`) após cada evento `sync_master_info`. Se for 0, o servidor MySQL não realiza nenhuma sincronização do arquivo `master.info` no disco; em vez disso, o servidor depende do sistema operacional para esvaziar seu conteúdo periodicamente, como em qualquer outro arquivo.
 
-**master\_info\_repository = TABLE.** Se o valor de `sync_master_info` for maior que 0, a replica atualiza sua tabela de repositório de metadados de conexão após cada evento `sync_master_info`. Se for 0, a tabela nunca é atualizada.
+**master_info_repository = TABLE.** Se o valor de `sync_master_info` for maior que 0, a replica atualiza sua tabela de repositório de metadados de conexão após cada evento `sync_master_info`. Se for 0, a tabela nunca é atualizada.
 
 O valor padrão para `sync_master_info` é
 
@@ -3607,7 +3607,7 @@ Ativação desta variável faz com que a fonte verifique eventos lidos do log bi
 
   <table frame="box" rules="all" summary="Properties for binlog-do-db"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-do-db=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
-Se uma transação requer mais do que esse número de bytes, o servidor gera um erro de transação de múltiplos registros que exige mais de 'max\_binlog\_cache\_size' bytes de armazenamento. Quando `gtid_mode` não é `ON`, o valor máximo recomendado é de 4 GB, devido ao fato de que, neste caso, o MySQL não pode trabalhar com posições de registro binário maiores que 4 GB; quando `gtid_mode` é `ON`, essa limitação não se aplica e o servidor pode trabalhar com posições de registro binário de tamanho arbitrário.
+Se uma transação requer mais do que esse número de bytes, o servidor gera um erro de transação de múltiplos registros que exige mais de 'max_binlog_cache_size' bytes de armazenamento. Quando `gtid_mode` não é `ON`, o valor máximo recomendado é de 4 GB, devido ao fato de que, neste caso, o MySQL não pode trabalhar com posições de registro binário maiores que 4 GB; quando `gtid_mode` é `ON`, essa limitação não se aplica e o servidor pode trabalhar com posições de registro binário de tamanho arbitrário.
 
 Se, por algum motivo, o fato de que `gtid_mode` não é `ON`, ou por algum outro motivo, você precisa garantir que o log binário não exceda um tamanho dado *`maxsize`*, você deve definir essa variável de acordo com a fórmula mostrada aqui:
 

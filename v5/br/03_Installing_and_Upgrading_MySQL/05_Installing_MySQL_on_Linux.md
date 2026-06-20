@@ -1536,7 +1536,7 @@ Em plataformas para as quais o suporte do systemd para MySQL é instalado, scrip
 
 Uma implicação da não utilização de `mysqld_safe` em plataformas que utilizam systemd para gerenciamento de servidor é que o uso das seções `[mysqld_safe]` ou `[safe_mysqld]` em arquivos de opção não é suportado e pode levar a comportamento inesperado.
 
-Como o systemd tem a capacidade de gerenciar múltiplas instâncias do MySQL em plataformas para as quais o suporte do systemd para MySQL está instalado, `mysqld_multi` e `mysqld\_multi.server` são desnecessários e não são instalados.
+Como o systemd tem a capacidade de gerenciar múltiplas instâncias do MySQL em plataformas para as quais o suporte do systemd para MySQL está instalado, `mysqld_multi` e `mysqld_multi.server` são desnecessários e não são instalados.
 
 #### Visão geral do systemd
 
@@ -1682,7 +1682,7 @@ Esta seção descreve como configurar o systemd para múltiplas instâncias do M
 
 Nota
 
-Como o systemd tem a capacidade de gerenciar múltiplas instâncias do MySQL em plataformas para as quais o suporte do systemd está instalado, `mysqld_multi` e `mysqld\_multi.server` são desnecessários e não são instalados. Isso é válido a partir do MySQL 5.7.13 para plataformas RPM, 5.7.19 para plataformas Debian.
+Como o systemd tem a capacidade de gerenciar múltiplas instâncias do MySQL em plataformas para as quais o suporte do systemd está instalado, `mysqld_multi` e `mysqld_multi.server` são desnecessários e não são instalados. Isso é válido a partir do MySQL 5.7.13 para plataformas RPM, 5.7.19 para plataformas Debian.
 
 Para usar a capacidade de múltiplas instâncias, modifique o arquivo de opção `my.cnf` para incluir a configuração das opções-chave para cada instância. Esses locais de arquivo são típicos:
 

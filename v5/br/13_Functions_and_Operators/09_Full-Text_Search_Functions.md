@@ -42,7 +42,7 @@ Para mais informações sobre os índices `InnoDB` `FULLTEXT`, consulte a Seçã
 
 As restrições para a pesquisa de texto completo estão listadas na Seção 12.9.5, “Restrições de texto completo”.
 
-A ferramenta **myisam\_ftdump** descarrega o conteúdo de um índice de texto completo `MyISAM`. Isso pode ser útil para depuração de consultas de texto completo. Veja a Seção 4.6.2, “myisam\_ftdump — Exibir informações do índice de texto completo”.
+A ferramenta **myisam_ftdump** descarrega o conteúdo de um índice de texto completo `MyISAM`. Isso pode ser útil para depuração de consultas de texto completo. Veja a Seção 4.6.2, “myisam_ftdump — Exibir informações do índice de texto completo”.
 
 ### 12.9.1 Pesquisas de texto completo em linguagem natural
 

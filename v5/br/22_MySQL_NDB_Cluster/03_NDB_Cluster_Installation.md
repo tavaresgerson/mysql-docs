@@ -74,7 +74,7 @@ Para informações gerais sobre os requisitos de hardware, software e redes do N
 
 Esta seção abrange os métodos de instalação do NDB Cluster no Linux e em outros sistemas operacionais semelhantes ao Unix. Embora as próximas seções se refiram a um sistema operacional Linux, as instruções e procedimentos fornecidos lá devem ser facilmente adaptáveis a outras plataformas Unix semelhantes suportadas. Para instruções de instalação e configuração manuais específicas para sistemas Windows, consulte a Seção 21.3.2, “Instalando o NDB Cluster no Windows”.
 
-Cada computador hospedeiro do NDB Cluster deve ter os programas executáveis corretos instalados. Um hospedeiro que executa um nó SQL deve ter instalado nele um binário do servidor MySQL (`mysqld`). Os nós de gerenciamento requerem o daemon do servidor de gerenciamento (**ndb\_mgmd**); os nós de dados requerem o daemon do nó de dados (**ndbd** ou **ndbmtd**). Não é necessário instalar o binário do servidor MySQL nos hosts dos nós de gerenciamento e dos hosts dos nós de dados. É recomendável que você também instale o cliente de gerenciamento (**ndb\_mgm**) no host do servidor de gerenciamento.
+Cada computador hospedeiro do NDB Cluster deve ter os programas executáveis corretos instalados. Um hospedeiro que executa um nó SQL deve ter instalado nele um binário do servidor MySQL (`mysqld`). Os nós de gerenciamento requerem o daemon do servidor de gerenciamento (**ndb_mgmd**); os nós de dados requerem o daemon do nó de dados (**ndbd** ou **ndbmtd**). Não é necessário instalar o binário do servidor MySQL nos hosts dos nós de gerenciamento e dos hosts dos nós de dados. É recomendável que você também instale o cliente de gerenciamento (**ndb_mgm**) no host do servidor de gerenciamento.
 
 A instalação do NDB Cluster no Linux pode ser feita usando binários pré-compilados da Oracle (baixados como um arquivo .tar.gz), com pacotes RPM (também disponíveis na Oracle) ou a partir do código-fonte. Todos esses três métodos de instalação são descritos na seção a seguir.
 
@@ -122,7 +122,7 @@ Os nomes dos arquivos e diretórios reais variam de acordo com o número da vers
    $> mysqld --initialize
    ```
 
-Isso gera uma senha aleatória para a conta MySQL `root`. Se você *não* quiser que a senha aleatória seja gerada, pode substituir a opção `--initialize-insecure` por `--initialize`. Em qualquer caso, você deve revisar a Seção 2.9.1, “Inicializando o Diretório de Dados”, para obter informações adicionais antes de realizar essa etapa. Veja também a Seção 4.4.4, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”.
+Isso gera uma senha aleatória para a conta MySQL `root`. Se você *não* quiser que a senha aleatória seja gerada, pode substituir a opção `--initialize-insecure` por `--initialize`. Em qualquer caso, você deve revisar a Seção 2.9.1, “Inicializando o Diretório de Dados”, para obter informações adicionais antes de realizar essa etapa. Veja também a Seção 4.4.4, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”.
 
 4. Defina as permissões necessárias para o servidor MySQL e os diretórios de dados:
 
@@ -160,7 +160,7 @@ Como sistema `root` (ou seja, após usar **sudo**, **su root** ou o equivalente 
    $> cp bin/ndbmtd /usr/local/bin/ndbmtd
    ```
 
-(Você pode, com segurança, excluir o diretório criado ao desempacotar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp` assim que **ndb\_mgm** e **ndb\_mgmd** forem copiados para o diretório de executaveis.)
+(Você pode, com segurança, excluir o diretório criado ao desempacotar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp` assim que **ndb_mgm** e **ndb_mgmd** forem copiados para o diretório de executaveis.)
 
 2. Mude o local para o diretório no qual você copiou os arquivos e, em seguida, torne ambos os arquivos executáveis:
 
@@ -177,11 +177,11 @@ Nota
 
 O diretório de dados em cada máquina que hospeda um nó de dados é `/usr/local/mysql/data`. Essa informação é essencial ao configurar o nó de gerenciamento. (Veja a Seção 21.3.3, “Configuração Inicial do NDB Cluster”.)
 
-**Nodos de gerenciamento.** A instalação do nó de gerenciamento não requer o binário `mysqld`. Apenas o servidor de gerenciamento do NDB Cluster (**ndb\_mgmd**) é necessário; você provavelmente quer instalar o cliente de gerenciamento (**ndb\_mgm**) também. Ambos esses binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
+**Nodos de gerenciamento.** A instalação do nó de gerenciamento não requer o binário `mysqld`. Apenas o servidor de gerenciamento do NDB Cluster (**ndb_mgmd**) é necessário; você provavelmente quer instalar o cliente de gerenciamento (**ndb_mgm**) também. Ambos esses binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
 
-Como sistema `root`, realize os seguintes passos para instalar **ndb\_mgmd** e **ndb\_mgm** no host do nó de gerenciamento:
+Como sistema `root`, realize os seguintes passos para instalar **ndb_mgmd** e **ndb_mgm** no host do nó de gerenciamento:
 
-1. Mude a localização para o diretório `/var/tmp` e extraia os arquivos **ndb\_mgm** e **ndb\_mgmd** do arquivo para um diretório adequado, como `/usr/local/bin`:
+1. Mude a localização para o diretório `/var/tmp` e extraia os arquivos **ndb_mgm** e **ndb_mgmd** do arquivo para um diretório adequado, como `/usr/local/bin`:
 
    ```sql
    $> cd /var/tmp
@@ -190,7 +190,7 @@ Como sistema `root`, realize os seguintes passos para instalar **ndb\_mgmd** e *
    $> cp bin/ndb_mgm* /usr/local/bin
    ```
 
-(Você pode, com segurança, excluir o diretório criado ao desempacotar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp` assim que **ndb\_mgm** e **ndb\_mgmd** forem copiados para o diretório de executaveis.)
+(Você pode, com segurança, excluir o diretório criado ao desempacotar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp` assim que **ndb_mgm** e **ndb_mgmd** forem copiados para o diretório de executaveis.)
 
 2. Mude o local para o diretório no qual você copiou os arquivos e, em seguida, torne ambos os arquivos executáveis:
 
@@ -254,7 +254,7 @@ Os componentes necessários para instalar os três principais tipos de nós do N
 * *Nodo de dados*: `data-node`
 * *Nodo SQL*: `server` e `common`
 
-Além disso, o RPM `client` deve ser instalado para fornecer o cliente de gerenciamento **ndb\_mgm** em pelo menos um nó de gerenciamento. Você também pode querer instalá-lo em nós SQL, para ter **mysql** e outros programas de cliente MySQL disponíveis nesses. Discutimos a instalação de nós por tipo mais tarde nesta seção.
+Além disso, o RPM `client` deve ser instalado para fornecer o cliente de gerenciamento **ndb_mgm** em pelo menos um nó de gerenciamento. Você também pode querer instalá-lo em nós SQL, para ter **mysql** e outros programas de cliente MySQL disponíveis nesses. Discutimos a instalação de nós por tipo mais tarde nesta seção.
 
 *`ver`* representa o número de versão do motor de armazenamento de três partes `NDB` no formato *`x`*.*`7.6.35`* mostrado como `rev` nos exemplos. `major` fornece o número de revisão do RPM no formato *`minor`.*`1.1`*. Nos exemplos mostrados nesta seção, usamos `1.1` para este valor.
 
@@ -298,11 +298,11 @@ Isso instala o cliente **mysql** e outros programas do cliente MySQL, como **mys
 $> rpm -Uhv mysql-cluster-community-management-server-7.6.35-1.el7.x86_64.rpm
 ```
 
-Este RPM instala o binário do servidor de gerenciamento **ndb\_mgmd** no diretório `/usr/sbin`. Embora este seja o único programa realmente necessário para executar um nó de gerenciamento, também é uma boa ideia ter o cliente de gerenciamento do NDB Cluster **ndb\_mgm** disponível também. Você pode obter este programa, bem como outros programas de cliente `NDB` como **ndb\_desc** e **ndb\_config**, instalando o RPM `client` conforme descrito anteriormente.
+Este RPM instala o binário do servidor de gerenciamento **ndb_mgmd** no diretório `/usr/sbin`. Embora este seja o único programa realmente necessário para executar um nó de gerenciamento, também é uma boa ideia ter o cliente de gerenciamento do NDB Cluster **ndb_mgm** disponível também. Você pode obter este programa, bem como outros programas de cliente `NDB` como **ndb_desc** e **ndb_config**, instalando o RPM `client` conforme descrito anteriormente.
 
 Nota
 
-Anteriormente, o **ndb\_mgm** era instalado pelo mesmo RPM usado para instalar o servidor de gerenciamento. Em NDB 7.5 (e posteriormente), todos os programas de cliente `NDB` são obtidos a partir do mesmo RPM `client` que instala o **mysql** e outros clientes MySQL.
+Anteriormente, o **ndb_mgm** era instalado pelo mesmo RPM usado para instalar o servidor de gerenciamento. Em NDB 7.5 (e posteriormente), todos os programas de cliente `NDB` são obtidos a partir do mesmo RPM `client` que instala o **mysql** e outros clientes MySQL.
 
 Consulte a Seção 2.5.5, “Instalando MySQL no Linux usando pacotes RPM da Oracle”, para obter informações gerais sobre a instalação do MySQL usando RPMs fornecidos pela Oracle.
 
@@ -338,7 +338,7 @@ $> dpkg -r mysql
 
 O arquivo do instalador também deve ser compatível com a maioria dos gerenciadores de pacotes gráficos que trabalham com arquivos `.deb`, como o `GDebi` para o ambiente de trabalho Gnome.
 
-O arquivo `.deb` instala o NDB Cluster sob `/opt/mysql/server-version/`, onde *`version`* é a versão da série de lançamento de duas partes para o servidor MySQL incluído. Para o NDB 7.5 e versões posteriores, isso é sempre `5.7`. O layout do diretório é o mesmo que o da distribuição binária genérica de Linux (consulte a Tabela 2.3, “Layout de Instalação do MySQL para Pacote Binário Genérico Unix/Linux”), com a exceção de que os scripts de inicialização e os arquivos de configuração são encontrados em `support-files` em vez de `share`. Todos os executaveis do NDB Cluster, como **ndb\_mgm**, **ndbd** e **ndb\_mgmd**, são colocados no diretório `bin`.
+O arquivo `.deb` instala o NDB Cluster sob `/opt/mysql/server-version/`, onde *`version`* é a versão da série de lançamento de duas partes para o servidor MySQL incluído. Para o NDB 7.5 e versões posteriores, isso é sempre `5.7`. O layout do diretório é o mesmo que o da distribuição binária genérica de Linux (consulte a Tabela 2.3, “Layout de Instalação do MySQL para Pacote Binário Genérico Unix/Linux”), com a exceção de que os scripts de inicialização e os arquivos de configuração são encontrados em `support-files` em vez de `share`. Todos os executaveis do NDB Cluster, como **ndb_mgm**, **ndbd** e **ndb_mgmd**, são colocados no diretório `bin`.
 
 #### 21.3.1.4 Construindo um cluster NDB Cluster a partir do código-fonte no Linux
 
@@ -356,11 +356,11 @@ Para obter mais informações sobre as opções do **CMake** específicas para a
 
 Depois de executar **make && make install** (ou o equivalente do seu sistema), o resultado é semelhante ao obtido ao desempacotar um binário pré-compilado na mesma localização.
 
-**Nodos de gerenciamento.** Ao construir a partir da fonte e executar o **make install** padrão, os binários do servidor de gerenciamento e do cliente de gerenciamento (**ndb\_mgmd** e **ndb\_mgm**) podem ser encontrados em `/usr/local/mysql/bin`. Apenas **ndb\_mgmd** é necessário estar presente em um host de nó de gerenciamento; no entanto, também é uma boa ideia ter **ndb\_mgm** presente na mesma máquina do host. Nenhum desses executáveis requer um local específico no sistema de arquivos da máquina do host.
+**Nodos de gerenciamento.** Ao construir a partir da fonte e executar o **make install** padrão, os binários do servidor de gerenciamento e do cliente de gerenciamento (**ndb_mgmd** e **ndb_mgm**) podem ser encontrados em `/usr/local/mysql/bin`. Apenas **ndb_mgmd** é necessário estar presente em um host de nó de gerenciamento; no entanto, também é uma boa ideia ter **ndb_mgm** presente na mesma máquina do host. Nenhum desses executáveis requer um local específico no sistema de arquivos da máquina do host.
 
 **Nodos de dados.** O único executável necessário em um host de nó de dados é o binário do nó de dados **ndbd** ou **ndbmtd**"). (`mysqld`, por exemplo, não precisa estar presente na máquina do host). Por padrão, ao compilar a partir de fonte, este arquivo é colocado no diretório `/usr/local/mysql/bin`. Para instalação em vários hosts de nó de dados, apenas **ndbd** ou **ndbmtd**") precisa ser copiado para a(s) outra(s) máquina(s) do host. (Isso assume que todos os hosts de nó de dados utilizam a mesma arquitetura e sistema operacional; caso contrário, você pode precisar compilar separadamente para cada plataforma diferente.) O binário do nó de dados não precisa estar em qualquer local específico no sistema de arquivos do host, desde que o local seja conhecido.
 
-Ao compilar o NDB Cluster a partir do código fonte, não são necessárias opções especiais para a construção de binários de nós de dados multithread. Configurar a compilação com suporte ao motor de armazenamento `NDB` faz com que **ndbmtd**") seja construído automaticamente; o binário **ndbmtd**") é colocado no diretório de instalação `bin` juntamente com `mysqld`, **ndbd** e **ndb\_mgm**.
+Ao compilar o NDB Cluster a partir do código fonte, não são necessárias opções especiais para a construção de binários de nós de dados multithread. Configurar a compilação com suporte ao motor de armazenamento `NDB` faz com que **ndbmtd**") seja construído automaticamente; o binário **ndbmtd**") é colocado no diretório de instalação `bin` juntamente com `mysqld`, **ndbd** e **ndb_mgm**.
 
 **Nodos SQL.** Se você compilar o MySQL com suporte a clustering e realizar a instalação padrão (usando **make install** como usuário do sistema `root`), `mysqld` é colocado em `/usr/local/mysql/bin`. Siga os passos dados na Seção 2.8, “Instalando MySQL a partir de fonte” para preparar `mysqld` para uso. Se você deseja executar vários nós SQL, pode usar uma cópia do mesmo executável `mysqld` e seus arquivos de suporte associados em várias máquinas. A maneira mais fácil de fazer isso é copiar o diretório inteiro `/usr/local/mysql` e todos os diretórios e arquivos contidos nele para o(s) outro(s) host(es) do nó SQL, e depois repetir os passos da Seção 2.8, “Instalando MySQL a partir de fonte” em cada máquina. Se você configurar a compilação com uma opção `PREFIX` não padrão, você deve ajustar o diretório conforme necessário.
 
@@ -380,11 +380,11 @@ Esta seção descreve uma instalação básica do NDB Cluster no Windows usando 
 
 <table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Núcleo</th> <th>IP Address</th> </tr></thead><tbody><tr> <td>nó de gestão (<strong>mgmd</strong>)</td> <td>198.51.100.10</td> </tr><tr> <td>nó SQL (<strong>mysqld</strong>)</td> <td>198.51.100.20</td> </tr><tr> <td>Nodo de dados "A" (<strong>ndbd</strong>)</td> <td>198.51.100.30</td> </tr><tr> <td>Nodo de dados "B" (<strong>ndbd</strong>)</td> <td>198.51.100.40</td> </tr></tbody></table>
 
-Assim como em outras plataformas, o computador hospedeiro do NDB Cluster que executa um nó SQL deve ter instalado nele um binário do servidor MySQL (**mysqld.exe**). Você também deve ter o cliente MySQL (**mysql.exe**) neste host. Para os nós de gerenciamento e os nós de dados, não é necessário instalar o binário do servidor MySQL; no entanto, cada nó de gerenciamento requer o daemon do servidor de gerenciamento (**ndb\_mgmd.exe**); cada nó de dados requer o daemon do nó de dados (**ndbd.exe** ou **ndbmtd.exe**)). Para este exemplo, referenciamos o **ndbd.exe** como o executável do nó de dados, mas você pode instalar **ndbmtd.exe**"), a versão multithread deste programa, em vez disso, da mesma maneira. Você também deve instalar o cliente de gerenciamento (**ndb\_mgm.exe**) no host do servidor de gerenciamento. Esta seção abrange os passos necessários para instalar os binários corretos do Windows para cada tipo de nó do NDB Cluster.
+Assim como em outras plataformas, o computador hospedeiro do NDB Cluster que executa um nó SQL deve ter instalado nele um binário do servidor MySQL (**mysqld.exe**). Você também deve ter o cliente MySQL (**mysql.exe**) neste host. Para os nós de gerenciamento e os nós de dados, não é necessário instalar o binário do servidor MySQL; no entanto, cada nó de gerenciamento requer o daemon do servidor de gerenciamento (**ndb_mgmd.exe**); cada nó de dados requer o daemon do nó de dados (**ndbd.exe** ou **ndbmtd.exe**)). Para este exemplo, referenciamos o **ndbd.exe** como o executável do nó de dados, mas você pode instalar **ndbmtd.exe**"), a versão multithread deste programa, em vez disso, da mesma maneira. Você também deve instalar o cliente de gerenciamento (**ndb_mgm.exe**) no host do servidor de gerenciamento. Esta seção abrange os passos necessários para instalar os binários corretos do Windows para cada tipo de nó do NDB Cluster.
 
 Nota
 
-Assim como outros programas do Windows, os executáveis do NDB Cluster são nomeados com a extensão de arquivo `.exe`. No entanto, não é necessário incluir a extensão `.exe` ao invocar esses programas a partir da string de comando. Portanto, muitas vezes, simplesmente referenciamos esses programas nesta documentação como `mysqld`, **mysql**, **ndb\_mgmd**, e assim por diante. Você deve entender que, seja qual for o nome que referenciamos (por exemplo), `mysqld` ou **mysqld.exe**, ambos os nomes significam a mesma coisa (o programa do Servidor MySQL).
+Assim como outros programas do Windows, os executáveis do NDB Cluster são nomeados com a extensão de arquivo `.exe`. No entanto, não é necessário incluir a extensão `.exe` ao invocar esses programas a partir da string de comando. Portanto, muitas vezes, simplesmente referenciamos esses programas nesta documentação como `mysqld`, **mysql**, **ndb_mgmd**, e assim por diante. Você deve entender que, seja qual for o nome que referenciamos (por exemplo), `mysqld` ou **mysqld.exe**, ambos os nomes significam a mesma coisa (o programa do Servidor MySQL).
 
 Para configurar um NDB Cluster usando os binários `no-install` da Oracle, o primeiro passo no processo de instalação é baixar o arquivo ZIP de binários do NDB Cluster Windows mais recente a partir de <https://dev.mysql.com/downloads/cluster/>. Este arquivo tem um nome de arquivo de `mysql-cluster-gpl-ver-winarch.zip`, onde *`ver`* é a versão do motor de armazenamento `NDB` (como `7.6.35`) e *`arch`* é a arquitetura (`32` para binários de 32 bits e `64` para binários de 64 bits). Por exemplo, o arquivo NDB Cluster 7.6.35 para sistemas Windows de 64 bits é chamado de `mysql-cluster-gpl-7.6.35-win64.zip`.
 
@@ -421,7 +421,7 @@ ndb-connectstring=198.51.100.10  # location of management server
 
 Salve este arquivo como `C:\mysql\my.ini` no host do nó de dados. Crie outro arquivo de texto contendo as mesmas informações e salve-o como `C:mysql\my.ini` no outro host do nó de dados, ou copie o arquivo my.ini do primeiro host do nó de dados para o segundo, garantindo que a cópia esteja no diretório `C:\mysql` do segundo nó de dados. Ambos os hosts de nó de dados estão agora prontos para serem usados no NDB Cluster, o que deixa apenas o nó de gerenciamento a ser instalado e configurado.
 
-**Núcleo de gerenciamento**. O único programa executável necessário em um computador usado para hospedar um nó de gerenciamento de NDB Cluster é o programa do servidor de gerenciamento **ndb\_mgmd.exe**. No entanto, para administrar o NDB Cluster uma vez que ele tenha sido iniciado, você também deve instalar o programa de cliente de gerenciamento do NDB Cluster **ndb\_mgm.exe** na mesma máquina que o servidor de gerenciamento. Localize esses dois programas na máquina onde você baixou e extraiu o arquivo `no-install`; isso deve ser o diretório `C:\mysql\bin` no host do nó SQL. Crie o diretório `C:\mysql\bin` no computador com o endereço IP 198.51.100.10, em seguida, copie ambos os programas para este diretório.
+**Núcleo de gerenciamento**. O único programa executável necessário em um computador usado para hospedar um nó de gerenciamento de NDB Cluster é o programa do servidor de gerenciamento **ndb_mgmd.exe**. No entanto, para administrar o NDB Cluster uma vez que ele tenha sido iniciado, você também deve instalar o programa de cliente de gerenciamento do NDB Cluster **ndb_mgm.exe** na mesma máquina que o servidor de gerenciamento. Localize esses dois programas na máquina onde você baixou e extraiu o arquivo `no-install`; isso deve ser o diretório `C:\mysql\bin` no host do nó SQL. Crie o diretório `C:\mysql\bin` no computador com o endereço IP 198.51.100.10, em seguida, copie ambos os programas para este diretório.
 
 Agora, você deve criar dois arquivos de configuração para uso pelo `ndb_mgmd.exe`:
 
@@ -532,13 +532,13 @@ Uma vez que os executáveis do NDB Cluster e os arquivos de configuração neces
    2010-06-23 07:53:34 [MgmtSrvr] INFO -- Reading cluster configuration from 'config.ini'
    ```
 
-O processo do nó de gerenciamento continua a imprimir saída de registro no console. Isso é normal, porque o nó de gerenciamento não está executando como um serviço do Windows. (Se você usou o NDB Cluster em uma plataforma semelhante ao Unix, como Linux, você pode notar que o comportamento padrão do nó de gerenciamento nesse sentido no Windows é efetivamente o oposto de seu comportamento em sistemas Unix, onde ele é executado por padrão como um processo de daemon Unix. Esse comportamento também é verdadeiro para os processos de nó de dados do NDB Cluster que estão sendo executados no Windows.) Por esse motivo, não feche a janela na qual o **ndb\_mgmd.exe** está sendo executado; fazer isso mata o processo do nó de gerenciamento. (Veja a Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”, onde mostramos como instalar e executar processos do NDB Cluster como serviços do Windows.)
+O processo do nó de gerenciamento continua a imprimir saída de registro no console. Isso é normal, porque o nó de gerenciamento não está executando como um serviço do Windows. (Se você usou o NDB Cluster em uma plataforma semelhante ao Unix, como Linux, você pode notar que o comportamento padrão do nó de gerenciamento nesse sentido no Windows é efetivamente o oposto de seu comportamento em sistemas Unix, onde ele é executado por padrão como um processo de daemon Unix. Esse comportamento também é verdadeiro para os processos de nó de dados do NDB Cluster que estão sendo executados no Windows.) Por esse motivo, não feche a janela na qual o **ndb_mgmd.exe** está sendo executado; fazer isso mata o processo do nó de gerenciamento. (Veja a Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”, onde mostramos como instalar e executar processos do NDB Cluster como serviços do Windows.)
 
 A opção `-f` necessária informa ao nó de gerenciamento onde encontrar o arquivo de configuração global (`config.ini`). A forma longa desta opção é `--config-file`.
 
 Importante
 
-Um nó de gerenciamento de cluster NDB armazena os dados de configuração que lê do `config.ini`; uma vez que ele criou um cache de configuração, ele ignora o arquivo `config.ini` em iniciações subsequentes, a menos que seja forçado a fazer o contrário. Isso significa que, se o nó de gerenciamento não iniciar devido a um erro neste arquivo, você deve fazer o nó de gerenciamento reler `config.ini` depois de ter corrigido quaisquer erros nele. Você pode fazer isso iniciando o **ndb\_mgmd.exe** com a opção `--reload` ou `--initial` na string de comando. Qualquer uma dessas opções funciona para atualizar o cache de configuração.
+Um nó de gerenciamento de cluster NDB armazena os dados de configuração que lê do `config.ini`; uma vez que ele criou um cache de configuração, ele ignora o arquivo `config.ini` em iniciações subsequentes, a menos que seja forçado a fazer o contrário. Isso significa que, se o nó de gerenciamento não iniciar devido a um erro neste arquivo, você deve fazer o nó de gerenciamento reler `config.ini` depois de ter corrigido quaisquer erros nele. Você pode fazer isso iniciando o **ndb_mgmd.exe** com a opção `--reload` ou `--initial` na string de comando. Qualquer uma dessas opções funciona para atualizar o cache de configuração.
 
 Não é necessário nem aconselhável usar nenhuma dessas opções no arquivo `my.ini` do nó de gerenciamento.
 
@@ -551,7 +551,7 @@ Não é necessário nem aconselhável usar nenhuma dessas opções no arquivo `m
 
 Em cada caso, a primeira string de saída do processo do nó de dados deve se assemelhar ao que é mostrado no exemplo anterior, e é seguida por strings adicionais de saída de registro. Como no caso do processo do nó de gerenciamento, isso é normal, porque o nó de dados não está sendo executado como um serviço do Windows. Por essa razão, não feche a janela do console na qual o processo do nó de dados está sendo executado; isso mata o **ndbd.exe**. (Para mais informações, consulte a Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”.)
 
-3. Não inicie o nó SQL ainda; ele não pode se conectar ao clúster até que os nós de dados tenham terminado de iniciar, o que pode levar algum tempo. Em vez disso, em uma nova janela do console no host do nó de gerenciamento, inicie o cliente de gerenciamento do NDB Cluster **ndb\_mgm.exe**, que deve estar em `C:\mysql\bin` no host do nó de gerenciamento. (Não tente reutilizar a janela do console onde o **ndb\_mgmd.exe** está em execução digitando **CTRL**+**C**, pois isso mata o nó de gerenciamento.) A saída resultante deve parecer assim:
+3. Não inicie o nó SQL ainda; ele não pode se conectar ao clúster até que os nós de dados tenham terminado de iniciar, o que pode levar algum tempo. Em vez disso, em uma nova janela do console no host do nó de gerenciamento, inicie o cliente de gerenciamento do NDB Cluster **ndb_mgm.exe**, que deve estar em `C:\mysql\bin` no host do nó de gerenciamento. (Não tente reutilizar a janela do console onde o **ndb_mgmd.exe** está em execução digitando **CTRL**+**C**, pois isso mata o nó de gerenciamento.) A saída resultante deve parecer assim:
 
    ```sql
    C:\mysql\bin> ndb_mgm
@@ -578,11 +578,11 @@ Quando o prompt `ndb_mgm>` aparecer, isso indica que o cliente de gerenciamento 
 
 Nota
 
-Os comandos emitidos no cliente de gerenciamento não são sensíveis ao caso; usamos letras maiúsculas como a forma canônica desses comandos, mas você não é obrigado a observar essa convenção ao inseri-los no cliente **ndb\_mgm**. Para mais informações, consulte a Seção 21.6.1, “Comandos no cliente de gerenciamento do NDB Cluster”.
+Os comandos emitidos no cliente de gerenciamento não são sensíveis ao caso; usamos letras maiúsculas como a forma canônica desses comandos, mas você não é obrigado a observar essa convenção ao inseri-los no cliente **ndb_mgm**. Para mais informações, consulte a Seção 21.6.1, “Comandos no cliente de gerenciamento do NDB Cluster”.
 
 A saída produzida por `ALL STATUS` provavelmente variará do que é mostrado aqui, de acordo com a velocidade com que os nós de dados conseguem começar, o número da versão de liberação do software NDB Cluster que você está usando e outros fatores. O que é significativo é que, quando você vê que ambos os nós de dados começaram, você está pronto para começar o nó SQL.
 
-Você pode deixar o **ndb\_mgm.exe** rodando; ele não tem impacto negativo no desempenho do NDB Cluster, e o usaremos no próximo passo para verificar se o nó SQL está conectado ao cluster depois de tê-lo iniciado.
+Você pode deixar o **ndb_mgm.exe** rodando; ele não tem impacto negativo no desempenho do NDB Cluster, e o usaremos no próximo passo para verificar se o nó SQL está conectado ao cluster depois de tê-lo iniciado.
 
 4. No computador designado como anfitrião do nó SQL, abra uma janela de console e navegue até o diretório onde você desempacotou os binários do NDB Cluster (se você está seguindo nosso exemplo, isso é `C:\mysql\bin`).
 
@@ -594,7 +594,7 @@ Comece o nó SQL invocando o **mysqld.exe** a partir da string de comando, confo
 
 A opção `--console` faz com que as informações de registro sejam escritas no console, o que pode ser útil em caso de problemas. (Assim que você estiver satisfeito de que o nó SQL está sendo executado de maneira satisfatória, você pode paralisá-lo e recomeçá-lo sem a opção `--console`, para que o registro seja realizado normalmente.)
 
-Na janela do console onde o cliente de gerenciamento (**ndb\_mgm.exe**) está sendo executado no host do nó de gerenciamento, insira o comando `SHOW`, que deve produzir uma saída semelhante àquela mostrada aqui:
+Na janela do console onde o cliente de gerenciamento (**ndb_mgm.exe**) está sendo executado no host do nó de gerenciamento, insira o comando `SHOW`, que deve produzir uma saída semelhante àquela mostrada aqui:
 
    ```sql
    ndb_mgm> SHOW
@@ -616,7 +616,7 @@ Você também pode verificar se o nó SQL está conectado ao NDB Cluster no clie
 
 Agora, você deve estar pronto para trabalhar com objetos e dados de banco de dados usando o mecanismo de armazenamento `NDBCLUSTER` do NDB Cluster. Consulte a Seção 21.3.5, “Exemplo de NDB Cluster com Tabelas e Dados”, para obter mais informações e exemplos.
 
-Você também pode instalar **ndb\_mgmd.exe**, **ndbd.exe** e **ndbmtd.exe** como serviços do Windows. Para obter informações sobre como fazer isso, consulte a Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”).
+Você também pode instalar **ndb_mgmd.exe**, **ndbd.exe** e **ndbmtd.exe** como serviços do Windows. Para obter informações sobre como fazer isso, consulte a Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”).
 
 #### 21.3.2.4 Instalar processos do NDB Cluster como serviços do Windows
 
@@ -624,7 +624,7 @@ Assim que você estiver satisfeito com o funcionamento do NDB Cluster conforme o
 
 A instalação de programas como serviços do Windows geralmente deve ser feita usando uma conta que tenha direitos de administrador no sistema.
 
-Para instalar o nó de gerenciamento como um serviço no Windows, execute o **ndb\_mgmd.exe** a partir da string de comando na máquina que hospeda o nó de gerenciamento, usando a opção `--install`, conforme mostrado aqui:
+Para instalar o nó de gerenciamento como um serviço no Windows, execute o **ndb_mgmd.exe** a partir da string de comando na máquina que hospeda o nó de gerenciamento, usando a opção `--install`, conforme mostrado aqui:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --install
@@ -637,7 +637,7 @@ Importante
 
 Ao instalar um programa do NDB Cluster como um serviço do Windows, você deve sempre especificar o caminho completo; caso contrário, a instalação do serviço pode falhar com o erro O sistema não pode encontrar o arquivo especificado.
 
-A opção `--install` deve ser usada primeiro, antes de qualquer outra opção que possa ser especificada para **ndb\_mgmd.exe**. No entanto, é preferível especificar essas opções em um arquivo de opções em vez disso. Se seu arquivo de opções não estiver em um dos locais padrão, conforme mostrado na saída de **ndb\_mgmd.exe** `--help`, você pode especificar a localização usando a opção `--config-file`.
+A opção `--install` deve ser usada primeiro, antes de qualquer outra opção que possa ser especificada para **ndb_mgmd.exe**. No entanto, é preferível especificar essas opções em um arquivo de opções em vez disso. Se seu arquivo de opções não estiver em um dos locais padrão, conforme mostrado na saída de **ndb_mgmd.exe** `--help`, você pode especificar a localização usando a opção `--config-file`.
 
 Agora você deve ser capaz de iniciar e parar o servidor de gerenciamento da seguinte forma:
 
@@ -684,7 +684,7 @@ Para remover o serviço do nó de gerenciamento, use **SC DELETE *`service_name`
 C:\> SC DELETE mgmd1
 ```
 
-Alternativamente, invoque o **ndb\_mgmd.exe** com a opção `--remove`, conforme mostrado aqui:
+Alternativamente, invoque o **ndb_mgmd.exe** com a opção `--remove`, conforme mostrado aqui:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove
@@ -692,7 +692,7 @@ Removing service 'NDB Cluster Management Server'
 Service successfully removed.
 ```
 
-Se você instalou o serviço usando um nome de serviço diferente do padrão, passe o nome do serviço como o valor da opção **ndb\_mgmd.exe** `--remove` assim:
+Se você instalou o serviço usando um nome de serviço diferente do padrão, passe o nome do serviço como o valor da opção **ndb_mgmd.exe** `--remove` assim:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove=mgmd1
@@ -730,7 +730,7 @@ Removing service 'NDB Cluster Data Node Daemon'
 Service successfully removed.
 ```
 
-Assim como o **ndb\_mgmd.exe** (e o **mysqld.exe**), ao instalar o **ndbd.exe** como um serviço do Windows, você também pode especificar um nome para o serviço como o valor de `--install`, e depois usá-lo ao iniciar ou parar o serviço, assim:
+Assim como o **ndb_mgmd.exe** (e o **mysqld.exe**), ao instalar o **ndbd.exe** como um serviço do Windows, você também pode especificar um nome para o serviço como o valor de `--install`, e depois usá-lo ao iniciar ou parar o serviço, assim:
 
 ```sql
 C:\> C:\mysql\bin\ndbd.exe --install=dnode1
@@ -869,7 +869,7 @@ Iniciar o clúster não é muito difícil depois que ele foi configurado. Cada p
    $> ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
    ```
 
-A primeira vez que ele é iniciado, o **ndb\_mgmd** deve ser informado sobre o local onde está localizado seu arquivo de configuração, usando a opção `-f` ou `--config-file`. Esta opção exige que `--initial` ou `--reload` também seja especificado; veja a Seção 21.5.4, “ndb\_mgmd — O Daemon do Gerenciador de NDB Cluster”, para detalhes.
+A primeira vez que ele é iniciado, o **ndb_mgmd** deve ser informado sobre o local onde está localizado seu arquivo de configuração, usando a opção `-f` ou `--config-file`. Esta opção exige que `--initial` ou `--reload` também seja especificado; veja a Seção 21.5.4, “ndb_mgmd — O Daemon do Gerenciador de NDB Cluster”, para detalhes.
 
 2. Em cada um dos hosts dos nós de dados, execute este comando para iniciar o processo **ndbd**:
 
@@ -879,7 +879,7 @@ A primeira vez que ele é iniciado, o **ndb\_mgmd** deve ser informado sobre o l
 
 3. Se você usou arquivos RPM para instalar o MySQL no host do clúster onde o nó SQL deve residir, você pode (e deve) usar o script de inicialização fornecido para iniciar o processo do servidor MySQL no nó SQL.
 
-Se tudo tiver saído bem e o clúster tiver sido configurado corretamente, o clúster já deve estar operacional. Você pode testar isso invocando o cliente do nó de gerenciamento **ndb\_mgm**. A saída deve parecer a mesma mostrada aqui, embora você possa ver algumas pequenas diferenças na saída, dependendo da versão exata do MySQL que você está usando:
+Se tudo tiver saído bem e o clúster tiver sido configurado corretamente, o clúster já deve estar operacional. Você pode testar isso invocando o cliente do nó de gerenciamento **ndb_mgm**. A saída deve parecer a mesma mostrada aqui, embora você possa ver algumas pequenas diferenças na saída, dependendo da versão exata do MySQL que você está usando:
 
 ```sql
 $> ndb_mgm
@@ -1111,7 +1111,7 @@ Para desligar o clúster, digite o seguinte comando em uma string de comando na 
 $> ndb_mgm -e shutdown
 ```
 
-A opção `-e` aqui é usada para passar um comando ao cliente **ndb\_mgm** a partir do shell. O comando faz com que os processos **ndb\_mgm**, **ndb\_mgmd** e quaisquer **ndbd** ou **ndbmtd**) sejam encerrados de forma graciosa. Qualquer nó SQL pode ser encerrado usando **mysqladmin shutdown** e outros meios. Em plataformas Windows, assumindo que você instalou o nó SQL como um serviço do Windows, você pode usar **SC STOP *`service_name`*** ou **NET STOP *`service_name`***.
+A opção `-e` aqui é usada para passar um comando ao cliente **ndb_mgm** a partir do shell. O comando faz com que os processos **ndb_mgm**, **ndb_mgmd** e quaisquer **ndbd** ou **ndbmtd**) sejam encerrados de forma graciosa. Qualquer nó SQL pode ser encerrado usando **mysqladmin shutdown** e outros meios. Em plataformas Windows, assumindo que você instalou o nó SQL como um serviço do Windows, você pode usar **SC STOP *`service_name`*** ou **NET STOP *`service_name`***.
 
 Para reiniciar o clúster em plataformas Unix, execute os seguintes comandos:
 
@@ -1127,7 +1127,7 @@ Para reiniciar o clúster em plataformas Unix, execute os seguintes comandos:
   $> ndbd
   ```
 
-* Use o cliente **ndb\_mgm** para verificar se ambos os nós de dados iniciaram com sucesso.
+* Use o cliente **ndb_mgm** para verificar se ambos os nós de dados iniciaram com sucesso.
 
 * No host SQL (`198.51.100.20`):
 
@@ -1149,7 +1149,7 @@ Em plataformas Windows, assumindo que você instalou todos os processos do NDB C
   C:\> SC START ndbd
   ```
 
-* No nó de gerenciamento, use o cliente **ndb\_mgm** para verificar se o nó de gerenciamento e ambos os nós de dados iniciaram com sucesso (consulte a Seção 21.3.2.3, “Início inicial do NDB Cluster no Windows”).
+* No nó de gerenciamento, use o cliente **ndb_mgm** para verificar se o nó de gerenciamento e ambos os nós de dados iniciaram com sucesso (consulte a Seção 21.3.2.3, “Início inicial do NDB Cluster no Windows”).
 
 * No servidor do nó SQL (`198.51.100.20`), execute o seguinte comando:
 

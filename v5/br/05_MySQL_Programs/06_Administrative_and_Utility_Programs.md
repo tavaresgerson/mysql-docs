@@ -365,19 +365,19 @@ innochecksum.exe ibdata2
 innochecksum.exe ibdata3
 ```
 
-### 4.6.2 myisam\_ftdump — Exibir informações do índice de texto completo
+### 4.6.2 myisam_ftdump — Exibir informações do índice de texto completo
 
-O **myisam\_ftdump** exibe informações sobre os índices `FULLTEXT` nas tabelas `MyISAM`. Ele lê o arquivo do índice `MyISAM` diretamente, portanto, ele deve ser executado no host do servidor onde a tabela está localizada. Antes de usar o **myisam\_ftdump**, certifique-se de emitir uma declaração `FLUSH TABLES` primeiro, se o servidor estiver em execução.
+O **myisam_ftdump** exibe informações sobre os índices `FULLTEXT` nas tabelas `MyISAM`. Ele lê o arquivo do índice `MyISAM` diretamente, portanto, ele deve ser executado no host do servidor onde a tabela está localizada. Antes de usar o **myisam_ftdump**, certifique-se de emitir uma declaração `FLUSH TABLES` primeiro, se o servidor estiver em execução.
 
-O **myisam\_ftdump** examina e descarrega todo o índice, o que não é particularmente rápido. Por outro lado, a distribuição das palavras não muda com frequência, então não precisa ser executada com frequência.
+O **myisam_ftdump** examina e descarrega todo o índice, o que não é particularmente rápido. Por outro lado, a distribuição das palavras não muda com frequência, então não precisa ser executada com frequência.
 
-Invoque **myisam\_ftdump** da seguinte forma:
+Invoque **myisam_ftdump** da seguinte forma:
 
 ```sql
 myisam_ftdump [options] tbl_name index_num
 ```
 
-O argumento *`tbl_name`* deve ser o nome de uma tabela `MyISAM`. Você também pode especificar uma tabela nomeando seu arquivo de índice (o arquivo com o sufixo `.MYI`). Se você não invocar **myisam\_ftdump** no diretório onde os arquivos da tabela estão localizados, o nome do arquivo da tabela ou do índice deve ser precedido pelo nome do caminho para o diretório do banco de dados da tabela. Os números de índice começam com 0.
+O argumento *`tbl_name`* deve ser o nome de uma tabela `MyISAM`. Você também pode especificar uma tabela nomeando seu arquivo de índice (o arquivo com o sufixo `.MYI`). Se você não invocar **myisam_ftdump** no diretório onde os arquivos da tabela estão localizados, o nome do arquivo da tabela ou do índice deve ser precedido pelo nome do caminho para o diretório do banco de dados da tabela. Os números de índice começam com 0.
 
 Exemplo: Suponha que o banco de dados `test` contenha uma tabela chamada `mytexttable` que tem a seguinte definição:
 
@@ -391,7 +391,7 @@ CREATE TABLE mytexttable
 ) ENGINE=MyISAM;
 ```
 
-O índice em `id` é o índice 0 e o índice em `txt` em `test` é o índice 1. Se o diretório de trabalho é o diretório do banco de dados `test`, invoque **myisam\_ftdump** da seguinte forma:
+O índice em `id` é o índice 0 e o índice em `txt` em `test` é o índice 1. Se o diretório de trabalho é o diretório do banco de dados `test`, invoque **myisam_ftdump** da seguinte forma:
 
 ```sql
 myisam_ftdump mytexttable 1
@@ -403,7 +403,7 @@ Se o nome do caminho para o diretório do banco de dados `test` for `/usr/local/
 myisam_ftdump /usr/local/mysql/data/test/mytexttable 1
 ```
 
-Você pode usar **myisam\_ftdump** para gerar uma lista de entradas de índice em ordem de frequência de ocorrência, como este exemplo em sistemas semelhantes ao Unix:
+Você pode usar **myisam_ftdump** para gerar uma lista de entradas de índice em ordem de frequência de ocorrência, como este exemplo em sistemas semelhantes ao Unix:
 
 ```sql
 myisam_ftdump -c mytexttable 1 | sort -r
@@ -415,7 +415,7 @@ Em Windows, use:
 myisam_ftdump -c mytexttable 1 | sort /R
 ```
 
-**myisam\_ftdump** suporta as seguintes opções:
+**myisam_ftdump** suporta as seguintes opções:
 
 * `--help`, `-h` `-?`
 
@@ -817,7 +817,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar o `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
@@ -1962,9 +1962,9 @@ Depois de ter instalado a tabela compactada no diretório do banco de dados MySQ
 
 Para descompactar uma tabela compactada, use a opção `--unpack` para o **myisamchk**.
 
-### 4.6.6 mysql\_config\_editor — Ferramenta de configuração do MySQL
+### 4.6.6 mysql_config_editor — Ferramenta de configuração do MySQL
 
-O utilitário **mysql\_config\_editor** permite que você armazene as credenciais de autenticação em um arquivo de caminho de login ofuscado chamado `.mylogin.cnf`. O local do arquivo é o diretório `%APPDATA%\MySQL` no Windows e o diretório de usuário atual no sistema não Windows. O arquivo pode ser lido posteriormente por programas do cliente MySQL para obter as credenciais de autenticação para conectar ao MySQL Server.
+O utilitário **mysql_config_editor** permite que você armazene as credenciais de autenticação em um arquivo de caminho de login ofuscado chamado `.mylogin.cnf`. O local do arquivo é o diretório `%APPDATA%\MySQL` no Windows e o diretório de usuário atual no sistema não Windows. O arquivo pode ser lido posteriormente por programas do cliente MySQL para obter as credenciais de autenticação para conectar ao MySQL Server.
 
 O formato não obscurecido do arquivo de caminho de login `.mylogin.cnf` consiste em grupos de opções, semelhante a outros arquivos de opções. Cada grupo de opções em `.mylogin.cnf` é chamado de "caminho de login", que é um grupo que permite apenas certas opções: `host`, `user`, `password`, `port` e `socket`. Pense em um grupo de opções de caminho de login como um conjunto de opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Aqui está um exemplo não obscurecido:
 
@@ -1981,11 +1981,11 @@ host = localhost
 
 Quando você invoca um programa cliente para se conectar ao servidor, o cliente usa `.mylogin.cnf` em conjunto com outros arquivos de opção. Sua precedência é maior do que outros arquivos de opção, mas menor do que as opções especificadas explicitamente na string de comando do cliente. Para informações sobre a ordem em que os arquivos de opção são usados, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
 
-Para especificar um nome de arquivo de caminho de login alternativo, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`. Essa variável é reconhecida pelo **mysql\_config\_editor**, pelos clientes padrão do MySQL (**mysql**, **mysqladmin** e assim por diante) e pelo utilitário de teste **mysql-test-run.pl**.
+Para especificar um nome de arquivo de caminho de login alternativo, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`. Essa variável é reconhecida pelo **mysql_config_editor**, pelos clientes padrão do MySQL (**mysql**, **mysqladmin** e assim por diante) e pelo utilitário de teste **mysql-test-run.pl**.
 
 Os programas utilizam grupos no arquivo de caminho de login da seguinte forma:
 
-* O **mysql\_config\_editor** opera no caminho de login `client` por padrão, se você não especificar nenhuma opção `--login-path=name` para indicar explicitamente qual caminho de login deve ser usado.
+* O **mysql_config_editor** opera no caminho de login `client` por padrão, se você não especificar nenhuma opção `--login-path=name` para indicar explicitamente qual caminho de login deve ser usado.
 
 * Sem a opção `--login-path`, os programas do cliente leem os mesmos grupos de opções do arquivo de caminho de login que leem de outros arquivos de opção. Considere este comando:
 
@@ -2005,23 +2005,23 @@ O cliente **mysql** lê `[client]` e `[mysql]` de outros arquivos de opção, e 
 
 * Os programas do cliente leem o arquivo de caminho de login mesmo quando a opção `--no-defaults` é usada, a menos que `--no-login-paths` esteja definido. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo que `--no-defaults` esteja presente.
 
-O **mysql\_config\_editor** ofusca o arquivo `.mylogin.cnf` para que ele não possa ser lido como texto claro, e seus conteúdos, quando não ofuscados por programas de cliente, são usados apenas na memória. Dessa forma, as senhas podem ser armazenadas em um arquivo em formato não claro e usadas posteriormente sem a necessidade de serem expostas na string de comando ou em uma variável de ambiente. O **mysql\_config\_editor** fornece um comando `print` para exibir os conteúdos do arquivo do caminho de login, mas mesmo nesse caso, os valores das senhas são mascarados para que nunca apareçam de uma maneira que outros usuários possam vê-los.
+O **mysql_config_editor** ofusca o arquivo `.mylogin.cnf` para que ele não possa ser lido como texto claro, e seus conteúdos, quando não ofuscados por programas de cliente, são usados apenas na memória. Dessa forma, as senhas podem ser armazenadas em um arquivo em formato não claro e usadas posteriormente sem a necessidade de serem expostas na string de comando ou em uma variável de ambiente. O **mysql_config_editor** fornece um comando `print` para exibir os conteúdos do arquivo do caminho de login, mas mesmo nesse caso, os valores das senhas são mascarados para que nunca apareçam de uma maneira que outros usuários possam vê-los.
 
-A ofuscação usada pelo **mysql\_config\_editor** impede que as senhas apareçam no `.mylogin.cnf` como texto claro e oferece uma medida de segurança ao impedir a exposição acidental das senhas. Por exemplo, se você exibe um arquivo de opção `my.cnf` regular e não ofuscado na tela, quaisquer senhas que ele contém são visíveis para qualquer pessoa. Com o `.mylogin.cnf`, isso não é verdade, mas a ofuscação usada provavelmente não impedirá um invasor determinado e você não deve considerá-la inquebrável. Um usuário que pode obter privilégios de administração do sistema na sua máquina para acessar seus arquivos pode ofuscar o arquivo `.mylogin.cnf` com algum esforço.
+A ofuscação usada pelo **mysql_config_editor** impede que as senhas apareçam no `.mylogin.cnf` como texto claro e oferece uma medida de segurança ao impedir a exposição acidental das senhas. Por exemplo, se você exibe um arquivo de opção `my.cnf` regular e não ofuscado na tela, quaisquer senhas que ele contém são visíveis para qualquer pessoa. Com o `.mylogin.cnf`, isso não é verdade, mas a ofuscação usada provavelmente não impedirá um invasor determinado e você não deve considerá-la inquebrável. Um usuário que pode obter privilégios de administração do sistema na sua máquina para acessar seus arquivos pode ofuscar o arquivo `.mylogin.cnf` com algum esforço.
 
-O arquivo de caminho de login deve ser legível e gravável pelo usuário atual e inacessível para outros usuários. Caso contrário, o **mysql\_config\_editor** o ignora, e os programas cliente também não o utilizam.
+O arquivo de caminho de login deve ser legível e gravável pelo usuário atual e inacessível para outros usuários. Caso contrário, o **mysql_config_editor** o ignora, e os programas cliente também não o utilizam.
 
-Invoque o **mysql\_config\_editor** da seguinte forma:
+Invoque o **mysql_config_editor** da seguinte forma:
 
 ```sql
 mysql_config_editor [program_options] command [command_options]
 ```
 
-Se o arquivo de caminho de login não existir, o **mysql\_config\_editor** cria-o.
+Se o arquivo de caminho de login não existir, o **mysql_config_editor** cria-o.
 
 Os argumentos do comando são fornecidos da seguinte forma:
 
-* *`program_options`* consiste em opções gerais do **mysql\_config\_editor**.
+* *`program_options`* consiste em opções gerais do **mysql_config_editor**.
 
 * `command` indica qual ação deve ser realizada no arquivo do caminho de login `.mylogin.cnf`. Por exemplo, `set` escreve um caminho de login no arquivo, `remove` remove um caminho de login e `print` exibe o conteúdo do caminho de login.
 
@@ -2034,7 +2034,7 @@ mysql_config_editor --help set
 mysql_config_editor set --help
 ```
 
-A primeira string de comando exibe uma mensagem de ajuda geral do **mysql\_config\_editor** e ignora o comando `set`. A segunda string de comando exibe uma mensagem de ajuda específica para o comando `set`.
+A primeira string de comando exibe uma mensagem de ajuda geral do **mysql_config_editor** e ignora o comando `set`. A segunda string de comando exibe uma mensagem de ajuda específica para o comando `set`.
 
 Suponha que você queira estabelecer um caminho de login `client` que defina seus parâmetros de conexão padrão e um caminho de login adicional chamado `remote` para se conectar ao servidor MySQL hospedado em `remote.example.com`. Você deseja fazer login da seguinte forma:
 
@@ -2053,9 +2053,9 @@ $> mysql_config_editor set --login-path=remote
 Enter password: enter password "remotepass" here
 ```
 
-O **mysql\_config\_editor** usa o caminho de login `client` por padrão, portanto, a opção `--login-path=client` pode ser omitida no primeiro comando sem alterar seu efeito.
+O **mysql_config_editor** usa o caminho de login `client` por padrão, portanto, a opção `--login-path=client` pode ser omitida no primeiro comando sem alterar seu efeito.
 
-Para ver o que o **mysql\_config\_editor** escreve no arquivo `.mylogin.cnf`, use o comando `print`:
+Para ver o que o **mysql_config_editor** escreve no arquivo `.mylogin.cnf`, use o comando `print`:
 
 ```sql
 $> mysql_config_editor print --all
@@ -2073,7 +2073,7 @@ O comando `print` exibe cada caminho de login como um conjunto de strings que co
 
 Se você não especificar `--all` para exibir todos os caminhos de login ou `--login-path=name` para exibir um caminho de login com nome, o comando `print` exibe o caminho de login `client` por padrão, se houver um.
 
-Como mostrado no exemplo anterior, o arquivo de caminho de login pode conter vários caminhos de login. Dessa forma, o **mysql\_config\_editor** facilita a configuração de várias "personalidades" para conectar a diferentes servidores MySQL, ou para conectar a um servidor específico usando diferentes contas. Qualquer uma dessas pode ser selecionada pelo nome posteriormente usando a opção `--login-path` quando você invoca um programa cliente. Por exemplo, para se conectar ao servidor remoto, use este comando:
+Como mostrado no exemplo anterior, o arquivo de caminho de login pode conter vários caminhos de login. Dessa forma, o **mysql_config_editor** facilita a configuração de várias "personalidades" para conectar a diferentes servidores MySQL, ou para conectar a um servidor específico usando diferentes contas. Qualquer uma dessas pode ser selecionada pelo nome posteriormente usando a opção `--login-path` quando você invoca um programa cliente. Por exemplo, para se conectar ao servidor remoto, use este comando:
 
 ```sql
 mysql --login-path=remote
@@ -2095,19 +2095,19 @@ mysql
 
 As opções lidas do arquivo de caminho de login têm precedência sobre as opções lidas de outros arquivos de opção. As opções lidas de grupos de caminho de login que aparecem mais tarde no arquivo de caminho de login têm precedência sobre as opções lidas de grupos que aparecem mais cedo no arquivo.
 
-O **mysql\_config\_editor** adiciona caminhos de login ao arquivo de caminhos de login na ordem em que os cria, então você deve criar caminhos de login mais gerais primeiro e caminhos mais específicos depois. Se você precisar mover um caminho de login dentro do arquivo, pode removê-lo e, em seguida, recriá-lo para adicioná-lo ao final. Por exemplo, um caminho de login `client` é mais geral, pois é lido por todos os programas cliente, enquanto um caminho de login `mysqldump` é lido apenas pelo **mysqldump**. As opções especificadas mais tarde substituem as opções especificadas anteriormente, então colocar os caminhos de login na ordem `client`, `mysqldump` permite que as opções específicas do **mysqldump** substituam as opções do `client`.
+O **mysql_config_editor** adiciona caminhos de login ao arquivo de caminhos de login na ordem em que os cria, então você deve criar caminhos de login mais gerais primeiro e caminhos mais específicos depois. Se você precisar mover um caminho de login dentro do arquivo, pode removê-lo e, em seguida, recriá-lo para adicioná-lo ao final. Por exemplo, um caminho de login `client` é mais geral, pois é lido por todos os programas cliente, enquanto um caminho de login `mysqldump` é lido apenas pelo **mysqldump**. As opções especificadas mais tarde substituem as opções especificadas anteriormente, então colocar os caminhos de login na ordem `client`, `mysqldump` permite que as opções específicas do **mysqldump** substituam as opções do `client`.
 
-Quando você usa o comando `set` com o **mysql\_config\_editor** para criar um caminho de login, você não precisa especificar todos os valores das opções possíveis (nome do host, nome do usuário, senha, porta, soquete). Apenas os valores fornecidos são escritos no caminho. Quaisquer valores faltantes necessários posteriormente podem ser especificados quando você invoca um caminho de cliente para se conectar ao servidor MySQL, seja em outros arquivos de opção ou na string de comando. Quaisquer opções especificadas na string de comando substituem aquelas especificadas no arquivo de caminho de login ou em outros arquivos de opção. Por exemplo, se as credenciais no caminho de login `remote` também se aplicam ao host `remote2.example.com`, conecte-se ao servidor nesse host da seguinte forma:
+Quando você usa o comando `set` com o **mysql_config_editor** para criar um caminho de login, você não precisa especificar todos os valores das opções possíveis (nome do host, nome do usuário, senha, porta, soquete). Apenas os valores fornecidos são escritos no caminho. Quaisquer valores faltantes necessários posteriormente podem ser especificados quando você invoca um caminho de cliente para se conectar ao servidor MySQL, seja em outros arquivos de opção ou na string de comando. Quaisquer opções especificadas na string de comando substituem aquelas especificadas no arquivo de caminho de login ou em outros arquivos de opção. Por exemplo, se as credenciais no caminho de login `remote` também se aplicam ao host `remote2.example.com`, conecte-se ao servidor nesse host da seguinte forma:
 
 ```sql
 mysql --login-path=remote --host=remote2.example.com
 ```
 
-#### mysql\_config\_editor Opções gerais
+#### mysql_config_editor Opções gerais
 
-O **mysql\_config\_editor** suporta as seguintes opções gerais, que podem ser usadas antes de qualquer comando nomeado na string de comando. Para descrições de opções específicas de comando, consulte os comandos e opções específicas de comando do mysql\_config\_editor.
+O **mysql_config_editor** suporta as seguintes opções gerais, que podem ser usadas antes de qualquer comando nomeado na string de comando. Para descrições de opções específicas de comando, consulte os comandos e opções específicas de comando do mysql_config_editor.
 
-**Tabela 4.22 mysql\_config\_editor Opções Gerais**
+**Tabela 4.22 mysql_config_editor Opções Gerais**
 
 <table frame="box" rules="all" summary="General Command-line options available for mysql_config_editor."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td>--debug</td> <td>Escreva o log de depuração</td> </tr><tr><td>--help</td> <td>Exibir mensagem de ajuda e sair</td> </tr><tr><td>--verbose</td> <td>Modo verbosos</td> </tr><tr><td>--version</td> <td>Exibir informações da versão e sair</td> </tr></tbody></table>
 
@@ -2117,7 +2117,7 @@ O **mysql\_config\_editor** suporta as seguintes opções gerais, que podem ser 
 
 Exibir uma mensagem de ajuda geral e sair.
 
-Para ver uma mensagem de ajuda específica para um comando, invoque **mysql\_config\_editor** da seguinte forma, onde *`command`* é um comando diferente de `help`:
+Para ver uma mensagem de ajuda específica para um comando, invoque **mysql_config_editor** da seguinte forma, onde *`command`* é um comando diferente de `help`:
 
   ```sql
   mysql_config_editor command --help
@@ -2143,19 +2143,19 @@ Modo detalhado. Imprima mais informações sobre o que o programa faz. Esta opç
 
 Exibir informações da versão e sair.
 
-#### mysql\_config\_editor Comandos e Opções Específicas de Comando
+#### mysql_config_editor Comandos e Opções Específicas de Comando
 
-Esta seção descreve os comandos permitidos do **mysql\_config\_editor** e, para cada um deles, as opções específicas do comando permitidas após o nome do comando na string de comando.
+Esta seção descreve os comandos permitidos do **mysql_config_editor** e, para cada um deles, as opções específicas do comando permitidas após o nome do comando na string de comando.
 
-Além disso, o **mysql\_config\_editor** suporta opções gerais que podem ser usadas antes de qualquer comando. Para descrições dessas opções, consulte Opções gerais do mysql\_config\_editor.
+Além disso, o **mysql_config_editor** suporta opções gerais que podem ser usadas antes de qualquer comando. Para descrições dessas opções, consulte Opções gerais do mysql_config_editor.
 
-O **mysql\_config\_editor** suporta esses comandos:
+O **mysql_config_editor** suporta esses comandos:
 
 * `help`
 
 Exibir uma mensagem de ajuda geral e sair. Este comando não aceita opções adicionais.
 
-Para ver uma mensagem de ajuda específica para um comando, invoque **mysql\_config\_editor** da seguinte forma, onde *`command`* é um comando diferente de `help`:
+Para ver uma mensagem de ajuda específica para um comando, invoque **mysql_config_editor** da seguinte forma, onde *`command`* é um comando diferente de `help`:
 
   ```sql
   mysql_config_editor command --help
@@ -2173,7 +2173,7 @@ O comando `print` permite essas opções após o nome do comando:
 
 Exiba uma mensagem de ajuda para o comando `print` e saia.
 
-Para ver uma mensagem de ajuda geral, use **mysql\_config\_editor --help**.
+Para ver uma mensagem de ajuda geral, use **mysql_config_editor --help**.
 
 + `--all`
 
@@ -2205,7 +2205,7 @@ O comando `remove` permite essas opções após o nome do comando:
 
 Exiba uma mensagem de ajuda para o comando `remove` e saia.
 
-Para ver uma mensagem de ajuda geral, use **mysql\_config\_editor --help**.
+Para ver uma mensagem de ajuda geral, use **mysql_config_editor --help**.
 
 + `--host`, `-h`
 
@@ -2245,13 +2245,13 @@ O comando `reset` permite essas opções após o nome do comando:
 
 Exiba uma mensagem de ajuda para o comando `reset` e saia.
 
-Para ver uma mensagem de ajuda geral, use **mysql\_config\_editor --help**.
+Para ver uma mensagem de ajuda geral, use **mysql_config_editor --help**.
 
 * `set [options]`
 
 Escreva um caminho de login para o arquivo de caminho de login.
 
-Este comando escreve no caminho de login apenas as opções especificadas com as opções `--host`, `--password`, `--port`, `--socket` e `--user`. Se nenhuma dessas opções for fornecida, o **mysql\_config\_editor** escreve o caminho de login como um grupo vazio.
+Este comando escreve no caminho de login apenas as opções especificadas com as opções `--host`, `--password`, `--port`, `--socket` e `--user`. Se nenhuma dessas opções for fornecida, o **mysql_config_editor** escreve o caminho de login como um grupo vazio.
 
 O comando `set` permite essas opções após o nome do comando:
 
@@ -2259,7 +2259,7 @@ O comando `set` permite essas opções após o nome do comando:
 
 Exiba uma mensagem de ajuda para o comando `set` e saia.
 
-Para ver uma mensagem de ajuda geral, use **mysql\_config\_editor --help**.
+Para ver uma mensagem de ajuda geral, use **mysql_config_editor --help**.
 
 + `--host=host_name`, `-h host_name`
 
@@ -2271,7 +2271,7 @@ O caminho de login para criar. O nome padrão do caminho de login é `client` se
 
 + `--password`, `-p`
 
-Solicitar uma senha para escrever no caminho de login. Após o **mysql\_config\_editor** exibir o prompt, digite a senha e pressione Enter. Para evitar que outros usuários vejam a senha, o **mysql\_config\_editor** não a exibe.
+Solicitar uma senha para escrever no caminho de login. Após o **mysql_config_editor** exibir o prompt, digite a senha e pressione Enter. Para evitar que outros usuários vejam a senha, o **mysql_config_editor** não a exibe.
 
 Para especificar uma senha vazia, pressione Enter na prompt de senha. O caminho de login resultante, escrito no arquivo de caminho de login, inclui uma string como esta:
 
@@ -2999,7 +2999,7 @@ Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinl
 
   <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><code>AUTO</code><code>NEVER</code><code>DECODE-ROWS</code></td> </tr></tbody></table>5
 
-Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
 Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
@@ -3009,7 +3009,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
@@ -3128,7 +3128,7 @@ A partir do MySQL 5.7.5, essa opção é desatualizada; espere que ela seja remo
 
 Nota
 
-As senhas que utilizam o método de hashing pré-4.1 são menos seguras do que as senhas que utilizam o método nativo de hashing de senha e devem ser evitadas. As senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+As senhas que utilizam o método de hashing pré-4.1 são menos seguras do que as senhas que utilizam o método nativo de hashing de senha e devem ser evitadas. As senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 * `--server-id=id`
 

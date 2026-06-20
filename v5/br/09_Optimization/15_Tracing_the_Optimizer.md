@@ -22,7 +22,7 @@ Você pode rastrear apenas declarações que são executadas dentro da sessão a
 
 As seguintes variáveis do sistema afetam o rastreamento do otimizador:
 
-* `optimizer_trace`: Habilita ou desabilita o rastreamento do otimizador. Veja a Seção 8.15.8, “A variável de sistema otimizador\_trace”.
+* `optimizer_trace`: Habilita ou desabilita o rastreamento do otimizador. Veja a Seção 8.15.8, “A variável de sistema otimizador_trace”.
 
 * `optimizer_trace_features`: Habilita ou desabilita recursos selecionados do MySQL Optimizer, usando a sintaxe mostrada aqui:
 
@@ -44,7 +44,7 @@ Veja a Seção 8.15.10, “Selecionando recursos do otimizador para rastrear”,
 
 * `optimizer_trace_offset`: Deslocamento do primeiro traçado mostrado. Veja a Seção 8.15.4, “Ajuste da Purga de Traçado”.
 
-* `end_markers_in_json`: Se definido como `1`, faz com que o rastreamento repita a chave (se presente) perto do par de chaves. Isso também afeta a saída de `EXPLAIN FORMAT=JSON` nas versões do MySQL que suportam essa declaração. Veja a Seção 8.15.9, “A variável de sistema end\_markers\_in\_json”.
+* `end_markers_in_json`: Se definido como `1`, faz com que o rastreamento repita a chave (se presente) perto do par de chaves. Isso também afeta a saída de `EXPLAIN FORMAT=JSON` nas versões do MySQL que suportam essa declaração. Veja a Seção 8.15.9, “A variável de sistema end_markers_in_json”.
 
 ### 8.15.3 Declarações rastreáveis
 
@@ -122,15 +122,15 @@ Em cenários complexos em que a consulta utiliza vistas SQL SECURITY DEFINER ou 
 
 Qualquer coisa que seja escrita na trace é automaticamente escrita no arquivo de depuração.
 
-### 8.15.8 A variável de sistema optimizer\_trace
+### 8.15.8 A variável de sistema optimizer_trace
 
-A variável de sistema optimizer\_trace tem esses interruptores de ativação/desativação:
+A variável de sistema optimizer_trace tem esses interruptores de ativação/desativação:
 
 * `enabled`: Habilita (`ON`) ou desabilita (`OFF`) o rastreamento
 
 * `one_line`: Se configurado como `ON`, o rastro não contém espaços em branco, conservando assim espaço. Isso torna o rastro difícil de ler para humanos, ainda utilizável por analisadores JSON, uma vez que eles ignoram espaços em branco.
 
-### 8.15.9 A variável de sistema marcadores\_de\_final\_em\_json
+### 8.15.9 A variável de sistema marcadores_de_final_em_json
 
 Ao ler um documento JSON muito grande, pode ser difícil alinhar os colchetes de fechamento e de abertura; definir `end_markers_in_json=ON` repete a chave da estrutura, se tiver uma, perto do colchete de fechamento. Essa variável afeta tanto as traças do otimizador quanto a saída de `EXPLAIN FORMAT=JSON`.
 

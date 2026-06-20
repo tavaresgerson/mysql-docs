@@ -1,6 +1,6 @@
 ## 25.20 Migrando para o Sistema de Schema de Desempenho e Tabelas de Variáveis de Status
 
-O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (consulte a Seção 24.3.11, “As tabelas GLOBAL\_VARIABLES e SESSION\_VARIABLES do INFORMATION_SCHEMA”, e a Seção 24.3.10, “As tabelas GLOBAL\_STATUS e SESSION\_STATUS do INFORMATION_SCHEMA”). O Schema de Desempenho também contém tabelas de variáveis de sistema e status (consulte a Seção 25.12.13, “Tabelas de variáveis de sistema do Schema de Desempenho”, e a Seção 25.12.14, “Tabelas de variáveis de status do Schema de Desempenho”). As tabelas do Schema de Desempenho são destinadas a substituir as tabelas `INFORMATION_SCHEMA`, que são descontinuadas a partir do MySQL 5.7.6 e são removidas no MySQL 8.0.
+O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (consulte a Seção 24.3.11, “As tabelas GLOBAL_VARIABLES e SESSION_VARIABLES do INFORMATION_SCHEMA”, e a Seção 24.3.10, “As tabelas GLOBAL_STATUS e SESSION_STATUS do INFORMATION_SCHEMA”). O Schema de Desempenho também contém tabelas de variáveis de sistema e status (consulte a Seção 25.12.13, “Tabelas de variáveis de sistema do Schema de Desempenho”, e a Seção 25.12.14, “Tabelas de variáveis de status do Schema de Desempenho”). As tabelas do Schema de Desempenho são destinadas a substituir as tabelas `INFORMATION_SCHEMA`, que são descontinuadas a partir do MySQL 5.7.6 e são removidas no MySQL 8.0.
 
 Esta seção descreve o caminho de migração pretendido para se afastar das tabelas de variáveis de status e do sistema `INFORMATION_SCHEMA` para as tabelas correspondentes do Schema de Desempenho. Os desenvolvedores de aplicativos devem usar essas informações como orientação em relação às mudanças necessárias para acessar as variáveis de sistema e status no MySQL 5.7.6 e versões posteriores, uma vez que as tabelas `INFORMATION_SCHEMA` serão descontinuadas e, eventualmente, serão removidas.
 
@@ -72,7 +72,7 @@ Em MySQL 5.7.6 e 5.7.7, as tabelas `session_variables` e `session_status` do Sch
   Slave_running
   ```
 
-As aplicações que utilizam essas variáveis de status devem ser revisadas para obter essas informações usando as tabelas do Schema de desempenho relacionadas à replicação. Para obter detalhes, consulte o efeito de show\_compatibility\_56 nas variáveis de status do escravo.
+As aplicações que utilizam essas variáveis de status devem ser revisadas para obter essas informações usando as tabelas do Schema de desempenho relacionadas à replicação. Para obter detalhes, consulte o efeito de show_compatibility_56 nas variáveis de status do escravo.
 
 * O Schema de Desempenho não coleta estatísticas para as variáveis de status `Com_xxx` nas tabelas de variáveis de status. Para obter contagens globais e por execução de declarações de sessão, use as tabelas `events_statements_summary_global_by_event_name` e `events_statements_summary_by_thread_by_event_name`, respectivamente.
 

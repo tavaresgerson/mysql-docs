@@ -319,7 +319,7 @@ As tabelas a seguir listam os objetos do esquema `sys` e fornecem uma breve desc
 
 As seções a seguir descrevem as tabelas e gatilhos do esquema `sys`.
 
-#### 26.4.2.1 A tabela sys\_config
+#### 26.4.2.1 A tabela sys_config
 
 Esta tabela contém as opções de configuração do esquema `sys`, uma string por opção. As alterações de configuração feitas ao atualizar esta tabela persistem em todas as sessões do cliente e reinício do servidor.
 
@@ -426,11 +426,11 @@ Em segundo lugar, para garantir também que as invocações de procedimento dent
 mysql> SET @sys.debug = NULL;
 ```
 
-#### 26.4.2.2 O gatilho sys\_config\_insert\_set\_user
+#### 26.4.2.2 O gatilho sys_config_insert_set_user
 
 Para as strings adicionadas à tabela `sys_config` por declarações do `INSERT`, o gatilho `sys_config_insert_set_user` define a coluna `set_by` para o usuário atual.
 
-#### 26.4.2.3 O gatilho sys\_config\_update\_set\_user
+#### 26.4.2.3 O gatilho sys_config_update_set_user
 
 O gatilho `sys_config_update_set_user` para a tabela `sys_config` é semelhante ao gatilho `sys_config_insert_set_user`, mas para as declarações `UPDATE`.
 
@@ -474,7 +474,7 @@ As visualizações sem o prefixo `x$` diferem das visualizações correspondente
 
 * O nome do caminho é abreviado usando a função `format_path()`).
 
-#### 26.4.3.1 O resumo do host e as visualizações x$host\_summary
+#### 26.4.3.1 O resumo do host e as visualizações x$host_summary
 
 Esses pontos resumem a atividade de declaração, a entrada/saída de arquivos e as conexões, agrupados por host.
 
@@ -528,7 +528,7 @@ O valor atual da memória alocada para o host.
 
 O valor total de memória alocada para o host.
 
-#### 26.4.3.2 Visões host\_summary\_by\_file\_io e x$host\_summary\_by\_file\_io do host
+#### 26.4.3.2 Visões host_summary_by_file_io e x$host_summary_by_file_io do host
 
 Esses pontos de vista resumem o I/O de arquivos, agrupados por host. Por padrão, as strings são ordenadas por latência total de I/O de arquivos em ordem decrescente.
 
@@ -546,7 +546,7 @@ O número total de eventos de E/S de arquivo para o host.
 
 O tempo total de espera de eventos de E/S de arquivos temporizados para o host.
 
-#### 26.4.3.3 Resumo do host por tipo de arquivo de I/O e x$host\_summary\_by\_file\_io\_type Visões
+#### 26.4.3.3 Resumo do host por tipo de arquivo de I/O e x$host_summary_by_file_io_type Visões
 
 Esses pontos resumem o I/O de arquivos, agrupados por host e tipo de evento. Por padrão, as strings são ordenadas por host e latência total de I/O em ordem decrescente.
 
@@ -572,7 +572,7 @@ O tempo total de espera de eventos de tempo para o arquivo de entrada/saída do 
 
 O tempo máximo de espera de uma única ocorrência de eventos de E/S de arquivo para o host.
 
-#### 26.4.3.4 Resumo do host por etapas e x$host\_summary\_by\_stages Visualizações
+#### 26.4.3.4 Resumo do host por etapas e x$host_summary_by_stages Visualizações
 
 Esses pontos de vista resumem as etapas da declaração, agrupadas por host. Por padrão, as strings são ordenadas por host e latência total decrescente.
 
@@ -598,7 +598,7 @@ O tempo total de espera de eventos cronometrados do evento em andamento para o a
 
 O tempo médio de espera por ocorrência cronometrada do evento em andamento para o anfitrião.
 
-#### 26.4.3.5 Resumo do host por latência de declaração e x$host\_summary\_by\_statement\_latency Views
+#### 26.4.3.5 Resumo do host por latência de declaração e x$host_summary_by_statement_latency Views
 
 Esses pontos de vista resumem as estatísticas de declaração geral, agrupadas por host. Por padrão, as strings são ordenadas por latência total decrescente.
 
@@ -640,7 +640,7 @@ O número total de strings afetadas por declarações para o host.
 
 O número total de varreduras completas da tabela por declarações para o host.
 
-#### 26.4.3.6 Resumo do host por tipo de declaração e x$host\_summary\_by\_statement\_type Visitas
+#### 26.4.3.6 Resumo do host por tipo de declaração e x$host_summary_by_statement_type Visitas
 
 Essas visualizações resumem informações sobre declarações executadas, agrupadas por host e tipo de declaração. Por padrão, as strings são ordenadas por host e latência total decrescente.
 
@@ -686,7 +686,7 @@ O número total de strings afetadas por ocorrências do evento de declaração p
 
 O número total de varreduras completas da tabela por ocorrências do evento de declaração para o host.
 
-#### 26.4.3.7 As vistas innodb\_buffer\_stats\_by\_schema e x$innodb\_buffer\_stats\_by\_schema
+#### 26.4.3.7 As vistas innodb_buffer_stats_by_schema e x$innodb_buffer_stats_by_schema
 
 Esses pontos resumem as informações na tabela `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE`, agrupada por esquema. Por padrão, as strings são ordenadas por tamanho de buffer descendente.
 
@@ -724,7 +724,7 @@ O número total de páginas antigas alocadas para o esquema.
 
 O número total de strings armazenadas em cache para o esquema.
 
-#### 26.4.3.8 As vistas innodb\_buffer\_stats\_by\_table e x$innodb\_buffer\_stats\_by\_table
+#### 26.4.3.8 As vistas innodb_buffer_stats_by_table e x$innodb_buffer_stats_by_table
 
 Esses pontos resumem as informações na tabela `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE`, agrupada por esquema e tabela. Por padrão, as strings são ordenadas em ordem decrescente de tamanho do buffer.
 
@@ -876,7 +876,7 @@ A declaração `KILL` para executar para matar a declaração de bloqueio.
 
 A declaração `KILL` para executar para matar a sessão que está executando a declaração de bloqueio.
 
-#### 26.4.3.10 As visualizações io\_by\_thread\_by\_latency e x$io\_by\_thread\_by\_latency
+#### 26.4.3.10 As visualizações io_by_thread_by_latency e x$io_by_thread_by_latency
 
 Esses pontos resumem os consumidores de E/S para exibir o tempo de espera por E/S, agrupados por thread. Por padrão, as strings são ordenadas em ordem decrescente de latência total de E/S.
 
@@ -914,7 +914,7 @@ O ID do thread.
 
 Para os threads de primeiro plano, o ID do processo list para o thread. Para os threads de segundo plano, `NULL`.
 
-#### 26.4.3.11 As visualizações io\_global\_by\_file\_by\_bytes e x$io\_global\_by\_file\_by\_bytes
+#### 26.4.3.11 As visualizações io_global_by_file_by_bytes e x$io_global_by_file_by_bytes
 
 Esses pontos de vista resumem os consumidores globais de E/S para exibir o volume de E/S, agrupado por arquivo. Por padrão, as strings são ordenadas em ordem decrescente de total de E/S (bytes lidos e escritos).
 
@@ -956,7 +956,7 @@ O número total de bytes lidos e escritos para o arquivo.
 
 A porcentagem dos bytes totais de E/S que foram escritos.
 
-#### 26.4.3.12 As visualizações io\_global\_by\_file\_by\_latency e x$io\_global\_by\_file\_by\_latency
+#### 26.4.3.12 As visualizações io_global_by_file_by_latency e x$io_global_by_file_by_latency
 
 Esses pontos de vista resumem os consumidores globais de E/S para exibir o tempo de espera por E/S, agrupados por arquivo. Por padrão, as strings são ordenadas por latência total decrescente.
 
@@ -998,7 +998,7 @@ O número total de outros eventos de E/S para o arquivo.
 
 O tempo total de espera de outros eventos de E/S temporizados para o arquivo.
 
-#### 26.4.3.13 As vistas io\_global\_by\_wait\_by\_bytes e x$io\_global\_by\_wait\_by\_bytes
+#### 26.4.3.13 As vistas io_global_by_wait_by_bytes e x$io_global_by_wait_by_bytes
 
 Esses pontos resumem os consumidores globais de E/S para exibir o volume de E/S e o tempo de espera para E/S, agrupados por evento. Por padrão, as strings são ordenadas em ordem decrescente de total de E/S (bytes lidos e escritos).
 
@@ -1056,7 +1056,7 @@ O número médio de bytes por escrita para o evento de E/S.
 
 O número total de bytes lidos e escritos para o evento de E/S.
 
-#### 26.4.3.14 As vistas io\_global\_by\_wait\_by\_latency e x$io\_global\_by\_wait\_by\_latency
+#### 26.4.3.14 As vistas io_global_by_wait_by_latency e x$io_global_by_wait_by_latency
 
 Esses pontos de vista resumem os consumidores globais de E/S para exibir o volume de E/S e o tempo de espera para E/S, agrupados por evento. Por padrão, as strings são ordenadas por latência total decrescente.
 
@@ -1118,7 +1118,7 @@ O número de bytes escritos para o evento de E/S.
 
 O número médio de bytes por escrita para o evento de E/S.
 
-#### 26.4.3.15 As vistas latest\_file\_io e x$latest\_file\_io mais recentes
+#### 26.4.3.15 As vistas latest_file_io e x$latest_file_io mais recentes
 
 Esses pontos de vista resumem a atividade de E/S de arquivos, agrupados por arquivo e thread. Por padrão, as strings são ordenadas com a I/O mais recente primeiro.
 
@@ -1208,7 +1208,7 @@ A maior alocação de memória de memória corrente em bytes para o thread.
 
 A alocação total de memória em bytes para o thread.
 
-#### 26.4.3.18 Memória\_por\_usuário\_por\_bytes\_curto e x$Memória\_por\_usuário\_por\_bytes\_curto Visitas
+#### 26.4.3.18 Memória_por_usuário_por_bytes_curto e x$Memória_por_usuário_por_bytes_curto Visitas
 
 Esses pontos resumem o uso da memória, agrupados por usuário. Por padrão, as strings são ordenadas por quantidade de memória usada em ordem decrescente.
 
@@ -1238,7 +1238,7 @@ A maior alocação de memória de memória corrente em bytes para o usuário.
 
 A alocação total de memória em bytes para o usuário.
 
-#### 26.4.3.19 Memória\_global\_by\_current\_bytes e x$memory\_global\_by\_current\_bytes Visualizações
+#### 26.4.3.19 Memória_global_by_current_bytes e x$memory_global_by_current_bytes Visualizações
 
 Esses pontos resumem o uso da memória, agrupados por tipo de alocação (ou seja, por evento). Por padrão, as strings são ordenadas por quantidade de memória usada em ordem decrescente.
 
@@ -1272,7 +1272,7 @@ O limite máximo de bytes alocados para o evento.
 
 O limite máximo para o número médio de bytes por bloco de memória alocado para o evento.
 
-#### 26.4.3.20 Memória\_global\_total e x$Memória\_global\_total Visualizações
+#### 26.4.3.20 Memória_global_total e x$Memória_global_total Visualizações
 
 Esses pontos resumem o uso total da memória dentro do servidor.
 
@@ -1463,7 +1463,7 @@ O ID do processo do cliente.
 
 O nome do programa cliente.
 
-#### 26.4.3.23 A vista ps\_check\_lost\_instrumentation
+#### 26.4.3.23 A vista ps_check_lost_instrumentation
 
 Essa exibição retorna informações sobre instrumentos perdidos do Schema de Desempenho, para indicar se o Schema de Desempenho não consegue monitorar todos os dados de execução.
 
@@ -1477,7 +1477,7 @@ O nome da variável de status do Schema de desempenho que indica que tipo de ins
 
 O número de instrumentos perdidos.
 
-#### 26.4.3.24 A visão schema\_auto\_increment\_columns
+#### 26.4.3.24 A visão schema_auto_increment_columns
 
 Essa visão indica quais tabelas têm colunas `AUTO_INCREMENT` e fornece informações sobre essas colunas, como os valores atuais e máximos da coluna e a proporção de uso (proporção de valores usados em relação aos possíveis). Por padrão, as strings são ordenadas por proporção de uso decrescente e valor máximo da coluna.
 
@@ -1525,7 +1525,7 @@ O valor atual `AUTO_INCREMENT` para a coluna.
 
 A proporção de valores utilizados em relação aos permitidos para a coluna. Isso indica quanto da sequência de valores está "esgotado".
 
-#### 26.4.3.25 Os esquemas \_index\_statistics e x$schema\_index\_statistics Views
+#### 26.4.3.25 Os esquemas _index_statistics e x$schema_index_statistics Views
 
 Esses pontos de vista fornecem estatísticas de índice. Por padrão, as strings são ordenadas por latência total de índice descendente.
 
@@ -1575,7 +1575,7 @@ O número total de strings excluídas do índice.
 
 O tempo total de espera de apagamentos temporizados do índice.
 
-#### 26.4.3.26 A visão do esquema\_objeto
+#### 26.4.3.26 A visão do esquema_objeto
 
 Essa visão resume os tipos de objetos dentro de cada esquema. Por padrão, as strings são ordenadas por esquema e tipo de objeto.
 
@@ -1597,7 +1597,7 @@ O tipo de objeto: `BASE TABLE`, `INDEX (index_type)`, `EVENT`, `FUNCTION`, `PROC
 
 O número de objetos no esquema do tipo dado.
 
-#### 26.4.3.27 Os esquemas redundantes e as vistas x$schema\_flattened\_keys
+#### 26.4.3.27 Os esquemas redundantes e as vistas x$schema_flattened_keys
 
 A visualização `schema_redundant_indexes` exibe índices que duplicam outros índices ou que são tornados redundantes por eles. A visualização `x$schema_flattened_keys` é uma visualização auxiliar para `schema_redundant_indexes`.
 
@@ -1671,11 +1671,11 @@ Se o índice indexa apenas uma parte de uma coluna.
 
 O nome das colunas no índice.
 
-#### 26.4.3.28 As tabelas schema\_table\_lock\_waits e x$schema\_table\_lock\_waits Views
+#### 26.4.3.28 As tabelas schema_table_lock_waits e x$schema_table_lock_waits Views
 
 Essas visualizações mostram quais sessões estão bloqueadas aguardando bloqueios de metadados e o que as está bloqueando.
 
-As descrições das colunas aqui são breves. Para informações adicionais, consulte a descrição da tabela do Schema de desempenho `metadata_locks` na Seção 25.12.12.1, “A tabela de metadados\_locks”.
+As descrições das colunas aqui são breves. Para informações adicionais, consulte a descrição da tabela do Schema de desempenho `metadata_locks` na Seção 25.12.12.1, “A tabela de metadados_locks”.
 
 As visões `schema_table_lock_waits` e `x$schema_table_lock_waits` possuem essas colunas:
 
@@ -1751,7 +1751,7 @@ A declaração `KILL` para executar para matar a declaração de bloqueio.
 
 A declaração `KILL` para executar para matar a sessão que está executando a declaração de bloqueio.
 
-#### 26.4.3.29 As tabelas de estatísticas schema\_table e as vistas x$schema\_table\_statistics
+#### 26.4.3.29 As tabelas de estatísticas schema_table e as vistas x$schema_table_statistics
 
 Esses pontos de vista resumem as estatísticas da tabela. Por padrão, as strings são ordenadas por tempo de espera total descendente (as tabelas com mais contenção primeiro).
 
@@ -1835,7 +1835,7 @@ O número total de solicitações de E/S diversas para a tabela.
 
 O tempo total de espera de solicitações de E/S variadas para a tabela.
 
-#### 26.4.3.30 As tabelas de estatísticas schema\_table\_statistics\_with\_buffer e as vistas x$schema\_table\_statistics\_with\_buffer
+#### 26.4.3.30 As tabelas de estatísticas schema_table_statistics_with_buffer e as vistas x$schema_table_statistics_with_buffer
 
 Esses pontos resumem as estatísticas da tabela, incluindo as estatísticas do pool de buffer `InnoDB`. Por padrão, as strings são ordenadas por tempo de espera total decrescente (as tabelas com mais concorrência primeiro).
 
@@ -1943,7 +1943,7 @@ O número total de páginas antigas `InnoDB` alocadas para a tabela.
 
 O número total de strings `InnoDB` armazenadas em cache para a tabela.
 
-#### 26.4.3.31 os esquemas\_tables\_with\_full\_table\_scans e as vistas x$schema\_tables\_with\_full\_table\_scans
+#### 26.4.3.31 os esquemas_tables_with_full_table_scans e as vistas x$schema_tables_with_full_table_scans
 
 Essas visualizações mostram quais tabelas estão sendo acessadas com varreduras completas da tabela. Por padrão, as strings são ordenadas por varreduras descendentes.
 
@@ -1965,7 +1965,7 @@ O número total de strings que são varridas por varreduras completas da tabela.
 
 O tempo total de espera para varreduras completas da tabela.
 
-#### 26.4.3.32 A visão schema\_unused\_indexes
+#### 26.4.3.32 A visão schema_unused_indexes
 
 Essas visualizações exibem índices para os quais não há eventos, o que indica que eles não estão sendo usados. Por padrão, as strings são ordenadas por esquema e tabela.
 
@@ -2347,7 +2347,7 @@ O horário em que a declaração foi vista pela última vez.
 
 O extrato do comunicado.
 
-#### 26.4.3.40 As declarações com tabelas temporárias e as vistas x$declarativas\_com\_tabelas\_temporárias
+#### 26.4.3.40 As declarações com tabelas temporárias e as vistas x$declarativas_com_tabelas_temporárias
 
 Essas visualizações listam declarações normalizadas que utilizaram tabelas temporárias. Por padrão, as strings são ordenadas por número descendente de tabelas temporárias no disco utilizadas e número descendente de tabelas temporárias em memória utilizadas.
 
@@ -2397,7 +2397,7 @@ O horário em que a declaração foi vista pela última vez.
 
 O extrato do comunicado.
 
-#### 26.4.3.41 Resumo do usuário e x$user\_summary Views
+#### 26.4.3.41 Resumo do usuário e x$user_summary Views
 
 Esses pontos resumem a atividade de declaração, a entrada/saída de arquivos e as conexões, agrupados por usuário. Por padrão, as strings são ordenadas por latência total decrescente.
 
@@ -2451,7 +2451,7 @@ O valor atual da memória alocada para o usuário.
 
 O valor total de memória alocada para o usuário.
 
-#### 26.4.3.42 Visões de resumo do usuário por arquivo e x$user\_summary\_by\_file\_io
+#### 26.4.3.42 Visões de resumo do usuário por arquivo e x$user_summary_by_file_io
 
 Esses pontos resumem o I/O de arquivos, agrupados por usuário. Por padrão, as strings são ordenadas em ordem decrescente de latência total de I/O de arquivos.
 
@@ -2627,7 +2627,7 @@ A versão do esquema `sys`.
 
 A versão do servidor MySQL.
 
-#### 26.4.3.48 As classes de espera global por latência média e as vistas x$wait\_classes\_global\_by\_avg\_latency
+#### 26.4.3.48 As classes de espera global por latência média e as vistas x$wait_classes_global_by_avg_latency
 
 Esses pontos mostram as médias de latência do tipo de espera, agrupadas por classe de evento. Por padrão, as strings são ordenadas em ordem decrescente de latência média. Eventos ociosos são ignorados.
 
@@ -2659,7 +2659,7 @@ O tempo médio de espera por ocorrência cronometrada de eventos na aula.
 
 O tempo máximo de espera de uma única ocorrência de eventos na classe.
 
-#### 26.4.3.49 As vistas wait\_classes\_global\_by\_latency e x$wait\_classes\_global\_by\_latency
+#### 26.4.3.49 As vistas wait_classes_global_by_latency e x$wait_classes_global_by_latency
 
 Esses pontos resumem as latências totais da classe de espera, agrupadas por classe de evento. Por padrão, as strings são ordenadas em ordem decrescente de latência total. Eventos ociosos são ignorados.
 
@@ -2691,7 +2691,7 @@ O tempo médio de espera por ocorrência cronometrada de eventos na aula.
 
 O tempo máximo de espera de uma única ocorrência de eventos na classe.
 
-#### 26.4.3.50 As visualizações waits\_by\_host\_by\_latency e x$waits\_by\_host\_by\_latency
+#### 26.4.3.50 As visualizações waits_by_host_by_latency e x$waits_by_host_by_latency
 
 Esses pontos de vista resumem eventos de espera, agrupados por host e evento. Por padrão, as strings são ordenadas por host e latência total decrescente. Eventos ociosos são ignorados.
 
@@ -2721,7 +2721,7 @@ O tempo médio de espera por ocorrência cronometrada do evento para o anfitriã
 
 O tempo máximo de espera de uma única ocorrência cronometrada do evento para o anfitrião.
 
-#### 26.4.3.51 As visualizações waits\_by\_user\_by\_latency e x$waits\_by\_user\_by\_latency
+#### 26.4.3.51 As visualizações waits_by_user_by_latency e x$waits_by_user_by_latency
 
 Esses pontos de vista resumem eventos de espera, agrupados por usuário e evento. Por padrão, as strings são ordenadas por usuário e latência total decrescente. Eventos ociosos são ignorados.
 
@@ -2751,7 +2751,7 @@ O tempo médio de espera por ocorrência cronometrada do evento para o usuário.
 
 O tempo máximo de espera de uma única ocorrência cronometrada do evento para o usuário.
 
-#### 26.4.3.52 As visualizações waits\_global\_by\_latency e x$waits\_global\_by\_latency
+#### 26.4.3.52 As visualizações waits_global_by_latency e x$waits_global_by_latency
 
 Esses pontos de vista resumem eventos de espera, agrupados por evento. Por padrão, as strings são ordenadas por latência total descendente. Eventos ociosos são ignorados.
 
@@ -2781,7 +2781,7 @@ O tempo máximo de espera de uma única ocorrência temporizada do evento.
 
 As seções a seguir descrevem os procedimentos de esquema `sys`.
 
-#### 26.4.4.1 O procedimento create\_synonym\_db()
+#### 26.4.4.1 O procedimento create_synonym_db()
 
 Dado um nome de esquema, este procedimento cria um esquema sinônimo contendo visualizações que fazem referência a todas as tabelas e visualizações do esquema original. Isso pode ser usado, por exemplo, para criar um nome mais curto pelo qual se pode referir a um esquema com um nome longo (como `info` em vez de `INFORMATION_SCHEMA`).
 
@@ -2915,7 +2915,7 @@ mysql> CALL sys.diagnostics(120, 30, 'current');
 mysql> notee;
 ```
 
-#### 26.4.4.3 O procedimento execute\_prepared\_stmt()
+#### 26.4.4.3 O procedimento execute_prepared_stmt()
 
 Dado uma declaração SQL como uma string, executa-a como uma declaração preparada. A declaração preparada é realocada após a execução, portanto, não é suscetível de ser reutilizada. Assim, este procedimento é útil principalmente para executar declarações dinâmicas de forma única.
 
@@ -2944,7 +2944,7 @@ mysql> CALL sys.execute_prepared_stmt('SELECT COUNT(*) FROM mysql.user');
 +----------+
 ```
 
-#### 26.4.4.4 O procedimento ps\_setup\_disable\_background\_threads()
+#### 26.4.4.4 O procedimento ps_setup_disable_background_threads()
 
 Desabilita a instrumentação do Schema de desempenho para todos os threads de plano de fundo. Produz um conjunto de resultados que indica quantos threads de plano de fundo foram desativados. Os threads já desativados não são contados.
 
@@ -2963,7 +2963,7 @@ mysql> CALL sys.ps_setup_disable_background_threads();
 +--------------------------------+
 ```
 
-#### 26.4.4.5 O procedimento ps\_setup\_disable\_consumer()
+#### 26.4.4.5 O procedimento ps_setup_disable_consumer()
 
 Desabilita os consumidores do Schema de desempenho com nomes que contêm o argumento. Produz um conjunto de resultados que indica quantos consumidores foram desativados. Os consumidores já desativados não são contados.
 
@@ -2986,7 +2986,7 @@ mysql> CALL sys.ps_setup_disable_consumer('statement');
 +----------------------+
 ```
 
-#### 26.4.4.6 O procedimento ps\_setup\_disable\_instrument()
+#### 26.4.4.6 O procedimento ps_setup_disable_instrument()
 
 Desabilita instrumentos do Schema de desempenho com nomes que contenham o argumento. Produz um conjunto de resultados que indica quantos instrumentos foram desativados. Os instrumentos já desativados não são contados.
 
@@ -3020,7 +3020,7 @@ mysql> CALL sys.ps_setup_disable_instrument('mutex');
 +--------------------------+
 ```
 
-#### 26.4.4.7 O procedimento ps\_setup\_disable\_thread()
+#### 26.4.4.7 O procedimento ps_setup_disable_thread()
 
 Dada uma identificação de conexão, desativa a instrumentação do Schema de desempenho para o thread. Produz um conjunto de resultados que indica quantos threads foram desativados. Threads já desativados não são contados.
 
@@ -3052,7 +3052,7 @@ mysql> CALL sys.ps_setup_disable_thread(CONNECTION_ID());
 +-------------------+
 ```
 
-#### 26.4.4.8 O procedimento ps\_setup\_enable\_background\_threads()
+#### 26.4.4.8 O procedimento ps_setup_enable_background_threads()
 
 Habilita a instrumentação do Schema de desempenho para todos os threads de segundo plano. Produz um conjunto de resultados que indica quantos threads de segundo plano foram habilitados. Os threads já habilitados não são contados.
 
@@ -3071,7 +3071,7 @@ mysql> CALL sys.ps_setup_enable_background_threads();
 +-------------------------------+
 ```
 
-#### 26.4.4.9 O procedimento ps\_setup\_enable\_consumer()
+#### 26.4.4.9 O procedimento ps_setup_enable_consumer()
 
 Permite que os consumidores do Schema de desempenho com nomes que contenham o argumento. Produz um conjunto de resultados que indica quantos consumidores foram habilitados. Os consumidores já habilitados não são contados.
 
@@ -3094,7 +3094,7 @@ mysql> CALL sys.ps_setup_enable_consumer('statement');
 +---------------------+
 ```
 
-#### 26.4.4.10 O procedimento ps\_setup\_enable\_instrument()
+#### 26.4.4.10 O procedimento ps_setup_enable_instrument()
 
 Habilita instrumentos do Schema de desempenho com nomes que contenham o argumento. Produz um conjunto de resultados que indica quantos instrumentos foram habilitados. Os instrumentos já habilitados não são contados.
 
@@ -3128,7 +3128,7 @@ mysql> CALL sys.ps_setup_enable_instrument('mutex');
 +-------------------------+
 ```
 
-#### 26.4.4.11 O procedimento ps\_setup\_enable\_thread()
+#### 26.4.4.11 O procedimento ps_setup_enable_thread()
 
 Dado um ID de conexão, habilita a instrumentação do Schema de desempenho para o thread. Produz um conjunto de resultados que indica quantos threads foram habilitados. Os threads já habilitados não são contados.
 
@@ -3160,7 +3160,7 @@ mysql> CALL sys.ps_setup_enable_thread(CONNECTION_ID());
 +------------------+
 ```
 
-#### 26.4.4.12 O procedimento ps\_setup\_reload\_saved()
+#### 26.4.4.12 O procedimento ps_setup_reload_saved()
 
 Recarregar uma configuração do esquema de desempenho salva anteriormente na mesma sessão usando o `ps_setup_save()` (Procedimento]"). Para mais informações, consulte a descrição do `ps_setup_save()` (Procedimento").
 
@@ -3170,7 +3170,7 @@ Esse procedimento desabilita o registro binário durante sua execução, manipul
 
 None.
 
-#### 26.4.4.13 O procedimento ps\_setup\_reset\_to\_default()
+#### 26.4.4.13 O procedimento ps_setup_reset_to_default()
 
 Redefine a configuração do esquema de desempenho para as configurações padrão.
 
@@ -3196,7 +3196,7 @@ VALUES ('%', '%', '%')
 ...
 ```
 
-#### 26.4.4.14 O procedimento ps\_setup\_save()
+#### 26.4.4.14 O procedimento ps_setup_save()
 
 Salva a configuração atual do Schema de Desempenho. Isso permite que você altere a configuração temporariamente para depuração ou outros fins, e depois a restaure ao estado anterior, invocando o procedimento `ps_setup_reload_saved()`".
 
@@ -3220,7 +3220,7 @@ mysql> CALL sys.ps_setup_save(10);
 mysql> CALL sys.ps_setup_reload_saved();
 ```
 
-#### 26.4.4.15 O procedimento ps\_setup\_show\_disabled()
+#### 26.4.4.15 O procedimento ps_setup_show_disabled()
 
 Exibe todas as configurações de esquema de desempenho atualmente desativadas.
 
@@ -3269,7 +3269,7 @@ mysql> CALL sys.ps_setup_show_disabled(TRUE, TRUE);
 ...
 ```
 
-#### 26.4.4.16 O procedimento ps\_setup\_show\_disabled\_consumers()
+#### 26.4.4.16 O procedimento ps_setup_show_disabled_consumers()
 
 Exibe todos os consumidores do Schema de Desempenho atualmente desabilitados.
 
@@ -3297,7 +3297,7 @@ mysql> CALL sys.ps_setup_show_disabled_consumers();
 +----------------------------------+
 ```
 
-#### 26.4.4.17 O procedimento ps\_setup\_show\_disabled\_instruments()
+#### 26.4.4.17 O procedimento ps_setup_show_disabled_instruments()
 
 Exibe todos os instrumentos do Schema de desempenho atualmente desabilitados. Isso pode ser uma longa lista.
 
@@ -3321,7 +3321,7 @@ disabled_instruments: wait/synch/mutex/sql/MYSQL_BIN_LOG::LOCK_commit
 ...
 ```
 
-#### 26.4.4.18 O procedimento ps\_setup\_show\_enabled()
+#### 26.4.4.18 O procedimento ps_setup_show_enabled()
 
 Exibe todas as configurações da Schema de desempenho atualmente habilitadas.
 
@@ -3371,7 +3371,7 @@ mysql> CALL sys.ps_setup_show_enabled(FALSE, FALSE);
 +---------------------------+
 ```
 
-#### 26.4.4.19 O procedimento ps\_setup\_show\_enabled\_consumers()
+#### 26.4.4.19 O procedimento ps_setup_show_enabled_consumers()
 
 Exibe todos os consumidores do Schema de Desempenho atualmente habilitados.
 
@@ -3394,7 +3394,7 @@ mysql> CALL sys.ps_setup_show_enabled_consumers();
 +---------------------------+
 ```
 
-#### 26.4.4.20 O procedimento ps\_setup\_show\_enabled\_instruments()
+#### 26.4.4.20 O procedimento ps_setup_show_enabled_instruments()
 
 Exibe todos os instrumentos do Schema de desempenho atualmente habilitados. Isso pode ser uma longa lista.
 
@@ -3418,7 +3418,7 @@ enabled_instruments: wait/io/file/sql/binlog_cache
 ...
 ```
 
-#### 26.4.4.21 O procedimento ps\_statement\_avg\_latency\_histogram()
+#### 26.4.4.21 O procedimento ps_statement_avg_latency_histogram()
 
 Exibe um gráfico de histograma textual dos valores médios de latência em todas as declarações normalizadas rastreadas na tabela do Schema de desempenho `events_statements_summary_by_digest`.
 
@@ -3461,7 +3461,7 @@ Performance Schema Statement Digest Average Latency Histogram:
   Total Statements: 114; Buckets: 16; Bucket Size: 66 ms;
 ```
 
-#### 26.4.4.22 O procedimento ps\_trace\_statement\_digest()
+#### 26.4.4.22 O procedimento ps_trace_statement_digest()
 
 Registra todas as ferramentas de instrumentação do Schema de Desempenho para um digest específico de declaração.
 
@@ -3559,7 +3559,7 @@ mysql> CALL sys.ps_trace_statement_digest('891ec6860f98ba46d89dd20b0c03652c', 10
 Query OK, 0 rows affected (9.28 sec)
 ```
 
-#### 26.4.4.23 O procedimento ps\_trace\_thread()
+#### 26.4.4.23 O procedimento ps_trace_thread()
 
 Descarrega todos os dados do Schema de Desempenho de um thread instrumentado em um arquivo de gráfico formatado `.dot` (para a linguagem de descrição de gráficos DOT). Cada conjunto de resultados retornado pelo procedimento deve ser usado para um gráfico completo.
 
@@ -3628,7 +3628,7 @@ mysql> CALL sys.ps_trace_thread(25, CONCAT('/tmp/stack-', REPLACE(NOW(), ' ', '-
 1 row in set (60.32 sec)
 ```
 
-#### 26.4.4.24 O procedimento ps\_truncate\_all\_tables()
+#### 26.4.4.24 O procedimento ps_truncate_all_tables()
 
 Trunca todas as tabelas de resumo do Schema de desempenho, redefinindo toda a instrumentação agregada como um instantâneo. Produz um conjunto de resultados que indica quantos tabelas foram truncadas.
 
@@ -3647,7 +3647,7 @@ mysql> CALL sys.ps_truncate_all_tables(FALSE);
 +---------------------+
 ```
 
-#### 26.4.4.25 O procedimento statement\_performance\_analyzer()
+#### 26.4.4.25 O procedimento statement_performance_analyzer()
 
 Cria um relatório das declarações em execução no servidor. As visualizações são calculadas com base na atividade geral e/ou delta.
 
@@ -3693,7 +3693,7 @@ O significado do valor `in_table` para cada valor `in_action` é detalhado nas d
 
 Opções de configuração
 
-`statement_performance_analyzer()` O procedimento de operação pode ser modificado usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys\_config"):
+`statement_performance_analyzer()` O procedimento de operação pode ser modificado usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys_config"):
 
 * `debug`, `@sys.debug`
 
@@ -3912,7 +3912,7 @@ Query OK, 0 rows affected (0.00 sec)
 
 As seções a seguir descrevem as funções de esquema armazenado `sys`.
 
-#### 26.4.5.1 A função extract\_schema\_from\_file\_name()
+#### 26.4.5.1 A função extract_schema_from_file_name()
 
 Dado um nome de caminho de arquivo, retorna o componente do caminho que representa o nome do esquema. Esta função assume que o nome do arquivo está dentro do diretório do esquema. Por essa razão, não funciona com partições ou tabelas definidas usando a opção de tabela própria `DATA_DIRECTORY`.
 
@@ -4034,7 +4034,7 @@ Essa função é útil para formatar declarações possivelmente longas recupera
 
 Opções de configuração
 
-A operação `format_statement()` (Função) pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “A Tabela sys\_config”):
+A operação `format_statement()` (Função) pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “A Tabela sys_config”):
 
 * `statement_truncate_len`, `@sys.statement_truncate_len`
 
@@ -4088,7 +4088,7 @@ mysql> SELECT sys.format_time(3501), sys.format_time(188732396662000);
 +-----------------------+----------------------------------+
 ```
 
-#### 26.4.5.7 A função list\_add()
+#### 26.4.5.7 A função list_add()
 
 Adiciona um valor a uma lista de valores separados por vírgula e retorna o resultado.
 
@@ -4129,7 +4129,7 @@ mysql> SELECT @@sql_mode;
 +--------------------------------------------+
 ```
 
-#### 26.4.5.8 A função list\_drop()
+#### 26.4.5.8 A função list_drop()
 
 Remove um valor de uma lista de valores separados por vírgula e retorna o resultado. Para mais informações, consulte a descrição da função `list_add()`).
 
@@ -4143,7 +4143,7 @@ Remove um valor de uma lista de valores separados por vírgula e retorna o resul
 
 Um valor de `TEXT`.
 
-#### 26.4.5.9 A função ps\_is\_account\_enabled()
+#### 26.4.5.9 A função ps_is_account_enabled()
 
 Retorna `YES` ou `NO` para indicar se a instrumentação do Schema de Desempenho para uma conta específica está habilitada.
 
@@ -4168,7 +4168,7 @@ mysql> SELECT sys.ps_is_account_enabled('localhost', 'root');
 +------------------------------------------------+
 ```
 
-#### 26.4.5.10 A função ps\_is\_consumer\_enabled()
+#### 26.4.5.10 A função ps_is_consumer_enabled()
 
 Retorna `YES` ou `NO` para indicar se um determinado consumidor do Schema de Desempenho está habilitado, ou `NULL` se o argumento for `NULL`. Se o argumento não for um nome de consumidor válido, ocorre um erro. (Antes do MySQL 5.7.28, a função retorna `NULL` se o argumento não for um nome de consumidor válido.)
 
@@ -4193,7 +4193,7 @@ mysql> SELECT sys.ps_is_consumer_enabled('thread_instrumentation');
 +------------------------------------------------------+
 ```
 
-#### 26.4.5.11 A função ps\_is\_instrument\_default\_enabled()
+#### 26.4.5.11 A função ps_is_instrument_default_enabled()
 
 Retorna `YES` ou `NO` para indicar se um instrumento do Schema de Desempenho é habilitado por padrão.
 
@@ -4222,7 +4222,7 @@ mysql> SELECT sys.ps_is_instrument_default_enabled('statement/sql/alter_user');
 +------------------------------------------------------------------+
 ```
 
-#### 26.4.5.12 A função ps\_is\_instrument\_default\_timed()
+#### 26.4.5.12 A função ps_is_instrument_default_timed()
 
 Retorna `YES` ou `NO` para indicar se um instrumento do Schema de Desempenho é temporizado por padrão.
 
@@ -4251,7 +4251,7 @@ mysql> SELECT sys.ps_is_instrument_default_timed('statement/sql/alter_user');
 +----------------------------------------------------------------+
 ```
 
-#### 26.4.5.13 A função ps\_is\_thread\_instrumented()
+#### 26.4.5.13 A função ps_is_thread_instrumented()
 
 Retorna `YES` ou `NO` para indicar se a instrumentação do Schema de Desempenho para um ID de conexão dado está habilitada, `UNKNOWN` se o ID é desconhecido, ou `NULL` se o ID é `NULL`.
 
@@ -4280,7 +4280,7 @@ mysql> SELECT sys.ps_is_thread_instrumented(CONNECTION_ID());
 +------------------------------------------------+
 ```
 
-#### 26.4.5.14 A função ps\_thread\_account()
+#### 26.4.5.14 A função ps_thread_account()
 
 Dado um ID de thread do Schema de Desempenho, retorna a conta `user_name@host_name` associada ao thread.
 
@@ -4303,7 +4303,7 @@ mysql> SELECT sys.ps_thread_account(sys.ps_thread_id(CONNECTION_ID()));
 +----------------------------------------------------------+
 ```
 
-#### 26.4.5.15 A função ps\_thread\_id()
+#### 26.4.5.15 A função ps_thread_id()
 
 Retorna o ID do thread do Schema de Desempenho atribuído a um ID de conexão dado, ou o ID do thread para a conexão atual se o ID de conexão for `NULL`.
 
@@ -4326,7 +4326,7 @@ mysql> SELECT sys.ps_thread_id(260);
 +-----------------------+
 ```
 
-#### 26.4.5.16 A função ps\_thread\_stack()
+#### 26.4.5.16 A função ps_thread_stack()
 
 Retorna uma pilha formatada em JSON de todas as declarações, estágios e eventos dentro do Schema de Desempenho para um ID de thread dado.
 
@@ -4353,7 +4353,7 @@ thread_stack: {"rankdir": "LR","nodesep": "0.10",
 ...
 ```
 
-#### 26.4.5.17 A função ps\_thread\_trx\_info()
+#### 26.4.5.17 A função ps_thread_trx_info()
 
 Retorna um objeto JSON contendo informações sobre um determinado thread. As informações incluem a transação atual e as declarações que já foram executadas, derivadas das tabelas do Schema de Desempenho `events_transactions_current` e `events_statements_history`. (Os consumidores dessas tabelas devem estar habilitados para obter dados completos no objeto JSON.)
 
@@ -4371,7 +4371,7 @@ Objetos de erro semelhantes são retornados para outros avisos e exceções que 
 
 Opções de configuração
 
-A operação `ps_thread_trx_info()` (Função) pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “A Tabela sys\_config”):
+A operação `ps_thread_trx_info()` (Função) pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “A Tabela sys_config”):
 
 * `ps_thread_trx_info.max_length`, `@sys.ps_thread_trx_info.max_length`
 
@@ -4458,7 +4458,7 @@ sys.ps_thread_trx_info(48): [
 ]
 ```
 
-#### 26.4.5.18 A função quote\_identifier()
+#### 26.4.5.18 A função quote_identifier()
 
 Dado um argumento de string, essa função produz um identificador citado adequado para inclusão em declarações SQL. Isso é útil quando um valor a ser usado como um identificador é uma palavra reservada ou contém caracteres de barra tensa (`` ` ``). Foi adicionado no MySQL 5.7.14.
 
@@ -4493,13 +4493,13 @@ mysql> SELECT sys.quote_identifier('integer');
 +---------------------------------+
 ```
 
-#### 26.4.5.19 A função sys\_get\_config()
+#### 26.4.5.19 A função sys_get_config()
 
 Dado o nome de uma opção de configuração, retorna o valor da opção da tabela `sys_config`, ou o valor padrão fornecido (que pode ser `NULL`) se a opção não existir na tabela.
 
 Se a função `sys_get_config()`") retornar o valor padrão e esse valor for `NULL`, espera-se que o chamador seja capaz de lidar com `NULL` para a opção de configuração dada.
 
-Por convenção, as rotinas que chamam à função `sys_get_config()` primeiro verificam se a variável definida pelo usuário correspondente existe e não é `NULL`. Se sim, a rotina usa o valor da variável sem ler a tabela `sys_config`. Se a variável não existir ou for `NULL`, a rotina lê o valor da opção da tabela e define a variável definida pelo usuário para esse valor. Para mais informações sobre a relação entre as opções de configuração e suas variáveis definidas pelo usuário correspondentes, consulte a Seção 26.4.2.1, “A tabela sys\_config”.
+Por convenção, as rotinas que chamam à função `sys_get_config()` primeiro verificam se a variável definida pelo usuário correspondente existe e não é `NULL`. Se sim, a rotina usa o valor da variável sem ler a tabela `sys_config`. Se a variável não existir ou for `NULL`, a rotina lê o valor da opção da tabela e define a variável definida pelo usuário para esse valor. Para mais informações sobre a relação entre as opções de configuração e suas variáveis definidas pelo usuário correspondentes, consulte a Seção 26.4.2.1, “A tabela sys_config”.
 
 Se você deseja verificar se a opção de configuração já foi definida e, se não for o caso, use o valor de retorno de `sys_get_config()`, você pode usar `IFNULL(...)` (veja o exemplo mais adiante). No entanto, isso não deve ser feito dentro de um loop (por exemplo, para cada string em um conjunto de resultados), porque para chamadas repetidas onde a atribuição é necessária apenas na primeira iteração, espera-se que o uso de `IFNULL(...)` seja significativamente mais lento do que o uso de um bloco `IF (...) THEN ... END IF;` (veja o exemplo mais adiante).
 
@@ -4542,7 +4542,7 @@ IF (@sys.statement_truncate_len IS NULL) THEN
 END IF;
 ```
 
-#### 26.4.5.20 A função version\_major()
+#### 26.4.5.20 A função version_major()
 
 Essa função retorna a versão principal do servidor MySQL.
 
@@ -4565,7 +4565,7 @@ mysql> SELECT VERSION(), sys.version_major();
 +------------------+---------------------+
 ```
 
-#### 26.4.5.21 A função version\_minor()
+#### 26.4.5.21 A função version_minor()
 
 Essa função retorna a versão menor do servidor MySQL.
 
@@ -4588,7 +4588,7 @@ mysql> SELECT VERSION(), sys.version_minor();
 +------------------+---------------------+
 ```
 
-#### 26.4.5.22 A função version\_patch()
+#### 26.4.5.22 A função version_patch()
 
 Essa função retorna a versão de liberação de patches do servidor MySQL.
 

@@ -138,7 +138,7 @@ Para grandes tabelas, isso pode economizar muito I/O de disco.
 
 Essa dica é válida para inserções em qualquer tabela, não apenas as tabelas `InnoDB`.
 
-* Ao fazer inserções em massa em tabelas com colunas de auto-incremento, defina `innodb_autoinc_lock_mode` para 2 em vez do valor padrão 1. Consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”, para obter detalhes.
+* Ao fazer inserções em massa em tabelas com colunas de auto-incremento, defina `innodb_autoinc_lock_mode` para 2 em vez do valor padrão 1. Consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”, para obter detalhes.
 
 * Ao realizar inserções em massa, é mais rápido inserir as strings na ordem de `PRIMARY KEY`. As tabelas `InnoDB` utilizam um índice agrupado, o que torna relativamente rápido usar dados na ordem do `PRIMARY KEY`. Realizar inserções em massa na ordem de `PRIMARY KEY` é particularmente importante para tabelas que não se encaixam inteiramente no pool de buffer.
 
@@ -205,7 +205,7 @@ Em algumas versões do GNU/Linux e Unix, limpar arquivos no disco com a chamada 
 
 * Use I/O direto no Solaris 10 para arquitetura x86_64
 
-Ao usar o motor de armazenamento `InnoDB` no Solaris 10 para arquitetura x86\_64 (AMD Opteron), use I/O direto para arquivos relacionados ao `InnoDB` para evitar a degradação do desempenho do `InnoDB`. Para usar I/O direto para um sistema de arquivos UFS inteiro usado para armazenar arquivos relacionados ao `InnoDB`, monte-o com a opção `forcedirectio`; veja `mount_ufs(1M)`. (O padrão no Solaris 10/x86\_64 é *não* usar essa opção.) Para aplicar I/O direto apenas para operações de arquivo `InnoDB`, em vez do sistema de arquivos inteiro, defina `innodb_flush_method = O_DIRECT`. Com essa configuração, o `InnoDB` chama `directio()` em vez de `fcntl()` para I/O a arquivos de dados (não para I/O a arquivos de log).
+Ao usar o motor de armazenamento `InnoDB` no Solaris 10 para arquitetura x86_64 (AMD Opteron), use I/O direto para arquivos relacionados ao `InnoDB` para evitar a degradação do desempenho do `InnoDB`. Para usar I/O direto para um sistema de arquivos UFS inteiro usado para armazenar arquivos relacionados ao `InnoDB`, monte-o com a opção `forcedirectio`; veja `mount_ufs(1M)`. (O padrão no Solaris 10/x86_64 é *não* usar essa opção.) Para aplicar I/O direto apenas para operações de arquivo `InnoDB`, em vez do sistema de arquivos inteiro, defina `innodb_flush_method = O_DIRECT`. Com essa configuração, o `InnoDB` chama `directio()` em vez de `fcntl()` para I/O a arquivos de dados (não para I/O a arquivos de log).
 
 * Use armazenamento bruto para arquivos de dados e log com Solaris 2.6 ou posterior
 

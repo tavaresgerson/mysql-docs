@@ -233,7 +233,7 @@ mysql> SELECT FILE_NAME, LOGFILE_GROUP_NUMBER, EXTRA
 4 rows in set (0.01 sec)
 ```
 
-(Veja a Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”).
+(Veja a Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”).
 
 A memória usada para `UNDO_BUFFER_SIZE` vem do pool global, cujo tamanho é determinado pelo valor do parâmetro de configuração do nó de dados `SharedGlobalMemory`. Isso inclui qualquer valor padrão implícito para esta opção pela configuração do parâmetro de configuração do nó de dados `InitialLogFileGroup`.
 
@@ -764,7 +764,7 @@ O servidor proíbe alterações em colunas de chave estrangeira que possam causa
 
 * Alterar uma coluna `NULL` para `NOT NULL` em modo não estrito é proibido para evitar a conversão de valores `NULL` para valores não padrão não `NULL`, para os quais não existem valores correspondentes na tabela referenciada. A operação é permitida em modo estrito, mas um erro é retornado se qualquer conversão desse tipo for necessária.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` altera os nomes internos de restrições de chave estrangeira e os nomes de restrições de chave estrangeira definidos pelo usuário que começam com a string “*`tbl_name`*\_ibfk\_” para refletir o novo nome da tabela. `InnoDB` interpreta os nomes de restrições de chave estrangeira que começam com a string “*`tbl_name`*\_ibfk\_” como nomes gerados internamente.
+`ALTER TABLE tbl_name RENAME new_tbl_name` altera os nomes internos de restrições de chave estrangeira e os nomes de restrições de chave estrangeira definidos pelo usuário que começam com a string “*`tbl_name`*_ibfk_” para refletir o novo nome da tabela. `InnoDB` interpreta os nomes de restrições de chave estrangeira que começam com a string “*`tbl_name`*_ibfk_” como nomes gerados internamente.
 
 #### Alterando o Conjunto de Caracteres
 
@@ -1382,7 +1382,7 @@ mysql> SELECT LOGFILE_GROUP_NAME, FILE_NAME, EXTRA
 2 rows in set (0.03 sec)
 ```
 
-Veja a Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.
+Veja a Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
 
 `ALTER TABLESPACE` é útil apenas com armazenamento de dados de disco para NDB Cluster. Veja a Seção 21.6.11, “Tabelas de dados de disco do NDB Cluster”.
 
@@ -1547,7 +1547,7 @@ Se um evento repetitivo não terminar dentro do seu intervalo de programação, 
 
 A cláusula `ON SCHEDULE` pode utilizar expressões que envolvam funções embutidas do MySQL e variáveis de usuário para obter qualquer um dos valores de *`timestamp`* ou *`interval`* que ela contém. Você não pode usar funções armazenadas ou funções carregáveis nessas expressões, nem pode usar referências a tabelas; no entanto, você pode usar `SELECT FROM DUAL`. Isso é verdadeiro tanto para as declarações `CREATE EVENT` quanto `ALTER EVENT`. Referências a funções armazenadas, funções carregáveis e tabelas, nesses casos, não são especificamente permitidas e falham com um erro (veja o Bug #22830).
 
-Os horários na cláusula `ON SCHEDULE` são interpretados usando o valor atual da sessão `time_zone`. Isso se torna o fuso horário do evento; ou seja, o fuso horário que é usado para a programação de eventos e que está em vigor dentro do evento conforme ele é executado. Esses horários são convertidos para UTC e armazenados juntamente com o fuso horário do evento na tabela `mysql.event`. Isso permite que a execução do evento prossiga conforme definido, independentemente de quaisquer alterações subsequentes no fuso horário do servidor ou efeitos do horário de verão. Para informações adicionais sobre a representação dos horários dos eventos, consulte a Seção 23.4.4, “Metadados do Evento”. Veja também a Seção 13.7.5.18, “Declaração SHOW EVENTS”, e a Seção 24.3.8, “A Tabela INFORMATION\_SCHEMA EVENTS”.
+Os horários na cláusula `ON SCHEDULE` são interpretados usando o valor atual da sessão `time_zone`. Isso se torna o fuso horário do evento; ou seja, o fuso horário que é usado para a programação de eventos e que está em vigor dentro do evento conforme ele é executado. Esses horários são convertidos para UTC e armazenados juntamente com o fuso horário do evento na tabela `mysql.event`. Isso permite que a execução do evento prossiga conforme definido, independentemente de quaisquer alterações subsequentes no fuso horário do servidor ou efeitos do horário de verão. Para informações adicionais sobre a representação dos horários dos eventos, consulte a Seção 23.4.4, “Metadados do Evento”. Veja também a Seção 13.7.5.18, “Declaração SHOW EVENTS”, e a Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS”.
 
 Normalmente, uma vez que um evento tenha expirado, ele é imediatamente descartado. Você pode sobrepor esse comportamento especificando `ON COMPLETION PRESERVE`. Usar `ON COMPLETION NOT PRESERVE` apenas torna o comportamento não persistente padrão explícito.
 
@@ -2473,13 +2473,13 @@ Se o modo SQL `NO_ZERO_DATE` ou `NO_ZERO_IN_DATE` estiver habilitado e um valor 
 
 Uma coluna de número inteiro ou ponto flutuante pode ter o atributo adicional `AUTO_INCREMENT`. Quando você insere um valor de `NULL` (recomendado) ou `0` em uma coluna indexada `AUTO_INCREMENT`, a coluna é definida para o próximo valor da sequência. Tipicamente, isso é `value+1`, onde *`value`* é o maior valor para a coluna atualmente na tabela. As sequências `AUTO_INCREMENT` começam com `1`.
 
-Para recuperar um valor de `AUTO_INCREMENT` após inserir uma string, use a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`. Veja a Seção 12.15, “Funções de Informação”, e mysql\_insert\_id().
+Para recuperar um valor de `AUTO_INCREMENT` após inserir uma string, use a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`. Veja a Seção 12.15, “Funções de Informação”, e mysql_insert_id().
 
 Se o modo SQL `NO_AUTO_VALUE_ON_ZERO` estiver habilitado, você pode armazenar `0` nas colunas `AUTO_INCREMENT` como `0` sem gerar um novo valor de sequência. Veja a Seção 5.1.10, “Modos SQL do servidor”.
 
 Só pode haver uma única coluna `AUTO_INCREMENT` por tabela, ela deve ser indexada e não pode ter um valor `DEFAULT`. Uma coluna `AUTO_INCREMENT` funciona corretamente apenas se contiver apenas valores positivos. Inserir um número negativo é considerado como inserir um número muito grande positivo. Isso é feito para evitar problemas de precisão quando os números "transbordam" de positivo para negativo e também para garantir que você não obtenha acidentalmente uma coluna `AUTO_INCREMENT` que contenha `0`.
 
-Para as tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Veja a Seção 3.6.9, “Usando AUTO\_INCREMENT”.
+Para as tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Veja a Seção 3.6.9, “Usando AUTO_INCREMENT”.
 
 Para tornar o MySQL compatível com algumas aplicações ODBC, você pode encontrar o valor `AUTO_INCREMENT` para a última string inserida com a seguinte consulta:
 
@@ -2489,7 +2489,7 @@ Para tornar o MySQL compatível com algumas aplicações ODBC, você pode encont
 
 Este método exige que a variável `sql_auto_is_null` não esteja definida como 0. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 
-Para informações sobre `InnoDB` e `AUTO_INCREMENT`, consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”. Para informações sobre `AUTO_INCREMENT` e a Replicação do MySQL, consulte a Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
+Para informações sobre `InnoDB` e `AUTO_INCREMENT`, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”. Para informações sobre `AUTO_INCREMENT` e a Replicação do MySQL, consulte a Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”.
 
 * `COMMENT`
 
@@ -2699,7 +2699,7 @@ Um comentário para a tabela, com até 2048 caracteres.
 
 Você pode definir o valor `InnoDB` `MERGE_THRESHOLD` para uma tabela usando a cláusula `table_option` `COMMENT`. Veja a Seção 14.8.12, “Configurando o Limite de Fusão para Páginas de Índice”.
 
-**Definindo as opções da NDB\_TABLE.**
+**Definindo as opções da NDB_TABLE.**
 
 No MySQL NDB Cluster 7.5.2 e versões posteriores, o comentário da tabela em uma declaração `CREATE TABLE` ou `ALTER TABLE` também pode ser usado para especificar de um a quatro dos `NDB_TABLE` opções `NOLOGGING`, `READ_BACKUP`, `PARTITION_BALANCE` ou `FULLY_REPLICATED` como um conjunto de pares nome-valor, separados por vírgulas, se necessário, imediatamente após a string `NDB_TABLE=` que começa o texto do comentário citado. Um exemplo de declaração usando essa sintaxe é mostrado aqui (texto destacado):
 
@@ -2790,7 +2790,7 @@ O número máximo de strings que você planeja armazenar na tabela. Esse não é
 
 Importante
 
-O uso de `MAX_ROWS` com as tabelas `NDB` para controlar o número de partições de tabela é descontinuado a partir do NDB Cluster 7.5.4. Ele ainda é suportado em versões posteriores para compatibilidade reversa, mas está sujeito à remoção em uma versão futura. Use PARTITION\_BALANCE em vez disso; veja Configurando opções NDB_TABLE.
+O uso de `MAX_ROWS` com as tabelas `NDB` para controlar o número de partições de tabela é descontinuado a partir do NDB Cluster 7.5.4. Ele ainda é suportado em versões posteriores para compatibilidade reversa, mas está sujeito à remoção em uma versão futura. Use PARTITION_BALANCE em vez disso; veja Configurando opções NDB_TABLE.
 
 O motor de armazenamento `NDB` trata esse valor como máximo. Se você planeja criar tabelas muito grandes do NDB Cluster (contendo milhões de strings), você deve usar essa opção para garantir que `NDB` aloque um número suficiente de slots de índice na tabela hash usada para armazenar os hashes das chaves primárias da tabela, definindo `MAX_ROWS = 2 * rows`, onde *`rows`* é o número de strings que você espera inserir na tabela.
 
@@ -4111,7 +4111,7 @@ mysql> CREATE TABLE test.t (
 Query OK, 0 rows affected (0.32 sec)
 ```
 
-Do shell do sistema, execute o utilitário **ndb\_desc** para obter informações sobre a tabela recém criada, conforme mostrado neste exemplo:
+Do shell do sistema, execute o utilitário **ndb_desc** para obter informações sobre a tabela recém criada, conforme mostrado neste exemplo:
 
 ```sql
 $> ndb_desc -d test t
@@ -4170,7 +4170,7 @@ mysql> EXIT
 Bye
 ```
 
-A saída do **ndb\_desc** mostra que os tamanhos das partes de blob das colunas foram alterados conforme esperado:
+A saída do **ndb_desc** mostra que os tamanhos das partes de blob das colunas foram alterados conforme esperado:
 
 ```sql
 $> ndb_desc -d test t
@@ -4373,7 +4373,7 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
 
 Antes da NDB 7.6.15, o comentário da tabela usado com `ALTER TABLE` substituiu qualquer comentário existente que a tabela pudesse ter tido. Isso significava que (por exemplo) o valor `READ_BACKUP` não era carregado para o novo comentário definido pela declaração `ALTER TABLE`, e que quaisquer valores não especificados retornavam aos seus valores padrão. (BUG#30428829) Assim, não havia mais nenhuma maneira de usar SQL para recuperar o valor previamente definido para o comentário. Para evitar que os valores do comentário retornem aos seus valores padrão, era necessário preservar quaisquer desses valores da string de comentário existente e incluí-los no comentário passado para `ALTER TABLE`.
 
-Você também pode ver o valor da opção `PARTITION_BALANCE` na saída de **ndb\_desc**. **ndb\_desc** também mostra se as opções `READ_BACKUP` e `FULLY_REPLICATED` estão definidas para a tabela. Consulte a descrição deste programa para obter mais informações.
+Você também pode ver o valor da opção `PARTITION_BALANCE` na saída de **ndb_desc**. **ndb_desc** também mostra se as opções `READ_BACKUP` e `FULLY_REPLICATED` estão definidas para a tabela. Consulte a descrição deste programa para obter mais informações.
 
 ### 13.1.19 Declaração de CREATE TABLESPACE
 
@@ -4441,7 +4441,7 @@ O arredondamento descrito acima é feito explicitamente, e o MySQL Server emite 
 
 Quando o `CREATE TABLESPACE` é usado com o `ENGINE [=] NDB`, um espaço de tabela e um arquivo de dados associado são criados em cada nó de dados do Cluster. Você pode verificar se os arquivos de dados foram criados e obter informações sobre eles, fazendo uma consulta à tabela do esquema de informações `FILES`. (Veja o exemplo mais adiante nesta seção.)
 
-(Veja a Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”).
+(Veja a Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”).
 
 #### Opções
 
@@ -5230,7 +5230,7 @@ Para renomear as tabelas de `TEMPORARY`, `RENAME TABLE` não funciona. Use `ALTE
 
 Quaisquer privilégios concedidos especificamente para uma tabela ou visão renomeada não são migrados para o novo nome. Eles devem ser alterados manualmente.
 
-`RENAME TABLE tbl_name TO new_tbl_name` altera os nomes internos de restrições de chave estrangeira e os nomes de restrições de chave estrangeira definidos pelo usuário que começam com a string “*`tbl_name`*\_ibfk\_” para refletir o novo nome da tabela. `InnoDB` interpreta os nomes de restrições de chave estrangeira que começam com a string “*`tbl_name`*\_ibfk\_” como nomes gerados internamente.
+`RENAME TABLE tbl_name TO new_tbl_name` altera os nomes internos de restrições de chave estrangeira e os nomes de restrições de chave estrangeira definidos pelo usuário que começam com a string “*`tbl_name`*_ibfk_” para refletir o novo nome da tabela. `InnoDB` interpreta os nomes de restrições de chave estrangeira que começam com a string “*`tbl_name`*_ibfk_” como nomes gerados internamente.
 
 Os nomes das restrições de chave estrangeira que apontam para a tabela renomeada são atualizados automaticamente, a menos que haja um conflito, caso em que a declaração falha com um erro. Um conflito ocorre se o nome da restrição renomeada já existir. Nesses casos, você deve descartar e recriar as chaves estrangeiras para que elas funcionem corretamente.
 

@@ -42,7 +42,7 @@ Estes são os modelos disponíveis:
 
 * `setup_timers`: O temporizador do evento atual
 
-#### 25.12.2.1 A tabela setup\_actors
+#### 25.12.2.1 A tabela setup_actors
 
 A tabela `setup_actors` contém informações que determinam se é necessário habilitar o monitoramento e o registro de eventos históricos para novos threads de servidor de primeiro plano (threads associados a conexões de cliente). Essa tabela tem um tamanho máximo de 100 strings por padrão. Para alterar o tamanho da tabela, modifique a variável de sistema `performance_schema_setup_actors_size` na inicialização do servidor.
 
@@ -89,7 +89,7 @@ Se deve registrar eventos históricos para os threads de primeiro plano correspo
 
 `TRUNCATE TABLE` é permitido para a tabela `setup_actors`. Ele remove as strings.
 
-#### 25.12.2.2 A tabela setup\_consumers
+#### 25.12.2.2 A tabela setup_consumers
 
 A tabela `setup_consumers` lista os tipos de consumidores para os quais as informações de evento podem ser armazenadas e que estão habilitados:
 
@@ -132,7 +132,7 @@ Se o consumidor está habilitado. O valor é `YES` ou `NO`. Esta coluna pode ser
 
 `TRUNCATE TABLE` não é permitido para a tabela `setup_consumers`.
 
-#### 25.12.2.3 A tabela setup\_instruments
+#### 25.12.2.3 A tabela setup_instruments
 
 A tabela `setup_instruments` lista as classes de objetos instrumentados para os quais eventos podem ser coletados:
 
@@ -267,7 +267,7 @@ Se os eventos para o objeto são temporizados. O valor é `YES` ou `NO`. Esta co
 
 `TRUNCATE TABLE` é permitido para a tabela `setup_objects`. Ele remove as strings.
 
-#### 25.12.2.5 A tabela setup\_timers
+#### 25.12.2.5 A tabela setup_timers
 
 A tabela `setup_timers` mostra os temporizadores de evento atualmente selecionados:
 
@@ -320,7 +320,7 @@ Essas tabelas listam objetos de sincronização instrumentados, arquivos e conex
 
 As colunas `mutex_instances.LOCKED_BY_THREAD_ID` e `rwlock_instances.WRITE_LOCKED_BY_THREAD_ID` são extremamente importantes para investigar gargalos de desempenho ou deadlocks. Para exemplos de como usá-las para esse propósito, consulte a Seção 25.19, “Usando o Schema de Desempenho para Diagnosticar Problemas”
 
-#### 25.12.3.1 A tabela cond\_instances
+#### 25.12.3.1 A tabela cond_instances
 
 A tabela `cond_instances` lista todas as condições observadas pelo Schema de Desempenho enquanto o servidor está sendo executado. Uma condição é um mecanismo de sincronização usado no código para sinalizar que um evento específico ocorreu, de modo que um thread que está esperando por essa condição possa retomar o trabalho.
 
@@ -338,7 +338,7 @@ O endereço em memória à condição instrumentada.
 
 `TRUNCATE TABLE` não é permitido para a tabela `cond_instances`.
 
-#### 25.12.3.2 A tabela file\_instances
+#### 25.12.3.2 A tabela file_instances
 
 A tabela `file_instances` lista todos os arquivos vistos pelo Schema de Desempenho ao executar a instrumentação de E/S de arquivo. Se um arquivo no disco nunca tiver sido aberto, ele não está no `file_instances`. Quando um arquivo é excluído do disco, ele também é removido da tabela `file_instances`.
 
@@ -358,7 +358,7 @@ O número de manipulações abertas no arquivo. Se um arquivo foi aberto e depoi
 
 `TRUNCATE TABLE` não é permitido para a tabela `file_instances`.
 
-#### 25.12.3.3 A tabela mutex\_instances
+#### 25.12.3.3 A tabela mutex_instances
 
 A tabela `mutex_instances` lista todos os mutexes vistos pelo Schema de Desempenho enquanto o servidor está sendo executado. Um mutex é um mecanismo de sincronização usado no código para garantir que apenas um thread, em um determinado momento, possa ter acesso a algum recurso comum. O recurso é dito estar "protegido" pelo mutex.
 
@@ -408,7 +408,7 @@ Ao realizar consultas em ambas as seguintes tabelas, um aplicativo de monitorame
 
 * `mutex_instances`, para ver qual outro thread atualmente possui um mutex
 
-#### 25.12.3.4 A tabela rwlock\_instances
+#### 25.12.3.4 A tabela rwlock_instances
 
 A tabela `rwlock_instances` lista todas as instâncias de rwlock (bloqueio de leitura e escrita) observadas pelo Schema de Desempenho enquanto o servidor está sendo executado. Um `rwlock` é um mecanismo de sincronização usado no código para garantir que os threads em um determinado momento possam ter acesso a algum recurso comum seguindo certas regras. O recurso é dito estar “protegido” pelo `rwlock`. O acesso é compartilhado (muitos threads podem ter um bloqueio de leitura ao mesmo tempo), exclusivo (apenas um thread pode ter um bloqueio de escrita em um determinado momento) ou compartilhado-exclusivo (um thread pode ter um bloqueio de escrita enquanto permite leituras inconsistentes por outros threads). O acesso compartilhado-exclusivo é conhecido como `sxlock` e otimiza a concorrência e melhora a escalabilidade para cargas de trabalho de leitura e escrita.
 
@@ -444,7 +444,7 @@ Ao realizar consultas em ambas as seguintes tabelas, um aplicativo de monitorame
 
 Há uma limitação: o `rwlock_instances` pode ser usado apenas para identificar o thread que detém um bloqueio de escrita, mas não os threads que detêm um bloqueio de leitura.
 
-#### 25.12.3.5 A tabela socket\_instances
+#### 25.12.3.5 A tabela socket_instances
 
 A tabela `socket_instances` fornece um instantâneo em tempo real das conexões ativas no servidor MySQL. A tabela contém uma string por conexão de arquivo de rede TCP/IP ou Unix. As informações disponíveis nesta tabela fornecem um instantâneo em tempo real das conexões ativas no servidor. (Informações adicionais estão disponíveis em tabelas de resumo de soquetes, incluindo atividade de rede, como operações de soquete e número de bytes transmitidos e recebidos; consulte Seção 25.12.15.8, “Tabelas de Resumo de Soquetes”).
 
@@ -666,7 +666,7 @@ WHERE NAME = 'wait';
 
 Para obter informações adicionais sobre a configuração da coleta de eventos, consulte a Seção 25.3, “Configuração de inicialização do Schema de desempenho”, e a Seção 25.4, “Configuração de execução do Schema de desempenho”.
 
-#### 25.12.4.1 A tabela eventos\_waits\_current
+#### 25.12.4.1 A tabela eventos_waits_current
 
 A tabela `events_waits_current` contém eventos de espera atuais. A tabela armazena uma string por thread, mostrando o status atual do evento de espera mais recente monitorado da thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela.
 
@@ -798,7 +798,7 @@ Reservado para uso futuro.
 
 `TRUNCATE TABLE` é permitido para a tabela `events_waits_current`. Ele remove as strings.
 
-#### 25.12.4.2 A tabela eventos\_waits\_history
+#### 25.12.4.2 A tabela eventos_waits_history
 
 A tabela `events_waits_history` contém os eventos de espera mais recentes do *`N`* que terminaram por thread. Os eventos de espera não são adicionados à tabela até que tenham terminado. Quando a tabela contém o número máximo de strings para um determinado thread, a string mais antiga do thread é descartada quando uma nova string para esse thread é adicionada. Quando um thread termina, todas as suas strings são descartadas.
 
@@ -812,7 +812,7 @@ Para mais informações sobre a relação entre as três tabelas de eventos de e
 
 Para obter informações sobre a configuração de se os eventos de espera devem ser coletados, consulte a Seção 25.12.4, “Tabelas de Eventos de Espera do Schema de Desempenho”.
 
-#### 25.12.4.3 A tabela de eventos\_waits\_history\_long
+#### 25.12.4.3 A tabela de eventos_waits_history_long
 
 A tabela `events_waits_history_long` contém *`N`* os eventos de espera mais recentes que terminaram globalmente, em todas as threads. Os eventos de espera não são adicionados à tabela até que tenham terminado. Quando a tabela se torna cheia, a string mais antiga é descartada quando uma nova string é adicionada, independentemente de qual thread gerou a string.
 
@@ -1046,7 +1046,7 @@ WHERE NAME LIKE 'events_stages_%';
 
 Para ver o progresso de uma declaração em andamento do `ALTER TABLE`, selecione a partir da tabela `events_stages_current`.
 
-#### 25.12.5.1 Tabela eventos\_stages\_current
+#### 25.12.5.1 Tabela eventos_stages_current
 
 A tabela `events_stages_current` contém eventos de estágio atual. A tabela armazena uma string por thread, mostrando o status atual do evento de estágio mais recente monitorado da thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela.
 
@@ -1112,7 +1112,7 @@ Para mais informações sobre a relação entre as três tabelas de eventos em e
 
 Para obter informações sobre a configuração de se os eventos de estágio devem ser coletados, consulte a Seção 25.12.5, “Tabelas de Eventos de Estágio do Schema de Desempenho”.
 
-#### 25.12.5.3 A tabela de histórico de eventos\_stages
+#### 25.12.5.3 A tabela de histórico de eventos_stages
 
 A tabela `events_stages_history_long` contém os eventos de estágio mais recentes do *`N`* que terminaram globalmente, em todas as threads. Os eventos de estágio não são adicionados à tabela até que tenham terminado. Quando a tabela se torna cheia, a string mais antiga é descartada quando uma nova string é adicionada, independentemente de qual thread gerou essa string.
 
@@ -1326,7 +1326,7 @@ Para que as estatísticas sejam coletadas para declarações, não é suficiente
 
 Não são agregadas estatísticas para instrumentos abstratos, como `statement/abstract/Query`, porque nenhuma declaração é classificada com um instrumento abstrato como o nome final da declaração.
 
-#### 25.12.6.1 A tabela eventos\_estatuto\_atual
+#### 25.12.6.1 A tabela eventos_estatuto_atual
 
 A tabela `events_statements_current` contém eventos de declaração atuais. A tabela armazena uma string por thread, mostrando o status atual do evento de declaração mais recente monitorado pela thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela.
 
@@ -1420,7 +1420,7 @@ O número de avisos, da área de diagnóstico de declaração.
 
 * `ROWS_AFFECTED`
 
-O número de strings afetadas pela declaração. Para uma descrição do significado de "afetada", consulte mysql\_affected\_rows().
+O número de strings afetadas pela declaração. Para uma descrição do significado de "afetada", consulte mysql_affected_rows().
 
 * `ROWS_SENT`
 
@@ -1510,13 +1510,13 @@ Para declarações aninhadas:
 
 `TRUNCATE TABLE` é permitido para a tabela `events_statements_current`. Ele remove as strings.
 
-#### 25.12.6.2 A tabela eventos\_estatuto\_história
+#### 25.12.6.2 A tabela eventos_estatuto_história
 
 A tabela `events_statements_history` contém os eventos de declaração mais recentes que terminaram por thread. Os eventos de declaração não são adicionados à tabela até que tenham terminado. Quando a tabela contém o número máximo de strings para um determinado thread, a string mais antiga do thread é descartada quando uma nova string para esse thread é adicionada. Quando um thread termina, todas as suas strings são descartadas.
 
 O Schema de Desempenho autodimensiona o valor de *`N`* durante o arranque do servidor. Para definir explicitamente o número de strings por thread, defina a variável de sistema `performance_schema_events_statements_history_size` durante o arranque do servidor.
 
-A tabela `events_statements_history` tem as mesmas colunas que a tabela `events_statements_current`. Veja a Seção 25.12.6.1, “A tabela eventos\_estatuto\_atual”.
+A tabela `events_statements_history` tem as mesmas colunas que a tabela `events_statements_current`. Veja a Seção 25.12.6.1, “A tabela eventos_estatuto_atual”.
 
 `TRUNCATE TABLE` é permitido para a tabela `events_statements_history`. Ele remove as strings.
 
@@ -1524,13 +1524,13 @@ Para mais informações sobre a relação entre as três tabelas de eventos `eve
 
 Para obter informações sobre a configuração de coleta de eventos de declaração, consulte a Seção 25.12.6, “Tabelas de Eventos de Declaração do Schema de Desempenho”.
 
-#### 25.12.6.3 A tabela eventos\_declarações\_história\_longa
+#### 25.12.6.3 A tabela eventos_declarações_história_longa
 
 A tabela `events_statements_history_long` contém os eventos de declaração mais recentes que ocorreram globalmente em todas as threads. Os eventos de declaração não são adicionados à tabela até que tenham terminado. Quando a tabela se torna cheia, a string mais antiga é descartada quando uma nova string é adicionada, independentemente de qual thread gerou a string.
 
 O valor de *`N`* é dimensionado automaticamente no início do servidor. Para definir explicitamente o tamanho da tabela, defina a variável de sistema `performance_schema_events_statements_history_long_size` no início do servidor.
 
-A tabela `events_statements_history_long` tem as mesmas colunas que a tabela `events_statements_current`. Veja a Seção 25.12.6.1, “A tabela eventos\_estatuto\_atual”.
+A tabela `events_statements_history_long` tem as mesmas colunas que a tabela `events_statements_current`. Veja a Seção 25.12.6.1, “A tabela eventos_estatuto_atual”.
 
 `TRUNCATE TABLE` é permitido para a tabela `events_statements_history_long`. Ele remove as strings.
 
@@ -1538,7 +1538,7 @@ Para mais informações sobre a relação entre as três tabelas de eventos `eve
 
 Para obter informações sobre a configuração de coleta de eventos de declaração, consulte a Seção 25.12.6, “Tabelas de Eventos de Declaração do Schema de Desempenho”.
 
-#### 25.12.6.4 A tabela prepared\_statements\_instances
+#### 25.12.6.4 A tabela prepared_statements_instances
 
 O Schema de Desempenho oferece instrumentação para declarações preparadas, para as quais existem dois protocolos:
 
@@ -1866,7 +1866,7 @@ As declarações de Savepoint são registradas como eventos de declaração sepa
 
 Erros e avisos que ocorrem dentro de uma transação são registrados em eventos de declaração, mas não no evento de transação correspondente. Isso inclui erros e avisos específicos da transação, como um rollback em uma tabela não transacional ou erros de consistência GTID.
 
-#### 25.12.7.1 Tabela eventos\_transações\_atual
+#### 25.12.7.1 Tabela eventos_transações_atual
 
 A tabela `events_transactions_current` contém eventos de transação atual. A tabela armazena uma string por thread, mostrando o status atual do evento de transação mais recente monitorado da thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela. Por exemplo:
 
@@ -1984,13 +1984,13 @@ O tipo de evento de nidificação. O valor é `TRANSACTION`, `STATEMENT`, `STAGE
 
 `TRUNCATE TABLE` é permitido para a tabela `events_transactions_current`. Ele remove as strings.
 
-#### 25.12.7.2 A tabela de eventos\_transações\_história
+#### 25.12.7.2 A tabela de eventos_transações_história
 
 A tabela `events_transactions_history` contém os eventos de transação *`N`* mais recentes que terminaram por thread. Os eventos de transação não são adicionados à tabela até que tenham terminado. Quando a tabela contém o número máximo de strings para um determinado thread, a string mais antiga do thread é descartada quando uma nova string para esse thread é adicionada. Quando um thread termina, todas as suas strings são descartadas.
 
 O Schema de Desempenho autodimensiona o valor de *`N`* durante o arranque do servidor. Para definir explicitamente o número de strings por thread, defina a variável de sistema `performance_schema_events_transactions_history_size` durante o arranque do servidor.
 
-A tabela `events_transactions_history` tem as mesmas colunas que a tabela `events_transactions_current`. Veja a Seção 25.12.7.1, “A tabela eventos\_transações\_corrente”.
+A tabela `events_transactions_history` tem as mesmas colunas que a tabela `events_transactions_current`. Veja a Seção 25.12.7.1, “A tabela eventos_transações_corrente”.
 
 `TRUNCATE TABLE` é permitido para a tabela `events_transactions_history`. Ele remove as strings.
 
@@ -2004,7 +2004,7 @@ A tabela `events_transactions_history_long` contém os eventos de transação *`
 
 O Schema de desempenho autodimensiona o valor de *`N`* é autodimensionado no início do servidor. Para definir explicitamente o tamanho da tabela, defina a variável de sistema `performance_schema_events_transactions_history_long_size` no início do servidor.
 
-A tabela `events_transactions_history_long` tem as mesmas colunas que a tabela `events_transactions_current`. Veja a Seção 25.12.7.1, “A tabela eventos\_transações\_corrente”.
+A tabela `events_transactions_history_long` tem as mesmas colunas que a tabela `events_transactions_current`. Veja a Seção 25.12.7.1, “A tabela eventos_transações_corrente”.
 
 `TRUNCATE TABLE` é permitido para a tabela `events_transactions_history_long`. Ele remove as strings.
 
@@ -2587,7 +2587,7 @@ A tabela a seguir mostra a correspondência entre as colunas `replication_connec
 
 <table summary="Correspondence between replication_connection_status columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_connection_status</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>SOURCE_UUID</code></td> <td><code>Master_UUID</code></td> </tr><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Slave_IO_Running</code></td> </tr><tr> <td><code>RECEIVED_TRANSACTION_SET</code></td> <td><code>Retrieved_Gtid_Set</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_IO_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_IO_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_IO_Error_Timestamp</code></td> </tr></tbody></table>
 
-#### 25.12.11.3 A tabela de configuração do aplicável\_de\_replicação
+#### 25.12.11.3 A tabela de configuração do aplicável_de_replicação
 
 Esta tabela mostra os parâmetros de configuração que afetam as transações aplicadas pela replica. Os parâmetros armazenados na tabela podem ser alterados em tempo real com a declaração `CHANGE MASTER TO`, conforme indicado nas descrições das colunas.
 
@@ -2607,7 +2607,7 @@ A tabela a seguir mostra a correspondência entre as colunas `replication_applie
 
 <table summary="Correspondence between replication_applier_configuration columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_configuration</code> Column</th> <th><code>SHOW SLAVE STATUS</code>Coluna</th> </tr></thead><tbody><tr> <td><code>DESIRED_DELAY</code></td> <td><code>SQL_Delay</code></td> </tr></tbody></table>
 
-#### 25.12.11.4 A tabela de replicação\_applier\_status
+#### 25.12.11.4 A tabela de replicação_applier_status
 
 Esta tabela mostra o status atual da execução de transações gerais na replica. A tabela fornece informações sobre aspectos gerais do status do aplicador de transações que não são específicos a qualquer thread envolvido. Informações de status específicas para cada thread estão disponíveis na tabela `replication_applier_status_by_coordinator` (e `replication_applier_status_by_worker` se a replica for multifilamentar).
 
@@ -2635,7 +2635,7 @@ A tabela a seguir mostra a correspondência entre as colunas `replication_applie
 
 <table summary="Correspondence between replication_applier_status columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>REMAINING_DELAY</code></td> <td><code>SQL_Remaining_Delay</code></td> </tr></tbody></table>
 
-#### 25.12.11.5 A tabela replic\_applier\_status\_by\_coordinator
+#### 25.12.11.5 A tabela replic_applier_status_by_coordinator
 
 Para uma replica multithread, a replica utiliza vários threads de trabalho e um thread de coordenador para gerenciá-los, e esta tabela mostra o status do thread de coordenador. Para uma replica de único thread, esta tabela está vazia. Para uma replica multithread, a tabela `replication_applier_status_by_worker` mostra o status dos threads de trabalho.
 
@@ -2671,7 +2671,7 @@ A tabela a seguir mostra a correspondência entre as colunas `replication_applie
 
 <table summary="Correspondence between replication_applier_status_by_coordinator columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status_by_coordinator</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Slave_SQL_Running</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
 
-#### 25.12.11.6 A tabela replic\_applier\_status\_by\_worker
+#### 25.12.11.6 A tabela replic_applier_status_by_worker
 
 Se a replica não for multithreading, esta tabela mostra o status do thread do aplicável. Caso contrário, a replica usa vários threads de trabalho e um thread de coordenador para gerenciá-los, e esta tabela mostra o status dos threads de trabalho. Para uma replica multithreading, a tabela `replication_applier_status_by_coordinator` mostra o status do thread de coordenador.
 
@@ -2730,7 +2730,7 @@ A tabela a seguir mostra a correspondência entre as colunas `replication_applie
 
 <table summary="Correspondence between replication_applier_status_by_worker columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status_by_worker</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>WORKER_ID</code></td> <td>None</td> </tr><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>LAST_SEEN_TRANSACTION</code></td> <td>None</td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
 
-#### 25.12.11.7 A tabela `replicação\_grupo\_membro\_estatísticas`
+#### 25.12.11.7 A tabela `replicação_grupo_membro_estatísticas`
 
 Esta tabela mostra informações estatísticas para membros da Replicação de grupo do MySQL. Ela é preenchida apenas quando a Replicação de grupo está em execução.
 
@@ -2822,7 +2822,7 @@ O Schema de Desempenho expõe informações de bloqueio através dessas tabelas:
 
 As seções a seguir descrevem essas tabelas com mais detalhes.
 
-#### 25.12.12.1 A tabela de metadados\_locks
+#### 25.12.12.1 A tabela de metadados_locks
 
 O MySQL utiliza o bloqueio de metadados para gerenciar o acesso concorrente a objetos do banco de dados e garantir a consistência dos dados; veja a Seção 8.11.4, “Bloqueio de Metadados”. O bloqueio de metadados não se aplica apenas a tabelas, mas também a esquemas, programas armazenados (procedimentos, funções, gatilhos, eventos agendados), espaços de tabela, bloqueios de usuário adquiridos com a função `GET_LOCK()` (veja a Seção 12.14, “Funções de Bloqueio”) e bloqueios adquiridos com o serviço de bloqueio descrito na Seção 5.5.6.1, “O Serviço de Bloqueio”.
 
@@ -3624,7 +3624,7 @@ As seções a seguir descrevem as tabelas de resumo de espera de I/O e bloqueio:
 
 * `table_lock_waits_summary_by_table`: Espera de bloqueio de tabela por tabela
 
-##### 25.12.15.7.1 tabela\_io\_waits\_summary\_by\_table Tabela
+##### 25.12.15.7.1 tabela_io_waits_summary_by_table Tabela
 
 A tabela `table_io_waits_summary_by_table` agrega todos os eventos de espera de I/O de tabela, conforme gerado pelo instrumento `wait/io/table/sql/handler`. O agrupamento é por tabela.
 
@@ -3676,7 +3676,7 @@ As colunas de `table_io_waits_summary_by_index_usage` são quase idênticas a `t
 
 `TRUNCATE TABLE` é permitido para as tabelas de resumo de entrada/saída de tabela. Ele redefiniu as colunas de resumo para zero em vez de remover strings. Esta tabela também é truncada pela truncagem da tabela `table_io_waits_summary_by_table`. Uma operação DDL que altera a estrutura de índice de uma tabela pode causar o reajuste das estatísticas por índice.
 
-##### 25.12.15.7.3 Tabela\_esperas\_de\_bloqueio\_por\_tabela Tabela
+##### 25.12.15.7.3 Tabela_esperas_de_bloqueio_por_tabela Tabela
 
 A tabela `table_lock_waits_summary_by_table` agrega todos os eventos de espera por bloqueio de tabela, conforme gerado pelo instrumento `wait/lock/table/sql/handler`. O agrupamento é por tabela.
 
@@ -4043,7 +4043,7 @@ As seções a seguir descrevem tabelas que não se enquadram nas categorias de t
 
 * `threads`: Informações sobre os threads do servidor.
 
-#### 25.12.16.1 Tabela host\_cache
+#### 25.12.16.1 Tabela host_cache
 
 O servidor MySQL mantém um cache de hosts em memória que contém informações sobre o nome do host e o endereço IP do cliente e é usado para evitar pesquisas no Sistema de Nomes de Domínio (DNS). A tabela `host_cache` expõe o conteúdo desse cache. A variável de sistema `host_cache_size` controla o tamanho do cache de hosts, bem como o tamanho da tabela `host_cache`. Para informações operacionais e de configuração sobre o cache de hosts, consulte a Seção 5.1.11.2, “Consultas de DNS e o Cache de Hosts”.
 
@@ -4175,7 +4175,7 @@ O horário do erro mais recente visto do cliente na coluna `IP`.
 
 `TRUNCATE TABLE` é permitido para a tabela `host_cache`. Ele exige o privilégio `DROP` para a tabela. O truncar da tabela esvazia o cache do host, que tem os efeitos descritos em Esvaziar o cache do host.
 
-#### 25.12.16.2 A tabela performance\_timers
+#### 25.12.16.2 A tabela performance_timers
 
 A tabela `performance_timers` mostra quais temporizadores de evento estão disponíveis:
 

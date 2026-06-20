@@ -28,13 +28,13 @@ Um script de inicialização de servidor que pode iniciar ou parar vários servi
 
 Vários programas realizam operações de configuração durante a instalação ou atualização do MySQL:
 
-* **comp\_err**
+* **comp_err**
 
 Este programa é usado durante o processo de compilação/instalação do MySQL. Ele compila arquivos de mensagens de erro a partir dos arquivos de fonte de erro. Veja a Seção 4.4.1, “comp_err — Arquivo de Mensagem de Erro do MySQL”.
 
-* **mysql\_install\_db**
+* **mysql_install_db**
 
-Este programa inicializa o diretório de dados do MySQL, cria o banco de dados `mysql` e inicializa suas tabelas de concessão com privilégios padrão, e configura o espaço de sistema de tabelas `InnoDB`. Ele é geralmente executado apenas uma vez, quando o MySQL é instalado pela primeira vez em um sistema. Veja a Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”, e a Seção 2.9, “Configuração e teste pós-instalação”.
+Este programa inicializa o diretório de dados do MySQL, cria o banco de dados `mysql` e inicializa suas tabelas de concessão com privilégios padrão, e configura o espaço de sistema de tabelas `InnoDB`. Ele é geralmente executado apenas uma vez, quando o MySQL é instalado pela primeira vez em um sistema. Veja a Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”, e a Seção 2.9, “Configuração e teste pós-instalação”.
 
 * **mysql_plugin**
 
@@ -42,7 +42,7 @@ Este programa configura plugins do servidor MySQL. Veja a Seção 4.4.3, “mysq
 
 * `mysql_secure_installation`
 
-Este programa permite melhorar a segurança da sua instalação do MySQL. Veja a Seção 4.4.4, “mysql\_secure\_installation — Melhorar a segurança da instalação do MySQL”.
+Este programa permite melhorar a segurança da sua instalação do MySQL. Veja a Seção 4.4.4, “mysql_secure_installation — Melhorar a segurança da instalação do MySQL”.
 
 * `mysql_ssl_rsa_setup`
 
@@ -100,9 +100,9 @@ Programas administrativos e utilitários do MySQL:
 
 Um utilitário de verificação de checksum de arquivo offline `InnoDB`. Veja a Seção 4.6.1, “innochecksum — Utilitário de verificação de checksum de arquivo InnoDB offline”.
 
-* **myisam\_ftdump**
+* **myisam_ftdump**
 
-Uma ferramenta que exibe informações sobre índices de texto completo em tabelas de `MyISAM`. Veja a Seção 4.6.2, “myisam\_ftdump — Exibir informações de índice de texto completo”.
+Uma ferramenta que exibe informações sobre índices de texto completo em tabelas de `MyISAM`. Veja a Seção 4.6.2, “myisam_ftdump — Exibir informações de índice de texto completo”.
 
 * **myisamchk**
 
@@ -116,9 +116,9 @@ Uma utilitária que processa o conteúdo de um arquivo de registro `MyISAM`. Vej
 
 Uma utilitária que comprime as tabelas `MyISAM` para produzir tabelas menores e somente de leitura. Veja a Seção 4.6.5, “myisampack — Gerar tabelas MyISAM comprimidas e somente de leitura”.
 
-* **mysql\_config\_editor**
+* **mysql_config_editor**
 
-Uma ferramenta que permite armazenar credenciais de autenticação em um arquivo seguro e criptografado de caminho de login chamado `.mylogin.cnf`. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração MySQL”.
+Uma ferramenta que permite armazenar credenciais de autenticação em um arquivo seguro e criptografado de caminho de login chamado `.mylogin.cnf`. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração MySQL”.
 
 * **mysqlbinlog**
 
@@ -130,21 +130,21 @@ Uma ferramenta para ler e resumir o conteúdo de um log de consulta lenta. Veja 
 
 ferramentas de desenvolvimento de programas do MySQL:
 
-* **mysql\_config**
+* **mysql_config**
 
 Um script de shell que produz os valores de opção necessários ao compilar programas MySQL. Veja a Seção 4.7.1, “mysql_config — Exibir opções para compilar clientes”.
 
-* **my\_print\_defaults**
+* **my_print_defaults**
 
-Uma ferramenta que mostra quais opções estão presentes nos grupos de opções dos arquivos de opções. Veja a Seção 4.7.2, “my\_print\_defaults — Exibir opções de arquivos de opções”.
+Uma ferramenta que mostra quais opções estão presentes nos grupos de opções dos arquivos de opções. Veja a Seção 4.7.2, “my_print_defaults — Exibir opções de arquivos de opções”.
 
-* **resolve\_stack\_dump**
+* **resolve_stack_dump**
 
-Um programa utilitário que resolve um registro de depuração de pilha numérica em símbolos. Veja a Seção 4.7.3, “resolve\_stack\_dump — Resolva o registro de depuração de pilha numérica em símbolos”.
+Um programa utilitário que resolve um registro de depuração de pilha numérica em símbolos. Veja a Seção 4.7.3, “resolve_stack_dump — Resolva o registro de depuração de pilha numérica em símbolos”.
 
 Utilidades diversas:
 
-* **lz4\_decompress**
+* **lz4_decompress**
 
 Uma ferramenta que descomprime a saída do **mysqlpump** que foi criada usando compressão LZ4. Veja a Seção 4.8.1, “lz4_decompress — Descomponha a saída comprimida do mysqlpump LZ4”.
 
@@ -160,7 +160,7 @@ Um programa utilitário que realiza substituição de strings no texto de entrad
 
 Um programa utilitário que resolve um nome de host em um endereço IP ou vice-versa. Veja a Seção 4.8.4, “resolveip — Resolva nome de host em endereço IP ou vice-versa”.
 
-* **zlib\_decompress**
+* **zlib_decompress**
 
 Uma ferramenta que descomprime a saída do **mysqlpump** que foi criada usando compressão ZLIB. Veja a Seção 4.8.5, “zlib_decompress — Descomponha a saída compactada ZLIB do mysqlpump”.
 

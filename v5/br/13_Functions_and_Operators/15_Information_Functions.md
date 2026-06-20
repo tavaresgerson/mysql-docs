@@ -125,7 +125,7 @@ As seguintes declarações apoiam o uso da função `CURRENT_USER()` para substi
 + `ALTER VIEW`
 + `SET PASSWORD`
 
-Para informações sobre as implicações que essa expansão do `CURRENT_USER()` tem para a replicação, consulte a Seção 16.4.1.8, “Replicação de CURRENT\_USER()”).
+Para informações sobre as implicações que essa expansão do `CURRENT_USER()` tem para a replicação, consulte a Seção 16.4.1.8, “Replicação de CURRENT_USER()”).
 
 * `DATABASE()`
 
@@ -334,7 +334,7 @@ Se você usar `INSERT IGNORE` e a string for ignorada, o (insert.html "13.2.5 I
   +------------------+
   ```
 
-Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
 
 Se *`expr`* for fornecido como argumento para `LAST_INSERT_ID()`, o valor do argumento é retornado pela função e é lembrado como o próximo valor a ser retornado por `LAST_INSERT_ID()`. Isso pode ser usado para simular sequências:
 
@@ -352,7 +352,7 @@ Se *`expr`* for fornecido como argumento para `LAST_INSERT_ID()`, o valor do arg
      mysql> SELECT LAST_INSERT_ID();
      ```
 
-A declaração `UPDATE` incrementa o contador de sequência e faz com que o próximo chamado para `LAST_INSERT_ID()` retorne o valor atualizado. A declaração `SELECT` recupera esse valor. A função C API `mysql_insert_id()` também pode ser usada para obter o valor. Veja mysql\_insert\_id().
+A declaração `UPDATE` incrementa o contador de sequência e faz com que o próximo chamado para `LAST_INSERT_ID()` retorne o valor atualizado. A declaração `SELECT` recupera esse valor. A função C API `mysql_insert_id()` também pode ser usada para obter o valor. Veja mysql_insert_id().
 
 Você pode gerar sequências sem chamar `LAST_INSERT_ID()`, mas a utilidade de usar a função dessa maneira é que o valor do ID é mantido no servidor como o último valor gerado automaticamente. É seguro para múltiplos usuários, pois vários clientes podem emitir a declaração `UPDATE` e obter seu próprio valor de sequência com a declaração `SELECT` (ou `mysql_insert_id()`), sem afetar ou ser afetado por outros clientes que geram seus próprios valores de sequência.
 

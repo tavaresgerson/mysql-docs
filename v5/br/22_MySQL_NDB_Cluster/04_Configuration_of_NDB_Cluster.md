@@ -53,7 +53,7 @@ DataDir= /var/lib/mysql-cluster
 [mysqld]
 ```
 
-Agora você pode iniciar o servidor de gerenciamento **ndb\_mgmd**. Por padrão, ele tenta ler o arquivo `config.ini` no diretório de trabalho atual, então mude a localização para o diretório onde o arquivo está localizado e, em seguida, invoque **ndb\_mgmd**:
+Agora você pode iniciar o servidor de gerenciamento **ndb_mgmd**. Por padrão, ele tenta ler o arquivo `config.ini` no diretório de trabalho atual, então mude a localização para o diretório onde o arquivo está localizado e, em seguida, invoque **ndb_mgmd**:
 
 ```sql
 $> cd /var/lib/mysql-cluster
@@ -70,7 +70,7 @@ Por padrão, o **ndbd** procura pelo servidor de gerenciamento em `localhost` na
 
 Nota
 
-Se você instalou o MySQL a partir de um arquivo tar binário, você deve especificar explicitamente o caminho dos servidores **ndb\_mgmd** e **ndbd**. (Normalmente, esses podem ser encontrados em `/usr/local/mysql/bin`.)
+Se você instalou o MySQL a partir de um arquivo tar binário, você deve especificar explicitamente o caminho dos servidores **ndb_mgmd** e **ndbd**. (Normalmente, esses podem ser encontrados em `/usr/local/mysql/bin`.)
 
 Por fim, mude a localização para o diretório de dados do MySQL (geralmente `/var/lib/mysql` ou `/usr/local/mysql/data`) e certifique-se de que o arquivo `my.cnf` contenha a opção necessária para habilitar o motor de armazenamento NDB:
 
@@ -628,7 +628,7 @@ Os seguintes parâmetros se aplicam à seção `[tcp]` do arquivo `config.ini`:
 
 * `SendSignalId`: Envia o ID em cada sinal. Usado em arquivos de rastreamento. Tem como padrão verdadeiro em compilações de depuração.
 
-* `TCP_MAXSEG_SIZE`: Valor utilizado para TCP\_MAXSEG.
+* `TCP_MAXSEG_SIZE`: Valor utilizado para TCP_MAXSEG.
 
 * `TCP_RCV_BUF_SIZE`: Valor utilizado para SO_RCVBUF.
 
@@ -722,7 +722,7 @@ A lista a seguir inclui opções de string de comando, variáveis de sistema e v
 
 * `ndb-optimized-node-selection`: Habilitar otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo.
 
-* `ndb-transid-mysql-connection-map`: Ative ou desative o plugin ndb\_transid\_mysql\_connection\_map; ou seja, ative ou desative a tabela INFORMATION_SCHEMA que tem esse nome.
+* `ndb-transid-mysql-connection-map`: Ative ou desative o plugin ndb_transid_mysql_connection_map; ou seja, ative ou desative a tabela INFORMATION_SCHEMA que tem esse nome.
 
 * `ndb-wait-connected`: Tempo (em segundos) para o servidor MySQL esperar a conexão com os nós de gerenciamento do cluster e os nós de dados antes de aceitar conexões de clientes MySQL.
 
@@ -872,7 +872,7 @@ A lista a seguir inclui opções de string de comando, variáveis de sistema e v
 
 * `ndb_cache_check_time`: Número de milissegundos entre os verificações dos nós do SQL do cluster feitas pelo cache de consulta do MySQL.
 
-* `ndb_clear_apply_status`: Causa o RESET SLAVE/RESET REPLICA a limpar todas as strings da tabela ndb\_apply\_status; ON por padrão.
+* `ndb_clear_apply_status`: Causa o RESET SLAVE/RESET REPLICA a limpar todas as strings da tabela ndb_apply_status; ON por padrão.
 
 * `Ndb_cluster_node_id`: ID do nó deste servidor quando atuando como nó SQL do NDB Cluster.
 
@@ -950,7 +950,7 @@ A lista a seguir inclui opções de string de comando, variáveis de sistema e v
 
 * `ndb_log_bin`: Escreva atualizações em tabelas NDB no log binário. Efetiva apenas se o registro binário estiver habilitado com --log-bin.
 
-* `ndb_log_binlog_index`: Insira mapeamento entre épocas e posições de log binário na tabela ndb\_binlog\_index. Definição padrão: ON. Efetiva apenas se o registro binário estiver habilitado.
+* `ndb_log_binlog_index`: Insira mapeamento entre épocas e posições de log binário na tabela ndb_binlog_index. Definição padrão: ON. Efetiva apenas se o registro binário estiver habilitado.
 
 * `ndb_log_empty_epochs`: Quando habilitado, as épocas em que não houve alterações são escritas nas tabelas ndb_apply_status e ndb_binlog_index, mesmo quando o log_replica_updates ou log_slave_updates está habilitado.
 
@@ -1062,7 +1062,7 @@ Nota
 
 É possível voltar a uma configuração anterior ao excluir os arquivos de cache de configuração posteriores, ou renomeando um arquivo de cache anterior para que ele tenha um número maior de *`seq_id`*. No entanto, uma vez que os arquivos de cache de configuração são escritos em um formato binário, você não deve tentar editar seu conteúdo manualmente.
 
-Para obter mais informações sobre as opções `--configdir`, `--config-cache`, `--initial` e `--reload` para o servidor de gerenciamento do NDB Cluster, consulte a Seção 21.5.4, “ndb\_mgmd — O Daemon de Gerenciamento do NDB Cluster”.
+Para obter mais informações sobre as opções `--configdir`, `--config-cache`, `--initial` e `--reload` para o servidor de gerenciamento do NDB Cluster, consulte a Seção 21.5.4, “ndb_mgmd — O Daemon de Gerenciamento do NDB Cluster”.
 
 Estamos continuamente melhorando a configuração do Cluster e tentando simplificar esse processo. Embora nos esforcemos para manter a compatibilidade reversa, pode haver momentos em que introduzimos uma mudança incompatível. Nesses casos, tentamos informar os usuários do NDB Cluster com antecedência se uma mudança não for compatível com versões anteriores. Se você encontrar tal mudança e não a tenha documentado, por favor, informe-a no banco de bugs do MySQL usando as instruções fornecidas na Seção 1.5, “Como relatar bugs ou problemas”.
 
@@ -1130,7 +1130,7 @@ ndb-connectstring=ndb_mgmd.mysql.com:1186
 
 Para variáveis adicionais de `NDB` que podem ser definidas no arquivo `my.cnf`, consulte a Seção 21.4.3.9.2, “Variáveis do Sistema de Agrupamento NDB”.
 
-O arquivo de configuração global do NDB Cluster é, por convenção, denominado `config.ini` (mas isso não é necessário). Se necessário, ele é lido pelo **ndb\_mgmd** no início e pode ser colocado em qualquer local que possa ser lido por ele. A localização e o nome da configuração são especificados usando `--config-file=path_name` com **ndb\_mgmd** na string de comando. Esta opção não tem um valor padrão e é ignorada se o **ndb\_mgmd** usar o cache de configuração.
+O arquivo de configuração global do NDB Cluster é, por convenção, denominado `config.ini` (mas isso não é necessário). Se necessário, ele é lido pelo **ndb_mgmd** no início e pode ser colocado em qualquer local que possa ser lido por ele. A localização e o nome da configuração são especificados usando `--config-file=path_name` com **ndb_mgmd** na string de comando. Esta opção não tem um valor padrão e é ignorada se o **ndb_mgmd** usar o cache de configuração.
 
 O arquivo de configuração global para o NDB Cluster usa o formato INI, que consiste em seções precedidas por títulos de seção (envolvidos por colchetes), seguidos pelos nomes e valores apropriados dos parâmetros. Uma exceção ao formato INI padrão é que o nome e o valor do parâmetro podem ser separados por um colon (`:`) e também pelo sinal de igual (`=`); no entanto, o sinal de igual é preferido. Outra exceção é que as seções não são identificadas de forma única pelo nome da seção. Em vez disso, as seções únicas (como dois nós diferentes do mesmo tipo) são identificadas por um ID único especificado como um parâmetro dentro da seção.
 
@@ -1370,7 +1370,7 @@ LockMaintThreadsToCPU=0
 
 #### 21.4.3.3 Estruturas de conexão do cluster NDB
 
-Com exceção do servidor de gerenciamento do NDB Cluster (**ndb\_mgmd**), cada nó que faz parte de um NDB Cluster requer uma cadeia de conexão que aponta para a localização do servidor de gerenciamento. Essa cadeia de conexão é usada para estabelecer uma conexão com o servidor de gerenciamento, bem como para realizar outras tarefas, dependendo do papel do nó no cluster. A sintaxe para uma cadeia de conexão é a seguinte:
+Com exceção do servidor de gerenciamento do NDB Cluster (**ndb_mgmd**), cada nó que faz parte de um NDB Cluster requer uma cadeia de conexão que aponta para a localização do servidor de gerenciamento. Essa cadeia de conexão é usada para estabelecer uma conexão com o servidor de gerenciamento, bem como para realizar outras tarefas, dependendo do papel do nó no cluster. A sintaxe para uma cadeia de conexão é a seguinte:
 
 ```sql
 [nodeid=node_id, ]host-definition[, host-definition[, ...]]
@@ -1609,7 +1609,7 @@ Um valor inteiro que faz com que as respostas do servidor de gerenciamento para 
 
 Isso especifica o diretório onde os arquivos de saída do servidor de gerenciamento são colocados. Esses arquivos incluem arquivos de registro do clúster, arquivos de saída de processos e o arquivo do ID do processo (PID) do daemon. (Para arquivos de log, essa localização pode ser substituída definindo o parâmetro `FILE` para `LogDestination` conforme discutido anteriormente nesta seção.)
 
-O valor padrão para este parâmetro é o diretório em que o **ndb\_mgmd** está localizado.
+O valor padrão para este parâmetro é o diretório em que o **ndb_mgmd** está localizado.
 
 * `PortNumberStats`
 
@@ -1728,7 +1728,7 @@ No entanto, se você precisar ser capaz de abrir portas específicas em um firew
 
 Nota
 
-As conexões dos nós de dados aos nós de gerenciamento são feitas usando a porta de gerenciamento **ndb\_mgmd** (o servidor de gerenciamento `PortNumber`) para que as conexões sazonais para essa porta de qualquer nó de dados sempre sejam permitidas.
+As conexões dos nós de dados aos nós de gerenciamento são feitas usando a porta de gerenciamento **ndb_mgmd** (o servidor de gerenciamento `PortNumber`) para que as conexões sazonais para essa porta de qualquer nó de dados sempre sejam permitidas.
 
 * `TcpBind_INADDR_ANY`
 
@@ -1832,7 +1832,7 @@ Para atributos de tabela de tamanho variável, os dados são armazenados em pág
 
 O tamanho máximo do registro é de 14000 bytes.
 
-Em NDB 7.5 (e versões anteriores), o espaço de memória definido por `DataMemory` também é usado para armazenar índices ordenados, que utilizam cerca de 10 bytes por registro. Cada string da tabela é representada no índice ordenado. Um erro comum entre os usuários é assumir que todos os índices são armazenados no espaço de memória alocado por `IndexMemory`, mas isso não é o caso: Apenas as chaves primárias e os índices de hash únicos utilizam esse espaço de memória; os índices ordenados utilizam o espaço de memória alocado por `DataMemory`. No entanto, criar uma chave primária ou um índice de hash único também cria um índice ordenado nas mesmas chaves, a menos que você especifique `USING HASH` na declaração de criação do índice. Isso pode ser verificado executando **ndb\_desc -d *`db_name`* *`table_name`***.
+Em NDB 7.5 (e versões anteriores), o espaço de memória definido por `DataMemory` também é usado para armazenar índices ordenados, que utilizam cerca de 10 bytes por registro. Cada string da tabela é representada no índice ordenado. Um erro comum entre os usuários é assumir que todos os índices são armazenados no espaço de memória alocado por `IndexMemory`, mas isso não é o caso: Apenas as chaves primárias e os índices de hash únicos utilizam esse espaço de memória; os índices ordenados utilizam o espaço de memória alocado por `DataMemory`. No entanto, criar uma chave primária ou um índice de hash único também cria um índice ordenado nas mesmas chaves, a menos que você especifique `USING HASH` na declaração de criação do índice. Isso pode ser verificado executando **ndb_desc -d *`db_name`* *`table_name`***.
 
 No NDB 7.6, os recursos atribuídos a `DataMemory` são usados para armazenar *todos* os dados e índices; qualquer memória configurada como `IndexMemory` é automaticamente adicionada àquela usada por `DataMemory` para formar um conjunto de recursos comum.
 
@@ -3046,7 +3046,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>18
 
-Este parâmetro determina o número de threads a serem criadas ao reconstruir índices ordenados durante o início de um sistema ou de um nó, bem como ao executar **ndb\_restore** `--rebuild-indexes`. É suportado apenas quando há mais de um fragmento para a tabela por nó de dados (por exemplo, quando `COMMENT="NDB_TABLE=PARTITION_BALANCE=FOR_RA_BY_LDM_X_2"` é usado com `CREATE TABLE`).
+Este parâmetro determina o número de threads a serem criadas ao reconstruir índices ordenados durante o início de um sistema ou de um nó, bem como ao executar **ndb_restore** `--rebuild-indexes`. É suportado apenas quando há mais de um fragmento para a tabela por nó de dados (por exemplo, quando `COMMENT="NDB_TABLE=PARTITION_BALANCE=FOR_RA_BY_LDM_X_2"` é usado com `CREATE TABLE`).
 
 Definir este parâmetro para 0 (o padrão) desativa a construção de índices ordenados em múltiplos threads.
 
@@ -3244,11 +3244,11 @@ O parâmetro `realtime` é definido, por padrão, pelo valor do parâmetro de co
 
 O nível de prioridade do thread não pode ser definido para os threads de construção de índice offline.
 
-**configurações e efeitos do thread\_prio por plataforma.** A implementação do `thread_prio` difere entre Linux/FreeBSD, Solaris e Windows. Na lista a seguir, discutimos seus efeitos em cada uma dessas plataformas, uma a uma:
+**configurações e efeitos do thread_prio por plataforma.** A implementação do `thread_prio` difere entre Linux/FreeBSD, Solaris e Windows. Na lista a seguir, discutimos seus efeitos em cada uma dessas plataformas, uma a uma:
 
 + *Linux e FreeBSD*: Mapeamos `thread_prio` para um valor que será fornecido à chamada de sistema `nice`. Como um valor de menor novidade para um processo indica uma prioridade de processo mais alta, aumentar `thread_prio` tem o efeito de diminuir o valor de `nice`.
 
-**Tabela 21.12 Mapeamento de thread\_prio para valores nice no Linux e FreeBSD**
+**Tabela 21.12 Mapeamento de thread_prio para valores nice no Linux e FreeBSD**
 
     <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>32
 
@@ -3256,7 +3256,7 @@ Alguns sistemas operacionais podem permitir um nível máximo de niciedade de pr
 
 + *Solaris*: Definindo `thread_prio` em Solaris, você define a prioridade do Solaris FX, com mapeamentos conforme mostrado na tabela a seguir:
 
-**Tabela 21.13 Mapeamento de thread\_prio para prioridade FX em Solaris**
+**Tabela 21.13 Mapeamento de thread_prio para prioridade FX em Solaris**
 
     <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>33
 
@@ -3264,7 +3264,7 @@ Uma configuração `thread_prio` de 9 é mapeada no Solaris para o valor de prio
 
 + *Windows*: Mapeamos `thread_prio` a um valor de prioridade de thread do Windows passado para a função da API do Windows `SetThreadPriority()`. Esse mapeamento é mostrado na tabela a seguir:
 
-**Tabela 21.14 Mapeamento de thread\_prio para prioridade de thread do Windows**
+**Tabela 21.14 Mapeamento de thread_prio para prioridade de thread do Windows**
 
     <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema:</strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>34
 
@@ -3310,7 +3310,7 @@ Faixa: apenas 1.
 
 Faixa: apenas 1.
 
-+ `idxbld`: Threads de construção de índice offline. Ao contrário dos outros tipos de thread listados anteriormente, que são permanentes, estes são threads temporárias que são criadas e usadas apenas durante o reinício do nó ou do sistema, ou quando executando **ndb\_restore** `--rebuild-indexes`. Elas podem ser vinculadas a conjuntos de CPU que se sobrepõem com conjuntos de CPU vinculados a tipos de thread permanentes.
++ `idxbld`: Threads de construção de índice offline. Ao contrário dos outros tipos de thread listados anteriormente, que são permanentes, estes são threads temporárias que são criadas e usadas apenas durante o reinício do nó ou do sistema, ou quando executando **ndb_restore** `--rebuild-indexes`. Elas podem ser vinculadas a conjuntos de CPU que se sobrepõem com conjuntos de CPU vinculados a tipos de thread permanentes.
 
 Os valores de `thread_prio`, `realtime` e `spintime` não podem ser definidos para os threads de construção de índice offline. Além disso, `count` é ignorado para este tipo de thread.
 
@@ -3841,7 +3841,7 @@ Quando isso acontece, o nó pode responder de duas maneiras, de acordo com o val
 
 + `ABORT`: Todas as operações pendentes de transações abortadas também são abortadas.
 
-+ `QUEUE`: Operações pendentes de transações que foram interrompidas estão em fila para serem refeitas. Isso é o padrão. As operações pendentes ainda são interrompidas quando o log de refazer fica sem espaço — ou seja, quando ocorrem erros P\_TAIL\_PROBLEM.
++ `QUEUE`: Operações pendentes de transações que foram interrompidas estão em fila para serem refeitas. Isso é o padrão. As operações pendentes ainda são interrompidas quando o log de refazer fica sem espaço — ou seja, quando ocorrem erros P_TAIL_PROBLEM.
 
 * `DefaultHashMapSize`
 
@@ -4128,7 +4128,7 @@ Se as atualizações da fonte são escritas no log binário como atualizações 
 
 `DELETE`: Registrado como um evento `DELETE_ROW` com todas as colunas registradas na imagem anterior; a imagem após não está registrada.
 
-Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte ndb\_replication Table, para mais informações.
+Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte ndb_replication Table, para mais informações.
 
 * `--ndb-log-updated-only`
 
@@ -4142,7 +4142,7 @@ Se `mysqld` escreve atualizações apenas (`ON`) ou strings completas (`OFF`) no
 
 + `DELETE`: Registrado como um evento `DELETE_ROW` com as colunas da chave primária incluídas na imagem anterior; a imagem após não é registrada.
 
-Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte ndb\_replication Table, para mais informações sobre como essas opções interagem entre si.
+Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte ndb_replication Table, para mais informações sobre como essas opções interagem entre si.
 
 * `--ndb-log-update-minimal`
 
@@ -4156,7 +4156,7 @@ Faça atualizações de registro de forma mínima, escrevendo apenas os valores 
 
 + `DELETE`: Registrado como um evento `DELETE_ROW` com todas as colunas na imagem anterior; a imagem após não foi registrada.
 
-Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte ndb\_replication Table, para mais informações.
+Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte ndb_replication Table, para mais informações.
 
 * `--ndb-mgmd-host=host[:port]`
 
@@ -4340,7 +4340,7 @@ Os valores de tempo podem ser sufixados opcionalmente com `h` (horas), `m` (minu
 
 Os nomes das opções que podem ser definidos usando essa variável são mostrados na tabela a seguir. A tabela também fornece descrições breves das opções, seus valores padrão e (quando aplicável) seus valores mínimo e máximo.
 
-**Tabela 21.18 ndb\_index\_stat\_option opções e valores**
+**Tabela 21.18 ndb_index_stat_option opções e valores**
 
   <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>3
 
@@ -5306,7 +5306,7 @@ Para mais informações, consulte NDB$EPOCH2()").
 
 Utilizada na resolução de conflitos da replicação do NDB Cluster, essa variável mostra o número de strings encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS2()` em um determinado `mysqld` desde a última vez que foi reiniciado.
 
-Para mais informações, consulte (NDB$EPOCH2\_TRANS()").
+Para mais informações, consulte (NDB$EPOCH2_TRANS()").
 
 * `Ndb_conflict_fn_max`
 

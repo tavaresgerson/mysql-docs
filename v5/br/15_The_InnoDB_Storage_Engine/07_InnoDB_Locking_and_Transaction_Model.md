@@ -193,7 +193,7 @@ Um bloqueio `AUTO-INC` é um bloqueio especial de nível de tabela tomado por tr
 
 A variável `innodb_autoinc_lock_mode` controla o algoritmo utilizado para o bloqueio de auto-incremento. Ela permite que você escolha como equilibrar entre sequências previsíveis de valores de auto-incremento e a concorrência máxima para operações de inserção.
 
-Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
 
 #### Lâminas preditivas para índices espaciais
 
@@ -659,7 +659,7 @@ Quando um `SELECT` é usado nos construtos `REPLACE INTO t SELECT ... FROM s WHE
 
 * `InnoDB` define um bloqueio exclusivo no final do índice associado à coluna `AUTO_INCREMENT`, ao mesmo tempo em que inicializa uma coluna `AUTO_INCREMENT` especificada anteriormente em uma tabela.
 
-Com `innodb_autoinc_lock_mode=0`, `InnoDB` utiliza um modo especial de bloqueio de tabela `AUTO-INC` onde o bloqueio é obtido e mantido até o final da declaração SQL atual (não até o final de toda a transação) ao acessar o contador de autoincremento. Outros clientes não podem inserir na tabela enquanto o bloqueio da tabela `AUTO-INC` é mantido. O mesmo comportamento ocorre para “inserções em massa” com `innodb_autoinc_lock_mode=1`. Bloqueios de nível de tabela `AUTO-INC` não são usados com `innodb_autoinc_lock_mode=2`. Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Com `innodb_autoinc_lock_mode=0`, `InnoDB` utiliza um modo especial de bloqueio de tabela `AUTO-INC` onde o bloqueio é obtido e mantido até o final da declaração SQL atual (não até o final de toda a transação) ao acessar o contador de autoincremento. Outros clientes não podem inserir na tabela enquanto o bloqueio da tabela `AUTO-INC` é mantido. O mesmo comportamento ocorre para “inserções em massa” com `innodb_autoinc_lock_mode=1`. Bloqueios de nível de tabela `AUTO-INC` não são usados com `innodb_autoinc_lock_mode=2`. Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
 
 `InnoDB` obtém o valor de uma coluna `AUTO_INCREMENT` previamente inicializada sem definir quaisquer bloqueios.
 

@@ -1105,7 +1105,7 @@ O **MySQLInstallerConsole.exe** suporta as seguintes ações de comando:
 
 Nota
 
-Os valores do bloco de configuração (ou argumentos\_block) que contêm um caractere de colon (`:`) devem ser envolvidos em aspas. Por exemplo, `install_dir="C:\MySQL\MySQL Server 8.0"`.
+Os valores do bloco de configuração (ou argumentos_block) que contêm um caractere de colon (`:`) devem ser envolvidos em aspas. Por exemplo, `install_dir="C:\MySQL\MySQL Server 8.0"`.
 
 * `[--]configure [product1]:[configuration_argument]=[value], [product2]:[configuration_argument]=[value], [...]`
 

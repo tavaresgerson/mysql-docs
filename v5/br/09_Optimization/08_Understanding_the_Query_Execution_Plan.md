@@ -362,7 +362,7 @@ Os índices são numerados a partir do número 1, na mesma ordem que é mostrado
 
 * `Scanned N databases` (propriedade JSON: `message`)
 
-Isso indica quantas varreduras de diretório o servidor realiza ao processar uma consulta para as tabelas `INFORMATION_SCHEMA`, conforme descrito na Seção 8.2.3, “Otimizando consultas do INFORMATION\_SCHEMA”. O valor de *`N`* pode ser 0, 1 ou `all`.
+Isso indica quantas varreduras de diretório o servidor realiza ao processar uma consulta para as tabelas `INFORMATION_SCHEMA`, conforme descrito na Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”. O valor de *`N`* pode ser 0, 1 ou `all`.
 
 * `Select tables optimized away` (propriedade JSON: `message`)
 
@@ -396,7 +396,7 @@ Para motores de armazenamento que mantêm um contagem exata de strings por tabel
 
 * `Skip_open_table`, `Open_frm_only`, `Open_full_table` (propriedade JSON: `message`)
 
-Esses valores indicam otimizações de abertura de arquivos que se aplicam a consultas para tabelas `INFORMATION_SCHEMA`, conforme descrito na Seção 8.2.3, “Otimizando consultas do INFORMATION\_SCHEMA”.
+Esses valores indicam otimizações de abertura de arquivos que se aplicam a consultas para tabelas `INFORMATION_SCHEMA`, conforme descrito na Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”.
 
 + `Skip_open_table`: Não é necessário abrir os arquivos de tabela. As informações já se tornaram disponíveis na consulta ao digitalizar o diretório do banco de dados.
 

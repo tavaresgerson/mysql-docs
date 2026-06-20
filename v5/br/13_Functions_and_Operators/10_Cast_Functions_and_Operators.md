@@ -15,7 +15,7 @@ As funções e operadores de cast permitem a conversão de valores de um tipo de
 
 * `BINARY` *`expr`*
 
-O operador `BINARY` converte a expressão em uma string binária (uma string que tem o conjunto de caracteres `binary` e a ordenação `binary`). Um uso comum do `BINARY` é forçar uma comparação de string de caracteres a ser feita byte por byte, usando valores numéricos de byte em vez de caracteres por caracteres. O operador `BINARY` também faz com que os espaços finais nas comparações sejam significativos. Para informações sobre as diferenças entre a ordenação `binary` do conjunto de caracteres `binary` e as ordenações `_bin` dos conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A ordenação binária comparada às ordenações \_bin”.
+O operador `BINARY` converte a expressão em uma string binária (uma string que tem o conjunto de caracteres `binary` e a ordenação `binary`). Um uso comum do `BINARY` é forçar uma comparação de string de caracteres a ser feita byte por byte, usando valores numéricos de byte em vez de caracteres por caracteres. O operador `BINARY` também faz com que os espaços finais nas comparações sejam significativos. Para informações sobre as diferenças entre a ordenação `binary` do conjunto de caracteres `binary` e as ordenações `_bin` dos conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A ordenação binária comparada às ordenações _bin”.
 
   ```sql
   mysql> SELECT 'a' = 'A';

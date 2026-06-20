@@ -12,7 +12,7 @@ Com a replicação baseada em declarações do MySQL, pode haver problemas na re
 
 Para informações adicionais específicas sobre replicação e `InnoDB`, consulte a Seção 14.20, “InnoDB e replicação do MySQL”. Para informações relacionadas à replicação com NDB Cluster, consulte a Seção 21.7, “Replicação do NDB Cluster”.
 
-#### 16.4.1.1 Replicação e AUTO\_INCREMENT
+#### 16.4.1.1 Replicação e AUTO_INCREMENT
 
 A replicação baseada em declarações dos valores de `AUTO_INCREMENT`, `LAST_INSERT_ID()` e `TIMESTAMP` é feita corretamente, sujeita às seguintes exceções:
 
@@ -22,7 +22,7 @@ A replicação baseada em declarações dos valores de `AUTO_INCREMENT`, `LAST_I
 
 * Uma `INSERT` em uma tabela que possui uma chave primária composta que inclui uma coluna `AUTO_INCREMENT` que não é a primeira coluna dessa chave composta não é segura para registro baseado em declarações ou replicação. Essas declarações são marcadas como inseguras. (Bug #11754117, Bug #45670)
 
-Este problema não afeta tabelas que utilizam o mecanismo de armazenamento `InnoDB`, uma vez que uma tabela `InnoDB` com uma coluna AUTO\_INCREMENT requer pelo menos uma chave onde a coluna de auto-incremento é a única ou a coluna mais à esquerda.
+Este problema não afeta tabelas que utilizam o mecanismo de armazenamento `InnoDB`, uma vez que uma tabela `InnoDB` com uma coluna AUTO_INCREMENT requer pelo menos uma chave onde a coluna de auto-incremento é a única ou a coluna mais à esquerda.
 
 * Adicionar uma coluna `AUTO_INCREMENT` a uma tabela com `ALTER TABLE` pode não produzir a mesma ordem das strings na réplica e na fonte. Isso ocorre porque a ordem em que as strings são numeradas depende do motor de armazenamento específico usado para a tabela e da ordem em que as strings foram inseridas. Se é importante ter a mesma ordem na fonte e na réplica, as strings devem ser ordenadas antes de atribuir um número `AUTO_INCREMENT`. Supondo que você queira adicionar uma coluna `AUTO_INCREMENT` a uma tabela `t1` que tem colunas `col1` e `col2`, as seguintes declarações produzem uma nova tabela `t2` idêntica a `t1`, mas com uma coluna `AUTO_INCREMENT`:
 
@@ -97,7 +97,7 @@ Quando a tabela de destino existe e `IF NOT EXISTS` é fornecida, o MySQL 5.7 ig
 
 As declarações `CREATE SERVER`, `ALTER SERVER` e `DROP SERVER` não são escritas no log binário, independentemente do formato de registro binário que está em uso.
 
-#### 16.4.1.8 Replicação de CURRENT\_USER()
+#### 16.4.1.8 Replicação de CURRENT_USER()
 
 As seguintes declarações apoiam o uso da função `CURRENT_USER()` para substituir o nome de, e possivelmente o endereço de, um usuário afetado ou um definidor:
 
@@ -323,7 +323,7 @@ Algumas funções não se replicam bem em algumas condições:
 
 As funções `USER()`, `CURRENT_USER()` (ou `CURRENT_USER`), `UUID()`, `VERSION()` e `LOAD_FILE()` são replicadas sem alterações e, portanto, não funcionam de forma confiável na replica, a menos que a replicação baseada em string seja habilitada. (Veja a Seção 16.2.1, “Formatos de Replicação”.)
 
-`USER()` e `CURRENT_USER()` são replicados automaticamente usando replicação baseada em string quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT`. (Veja também a Seção 16.4.1.8, “Replicação de CURRENT\_USER()”).) Isso também é válido para `VERSION()` e `RAND()`.
+`USER()` e `CURRENT_USER()` são replicados automaticamente usando replicação baseada em string quando se usa o modo `MIXED`, e geram um aviso no modo `STATEMENT`. (Veja também a Seção 16.4.1.8, “Replicação de CURRENT_USER()”).) Isso também é válido para `VERSION()` e `RAND()`.
 
 * Para `NOW()`, o log binário inclui o timestamp. Isso significa que o valor *como retornado pela chamada a esta função na fonte* é replicado na replica. Para evitar resultados inesperados ao replicar entre servidores MySQL em diferentes fusos horários, defina o fuso horário tanto na fonte quanto na replica. Para mais informações, consulte a Seção 16.4.1.31, “Replicação e Fusos Horários”.
 
@@ -446,7 +446,7 @@ Tentar replicar recursos invocados usando replicação baseada em declarações 
 
 + O status do evento está definido como `SLAVESIDE_DISABLED` na réplica, independentemente do estado especificado (isto não se aplica a `DROP EVENT`).
 
-+ A fonte na qual o evento foi criado é identificada na replica por sua ID de servidor. As colunas `ORIGINATOR` na tabela do Esquema de Informações `EVENTS` e as colunas `originator` em `mysql.event` armazenam essas informações. Consulte Seção 24.3.8, “A Tabela de EVENTOS do INFORMATION\_SCHEMA”, e Seção 13.7.5.18, “Declaração SHOW EVENTS”, para mais informações.
++ A fonte na qual o evento foi criado é identificada na replica por sua ID de servidor. As colunas `ORIGINATOR` na tabela do Esquema de Informações `EVENTS` e as colunas `originator` em `mysql.event` armazenam essas informações. Consulte Seção 24.3.8, “A Tabela de EVENTOS do INFORMATION_SCHEMA”, e Seção 13.7.5.18, “Declaração SHOW EVENTS”, para mais informações.
 
 * A implementação do recurso reside na replica em um estado renovável, para que, se a fonte falhar, a replica possa ser usada como fonte sem perda do processamento de eventos.
 
@@ -512,7 +512,7 @@ Quando se usa o modo `STATEMENT`, os avisos são emitidos para declarações DML
 
 Quando o **mysqlbinlog** lê eventos de log para declarações `LOAD DATA` registradas em formato baseado em declaração, um arquivo local gerado é criado em um diretório temporário. Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinlog** ou por qualquer outro programa do MySQL. Se você usar declarações `LOAD DATA` com registro binário baseado em declaração, você deve excluir os arquivos temporários você mesmo depois de não precisar mais do registro da declaração. Para mais informações, consulte a Seção 4.6.7, “mysqlbinlog — Utilitário para Processamento de Arquivos de Log Binário”.
 
-#### 16.4.1.19 Replicação e max\_allowed\_packet
+#### 16.4.1.19 Replicação e max_allowed_packet
 
 `max_allowed_packet` estabelece um limite superior para o tamanho de qualquer mensagem única entre o servidor MySQL e os clientes, incluindo réplicas. Se você estiver replicando valores de coluna grandes (como os encontrados nas colunas `TEXT` ou `BLOB`) e `max_allowed_packet` estiver muito pequeno na fonte, a fonte falha com um erro, e a réplica interrompe o thread de I/O de replicação. Se `max_allowed_packet` estiver muito pequeno na réplica, isso também faz com que a réplica pare o thread de I/O de replicação.
 

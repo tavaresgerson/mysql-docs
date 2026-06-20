@@ -2,7 +2,7 @@
 
 Esta seção descreve algumas utilidades que você pode achar úteis ao desenvolver programas do MySQL.
 
-Em scripts de shell, você pode usar o programa **my\_print\_defaults** para analisar arquivos de opções e ver quais opções seriam usadas por um programa específico. O exemplo a seguir mostra a saída que **my\_print\_defaults** pode produzir quando solicitado a mostrar as opções encontradas nos grupos `[client]` e `[mysql]`:
+Em scripts de shell, você pode usar o programa **my_print_defaults** para analisar arquivos de opções e ver quais opções seriam usadas por um programa específico. O exemplo a seguir mostra a saída que **my_print_defaults** pode produzir quando solicitado a mostrar as opções encontradas nos grupos `[client]` e `[mysql]`:
 
 ```sql
 $> my_print_defaults client mysql
@@ -17,17 +17,17 @@ Várias outras interfaces de linguagem para o MySQL são baseadas na biblioteca 
 
 ### 4.7.1 mysql_config — Exibir opções para a compilação de clientes
 
-**mysql\_config** fornece informações úteis para compilar seu cliente MySQL e conectá-lo ao MySQL. É um script de shell, portanto, está disponível apenas em sistemas Unix e semelhantes ao Unix.
+**mysql_config** fornece informações úteis para compilar seu cliente MySQL e conectá-lo ao MySQL. É um script de shell, portanto, está disponível apenas em sistemas Unix e semelhantes ao Unix.
 
 Nota
 
-A partir do MySQL 5.7.9, o **pkg-config** pode ser usado como uma alternativa ao **mysql\_config** para obter informações, como as opções do compilador ou as bibliotecas de ligação necessárias para compilar aplicativos do MySQL. Para mais informações, consulte Construindo programas de cliente de API C usando pkg-config.
+A partir do MySQL 5.7.9, o **pkg-config** pode ser usado como uma alternativa ao **mysql_config** para obter informações, como as opções do compilador ou as bibliotecas de ligação necessárias para compilar aplicativos do MySQL. Para mais informações, consulte Construindo programas de cliente de API C usando pkg-config.
 
 Nota
 
-A partir do MySQL 5.7.4, para distribuições binárias para Solaris, **mysql\_config** não fornece argumentos para vinculação com a biblioteca embutida. Para obter argumentos de vinculação para a biblioteca embutida, use o script **mysql\_server\_config** em vez disso.
+A partir do MySQL 5.7.4, para distribuições binárias para Solaris, **mysql_config** não fornece argumentos para vinculação com a biblioteca embutida. Para obter argumentos de vinculação para a biblioteca embutida, use o script **mysql_server_config** em vez disso.
 
-**mysql\_config** suporta as seguintes opções.
+**mysql_config** suporta as seguintes opções.
 
 * `--cflags`
 
@@ -77,7 +77,7 @@ Exiba o valor da variável de configuração nomeada. Os valores permitidos de *
 
 Número da versão para a distribuição MySQL.
 
-Se você invocar **mysql\_config** sem opções, ele exibe uma lista de todas as opções que ele suporta, e seus valores:
+Se você invocar **mysql_config** sem opções, ele exibe uma lista de todas as opções que ele suporta, e seus valores:
 
 ```sql
 $> mysql_config
@@ -102,16 +102,16 @@ Options:
           plugindir     [/usr/local/mysql/lib/plugin]
 ```
 
-Você pode usar **mysql\_config** em uma string de comando usando barras duplas para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use **mysql\_config** da seguinte forma:
+Você pode usar **mysql_config** em uma string de comando usando barras duplas para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use **mysql_config** da seguinte forma:
 
 ```sql
 gcc -c `mysql_config --cflags` progname.c
 gcc -o progname progname.o `mysql_config --libs`
 ```
 
-### 4.7.2 my\_print\_defaults — Opções de exibição a partir de arquivos de opção
+### 4.7.2 my_print_defaults — Opções de exibição a partir de arquivos de opção
 
-**my\_print\_defaults** exibe as opções que estão presentes nos grupos de opções dos arquivos de opções. A saída indica quais opções são usadas pelos programas que leem os grupos de opções especificados. Por exemplo, o programa **mysqlcheck** lê os grupos de opções `[mysqlcheck]` e `[client]`. Para ver quais opções estão presentes nesses grupos nos arquivos de opções padrão, invoque **my\_print\_defaults** da seguinte forma:
+**my_print_defaults** exibe as opções que estão presentes nos grupos de opções dos arquivos de opções. A saída indica quais opções são usadas pelos programas que leem os grupos de opções especificados. Por exemplo, o programa **mysqlcheck** lê os grupos de opções `[mysqlcheck]` e `[client]`. Para ver quais opções estão presentes nesses grupos nos arquivos de opções padrão, invoque **my_print_defaults** da seguinte forma:
 
 ```sql
 $> my_print_defaults mysqlcheck client
@@ -150,7 +150,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 * `--login-path=name`, `-l name`
 
-Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
 Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
@@ -162,7 +162,7 @@ Para informações adicionais sobre esta e outras opções de arquivo de opçõe
 
 * `--show`, `-s`
 
-A partir do MySQL 5.7.8, **my\_print\_defaults** mascara as senhas por padrão. Use esta opção para exibir as senhas em texto claro.
+A partir do MySQL 5.7.8, **my_print_defaults** mascara as senhas por padrão. Use esta opção para exibir as senhas em texto claro.
 
 * `--verbose`, `-v`
 
@@ -172,15 +172,15 @@ Modo detalhado. Imprima mais informações sobre o que o programa faz.
 
 Exibir informações da versão e sair.
 
-### 4.7.3 resolve\_stack\_dump — Resolva o registro de depuração de pilha numérica para símbolos
+### 4.7.3 resolve_stack_dump — Resolva o registro de depuração de pilha numérica para símbolos
 
-**resolve\_stack\_dump** resolve um depuramento de pilha numérica em símbolos.
+**resolve_stack_dump** resolve um depuramento de pilha numérica em símbolos.
 
 Nota
 
-**resolve\_stack\_dump** é desatualizado e será removido no MySQL 8.0. As trajetórias de pilha dos builds oficiais do MySQL são sempre simbolizadas, portanto, não há necessidade de usar **resolve\_stack\_dump**.
+**resolve_stack_dump** é desatualizado e será removido no MySQL 8.0. As trajetórias de pilha dos builds oficiais do MySQL são sempre simbolizadas, portanto, não há necessidade de usar **resolve_stack_dump**.
 
-Invoque **resolve\_stack\_dump** da seguinte forma:
+Invoque **resolve_stack_dump** da seguinte forma:
 
 ```sql
 resolve_stack_dump [options] symbols_file [numeric_dump_file]
@@ -188,7 +188,7 @@ resolve_stack_dump [options] symbols_file [numeric_dump_file]
 
 O arquivo de símbolos deve incluir a saída do comando **nm --numeric-sort mysqld**. O arquivo de depuração numérica deve conter uma trilha de pilha numérica a partir de `mysqld`. Se nenhum arquivo de depuração numérica estiver nomeado na string de comando, a depuração de pilha é lida a partir da entrada padrão.
 
-**resolve\_stack\_dump** suporta as seguintes opções.
+**resolve_stack_dump** suporta as seguintes opções.
 
 * `--help`, `-h`
 

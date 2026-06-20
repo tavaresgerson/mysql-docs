@@ -72,7 +72,7 @@ Características do plugin `daemon_memcached`:
 
 * A capacidade de especificar opções do **memcached** através do parâmetro de configuração `daemon_memcached_option`. Por exemplo, você pode alterar a porta na qual o **memcached** escuta, reduzir o número máximo de conexões simultâneas, alterar o tamanho máximo de memória para um par chave-valor ou habilitar mensagens de depuração para o log de erro.
 
-* A opção de configuração `innodb_api_trx_level` controla o nível de isolamento de transação em consultas processadas pelo **memcached**. Embora o **memcached** não tenha conceito de transações, você pode usar essa opção para controlar o quão cedo o **memcached** vê as alterações causadas por declarações SQL emitidas na tabela usada pelo plugin **daemon\_memcached**. Por padrão, `innodb_api_trx_level` está definido como `READ UNCOMMITTED`.
+* A opção de configuração `innodb_api_trx_level` controla o nível de isolamento de transação em consultas processadas pelo **memcached**. Embora o **memcached** não tenha conceito de transações, você pode usar essa opção para controlar o quão cedo o **memcached** vê as alterações causadas por declarações SQL emitidas na tabela usada pelo plugin **daemon_memcached**. Por padrão, `innodb_api_trx_level` está definido como `READ UNCOMMITTED`.
 
 * A opção `innodb_api_enable_mdl` pode ser usada para bloquear a tabela no nível MySQL, de modo que a tabela mapeada não possa ser eliminada ou alterada por DDL através da interface SQL. Sem o bloqueio, a tabela pode ser eliminada da camada MySQL, mas mantida no armazenamento `InnoDB` até que o **memcached** ou outro usuário deixe de usá-la. “MDL” significa “bloqueio de metadados”.
 
@@ -1304,7 +1304,7 @@ mysql> SHOW TABLES;
 +---------------------------+
 ```
 
-#### Tabela cache\_policies
+#### Tabela cache_policies
 
 A tabela `cache_policies` define uma política de cache para a instalação `InnoDB` `memcached`. Você pode especificar políticas individuais para as operações `get`, `set`, `delete` e `flush`, dentro de uma única política de cache. O ajuste padrão para todas as operações é `innodb_only`.
 
@@ -1320,7 +1320,7 @@ A tabela `cache_policies` define uma política de cache para a instalação `Inn
 
 <table frame="all" summary="Columns of the cache_policies table."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Column</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>policy_name</code></td> <td>Name of the cache policy. The default cache policy name is <code>cache_policy</code>.</td> </tr><tr> <td><code>get_policy</code></td> <td>The cache policy for get operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr><tr> <td><code>set_policy</code></td> <td>The cache policy for set operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr><tr> <td><code>delete_policy</code></td> <td>The cache policy for delete operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr><tr> <td><code>flush_policy</code></td> <td>The cache policy for flush operations. Valid values are <code>innodb_only</code>, <code>cache_only</code>, <code>caching</code>, or <code>disabled</code>. The default setting is <code>innodb_only</code>.</td> </tr></tbody></table>
 
-#### Tabela config\_options
+#### Tabela config_options
 
 A tabela `config_options` armazena configurações relacionadas ao **memcached** que podem ser alteradas em tempo real usando SQL. As opções de configuração suportadas são `separator` e `table_map_delimiter`.
 
@@ -1364,7 +1364,7 @@ Uma pré-verificação é realizada no momento da carga do plugin para impor as 
 
 * Se uma tabela tiver mais colunas do que valores mapeados, as colunas extras não afetam os resultados.
 
-#### A tabela de exemplo demo\_test
+#### A tabela de exemplo demo_test
 
 O script de configuração `innodb_memcached_config.sql` cria uma tabela `demo_test` no banco de dados `test`, que pode ser usada para verificar a instalação do plugin **memcached** `InnoDB` imediatamente após a configuração.
 

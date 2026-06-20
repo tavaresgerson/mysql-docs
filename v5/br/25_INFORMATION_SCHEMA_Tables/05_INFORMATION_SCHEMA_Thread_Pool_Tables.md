@@ -20,7 +20,7 @@ A tabela a seguir resume as tabelas de pool de threads `INFORMATION_SCHEMA`. Par
 
 <table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA thread pool tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>TP_THREAD_GROUP_STATE</code></td> <td>Estados do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_GROUP_STATS</code></td> <td>Estatísticas do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_STATE</code></td> <td>Informações sobre o thread do pool de threads</td> </tr></tbody></table>
 
-### 24.5.2 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE
+### 24.5.2 A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE
 
 A tabela `TP_THREAD_GROUP_STATE` tem uma string por grupo de thread no pool de threads. Cada string fornece informações sobre o estado atual de um grupo.
 
@@ -100,7 +100,7 @@ O ID máximo do thread dos threads do grupo. Isso é o mesmo que `MAX(TP_THREAD_
   FROM TP_THREAD_STATE GROUP BY TP_GROUP_ID;
   ```
 
-### 24.5.3 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS
+### 24.5.3 A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS
 
 A tabela `TP_THREAD_GROUP_STATS` reporta estatísticas por grupo de threads. Há uma string por grupo.
 
@@ -194,7 +194,7 @@ O número de espera `THD_WAIT_GROUP_COMMIT`. Esses ocorrem quando um compromisso
 
 O número de espera `THD_WAIT_SYNC` para uma operação de sincronização de arquivos.
 
-### 24.5.4 A tabela INFORMATION\_SCHEMA TP\_THREAD\_STATE
+### 24.5.4 A tabela INFORMATION_SCHEMA TP_THREAD_STATE
 
 A tabela `TP_THREAD_STATE` tem uma string por thread criado pelo pool de threads para lidar com as conexões.
 
@@ -218,6 +218,6 @@ O tipo de espera do thread. `NULL` significa que o thread não está bloqueado. 
 
 O valor `WAIT_TYPE` é uma string que descreve o tipo de espera, conforme mostrado na tabela a seguir.
 
-**Tabela 24.8 Tabela TP\_THREAD\_STATE Valores WAIT\_TYPE**
+**Tabela 24.8 Tabela TP_THREAD_STATE Valores WAIT_TYPE**
 
   <table summary="TP_THREAD_STATE table WAIT_TYPE values. The first column is the wait type. The second column describes the wait type."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Wait Type</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>THD_WAIT_SLEEP</code></td> <td>Esperando dormir</td> </tr><tr> <td><code>THD_WAIT_DISKIO</code></td> <td>Esperando por IO de disco</td> </tr><tr> <td><code>THD_WAIT_ROW_LOCK</code></td> <td>Esperando por bloqueio de string</td> </tr><tr> <td><code>THD_WAIT_GLOBAL_LOCK</code></td> <td>Esperando por bloqueio global</td> </tr><tr> <td><code>THD_WAIT_META_DATA_LOCK</code></td> <td>Esperando por bloqueio de metadados</td> </tr><tr> <td><code>THD_WAIT_TABLE_LOCK</code></td> <td>Esperando por bloqueio de mesa</td> </tr><tr> <td><code>THD_WAIT_USER_LOCK</code></td> <td>Esperando bloqueio do usuário</td> </tr><tr> <td><code>THD_WAIT_BINLOG</code></td> <td>Esperando binlog</td> </tr><tr> <td><code>THD_WAIT_GROUP_COMMIT</code></td> <td>Esperando pelo commit do grupo</td> </tr><tr> <td><code>THD_WAIT_SYNC</code></td> <td>Esperando por fsync</td> </tr></tbody></table>

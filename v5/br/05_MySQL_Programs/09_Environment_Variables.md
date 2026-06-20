@@ -9,7 +9,7 @@ As opções na string de comando têm precedência sobre os valores especificado
 
 Para informações sobre o arquivo de histórico do **mysql**, consulte a Seção 4.5.1.3, “Registro do cliente do mysql”.
 
-`MYSQL_TEST_LOGIN_FILE` é o nome do caminho do arquivo de login (o arquivo criado pelo **mysql\_config\_editor**). Se não definido, o valor padrão é o diretório `%APPDATA%\MySQL\.mylogin.cnf` no Windows e `$HOME/.mylogin.cnf` em sistemas que não são do Windows. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+`MYSQL_TEST_LOGIN_FILE` é o nome do caminho do arquivo de login (o arquivo criado pelo **mysql_config_editor**). Se não definido, o valor padrão é o diretório `%APPDATA%\MySQL\.mylogin.cnf` no Windows e `$HOME/.mylogin.cnf` em sistemas que não são do Windows. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 As variáveis `MYSQL_TEST_TRACE_DEBUG` e `MYSQL_TEST_TRACE_CRASH` controlam o plugin de registro do protocolo de teste do cliente, se o MySQL for construído com esse plugin habilitado. Para mais informações, consulte o uso do plugin de registro do protocolo de teste.
 

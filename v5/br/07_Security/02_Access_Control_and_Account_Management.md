@@ -86,7 +86,7 @@ $> mysql -u finley -ppassword db_name
 
 Se você usar a opção `-p`, não deve haver *espaço* entre `-p` e o valor da senha a seguir.
 
-Especificar uma senha na string de comando deve ser considerado inseguro. Consulte a Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”. Para evitar fornecer a senha na string de comando, use um arquivo de opção ou um arquivo de caminho de login. Consulte a Seção 4.2.2.2, “Usando Arquivos de Opção”, e a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+Especificar uma senha na string de comando deve ser considerado inseguro. Consulte a Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”. Para evitar fornecer a senha na string de comando, use um arquivo de opção ou um arquivo de caminho de login. Consulte a Seção 4.2.2.2, “Usando Arquivos de Opção”, e a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre a especificação de nomes de usuário, senhas e outros parâmetros de conexão, consulte a Seção 4.2.4, “Conectar ao servidor MySQL usando opções de comando”.
 
@@ -868,7 +868,7 @@ value. The user will be ignored and no one can login with this user
 anymore.
 ```
 
-Para resolver esse problema, consulte a Seção 6.4.1.3, “Migrando para fora da criptografia de hash de senha pré-4.1 e do plugin mysql\_old\_password”.
+Para resolver esse problema, consulte a Seção 6.4.1.3, “Migrando para fora da criptografia de hash de senha pré-4.1 e do plugin mysql_old_password”.
 
 A coluna `password_expired` permite que os DBAs expiram as senhas das contas e exijam que os usuários refaçam suas senhas. O valor padrão `password_expired` é `'N'`, mas pode ser definido como `'Y'` com a declaração `ALTER USER`. Após a senha de uma conta ter sido expirada, todas as operações realizadas pela conta em conexões subsequentes ao servidor resultam em um erro até que o usuário emita uma declaração `ALTER USER` para estabelecer uma nova senha da conta.
 
@@ -884,7 +884,7 @@ Embora seja possível "redefinir" uma senha expirada, definindo-a para seu valor
 
 `account_locked` indica se a conta está bloqueada (consulte a Seção 6.2.15, “Bloqueio de conta”).
 
-#### As tabelas\_priv e as colunas\_priv Conceder tabelas
+#### As tabelas_priv e as colunas_priv Conceder tabelas
 
 Durante a segunda etapa do controle de acesso, o servidor realiza a verificação da solicitação para garantir que cada cliente tenha privilégios suficientes para cada solicitação que emite. Além das tabelas de concessão `user` e `db`, o servidor também pode consultar as tabelas `tables_priv` e `columns_priv` para solicitações que envolvem tabelas. Essas últimas tabelas fornecem um controle de privilégio mais preciso nos níveis de tabela e coluna. Elas possuem as colunas mostradas na tabela a seguir.
 
@@ -894,11 +894,11 @@ Durante a segunda etapa do controle de acesso, o servidor realiza a verificaçã
 
 As colunas `Timestamp` e `Grantor` são definidas como o timestamp atual e o valor da `CURRENT_USER`, respectivamente, mas, de outra forma, não são utilizadas.
 
-#### A tabela de concessão procs\_priv
+#### A tabela de concessão procs_priv
 
 Para a verificação de solicitações que envolvem rotinas armazenadas, o servidor pode consultar a tabela `procs_priv`, que possui as colunas mostradas na tabela a seguir.
 
-**Tabela 6.5 Colunas da tabela procs\_priv**
+**Tabela 6.5 Colunas da tabela procs_priv**
 
 <table><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Table Name</th> <th><code>procs_priv</code></th> </tr></thead><tbody><tr> <td><strong>Scope columns</strong></td> <td><code>Host</code></td> </tr><tr> <td></td> <td><code>Db</code></td> </tr><tr> <td></td> <td><code>User</code></td> </tr><tr> <td></td> <td><code>Routine_name</code></td> </tr><tr> <td></td> <td><code>Routine_type</code></td> </tr><tr> <td><strong>Privilege columns</strong></td> <td><code>Proc_priv</code></td> </tr><tr> <td><strong>Other columns</strong></td> <td><code>Timestamp</code></td> </tr><tr> <td></td> <td><code>Grantor</code></td> </tr></tbody></table>
 
@@ -906,7 +906,7 @@ A coluna `Routine_type` é uma coluna `ENUM` com valores de `'FUNCTION'` ou `'PR
 
 As colunas `Timestamp` e `Grantor` não são utilizadas.
 
-#### A tabela de concessão proxies\_priv
+#### A tabela de concessão proxies_priv
 
 A tabela `proxies_priv` registra informações sobre contas proxy. Ela tem as seguintes colunas:
 
@@ -1224,7 +1224,7 @@ A tabela `db` concede privilégios específicos do banco de dados. Os valores na
 
 * Um valor vazio `User` corresponde ao usuário anônimo. Um valor não vazio corresponde literalmente; não há caracteres especiais nos nomes dos usuários.
 
-* Os caracteres curinga `%` e `_` podem ser usados nas colunas `Host` e `Db`. Esses têm o mesmo significado que as operações de correspondência de padrões realizadas com o operador `LIKE`. Se você deseja usar qualquer caractere literalmente ao conceder privilégios, deve escapar com uma barra invertida. Por exemplo, para incluir o caractere sublinhado (`_`) como parte de um nome de banco de dados, especifique-o como `\_` na declaração `GRANT`.
+* Os caracteres curinga `%` e `_` podem ser usados nas colunas `Host` e `Db`. Esses têm o mesmo significado que as operações de correspondência de padrões realizadas com o operador `LIKE`. Se você deseja usar qualquer caractere literalmente ao conceder privilégios, deve escapar com uma barra invertida. Por exemplo, para incluir o caractere sublinhado (`_`) como parte de um nome de banco de dados, especifique-o como `_` na declaração `GRANT`.
 
 * Um valor de `'%'` ou vazio de `Host` significa “qualquer hospedeiro”.
 
@@ -2406,7 +2406,7 @@ No entanto, o servidor vai permitir que você se conecte como `root` sem usar um
   by server; consider upgrading MySQL client
   ```
 
-Para obter informações sobre como lidar com isso, consulte a Seção 6.4.1.3, “Migrando para fora da criptografia de senha pré-4.1 e do plugin mysql\_old\_password”.
+Para obter informações sobre como lidar com isso, consulte a Seção 6.4.1.3, “Migrando para fora da criptografia de senha pré-4.1 e do plugin mysql_old_password”.
 
 * Lembre-se de que os programas de cliente utilizam parâmetros de conexão especificados em arquivos de opção ou variáveis de ambiente. Se um programa de cliente parecer estar enviando parâmetros de conexão padrão incorretos quando você não os especificou na string de comando, verifique quaisquer arquivos de opção aplicáveis e seu ambiente. Por exemplo, se você receber `Access denied` ao executar um cliente sem nenhuma opção, certifique-se de que você não especificou uma senha antiga em nenhum de seus arquivos de opção!
 

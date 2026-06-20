@@ -62,7 +62,7 @@ Cita uma string como um valor JSON, envolvendo-a com caracteres de aspas duplas 
 
 Essa função é normalmente usada para produzir uma string literal JSON válida para inclusão dentro de um documento JSON.
 
-Certos caracteres especiais são escapados com barras invertidas conforme as sequências de escape mostradas na Tabela 12.23, "Sequências de escape de caracteres especiais JSON\_UNQUOTE()". Sequências de escape de caracteres especiais).
+Certos caracteres especiais são escapados com barras invertidas conforme as sequências de escape mostradas na Tabela 12.23, "Sequências de escape de caracteres especiais JSON_UNQUOTE()". Sequências de escape de caracteres especiais).
 
   ```sql
   mysql> SELECT JSON_QUOTE('null'), JSON_QUOTE('"null"');
@@ -896,7 +896,7 @@ Este exemplo mostra que a função opera de forma recursiva; ou seja, os valores
 
 `JSON_MERGE_PATCH()` é suportado no MySQL 5.7.22 e versões posteriores.
 
-**JSON\_MERGE\_PATCH() em comparação com JSON\_MERGE\_PRESERVE().** O comportamento do `JSON_MERGE_PATCH()` é o mesmo do `JSON_MERGE_PRESERVE()`, com as seguintes duas exceções:
+**JSON_MERGE_PATCH() em comparação com JSON_MERGE_PRESERVE().** O comportamento do `JSON_MERGE_PATCH()` é o mesmo do `JSON_MERGE_PRESERVE()`, com as seguintes duas exceções:
 
 + `JSON_MERGE_PATCH()` remove qualquer membro no primeiro objeto com uma chave correspondente no segundo objeto, desde que o valor associado à chave no segundo objeto não seja JSON `null`.
 
@@ -1087,9 +1087,9 @@ Os exemplos a seguir ilustram essas diferenças, usando um caminho que existe no
 
 Desfaz o valor JSON e retorna o resultado como uma string `utf8mb4`. Retorna `NULL` se o argumento for `NULL`. Um erro ocorre se o valor começar e terminar com aspas duplas, mas não for um literal válido de string JSON.
 
-Dentro de uma cadeia, certas sequências têm um significado especial, a menos que o modo `NO_BACKSLASH_ESCAPES` SQL esteja habilitado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como *caractere de escape*. O MySQL reconhece as sequências de escape mostradas na Tabela 12.23, “Sequências de escape de caracteres especiais JSON\_UNQUOTE() (Sequências de escape de caracteres especiais)”. Para todas as outras sequências de escape, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências são sensíveis ao caso. Por exemplo, `\b` é interpretado como um espaço de volta, mas `\B` é interpretado como `B`.
+Dentro de uma cadeia, certas sequências têm um significado especial, a menos que o modo `NO_BACKSLASH_ESCAPES` SQL esteja habilitado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como *caractere de escape*. O MySQL reconhece as sequências de escape mostradas na Tabela 12.23, “Sequências de escape de caracteres especiais JSON_UNQUOTE() (Sequências de escape de caracteres especiais)”. Para todas as outras sequências de escape, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências são sensíveis ao caso. Por exemplo, `\b` é interpretado como um espaço de volta, mas `\B` é interpretado como `B`.
 
-**Tabela 12.23 Sequências de Caracteres de Escape JSON\_UNQUOTE()**
+**Tabela 12.23 Sequências de Caracteres de Escape JSON_UNQUOTE()**
 
   <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Personagem representado por sequência</th> </tr></thead><tbody><tr> <td><code>\"</code></td> <td>Uma citação dupla (<code>"</code>) personagem</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\f</code></td> <td>Um caractere de quebra de página</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova string (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\\</code></td> <td>Um traço de barra (<code>\</code>) personagem</td> </tr><tr> <td><code>\u<code>XXXX</code></code></td> <td>Bytes UTF-8 para valor Unicode<code>XXXX</code></td> </tr></tbody></table>
 

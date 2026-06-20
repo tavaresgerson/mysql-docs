@@ -879,7 +879,7 @@ Para especificar valores citados:
 
 Para as diretrizes de citação de strings e de identificadores, consulte a Seção 9.1.1, “Literais de String”, e a Seção 9.2, “Nomes de Objetos do Esquema”.
 
-Os caracteres `_` e `%` são permitidos ao especificar nomes de banco de dados em declarações `GRANT` que concedem privilégios ao nível do banco de dados (`GRANT ... ON db_name.*`). Isso significa, por exemplo, que para usar um caractere `_` como parte de um nome de banco de dados, especifí-lo usando o caractere de fuga `\` como `\_` na declaração `GRANT`, para evitar que o usuário possa acessar bancos de dados adicionais que correspondem ao padrão de caracteres (*), por exemplo, `` GRANT ... ON `foo\_bar`.* TO ... ``.
+Os caracteres `_` e `%` são permitidos ao especificar nomes de banco de dados em declarações `GRANT` que concedem privilégios ao nível do banco de dados (`GRANT ... ON db_name.*`). Isso significa, por exemplo, que para usar um caractere `_` como parte de um nome de banco de dados, especifí-lo usando o caractere de fuga `\` como `_` na declaração `GRANT`, para evitar que o usuário possa acessar bancos de dados adicionais que correspondem ao padrão de caracteres (*), por exemplo, `` GRANT ... ON `foo_bar`.* TO ... ``.
 
 Emitir várias declarações `GRANT` contendo caracteres curinga pode não ter o efeito esperado em declarações DML; ao resolver concessões que envolvem caracteres curinga, o MySQL leva em consideração apenas a primeira concessão que corresponde. Em outras palavras, se um usuário tiver duas concessões de nível de banco de dados usando caracteres curinga que correspondem ao mesmo banco de dados, a concessão que foi criada primeiro é aplicada. Considere o banco de dados `db` e a tabela `t` criados usando as declarações mostradas aqui:
 
@@ -2142,7 +2142,7 @@ Se a sintaxe de uma declaração `SHOW` dada incluir uma parte `LIKE 'pattern'`,
 
 Várias declarações `SHOW` também aceitam uma cláusula `WHERE` que oferece mais flexibilidade na especificação de quais strings devem ser exibidas. Veja a Seção 24.8, “Extensões para Declarações SHOW”.
 
-Muitas APIs do MySQL (como o PHP) permitem que você trate o resultado retornado de uma declaração `SHOW` como se fosse um conjunto de resultados de uma declaração `SELECT`; veja o Capítulo 27, *Conectores e APIs*, ou a documentação da sua API para mais informações. Além disso, você pode trabalhar em SQL com resultados de consultas em tabelas no banco de dados `INFORMATION_SCHEMA`, o que não é fácil de fazer com resultados de declarações `SHOW`. Veja o Capítulo 24, *Tabelas do INFORMATION\_SCHEMA*.
+Muitas APIs do MySQL (como o PHP) permitem que você trate o resultado retornado de uma declaração `SHOW` como se fosse um conjunto de resultados de uma declaração `SELECT`; veja o Capítulo 27, *Conectores e APIs*, ou a documentação da sua API para mais informações. Além disso, você pode trabalhar em SQL com resultados de consultas em tabelas no banco de dados `INFORMATION_SCHEMA`, o que não é fácil de fazer com resultados de declarações `SHOW`. Veja o Capítulo 24, *Tabelas do INFORMATION_SCHEMA*.
 
 #### 13.7.5.1 Declaração de LOGOS BINÁRIO DE EXIBIÇÃO
 
@@ -3018,7 +3018,7 @@ Se o motor de armazenamento suporta transações XA.
 
 Se o motor de armazenamento suporta pontos de salvamento.
 
-As informações do motor de armazenamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `ENGINES`. Veja a Seção 24.3.7, “A tabela INFORMATION\_SCHEMA ENGINES”.
+As informações do motor de armazenamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `ENGINES`. Veja a Seção 24.3.7, “A tabela INFORMATION_SCHEMA ENGINES”.
 
 #### 13.7.5.17 Declaração de ERROS DE EXIBIÇÃO
 
@@ -3588,7 +3588,7 @@ collation_connection: utf8_general_ci
 
 `character_set_client` é o valor de sessão da variável de sistema `character_set_client` quando a rotina foi criada. `collation_connection` é o valor de sessão da variável de sistema `collation_connection` quando a rotina foi criada. `Database Collation` é a agregação do banco de dados com o qual a rotina está associada.
 
-As informações de rotina armazenadas também estão disponíveis nas tabelas `INFORMATION_SCHEMA` `PARAMETERS` e `ROUTINES`. Veja a Seção 24.3.15, “A Tabela de PARÂMETROS do INFORMATION\_SCHEMA”, e a Seção 24.3.21, “A Tabela de ROUTINES do INFORMATION\_SCHEMA”.
+As informações de rotina armazenadas também estão disponíveis nas tabelas `INFORMATION_SCHEMA` `PARAMETERS` e `ROUTINES`. Veja a Seção 24.3.15, “A Tabela de PARÂMETROS do INFORMATION_SCHEMA”, e a Seção 24.3.21, “A Tabela de ROUTINES do INFORMATION_SCHEMA”.
 
 #### 13.7.5.29 Declaração SHOW PROCESSLIST
 
@@ -4063,11 +4063,11 @@ O nome do arquivo de log binário de origem que contém o evento mais recente ex
 
 Se a thread de E/S foi iniciada e se conectou com sucesso à fonte. Internamente, o estado dessa thread é representado por um dos seguintes três valores:
 
-+ **MYSQL\_SLAVE\_NOT\_RUN.** A thread de I/O da replica não está em execução. Para este estado, `Slave_IO_Running` é `No`.
++ **MYSQL_SLAVE_NOT_RUN.** A thread de I/O da replica não está em execução. Para este estado, `Slave_IO_Running` é `No`.
 
-+ **MYSQL\_SLAVE\_RUN\_NOT\_CONNECT.** A thread de I/O da replica está em execução, mas não está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Connecting`.
++ **MYSQL_SLAVE_RUN_NOT_CONNECT.** A thread de I/O da replica está em execução, mas não está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Connecting`.
 
-+ **MYSQL\_SLAVE\_RUN\_CONNECT.** A thread de I/O da replica está em execução e está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Yes`.
++ **MYSQL_SLAVE_RUN_CONNECT.** A thread de I/O da replica está em execução e está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Yes`.
 
 O valor da variável de status do sistema `Slave_running` corresponde a este valor.
 
@@ -4450,7 +4450,7 @@ Para tabelas particionadas, esse valor é apenas uma estimativa e pode não ser 
       AND   TABLE_NAME   = 'mytable';
   ```
 
-Para mais informações, consulte a Seção 24.3.16, “A tabela de PARTITIONS do INFORMATION\_SCHEMA”.
+Para mais informações, consulte a Seção 24.3.16, “A tabela de PARTITIONS do INFORMATION_SCHEMA”.
 
 * `Auto_increment`
 
@@ -4723,7 +4723,7 @@ SHOW VARIABLES LIKE '%size%';
 SHOW GLOBAL VARIABLES LIKE '%size%';
 ```
 
-Os caracteres curinga podem ser usados em qualquer posição dentro do padrão que deve ser correspondido. De forma estrita, porque `_` é um curinga que corresponde a qualquer caractere único, você deve escapar `\_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
+Os caracteres curinga podem ser usados em qualquer posição dentro do padrão que deve ser correspondido. De forma estrita, porque `_` é um curinga que corresponde a qualquer caractere único, você deve escapar `_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
 
 #### 13.7.5.40 Declaração de ATENÇÕES
 

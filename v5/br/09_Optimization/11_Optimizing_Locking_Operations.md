@@ -174,7 +174,7 @@ Para `LOCK TABLE`, a diferença entre `READ LOCAL` e `READ` é que `READ LOCAL` 
 
 O MySQL utiliza o bloqueio de metadados para gerenciar o acesso concorrente a objetos do banco de dados e garantir a consistência dos dados. O bloqueio de metadados não se aplica apenas a tabelas, mas também a esquemas, programas armazenados (procedimentos, funções, gatilhos, eventos agendados), espaços de tabela, bloqueios de usuário adquiridos com a função `GET_LOCK()` (consulte Seção 12.14, “Funções de Bloqueio”) e bloqueios adquiridos com o serviço de bloqueio descrito na Seção 5.5.6.1, “O Serviço de Bloqueio”.
 
-A tabela do Schema de Desempenho `metadata_locks` exibe informações de bloqueio de metadados, o que pode ser útil para ver quais sessões possuem blocos, estão bloqueadas esperando por blocos, e assim por diante. Para detalhes, consulte a Seção 25.12.12.1, “A tabela de metadados\_locks”.
+A tabela do Schema de Desempenho `metadata_locks` exibe informações de bloqueio de metadados, o que pode ser útil para ver quais sessões possuem blocos, estão bloqueadas esperando por blocos, e assim por diante. Para detalhes, consulte a Seção 25.12.12.1, “A tabela de metadados_locks”.
 
 O bloqueio de metadados envolve algum overhead, que aumenta à medida que o volume de consultas aumenta. A concorrência de metadados aumenta quanto mais múltiplas consultas tentam acessar os mesmos objetos.
 

@@ -396,7 +396,7 @@ Quais retornos:
 
 A consulta calcula quantos dias diferentes aparecem na tabela para cada combinação de ano/mês, com remoção automática de entradas duplicadas.
 
-### 3.6.9 Usando AUTO\_INCREMENT
+### 3.6.9 Usando AUTO_INCREMENT
 
 O atributo `AUTO_INCREMENT` pode ser usado para gerar uma identidade única para novas strings:
 
@@ -481,7 +481,7 @@ mysql> ALTER TABLE tbl AUTO_INCREMENT = 100;
 
 #### Notas do InnoDB
 
-Para informações sobre o uso de `AUTO_INCREMENT` específico para `InnoDB`, consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Para informações sobre o uso de `AUTO_INCREMENT` específico para `InnoDB`, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
 
 #### Notas sobre MyISAM
 
@@ -537,7 +537,7 @@ Mais informações sobre `AUTO_INCREMENT` estão disponíveis aqui:
 * Definindo o valor `AUTO_INCREMENT` a ser utilizado: Seção 5.1.7, “Variáveis do sistema do servidor”.
 
 * Seção 14.6.1.6, `AUTO_INCREMENT` Manipulação no InnoDB”
-* `AUTO_INCREMENT` e replicação: Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
+* `AUTO_INCREMENT` e replicação: Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”.
 
 * Variáveis do sistema do servidor relacionadas a `AUTO_INCREMENT` (`auto_increment_increment` e `auto_increment_offset`) que podem ser usadas para replicação: Seção 5.1.7, “Variáveis do sistema do servidor”.
 

@@ -91,7 +91,7 @@ Veja também a Seção 13.4.1.1, “Declaração de PURGE BINARY LOGS”.
 
 Após verificar a configuração, reiniciar a fonte e a replica e garantir que nenhum dado indesejado ou arquivos de registro binário gerados durante o teste permaneçam na fonte ou na replica, você pode iniciar a replica e começar a replicar.
 
-#### 13.4.1.3 Declaração sql\_log\_bin SET
+#### 13.4.1.3 Declaração sql_log_bin SET
 
 ```sql
 SET sql_log_bin = {OFF|ON}
@@ -465,7 +465,7 @@ Quando usado em um nó de replicação do NDB Cluster, o `RESET SLAVE` limpa a t
 
 Você pode sobrepor esse comportamento emitindo `SET` `GLOBAL @@` `ndb_clear_apply_status=OFF` antes de executar `RESET SLAVE`, o que impede que a replica apague a tabela `ndb_apply_status` nesses casos.
 
-#### 13.4.2.4 Sintaxe do contador de pular sql\_slave_ em nível global SET
+#### 13.4.2.4 Sintaxe do contador de pular sql_slave_ em nível global SET
 
 ```sql
 SET GLOBAL sql_slave_skip_counter = N
@@ -642,7 +642,7 @@ Se o grupo atual de eventos de replicação tiver modificado uma ou mais tabelas
 
 Esta seção fornece informações sobre as declarações usadas para controlar os servidores que executam o plugin de replicação de grupo do MySQL. Consulte o Capítulo 17, *Replicação de grupo*, para obter mais informações.
 
-#### 13.4.3.1 Declaração de GRUPO\_REPLICATION START
+#### 13.4.3.1 Declaração de GRUPO_REPLICATION START
 
 ```sql
 START GROUP_REPLICATION

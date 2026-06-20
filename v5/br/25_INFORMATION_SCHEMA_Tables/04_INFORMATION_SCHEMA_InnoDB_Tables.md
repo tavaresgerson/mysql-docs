@@ -12,7 +12,7 @@ A tabela a seguir resume as tabelas `INFORMATION_SCHEMA` do InnoDB. Para mais de
 
 <table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA InnoDB tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><code>INNODB_BUFFER_PAGE</code></th> <td>Páginas no buffer pool do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_PAGE_LRU</code></th> <td>Ordem de páginas em LRU no buffer pool do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_BUFFER_POOL_STATS</code></th> <td>Estatísticas do pool de buffers do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP</code></th> <td>Status para operações relacionadas a tabelas compactadas InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX</code></th> <td>Status para operações relacionadas a tabelas e índices compactados do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_PER_INDEX_RESET</code></th> <td>Status para operações relacionadas a tabelas e índices compactados do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMP_RESET</code></th> <td>Status para operações relacionadas a tabelas compactadas InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM</code></th> <td>Status para páginas compactadas dentro do pool de buffer do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_CMPMEM_RESET</code></th> <td>Status para páginas compactadas dentro do pool de buffer do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_BEING_DELETED</code></th> <td>Snapshot of INNODB_FT_DELETED table</td> <td></td> </tr><tr><th><code>INNODB_FT_CONFIG</code></th> <td>Metadados para o índice FULLTEXT da tabela InnoDB e processamento associado</td> <td></td> </tr><tr><th><code>INNODB_FT_DEFAULT_STOPWORD</code></th> <td>Lista padrão de palavras irrelevantes para índices FULLTEXT do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_DELETED</code></th> <td>Strings excluídas do índice FULLTEXT da tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_CACHE</code></th> <td>Informações sobre tokens para strings recém-inseridas no índice FULLTEXT do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_FT_INDEX_TABLE</code></th> <td>Informações do índice invertido para processar pesquisas de texto contra o índice FULLTEXT da tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_LOCK_WAITS</code></th> <td>InnoDB transaction lock-wait information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_LOCKS</code></th> <td>InnoDB transaction lock information</td> <td>5.7.14</td> </tr><tr><th><code>INNODB_METRICS</code></th> <td>InnoDB performance information</td> <td></td> </tr><tr><th><code>INNODB_SYS_COLUMNS</code></th> <td>Colunas em cada tabela InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_DATAFILES</code></th> <td>Informações sobre o caminho do arquivo de dados para InnoDB file-per-table e espaços de tabela gerais</td> <td></td> </tr><tr><th><code>INNODB_SYS_FIELDS</code></th> <td>Colunas-chave dos índices InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN</code></th> <td>InnoDB foreign-key metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_FOREIGN_COLS</code></th> <td>Informações sobre o status das colunas de chave estrangeira do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_INDEXES</code></th> <td>InnoDB index metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLES</code></th> <td>InnoDB table metadata</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESPACES</code></th> <td>Metadados de InnoDB de arquivo por tabela, gerais e espaço de desfazer</td> <td></td> </tr><tr><th><code>INNODB_SYS_TABLESTATS</code></th> <td>Informações de status de tabela de nível baixo do InnoDB</td> <td></td> </tr><tr><th><code>INNODB_SYS_VIRTUAL</code></th> <td>Metadados de coluna virtual gerada por InnoDB</td> <td></td> </tr><tr><th><code>INNODB_TEMP_TABLE_INFO</code></th> <td>Informações sobre tabelas temporárias criadas por usuários ativos no InnoDB</td> <td></td> </tr><tr><th><code>INNODB_TRX</code></th> <td>Informações de transação ativa do InnoDB</td> <td></td> </tr></tbody></table>
 
-### 24.4.2 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE
+### 24.4.2 A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE
 
 A tabela `INNODB_BUFFER_PAGE` fornece informações sobre cada página no conjunto de buffers `InnoDB`.
 
@@ -44,7 +44,7 @@ O número da página.
 
 O tipo de página. O quadro a seguir mostra os valores permitidos.
 
-**Tabela 24.4 Valores de INNODB\_BUFFER\_PAGE.PAGE\_TYPE**
+**Tabela 24.4 Valores de INNODB_BUFFER_PAGE.PAGE_TYPE**
 
   <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>ALLOCATED</code></td> <td>Página recém-atribuída</td> </tr><tr> <td><code>BLOB</code></td> <td>Página BLOB não compactada</td> </tr><tr> <td><code>COMPRESSED_BLOB2</code></td> <td>Página subsequente comp BLOB</td> </tr><tr> <td><code>COMPRESSED_BLOB</code></td> <td>Primeira página BLOB compactada</td> </tr><tr> <td><code>EXTENT_DESCRIPTOR</code></td> <td>Página de descrição do alcance</td> </tr><tr> <td><code>FILE_SPACE_HEADER</code></td> <td>Cabeçalho de espaço de arquivo</td> </tr><tr> <td><code>IBUF_BITMAP</code></td> <td>Insira a bitmap de buffer</td> </tr><tr> <td><code>IBUF_FREE_LIST</code></td> <td>Insira a lista de buffers livres</td> </tr><tr> <td><code>IBUF_INDEX</code></td> <td>Insira o índice do buffer</td> </tr><tr> <td><code>INDEX</code></td> <td>nó de árvore B</td> </tr><tr> <td><code>INODE</code></td> <td>Nodo do índice</td> </tr><tr> <td><code>RTREE_INDEX</code></td> <td>índice de árvore R</td> </tr><tr> <td><code>SYSTEM</code></td> <td>Página do sistema</td> </tr><tr> <td><code>TRX_SYSTEM</code></td> <td>Dados do sistema de transação</td> </tr><tr> <td><code>UNDO_LOG</code></td> <td>Desfazer página de registro</td> </tr><tr> <td><code>UNKNOWN</code></td> <td>Desconhecido</td> </tr></tbody></table>
 
@@ -96,7 +96,7 @@ O tamanho de página compactada. `NULL` para páginas que não estão compactada
 
 O estado da página. O quadro a seguir mostra os valores permitidos.
 
-**Tabela 24.5 Valores de INNODB\_BUFFER\_PAGE.PAGE\_STATE**
+**Tabela 24.5 Valores de INNODB_BUFFER_PAGE.PAGE_STATE**
 
   <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_STATE values."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Page State</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>Uma página de arquivo com buffer</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contém um objeto de memória principal</td> </tr><tr> <td><code>NOT_USED</code></td> <td>Na lista gratuita</td> </tr><tr> <td><code>NULL</code></td> <td>Páginas compactadas limpas, páginas compactadas na lista de limpeza, páginas usadas como sentinelas de monitoramento do buffer pool</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>Uma página gratuita</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>O índice de hash deve ser removido antes de ser colocado na lista livre</td> </tr></tbody></table>
 
@@ -183,7 +183,7 @@ O número da página.
 
 O tipo de página. O quadro a seguir mostra os valores permitidos.
 
-**Tabela 24.6 Valores de INNODB\_BUFFER\_PAGE\_LRU.PAGE\_TYPE**
+**Tabela 24.6 Valores de INNODB_BUFFER_PAGE_LRU.PAGE_TYPE**
 
   <table summary="Mapping for interpreting INNODB_BUFFER_PAGE_LRU.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>ALLOCATED</code></td> <td>Página recém-atribuída</td> </tr><tr> <td><code>BLOB</code></td> <td>Página BLOB não compactada</td> </tr><tr> <td><code>COMPRESSED_BLOB2</code></td> <td>Página subsequente comp BLOB</td> </tr><tr> <td><code>COMPRESSED_BLOB</code></td> <td>Primeira página BLOB compactada</td> </tr><tr> <td><code>EXTENT_DESCRIPTOR</code></td> <td>Página de descrição do alcance</td> </tr><tr> <td><code>FILE_SPACE_HEADER</code></td> <td>Cabeçalho de espaço de arquivo</td> </tr><tr> <td><code>IBUF_BITMAP</code></td> <td>Insira a bitmap de buffer</td> </tr><tr> <td><code>IBUF_FREE_LIST</code></td> <td>Insira a lista de buffers livres</td> </tr><tr> <td><code>IBUF_INDEX</code></td> <td>Insira o índice do buffer</td> </tr><tr> <td><code>INDEX</code></td> <td>nó de árvore B</td> </tr><tr> <td><code>INODE</code></td> <td>Nodo do índice</td> </tr><tr> <td><code>RTREE_INDEX</code></td> <td>índice de árvore R</td> </tr><tr> <td><code>SYSTEM</code></td> <td>Página do sistema</td> </tr><tr> <td><code>TRX_SYSTEM</code></td> <td>Dados do sistema de transação</td> </tr><tr> <td><code>UNDO_LOG</code></td> <td>Desfazer página de registro</td> </tr><tr> <td><code>UNKNOWN</code></td> <td>Desconhecido</td> </tr></tbody></table>
 
@@ -554,7 +554,7 @@ uncompress_time: 0
 
 * Para informações de uso, consulte a Seção 14.9.1.4, “Monitoramento da Compressão de Tabela InnoDB em Tempo Real” e a Seção 14.16.1.3, “Uso das Tabelas de Esquema de Informações de Compressão”. Para informações gerais sobre a compressão da tabela `InnoDB`, consulte a Seção 14.9, “Compressão de Tabela e Página InnoDB”.
 
-### 24.4.6 As tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET
+### 24.4.6 As tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET
 
 As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` fornecem informações de status sobre páginas compactadas dentro do conjunto de buffers `InnoDB`.
 
@@ -635,7 +635,7 @@ buffer_pool_instance: 0
 
 * Para informações de uso, consulte a Seção 14.9.1.4, “Monitoramento da Compressão de Tabela InnoDB em Tempo Real” e a Seção 14.16.1.3, “Uso das Tabelas de Esquema de Informações de Compressão”. Para informações gerais sobre a compressão da tabela `InnoDB`, consulte a Seção 14.9, “Compressão de Tabela e Página InnoDB”.
 
-### 24.4.7 As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET
+### 24.4.7 As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET
 
 As tabelas `INNODB_CMP_PER_INDEX` e `INNODB_CMP_PER_INDEX_RESET` fornecem informações de status sobre operações relacionadas a tabelas compactadas `InnoDB` e índices, com estatísticas separadas para cada combinação de banco de dados, tabela e índice, para ajudá-lo a avaliar o desempenho e a utilidade da compactação para tabelas específicas.
 
@@ -711,7 +711,7 @@ uncompress_time: 0
 
 * Para informações de uso, consulte a Seção 14.9.1.4, “Monitoramento da Compressão de Tabela InnoDB em Tempo Real” e a Seção 14.16.1.3, “Uso das Tabelas de Esquema de Informações de Compressão”. Para informações gerais sobre a compressão da tabela `InnoDB`, consulte a Seção 14.9, “Compressão de Tabela e Página InnoDB”.
 
-### 24.4.8 A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED
+### 24.4.8 A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED
 
 A tabela `INNODB_FT_BEING_DELETED` fornece um instantâneo da tabela `INNODB_FT_DELETED`; ela é usada apenas durante uma operação de manutenção `OPTIMIZE TABLE`. Quando o `OPTIMIZE TABLE` é executado, a tabela `INNODB_FT_BEING_DELETED` é esvaziada e os valores de `DOC_ID` são removidos da tabela `INNODB_FT_DELETED`. Como o conteúdo de `INNODB_FT_BEING_DELETED` geralmente tem uma vida curta, essa tabela tem utilidade limitada para monitoramento ou depuração. Para informações sobre como executar o `OPTIMIZE TABLE` em tabelas com índices `FULLTEXT`, consulte a Seção 12.9.6, “Ajustando o MySQL de Pesquisa de Texto Completo”.
 
@@ -733,7 +733,7 @@ O ID do documento da string que está em processo de ser excluída. Esse valor p
 
 * Para mais informações sobre a pesquisa de `InnoDB` `FULLTEXT`, consulte a Seção 14.6.2.4, “Indeksos de Texto Completo InnoDB”, e a Seção 12.9, “Funções de Pesquisa de Texto Completo”.
 
-### 24.4.9 A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG
+### 24.4.9 A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG
 
 A tabela `INNODB_FT_CONFIG` fornece metadados sobre o índice `FULLTEXT` e o processamento associado a uma tabela `InnoDB`.
 
@@ -785,7 +785,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_CONFIG;
 
 * Para mais informações sobre a pesquisa de `InnoDB` `FULLTEXT`, consulte a Seção 14.6.2.4, “Indeksos de Texto Completo InnoDB”, e a Seção 12.9, “Funções de Pesquisa de Texto Completo”.
 
-### 24.4.10 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD
+### 24.4.10 A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD
 
 A tabela `INNODB_FT_DEFAULT_STOPWORD` contém uma lista de palavras irrelevantes que são usadas por padrão ao criar um índice `FULLTEXT` em tabelas `InnoDB`. Para informações sobre a lista de palavras irrelevantes padrão `InnoDB` e como definir suas próprias listas de palavras irrelevantes, consulte a Seção 12.9.4, “Palavras irrelevantes de texto completo”.
 
@@ -852,7 +852,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
 
 * Para mais informações sobre a pesquisa de `InnoDB` `FULLTEXT`, consulte a Seção 14.6.2.4, “Indeksos de Texto Completo InnoDB”, e a Seção 12.9, “Funções de Pesquisa de Texto Completo”.
 
-### 24.4.11 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED
+### 24.4.11 A tabela INFORMATION_SCHEMA INNODB_FT_DELETED
 
 A tabela `INNODB_FT_DELETED` armazena strings que são excluídas do índice `FULLTEXT` para uma tabela `InnoDB`. Para evitar a reorganização cara do índice durante operações de MQL para um índice `InnoDB` `FULLTEXT`, as informações sobre as palavras recém-excluídas são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal apenas quando você emite uma declaração `OPTIMIZE TABLE` para a tabela `InnoDB`. Para mais informações, consulte Otimizando índices de texto completo do InnoDB.
 
@@ -887,7 +887,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DELETED;
 
 * Para mais informações sobre a pesquisa de `InnoDB` `FULLTEXT`, consulte a Seção 14.6.2.4, “Indeksos de Texto Completo InnoDB”, e a Seção 12.9, “Funções de Pesquisa de Texto Completo”.
 
-### 24.4.12 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE
+### 24.4.12 A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE
 
 A tabela `INNODB_FT_INDEX_CACHE` fornece informações sobre tokens de novas strings inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara do índice durante operações de DML, as informações sobre as palavras indexadas recentemente são armazenadas separadamente e combinadas com o índice de pesquisa principal apenas quando o `OPTIMIZE TABLE` é executado, quando o servidor é desligado ou quando o tamanho da cache excede um limite definido pela variável de sistema `innodb_ft_cache_size` ou `innodb_ft_total_cache_size`.
 
@@ -964,7 +964,7 @@ A posição dessa instância específica da palavra dentro do documento relevant
 
 * Para mais informações sobre a pesquisa de `InnoDB` `FULLTEXT`, consulte a Seção 14.6.2.4, “Indeksos de Texto Completo InnoDB”, e a Seção 12.9, “Funções de Pesquisa de Texto Completo”.
 
-### 24.4.13 Tabela de tabela de índice INNODB\_FT\_ÍNDICE de SCHEMA\_INFORMACIÓN 24.4.13
+### 24.4.13 Tabela de tabela de índice INNODB_FT_ÍNDICE de SCHEMA_INFORMACIÓN 24.4.13
 
 A tabela `INNODB_FT_INDEX_TABLE` fornece informações sobre o índice invertido usado para processar pesquisas de texto contra o índice `FULLTEXT` de uma tabela `InnoDB`.
 
@@ -1052,7 +1052,7 @@ A posição dessa instância específica da palavra dentro do documento relevant
 
 * Para mais informações sobre a pesquisa de `InnoDB` `FULLTEXT`, consulte a Seção 14.6.2.4, “Indeksos de Texto Completo InnoDB”, e a Seção 12.9, “Funções de Pesquisa de Texto Completo”.
 
-### 24.4.14 A tabela INFORMATION\_SCHEMA INNODB\_LOCKS
+### 24.4.14 A tabela INFORMATION_SCHEMA INNODB_LOCKS
 
 A tabela `INNODB_LOCKS` fornece informações sobre cada bloqueio que uma transação `InnoDB` solicitou, mas ainda não adquiriu, e sobre cada bloqueio que uma transação mantém e que está bloqueando outra transação.
 
@@ -1140,7 +1140,7 @@ lock_trx_id: 3722
 
 * Para informações sobre uso, consulte a Seção 14.16.2.1, “Usando informações de transação e bloqueio do InnoDB”.
 
-### 24.4.15 A tabela INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS
+### 24.4.15 A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS
 
 A tabela `INNODB_LOCK_WAITS` contém uma ou mais strings para cada transação bloqueada `InnoDB`, indicando o bloqueio que ela solicitou e quaisquer bloqueios que estão bloqueando essa solicitação.
 
@@ -1187,7 +1187,7 @@ requested_lock_id: 3396:91:3:2
 
 * Para informações sobre uso, consulte a Seção 14.16.2.1, “Usando informações de transação e bloqueio do InnoDB”.
 
-### 24.4.16 A tabela INFORMATION\_SCHEMA INNODB\_METRICS
+### 24.4.16 A tabela INFORMATION_SCHEMA INNODB_METRICS
 
 A tabela `INNODB_METRICS` fornece uma ampla variedade de informações de desempenho `InnoDB`, complementando as áreas de foco específicas das tabelas do Schema de Desempenho para `InnoDB`. Com consultas simples, você pode verificar a saúde geral do sistema. Com consultas mais detalhadas, você pode diagnosticar problemas como gargalos de desempenho, escassez de recursos e problemas de aplicativos.
 
@@ -1299,7 +1299,7 @@ AVG_COUNT_RESET: NULL
 
 * Os valores do contador de transações `COUNT` podem diferir do número de eventos de transação relatados nas tabelas do Schema de Desempenho `EVENTS_TRANSACTIONS_SUMMARY`. `InnoDB` conta apenas as transações que ele executa, enquanto o Schema de Desempenho coleta eventos para todas as transações não aborridas iniciadas pelo servidor, incluindo transações vazias.
 
-### 24.4.17 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS
+### 24.4.17 A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS
 
 A tabela `INNODB_SYS_COLUMNS` fornece metadados sobre as colunas da tabela `InnoDB`, equivalentes às informações da tabela `SYS_COLUMNS` no dicionário de dados `InnoDB`.
 
@@ -1317,7 +1317,7 @@ O nome da coluna. Esses nomes podem ser maiúsculos ou minúsculos, dependendo d
 
 * `POS`
 
-A posição ordinal da coluna na tabela, começando de 0 e incrementando sequencialmente. Quando uma coluna é removida, as colunas restantes são reordenadas de modo que a sequência não tenha lacunas. O valor `POS` para uma coluna gerada virtualmente codifica o número de sequência da coluna e a posição ordinal da coluna. Para mais informações, consulte a descrição da coluna `POS` na Seção 24.4.26, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL”.
+A posição ordinal da coluna na tabela, começando de 0 e incrementando sequencialmente. Quando uma coluna é removida, as colunas restantes são reordenadas de modo que a sequência não tenha lacunas. O valor `POS` para uma coluna gerada virtualmente codifica o número de sequência da coluna e a posição ordinal da coluna. Para mais informações, consulte a descrição da coluna `POS` na Seção 24.4.26, “A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL”.
 
 * `MTYPE`
 
@@ -1364,7 +1364,7 @@ TABLE_ID: 71
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.18 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_DATAFILES
+### 24.4.18 A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES
 
 A tabela `INNODB_SYS_DATAFILES` fornece informações sobre o caminho do arquivo de dados para os arquivos por tabela `InnoDB` e espaços de tabela gerais, equivalentes às informações da tabela `SYS_DATAFILES` no dicionário de dados `InnoDB`.
 
@@ -1399,7 +1399,7 @@ SPACE: 57
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.19 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FIELDS
+### 24.4.19 A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS
 
 A tabela `INNODB_SYS_FIELDS` fornece metadados sobre as colunas-chave (campos) dos índices `InnoDB`, equivalentes às informações da tabela `SYS_FIELDS` do dicionário de dados `InnoDB`.
 
@@ -1435,7 +1435,7 @@ INDEX_ID: 117
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.20 Tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN
+### 24.4.20 Tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN
 
 A tabela `INNODB_SYS_FOREIGN` fornece metadados sobre as chaves estrangeiras `InnoDB`, equivalentes às informações da tabela `SYS_FOREIGN` no dicionário de dados `InnoDB`.
 
@@ -1481,7 +1481,7 @@ REF_NAME: test/parent
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.21 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN\_COLS
+### 24.4.21 A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS
 
 A tabela `INNODB_SYS_FOREIGN_COLS` fornece informações de status sobre as colunas das chaves estrangeiras `InnoDB`, equivalentes às informações da tabela `SYS_FOREIGN_COLS` no dicionário de dados `InnoDB`.
 
@@ -1522,7 +1522,7 @@ REF_COL_NAME: id
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.22 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES
+### 24.4.22 A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES
 
 A tabela `INNODB_SYS_INDEXES` fornece metadados sobre os índices `InnoDB`, equivalentes às informações da tabela interna `SYS_INDEXES` do dicionário de dados `InnoDB`.
 
@@ -1592,7 +1592,7 @@ MERGE_THRESHOLD: 50
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.23 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES
+### 24.4.23 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES
 
 A tabela `INNODB_SYS_TABLES` fornece metadados sobre as tabelas `InnoDB`, equivalentes às informações da tabela `SYS_TABLES` do dicionário de dados `InnoDB`.
 
@@ -1658,7 +1658,7 @@ ZIP_PAGE_SIZE: 0
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.24 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLESPACES
+### 24.4.24 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES
 
 A tabela `INNODB_SYS_TABLESPACES` fornece metadados sobre os espaços de tabela por arquivo `InnoDB` e espaços de tabela gerais, equivalentes às informações da tabela `SYS_TABLESPACES` no dicionário de dados `InnoDB`.
 
@@ -1742,7 +1742,7 @@ ALLOCATED_SIZE: 65536
 
 * Com a introdução de tabelas gerais, os dados dos espaços de tabela do sistema `InnoDB` (para o ESPAÇO 0) são expostos em `INNODB_SYS_TABLESPACES`.
 
-### 24.4.25 A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS
+### 24.4.25 A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS
 
 A tabela `INNODB_SYS_TABLESTATS` fornece uma visão de informações de status de baixo nível sobre as tabelas `InnoDB`. Esses dados são usados pelo otimizador do MySQL para calcular qual índice usar ao fazer uma consulta a uma tabela `InnoDB`. Essas informações são derivadas de estruturas de dados de memória em vez de dados armazenados em disco. Não há uma tabela interna correspondente do sistema `InnoDB`.
 
@@ -1816,7 +1816,7 @@ STATS_INITIALIZED: Initialized
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.26 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL
+### 24.4.26 A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL
 
 A tabela `INNODB_SYS_VIRTUAL` fornece metadados sobre as colunas virtuais geradas pelo `InnoDB` e as colunas nas quais as colunas geradas virtualmente são baseadas, equivalentes às informações da tabela `SYS_VIRTUAL` no dicionário de dados `InnoDB`.
 
@@ -1883,7 +1883,7 @@ No entanto, os metadados para uma coluna desse tipo aparecem na tabela `INNODB_S
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.27 A tabela de informações INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO
+### 24.4.27 A tabela de informações INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO
 
 A tabela `INNODB_TEMP_TABLE_INFO` fornece informações sobre as tabelas temporárias criadas pelo usuário `InnoDB` que estão ativas em uma instância `InnoDB`. Não fornece informações sobre as tabelas temporárias internas `InnoDB` usadas pelo otimizador. A tabela `INNODB_TEMP_TABLE_INFO` é criada quando a consulta é feita pela primeira vez, existe apenas na memória e não é persistida no disco.
 
@@ -1936,7 +1936,7 @@ PER_TABLE_TABLESPACE: FALSE
 
 * Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a declaração `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
 
-### 24.4.28 A tabela INFORMATION\_SCHEMA INNODB\_TRX
+### 24.4.28 A tabela INFORMATION_SCHEMA INNODB_TRX
 
 A tabela `INNODB_TRX` fornece informações sobre cada transação que está sendo executada atualmente dentro de `InnoDB`, incluindo se a transação está aguardando uma bloqueio, quando a transação começou e a declaração SQL que a transação está executando, se houver.
 

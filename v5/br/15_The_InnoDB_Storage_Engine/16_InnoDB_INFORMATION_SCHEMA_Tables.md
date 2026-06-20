@@ -18,7 +18,7 @@ Existem dois pares de tabelas `InnoDB` `INFORMATION_SCHEMA` sobre compressão qu
 
 * `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` fornecem informações sobre a forma como a memória é alocada para a compressão.
 
-#### 14.16.1.1 INNODB\_CMP e INNODB\_CMP\_RESET
+#### 14.16.1.1 INNODB_CMP e INNODB_CMP_RESET
 
 As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` fornecem informações de status sobre operações relacionadas a tabelas compactadas, que são descritas na Seção 14.9, “Compressão de Tabela e Página InnoDB”. A coluna `PAGE_SIZE` relata o tamanho da página compactada.
 
@@ -26,7 +26,7 @@ Essas duas tabelas têm conteúdos idênticos, mas a leitura de `INNODB_CMP_RESE
 
 Para a definição da tabela, consulte a Seção 24.4.5, “As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET”.
 
-#### 14.16.1.2 INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET
+#### 14.16.1.2 INNODB_CMPMEM e INNODB_CMPMEM_RESET
 
 As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` fornecem informações de status sobre páginas compactadas que residem no buffer pool. Consulte a Seção 14.9, “Compressão de Tabela e Página InnoDB”, para obter mais informações sobre tabelas compactadas e o uso do buffer pool. As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` devem fornecer estatísticas mais úteis sobre compressão.
 
@@ -744,7 +744,7 @@ Aviso
 
 Consultar as tabelas `INNODB_BUFFER_PAGE` ou `INNODB_BUFFER_PAGE_LRU` pode afetar o desempenho. Não consulte essas tabelas em um sistema de produção a menos que você esteja ciente do impacto no desempenho e tenha determinado que é aceitável. Para evitar impactar o desempenho em um sistema de produção, reproduza o problema que você deseja investigar e consulte as estatísticas do pool de buffer em uma instância de teste.
 
-**Exemplo 14.6: Consultando dados do sistema na tabela INNODB\_BUFFER\_PAGE**
+**Exemplo 14.6: Consultando dados do sistema na tabela INNODB_BUFFER_PAGE**
 
 Essa consulta fornece um contagem aproximada de páginas que contêm dados do sistema, excluindo as páginas onde o valor `TABLE_NAME` é `NULL` ou inclui uma barra `/` ou período `.` no nome da tabela, o que indica uma tabela definida pelo usuário.
 
@@ -797,7 +797,7 @@ mysql> SELECT DISTINCT PAGE_TYPE FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------+
 ```
 
-**Exemplo 14.7: Consultando dados do usuário na tabela INNODB\_BUFFER\_PAGE**
+**Exemplo 14.7: Consultando dados do usuário na tabela INNODB_BUFFER_PAGE**
 
 Essa consulta fornece um contagem aproximada de páginas que contêm dados do usuário, contando páginas onde o valor `TABLE_NAME` é `NOT NULL` e `NOT LIKE '%INNODB_SYS_TABLES%'`.
 
@@ -846,7 +846,7 @@ mysql> SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------------+
 ```
 
-**Exemplo 14.8: Consultando dados de índice na tabela INNODB\_BUFFER\_PAGE**
+**Exemplo 14.8: Consultando dados de índice na tabela INNODB_BUFFER_PAGE**
 
 Para obter informações sobre páginas de índice, consulte a coluna `INDEX_NAME` usando o nome do índice. Por exemplo, a seguinte consulta retorna o número de páginas e o tamanho total dos dados das páginas para o índice `emp_no` que está definido na tabela `employees.salaries`:
 
@@ -896,7 +896,7 @@ mysql> SELECT COUNT(LRU_POSITION) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE_LRU
 +---------------------+
 ```
 
-**Exemplo 14.10: Consultando a tabela INNODB\_BUFFER\_POOL\_STATS**
+**Exemplo 14.10: Consultando a tabela INNODB_BUFFER_POOL_STATS**
 
 A tabela `INNODB_BUFFER_POOL_STATS` fornece informações semelhantes às variáveis de estado de `SHOW ENGINE INNODB STATUS` e `InnoDB` do pool de buffer.
 
@@ -1373,7 +1373,7 @@ Os nomes dos módulos e os nomes correspondentes ao `SUBSYSTEM` estão listados 
 
 * `module_trx` (subsistema = `transaction`)
 
-**Exemplo 14.11 Trabalhando com Contadores de Tabelas INNODB\_METRICS**
+**Exemplo 14.11 Trabalhando com Contadores de Tabelas INNODB_METRICS**
 
 Este exemplo demonstra como habilitar, desabilitar e redefinir um contador, e consultar dados do contador na tabela `INNODB_METRICS`.
 
@@ -1566,7 +1566,7 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_TEMP%';
 
 Para a definição da tabela, consulte a Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”.
 
-**Exemplo 14.12 INNODB\_TEMP\_TABLE\_INFO**
+**Exemplo 14.12 INNODB_TEMP_TABLE_INFO**
 
 Este exemplo demonstra as características da tabela `INNODB_TEMP_TABLE_INFO`.
 
@@ -1653,7 +1653,7 @@ O ID `SPACE` pode ser diferente, pois é gerado dinamicamente quando o servidor 
 
 A tabela do esquema de informações `FILES` fornece metadados sobre todos os tipos de espaço de tabela `InnoDB`, incluindo espaços de tabela por arquivo, espaços de tabela gerais, o espaço de tabela do sistema, espaços de tabela temporários e espaços de tabela de reversão (se presentes).
 
-Esta seção fornece exemplos de uso específicos para `InnoDB`. Para mais informações, consulte a Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.
+Esta seção fornece exemplos de uso específicos para `InnoDB`. Para mais informações, consulte a Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
 
 Nota
 

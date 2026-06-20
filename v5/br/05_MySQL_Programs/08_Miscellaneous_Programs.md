@@ -2,7 +2,7 @@
 
 ### 4.8.1 lz4_decompress — Descomprima saída mysqlpump comprimida por LZ4
 
-A utilidade **lz4\_decompress** descomprime a saída do **mysqlpump** que foi criada usando compressão LZ4. **lz4\_decompress** foi adicionada no MySQL 5.7.10.
+A utilidade **lz4_decompress** descomprime a saída do **mysqlpump** que foi criada usando compressão LZ4. **lz4_decompress** foi adicionada no MySQL 5.7.10.
 
 Invoque **lz4_decompress** da seguinte forma:
 
@@ -19,7 +19,7 @@ lz4_decompress dump.lz4 dump.txt
 
 Para ver uma mensagem de ajuda, invoque **lz4_decompress** sem argumentos.
 
-Para descomprimir a saída comprimida por ZLIB do **mysqlpump**, use **zlib\_decompress**. Veja a Seção 4.8.5, “zlib\_decompress — Descomprima a saída comprimida por ZLIB do mysqlpump”.
+Para descomprimir a saída comprimida por ZLIB do **mysqlpump**, use **zlib_decompress**. Veja a Seção 4.8.5, “zlib_decompress — Descomprima a saída comprimida por ZLIB do mysqlpump”.
 
 ### 4.8.2 perror — Exibir informações do erro do MySQL
 
@@ -54,7 +54,7 @@ OS error code  13:  Permission denied
 OS error code  64:  Machine is not on the network
 ```
 
-Para obter a mensagem de erro para um código de erro do MySQL Cluster, use o utilitário **ndb\_perror**.
+Para obter a mensagem de erro para um código de erro do MySQL Cluster, use o utilitário **ndb_perror**.
 
 O significado das mensagens de erro do sistema pode depender do seu sistema operacional. Um código de erro específico pode significar coisas diferentes em diferentes sistemas operacionais.
 
@@ -68,7 +68,7 @@ Exibir uma mensagem de ajuda e sair.
 
 Imprima a mensagem de erro para um código de erro do NDB Cluster.
 
-Essa opção é desatualizada no NDB 7.6.4 e posterior, onde o **perror** exibe um aviso se for usado e é removido no NDB Cluster 8.0. Use o utilitário **ndb\_perror** em vez disso.
+Essa opção é desatualizada no NDB 7.6.4 e posterior, onde o **perror** exibe um aviso se for usado e é removido no NDB Cluster 8.0. Use o utilitário **ndb_perror** em vez disso.
 
 * `--silent`, `-s`
 
@@ -161,9 +161,9 @@ Exibir informações da versão e sair.
 
 ### 4.8.5 zlib_decompress — Descomprima o resultado comprimido ZLIB do mysqlpump
 
-O utilitário **zlib\_decompress** descomprime a saída do **mysqlpump** que foi criada usando compressão ZLIB. O **zlib\_decompress** foi adicionado no MySQL 5.7.10.
+O utilitário **zlib_decompress** descomprime a saída do **mysqlpump** que foi criada usando compressão ZLIB. O **zlib_decompress** foi adicionado no MySQL 5.7.10.
 
-Invoque **zlib\_decompress** da seguinte forma:
+Invoque **zlib_decompress** da seguinte forma:
 
 ```sql
 zlib_decompress input_file output_file
@@ -176,7 +176,7 @@ mysqlpump --compress-output=ZLIB > dump.zlib
 zlib_decompress dump.zlib dump.txt
 ```
 
-Para ver uma mensagem de ajuda, invoque **zlib\_decompress** sem argumentos.
+Para ver uma mensagem de ajuda, invoque **zlib_decompress** sem argumentos.
 
-Para descomprimir a saída comprimida com LZ4 do **mysqlpump**, use **lz4\_decompress**. Veja a Seção 4.8.1, “lz4\_decompress — Descomprima saída comprimida mysqlpump com LZ4”.
+Para descomprimir a saída comprimida com LZ4 do **mysqlpump**, use **lz4_decompress**. Veja a Seção 4.8.1, “lz4_decompress — Descomprima saída comprimida mysqlpump com LZ4”.
 

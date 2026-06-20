@@ -134,9 +134,9 @@ Para mais informações e exemplos, consulte a Seção 22.5, “Seleção de Par
 
 #### Colunas de Auto-Incremento
 
-Se você excluir a string que contém o valor máximo para uma coluna de `AUTO_INCREMENT`, o valor não será reutilizado para uma tabela de `MyISAM` ou `InnoDB`. Se você excluir todas as strings da tabela com `DELETE FROM tbl_name` (sem uma cláusula de `WHERE` em modo `autocommit`, a sequência será refeita para todos os motores de armazenamento, exceto `InnoDB` e `MyISAM`. Há algumas exceções a esse comportamento para tabelas de `InnoDB`, conforme discutido na Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Se você excluir a string que contém o valor máximo para uma coluna de `AUTO_INCREMENT`, o valor não será reutilizado para uma tabela de `MyISAM` ou `InnoDB`. Se você excluir todas as strings da tabela com `DELETE FROM tbl_name` (sem uma cláusula de `WHERE` em modo `autocommit`, a sequência será refeita para todos os motores de armazenamento, exceto `InnoDB` e `MyISAM`. Há algumas exceções a esse comportamento para tabelas de `InnoDB`, conforme discutido na Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
 
-Para as tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Nesse caso, a reutilização de valores excluídos do topo da sequência ocorre mesmo para as tabelas `MyISAM`. Veja a Seção 3.6.9, “Usando AUTO\_INCREMENT”.
+Para as tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Nesse caso, a reutilização de valores excluídos do topo da sequência ocorre mesmo para as tabelas `MyISAM`. Veja a Seção 3.6.9, “Usando AUTO_INCREMENT”.
 
 #### Modificadores
 
@@ -467,7 +467,7 @@ INSERT INTO tbl_name (a,b,c) VALUES(1,2,3,4,5,6,7,8,9);
 
 `VALUE` é sinônimo de `VALUES` neste contexto. Nenhum deles implica em nada sobre o número de listas de valores, nem sobre o número de valores por lista. Qualquer um pode ser usado, independentemente de haver uma única lista de valores ou múltiplas listas, e independentemente do número de valores por lista.
 
-O valor de affected-rows para um `INSERT` pode ser obtido usando a função SQL `ROW_COUNT()` ou a função C API `mysql_affected_rows()`. Veja a Seção 12.15, “Funções de Informação”, e mysql\_affected\_rows().
+O valor de affected-rows para um `INSERT` pode ser obtido usando a função SQL `ROW_COUNT()` ou a função C API `mysql_affected_rows()`. Veja a Seção 12.15, “Funções de Informação”, e mysql_affected_rows().
 
 Se você usar uma declaração `INSERT ... VALUES` com várias listas de valores ou `INSERT ... SELECT`, a declaração retorna uma string de informações neste formato:
 
@@ -489,13 +489,13 @@ Se você estiver usando a API C, a string de informações pode ser obtida invoc
 
 * Inserir um valor em uma coluna de data ou hora que é ilegal para o tipo de dados. A coluna é definida com o valor zero apropriado para o tipo.
 
-* Para exemplos de `INSERT` que envolvem valores da coluna `AUTO_INCREMENT`, consulte a Seção 3.6.9, “Usando AUTO\_INCREMENT”.
+* Para exemplos de `INSERT` que envolvem valores da coluna `AUTO_INCREMENT`, consulte a Seção 3.6.9, “Usando AUTO_INCREMENT”.
 
 Se o `INSERT` inserir uma string em uma tabela que possui uma coluna `AUTO_INCREMENT`, você pode encontrar o valor usado para essa coluna usando a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`.
 
 Nota
 
-Essas duas funções não sempre se comportam de maneira idêntica. O comportamento das declarações `INSERT` em relação às colunas `AUTO_INCREMENT` é discutido mais detalhadamente na Seção 12.15, “Funções de Informação”, e mysql\_insert\_id().
+Essas duas funções não sempre se comportam de maneira idêntica. O comportamento das declarações `INSERT` em relação às colunas `AUTO_INCREMENT` é discutido mais detalhadamente na Seção 12.15, “Funções de Informação”, e mysql_insert_id().
 
 A declaração `INSERT` suporta os seguintes modificadores:
 

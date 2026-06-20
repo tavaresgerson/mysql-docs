@@ -16,7 +16,7 @@ A API é idêntica para a versão MySQL embutida e para a versão cliente/servid
 
 Em seguida, vincule seu código com `libmysqld.a` em vez de `libmysqlclient.a`. Para garantir a compatibilidade binária entre sua aplicação e a biblioteca do servidor, sempre compile sua aplicação contra cabeçalhos para a mesma série de MySQL que foi usada para compilar a biblioteca do servidor. Por exemplo, se `libmysqld` foi compilado contra os cabeçalhos do MySQL 5.6, não compile sua aplicação contra os cabeçalhos do MySQL 5.7, ou vice-versa.
 
-Como as funções do `mysql_library_xxx()` também estão incluídas no `libmysqlclient.a`, você pode alternar entre a versão integrada e a versão cliente/servidor, simplesmente vinculando sua aplicação com a biblioteca correta. Veja mysql\_library\_init().
+Como as funções do `mysql_library_xxx()` também estão incluídas no `libmysqlclient.a`, você pode alternar entre a versão integrada e a versão cliente/servidor, simplesmente vinculando sua aplicação com a biblioteca correta. Veja mysql_library_init().
 
 Uma diferença entre o servidor integrado e o servidor autônomo é que, para o servidor integrado, a autenticação para conexões é desativada por padrão.
 
@@ -26,7 +26,7 @@ Em distribuições binárias pré-compiladas do MySQL que incluem `libmysqld`, a
 
 Para obter uma biblioteca `libmysqld` se você construir o MySQL a partir do código fonte, você deve configurar o MySQL com a opção `-DWITH_EMBEDDED_SERVER=1`. Veja a Seção 2.8.7, “Opções de Configuração de Código Fonte do MySQL”.
 
-Quando você vincula seu programa com `libmysqld`, também deve incluir as bibliotecas específicas do sistema `pthread` e algumas bibliotecas que o servidor MySQL usa. Você pode obter a lista completa das bibliotecas executando **mysql\_config --libmysqld-libs**.
+Quando você vincula seu programa com `libmysqld`, também deve incluir as bibliotecas específicas do sistema `pthread` e algumas bibliotecas que o servidor MySQL usa. Você pode obter a lista completa das bibliotecas executando **mysql_config --libmysqld-libs**.
 
 As flags corretas para a compilação e vinculação de um programa com múltiplos threads devem ser usadas, mesmo que você não chame diretamente nenhuma função de thread em seu código.
 
@@ -37,7 +37,7 @@ gcc mysql_test.c -o mysql_test \
 `/usr/local/mysql/bin/mysql_config --include --libmysqld-libs`
 ```
 
-Imediatamente após o comando **gcc**, vem o nome do arquivo fonte do programa C. Depois disso, a opção `-o` é dada para indicar que o nome do arquivo que segue é o nome que o compilador deve dar ao arquivo de saída, o programa compilado. A próxima string de código diz ao compilador para obter a localização dos arquivos de inclusão e bibliotecas e outras configurações para o sistema em que ele é compilado. O comando **mysql\_config** está contido em barras duplas, não em aspas simples.
+Imediatamente após o comando **gcc**, vem o nome do arquivo fonte do programa C. Depois disso, a opção `-o` é dada para indicar que o nome do arquivo que segue é o nome que o compilador deve dar ao arquivo de saída, o programa compilado. A próxima string de código diz ao compilador para obter a localização dos arquivos de inclusão e bibliotecas e outras configurações para o sistema em que ele é compilado. O comando **mysql_config** está contido em barras duplas, não em aspas simples.
 
 Em algumas plataformas que não são do **gcc**, a biblioteca embutida depende das bibliotecas de tempo de execução do C++, e a vinculação contra a biblioteca embutida pode resultar em erros de símbolo ausente. Para resolver isso, vincule usando um compilador de C++ ou liste explicitamente as bibliotecas necessárias na string de comando de vinculação.
 
@@ -61,7 +61,7 @@ Algumas dessas limitações podem ser alteradas editando o arquivo `mysql_embed.
 
 ### 27.6.3 Opções com o Servidor Integrado
 
-Quaisquer opções que possam ser fornecidas com o daemon do servidor `mysqld` podem ser usadas com uma biblioteca de servidor embutida. As opções do servidor podem ser fornecidas em um array como argumento para o `mysql_library_init()`, que inicializa o servidor. Elas também podem ser fornecidas em um arquivo de opção como `my.cnf`. Para especificar um arquivo de opção para um programa em C, use a opção `--defaults-file` como um dos elementos do segundo argumento da função `mysql_library_init()`. Consulte mysql\_library\_init(), para obter mais informações sobre a função `mysql_library_init()`.
+Quaisquer opções que possam ser fornecidas com o daemon do servidor `mysqld` podem ser usadas com uma biblioteca de servidor embutida. As opções do servidor podem ser fornecidas em um array como argumento para o `mysql_library_init()`, que inicializa o servidor. Elas também podem ser fornecidas em um arquivo de opção como `my.cnf`. Para especificar um arquivo de opção para um programa em C, use a opção `--defaults-file` como um dos elementos do segundo argumento da função `mysql_library_init()`. Consulte mysql_library_init(), para obter mais informações sobre a função `mysql_library_init()`.
 
 Usar arquivos de opções pode facilitar a alternância entre uma aplicação cliente/servidor e uma em que o MySQL está embutido. Coloque opções comuns sob o grupo `[server]`. Essas são lidas por ambas as versões do MySQL. Opções específicas para cliente/servidor devem ir sob a seção `[mysqld]`. Coloque opções específicas para a biblioteca do servidor MySQL embutida na seção `[embedded]`. Opções específicas para aplicativos devem ir sob a seção rotulada `[ApplicationName_SERVER]`. Veja a Seção 4.2.2.2, “Usando arquivos de opções”.
 

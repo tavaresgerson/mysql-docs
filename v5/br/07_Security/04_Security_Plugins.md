@@ -58,7 +58,7 @@ O MySQL inclui dois plugins que implementam autenticação nativa; ou seja, aute
 
 Nota
 
-As senhas que utilizam o método de hashing pré-4.1 são menos seguras do que as senhas que utilizam o método nativo de hashing de senha e devem ser evitadas. As senhas pré-4.1 são desaconselhadas e o suporte para elas (incluindo o plugin `mysql_old_password`) foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+As senhas que utilizam o método de hashing pré-4.1 são menos seguras do que as senhas que utilizam o método nativo de hashing de senha e devem ser evitadas. As senhas pré-4.1 são desaconselhadas e o suporte para elas (incluindo o plugin `mysql_old_password`) foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 A tabela a seguir mostra os nomes dos plugins dos lados do servidor e do cliente.
 
@@ -89,7 +89,7 @@ Os programas clientes do MySQL podem usar a opção `--default-auth` para especi
 $> mysql --default-auth=mysql_old_password ...
 ```
 
-#### 6.4.1.3 Migrando para fora da criptografia de hash de senha pré-4.1 e do plugin mysql\_old\_password
+#### 6.4.1.3 Migrando para fora da criptografia de hash de senha pré-4.1 e do plugin mysql_old_password
 
 O servidor MySQL autentica as tentativas de conexão para cada conta listada na tabela do sistema `mysql.user`, usando o plugin de autenticação nomeado na coluna `plugin`. Se a coluna `plugin` estiver vazia, o servidor autentica a conta da seguinte forma:
 
@@ -172,7 +172,7 @@ A tabela a seguir lista os tipos de contas `mysql.user` considerados nesta discu
 
 As contas correspondentes às strings do plugin `mysql_native_password` não requerem nenhuma ação de atualização (porque não é necessária nenhuma alteração no plugin ou no formato de hash). Para contas correspondentes às strings para as quais a senha está vazia, considere pedir aos proprietários das contas que escolham uma senha (ou exija-a usando `ALTER USER` para expirarem senhas de contas vazias).
 
-##### Atualizando contas de implicitas para explícitas mysql\_native\_password Use
+##### Atualizando contas de implicitas para explícitas mysql_native_password Use
 
 As contas que têm um plugin vazio e um hash de senha de 4.1 usam implicitamente `mysql_native_password`. Para atualizar essas contas para usar explicitamente `mysql_native_password`, execute essas instruções:
 
@@ -190,7 +190,7 @@ Notas:
 
 * Essa operação não requer alterações de senha, portanto, pode ser realizada sem afetar os usuários ou exigir seu envolvimento no processo de atualização.
 
-##### Atualizando contas de mysql\_old\_password para mysql\_native\_password
+##### Atualizando contas de mysql_old_password para mysql_native_password
 
 As contas que utilizam `mysql_old_password` (implícitos ou explicitamente) devem ser atualizadas para utilizar explicitamente `mysql_native_password`. Isso requer a mudança do plugin e a alteração da senha do formato de hash pré-4.1 para 4.1.
 
@@ -1180,14 +1180,14 @@ Em alguns sistemas, a autenticação Unix usa um banco de senhas, como `/etc/sha
      ```
 
 4. Reinicie o servidor MySQL.
-* Se você estiver usando o módulo `pam_unix` e o utilitário **unix\_chkpwd**, habilite o acesso ao armazenamento de senhas da seguinte forma:
+* Se você estiver usando o módulo `pam_unix` e o utilitário **unix_chkpwd**, habilite o acesso ao armazenamento de senhas da seguinte forma:
 
   ```sql
   chmod u-s /usr/sbin/unix_chkpwd
   setcap cap_dac_read_search+ep /usr/sbin/unix_chkpwd
   ```
 
-Ajuste o caminho para **unix\_chkpwd** conforme necessário para sua plataforma.
+Ajuste o caminho para **unix_chkpwd** conforme necessário para sua plataforma.
 
 ##### Depuração da Autenticação PAM
 
@@ -2822,7 +2822,7 @@ Se `authentication_ldap_sasl_max_pool_size=0` para desabilitar o agrupamento, ca
 
 Para autenticação SASL LDAP, o nível de registro para mensagens escritas no registro de erro. O seguinte quadro mostra os valores de nível permitidos e seus significados.
 
-**Tabela 6.21 Níveis de registro para autenticação\_ldap\_sasl\_log\_status**
+**Tabela 6.21 Níveis de registro para autenticação_ldap_sasl_log_status**
 
   <table frame="box" rules="all" summary="Properties for authentication_ldap_sasl_auth_method_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>System Variable</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valid Values</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>0
 
@@ -2989,7 +2989,7 @@ Se `authentication_ldap_simple_max_pool_size=0` for desativado, cada conexão LD
 
 Para autenticação simples LDAP, o nível de registro para mensagens escritas no registro de erro. O quadro a seguir mostra os valores de nível permitidos e seus significados.
 
-**Tabela 6.22 Níveis de registro para autenticação\_ldap\_simple\_log\_status**
+**Tabela 6.22 Níveis de registro para autenticação_ldap_simple_log_status**
 
   <table frame="box" rules="all" summary="Properties for authentication_ldap_sasl_bind_base_dn"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduced</th> <td>5.7.19</td> </tr><tr><th>System Variable</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>NULL</code></td> </tr></tbody></table>5
 
@@ -3590,13 +3590,13 @@ O MySQL Server suporta um chaveiro que permite que os componentes internos do se
 
 * Plugins de cartela que gerenciam um armazenamento de suporte ou se comunicam com um backend de armazenamento. Esses plugins de cartela estão disponíveis:
 
-+ `keyring_file`: Armazena dados do chaveiro em um arquivo local ao host do servidor. Disponível nas edições MySQL Community Edition e MySQL Enterprise Edition a partir do MySQL 5.7.11. Veja a Seção 6.4.4.2, “Usando o plugin de chaveiro baseado em arquivo keyring\_file”.
++ `keyring_file`: Armazena dados do chaveiro em um arquivo local ao host do servidor. Disponível nas edições MySQL Community Edition e MySQL Enterprise Edition a partir do MySQL 5.7.11. Veja a Seção 6.4.4.2, “Usando o plugin de chaveiro baseado em arquivo keyring_file”.
 
 + `keyring_encrypted_file`: Armazena dados do chaveiro em um arquivo criptografado e protegido por senha, localizado no host do servidor. Disponível nas distribuições da Edição Empresarial do MySQL a partir do MySQL 5.7.21. Veja a Seção 6.4.4.3, “Usando o plugin de chaveiro criptografado de arquivo Encrypted File-Based Keyring”.
 
-+ `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de chave de rede compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições da Edição Empresarial do MySQL a partir do MySQL 5.7.12. Veja a Seção 6.4.4.4, “Usando o plugin keyring\_okv KMIP”.
++ `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de chave de rede compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições da Edição Empresarial do MySQL a partir do MySQL 5.7.12. Veja a Seção 6.4.4.4, “Usando o plugin keyring_okv KMIP”.
 
-+ `keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chave do Amazon Web Services para geração de chaves e utiliza um arquivo local para armazenamento de chaves. Disponível nas distribuições da Edição Empresarial do MySQL a partir do MySQL 5.7.19. Veja a Seção 6.4.4.5, “Usando o plugin keyring\_aws Amazon Web Services Keyring”.
++ `keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chave do Amazon Web Services para geração de chaves e utiliza um arquivo local para armazenamento de chaves. Disponível nas distribuições da Edição Empresarial do MySQL a partir do MySQL 5.7.19. Veja a Seção 6.4.4.5, “Usando o plugin keyring_aws Amazon Web Services Keyring”.
 
 * Uma interface de serviço de chave de chave para gerenciamento de chaves de chave (MySQL 5.7.13 e superior). Este serviço é acessível em dois níveis:
 
@@ -3665,13 +3665,13 @@ A criptografia do tablespace `InnoDB` exige que o plugin de chave seja carregado
 
 Antes de iniciar o servidor, verifique as notas do seu plugin de chave de segurança escolhido para obter instruções de configuração específicas para esse plugin:
 
-* `keyring_file`: Seção 6.4.4.2, “Usando o plugin de cartela de segurança com base em arquivo keyring\_file”.
+* `keyring_file`: Seção 6.4.4.2, “Usando o plugin de cartela de segurança com base em arquivo keyring_file”.
 
-* `keyring_encrypted_file`: Seção 6.4.4.3, “Usando o keyring\_encrypted\_file Plugin de chave de arquivo criptografado”.
+* `keyring_encrypted_file`: Seção 6.4.4.3, “Usando o keyring_encrypted_file Plugin de chave de arquivo criptografado”.
 
-* `keyring_okv`: Seção 6.4.4.4, “Usando o plugin keyring\_okv KMIP”.
+* `keyring_okv`: Seção 6.4.4.4, “Usando o plugin keyring_okv KMIP”.
 
-* `keyring_aws`: Seção 6.4.4.5, “Usando o keyring\_aws Amazon Web Services Keyring Plugin”
+* `keyring_aws`: Seção 6.4.4.5, “Usando o keyring_aws Amazon Web Services Keyring Plugin”
 
 Após realizar qualquer configuração específica do plugin, inicie o servidor. Verifique a instalação do plugin examinando a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtenção de Informações do Plugin do Servidor”). Por exemplo:
 
@@ -3696,7 +3696,7 @@ Os plugins podem ser carregados por métodos diferentes de `--early-plugin-load`
 
 Se nenhum plugin de chave de segurança estiver disponível quando um componente tenta acessar o serviço de chave de segurança, o serviço não poderá ser usado por esse componente. Como resultado, o componente pode falhar em inicializar ou pode inicializar com funcionalidade limitada. Por exemplo, se `InnoDB` encontrar que há espaços de tabela criptografados ao inicializar, ele tentará acessar a chave de segurança. Se a chave de segurança não estiver disponível, `InnoDB` pode acessar apenas espaços de tabela não criptografados. Para garantir que `InnoDB` possa acessar espaços de tabela criptografados também, use `--early-plugin-load` para carregar o plugin de chave de segurança.
 
-#### 6.4.4.2 Usando o plugin de cartela de segurança baseado em arquivo keyring\_file
+#### 6.4.4.2 Usando o plugin de cartela de segurança baseado em arquivo keyring_file
 
 O plugin de chave de acesso `keyring_file` armazena os dados da chave de acesso em um arquivo localizado no host do servidor.
 
@@ -3737,7 +3737,7 @@ SELECT keyring_key_remove('MyKey');
 
 Para informações sobre as características dos valores-chave permitidos por `keyring_file`, consulte a Seção 6.4.4.6, “Tipos e comprimentos de chave de carteiro-chave suportados”.
 
-#### 6.4.4.3 Usando o plugin de chave de arquivo criptografado keyring\_encrypted\_file
+#### 6.4.4.3 Usando o plugin de chave de arquivo criptografado keyring_encrypted_file
 
 Nota
 
@@ -3880,7 +3880,7 @@ O procedimento a seguir resume brevemente o processo de configuração do `keyri
 
 Utilize o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault para trabalhar juntos. Esta descrição resume apenas como interagir com o Oracle Key Vault. Para obter detalhes, visite o site do Oracle Key Vault e consulte o *Guia do Administrador do Oracle Key Vault*.
 
-1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida com o nome desse diretório (para detalhes, consulte Configuração Geral keyring\_okv).
+1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida com o nome desse diretório (para detalhes, consulte Configuração Geral keyring_okv).
 
 2. Faça login no console de gerenciamento do Oracle Key Vault como um usuário que tenha o papel de Administrador do sistema.
 
@@ -3955,7 +3955,7 @@ Para um servidor do Oracle Key Vault fresco (um servidor sem nenhuma chave nele)
 
 10. Copie os arquivos de suporte do Oracle Key Vault (o arquivo `okvclient.ora` e o diretório `ssl`) para o diretório de configuração.
 
-11. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções na Protegendo a senha do arquivo de chave keyring\_okv.
+11. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções na Protegendo a senha do arquivo de chave keyring_okv.
 
 Após completar o procedimento anterior, reinicie o servidor MySQL. Ele carrega o plugin `keyring_okv` e o `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o Oracle Key Vault.
 
@@ -3965,7 +3965,7 @@ O Gemalto SafeNet KeySecure Appliance utiliza o protocolo KMIP (versão 1.1 ou 1
 
 Utilize o procedimento a seguir para configurar o `keyring_okv` e o KeySecure para trabalhar juntos. A descrição resume apenas como interagir com o KeySecure. Para detalhes, consulte a seção intitulada "Adicionar um servidor KMIP" no [Guia do Usuário do KeySecure][(https://www2.gemalto.com/aws-marketplace/usage/vks/uploadedFiles/Support_and_Downloads/AWS/007-012362-001-keysecure-appliance-user-guide-v7.1.0.pdf)].
 
-1. Crie o diretório de configuração que contém os arquivos de suporte do KeySecure e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida com o nome desse diretório (para detalhes, consulte Configuração Geral keyring\_okv).
+1. Crie o diretório de configuração que contém os arquivos de suporte do KeySecure e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida com o nome desse diretório (para detalhes, consulte Configuração Geral keyring_okv).
 
 2. No diretório de configuração, crie um subdiretório chamado `ssl` para armazenar os arquivos de certificado SSL e chave necessários.
 
@@ -4015,7 +4015,7 @@ Duas pastas resultam da operação de extração: `certificate_request.pem` e `p
 
 14. Copie o certificado assinado para a área de transferência, em seguida, salve o conteúdo da área de transferência como um arquivo com o nome `cert.pem` no diretório `ssl`.
 
-15. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções na Protegendo a senha do arquivo de chave keyring\_okv.
+15. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções na Protegendo a senha do arquivo de chave keyring_okv.
 
 Após completar o procedimento anterior, reinicie o servidor MySQL. Ele carrega o plugin `keyring_okv` e `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o KeySecure.
 
@@ -4068,11 +4068,11 @@ A discussão aqui assume que você está familiarizado com o AWS em geral e o KM
 
 As seções a seguir fornecem informações de configuração e uso para o plugin de chave `keyring_aws`:
 
-* configuração keyring\_aws
-* operação keyring\_aws
-* alterações de credenciais keyring\_aws
+* configuração keyring_aws
+* operação keyring_aws
+* alterações de credenciais keyring_aws
 
-##### chave\_aws Configuração
+##### chave_aws Configuração
 
 Para instalar o `keyring_aws`, use as instruções gerais encontradas na Seção 6.4.4.1, “Instalação do Plugin Keyring”, juntamente com as informações de configuração específicas do plugin encontradas aqui.
 
@@ -4139,7 +4139,7 @@ CREATE FUNCTION keyring_aws_rotate_keys RETURNS INTEGER
 
 Para informações adicionais sobre as funções do `keyring_aws`, consulte a Seção 6.4.4.9, “Funções de Gerenciamento de Chave de Carteira Específicas de Plugin”.
 
-##### chaveiro\_aws Operação
+##### chaveiro_aws Operação
 
 Ao iniciar o plugin, o plugin `keyring_aws` lê a chave de acesso secreta da AWS e a chave do seu arquivo de configuração. Ele também lê quaisquer chaves criptografadas contidas em seu arquivo de armazenamento no cache de memória.
 
@@ -4164,7 +4164,7 @@ Além disso, as funções `keyring_aws_rotate_cmk()` e `keyring_aws_rotate_keys(
 
 Para informações sobre as características dos valores-chave permitidos por `keyring_aws`, consulte a Seção 6.4.4.6, “Tipos e comprimentos de chave de carteiro-chave suportados”.
 
-##### chave\_aws Alterações de Credenciais
+##### chave_aws Alterações de Credenciais
 
 Supondo que o plugin `keyring_aws` tenha sido inicializado corretamente na inicialização do servidor, é possível alterar as credenciais usadas para a comunicação com o AWS KMS:
 
@@ -4982,7 +4982,7 @@ Essa variável é obrigatória. Se não for especificada, a inicialização de `
 
 A localização do arquivo de configuração para o plugin `keyring_aws`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
-Ao iniciar o plugin, `keyring_aws` lê a chave de acesso secreta do AWS e a chave do arquivo de configuração. Para que o plugin `keyring_aws` comece com sucesso, o arquivo de configuração deve existir e conter informações válidas sobre a chave de acesso secreta, inicializadas conforme descrito na Seção 6.4.4.5, “Usando o plugin keyring\_aws Amazon Web Services Keyring”.
+Ao iniciar o plugin, `keyring_aws` lê a chave de acesso secreta do AWS e a chave do arquivo de configuração. Para que o plugin `keyring_aws` comece com sucesso, o arquivo de configuração deve existir e conter informações válidas sobre a chave de acesso secreta, inicializadas conforme descrito na Seção 6.4.4.5, “Usando o plugin keyring_aws Amazon Web Services Keyring”.
 
 O nome padrão do arquivo é `keyring_aws_conf`, localizado no diretório padrão do arquivo de chave. O local desse diretório padrão é o mesmo que para a variável de sistema `keyring_file_data`. Consulte a descrição dessa variável para obter detalhes, bem como considerações a serem levadas em conta se você criar o diretório manualmente.
 
@@ -5135,7 +5135,7 @@ Uma vez que o plugin `keyring_file` tenha criado seu arquivo de dados e começad
 
 O nome do caminho do diretório que armazena as informações de configuração usadas pelo plugin `keyring_okv`. Essa variável não está disponível a menos que esse plugin esteja instalado. O local deve ser um diretório considerado para uso apenas pelo plugin `keyring_okv`. Por exemplo, não localize o diretório sob o diretório de dados.
 
-O valor padrão `keyring_okv_conf_dir` está vazio. Para que o plugin `keyring_okv` possa acessar o Oracle Key Vault, o valor deve ser definido para um diretório que contenha a configuração e os materiais SSL do Oracle Key Vault. Para obter instruções sobre a configuração desse diretório, consulte a Seção 6.4.4.4, “Usando o plugin keyring\_okv KMIP”.
+O valor padrão `keyring_okv_conf_dir` está vazio. Para que o plugin `keyring_okv` possa acessar o Oracle Key Vault, o valor deve ser definido para um diretório que contenha a configuração e os materiais SSL do Oracle Key Vault. Para obter instruções sobre a configuração desse diretório, consulte a Seção 6.4.4.4, “Usando o plugin keyring_okv KMIP”.
 
 O diretório deve ter um modo restritivo e ser acessível apenas à conta usada para executar o servidor MySQL. Por exemplo, em sistemas Unix e Unix-like, para usar o diretório `/usr/local/mysql/mysql-keyring-okv`, os seguintes comandos (executados como `root`) criam o diretório e definem seu modo e propriedade:
 
@@ -5694,7 +5694,7 @@ The following elements are optional in `<audit_record>` elements. Many of them o
 
   An unsigned integer representing the command status: 0 for success, 1 if an error occurred.
 
-  The `STATUS_CODE` value differs from the `STATUS` value: `STATUS_CODE` is 0 for success and 1 for error, which is compatible with the EZ\_collector consumer for Audit Vault. `STATUS` is the value of the `mysql_errno()` C API function. This is 0 for success and nonzero for error, and thus is not necessarily 1 for error.
+  The `STATUS_CODE` value differs from the `STATUS` value: `STATUS_CODE` is 0 for success and 1 for error, which is compatible with the EZ_collector consumer for Audit Vault. `STATUS` is the value of the `mysql_errno()` C API function. This is 0 for success and nonzero for error, and thus is not necessarily 1 for error.
 
   Example:
 
@@ -5978,7 +5978,7 @@ The following attributes are optional in `<audit_record>` elements. Many of them
 
   An unsigned integer representing the command status: 0 for success, 1 if an error occurred.
 
-  The `STATUS_CODE` value differs from the `STATUS` value: `STATUS_CODE` is 0 for success and 1 for error, which is compatible with the EZ\_collector consumer for Audit Vault. `STATUS` is the value of the `mysql_errno()` C API function. This is 0 for success and nonzero for error, and thus is not necessarily 1 for error.
+  The `STATUS_CODE` value differs from the `STATUS` value: `STATUS_CODE` is 0 for success and 1 for error, which is compatible with the EZ_collector consumer for Audit Vault. `STATUS` is the value of the `mysql_errno()` C API function. This is 0 for success and nonzero for error, and thus is not necessarily 1 for error.
 
   Example: `STATUS_CODE="0"`
 
@@ -6993,7 +6993,7 @@ Quando uma conexão chega, o plugin do registro de auditoria determina qual filt
 
 * Caso contrário, o registro de auditoria não seleciona eventos de auditoria da sessão para processamento.
 
-Se uma operação de mudança de usuário ocorrer durante uma sessão (veja mysql\_change\_user()), a atribuição de filtro para a sessão é atualizada usando as mesmas regras, mas para o novo usuário.
+Se uma operação de mudança de usuário ocorrer durante uma sessão (veja mysql_change_user()), a atribuição de filtro para a sessão é atualizada usando as mesmas regras, mas para o novo usuário.
 
 Por padrão, nenhuma conta tem um filtro atribuído, portanto, não há processamento de eventos audíveis para nenhuma conta.
 
@@ -7516,9 +7516,9 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para os itens 
 
 * `audit_log_connection_policy_value`
 
-Essa variável corresponde ao valor da variável do sistema `audit_log_connection_policy`. O valor é um inteiro não assinado. A Tabela 6.31, “Valores de política de conexão de audit\_log”, mostra os valores permitidos e os valores correspondentes ao `audit_log_connection_policy`.
+Essa variável corresponde ao valor da variável do sistema `audit_log_connection_policy`. O valor é um inteiro não assinado. A Tabela 6.31, “Valores de política de conexão de audit_log”, mostra os valores permitidos e os valores correspondentes ao `audit_log_connection_policy`.
 
-**Tabela 6.31 audit\_log\_connection\_policy\_value Valores**
+**Tabela 6.31 audit_log_connection_policy_value Valores**
 
   <table summary="Permitted audit_log_connection_policy_value values and the corresponding audit_log_connection_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Corresponding audit_log_connection_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code>ou<code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code>ou<code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code>ou<code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
 
@@ -7528,7 +7528,7 @@ Os valores de `"::xxx"` são pseudo-constantes simbólicas que podem ser forneci
 
 Essa variável corresponde ao valor da variável do sistema `audit_log_policy`. O valor é um inteiro não assinado. A Tabela 6.32, “Valores de audit_log_policy_value”, mostra os valores permitidos e os valores correspondentes `audit_log_policy`.
 
-**Tabela 6.32 audit\_log\_policy\_value Valores**
+**Tabela 6.32 audit_log_policy_value Valores**
 
   <table summary="Permitted audit_log_policy_value values and the corresponding audit_log_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Corresponding audit_log_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code>ou<code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code>ou<code>"::logins"</code></td> <td><code>LOGINS</code></td> </tr><tr> <td><code>2</code>ou<code>"::all"</code></td> <td><code>ALL</code></td> </tr><tr> <td><code>3</code>ou<code>"::queries"</code></td> <td><code>QUERIES</code></td> </tr></tbody></table>
 
@@ -7538,7 +7538,7 @@ Os valores de `"::xxx"` são pseudo-constantes simbólicas que podem ser forneci
 
 Essa variável corresponde ao valor da variável do sistema `audit_log_statement_policy`. O valor é um inteiro não assinado. A Tabela 6.33, “Valores de política de declaração de auditoria _log”, mostra os valores permitidos e os valores correspondentes `audit_log_statement_policy`.
 
-**Tabela 6.33 audit\_log\_statement\_policy\_value Valores**
+**Tabela 6.33 audit_log_statement_policy_value Valores**
 
   <table summary="Permitted audit_log_statement_policy_value values and the corresponding audit_log_statement_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Corresponding audit_log_statement_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code>ou<code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code>ou<code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code>ou<code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
 
@@ -7710,7 +7710,7 @@ SET GLOBAL audit_log_disable = true;
 
 Definindo `audit_log_disable` como verdadeiro, o plugin do log de auditoria é desativado. O plugin é reativado quando `audit_log_disable` é definido novamente como `false`, que é o ajuste padrão.
 
-Iniciar o plugin do registro de auditoria com `audit_log_disable = true` gera um aviso (`ER_WARN_AUDIT_LOG_DISABLED`) com a seguinte mensagem: O registro de auditoria está desativado. Ative-o com audit\_log\_disable = false. Definir `audit_log_disable` para false também gera um aviso. Quando `audit_log_disable` é definido como verdadeiro, as chamadas de função do registro de auditoria e as alterações de variáveis geram um aviso de sessão.
+Iniciar o plugin do registro de auditoria com `audit_log_disable = true` gera um aviso (`ER_WARN_AUDIT_LOG_DISABLED`) com a seguinte mensagem: O registro de auditoria está desativado. Ative-o com audit_log_disable = false. Definir `audit_log_disable` para false também gera um aviso. Quando `audit_log_disable` é definido como verdadeiro, as chamadas de função do registro de auditoria e as alterações de variáveis geram um aviso de sessão.
 
 Definir o valor de execução de `audit_log_disable` requer o privilégio `SUPER`.
 
@@ -8888,7 +8888,7 @@ As seções a seguir fornecem uma referência aos elementos do Firewall Empresar
 
 O MySQL Enterprise Firewall mantém as informações do perfil em uma base por grupo e por conta, usando tabelas no banco de dados do firewall para armazenamento persistente e tabelas do Esquema de Informações para fornecer visões sobre dados armazenados em memória. Quando habilitado, o firewall baseia as decisões operacionais nos dados armazenados em cache. O banco de dados do firewall pode ser o `mysql` sistema de banco de dados ou um esquema personalizado (consulte Instalar o MySQL Enterprise Firewall).
 
-As tabelas no banco de dados do firewall são abordadas nesta seção. Para informações sobre as tabelas do esquema de informações do MySQL Enterprise Firewall, consulte a Seção 24.7, “Tabelas do INFORMATION\_SCHEMA MySQL Enterprise Firewall”.
+As tabelas no banco de dados do firewall são abordadas nesta seção. Para informações sobre as tabelas do esquema de informações do MySQL Enterprise Firewall, consulte a Seção 24.7, “Tabelas do INFORMATION_SCHEMA MySQL Enterprise Firewall”.
 
 Cada tabela do banco de dados do sistema `mysql` é acessível apenas por contas que possuem o privilégio `SELECT` para ela. As tabelas `INFORMATION_SCHEMA` são acessíveis por qualquer pessoa.
 

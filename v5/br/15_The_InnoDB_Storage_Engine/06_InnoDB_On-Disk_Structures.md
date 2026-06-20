@@ -53,7 +53,7 @@ CREATE TABLE t5 (id INT AUTO_INCREMENT, b CHAR (20), PRIMARY KEY (id));
 CREATE TABLE t6 (id INT AUTO_INCREMENT, a INT, b CHAR (20), PRIMARY KEY (id,a));
 ```
 
-Para mais informações sobre colunas de autoincremento, consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Para mais informações sobre colunas de autoincremento, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
 
 Embora uma tabela funcione corretamente sem definir uma chave primária, a chave primária está envolvida em muitos aspectos do desempenho e é um aspecto de design crucial para qualquer tabela grande ou frequentemente usada. É recomendável que você sempre especifique uma chave primária na declaração `CREATE TABLE`. Se você criar a tabela, carregar dados e, em seguida, executar `ALTER TABLE` para adicionar uma chave primária mais tarde, essa operação é muito mais lenta do que definir a chave primária ao criar a tabela. Para mais informações sobre chaves primárias, consulte a Seção 14.6.2.1, “Indekses Clusterados e Secundários”.
 
@@ -781,18 +781,18 @@ Os arquivos `InnoDB` exigem mais cuidados e planejamento do que os arquivos `MyI
 
 * Os métodos para mover ou copiar as tabelas `InnoDB` para um servidor diferente são descritos na Seção 14.6.1.4, "Movendo ou copiando tabelas InnoDB".
 
-#### 14.6.1.6 Gerenciamento de AUTO\_INCREMENT no InnoDB
+#### 14.6.1.6 Gerenciamento de AUTO_INCREMENT no InnoDB
 
 `InnoDB` fornece um mecanismo de bloqueio configurável que pode melhorar significativamente a escalabilidade e o desempenho das declarações SQL que adicionam strings a tabelas com colunas `AUTO_INCREMENT`. Para usar o mecanismo `AUTO_INCREMENT` com uma tabela `InnoDB`, uma coluna `AUTO_INCREMENT` deve ser definida como a primeira ou única coluna de algum índice, de modo que seja possível realizar o equivalente a uma pesquisa `SELECT MAX(ai_col)` indexada na tabela para obter o valor máximo da coluna. O índice não precisa ser um `PRIMARY KEY` ou `UNIQUE`, mas para evitar valores duplicados na coluna `AUTO_INCREMENT`, esses tipos de índice são recomendados.
 
 Esta seção descreve os modos de bloqueio do `AUTO_INCREMENT`, as implicações do uso de diferentes configurações dos modos de bloqueio do `AUTO_INCREMENT` e como o `InnoDB` inicializa o contador do `AUTO_INCREMENT`.
 
-* Modos de bloqueio AUTO\_INCREMENT do InnoDB
-* Implicações do uso do modo de bloqueio AUTO\_INCREMENT do InnoDB
-* Inicialização do contador AUTO\_INCREMENT do InnoDB
+* Modos de bloqueio AUTO_INCREMENT do InnoDB
+* Implicações do uso do modo de bloqueio AUTO_INCREMENT do InnoDB
+* Inicialização do contador AUTO_INCREMENT do InnoDB
 * Notas
 
-##### Modos de bloqueio de AUTO\_INCREMENT do InnoDB
+##### Modos de bloqueio de AUTO_INCREMENT do InnoDB
 
 Esta seção descreve os modos de bloqueio `AUTO_INCREMENT` usados para gerar valores de autoincremento e como cada modo de bloqueio afeta a replicação. O modo de bloqueio de autoincremento é configurado na inicialização usando a variável `innodb_autoinc_lock_mode`.
 
@@ -877,7 +877,7 @@ Neste modo de bloqueio, os valores de auto-incremento são garantidos como únic
 
 Se as únicas declarações que executam são "inserções simples" onde o número de strings a serem inseridas é conhecido antecipadamente, não há lacunas nos números gerados para uma única declaração, exceto para "inserções em modo misto". No entanto, quando "inserções em massa" são executadas, pode haver lacunas nos valores de auto-incremento atribuídos por qualquer declaração dada.
 
-##### Implicações do uso do modo de bloqueio AUTO\_INCREMENT do InnoDB
+##### Implicações do uso do modo de bloqueio AUTO_INCREMENT do InnoDB
 
 * Uso do autoincremento com replicação
 
@@ -1018,7 +1018,7 @@ Em todos os modos de bloqueio (0, 1 e 2), modificar o valor de uma coluna `AUTO_
   ERROR 1062 (23000): Duplicate entry '4' for key 'PRIMARY'
   ```
 
-##### Inicialização do contador de AUTO\_INCREMENT do InnoDB
+##### Inicialização do contador de AUTO_INCREMENT do InnoDB
 
 Esta seção descreve como o `InnoDB` inicializa os contadores do `AUTO_INCREMENT`.
 
@@ -1337,7 +1337,7 @@ Você pode monitorar e examinar os aspectos especiais de processamento de texto 
 
 Você também pode visualizar informações básicas para índices de texto completo e tabelas, fazendo uma consulta a `INNODB_SYS_INDEXES` e `INNODB_SYS_TABLES`.
 
-Para mais informações, consulte a Seção 14.16.4, “Tabelas de índice FULLTEXT do InnoDB INFORMATION\_SCHEMA”.
+Para mais informações, consulte a Seção 14.16.4, “Tabelas de índice FULLTEXT do InnoDB INFORMATION_SCHEMA”.
 
 ### 14.6.3 Tablespaces
 
@@ -1684,7 +1684,7 @@ Para que um espaço de tabelas geral possa conter tabelas comprimidas (`ROW_FORM
 
 A tabela a seguir mostra as combinações permitidas de `innodb_page_size`, `FILE_BLOCK_SIZE` e `KEY_BLOCK_SIZE`. Os valores de `FILE_BLOCK_SIZE` também podem ser especificados em bytes. Para determinar um valor válido de `KEY_BLOCK_SIZE` para um `FILE_BLOCK_SIZE` dado, divida o valor de `FILE_BLOCK_SIZE` por 1024. A compressão de tabela não é suportada para tamanhos de página de `InnoDB` de 32K e 64K. Para mais informações sobre `KEY_BLOCK_SIZE`, consulte `CREATE TABLE` e a Seção 14.9.1.2, “Criando Tabelas Compressas”.
 
-**Tabela 14.3: Combinações de Tamanho de Página Permitido, FILE\_BLOCK\_SIZE e KEY\_BLOCK\_SIZE para Tabelas Compactadas**
+**Tabela 14.3: Combinações de Tamanho de Página Permitido, FILE_BLOCK_SIZE e KEY_BLOCK_SIZE para Tabelas Compactadas**
 
 <table frame="all"><col style="width: 33%"/><col style="width: 33%"/><col style="width: 34%"/><thead><tr> <th>InnoDB Page Size (innodb_page_size)</th> <th>Permitted FILE_BLOCK_SIZE Value</th> <th>Permitted KEY_BLOCK_SIZE Value</th> </tr></thead><tbody><tr> <th>64KB</th> <td>64K (65536)</td> <td>Compression is not supported</td> </tr><tr> <th>32KB</th> <td>32K (32768)</td> <td>Compression is not supported</td> </tr><tr> <th>16 KB</th> <td>16K (16384)</td> <td>Nenhum. Se<code>innodb_page_size</code>é igual a<code>FILE_BLOCK_SIZE</code>, o tablespace não pode conter uma tabela comprimida.</td> </tr><tr> <th>16KB</th> <td>8K (8192)</td> <td>8</td> </tr><tr> <th>16KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th>16KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th>16KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th>8 KB</th> <td>8K (8192)</td> <td>Nenhum. Se<code>innodb_page_size</code>é igual a<code>FILE_BLOCK_SIZE</code>, o tablespace não pode conter uma tabela comprimida.</td> </tr><tr> <th>8KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th>8KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th>8KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th>4 KB</th> <td>4K (4096)</td> <td>Nenhum. Se<code>innodb_page_size</code>é igual a<code>FILE_BLOCK_SIZE</code>, o tablespace não pode conter uma tabela comprimida.</td> </tr><tr> <th>4K</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th>4KB</th> <td>1K (1024)</td> <td>1</td> </tr></tbody></table>
 

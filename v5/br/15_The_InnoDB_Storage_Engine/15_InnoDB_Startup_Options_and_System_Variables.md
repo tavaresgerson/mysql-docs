@@ -357,7 +357,7 @@ Tamanho máximo para o buffer de alteração `InnoDB`, como uma porcentagem do t
 
 Se o `InnoDB` realiza o bufferamento de mudanças, uma otimização que adira operações de escrita a índices secundários para que as operações de E/S possam ser realizadas sequencialmente. Os valores permitidos são descritos na tabela a seguir.
 
-**Tabela 14.19 Valores permitidos para innodb\_change\_buffering**
+**Tabela 14.19 Valores permitidos para innodb_change_buffering**
 
   <table frame="box" rules="all" summary="Properties for daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemon-memcached-enable-binlog[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>daemon_memcached_enable_binlog</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
 

@@ -160,7 +160,7 @@ mysql> SELECT COERCIBILITY(NULL);
 
 Para a conversão implícita de um valor numérico ou temporal em uma string, como ocorre com o argumento `1` na expressão `CONCAT(1, 'abc')`, o resultado é uma string (não binária) que tem um conjunto de caracteres e uma ordenação determinados pelos `character_set_connection` e `collation_connection` variáveis do sistema. Veja a Seção 12.3, “Conversão de Tipo na Avaliação da Expressão”.
 
-### 10.8.5 Codificação binária em comparação com a codificação \_bin
+### 10.8.5 Codificação binária em comparação com a codificação _bin
 
 Esta seção descreve como a ordenação `binary` para strings binárias se compara às ordenações `_bin` para strings não binárias.
 
@@ -360,7 +360,7 @@ mysql> SELECT * FROM germanutf8 WHERE c = 'Bär';
 
 Isto não é um erro, mas sim uma consequência das propriedades de classificação de `latin1_german1_ci` e `utf8_unicode_ci` (a classificação mostrada é feita de acordo com o padrão alemão DIN 5007).
 
-### 10.8.7 Uso da Colaboração em Pesquisas do INFORMATION\_SCHEMA
+### 10.8.7 Uso da Colaboração em Pesquisas do INFORMATION_SCHEMA
 
 As colunas de texto em tabelas de `INFORMATION_SCHEMA` têm uma collation de `utf8_general_ci`, que é insensível ao caso. No entanto, para valores que correspondem a objetos que são representados no sistema de arquivos, como bancos de dados e tabelas, as pesquisas em colunas de texto de `INFORMATION_SCHEMA` podem ser sensíveis ao caso ou insensíveis ao caso, dependendo das características do sistema de arquivos subjacente e do valor da variável de sistema `lower_case_table_names`. Por exemplo, as pesquisas podem ser sensíveis ao caso se o sistema de arquivos for sensível ao caso. Esta seção descreve esse comportamento e como modificá-lo, se necessário; veja também o Bug #34921.
 

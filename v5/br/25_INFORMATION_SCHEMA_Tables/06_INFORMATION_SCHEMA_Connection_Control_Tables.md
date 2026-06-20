@@ -10,7 +10,7 @@ A tabela a seguir resume as tabelas de controle de conexão `INFORMATION_SCHEMA`
 
 <table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA connection control tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><code>CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS</code></th> <td>Número atual de tentativas consecutivas de conexão falhadas por conta</td> <td>5.7.17</td> </tr></tbody></table>
 
-### 24.6.2 A tabela INFORMATION\_SCHEMA CONNECTION\_CONTROL\_FAILED\_LOGIN\_ATTEMPTS
+### 24.6.2 A tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS
 
 Esta tabela fornece informações sobre o número atual de tentativas de conexão consecutivas falhadas por conta (combinação de usuário/host). A tabela foi adicionada no MySQL 5.7.17.
 

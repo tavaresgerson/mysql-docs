@@ -1049,7 +1049,7 @@ As tabelas que utilizam o mecanismo de armazenamento `NDB` são implicitamente p
 
 Se você definir um esquema de particionamento explícito para uma tabela `NDB`, a tabela deve ter uma chave primária explícita, e quaisquer colunas usadas na expressão de particionamento devem fazer parte dessa chave. No entanto, se a tabela usa uma expressão de particionamento “vazia” — ou seja, `PARTITION BY KEY()` sem referências de coluna — então nenhuma chave primária explícita é necessária.
 
-Você pode observar essa partição usando o utilitário **ndb\_desc** (com a opção `-p`).
+Você pode observar essa partição usando o utilitário **ndb_desc** (com a opção `-p`).
 
 Importante
 
@@ -1299,7 +1299,7 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 7 rows in set (0.00 sec)
 ```
 
-(Para mais informações sobre esta tabela, consulte a Seção 24.3.16, “A tabela de PARTITIONS do INFORMATION\_SCHEMA”.) Agora, vamos preencher cada uma dessas tabelas com uma única string contendo um `NULL` na coluna usada como chave de partição, e verificar se as strings foram inseridas usando um par de declarações `SELECT`:
+(Para mais informações sobre esta tabela, consulte a Seção 24.3.16, “A tabela de PARTITIONS do INFORMATION_SCHEMA”.) Agora, vamos preencher cada uma dessas tabelas com uma única string contendo um `NULL` na coluna usada como chave de partição, e verificar se as strings foram inseridas usando um par de declarações `SELECT`:
 
 ```sql
 mysql> INSERT INTO t1 VALUES (NULL, 'mothra');

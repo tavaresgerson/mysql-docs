@@ -81,7 +81,7 @@ A maioria dos conjuntos de caracteres Unicode tem uma ordenação geral (indicad
 
 O suporte de cotação para `utf16le` é limitado. As únicas cotações disponíveis são `utf16le_general_ci` e `utf16le_bin`. Essas são semelhantes a `utf16_general_ci` e `utf16_bin`.
 
-* Algoritmo de Cotação Unicode (UCA) Versões * Cotações Específicas ao Idioma * Cotações \_general\_ci Versus \_unicode\_ci * Pesos de Cotação de Caracteres * Informações Diversas
+* Algoritmo de Cotação Unicode (UCA) Versões * Cotações Específicas ao Idioma * Cotações _general_ci Versus _unicode_ci * Pesos de Cotação de Caracteres * Informações Diversas
 
 #### Versões do Algoritmo de Cotação Unicode (UCA)
 
@@ -216,7 +216,7 @@ As collationações suecos incluem regras suecos. Por exemplo, em sueco, a segui
 Ü = Y < Ö
 ```
 
-#### \_general\_ci Versus \_unicode\_ci Collations
+#### _general_ci Versus _unicode_ci Collations
 
 Para qualquer conjunto de caracteres Unicode, as operações realizadas usando a collation `xxx_general_ci` são mais rápidas do que as realizadas para a collation `xxx_unicode_ci`. Por exemplo, as comparações para a collation `utf8_general_ci` são mais rápidas, mas um pouco menos corretas, do que as comparações para `utf8_unicode_ci`. A razão é que `utf8_unicode_ci` suporta mapeamentos como expansões; ou seja, quando um caractere é comparado como igual a combinações de outros caracteres. Por exemplo, `ß` é igual a `ss` em alemão e em algumas outras línguas. `utf8_unicode_ci` também suporta contrações e caracteres ignoráveis. `utf8_general_ci` é uma collation de legado que não suporta expansões, contrações ou caracteres ignoráveis. Ela pode realizar apenas comparações um-para-um entre caracteres.
 
@@ -356,7 +356,7 @@ Code point  Character                    utf8         utf16
 
 Os dois caracteres no gráfico estão em ordem pelo valor do ponto de código porque `0xff9d` < [[PH_ICD_153]]. And they are in order by [[PH_ICD_154]] value because [[PH_ICD_155]] < [[PH_ICD_156]]. But they are not in order by [[PH_ICD_157]] value, if we use byte-by-byte comparison, because [[PH_ICD_158]] > `0xd8`.
 
-Portanto, a codificação de collation `utf16_bin` do MySQL não é “caractere por caractere”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementar em `utf16`, ela converte para o valor do ponto de código do caractere, e então compara. Portanto, `utf8_bin` e `utf16_bin` são os mesmos ordenamentos. Isso é consistente com o requisito do padrão SQL:2008 para uma collation UCS\_BASIC: “UCS\_BASIC é uma collation na qual a ordenação é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a collation UCS\_BASIC é potencialmente aplicável a todo conjunto de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não sinalizado.”
+Portanto, a codificação de collation `utf16_bin` do MySQL não é “caractere por caractere”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementar em `utf16`, ela converte para o valor do ponto de código do caractere, e então compara. Portanto, `utf8_bin` e `utf16_bin` são os mesmos ordenamentos. Isso é consistente com o requisito do padrão SQL:2008 para uma collation UCS_BASIC: “UCS_BASIC é uma collation na qual a ordenação é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a collation UCS_BASIC é potencialmente aplicável a todo conjunto de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não sinalizado.”
 
 Se o conjunto de caracteres for `ucs2`, a comparação é caracter a caractere, mas as cadeias de caracteres `ucs2` não devem conter surogados, de qualquer forma.
 
@@ -696,7 +696,7 @@ No MySQL, o conjunto de caracteres `gb18030` corresponde ao “Padrão Nacional 
 
 ### 10.10.8 O Conjunto de Caracteres Binário
 
-O conjunto de caracteres `binary` é o conjunto de caracteres para strings binárias, que são sequências de bytes. O conjunto de caracteres `binary` tem uma correção, também denominada `binary`. A comparação e ordenação são baseadas em valores numéricos de bytes, em vez de em valores de código de caracteres numéricos (que, para caracteres multibyte, diferem dos valores de bytes numéricos). Para informações sobre as diferenças entre a correção `binary` do conjunto de caracteres `binary` e as correções `_bin` dos conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A correção binária em comparação com as correções \_bin”.
+O conjunto de caracteres `binary` é o conjunto de caracteres para strings binárias, que são sequências de bytes. O conjunto de caracteres `binary` tem uma correção, também denominada `binary`. A comparação e ordenação são baseadas em valores numéricos de bytes, em vez de em valores de código de caracteres numéricos (que, para caracteres multibyte, diferem dos valores de bytes numéricos). Para informações sobre as diferenças entre a correção `binary` do conjunto de caracteres `binary` e as correções `_bin` dos conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A correção binária em comparação com as correções _bin”.
 
 Para o conjunto de caracteres `binary`, os conceitos de maiúsculas e acentos equivalentes não se aplicam:
 

@@ -173,7 +173,7 @@ Se você tentar replicar de um NDB Cluster para uma replica que usa um mecanismo
 
 * **Desative o registro binário na replica.** Isso pode ser feito definindo `sql_log_bin = 0`.
 
-* **Altere o mecanismo de armazenamento usado para a tabela mysql.ndb\_apply\_status.** Fazer com que essa tabela use um mecanismo que não gere seu próprio registro binário também pode eliminar o conflito. Isso pode ser feito emitindo uma declaração como `ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM` na replica. É seguro fazer isso ao usar um mecanismo de armazenamento diferente de `NDB` na replica, pois você não precisa se preocupar em manter várias réplicas sincronizadas.
+* **Altere o mecanismo de armazenamento usado para a tabela mysql.ndb_apply_status.** Fazer com que essa tabela use um mecanismo que não gere seu próprio registro binário também pode eliminar o conflito. Isso pode ser feito emitindo uma declaração como `ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM` na replica. É seguro fazer isso ao usar um mecanismo de armazenamento diferente de `NDB` na replica, pois você não precisa se preocupar em manter várias réplicas sincronizadas.
 
 * **Exclua as alterações na tabela mysql.ndb_apply_status na replica.** Isso pode ser feito iniciando a replica com `--replicate-ignore-table=mysql.ndb_apply_status`. Se você precisar que outras tabelas sejam ignoradas pela replicação, talvez queira usar uma opção apropriada `--replicate-wild-ignore-table` em vez disso.
 
@@ -219,15 +219,15 @@ Para mais informações sobre promoção e demissão de atributos no NDB Cluster
 
 ### 21.7.4 Esquema e tabelas de replicação de cluster do NDB
 
-* tabela ndb\_apply\_status
-* tabela ndb\_binlog\_index
-* tabela ndb\_replication
+* tabela ndb_apply_status
+* tabela ndb_binlog_index
+* tabela ndb_replication
 
 A replicação no NDB Cluster utiliza uma série de tabelas dedicadas no banco de dados `mysql` em cada instância do servidor MySQL que atua como um nó SQL tanto no cluster que está sendo replicado quanto na replica. Isso é verdade, independentemente de a replica ser um único servidor ou um cluster.
 
 As tabelas `ndb_binlog_index` e `ndb_apply_status` são criadas no banco de dados `mysql`. Elas não devem ser explicitamente replicadas pelo usuário. A intervenção do usuário normalmente não é necessária para criar ou manter nenhuma dessas tabelas, uma vez que ambas são mantidas pelo `NDB` thread do injetor de log binário (binlog). Isso mantém o processo de origem `mysqld` atualizado com as alterações realizadas pelo motor de armazenamento `NDB`. O thread do injetor binlog `NDB` recebe eventos diretamente do motor de armazenamento `NDB`. O injetor `NDB` é responsável por capturar todos os eventos de dados dentro do clúster e garante que todos os eventos que alteram, inserem ou excluem dados sejam registrados na tabela `ndb_binlog_index`. O thread de I/O de replicação transfere os eventos do log binário da fonte para o log de relevo da replica.
 
-A tabela `ndb_replication` deve ser criada manualmente. Essa tabela pode ser atualizada pelo usuário para realizar filtragem por banco de dados ou tabela. Consulte a tabela ndb\_replication para obter mais informações. `ndb_replication` também é usado na detecção e resolução de conflitos de replicação NDB para controle de resolução de conflitos; consulte Controle de Resolução de Conflitos.
+A tabela `ndb_replication` deve ser criada manualmente. Essa tabela pode ser atualizada pelo usuário para realizar filtragem por banco de dados ou tabela. Consulte a tabela ndb_replication para obter mais informações. `ndb_replication` também é usado na detecção e resolução de conflitos de replicação NDB para controle de resolução de conflitos; consulte Controle de Resolução de Conflitos.
 
 Embora `ndb_binlog_index` e `ndb_apply_status` sejam criados e mantidos automaticamente, é aconselhável verificar a existência e a integridade dessas tabelas como um passo inicial na preparação de um NDB Cluster para replicação. É possível visualizar os dados de evento registrados no log binário consultando a tabela `mysql.ndb_binlog_index` diretamente na fonte. Isso também pode ser realizado usando a declaração `SHOW BINLOG EVENTS` em qualquer um dos nós SQL da fonte ou da replica. (Veja a Seção 13.7.5.2, “Declaração SHOW BINLOG EVENTS”).
 
@@ -237,9 +237,9 @@ Nota
 
 Ao realizar alterações de esquema nas tabelas `NDB`, as aplicações devem esperar até que a instrução `ALTER TABLE` tenha sido devolvida na conexão do cliente MySQL que emitiu a instrução antes de tentar usar a definição atualizada da tabela.
 
-Tabela ndb\_apply\_status
+Tabela ndb_apply_status
 
-`ndb_apply_status` é usado para manter um registro das operações que foram replicadas da fonte para a replica. Se a tabela `ndb_apply_status` não existir na replica, o **ndb\_restore** a recria.
+`ndb_apply_status` é usado para manter um registro das operações que foram replicadas da fonte para a replica. Se a tabela `ndb_apply_status` não existir na replica, o **ndb_restore** a recria.
 
 Ao contrário do caso do `ndb_binlog_index`, os dados neste quadro não são específicos para nenhum dos nós SQL do clúster (replica), e, portanto, o `ndb_apply_status` pode usar o mecanismo de armazenamento `NDBCLUSTER`, conforme mostrado aqui:
 
@@ -260,7 +260,7 @@ Como esta tabela é preenchida com dados originários da fonte, deve ser permiti
 
 `0` na coluna `epoch` desta tabela indica uma transação originada de um mecanismo de armazenamento diferente de `NDB`.
 
-Tabela ndb\_binlog\_index
+Tabela ndb_binlog_index
 
 A Replicação em NDB Cluster usa a tabela `ndb_binlog_index` para armazenar os dados de indexação do log binário. Como essa tabela é local para cada servidor MySQL e não participa do clúster, ela usa o mecanismo de armazenamento `InnoDB`. Isso significa que ela deve ser criada separadamente em cada `mysqld` que participa do clúster de origem. (O próprio log binário contém atualizações de todos os servidores MySQL no clúster.) Esta tabela é definida da seguinte forma:
 
@@ -367,7 +367,7 @@ Para habilitar a resolução de conflitos com a Replicação NDB, é necessário
 
 A tabela `ndb_replication` permite o controle de nível de tabela sobre o registro binário fora do escopo da resolução de conflitos, nesse caso, `conflict_fn` é especificado como `NULL`, enquanto os valores restantes das colunas são usados para controlar o registro binário para uma determinada tabela ou conjunto de tabelas que correspondem a uma expressão de wildcard. Ao definir o valor apropriado para a coluna `binlog_type`, você pode fazer com que o registro para uma determinada tabela ou tabelas use um formato de log binário desejado, ou desativar o registro binário por completo. Os valores possíveis para esta coluna, com valores e descrições, são mostrados na tabela a seguir:
 
-**Tabela 21.64 valores binlog\_type, com valores e descrições**
+**Tabela 21.64 valores binlog_type, com valores e descrições**
 
 <table><col width="10%"/><col width="55%"/><thead><tr> <th>Value</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Use o padrão do servidor</td> </tr><tr> <td>1</td> <td>Não registre esta tabela no log binário (mesmo efeito que<code>sql_log_bin = 0</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>2</td> <td>Atualize os atributos apenas quando necessário; registre-os como<code>WRITE_ROW</code>eventos</td> </tr><tr> <td>3</td> <td>Registre a string completa, mesmo que não seja atualizada (comportamento padrão do servidor MySQL)</td> </tr><tr> <td>6</td> <td>Utilize atributos atualizados, mesmo que os valores não tenham mudado</td> </tr><tr> <td>7</td> <td>Registre a string completa, mesmo que nenhum valor seja alterado; registre as atualizações como<code>UPDATE_ROW</code>eventos</td> </tr><tr> <td>8</td> <td>Atualize o log<code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e apenas as colunas atualizadas na imagem posterior (o mesmo efeito que<code>--ndb-log-update-minimal</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>9</td> <td>Atualize o log<code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e todas as colunas, exceto as colunas da chave primária, na imagem posterior</td> </tr></tbody></table>
 
@@ -377,7 +377,7 @@ Os valores `binlog_type` 4 e 5 não são utilizados e, portanto, são omitidos d
 
 Vários valores de `binlog_type` são equivalentes a várias combinações das opções de registro `mysqld`, `--ndb-log-updated-only`, `--ndb-log-update-as-write` e `--ndb-log-update-minimal`, conforme mostrado na tabela a seguir:
 
-**Tabela 21.65 valores de binlog\_type com combinações equivalentes de opções de registro NDB**
+**Tabela 21.65 valores de binlog_type com combinações equivalentes de opções de registro NDB**
 
 <table><col width="10%"/><col width="30%"/><col width="30%"/><col width="30%"/><thead><tr> <th>Value</th> <th><code>--ndb-log-updated-only</code> Value</th> <th><code>--ndb-log-update-as-write</code> Value</th> <th><code>--ndb-log-update-minimal</code> Value</th> </tr></thead><tbody><tr> <td>0</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>1</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>2</td> <td>ON</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>3</td> <td>OFF</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>6</td> <td>ON</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>7</td> <td>OFF</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>8</td> <td>ON</td> <td>OFF</td> <td>ON</td> </tr><tr> <td>9</td> <td>OFF</td> <td>OFF</td> <td>ON</td> </tr></tbody></table>
 
@@ -795,7 +795,7 @@ Uma declaração `CREATE DATABASE` (ou `CREATE SCHEMA`) correspondente a cada ba
    mysqlR> RESET SLAVE;
    ```
 
-5. Agora, você pode iniciar o processo de restauração do clúster na replica usando o comando **ndb\_restore** para cada arquivo de backup, uma a uma. Para o primeiro deles, é necessário incluir a opção `-m` para restaurar os metadados do clúster, como mostrado aqui:
+5. Agora, você pode iniciar o processo de restauração do clúster na replica usando o comando **ndb_restore** para cada arquivo de backup, uma a uma. Para o primeiro deles, é necessário incluir a opção `-m` para restaurar os metadados do clúster, como mostrado aqui:
 
    ```sql
    shellR> ndb_restore -c replica_host:port -n node-id \
@@ -819,7 +819,7 @@ Para restaurar a partir de um cluster de origem com quatro nós de dados (como m
 
 Importante
 
-A opção `-e` (ou `--restore-epoch`) na invocação final do **ndb\_restore** neste exemplo é necessária para garantir que a época seja escrita na tabela `mysql.ndb_apply_status` da réplica. Sem essas informações, a réplica não pode se sincronizar corretamente com a fonte. (Veja a Seção 21.5.24, “ndb\_restore — Restaurar um backup de um NDB Cluster”).
+A opção `-e` (ou `--restore-epoch`) na invocação final do **ndb_restore** neste exemplo é necessária para garantir que a época seja escrita na tabela `mysql.ndb_apply_status` da réplica. Sem essas informações, a réplica não pode se sincronizar corretamente com a fonte. (Veja a Seção 21.5.24, “ndb_restore — Restaurar um backup de um NDB Cluster”).
 
 6. Agora, você precisa obter a época mais recente da tabela `ndb_apply_status` na replica (como discutido na Seção 21.7.8, “Implementando Failover com Replicação de NDB Cluster”):
 
@@ -1047,11 +1047,11 @@ sub UpdateReplica
 
 #### 21.7.9.2 Recuperação no Momento Atual Usando a Replicação do NDB Cluster
 
-A recuperação em um ponto no tempo, ou seja, a recuperação de alterações de dados feitas desde um determinado ponto no tempo, é realizada após a restauração de um backup completo que retorna o servidor ao seu estado quando o backup foi feito. A realização da recuperação em um ponto no tempo de tabelas do NDB Cluster com o NDB Cluster e a Replicação do NDB Cluster pode ser realizada usando um backup de dados nativo `NDB` (tomado emitindo `CREATE BACKUP` no cliente **ndb\_mgm**) e restaurando a tabela `ndb_binlog_index` (de um dump feito usando **mysqldump**).
+A recuperação em um ponto no tempo, ou seja, a recuperação de alterações de dados feitas desde um determinado ponto no tempo, é realizada após a restauração de um backup completo que retorna o servidor ao seu estado quando o backup foi feito. A realização da recuperação em um ponto no tempo de tabelas do NDB Cluster com o NDB Cluster e a Replicação do NDB Cluster pode ser realizada usando um backup de dados nativo `NDB` (tomado emitindo `CREATE BACKUP` no cliente **ndb_mgm**) e restaurando a tabela `ndb_binlog_index` (de um dump feito usando **mysqldump**).
 
 Para realizar a recuperação em um ponto no tempo do NDB Cluster, é necessário seguir os passos mostrados aqui:
 
-1. Faça backup de todos os bancos de dados `NDB` no clúster, usando o comando `START BACKUP` no cliente **ndb\_mgm** (consulte Seção 21.6.8, “Backup Online do NDB Cluster”).
+1. Faça backup de todos os bancos de dados `NDB` no clúster, usando o comando `START BACKUP` no cliente **ndb_mgm** (consulte Seção 21.6.8, “Backup Online do NDB Cluster”).
 
 2. Em um momento posterior, antes de restaurar o grupo, faça um backup da tabela [[`mysql.ndb_binlog_index`]. É provavelmente mais simples usar o **mysqldump** para essa tarefa. Também faça um backup dos arquivos de log binário neste momento.
 
@@ -1065,7 +1065,7 @@ Os espaços de dados de disco do cluster NDB e os arquivos de registro não são
 
 6. Use `DROP TABLE` ou `TRUNCATE TABLE` com a tabela `mysql.ndb_binlog_index`.
 
-7. Execute **ndb\_restore**, restaurando todos os dados. Você deve incluir a opção `--restore-epoch` ao executar **ndb\_restore**, para que a tabela `ndb_apply_status` seja preenchida corretamente. (Consulte a Seção 21.5.24, “ndb\_restore — Restaurar um backup de um NDB Cluster”, para obter mais informações.)
+7. Execute **ndb_restore**, restaurando todos os dados. Você deve incluir a opção `--restore-epoch` ao executar **ndb_restore**, para que a tabela `ndb_apply_status` seja preenchida corretamente. (Consulte a Seção 21.5.24, “ndb_restore — Restaurar um backup de um NDB Cluster”, para obter mais informações.)
 
 8. Restaure a tabela `ndb_binlog_index` a partir da saída do **mysqldump** e, se necessário, restaure os arquivos de log binário dos backups.
 
@@ -1116,7 +1116,7 @@ Neste caso, diferentes nós SQL em cada clúster são usados como fontes e répl
 
 **Usando backup e restauração nativa do NDB para inicializar um cluster de replica.**
 
-Ao configurar a replicação circular, é possível inicializar o clúster de replicação usando o comando do cliente de gerenciamento `START BACKUP` em um NDB Cluster para criar um backup e, em seguida, aplicar esse backup em outro NDB Cluster usando **ndb\_restore**. Isso não cria automaticamente logs binários no nó SQL do segundo NDB Cluster que atua como replica; para fazer com que os logs binários sejam criados, você deve emitir uma declaração `SHOW TABLES` nesse nó SQL; isso deve ser feito antes de executar `START SLAVE`. Esse é um problema conhecido.
+Ao configurar a replicação circular, é possível inicializar o clúster de replicação usando o comando do cliente de gerenciamento `START BACKUP` em um NDB Cluster para criar um backup e, em seguida, aplicar esse backup em outro NDB Cluster usando **ndb_restore**. Isso não cria automaticamente logs binários no nó SQL do segundo NDB Cluster que atua como replica; para fazer com que os logs binários sejam criados, você deve emitir uma declaração `SHOW TABLES` nesse nó SQL; isso deve ser feito antes de executar `START SLAVE`. Esse é um problema conhecido.
 
 **Exemplo de falha em múltiplos recursos.** Nesta seção, discutimos a falha em múltiplos recursos em um cenário de configuração de replicação de NDB Cluster de múltiplos recursos, com três NDB Clusters que possuem IDs de servidor 1, 2 e 3. Neste cenário, o Cluster 1 replica para os Clusters 2 e 3; o Cluster 2 também replica para o Cluster 3. Esta relação é mostrada aqui:
 
@@ -1193,15 +1193,15 @@ Você também deve ter em mente que é responsabilidade do aplicativo garantir q
 
 Os preparativos para a resolução de conflitos devem ser feitos tanto na fonte quanto na réplica. Essas tarefas são descritas na lista a seguir:
 
-* Ao escrever os logs binários na fonte, você deve determinar quais colunas serão enviadas (todas as colunas ou apenas aquelas que foram atualizadas). Isso é feito para o servidor MySQL como um todo, aplicando a opção de inicialização `mysqld` `--ndb-log-updated-only` (descrita mais tarde nesta seção), ou em uma ou mais tabelas específicas, colocando as entradas apropriadas na tabela `mysql.ndb_replication` (consulte a tabela ndb\_replication).
+* Ao escrever os logs binários na fonte, você deve determinar quais colunas serão enviadas (todas as colunas ou apenas aquelas que foram atualizadas). Isso é feito para o servidor MySQL como um todo, aplicando a opção de inicialização `mysqld` `--ndb-log-updated-only` (descrita mais tarde nesta seção), ou em uma ou mais tabelas específicas, colocando as entradas apropriadas na tabela `mysql.ndb_replication` (consulte a tabela ndb_replication).
 
 Nota
 
 Se você está replicando tabelas com colunas muito grandes (como as colunas `TEXT` ou `BLOB`), o `--ndb-log-updated-only` também pode ser útil para reduzir o tamanho dos registros binários e evitar possíveis falhas de replicação devido ao excedente de `max_allowed_packet`.
 
-Veja a Seção 16.4.1.19, “Replicação e max\_allowed\_packet”, para mais informações sobre esse problema.
+Veja a Seção 16.4.1.19, “Replicação e max_allowed_packet”, para mais informações sobre esse problema.
 
-* Na replica, você deve determinar que tipo de resolução de conflitos aplicar (“último timestamp vence”, “mesmo timestamp vence”, “primário vence”, “primário vence, transação completa” ou nenhum). Isso é feito usando a tabela do sistema `mysql.ndb_replication`, e se aplica a uma ou mais tabelas específicas (veja a tabela ndb\_replication).
+* Na replica, você deve determinar que tipo de resolução de conflitos aplicar (“último timestamp vence”, “mesmo timestamp vence”, “primário vence”, “primário vence, transação completa” ou nenhum). Isso é feito usando a tabela do sistema `mysql.ndb_replication`, e se aplica a uma ou mais tabelas específicas (veja a tabela ndb_replication).
 
 * O NDB Cluster também suporta detecção de conflitos de leitura, ou seja, a detecção de conflitos entre leituras de uma determinada string em um cluster e atualizações ou exclusões da mesma string em outro cluster. Isso requer bloqueios de leitura exclusivos obtidos ao definir `ndb_log_exclusive_reads` igual a 1 na replica. Todas as strings lidas por uma leitura em conflito são registradas na tabela de exceções. Para mais informações, consulte Detecção e resolução de conflitos de leitura.
 
@@ -1320,7 +1320,7 @@ Para os valores padrão desses parâmetros de configuração (2000 e 100 milisse
 
 Tanto o `NDB$EPOCH()` quanto o `NDB$EPOCH_TRANS()` inserem entradas para strings conflitantes nas tabelas de exceções relevantes, desde que essas tabelas tenham sido definidas de acordo com as mesmas regras do esquema de tabela de exceções, conforme descrito em outras partes desta seção (ver NDB$OLD()")). Você deve criar qualquer tabela de exceções antes de criar a tabela de dados com a qual ela deve ser usada.
 
-Assim como as outras funções de detecção de conflitos discutidas nesta seção, `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são ativadas ao incluir entradas relevantes na tabela `mysql.ndb_replication` (ver ndb\_replication Table). Os papéis dos NDB Clusters primário e secundário neste cenário são totalmente determinados pelas entradas da tabela `mysql.ndb_replication`.
+Assim como as outras funções de detecção de conflitos discutidas nesta seção, `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são ativadas ao incluir entradas relevantes na tabela `mysql.ndb_replication` (ver ndb_replication Table). Os papéis dos NDB Clusters primário e secundário neste cenário são totalmente determinados pelas entradas da tabela `mysql.ndb_replication`.
 
 Como os algoritmos de detecção de conflitos empregados por `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são assimétricos, você deve usar valores diferentes para as entradas `server_id` das réplicas primária e secundária.
 
@@ -1476,7 +1476,7 @@ Os exemplos a seguir pressupõem que você já tenha uma configuração de repli
 
 Nota
 
-Se a tabela `ndb_replication` ainda não existir, você deve criá-la. Veja a tabela ndb\_replication.
+Se a tabela `ndb_replication` ainda não existir, você deve criá-la. Veja a tabela ndb_replication.
 
 Inserir um 0 na coluna `server_id` indica que todos os nós SQL que acessam esta tabela devem usar resolução de conflitos. Se você deseja usar resolução de conflitos apenas em um `mysqld` específico, use o ID do servidor real.
 

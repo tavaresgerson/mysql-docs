@@ -420,7 +420,7 @@ A lista a seguir indica possíveis causas e correções para esse problema:
       -> WHERE User='some_user' AND Host='some_host';
   ```
 
-#### B.3.2.14 A tabela 'tbl\_name' não existe
+#### B.3.2.14 A tabela 'tbl_name' não existe
 
 Se você receber qualquer um dos seguintes erros, geralmente significa que não existe nenhuma tabela no banco de dados padrão com o nome fornecido:
 
@@ -1130,7 +1130,7 @@ Se você tiver uma consulta complicada que usa muitas tabelas, mas que não reto
 
 5. Se você estiver comparando as colunas `FLOAT` - FLOAT, DOUBLE") ou `DOUBLE` - FLOAT, DOUBLE") com números que têm decimais, não pode usar comparações de igualdade (`=`). Esse problema é comum na maioria dos idiomas de computador, pois nem todos os valores de ponto flutuante podem ser armazenados com precisão exata. Em alguns casos, alterar o `FLOAT` - FLOAT, DOUBLE") para um `DOUBLE` - FLOAT, DOUBLE") resolve esse problema. Veja a Seção B.3.4.8, “Problemas com Valores de Ponto Flutuante”.
 
-6. Se você ainda não consegue descobrir o que está errado, crie um teste mínimo que possa ser executado com `mysql test < query.sql` que mostre seus problemas. Você pode criar um arquivo de teste drenando as tabelas com **mysqldump --quick db\_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**. Abra o arquivo em um editor, remova algumas strings de inserção (se houver mais do que o necessário para demonstrar o problema) e adicione sua declaração `SELECT` no final do arquivo.
+6. Se você ainda não consegue descobrir o que está errado, crie um teste mínimo que possa ser executado com `mysql test < query.sql` que mostre seus problemas. Você pode criar um arquivo de teste drenando as tabelas com **mysqldump --quick db_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**. Abra o arquivo em um editor, remova algumas strings de inserção (se houver mais do que o necessário para demonstrar o problema) e adicione sua declaração `SELECT` no final do arquivo.
 
 Verifique se o arquivo de teste demonstra o problema executando esses comandos:
 

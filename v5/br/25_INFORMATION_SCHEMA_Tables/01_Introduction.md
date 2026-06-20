@@ -58,7 +58,7 @@ A definição para as colunas de caráter (por exemplo, `TABLES.TABLE_NAME`) é 
 
 Como alguns objetos do MySQL são representados como arquivos, as pesquisas em colunas de string do `INFORMATION_SCHEMA` podem ser afetadas pela sensibilidade ao caso do sistema de arquivos. Para mais informações, consulte a Seção 10.8.7, “Usando a Cotação em Pesquisas do SCHEMA_INFORMADO”.
 
-### INFORMAÇÕES\_SCHEMA como alternativa às declarações SHOW
+### INFORMAÇÕES_SCHEMA como alternativa às declarações SHOW
 
 A declaração `SELECT ... FROM INFORMATION_SCHEMA` é destinada a uma maneira mais consistente de fornecer acesso às informações fornecidas pelas várias declarações `SHOW` que o MySQL suporta (`SHOW DATABASES`, `SHOW TABLES`, e assim por diante). Usar `SELECT` tem essas vantagens, em comparação com `SHOW`:
 
@@ -72,7 +72,7 @@ A declaração `SELECT ... FROM INFORMATION_SCHEMA` é destinada a uma maneira m
 
 Como o `SHOW` é familiar e amplamente utilizado, as declarações do `SHOW` permanecem como uma alternativa. De fato, juntamente com a implementação do `INFORMATION_SCHEMA`, há melhorias no `SHOW`, conforme descrito na Seção 24.8, “Extensões para Declarações SHOW”.
 
-### INFORMAÇÕES\_SCHEMA e Privilegios
+### INFORMAÇÕES_SCHEMA e Privilegios
 
 Para a maioria das tabelas `INFORMATION_SCHEMA`, cada usuário do MySQL tem o direito de acessá-las, mas pode ver apenas as strings das tabelas que correspondem a objetos para os quais o usuário tenha os privilégios de acesso apropriados. Em alguns casos (por exemplo, a coluna `ROUTINE_DEFINITION` na tabela `INFORMATION_SCHEMA` `ROUTINES`, os usuários que têm privilégios insuficientes veem `NULL`. Algumas tabelas têm requisitos de privilégio diferentes; para essas, os requisitos são mencionados nas descrições das tabelas aplicáveis. Por exemplo, as tabelas `InnoDB` (tabelas com nomes que começam com `INNODB_`) requerem o privilégio `PROCESS`.
 
@@ -80,7 +80,7 @@ Os mesmos privilégios se aplicam à seleção de informações do `INFORMATION_
 
 ### Considerações de desempenho
 
-`INFORMATION_SCHEMA` consultas que buscam informações em mais de um banco de dados podem levar um longo tempo e afetar o desempenho. Para verificar a eficiência de uma consulta, você pode usar `EXPLAIN`. Para informações sobre o uso da saída de `EXPLAIN` para ajustar as consultas de `INFORMATION_SCHEMA`, consulte a Seção 8.2.3, “Otimizando consultas do INFORMATION\_SCHEMA”.
+`INFORMATION_SCHEMA` consultas que buscam informações em mais de um banco de dados podem levar um longo tempo e afetar o desempenho. Para verificar a eficiência de uma consulta, você pode usar `EXPLAIN`. Para informações sobre o uso da saída de `EXPLAIN` para ajustar as consultas de `INFORMATION_SCHEMA`, consulte a Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”.
 
 ### Considerações sobre Padrões
 
@@ -118,4 +118,4 @@ Essas seções discutem tópicos adicionais relacionados ao `INFORMATION_SCHEMA`
 
 * Perguntas do `INFORMATION_SCHEMA` e o otimizador: Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”
 
-* O efeito da ordenação nas comparações de `INFORMATION_SCHEMA`: Seção 10.8.7, “Usando ordenação nas pesquisas do INFORMATION\_SCHEMA”
+* O efeito da ordenação nas comparações de `INFORMATION_SCHEMA`: Seção 10.8.7, “Usando ordenação nas pesquisas do INFORMATION_SCHEMA”

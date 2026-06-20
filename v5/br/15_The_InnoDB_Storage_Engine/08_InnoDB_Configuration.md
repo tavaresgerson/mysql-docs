@@ -1144,11 +1144,11 @@ Quando o `innodb_stats_include_delete_marked` está habilitado, o `ANALYZE TABLE
 
 O recurso de estatísticas persistentes depende das tabelas gerenciadas internamente no banco de dados `mysql`, nomeadas `innodb_table_stats` e `innodb_index_stats`. Essas tabelas são configuradas automaticamente em todos os procedimentos de instalação, atualização e construção a partir de fonte.
 
-**Tabela 14.4 Colunas de innodb\_table\_stats**
+**Tabela 14.4 Colunas de innodb_table_stats**
 
 <table summary="Columns of the mysql.innodb_table_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Nome do banco de dados</td> </tr><tr> <td><code>table_name</code></td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td><code>last_update</code></td> <td>Um marcador de tempo que indica a última vez que a string foi atualizada</td> </tr><tr> <td><code>n_rows</code></td> <td>O número de strings na tabela</td> </tr><tr> <td><code>clustered_index_size</code></td> <td>O tamanho do índice principal, em páginas</td> </tr><tr> <td><code>sum_of_other_index_sizes</code></td> <td>O tamanho total de outros índices (não primários), em páginas</td> </tr></tbody></table>
 
-**Tabela 14.5 Colunas de innodb\_index\_stats**
+**Tabela 14.5 Colunas de innodb_index_stats**
 
 <table summary="Columns of the mysql.innodb_index_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Nome do banco de dados</td> </tr><tr> <td><code>table_name</code></td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td><code>index_name</code></td> <td>Nome do índice</td> </tr><tr> <td><code>last_update</code></td> <td>Um marcador de tempo que indica a última vez que<code>InnoDB</code>atualizada esta string</td> </tr><tr> <td><code>stat_name</code></td> <td>O nome da estatística, cujo valor é relatado no<code>stat_value</code>coluna</td> </tr><tr> <td><code>stat_value</code></td> <td>O valor da estatística que é nomeada em<code>stat_name</code>coluna</td> </tr><tr> <td><code>sample_size</code></td> <td>O número de páginas amostradas para a estimativa fornecida no<code>stat_value</code>coluna</td> </tr><tr> <td><code>stat_description</code></td> <td>Descrição da estatística que é nomeada no<code>stat_name</code>coluna</td> </tr></tbody></table>
 
@@ -1534,7 +1534,7 @@ Quando a porcentagem de "página cheia" para uma página de índice cair abaixo 
 
 O `MERGE_THRESHOLD` para páginas de índice pode ser definido para uma tabela ou para índices individuais. Um valor `MERGE_THRESHOLD` definido para um índice individual tem prioridade sobre um valor `MERGE_THRESHOLD` definido para a tabela. Se não definido, o valor `MERGE_THRESHOLD` padrão é 50.
 
-#### Definindo o MERGE\_THRESHOLD para uma Tabela
+#### Definindo o MERGE_THRESHOLD para uma Tabela
 
 Você pode definir o valor `MERGE_THRESHOLD` para uma tabela usando a cláusula *`table_option`* `COMMENT` da declaração `CREATE TABLE`. Por exemplo:
 
@@ -1556,7 +1556,7 @@ CREATE TABLE t1 (
 ALTER TABLE t1 COMMENT='MERGE_THRESHOLD=40';
 ```
 
-#### Definindo o MERGE\_THRESHOLD para Índices Individuais
+#### Definindo o MERGE_THRESHOLD para Índices Individuais
 
 Para definir o valor do `MERGE_THRESHOLD` para um índice individual, você pode usar a cláusula *`index_option`* `COMMENT` com `CREATE TABLE`, `ALTER TABLE` ou `CREATE INDEX`, conforme mostrado nos exemplos a seguir:
 
@@ -1592,7 +1592,7 @@ Nota
 
 Você não pode modificar o valor `MERGE_THRESHOLD` no nível do índice para `GEN_CLUST_INDEX`, que é o índice agrupado criado por `InnoDB` quando uma tabela `InnoDB` é criada sem uma chave primária ou índice de chave única. Você só pode modificar o valor `MERGE_THRESHOLD` para `GEN_CLUST_INDEX` definindo `MERGE_THRESHOLD` para a tabela.
 
-#### Consultando o valor de MERGE\_THRESHOLD para um índice
+#### Consultando o valor de MERGE_THRESHOLD para um índice
 
 O valor atual do `MERGE_THRESHOLD` para um índice pode ser obtido consultando a tabela `INNODB_SYS_INDEXES`. Por exemplo:
 

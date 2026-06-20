@@ -491,11 +491,11 @@ Exibir informações da versão e sair.
 
 Nota
 
-O **mysql\_plugin** é descontinuado a partir do MySQL 5.7.11 e removido no MySQL 8.0. As alternativas incluem carregar plugins na inicialização do servidor usando a opção `--plugin-load` ou `--plugin-load-add`, ou em tempo real usando a declaração `INSTALL PLUGIN`.
+O **mysql_plugin** é descontinuado a partir do MySQL 5.7.11 e removido no MySQL 8.0. As alternativas incluem carregar plugins na inicialização do servidor usando a opção `--plugin-load` ou `--plugin-load-add`, ou em tempo real usando a declaração `INSTALL PLUGIN`.
 
-O utilitário **mysql\_plugin** permite que os administradores do MySQL gerenciem quais plugins um servidor MySQL carrega. Ele oferece uma alternativa para especificar manualmente a opção `--plugin-load` no início da inicialização do servidor ou usar as declarações `INSTALL PLUGIN` e `UNINSTALL PLUGIN` no runtime.
+O utilitário **mysql_plugin** permite que os administradores do MySQL gerenciem quais plugins um servidor MySQL carrega. Ele oferece uma alternativa para especificar manualmente a opção `--plugin-load` no início da inicialização do servidor ou usar as declarações `INSTALL PLUGIN` e `UNINSTALL PLUGIN` no runtime.
 
-Dependendo se o **mysql\_plugin** é invocado para habilitar ou desabilitar plugins, ele insere ou exclui strings na tabela `mysql.plugin` que serve como um registro de plugins. (Para realizar essa operação, o **mysql\_plugin** invoca o servidor MySQL no modo de inicialização. Isso significa que o servidor não deve estar em execução.) Para inicializações normais do servidor, o servidor carrega e habilita plugins listados em `mysql.plugin` automaticamente. Para controle adicional sobre a ativação do plugin, use as opções de `--plugin_name` nomeadas para plugins específicos, conforme descrito na Seção 5.5.1, “Instalando e Desinstalando Plugins”.
+Dependendo se o **mysql_plugin** é invocado para habilitar ou desabilitar plugins, ele insere ou exclui strings na tabela `mysql.plugin` que serve como um registro de plugins. (Para realizar essa operação, o **mysql_plugin** invoca o servidor MySQL no modo de inicialização. Isso significa que o servidor não deve estar em execução.) Para inicializações normais do servidor, o servidor carrega e habilita plugins listados em `mysql.plugin` automaticamente. Para controle adicional sobre a ativação do plugin, use as opções de `--plugin_name` nomeadas para plugins específicos, conforme descrito na Seção 5.5.1, “Instalando e Desinstalando Plugins”.
 
 Cada invocação do **mysql_plugin** lê um arquivo de configuração para determinar como configurar os plugins contidos em um único arquivo de biblioteca de plugins. Para invocar o **mysql_plugin**, use a seguinte sintaxe:
 
@@ -505,7 +505,7 @@ mysql_plugin [options] plugin {ENABLE|DISABLE}
 
 *`plugin`* é o nome do plugin a ser configurado. `ENABLE` ou `DISABLE` (não sensível ao caso) especifica se os componentes da biblioteca de plugins nomeados no arquivo de configuração devem ser habilitados ou desabilitados. A ordem dos argumentos *`plugin`* e `ENABLE` ou `DISABLE` não importa.
 
-Por exemplo, para configurar componentes de um arquivo de biblioteca de plugins chamado `myplugins.so` no Linux ou `myplugins.dll` no Windows, especifique um valor *`plugin`* de `myplugins`. Suponha que essa biblioteca de plugins contenha três plugins, `plugin1`, `plugin2` e `plugin3`, todos dos quais devem ser configurados sob o controle de **mysql\_plugin**. Por convenção, os arquivos de configuração têm um sufixo de `.ini` e o mesmo nome de base que a biblioteca de plugins, então o nome padrão do arquivo de configuração para essa biblioteca de plugins é `myplugins.ini`. O conteúdo do arquivo de configuração parece assim:
+Por exemplo, para configurar componentes de um arquivo de biblioteca de plugins chamado `myplugins.so` no Linux ou `myplugins.dll` no Windows, especifique um valor *`plugin`* de `myplugins`. Suponha que essa biblioteca de plugins contenha três plugins, `plugin1`, `plugin2` e `plugin3`, todos dos quais devem ser configurados sob o controle de **mysql_plugin**. Por convenção, os arquivos de configuração têm um sufixo de `.ini` e o mesmo nome de base que a biblioteca de plugins, então o nome padrão do arquivo de configuração para essa biblioteca de plugins é `myplugins.ini`. O conteúdo do arquivo de configuração parece assim:
 
 ```sql
 myplugins
@@ -516,7 +516,7 @@ plugin3
 
 A primeira string do arquivo `myplugins.ini` é o nome do arquivo da biblioteca, sem qualquer extensão, como `.so` ou `.dll`. As strings restantes são os nomes dos componentes que devem ser habilitados ou desabilitados. Cada valor no arquivo deve estar em uma string separada. As strings nas quais o primeiro caractere é `'#'` são consideradas comentários e ignoradas.
 
-Para habilitar os plugins listados no arquivo de configuração, invoque o **mysql\_plugin** da seguinte maneira:
+Para habilitar os plugins listados no arquivo de configuração, invoque o **mysql_plugin** da seguinte maneira:
 
 ```sql
 mysql_plugin myplugins ENABLE
@@ -526,7 +526,7 @@ Para desativar os plugins, use `DISABLE` em vez de `ENABLE`.
 
 Um erro ocorre se o **mysql_plugin** não conseguir encontrar o arquivo de configuração ou o arquivo da biblioteca do plugin, ou se o **mysql_plugin** não conseguir iniciar o servidor MySQL.
 
-O **mysql\_plugin** suporta as seguintes opções, que podem ser especificadas na string de comando ou no grupo `[mysqld]` de qualquer arquivo de opção. Para opções especificadas em um grupo `[mysqld]`, o **mysql\_plugin** reconhece as opções `--basedir`, `--datadir` e `--plugin-dir` e ignora outras. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
+O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na string de comando ou no grupo `[mysqld]` de qualquer arquivo de opção. Para opções especificadas em um grupo `[mysqld]`, o **mysql_plugin** reconhece as opções `--basedir`, `--datadir` e `--plugin-dir` e ignora outras. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
 
 **Tabela 4.9 Opções do mysql_plugin**
 
@@ -554,7 +554,7 @@ O diretório de dados do servidor.
 
   <table frame="box" rules="all" summary="Properties for my-print-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--my-print-defaults=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
-O caminho para o programa **my\_print\_defaults**.
+O caminho para o programa **my_print_defaults**.
 
 * `--mysqld=file_name`, `-b file_name`
 
@@ -580,13 +580,13 @@ O diretório de plugins do servidor.
 
   <table frame="box" rules="all" summary="Properties for plugin-ini"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-ini=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
-O arquivo de configuração do **mysql\_plugin**. Os nomes de caminho relativos são interpretados em relação ao diretório atual. Se esta opção não for fornecida, o padrão é `plugin.ini` no diretório do plugin, onde *`plugin`* é o argumento *`plugin`* na string de comando.
+O arquivo de configuração do **mysql_plugin**. Os nomes de caminho relativos são interpretados em relação ao diretório atual. Se esta opção não for fornecida, o padrão é `plugin.ini` no diretório do plugin, onde *`plugin`* é o argumento *`plugin`* na string de comando.
 
 * `--print-defaults`, `-P`
 
   <table frame="box" rules="all" summary="Properties for print-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--print-defaults</code></td> </tr></tbody></table>
 
-Exibir os valores padrão do arquivo de configuração. Esta opção faz com que o **mysql\_plugin** imprima os padrões para `--basedir`, `--datadir` e `--plugin-dir` se forem encontrados no arquivo de configuração. Se não for encontrado nenhum valor para uma variável, nada é mostrado.
+Exibir os valores padrão do arquivo de configuração. Esta opção faz com que o **mysql_plugin** imprima os padrões para `--basedir`, `--datadir` e `--plugin-dir` se forem encontrados no arquivo de configuração. Se não for encontrado nenhum valor para uma variável, nada é mostrado.
 
 Com o **mysql_plugin**, essa opção não precisa ser dada primeiro na string de comando, ao contrário da maioria dos outros programas MySQL que suportam `--print-defaults`.
 
@@ -602,7 +602,7 @@ Modo detalhado. Imprima mais informações sobre o que o programa faz. Essa opç
 
 Exibir informações da versão e sair.
 
-### 4.4.4 mysql\_secure\_installation — Melhorar a segurança da instalação do MySQL
+### 4.4.4 mysql_secure_installation — Melhorar a segurança da instalação do MySQL
 
 Este programa permite que você melhore a segurança da sua instalação do MySQL das seguintes maneiras:
 
@@ -809,7 +809,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
@@ -1155,7 +1155,7 @@ A menos que invocado com a opção `--upgrade-system-tables`, o `mysqld_upgrade`
 
 `mysqld_upgrade` verifica as strings da tabela do sistema `mysql.user` e, para qualquer string com uma coluna `plugin` vazia, define essa coluna para `'mysql_native_password'` ou `'mysql_old_password'`, dependendo do formato de hash do valor da coluna `Password`.
 
-O suporte para hashing de senha pré-4.1 e `mysql_old_password` foi removido, então `mysqld_upgrade` define valores vazios de `plugin` para `'mysql_native_password'` se as credenciais utilizarem um formato de hash compatível com esse plugin. As strings com um hash de senha pré-4.1 devem ser atualizadas manualmente. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+O suporte para hashing de senha pré-4.1 e `mysql_old_password` foi removido, então `mysqld_upgrade` define valores vazios de `plugin` para `'mysql_native_password'` se as credenciais utilizarem um formato de hash compatível com esse plugin. As strings com um hash de senha pré-4.1 devem ser atualizadas manualmente. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 `mysqld_upgrade` não atualiza os conteúdos das tabelas de fuso horário ou das tabelas de ajuda. Para obter instruções de atualização, consulte a Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”, e a Seção 5.1.14, “Suporte de Ajuda do Servidor”.
 
@@ -1499,7 +1499,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
   <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
-Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
 Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 
@@ -1521,7 +1521,7 @@ O tamanho inicial do buffer para comunicação cliente/servidor. O valor padrão
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de string de comando que afetam o tratamento de arquivo de opções”.
 

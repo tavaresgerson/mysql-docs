@@ -44,7 +44,7 @@ As funções armazenadas não podem ser recursivas.
 
 A recursão em procedimentos armazenados é permitida, mas desabilitada por padrão. Para habilitar a recursão, defina a variável de sistema do servidor `max_sp_recursion_depth` para um valor maior que zero. A recursão de procedimentos armazenados aumenta a demanda pelo espaço de pilha de thread. Se você aumentar o valor de `max_sp_recursion_depth`, pode ser necessário aumentar o tamanho da pilha de thread, aumentando o valor de `thread_stack` na inicialização do servidor. Consulte a Seção 5.1.7, “Variáveis de sistema do servidor”, para obter mais informações.
 
-O MySQL suporta uma extensão muito útil que permite o uso de declarações regulares `SELECT` (ou seja, sem o uso de cursor ou variáveis locais) dentro de um procedimento armazenado. O conjunto de resultados de uma consulta desse tipo é simplesmente enviado diretamente ao cliente. Múltiplas declarações `SELECT` geram múltiplos conjuntos de resultados, então o cliente deve usar uma biblioteca de cliente do MySQL que suporte múltiplos conjuntos de resultados. Isso significa que o cliente deve usar uma biblioteca de cliente de uma versão do MySQL pelo menos tão recente quanto 4.1. O cliente também deve especificar a opção `CLIENT_MULTI_RESULTS` quando se conecta. Para programas em C, isso pode ser feito com a função `mysql_real_connect()` da API C. Veja mysql\_real\_connect() e Suporte à Execução de Declarações Múltiplas.
+O MySQL suporta uma extensão muito útil que permite o uso de declarações regulares `SELECT` (ou seja, sem o uso de cursor ou variáveis locais) dentro de um procedimento armazenado. O conjunto de resultados de uma consulta desse tipo é simplesmente enviado diretamente ao cliente. Múltiplas declarações `SELECT` geram múltiplos conjuntos de resultados, então o cliente deve usar uma biblioteca de cliente do MySQL que suporte múltiplos conjuntos de resultados. Isso significa que o cliente deve usar uma biblioteca de cliente de uma versão do MySQL pelo menos tão recente quanto 4.1. O cliente também deve especificar a opção `CLIENT_MULTI_RESULTS` quando se conecta. Para programas em C, isso pode ser feito com a função `mysql_real_connect()` da API C. Veja mysql_real_connect() e Suporte à Execução de Declarações Múltiplas.
 
 ### 23.2.2 Rotinas Armazenadas e Privilegios do MySQL
 
@@ -66,7 +66,7 @@ O servidor manipula a tabela `mysql.proc` em resposta a declarações que criam,
 
 Para obter metadados sobre as rotinas armazenadas:
 
-* Consulte a tabela `ROUTINES` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.21, “A tabela de ROUTINES do INFORMATION\_SCHEMA”.
+* Consulte a tabela `ROUTINES` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.21, “A tabela de ROUTINES do INFORMATION_SCHEMA”.
 
 * Use as declarações `SHOW CREATE PROCEDURE` e `SHOW CREATE FUNCTION` para ver as definições rotineiras. Veja a Seção 13.7.5.9, “Declaração SHOW CREATE PROCEDURE”.
 

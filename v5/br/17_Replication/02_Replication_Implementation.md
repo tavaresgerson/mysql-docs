@@ -210,7 +210,7 @@ Para mais informações, consulte a Seção 16.4.1.15, “Replicação e Funçõ
 
 Além disso, uma `INSERT` em uma tabela que possui uma chave primária composta contendo uma coluna `AUTO_INCREMENT` que não é a primeira coluna dessa chave composta é insegura.
 
-Para mais informações, consulte a Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
+Para mais informações, consulte a Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”.
 
 * **INSERIR ... ON DUPLICATE KEY UPDATE em tabelas com múltiplas chaves primárias ou únicas.** Quando executado em uma tabela que contém mais de uma chave primária ou única, essa declaração é considerada insegura, pois é sensível à ordem em que o motor de armazenamento verifica as chaves, que não é determinística, e na qual a escolha das strings atualizadas pelo MySQL Server depende.
 

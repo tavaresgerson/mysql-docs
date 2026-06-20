@@ -46,6 +46,6 @@ Para evitar problemas como esse, faça uma comparação de desempenho de toda a 
 
 Esses programas ou pacotes podem derrubar um sistema, então certifique-se de usá-los apenas em seus sistemas de desenvolvimento.
 
-### 8.13.3 Medindo o desempenho com performance\_schema
+### 8.13.3 Medindo o desempenho com performance_schema
 
 Você pode consultar as tabelas no banco de dados `performance_schema` para obter informações em tempo real sobre as características de desempenho do seu servidor e das aplicações que ele está executando. Consulte o Capítulo 25, *Schema de desempenho do MySQL*, para obter detalhes.

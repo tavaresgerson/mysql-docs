@@ -98,7 +98,7 @@ Essas opções são opções de configuração do MySQL Server, nas quais a Repl
 
 * `group_replication_ssl_mode` — especifica o estado de segurança da conexão entre os membros da Replicação em grupo.
 
-**Tabela 17.3 valores de configuração do grupo\_replication\_ssl\_mode**
+**Tabela 17.3 valores de configuração do grupo_replication_ssl_mode**
 
 <table summary="Lists the possible values for group_replication_ssl_mode and describes their effect on how replication group members connect to each other."><col style="width: 43%"/><col style="width: 57%"/><thead><tr> <th><p> Value </p></th> <th><p>Descrição</p></th> </tr></thead><tbody><tr> <td><p> <em>DISABLED</em> </p></td> <td><p>Estabeleça uma conexão não criptografada (<em>padrão</em>). </p></td> </tr><tr> <td><p> REQUIRED </p></td> <td><p>Estabeleça uma conexão segura, se o servidor suportar conexões seguras.</p></td> </tr><tr> <td><p> VERIFY_CA </p></td> <td><p>Como REQUERIDO, mas, adicionalmente, verifique o certificado TLS do servidor contra os certificados da Autoridade de Certificação (CA) configurados.</p></td> </tr><tr> <td><p> VERIFY_IDENTITY </p></td> <td><p>Como VERIFY_CA, mas, adicionalmente, verifique se o certificado do servidor corresponde ao host ao qual a conexão é realizada.</p></td> </tr></tbody></table>
 

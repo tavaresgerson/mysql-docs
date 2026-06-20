@@ -1527,7 +1527,7 @@ Onde instalar o servidor `mysqld`.
 
 * `-DINSTALL_SCRIPTDIR=dir_name`
 
-Onde instalar **mysql\_install\_db**.
+Onde instalar **mysql_install_db**.
 
 * `-DINSTALL_SECURE_FILE_PRIVDIR=dir_name`
 
@@ -1999,7 +1999,7 @@ A opção `WITH_LZ4` indica a fonte de suporte do `zlib`:
 
 + `bundled`: Use a biblioteca `lz4` empacotada com a distribuição. Isso é o padrão.
 
-+ `system`: Use a biblioteca do sistema `lz4`. Se `WITH_LZ4` estiver definido para este valor, o utilitário **lz4\_decompress** não será construído. Neste caso, o comando **lz4** do sistema pode ser usado em vez disso.
++ `system`: Use a biblioteca do sistema `lz4`. Se `WITH_LZ4` estiver definido para este valor, o utilitário **lz4_decompress** não será construído. Neste caso, o comando **lz4** do sistema pode ser usado em vez disso.
 
 * `-DWITH_MECAB={disabled|system|path_name}`
 
@@ -2210,7 +2210,7 @@ Esta opção é `ON` por padrão. Se você não deseja compilar o NDB Cluster co
 
 * `-DWITH_NDB_PORT=port`
 
-Faz com que o servidor de gerenciamento do NDB Cluster (**ndb\_mgmd**) que é construído para usar este *`port`* por padrão. Se esta opção não for definida, o servidor de gerenciamento resultante tenta usar a porta 1186 por padrão.
+Faz com que o servidor de gerenciamento do NDB Cluster (**ndb_mgmd**) que é construído para usar este *`port`* por padrão. Se esta opção não for definida, o servidor de gerenciamento resultante tenta usar a porta 1186 por padrão.
 
 * `-DWITH_NDB_TEST={ON|OFF}`
 
@@ -2256,7 +2256,7 @@ Embora isso possa ser feito na string de comando, como mostrado acima, você pod
 
 Para especificar suas próprias opções de compilador C e C++, use as opções `CMAKE_C_FLAGS` e `CMAKE_CXX_FLAGS` do CMake. Veja Flags de compilador.
 
-Para ver quais bandeiras você pode precisar especificar, invoque o **mysql\_config** com as opções `--cflags` e `--cxxflags`.
+Para ver quais bandeiras você pode precisar especificar, invoque o **mysql_config** com as opções `--cflags` e `--cxxflags`.
 
 * Para ver quais comandos são executados durante a fase de compilação, após usar o **CMake** para configurar o MySQL, execute **make VERBOSE=1** em vez de apenas **make**.
 

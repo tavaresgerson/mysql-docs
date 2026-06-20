@@ -493,7 +493,7 @@ Não é recomendado mudar o formato de replicação em tempo de execução quand
 
 Mudar o formato de replicação enquanto a replicação está em andamento também pode causar problemas. Cada servidor MySQL pode definir seu próprio e apenas seu próprio formato de registro binário (verdadeiro se `binlog_format` está definido com escopo global ou de sessão). Isso significa que alterar o formato de registro em um servidor de fonte de replicação não faz com que a réplica mude seu formato de registro para corresponder. Ao usar o modo `STATEMENT`, a variável de sistema `binlog_format` não é replicada. Ao usar o modo de registro `MIXED` ou `ROW`, ele é replicado, mas ignorado pela réplica.
 
-Uma réplica não é capaz de converter entradas de registro binário recebidas no formato de registro `ROW` para o formato `STATEMENT` para uso em seu próprio registro binário. Portanto, a réplica deve usar o formato `ROW` ou `MIXED` se a fonte o fizer. Alterar o formato de registro binário na fonte de `STATEMENT` para `ROW` ou `MIXED` durante a replicação para uma réplica com formato `STATEMENT` pode causar o fracasso da replicação com erros como Erro executando evento de string: 'Não é possível executar a declaração: impossível escrever no registro binário, uma vez que a declaração está em formato de string e BINLOG\_FORMAT = DECLARAÇÃO.' Alterar o formato de registro binário na réplica para o formato `STATEMENT` quando a fonte ainda está usando o formato `MIXED` ou `ROW` também causa o mesmo tipo de falha de replicação. Para alterar o formato de forma segura, você deve parar a replicação e garantir que a mesma alteração seja feita tanto na fonte quanto na réplica.
+Uma réplica não é capaz de converter entradas de registro binário recebidas no formato de registro `ROW` para o formato `STATEMENT` para uso em seu próprio registro binário. Portanto, a réplica deve usar o formato `ROW` ou `MIXED` se a fonte o fizer. Alterar o formato de registro binário na fonte de `STATEMENT` para `ROW` ou `MIXED` durante a replicação para uma réplica com formato `STATEMENT` pode causar o fracasso da replicação com erros como Erro executando evento de string: 'Não é possível executar a declaração: impossível escrever no registro binário, uma vez que a declaração está em formato de string e BINLOG_FORMAT = DECLARAÇÃO.' Alterar o formato de registro binário na réplica para o formato `STATEMENT` quando a fonte ainda está usando o formato `MIXED` ou `ROW` também causa o mesmo tipo de falha de replicação. Para alterar o formato de forma segura, você deve parar a replicação e garantir que a mesma alteração seja feita tanto na fonte quanto na réplica.
 
 Se você estiver usando as tabelas `InnoDB` e o nível de isolamento de transação é `READ COMMITTED` ou `READ UNCOMMITTED`, apenas o registro baseado em string pode ser usado. É *possível* mudar o formato de registro para `STATEMENT`, mas fazer isso em tempo real rapidamente leva a erros porque `InnoDB` não pode mais realizar inserções.
 
@@ -515,7 +515,7 @@ Ao executar no formato de registro `MIXED`, o servidor muda automaticamente do r
 
 * Quando uma ou mais tabelas com colunas `AUTO_INCREMENT` são atualizadas e um gatilho ou função armazenada é invocado. Como todos os outros comandos inseguros, isso gera uma advertência se `binlog_format = STATEMENT`.
 
-Para mais informações, consulte a Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
+Para mais informações, consulte a Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”.
 
 * Quando o corpo de uma visão requer replicação baseada em string, a declaração que cria a visão também a utiliza. Por exemplo, isso ocorre quando a declaração que cria uma visão utiliza a função `UUID()`.
 
@@ -636,7 +636,7 @@ Um motor de armazenamento específico pode suportar um ou ambos os formatos de r
 
 Se uma declaração deve ser registrada e o modo de registro a ser utilizado é determinado de acordo com o tipo de declaração (seguro, inseguro ou binário injetado), o formato de registro binário (`STATEMENT`, `ROW` ou `MIXED`) e as capacidades de registro do motor de armazenamento (capaz de declaração, capaz de string, ambos ou nenhum). (Injeção binária refere-se ao registro de uma mudança que deve ser registrada usando o formato `ROW`.)
 
-As declarações podem ser registradas com ou sem um aviso; as declarações falhadas não são registradas, mas geram erros no log. Isso é mostrado na tabela de decisão a seguir. As colunas **Tipo**, **binlog\_format**, **SLC** e **RLC** definem as condições, e as colunas **Erro / Aviso** e **Registrado como** representam as ações correspondentes. **SLC** significa "capaz de registro de declarações", e **RLC** significa "capaz de registro de strings".
+As declarações podem ser registradas com ou sem um aviso; as declarações falhadas não são registradas, mas geram erros no log. Isso é mostrado na tabela de decisão a seguir. As colunas **Tipo**, **binlog_format**, **SLC** e **RLC** definem as condições, e as colunas **Erro / Aviso** e **Registrado como** representam as ações correspondentes. **SLC** significa "capaz de registro de declarações", e **RLC** significa "capaz de registro de strings".
 
 <table>
 <thead>

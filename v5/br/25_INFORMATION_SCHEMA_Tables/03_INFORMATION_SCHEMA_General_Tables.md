@@ -10,7 +10,7 @@ A tabela a seguir resume as tabelas gerais de `INFORMATION_SCHEMA`. Para mais de
 
 <table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA general tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>CHARACTER_SETS</code></td> <td>Conjunto de caracteres disponíveis</td> </tr><tr><td><code>COLLATION_CHARACTER_SET_APPLICABILITY</code></td> <td>Conjunto de caracteres aplicável a cada combinação de ordenação</td> </tr><tr><td><code>COLLATIONS</code></td> <td>Colagens para cada conjunto de caracteres</td> </tr><tr><td><code>COLUMN_PRIVILEGES</code></td> <td>Privilegios definidos em colunas</td> </tr><tr><td><code>COLUMNS</code></td> <td>Colunas em cada tabela</td> </tr><tr><td><code>ENGINES</code></td> <td>Propriedades do motor de armazenamento</td> </tr><tr><td><code>EVENTS</code></td> <td>Gestor de eventos eventos</td> </tr><tr><td><code>FILES</code></td> <td>Arquivos que armazenam dados do espaço de tabela</td> </tr><tr><td><code>GLOBAL_STATUS</code></td> <td>Variáveis de status global</td> </tr><tr><td><code>GLOBAL_VARIABLES</code></td> <td>Variáveis do sistema global</td> </tr><tr><td><code>KEY_COLUMN_USAGE</code></td> <td>Quais colunas-chave têm restrições</td> </tr><tr><td><code>ndb_transid_mysql_connection_map</code></td> <td>Informações sobre transações do NDB</td> </tr><tr><td><code>OPTIMIZER_TRACE</code></td> <td>Informações produzidas pela atividade de rastreamento do otimizador</td> </tr><tr><td><code>PARAMETERS</code></td> <td>Parâmetros de rotina armazenados e valores de retorno de função armazenados</td> </tr><tr><td><code>PARTITIONS</code></td> <td>Informações sobre a partição da mesa</td> </tr><tr><td><code>PLUGINS</code></td> <td>Informações sobre o plugin</td> </tr><tr><td><code>PROCESSLIST</code></td> <td>Informações sobre os threads atualmente em execução</td> </tr><tr><td><code>PROFILING</code></td> <td>Informações de perfil de declaração</td> </tr><tr><td><code>REFERENTIAL_CONSTRAINTS</code></td> <td>Informações de chave estrangeira</td> </tr><tr><td><code>ROUTINES</code></td> <td>Informações de rotina armazenadas</td> </tr><tr><td><code>SCHEMA_PRIVILEGES</code></td> <td>Privilegios definidos em esquemas</td> </tr><tr><td><code>SCHEMATA</code></td> <td>Informações do esquema</td> </tr><tr><td><code>SESSION_STATUS</code></td> <td>Variáveis de status para a sessão atual</td> </tr><tr><td><code>SESSION_VARIABLES</code></td> <td>Variáveis do sistema para a sessão atual</td> </tr><tr><td><code>STATISTICS</code></td> <td>Estatísticas de índice de tabela</td> </tr><tr><td><code>TABLE_CONSTRAINTS</code></td> <td>Quais tabelas têm restrições</td> </tr><tr><td><code>TABLE_PRIVILEGES</code></td> <td>Privilegios definidos em tabelas</td> </tr><tr><td><code>TABLES</code></td> <td>Informações sobre a tabela</td> </tr><tr><td><code>TABLESPACES</code></td> <td>Informações sobre o tablespace</td> </tr><tr><td><code>TRIGGERS</code></td> <td>Informações de gatilho</td> </tr><tr><td><code>USER_PRIVILEGES</code></td> <td>Privilegios definidos globalmente por usuário</td> </tr><tr><td><code>VIEWS</code></td> <td>Ver informações</td> </tr></tbody></table>
 
-### 24.3.2 A tabela INFORMATION\_SCHEMA CHARACTER\_SETS
+### 24.3.2 A tabela INFORMATION_SCHEMA CHARACTER_SETS
 
 A tabela `CHARACTER_SETS` fornece informações sobre os conjuntos de caracteres disponíveis.
 
@@ -44,16 +44,16 @@ SHOW CHARACTER SET
   [LIKE 'wild']
 ```
 
-### 24.3.3 A tabela INFORMATION\_SCHEMA COLLATIONS
-### 24.3.4 A tabela INFORMATION\_SCHEMA SCHEMAS
-### 24.3.5 A tabela INFORMATION\_SCHEMA SCHEMA_PRIVILEGES
-### 24.3.6 A tabela INFORMATION\_SCHEMA SCHEMA_USAGE
-### 24.3.7 A tabela INFORMATION\_SCHEMA SCHEMA_USAGE_PRIVILEGES
-### 24.3.8 A tabela INFORMATION\_SCHEMA SCHEMA_USAGE_ROLES
-### 24.3.9 A tabela INFORMATION\_SCHEMA SCHEMA_USAGE_SCHEMA_PRIVILEGES
-### 24.3.10 A tabela INFORMATION\_SCHEMA SCHEMA_USAGE_SCHEMA_USAGE
-### 24.3.11 A tabela INFORMATION\_SCHEMA SCHEMA_USAGE_SCHEMA_USAGE_PRIVILEGES
-### 24.3.12 A tabela INFORMATION\_SCHEMA SCHEMA_USAGE_SCHEMA_USAGE_ROLES
+### 24.3.3 A tabela INFORMATION_SCHEMA COLLATIONS
+### 24.3.4 A tabela INFORMATION_SCHEMA SCHEMAS
+### 24.3.5 A tabela INFORMATION_SCHEMA SCHEMA_PRIVILEGES
+### 24.3.6 A tabela INFORMATION_SCHEMA SCHEMA_USAGE
+### 24.3.7 A tabela INFORMATION_SCHEMA SCHEMA_USAGE_PRIVILEGES
+### 24.3.8 A tabela INFORMATION_SCHEMA SCHEMA_USAGE_ROLES
+### 24.3.9 A tabela INFORMATION_SCHEMA SCHEMA_USAGE_SCHEMA_PRIVILEGES
+### 24.3.10 A tabela INFORMATION_SCHEMA SCHEMA_USAGE_SCHEMA_USAGE
+### 24.3.11 A tabela INFORMATION_SCHEMA SCHEMA_USAGE_SCHEMA_USAGE_PRIVILEGES
+### 24.3.12 A tabela INFORMATION_SCHEMA SCHEMA_USAGE_SCHEMA_USAGE_ROLES
 
 A tabela `COLLATIONS` fornece informações sobre as colatões para cada conjunto de caracteres.
 
@@ -95,7 +95,7 @@ SHOW COLLATION
   [LIKE 'wild']
 ```
 
-### 24.3.4 A tabela de COLATION\_CHARACTER\_SET\_APPLICABILITY do INFORMATION\_SCHEMA
+### 24.3.4 A tabela de COLATION_CHARACTER_SET_APPLICABILITY do INFORMATION_SCHEMA
 
 A tabela `COLLATION_CHARACTER_SET_APPLICABILITY` indica qual conjunto de caracteres é aplicável para qual ordenação.
 
@@ -113,7 +113,7 @@ O nome do conjunto de caracteres com o qual a correção está associada.
 
 As colunas `COLLATION_CHARACTER_SET_APPLICABILITY` são equivalentes às duas primeiras colunas exibidas pela declaração `SHOW COLLATION`.
 
-### 24.3.5 A tabela INFORMATION\_SCHEMA COLUMNS
+### 24.3.5 A tabela INFORMATION_SCHEMA COLUMNS
 
 A tabela `COLUMNS` fornece informações sobre as colunas das tabelas.
 
@@ -248,7 +248,7 @@ SHOW COLUMNS
   [LIKE 'wild']
 ```
 
-### 24.3.6 A tabela Tabela de PRIVILEGIOS_COLUNA do esquema de informações (INFORMATION\_SCHEMA COLUMN\_PRIVILEGES)
+### 24.3.6 A tabela Tabela de PRIVILEGIOS_COLUNA do esquema de informações (INFORMATION_SCHEMA COLUMN_PRIVILEGES)
 
 A tabela `COLUMN_PRIVILEGES` fornece informações sobre privilégios de coluna. Ela obtém seus valores da tabela `mysql.columns_priv` do sistema.
 
@@ -296,7 +296,7 @@ SELECT ... FROM INFORMATION_SCHEMA.COLUMN_PRIVILEGES
 SHOW GRANTS ...
 ```
 
-### 24.3.7 A tabela de ENGINES do INFORMATION\_SCHEMA
+### 24.3.7 A tabela de ENGINES do INFORMATION_SCHEMA
 
 A tabela `ENGINES` fornece informações sobre os motores de armazenamento. Isso é particularmente útil para verificar se um motor de armazenamento é suportado ou para ver qual é o motor padrão.
 
@@ -348,7 +348,7 @@ SELECT * FROM INFORMATION_SCHEMA.ENGINES
 SHOW ENGINES
 ```
 
-### 24.3.8 A tabela Tabela de eventos do INFORMATION\_SCHEMA
+### 24.3.8 A tabela Tabela de eventos do INFORMATION_SCHEMA
 
 A tabela `EVENTS` fornece informações sobre os eventos do Gerenciador de Eventos, que são discutidos na Seção 23.4, “Usando o Cronograma de Eventos”.
 
@@ -787,7 +787,7 @@ As seguintes notas se aplicam aos arquivos de dados `InnoDB`.
 
 #### Notas do NDB
 
-* A tabela `FILES` fornece informações apenas sobre os *arquivos* de dados do disco; não é possível usá-la para determinar a alocação ou disponibilidade de espaço em disco para as tabelas individuais `NDB`. No entanto, é possível ver quanto espaço é alocado para cada tabela `NDB` que tem dados armazenados em disco — bem como quanto espaço ainda está disponível para o armazenamento de dados em disco para essa tabela — usando **ndb\_desc**.
+* A tabela `FILES` fornece informações apenas sobre os *arquivos* de dados do disco; não é possível usá-la para determinar a alocação ou disponibilidade de espaço em disco para as tabelas individuais `NDB`. No entanto, é possível ver quanto espaço é alocado para cada tabela `NDB` que tem dados armazenados em disco — bem como quanto espaço ainda está disponível para o armazenamento de dados em disco para essa tabela — usando **ndb_desc**.
 
 * Os valores de `CREATION_TIME`, `LAST_UPDATE_TIME` e `LAST_ACCESSED` são os relatados pelo sistema operacional e não são fornecidos pelo motor de armazenamento `NDB`. Quando nenhum valor é fornecido pelo sistema operacional, essas colunas exibem `NULL`.
 
@@ -937,7 +937,7 @@ Se você criar uma tabela de Dados de disco do NDB Cluster e, em seguida, inseri
 
 * a partir do MySQL 5.7.31, você deve ter o privilégio `PROCESS` para consultar esta tabela.
 
-### 24.3.10 As tabelas INFORMATION\_SCHEMA GLOBAL\_STATUS e SESSION\_STATUS
+### 24.3.10 As tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS
 
 Nota
 
@@ -953,7 +953,7 @@ As tabelas `GLOBAL_STATUS` e `SESSION_STATUS` fornecem informações sobre as va
 
 * A coluna `VARIABLE_VALUE` para cada uma dessas tabelas é definida como `VARCHAR(1024)`.
 
-### 24.3.11 Tabelas INFORMATION\_SCHEMA GLOBAL\_VARIABLES e SESSION\_VARIABLES
+### 24.3.11 Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES
 
 Nota
 
@@ -973,7 +973,7 @@ As tabelas `GLOBAL_VARIABLES` e `SESSION_VARIABLES` fornecem informações sobre
   SELECT @@GLOBAL.innodb_data_file_path;
   ```
 
-### 24.3.12 Tabela INFORMATION\_SCHEMA KEY\_COLUMN\_USAGE
+### 24.3.12 Tabela INFORMATION_SCHEMA KEY_COLUMN_USAGE
 
 A tabela `KEY_COLUMN_USAGE` descreve quais colunas principais têm restrições.
 
@@ -1056,7 +1056,7 @@ Para essas duas tabelas, a tabela `KEY_COLUMN_USAGE` tem duas strings:
 
 * Uma string com `CONSTRAINT_NAME` = `'CO'`, `TABLE_NAME` = `'t3'`, `COLUMN_NAME` = `'s2'`, `ORDINAL_POSITION` = `1`, `POSITION_IN_UNIQUE_CONSTRAINT` = `1`.
 
-### 24.3.13 Tabela INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map
+### 24.3.13 Tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map
 
 A tabela `ndb_transid_mysql_connection_map` fornece uma mapeo entre as transações `NDB`, coordenadores de transações `NDB` e servidores MySQL conectados a um NDB Cluster como nós de API. Essas informações são usadas ao preencher as tabelas `server_operations` e `server_transactions` do banco de dados de informações do NDB Cluster `ndbinfo`.
 
@@ -1118,7 +1118,7 @@ Embora os nomes desta tabela e suas colunas sejam exibidos em letras minúsculas
 
 Para que esta tabela seja criada, o MySQL Server deve ser um binário fornecido com a distribuição do NDB Cluster, ou um binário construído a partir das fontes do NDB Cluster com suporte ao mecanismo de armazenamento `NDB`. Não está disponível no servidor padrão MySQL 5.7.
 
-### 24.3.14 A tabela INFO\_SCHEMA\_OPTIMIZER\_TRACE
+### 24.3.14 A tabela INFO_SCHEMA_OPTIMIZER_TRACE
 
 A tabela `OPTIMIZER_TRACE` fornece informações produzidas pela capacidade de rastreamento do otimizador para instruções rastreadas. Para habilitar o rastreamento, use a variável de sistema `optimizer_trace`. Para obter detalhes, consulte a Seção 8.15, “Rastreamento do Otimizador”.
 
@@ -1140,7 +1140,7 @@ Cada rastro lembrado é uma cadeia que é estendida à medida que a otimização
 
 Se uma consulta rastreada usar visualizações ou rotinas armazenadas que tenham `SQL SECURITY` com um valor de `DEFINER`, pode ser que um usuário diferente do definidor seja negado a ver o rastreamento da consulta. Nesse caso, o rastreamento é mostrado como vazio e `INSUFFICIENT_PRIVILEGES` tem um valor de 1. Caso contrário, o valor é 0.
 
-### 24.3.15 A Tabela de PARÂMETROS do INFORMATION\_SCHEMA
+### 24.3.15 A Tabela de PARÂMETROS do INFORMATION_SCHEMA
 
 A tabela `PARAMETERS` fornece informações sobre os parâmetros para rotinas armazenadas (procedimentos e funções armazenadas), e sobre os valores de retorno para funções armazenadas. A tabela `PARAMETERS` não inclui funções integrais (nativas) ou funções carregáveis. As informações dos parâmetros são semelhantes ao conteúdo da coluna `param_list` na tabela `mysql.proc`.
 
@@ -1308,37 +1308,37 @@ O número de strings de tabela na partição.
 
 Para tabelas `InnoDB` particionadas, o número de strings fornecido na coluna `TABLE_ROWS` é apenas um valor estimado utilizado na otimização do SQL e pode não ser sempre exato.
 
-Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb\_desc**.
+Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
 
 * `AVG_ROW_LENGTH`
 
 O comprimento médio das strings armazenadas nesta partição ou subpartição, em bytes. Isso é o mesmo que `DATA_LENGTH` dividido por `TABLE_ROWS`.
 
-Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb\_desc**.
+Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
 
 * `DATA_LENGTH`
 
 O comprimento total de todas as strings armazenadas nesta partição ou subpartição, em bytes; ou seja, o número total de bytes armazenados na partição ou subpartição.
 
-Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb\_desc**.
+Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
 
 * `MAX_DATA_LENGTH`
 
 O número máximo de bytes que podem ser armazenados nesta partição ou subpartição.
 
-Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb\_desc**.
+Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
 
 * `INDEX_LENGTH`
 
 O comprimento do arquivo de índice para esta partição ou subpartição, em bytes.
 
-Para partições de tabelas `NDB`, independentemente de as tabelas utilizarem partição implícita ou explícita, o valor da coluna `INDEX_LENGTH` é sempre 0. No entanto, você pode obter informações equivalentes usando o utilitário **ndb\_desc**.
+Para partições de tabelas `NDB`, independentemente de as tabelas utilizarem partição implícita ou explícita, o valor da coluna `INDEX_LENGTH` é sempre 0. No entanto, você pode obter informações equivalentes usando o utilitário **ndb_desc**.
 
 * `DATA_FREE`
 
 O número de bytes alocados para a partição ou subpartição, mas não utilizados.
 
-Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb\_desc**.
+Para as tabelas `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
 
 * `CREATE_TIME`
 
@@ -1388,7 +1388,7 @@ As colunas `SUBPARTITION_NAME`, `SUBPARTITION_ORDINAL_POSITION`, `SUBPARTITION_M
 
 + As colunas `PARTITION_EXPRESSION` e `PARTITION_COMMENT` estão vazias.
 
-### 24.3.17 A tabela de PLUGS do INFORMATION\_SCHEMA
+### 24.3.17 A tabela de PLUGS do INFORMATION_SCHEMA
 
 A tabela `PLUGINS` fornece informações sobre plugins do servidor.
 
@@ -1457,7 +1457,7 @@ FROM INFORMATION_SCHEMA.PLUGINS;
 SHOW PLUGINS;
 ```
 
-### 24.3.18 A tabela INFORMATION\_SCHEMA PROCESSLIST
+### 24.3.18 A tabela INFORMATION_SCHEMA PROCESSLIST
 
 A lista de processos do MySQL indica as operações atualmente realizadas pelo conjunto de threads que estão sendo executadas dentro do servidor. A tabela `PROCESSLIST` é uma fonte de informações sobre os processos. Para uma comparação desta tabela com outras fontes, consulte Fontes de Informações sobre Processos.
 
@@ -1513,7 +1513,7 @@ SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST
 SHOW FULL PROCESSLIST
 ```
 
-### 24.3.19 A tabela de perfilamento INFORMATION\_SCHEMA
+### 24.3.19 A tabela de perfilamento INFORMATION_SCHEMA
 
 A tabela `PROFILING` fornece informações de perfilagem de declarações. Seu conteúdo corresponde às informações produzidas pelas declarações `SHOW PROFILE` e `SHOW PROFILES` (consulte Seção 13.7.5.30, “Declaração SHOW PROFILE”). A tabela está vazia, a menos que a variável de sessão `profiling` esteja definida como 1.
 
@@ -1581,7 +1581,7 @@ FROM INFORMATION_SCHEMA.PROFILING
 WHERE QUERY_ID = 2 ORDER BY SEQ;
 ```
 
-### 24.3.20 Tabela de CONSTITÊNCIAS REFERENCIÁIS do INFORMATION\_SCHEMA
+### 24.3.20 Tabela de CONSTITÊNCIAS REFERENCIÁIS do INFORMATION_SCHEMA
 
 A tabela `REFERENTIAL_CONSTRAINTS` fornece informações sobre chaves estrangeiras.
 
@@ -1631,7 +1631,7 @@ O nome da tabela. Esse valor é o mesmo que na tabela `TABLE_CONSTRAINTS`.
 
 O nome da tabela referenciada pela restrição.
 
-### 24.3.21 A tabela de rotinas do INFORMATION\_SCHEMA
+### 24.3.21 A tabela de rotinas do INFORMATION_SCHEMA
 
 A tabela `ROUTINES` fornece informações sobre rotinas armazenadas (procedimentos armazenados e funções armazenadas). A tabela `ROUTINES` não inclui funções integrais (nativas) ou funções carregáveis.
 
@@ -1777,7 +1777,7 @@ A agregação do banco de dados com o qual a rotina está associada.
 
 * Informações sobre os valores de retorno de funções armazenadas também estão disponíveis na tabela `PARAMETERS`. A string de valor de retorno para uma função armazenada pode ser identificada como a string que tem um valor de `ORDINAL_POSITION` de 0.
 
-### 24.3.22 A tabela SCHEMATA do INFORMATION\_SCHEMA
+### 24.3.22 A tabela SCHEMATA do INFORMATION_SCHEMA
 
 Um esquema é um banco de dados, portanto, a tabela `SCHEMATA` fornece informações sobre bancos de dados.
 
@@ -1820,7 +1820,7 @@ Cuidado
 
 Como um privilégio global é considerado um privilégio para todas as bases de dados, *qualquer* privilégio global permite que um usuário veja todos os nomes de banco de dados com `SHOW DATABASES` ou examinando a tabela `INFORMATION_SCHEMA` `SCHEMATA`.
 
-### 24.3.23 A tabela Tabela de PRIVILEGIOS\_SCHEMA de INFORMATION\_SCHEMA
+### 24.3.23 A tabela Tabela de PRIVILEGIOS_SCHEMA de INFORMATION_SCHEMA
 
 A tabela `SCHEMA_PRIVILEGES` fornece informações sobre privilégios de esquema (banco de dados). Ela obtém seus valores da tabela do sistema `mysql.db`.
 
@@ -1858,7 +1858,7 @@ SELECT ... FROM INFORMATION_SCHEMA.SCHEMA_PRIVILEGES
 SHOW GRANTS ...
 ```
 
-### 24.3.24 A tabela de estatísticas do INFORMATION\_SCHEMA
+### 24.3.24 A tabela de estatísticas do INFORMATION_SCHEMA
 
 A tabela `STATISTICS` fornece informações sobre índices de tabela.
 
@@ -2045,7 +2045,7 @@ Para tabelas particionadas, esse valor é apenas uma estimativa e pode não ser 
       AND   TABLE_NAME   = 'mytable';
   ```
 
-Para mais informações, consulte a Seção 24.3.16, “A tabela de PARTITIONS do INFORMATION\_SCHEMA”.
+Para mais informações, consulte a Seção 24.3.16, “A tabela de PARTITIONS do INFORMATION_SCHEMA”.
 
 * `AUTO_INCREMENT`
 
@@ -2136,7 +2136,7 @@ SHOW FULL TABLES
   [LIKE 'wild']
 ```
 
-### 24.3.26 A tabela TABELASPACES de INFORMATION\_SCHEMA
+### 24.3.26 A tabela TABELASPACES de INFORMATION_SCHEMA
 
 Esta tabela não é utilizada. Outras tabelas `INFORMATION_SCHEMA` podem fornecer informações relacionadas:
 
@@ -2144,7 +2144,7 @@ Esta tabela não é utilizada. Outras tabelas `INFORMATION_SCHEMA` podem fornece
 
 * Para `InnoDB`, as tabelas `INFORMATION_SCHEMA`, `INNODB_SYS_TABLESPACES` e `INNODB_SYS_DATAFILES` fornecem metadados do espaço de tabelas.
 
-### 24.3.27 A tabela CONSTRAINTS da tabela INFORMATION\_SCHEMA
+### 24.3.27 A tabela CONSTRAINTS da tabela INFORMATION_SCHEMA
 
 A tabela `TABLE_CONSTRAINTS` descreve quais tabelas possuem restrições.
 
@@ -2176,7 +2176,7 @@ O tipo de restrição. O valor pode ser `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY` o
 
 As informações do `UNIQUE` e `PRIMARY KEY` são as mesmas que as obtidas a partir da coluna `Key_name` no resultado do `SHOW INDEX`, quando a coluna `Non_unique` está em `0`.
 
-### 24.3.28 A tabela TABLE\_PRIVILEGES do esquema de informações INFORMATION_SCHEMA
+### 24.3.28 A tabela TABLE_PRIVILEGES do esquema de informações INFORMATION_SCHEMA
 
 A tabela `TABLE_PRIVILEGES` fornece informações sobre privilégios de tabela. Ela obtém seus valores da tabela do sistema `mysql.tables_priv`.
 
@@ -2218,7 +2218,7 @@ SELECT ... FROM INFORMATION_SCHEMA.TABLE_PRIVILEGES
 SHOW GRANTS ...
 ```
 
-### 24.3.29 A tabela TRIGGERS do esquema de informações (INFORMATION\_SCHEMA)
+### 24.3.29 A tabela TRIGGERS do esquema de informações (INFORMATION_SCHEMA)
 
 A tabela `TRIGGERS` fornece informações sobre os gatilhos. Para ver informações sobre os gatilhos de uma tabela, você deve ter o privilégio `TRIGGER` para a tabela.
 
@@ -2371,7 +2371,7 @@ SELECT ... FROM INFORMATION_SCHEMA.USER_PRIVILEGES
 SHOW GRANTS ...
 ```
 
-### 24.3.31 A Tabela INFORMATION\_SCHEMA VIEWS
+### 24.3.31 A Tabela INFORMATION_SCHEMA VIEWS
 
 A tabela `VIEWS` fornece informações sobre visualizações em bancos de dados. Você deve ter o privilégio `SHOW VIEW` para acessar essa tabela.
 

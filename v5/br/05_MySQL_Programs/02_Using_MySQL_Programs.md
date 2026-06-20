@@ -128,9 +128,9 @@ Nota
 
 Um programa do MySQL que começa com a opção `--no-defaults` não lê outros arquivos de opção além de `.mylogin.cnf`.
 
-Muitos arquivos de opções são arquivos de texto simples, criados usando qualquer editor de texto. A exceção é o arquivo `.mylogin.cnf`, que contém opções de caminho de login. Este é um arquivo criptografado criado pelo utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”. Um “caminho de login” é um grupo de opções que permite apenas certas opções: `host`, `user`, `password`, `port` e `socket`. Os programas cliente especificam qual caminho de login deve ser lido de `.mylogin.cnf` usando a opção `--login-path`.
+Muitos arquivos de opções são arquivos de texto simples, criados usando qualquer editor de texto. A exceção é o arquivo `.mylogin.cnf`, que contém opções de caminho de login. Este é um arquivo criptografado criado pelo utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”. Um “caminho de login” é um grupo de opções que permite apenas certas opções: `host`, `user`, `password`, `port` e `socket`. Os programas cliente especificam qual caminho de login deve ser lido de `.mylogin.cnf` usando a opção `--login-path`.
 
-Para especificar um nome alternativo de arquivo de caminho de login, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`. Esta variável é usada pelo utilitário de teste **mysql-test-run.pl**, mas também é reconhecida pelo **mysql\_config\_editor** e pelos clientes MySQL, como **mysql**, **mysqladmin** e assim por diante.
+Para especificar um nome alternativo de arquivo de caminho de login, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`. Esta variável é usada pelo utilitário de teste **mysql-test-run.pl**, mas também é reconhecida pelo **mysql_config_editor** e pelos clientes MySQL, como **mysql**, **mysqladmin** e assim por diante.
 
 O MySQL procura arquivos de opção na ordem descrita na discussão a seguir e lê quaisquer que existam. Se um arquivo de opção que você deseja usar não existir, crie-o usando o método apropriado, como foi discutido anteriormente.
 
@@ -256,7 +256,7 @@ Se forem encontradas várias instâncias de uma opção específica, a última i
 
 ##### Sintaxe do arquivo de opção
 
-A descrição a seguir sobre a sintaxe do arquivo de opção se aplica a arquivos que você edita manualmente. Isso exclui `.mylogin.cnf`, que é criado usando **mysql\_config\_editor** e é criptografado.
+A descrição a seguir sobre a sintaxe do arquivo de opção se aplica a arquivos que você edita manualmente. Isso exclui `.mylogin.cnf`, que é criado usando **mysql_config_editor** e é criptografado.
 
 Qualquer opção longa que possa ser dada na string de comando ao executar um programa MySQL também pode ser dada em um arquivo de opções. Para obter a lista de opções disponíveis para um programa, execute-o com a opção `--help`. (Para `mysqld`, use `--verbose` e `--help`.).
 
@@ -303,7 +303,7 @@ basedir=C:\\Program\sFiles\\MySQL\\MySQL\sServer\s5.7
 
 Se o nome de um grupo de opções for o mesmo que o nome de um programa, as opções do grupo se aplicam especificamente a esse programa. Por exemplo, os grupos `[mysqld]` e `[mysql]` se aplicam ao servidor `mysqld` e ao programa cliente **mysql**, respectivamente.
 
-O grupo de opções `[client]` é lido por todos os programas cliente fornecidos nas distribuições do MySQL (mas *não* pelo `mysqld`). Para entender como os programas cliente de terceiros que usam a API C podem usar arquivos de opções, consulte a documentação da API C em mysql\_options().
+O grupo de opções `[client]` é lido por todos os programas cliente fornecidos nas distribuições do MySQL (mas *não* pelo `mysqld`). Para entender como os programas cliente de terceiros que usam a API C podem usar arquivos de opções, consulte a documentação da API C em mysql_options().
 
 O grupo `[client]` permite que você especifique opções que se aplicam a todos os clientes. Por exemplo, `[client]` é o grupo apropriado para usar para especificar a senha para conectar ao servidor. (Mas certifique-se de que o arquivo de opção é acessível apenas por você, para que outras pessoas não descubram sua senha.) Certifique-se de não colocar uma opção no grupo `[client]` a menos que seja reconhecida por *todos* os programas de cliente que você usa. Os programas que não entendem a opção param após exibir uma mensagem de erro se você tentar executá-los.
 
@@ -538,7 +538,7 @@ Leia não apenas os grupos de opções usuais, mas também grupos com os nomes u
 </tbody>
 </table>
 
-Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
 Um programa de cliente lê o grupo de opções correspondente ao caminho de login nomeado, além dos grupos de opções que o programa lê por padrão. Considere este comando:
 
@@ -576,7 +576,7 @@ Veja a introdução desta seção sobre as restrições sobre a posição na qua
 
 Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que elas sejam lidas.
 
-A exceção é que os programas de cliente leem o arquivo de caminho de login `.mylogin.cnf`, se ele existir, mesmo quando o `--no-defaults` é usado. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo que o `--no-defaults` esteja presente. Para criar o `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que os programas de cliente leem o arquivo de caminho de login `.mylogin.cnf`, se ele existir, mesmo quando o `--no-defaults` é usado. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na string de comando, mesmo que o `--no-defaults` esteja presente. Para criar o `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 * `--print-defaults`
 
@@ -1045,7 +1045,7 @@ A partir do MySQL 5.7.5, essa opção é desatualizada; espere que ela seja remo
 
 Nota
 
-As senhas que utilizam o método de hashing pré-4.1 são menos seguras do que as senhas que utilizam o método nativo de hashing de senha e devem ser evitadas. As senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+As senhas que utilizam o método de hashing pré-4.1 são menos seguras do que as senhas que utilizam o método nativo de hashing de senha e devem ser evitadas. As senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 * `--shared-memory-base-name=name`
 

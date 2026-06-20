@@ -10,7 +10,7 @@ A tabela a seguir resume as tabelas de firewall `INFORMATION_SCHEMA`. Para mais 
 
 <table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA firewall tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>MYSQL_FIREWALL_USERS</code></td> <td>Dados de firewall em memória para perfis de conta</td> </tr><tr><td><code>MYSQL_FIREWALL_WHITELIST</code></td> <td>Firewall de dados em memória para listas de perfil de conta</td> </tr></tbody></table>
 
-### 24.7.2 A tabela INFORMATION\_SCHEMA MYSQL\_FIREWALL\_USERS
+### 24.7.2 A tabela INFORMATION_SCHEMA MYSQL_FIREWALL_USERS
 
 A tabela `MYSQL_FIREWALL_USERS` fornece uma visão do cache de dados de memória para o MySQL Enterprise Firewall. Ela lista os nomes e os modos operacionais dos perfis de conta de firewall registrados. Ela é usada em conjunto com a tabela do sistema `mysql.firewall_users` que fornece armazenamento persistente dos dados do firewall; veja Tabelas do MySQL Enterprise Firewall.
 
@@ -24,7 +24,7 @@ O nome do perfil da conta. Cada nome de conta tem o formato `user_name@host_name
 
 O modo operacional atual para o perfil. Os valores permitidos para o modo são `OFF`, `DETECTING`, `PROTECTING`, `RECORDING` e `RESET`. Para obter detalhes sobre seus significados, consulte Conceitos de Firewall.
 
-### 24.7.3 A tabela INFORMATION\_SCHEMA MYSQL\_FIREWALL\_WHITELIST
+### 24.7.3 A tabela INFORMATION_SCHEMA MYSQL_FIREWALL_WHITELIST
 
 A tabela `MYSQL_FIREWALL_WHITELIST` fornece uma visão do cache de dados de memória para o MySQL Enterprise Firewall. Ela lista as regras da lista de permissão dos perfis de conta de firewall registrados. Ela é usada em conjunto com a tabela do sistema `mysql.firewall_whitelist` que fornece armazenamento persistente dos dados do firewall; veja Tabelas do MySQL Enterprise Firewall.
 

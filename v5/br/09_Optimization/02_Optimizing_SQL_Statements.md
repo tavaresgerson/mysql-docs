@@ -2848,7 +2848,7 @@ O otimizador constrói um índice sobre a coluna `f1` a partir de `derived_t2`, 
 
 Para a saída de rastreamento do otimizador, uma referência de tabela ou visão derivada combinada não é exibida como um nó. Apenas suas tabelas subjacentes aparecem no plano da consulta superior.
 
-### 8.2.3 Otimizando consultas do INFORMATION\_SCHEMA
+### 8.2.3 Otimizando consultas do INFORMATION_SCHEMA
 
 Aplicações que monitoram bancos de dados podem fazer uso frequente das tabelas `INFORMATION_SCHEMA`. Certos tipos de consultas para as tabelas `INFORMATION_SCHEMA` podem ser otimizados para executar mais rapidamente. O objetivo é minimizar as operações de arquivo (por exemplo, varredura de um diretório ou abertura de um arquivo de tabela) para coletar as informações que compõem essas tabelas dinâmicas.
 

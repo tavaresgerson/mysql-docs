@@ -431,7 +431,7 @@ Cita uma cadeia para produzir um resultado que pode ser usado como um valor de d
           -> NULL
   ```
 
-Para comparação, veja as regras de citação para strings literais e dentro da API C na Seção 9.1.1, “Strings Literals”, e mysql\_real\_escape\_string\_quote().
+Para comparação, veja as regras de citação para strings literais e dentro da API C na Seção 9.1.1, “Strings Literals”, e mysql_real_escape_string_quote().
 
 * `REPEAT(str,count)`
 
@@ -912,12 +912,12 @@ Para testar instâncias literais de um caractere comodínio, anteceda-o pelo car
 
 + `\%` corresponde a um caractere de `%`.
 
-+ `\_` corresponde a um caractere de `_`.
++ `_` corresponde a um caractere de `_`.
 
   ```sql
-  mysql> SELECT 'David!' LIKE 'David\_';
+  mysql> SELECT 'David!' LIKE 'David_';
           -> 0
-  mysql> SELECT 'David_' LIKE 'David\_';
+  mysql> SELECT 'David_' LIKE 'David_';
           -> 1
   ```
 

@@ -314,6 +314,6 @@ ERROR 1369 (HY000): CHECK OPTION failed 'test.v3'
 
 Para obter metadados sobre visualizações:
 
-* Consulte a tabela `VIEWS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.31, “A tabela VIEWS do INFORMATION\_SCHEMA”.
+* Consulte a tabela `VIEWS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.31, “A tabela VIEWS do INFORMATION_SCHEMA”.
 
 * Utilize a declaração `SHOW CREATE VIEW`. Veja a Seção 13.7.5.13, “Declaração SHOW CREATE VIEW”.

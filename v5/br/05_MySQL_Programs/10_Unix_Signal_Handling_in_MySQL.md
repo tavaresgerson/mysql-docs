@@ -122,4 +122,4 @@ Os programas de cliente do MySQL respondem aos sinais da seguinte forma:
 
 + O cliente pode instalar seu próprio manipulador `SIGPIPE` para substituir o comportamento padrão. Veja Escrever programas de cliente com API em thread C.
 
-+ Os clientes podem impedir a instalação dos manipuladores `SIGPIPE` especificando a opção `CLIENT_IGNORE_SIGPIPE` para `mysql_real_connect()` no momento da conexão. Veja mysql\_real\_connect().
++ Os clientes podem impedir a instalação dos manipuladores `SIGPIPE` especificando a opção `CLIENT_IGNORE_SIGPIPE` para `mysql_real_connect()` no momento da conexão. Veja mysql_real_connect().

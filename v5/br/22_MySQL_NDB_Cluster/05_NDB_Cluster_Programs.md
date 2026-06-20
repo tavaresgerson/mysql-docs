@@ -2,11 +2,11 @@
 
 Usar e gerenciar um NDB Cluster requer vários programas especializados, que descrevemos neste capítulo. Discutimos os propósitos desses programas em um NDB Cluster, como usar os programas e quais opções de inicialização estão disponíveis para cada um deles.
 
-Esses programas incluem os processos de dados, gerenciamento e nó SQL do NDB Cluster (**ndbd**, **ndbmtd**"), **ndb\_mgmd** e `mysqld`) e o cliente de gerenciamento (**ndb\_mgm**).
+Esses programas incluem os processos de dados, gerenciamento e nó SQL do NDB Cluster (**ndbd**, **ndbmtd**"), **ndb_mgmd** e `mysqld`) e o cliente de gerenciamento (**ndb_mgm**).
 
 Para obter informações sobre o uso do `mysqld` como um processo do NDB Cluster, consulte a Seção 21.6.10, “Uso do MySQL Server para NDB Cluster”.
 
-Outros programas utilitários, de diagnóstico e exemplos do `NDB` estão incluídos na distribuição do NDB Cluster. Esses programas incluem **ndb\_restore**, **ndb\_show\_tables** e **ndb\_config**. Esses programas também são abordados nesta seção.
+Outros programas utilitários, de diagnóstico e exemplos do `NDB` estão incluídos na distribuição do NDB Cluster. Esses programas incluem **ndb_restore**, **ndb_show_tables** e **ndb_config**. Esses programas também são abordados nesta seção.
 
 A parte final desta seção contém tabelas de opções que são comuns a todos os vários programas do NDB Cluster.
 
@@ -173,7 +173,7 @@ Ao usar essa opção, você também deve especificar o ID do nó para o nó de d
 
 Importante
 
-Não confunda esta opção com a opção `--nowait-nodes` para **ndb\_mgmd**, que pode ser usada para permitir que um clúster configurado com vários servidores de gerenciamento seja iniciado sem que todos os servidores de gerenciamento estejam online.
+Não confunda esta opção com a opção `--nowait-nodes` para **ndb_mgmd**, que pode ser usada para permitir que um clúster configurado com vários servidores de gerenciamento seja iniciado sem que todos os servidores de gerenciamento estejam online.
 
 * `--install[=name]`
 
@@ -201,7 +201,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>9
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -336,13 +336,13 @@ O processo de execução utiliza um único thread para leitura, escrita e varred
 
 Para uma máquina com muitas CPUs, é possível usar vários processos **ndbd** que pertencem a diferentes grupos de nós; no entanto, tal configuração ainda é considerada experimental e não é suportada para o MySQL 5.7 em um ambiente de produção. Veja a Seção 21.2.7, “Limitações conhecidas do NDB Cluster”.
 
-### 21.5.2 ndbinfo\_select\_all — Selecionar de tabelas ndbinfo
+### 21.5.2 ndbinfo_select_all — Selecionar de tabelas ndbinfo
 
-**ndbinfo\_select\_all** é um programa cliente que seleciona todas as strings e colunas de uma ou mais tabelas no banco de dados `ndbinfo`
+**ndbinfo_select_all** é um programa cliente que seleciona todas as strings e colunas de uma ou mais tabelas no banco de dados `ndbinfo`
 
-Nem todas as tabelas `ndbinfo` disponíveis no cliente **mysql** podem ser lidas por este programa (consulte mais tarde nesta seção). Além disso, **ndbinfo\_select\_all** pode mostrar informações sobre algumas tabelas internas de `ndbinfo` que não podem ser acessadas usando SQL, incluindo as tabelas de metadados `tables` e `columns`.
+Nem todas as tabelas `ndbinfo` disponíveis no cliente **mysql** podem ser lidas por este programa (consulte mais tarde nesta seção). Além disso, **ndbinfo_select_all** pode mostrar informações sobre algumas tabelas internas de `ndbinfo` que não podem ser acessadas usando SQL, incluindo as tabelas de metadados `tables` e `columns`.
 
-Para selecionar uma ou mais tabelas `ndbinfo` usando **ndbinfo\_select\_all**, é necessário fornecer os nomes das tabelas ao invocar o programa, conforme mostrado aqui:
+Para selecionar uma ou mais tabelas `ndbinfo` usando **ndbinfo_select_all**, é necessário fornecer os nomes das tabelas ao invocar o programa, conforme mostrado aqui:
 
 ```sql
 $> ndbinfo_select_all table_name1  [table_name2] [...]
@@ -379,9 +379,9 @@ node_id log_type        log_id  log_part        total   used    high
 $>
 ```
 
-As opções que podem ser usadas com **ndbinfo\_select\_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.23 Opções de string de comando usadas com o programa ndbinfo\_select\_all**
+**Tabela 21.23 Opções de string de comando usadas com o programa ndbinfo_select_all**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection-string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=db_name</code>,</p><p> <code class="option"> -d </code> </p></th> <td>Nome do banco de dados onde a tabela está localizada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --delay=# </code> </p></th> <td>Defina o atraso em segundos entre os loops</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--loops=#</code>,</p><p> <code class="option"> -l </code> </p></th> <td>Defina o número de vezes para executar a seleção</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection-string</code>,</p><p> <code class="option"> -c </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection-string</code>,</p><p> <code class="option"> -c </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>,</p><p> <code class="option"> -p </code> </p></th> <td>Definir o grau de paralelismo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -461,7 +461,7 @@ Esta opção define o número de vezes que o select deve ser executado. Use `--d
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>3
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -505,7 +505,7 @@ Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 Exibir informações da versão e sair.
 
-**ndbinfo\_select\_all** não consegue ler as seguintes tabelas:
+**ndbinfo_select_all** não consegue ler as seguintes tabelas:
 
 * `arbitrator_validity_detail`
 * `arbitrator_validity_summary`
@@ -552,13 +552,13 @@ Nota
 
 É possível usar **ndbd** e **ndbmtd**) simultaneamente em diferentes nós de dados no mesmo NDB Cluster. No entanto, tais configurações não foram testadas extensivamente; portanto, não podemos recomendar fazer isso em um ambiente de produção neste momento.
 
-### 21.5.4 ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster
+### 21.5.4 ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster
 
 O servidor de gerenciamento é o processo que lê o arquivo de configuração do clúster e distribui essas informações para todos os nós do clúster que o solicitam. Ele também mantém um registro das atividades do clúster. Os clientes de gerenciamento podem se conectar ao servidor de gerenciamento e verificar o status do clúster.
 
-As opções que podem ser usadas com **ndb\_mgmd** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_mgmd** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.24 Opções de string de comando usadas com o programa ndb\_mgmd**
+**Tabela 21.24 Opções de string de comando usadas com o programa ndb_mgmd**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --bind-address=host </code> </p></th> <td>Endereço de vinculação local</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --config-cache[=TRUE|FALSE] </code> </p></th> <td>Habilitar cache de configuração do servidor de gerenciamento; verdadeiro por padrão</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--config-file=file</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file">-f arquivo</a> </code> </p></th> <td>Especifique o arquivo de configuração do cluster; também especifique --reload ou --initial para substituir o cache de configuração, se estiver presente.</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--configdir=directory</code>,</p><p> <code class="option"> --config-dir=directory </code> </p></th> <td>Especificar o diretório de cache de configuração do servidor de gerenciamento de clúster</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--daemon</code>,</p><p> <code class="option"> -d </code> </p></th> <td>Execute ndb_mgmd no modo de daemon (padrão)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --initial </code> </p></th> <td>Faz com que o servidor de gerenciamento recarregue os dados de configuração do arquivo de configuração, ignorando o cache de configuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --install[=name] </code> </p></th> <td>Usado para instalar o processo do servidor de gerenciamento como serviço do Windows; não se aplica em outras plataformas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --interactive </code> </p></th> <td>Execute ndb_mgmd em modo interativo (não é oficialmente suportado em produção; apenas para fins de teste)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --log-name=name </code> </p></th> <td>Nome a ser usado ao escrever mensagens de registro de cluster que se aplicam a este nó</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --mycnf </code> </p></th> <td>Leia os dados de configuração do cluster a partir do arquivo my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-nodeid-checks </code> </p></th> <td>Não realize nenhuma verificação de ID de nó</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --nodaemon </code> </p></th> <td>Não execute ndb_mgmd como um daemon</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --nowait-nodes=list </code> </p></th> <td>Não espere por nós de gerenciamento especificados ao iniciar este servidor de gerenciamento; requer a opção --ndb-nodeid</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--print-full-config</code>,</p><p> <code class="option"> -P </code> </p></th> <td>Imprimir configuração completa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --reload </code> </p></th> <td>Faz com que o servidor de gerenciamento compare o arquivo de configuração com o cache de configuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --remove[=name] </code> </p></th> <td>Usado para remover o processo do servidor de gerenciamento que foi instalado anteriormente como serviço do Windows, especificando opcionalmente o nome do serviço a ser removido; não se aplica em outras plataformas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --skip-config-file </code> </p></th> <td>Não use o arquivo de configuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>,</p><p> <code class="option"> -v </code> </p></th> <td>Escreva informações adicionais para registrar</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -578,7 +578,7 @@ Diretório contendo conjuntos de caracteres.
 
   <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-Esta opção, cujo valor padrão é `1` (ou `TRUE`, ou `ON`), pode ser usada para desabilitar o cache de configuração do servidor de gerenciamento, de modo que ele leia sua configuração do `config.ini` a cada vez que ele é iniciado (consulte Seção 21.4.3, “Arquivos de Configuração do NDB Cluster”). Você pode fazer isso iniciando o processo **ndb\_mgmd** com qualquer uma das seguintes opções:
+Esta opção, cujo valor padrão é `1` (ou `TRUE`, ou `ON`), pode ser usada para desabilitar o cache de configuração do servidor de gerenciamento, de modo que ele leia sua configuração do `config.ini` a cada vez que ele é iniciado (consulte Seção 21.4.3, “Arquivos de Configuração do NDB Cluster”). Você pode fazer isso iniciando o processo **ndb_mgmd** com qualquer uma das seguintes opções:
 
 + `--config-cache=0`
   + `--config-cache=FALSE`
@@ -595,21 +595,21 @@ Os arquivos de cache de configuração são normalmente criados em um diretório
 
 *`node-id`* é o ID do nó do servidor de gerenciamento; *`seq-number`* é um número de sequência, começando com 1. Por exemplo, se o ID do nó do servidor de gerenciamento é 5, então os três primeiros arquivos de cache de configuração seriam, quando criados, nomeados `ndb_5_config.bin.1`, `ndb_5_config.bin.2` e `ndb_5_config.bin.3`.
 
-Se a sua intenção é purgar ou recarregar o cache de configuração sem realmente desabilitar o cache, você deve iniciar o **ndb\_mgmd** com uma das opções `--reload` ou `--initial` em vez de `--skip-config-cache`.
+Se a sua intenção é purgar ou recarregar o cache de configuração sem realmente desabilitar o cache, você deve iniciar o **ndb_mgmd** com uma das opções `--reload` ou `--initial` em vez de `--skip-config-cache`.
 
 Para reativar o cache de configuração, basta reiniciar o servidor de gerenciamento, mas sem a opção `--config-cache` ou `--skip-config-cache` que foi usada anteriormente para desativar o cache de configuração.
 
-**ndb\_mgmd** não verifica o diretório de configuração (`--configdir`) ou tenta criar um quando `--skip-config-cache` é usado. (Bug #13428853)
+**ndb_mgmd** não verifica o diretório de configuração (`--configdir`) ou tenta criar um quando `--skip-config-cache` é usado. (Bug #13428853)
 
 * `--config-file=filename`, `-f filename`
 
   <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-Instrua o servidor de gerenciamento sobre qual arquivo deve usar para seu arquivo de configuração. Por padrão, o servidor de gerenciamento procura um arquivo chamado `config.ini` no mesmo diretório que o executável **ndb\_mgmd**. Caso contrário, o nome e a localização do arquivo devem ser especificados explicitamente.
+Instrua o servidor de gerenciamento sobre qual arquivo deve usar para seu arquivo de configuração. Por padrão, o servidor de gerenciamento procura um arquivo chamado `config.ini` no mesmo diretório que o executável **ndb_mgmd**. Caso contrário, o nome e a localização do arquivo devem ser especificados explicitamente.
 
-Esta opção não tem um valor padrão e é ignorada, a menos que o servidor de administração seja forçado a ler o arquivo de configuração, seja porque o **ndb\_mgmd** foi iniciado com a opção `--reload` ou `--initial`, ou porque o servidor de administração não conseguiu encontrar nenhuma cache de configuração.
+Esta opção não tem um valor padrão e é ignorada, a menos que o servidor de administração seja forçado a ler o arquivo de configuração, seja porque o **ndb_mgmd** foi iniciado com a opção `--reload` ou `--initial`, ou porque o servidor de administração não conseguiu encontrar nenhuma cache de configuração.
 
-A opção `--config-file` também é lida se o **ndb\_mgmd** foi iniciado com `--config-cache=OFF`. Consulte a Seção 21.4.3, “Arquivos de Configuração do Clúster NDB”, para obter mais informações.
+A opção `--config-file` também é lida se o **ndb_mgmd** foi iniciado com `--config-cache=OFF`. Consulte a Seção 21.4.3, “Arquivos de Configuração do Clúster NDB”, para obter mais informações.
 
 * `--configdir=dir_name`
 
@@ -645,9 +645,9 @@ Escreva o arquivo de núcleo em erro; usado em depuração.
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=host</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>0
 
-Instrua o **ndb\_mgmd** a iniciar como um processo de daemon. Esse é o comportamento padrão.
+Instrua o **ndb_mgmd** a iniciar como um processo de daemon. Esse é o comportamento padrão.
 
-Esta opção não tem efeito quando se executa **ndb\_mgmd** em plataformas Windows.
+Esta opção não tem efeito quando se executa **ndb_mgmd** em plataformas Windows.
 
 * `--defaults-extra-file`
 
@@ -681,7 +681,7 @@ Os dados de configuração são armazenados em cache internamente, em vez de ser
 
 Isso difere de duas maneiras da opção `--reload`. Primeiro, `--reload` obriga o servidor a verificar o arquivo de configuração contra o cache e recarregar seus dados apenas se o conteúdo do arquivo for diferente do cache. Segundo, `--reload` não exclui nenhum arquivo de cache existente.
 
-Se o **ndb\_mgmd** for invocado com `--initial`, mas não encontrar um arquivo de configuração global, o servidor de gerenciamento não poderá ser iniciado.
+Se o **ndb_mgmd** for invocado com `--initial`, mas não encontrar um arquivo de configuração global, o servidor de gerenciamento não poderá ser iniciado.
 
 Quando um servidor de gerenciamento é iniciado, ele verifica se há outro servidor de gerenciamento no mesmo NDB Cluster e tenta usar os dados de configuração do outro servidor de gerenciamento. Esse comportamento tem implicações ao realizar um reinício contínuo de um NDB Cluster com vários nós de gerenciamento. Consulte a Seção 21.6.5, “Realizando um Reinício Contínuo de um NDB Cluster”, para obter mais informações.
 
@@ -691,9 +691,9 @@ Quando usado juntamente com a opção `--config-file`, o cache é limpo apenas s
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=host</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>6
 
-Faça com que **ndb\_mgmd** seja instalado como um serviço do Windows. Opcionalmente, você pode especificar um nome para o serviço; se não for definido, o nome do serviço será `ndb_mgmd`. Embora seja preferível especificar outras opções do programa **ndb\_mgmd** em um arquivo de configuração `my.ini` ou `my.cnf`, é possível usá-las juntamente com `--install`. No entanto, nesses casos, a opção `--install` deve ser especificada primeiro, antes de quaisquer outras opções serem dadas, para que a instalação do serviço do Windows seja bem-sucedida.
+Faça com que **ndb_mgmd** seja instalado como um serviço do Windows. Opcionalmente, você pode especificar um nome para o serviço; se não for definido, o nome do serviço será `ndb_mgmd`. Embora seja preferível especificar outras opções do programa **ndb_mgmd** em um arquivo de configuração `my.ini` ou `my.cnf`, é possível usá-las juntamente com `--install`. No entanto, nesses casos, a opção `--install` deve ser especificada primeiro, antes de quaisquer outras opções serem dadas, para que a instalação do serviço do Windows seja bem-sucedida.
 
-Geralmente, não é aconselhável usar esta opção juntamente com a opção `--initial`, pois isso faz com que o cache de configuração seja apagado e reconstruído toda vez que o serviço é parado e iniciado. Também é necessário ter cuidado se você pretende usar outras opções do **ndb\_mgmd** que afetam o início do servidor de gerenciamento, e você deve ter certeza absoluta de que entende e permite todas as possíveis consequências de fazer isso.
+Geralmente, não é aconselhável usar esta opção juntamente com a opção `--initial`, pois isso faz com que o cache de configuração seja apagado e reconstruído toda vez que o serviço é parado e iniciado. Também é necessário ter cuidado se você pretende usar outras opções do **ndb_mgmd** que afetam o início do servidor de gerenciamento, e você deve ter certeza absoluta de que entende e permite todas as possíveis consequências de fazer isso.
 
 A opção `--install` não tem efeito em plataformas que não são do Windows.
 
@@ -701,7 +701,7 @@ A opção `--install` não tem efeito em plataformas que não são do Windows.
 
   <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=host</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>7
 
-Começa o **ndb\_mgmd** no modo interativo; ou seja, uma sessão do cliente **ndb\_mgm** é iniciada assim que o servidor de gerenciamento estiver em execução. Esta opção não inicia nenhum outro nó do NDB Cluster.
+Começa o **ndb_mgmd** no modo interativo; ou seja, uma sessão do cliente **ndb_mgm** é iniciada assim que o servidor de gerenciamento estiver em execução. Esta opção não inicia nenhum outro nó do NDB Cluster.
 
 * `--login-path`
 
@@ -761,15 +761,15 @@ Não realize nenhuma verificação dos IDs dos nós.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>7
 
-Instrua o **ndb\_mgmd** a não iniciar como um processo de daemon.
+Instrua o **ndb_mgmd** a não iniciar como um processo de daemon.
 
-O comportamento padrão para **ndb\_mgmd** no Windows é executar em plano de fundo, o que torna essa opção desnecessária nas plataformas do Windows.
+O comportamento padrão para **ndb_mgmd** no Windows é executar em plano de fundo, o que torna essa opção desnecessária nas plataformas do Windows.
 
 * `--nowait-nodes`
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>8
 
-Ao iniciar um NDB Cluster, ele é configurado com dois nós de gerenciamento, cada servidor de gerenciamento normalmente verifica se o outro **ndb\_mgmd** também está operacional e se a configuração do outro servidor de gerenciamento é idêntica à sua própria. No entanto, às vezes é desejável iniciar o cluster com apenas um nó de gerenciamento (e talvez permitir que o outro **ndb\_mgmd** seja iniciado mais tarde). Esta opção faz com que o nó de gerenciamento ignore quaisquer verificações para quaisquer outros nós de gerenciamento cujos IDs de nó são passados para esta opção, permitindo que o cluster seja iniciado como se estivesse configurado para usar apenas o nó de gerenciamento que foi iniciado.
+Ao iniciar um NDB Cluster, ele é configurado com dois nós de gerenciamento, cada servidor de gerenciamento normalmente verifica se o outro **ndb_mgmd** também está operacional e se a configuração do outro servidor de gerenciamento é idêntica à sua própria. No entanto, às vezes é desejável iniciar o cluster com apenas um nó de gerenciamento (e talvez permitir que o outro **ndb_mgmd** seja iniciado mais tarde). Esta opção faz com que o nó de gerenciamento ignore quaisquer verificações para quaisquer outros nós de gerenciamento cujos IDs de nó são passados para esta opção, permitindo que o cluster seja iniciado como se estivesse configurado para usar apenas o nó de gerenciamento que foi iniciado.
 
 Para fins ilustrativos, considere a seguinte porção de um arquivo `config.ini` (onde omitimos a maioria dos parâmetros de configuração que não são relevantes para este exemplo):
 
@@ -813,7 +813,7 @@ Suponha que você queira iniciar este clúster usando apenas o servidor de geren
   $> ndb_mgmd --ndb-nodeid=10 --nowait-nodes=11
   ```
 
-Como mostrado no exemplo anterior, ao usar `--nowait-nodes`, você também deve usar a opção `--ndb-nodeid` para especificar o ID do nó deste processo **ndb\_mgmd**.
+Como mostrado no exemplo anterior, ao usar `--nowait-nodes`, você também deve usar a opção `--ndb-nodeid` para especificar o ID do nó deste processo **ndb_mgmd**.
 
 Você pode, então, iniciar cada um dos nós de dados do clúster da maneira usual. Se você deseja iniciar e usar o segundo servidor de gerenciamento, além do primeiro servidor de gerenciamento, em um momento posterior, sem reiniciar os nós de dados, você deve iniciar cada nó de dados com uma cadeia de conexão que faça referência a ambos os servidores de gerenciamento, como este:
 
@@ -823,7 +823,7 @@ Você pode, então, iniciar cada um dos nós de dados do clúster da maneira usu
 
 O mesmo vale para a cadeia de conexão usada em quaisquer processos `mysqld` que você deseja iniciar como nós SQL do NDB Cluster conectados a este clúster. Consulte a Seção 21.4.3.3, “Cadeias de Conexão do NDB Cluster”, para obter mais informações.
 
-Quando usado com **ndb\_mgmd**, esta opção afeta o comportamento do nó de gerenciamento em relação apenas a outros nós de gerenciamento. Não confunda com a opção `--nowait-nodes` usada com **ndbd** ou **ndbmtd**") para permitir que um clúster comece com menos do que seu complemento completo de nós de dados; quando usado com nós de dados, esta opção afeta apenas seu comportamento em relação a outros nós de dados.
+Quando usado com **ndb_mgmd**, esta opção afeta o comportamento do nó de gerenciamento em relação apenas a outros nós de gerenciamento. Não confunda com a opção `--nowait-nodes` usada com **ndbd** ou **ndbmtd**") para permitir que um clúster comece com menos do que seu complemento completo de nós de dados; quando usado com nós de dados, esta opção afeta apenas seu comportamento em relação a outros nós de dados.
 
 Pode-se passar vários IDs de nó de gerenciamento para esta opção como uma lista separada por vírgula. Cada ID de nó deve ser no mínimo 1 e no máximo 255. Na prática, é bastante raro usar mais de dois servidores de gerenciamento para o mesmo NDB Cluster (ou ter qualquer necessidade de fazê-lo); na maioria dos casos, você precisa passar para esta opção apenas o único ID de nó para o único servidor de gerenciamento que você não deseja usar ao iniciar o cluster.
 
@@ -841,7 +841,7 @@ Imprimir a lista de argumentos do programa e sair.
 
   <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>0
 
-Mostra informações extensas sobre a configuração do clúster. Com esta opção na string de comando, o processo **ndb\_mgmd** imprime informações sobre a configuração do clúster, incluindo uma extensa lista das seções de configuração do clúster, bem como os parâmetros e seus valores. Normalmente usado em conjunto com a opção `--config-file` (`-f`).
+Mostra informações extensas sobre a configuração do clúster. Com esta opção na string de comando, o processo **ndb_mgmd** imprime informações sobre a configuração do clúster, incluindo uma extensa lista das seções de configuração do clúster, bem como os parâmetros e seus valores. Normalmente usado em conjunto com a opção `--config-file` (`-f`).
 
 * `--reload`
 
@@ -887,9 +887,9 @@ Exibir informações da versão e sair.
 
 Não é estritamente necessário especificar uma cadeia de conexão ao iniciar o servidor de gerenciamento. No entanto, se você estiver usando mais de um servidor de gerenciamento, uma cadeia de conexão deve ser fornecida e cada nó no clúster deve especificar explicitamente seu ID de nó.
 
-Consulte a Seção 21.4.3.3, “Strings de Conexão de Agrupamento NDB”, para obter informações sobre o uso de strings de conexão. A Seção 21.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do Agrupamento NDB”, descreve outras opções para **ndb\_mgmd**.
+Consulte a Seção 21.4.3.3, “Strings de Conexão de Agrupamento NDB”, para obter informações sobre o uso de strings de conexão. A Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do Agrupamento NDB”, descreve outras opções para **ndb_mgmd**.
 
-Os seguintes arquivos são criados ou utilizados pelo **ndb\_mgmd** em seu diretório inicial e são colocados no `DataDir` conforme especificado no arquivo de configuração `config.ini`. Na lista a seguir, *`node_id`* é o identificador único do nó.
+Os seguintes arquivos são criados ou utilizados pelo **ndb_mgmd** em seu diretório inicial e são colocados no `DataDir` conforme especificado no arquivo de configuração `config.ini`. Na lista a seguir, *`node_id`* é o identificador único do nó.
 
 * `config.ini` é o arquivo de configuração para o clúster como um todo. Este arquivo é criado pelo usuário e lido pelo servidor de gerenciamento. A Seção 21.4, “Configuração do NDB Cluster”, discute como configurar este arquivo.
 
@@ -901,9 +901,9 @@ Por padrão, quando o tamanho do log do clúster atinge um milhão de bytes, o a
 
 * `ndb_node_id.pid` é o arquivo de ID de processo usado ao executar o servidor de gerenciamento como um daemon.
 
-### 21.5.5 ndb\_mgm — O Cliente de Gerenciamento de NDB Cluster
+### 21.5.5 ndb_mgm — O Cliente de Gerenciamento de NDB Cluster
 
-O processo do cliente de gerenciamento **ndb\_mgm** na verdade não é necessário para executar o clúster. Seu valor reside em fornecer um conjunto de comandos para verificar o status do clúster, iniciar backups e realizar outras funções administrativas. O cliente de gerenciamento acessa o servidor de gerenciamento usando uma API C. Usuários avançados também podem empregar essa API para programar processos de gerenciamento dedicados para realizar tarefas semelhantes às executadas pelo **ndb\_mgm**.
+O processo do cliente de gerenciamento **ndb_mgm** na verdade não é necessário para executar o clúster. Seu valor reside em fornecer um conjunto de comandos para verificar o status do clúster, iniciar backups e realizar outras funções administrativas. O cliente de gerenciamento acessa o servidor de gerenciamento usando uma API C. Usuários avançados também podem empregar essa API para programar processos de gerenciamento dedicados para realizar tarefas semelhantes às executadas pelo **ndb_mgm**.
 
 Para iniciar o cliente de gerenciamento, é necessário fornecer o nome do host e o número do port do servidor de gerenciamento:
 
@@ -919,9 +919,9 @@ $> ndb_mgm ndb_mgmd.mysql.com 1186
 
 O nome de host padrão e o número de porta são `localhost`, respectivamente, e 1186.
 
-As opções que podem ser usadas com **ndb\_mgm** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_mgm** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.25 Opções de string de comando usadas com o programa ndb\_mgm**
+**Tabela 21.25 Opções de string de comando usadas com o programa ndb_mgm**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--execute=command</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute">-e comando</a> </code> </p></th> <td>Execute o comando e saia</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--try-reconnect=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect">-t #</a> </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir; sinônimo de --connect-retries</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -1009,7 +1009,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>2
 
-Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Supere as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
+Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Supere as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgmd-host`
 
@@ -1061,27 +1061,27 @@ Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 Exibir informações da versão e sair.
 
-Informações adicionais sobre o uso do **ndb\_mgm** podem ser encontradas na Seção 21.6.1, “Comandos no Cliente de Gerenciamento de NDB Cluster”.
+Informações adicionais sobre o uso do **ndb_mgm** podem ser encontradas na Seção 21.6.1, “Comandos no Cliente de Gerenciamento de NDB Cluster”.
 
-### 21.5.6 ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster
+### 21.5.6 ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster
 
 Essa ferramenta pode ser usada para verificar e remover partes de coluna BLOB órfãs das tabelas `NDB`, além de gerar um arquivo que lista todas as partes órfãs. Às vezes, é útil para diagnosticar e reparar tabelas `NDB` corrompidas ou danificadas que contêm colunas `BLOB` ou `TEXT`.
 
-A sintaxe básica para **ndb\_blob\_tool** é mostrada aqui:
+A sintaxe básica para **ndb_blob_tool** é mostrada aqui:
 
 ```sql
 ndb_blob_tool [options] table [column, ...]
 ```
 
-A menos que você use a opção `--help`, você deve especificar uma ação a ser realizada, incluindo uma ou mais das opções `--check-orphans`, `--delete-orphans` ou `--dump-file`. Essas opções fazem com que o **ndb\_blob\_tool** verifique partes de BLOB órfãs, remova quaisquer partes de BLOB órfãs e gere um arquivo de depuração listando as partes de BLOB órfãs, respectivamente, e são descritas com mais detalhes mais adiante nesta seção.
+A menos que você use a opção `--help`, você deve especificar uma ação a ser realizada, incluindo uma ou mais das opções `--check-orphans`, `--delete-orphans` ou `--dump-file`. Essas opções fazem com que o **ndb_blob_tool** verifique partes de BLOB órfãs, remova quaisquer partes de BLOB órfãs e gere um arquivo de depuração listando as partes de BLOB órfãs, respectivamente, e são descritas com mais detalhes mais adiante nesta seção.
 
-Você também deve especificar o nome de uma tabela ao invocar **ndb\_blob\_tool**. Além disso, você pode, opcionalmente, seguir o nome da tabela com os nomes (separados por vírgula) de uma ou mais colunas `BLOB` ou `TEXT` dessa tabela. Se nenhuma coluna estiver listada, a ferramenta trabalha em todas as colunas `BLOB` e `TEXT` da tabela. Se você precisar especificar um banco de dados, use a opção `--database` (`-d`).
+Você também deve especificar o nome de uma tabela ao invocar **ndb_blob_tool**. Além disso, você pode, opcionalmente, seguir o nome da tabela com os nomes (separados por vírgula) de uma ou mais colunas `BLOB` ou `TEXT` dessa tabela. Se nenhuma coluna estiver listada, a ferramenta trabalha em todas as colunas `BLOB` e `TEXT` da tabela. Se você precisar especificar um banco de dados, use a opção `--database` (`-d`).
 
 A opção `--verbose` fornece informações adicionais no resultado sobre o progresso da ferramenta.
 
-As opções que podem ser usadas com **ndb\_blob\_tool** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_blob_tool** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.26 Opções de string de comando usadas com o programa ndb\_blob\_tool**
+**Tabela 21.26 Opções de string de comando usadas com o programa ndb_blob_tool**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --add-missing </code> </p></th> <td>Escreva partes de blob fictícias para substituir as que estão faltando</td> <td><p>ADICIONADO: NDB 7.5.18, NDB 7.6.14</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --check-missing </code> </p></th> <td>Verifique se há blocos com partes em string, mas faltando uma ou mais partes da tabela de partes</td> <td><p>ADICIONADO: NDB 7.5.18, NDB 7.6.14</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --check-orphans </code> </p></th> <td>Verifique se há partes blob sem partes correspondentes em string</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_database">-d nome</a> </code> </p></th> <td>Banco de dados para encontrar a tabela em</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --delete-orphans </code> </p></th> <td>Excluir partes de blob que não têm partes correspondentes em string</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --dump-file=file </code> </p></th> <td>Escreva chaves órfãs no arquivo especificado</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>,</p><p> <code class="option"> -v </code> </p></th> <td>Saída verbose</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -1185,7 +1185,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Properties for add-missing"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-missing</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>7
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -1286,17 +1286,17 @@ NDBT_ProgramExit: 0 - OK
 
 A ferramenta relata que não há partes da coluna BLOB `NDB` associadas à coluna `c1`, embora `c1` seja uma coluna `TEXT`. Isso ocorre porque, em uma tabela `NDB`, apenas os primeiros 256 bytes de um valor de coluna `BLOB` ou `TEXT` são armazenados inline, e apenas o excesso, se houver, é armazenado separadamente; assim, se não houver valores que utilizem mais de 256 bytes em uma coluna específica desses tipos, não são criadas partes da coluna `BLOB` pelo `NDB` para essa coluna. Consulte a Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”, para obter mais informações.
 
-### 21.5.7 ndb\_config — Extrair informações de configuração do NDB Cluster
+### 21.5.7 ndb_config — Extrair informações de configuração do NDB Cluster
 
-Essa ferramenta extrai informações de configuração atuais para nós de dados, nós SQL e nós de API de uma série de fontes: um nó de gerenciamento do NDB Cluster, ou seus arquivos `config.ini` ou `my.cnf`. Por padrão, o nó de gerenciamento é a fonte dos dados de configuração; para sobrescrever o padrão, execute ndb\_config com a opção `--config-file` ou `--mycnf`. Também é possível usar um nó de dados como fonte, especificando seu ID de nó com `--config_from_node=node_id`.
+Essa ferramenta extrai informações de configuração atuais para nós de dados, nós SQL e nós de API de uma série de fontes: um nó de gerenciamento do NDB Cluster, ou seus arquivos `config.ini` ou `my.cnf`. Por padrão, o nó de gerenciamento é a fonte dos dados de configuração; para sobrescrever o padrão, execute ndb_config com a opção `--config-file` ou `--mycnf`. Também é possível usar um nó de dados como fonte, especificando seu ID de nó com `--config_from_node=node_id`.
 
-O **ndb\_config** também pode fornecer um dump offline de todos os parâmetros de configuração que podem ser usados, juntamente com seus valores padrão, máximo e mínimo e outras informações. O dump pode ser produzido em formato de texto ou XML; para mais informações, consulte a discussão das opções `--configinfo` e `--xml` mais adiante nesta seção).
+O **ndb_config** também pode fornecer um dump offline de todos os parâmetros de configuração que podem ser usados, juntamente com seus valores padrão, máximo e mínimo e outras informações. O dump pode ser produzido em formato de texto ou XML; para mais informações, consulte a discussão das opções `--configinfo` e `--xml` mais adiante nesta seção).
 
 Você pode filtrar os resultados por seção (`DB`, `SYSTEM` ou `CONNECTIONS`) usando uma das opções `--nodes`, `--system` ou `--connections`.
 
-As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_config** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.27 Opções de string de comando usadas com o programa ndb\_config**
+**Tabela 21.27 Opções de string de comando usadas com o programa ndb_config**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --config-file=file_name </code> </p></th> <td>Defina o caminho para o arquivo config.ini</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --config-from-node=# </code> </p></th> <td>Obtenha os dados de configuração do nó que possui esse ID (deve ser um nó de dados)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --configinfo </code> </p></th> <td>Exibe informações sobre todos os parâmetros de configuração do NDB em formato de texto, com valores padrão, máximo e mínimo. Use com --xml para obter saída em formato XML</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connections </code> </p></th> <td>Imprima informações apenas sobre as conexões especificadas nas seções [tcp], [tcp default], [sci], [sci default], [shm] ou [shm default] do arquivo de configuração do cluster. Não pode ser usado com --system ou --nodes</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --diff-default </code> </p></th> <td>Imprima apenas os parâmetros de configuração que têm valores não padrão</td> <td><p>ADICIONADO: NDB 7.5.7, NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code>--fields=string</code>,</p><p> <code class="option"> -f </code> </p></th> <td>Separador de campo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --host=name </code> </p></th> <td>Especifique o anfitrião</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --mycnf </code> </p></th> <td>Leia os dados de configuração do arquivo my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --nodeid=# </code> </p></th> <td>Obtenha a configuração do nó com este ID</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --nodes </code> </p></th> <td>Imprima as informações do nó ([seção ndbd] ou [ndbd padrão] do arquivo de configuração do cluster) apenas. Não pode ser usado com --system ou --connections</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--query=string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_query">-q string</a> </code> </p></th> <td>Uma ou mais opções de consulta (atributos)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--query-all</code>,</p><p> <code class="option"> -a </code> </p></th> <td>Descarta todos os parâmetros e valores em uma única string delimitada por vírgula</td> <td><p>ADICIONADO: NDB 7.4.16, NDB 7.5.7</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--rows=string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_rows">-r string</a> </code> </p></th> <td>Separador de strings</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --system </code> </p></th> <td>Imprimir informações da seção SYSTEM (consulte ndb_config --configinfo output). Não pode ser usado com --nodes ou --connections</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --type=name </code> </p></th> <td>Especificar o tipo de nó</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-config.html#option_ndb_config_xml">--configinfo --xml</a> </code> </p></th> <td>Use --xml com --configinfo para obter um dump de todos os parâmetros de configuração do NDB em formato XML, com valores padrão, máximo e mínimo.</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -1308,7 +1308,7 @@ Diretório contendo conjuntos de caracteres.
 
 * `--configinfo`
 
-A opção `--configinfo` faz com que o **ndb\_config** exiba uma lista de cada parâmetro de configuração do NDB Cluster que é suportado pela distribuição do NDB Cluster, da qual o **ndb\_config** faz parte, incluindo as seguintes informações:
+A opção `--configinfo` faz com que o **ndb_config** exiba uma lista de cada parâmetro de configuração do NDB Cluster que é suportado pela distribuição do NDB Cluster, da qual o **ndb_config** faz parte, incluindo as seguintes informações:
 
 + Uma breve descrição do propósito, efeitos e uso de cada parâmetro
 
@@ -1357,7 +1357,7 @@ Use esta opção juntamente com a opção `--xml` para obter a saída em formato
 
   <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-Fornece o caminho para o arquivo de configuração do servidor de gerenciamento (`config.ini`). Este pode ser um caminho relativo ou absoluto. Se o nó de gerenciamento estiver em um host diferente daquele em que o **ndb\_config** é invocado, então um caminho absoluto deve ser usado.
+Fornece o caminho para o arquivo de configuração do servidor de gerenciamento (`config.ini`). Este pode ser um caminho relativo ou absoluto. Se o nó de gerenciamento estiver em um host diferente daquele em que o **ndb_config** é invocado, então um caminho absoluto deve ser usado.
 
 * `--config_from_node=#`
 
@@ -1365,13 +1365,13 @@ Fornece o caminho para o arquivo de configuração do servidor de gerenciamento 
 
 Obtenha os dados de configuração do cluster do nó de dados que possui esse ID.
 
-Se o nó que possui esse ID não for um nó de dados, o **ndb\_config** falha com um erro. (Para obter dados de configuração do nó de gerenciamento, simplesmente omita essa opção.)
+Se o nó que possui esse ID não for um nó de dados, o **ndb_config** falha com um erro. (Para obter dados de configuração do nó de gerenciamento, simplesmente omita essa opção.)
 
 * `--connections`
 
   <table frame="box" rules="all" summary="Properties for connections"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connections</code></td> </tr></tbody></table>
 
-Informe ao **ndb\_config** para imprimir apenas as informações do `CONNECTIONS` — ou seja, as informações sobre os parâmetros encontrados nas seções `[tcp]`, `[tcp default]`, `[shm]` ou `[shm default]` do arquivo de configuração do clúster (consulte a Seção 21.4.3.10, “Conexões TCP/IP do NDB Cluster”, e a Seção 21.4.3.12, “Conexões de Memória Compartilhada do NDB Cluster”, para mais informações).
+Informe ao **ndb_config** para imprimir apenas as informações do `CONNECTIONS` — ou seja, as informações sobre os parâmetros encontrados nas seções `[tcp]`, `[tcp default]`, `[shm]` ou `[shm default]` do arquivo de configuração do clúster (consulte a Seção 21.4.3.10, “Conexões TCP/IP do NDB Cluster”, e a Seção 21.4.3.12, “Conexões de Memória Compartilhada do NDB Cluster”, para mais informações).
 
 Esta opção é mutuamente exclusiva com `--nodes` e `--system`; apenas uma dessas 3 opções pode ser usada.
 
@@ -1447,7 +1447,7 @@ Especifica o nome do host do nó para o qual as informações de configuração 
 
 Nota
 
-Embora o nome de domínio `localhost` geralmente resolva para o endereço IP `127.0.0.1`, isso não é necessariamente verdade para todas as plataformas e configurações operacionais. Isso significa que é possível, quando `localhost` é usado em `config.ini`, que o **ndb\_config `--host=localhost`** falhe se o **ndb\_config** for executado em um host diferente onde `localhost` resolva para um endereço diferente (por exemplo, em algumas versões do SUSE Linux, é `127.0.0.2`). Em geral, para obter os melhores resultados, você deve usar endereços IP numéricos para todos os valores de configuração do NDB Cluster relacionados a hosts, ou verificar se todos os hosts do NDB Cluster tratam o `localhost` da mesma maneira.
+Embora o nome de domínio `localhost` geralmente resolva para o endereço IP `127.0.0.1`, isso não é necessariamente verdade para todas as plataformas e configurações operacionais. Isso significa que é possível, quando `localhost` é usado em `config.ini`, que o **ndb_config `--host=localhost`** falhe se o **ndb_config** for executado em um host diferente onde `localhost` resolva para um endereço diferente (por exemplo, em algumas versões do SUSE Linux, é `127.0.0.2`). Em geral, para obter os melhores resultados, você deve usar endereços IP numéricos para todos os valores de configuração do NDB Cluster relacionados a hosts, ou verificar se todos os hosts do NDB Cluster tratam o `localhost` da mesma maneira.
 
 * `--login-path`
 
@@ -1501,7 +1501,7 @@ Especifique o ID do nó para o qual as informações de configuração devem ser
 
   <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>4
 
-Informe ao **ndb\_config** para imprimir informações relacionadas apenas aos parâmetros definidos em uma seção `[ndbd]` ou `[ndbd default]` do arquivo de configuração do clúster (consulte Seção 21.4.3.6, “Definindo Nodos de Dados do NDB Cluster”).
+Informe ao **ndb_config** para imprimir informações relacionadas apenas aos parâmetros definidos em uma seção `[ndbd]` ou `[ndbd default]` do arquivo de configuração do clúster (consulte Seção 21.4.3.6, “Definindo Nodos de Dados do NDB Cluster”).
 
 Esta opção é mutuamente exclusiva com `--connections` e `--system`; apenas uma dessas 3 opções pode ser usada.
 
@@ -1547,7 +1547,7 @@ Se o *`separator`* contiver espaços ou escapamentos (como `\n` para o caractere
 
   <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>9
 
-Informe ao **ndb\_config** para imprimir apenas as informações de `SYSTEM`. Isso consiste em variáveis do sistema que não podem ser alteradas no tempo de execução; portanto, não há uma seção correspondente do arquivo de configuração do clúster para elas. Elas podem ser vistas (prefixadas com `****** SYSTEM ******`) na saída do **ndb\_config** `--configinfo`.
+Informe ao **ndb_config** para imprimir apenas as informações de `SYSTEM`. Isso consiste em variáveis do sistema que não podem ser alteradas no tempo de execução; portanto, não há uma seção correspondente do arquivo de configuração do clúster para elas. Elas podem ser vistas (prefixadas com `****** SYSTEM ******`) na saída do **ndb_config** `--configinfo`.
 
 Esta opção é mutuamente exclusiva com `--nodes` e `--connections`; apenas uma dessas 3 opções pode ser usada.
 
@@ -1561,19 +1561,19 @@ Filtre os resultados para que apenas os valores de configuração que se aplicam
 
   <table frame="box" rules="all" summary="Properties for config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>1
 
-Faz com que **ndb\_config** imprima uma lista de opções disponíveis e, em seguida, saia. Sinônimo para `--help`.
+Faz com que **ndb_config** imprima uma lista de opções disponíveis e, em seguida, saia. Sinônimo para `--help`.
 
 * `--version`, `-V`
 
   <table frame="box" rules="all" summary="Properties for config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>2
 
-Faz com que **ndb\_config** imprima uma string de informações de versão e, em seguida, saia.
+Faz com que **ndb_config** imprima uma string de informações de versão e, em seguida, saia.
 
 * `--configinfo` `--xml`
 
   <table frame="box" rules="all" summary="Properties for config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>3
 
-Se você quiser que o **ndb\_config** `--configinfo` forneça saída em formato XML, adicione essa opção. Uma parte dessa saída é mostrada neste exemplo:
+Se você quiser que o **ndb_config** `--configinfo` forneça saída em formato XML, adicione essa opção. Uma parte dessa saída é mostrada neste exemplo:
 
   ```sql
   $> ndb_config --configinfo --xml
@@ -1612,7 +1612,7 @@ Se você quiser que o **ndb\_config** `--configinfo` forneça saída em formato 
 
 Nota
 
-Normalmente, a saída XML produzida pelo **ndb\_config** `--configinfo` `--xml` é formatada usando uma string por elemento; adicionamos espaços extras no exemplo anterior e no próximo, por questões de legibilidade. Isso não deve fazer diferença para aplicações que utilizam essa saída, uma vez que a maioria dos processadores de XML ignora o espaço em branco não essencial como uma questão de rotina, ou pode ser instruída a fazer isso.
+Normalmente, a saída XML produzida pelo **ndb_config** `--configinfo` `--xml` é formatada usando uma string por elemento; adicionamos espaços extras no exemplo anterior e no próximo, por questões de legibilidade. Isso não deve fazer diferença para aplicações que utilizam essa saída, uma vez que a maioria dos processadores de XML ignora o espaço em branco não essencial como uma questão de rotina, ou pode ser instruída a fazer isso.
 
 A saída XML também indica quando a alteração de um parâmetro específico exige que os nós de dados sejam reiniciados usando a opção `--initial`. Isso é mostrado pela presença de um atributo `initial="true"` no elemento correspondente `<param>`. Além disso, o tipo de reinício (`system` ou `node`) também é mostrado; se um parâmetro específico requer um reinício do sistema, isso é indicado pela presença de um atributo `restart="system"` no elemento correspondente `<param>`. Por exemplo, alterar o valor definido para o parâmetro `Diskless` requer um reinício inicial do sistema, como mostrado aqui (com os atributos `restart` e `initial` destacados para visibilidade):
 
@@ -1648,7 +1648,7 @@ A opção `--xml` só pode ser usada com a opção `--configinfo`. O uso de `--x
 
 Ao contrário das opções usadas com este programa para obter dados de configuração atuais, `--configinfo` e `--xml` utilizam informações obtidas das fontes do NDB Cluster quando o **ndb_config** foi compilado. Por essa razão, não é necessária uma conexão com um NDB Cluster em execução ou acesso a um arquivo `config.ini` ou `my.cnf` para essas duas opções.
 
-Combinar outras opções de **ndb\_config** (como `--query` ou `--type`) com `--configinfo` (com ou sem a opção `--xml` não é suportada. Atualmente, se você tentar fazer isso, o resultado usual é que todas as outras opções, além de `--configinfo` ou `--xml`, são simplesmente ignoradas. *No entanto, esse comportamento não é garantido e está sujeito a mudanças a qualquer momento*. Além disso, uma vez que **ndb\_config**, quando usado com a opção `--configinfo`, não acessa o NDB Cluster ou não lê quaisquer arquivos, tentar especificar opções adicionais, como `--ndb-connectstring` ou `--config-file` com `--configinfo`, não serve a nenhum propósito.
+Combinar outras opções de **ndb_config** (como `--query` ou `--type`) com `--configinfo` (com ou sem a opção `--xml` não é suportada. Atualmente, se você tentar fazer isso, o resultado usual é que todas as outras opções, além de `--configinfo` ou `--xml`, são simplesmente ignoradas. *No entanto, esse comportamento não é garantido e está sujeito a mudanças a qualquer momento*. Além disso, uma vez que **ndb_config**, quando usado com a opção `--configinfo`, não acessa o NDB Cluster ou não lê quaisquer arquivos, tentar especificar opções adicionais, como `--ndb-connectstring` ou `--config-file` com `--configinfo`, não serve a nenhum propósito.
 
 #### Exemplos
 
@@ -1677,7 +1677,7 @@ Neste exemplo, usamos as opções `--fields` para separar o ID e o tipo de cada 
    198.51.100.179:1186
    ```
 
-3. Esta invocação do **ndb\_config** verifica apenas os nós de dados (usando a opção `--type`), e mostra os valores para o ID de cada nó e o nome do host, bem como os valores definidos para seus parâmetros `DataMemory` e `DataDir`:
+3. Esta invocação do **ndb_config** verifica apenas os nós de dados (usando a opção `--type`), e mostra os valores para o ID de cada nó e o nome do host, bem como os valores definidos para seus parâmetros `DataMemory` e `DataDir`:
 
    ```sql
    $> ./ndb_config --type=ndbd --query=nodeid,host,datamemory,datadir -f ' : ' -r '\n'
@@ -1701,13 +1701,13 @@ Neste exemplo, também usamos a forma abreviada `-q` para determinar os atributo
 
 Da mesma forma, você pode limitar os resultados a um nó com um ID específico usando a opção `--nodeid`.
 
-### 21.5.8 ndb\_cpcd — Automatizar testes para o desenvolvimento do NDB
+### 21.5.8 ndb_cpcd — Automatizar testes para o desenvolvimento do NDB
 
 Uma utilitária com esse nome fazia parte de uma estrutura de teste automatizada interna usada no teste e depuração do NDB Cluster. Ela não está mais incluída nas distribuições do NDB Cluster fornecidas pela Oracle.
 
-### 21.5.9 ndb\_delete\_all — Deletar todas as strings de uma tabela NDB
+### 21.5.9 ndb_delete_all — Deletar todas as strings de uma tabela NDB
 
-**ndb\_delete\_all** exclui todas as strings da tabela `NDB` fornecida. Em alguns casos, isso pode ser muito mais rápido do que `DELETE` ou até mesmo `TRUNCATE TABLE`.
+**ndb_delete_all** exclui todas as strings da tabela `NDB` fornecida. Em alguns casos, isso pode ser muito mais rápido do que `DELETE` ou até mesmo `TRUNCATE TABLE`.
 
 #### Uso
 
@@ -1717,9 +1717,9 @@ ndb_delete_all -c connection_string tbl_name -d db_name
 
 Isso exclui todas as strings da tabela denominada *`tbl_name`* no banco de dados denominado *`db_name`*. É exatamente equivalente a executar `TRUNCATE db_name.tbl_name` no MySQL.
 
-As opções que podem ser usadas com **ndb\_delete\_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_delete_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.28 Opções de string de comando usadas com o programa ndb\_delete\_all**
+**Tabela 21.28 Opções de string de comando usadas com o programa ndb_delete_all**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-delete-all.html#option_ndb_delete_all_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code>-d name</code> </p></th> <td>Nome do banco de dados em que a tabela está localizada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--diskscan</code> </p></th> <td>Realize uma varredura de disco</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-delete-all.html#option_ndb_delete_all_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-delete-all.html#option_ndb_delete_all_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--transactional</code>,</p><p> <code class="option"> -t </code> </p></th> <td>Realize a exclusão em uma única transação; é possível esgotar as operações quando usado</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--tupscan</code> </p></th> <td>Realize a varredura de tupla</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -1799,7 +1799,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>3
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -1855,9 +1855,9 @@ Exibir texto de ajuda e sair; o mesmo que --help.
 
 Exibir informações da versão e sair.
 
-### 21.5.10 ndb\_desc — Descrever as tabelas NDB
+### 21.5.10 ndb_desc — Descrever as tabelas NDB
 
-**ndb\_desc** fornece uma descrição detalhada de uma ou mais tabelas `NDB`.
+**ndb_desc** fornece uma descrição detalhada de uma ou mais tabelas `NDB`.
 
 #### Uso
 
@@ -1867,7 +1867,7 @@ ndb_desc -c connection_string tbl_name -d db_name [options]
 ndb_desc -c connection_string index_name -d db_name -t tbl_name
 ```
 
-Opções adicionais que podem ser usadas com **ndb\_desc** estão listadas mais adiante nesta seção.
+Opções adicionais que podem ser usadas com **ndb_desc** estão listadas mais adiante nesta seção.
 
 #### Saída Exemplo
 
@@ -1892,7 +1892,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Saída de **ndb\_desc**:
+Saída de **ndb_desc**:
 
 ```sql
 $> ./ndb_desc -c localhost fish -d test -p
@@ -1938,7 +1938,7 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 NDBT_ProgramExit: 0 - OK
 ```
 
-Informações sobre várias tabelas podem ser obtidas em uma única invocação de **ndb\_desc** usando seus nomes, separados por espaços. Todas as tabelas devem estar no mesmo banco de dados.
+Informações sobre várias tabelas podem ser obtidas em uma única invocação de **ndb_desc** usando seus nomes, separados por espaços. Todas as tabelas devem estar no mesmo banco de dados.
 
 Você pode obter informações adicionais sobre um índice específico usando a opção `--table` (forma abreviada: `-t`) e fornecendo o nome do índice como o primeiro argumento para **ndb_desc**, conforme mostrado aqui:
 
@@ -1988,7 +1988,7 @@ Quando um índice é especificado dessa forma, as opções `--extra-partition-in
 
 A coluna `Version` no resultado contém a versão do objeto do esquema da tabela. Para obter informações sobre a interpretação desse valor, consulte Versões de Objetos do Esquema NDB.
 
-Três das propriedades da tabela que podem ser definidas usando comentários `NDB_TABLE` incorporados nas declarações `CREATE TABLE` e `ALTER TABLE` também são visíveis na saída **ndb\_desc**. O `FRAGMENT_COUNT_TYPE` da tabela é sempre mostrado na coluna `FragmentCountType`. `READ_ONLY` e `FULLY_REPLICATED`, se definidos como 1, são mostrados na coluna `Table options`. Você pode ver isso após executar a seguinte declaração `ALTER TABLE` no cliente **mysql**:
+Três das propriedades da tabela que podem ser definidas usando comentários `NDB_TABLE` incorporados nas declarações `CREATE TABLE` e `ALTER TABLE` também são visíveis na saída **ndb_desc**. O `FRAGMENT_COUNT_TYPE` da tabela é sempre mostrado na coluna `FragmentCountType`. `READ_ONLY` e `FULLY_REPLICATED`, se definidos como 1, são mostrados na coluna `Table options`. Você pode ver isso após executar a seguinte declaração `ALTER TABLE` no cliente **mysql**:
 
 ```sql
 mysql> ALTER TABLE fish COMMENT='NDB_TABLE=READ_ONLY=1,FULLY_REPLICATED=1';
@@ -2021,7 +2021,7 @@ COMMENT='NDB_TABLE=READ_BACKUP=1,FULLY_REPLICATED=1'
 1 row in set (0.01 sec)
 ```
 
-Como `FRAGMENT_COUNT_TYPE` não foi definido explicitamente, seu valor não é mostrado no texto de comentário impresso por `SHOW CREATE TABLE`. **ndb\_desc**, no entanto, exibe o valor atualizado para este atributo. A coluna `Table options` mostra as propriedades binárias que foram habilitadas. Você pode ver isso na saída mostrada aqui (texto destacado):
+Como `FRAGMENT_COUNT_TYPE` não foi definido explicitamente, seu valor não é mostrado no texto de comentário impresso por `SHOW CREATE TABLE`. **ndb_desc**, no entanto, exibe o valor atualizado para este atributo. A coluna `Table options` mostra as propriedades binárias que foram habilitadas. Você pode ver isso na saída mostrada aqui (texto destacado):
 
 ```sql
 $> ./ndb_desc -c localhost fish -d test -p
@@ -2116,7 +2116,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Quando executado contra esta versão da tabela, **ndb\_desc** exibe a seguinte saída:
+Quando executado contra esta versão da tabela, **ndb_desc** exibe a seguinte saída:
 
 ```sql
 $> ./ndb_desc -c localhost fish -d test -p
@@ -2164,11 +2164,11 @@ NDBT_ProgramExit: 0 - OK
 
 Isso significa que 1048576 bytes são alocados dos espaços de tabelas para esta tabela em cada partição, dos quais 1044440 bytes permanecem livres para armazenamento adicional. Em outras palavras, 1048576 - 1044440 = 4136 bytes por partição estão atualmente sendo usados para armazenar os dados das colunas baseadas em disco desta tabela. O número de bytes mostrado como `Free extent_space` está disponível para armazenamento de dados de coluna em disco da tabela `fish`, e por essa razão, não é visível ao selecionar a partir da tabela do Esquema de Informações `FILES`.
 
-Para tabelas totalmente replicadas, **ndb\_desc** mostra apenas os nós que contêm fragmentos de replicação de partição primária; os nós com cópias de fragmentos de replicação (apenas) são ignorados. A partir do NDB 7.5.4, você pode obter essas informações, usando o cliente **mysql**, nas tabelas `table_distribution_status`, `table_fragments`, `table_info` e `table_replicas` no banco de dados `ndbinfo`.
+Para tabelas totalmente replicadas, **ndb_desc** mostra apenas os nós que contêm fragmentos de replicação de partição primária; os nós com cópias de fragmentos de replicação (apenas) são ignorados. A partir do NDB 7.5.4, você pode obter essas informações, usando o cliente **mysql**, nas tabelas `table_distribution_status`, `table_fragments`, `table_info` e `table_replicas` no banco de dados `ndbinfo`.
 
-As opções que podem ser usadas com **ndb\_desc** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_desc** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.29 Opções de string de comando usadas com o programa ndb\_desc**
+**Tabela 21.29 Opções de string de comando usadas com o programa ndb_desc**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code>--auto-inc</code>,</p><p> <code class="option"> -a </code> </p></th> <td>Mostre o próximo valor para a coluna AUTO_INCREMENT se a tabela tiver uma</td> <td><p>ADICIONADO: NDB 7.6.14</p></td> </tr></tbody><tbody><tr> <th><p> <code>--blob-info</code>,</p><p> <code class="option"> -b </code> </p></th> <td>Incluir informações de partição para tabelas BLOB no resultado. Requer que a opção -p também seja usada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--context</code>,</p><p> <code class="option"> -x </code> </p></th> <td>Mostre informações extras para a tabela, como banco de dados, esquema, nome e ID interno</td> <td><p>ADICIONADO: NDB 7.6.14</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_database">-d nome</a> </code> </p></th> <td>Nome do banco de dados que contém a tabela</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--extra-node-info</code>,</p><p> <code class="option"> -n </code> </p></th> <td>Incluir mapeamentos de partição para nó de dados no resultado; requer --extra-partition-info</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--extra-partition-info</code>,</p><p> <code class="option"> -p </code> </p></th> <td>Exibir informações sobre as partições</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--retries=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries">-r #</a> </code> </p></th> <td>Número de vezes para tentar a conexão novamente (uma por segundo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--table=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_table">-t nome</a> </code> </p></th> <td>Especifique a tabela na qual você deseja encontrar um índice. Quando esta opção é usada, -p e -n não têm efeito e são ignorados.</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--unqualified</code>,</p><p> <code class="option"> -u </code> </p></th> <td>Use nomes de tabela não qualificados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -2264,7 +2264,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>1
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -2322,9 +2322,9 @@ Exibir informações da versão e sair.
 
 No NDB 7.5.3 e versões posteriores, os índices de tabela listados na saída são ordenados por ID. Anteriormente, isso não era determinístico e poderia variar entre as plataformas. (Bug #81763, Bug #23547742)
 
-### 21.5.11 ndb\_drop\_index — Deixar o índice em uma tabela NDB
+### 21.5.11 ndb_drop_index — Deixar o índice em uma tabela NDB
 
-**ndb\_drop\_index** elimina o índice especificado de uma tabela `NDB`. *É recomendável que você use este utilitário apenas como exemplo para escrever aplicativos da API NDB* — consulte o Aviso mais adiante nesta seção para obter detalhes.
+**ndb_drop_index** elimina o índice especificado de uma tabela `NDB`. *É recomendável que você use este utilitário apenas como exemplo para escrever aplicativos da API NDB* — consulte o Aviso mais adiante nesta seção para obter detalhes.
 
 #### Uso
 
@@ -2336,7 +2336,7 @@ A declaração mostrada acima exclui o índice denominado *`index`* do *`table`*
 
 As opções que podem ser usadas com **ndb_drop_index** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.30 Opções de string de comando usadas com o programa ndb\_drop\_index**
+**Tabela 21.30 Opções de string de comando usadas com o programa ndb_drop_index**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-drop-index.html#option_ndb_drop_index_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code>-d name</code> </p></th> <td>Nome do banco de dados em que a tabela está localizada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-drop-index.html#option_ndb_drop_index_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-drop-index.html#option_ndb_drop_index_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -2410,7 +2410,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>2
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -2491,11 +2491,11 @@ mysql> SELECT * FROM dogs;
 ERROR 1296 (HY000): Got error 4243 'Index not found' from NDBCLUSTER
 ```
 
-Nesse caso, a *única* opção para tornar a tabela disponível novamente para o MySQL é descartá-la e recriá-la. Você pode usar a instrução SQL `DROP TABLE` ou o utilitário **ndb\_drop\_table** (consulte Seção 21.5.12, “ndb\_drop\_table — Descartar uma tabela NDB”) para descartar a tabela.
+Nesse caso, a *única* opção para tornar a tabela disponível novamente para o MySQL é descartá-la e recriá-la. Você pode usar a instrução SQL `DROP TABLE` ou o utilitário **ndb_drop_table** (consulte Seção 21.5.12, “ndb_drop_table — Descartar uma tabela NDB”) para descartar a tabela.
 
-### 21.5.12 ndb\_drop\_table — Deixar uma tabela NDB
+### 21.5.12 ndb_drop_table — Deixar uma tabela NDB
 
-O **ndb\_drop\_table** elimina a tabela especificada `NDB`. (Se você tentar usar isso em uma tabela criada com um mecanismo de armazenamento diferente de `NDB`, a tentativa falhará com o erro 723: Não existe tal tabela.) Essa operação é extremamente rápida; em alguns casos, pode ser uma ordem de magnitude mais rápida do que usar uma declaração MySQL `DROP TABLE` em uma tabela `NDB`.
+O **ndb_drop_table** elimina a tabela especificada `NDB`. (Se você tentar usar isso em uma tabela criada com um mecanismo de armazenamento diferente de `NDB`, a tentativa falhará com o erro 723: Não existe tal tabela.) Essa operação é extremamente rápida; em alguns casos, pode ser uma ordem de magnitude mais rápida do que usar uma declaração MySQL `DROP TABLE` em uma tabela `NDB`.
 
 #### Uso
 
@@ -2503,9 +2503,9 @@ O **ndb\_drop\_table** elimina a tabela especificada `NDB`. (Se você tentar usa
 ndb_drop_table -c connection_string tbl_name -d db_name
 ```
 
-As opções que podem ser usadas com **ndb\_drop\_table** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_drop_table** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.31 Opções de string de comando usadas com o programa ndb\_drop\_table**
+**Tabela 21.31 Opções de string de comando usadas com o programa ndb_drop_table**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-drop-table.html#option_ndb_drop_table_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code>-d name</code> </p></th> <td>Nome do banco de dados em que a tabela está localizada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-drop-table.html#option_ndb_drop_table_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-drop-table.html#option_ndb_drop_table_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -2579,7 +2579,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>2
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -2623,13 +2623,13 @@ Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 Exibir informações da versão e sair.
 
-### 21.5.13 ndb\_error\_reporter — Ferramenta de Relatório de Erros NDB
+### 21.5.13 ndb_error_reporter — Ferramenta de Relatório de Erros NDB
 
-O **ndb\_error\_reporter** cria um arquivo a partir dos arquivos de log do nó de dados e do nó de gerenciamento que podem ser usados para ajudar a diagnosticar bugs ou outros problemas com um clúster. *É altamente recomendado que você utilize este utilitário ao relatar bugs no NDB Cluster*.
+O **ndb_error_reporter** cria um arquivo a partir dos arquivos de log do nó de dados e do nó de gerenciamento que podem ser usados para ajudar a diagnosticar bugs ou outros problemas com um clúster. *É altamente recomendado que você utilize este utilitário ao relatar bugs no NDB Cluster*.
 
-As opções que podem ser usadas com **ndb\_error\_reporter** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_error_reporter** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.32 Opções de string de comando usadas com o programa ndb\_error\_reporter**
+**Tabela 21.32 Opções de string de comando usadas com o programa ndb_error_reporter**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --connection-timeout=# </code> </p></th> <td>Número de segundos para esperar ao se conectar a nós antes de esgotar o tempo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --dry-scp </code> </p></th> <td>Desative o scp com hosts remotos; usado apenas em testes</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fs </code> </p></th> <td>Incluir dados do sistema de arquivos no relatório de erro; pode usar uma grande quantidade de espaço em disco</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --skip-nodegroup=# </code> </p></th> <td>Pular todos os nós no grupo de nós que têm este ID</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -2639,9 +2639,9 @@ As opções que podem ser usadas com **ndb\_error\_reporter** são mostradas na 
 ndb_error_reporter path/to/config-file [username] [options]
 ```
 
-Este utilitário é destinado ao uso em um nó de gerenciamento e requer o caminho para o arquivo de configuração do host de gerenciamento (geralmente denominado `config.ini`). Opcionalmente, você pode fornecer o nome de um usuário que possa acessar os nós de dados do clúster usando SSH, para copiar os arquivos de log do nó de dados. O **ndb\_error\_reporter** inclui então todos esses arquivos em um arquivo que é criado no mesmo diretório em que é executado. O arquivo é denominado `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, onde *`YYYYMMDDhhmmss`* é uma string de data e hora.
+Este utilitário é destinado ao uso em um nó de gerenciamento e requer o caminho para o arquivo de configuração do host de gerenciamento (geralmente denominado `config.ini`). Opcionalmente, você pode fornecer o nome de um usuário que possa acessar os nós de dados do clúster usando SSH, para copiar os arquivos de log do nó de dados. O **ndb_error_reporter** inclui então todos esses arquivos em um arquivo que é criado no mesmo diretório em que é executado. O arquivo é denominado `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, onde *`YYYYMMDDhhmmss`* é uma string de data e hora.
 
-O **ndb\_error\_reporter** também aceita as opções listadas aqui:
+O **ndb_error_reporter** também aceita as opções listadas aqui:
 
 * `--connection-timeout=timeout`
 
@@ -2653,7 +2653,7 @@ Aguarde tantos segundos ao tentar se conectar aos nós antes de expirar o tempo.
 
   <table frame="box" rules="all" summary="Properties for dry-scp"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dry-scp</code></td> </tr></tbody></table>
 
-Execute o **ndb\_error\_reporter** sem usar scp de hosts remotos. Usado apenas para testes.
+Execute o **ndb_error_reporter** sem usar scp de hosts remotos. Usado apenas para testes.
 
 * `--fs`
 
@@ -2675,9 +2675,9 @@ Exibir texto de ajuda e sair.
 
 Ignorar todos os nós que pertencem ao grupo de nós que tem o ID de grupo de nós fornecido.
 
-### 21.5.14 ndb\_import — Importar dados CSV no NDB
+### 21.5.14 ndb_import — Importar dados CSV no NDB
 
-O **ndb\_import** importa dados formatados em CSV, como os produzidos pelo **mysqldump** `--tab`, diretamente para o `NDB` usando a API NDB. O **ndb\_import** requer uma conexão a um servidor de gerenciamento NDB (**ndb\_mgmd**) para funcionar; ele não requer uma conexão a um servidor MySQL.
+O **ndb_import** importa dados formatados em CSV, como os produzidos pelo **mysqldump** `--tab`, diretamente para o `NDB` usando a API NDB. O **ndb_import** requer uma conexão a um servidor de gerenciamento NDB (**ndb_mgmd**) para funcionar; ele não requer uma conexão a um servidor MySQL.
 
 #### Uso
 
@@ -2685,13 +2685,13 @@ O **ndb\_import** importa dados formatados em CSV, como os produzidos pelo **mys
 ndb_import db_name file_name options
 ```
 
-O **ndb\_import** requer dois argumentos. *`db_name`* é o nome do banco de dados onde a tabela na qual os dados serão importados é encontrada; *`file_name`* é o nome do arquivo CSV a partir do qual os dados serão lidos; este deve incluir o caminho para este arquivo, se não estiver no diretório atual. O nome do arquivo deve corresponder ao da tabela; a extensão do arquivo, se houver, não é considerada. As opções suportadas pelo **ndb\_import** incluem as especificações de separadores de campo, escapamentos e terminadores de string, e são descritas mais adiante nesta seção.
+O **ndb_import** requer dois argumentos. *`db_name`* é o nome do banco de dados onde a tabela na qual os dados serão importados é encontrada; *`file_name`* é o nome do arquivo CSV a partir do qual os dados serão lidos; este deve incluir o caminho para este arquivo, se não estiver no diretório atual. O nome do arquivo deve corresponder ao da tabela; a extensão do arquivo, se houver, não é considerada. As opções suportadas pelo **ndb_import** incluem as especificações de separadores de campo, escapamentos e terminadores de string, e são descritas mais adiante nesta seção.
 
-O **ndb\_import** rejeita quaisquer strings vazias lidas do arquivo CSV.
+O **ndb_import** rejeita quaisquer strings vazias lidas do arquivo CSV.
 
-O **ndb\_import** deve ser capaz de se conectar a um servidor de gerenciamento do NDB Cluster; por essa razão, deve haver um slot `[api]` não utilizado no arquivo do cluster `config.ini`.
+O **ndb_import** deve ser capaz de se conectar a um servidor de gerenciamento do NDB Cluster; por essa razão, deve haver um slot `[api]` não utilizado no arquivo do cluster `config.ini`.
 
-Para duplicar uma tabela existente que utiliza um motor de armazenamento diferente, como `InnoDB`, como uma tabela `NDB`, use o cliente **mysql** para executar uma declaração `SELECT INTO OUTFILE` para exportar a tabela existente para um arquivo CSV, em seguida, execute uma declaração `CREATE TABLE LIKE` para criar uma nova tabela com a mesma estrutura da tabela existente, em seguida, realize `ALTER TABLE ... ENGINE=NDB` na nova tabela; depois disso, a partir da concha do sistema, invoque **ndb\_import** para carregar os dados na nova tabela `NDB`. Por exemplo, uma tabela existente `InnoDB` nomeada `myinnodb_table` em um banco de dados nomeado `myinnodb` pode ser exportada para uma tabela `NDB` nomeada `myndb_table` em um banco de dados nomeado `myndb` como mostrado aqui, assumindo que você já está logado como um usuário MySQL com os privilégios apropriados:
+Para duplicar uma tabela existente que utiliza um motor de armazenamento diferente, como `InnoDB`, como uma tabela `NDB`, use o cliente **mysql** para executar uma declaração `SELECT INTO OUTFILE` para exportar a tabela existente para um arquivo CSV, em seguida, execute uma declaração `CREATE TABLE LIKE` para criar uma nova tabela com a mesma estrutura da tabela existente, em seguida, realize `ALTER TABLE ... ENGINE=NDB` na nova tabela; depois disso, a partir da concha do sistema, invoque **ndb_import** para carregar os dados na nova tabela `NDB`. Por exemplo, uma tabela existente `InnoDB` nomeada `myinnodb_table` em um banco de dados nomeado `myinnodb` pode ser exportada para uma tabela `NDB` nomeada `myndb_table` em um banco de dados nomeado `myndb` como mostrado aqui, assumindo que você já está logado como um usuário MySQL com os privilégios apropriados:
 
 1. No cliente **mysql**:
 
@@ -2739,9 +2739,9 @@ A saída deve se assemelhar àquela que é mostrada aqui:
    $>
    ```
 
-As opções que podem ser usadas com **ndb\_import** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_import** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.33 Opções de string de comando usadas com o programa ndb\_import**
+**Tabela 21.33 Opções de string de comando usadas com o programa ndb_import**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --abort-on-error </code> </p></th> <td>Arrume o núcleo em qualquer erro fatal; usado para depuração</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ai-increment=# </code> </p></th> <td>Para uma tabela com PK oculto, especifique o incremento de autoincremento. Veja mysqld</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ai-offset=# </code> </p></th> <td>Para uma tabela com PK oculto, especifique o deslocamento de autoincremento. Veja mysqld</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ai-prefetch-sz=# </code> </p></th> <td>Para uma tabela com PK oculto, especifique o número de valores de autoincremento que são pré-carregados. Veja mysqld</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-import.html#option_ndb_import_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connections=# </code> </p></th> <td>Número de conexões de cluster a criar</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --continue </code> </p></th> <td>Quando o trabalho falhar, continue para o próximo trabalho</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --csvopt=opts </code> </p></th> <td>Opção abreviada para definir valores típicos de opções CSV. Consulte a documentação para obter informações sobre sintaxe e outras informações</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --db-workers=# </code> </p></th> <td>Número de threads, por nó de dados, executando operações de banco de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --errins-type=name </code> </p></th> <td>Tipo de inserção de erro, para fins de teste; use "lista" para obter todos os valores possíveis</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --errins-delay=# </code> </p></th> <td>Atraso de inserção de erro em milissegundos; variação aleatória é adicionada</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fields-enclosed-by=char </code> </p></th> <td>O mesmo que a opção FIELDS ENCLOSED BY para as instruções LOAD DATA. Para entrada CSV, isso é o mesmo que usar a opção --fields-opcionalmente-enclosed-by</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fields-escaped-by=char </code> </p></th> <td>Igual à opção FIELDS ESCAPED BY para as instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fields-optionally-enclosed-by=char </code> </p></th> <td>O mesmo que as opções de campos opcionais encerradas por opção para as instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fields-terminated-by=char </code> </p></th> <td>Assim como a opção TERMINADOS POR CAMPOS para as instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --idlesleep=# </code> </p></th> <td>Número de milissegundos para dormir enquanto espera mais para fazer</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --idlespin=# </code> </p></th> <td>Número de vezes para tentar novamente antes de idlesleep</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ignore-lines=# </code> </p></th> <td>Ignore as primeiras strings do arquivo de entrada. Usado para ignorar um cabeçalho não de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --input-type=name </code> </p></th> <td>Tipo de entrada: aleatório ou csv</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --input-workers=# </code> </p></th> <td>Número de threads processando a entrada. Deve ser 2 ou mais se --input-type for csv</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --keep-state </code> </p></th> <td>Os arquivos de estado (exceto arquivos não vazios *.rej) são normalmente removidos após a conclusão do trabalho. Ao usar esta opção, todos os arquivos de estado são preservados em vez disso.</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --lines-terminated-by=char </code> </p></th> <td>O mesmo que a opção LINHAS TERMINADAS POR para as instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --max-rows=# </code> </p></th> <td>Importe apenas esse número de strings de dados de entrada; o padrão é 0, que importa todas as strings</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --monitor=# </code> </p></th> <td>Imprima periodicamente o status do trabalho em execução se algo tiver mudado (status, strings rejeitadas, erros temporários). O valor 0 desativa. O valor 1 imprime qualquer mudança observada. Valores mais altos reduzem a impressão do status exponencialmente até um limite pré-definido</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-import.html#option_ndb_import_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-import.html#option_ndb_import_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-asynch </code> </p></th> <td>Execute operações de banco de dados em lotes, em transações únicas</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-hint </code> </p></th> <td>Informe ao coordenador de transação que não utilize a dica de chave de distribuição ao selecionar o nó de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --opbatch=# </code> </p></th> <td>Um lote de execução de banco de dados é um conjunto de transações e operações enviadas ao kernel NDB. Esta opção limita as operações do NDB (incluindo operações de blob) em um lote de execução de banco de dados. Portanto, também limita o número de transações assíncronas. O valor 0 não é válido</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --opbytes=# </code> </p></th> <td>Limitar bytes no lote de execução (padrão 0 = sem limite)</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --output-type=name </code> </p></th> <td>Tipo de saída: ndb é o padrão, nulo é usado para testes</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --output-workers=# </code> </p></th> <td>Número de threads que processam a saída ou transmitem operações de banco de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --pagesize=# </code> </p></th> <td>Alinhar buffers de I/O ao tamanho especificado</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --pagecnt=# </code> </p></th> <td>Tamanho dos buffers de E/S como múltiplo do tamanho da página. O trabalhador de entrada CSV aloca um buffer de tamanho duplo</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --polltimeout=# </code> </p></th> <td>Tempo de espera por pesquisa para transações assíncronas concluídas; a pesquisa continua até que todas as pesquisas sejam concluídas ou ocorra um erro</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --rejects=# </code> </p></th> <td>Limite o número de strings rejeitadas (strings com erro permanente) na carga de dados. O padrão é 0, o que significa que qualquer string rejeitada causa um erro fatal. A string que excede o limite também é adicionada a *.rej</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --resume </code> </p></th> <td>Se o trabalho for abortado (erro temporário, usuário interrompe), retome com as strings que ainda não foram processadas</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --rowbatch=# </code> </p></th> <td>Limitar filas de strings (padrão 0 = sem limite); deve ser 1 ou mais se --input-type for aleatório</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --rowbytes=# </code> </p></th> <td>Limitar bytes nas filas de string (0 = sem limite)</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --state-dir=path </code> </p></th> <td>Onde escrever arquivos de estado; o diretório atual é o padrão</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --stats </code> </p></th> <td>Salve as opções relacionadas ao desempenho e as estatísticas internas em arquivos *.sto e *.stt. Esses arquivos são mantidos após a conclusão bem-sucedida, mesmo que a opção --keep-state não seja usada.</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --tempdelay=# </code> </p></th> <td>Número de milissegundos para dormir entre erros temporários</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --temperrors=# </code> </p></th> <td>Número de vezes que uma transação pode falhar devido a um erro temporário, por lote de execução; 0 significa que qualquer erro temporário é fatal. Esses erros não fazem com que nenhuma string seja escrita no arquivo .rej</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose[=#]</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-import.html#option_ndb_import_verbose">-v [#]</a> </code> </p></th> <td>Ative a saída detalhada</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody></table>
 
@@ -2912,7 +2912,7 @@ Número de vezes para tentar novamente antes de dormir.
 
   <table frame="box" rules="all" summary="Properties for ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>6
 
-Faça com que ndb\_import ignore as primeiras strings *`#`* do arquivo de entrada. Isso pode ser empregado para ignorar um cabeçalho de arquivo que não contém nenhum dado.
+Faça com que ndb_import ignore as primeiras strings *`#`* do arquivo de entrada. Isso pode ser empregado para ignorar um cabeçalho de arquivo que não contém nenhum dado.
 
 * `--input-type`=*`name`*
 
@@ -2930,7 +2930,7 @@ Defina o número de threads que processam a entrada.
 
   <table frame="box" rules="all" summary="Properties for ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>9
 
-Por padrão, o ndb\_import remove todos os arquivos de estado (exceto os arquivos não vazios `*.rej`) quando completa uma tarefa. Especifique esta opção (não é necessário nenhum argumento) para forçar o programa a reter todos os arquivos de estado em vez disso.
+Por padrão, o ndb_import remove todos os arquivos de estado (exceto os arquivos não vazios `*.rej`) quando completa uma tarefa. Especifique esta opção (não é necessário nenhum argumento) para forçar o programa a reter todos os arquivos de estado em vez disso.
 
 * `--lines-terminated-by`=*`name`*
 
@@ -2968,7 +2968,7 @@ Imprima periodicamente o status de um trabalho em execução se algo tiver mudad
 
   <table frame="box" rules="all" summary="Properties for ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>5
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -3128,21 +3128,21 @@ Exibir informações da versão e sair.
 
 Assim como no caso de `LOAD DATA`, as opções para formatação de campo e string são muito semelhantes às usadas para criar o arquivo CSV, seja isso feito usando `SELECT INTO ... OUTFILE`, ou por algum outro meio. Não há uma opção equivalente à da declaração `LOAD DATA` `STARTING WITH`.
 
-O **ndb\_import** foi adicionado no NDB 7.6.
+O **ndb_import** foi adicionado no NDB 7.6.
 
 ### 21.5.15 ndb_index_stat — Ferramenta de estatísticas do índice NDB
 
-**ndb\_index\_stat** fornece informações estatísticas por fragmento sobre índices em tabelas de `NDB`. Isso inclui a versão e a idade da cache, o número de entradas de índice por partição e o consumo de memória pelos índices.
+**ndb_index_stat** fornece informações estatísticas por fragmento sobre índices em tabelas de `NDB`. Isso inclui a versão e a idade da cache, o número de entradas de índice por partição e o consumo de memória pelos índices.
 
 #### Uso
 
-Para obter estatísticas básicas de índice sobre uma tabela específica `NDB`, invoque **ndb\_index\_stat** conforme mostrado aqui, com o nome da tabela como o primeiro argumento e o nome do banco de dados que contém essa tabela, especificando-o imediatamente após ele, usando a opção `--database` (`-d`):
+Para obter estatísticas básicas de índice sobre uma tabela específica `NDB`, invoque **ndb_index_stat** conforme mostrado aqui, com o nome da tabela como o primeiro argumento e o nome do banco de dados que contém essa tabela, especificando-o imediatamente após ele, usando a opção `--database` (`-d`):
 
 ```sql
 ndb_index_stat table -d database
 ```
 
-Neste exemplo, usamos **ndb\_index\_stat** para obter essas informações sobre uma tabela `NDB` chamada `mytable` no banco de dados `test`:
+Neste exemplo, usamos **ndb_index_stat** para obter essas informações sobre uma tabela `NDB` chamada `mytable` no banco de dados `test`:
 
 ```sql
 $> ndb_index_stat -d test mytable
@@ -3154,7 +3154,7 @@ times in ms: save: 7.133 sort: 1.974 sort per sample: 0.000
 NDBT_ProgramExit: 0 - OK
 ```
 
-`sampleVersion` é o número de versão do cache a partir do qual os dados estatísticos são obtidos. Executando **ndb\_index\_stat** com a opção `--update`, o sampleVersion é incrementado.
+`sampleVersion` é o número de versão do cache a partir do qual os dados estatísticos são obtidos. Executando **ndb_index_stat** com a opção `--update`, o sampleVersion é incrementado.
 
 `loadTime` mostra quando o cache foi atualizado pela última vez. Isso é expresso em segundos desde o Unix Epoch.
 
@@ -3172,7 +3172,7 @@ Essa informação também pode ser obtida usando as definições correspondentes
 
 `totalBytes` é a memória total consumida por todos os índices na tabela, em bytes.
 
-Os horários mostrados nos exemplos anteriores são específicos para cada invocação de **ndb\_index\_stat**.
+Os horários mostrados nos exemplos anteriores são específicos para cada invocação de **ndb_index_stat**.
 
 A opção `--verbose` oferece algumas saídas adicionais, conforme mostrado aqui:
 
@@ -3194,13 +3194,13 @@ NDBT_ProgramExit: 0 - OK
 $>
 ```
 
-Se a única saída do programa for `NDBT_ProgramExit: 0 - OK`, isso pode indicar que ainda não existem estatísticas. Para forçá-las a serem criadas (ou atualizadas se já existirem), invoque **ndb\_index\_stat** com a opção `--update`, ou execute `ANALYZE TABLE` na tabela no cliente **mysql**.
+Se a única saída do programa for `NDBT_ProgramExit: 0 - OK`, isso pode indicar que ainda não existem estatísticas. Para forçá-las a serem criadas (ou atualizadas se já existirem), invoque **ndb_index_stat** com a opção `--update`, ou execute `ANALYZE TABLE` na tabela no cliente **mysql**.
 
 #### Opções
 
-A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **ndb\_index\_stat**. Descrições adicionais estão listadas após a tabela.
+A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **ndb_index_stat**. Descrições adicionais estão listadas após a tabela.
 
-**Tabela 21.34 Opções de string de comando usadas com o programa ndb\_index\_stat**
+**Tabela 21.34 Opções de string de comando usadas com o programa ndb_index_stat**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_database">-d nome</a> </code> </p></th> <td>Nome do banco de dados que contém a tabela</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --delete </code> </p></th> <td>Exclua as estatísticas de índice da tabela, parando qualquer atualização automática configurada anteriormente</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --dump </code> </p></th> <td>Cache de consulta de impressão</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --loops=# </code> </p></th> <td>Defina o número de vezes em que o comando dado deve ser executado; o padrão é 0</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-index-stat.html#option_ndb_index_stat_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --query=# </code> </p></th> <td>Realize consultas aleatórias de intervalo na primeira attr de chave (deve ser um número inteiro sem sinal)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --sys-drop </code> </p></th> <td>Deixe de lado quaisquer tabelas de estatísticas e eventos no kernel NDB (todas as estatísticas são perdidas)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --sys-create </code> </p></th> <td>Crie todas as tabelas de estatísticas e eventos no kernel NDB, se nenhuma delas já existir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --sys-create-if-not-exist </code> </p></th> <td>Crie quaisquer tabelas de estatísticas e eventos no kernel NDB que ainda não existam</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --sys-create-if-not-valid </code> </p></th> <td>Crie quaisquer tabelas de estatísticas ou eventos que não existam já no kernel NDB, após descartar quaisquer que sejam inválidos.</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --sys-check </code> </p></th> <td>Verifique se as estatísticas do índice do sistema NDB e as tabelas de eventos existem</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --sys-skip-tables </code> </p></th> <td>Não aplique opções sys-* às tabelas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --sys-skip-events </code> </p></th> <td>Não aplique opções sys-* a eventos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --update </code> </p></th> <td>Atualize as estatísticas do índice da tabela, reiniciando qualquer autoatualização configurada anteriormente</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>,</p><p> <code class="option"> -v </code> </p></th> <td>Ative a saída detalhada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -3292,7 +3292,7 @@ Repita os comandos este número de vezes (para uso em testes).
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>5
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -3396,7 +3396,7 @@ Ative a saída detalhada.
 
 Exibir informações da versão e sair.
 
-**Opções do sistema ndb\_index\_stat.** As seguintes opções são usadas para gerar e atualizar as tabelas de estatísticas no kernel NDB. Nenhuma dessas opções pode ser usada com opções de estatísticas (veja as opções de estatísticas ndb\_index\_stat).
+**Opções do sistema ndb_index_stat.** As seguintes opções são usadas para gerar e atualizar as tabelas de estatísticas no kernel NDB. Nenhuma dessas opções pode ser usada com opções de estatísticas (veja as opções de estatísticas ndb_index_stat).
 
 * `--sys-drop`
 * `--sys-create`
@@ -3406,7 +3406,7 @@ Exibir informações da versão e sair.
 * `--sys-skip-tables`
 * `--sys-skip-events`
 
-**Opções de estatísticas ndb\_index\_stat.** As opções listadas aqui são usadas para gerar estatísticas de índice. Elas funcionam com uma tabela e um banco de dados específicos. Não podem ser misturadas com opções do sistema (veja as opções de sistema ndb\_index\_stat).
+**Opções de estatísticas ndb_index_stat.** As opções listadas aqui são usadas para gerar estatísticas de índice. Elas funcionam com uma tabela e um banco de dados específicos. Não podem ser misturadas com opções do sistema (veja as opções de sistema ndb_index_stat).
 
 * `--database`
 * `--delete`
@@ -3414,9 +3414,9 @@ Exibir informações da versão e sair.
 * `--dump`
 * `--query`
 
-### 21.5.16 ndb\_move\_data — Ferramenta de cópia de dados NDB
+### 21.5.16 ndb_move_data — Ferramenta de cópia de dados NDB
 
-**ndb\_move\_data** copia dados de uma tabela NDB para outra.
+**ndb_move_data** copia dados de uma tabela NDB para outra.
 
 #### Uso
 
@@ -3426,9 +3426,9 @@ O programa é invocado com os nomes das tabelas de origem e de destino; um ou am
 ndb_move_data options source target
 ```
 
-As opções que podem ser usadas com **ndb\_move\_data** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_move_data** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.35 Opções de string de comando usadas com o programa ndb\_move\_data**
+**Tabela 21.35 Opções de string de comando usadas com o programa ndb_move_data**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --abort-on-error </code> </p></th> <td>Arraste o núcleo em erro permanente (opção de depuração)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório onde os conjuntos de caracteres estão</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-move-data.html#option_ndb_move_data_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-move-data.html#option_ndb_move_data_database">-d nome</a> </code> </p></th> <td>Nome do banco de dados em que a tabela está localizada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --drop-source </code> </p></th> <td>Deixe a tabela de origem após todas as strings terem sido movidas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --error-insert </code> </p></th> <td>Insira erros temporários aleatórios (utilizados em testes)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --exclude-missing-columns </code> </p></th> <td>Ignore colunas extras na tabela de origem ou de destino</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--lossy-conversions</code>,</p><p> <code class="option"> -l </code> </p></th> <td>Permitir que os dados de atributo sejam truncados ao serem convertidos para um tipo menor</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-move-data.html#option_ndb_move_data_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-move-data.html#option_ndb_move_data_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--promote-attributes</code>,</p><p> <code class="option"> -A </code> </p></th> <td>Permitir que os dados de atributo sejam convertidos para um tipo maior</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --staging-tries=x[,y[,z]] </code> </p></th> <td>Especifique tentativas em erros temporários; o formato é x[, y[, z]] onde x=max tentativas (0=sem limite), y=min atraso (ms), z=max atraso (ms)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --verbose </code> </p></th> <td>Ative mensagens detalhadas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -3532,7 +3532,7 @@ Permitir que os dados do atributo sejam truncados quando convertidos para um tip
 
   <table frame="box" rules="all" summary="Properties for abort-on-error"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr></tbody></table>7
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -3594,9 +3594,9 @@ Ative mensagens detalhadas.
 
 Exibir informações da versão e sair.
 
-### 21.5.17 ndb\_perror — Obtenha informações sobre mensagem de erro NDB
+### 21.5.17 ndb_perror — Obtenha informações sobre mensagem de erro NDB
 
-**ndb\_perror** exibe informações sobre um erro NDB, dado seu código de erro. Isso inclui a mensagem de erro, o tipo de erro e se o erro é permanente ou temporário. Adicionada à distribuição do MySQL NDB Cluster no NDB 7.6, é destinada como uma substituição direta para **perror** `--ndb`.
+**ndb_perror** exibe informações sobre um erro NDB, dado seu código de erro. Isso inclui a mensagem de erro, o tipo de erro e se o erro é permanente ou temporário. Adicionada à distribuição do MySQL NDB Cluster no NDB 7.6, é destinada como uma substituição direta para **perror** `--ndb`.
 
 #### Uso
 
@@ -3604,21 +3604,21 @@ Exibir informações da versão e sair.
 ndb_perror [options] error_code
 ```
 
-O **ndb\_perror** não precisa acessar um NDB Cluster em execução, ou qualquer nó (incluindo nós SQL). Para visualizar informações sobre um erro específico do NDB, invoque o programa, usando o código de erro como argumento, da seguinte forma:
+O **ndb_perror** não precisa acessar um NDB Cluster em execução, ou qualquer nó (incluindo nós SQL). Para visualizar informações sobre um erro específico do NDB, invoque o programa, usando o código de erro como argumento, da seguinte forma:
 
 ```sql
 $> ndb_perror 323
 NDB error code 323: Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-Para exibir apenas a mensagem de erro, invoque **ndb\_perror** com a opção `--silent` (forma abreviada `-s`), conforme mostrado aqui:
+Para exibir apenas a mensagem de erro, invoque **ndb_perror** com a opção `--silent` (forma abreviada `-s`), conforme mostrado aqui:
 
 ```sql
 $> ndb_perror -s 323
 Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-Assim como o **perror**, o **ndb\_perror** aceita vários códigos de erro:
+Assim como o **perror**, o **ndb_perror** aceita vários códigos de erro:
 
 ```sql
 $> ndb_perror 321 1001
@@ -3626,13 +3626,13 @@ NDB error code 321: Invalid nodegroup id: Permanent error: Application error
 NDB error code 1001: Illegal connect string
 ```
 
-Outras opções de programa para **ndb\_perror** são descritas mais adiante nesta seção.
+Outras opções de programa para **ndb_perror** são descritas mais adiante nesta seção.
 
-**ndb\_perror** substitui **perror** `--ndb`, que é descontinuado no NDB 7.6 e sujeito à remoção em uma futura versão do MySQL NDB Cluster. Para facilitar a substituição em scripts e outras aplicações que possam depender de **perror** para obter informações de erro do NDB, **ndb\_perror** suporta sua própria opção “falsa” `--ndb`, que não faz nada.
+**ndb_perror** substitui **perror** `--ndb`, que é descontinuado no NDB 7.6 e sujeito à remoção em uma futura versão do MySQL NDB Cluster. Para facilitar a substituição em scripts e outras aplicações que possam depender de **perror** para obter informações de erro do NDB, **ndb_perror** suporta sua própria opção “falsa” `--ndb`, que não faz nada.
 
-A tabela a seguir inclui todas as opções específicas do programa NDB Cluster **ndb\_perror**. Descrições adicionais seguem a tabela.
+A tabela a seguir inclui todas as opções específicas do programa NDB Cluster **ndb_perror**. Descrições adicionais seguem a tabela.
 
-**Tabela 21.36 Opções de string de comando usadas com o programa ndb\_perror**
+**Tabela 21.36 Opções de string de comando usadas com o programa ndb_perror**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb </code> </p></th> <td>Para compatibilidade com aplicativos que dependem de versões antigas de perror; não faz nada</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--silent</code>,</p><p> <code class="option"> -s </code> </p></th> <td>Mostrar mensagem de erro apenas</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Imprimir informações da versão do programa e sair</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>,</p><p> <code class="option"> -v </code> </p></th> <td>Saída verbose; desative com --silent</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody></table>
 
@@ -3648,7 +3648,7 @@ Exibir texto de ajuda do programa e sair.
 
   <table frame="box" rules="all" summary="Properties for ndb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ndb</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
-Para compatibilidade com aplicativos que dependem de versões antigas do **perror** que utilizam a opção `--ndb` desse programa. A opção, quando usada com **ndb\_perror**, não faz nada e é ignorada por ela.
+Para compatibilidade com aplicativos que dependem de versões antigas do **perror** que utilizam a opção `--ndb` desse programa. A opção, quando usada com **ndb_perror**, não faz nada e é ignorada por ela.
 
 * `--silent`, `-s`
 
@@ -3670,7 +3670,7 @@ Saída detalhada; desative com `--silent`.
 
 ### 21.5.18 ndb_print_backup_file — Imprimir conteúdo do arquivo de backup do NDB
 
-**ndb\_print\_backup\_file** obtém informações de diagnóstico de um arquivo de backup de cluster.
+**ndb_print_backup_file** obtém informações de diagnóstico de um arquivo de backup de cluster.
 
 #### Uso
 
@@ -3680,15 +3680,15 @@ ndb_print_backup_file file_name
 
 *`file_name`* é o nome de um arquivo de backup de cluster. Este pode ser qualquer um dos arquivos (`.Data`, `.ctl` ou `.log`) encontrados em um diretório de backup de cluster. Esses arquivos são encontrados no diretório de backup do nó de dados sob o subdiretório `BACKUP-#`, onde *`#`* é o número de sequência para o backup. Para mais informações sobre arquivos de backup de cluster e seus conteúdos, consulte a Seção 21.6.8.1, “Conceitos de Backup de Cluster NDB”.
 
-Assim como **ndb\_print\_schema\_file** e **ndb\_print\_sys\_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb\_print\_backup\_file** deve ser executado em um nó de dados de cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Assim como **ndb_print_schema_file** e **ndb_print_sys_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_backup_file** deve ser executado em um nó de dados de cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
 
 #### Opções Adicionais
 
 None.
 
-### 21.5.19 ndb\_print\_file — Imprimir conteúdo do arquivo de dados do disco NDB
+### 21.5.19 ndb_print_file — Imprimir conteúdo do arquivo de dados do disco NDB
 
-**ndb\_print\_file** obtém informações de um arquivo de dados de disco do NDB Cluster.
+**ndb_print_file** obtém informações de um arquivo de dados de disco do NDB Cluster.
 
 #### Uso
 
@@ -3698,11 +3698,11 @@ ndb_print_file [-v] [-q] file_name+
 
 *`file_name`* é o nome de um arquivo de dados de disco de cluster NDB. Múltiplos nomes de arquivo são aceitos, separados por espaços.
 
-Assim como **ndb\_print\_schema\_file** e **ndb\_print\_sys\_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb\_print\_file** deve ser executado em um nó de dados do NDB Cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Assim como **ndb_print_schema_file** e **ndb_print_sys_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_file** deve ser executado em um nó de dados do NDB Cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
 
 #### Opções Adicionais
 
-**ndb\_print\_file** suporta as seguintes opções:
+**ndb_print_file** suporta as seguintes opções:
 
 * `-v`: Faça a saída mais detalhada.
 * `-q`: Suprima a saída (modo silencioso).
@@ -3710,9 +3710,9 @@ Assim como **ndb\_print\_schema\_file** e **ndb\_print\_sys\_file** (e ao contr�
 
 Para mais informações, consulte a Seção 21.6.11, “Tabelas de dados de disco do cluster NDB”.
 
-### 21.5.20 ndb\_print\_frag\_file — Imprimir conteúdo do arquivo de lista de fragmentos NDB
+### 21.5.20 ndb_print_frag_file — Imprimir conteúdo do arquivo de lista de fragmentos NDB
 
-O **ndb\_print\_frag\_file** obtém informações de um arquivo de lista de fragmentos de clúster. É destinado ao uso para ajudar a diagnosticar problemas com reinicializações de nós de dados.
+O **ndb_print_frag_file** obtém informações de um arquivo de lista de fragmentos de clúster. É destinado ao uso para ajudar a diagnosticar problemas com reinicializações de nós de dados.
 
 #### Uso
 
@@ -3722,7 +3722,7 @@ ndb_print_frag_file file_name
 
 *`file_name`* é o nome de um arquivo de lista de fragmentos de grupo, que corresponde ao padrão `SX.FragList`, onde *`X`* é um dígito no intervalo de 2 a 9, inclusive, e são encontrados no sistema de arquivos do nó de dados do nó que tem o ID de nó *`nodeid`*, em diretórios nomeados `ndb_nodeid_fs/DN/DBDIH/`, onde *`N`* é `1` ou `2`. Cada arquivo de fragmento contém registros dos fragmentos pertencentes a cada tabela `NDB`. Para mais informações sobre arquivos de fragmentos de grupo, consulte o Diretório do Sistema de Arquivos de Nó de Dados do NDB Cluster.
 
-Assim como **ndb\_print\_backup\_file**, **ndb\_print\_sys\_file** e **ndb\_print\_schema\_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb\_print\_frag\_file** deve ser executado em um nó de dados de cluster, pois ele acessa o sistema de arquivos do nó de dados diretamente. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Assim como **ndb_print_backup_file**, **ndb_print_sys_file** e **ndb_print_schema_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_frag_file** deve ser executado em um nó de dados de cluster, pois ele acessa o sistema de arquivos do nó de dados diretamente. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
 
 #### Opções Adicionais
 
@@ -3763,7 +3763,7 @@ LcpNo[1]: maxGciCompleted: 0 maxGciStarted: 0 lcpId: 0 lcpStatus: invalid
 
 ### 21.5.21 ndb_print_schema_file — Imprimir conteúdos do arquivo de esquema NDB
 
-O **ndb\_print\_schema\_file** obtém informações de diagnóstico de um arquivo de esquema de cluster.
+O **ndb_print_schema_file** obtém informações de diagnóstico de um arquivo de esquema de cluster.
 
 #### Uso
 
@@ -3773,15 +3773,15 @@ ndb_print_schema_file file_name
 
 *`file_name`* é o nome de um arquivo de esquema de cluster. Para mais informações sobre arquivos de esquema de cluster, consulte o diretório do sistema de arquivos de nó de dados do NDB Cluster.
 
-Assim como **ndb\_print\_backup\_file** e **ndb\_print\_sys\_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb\_print\_schema\_file** deve ser executado em um nó de dados de cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Assim como **ndb_print_backup_file** e **ndb_print_sys_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_schema_file** deve ser executado em um nó de dados de cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
 
 #### Opções Adicionais
 
 None.
 
-### 21.5.22 ndb\_print\_sys\_file — Imprimir conteúdos do arquivo do sistema NDB
+### 21.5.22 ndb_print_sys_file — Imprimir conteúdos do arquivo do sistema NDB
 
-**ndb\_print\_sys\_file** obtém informações de diagnóstico de um arquivo de sistema do sistema NDB Cluster.
+**ndb_print_sys_file** obtém informações de diagnóstico de um arquivo de sistema do sistema NDB Cluster.
 
 #### Uso
 
@@ -3791,13 +3791,13 @@ ndb_print_sys_file file_name
 
 *`file_name`* é o nome de um arquivo de sistema de cluster (sysfile). Arquivos de sistema de cluster estão localizados no diretório de dados de um nó de dados (`DataDir`); o caminho sob este diretório para arquivos de sistema corresponde ao padrão `ndb_#_fs/D#/DBDIH/P#.sysfile`. Em cada caso, o *`#`* representa um número (não necessariamente o mesmo número). Para mais informações, consulte o diretório do sistema de arquivos de nó de dados do NDB Cluster.
 
-Assim como **ndb\_print\_backup\_file** e **ndb\_print\_schema\_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb\_print\_backup\_file** deve ser executado em um nó de dados de cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Assim como **ndb_print_backup_file** e **ndb_print_schema_file** (e ao contrário da maioria das outras ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_backup_file** deve ser executado em um nó de dados de cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
 
 #### Opções Adicionais
 
 None.
 
-### 21.5.23 ndb\_redo\_log\_reader — Verificar e imprimir o conteúdo do log de refazer de cluster
+### 21.5.23 ndb_redo_log_reader — Verificar e imprimir o conteúdo do log de refazer de cluster
 
 Leitura de um arquivo de registro de refazer, verificando-o quanto a erros, imprimindo seu conteúdo em um formato legível para humanos, ou ambos. **ndb_redo_log_reader** é destinado principalmente para uso por desenvolvedores do NDB Cluster e pessoal de suporte na depuração e diagnóstico de problemas.
 
@@ -3805,9 +3805,9 @@ Esse utilitário permanece em desenvolvimento e sua sintaxe e comportamento est�
 
 Os arquivos de código fonte em C++ para **ndb_redo_log_reader** podem ser encontrados no diretório `/storage/ndb/src/kernel/blocks/dblqh/redoLogReader`.
 
-As opções que podem ser usadas com **ndb\_redo\_log\_reader** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_redo_log_reader** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.37 Opções de string de comando usadas com o programa ndb\_redo\_log\_reader**
+**Tabela 21.37 Opções de string de comando usadas com o programa ndb_redo_log_reader**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> -dump </code> </p></th> <td>Imprimir informações de varredura</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> -filedescriptors </code> </p></th> <td>Imprimir descritores de arquivo apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --help </code> </p></th> <td>Informações sobre o uso da impressão (não tem forma abreviada)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> -lap </code> </p></th> <td>Forneça informações sobre a volta, com o máximo de GCI iniciado e concluído</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_mbyte">- mbyte #</a> </code> </p></th> <td>Começando em megabyte</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> -mbyteheaders </code> </p></th> <td>Mostrar apenas o cabeçalho da primeira página de cada megabyte no arquivo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> -nocheck </code> </p></th> <td>Não verifique os registros quanto a erros</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> -noprint </code> </p></th> <td>Não imprima registros</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_page">-página #</a> </code> </p></th> <td>Comece por esta página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> -pageheaders </code> </p></th> <td>Mostrar apenas os cabeçalhos da página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex #</a> </code> </p></th> <td>Comece com este índice da página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> -twiddle </code> </p></th> <td>Dump com deslocamento de bits</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -3881,25 +3881,25 @@ Forneça informações sobre a volta, com o máximo de GCI iniciado e concluído
 
 Dump com deslocamento de bits.
 
-Assim como **ndb\_print\_backup\_file** e **ndb\_print\_schema\_file** (e ao contrário da maioria das ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb\_redo\_log\_reader** deve ser executado em um nó de dados do cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Assim como **ndb_print_backup_file** e **ndb_print_schema_file** (e ao contrário da maioria das ferramentas do `NDB` que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_redo_log_reader** deve ser executado em um nó de dados do cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
 
-### 21.5.24 ndb\_restore — Restaurar um backup de um NDB Cluster
+### 21.5.24 ndb_restore — Restaurar um backup de um NDB Cluster
 
-O programa de restauração do NDB Cluster é implementado como um utilitário separado de string de comando **ndb\_restore**, que normalmente pode ser encontrado no diretório MySQL `bin`. Este programa lê os arquivos criados como resultado do backup e insere as informações armazenadas no banco de dados.
+O programa de restauração do NDB Cluster é implementado como um utilitário separado de string de comando **ndb_restore**, que normalmente pode ser encontrado no diretório MySQL `bin`. Este programa lê os arquivos criados como resultado do backup e insere as informações armazenadas no banco de dados.
 
 Nota
 
 A partir do NDB 7.5.15 e 7.6.11, este programa não imprime mais `NDBT_ProgramExit: ...` quando termina sua execução. As aplicações que dependem desse comportamento devem ser modificadas conforme necessário ao fazer a atualização a partir de versões anteriores.
 
-O **ndb\_restore** deve ser executado uma vez para cada um dos arquivos de backup que foram criados pelo comando `START BACKUP` usado para criar o backup (consulte a Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”). Isso é igual ao número de nós de dados no cluster no momento em que o backup foi criado.
+O **ndb_restore** deve ser executado uma vez para cada um dos arquivos de backup que foram criados pelo comando `START BACKUP` usado para criar o backup (consulte a Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”). Isso é igual ao número de nós de dados no cluster no momento em que o backup foi criado.
 
 Nota
 
-Antes de usar o **ndb\_restore**, é recomendável que o clúster esteja em modo de usuário único, a menos que você esteja restaurando vários nós de dados em paralelo. Consulte a Seção 21.6.6, “Modo de usuário único do clúster NDB”, para obter mais informações.
+Antes de usar o **ndb_restore**, é recomendável que o clúster esteja em modo de usuário único, a menos que você esteja restaurando vários nós de dados em paralelo. Consulte a Seção 21.6.6, “Modo de usuário único do clúster NDB”, para obter mais informações.
 
-As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_restore** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.38 Opções de string de comando usadas com o programa ndb\_restore**
+**Tabela 21.38 Opções de string de comando usadas com o programa ndb_restore**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --allow-pk-changes[=0|1] </code> </p></th> <td>Permitir alterações no conjunto de colunas que compõem a chave primária da tabela</td> <td><p>ADICIONADO: NDB 7.6.14</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --append </code> </p></th> <td>Adicione dados a um arquivo delimitado por tabulação</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --backup-path=path </code> </p></th> <td>Caminho para o diretório dos arquivos de backup</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--backupid=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid">-b #</a> </code> </p></th> <td>Restaurar a partir do backup com este ID</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_connect">-c connection_string</a> </code> </p></th> <td>Alias para --connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --disable-indexes </code> </p></th> <td>Ignocia índices de backup; pode diminuir o tempo necessário para restaurar os dados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--dont-ignore-systab-0</code>,</p><p> <code class="option"> -f </code> </p></th> <td>Não ignore a tabela do sistema durante o restabelecimento; experimental; não para uso de produção</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --exclude-databases=list </code> </p></th> <td>Lista de uma ou mais bases de dados a serem excluídas (inclui as que não estão nomeadas)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --exclude-intermediate-sql-tables[=TRUE|FALSE] </code> </p></th> <td>Não restaure nenhuma tabela intermediária (com nomes prefixados com '#sql-') que foram deixadas de operações de ALTER TABLE; especifique FALSO para restaurar tais tabelas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --exclude-missing-columns </code> </p></th> <td>As colunas das versões de backup da tabela que estão faltando na versão da tabela no banco de dados devem ser ignoradas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --exclude-missing-tables </code> </p></th> <td>As tabelas dos backups que estão faltando no banco de dados são ignoradas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --exclude-tables=list </code> </p></th> <td>Lista de uma ou mais tabelas a serem excluídas (inclui aquelas na mesma base de dados que não têm nome); cada referência de tabela deve incluir o nome da base de dados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fields-enclosed-by=char </code> </p></th> <td>Campos são delimitados por este caractere</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fields-optionally-enclosed-by </code> </p></th> <td>Os campos são opcionalmente encerrados por este caractere</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --fields-terminated-by=char </code> </p></th> <td>Os campos são terminados por este caractere</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --hex </code> </p></th> <td>Imprimir tipos binários no formato hexadecimal</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ignore-extended-pk-updates[=0|1] </code> </p></th> <td>Ignorar entradas de registro que contenham atualizações em colunas agora incluídas na chave primária estendida</td> <td><p>ADICIONADO: NDB 7.6.14</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --include-databases=list </code> </p></th> <td>Lista de uma ou mais bancos de dados para restaurar (excluindo aqueles que não estão nomeados)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --include-tables=list </code> </p></th> <td>Lista de uma ou mais tabelas a serem restauradas (excluindo aquelas na mesma base de dados que não têm nome); cada referência de tabela deve incluir o nome da base de dados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --lines-terminated-by=char </code> </p></th> <td>As strings são terminadas por este caractere</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--lossy-conversions</code>,</p><p> <code class="option"> -L </code> </p></th> <td>Permitir conversões com perda de dados de valores de coluna (tipo redução ou mudança de sinal) ao restaurar dados de backup</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-binlog </code> </p></th> <td>Se o mysqld estiver conectado e usando registro binário, não registre os dados restaurados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--no-restore-disk-objects</code>,</p><p> <code class="option"> -d </code> </p></th> <td>Não restaure objetos relacionados aos dados do disco</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--no-upgrade</code>,</p><p> <code class="option"> -u </code> </p></th> <td>Não atualize o tipo de matriz para atributos varsize que não redimensionem os dados VAR e não mude os atributos de coluna</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-nodegroup-map=map</code>,</p><p> <code class="option"> -z </code> </p></th> <td>Especifique o mapa do grupo de nós; não utilizado, não suportado</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--nodeid=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid">- n #</a> </code> </p></th> <td>ID do nó onde o backup foi feito</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --num-slices=# </code> </p></th> <td>Número de fatias a aplicar ao restaurar por fatia</td> <td><p>ADICIONADO: NDB 7.6.13</p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_parallelism">-p #</a> </code> </p></th> <td>Número de transações paralelas a serem usadas durante a restauração dos dados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--preserve-trailing-spaces</code>,</p><p> <code class="option"> -P </code> </p></th> <td>Permitir a preservação de espaços finais (incluindo preenchimento) ao promover tipos de string de largura fixa para tipos de largura variável</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print </code> </p></th> <td>Imprima metadados, dados e log no stdout (equivalente a --print-meta --print-data --print-log)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-data </code> </p></th> <td>Imprimir dados no stdout</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-log </code> </p></th> <td>Imprimir o log no stdout</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-meta </code> </p></th> <td>Imprimir metadados no stdout</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-sql-log </code> </p></th> <td>Escreva o log SQL no stdout</td> <td><p>ADICIONADO: NDB 7.5.4</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --progress-frequency=# </code> </p></th> <td>Status de impressão do restabelecimento de cada número de segundos fornecido</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--promote-attributes</code>,</p><p> <code class="option"> -A </code> </p></th> <td>Permitir que atributos sejam promovidos ao restaurar dados de backup</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --rebuild-indexes </code> </p></th> <td>Causa a reconstrução multithreading de índices ordenados encontrados em backup; o número de threads utilizadas é determinado pela definição de BuildIndexThreads</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --remap-column=string </code> </p></th> <td>Aplicar deslocamento ao valor da coluna especificada usando a função e os argumentos indicados. O formato é [db].[tbl].[col]:[fn]:[args]; consulte a documentação para detalhes</td> <td><p>ADICIONADO: NDB 7.6.14</p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-data</code>,</p><p> <code class="option"> -r </code> </p></th> <td>Restaure os dados e os registros da tabela no NDB Cluster usando a API NDB</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-epoch</code>,</p><p> <code class="option"> -e </code> </p></th> <td>Restaure as informações da época na tabela de status; útil em um clúster de replicação para iniciar a replicação; atualize ou insira uma string no mysql.ndb_apply_status com ID 0</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--restore-meta</code>,</p><p> <code class="option"> -m </code> </p></th> <td>Restaure metadados no NDB Cluster usando a API NDB</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --restore-privilege-tables </code> </p></th> <td>Restaure as tabelas de privilégios do MySQL que foram anteriormente movidas para NDB</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --rewrite-database=string </code> </p></th> <td>Restaure para um banco de dados com nomes diferentes; o formato é olddb, newdb</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --skip-broken-objects </code> </p></th> <td>Ignorar tabelas de blobs ausentes no arquivo de backup</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--skip-table-check</code>,</p><p> <code class="option"> -s </code> </p></th> <td>Ignorar a verificação da estrutura da tabela durante o restauro</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --skip-unknown-objects </code> </p></th> <td>As causas de objetos do esquema não reconhecidos pelo ndb_restore serem ignorados ao restaurar um backup feito de uma versão mais nova do NDB para uma versão mais antiga.</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --slice-id=# </code> </p></th> <td>Slice ID, ao restaurar por fatias</td> <td><p>ADICIONADO: NDB 7.6.13</p></td> </tr></tbody><tbody><tr> <th><p> <code>--tab=path</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-restore.html#option_ndb_restore_tab">-T path</a> </code> </p></th> <td>Cria um arquivo .txt separado por tabulação para cada tabela no caminho fornecido</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --timestamp-printouts{=true|false} </code> </p></th> <td>Prefixe todas as informações, mensagens de erro e logs de depuração com timestamps</td> <td><p>ADICIONADO: NDB 7.5.30, 5.7.41-ndb-7.6.26</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --verbose=# </code> </p></th> <td>Nível de verbosidade na saída</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -3907,7 +3907,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
   <table frame="box" rules="all" summary="Properties for allow-pk-changes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
 
-Quando esta opção é definida como `1`, o **ndb\_restore** permite que as chaves primárias em uma definição de tabela diferem daquela da mesma tabela no backup. Isso pode ser desejável ao fazer backup e restaurar entre diferentes versões do esquema com mudanças na chave primária em uma ou mais tabelas, e parece que realizar a operação de restauração usando o ndb\_restore é mais simples ou mais eficiente do que emitir muitas declarações `ALTER TABLE` após restaurar os esquemas e dados das tabelas.
+Quando esta opção é definida como `1`, o **ndb_restore** permite que as chaves primárias em uma definição de tabela diferem daquela da mesma tabela no backup. Isso pode ser desejável ao fazer backup e restaurar entre diferentes versões do esquema com mudanças na chave primária em uma ou mais tabelas, e parece que realizar a operação de restauração usando o ndb_restore é mais simples ou mais eficiente do que emitir muitas declarações `ALTER TABLE` após restaurar os esquemas e dados das tabelas.
 
 As seguintes mudanças nas definições de chave primária são suportadas por `--allow-pk-changes`:
 
@@ -3915,27 +3915,27 @@ As seguintes mudanças nas definições de chave primária são suportadas por `
 
 Importante
 
-Ao estender a chave primária de uma tabela, quaisquer colunas que se tornem parte da chave primária não devem ser atualizadas enquanto o backup estiver sendo realizado; quaisquer atualizações desse tipo descobertas pelo **ndb\_restore** causam o fracasso da operação de restauração, mesmo quando não ocorre nenhuma mudança no valor. Em alguns casos, pode ser possível sobrepor esse comportamento usando a opção [[`--ignore-extended-pk-updates`]; consulte a descrição dessa opção para mais informações.
+Ao estender a chave primária de uma tabela, quaisquer colunas que se tornem parte da chave primária não devem ser atualizadas enquanto o backup estiver sendo realizado; quaisquer atualizações desse tipo descobertas pelo **ndb_restore** causam o fracasso da operação de restauração, mesmo quando não ocorre nenhuma mudança no valor. Em alguns casos, pode ser possível sobrepor esse comportamento usando a opção [[`--ignore-extended-pk-updates`]; consulte a descrição dessa opção para mais informações.
 
 + **Contratar a chave primária (1)**: Uma coluna que já faz parte da chave primária da tabela no esquema de backup não faz mais parte da chave primária, mas permanece na tabela.
 
 + **Contatar a chave primária (2)**: Uma coluna que já faz parte da chave primária da tabela no esquema de backup é removida completamente da tabela.
 
-Essas diferenças podem ser combinadas com outras diferenças de esquema suportadas pelo **ndb\_restore**, incluindo alterações em colunas de blob e texto que exigem o uso de tabelas de preparação.
+Essas diferenças podem ser combinadas com outras diferenças de esquema suportadas pelo **ndb_restore**, incluindo alterações em colunas de blob e texto que exigem o uso de tabelas de preparação.
 
 Os passos básicos em um cenário típico que envolve mudanças no esquema de chave primária estão listados aqui:
 
-1. Restaure os esquemas de tabela usando **ndb\_restore** `--restore-meta`
+1. Restaure os esquemas de tabela usando **ndb_restore** `--restore-meta`
 
 2. Altere o esquema para o desejado ou crie-o.
 3. Faça um backup do esquema desejado.
-4. Execute **ndb\_restore** `--disable-indexes` usando o backup do passo anterior, para descartar índices e restrições.
+4. Execute **ndb_restore** `--disable-indexes` usando o backup do passo anterior, para descartar índices e restrições.
 
-5. Execute **ndb\_restore** `--allow-pk-changes` (possivelmente junto com `--ignore-extended-pk-updates`, `--disable-indexes` e, possivelmente, outras opções conforme necessário) para restaurar todos os dados
+5. Execute **ndb_restore** `--allow-pk-changes` (possivelmente junto com `--ignore-extended-pk-updates`, `--disable-indexes` e, possivelmente, outras opções conforme necessário) para restaurar todos os dados
 
-6. Execute **ndb\_restore** `--rebuild-indexes` usando o backup feito com o esquema desejado, para reconstruir índices e restrições
+6. Execute **ndb_restore** `--rebuild-indexes` usando o backup feito com o esquema desejado, para reconstruir índices e restrições
 
-Ao estender a chave primária, pode ser necessário que o **ndb\_restore** use um índice secundário único temporário durante a operação de restauração para mapear a chave primária antiga para a nova. Esse índice é criado apenas quando necessário para aplicar eventos do log de backup a uma tabela que tenha uma chave primária estendida. Esse índice é denominado `NDB$RESTORE_PK_MAPPING` e é criado em cada tabela que o requer; ele pode ser compartilhado, se necessário, por várias instâncias do **ndb\_restore** que estão em paralelo. (Executar **ndb\_restore** `--rebuild-indexes` no final do processo de restauração faz com que esse índice seja descartado.)
+Ao estender a chave primária, pode ser necessário que o **ndb_restore** use um índice secundário único temporário durante a operação de restauração para mapear a chave primária antiga para a nova. Esse índice é criado apenas quando necessário para aplicar eventos do log de backup a uma tabela que tenha uma chave primária estendida. Esse índice é denominado `NDB$RESTORE_PK_MAPPING` e é criado em cada tabela que o requer; ele pode ser compartilhado, se necessário, por várias instâncias do **ndb_restore** que estão em paralelo. (Executar **ndb_restore** `--rebuild-indexes` no final do processo de restauração faz com que esse índice seja descartado.)
 
 * `--append`
 
@@ -3947,17 +3947,17 @@ Quando usado com as opções `--tab` e `--print-data`, isso faz com que os dados
 
   <table frame="box" rules="all" summary="Properties for backup-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
-O caminho para o diretório de backup é necessário; este é fornecido ao **ndb\_restore** usando a opção `--backup-path`, e deve incluir o subdiretório correspondente ao backup de ID do backup a ser restaurado. Por exemplo, se o `DataDir` do nó de dados é `/var/lib/mysql-cluster`, então o diretório de backup é `/var/lib/mysql-cluster/BACKUP`, e os arquivos de backup do backup com o ID 3 podem ser encontrados em `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. O caminho pode ser absoluto ou relativo ao diretório em que o executável **ndb\_restore** está localizado, e pode ser opcionalmente prefixado com `backup-path=`.
+O caminho para o diretório de backup é necessário; este é fornecido ao **ndb_restore** usando a opção `--backup-path`, e deve incluir o subdiretório correspondente ao backup de ID do backup a ser restaurado. Por exemplo, se o `DataDir` do nó de dados é `/var/lib/mysql-cluster`, então o diretório de backup é `/var/lib/mysql-cluster/BACKUP`, e os arquivos de backup do backup com o ID 3 podem ser encontrados em `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. O caminho pode ser absoluto ou relativo ao diretório em que o executável **ndb_restore** está localizado, e pode ser opcionalmente prefixado com `backup-path=`.
 
-É possível restaurar um backup para um banco de dados com uma configuração diferente daquela em que foi criado. Por exemplo, suponha que um backup com o ID de backup `12`, criado em um clúster com dois nós de armazenamento com os IDs de nó `2` e `3`, deva ser restaurado para um clúster com quatro nós. Então, **ndb\_restore** deve ser executado duas vezes — uma vez para cada nó de armazenamento no clúster onde o backup foi feito. No entanto, **ndb\_restore** nem sempre pode restaurar backups feitos de um clúster que executa uma versão do MySQL para um clúster que executa uma versão diferente do MySQL. Consulte a Seção 21.3.7, “Atualização e Downgrading do NDB Cluster”, para obter mais informações.
+É possível restaurar um backup para um banco de dados com uma configuração diferente daquela em que foi criado. Por exemplo, suponha que um backup com o ID de backup `12`, criado em um clúster com dois nós de armazenamento com os IDs de nó `2` e `3`, deva ser restaurado para um clúster com quatro nós. Então, **ndb_restore** deve ser executado duas vezes — uma vez para cada nó de armazenamento no clúster onde o backup foi feito. No entanto, **ndb_restore** nem sempre pode restaurar backups feitos de um clúster que executa uma versão do MySQL para um clúster que executa uma versão diferente do MySQL. Consulte a Seção 21.3.7, “Atualização e Downgrading do NDB Cluster”, para obter mais informações.
 
 Importante
 
-Não é possível restaurar um backup feito a partir de uma versão mais recente do NDB Cluster usando uma versão mais antiga do **ndb\_restore**. Você pode restaurar um backup feito a partir de uma versão mais recente do MySQL para um cluster mais antigo, mas você deve usar uma cópia do **ndb\_restore** da versão mais recente do NDB Cluster para fazer isso.
+Não é possível restaurar um backup feito a partir de uma versão mais recente do NDB Cluster usando uma versão mais antiga do **ndb_restore**. Você pode restaurar um backup feito a partir de uma versão mais recente do MySQL para um cluster mais antigo, mas você deve usar uma cópia do **ndb_restore** da versão mais recente do NDB Cluster para fazer isso.
 
-Por exemplo, para restaurar um backup de cluster tirado de um cluster que está executando NDB Cluster 7.6.36 para um cluster que está executando NDB Cluster 7.5.36, você deve usar o **ndb\_restore** que vem com a distribuição do NDB Cluster 7.6.36.
+Por exemplo, para restaurar um backup de cluster tirado de um cluster que está executando NDB Cluster 7.6.36 para um cluster que está executando NDB Cluster 7.5.36, você deve usar o **ndb_restore** que vem com a distribuição do NDB Cluster 7.6.36.
 
-Para uma restauração mais rápida, os dados podem ser restaurados em paralelo, desde que haja um número suficiente de conexões de clúster disponíveis. Ou seja, ao restaurar para múltiplos nós em paralelo, você deve ter uma seção `[api]` ou `[mysqld]` no arquivo de clúster `config.ini` disponível para cada processo **ndb\_restore** concorrente. No entanto, os arquivos de dados devem sempre ser aplicados antes dos logs.
+Para uma restauração mais rápida, os dados podem ser restaurados em paralelo, desde que haja um número suficiente de conexões de clúster disponíveis. Ou seja, ao restaurar para múltiplos nós em paralelo, você deve ter uma seção `[api]` ou `[mysqld]` no arquivo de clúster `config.ini` disponível para cada processo **ndb_restore** concorrente. No entanto, os arquivos de dados devem sempre ser aplicados antes dos logs.
 
 * `--backupid`=*`#`*, `-b`
 
@@ -4037,7 +4037,7 @@ A partir do NDB 7.5.24 e do NDB 7.6.20, essa opção também exclui quaisquer ch
 
   <table frame="box" rules="all" summary="Properties for allow-pk-changes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>5
 
-Normalmente, ao restaurar dados de tabela e metadados, o **ndb\_restore** ignora a cópia da tabela do sistema `NDB` que está presente no backup. `--dont-ignore-systab-0` faz com que a tabela do sistema seja restaurada. *Esta opção é destinada apenas para uso experimental e de desenvolvimento, e não é recomendada em um ambiente de produção*.
+Normalmente, ao restaurar dados de tabela e metadados, o **ndb_restore** ignora a cópia da tabela do sistema `NDB` que está presente no backup. `--dont-ignore-systab-0` faz com que a tabela do sistema seja restaurada. *Esta opção é destinada apenas para uso experimental e de desenvolvimento, e não é recomendada em um ambiente de produção*.
 
 * `--exclude-databases`=*`db-list`*
 
@@ -4051,19 +4051,19 @@ Essa opção é frequentemente usada em combinação com `--exclude-tables`; con
 
   <table frame="box" rules="all" summary="Properties for allow-pk-changes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>7
 
-Ao realizar operações de cópia `ALTER TABLE`, o `mysqld` cria tabelas intermediárias (cujos nomes são prefixados com `#sql-`). Quando o `TRUE`, a opção `--exclude-intermediate-sql-tables` impede que o **ndb\_restore** restaure essas tabelas que podem ter sido deixadas para trás dessas operações. Esta opção é `TRUE` por padrão.
+Ao realizar operações de cópia `ALTER TABLE`, o `mysqld` cria tabelas intermediárias (cujos nomes são prefixados com `#sql-`). Quando o `TRUE`, a opção `--exclude-intermediate-sql-tables` impede que o **ndb_restore** restaure essas tabelas que podem ter sido deixadas para trás dessas operações. Esta opção é `TRUE` por padrão.
 
 * `--exclude-missing-columns`
 
   <table frame="box" rules="all" summary="Properties for allow-pk-changes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>8
 
-É possível restaurar apenas as colunas selecionadas da tabela usando esta opção, o que faz com que **ndb\_restore** ignore quaisquer colunas ausentes das tabelas que estão sendo restauradas em comparação com as versões dessas tabelas encontradas no backup. Esta opção se aplica a todas as tabelas que estão sendo restauradas. Se você deseja aplicar esta opção apenas a tabelas ou bancos de dados selecionados, pode usá-la em combinação com uma ou mais das opções `--include-*` ou `--exclude-*` descritas em outras partes desta seção para fazer isso, e depois restaurar dados para as tabelas restantes usando um conjunto complementar dessas opções.
+É possível restaurar apenas as colunas selecionadas da tabela usando esta opção, o que faz com que **ndb_restore** ignore quaisquer colunas ausentes das tabelas que estão sendo restauradas em comparação com as versões dessas tabelas encontradas no backup. Esta opção se aplica a todas as tabelas que estão sendo restauradas. Se você deseja aplicar esta opção apenas a tabelas ou bancos de dados selecionados, pode usá-la em combinação com uma ou mais das opções `--include-*` ou `--exclude-*` descritas em outras partes desta seção para fazer isso, e depois restaurar dados para as tabelas restantes usando um conjunto complementar dessas opções.
 
 * `--exclude-missing-tables`
 
   <table frame="box" rules="all" summary="Properties for allow-pk-changes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Introduced</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>9
 
-É possível restaurar apenas as tabelas selecionadas usando essa opção, o que faz com que o **ndb\_restore** ignore quaisquer tabelas do backup que não sejam encontradas no banco de dados de destino.
+É possível restaurar apenas as tabelas selecionadas usando essa opção, o que faz com que o **ndb_restore** ignore quaisquer tabelas do backup que não sejam encontradas no banco de dados de destino.
 
 * `--exclude-tables`=*`table-list`*
 
@@ -4071,11 +4071,11 @@ Ao realizar operações de cópia `ALTER TABLE`, o `mysqld` cria tabelas interme
 
 Lista de uma ou mais tabelas a serem excluídas; cada referência de tabela deve incluir o nome do banco de dados. Frequentemente usada em conjunto com `--exclude-databases`.
 
-Quando o `--exclude-databases` ou `--exclude-tables` é usado, apenas as bases de dados ou tabelas nomeadas pela opção são excluídas; todas as outras bases de dados e tabelas são restauradas pelo **ndb\_restore**.
+Quando o `--exclude-databases` ou `--exclude-tables` é usado, apenas as bases de dados ou tabelas nomeadas pela opção são excluídas; todas as outras bases de dados e tabelas são restauradas pelo **ndb_restore**.
 
-Esta tabela mostra várias invocações de **ndb\_restore** usando as opções `--exclude-*` (outras opções que possivelmente são necessárias foram omitidas por questões de clareza), e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster:
+Esta tabela mostra várias invocações de **ndb_restore** usando as opções `--exclude-*` (outras opções que possivelmente são necessárias foram omitidas por questões de clareza), e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster:
 
-**Tabela 21.39 Várias invocatórias do ndb\_restore usando opções --exclude-\*, e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster.**
+**Tabela 21.39 Várias invocatórias do ndb_restore usando opções --exclude-\*, e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster.**
 
   <table frame="box" rules="all" summary="Properties for append"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>1
 
@@ -4091,11 +4091,11 @@ Você pode usar as opções `--include-*` e `--exclude-*` juntas, sujeito às se
 
 + As ações de todas as opções de `--include-*` e `--exclude-*` são cumulativas.
 
-Todas as opções de `--include-*` e `--exclude-*` são avaliadas na ordem passada para ndb\_restore, de direita para esquerda.
+Todas as opções de `--include-*` e `--exclude-*` são avaliadas na ordem passada para ndb_restore, de direita para esquerda.
 
 + Em caso de opções conflitantes, a primeira (a mais à direita) tem precedência. Em outras palavras, a primeira opção (da direita para a esquerda) que corresponde a um banco de dados ou tabela específica "vence".
 
-Por exemplo, o seguinte conjunto de opções faz com que o **ndb\_restore** restaure todas as tabelas do banco de dados `db1`, exceto `db1.t1`, enquanto não restaura outras tabelas de nenhum outro banco de dados:
+Por exemplo, o seguinte conjunto de opções faz com que o **ndb_restore** restaure todas as tabelas do banco de dados `db1`, exceto `db1.t1`, enquanto não restaura outras tabelas de nenhum outro banco de dados:
 
   ```sql
   --include-databases=db1 --exclude-tables=db1.t1
@@ -4141,7 +4141,7 @@ Se esta opção for usada, todos os valores binários serão exibidos no formato
 
   <table frame="box" rules="all" summary="Properties for append"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>7
 
-Ao usar a opção `--allow-pk-changes`, as colunas que se tornam parte da chave primária de uma tabela não devem ser atualizadas enquanto o backup está sendo feito; essas colunas devem manter os mesmos valores do momento em que os valores são inseridos nelas até que as strings que contêm os valores sejam excluídas. Se o **ndb\_restore** encontrar atualizações nessas colunas ao restaurar um backup, o restauro falha. Como algumas aplicações podem definir valores para todas as colunas ao atualizar uma string, mesmo quando alguns valores das colunas não são alterados, o backup pode incluir eventos de log que parecem atualizar colunas que, na verdade, não são modificadas. Nesses casos, você pode definir `--ignore-extended-pk-updates` para `1`, forçando o **ndb\_restore** a ignorar tais atualizações.
+Ao usar a opção `--allow-pk-changes`, as colunas que se tornam parte da chave primária de uma tabela não devem ser atualizadas enquanto o backup está sendo feito; essas colunas devem manter os mesmos valores do momento em que os valores são inseridos nelas até que as strings que contêm os valores sejam excluídas. Se o **ndb_restore** encontrar atualizações nessas colunas ao restaurar um backup, o restauro falha. Como algumas aplicações podem definir valores para todas as colunas ao atualizar uma string, mesmo quando alguns valores das colunas não são alterados, o backup pode incluir eventos de log que parecem atualizar colunas que, na verdade, não são modificadas. Nesses casos, você pode definir `--ignore-extended-pk-updates` para `1`, forçando o **ndb_restore** a ignorar tais atualizações.
 
 Importante
 
@@ -4161,11 +4161,11 @@ Lista delimitada por vírgula de um ou mais bancos de dados a serem restaurados.
 
 Lista de tabelas separadas por vírgula a serem restauradas; cada referência de tabela deve incluir o nome do banco de dados.
 
-Quando o `--include-databases` ou o `--include-tables` é usado, apenas as bases de dados ou tabelas nomeadas pela opção são restauradas; todas as outras bases de dados e tabelas são excluídas pelo **ndb\_restore** e não são restauradas.
+Quando o `--include-databases` ou o `--include-tables` é usado, apenas as bases de dados ou tabelas nomeadas pela opção são restauradas; todas as outras bases de dados e tabelas são excluídas pelo **ndb_restore** e não são restauradas.
 
-A tabela a seguir mostra várias invocações do **ndb\_restore** usando as opções `--include-*` (outras opções que podem ser necessárias foram omitidas por questões de clareza), e os efeitos que elas têm na restauração a partir de um backup de NDB Cluster:
+A tabela a seguir mostra várias invocações do **ndb_restore** usando as opções `--include-*` (outras opções que podem ser necessárias foram omitidas por questões de clareza), e os efeitos que elas têm na restauração a partir de um backup de NDB Cluster:
 
-**Tabela 21.40 Várias invocatórias do ndb\_restore usando opções --include-\* e seus efeitos na restauração a partir de um backup de NDB Cluster.**
+**Tabela 21.40 Várias invocatórias do ndb_restore usando opções --include-\* e seus efeitos na restauração a partir de um backup de NDB Cluster.**
 
   <table frame="box" rules="all" summary="Properties for backup-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>0
 
@@ -4205,15 +4205,15 @@ Leia o caminho fornecido a partir do arquivo de login.
 
 Esta opção é destinada a complementar a opção `--promote-attributes`. O uso de `--lossy-conversions` permite conversões com perda de dados dos valores das colunas (tipos redução ou mudança de sinal) ao restaurar dados de backup. Com algumas exceções, as regras que regem a redução são as mesmas para a replicação do MySQL; consulte a Seção 16.4.1.10.2, “Replicação de Colunas com Diferentes Tipos de Dados”, para informações sobre as conversões de tipos específicos atualmente suportadas pela redução de atributos.
 
-Começando com o NDB 7.5.23 e o NDB 7.6.19, essa opção também permite restaurar uma coluna `NULL` como `NOT NULL`. A coluna não deve conter quaisquer entradas `NULL`; caso contrário, o **ndb\_restore** pára com um erro.
+Começando com o NDB 7.5.23 e o NDB 7.6.19, essa opção também permite restaurar uma coluna `NULL` como `NOT NULL`. A coluna não deve conter quaisquer entradas `NULL`; caso contrário, o **ndb_restore** pára com um erro.
 
-**ndb\_restore** relata qualquer truncamento de dados que ele realiza durante as conversões não-lossy uma vez por atributo e coluna.
+**ndb_restore** relata qualquer truncamento de dados que ele realiza durante as conversões não-lossy uma vez por atributo e coluna.
 
 * `--ndb-connectstring`
 
   <table frame="box" rules="all" summary="Properties for backup-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>4
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -4243,7 +4243,7 @@ Ative as otimizações para a seleção de nós para transações. Ativado por p
 
   <table frame="box" rules="all" summary="Properties for backup-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>9
 
-Essa opção impede que quaisquer nós SQL conectados escrevam dados restaurados pelo **ndb\_restore** em seus registros binários.
+Essa opção impede que quaisquer nós SQL conectados escrevam dados restaurados pelo **ndb_restore** em seus registros binários.
 
 * `--no-defaults`
 
@@ -4255,13 +4255,13 @@ Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo d
 
   <table frame="box" rules="all" summary="Properties for backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>1
 
-Essa opção impede que o **ndb\_restore** restaure quaisquer objetos de dados do disco do NDB Cluster, como espaços de tabela e grupos de arquivos de registro; consulte a Seção 21.6.11, “Tabelas de dados de disco do NDB Cluster”, para obter mais informações sobre esses itens.
+Essa opção impede que o **ndb_restore** restaure quaisquer objetos de dados do disco do NDB Cluster, como espaços de tabela e grupos de arquivos de registro; consulte a Seção 21.6.11, “Tabelas de dados de disco do NDB Cluster”, para obter mais informações sobre esses itens.
 
 * `--no-upgrade`, `-u`
 
   <table frame="box" rules="all" summary="Properties for backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>2
 
-Ao usar o **ndb\_restore** para restaurar um backup, as colunas `VARCHAR` criadas usando o antigo formato fixo são redimensionadas e recriadas usando o formato de largura variável que agora é empregado. Esse comportamento pode ser ignorado especificando `--no-upgrade`.
+Ao usar o **ndb_restore** para restaurar um backup, as colunas `VARCHAR` criadas usando o antigo formato fixo são redimensionadas e recriadas usando o formato de largura variável que agora é empregado. Esse comportamento pode ser ignorado especificando `--no-upgrade`.
 
 * `--nodeid`=*`#`*, `-n`
 
@@ -4277,11 +4277,11 @@ Em NDB 7.5.13 e versões posteriores, e em NDB 7.6.9 e versões posteriores, est
 
   <table frame="box" rules="all" summary="Properties for backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>4
 
-Ao restaurar um backup por fatias, esta opção define o número de fatias em que o backup será dividido. Isso permite que múltiplas instâncias do **ndb\_restore** restaurem subconjuntos disjuntos em paralelo, reduzindo potencialmente o tempo necessário para realizar a operação de restauração.
+Ao restaurar um backup por fatias, esta opção define o número de fatias em que o backup será dividido. Isso permite que múltiplas instâncias do **ndb_restore** restaurem subconjuntos disjuntos em paralelo, reduzindo potencialmente o tempo necessário para realizar a operação de restauração.
 
 Um *slice* é um subconjunto dos dados em um backup dado; ou seja, é um conjunto de fragmentos que possuem o mesmo ID de slice, especificado usando a opção `--slice-id`. As duas opções devem ser sempre usadas juntas, e o valor definido por `--slice-id` deve sempre ser menor que o número de slices.
 
-**ndb\_restore** encontra fragmentos e atribui a cada um um contador de fragmento. Ao restaurar por fatias, um ID de fatia é atribuído a cada fragmento; esse ID de fatia está na faixa de 0 a 1 menos que o número de fatias. Para uma tabela que não é uma tabela `BLOB`, a fatia à qual um fragmento dado pertence é determinada usando a fórmula mostrada aqui:
+**ndb_restore** encontra fragmentos e atribui a cada um um contador de fragmento. Ao restaurar por fatias, um ID de fatia é atribuído a cada fragmento; esse ID de fatia está na faixa de 0 a 1 menos que o número de fatias. Para uma tabela que não é uma tabela `BLOB`, a fatia à qual um fragmento dado pertence é determinada usando a fórmula mostrada aqui:
 
   ```sql
   [slice_ID] = [fragment_counter] % [number_of_slices]
@@ -4294,13 +4294,13 @@ Para uma tabela `BLOB`, um contador de fragmentos não é usado; o número do fr
   ([main_table_ID] + [fragment_ID]) % [number_of_slices]
   ```
 
-Assim, restaurar por fatias de *`N`* significa executar instâncias de *`N`* de **ndb\_restore**, todas com `--num-slices=N` (junto com quaisquer outras opções necessárias) e uma de cada com `--slice-id=1`, `--slice-id=2`, `--slice-id=3` e assim por diante até `slice-id=N-1`.
+Assim, restaurar por fatias de *`N`* significa executar instâncias de *`N`* de **ndb_restore**, todas com `--num-slices=N` (junto com quaisquer outras opções necessárias) e uma de cada com `--slice-id=1`, `--slice-id=2`, `--slice-id=3` e assim por diante até `slice-id=N-1`.
 
 * `--parallelism`=*`#`*, `-p`
 
   <table frame="box" rules="all" summary="Properties for backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>5
 
-**ndb\_restore** utiliza transações de uma única string para aplicar muitas strings simultaneamente. Este parâmetro determina o número de transações paralelas (strings concorrentes) que uma instância de **ndb\_restore** tenta usar. Por padrão, este é 128; o mínimo é 1 e o máximo é 1024.
+**ndb_restore** utiliza transações de uma única string para aplicar muitas strings simultaneamente. Este parâmetro determina o número de transações paralelas (strings concorrentes) que uma instância de **ndb_restore** tenta usar. Por padrão, este é 128; o mínimo é 1 e o máximo é 1024.
 
 O trabalho de execução das inserções é paraleloizado em todas as threads nos nós de dados envolvidos. Esse mecanismo é empregado para restaurar dados em massa a partir do arquivo `.Data`, ou seja, o instantâneo borrado dos dados; ele não é usado para construir ou reconstruir índices. O log de alterações é aplicado seriamente; as operações de queda e construção de índices são operações DDL e são manipuladas separadamente. Não há paralelismo em nível de thread no lado do cliente do restauro.
 
@@ -4318,17 +4318,17 @@ Embora você possa promover colunas `CHAR` para colunas `VARCHAR` e `BINARY` par
 
   <table frame="box" rules="all" summary="Properties for backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>7
 
-Faz com que **ndb\_restore** imprima todos os dados, metadados e registros em `stdout`. É equivalente ao uso das opções `--print-data`, `--print-meta` e `--print-log` juntas.
+Faz com que **ndb_restore** imprima todos os dados, metadados e registros em `stdout`. É equivalente ao uso das opções `--print-data`, `--print-meta` e `--print-log` juntas.
 
 Nota
 
-O uso de `--print` ou qualquer uma das opções de `--print_*` está, de fato, realizando um ensaio. Incluir uma ou mais dessas opções faz com que qualquer saída seja redirecionada para `stdout`; nesses casos, **ndb\_restore** não faz qualquer tentativa de restaurar dados ou metadados em um NDB Cluster.
+O uso de `--print` ou qualquer uma das opções de `--print_*` está, de fato, realizando um ensaio. Incluir uma ou mais dessas opções faz com que qualquer saída seja redirecionada para `stdout`; nesses casos, **ndb_restore** não faz qualquer tentativa de restaurar dados ou metadados em um NDB Cluster.
 
 * `--print-data`
 
   <table frame="box" rules="all" summary="Properties for backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>8
 
-Faça com que **ndb\_restore** direcione sua saída para `stdout`. Frequentemente usado em conjunto com um ou mais dos `--tab`, `--fields-enclosed-by`, `--fields-optionally-enclosed-by`, `--fields-terminated-by`, `--hex` e `--append`.
+Faça com que **ndb_restore** direcione sua saída para `stdout`. Frequentemente usado em conjunto com um ou mais dos `--tab`, `--fields-enclosed-by`, `--fields-optionally-enclosed-by`, `--fields-terminated-by`, `--hex` e `--append`.
 
 Os valores das colunas `TEXT` e `BLOB` são sempre truncados. Esses valores são truncados para os primeiros 256 bytes na saída. Isso atualmente não pode ser sobrescrito ao usar `--print-data`.
 
@@ -4342,7 +4342,7 @@ Imprimir a lista de argumentos do programa e sair.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>0
 
-Faça com que **ndb\_restore** exiba seu log em `stdout`.
+Faça com que **ndb_restore** exiba seu log em `stdout`.
 
 * `--print-meta`
 
@@ -4370,21 +4370,21 @@ Imprima um relatório de status a cada *`N`* segundos enquanto o backup estiver 
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>4
 
-O **ndb\_restore** suporta promoção de atributos limitada da mesma maneira que é suportada pela replicação do MySQL; ou seja, os dados respaldados a partir de uma coluna de um tipo dado podem, geralmente, ser restaurados a uma coluna usando um tipo “maior, semelhante”. Por exemplo, os dados de uma coluna `CHAR(20)` podem ser restaurados a uma coluna declarada como `VARCHAR(20)`, `VARCHAR(30)` ou `CHAR(30)`; os dados de uma coluna `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") podem ser restaurados a uma coluna do tipo `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). Veja a Seção 16.4.1.10.2, “Replicação de Colunas com Diferentes Tipos de Dados”, para uma tabela de conversão de tipos atualmente suportada pela promoção de atributos.
+O **ndb_restore** suporta promoção de atributos limitada da mesma maneira que é suportada pela replicação do MySQL; ou seja, os dados respaldados a partir de uma coluna de um tipo dado podem, geralmente, ser restaurados a uma coluna usando um tipo “maior, semelhante”. Por exemplo, os dados de uma coluna `CHAR(20)` podem ser restaurados a uma coluna declarada como `VARCHAR(20)`, `VARCHAR(30)` ou `CHAR(30)`; os dados de uma coluna `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") podem ser restaurados a uma coluna do tipo `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). Veja a Seção 16.4.1.10.2, “Replicação de Colunas com Diferentes Tipos de Dados”, para uma tabela de conversão de tipos atualmente suportada pela promoção de atributos.
 
 A partir do NDB 7.5.23 e do NDB 7.6.19, essa opção também permite restaurar uma coluna `NOT NULL` como `NULL`.
 
-A atribuição de promoção pelo **ndb\_restore** deve ser habilitada explicitamente, conforme segue:
+A atribuição de promoção pelo **ndb_restore** deve ser habilitada explicitamente, conforme segue:
 
-1. Prepare a tabela para a qual o backup deve ser restaurado. **ndb\_restore** não pode ser usado para recriar a tabela com uma definição diferente da original; isso significa que você deve criar a tabela manualmente ou alterar as colunas que deseja promover usando `ALTER TABLE` após restaurar os metadados da tabela, mas antes de restaurar os dados.
+1. Prepare a tabela para a qual o backup deve ser restaurado. **ndb_restore** não pode ser usado para recriar a tabela com uma definição diferente da original; isso significa que você deve criar a tabela manualmente ou alterar as colunas que deseja promover usando `ALTER TABLE` após restaurar os metadados da tabela, mas antes de restaurar os dados.
 
-2. Invoque **ndb\_restore** com a opção `--promote-attributes` (forma abreviada `-A`) ao restaurar os dados da tabela. A promoção de atributo não ocorre se essa opção não for usada; em vez disso, a operação de restauração falha com um erro.
+2. Invoque **ndb_restore** com a opção `--promote-attributes` (forma abreviada `-A`) ao restaurar os dados da tabela. A promoção de atributo não ocorre se essa opção não for usada; em vez disso, a operação de restauração falha com um erro.
 
-Ao converter entre tipos de dados de caracteres e `TEXT` ou `BLOB`, apenas as conversões entre tipos de caracteres (`CHAR` e `VARCHAR`) e tipos binários (`BINARY` e `VARBINARY`) podem ser realizadas ao mesmo tempo. Por exemplo, não é possível promover uma coluna de `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") para `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") enquanto promove uma coluna de `VARCHAR` para `TEXT` na mesma invocação de **ndb\_restore**.
+Ao converter entre tipos de dados de caracteres e `TEXT` ou `BLOB`, apenas as conversões entre tipos de caracteres (`CHAR` e `VARCHAR`) e tipos binários (`BINARY` e `VARBINARY`) podem ser realizadas ao mesmo tempo. Por exemplo, não é possível promover uma coluna de `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") para `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") enquanto promove uma coluna de `VARCHAR` para `TEXT` na mesma invocação de **ndb_restore**.
 
 A conversão entre as colunas `TEXT` usando diferentes conjuntos de caracteres não é suportada e é expressamente proibida.
 
-Ao realizar conversões de tipos de caracteres ou binários para `TEXT` ou `BLOB` com **ndb\_restore**, você pode notar que ele cria e usa uma ou mais tabelas de preparação com o nome `table_name$STnode_id`. Essas tabelas não são necessárias posteriormente e, normalmente, são excluídas pelo **ndb\_restore** após uma restauração bem-sucedida.
+Ao realizar conversões de tipos de caracteres ou binários para `TEXT` ou `BLOB` com **ndb_restore**, você pode notar que ele cria e usa uma ou mais tabelas de preparação com o nome `table_name$STnode_id`. Essas tabelas não são necessárias posteriormente e, normalmente, são excluídas pelo **ndb_restore** após uma restauração bem-sucedida.
 
 * `--rebuild-indexes`
 
@@ -4392,11 +4392,11 @@ Ao realizar conversões de tipos de caracteres ou binários para `TEXT` ou `BLOB
 
 Ative a reconstrução multithreading dos índices ordenados ao restaurar um backup nativo do `NDB`. O número de threads usado para construir índices ordenados pelo **ndb_restore** com esta opção é controlado pelo parâmetro de configuração do nó de dados `BuildIndexThreads` e pelo número de LDMs.
 
-É necessário usar essa opção apenas na primeira execução do **ndb\_restore**; isso faz com que todos os índices ordenados sejam reconstruídos sem usar novamente `--rebuild-indexes` ao restaurar nós subsequentes. Você deve usar essa opção antes de inserir novas strings no banco de dados; caso contrário, é possível inserir uma string que, posteriormente, cause uma violação de restrição única ao tentar reconstruir os índices.
+É necessário usar essa opção apenas na primeira execução do **ndb_restore**; isso faz com que todos os índices ordenados sejam reconstruídos sem usar novamente `--rebuild-indexes` ao restaurar nós subsequentes. Você deve usar essa opção antes de inserir novas strings no banco de dados; caso contrário, é possível inserir uma string que, posteriormente, cause uma violação de restrição única ao tentar reconstruir os índices.
 
 A construção de índices ordenados é paralela ao número de LDMs por padrão. A construção de índices off-line realizada durante o reinício do nó e do sistema pode ser feita mais rapidamente usando o parâmetro de configuração do nó de dados `BuildIndexThreads`; este parâmetro não tem efeito na eliminação e reconstrução de índices pelo **ndb_restore**, que é realizado online.
 
-A reconstrução de índices únicos utiliza largura de banda de escrita em disco para registro de redo e checkpoint local. Uma quantidade insuficiente dessa largura de banda pode levar a sobrecarga do buffer de redo ou erros de sobrecarga de log. Nesses casos, você pode executar novamente **ndb\_restore** `--rebuild-indexes`; o processo é retomado no ponto onde o erro ocorreu. Você também pode fazer isso quando encontrou erros temporários. Você pode repetir a execução de **ndb\_restore** `--rebuild-indexes` indefinidamente; você pode ser capaz de parar tais erros reduzindo o valor de `--parallelism`. Se o problema for espaço insuficiente, você pode aumentar o tamanho do log de redo (parâmetro de configuração do nó `FragmentLogFileSize`), ou você pode aumentar a velocidade com que os LCPs são realizados (`MaxDiskWriteSpeed` e parâmetros relacionados), a fim de liberar espaço mais rapidamente.
+A reconstrução de índices únicos utiliza largura de banda de escrita em disco para registro de redo e checkpoint local. Uma quantidade insuficiente dessa largura de banda pode levar a sobrecarga do buffer de redo ou erros de sobrecarga de log. Nesses casos, você pode executar novamente **ndb_restore** `--rebuild-indexes`; o processo é retomado no ponto onde o erro ocorreu. Você também pode fazer isso quando encontrou erros temporários. Você pode repetir a execução de **ndb_restore** `--rebuild-indexes` indefinidamente; você pode ser capaz de parar tais erros reduzindo o valor de `--parallelism`. Se o problema for espaço insuficiente, você pode aumentar o tamanho do log de redo (parâmetro de configuração do nó `FragmentLogFileSize`), ou você pode aumentar a velocidade com que os LCPs são realizados (`MaxDiskWriteSpeed` e parâmetros relacionados), a fim de liberar espaço mais rapidamente.
 
 * `--remap-column=db.tbl.col:fn:args`
 
@@ -4415,7 +4415,7 @@ Quando usado juntamente com `--restore-data`, esta opção aplica uma função a
 
 Se a aplicação do valor de deslocamento na coluna causar um excesso ou falta, a operação de restauração falha. Isso pode acontecer, por exemplo, se a coluna for uma `BIGINT`, e a opção tente aplicar um valor de deslocamento de 8 em uma string na qual o valor da coluna é 4294967291, pois `4294967291 + 8 = 4294967299 > 4294967295`.
 
-Esta opção pode ser útil quando você deseja combinar dados armazenados em múltiplas instâncias de origem do NDB Cluster (todas usando o mesmo esquema) em um único NDB Cluster de destino, usando o backup nativo do NDB (consulte a Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”) e **ndb\_restore** para combinar os dados, onde os valores primários e exclusivos da chave estão sobrepostos entre os clusters de origem, e é necessário como parte do processo remapea-los para intervalos que não se sobreponham. Também pode ser necessário preservar outras relações entre as tabelas. Para atender a tais requisitos, é possível usar a opção várias vezes na mesma invocação de **ndb\_restore** para remapea-las colunas de diferentes tabelas, como mostrado aqui:
+Esta opção pode ser útil quando você deseja combinar dados armazenados em múltiplas instâncias de origem do NDB Cluster (todas usando o mesmo esquema) em um único NDB Cluster de destino, usando o backup nativo do NDB (consulte a Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”) e **ndb_restore** para combinar os dados, onde os valores primários e exclusivos da chave estão sobrepostos entre os clusters de origem, e é necessário como parte do processo remapea-los para intervalos que não se sobreponham. Também pode ser necessário preservar outras relações entre as tabelas. Para atender a tais requisitos, é possível usar a opção várias vezes na mesma invocação de **ndb_restore** para remapea-las colunas de diferentes tabelas, como mostrado aqui:
 
   ```sql
   $> ndb_restore --restore-data --remap-column=hr.employee.id:offset:1000 \
@@ -4433,7 +4433,7 @@ Esta opção pode ser útil quando você deseja combinar dados armazenados em m�
 
 Quando os backups de origem contêm tabelas duplicadas que não devem ser reunidas, você pode lidar com isso usando `--exclude-tables`, `--exclude-databases` ou por outros meios em sua aplicação.
 
-Informações sobre a estrutura e outras características das tabelas a serem reunidas podem ser obtidas usando `SHOW CREATE TABLE`; a ferramenta **ndb\_desc** e `MAX()`, `MIN()`, `LAST_INSERT_ID()` e outras funções do MySQL.
+Informações sobre a estrutura e outras características das tabelas a serem reunidas podem ser obtidas usando `SHOW CREATE TABLE`; a ferramenta **ndb_desc** e `MAX()`, `MIN()`, `LAST_INSERT_ID()` e outras funções do MySQL.
 
 A replicação de alterações de tabelas mescladas para tabelas não mescladas, ou de tabelas não mescladas para tabelas mescladas, em instâncias separadas do NDB Cluster, não é suportada.
 
@@ -4453,9 +4453,9 @@ Adicione (ou restaure) informações de época na tabela de status da replicaç�
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>9
 
-Essa opção faz com que o **ndb\_restore** imprima os metadados da tabela `NDB`.
+Essa opção faz com que o **ndb_restore** imprima os metadados da tabela `NDB`.
 
-A primeira vez que você executar o programa de restauração **ndb\_restore**, também é necessário restaurar os metadados. Em outras palavras, você deve recriar as tabelas do banco de dados — isso pode ser feito executando-o com a opção `--restore-meta` (`-m`). A restauração dos metadados precisa ser feita apenas em um único nó de dados; isso é suficiente para restaurá-lo para todo o clúster.
+A primeira vez que você executar o programa de restauração **ndb_restore**, também é necessário restaurar os metadados. Em outras palavras, você deve recriar as tabelas do banco de dados — isso pode ser feito executando-o com a opção `--restore-meta` (`-m`). A restauração dos metadados precisa ser feita apenas em um único nó de dados; isso é suficiente para restaurá-lo para todo o clúster.
 
 Em versões mais antigas do NDB Cluster, as tabelas cujos esquemas foram restaurados usando essa opção usavam o mesmo número de partições que tinham no cluster original, mesmo que tivesse um número diferente de nós de dados do novo cluster. No NDB 7.5.2 e versões posteriores, ao restaurar os metadados, isso não é mais um problema; **ndb_restore** agora usa o número padrão de partições para o cluster alvo, a menos que o número de threads do gerente de dados local também seja alterado do que era para os nós de dados no cluster original.
 
@@ -4467,7 +4467,7 @@ O grupo deve ter um banco de dados vazio ao começar a restaurar um backup. (Em 
 
   <table frame="box" rules="all" summary="Properties for connect"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>0
 
-O **ndb\_restore** não restaura, por padrão, as tabelas de privilégios distribuídas do MySQL. Esta opção faz com que o **ndb\_restore** restaure as tabelas de privilégios.
+O **ndb_restore** não restaura, por padrão, as tabelas de privilégios distribuídas do MySQL. Esta opção faz com que o **ndb_restore** restaure as tabelas de privilégios.
 
 Isso só funciona se as tabelas de privilégios foram convertidas para `NDB` antes de a cópia de segurança ser feita. Para mais informações, consulte a Seção 21.6.13, “Privilégios distribuídos usando tabelas de concessão compartilhadas”.
 
@@ -4481,7 +4481,7 @@ Essa opção permite restaurar um banco de dados com um nome diferente do usado 
   $> ndb_restore --rewrite-database=product,inventory
   ```
 
-A opção pode ser empregada várias vezes em uma única invocação de **ndb\_restore**. Assim, é possível restaurar simultaneamente de um banco de dados denominado `db1` para um banco de dados denominado `db2` e de um banco de dados denominado `db3` para um denominado `db4` usando `--rewrite-database=db1,db2 --rewrite-database=db3,db4`. Outras opções de **ndb\_restore** podem ser usadas entre múltiplas ocorrências de `--rewrite-database`.
+A opção pode ser empregada várias vezes em uma única invocação de **ndb_restore**. Assim, é possível restaurar simultaneamente de um banco de dados denominado `db1` para um banco de dados denominado `db2` e de um banco de dados denominado `db3` para um denominado `db4` usando `--rewrite-database=db1,db2 --rewrite-database=db3,db4`. Outras opções de **ndb_restore** podem ser usadas entre múltiplas ocorrências de `--rewrite-database`.
 
 Em caso de conflitos entre várias opções do `--rewrite-database`, a última opção do `--rewrite-database` usada, lendo da esquerda para a direita, é a que se aplica. Por exemplo, se o `--rewrite-database=db1,db2 --rewrite-database=db1,db3` for usado, apenas o `--rewrite-database=db1,db3` é atendido, e o `--rewrite-database=db1,db2` é ignorado. Também é possível restaurar a partir de várias bases de dados para uma única base de dados, de modo que o `--rewrite-database=db1,db3 --rewrite-database=db2,db3` restaure todas as tabelas e dados das bases de dados `db1` e `db2` para a base de dados `db3`.
 
@@ -4493,15 +4493,15 @@ Ao restaurar de múltiplos bancos de dados de backup para um único banco de dad
 
   <table frame="box" rules="all" summary="Properties for connect"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>2
 
-Essa opção faz com que o **ndb\_restore** ignore tabelas corrompidas ao ler um backup nativo do `NDB` e continue a restaurar quaisquer tabelas restantes (que também não estejam corrompidas). Atualmente, a opção `--skip-broken-objects` funciona apenas no caso de tabelas de partes de blob ausentes.
+Essa opção faz com que o **ndb_restore** ignore tabelas corrompidas ao ler um backup nativo do `NDB` e continue a restaurar quaisquer tabelas restantes (que também não estejam corrompidas). Atualmente, a opção `--skip-broken-objects` funciona apenas no caso de tabelas de partes de blob ausentes.
 
 * `--skip-table-check`, `-s`
 
   <table frame="box" rules="all" summary="Properties for connect"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>3
 
-É possível restaurar dados sem restaurar os metadados da tabela. Por padrão, ao fazer isso, o **ndb\_restore** falha com um erro se for encontrado um desajuste entre os dados da tabela e o esquema da tabela; essa opção substitui esse comportamento.
+É possível restaurar dados sem restaurar os metadados da tabela. Por padrão, ao fazer isso, o **ndb_restore** falha com um erro se for encontrado um desajuste entre os dados da tabela e o esquema da tabela; essa opção substitui esse comportamento.
 
-Algumas das restrições sobre desalinhamentos nas definições das colunas ao restaurar dados usando **ndb\_restore** são relaxadas; quando um desses tipos de desalinhamentos é encontrado, **ndb\_restore** não para com um erro como fazia anteriormente, mas sim aceita os dados e os insere na tabela de destino, emitindo um aviso ao usuário de que isso está sendo feito. Esse comportamento ocorre independentemente de uma das opções `--skip-table-check` ou `--promote-attributes` estar em uso. Essas diferenças nas definições das colunas são dos seguintes tipos:
+Algumas das restrições sobre desalinhamentos nas definições das colunas ao restaurar dados usando **ndb_restore** são relaxadas; quando um desses tipos de desalinhamentos é encontrado, **ndb_restore** não para com um erro como fazia anteriormente, mas sim aceita os dados e os insere na tabela de destino, emitindo um aviso ao usuário de que isso está sendo feito. Esse comportamento ocorre independentemente de uma das opções `--skip-table-check` ou `--promote-attributes` estar em uso. Essas diferenças nas definições das colunas são dos seguintes tipos:
 
 + Diferentes configurações de `COLUMN_FORMAT` (`FIXED`, `DYNAMIC`, `DEFAULT`)
 
@@ -4513,7 +4513,7 @@ Algumas das restrições sobre desalinhamentos nas definições das colunas ao r
 
   <table frame="box" rules="all" summary="Properties for connect"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>4
 
-Essa opção faz com que o **ndb\_restore** ignore quaisquer objetos do esquema que não reconheça ao ler um backup nativo do `NDB`. Isso pode ser usado para restaurar um backup feito de um clúster que executa, por exemplo, NDB 7.6, para um clúster que executa NDB Cluster 7.5.
+Essa opção faz com que o **ndb_restore** ignore quaisquer objetos do esquema que não reconheça ao ler um backup nativo do `NDB`. Isso pode ser usado para restaurar um backup feito de um clúster que executa, por exemplo, NDB 7.6, para um clúster que executa NDB Cluster 7.5.
 
 * `--slice-id`=*`#`*
 
@@ -4562,21 +4562,21 @@ ndb_restore [-c connection_string] -n node_id -b backup_id \
       [-m] -r --backup-path=/path/to/backup/files
 ```
 
-Normalmente, ao restaurar de um backup de um NDB Cluster, o **ndb\_restore** requer, no mínimo, as opções `--nodeid` (forma abreviada: `-n`), `--backupid` (forma abreviada: `-b`), e `--backup-path`. Além disso, quando o **ndb\_restore** é usado para restaurar quaisquer tabelas que contenham índices únicos, você deve incluir `--disable-indexes` ou `--rebuild-indexes`. (Bug #57782, Bug #11764893)
+Normalmente, ao restaurar de um backup de um NDB Cluster, o **ndb_restore** requer, no mínimo, as opções `--nodeid` (forma abreviada: `-n`), `--backupid` (forma abreviada: `-b`), e `--backup-path`. Além disso, quando o **ndb_restore** é usado para restaurar quaisquer tabelas que contenham índices únicos, você deve incluir `--disable-indexes` ou `--rebuild-indexes`. (Bug #57782, Bug #11764893)
 
-A opção `-c` é usada para especificar uma cadeia de conexão que indica ao `ndb_restore` onde localizar o servidor de gerenciamento de clúster (ver Seção 21.4.3.3, “Cadeias de Conexão de NDB Cluster”). Se esta opção não for usada, então o **ndb\_restore** tenta se conectar a um servidor de gerenciamento em `localhost:1186`. Este utilitário atua como um nó de API de clúster e, portanto, requer um “slot” de conexão livre para se conectar ao servidor de gerenciamento de clúster. Isso significa que deve haver pelo menos uma seção `[api]` ou `[mysqld]` que possa ser usada por ele no arquivo de clúster `config.ini`. É uma boa ideia manter pelo menos uma seção `[api]` ou `[mysqld]` vazia em `config.ini` que não está sendo usada por um servidor MySQL ou outra aplicação por esse motivo (ver Seção 21.4.3.7, “Definindo SQL e Outros Nodos de API em um Clúster NDB”).
+A opção `-c` é usada para especificar uma cadeia de conexão que indica ao `ndb_restore` onde localizar o servidor de gerenciamento de clúster (ver Seção 21.4.3.3, “Cadeias de Conexão de NDB Cluster”). Se esta opção não for usada, então o **ndb_restore** tenta se conectar a um servidor de gerenciamento em `localhost:1186`. Este utilitário atua como um nó de API de clúster e, portanto, requer um “slot” de conexão livre para se conectar ao servidor de gerenciamento de clúster. Isso significa que deve haver pelo menos uma seção `[api]` ou `[mysqld]` que possa ser usada por ele no arquivo de clúster `config.ini`. É uma boa ideia manter pelo menos uma seção `[api]` ou `[mysqld]` vazia em `config.ini` que não está sendo usada por um servidor MySQL ou outra aplicação por esse motivo (ver Seção 21.4.3.7, “Definindo SQL e Outros Nodos de API em um Clúster NDB”).
 
-Você pode verificar que o **ndb\_restore** está conectado ao clúster usando o comando `SHOW` no cliente de gerenciamento **ndb\_mgm**. Você também pode realizar isso a partir de uma string de comando do sistema, como mostrado aqui:
+Você pode verificar que o **ndb_restore** está conectado ao clúster usando o comando `SHOW` no cliente de gerenciamento **ndb_mgm**. Você também pode realizar isso a partir de uma string de comando do sistema, como mostrado aqui:
 
 ```sql
 $> ndb_mgm -e "SHOW"
 ```
 
-**Relatando erros.** O **ndb\_restore** reporta erros temporários e permanentes. No caso de erros temporários, ele pode recuperá-los e reporta `Restore successful, but encountered temporary error, please look at configuration` nesses casos.
+**Relatando erros.** O **ndb_restore** reporta erros temporários e permanentes. No caso de erros temporários, ele pode recuperá-los e reporta `Restore successful, but encountered temporary error, please look at configuration` nesses casos.
 
 Importante
 
-Após usar o **ndb\_restore** para inicializar um NDB Cluster para uso em replicação circular, os registros binários no nó SQL que atua como replica não são criados automaticamente e você deve fazer com que eles sejam criados manualmente. Para fazer com que os registros binários sejam criados, execute uma declaração `SHOW TABLES` nesse nó SQL antes de executar `START SLAVE`. Esse é um problema conhecido no NDB Cluster.
+Após usar o **ndb_restore** para inicializar um NDB Cluster para uso em replicação circular, os registros binários no nó SQL que atua como replica não são criados automaticamente e você deve fazer com que eles sejam criados manualmente. Para fazer com que os registros binários sejam criados, execute uma declaração `SHOW TABLES` nesse nó SQL antes de executar `START SLAVE`. Esse é um problema conhecido no NDB Cluster.
 
 #### 21.5.24.1 Restaurando um backup do NDB a uma versão diferente do NDB Cluster
 
@@ -4596,7 +4596,7 @@ Você pode encontrar problemas ao restaurar um backup feito a partir de uma vers
 
 Um backup realizado no NDB 8.0.14 ou posterior de tabelas que foram criadas no NDB 8.0.13 ou versões anteriores, e que não foram alteradas desde a atualização para o NDB 8.0.14 ou posterior, deve ser restaurado para versões anteriores do NDB Cluster.
 
-Como é possível restaurar os metadados e os dados da tabela separadamente, você pode, nesses casos, restaurar os esquemas da tabela a partir de um dump feito usando o **mysqldump**, ou executando as declarações necessárias `CREATE TABLE` manualmente, e, em seguida, importar apenas os dados da tabela usando o **ndb\_restore** com a opção `--restore-data`.
+Como é possível restaurar os metadados e os dados da tabela separadamente, você pode, nesses casos, restaurar os esquemas da tabela a partir de um dump feito usando o **mysqldump**, ou executando as declarações necessárias `CREATE TABLE` manualmente, e, em seguida, importar apenas os dados da tabela usando o **ndb_restore** com a opção `--restore-data`.
 
 * Os backups criptografados criados no NDB 8.0.22 e versões posteriores não podem ser restaurados usando **ndb_restore** do NDB 8.0.21 ou versões anteriores.
 
@@ -4606,9 +4606,9 @@ Como é possível restaurar os metadados e os dados da tabela separadamente, voc
 
 ##### 21.5.24.1.2 Restaurando um backup do NDB para uma versão posterior do NDB Cluster
 
-Em geral, deve ser possível restaurar um backup criado usando o comando do cliente **ndb\_mgm** `START BACKUP` em uma versão mais antiga do NDB para uma versão mais recente, desde que você use o binário **ndb\_restore** que vem com a versão mais recente. (É possível usar a versão mais antiga do **ndb\_restore**, mas isso não é recomendado.) Problemas adicionais potenciais estão listados aqui:
+Em geral, deve ser possível restaurar um backup criado usando o comando do cliente **ndb_mgm** `START BACKUP` em uma versão mais antiga do NDB para uma versão mais recente, desde que você use o binário **ndb_restore** que vem com a versão mais recente. (É possível usar a versão mais antiga do **ndb_restore**, mas isso não é recomendado.) Problemas adicionais potenciais estão listados aqui:
 
-* Ao restaurar os metadados de um backup (opção `--restore-meta`), o **ndb\_restore** normalmente tenta reproduzir o esquema da tabela capturado exatamente como estava quando o backup foi feito.
+* Ao restaurar os metadados de um backup (opção `--restore-meta`), o **ndb_restore** normalmente tenta reproduzir o esquema da tabela capturado exatamente como estava quando o backup foi feito.
 
 As tabelas criadas em versões do NDB anteriores à 8.0.14 utilizam arquivos `.frm` para seus metadados. Esses arquivos podem ser lidos pelo `mysqld` no NDB 8.0.14 e versões posteriores, que podem usar as informações contidas neles para criar os arquivos `.sdi` usados pelo dicionário de dados MySQL em versões posteriores.
 
@@ -4660,7 +4660,7 @@ Suponhamos que cada nó de dados tenha sido originalmente iniciado com **ndbmtd*
 
 Esses arquivos são encontrados em `BackupDataDir` e `/BACKUP/BACKUP-B`, em cada nó de dados. Para o resto deste exemplo, assumimos que o ID de backup é 1.
 
-Todos esses arquivos devem estar disponíveis para posterior cópia para os novos nós de dados (onde eles podem ser acessados no sistema de arquivos local do nó de dados pelo **ndb\_restore**). É mais simples copiá-los todos para um único local; assumimos que você fez isso.
+Todos esses arquivos devem estar disponíveis para posterior cópia para os novos nós de dados (onde eles podem ser acessados no sistema de arquivos local do nó de dados pelo **ndb_restore**). É mais simples copiá-los todos para um único local; assumimos que você fez isso.
 
 4. O servidor de gerenciamento do clúster alvo está no host `host20`, e o alvo tem dois nós de dados, com os IDs de nó e nomes de host mostrados, a partir do arquivo do servidor de gerenciamento `config.ini` em `host20`:
 
@@ -4696,7 +4696,7 @@ Em seguida, copie os arquivos de backup dos nós 6 e 8 para o nó 5; esses arqui
 
 Para o restante deste exemplo, assumimos que os respectivos arquivos de backup foram salvos no diretório `/BACKUP-1` em cada um dos nós 3 e 5.
 
-6. Em cada um dos dois nós de dados de destino, você deve restaurar ambos os conjuntos de backups. Primeiro, restaure os backups dos nós 2 e 4 para o nó 3, invocando **ndb\_restore** no `host3` como mostrado aqui:
+6. Em cada um dos dois nós de dados de destino, você deve restaurar ambos os conjuntos de backups. Primeiro, restaure os backups dos nós 2 e 4 para o nó 3, invocando **ndb_restore** no `host3` como mostrado aqui:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=2 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -4704,7 +4704,7 @@ Para o restante deste exemplo, assumimos que os respectivos arquivos de backup f
    $> ndb_restore -c host20 --nodeid=4 --backupid=1 --restore-data --backup-path=/BACKUP-1
    ```
 
-Em seguida, restaure os backups dos nós 6 e 8 para o nó 5, invocando **ndb\_restore** no `host5`, da seguinte forma:
+Em seguida, restaure os backups dos nós 6 e 8 para o nó 5, invocando **ndb_restore** no `host5`, da seguinte forma:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=6 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -4714,13 +4714,13 @@ Em seguida, restaure os backups dos nós 6 e 8 para o nó 5, invocando **ndb\_re
 
 ##### 21.5.24.2.2 Restauração com mais nós do que o original
 
-O ID do nó especificado para um comando **ndb\_restore** dado é o do nó no backup original e não o do nó de dados para o qual se deseja restaurá-lo. Ao realizar um backup usando o método descrito nesta seção, **ndb\_restore** se conecta ao servidor de gerenciamento e obtém uma lista de nós de dados no clúster para o qual o backup está sendo restaurado. Os dados restaurados são distribuídos de acordo, de modo que o número de nós no clúster de destino não precisa ser conhecido ou calculado ao realizar o backup.
+O ID do nó especificado para um comando **ndb_restore** dado é o do nó no backup original e não o do nó de dados para o qual se deseja restaurá-lo. Ao realizar um backup usando o método descrito nesta seção, **ndb_restore** se conecta ao servidor de gerenciamento e obtém uma lista de nós de dados no clúster para o qual o backup está sendo restaurado. Os dados restaurados são distribuídos de acordo, de modo que o número de nós no clúster de destino não precisa ser conhecido ou calculado ao realizar o backup.
 
 Nota
 
 Ao alterar o número total de threads LCP ou threads LQH por grupo de nós, você deve recriar o esquema a partir do backup criado usando **mysqldump**.
 
-1. *Crie o backup dos dados*. Você pode fazer isso invocando o comando do cliente **ndb\_mgm** `START BACKUP` no shell do sistema, da seguinte forma:
+1. *Crie o backup dos dados*. Você pode fazer isso invocando o comando do cliente **ndb_mgm** `START BACKUP` no shell do sistema, da seguinte forma:
 
    ```sql
    $> ndb_mgm -e "START BACKUP 1"
@@ -4736,7 +4736,7 @@ Isso pressupõe que o ID de backup desejado é 1.
 
 Importante
 
-Uma vez que você criou o backup nativo `NDB` usando **ndb\_mgm**, você não deve fazer quaisquer alterações no esquema antes de criar o backup do esquema, se você fizer isso.
+Uma vez que você criou o backup nativo `NDB` usando **ndb_mgm**, você não deve fazer quaisquer alterações no esquema antes de criar o backup do esquema, se você fizer isso.
 
 3. Copie o diretório de backup para o novo clúster. Por exemplo, se o backup que você deseja restaurar tem o ID 1 e `BackupDataDir` = `/backups/node_nodeid`, então o caminho para o backup neste nó é `/backups/node_1/BACKUP/BACKUP-1`. Dentro deste diretório, há três arquivos, listados aqui:
 
@@ -4762,13 +4762,13 @@ Para restaurar a partir do backup criado recentemente, realize as etapas a segui
 
 Ao importar o arquivo do esquema, você pode precisar especificar as opções `--user` e `--password` (e possivelmente outras) além do que é mostrado, para que o cliente **mysql** possa se conectar ao servidor MySQL.
 
-* Se você não precisasse criar um arquivo de esquema, você pode recriar o esquema usando **ndb\_restore** `--restore-meta` (forma abreviada `-m`), semelhante ao que é mostrado aqui:
+* Se você não precisasse criar um arquivo de esquema, você pode recriar o esquema usando **ndb_restore** `--restore-meta` (forma abreviada `-m`), semelhante ao que é mostrado aqui:
 
      ```sql
      $> ndb_restore --nodeid=1 --backupid=1 --restore-meta --backup-path=/backups/node_1/BACKUP/BACKUP-1
      ```
 
-O **ndb\_restore** deve ser capaz de entrar em contato com o servidor de gerenciamento; adicione a opção `--ndb-connectstring` se e quando necessário para tornar isso possível.
+O **ndb_restore** deve ser capaz de entrar em contato com o servidor de gerenciamento; adicione a opção `--ndb-connectstring` se e quando necessário para tornar isso possível.
 
 2. *Restaure os dados*. Isso precisa ser feito uma vez para cada nó de dados no clúster original, cada vez usando o ID do nó do nó de dados. Supondo que originalmente houvesse 4 nós de dados, o conjunto de comandos necessários ficaria algo assim:
 
@@ -4789,11 +4789,11 @@ Certifique-se de adicionar a opção `--ndb-connectstring` conforme necessário.
    $> ndb_restore --nodeid=1 --backupid=1 --backup-path=/backups/node_1/BACKUP/BACKUP-1 --rebuild-indexes
    ```
 
-Como mencionado anteriormente, você pode precisar adicionar a opção `--ndb-connectstring`, para que o **ndb\_restore** possa entrar em contato com o servidor de gerenciamento.
+Como mencionado anteriormente, você pode precisar adicionar a opção `--ndb-connectstring`, para que o **ndb_restore** possa entrar em contato com o servidor de gerenciamento.
 
-### 21.5.25 ndb\_select\_all — Imprimir strings de uma tabela NDB
+### 21.5.25 ndb_select_all — Imprimir strings de uma tabela NDB
 
-**ndb\_select\_all** imprime todas as strings de uma tabela `NDB` para `stdout`.
+**ndb_select_all** imprime todas as strings de uma tabela `NDB` para `stdout`.
 
 #### Uso
 
@@ -4801,9 +4801,9 @@ Como mencionado anteriormente, você pode precisar adicionar a opção `--ndb-co
 ndb_select_all -c connection_string tbl_name -d db_name [> file_name]
 ```
 
-As opções que podem ser usadas com **ndb\_select\_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_select_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.41 Opções de string de comando usadas com o programa ndb\_select\_all**
+**Tabela 21.41 Opções de string de comando usadas com o programa ndb_select_all**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_database">-d nome</a> </code> </p></th> <td>Nome do banco de dados em que a tabela está localizada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--delimiter=char</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_delimiter">-D char</a> </code> </p></th> <td>Definir delimitador de coluna</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--descending</code>,</p><p> <code class="option"> -z </code> </p></th> <td>Ordenar o conjunto de resultados em ordem decrescente (requer --order)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --disk </code> </p></th> <td>Imprimir referências de disco (útil apenas para tabelas de Dados de disco que possuem colunas não indexadas)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --gci </code> </p></th> <td>Incluir o GCI no resultado</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --gci64 </code> </p></th> <td>Incluir GCI e época da string no resultado</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--header[=value]</code>,</p><p> <code class="option"> -h </code> </p></th> <td>Imprimir cabeçalho (definir como 0|FALSO para desativar cabeçalhos na saída)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--lock=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_lock">-l #</a> </code> </p></th> <td>Tipo de bloqueio</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --nodata </code> </p></th> <td>Não imprima dados de coluna de tabela</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--order=index</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_order">-o índice</a> </code> </p></th> <td>Classificar o conjunto de resultados de acordo com o índice que tem esse nome</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_parallelism">-p #</a> </code> </p></th> <td>Grau de paralelismo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --rowid </code> </p></th> <td>Imprimir ID da string</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--tupscan</code>,</p><p> <code class="option"> -t </code> </p></th> <td>Escanear em duplas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--useHexFormat</code>,</p><p> <code class="option"> -x </code> </p></th> <td>Números de saída no formato hexadecimal</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -4913,7 +4913,7 @@ Faz com que os dados da tabela sejam omitidos.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>1
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -5000,7 +5000,7 @@ mysql> SELECT * FROM ctest1.fish;
 6 rows in set (0.04 sec)
 ```
 
-Saída da invocação equivalente de **ndb\_select\_all**:
+Saída da invocação equivalente de **ndb_select_all**:
 
 ```sql
 $> ./ndb_select_all -c localhost fish -d ctest1
@@ -5016,7 +5016,7 @@ id      name
 NDBT_ProgramExit: 0 - OK
 ```
 
-Todos os valores de string são fechados entre colchetes quadrados (`[`...`]`) na saída de **ndb\_select\_all**. Para outro exemplo, considere a tabela criada e preenchida conforme mostrado aqui:
+Todos os valores de string são fechados entre colchetes quadrados (`[`...`]`) na saída de **ndb_select_all**. Para outro exemplo, considere a tabela criada e preenchida conforme mostrado aqui:
 
 ```sql
 CREATE TABLE dogs (
@@ -5036,7 +5036,7 @@ INSERT INTO dogs VALUES
     ('', 'Rosscoe', 'Mutt');
 ```
 
-Isso demonstra o uso de várias opções adicionais do **ndb\_select\_all**:
+Isso demonstra o uso de várias opções adicionais do **ndb_select_all**:
 
 ```sql
 $> ./ndb_select_all -d ctest1 dogs -o ix -z --gci --disk
@@ -5050,9 +5050,9 @@ GCI     id name          breed        DISK_REF
 NDBT_ProgramExit: 0 - OK
 ```
 
-### 21.5.26 ndb\_select\_count — Imprimir contagem de strings para tabelas NDB
+### 21.5.26 ndb_select_count — Imprimir contagem de strings para tabelas NDB
 
-**ndb\_select\_count** imprime o número de strings em uma ou mais tabelas `NDB`. Com uma única tabela, o resultado é equivalente ao obtido usando a declaração MySQL `SELECT COUNT(*) FROM tbl_name`.
+**ndb_select_count** imprime o número de strings em uma ou mais tabelas `NDB`. Com uma única tabela, o resultado é equivalente ao obtido usando a declaração MySQL `SELECT COUNT(*) FROM tbl_name`.
 
 #### Uso
 
@@ -5060,9 +5060,9 @@ NDBT_ProgramExit: 0 - OK
 ndb_select_count [-c connection_string] -ddb_name tbl_name[, tbl_name2[, ...]]
 ```
 
-As opções que podem ser usadas com **ndb\_select\_count** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_select_count** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.42 Opções de string de comando usadas com o programa ndb\_select\_count**
+**Tabela 21.42 Opções de string de comando usadas com o programa ndb_select_count**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-count.html#option_ndb_select_count_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code>-d name</code> </p></th> <td>Nome do banco de dados em que a tabela está localizada</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--lock=#</code>,</p><p> <code>-l #</code> </p></th> <td>Tipo de bloqueio</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-count.html#option_ndb_select_count_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-select-count.html#option_ndb_select_count_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--parallelism=#</code>,</p><p> <code>-p #</code> </p></th> <td>Grau de paralelismo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -5130,7 +5130,7 @@ Exibir texto de ajuda e sair.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>1
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -5186,13 +5186,13 @@ $> ./ndb_select_count -c localhost -d ctest1 fish dogs
 NDBT_ProgramExit: 0 - OK
 ```
 
-### 21.5.27 ndb\_show\_tables — Exibir Lista de Tabelas NDB
+### 21.5.27 ndb_show_tables — Exibir Lista de Tabelas NDB
 
-**ndb\_show\_tables** exibe uma lista de todos os objetos do banco de dados `NDB` no clúster. Por padrão, isso inclui não apenas as tabelas criadas pelo usuário e as tabelas do sistema `NDB`, mas também índices específicos do `NDB`, gatilhos internos e objetos de dados do disco do NDB Cluster.
+**ndb_show_tables** exibe uma lista de todos os objetos do banco de dados `NDB` no clúster. Por padrão, isso inclui não apenas as tabelas criadas pelo usuário e as tabelas do sistema `NDB`, mas também índices específicos do `NDB`, gatilhos internos e objetos de dados do disco do NDB Cluster.
 
-As opções que podem ser usadas com **ndb\_show\_tables** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_show_tables** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.43 Opções de string de comando usadas com o programa ndb\_show\_tables**
+**Tabela 21.43 Opções de string de comando usadas com o programa ndb_show_tables**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-show-tables.html#option_ndb_show_tables_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--database=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-show-tables.html#option_ndb_show_tables_database">-d nome</a> </code> </p></th> <td>Especifica o banco de dados em que a tabela está localizada; o nome do banco de dados deve ser seguido pelo nome da tabela.</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--loops=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-show-tables.html#option_ndb_show_tables_loops">-l #</a> </code> </p></th> <td>Número de vezes para repetir a saída</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-show-tables.html#option_ndb_show_tables_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-show-tables.html#option_ndb_show_tables_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--parsable</code>,</p><p> <code class="option"> -p </code> </p></th> <td>Retorno de saída adequada para a instrução LOAD DATA do MySQL</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --show-temp-status </code> </p></th> <td>Mostrar bandeira temporária da tabela</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--type=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-show-tables.html#option_ndb_show_tables_type">-t #</a> </code> </p></th> <td>Limite a saída para objetos deste tipo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--unqualified</code>,</p><p> <code class="option"> -u </code> </p></th> <td>Não qualifique os nomes das tabelas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -5236,7 +5236,7 @@ Escreva o arquivo de núcleo em erro; usado em depuração.
 
 Especifica o nome do banco de dados em que a tabela desejada é encontrada. Se esta opção for dada, o nome de uma tabela deve seguir o nome do banco de dados.
 
-Se esta opção não tiver sido especificada e não forem encontradas tabelas no banco de dados `TEST_DB`, o **ndb\_show\_tables** emite um aviso.
+Se esta opção não tiver sido especificada e não forem encontradas tabelas no banco de dados `TEST_DB`, o **ndb_show_tables** emite um aviso.
 
 * `--defaults-extra-file`
 
@@ -5276,7 +5276,7 @@ Especifica o número de vezes que a utilidade deve ser executada. Isso é 1 quan
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>1
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -5344,7 +5344,7 @@ Exibir informações da versão e sair.
 
 Nota
 
-Somente as tabelas do NDB Cluster criadas pelo usuário podem ser acessadas pelo MySQL; as tabelas do sistema, como `SYSTAB_0`, não são visíveis para `mysqld`. No entanto, você pode examinar o conteúdo das tabelas do sistema usando aplicativos da API `NDB`, como **ndb\_select\_all** (consulte Seção 21.5.25, “ndb\_select\_all — Imprimir strings de uma tabela NDB”).
+Somente as tabelas do NDB Cluster criadas pelo usuário podem ser acessadas pelo MySQL; as tabelas do sistema, como `SYSTAB_0`, não são visíveis para `mysqld`. No entanto, você pode examinar o conteúdo das tabelas do sistema usando aplicativos da API `NDB`, como **ndb_select_all** (consulte Seção 21.5.25, “ndb_select_all — Imprimir strings de uma tabela NDB”).
 
 Antes das versões NDB 7.5.18 e 7.6.14, este programa imprimia `NDBT_ProgramExit - status` após a conclusão de sua execução, devido a uma dependência desnecessária da biblioteca de teste `NDBT`. Essa dependência foi removida agora, eliminando a saída desnecessária.
 
@@ -5362,9 +5362,9 @@ Este é um script Perl que pode ser usado para estimar a quantidade de espaço q
 
 `ndb_size.pl` também pode ser encontrado nas fontes do MySQL em `storage/ndb/tools`.
 
-As opções que podem ser usadas com **ndb\_size.pl** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_size.pl** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.44 Opções de string de comando usadas com o programa ndb\_size.pl**
+**Tabela 21.44 Opções de string de comando usadas com o programa ndb_size.pl**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --database=string </code> </p></th> <td>Banco de dados ou bancos de dados a examinar; uma lista delimitada por vírgula; o padrão é TODOS (use todos os bancos de dados encontrados no servidor)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --hostname=string </code> </p></th> <td>Especifique o host e o port opcional no formato host[:port]</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --socket=path </code> </p></th> <td>Especifique a tomada para se conectar</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --user=string </code> </p></th> <td>Especifique o nome do usuário do MySQL</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --password=password </code> </p></th> <td>Especifique a senha do usuário do MySQL</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --format=string </code> </p></th> <td>Defina o formato de saída (texto ou HTML)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --excludetables=list </code> </p></th> <td>Pule qualquer tabela em lista separada por vírgula</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --excludedbs=list </code> </p></th> <td>Pule quaisquer bancos de dados em lista separada por vírgula</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --savequeries=path </code> </p></th> <td>Salva todas as consultas no banco de dados em um arquivo especificado</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --loadqueries=path </code> </p></th> <td>Carrega todas as consultas do arquivo especificado; não se conecta ao banco de dados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --real_table_name=string </code> </p></th> <td>Designa a tabela para lidar com cálculos de tamanho de índice único</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -5465,11 +5465,11 @@ A saída deste script inclui as seguintes informações:
 
 * O `IndexMemory` e `DataMemory` são necessários por tabela e string de tabela.
 
-### 21.5.29 ndb\_top — Ver informações de uso de CPU para threads NDB
+### 21.5.29 ndb_top — Ver informações de uso de CPU para threads NDB
 
-**ndb\_top** exibe informações em execução no terminal sobre o uso da CPU por threads do NDB em um nó de dados de um NDB Cluster. Cada thread é representada por duas strings no resultado, a primeira mostrando estatísticas do sistema e a segunda mostrando as estatísticas medidas para a thread.
+**ndb_top** exibe informações em execução no terminal sobre o uso da CPU por threads do NDB em um nó de dados de um NDB Cluster. Cada thread é representada por duas strings no resultado, a primeira mostrando estatísticas do sistema e a segunda mostrando as estatísticas medidas para a thread.
 
-O **ndb\_top** está disponível no MySQL NDB Cluster 7.6 (e versões posteriores).
+O **ndb_top** está disponível no MySQL NDB Cluster 7.6 (e versões posteriores).
 
 #### Uso
 
@@ -5477,7 +5477,7 @@ O **ndb\_top** está disponível no MySQL NDB Cluster 7.6 (e versões posteriore
 ndb_top [-h hostname] [-t port] [-u user] [-p pass] [-n node_id]
 ```
 
-O **ndb\_top** se conecta a um servidor MySQL que está sendo executado como um nó SQL do clúster. Por padrão, ele tenta se conectar a um `mysqld` que está sendo executado em `localhost` e na porta 3306, como o usuário `root` do MySQL sem senha especificada. Você pode substituir o host e a porta padrão usando, respectivamente, `--host` (`-h`) e `--port` (`-t`). Para especificar um usuário e senha do MySQL, use as opções `--user` (`-u`) e `--passwd` (`-p`). Esse usuário deve ser capaz de ler tabelas no banco de dados `ndbinfo` (**ndb\_top** usa informações de `ndbinfo.cpustat` e tabelas relacionadas).
+O **ndb_top** se conecta a um servidor MySQL que está sendo executado como um nó SQL do clúster. Por padrão, ele tenta se conectar a um `mysqld` que está sendo executado em `localhost` e na porta 3306, como o usuário `root` do MySQL sem senha especificada. Você pode substituir o host e a porta padrão usando, respectivamente, `--host` (`-h`) e `--port` (`-t`). Para especificar um usuário e senha do MySQL, use as opções `--user` (`-u`) e `--passwd` (`-p`). Esse usuário deve ser capaz de ler tabelas no banco de dados `ndbinfo` (**ndb_top** usa informações de `ndbinfo.cpustat` e tabelas relacionadas).
 
 Para mais informações sobre contas e senhas de usuários do MySQL, consulte a Seção 6.2, “Controle de acesso e gerenciamento de contas”.
 
@@ -5487,19 +5487,19 @@ O display colorido do gráfico é suportado e ativado por padrão (opção `--co
 
 A visualização ordenada (`--sort`, `-r`) é baseada no máximo da carga medida e na carga relatada pelo sistema operacional. A exibição dessas cargas pode ser habilitada e desabilitada usando as opções `--measured-load` (`-m`) e `--os-load` (`-o`). A exibição de pelo menos uma dessas cargas deve ser habilitada.
 
-O programa tenta obter estatísticas de um nó de dados que tenha o ID de nó fornecido pela opção `--node-id` (`-n`); se não especificado, este é 1. **ndb\_top** não pode fornecer informações sobre outros tipos de nós.
+O programa tenta obter estatísticas de um nó de dados que tenha o ID de nó fornecido pela opção `--node-id` (`-n`); se não especificado, este é 1. **ndb_top** não pode fornecer informações sobre outros tipos de nós.
 
 A visualização se ajusta à altura e à largura da janela do terminal; a largura mínima suportada é de 76 caracteres.
 
-Uma vez iniciado, o **ndb\_top** funciona continuamente até ser forçado a sair; você pode encerrar o programa usando `Ctrl-C`. O display é atualizado uma vez por segundo; para definir um intervalo de atraso diferente, use `--sleep-time` (`-s`).
+Uma vez iniciado, o **ndb_top** funciona continuamente até ser forçado a sair; você pode encerrar o programa usando `Ctrl-C`. O display é atualizado uma vez por segundo; para definir um intervalo de atraso diferente, use `--sleep-time` (`-s`).
 
 Nota
 
-**ndb\_top** está disponível no macOS, Linux e Solaris. Atualmente, não é suportado em plataformas Windows.
+**ndb_top** está disponível no macOS, Linux e Solaris. Atualmente, não é suportado em plataformas Windows.
 
 A tabela a seguir inclui todas as opções específicas do programa NDB Cluster **ndb_top**. Descrições adicionais seguem a tabela.
 
-**Tabela 21.45 Opções de string de comando usadas com o programa ndb\_top**
+**Tabela 21.45 Opções de string de comando usadas com o programa ndb_top**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code>--color</code>,</p><p> <code class="option"> -c </code> </p></th> <td>Mostrar gráficos ASCII coloridos; use --skip-colors para desabilitar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--graph</code>,</p><p> <code class="option"> -g </code> </p></th> <td>Exibir dados usando gráficos; use --skip-graphs para desabilitar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --help </code> </p></th> <td>Mostrar informações de uso do programa</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code>--host=string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_host">-h string</a> </code> </p></th> <td>Nome do host ou endereço IP do servidor MySQL para se conectar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--measured-load</code>,</p><p> <code class="option"> -m </code> </p></th> <td>Mostre carga medida por thread</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--node-id=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">- n #</a> </code> </p></th> <td>Nodo de observação com este ID de nó</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code>--os-load</code>,</p><p> <code class="option"> -o </code> </p></th> <td>Mostrar carga medida pelo sistema operacional</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code>--passwd=password</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_passwd">-p senha</a> </code> </p></th> <td>Conecte-se usando esta senha (mesma que a opção --password)</td> <td><p>ADICIONADO: NDB 7.6.3</p><p>REMOvido: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code>--password=password</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_password">-p senha</a> </code> </p></th> <td>Conecte-se usando esta senha</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p> <code>--port=#</code>,</p><p> <code class="option"><a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_port">-t #</a></code> (&lt;=7.6.5), </p><p> <code class="option"><a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_port">-P #</a></code> (&gt;=7.6.6) </p></th> <td>Número do porto a ser usado ao se conectar ao servidor MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--sleep-time=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_sleep-time">-s #</a> </code> </p></th> <td>Tempo de espera entre os refrescos da tela, em segundos</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code>--socket=path</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_socket">-S path</a> </code> </p></th> <td>Arquivo de soquete a ser usado para a conexão</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p> <code>--sort</code>,</p><p> <code class="option"> -r </code> </p></th> <td>Classifique os tópicos por uso; use --skip-sort para desabilitar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code>--text</code>,</p><p> <code>-x</code> (&lt;=7.6.5), </p><p> <code>-t</code> (&gt;=7.6.6) </p></th> <td>Exibir dados usando texto</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --usage </code> </p></th> <td>Mostrar informações de uso do programa; o mesmo que --help</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code>--user=name</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_user">-u nome</a> </code> </p></th> <td>Conecte-se como este usuário MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody></table>
 
@@ -5645,15 +5645,15 @@ Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 Conecte-se como este usuário MySQL. Normalmente requer uma senha fornecida pela opção `--password`.
 
-**Saída de exemplo.** A figura a seguir mostra o **ndb\_top** em execução em uma janela de terminal em um sistema Linux com um nó de dados **ndbmtd**") sob carga moderada. Aqui, o programa foi invocado usando **ndb\_top** `-n8` `-x` para fornecer saída tanto de texto quanto de gráfico:
+**Saída de exemplo.** A figura a seguir mostra o **ndb_top** em execução em uma janela de terminal em um sistema Linux com um nó de dados **ndbmtd**") sob carga moderada. Aqui, o programa foi invocado usando **ndb_top** `-n8` `-x` para fornecer saída tanto de texto quanto de gráfico:
 
 **Figura 21.7 ndb_top Executando no Terminal**
 
 ![Display from ndb_top, running in a terminal window. Shows information for each node, including the utilized resources.](images/ndb-top-1.png)
 
-### 21.5.30 ndb\_waiter — Aguarde o NDB Cluster atingir um determinado status
+### 21.5.30 ndb_waiter — Aguarde o NDB Cluster atingir um determinado status
 
-O **ndb\_waiter** imprime repetidamente (a cada 100 milissegundos) o status de todos os nós de dados do cluster até que o cluster atinja um determinado status ou o limite `--timeout` seja excedido, e então sai. Por padrão, ele espera que o cluster atinja o status `STARTED`, no qual todos os nós tenham começado e se conectado ao cluster. Isso pode ser sobreposto usando as opções `--no-contact` e `--not-started`.
+O **ndb_waiter** imprime repetidamente (a cada 100 milissegundos) o status de todos os nós de dados do cluster até que o cluster atinja um determinado status ou o limite `--timeout` seja excedido, e então sai. Por padrão, ele espera que o cluster atinja o status `STARTED`, no qual todos os nós tenham começado e se conectado ao cluster. Isso pode ser sobreposto usando as opções `--no-contact` e `--not-started`.
 
 Os estados dos nós reportados por este utilitário são os seguintes:
 
@@ -5669,9 +5669,9 @@ Os estados dos nós reportados por este utilitário são os seguintes:
 * `SHUTTING_DOWN`: O nó está sendo desligado.
 * `SINGLE USER MODE`: Isso é mostrado para todos os nós de dados do clúster quando o clúster está no modo de usuário único.
 
-As opções que podem ser usadas com **ndb\_waiter** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_waiter** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
-**Tabela 21.46 Opções de string de comando usadas com o programa ndb\_waiter**
+**Tabela 21.46 Opções de string de comando usadas com o programa ndb_waiter**
 
 <table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_connect-string">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --core-file </code> </p></th> <td>Escreva o arquivo de núcleo em erro; usado em depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concat(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Supere as entradas em NDB_CONNECTSTRING e my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--no-contact</code>,</p><p> <code class="option"> -n </code> </p></th> <td>Aguarde até que o clúster atinja o estado de NULO CONTATO</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --no-defaults </code> </p></th> <td>Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --not-started </code> </p></th> <td>Aguarde o cluster atingir o estado NÃO INICIADO</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --nowait-nodes=list </code> </p></th> <td>Lista de nós que não devem ser esperados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code class="option"> --single-user </code> </p></th> <td>Aguarde o cluster entrar no modo de usuário único</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--timeout=#</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_timeout">-t #</a> </code> </p></th> <td>Aguarde esses segundos, e então saia, independentemente de o cluster ter alcançado o estado desejado ou</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>,</p><p> <code class="option"> -? </code> </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>,</p><p> <code class="option"> -V </code> </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code>--wait-nodes=list</code>,</p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_wait-nodes">-w lista</a> </code> </p></th> <td>Lista de nós a serem esperados</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
@@ -5747,7 +5747,7 @@ Exibir texto de ajuda e sair.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>1
 
-Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
+Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Ocorre entradas em NDB_CONNECTSTRING e my.cnf.
 
 * `--ndb-mgmd-host`
 
@@ -5769,7 +5769,7 @@ Ative as otimizações para a seleção de nós para transações. Ativado por p
 
 * `--no-contact`, `-n`
 
-Em vez de esperar pelo estado `STARTED`, o **ndb\_waiter** continua em execução até que o clúster atinja o estado `NO_CONTACT` antes de sair.
+Em vez de esperar pelo estado `STARTED`, o **ndb_waiter** continua em execução até que o clúster atinja o estado `NO_CONTACT` antes de sair.
 
 * `--no-defaults`
 
@@ -5779,11 +5779,11 @@ Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo d
 
 * `--not-started`
 
-Em vez de esperar pelo estado `STARTED`, o **ndb\_waiter** continua em execução até que o clúster atinja o estado `NOT_STARTED` antes de sair.
+Em vez de esperar pelo estado `STARTED`, o **ndb_waiter** continua em execução até que o clúster atinja o estado `NOT_STARTED` antes de sair.
 
 * `--nowait-nodes=list`
 
-Quando esta opção é usada, o **ndb\_waiter** não espera pelos nós cujos IDs estão listados. A lista é delimitada por vírgulas; os intervalos podem ser indicados por traços, como mostrado aqui:
+Quando esta opção é usada, o **ndb_waiter** não espera pelos nós cujos IDs estão listados. A lista é delimitada por vírgulas; os intervalos podem ser indicados por traços, como mostrado aqui:
 
   ```sql
   $> ndb_waiter --nowait-nodes=1,3,7-9
@@ -5821,7 +5821,7 @@ Exibir informações da versão e sair.
 
 * `--wait-nodes=list`, `-w list`
 
-Quando esta opção é usada, o **ndb\_waiter** espera apenas pelos nós cujos IDs estão listados. A lista é delimitada por vírgulas; os intervalos podem ser indicados por traços, como mostrado aqui:
+Quando esta opção é usada, o **ndb_waiter** espera apenas pelos nós cujos IDs estão listados. A lista é delimitada por vírgulas; os intervalos podem ser indicados por traços, como mostrado aqui:
 
   ```sql
   $> ndb_waiter --wait-nodes=2,4-6,10
@@ -5831,7 +5831,7 @@ Importante
 
 Não use esta opção em conjunto com a opção `--nowait-nodes`.
 
-**Saída de exemplo.** Mostrada aqui é a saída do **ndb\_waiter** quando executado em um clúster de 4 nós, nos quais dois nós foram desligados e depois reiniciados manualmente. Relatórios duplicados (indicados por `...`) são omitidos.
+**Saída de exemplo.** Mostrada aqui é a saída do **ndb_waiter** quando executado em um clúster de 4 nós, nos quais dois nós foram desligados e depois reiniciados manualmente. Relatórios duplicados (indicados por `...`) são omitidos.
 
 ```sql
 $> ./ndb_waiter -c localhost
@@ -5894,6 +5894,6 @@ Waiting for cluster enter state STARTED
 
 Nota
 
-Se nenhuma string de conexão for especificada, o **ndb\_waiter** tenta se conectar a uma gestão em `localhost`, e reporta `Connecting to mgmsrv at (null)`.
+Se nenhuma string de conexão for especificada, o **ndb_waiter** tenta se conectar a uma gestão em `localhost`, e reporta `Connecting to mgmsrv at (null)`.
 
 Antes das versões NDB 7.5.18 e 7.6.14, este programa imprimia `NDBT_ProgramExit - status` após a conclusão de sua execução, devido a uma dependência desnecessária da biblioteca de teste `NDBT`. Essa dependência foi removida, eliminando a saída desnecessária.

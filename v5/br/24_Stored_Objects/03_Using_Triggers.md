@@ -241,7 +241,7 @@ mysql> SELECT * FROM test4;
 
 Para obter metadados sobre gatilhos:
 
-* Consulte a tabela `TRIGGERS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.29, “A tabela TRIGGERS do INFORMATION\_SCHEMA”.
+* Consulte a tabela `TRIGGERS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”.
 
 * Utilize a declaração `SHOW CREATE TRIGGER`. Veja a Seção 13.7.5.11, “Declaração SHOW CREATE TRIGGER”.
 

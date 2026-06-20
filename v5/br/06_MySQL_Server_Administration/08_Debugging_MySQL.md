@@ -214,7 +214,7 @@ stack_bottom = 0x41fd0110 thread_stack 0x40000
 [0x66e05e]
 ```
 
-No último caso, você pode usar o utilitário **resolve\_stack\_dump** para determinar onde o `mysqld` morreu, usando o seguinte procedimento:
+No último caso, você pode usar o utilitário **resolve_stack_dump** para determinar onde o `mysqld` morreu, usando o seguinte procedimento:
 
 1. Copie os números do registro de depuração para um arquivo, por exemplo, `mysqld.stack`. Os números não devem incluir os colchetes ao redor:
 
@@ -253,7 +253,7 @@ Se você deseja decodificar símbolos em C++, use o `--demangle`, se disponível
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack
    ```
 
-Se você não conseguiu incluir nomes de C++ não modificados em seu arquivo de símbolos, processe a saída de **resolve\_stack\_dump** usando **c++filt**:
+Se você não conseguiu incluir nomes de C++ não modificados em seu arquivo de símbolos, processe a saída de **resolve_stack_dump** usando **c++filt**:
 
    ```sql
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack | c++filt

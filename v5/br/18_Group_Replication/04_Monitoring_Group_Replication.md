@@ -38,7 +38,7 @@ Uma vez que uma instância entre no estado `ERROR`, a opção `super_read_only` 
 
 Observe que a Replicação em Grupo não é *síncrona*, mas eventualmente síncrona. Mais precisamente, as transações são entregues a todos os membros do grupo na mesma ordem, mas sua execução não é sincronizada, o que significa que, após uma transação ser aceita para ser comprometida, cada membro compromete em seu próprio ritmo.
 
-### 17.4.2 A tabela `replicação\_grupo\_membros`
+### 17.4.2 A tabela `replicação_grupo_membros`
 
 A tabela `performance_schema.replication_group_members` é usada para monitorar o status das diferentes instâncias do servidor que são membros do grupo. As informações na tabela são atualizadas sempre que houver uma mudança de visão, por exemplo, quando a configuração do grupo é alterada dinamicamente quando um novo membro se junta. Nesse ponto, os servidores trocam parte de seus metadados para se sincronizar e continuar a cooperar juntos. As informações são compartilhadas entre todas as instâncias do servidor que são membros do grupo de replicação, para que as informações sobre todos os membros do grupo possam ser consultadas a partir de qualquer membro. Esta tabela pode ser usada para obter uma visão de alto nível do estado de um grupo de replicação, por exemplo, emitindo:
 
@@ -57,7 +57,7 @@ Com base nesse resultado, podemos ver que o grupo consiste em três membros, o n
 
 Para mais informações sobre o valor `Member_host` e seu impacto no processo de recuperação distribuída, consulte a Seção 17.2.1.3, “Credenciais do usuário”.
 
-### 17.4.3 A tabela `replicação\_grupo\_membro\_estatísticas`
+### 17.4.3 A tabela `replicação_grupo_membro_estatísticas`
 
 Cada membro de um grupo de replicação certifica e aplica as transações recebidas pelo grupo. As estatísticas sobre os procedimentos de certificação e aplicação são úteis para entender como a fila de aplicação está crescendo, quantos conflitos foram encontrados, quantas transações foram verificadas, quais transações estão comprometidas em todos os lugares, e assim por diante.
 
